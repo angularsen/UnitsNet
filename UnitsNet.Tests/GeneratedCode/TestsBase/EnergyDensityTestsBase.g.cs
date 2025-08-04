@@ -797,6 +797,13 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, EnergyDensity.FromJoulesPerCubicMeter(10)/EnergyDensity.FromJoulesPerCubicMeter(5), JoulesPerCubicMeterTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Energy.FromJoules(20), EnergyDensity.FromJoulesPerCubicMeter(10) * Volume.FromCubicMeters(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

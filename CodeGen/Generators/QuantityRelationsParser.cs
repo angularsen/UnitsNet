@@ -32,7 +32,7 @@ namespace CodeGen.Generators
         /// </summary>
         /// <example>
         /// [
-        ///   "1 = Length.Meter * ReciprocalLength.InverseMeter"
+        ///   "double = Length.Meter * ReciprocalLength.InverseMeter -- Inverse"
         ///   "Power.Watt = ElectricPotential.Volt * ElectricCurrent.Ampere",
         ///   "Mass.Kilogram = MassConcentration.KilogramPerCubicMeter * Volume.CubicMeter -- NoInferredDivision",
         /// ]
@@ -46,22 +46,23 @@ namespace CodeGen.Generators
             // Add double and 1 as pseudo-quantities to validate relations that use them.
             var pseudoQuantity = new Quantity { Name = null!, Units = [new Unit { SingularName = null! }] };
             quantityDictionary["double"] = pseudoQuantity with { Name = "double" };
-            quantityDictionary["1"] = pseudoQuantity with { Name = "1" };
 
             var relations = ParseRelations(rootDir, quantityDictionary);
 
             // Because multiplication is commutative, we can infer the other operand order.
             relations.AddRange(relations
-                .Where(r => r.Operator is "*" or "inverse" && r.LeftQuantity != r.RightQuantity)
+                .Where(r => r.Operator is "*" && r.LeftQuantity != r.RightQuantity)
                 .Select(r => r with
                 {
                     LeftQuantity = r.RightQuantity,
                     LeftUnit = r.RightUnit,
                     RightQuantity = r.LeftQuantity,
                     RightUnit = r.LeftUnit,
+                    IsDerived = true,
+                    // IsInverse is propagated, to also generate Inverse() method for the right hand quantity.
                 })
                 .ToList());
-            
+
             // We can infer division relations from multiplication relations.
             relations.AddRange(relations
                 .Where(r => r is { Operator: "*", NoInferredDivision: false })
@@ -72,6 +73,8 @@ namespace CodeGen.Generators
                     LeftUnit = r.ResultUnit,
                     ResultQuantity = r.LeftQuantity,
                     ResultUnit = r.LeftUnit,
+                    IsDerived = true,
+                    IsInverse = false, // Don't propagate for inferred division relations, Inverse() methods should only be generated the left and right hand quantities in the original definition.
                 })
                 // Skip division between equal quantities because the ratio is already generated as part of the Arithmetic Operators.
                 .Where(r => r.LeftQuantity != r.RightQuantity)
@@ -91,7 +94,7 @@ namespace CodeGen.Generators
                 var list = string.Join("\n  ", duplicates);
                 throw new UnitsNetCodeGenException($"Duplicate inferred relations:\n  {list}");
             }
-            
+
             var ambiguous = relations
                 .GroupBy(r => $"{r.LeftQuantity.Name} {r.Operator} {r.RightQuantity.Name}")
                 .Where(g => g.Count() > 1)
@@ -170,14 +173,14 @@ namespace CodeGen.Generators
             var rightUnit = GetUnit(rightQuantity, right.ElementAtOrDefault(1));
             var resultUnit = GetUnit(resultQuantity, result.ElementAtOrDefault(1));
 
-            if (resultQuantity.Name == "1")
-            {
-                @operator = "inverse";
-            }
+            // Configuration segments are the parts after the "--" in the relation string.
+            // Example: "double = Length.Meter * ReciprocalLength.InverseMeter -- Inverse" => ["Inverse"]
+            var configurationSegments = relationString.Split("--").Last().Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
             return new QuantityRelation
             {
-                NoInferredDivision = segments.Contains("NoInferredDivision"),
+                NoInferredDivision = configurationSegments.Contains("NoInferredDivision"),
+                IsInverse = configurationSegments.Contains("Inverse"),
                 Operator = @operator,
                 LeftQuantity = leftQuantity,
                 LeftUnit = leftUnit,

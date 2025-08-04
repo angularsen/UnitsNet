@@ -2399,6 +2399,32 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, Density.FromKilogramsPerCubicMeter(10)/Density.FromKilogramsPerCubicMeter(5), KilogramsPerCubicMeterTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(DynamicViscosity.FromNewtonSecondsPerMeterSquared(20), Density.FromKilogramsPerCubicMeter(10) * KinematicViscosity.FromSquareMetersPerSecond(2));
+            Assert.Equal(LinearDensity.FromKilogramsPerMeter(20), Density.FromKilogramsPerCubicMeter(10) * Area.FromSquareMeters(2));
+            Assert.Equal(Mass.FromKilograms(20), Density.FromKilogramsPerCubicMeter(10) * Volume.FromCubicMeters(2));
+            Assert.Equal(MassConcentration.FromKilogramsPerCubicMeter(20), Density.FromKilogramsPerCubicMeter(10) * VolumeConcentration.FromDecimalFractions(2));
+            Assert.Equal(MassFlow.FromKilogramsPerSecond(20), Density.FromKilogramsPerCubicMeter(10) * VolumeFlow.FromCubicMetersPerSecond(2));
+            Assert.Equal(MassFlux.FromKilogramsPerSecondPerSquareMeter(20), Density.FromKilogramsPerCubicMeter(10) * Speed.FromMetersPerSecond(2));
+            Assert.Equal(SpecificVolume.FromCubicMetersPerKilogram(5), 10 / Density.FromKilogramsPerCubicMeter(2));
+            Assert.Equal(SpecificWeight.FromNewtonsPerCubicMeter(20), Density.FromKilogramsPerCubicMeter(10) * Acceleration.FromMetersPerSecondSquared(2));
+            Assert.Equal(20, Density.FromKilogramsPerCubicMeter(10) * SpecificVolume.FromCubicMetersPerKilogram(2));
+        }
+
+        [Fact]
+        public void InverseMethod()
+        {
+            Density v = Density.FromKilogramsPerCubicMeter(10);
+
+            SpecificVolume inverse = v.Inverse();
+
+            AssertEx.EqualTolerance(0.1, inverse.Value, 1e-5);
+            Assert.Equal(SpecificVolumeUnit.CubicMeterPerKilogram, inverse.Unit);
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

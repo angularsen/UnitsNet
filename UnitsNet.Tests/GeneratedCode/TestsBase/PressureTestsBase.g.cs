@@ -2782,6 +2782,22 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, Pressure.FromPascals(10)/Pressure.FromPascals(5), PascalsTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Duration.FromSeconds(5), Pressure.FromPascals(10) / PressureChangeRate.FromPascalsPerSecond(2));
+            Assert.Equal(Force.FromNewtons(5), Pressure.FromNewtonsPerSquareMeter(10) / ReciprocalArea.FromInverseSquareMeters(2));
+            Assert.Equal(Force.FromNewtons(20), Pressure.FromPascals(10) * Area.FromSquareMeters(2));
+            Assert.Equal(ForcePerLength.FromNewtonsPerMeter(20), Pressure.FromNewtonsPerSquareMeter(10) * Length.FromMeters(2));
+            Assert.Equal(ForcePerLength.FromNewtonsPerMeter(5), Pressure.FromNewtonsPerSquareMeter(10) / ReciprocalLength.FromInverseMeters(2));
+            Assert.Equal(Length.FromMeters(5), Pressure.FromPascals(10) / SpecificWeight.FromNewtonsPerCubicMeter(2));
+            Assert.Equal(PressureChangeRate.FromPascalsPerSecond(5), Pressure.FromPascals(10) / Duration.FromSeconds(2));
+            Assert.Equal(ReciprocalArea.FromInverseSquareMeters(5), Pressure.FromNewtonsPerSquareMeter(10) / Force.FromNewtons(2));
+            Assert.Equal(ReciprocalLength.FromInverseMeters(5), Pressure.FromNewtonsPerSquareMeter(10) / ForcePerLength.FromNewtonsPerMeter(2));
+            Assert.Equal(SpecificWeight.FromNewtonsPerCubicMeter(5), Pressure.FromPascals(10) / Length.FromMeters(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

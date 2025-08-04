@@ -683,6 +683,16 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, ElectricPotential.FromVolts(10)/ElectricPotential.FromVolts(5), VoltsTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(ElectricCurrent.FromAmperes(5), ElectricPotential.FromVolts(10) / ElectricResistance.FromOhms(2));
+            Assert.Equal(ElectricResistance.FromOhms(5), ElectricPotential.FromVolts(10) / ElectricCurrent.FromAmperes(2));
+            Assert.Equal(Energy.FromJoules(20), ElectricPotential.FromVolts(10) * ElectricCharge.FromCoulombs(2));
+            Assert.Equal(Power.FromWatts(20), ElectricPotential.FromVolts(10) * ElectricCurrent.FromAmperes(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

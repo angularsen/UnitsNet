@@ -813,6 +813,15 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, ElectricCharge.FromCoulombs(10)/ElectricCharge.FromCoulombs(5), CoulombsTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Duration.FromHours(5), ElectricCharge.FromAmpereHours(10) / ElectricCurrent.FromAmperes(2));
+            Assert.Equal(ElectricCurrent.FromAmperes(5), ElectricCharge.FromAmpereHours(10) / Duration.FromHours(2));
+            Assert.Equal(Energy.FromJoules(20), ElectricCharge.FromCoulombs(10) * ElectricPotential.FromVolts(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

@@ -741,6 +741,13 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(10)/RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(5), NewtonMetersPerRadianPerMeterTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(RotationalStiffness.FromNewtonMetersPerRadian(20), RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(10) * Length.FromMeters(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

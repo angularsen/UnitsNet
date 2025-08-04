@@ -1223,6 +1223,24 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, Force.FromNewtons(10)/Force.FromNewtons(5), NewtonsTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Acceleration.FromMetersPerSecondSquared(5), Force.FromNewtons(10) / Mass.FromKilograms(2));
+            Assert.Equal(Area.FromSquareMeters(5), Force.FromNewtons(10) / Pressure.FromPascals(2));
+            Assert.Equal(Duration.FromSeconds(5), Force.FromNewtons(10) / ForceChangeRate.FromNewtonsPerSecond(2));
+            Assert.Equal(ForceChangeRate.FromNewtonsPerSecond(5), Force.FromNewtons(10) / Duration.FromSeconds(2));
+            Assert.Equal(ForcePerLength.FromNewtonsPerMeter(20), Force.FromNewtons(10) * ReciprocalLength.FromInverseMeters(2));
+            Assert.Equal(ForcePerLength.FromNewtonsPerMeter(5), Force.FromNewtons(10) / Length.FromMeters(2));
+            Assert.Equal(Length.FromMeters(5), Force.FromNewtons(10) / ForcePerLength.FromNewtonsPerMeter(2));
+            Assert.Equal(Mass.FromKilograms(5), Force.FromNewtons(10) / Acceleration.FromMetersPerSecondSquared(2));
+            Assert.Equal(Power.FromWatts(20), Force.FromNewtons(10) * Speed.FromMetersPerSecond(2));
+            Assert.Equal(Pressure.FromNewtonsPerSquareMeter(20), Force.FromNewtons(10) * ReciprocalArea.FromInverseSquareMeters(2));
+            Assert.Equal(Pressure.FromPascals(5), Force.FromNewtons(10) / Area.FromSquareMeters(2));
+            Assert.Equal(Torque.FromNewtonMeters(20), Force.FromNewtons(10) * Length.FromMeters(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

@@ -637,6 +637,15 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, Entropy.FromJoulesPerKelvin(10)/Entropy.FromJoulesPerKelvin(5), JoulesPerKelvinTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Energy.FromJoules(20), Entropy.FromJoulesPerKelvin(10) * TemperatureDelta.FromKelvins(2));
+            Assert.Equal(Mass.FromKilograms(5), Entropy.FromJoulesPerKelvin(10) / SpecificEntropy.FromJoulesPerKilogramKelvin(2));
+            Assert.Equal(SpecificEntropy.FromJoulesPerKilogramKelvin(5), Entropy.FromJoulesPerKelvin(10) / Mass.FromKilograms(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

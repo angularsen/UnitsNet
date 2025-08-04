@@ -952,6 +952,13 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, Jerk.FromMetersPerSecondCubed(10)/Jerk.FromMetersPerSecondCubed(5), MetersPerSecondCubedTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Acceleration.FromMetersPerSecondSquared(20), Jerk.FromMetersPerSecondCubed(10) * Duration.FromSeconds(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

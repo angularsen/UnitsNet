@@ -541,6 +541,13 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, TemperatureGradient.FromKelvinsPerMeter(10)/TemperatureGradient.FromKelvinsPerMeter(5), KelvinsPerMeterTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(TemperatureDelta.FromDegreesCelsius(20), TemperatureGradient.FromDegreesCelsiusPerKilometer(10) * Length.FromKilometers(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

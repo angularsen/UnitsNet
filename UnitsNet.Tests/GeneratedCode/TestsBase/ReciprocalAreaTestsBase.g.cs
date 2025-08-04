@@ -765,6 +765,28 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, ReciprocalArea.FromInverseSquareMeters(10)/ReciprocalArea.FromInverseSquareMeters(5), InverseSquareMetersTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Length.FromMeters(20), ReciprocalArea.FromInverseSquareMeters(10) * Volume.FromCubicMeters(2));
+            Assert.Equal(Pressure.FromNewtonsPerSquareMeter(20), ReciprocalArea.FromInverseSquareMeters(10) * Force.FromNewtons(2));
+            Assert.Equal(Ratio.FromDecimalFractions(20), ReciprocalArea.FromInverseSquareMeters(10) * Area.FromSquareMeters(2));
+            Assert.Equal(ReciprocalLength.FromInverseMeters(20), ReciprocalArea.FromInverseSquareMeters(10) * Length.FromMeters(2));
+            Assert.Equal(ReciprocalLength.FromInverseMeters(5), ReciprocalArea.FromInverseSquareMeters(10) / ReciprocalLength.FromInverseMeters(2));
+        }
+
+        [Fact]
+        public void InverseMethod()
+        {
+            ReciprocalArea v = ReciprocalArea.FromInverseSquareMeters(10);
+
+            Area inverse = v.Inverse();
+
+            AssertEx.EqualTolerance(0.1, inverse.Value, 1e-5);
+            Assert.Equal(AreaUnit.SquareMeter, inverse.Unit);
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

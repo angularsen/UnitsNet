@@ -509,6 +509,13 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, MolarEnergy.FromJoulesPerMole(10)/MolarEnergy.FromJoulesPerMole(5), JoulesPerMoleTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Energy.FromJoules(20), MolarEnergy.FromJoulesPerMole(10) * AmountOfSubstance.FromMoles(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

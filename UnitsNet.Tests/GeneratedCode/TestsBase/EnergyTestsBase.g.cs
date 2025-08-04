@@ -2038,6 +2038,25 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, Energy.FromJoules(10)/Energy.FromJoules(5), JoulesTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(AmountOfSubstance.FromMoles(5), Energy.FromJoules(10) / MolarEnergy.FromJoulesPerMole(2));
+            Assert.Equal(Duration.FromSeconds(5), Energy.FromJoules(10) / Power.FromWatts(2));
+            Assert.Equal(ElectricCharge.FromCoulombs(5), Energy.FromJoules(10) / ElectricPotential.FromVolts(2));
+            Assert.Equal(ElectricPotential.FromVolts(5), Energy.FromJoules(10) / ElectricCharge.FromCoulombs(2));
+            Assert.Equal(EnergyDensity.FromJoulesPerCubicMeter(5), Energy.FromJoules(10) / Volume.FromCubicMeters(2));
+            Assert.Equal(Entropy.FromJoulesPerKelvin(5), Energy.FromJoules(10) / TemperatureDelta.FromKelvins(2));
+            Assert.Equal(Mass.FromKilograms(5), Energy.FromJoules(10) / SpecificEnergy.FromJoulesPerKilogram(2));
+            Assert.Equal(MolarEnergy.FromJoulesPerMole(5), Energy.FromJoules(10) / AmountOfSubstance.FromMoles(2));
+            Assert.Equal(Power.FromWatts(20), Energy.FromJoules(10) * Frequency.FromPerSecond(2));
+            Assert.Equal(Power.FromWatts(5), Energy.FromJoules(10) / Duration.FromSeconds(2));
+            Assert.Equal(SpecificEnergy.FromJoulesPerKilogram(5), Energy.FromJoules(10) / Mass.FromKilograms(2));
+            Assert.Equal(TemperatureDelta.FromKelvins(5), Energy.FromJoules(10) / Entropy.FromJoulesPerKelvin(2));
+            Assert.Equal(Volume.FromCubicMeters(5), Energy.FromJoules(10) / EnergyDensity.FromJoulesPerCubicMeter(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

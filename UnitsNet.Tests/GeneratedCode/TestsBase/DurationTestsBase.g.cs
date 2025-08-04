@@ -1912,6 +1912,27 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(2, Duration.FromSeconds(10)/Duration.FromSeconds(5), SecondsTolerance);
         }
 
+        /// <summary>Tests generated arithmetic operators for quantity relations defined in <c>Common/UnitRelations.json</c></summary>
+        [Fact]
+        public void ArithmeticOperators_Relational()
+        {
+            Assert.Equal(Acceleration.FromMetersPerSecondSquared(20), Duration.FromSeconds(10) * Jerk.FromMetersPerSecondCubed(2));
+            Assert.Equal(AmountOfSubstance.FromMoles(20), Duration.FromSeconds(10) * MolarFlow.FromMolesPerSecond(2));
+            Assert.Equal(Angle.FromRadians(20), Duration.FromSeconds(10) * RotationalSpeed.FromRadiansPerSecond(2));
+            Assert.Equal(Area.FromSquareMeters(20), Duration.FromSeconds(10) * KinematicViscosity.FromSquareMetersPerSecond(2));
+            Assert.Equal(ElectricCharge.FromAmpereHours(20), Duration.FromHours(10) * ElectricCurrent.FromAmperes(2));
+            Assert.Equal(ElectricCurrent.FromAmperes(20), Duration.FromSeconds(10) * ElectricCurrentGradient.FromAmperesPerSecond(2));
+            Assert.Equal(Energy.FromJoules(20), Duration.FromSeconds(10) * Power.FromWatts(2));
+            Assert.Equal(Force.FromNewtons(20), Duration.FromSeconds(10) * ForceChangeRate.FromNewtonsPerSecond(2));
+            Assert.Equal(Length.FromMeters(20), Duration.FromSeconds(10) * Speed.FromMetersPerSecond(2));
+            Assert.Equal(Mass.FromKilograms(20), Duration.FromSeconds(10) * MassFlow.FromKilogramsPerSecond(2));
+            Assert.Equal(Pressure.FromPascals(20), Duration.FromSeconds(10) * PressureChangeRate.FromPascalsPerSecond(2));
+            Assert.Equal(RadiationEquivalentDose.FromSieverts(20), Duration.FromHours(10) * RadiationEquivalentDoseRate.FromSievertsPerHour(2));
+            Assert.Equal(Speed.FromMetersPerSecond(20), Duration.FromSeconds(10) * Acceleration.FromMetersPerSecondSquared(2));
+            Assert.Equal(TemperatureDelta.FromDegreesCelsius(20), Duration.FromSeconds(10) * TemperatureChangeRate.FromDegreesCelsiusPerSecond(2));
+            Assert.Equal(Volume.FromCubicMeters(20), Duration.FromSeconds(10) * VolumeFlow.FromCubicMetersPerSecond(2));
+        }
+
         [Fact]
         public void ComparisonOperators()
         {

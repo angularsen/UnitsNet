@@ -49,6 +49,7 @@ namespace UnitsNet
         IMultiplyOperators<ReciprocalLength, ForcePerLength, Pressure>,
         IMultiplyOperators<ReciprocalLength, ReciprocalLength, ReciprocalArea>,
         IDivisionOperators<ReciprocalLength, Length, ReciprocalArea>,
+        IMultiplyOperators<ReciprocalLength, Length, double>,
 #endif
 #if NET7_0_OR_GREATER
         IComparisonOperators<ReciprocalLength, ReciprocalLength, bool>,
@@ -675,6 +676,12 @@ namespace UnitsNet
             return Length.FromMeters(reciprocalLength.InverseMeters / reciprocalArea.InverseSquareMeters);
         }
 
+        /// <summary>Get <see cref="Length"/> from <see cref="double"/> / <see cref="ReciprocalLength"/>.</summary>
+        public static Length operator /(double value, ReciprocalLength reciprocalLength)
+        {
+            return Length.FromMeters(value / reciprocalLength.InverseMeters);
+        }
+
         /// <summary>Get <see cref="Pressure"/> from <see cref="ReciprocalLength"/> * <see cref="ForcePerLength"/>.</summary>
         public static Pressure operator *(ReciprocalLength reciprocalLength, ForcePerLength forcePerLength)
         {
@@ -691,6 +698,12 @@ namespace UnitsNet
         public static ReciprocalArea operator /(ReciprocalLength reciprocalLength, Length length)
         {
             return ReciprocalArea.FromInverseSquareMeters(reciprocalLength.InverseMeters / length.Meters);
+        }
+
+        /// <summary>Get <see cref="double"/> from <see cref="ReciprocalLength"/> * <see cref="Length"/>.</summary>
+        public static double operator *(ReciprocalLength reciprocalLength, Length length)
+        {
+            return reciprocalLength.InverseMeters * length.Meters;
         }
 
         #endregion
