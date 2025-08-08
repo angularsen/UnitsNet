@@ -1433,23 +1433,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = FluidResistance.FromPascalSecondsPerCubicMeter(1);
-            Assert.True(v.Equals(FluidResistance.FromPascalSecondsPerCubicMeter(1), PascalSecondsPerCubicMeterTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(FluidResistance.Zero, PascalSecondsPerCubicMeterTolerance, ComparisonType.Relative));
-            Assert.True(FluidResistance.FromPascalSecondsPerCubicMeter(100).Equals(FluidResistance.FromPascalSecondsPerCubicMeter(120), 0.3, ComparisonType.Relative));
-            Assert.False(FluidResistance.FromPascalSecondsPerCubicMeter(100).Equals(FluidResistance.FromPascalSecondsPerCubicMeter(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = FluidResistance.FromPascalSecondsPerCubicMeter(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(FluidResistance.FromPascalSecondsPerCubicMeter(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             FluidResistance pascalsecondpercubicmeter = FluidResistance.FromPascalSecondsPerCubicMeter(1);
@@ -1461,6 +1444,32 @@ namespace UnitsNet.Tests
         {
             FluidResistance pascalsecondpercubicmeter = FluidResistance.FromPascalSecondsPerCubicMeter(1);
             Assert.False(pascalsecondpercubicmeter.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(firstValue);
+            var otherQuantity = FluidResistance.FromPascalSecondsPerCubicMeter(secondValue);
+            FluidResistance maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, FluidResistance.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1);
+            var negativeTolerance = FluidResistance.FromPascalSecondsPerCubicMeter(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -1577,7 +1586,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Equal(new {FluidResistance.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

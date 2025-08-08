@@ -31,17 +31,7 @@ public class SumOfMassesWithRandomUnitsBenchmarks
     [Benchmark(Baseline = true)]
     public Mass SumOfMasses()
     {
-#if NET
-        return UnitsNet.GenericMath.GenericMathExtensions.Sum(_quantities);
-#else
-        Mass sum = Mass.Zero;
-        foreach (var quantity in _quantities)
-        {
-            sum = quantity + sum;
-        }
-
-        return sum;
-#endif
+        return _quantities.Sum();
     }
 
     [Benchmark(Baseline = false)]
