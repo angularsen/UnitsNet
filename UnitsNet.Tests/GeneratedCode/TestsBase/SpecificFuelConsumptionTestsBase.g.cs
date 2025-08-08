@@ -611,23 +611,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = SpecificFuelConsumption.FromGramsPerKilonewtonSecond(1);
-            Assert.True(v.Equals(SpecificFuelConsumption.FromGramsPerKilonewtonSecond(1), GramsPerKilonewtonSecondTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(SpecificFuelConsumption.Zero, GramsPerKilonewtonSecondTolerance, ComparisonType.Relative));
-            Assert.True(SpecificFuelConsumption.FromGramsPerKilonewtonSecond(100).Equals(SpecificFuelConsumption.FromGramsPerKilonewtonSecond(120), 0.3, ComparisonType.Relative));
-            Assert.False(SpecificFuelConsumption.FromGramsPerKilonewtonSecond(100).Equals(SpecificFuelConsumption.FromGramsPerKilonewtonSecond(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = SpecificFuelConsumption.FromGramsPerKilonewtonSecond(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(SpecificFuelConsumption.FromGramsPerKilonewtonSecond(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             SpecificFuelConsumption gramperkilonewtonsecond = SpecificFuelConsumption.FromGramsPerKilonewtonSecond(1);
@@ -639,6 +622,32 @@ namespace UnitsNet.Tests
         {
             SpecificFuelConsumption gramperkilonewtonsecond = SpecificFuelConsumption.FromGramsPerKilonewtonSecond(1);
             Assert.False(gramperkilonewtonsecond.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = SpecificFuelConsumption.FromGramsPerKilonewtonSecond(firstValue);
+            var otherQuantity = SpecificFuelConsumption.FromGramsPerKilonewtonSecond(secondValue);
+            SpecificFuelConsumption maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, SpecificFuelConsumption.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = SpecificFuelConsumption.FromGramsPerKilonewtonSecond(1);
+            var negativeTolerance = SpecificFuelConsumption.FromGramsPerKilonewtonSecond(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -725,7 +734,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = SpecificFuelConsumption.FromGramsPerKilonewtonSecond(1.0);
-            Assert.Equal(new {SpecificFuelConsumption.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

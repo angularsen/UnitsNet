@@ -555,23 +555,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = AmplitudeRatio.FromDecibelVolts(1);
-            Assert.True(v.Equals(AmplitudeRatio.FromDecibelVolts(1), DecibelVoltsTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(AmplitudeRatio.Zero, DecibelVoltsTolerance, ComparisonType.Relative));
-            Assert.True(AmplitudeRatio.FromDecibelVolts(100).Equals(AmplitudeRatio.FromDecibelVolts(120), 0.3, ComparisonType.Relative));
-            Assert.False(AmplitudeRatio.FromDecibelVolts(100).Equals(AmplitudeRatio.FromDecibelVolts(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = AmplitudeRatio.FromDecibelVolts(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(AmplitudeRatio.FromDecibelVolts(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             AmplitudeRatio decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
@@ -583,6 +566,34 @@ namespace UnitsNet.Tests
         {
             AmplitudeRatio decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
             Assert.False(decibelvolt.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_Logarithmic_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = AmplitudeRatio.FromDecibelVolts(firstValue);
+            var otherQuantity = AmplitudeRatio.FromDecibelVolts(secondValue);
+            AmplitudeRatio maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, AmplitudeRatio.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+            // note: it's currently not possible to test this due to the rounding error from (quantity - otherQuantity) 
+            // Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+        }
+
+        [Fact]
+        public void Equals_Logarithmic_WithNegativeTolerance_DoesNotThrowArgumentOutOfRangeException()
+        {
+            // note: unlike with vector quantities- a small tolerance maybe positive in one unit and negative in another
+            var quantity = AmplitudeRatio.FromDecibelVolts(1);
+            var negativeTolerance = AmplitudeRatio.FromDecibelVolts(-1);
+            Assert.True(quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -669,7 +680,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = AmplitudeRatio.FromDecibelVolts(1.0);
-            Assert.Equal(new {AmplitudeRatio.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

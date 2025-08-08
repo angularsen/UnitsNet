@@ -843,23 +843,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = ReciprocalLength.FromInverseMeters(1);
-            Assert.True(v.Equals(ReciprocalLength.FromInverseMeters(1), InverseMetersTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ReciprocalLength.Zero, InverseMetersTolerance, ComparisonType.Relative));
-            Assert.True(ReciprocalLength.FromInverseMeters(100).Equals(ReciprocalLength.FromInverseMeters(120), 0.3, ComparisonType.Relative));
-            Assert.False(ReciprocalLength.FromInverseMeters(100).Equals(ReciprocalLength.FromInverseMeters(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = ReciprocalLength.FromInverseMeters(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ReciprocalLength.FromInverseMeters(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             ReciprocalLength inversemeter = ReciprocalLength.FromInverseMeters(1);
@@ -871,6 +854,32 @@ namespace UnitsNet.Tests
         {
             ReciprocalLength inversemeter = ReciprocalLength.FromInverseMeters(1);
             Assert.False(inversemeter.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = ReciprocalLength.FromInverseMeters(firstValue);
+            var otherQuantity = ReciprocalLength.FromInverseMeters(secondValue);
+            ReciprocalLength maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, ReciprocalLength.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = ReciprocalLength.FromInverseMeters(1);
+            var negativeTolerance = ReciprocalLength.FromInverseMeters(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -969,7 +978,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ReciprocalLength.FromInverseMeters(1.0);
-            Assert.Equal(new {ReciprocalLength.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

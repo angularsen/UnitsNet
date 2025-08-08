@@ -809,23 +809,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = Impulse.FromNewtonSeconds(1);
-            Assert.True(v.Equals(Impulse.FromNewtonSeconds(1), NewtonSecondsTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Impulse.Zero, NewtonSecondsTolerance, ComparisonType.Relative));
-            Assert.True(Impulse.FromNewtonSeconds(100).Equals(Impulse.FromNewtonSeconds(120), 0.3, ComparisonType.Relative));
-            Assert.False(Impulse.FromNewtonSeconds(100).Equals(Impulse.FromNewtonSeconds(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = Impulse.FromNewtonSeconds(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Impulse.FromNewtonSeconds(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Impulse newtonsecond = Impulse.FromNewtonSeconds(1);
@@ -837,6 +820,32 @@ namespace UnitsNet.Tests
         {
             Impulse newtonsecond = Impulse.FromNewtonSeconds(1);
             Assert.False(newtonsecond.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = Impulse.FromNewtonSeconds(firstValue);
+            var otherQuantity = Impulse.FromNewtonSeconds(secondValue);
+            Impulse maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, Impulse.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = Impulse.FromNewtonSeconds(1);
+            var negativeTolerance = Impulse.FromNewtonSeconds(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -941,7 +950,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Impulse.FromNewtonSeconds(1.0);
-            Assert.Equal(new {Impulse.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

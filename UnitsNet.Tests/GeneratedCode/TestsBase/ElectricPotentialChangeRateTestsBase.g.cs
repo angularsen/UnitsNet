@@ -963,23 +963,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = ElectricPotentialChangeRate.FromVoltsPerSecond(1);
-            Assert.True(v.Equals(ElectricPotentialChangeRate.FromVoltsPerSecond(1), VoltsPerSecondTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ElectricPotentialChangeRate.Zero, VoltsPerSecondTolerance, ComparisonType.Relative));
-            Assert.True(ElectricPotentialChangeRate.FromVoltsPerSecond(100).Equals(ElectricPotentialChangeRate.FromVoltsPerSecond(120), 0.3, ComparisonType.Relative));
-            Assert.False(ElectricPotentialChangeRate.FromVoltsPerSecond(100).Equals(ElectricPotentialChangeRate.FromVoltsPerSecond(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = ElectricPotentialChangeRate.FromVoltsPerSecond(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ElectricPotentialChangeRate.FromVoltsPerSecond(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             ElectricPotentialChangeRate voltpersecond = ElectricPotentialChangeRate.FromVoltsPerSecond(1);
@@ -991,6 +974,32 @@ namespace UnitsNet.Tests
         {
             ElectricPotentialChangeRate voltpersecond = ElectricPotentialChangeRate.FromVoltsPerSecond(1);
             Assert.False(voltpersecond.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = ElectricPotentialChangeRate.FromVoltsPerSecond(firstValue);
+            var otherQuantity = ElectricPotentialChangeRate.FromVoltsPerSecond(secondValue);
+            ElectricPotentialChangeRate maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, ElectricPotentialChangeRate.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = ElectricPotentialChangeRate.FromVoltsPerSecond(1);
+            var negativeTolerance = ElectricPotentialChangeRate.FromVoltsPerSecond(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -1109,7 +1118,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricPotentialChangeRate.FromVoltsPerSecond(1.0);
-            Assert.Equal(new {ElectricPotentialChangeRate.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]
