@@ -873,7 +873,7 @@ namespace UnitsNet.Tests
         protected abstract void AssertLogarithmicSubtraction();
 ");
             }
-            else if (_quantity.GenerateArithmetic)
+            else if (!_quantity.IsAffine)
             {
                 Writer.WL($@"
         [Fact]
@@ -983,23 +983,6 @@ namespace UnitsNet.Tests
         }}
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {{
-            var v = {_quantity.Name}.From{_baseUnit.PluralName}(1);
-            Assert.True(v.Equals({_quantity.Name}.From{_baseUnit.PluralName}(1), {_baseUnit.PluralName}Tolerance, ComparisonType.Relative));
-            Assert.False(v.Equals({_quantity.Name}.Zero, {_baseUnit.PluralName}Tolerance, ComparisonType.Relative));
-            Assert.True({_quantity.Name}.From{_baseUnit.PluralName}(100).Equals({_quantity.Name}.From{_baseUnit.PluralName}(120), 0.3, ComparisonType.Relative));
-            Assert.False({_quantity.Name}.From{_baseUnit.PluralName}(100).Equals({_quantity.Name}.From{_baseUnit.PluralName}(120), 0.1, ComparisonType.Relative));
-        }}
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {{
-            var v = {_quantity.Name}.From{_baseUnit.PluralName}(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals({_quantity.Name}.From{_baseUnit.PluralName}(1), -1, ComparisonType.Relative));
-        }}
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {{
             {_quantity.Name} {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);
@@ -1012,6 +995,92 @@ namespace UnitsNet.Tests
             {_quantity.Name} {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);
             Assert.False({baseUnitVariableName}.Equals(null));
         }}
+");
+            var differenceResultType = _quantity.AffineOffsetType ?? _quantity.Name;
+            if (_quantity.Logarithmic)
+            {
+                Writer.WL($@"
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_Logarithmic_WithTolerance(double firstValue, double secondValue)
+        {{
+            var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(firstValue);
+            var otherQuantity = {_quantity.Name}.From{_baseUnit.PluralName}(secondValue);
+            {differenceResultType} maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, {differenceResultType}.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+            // note: it's currently not possible to test this due to the rounding error from (quantity - otherQuantity) 
+            // Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+        }}
+
+        [Fact]
+        public void Equals_Logarithmic_WithNegativeTolerance_DoesNotThrowArgumentOutOfRangeException()
+        {{
+            // note: unlike with vector quantities- a small tolerance maybe positive in one unit and negative in another
+            var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1);
+            var negativeTolerance = {_quantity.Name}.From{_baseUnit.PluralName}(-1);
+            Assert.True(quantity.Equals(quantity, negativeTolerance));
+        }}
+");
+            }
+            else // quantities with a linear scale
+            {
+                Writer.WL($@"
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {{
+            var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(firstValue);
+            var otherQuantity = {_quantity.Name}.From{_baseUnit.PluralName}(secondValue);
+            {differenceResultType} maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, {differenceResultType}.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }}
+");
+                if (_quantity.IsAffine)
+                {
+                    Writer.WL($@"
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {{
+            var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1);
+            {differenceResultType} negativeTolerance = quantity - {_quantity.Name}.From{_baseUnit.PluralName}(2);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
+        }}
+");
+                }
+                else  // vector quantities
+                {
+                    Writer.WL($@"
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {{
+            var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1);
+            var negativeTolerance = {_quantity.Name}.From{_baseUnit.PluralName}(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
+        }}
+");
+                }
+            }
+            
+            Writer.WL($@"
 
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
@@ -1101,11 +1170,11 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {{
             var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
-            Assert.Equal(new {{{_quantity.Name}.Info.Name, quantity.Value, quantity.Unit}}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }}
 ");
 
-        if (_quantity.GenerateArithmetic)
+        if (!_quantity.IsAffine)
         {
                 Writer.WL($@"
         [Theory]

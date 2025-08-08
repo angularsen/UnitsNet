@@ -628,23 +628,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = FuelEfficiency.FromKilometersPerLiter(1);
-            Assert.True(v.Equals(FuelEfficiency.FromKilometersPerLiter(1), KilometersPerLiterTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(FuelEfficiency.Zero, KilometersPerLiterTolerance, ComparisonType.Relative));
-            Assert.True(FuelEfficiency.FromKilometersPerLiter(100).Equals(FuelEfficiency.FromKilometersPerLiter(120), 0.3, ComparisonType.Relative));
-            Assert.False(FuelEfficiency.FromKilometersPerLiter(100).Equals(FuelEfficiency.FromKilometersPerLiter(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = FuelEfficiency.FromKilometersPerLiter(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(FuelEfficiency.FromKilometersPerLiter(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             FuelEfficiency kilometerperliter = FuelEfficiency.FromKilometersPerLiter(1);
@@ -656,6 +639,32 @@ namespace UnitsNet.Tests
         {
             FuelEfficiency kilometerperliter = FuelEfficiency.FromKilometersPerLiter(1);
             Assert.False(kilometerperliter.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = FuelEfficiency.FromKilometersPerLiter(firstValue);
+            var otherQuantity = FuelEfficiency.FromKilometersPerLiter(secondValue);
+            FuelEfficiency maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, FuelEfficiency.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = FuelEfficiency.FromKilometersPerLiter(1);
+            var negativeTolerance = FuelEfficiency.FromKilometersPerLiter(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -742,7 +751,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = FuelEfficiency.FromKilometersPerLiter(1.0);
-            Assert.Equal(new {FuelEfficiency.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

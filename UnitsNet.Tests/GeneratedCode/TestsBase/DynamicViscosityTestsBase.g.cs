@@ -883,23 +883,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
-            Assert.True(v.Equals(DynamicViscosity.FromNewtonSecondsPerMeterSquared(1), NewtonSecondsPerMeterSquaredTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(DynamicViscosity.Zero, NewtonSecondsPerMeterSquaredTolerance, ComparisonType.Relative));
-            Assert.True(DynamicViscosity.FromNewtonSecondsPerMeterSquared(100).Equals(DynamicViscosity.FromNewtonSecondsPerMeterSquared(120), 0.3, ComparisonType.Relative));
-            Assert.False(DynamicViscosity.FromNewtonSecondsPerMeterSquared(100).Equals(DynamicViscosity.FromNewtonSecondsPerMeterSquared(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(DynamicViscosity.FromNewtonSecondsPerMeterSquared(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             DynamicViscosity newtonsecondpermetersquared = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
@@ -911,6 +894,32 @@ namespace UnitsNet.Tests
         {
             DynamicViscosity newtonsecondpermetersquared = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
             Assert.False(newtonsecondpermetersquared.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(firstValue);
+            var otherQuantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(secondValue);
+            DynamicViscosity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, DynamicViscosity.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
+            var negativeTolerance = DynamicViscosity.FromNewtonSecondsPerMeterSquared(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -1009,7 +1018,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1.0);
-            Assert.Equal(new {DynamicViscosity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

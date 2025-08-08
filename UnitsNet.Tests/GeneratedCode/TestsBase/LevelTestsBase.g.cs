@@ -508,23 +508,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = Level.FromDecibels(1);
-            Assert.True(v.Equals(Level.FromDecibels(1), DecibelsTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Level.Zero, DecibelsTolerance, ComparisonType.Relative));
-            Assert.True(Level.FromDecibels(100).Equals(Level.FromDecibels(120), 0.3, ComparisonType.Relative));
-            Assert.False(Level.FromDecibels(100).Equals(Level.FromDecibels(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = Level.FromDecibels(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Level.FromDecibels(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Level decibel = Level.FromDecibels(1);
@@ -536,6 +519,34 @@ namespace UnitsNet.Tests
         {
             Level decibel = Level.FromDecibels(1);
             Assert.False(decibel.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_Logarithmic_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = Level.FromDecibels(firstValue);
+            var otherQuantity = Level.FromDecibels(secondValue);
+            Level maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, Level.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+            // note: it's currently not possible to test this due to the rounding error from (quantity - otherQuantity) 
+            // Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+        }
+
+        [Fact]
+        public void Equals_Logarithmic_WithNegativeTolerance_DoesNotThrowArgumentOutOfRangeException()
+        {
+            // note: unlike with vector quantities- a small tolerance maybe positive in one unit and negative in another
+            var quantity = Level.FromDecibels(1);
+            var negativeTolerance = Level.FromDecibels(-1);
+            Assert.True(quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -618,7 +629,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Level.FromDecibels(1.0);
-            Assert.Equal(new {Level.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

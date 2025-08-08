@@ -760,23 +760,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = RadiationEquivalentDose.FromSieverts(1);
-            Assert.True(v.Equals(RadiationEquivalentDose.FromSieverts(1), SievertsTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(RadiationEquivalentDose.Zero, SievertsTolerance, ComparisonType.Relative));
-            Assert.True(RadiationEquivalentDose.FromSieverts(100).Equals(RadiationEquivalentDose.FromSieverts(120), 0.3, ComparisonType.Relative));
-            Assert.False(RadiationEquivalentDose.FromSieverts(100).Equals(RadiationEquivalentDose.FromSieverts(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = RadiationEquivalentDose.FromSieverts(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(RadiationEquivalentDose.FromSieverts(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             RadiationEquivalentDose sievert = RadiationEquivalentDose.FromSieverts(1);
@@ -788,6 +771,32 @@ namespace UnitsNet.Tests
         {
             RadiationEquivalentDose sievert = RadiationEquivalentDose.FromSieverts(1);
             Assert.False(sievert.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = RadiationEquivalentDose.FromSieverts(firstValue);
+            var otherQuantity = RadiationEquivalentDose.FromSieverts(secondValue);
+            RadiationEquivalentDose maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, RadiationEquivalentDose.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = RadiationEquivalentDose.FromSieverts(1);
+            var negativeTolerance = RadiationEquivalentDose.FromSieverts(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -878,7 +887,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = RadiationEquivalentDose.FromSieverts(1.0);
-            Assert.Equal(new {RadiationEquivalentDose.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

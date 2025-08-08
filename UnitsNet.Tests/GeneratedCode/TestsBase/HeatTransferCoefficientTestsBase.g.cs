@@ -849,23 +849,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
-            Assert.True(v.Equals(HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1), WattsPerSquareMeterKelvinTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(HeatTransferCoefficient.Zero, WattsPerSquareMeterKelvinTolerance, ComparisonType.Relative));
-            Assert.True(HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(100).Equals(HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(120), 0.3, ComparisonType.Relative));
-            Assert.False(HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(100).Equals(HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             HeatTransferCoefficient wattpersquaremeterkelvin = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
@@ -877,6 +860,32 @@ namespace UnitsNet.Tests
         {
             HeatTransferCoefficient wattpersquaremeterkelvin = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
             Assert.False(wattpersquaremeterkelvin.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(firstValue);
+            var otherQuantity = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(secondValue);
+            HeatTransferCoefficient maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, HeatTransferCoefficient.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
+            var negativeTolerance = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -965,7 +974,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1.0);
-            Assert.Equal(new {HeatTransferCoefficient.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]
