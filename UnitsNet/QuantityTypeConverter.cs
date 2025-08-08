@@ -59,7 +59,7 @@ namespace UnitsNet
     public class DisplayAsUnitAttribute : DefaultUnitAttribute
     {
         /// <summary>
-        /// The formatting used when the quantity is converted to string. See <see cref="IQuantity.ToString(System.IFormatProvider)"/>
+        /// The formatting used when the quantity is converted to string. See <see cref="QuantityFormatter"/> for more information about the supported formats.
         /// </summary>
         public string Format { get; set; }
 
@@ -67,7 +67,7 @@ namespace UnitsNet
         /// Initializes a new instance of the <see cref="DisplayAsUnitAttribute"/> class.
         /// </summary>
         /// <param name="unitType">The unit the quantity should be displayed in</param>
-        /// <param name="format">Formatting string <see cref="IQuantity.ToString(System.IFormatProvider)"/> </param>
+        /// <param name="format">Formatting string passed to the <see cref="IFormattable.ToString(string?,System.IFormatProvider?)"/> </param>
         public DisplayAsUnitAttribute(object? unitType, string format = "G") : base(unitType)
         {
             Format = format;
@@ -224,22 +224,22 @@ namespace UnitsNet
         {
             DisplayAsUnitAttribute? displayAsUnit = GetAttribute<DisplayAsUnitAttribute>(context);
 
-            if (value is not IQuantity qvalue || destinationType != typeof(string))
+            if (value is not IQuantity quantity || destinationType != typeof(string))
             {
                 return base.ConvertTo(context, culture, value, destinationType);
             }
 
             if (displayAsUnit == null)
             {
-                return qvalue.ToString(culture);
+                return quantity.ToString(culture);
             }
 
             if (displayAsUnit.UnitType == null)
             {
-                return qvalue.ToString(displayAsUnit.Format, culture);
+                return quantity.ToString(displayAsUnit.Format, culture);
             }
 
-            return qvalue.ToUnit(displayAsUnit.UnitType).ToString(displayAsUnit.Format, culture);
+            return quantity.ToUnit(displayAsUnit.UnitType).ToString(displayAsUnit.Format, culture);
         }
     }
 }

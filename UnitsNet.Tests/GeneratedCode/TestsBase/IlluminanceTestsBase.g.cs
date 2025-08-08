@@ -611,23 +611,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = Illuminance.FromLux(1);
-            Assert.True(v.Equals(Illuminance.FromLux(1), LuxTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Illuminance.Zero, LuxTolerance, ComparisonType.Relative));
-            Assert.True(Illuminance.FromLux(100).Equals(Illuminance.FromLux(120), 0.3, ComparisonType.Relative));
-            Assert.False(Illuminance.FromLux(100).Equals(Illuminance.FromLux(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = Illuminance.FromLux(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Illuminance.FromLux(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Illuminance lux = Illuminance.FromLux(1);
@@ -639,6 +622,32 @@ namespace UnitsNet.Tests
         {
             Illuminance lux = Illuminance.FromLux(1);
             Assert.False(lux.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = Illuminance.FromLux(firstValue);
+            var otherQuantity = Illuminance.FromLux(secondValue);
+            Illuminance maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, Illuminance.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = Illuminance.FromLux(1);
+            var negativeTolerance = Illuminance.FromLux(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -725,7 +734,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Illuminance.FromLux(1.0);
-            Assert.Equal(new {Illuminance.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

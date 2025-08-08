@@ -1,4 +1,4 @@
-// Licensed under MIT No Attribution, see LICENSE file at the root.
+﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -14,7 +14,8 @@ namespace CodeGen.JsonTypes
 
         public BaseDimensions BaseDimensions = new(); // Default to empty
         public string BaseUnit = null!;
-        public bool GenerateArithmetic = true;
+        public string? AffineOffsetType;
+        public bool IsAffine => !string.IsNullOrEmpty(AffineOffsetType);
         public bool Logarithmic = false;
         public int LogarithmicScalingFactor = 1;
         public string Name = null!;
