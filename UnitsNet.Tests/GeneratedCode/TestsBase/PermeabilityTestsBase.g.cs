@@ -526,23 +526,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = Permeability.FromHenriesPerMeter(1);
-            Assert.True(v.Equals(Permeability.FromHenriesPerMeter(1), HenriesPerMeterTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Permeability.Zero, HenriesPerMeterTolerance, ComparisonType.Relative));
-            Assert.True(Permeability.FromHenriesPerMeter(100).Equals(Permeability.FromHenriesPerMeter(120), 0.3, ComparisonType.Relative));
-            Assert.False(Permeability.FromHenriesPerMeter(100).Equals(Permeability.FromHenriesPerMeter(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = Permeability.FromHenriesPerMeter(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Permeability.FromHenriesPerMeter(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Permeability henrypermeter = Permeability.FromHenriesPerMeter(1);
@@ -554,6 +537,32 @@ namespace UnitsNet.Tests
         {
             Permeability henrypermeter = Permeability.FromHenriesPerMeter(1);
             Assert.False(henrypermeter.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = Permeability.FromHenriesPerMeter(firstValue);
+            var otherQuantity = Permeability.FromHenriesPerMeter(secondValue);
+            Permeability maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, Permeability.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = Permeability.FromHenriesPerMeter(1);
+            var negativeTolerance = Permeability.FromHenriesPerMeter(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -634,7 +643,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Permeability.FromHenriesPerMeter(1.0);
-            Assert.Equal(new {Permeability.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

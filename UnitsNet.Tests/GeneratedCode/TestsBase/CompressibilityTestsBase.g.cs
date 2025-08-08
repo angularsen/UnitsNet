@@ -866,23 +866,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = Compressibility.FromInversePascals(1);
-            Assert.True(v.Equals(Compressibility.FromInversePascals(1), InversePascalsTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Compressibility.Zero, InversePascalsTolerance, ComparisonType.Relative));
-            Assert.True(Compressibility.FromInversePascals(100).Equals(Compressibility.FromInversePascals(120), 0.3, ComparisonType.Relative));
-            Assert.False(Compressibility.FromInversePascals(100).Equals(Compressibility.FromInversePascals(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = Compressibility.FromInversePascals(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Compressibility.FromInversePascals(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Compressibility inversepascal = Compressibility.FromInversePascals(1);
@@ -894,6 +877,32 @@ namespace UnitsNet.Tests
         {
             Compressibility inversepascal = Compressibility.FromInversePascals(1);
             Assert.False(inversepascal.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = Compressibility.FromInversePascals(firstValue);
+            var otherQuantity = Compressibility.FromInversePascals(secondValue);
+            Compressibility maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, Compressibility.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = Compressibility.FromInversePascals(1);
+            var negativeTolerance = Compressibility.FromInversePascals(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -986,7 +995,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Compressibility.FromInversePascals(1.0);
-            Assert.Equal(new {Compressibility.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

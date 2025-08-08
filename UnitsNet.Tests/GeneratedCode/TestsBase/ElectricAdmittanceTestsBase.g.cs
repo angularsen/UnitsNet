@@ -983,23 +983,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = ElectricAdmittance.FromSiemens(1);
-            Assert.True(v.Equals(ElectricAdmittance.FromSiemens(1), SiemensTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ElectricAdmittance.Zero, SiemensTolerance, ComparisonType.Relative));
-            Assert.True(ElectricAdmittance.FromSiemens(100).Equals(ElectricAdmittance.FromSiemens(120), 0.3, ComparisonType.Relative));
-            Assert.False(ElectricAdmittance.FromSiemens(100).Equals(ElectricAdmittance.FromSiemens(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = ElectricAdmittance.FromSiemens(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ElectricAdmittance.FromSiemens(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             ElectricAdmittance siemens = ElectricAdmittance.FromSiemens(1);
@@ -1011,6 +994,32 @@ namespace UnitsNet.Tests
         {
             ElectricAdmittance siemens = ElectricAdmittance.FromSiemens(1);
             Assert.False(siemens.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = ElectricAdmittance.FromSiemens(firstValue);
+            var otherQuantity = ElectricAdmittance.FromSiemens(secondValue);
+            ElectricAdmittance maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, ElectricAdmittance.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = ElectricAdmittance.FromSiemens(1);
+            var negativeTolerance = ElectricAdmittance.FromSiemens(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -1121,7 +1130,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricAdmittance.FromSiemens(1.0);
-            Assert.Equal(new {ElectricAdmittance.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

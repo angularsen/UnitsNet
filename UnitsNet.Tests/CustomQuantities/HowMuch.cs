@@ -68,6 +68,10 @@ namespace UnitsNet.Tests.CustomQuantities
         }
 
         public double As(Enum unit) => Convert.ToDouble(unit);
+        public double As(UnitKey unitKey)
+        {
+            return As(unitKey.ToUnit<HowMuchUnit>());
+        }
 
         public double As(UnitSystem unitSystem) => throw new NotImplementedException();
 
@@ -89,17 +93,16 @@ namespace UnitsNet.Tests.CustomQuantities
 
         public IQuantity ToUnit(UnitSystem unitSystem) => throw new NotImplementedException();
 
-        public override string ToString() => $"{Value} {Unit}";
-        public string ToString(string? format, IFormatProvider? formatProvider) => $"HowMuch ({format}, {formatProvider})";
-        public string ToString(IFormatProvider? provider) => $"HowMuch ({provider})";
-
-        public bool Equals(IQuantity? other, IQuantity tolerance) => throw new NotImplementedException();
-
-        public bool Equals(HowMuch other, HowMuch tolerance)
+        public override string ToString()
         {
-            throw new NotImplementedException();
+            return $"{Value} {Unit}";
         }
-        
+
+        public string ToString(string? format, IFormatProvider? formatProvider)
+        {
+            return $"HowMuch ({format}, {formatProvider})";
+        }
+
 #if !NET
 
         QuantityInfo IQuantity.QuantityInfo
