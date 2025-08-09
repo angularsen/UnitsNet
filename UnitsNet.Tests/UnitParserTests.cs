@@ -14,7 +14,7 @@ public class UnitParserTests
         var unitParser = new UnitParser([Mass.Info]);
         Assert.NotNull(unitParser.Abbreviations);
         Assert.NotEqual(UnitAbbreviationsCache.Default, unitParser.Abbreviations);
-        Assert.NotEqual(UnitsNetSetup.Default.QuantityInfoLookup, unitParser.Quantities);
+        Assert.NotEqual(UnitsNetSetup.Default.Quantities, unitParser.Quantities);
     }
         
     [Fact]
@@ -33,7 +33,7 @@ public class UnitParserTests
         var unitParser = UnitParser.CreateDefault();
         Assert.NotNull(unitParser.Abbreviations);
         Assert.NotEqual(UnitAbbreviationsCache.Default, unitParser.Abbreviations);
-        Assert.Equal(UnitsNetSetup.Default.QuantityInfoLookup, unitParser.Quantities);
+        Assert.Equal(UnitsNetSetup.Default.Quantities, unitParser.Quantities);
     }
         
     [Theory]

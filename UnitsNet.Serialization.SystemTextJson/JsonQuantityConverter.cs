@@ -56,7 +56,7 @@ public abstract class JsonQuantityConverterBase<TQuantity, TUnit> : JsonConverte
         // TODO see if we want to expose the QuantityInfo (a.k.a. the static "Info" property) on the IQuantity<TQuantity, TUnit> interface
         : this(TQuantity.From(QuantityValue.Zero, default).QuantityInfo)
 #else
-        : this((QuantityInfo<TQuantity, TUnit>)UnitsNetSetup.Default.QuantityInfoLookup.GetQuantityInfo(typeof(TQuantity)))
+        : this((QuantityInfo<TQuantity, TUnit>)UnitsNetSetup.Default.Quantities.GetQuantityInfo(typeof(TQuantity)))
 #endif
     {
     }
@@ -424,7 +424,7 @@ public class JsonQuantityConverter : JsonConverterFactory
     ///     to resolve unit names during JSON serialization and deserialization.
     /// </remarks>
     public JsonQuantityConverter()
-        : this(UnitsNetSetup.Default.QuantityInfoLookup)
+        : this(UnitsNetSetup.Default.Quantities)
     {
     }
 

@@ -38,7 +38,7 @@ public class UnitTypeAndNameConverter : JsonConverterFactory
     ///     to resolve unit names during JSON serialization and deserialization.
     /// </remarks>
     public UnitTypeAndNameConverter()
-        : this(UnitsNetSetup.Default.QuantityInfoLookup)
+        : this(UnitsNetSetup.Default.Quantities)
     {
     }
 
@@ -51,7 +51,7 @@ public class UnitTypeAndNameConverter : JsonConverterFactory
     ///     to resolve unit names during JSON serialization and deserialization.
     /// </remarks>
     public UnitTypeAndNameConverter(bool ignoreCase)
-        : this(UnitsNetSetup.Default.QuantityInfoLookup, ignoreCase)
+        : this(UnitsNetSetup.Default.Quantities, ignoreCase)
     {
     }
 

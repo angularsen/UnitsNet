@@ -104,7 +104,7 @@ public class AbbreviatedQuantityConverter<TQuantity, TUnit> : JsonQuantityConver
     ///     deserialization.
     /// </param>
     public AbbreviatedQuantityConverter(JsonConverter<QuantityValue> valueConverter)
-        : this((QuantityInfo<TQuantity, TUnit>)UnitsNetSetup.Default.QuantityInfoLookup.GetQuantityInfo(typeof(TQuantity)), valueConverter)
+        : this((QuantityInfo<TQuantity, TUnit>)UnitsNetSetup.Default.Quantities.GetQuantityInfo(typeof(TQuantity)), valueConverter)
     {
     }
 #endif

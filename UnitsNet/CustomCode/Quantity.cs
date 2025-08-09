@@ -4,7 +4,7 @@ namespace UnitsNet
 {
     public static partial class Quantity
     {
-        private static QuantityInfoLookup Quantities => UnitsNetSetup.Default.QuantityInfoLookup;
+        private static QuantityInfoLookup Quantities => UnitsNetSetup.Default.Quantities;
         private static QuantityParser QuantityParser => UnitsNetSetup.Default.QuantityParser;
         private static UnitParser UnitParser => UnitsNetSetup.Default.UnitParser;
 

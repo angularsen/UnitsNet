@@ -52,7 +52,7 @@ namespace UnitsNet
         /// </summary>
         /// <returns>Instance for mapping any of the built-in units.</returns>
         public UnitAbbreviationsCache()
-            :this(UnitsNetSetup.Default.QuantityInfoLookup)
+            :this(UnitsNetSetup.Default.Quantities)
         {
         }
         

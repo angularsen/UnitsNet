@@ -89,7 +89,7 @@ public static class LinearQuantityExtensions
                 return default!;
             }
             
-            return (TQuantity)UnitsNetSetup.Default.QuantityInfoLookup.GetQuantityInfo(typeof(TQuantity)).Zero;
+            return (TQuantity)UnitsNetSetup.Default.Quantities.GetQuantityInfo(typeof(TQuantity)).Zero;
 #endif
         }
 

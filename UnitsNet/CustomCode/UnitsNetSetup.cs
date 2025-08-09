@@ -1,10 +1,6 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Collections.Generic;
-using UnitsNet.Units;
-
 namespace UnitsNet;
 
 /// <summary>
@@ -274,7 +270,7 @@ public sealed class UnitsNetSetup
     private UnitsNetSetup(QuantityInfoLookup quantitiesLookup, UnitAbbreviationsCache unitAbbreviations, QuantityFormatter formatter, UnitParser unitParser,
         QuantityParser quantityParser, UnitConverter unitConverter)
     {
-        QuantityInfoLookup = quantitiesLookup ?? throw new ArgumentNullException(nameof(quantitiesLookup));
+        Quantities = quantitiesLookup ?? throw new ArgumentNullException(nameof(quantitiesLookup));
         UnitAbbreviations = unitAbbreviations ?? throw new ArgumentNullException(nameof(unitAbbreviations));
         Formatter = formatter ?? throw new ArgumentNullException(nameof(formatter));
         UnitParser = unitParser ?? throw new ArgumentNullException(nameof(unitParser));
@@ -322,8 +318,5 @@ public sealed class UnitsNetSetup
     /// <summary>
     ///     The quantities and units that are loaded.
     /// </summary>
-    /// <remarks>
-    ///     Access type is <c>internal</c> until this class is matured and ready for external use.
-    /// </remarks>
-    public QuantityInfoLookup QuantityInfoLookup { get; }
+    public QuantityInfoLookup Quantities { get; }
 }

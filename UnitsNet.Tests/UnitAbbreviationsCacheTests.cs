@@ -23,7 +23,7 @@ namespace UnitsNet.Tests
         {
             var unitAbbreviationCache = new UnitAbbreviationsCache();
 
-            Assert.Equal(UnitsNetSetup.Default.QuantityInfoLookup, unitAbbreviationCache.Quantities);
+            Assert.Equal(UnitsNetSetup.Default.Quantities, unitAbbreviationCache.Quantities);
             Assert.Equal("g", unitAbbreviationCache.GetUnitAbbreviations(MassUnit.Gram, AmericanCulture)[0]);
             Assert.Throws<UnitNotFoundException>(() => unitAbbreviationCache.GetUnitAbbreviations(HowMuchUnit.Some));
         }
@@ -33,7 +33,7 @@ namespace UnitsNet.Tests
         {
             var unitAbbreviationCache = new UnitAbbreviationsCache([Mass.Info, HowMuch.Info]);
 
-            Assert.NotEqual(UnitsNetSetup.Default.QuantityInfoLookup, unitAbbreviationCache.Quantities);
+            Assert.NotEqual(UnitsNetSetup.Default.Quantities, unitAbbreviationCache.Quantities);
             Assert.Equal("g", unitAbbreviationCache.GetUnitAbbreviations(MassUnit.Gram, AmericanCulture)[0]);
             Assert.Empty(unitAbbreviationCache.GetUnitAbbreviations(HowMuchUnit.Some, AmericanCulture));
             Assert.Throws<UnitNotFoundException>(() => unitAbbreviationCache.GetUnitAbbreviations(LengthUnit.Meter));
@@ -44,7 +44,7 @@ namespace UnitsNet.Tests
         {
             var unitAbbreviationCache = UnitAbbreviationsCache.CreateDefault();
 
-            Assert.Equal(UnitsNetSetup.Default.QuantityInfoLookup, unitAbbreviationCache.Quantities);
+            Assert.Equal(UnitsNetSetup.Default.Quantities, unitAbbreviationCache.Quantities);
             Assert.Equal("g", unitAbbreviationCache.GetUnitAbbreviations(MassUnit.Gram, AmericanCulture)[0]);
             Assert.Throws<UnitNotFoundException>(() => unitAbbreviationCache.GetUnitAbbreviations(HowMuchUnit.Some));
         }
@@ -54,7 +54,7 @@ namespace UnitsNet.Tests
         {
             var unitAbbreviationCache = UnitAbbreviationsCache.CreateDefault(configuration => configuration.WithAdditionalQuantities([HowMuch.Info]));
 
-            Assert.NotEqual(UnitsNetSetup.Default.QuantityInfoLookup, unitAbbreviationCache.Quantities);
+            Assert.NotEqual(UnitsNetSetup.Default.Quantities, unitAbbreviationCache.Quantities);
             Assert.Equal("g", unitAbbreviationCache.GetUnitAbbreviations(MassUnit.Gram, AmericanCulture)[0]);
             Assert.Empty(unitAbbreviationCache.GetUnitAbbreviations(HowMuchUnit.Some, AmericanCulture));
         }
@@ -66,7 +66,7 @@ namespace UnitsNet.Tests
                 configuration =>
                     configuration.Configure(() => Mass.MassInfo.CreateDefault(mappings => mappings.SelectUnits(MassUnit.Kilogram, MassUnit.Gram))));
 
-            Assert.NotEqual(UnitsNetSetup.Default.QuantityInfoLookup, unitAbbreviationCache.Quantities);
+            Assert.NotEqual(UnitsNetSetup.Default.Quantities, unitAbbreviationCache.Quantities);
             Assert.Equal("g", unitAbbreviationCache.GetUnitAbbreviations(MassUnit.Gram, AmericanCulture)[0]);
             Assert.Empty(unitAbbreviationCache.GetUnitAbbreviations(HowMuchUnit.Some, AmericanCulture));
             Assert.Throws<UnitNotFoundException>(() => unitAbbreviationCache.GetUnitAbbreviations(MassUnit.EarthMass));

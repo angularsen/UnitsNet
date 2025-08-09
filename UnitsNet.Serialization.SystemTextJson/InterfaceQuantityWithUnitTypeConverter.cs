@@ -40,7 +40,7 @@ public class InterfaceQuantityWithUnitTypeConverter : JsonConverter<IQuantity>
     ///     to resolve unit names during JSON serialization and deserialization.
     /// </remarks>
     public InterfaceQuantityWithUnitTypeConverter()
-        : this(UnitsNetSetup.Default.QuantityInfoLookup)
+        : this(UnitsNetSetup.Default.Quantities)
     {
     }
 
@@ -53,7 +53,7 @@ public class InterfaceQuantityWithUnitTypeConverter : JsonConverter<IQuantity>
     ///     to resolve unit names during JSON serialization and deserialization.
     /// </remarks>
     public InterfaceQuantityWithUnitTypeConverter(bool ignoreCase)
-        : this(UnitsNetSetup.Default.QuantityInfoLookup, ignoreCase)
+        : this(UnitsNetSetup.Default.Quantities, ignoreCase)
     {
     }
 
