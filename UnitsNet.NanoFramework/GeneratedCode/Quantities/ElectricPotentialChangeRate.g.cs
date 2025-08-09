@@ -342,7 +342,7 @@ namespace UnitsNet
                         ElectricPotentialChangeRateUnit.VoltPerMicrosecond => _value * 1E6,
                         ElectricPotentialChangeRateUnit.VoltPerMinute => _value / 60,
                         ElectricPotentialChangeRateUnit.VoltPerSecond => _value,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -375,7 +375,7 @@ namespace UnitsNet
                         ElectricPotentialChangeRateUnit.VoltPerMicrosecond => baseUnitValue / 1E6,
                         ElectricPotentialChangeRateUnit.VoltPerMinute => baseUnitValue * 60,
                         ElectricPotentialChangeRateUnit.VoltPerSecond => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

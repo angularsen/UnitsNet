@@ -145,18 +145,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricApparentEnergy.From(1, ElectricApparentEnergyUnit.KilovoltampereHour);
-            AssertEx.EqualTolerance(1, quantity00.KilovoltampereHours, KilovoltampereHoursTolerance);
-            Assert.Equal(ElectricApparentEnergyUnit.KilovoltampereHour, quantity00.Unit);
-
-            var quantity01 = ElectricApparentEnergy.From(1, ElectricApparentEnergyUnit.MegavoltampereHour);
-            AssertEx.EqualTolerance(1, quantity01.MegavoltampereHours, MegavoltampereHoursTolerance);
-            Assert.Equal(ElectricApparentEnergyUnit.MegavoltampereHour, quantity01.Unit);
-
-            var quantity02 = ElectricApparentEnergy.From(1, ElectricApparentEnergyUnit.VoltampereHour);
-            AssertEx.EqualTolerance(1, quantity02.VoltampereHours, VoltampereHoursTolerance);
-            Assert.Equal(ElectricApparentEnergyUnit.VoltampereHour, quantity02.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricApparentEnergyUnit>(), unit =>
+            {
+                var quantity = ElectricApparentEnergy.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -292,53 +286,28 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 kVAh", ElectricApparentEnergyUnit.KilovoltampereHour, 4.2)]
+        [InlineData("en-US", "4.2 MVAh", ElectricApparentEnergyUnit.MegavoltampereHour, 4.2)]
+        [InlineData("en-US", "4.2 VAh", ElectricApparentEnergyUnit.VoltampereHour, 4.2)]
+        public void Parse(string culture, string quantityString, ElectricApparentEnergyUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = ElectricApparentEnergy.Parse("1 kVAh", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilovoltampereHours, KilovoltampereHoursTolerance);
-                Assert.Equal(ElectricApparentEnergyUnit.KilovoltampereHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricApparentEnergy.Parse("1 MVAh", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MegavoltampereHours, MegavoltampereHoursTolerance);
-                Assert.Equal(ElectricApparentEnergyUnit.MegavoltampereHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricApparentEnergy.Parse("1 VAh", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.VoltampereHours, VoltampereHoursTolerance);
-                Assert.Equal(ElectricApparentEnergyUnit.VoltampereHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = ElectricApparentEnergy.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 kVAh", ElectricApparentEnergyUnit.KilovoltampereHour, 4.2)]
+        [InlineData("en-US", "4.2 MVAh", ElectricApparentEnergyUnit.MegavoltampereHour, 4.2)]
+        [InlineData("en-US", "4.2 VAh", ElectricApparentEnergyUnit.VoltampereHour, 4.2)]
+        public void TryParse(string culture, string quantityString, ElectricApparentEnergyUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(ElectricApparentEnergy.TryParse("1 kVAh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilovoltampereHours, KilovoltampereHoursTolerance);
-                Assert.Equal(ElectricApparentEnergyUnit.KilovoltampereHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricApparentEnergy.TryParse("1 MVAh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MegavoltampereHours, MegavoltampereHoursTolerance);
-                Assert.Equal(ElectricApparentEnergyUnit.MegavoltampereHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricApparentEnergy.TryParse("1 VAh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.VoltampereHours, VoltampereHoursTolerance);
-                Assert.Equal(ElectricApparentEnergyUnit.VoltampereHour, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricApparentEnergy.TryParse(quantityString, out ElectricApparentEnergy parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -429,6 +398,29 @@ namespace UnitsNet.Tests
         {
             Assert.True(ElectricApparentEnergy.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricApparentEnergyUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", ElectricApparentEnergyUnit.KilovoltampereHour, "kVAh")]
+        [InlineData("en-US", ElectricApparentEnergyUnit.MegavoltampereHour, "MVAh")]
+        [InlineData("en-US", ElectricApparentEnergyUnit.VoltampereHour, "VAh")]
+        public void GetAbbreviationForCulture(string culture, ElectricApparentEnergyUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ElectricApparentEnergy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ElectricApparentEnergy.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ElectricApparentEnergy.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

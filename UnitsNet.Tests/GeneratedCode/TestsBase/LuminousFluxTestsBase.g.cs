@@ -135,10 +135,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = LuminousFlux.From(1, LuminousFluxUnit.Lumen);
-            AssertEx.EqualTolerance(1, quantity00.Lumens, LumensTolerance);
-            Assert.Equal(LuminousFluxUnit.Lumen, quantity00.Unit);
-
+            Assert.All(EnumHelper.GetValues<LuminousFluxUnit>(), unit =>
+            {
+                var quantity = LuminousFlux.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -272,27 +274,24 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 lm", LuminousFluxUnit.Lumen, 4.2)]
+        public void Parse(string culture, string quantityString, LuminousFluxUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = LuminousFlux.Parse("1 lm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Lumens, LumensTolerance);
-                Assert.Equal(LuminousFluxUnit.Lumen, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = LuminousFlux.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 lm", LuminousFluxUnit.Lumen, 4.2)]
+        public void TryParse(string culture, string quantityString, LuminousFluxUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(LuminousFlux.TryParse("1 lm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Lumens, LumensTolerance);
-                Assert.Equal(LuminousFluxUnit.Lumen, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(LuminousFlux.TryParse(quantityString, out LuminousFlux parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -367,6 +366,27 @@ namespace UnitsNet.Tests
         {
             Assert.True(LuminousFlux.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out LuminousFluxUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", LuminousFluxUnit.Lumen, "lm")]
+        public void GetAbbreviationForCulture(string culture, LuminousFluxUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = LuminousFlux.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(LuminousFlux.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = LuminousFlux.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

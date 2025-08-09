@@ -160,30 +160,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricConductivity.From(1, ElectricConductivityUnit.MicrosiemensPerCentimeter);
-            AssertEx.EqualTolerance(1, quantity00.MicrosiemensPerCentimeter, MicrosiemensPerCentimeterTolerance);
-            Assert.Equal(ElectricConductivityUnit.MicrosiemensPerCentimeter, quantity00.Unit);
-
-            var quantity01 = ElectricConductivity.From(1, ElectricConductivityUnit.MillisiemensPerCentimeter);
-            AssertEx.EqualTolerance(1, quantity01.MillisiemensPerCentimeter, MillisiemensPerCentimeterTolerance);
-            Assert.Equal(ElectricConductivityUnit.MillisiemensPerCentimeter, quantity01.Unit);
-
-            var quantity02 = ElectricConductivity.From(1, ElectricConductivityUnit.SiemensPerCentimeter);
-            AssertEx.EqualTolerance(1, quantity02.SiemensPerCentimeter, SiemensPerCentimeterTolerance);
-            Assert.Equal(ElectricConductivityUnit.SiemensPerCentimeter, quantity02.Unit);
-
-            var quantity03 = ElectricConductivity.From(1, ElectricConductivityUnit.SiemensPerFoot);
-            AssertEx.EqualTolerance(1, quantity03.SiemensPerFoot, SiemensPerFootTolerance);
-            Assert.Equal(ElectricConductivityUnit.SiemensPerFoot, quantity03.Unit);
-
-            var quantity04 = ElectricConductivity.From(1, ElectricConductivityUnit.SiemensPerInch);
-            AssertEx.EqualTolerance(1, quantity04.SiemensPerInch, SiemensPerInchTolerance);
-            Assert.Equal(ElectricConductivityUnit.SiemensPerInch, quantity04.Unit);
-
-            var quantity05 = ElectricConductivity.From(1, ElectricConductivityUnit.SiemensPerMeter);
-            AssertEx.EqualTolerance(1, quantity05.SiemensPerMeter, SiemensPerMeterTolerance);
-            Assert.Equal(ElectricConductivityUnit.SiemensPerMeter, quantity05.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricConductivityUnit>(), unit =>
+            {
+                var quantity = ElectricConductivity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -322,92 +304,34 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 µS/cm", ElectricConductivityUnit.MicrosiemensPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 mS/cm", ElectricConductivityUnit.MillisiemensPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 S/cm", ElectricConductivityUnit.SiemensPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 S/ft", ElectricConductivityUnit.SiemensPerFoot, 4.2)]
+        [InlineData("en-US", "4.2 S/in", ElectricConductivityUnit.SiemensPerInch, 4.2)]
+        [InlineData("en-US", "4.2 S/m", ElectricConductivityUnit.SiemensPerMeter, 4.2)]
+        public void Parse(string culture, string quantityString, ElectricConductivityUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = ElectricConductivity.Parse("1 µS/cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicrosiemensPerCentimeter, MicrosiemensPerCentimeterTolerance);
-                Assert.Equal(ElectricConductivityUnit.MicrosiemensPerCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricConductivity.Parse("1 mS/cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillisiemensPerCentimeter, MillisiemensPerCentimeterTolerance);
-                Assert.Equal(ElectricConductivityUnit.MillisiemensPerCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricConductivity.Parse("1 S/cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SiemensPerCentimeter, SiemensPerCentimeterTolerance);
-                Assert.Equal(ElectricConductivityUnit.SiemensPerCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricConductivity.Parse("1 S/ft", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SiemensPerFoot, SiemensPerFootTolerance);
-                Assert.Equal(ElectricConductivityUnit.SiemensPerFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricConductivity.Parse("1 S/in", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SiemensPerInch, SiemensPerInchTolerance);
-                Assert.Equal(ElectricConductivityUnit.SiemensPerInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricConductivity.Parse("1 S/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SiemensPerMeter, SiemensPerMeterTolerance);
-                Assert.Equal(ElectricConductivityUnit.SiemensPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = ElectricConductivity.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 µS/cm", ElectricConductivityUnit.MicrosiemensPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 mS/cm", ElectricConductivityUnit.MillisiemensPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 S/cm", ElectricConductivityUnit.SiemensPerCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 S/ft", ElectricConductivityUnit.SiemensPerFoot, 4.2)]
+        [InlineData("en-US", "4.2 S/in", ElectricConductivityUnit.SiemensPerInch, 4.2)]
+        [InlineData("en-US", "4.2 S/m", ElectricConductivityUnit.SiemensPerMeter, 4.2)]
+        public void TryParse(string culture, string quantityString, ElectricConductivityUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(ElectricConductivity.TryParse("1 µS/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrosiemensPerCentimeter, MicrosiemensPerCentimeterTolerance);
-                Assert.Equal(ElectricConductivityUnit.MicrosiemensPerCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricConductivity.TryParse("1 mS/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillisiemensPerCentimeter, MillisiemensPerCentimeterTolerance);
-                Assert.Equal(ElectricConductivityUnit.MillisiemensPerCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricConductivity.TryParse("1 S/cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SiemensPerCentimeter, SiemensPerCentimeterTolerance);
-                Assert.Equal(ElectricConductivityUnit.SiemensPerCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricConductivity.TryParse("1 S/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SiemensPerFoot, SiemensPerFootTolerance);
-                Assert.Equal(ElectricConductivityUnit.SiemensPerFoot, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricConductivity.TryParse("1 S/in", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SiemensPerInch, SiemensPerInchTolerance);
-                Assert.Equal(ElectricConductivityUnit.SiemensPerInch, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricConductivity.TryParse("1 S/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SiemensPerMeter, SiemensPerMeterTolerance);
-                Assert.Equal(ElectricConductivityUnit.SiemensPerMeter, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricConductivity.TryParse(quantityString, out ElectricConductivity parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -522,6 +446,32 @@ namespace UnitsNet.Tests
         {
             Assert.True(ElectricConductivity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricConductivityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", ElectricConductivityUnit.MicrosiemensPerCentimeter, "µS/cm")]
+        [InlineData("en-US", ElectricConductivityUnit.MillisiemensPerCentimeter, "mS/cm")]
+        [InlineData("en-US", ElectricConductivityUnit.SiemensPerCentimeter, "S/cm")]
+        [InlineData("en-US", ElectricConductivityUnit.SiemensPerFoot, "S/ft")]
+        [InlineData("en-US", ElectricConductivityUnit.SiemensPerInch, "S/in")]
+        [InlineData("en-US", ElectricConductivityUnit.SiemensPerMeter, "S/m")]
+        public void GetAbbreviationForCulture(string culture, ElectricConductivityUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ElectricConductivity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ElectricConductivity.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ElectricConductivity.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

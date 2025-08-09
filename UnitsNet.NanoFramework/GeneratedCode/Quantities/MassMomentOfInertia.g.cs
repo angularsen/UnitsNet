@@ -430,7 +430,7 @@ namespace UnitsNet
                         MassMomentOfInertiaUnit.TonneSquareDecimeter => _value / 1e-1,
                         MassMomentOfInertiaUnit.TonneSquareMeter => _value / 1e-3,
                         MassMomentOfInertiaUnit.TonneSquareMillimeter => _value / 1e3,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -471,7 +471,7 @@ namespace UnitsNet
                         MassMomentOfInertiaUnit.TonneSquareDecimeter => baseUnitValue * 1e-1,
                         MassMomentOfInertiaUnit.TonneSquareMeter => baseUnitValue * 1e-3,
                         MassMomentOfInertiaUnit.TonneSquareMillimeter => baseUnitValue * 1e3,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

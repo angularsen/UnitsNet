@@ -119,14 +119,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = PowerRatio.From(1, PowerRatioUnit.DecibelMilliwatt);
-            AssertEx.EqualTolerance(1, quantity00.DecibelMilliwatts, DecibelMilliwattsTolerance);
-            Assert.Equal(PowerRatioUnit.DecibelMilliwatt, quantity00.Unit);
-
-            var quantity01 = PowerRatio.From(1, PowerRatioUnit.DecibelWatt);
-            AssertEx.EqualTolerance(1, quantity01.DecibelWatts, DecibelWattsTolerance);
-            Assert.Equal(PowerRatioUnit.DecibelWatt, quantity01.Unit);
-
+            Assert.All(EnumHelper.GetValues<PowerRatioUnit>(), unit =>
+            {
+                var quantity = PowerRatio.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -222,53 +220,28 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 dBmW", PowerRatioUnit.DecibelMilliwatt, 4.2)]
+        [InlineData("en-US", "4.2 dBm", PowerRatioUnit.DecibelMilliwatt, 4.2)]
+        [InlineData("en-US", "4.2 dBW", PowerRatioUnit.DecibelWatt, 4.2)]
+        public void Parse(string culture, string quantityString, PowerRatioUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = PowerRatio.Parse("1 dBmW", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecibelMilliwatts, DecibelMilliwattsTolerance);
-                Assert.Equal(PowerRatioUnit.DecibelMilliwatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = PowerRatio.Parse("1 dBm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecibelMilliwatts, DecibelMilliwattsTolerance);
-                Assert.Equal(PowerRatioUnit.DecibelMilliwatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = PowerRatio.Parse("1 dBW", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecibelWatts, DecibelWattsTolerance);
-                Assert.Equal(PowerRatioUnit.DecibelWatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = PowerRatio.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 dBmW", PowerRatioUnit.DecibelMilliwatt, 4.2)]
+        [InlineData("en-US", "4.2 dBm", PowerRatioUnit.DecibelMilliwatt, 4.2)]
+        [InlineData("en-US", "4.2 dBW", PowerRatioUnit.DecibelWatt, 4.2)]
+        public void TryParse(string culture, string quantityString, PowerRatioUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(PowerRatio.TryParse("1 dBmW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecibelMilliwatts, DecibelMilliwattsTolerance);
-                Assert.Equal(PowerRatioUnit.DecibelMilliwatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(PowerRatio.TryParse("1 dBm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecibelMilliwatts, DecibelMilliwattsTolerance);
-                Assert.Equal(PowerRatioUnit.DecibelMilliwatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(PowerRatio.TryParse("1 dBW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecibelWatts, DecibelWattsTolerance);
-                Assert.Equal(PowerRatioUnit.DecibelWatt, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(PowerRatio.TryParse(quantityString, out PowerRatio parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -359,6 +332,28 @@ namespace UnitsNet.Tests
         {
             Assert.True(PowerRatio.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out PowerRatioUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", PowerRatioUnit.DecibelMilliwatt, "dBmW")]
+        [InlineData("en-US", PowerRatioUnit.DecibelWatt, "dBW")]
+        public void GetAbbreviationForCulture(string culture, PowerRatioUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = PowerRatio.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(PowerRatio.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = PowerRatio.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

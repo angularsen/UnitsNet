@@ -320,7 +320,7 @@ namespace UnitsNet
                         HeatFluxUnit.WattPerSquareFoot => _value / (0.3048 * 0.3048),
                         HeatFluxUnit.WattPerSquareInch => _value / (2.54e-2 * 2.54e-2),
                         HeatFluxUnit.WattPerSquareMeter => _value,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -351,7 +351,7 @@ namespace UnitsNet
                         HeatFluxUnit.WattPerSquareFoot => baseUnitValue * (0.3048 * 0.3048),
                         HeatFluxUnit.WattPerSquareInch => baseUnitValue * (2.54e-2 * 2.54e-2),
                         HeatFluxUnit.WattPerSquareMeter => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

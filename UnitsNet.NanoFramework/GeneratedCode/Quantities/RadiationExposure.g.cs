@@ -210,7 +210,7 @@ namespace UnitsNet
                         RadiationExposureUnit.NanocoulombPerKilogram => (_value) * 1e-9d,
                         RadiationExposureUnit.PicocoulombPerKilogram => (_value) * 1e-12d,
                         RadiationExposureUnit.Roentgen => _value * 2.58e-4,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -231,7 +231,7 @@ namespace UnitsNet
                         RadiationExposureUnit.NanocoulombPerKilogram => (baseUnitValue) / 1e-9d,
                         RadiationExposureUnit.PicocoulombPerKilogram => (baseUnitValue) / 1e-12d,
                         RadiationExposureUnit.Roentgen => baseUnitValue / 2.58e-4,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

@@ -221,7 +221,7 @@ namespace UnitsNet
                         VolumePerLengthUnit.LiterPerMillimeter => _value,
                         VolumePerLengthUnit.OilBarrelPerFoot => _value * 0.158987294928 / 0.3048,
                         VolumePerLengthUnit.UsGallonPerMile => _value * 0.003785411784 / 1609.344,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -243,7 +243,7 @@ namespace UnitsNet
                         VolumePerLengthUnit.LiterPerMillimeter => baseUnitValue,
                         VolumePerLengthUnit.OilBarrelPerFoot => baseUnitValue * 0.3048 / 0.158987294928,
                         VolumePerLengthUnit.UsGallonPerMile => baseUnitValue * 1609.344 / 0.003785411784,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

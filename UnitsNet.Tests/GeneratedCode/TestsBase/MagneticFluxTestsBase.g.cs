@@ -135,10 +135,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = MagneticFlux.From(1, MagneticFluxUnit.Weber);
-            AssertEx.EqualTolerance(1, quantity00.Webers, WebersTolerance);
-            Assert.Equal(MagneticFluxUnit.Weber, quantity00.Unit);
-
+            Assert.All(EnumHelper.GetValues<MagneticFluxUnit>(), unit =>
+            {
+                var quantity = MagneticFlux.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -272,27 +274,24 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 Wb", MagneticFluxUnit.Weber, 4.2)]
+        public void Parse(string culture, string quantityString, MagneticFluxUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = MagneticFlux.Parse("1 Wb", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Webers, WebersTolerance);
-                Assert.Equal(MagneticFluxUnit.Weber, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = MagneticFlux.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 Wb", MagneticFluxUnit.Weber, 4.2)]
+        public void TryParse(string culture, string quantityString, MagneticFluxUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(MagneticFlux.TryParse("1 Wb", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Webers, WebersTolerance);
-                Assert.Equal(MagneticFluxUnit.Weber, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(MagneticFlux.TryParse(quantityString, out MagneticFlux parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -367,6 +366,27 @@ namespace UnitsNet.Tests
         {
             Assert.True(MagneticFlux.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MagneticFluxUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", MagneticFluxUnit.Weber, "Wb")]
+        public void GetAbbreviationForCulture(string culture, MagneticFluxUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = MagneticFlux.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(MagneticFlux.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = MagneticFlux.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

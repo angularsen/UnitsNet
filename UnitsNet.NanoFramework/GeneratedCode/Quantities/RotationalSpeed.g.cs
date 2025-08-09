@@ -265,7 +265,7 @@ namespace UnitsNet
                         RotationalSpeedUnit.RadianPerSecond => _value,
                         RotationalSpeedUnit.RevolutionPerMinute => (_value * 2 * 3.1415926535897931) / 60,
                         RotationalSpeedUnit.RevolutionPerSecond => _value * 2 * 3.1415926535897931,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -291,7 +291,7 @@ namespace UnitsNet
                         RotationalSpeedUnit.RadianPerSecond => baseUnitValue,
                         RotationalSpeedUnit.RevolutionPerMinute => (baseUnitValue / (2 * 3.1415926535897931)) * 60,
                         RotationalSpeedUnit.RevolutionPerSecond => baseUnitValue / (2 * 3.1415926535897931),
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

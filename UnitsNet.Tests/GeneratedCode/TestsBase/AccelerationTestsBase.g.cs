@@ -200,62 +200,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Acceleration.From(1, AccelerationUnit.CentimeterPerSecondSquared);
-            AssertEx.EqualTolerance(1, quantity00.CentimetersPerSecondSquared, CentimetersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.CentimeterPerSecondSquared, quantity00.Unit);
-
-            var quantity01 = Acceleration.From(1, AccelerationUnit.DecimeterPerSecondSquared);
-            AssertEx.EqualTolerance(1, quantity01.DecimetersPerSecondSquared, DecimetersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.DecimeterPerSecondSquared, quantity01.Unit);
-
-            var quantity02 = Acceleration.From(1, AccelerationUnit.FootPerSecondSquared);
-            AssertEx.EqualTolerance(1, quantity02.FeetPerSecondSquared, FeetPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.FootPerSecondSquared, quantity02.Unit);
-
-            var quantity03 = Acceleration.From(1, AccelerationUnit.InchPerSecondSquared);
-            AssertEx.EqualTolerance(1, quantity03.InchesPerSecondSquared, InchesPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.InchPerSecondSquared, quantity03.Unit);
-
-            var quantity04 = Acceleration.From(1, AccelerationUnit.KilometerPerSecondSquared);
-            AssertEx.EqualTolerance(1, quantity04.KilometersPerSecondSquared, KilometersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.KilometerPerSecondSquared, quantity04.Unit);
-
-            var quantity05 = Acceleration.From(1, AccelerationUnit.KnotPerHour);
-            AssertEx.EqualTolerance(1, quantity05.KnotsPerHour, KnotsPerHourTolerance);
-            Assert.Equal(AccelerationUnit.KnotPerHour, quantity05.Unit);
-
-            var quantity06 = Acceleration.From(1, AccelerationUnit.KnotPerMinute);
-            AssertEx.EqualTolerance(1, quantity06.KnotsPerMinute, KnotsPerMinuteTolerance);
-            Assert.Equal(AccelerationUnit.KnotPerMinute, quantity06.Unit);
-
-            var quantity07 = Acceleration.From(1, AccelerationUnit.KnotPerSecond);
-            AssertEx.EqualTolerance(1, quantity07.KnotsPerSecond, KnotsPerSecondTolerance);
-            Assert.Equal(AccelerationUnit.KnotPerSecond, quantity07.Unit);
-
-            var quantity08 = Acceleration.From(1, AccelerationUnit.MeterPerSecondSquared);
-            AssertEx.EqualTolerance(1, quantity08.MetersPerSecondSquared, MetersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.MeterPerSecondSquared, quantity08.Unit);
-
-            var quantity09 = Acceleration.From(1, AccelerationUnit.MicrometerPerSecondSquared);
-            AssertEx.EqualTolerance(1, quantity09.MicrometersPerSecondSquared, MicrometersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.MicrometerPerSecondSquared, quantity09.Unit);
-
-            var quantity10 = Acceleration.From(1, AccelerationUnit.MillimeterPerSecondSquared);
-            AssertEx.EqualTolerance(1, quantity10.MillimetersPerSecondSquared, MillimetersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.MillimeterPerSecondSquared, quantity10.Unit);
-
-            var quantity11 = Acceleration.From(1, AccelerationUnit.MillistandardGravity);
-            AssertEx.EqualTolerance(1, quantity11.MillistandardGravity, MillistandardGravityTolerance);
-            Assert.Equal(AccelerationUnit.MillistandardGravity, quantity11.Unit);
-
-            var quantity12 = Acceleration.From(1, AccelerationUnit.NanometerPerSecondSquared);
-            AssertEx.EqualTolerance(1, quantity12.NanometersPerSecondSquared, NanometersPerSecondSquaredTolerance);
-            Assert.Equal(AccelerationUnit.NanometerPerSecondSquared, quantity12.Unit);
-
-            var quantity13 = Acceleration.From(1, AccelerationUnit.StandardGravity);
-            AssertEx.EqualTolerance(1, quantity13.StandardGravity, StandardGravityTolerance);
-            Assert.Equal(AccelerationUnit.StandardGravity, quantity13.Unit);
-
+            Assert.All(EnumHelper.GetValues<AccelerationUnit>(), unit =>
+            {
+                var quantity = Acceleration.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -402,378 +352,78 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 cm/s²", AccelerationUnit.CentimeterPerSecondSquared, 4.2)]
+        [InlineData("en-US", "4.2 dm/s²", AccelerationUnit.DecimeterPerSecondSquared, 4.2)]
+        [InlineData("en-US", "4.2 ft/s²", AccelerationUnit.FootPerSecondSquared, 4.2)]
+        [InlineData("en-US", "4.2 in/s²", AccelerationUnit.InchPerSecondSquared, 4.2)]
+        [InlineData("en-US", "4.2 km/s²", AccelerationUnit.KilometerPerSecondSquared, 4.2)]
+        [InlineData("en-US", "4.2 kn/h", AccelerationUnit.KnotPerHour, 4.2)]
+        [InlineData("en-US", "4.2 kn/min", AccelerationUnit.KnotPerMinute, 4.2)]
+        [InlineData("en-US", "4.2 kn/s", AccelerationUnit.KnotPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 m/s²", AccelerationUnit.MeterPerSecondSquared, 4.2)]
+        [InlineData("en-US", "4.2 µm/s²", AccelerationUnit.MicrometerPerSecondSquared, 4.2)]
+        [InlineData("en-US", "4.2 mm/s²", AccelerationUnit.MillimeterPerSecondSquared, 4.2)]
+        [InlineData("en-US", "4.2 mg", AccelerationUnit.MillistandardGravity, 4.2)]
+        [InlineData("en-US", "4.2 nm/s²", AccelerationUnit.NanometerPerSecondSquared, 4.2)]
+        [InlineData("en-US", "4.2 g", AccelerationUnit.StandardGravity, 4.2)]
+        [InlineData("ru-RU", "4,2 см/с²", AccelerationUnit.CentimeterPerSecondSquared, 4.2)]
+        [InlineData("ru-RU", "4,2 дм/с²", AccelerationUnit.DecimeterPerSecondSquared, 4.2)]
+        [InlineData("ru-RU", "4,2 фут/с²", AccelerationUnit.FootPerSecondSquared, 4.2)]
+        [InlineData("ru-RU", "4,2 дюйм/с²", AccelerationUnit.InchPerSecondSquared, 4.2)]
+        [InlineData("ru-RU", "4,2 км/с²", AccelerationUnit.KilometerPerSecondSquared, 4.2)]
+        [InlineData("ru-RU", "4,2 узел/час", AccelerationUnit.KnotPerHour, 4.2)]
+        [InlineData("ru-RU", "4,2 узел/мин", AccelerationUnit.KnotPerMinute, 4.2)]
+        [InlineData("ru-RU", "4,2 узел/с", AccelerationUnit.KnotPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 м/с²", AccelerationUnit.MeterPerSecondSquared, 4.2)]
+        [InlineData("ru-RU", "4,2 мкм/с²", AccelerationUnit.MicrometerPerSecondSquared, 4.2)]
+        [InlineData("ru-RU", "4,2 мм/с²", AccelerationUnit.MillimeterPerSecondSquared, 4.2)]
+        [InlineData("ru-RU", "4,2 мg", AccelerationUnit.MillistandardGravity, 4.2)]
+        [InlineData("ru-RU", "4,2 нм/с²", AccelerationUnit.NanometerPerSecondSquared, 4.2)]
+        [InlineData("ru-RU", "4,2 g", AccelerationUnit.StandardGravity, 4.2)]
+        public void Parse(string culture, string quantityString, AccelerationUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = Acceleration.Parse("1 cm/s²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CentimetersPerSecondSquared, CentimetersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.CentimeterPerSecondSquared, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 см/с²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.CentimetersPerSecondSquared, CentimetersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.CentimeterPerSecondSquared, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 dm/s²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecimetersPerSecondSquared, DecimetersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.DecimeterPerSecondSquared, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 дм/с²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.DecimetersPerSecondSquared, DecimetersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.DecimeterPerSecondSquared, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 ft/s²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.FeetPerSecondSquared, FeetPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.FootPerSecondSquared, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 фут/с²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.FeetPerSecondSquared, FeetPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.FootPerSecondSquared, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 in/s²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.InchesPerSecondSquared, InchesPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.InchPerSecondSquared, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 дюйм/с²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.InchesPerSecondSquared, InchesPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.InchPerSecondSquared, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 km/s²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilometersPerSecondSquared, KilometersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.KilometerPerSecondSquared, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 км/с²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.KilometersPerSecondSquared, KilometersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.KilometerPerSecondSquared, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 kn/h", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KnotsPerHour, KnotsPerHourTolerance);
-                Assert.Equal(AccelerationUnit.KnotPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 узел/час", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.KnotsPerHour, KnotsPerHourTolerance);
-                Assert.Equal(AccelerationUnit.KnotPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 kn/min", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KnotsPerMinute, KnotsPerMinuteTolerance);
-                Assert.Equal(AccelerationUnit.KnotPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 узел/мин", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.KnotsPerMinute, KnotsPerMinuteTolerance);
-                Assert.Equal(AccelerationUnit.KnotPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 kn/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KnotsPerSecond, KnotsPerSecondTolerance);
-                Assert.Equal(AccelerationUnit.KnotPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 узел/с", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.KnotsPerSecond, KnotsPerSecondTolerance);
-                Assert.Equal(AccelerationUnit.KnotPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 m/s²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MetersPerSecondSquared, MetersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.MeterPerSecondSquared, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 м/с²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MetersPerSecondSquared, MetersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.MeterPerSecondSquared, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 µm/s²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicrometersPerSecondSquared, MicrometersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.MicrometerPerSecondSquared, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 мкм/с²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MicrometersPerSecondSquared, MicrometersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.MicrometerPerSecondSquared, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 mm/s²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillimetersPerSecondSquared, MillimetersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.MillimeterPerSecondSquared, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 мм/с²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MillimetersPerSecondSquared, MillimetersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.MillimeterPerSecondSquared, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 mg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillistandardGravity, MillistandardGravityTolerance);
-                Assert.Equal(AccelerationUnit.MillistandardGravity, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 мg", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MillistandardGravity, MillistandardGravityTolerance);
-                Assert.Equal(AccelerationUnit.MillistandardGravity, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 nm/s²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NanometersPerSecondSquared, NanometersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.NanometerPerSecondSquared, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 нм/с²", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.NanometersPerSecondSquared, NanometersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.NanometerPerSecondSquared, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 g", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.StandardGravity, StandardGravityTolerance);
-                Assert.Equal(AccelerationUnit.StandardGravity, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Acceleration.Parse("1 g", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.StandardGravity, StandardGravityTolerance);
-                Assert.Equal(AccelerationUnit.StandardGravity, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = Acceleration.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 cm/s²", AccelerationUnit.CentimeterPerSecondSquared, 4.2)]
+        [InlineData("en-US", "4.2 dm/s²", AccelerationUnit.DecimeterPerSecondSquared, 4.2)]
+        [InlineData("en-US", "4.2 ft/s²", AccelerationUnit.FootPerSecondSquared, 4.2)]
+        [InlineData("en-US", "4.2 in/s²", AccelerationUnit.InchPerSecondSquared, 4.2)]
+        [InlineData("en-US", "4.2 km/s²", AccelerationUnit.KilometerPerSecondSquared, 4.2)]
+        [InlineData("en-US", "4.2 kn/h", AccelerationUnit.KnotPerHour, 4.2)]
+        [InlineData("en-US", "4.2 kn/min", AccelerationUnit.KnotPerMinute, 4.2)]
+        [InlineData("en-US", "4.2 kn/s", AccelerationUnit.KnotPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 m/s²", AccelerationUnit.MeterPerSecondSquared, 4.2)]
+        [InlineData("en-US", "4.2 µm/s²", AccelerationUnit.MicrometerPerSecondSquared, 4.2)]
+        [InlineData("en-US", "4.2 mm/s²", AccelerationUnit.MillimeterPerSecondSquared, 4.2)]
+        [InlineData("en-US", "4.2 mg", AccelerationUnit.MillistandardGravity, 4.2)]
+        [InlineData("en-US", "4.2 nm/s²", AccelerationUnit.NanometerPerSecondSquared, 4.2)]
+        [InlineData("en-US", "4.2 g", AccelerationUnit.StandardGravity, 4.2)]
+        [InlineData("ru-RU", "4,2 см/с²", AccelerationUnit.CentimeterPerSecondSquared, 4.2)]
+        [InlineData("ru-RU", "4,2 дм/с²", AccelerationUnit.DecimeterPerSecondSquared, 4.2)]
+        [InlineData("ru-RU", "4,2 фут/с²", AccelerationUnit.FootPerSecondSquared, 4.2)]
+        [InlineData("ru-RU", "4,2 дюйм/с²", AccelerationUnit.InchPerSecondSquared, 4.2)]
+        [InlineData("ru-RU", "4,2 км/с²", AccelerationUnit.KilometerPerSecondSquared, 4.2)]
+        [InlineData("ru-RU", "4,2 узел/час", AccelerationUnit.KnotPerHour, 4.2)]
+        [InlineData("ru-RU", "4,2 узел/мин", AccelerationUnit.KnotPerMinute, 4.2)]
+        [InlineData("ru-RU", "4,2 узел/с", AccelerationUnit.KnotPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 м/с²", AccelerationUnit.MeterPerSecondSquared, 4.2)]
+        [InlineData("ru-RU", "4,2 мкм/с²", AccelerationUnit.MicrometerPerSecondSquared, 4.2)]
+        [InlineData("ru-RU", "4,2 мм/с²", AccelerationUnit.MillimeterPerSecondSquared, 4.2)]
+        [InlineData("ru-RU", "4,2 мg", AccelerationUnit.MillistandardGravity, 4.2)]
+        [InlineData("ru-RU", "4,2 нм/с²", AccelerationUnit.NanometerPerSecondSquared, 4.2)]
+        [InlineData("ru-RU", "4,2 g", AccelerationUnit.StandardGravity, 4.2)]
+        public void TryParse(string culture, string quantityString, AccelerationUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(Acceleration.TryParse("1 cm/s²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentimetersPerSecondSquared, CentimetersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.CentimeterPerSecondSquared, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 см/с²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentimetersPerSecondSquared, CentimetersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.CentimeterPerSecondSquared, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 dm/s²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecimetersPerSecondSquared, DecimetersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.DecimeterPerSecondSquared, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 дм/с²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecimetersPerSecondSquared, DecimetersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.DecimeterPerSecondSquared, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 ft/s²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.FeetPerSecondSquared, FeetPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.FootPerSecondSquared, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 фут/с²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.FeetPerSecondSquared, FeetPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.FootPerSecondSquared, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 in/s²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InchesPerSecondSquared, InchesPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.InchPerSecondSquared, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 дюйм/с²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InchesPerSecondSquared, InchesPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.InchPerSecondSquared, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 km/s²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilometersPerSecondSquared, KilometersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.KilometerPerSecondSquared, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 км/с²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilometersPerSecondSquared, KilometersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.KilometerPerSecondSquared, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 kn/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KnotsPerHour, KnotsPerHourTolerance);
-                Assert.Equal(AccelerationUnit.KnotPerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 узел/час", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KnotsPerHour, KnotsPerHourTolerance);
-                Assert.Equal(AccelerationUnit.KnotPerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 kn/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KnotsPerMinute, KnotsPerMinuteTolerance);
-                Assert.Equal(AccelerationUnit.KnotPerMinute, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 узел/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KnotsPerMinute, KnotsPerMinuteTolerance);
-                Assert.Equal(AccelerationUnit.KnotPerMinute, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 kn/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KnotsPerSecond, KnotsPerSecondTolerance);
-                Assert.Equal(AccelerationUnit.KnotPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 узел/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KnotsPerSecond, KnotsPerSecondTolerance);
-                Assert.Equal(AccelerationUnit.KnotPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 m/s²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MetersPerSecondSquared, MetersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.MeterPerSecondSquared, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 м/с²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MetersPerSecondSquared, MetersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.MeterPerSecondSquared, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 µm/s²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrometersPerSecondSquared, MicrometersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.MicrometerPerSecondSquared, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 мкм/с²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrometersPerSecondSquared, MicrometersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.MicrometerPerSecondSquared, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 mm/s²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimetersPerSecondSquared, MillimetersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.MillimeterPerSecondSquared, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 мм/с²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimetersPerSecondSquared, MillimetersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.MillimeterPerSecondSquared, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 mg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillistandardGravity, MillistandardGravityTolerance);
-                Assert.Equal(AccelerationUnit.MillistandardGravity, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 мg", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillistandardGravity, MillistandardGravityTolerance);
-                Assert.Equal(AccelerationUnit.MillistandardGravity, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 nm/s²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanometersPerSecondSquared, NanometersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.NanometerPerSecondSquared, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 нм/с²", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanometersPerSecondSquared, NanometersPerSecondSquaredTolerance);
-                Assert.Equal(AccelerationUnit.NanometerPerSecondSquared, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 g", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.StandardGravity, StandardGravityTolerance);
-                Assert.Equal(AccelerationUnit.StandardGravity, parsed.Unit);
-            }
-
-            {
-                Assert.True(Acceleration.TryParse("1 g", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.StandardGravity, StandardGravityTolerance);
-                Assert.Equal(AccelerationUnit.StandardGravity, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(Acceleration.TryParse(quantityString, out Acceleration parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -1008,6 +658,54 @@ namespace UnitsNet.Tests
         {
             Assert.True(Acceleration.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out AccelerationUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", AccelerationUnit.CentimeterPerSecondSquared, "cm/s²")]
+        [InlineData("en-US", AccelerationUnit.DecimeterPerSecondSquared, "dm/s²")]
+        [InlineData("en-US", AccelerationUnit.FootPerSecondSquared, "ft/s²")]
+        [InlineData("en-US", AccelerationUnit.InchPerSecondSquared, "in/s²")]
+        [InlineData("en-US", AccelerationUnit.KilometerPerSecondSquared, "km/s²")]
+        [InlineData("en-US", AccelerationUnit.KnotPerHour, "kn/h")]
+        [InlineData("en-US", AccelerationUnit.KnotPerMinute, "kn/min")]
+        [InlineData("en-US", AccelerationUnit.KnotPerSecond, "kn/s")]
+        [InlineData("en-US", AccelerationUnit.MeterPerSecondSquared, "m/s²")]
+        [InlineData("en-US", AccelerationUnit.MicrometerPerSecondSquared, "µm/s²")]
+        [InlineData("en-US", AccelerationUnit.MillimeterPerSecondSquared, "mm/s²")]
+        [InlineData("en-US", AccelerationUnit.MillistandardGravity, "mg")]
+        [InlineData("en-US", AccelerationUnit.NanometerPerSecondSquared, "nm/s²")]
+        [InlineData("en-US", AccelerationUnit.StandardGravity, "g")]
+        [InlineData("ru-RU", AccelerationUnit.CentimeterPerSecondSquared, "см/с²")]
+        [InlineData("ru-RU", AccelerationUnit.DecimeterPerSecondSquared, "дм/с²")]
+        [InlineData("ru-RU", AccelerationUnit.FootPerSecondSquared, "фут/с²")]
+        [InlineData("ru-RU", AccelerationUnit.InchPerSecondSquared, "дюйм/с²")]
+        [InlineData("ru-RU", AccelerationUnit.KilometerPerSecondSquared, "км/с²")]
+        [InlineData("ru-RU", AccelerationUnit.KnotPerHour, "узел/час")]
+        [InlineData("ru-RU", AccelerationUnit.KnotPerMinute, "узел/мин")]
+        [InlineData("ru-RU", AccelerationUnit.KnotPerSecond, "узел/с")]
+        [InlineData("ru-RU", AccelerationUnit.MeterPerSecondSquared, "м/с²")]
+        [InlineData("ru-RU", AccelerationUnit.MicrometerPerSecondSquared, "мкм/с²")]
+        [InlineData("ru-RU", AccelerationUnit.MillimeterPerSecondSquared, "мм/с²")]
+        [InlineData("ru-RU", AccelerationUnit.MillistandardGravity, "мg")]
+        [InlineData("ru-RU", AccelerationUnit.NanometerPerSecondSquared, "нм/с²")]
+        [InlineData("ru-RU", AccelerationUnit.StandardGravity, "g")]
+        public void GetAbbreviationForCulture(string culture, AccelerationUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Acceleration.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Acceleration.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Acceleration.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

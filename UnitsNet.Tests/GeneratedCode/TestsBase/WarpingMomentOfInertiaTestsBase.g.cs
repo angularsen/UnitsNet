@@ -160,30 +160,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = WarpingMomentOfInertia.From(1, WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
-            AssertEx.EqualTolerance(1, quantity00.CentimetersToTheSixth, CentimetersToTheSixthTolerance);
-            Assert.Equal(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, quantity00.Unit);
-
-            var quantity01 = WarpingMomentOfInertia.From(1, WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
-            AssertEx.EqualTolerance(1, quantity01.DecimetersToTheSixth, DecimetersToTheSixthTolerance);
-            Assert.Equal(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, quantity01.Unit);
-
-            var quantity02 = WarpingMomentOfInertia.From(1, WarpingMomentOfInertiaUnit.FootToTheSixth);
-            AssertEx.EqualTolerance(1, quantity02.FeetToTheSixth, FeetToTheSixthTolerance);
-            Assert.Equal(WarpingMomentOfInertiaUnit.FootToTheSixth, quantity02.Unit);
-
-            var quantity03 = WarpingMomentOfInertia.From(1, WarpingMomentOfInertiaUnit.InchToTheSixth);
-            AssertEx.EqualTolerance(1, quantity03.InchesToTheSixth, InchesToTheSixthTolerance);
-            Assert.Equal(WarpingMomentOfInertiaUnit.InchToTheSixth, quantity03.Unit);
-
-            var quantity04 = WarpingMomentOfInertia.From(1, WarpingMomentOfInertiaUnit.MeterToTheSixth);
-            AssertEx.EqualTolerance(1, quantity04.MetersToTheSixth, MetersToTheSixthTolerance);
-            Assert.Equal(WarpingMomentOfInertiaUnit.MeterToTheSixth, quantity04.Unit);
-
-            var quantity05 = WarpingMomentOfInertia.From(1, WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
-            AssertEx.EqualTolerance(1, quantity05.MillimetersToTheSixth, MillimetersToTheSixthTolerance);
-            Assert.Equal(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, quantity05.Unit);
-
+            Assert.All(EnumHelper.GetValues<WarpingMomentOfInertiaUnit>(), unit =>
+            {
+                var quantity = WarpingMomentOfInertia.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -322,92 +304,34 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 cm⁶", WarpingMomentOfInertiaUnit.CentimeterToTheSixth, 4.2)]
+        [InlineData("en-US", "4.2 dm⁶", WarpingMomentOfInertiaUnit.DecimeterToTheSixth, 4.2)]
+        [InlineData("en-US", "4.2 ft⁶", WarpingMomentOfInertiaUnit.FootToTheSixth, 4.2)]
+        [InlineData("en-US", "4.2 in⁶", WarpingMomentOfInertiaUnit.InchToTheSixth, 4.2)]
+        [InlineData("en-US", "4.2 m⁶", WarpingMomentOfInertiaUnit.MeterToTheSixth, 4.2)]
+        [InlineData("en-US", "4.2 mm⁶", WarpingMomentOfInertiaUnit.MillimeterToTheSixth, 4.2)]
+        public void Parse(string culture, string quantityString, WarpingMomentOfInertiaUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = WarpingMomentOfInertia.Parse("1 cm⁶", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CentimetersToTheSixth, CentimetersToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = WarpingMomentOfInertia.Parse("1 dm⁶", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecimetersToTheSixth, DecimetersToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = WarpingMomentOfInertia.Parse("1 ft⁶", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.FeetToTheSixth, FeetToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.FootToTheSixth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = WarpingMomentOfInertia.Parse("1 in⁶", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.InchesToTheSixth, InchesToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.InchToTheSixth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = WarpingMomentOfInertia.Parse("1 m⁶", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MetersToTheSixth, MetersToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.MeterToTheSixth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = WarpingMomentOfInertia.Parse("1 mm⁶", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillimetersToTheSixth, MillimetersToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = WarpingMomentOfInertia.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 cm⁶", WarpingMomentOfInertiaUnit.CentimeterToTheSixth, 4.2)]
+        [InlineData("en-US", "4.2 dm⁶", WarpingMomentOfInertiaUnit.DecimeterToTheSixth, 4.2)]
+        [InlineData("en-US", "4.2 ft⁶", WarpingMomentOfInertiaUnit.FootToTheSixth, 4.2)]
+        [InlineData("en-US", "4.2 in⁶", WarpingMomentOfInertiaUnit.InchToTheSixth, 4.2)]
+        [InlineData("en-US", "4.2 m⁶", WarpingMomentOfInertiaUnit.MeterToTheSixth, 4.2)]
+        [InlineData("en-US", "4.2 mm⁶", WarpingMomentOfInertiaUnit.MillimeterToTheSixth, 4.2)]
+        public void TryParse(string culture, string quantityString, WarpingMomentOfInertiaUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(WarpingMomentOfInertia.TryParse("1 cm⁶", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentimetersToTheSixth, CentimetersToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.CentimeterToTheSixth, parsed.Unit);
-            }
-
-            {
-                Assert.True(WarpingMomentOfInertia.TryParse("1 dm⁶", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecimetersToTheSixth, DecimetersToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.DecimeterToTheSixth, parsed.Unit);
-            }
-
-            {
-                Assert.True(WarpingMomentOfInertia.TryParse("1 ft⁶", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.FeetToTheSixth, FeetToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.FootToTheSixth, parsed.Unit);
-            }
-
-            {
-                Assert.True(WarpingMomentOfInertia.TryParse("1 in⁶", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InchesToTheSixth, InchesToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.InchToTheSixth, parsed.Unit);
-            }
-
-            {
-                Assert.True(WarpingMomentOfInertia.TryParse("1 m⁶", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MetersToTheSixth, MetersToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.MeterToTheSixth, parsed.Unit);
-            }
-
-            {
-                Assert.True(WarpingMomentOfInertia.TryParse("1 mm⁶", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimetersToTheSixth, MillimetersToTheSixthTolerance);
-                Assert.Equal(WarpingMomentOfInertiaUnit.MillimeterToTheSixth, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(WarpingMomentOfInertia.TryParse(quantityString, out WarpingMomentOfInertia parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -522,6 +446,32 @@ namespace UnitsNet.Tests
         {
             Assert.True(WarpingMomentOfInertia.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out WarpingMomentOfInertiaUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", WarpingMomentOfInertiaUnit.CentimeterToTheSixth, "cm⁶")]
+        [InlineData("en-US", WarpingMomentOfInertiaUnit.DecimeterToTheSixth, "dm⁶")]
+        [InlineData("en-US", WarpingMomentOfInertiaUnit.FootToTheSixth, "ft⁶")]
+        [InlineData("en-US", WarpingMomentOfInertiaUnit.InchToTheSixth, "in⁶")]
+        [InlineData("en-US", WarpingMomentOfInertiaUnit.MeterToTheSixth, "m⁶")]
+        [InlineData("en-US", WarpingMomentOfInertiaUnit.MillimeterToTheSixth, "mm⁶")]
+        public void GetAbbreviationForCulture(string culture, WarpingMomentOfInertiaUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = WarpingMomentOfInertia.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(WarpingMomentOfInertia.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = WarpingMomentOfInertia.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

@@ -199,7 +199,7 @@ namespace UnitsNet
                         EntropyUnit.KilojoulePerDegreeCelsius => (_value) * 1e3d,
                         EntropyUnit.KilojoulePerKelvin => (_value) * 1e3d,
                         EntropyUnit.MegajoulePerKelvin => (_value) * 1e6d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -219,7 +219,7 @@ namespace UnitsNet
                         EntropyUnit.KilojoulePerDegreeCelsius => (baseUnitValue) / 1e3d,
                         EntropyUnit.KilojoulePerKelvin => (baseUnitValue) / 1e3d,
                         EntropyUnit.MegajoulePerKelvin => (baseUnitValue) / 1e6d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

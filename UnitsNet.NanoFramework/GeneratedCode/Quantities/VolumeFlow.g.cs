@@ -947,7 +947,7 @@ namespace UnitsNet
                         VolumeFlowUnit.UsGallonPerHour => _value * 0.003785411784 / 3600,
                         VolumeFlowUnit.UsGallonPerMinute => _value * 0.003785411784 / 60,
                         VolumeFlowUnit.UsGallonPerSecond => _value * 0.003785411784,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -1035,7 +1035,7 @@ namespace UnitsNet
                         VolumeFlowUnit.UsGallonPerHour => baseUnitValue / (0.003785411784 / 3600),
                         VolumeFlowUnit.UsGallonPerMinute => baseUnitValue / (0.003785411784 / 60),
                         VolumeFlowUnit.UsGallonPerSecond => baseUnitValue / 0.003785411784,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

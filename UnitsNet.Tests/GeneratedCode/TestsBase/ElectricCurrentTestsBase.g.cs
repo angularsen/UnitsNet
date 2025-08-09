@@ -175,42 +175,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricCurrent.From(1, ElectricCurrentUnit.Ampere);
-            AssertEx.EqualTolerance(1, quantity00.Amperes, AmperesTolerance);
-            Assert.Equal(ElectricCurrentUnit.Ampere, quantity00.Unit);
-
-            var quantity01 = ElectricCurrent.From(1, ElectricCurrentUnit.Centiampere);
-            AssertEx.EqualTolerance(1, quantity01.Centiamperes, CentiamperesTolerance);
-            Assert.Equal(ElectricCurrentUnit.Centiampere, quantity01.Unit);
-
-            var quantity02 = ElectricCurrent.From(1, ElectricCurrentUnit.Femtoampere);
-            AssertEx.EqualTolerance(1, quantity02.Femtoamperes, FemtoamperesTolerance);
-            Assert.Equal(ElectricCurrentUnit.Femtoampere, quantity02.Unit);
-
-            var quantity03 = ElectricCurrent.From(1, ElectricCurrentUnit.Kiloampere);
-            AssertEx.EqualTolerance(1, quantity03.Kiloamperes, KiloamperesTolerance);
-            Assert.Equal(ElectricCurrentUnit.Kiloampere, quantity03.Unit);
-
-            var quantity04 = ElectricCurrent.From(1, ElectricCurrentUnit.Megaampere);
-            AssertEx.EqualTolerance(1, quantity04.Megaamperes, MegaamperesTolerance);
-            Assert.Equal(ElectricCurrentUnit.Megaampere, quantity04.Unit);
-
-            var quantity05 = ElectricCurrent.From(1, ElectricCurrentUnit.Microampere);
-            AssertEx.EqualTolerance(1, quantity05.Microamperes, MicroamperesTolerance);
-            Assert.Equal(ElectricCurrentUnit.Microampere, quantity05.Unit);
-
-            var quantity06 = ElectricCurrent.From(1, ElectricCurrentUnit.Milliampere);
-            AssertEx.EqualTolerance(1, quantity06.Milliamperes, MilliamperesTolerance);
-            Assert.Equal(ElectricCurrentUnit.Milliampere, quantity06.Unit);
-
-            var quantity07 = ElectricCurrent.From(1, ElectricCurrentUnit.Nanoampere);
-            AssertEx.EqualTolerance(1, quantity07.Nanoamperes, NanoamperesTolerance);
-            Assert.Equal(ElectricCurrentUnit.Nanoampere, quantity07.Unit);
-
-            var quantity08 = ElectricCurrent.From(1, ElectricCurrentUnit.Picoampere);
-            AssertEx.EqualTolerance(1, quantity08.Picoamperes, PicoamperesTolerance);
-            Assert.Equal(ElectricCurrentUnit.Picoampere, quantity08.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricCurrentUnit>(), unit =>
+            {
+                var quantity = ElectricCurrent.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -352,119 +322,40 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 A", ElectricCurrentUnit.Ampere, 4.2)]
+        [InlineData("en-US", "4.2 cA", ElectricCurrentUnit.Centiampere, 4.2)]
+        [InlineData("en-US", "4.2 fA", ElectricCurrentUnit.Femtoampere, 4.2)]
+        [InlineData("en-US", "4.2 kA", ElectricCurrentUnit.Kiloampere, 4.2)]
+        [InlineData("en-US", "4.2 MA", ElectricCurrentUnit.Megaampere, 4.2)]
+        [InlineData("en-US", "4.2 µA", ElectricCurrentUnit.Microampere, 4.2)]
+        [InlineData("en-US", "4.2 mA", ElectricCurrentUnit.Milliampere, 4.2)]
+        [InlineData("en-US", "4.2 nA", ElectricCurrentUnit.Nanoampere, 4.2)]
+        [InlineData("en-US", "4.2 pA", ElectricCurrentUnit.Picoampere, 4.2)]
+        public void Parse(string culture, string quantityString, ElectricCurrentUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = ElectricCurrent.Parse("1 A", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Amperes, AmperesTolerance);
-                Assert.Equal(ElectricCurrentUnit.Ampere, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricCurrent.Parse("1 cA", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Centiamperes, CentiamperesTolerance);
-                Assert.Equal(ElectricCurrentUnit.Centiampere, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricCurrent.Parse("1 fA", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Femtoamperes, FemtoamperesTolerance);
-                Assert.Equal(ElectricCurrentUnit.Femtoampere, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricCurrent.Parse("1 kA", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kiloamperes, KiloamperesTolerance);
-                Assert.Equal(ElectricCurrentUnit.Kiloampere, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricCurrent.Parse("1 MA", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Megaamperes, MegaamperesTolerance);
-                Assert.Equal(ElectricCurrentUnit.Megaampere, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricCurrent.Parse("1 µA", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Microamperes, MicroamperesTolerance);
-                Assert.Equal(ElectricCurrentUnit.Microampere, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricCurrent.Parse("1 mA", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Milliamperes, MilliamperesTolerance);
-                Assert.Equal(ElectricCurrentUnit.Milliampere, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricCurrent.Parse("1 nA", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Nanoamperes, NanoamperesTolerance);
-                Assert.Equal(ElectricCurrentUnit.Nanoampere, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricCurrent.Parse("1 pA", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Picoamperes, PicoamperesTolerance);
-                Assert.Equal(ElectricCurrentUnit.Picoampere, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = ElectricCurrent.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 A", ElectricCurrentUnit.Ampere, 4.2)]
+        [InlineData("en-US", "4.2 cA", ElectricCurrentUnit.Centiampere, 4.2)]
+        [InlineData("en-US", "4.2 fA", ElectricCurrentUnit.Femtoampere, 4.2)]
+        [InlineData("en-US", "4.2 kA", ElectricCurrentUnit.Kiloampere, 4.2)]
+        [InlineData("en-US", "4.2 MA", ElectricCurrentUnit.Megaampere, 4.2)]
+        [InlineData("en-US", "4.2 µA", ElectricCurrentUnit.Microampere, 4.2)]
+        [InlineData("en-US", "4.2 mA", ElectricCurrentUnit.Milliampere, 4.2)]
+        [InlineData("en-US", "4.2 nA", ElectricCurrentUnit.Nanoampere, 4.2)]
+        [InlineData("en-US", "4.2 pA", ElectricCurrentUnit.Picoampere, 4.2)]
+        public void TryParse(string culture, string quantityString, ElectricCurrentUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(ElectricCurrent.TryParse("1 A", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Amperes, AmperesTolerance);
-                Assert.Equal(ElectricCurrentUnit.Ampere, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricCurrent.TryParse("1 cA", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Centiamperes, CentiamperesTolerance);
-                Assert.Equal(ElectricCurrentUnit.Centiampere, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricCurrent.TryParse("1 fA", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Femtoamperes, FemtoamperesTolerance);
-                Assert.Equal(ElectricCurrentUnit.Femtoampere, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricCurrent.TryParse("1 kA", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kiloamperes, KiloamperesTolerance);
-                Assert.Equal(ElectricCurrentUnit.Kiloampere, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricCurrent.TryParse("1 µA", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microamperes, MicroamperesTolerance);
-                Assert.Equal(ElectricCurrentUnit.Microampere, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricCurrent.TryParse("1 nA", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanoamperes, NanoamperesTolerance);
-                Assert.Equal(ElectricCurrentUnit.Nanoampere, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricCurrent.TryParse("1 pA", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Picoamperes, PicoamperesTolerance);
-                Assert.Equal(ElectricCurrentUnit.Picoampere, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricCurrent.TryParse(quantityString, out ElectricCurrent parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -603,6 +494,35 @@ namespace UnitsNet.Tests
         {
             Assert.True(ElectricCurrent.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricCurrentUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", ElectricCurrentUnit.Ampere, "A")]
+        [InlineData("en-US", ElectricCurrentUnit.Centiampere, "cA")]
+        [InlineData("en-US", ElectricCurrentUnit.Femtoampere, "fA")]
+        [InlineData("en-US", ElectricCurrentUnit.Kiloampere, "kA")]
+        [InlineData("en-US", ElectricCurrentUnit.Megaampere, "MA")]
+        [InlineData("en-US", ElectricCurrentUnit.Microampere, "µA")]
+        [InlineData("en-US", ElectricCurrentUnit.Milliampere, "mA")]
+        [InlineData("en-US", ElectricCurrentUnit.Nanoampere, "nA")]
+        [InlineData("en-US", ElectricCurrentUnit.Picoampere, "pA")]
+        public void GetAbbreviationForCulture(string culture, ElectricCurrentUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ElectricCurrent.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ElectricCurrent.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ElectricCurrent.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

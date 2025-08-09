@@ -169,7 +169,7 @@ namespace UnitsNet
                         LeakRateUnit.MillibarLiterPerSecond => _value / 10,
                         LeakRateUnit.PascalCubicMeterPerSecond => _value,
                         LeakRateUnit.TorrLiterPerSecond => _value / 7.5,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -186,7 +186,7 @@ namespace UnitsNet
                         LeakRateUnit.MillibarLiterPerSecond => baseUnitValue * 10,
                         LeakRateUnit.PascalCubicMeterPerSecond => baseUnitValue,
                         LeakRateUnit.TorrLiterPerSecond => baseUnitValue * 7.5,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

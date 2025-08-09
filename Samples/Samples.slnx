@@ -1,0 +1,20 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="ARM" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/_Files/">
+    <File Path="build.bat" />
+    <File Path="Directory.Packages.props" />
+    <File Path="msbuild.cmd" />
+  </Folder>
+  <Project Path="MvvmSample.Wpf/MvvmSample.Wpf/MvvmSample.Wpf.csproj">
+    <Build Solution="*|ARM" Project="false" />
+  </Project>
+  <Project Path="UnitConverter.Console/UnitConverter.Console.csproj" />
+  <Project Path="UnitConverter.Wpf/UnitConverter.Wpf/UnitConverter.Wpf.csproj">
+    <Build Solution="*|ARM" Project="false" />
+  </Project>
+</Solution>

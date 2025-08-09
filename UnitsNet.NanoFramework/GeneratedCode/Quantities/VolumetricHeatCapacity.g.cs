@@ -224,7 +224,7 @@ namespace UnitsNet
                         VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin => (_value) * 1e3d,
                         VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius => (_value) * 1e6d,
                         VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin => (_value) * 1e6d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -246,7 +246,7 @@ namespace UnitsNet
                         VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin => (baseUnitValue) / 1e3d,
                         VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius => (baseUnitValue) / 1e6d,
                         VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin => (baseUnitValue) / 1e6d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 
