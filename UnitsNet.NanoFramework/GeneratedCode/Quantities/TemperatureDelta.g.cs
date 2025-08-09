@@ -221,7 +221,7 @@ namespace UnitsNet
                         TemperatureDeltaUnit.DegreeRoemer => _value * 40 / 21,
                         TemperatureDeltaUnit.Kelvin => _value,
                         TemperatureDeltaUnit.MillidegreeCelsius => (_value) * 1e-3d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -243,7 +243,7 @@ namespace UnitsNet
                         TemperatureDeltaUnit.DegreeRoemer => baseUnitValue * 21 / 40,
                         TemperatureDeltaUnit.Kelvin => baseUnitValue,
                         TemperatureDeltaUnit.MillidegreeCelsius => (baseUnitValue) / 1e-3d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

@@ -100,7 +100,7 @@ namespace UnitsNet
 }}");
             return Writer.ToString();
         }
-        
+
         private void GenerateInterfaceExtensions()
         {
             // generate the base interface (either IVectorQuantity, IAffineQuantity or ILogarithmicQuantity)
@@ -158,7 +158,7 @@ namespace UnitsNet
         IEquatable<{_quantity.Name}>,
         IFormattable");
         }
-        
+
         private void GenerateQuantityInfo()
         {
             var quantityInfoClassName = $"{_quantity.Name}Info";
@@ -1081,7 +1081,7 @@ namespace UnitsNet
             else
             {{
                 // No possible conversion
-                throw new NotImplementedException($""Can not convert {{Unit}} to {{unit}}."");
+                throw new UnitNotFoundException($""Can't convert {{Unit}} to {{unit}}."");
             }}
         }}
 

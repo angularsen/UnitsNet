@@ -276,7 +276,7 @@ namespace UnitsNet
                         AccelerationUnit.MillistandardGravity => (_value * 9.80665) * 1e-3d,
                         AccelerationUnit.NanometerPerSecondSquared => (_value) * 1e-9d,
                         AccelerationUnit.StandardGravity => _value * 9.80665,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -303,7 +303,7 @@ namespace UnitsNet
                         AccelerationUnit.MillistandardGravity => (baseUnitValue / 9.80665) / 1e-3d,
                         AccelerationUnit.NanometerPerSecondSquared => (baseUnitValue) / 1e-9d,
                         AccelerationUnit.StandardGravity => baseUnitValue / 9.80665,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

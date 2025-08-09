@@ -144,7 +144,7 @@ namespace UnitsNet
                     {
                         RatioChangeRateUnit.DecimalFractionPerSecond => _value,
                         RatioChangeRateUnit.PercentPerSecond => _value / 1e2,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -159,7 +159,7 @@ namespace UnitsNet
                     {
                         RatioChangeRateUnit.DecimalFractionPerSecond => baseUnitValue,
                         RatioChangeRateUnit.PercentPerSecond => baseUnitValue * 1e2,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

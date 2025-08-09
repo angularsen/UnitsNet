@@ -232,7 +232,7 @@ namespace UnitsNet
                         TemperatureUnit.Kelvin => _value,
                         TemperatureUnit.MillidegreeCelsius => _value / 1000 + 273.15,
                         TemperatureUnit.SolarTemperature => _value * 5778,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -255,7 +255,7 @@ namespace UnitsNet
                         TemperatureUnit.Kelvin => baseUnitValue,
                         TemperatureUnit.MillidegreeCelsius => (baseUnitValue - 273.15) * 1000,
                         TemperatureUnit.SolarTemperature => baseUnitValue / 5778,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

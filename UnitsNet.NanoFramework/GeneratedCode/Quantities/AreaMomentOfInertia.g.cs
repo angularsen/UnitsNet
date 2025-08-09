@@ -188,7 +188,7 @@ namespace UnitsNet
                         AreaMomentOfInertiaUnit.InchToTheFourth => _value * 0.0000004162314256,
                         AreaMomentOfInertiaUnit.MeterToTheFourth => _value,
                         AreaMomentOfInertiaUnit.MillimeterToTheFourth => _value / 1e12,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -207,7 +207,7 @@ namespace UnitsNet
                         AreaMomentOfInertiaUnit.InchToTheFourth => baseUnitValue / 0.0000004162314256,
                         AreaMomentOfInertiaUnit.MeterToTheFourth => baseUnitValue,
                         AreaMomentOfInertiaUnit.MillimeterToTheFourth => baseUnitValue * 1e12,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

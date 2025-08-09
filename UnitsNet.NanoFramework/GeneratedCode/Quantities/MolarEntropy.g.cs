@@ -155,7 +155,7 @@ namespace UnitsNet
                         MolarEntropyUnit.JoulePerMoleKelvin => _value,
                         MolarEntropyUnit.KilojoulePerMoleKelvin => (_value) * 1e3d,
                         MolarEntropyUnit.MegajoulePerMoleKelvin => (_value) * 1e6d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -171,7 +171,7 @@ namespace UnitsNet
                         MolarEntropyUnit.JoulePerMoleKelvin => baseUnitValue,
                         MolarEntropyUnit.KilojoulePerMoleKelvin => (baseUnitValue) / 1e3d,
                         MolarEntropyUnit.MegajoulePerMoleKelvin => (baseUnitValue) / 1e6d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

@@ -221,7 +221,7 @@ namespace UnitsNet
                         MolarFlowUnit.PoundMolePerHour => (_value * 453.59237) / 3600,
                         MolarFlowUnit.PoundMolePerMinute => (_value * 453.59237) / 60,
                         MolarFlowUnit.PoundMolePerSecond => _value * 453.59237,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -243,7 +243,7 @@ namespace UnitsNet
                         MolarFlowUnit.PoundMolePerHour => (baseUnitValue / 453.59237) * 3600,
                         MolarFlowUnit.PoundMolePerMinute => (baseUnitValue / 453.59237) * 60,
                         MolarFlowUnit.PoundMolePerSecond => baseUnitValue / 453.59237,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

@@ -177,7 +177,7 @@ namespace UnitsNet
                         RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter => (_value) * 1e6d,
                         RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter => _value,
                         RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot => _value * (4.4482216152605 * 180 / 3.1415926535897931),
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -195,7 +195,7 @@ namespace UnitsNet
                         RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter => (baseUnitValue) / 1e6d,
                         RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter => baseUnitValue,
                         RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot => baseUnitValue / (4.4482216152605 * 180 / 3.1415926535897931),
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

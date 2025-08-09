@@ -312,7 +312,7 @@ namespace UnitsNet
                         AbsorbedDoseOfIonizingRadiationUnit.Picogray => (_value) * 1e-12d,
                         AbsorbedDoseOfIonizingRadiationUnit.Rad => _value / 100,
                         AbsorbedDoseOfIonizingRadiationUnit.Teragray => (_value) * 1e12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -342,7 +342,7 @@ namespace UnitsNet
                         AbsorbedDoseOfIonizingRadiationUnit.Picogray => (baseUnitValue) / 1e-12d,
                         AbsorbedDoseOfIonizingRadiationUnit.Rad => baseUnitValue * 100,
                         AbsorbedDoseOfIonizingRadiationUnit.Teragray => (baseUnitValue) / 1e12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

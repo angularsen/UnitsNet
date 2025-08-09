@@ -246,7 +246,7 @@ namespace UnitsNet
                         MolarityUnit.NanomolePerLiter => (_value / 1e-3) * 1e-9d,
                         MolarityUnit.PicomolePerLiter => (_value / 1e-3) * 1e-12d,
                         MolarityUnit.PoundMolePerCubicFoot => _value * 1000 * 0.45359237 / 0.028316846592,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -270,7 +270,7 @@ namespace UnitsNet
                         MolarityUnit.NanomolePerLiter => (baseUnitValue * 1e-3) / 1e-9d,
                         MolarityUnit.PicomolePerLiter => (baseUnitValue * 1e-3) / 1e-12d,
                         MolarityUnit.PoundMolePerCubicFoot => baseUnitValue / (1000 * 0.45359237 / 0.028316846592),
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

@@ -279,7 +279,7 @@ namespace UnitsNet
                         LuminosityUnit.SolarLuminosity => _value * 3.828e26,
                         LuminosityUnit.Terawatt => (_value) * 1e12d,
                         LuminosityUnit.Watt => _value,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -306,7 +306,7 @@ namespace UnitsNet
                         LuminosityUnit.SolarLuminosity => baseUnitValue / 3.828e26,
                         LuminosityUnit.Terawatt => (baseUnitValue) / 1e12d,
                         LuminosityUnit.Watt => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

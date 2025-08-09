@@ -650,7 +650,7 @@ namespace UnitsNet
                         PressureUnit.TonneForcePerSquareMeter => _value * 9.80665e3,
                         PressureUnit.TonneForcePerSquareMillimeter => _value * 9.80665e9,
                         PressureUnit.Torr => _value * 101325 / 760,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -711,7 +711,7 @@ namespace UnitsNet
                         PressureUnit.TonneForcePerSquareMeter => baseUnitValue / 9.80665e3,
                         PressureUnit.TonneForcePerSquareMillimeter => baseUnitValue / 9.80665e9,
                         PressureUnit.Torr => baseUnitValue * 760 / 101325,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

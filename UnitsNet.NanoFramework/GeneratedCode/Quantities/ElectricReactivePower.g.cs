@@ -169,7 +169,7 @@ namespace UnitsNet
                         ElectricReactivePowerUnit.KilovoltampereReactive => (_value) * 1e3d,
                         ElectricReactivePowerUnit.MegavoltampereReactive => (_value) * 1e6d,
                         ElectricReactivePowerUnit.VoltampereReactive => _value,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -186,7 +186,7 @@ namespace UnitsNet
                         ElectricReactivePowerUnit.KilovoltampereReactive => (baseUnitValue) / 1e3d,
                         ElectricReactivePowerUnit.MegavoltampereReactive => (baseUnitValue) / 1e6d,
                         ElectricReactivePowerUnit.VoltampereReactive => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

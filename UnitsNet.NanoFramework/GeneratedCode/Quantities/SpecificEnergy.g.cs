@@ -455,7 +455,7 @@ namespace UnitsNet
                         SpecificEnergyUnit.WattDayPerTonne => _value * ((24 * 3.6e3) / 1e3),
                         SpecificEnergyUnit.WattHourPerKilogram => _value * 3.6e3,
                         SpecificEnergyUnit.WattHourPerPound => _value * 7.93664e3,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -498,7 +498,7 @@ namespace UnitsNet
                         SpecificEnergyUnit.WattDayPerTonne => baseUnitValue / ((24 * 3.6e3) / 1e3),
                         SpecificEnergyUnit.WattHourPerKilogram => baseUnitValue / 3.6e3,
                         SpecificEnergyUnit.WattHourPerPound => baseUnitValue / 7.93664e3,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

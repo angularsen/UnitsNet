@@ -485,7 +485,7 @@ namespace UnitsNet
                         RotationalStiffnessUnit.NewtonMillimeterPerRadian => _value * 0.001,
                         RotationalStiffnessUnit.PoundForceFeetPerRadian => _value * 4.4482216152605 * 0.3048,
                         RotationalStiffnessUnit.PoundForceFootPerDegrees => _value * (4.4482216152605 * 0.3048 * 180 / 3.1415926535897931),
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -531,7 +531,7 @@ namespace UnitsNet
                         RotationalStiffnessUnit.NewtonMillimeterPerRadian => baseUnitValue * 1000,
                         RotationalStiffnessUnit.PoundForceFeetPerRadian => baseUnitValue / (4.4482216152605 * 0.3048),
                         RotationalStiffnessUnit.PoundForceFootPerDegrees => baseUnitValue / (4.4482216152605 * 0.3048 * 180 / 3.1415926535897931),
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

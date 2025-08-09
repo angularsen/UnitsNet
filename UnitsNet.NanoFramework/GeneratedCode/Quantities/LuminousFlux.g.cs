@@ -136,7 +136,7 @@ namespace UnitsNet
                     return Unit switch
                     {
                         LuminousFluxUnit.Lumen => _value,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -150,7 +150,7 @@ namespace UnitsNet
                     return unit switch
                     {
                         LuminousFluxUnit.Lumen => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

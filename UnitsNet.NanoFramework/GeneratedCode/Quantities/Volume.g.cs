@@ -716,7 +716,7 @@ namespace UnitsNet
                         VolumeUnit.UsQuart => _value * 9.46352946e-4,
                         VolumeUnit.UsTablespoon => _value * 1.478676478125e-5,
                         VolumeUnit.UsTeaspoon => _value * 4.92892159375e-6,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -783,7 +783,7 @@ namespace UnitsNet
                         VolumeUnit.UsQuart => baseUnitValue / 9.46352946e-4,
                         VolumeUnit.UsTablespoon => baseUnitValue / 1.478676478125e-5,
                         VolumeUnit.UsTeaspoon => baseUnitValue / 4.92892159375e-6,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

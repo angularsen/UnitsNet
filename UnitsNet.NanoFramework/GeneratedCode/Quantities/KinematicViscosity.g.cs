@@ -224,7 +224,7 @@ namespace UnitsNet
                         KinematicViscosityUnit.SquareFootPerSecond => _value * 9.290304e-2,
                         KinematicViscosityUnit.SquareMeterPerSecond => _value,
                         KinematicViscosityUnit.Stokes => _value / 1e4,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -246,7 +246,7 @@ namespace UnitsNet
                         KinematicViscosityUnit.SquareFootPerSecond => baseUnitValue / 9.290304e-2,
                         KinematicViscosityUnit.SquareMeterPerSecond => baseUnitValue,
                         KinematicViscosityUnit.Stokes => baseUnitValue * 1e4,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

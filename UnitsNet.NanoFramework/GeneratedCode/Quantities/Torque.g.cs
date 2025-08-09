@@ -397,7 +397,7 @@ namespace UnitsNet
                         TorqueUnit.TonneForceCentimeter => _value * 9.80665e1,
                         TorqueUnit.TonneForceMeter => _value * 9.80665e3,
                         TorqueUnit.TonneForceMillimeter => _value * 9.80665,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -435,7 +435,7 @@ namespace UnitsNet
                         TorqueUnit.TonneForceCentimeter => baseUnitValue / 9.80665e1,
                         TorqueUnit.TonneForceMeter => baseUnitValue / 9.80665e3,
                         TorqueUnit.TonneForceMillimeter => baseUnitValue / 9.80665,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

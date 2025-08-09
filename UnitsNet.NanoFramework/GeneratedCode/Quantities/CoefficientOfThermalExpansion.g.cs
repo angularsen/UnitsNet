@@ -188,7 +188,7 @@ namespace UnitsNet
                         CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius => _value / 1e6,
                         CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit => _value * 9 / 5e6,
                         CoefficientOfThermalExpansionUnit.PpmPerKelvin => _value / 1e6,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -207,7 +207,7 @@ namespace UnitsNet
                         CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius => baseUnitValue * 1e6,
                         CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit => baseUnitValue * 5e6 / 9,
                         CoefficientOfThermalExpansionUnit.PpmPerKelvin => baseUnitValue * 1e6,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

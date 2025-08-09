@@ -551,7 +551,7 @@ namespace UnitsNet
                         InformationUnit.Terabit => (_value) * 1e12d,
                         InformationUnit.Terabyte => (_value * 8) * 1e12d,
                         InformationUnit.Teraoctet => (_value * 8) * 1e12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -603,7 +603,7 @@ namespace UnitsNet
                         InformationUnit.Terabit => (baseUnitValue) / 1e12d,
                         InformationUnit.Terabyte => (baseUnitValue / 8) / 1e12d,
                         InformationUnit.Teraoctet => (baseUnitValue / 8) / 1e12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 
