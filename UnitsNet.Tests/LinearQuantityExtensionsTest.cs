@@ -73,7 +73,7 @@ public class LinearQuantityExtensionsTest
         Assert.False(result);
     }
     
-    [Fact(Skip = "Currently throws a NotImplementedException")]
+    [Fact(Skip = "Currently throws a StackOverflowException")]
     public void Equals_TQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
     {
         var quantity = Length.FromMeters(1);
@@ -83,7 +83,7 @@ public class LinearQuantityExtensionsTest
         Assert.Throws<UnitNotFoundException>(() => quantity.Equals(quantity, invalidQuantity));
     }
 
-    [Fact(Skip = "Currently throws a NotImplementedException")]
+    [Fact(Skip = "Currently throws a StackOverflowException")]
     public void Equals_IQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
     {
         var quantity = Length.FromMeters(1);

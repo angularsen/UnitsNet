@@ -52,7 +52,7 @@ public class LogarithmicQuantityExtensionsTest
         Assert.False(quantity.Equals(null, tolerance));
     }
     
-    [Fact(Skip = "Currently throws a NotImplementedException")]
+    [Fact(Skip = "Currently throws a StackOverflowException")]
     public void Equals_TQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
     {
         var quantity = PowerRatio.FromDecibelWatts(1);
@@ -62,7 +62,7 @@ public class LogarithmicQuantityExtensionsTest
         Assert.Throws<UnitNotFoundException>(() => quantity.Equals(quantity, invalidQuantity));
     }
     
-    [Fact(Skip = "Currently throws a NotImplementedException")]
+    [Fact(Skip = "Currently throws a StackOverflowException")]
     public void Equals_IQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
     {
         var quantity = PowerRatio.FromDecibelWatts(1);
