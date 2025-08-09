@@ -285,7 +285,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new Pressure(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -298,15 +298,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Pressure_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            PressureUnit[] unitsOrderedByName = EnumHelper.GetValues<PressureUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Pressure(1, PressureUnit.Pascal);
 
-            QuantityInfo<PressureUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Pressure, PressureUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Pressure.Zero, quantityInfo.Zero);
             Assert.Equal("Pressure", quantityInfo.Name);
-
-            var units = Enum.GetValues<PressureUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Pressure.Zero, quantityInfo.Zero);
+            Assert.Equal(Pressure.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Pressure.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<PressureUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

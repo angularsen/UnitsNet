@@ -149,7 +149,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new ElectricResistivity(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -162,15 +162,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricResistivity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ElectricResistivityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricResistivityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ElectricResistivity(1, ElectricResistivityUnit.OhmMeter);
 
-            QuantityInfo<ElectricResistivityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<ElectricResistivity, ElectricResistivityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(ElectricResistivity.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricResistivity", quantityInfo.Name);
-
-            var units = Enum.GetValues<ElectricResistivityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(ElectricResistivity.Zero, quantityInfo.Zero);
+            Assert.Equal(ElectricResistivity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(ElectricResistivity.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ElectricResistivityUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

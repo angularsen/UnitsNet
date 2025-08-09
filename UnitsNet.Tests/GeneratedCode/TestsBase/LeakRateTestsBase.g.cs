@@ -109,7 +109,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new LeakRate(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -122,15 +122,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void LeakRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            LeakRateUnit[] unitsOrderedByName = EnumHelper.GetValues<LeakRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new LeakRate(1, LeakRateUnit.PascalCubicMeterPerSecond);
 
-            QuantityInfo<LeakRateUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<LeakRate, LeakRateUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(LeakRate.Zero, quantityInfo.Zero);
             Assert.Equal("LeakRate", quantityInfo.Name);
-
-            var units = Enum.GetValues<LeakRateUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(LeakRate.Zero, quantityInfo.Zero);
+            Assert.Equal(LeakRate.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(LeakRate.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<LeakRateUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

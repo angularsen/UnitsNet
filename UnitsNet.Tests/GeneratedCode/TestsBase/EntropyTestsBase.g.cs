@@ -121,7 +121,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new Entropy(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -134,15 +134,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Entropy_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            EntropyUnit[] unitsOrderedByName = EnumHelper.GetValues<EntropyUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Entropy(1, EntropyUnit.JoulePerKelvin);
 
-            QuantityInfo<EntropyUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Entropy, EntropyUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Entropy.Zero, quantityInfo.Zero);
             Assert.Equal("Entropy", quantityInfo.Name);
-
-            var units = Enum.GetValues<EntropyUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Entropy.Zero, quantityInfo.Zero);
+            Assert.Equal(Entropy.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Entropy.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<EntropyUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

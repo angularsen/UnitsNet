@@ -181,15 +181,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void MassFraction_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            MassFractionUnit[] unitsOrderedByName = EnumHelper.GetValues<MassFractionUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new MassFraction(1, MassFractionUnit.DecimalFraction);
 
-            QuantityInfo<MassFractionUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<MassFraction, MassFractionUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(MassFraction.Zero, quantityInfo.Zero);
             Assert.Equal("MassFraction", quantityInfo.Name);
-
-            var units = Enum.GetValues<MassFractionUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(MassFraction.Zero, quantityInfo.Zero);
+            Assert.Equal(MassFraction.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(MassFraction.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<MassFractionUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

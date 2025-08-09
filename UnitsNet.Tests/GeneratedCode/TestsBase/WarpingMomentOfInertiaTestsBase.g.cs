@@ -117,7 +117,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new WarpingMomentOfInertia(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -130,15 +130,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void WarpingMomentOfInertia_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            WarpingMomentOfInertiaUnit[] unitsOrderedByName = EnumHelper.GetValues<WarpingMomentOfInertiaUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new WarpingMomentOfInertia(1, WarpingMomentOfInertiaUnit.MeterToTheSixth);
 
-            QuantityInfo<WarpingMomentOfInertiaUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(WarpingMomentOfInertia.Zero, quantityInfo.Zero);
             Assert.Equal("WarpingMomentOfInertia", quantityInfo.Name);
-
-            var units = Enum.GetValues<WarpingMomentOfInertiaUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(WarpingMomentOfInertia.Zero, quantityInfo.Zero);
+            Assert.Equal(WarpingMomentOfInertia.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(WarpingMomentOfInertia.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<WarpingMomentOfInertiaUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

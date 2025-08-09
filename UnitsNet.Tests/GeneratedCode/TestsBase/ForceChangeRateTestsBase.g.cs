@@ -153,7 +153,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new ForceChangeRate(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -166,15 +166,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void ForceChangeRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ForceChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<ForceChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerSecond);
 
-            QuantityInfo<ForceChangeRateUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<ForceChangeRate, ForceChangeRateUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(ForceChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("ForceChangeRate", quantityInfo.Name);
-
-            var units = Enum.GetValues<ForceChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(ForceChangeRate.Zero, quantityInfo.Zero);
+            Assert.Equal(ForceChangeRate.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(ForceChangeRate.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ForceChangeRateUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

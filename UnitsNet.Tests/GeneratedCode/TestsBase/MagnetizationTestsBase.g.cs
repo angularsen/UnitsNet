@@ -97,7 +97,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new Magnetization(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -110,15 +110,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Magnetization_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            MagnetizationUnit[] unitsOrderedByName = EnumHelper.GetValues<MagnetizationUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Magnetization(1, MagnetizationUnit.AmperePerMeter);
 
-            QuantityInfo<MagnetizationUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Magnetization, MagnetizationUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Magnetization.Zero, quantityInfo.Zero);
             Assert.Equal("Magnetization", quantityInfo.Name);
-
-            var units = Enum.GetValues<MagnetizationUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Magnetization.Zero, quantityInfo.Zero);
+            Assert.Equal(Magnetization.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Magnetization.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<MagnetizationUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

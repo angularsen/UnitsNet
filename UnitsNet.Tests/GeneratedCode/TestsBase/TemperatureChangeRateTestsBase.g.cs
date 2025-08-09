@@ -161,7 +161,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new TemperatureChangeRate(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -174,15 +174,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void TemperatureChangeRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            TemperatureChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
 
-            QuantityInfo<TemperatureChangeRateUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<TemperatureChangeRate, TemperatureChangeRateUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(TemperatureChangeRate.Zero, quantityInfo.Zero);
             Assert.Equal("TemperatureChangeRate", quantityInfo.Name);
-
-            var units = Enum.GetValues<TemperatureChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(TemperatureChangeRate.Zero, quantityInfo.Zero);
+            Assert.Equal(TemperatureChangeRate.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(TemperatureChangeRate.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<TemperatureChangeRateUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

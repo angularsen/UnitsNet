@@ -89,15 +89,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Scalar_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ScalarUnit[] unitsOrderedByName = EnumHelper.GetValues<ScalarUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Scalar(1, ScalarUnit.Amount);
 
-            QuantityInfo<ScalarUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Scalar, ScalarUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Scalar.Zero, quantityInfo.Zero);
             Assert.Equal("Scalar", quantityInfo.Name);
-
-            var units = Enum.GetValues<ScalarUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Scalar.Zero, quantityInfo.Zero);
+            Assert.Equal(Scalar.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Scalar.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ScalarUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

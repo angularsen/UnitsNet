@@ -289,7 +289,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new MassConcentration(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -302,15 +302,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void MassConcentration_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            MassConcentrationUnit[] unitsOrderedByName = EnumHelper.GetValues<MassConcentrationUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new MassConcentration(1, MassConcentrationUnit.KilogramPerCubicMeter);
 
-            QuantityInfo<MassConcentrationUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<MassConcentration, MassConcentrationUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(MassConcentration.Zero, quantityInfo.Zero);
             Assert.Equal("MassConcentration", quantityInfo.Name);
-
-            var units = Enum.GetValues<MassConcentrationUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(MassConcentration.Zero, quantityInfo.Zero);
+            Assert.Equal(MassConcentration.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(MassConcentration.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<MassConcentrationUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

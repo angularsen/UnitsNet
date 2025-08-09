@@ -113,7 +113,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new RotationalStiffnessPerLength(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -126,15 +126,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void RotationalStiffnessPerLength_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            RotationalStiffnessPerLengthUnit[] unitsOrderedByName = EnumHelper.GetValues<RotationalStiffnessPerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new RotationalStiffnessPerLength(1, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter);
 
-            QuantityInfo<RotationalStiffnessPerLengthUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(RotationalStiffnessPerLength.Zero, quantityInfo.Zero);
             Assert.Equal("RotationalStiffnessPerLength", quantityInfo.Name);
-
-            var units = Enum.GetValues<RotationalStiffnessPerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(RotationalStiffnessPerLength.Zero, quantityInfo.Zero);
+            Assert.Equal(RotationalStiffnessPerLength.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(RotationalStiffnessPerLength.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<RotationalStiffnessPerLengthUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

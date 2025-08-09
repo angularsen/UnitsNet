@@ -89,15 +89,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void RelativeHumidity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            RelativeHumidityUnit[] unitsOrderedByName = EnumHelper.GetValues<RelativeHumidityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new RelativeHumidity(1, RelativeHumidityUnit.Percent);
 
-            QuantityInfo<RelativeHumidityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<RelativeHumidity, RelativeHumidityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(RelativeHumidity.Zero, quantityInfo.Zero);
             Assert.Equal("RelativeHumidity", quantityInfo.Name);
-
-            var units = Enum.GetValues<RelativeHumidityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(RelativeHumidity.Zero, quantityInfo.Zero);
+            Assert.Equal(RelativeHumidity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(RelativeHumidity.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<RelativeHumidityUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

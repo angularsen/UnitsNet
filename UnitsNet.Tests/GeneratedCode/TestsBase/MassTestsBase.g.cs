@@ -201,7 +201,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new Mass(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -214,15 +214,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Mass_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            MassUnit[] unitsOrderedByName = EnumHelper.GetValues<MassUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Mass(1, MassUnit.Kilogram);
 
-            QuantityInfo<MassUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Mass, MassUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Mass.Zero, quantityInfo.Zero);
             Assert.Equal("Mass", quantityInfo.Name);
-
-            var units = Enum.GetValues<MassUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Mass.Zero, quantityInfo.Zero);
+            Assert.Equal(Mass.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Mass.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<MassUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

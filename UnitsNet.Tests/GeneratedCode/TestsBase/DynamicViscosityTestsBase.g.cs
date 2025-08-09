@@ -133,7 +133,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new DynamicViscosity(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -146,15 +146,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void DynamicViscosity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            DynamicViscosityUnit[] unitsOrderedByName = EnumHelper.GetValues<DynamicViscosityUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new DynamicViscosity(1, DynamicViscosityUnit.NewtonSecondPerMeterSquared);
 
-            QuantityInfo<DynamicViscosityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<DynamicViscosity, DynamicViscosityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(DynamicViscosity.Zero, quantityInfo.Zero);
             Assert.Equal("DynamicViscosity", quantityInfo.Name);
-
-            var units = Enum.GetValues<DynamicViscosityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(DynamicViscosity.Zero, quantityInfo.Zero);
+            Assert.Equal(DynamicViscosity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(DynamicViscosity.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<DynamicViscosityUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

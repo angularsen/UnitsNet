@@ -101,15 +101,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void AmplitudeRatio_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            AmplitudeRatioUnit[] unitsOrderedByName = EnumHelper.GetValues<AmplitudeRatioUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new AmplitudeRatio(1, AmplitudeRatioUnit.DecibelVolt);
 
-            QuantityInfo<AmplitudeRatioUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<AmplitudeRatio, AmplitudeRatioUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(AmplitudeRatio.Zero, quantityInfo.Zero);
             Assert.Equal("AmplitudeRatio", quantityInfo.Name);
-
-            var units = Enum.GetValues<AmplitudeRatioUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(AmplitudeRatio.Zero, quantityInfo.Zero);
+            Assert.Equal(AmplitudeRatio.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(AmplitudeRatio.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<AmplitudeRatioUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

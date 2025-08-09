@@ -117,7 +117,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new RadiationEquivalentDose(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -130,15 +130,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void RadiationEquivalentDose_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            RadiationEquivalentDoseUnit[] unitsOrderedByName = EnumHelper.GetValues<RadiationEquivalentDoseUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.Sievert);
 
-            QuantityInfo<RadiationEquivalentDoseUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<RadiationEquivalentDose, RadiationEquivalentDoseUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(RadiationEquivalentDose.Zero, quantityInfo.Zero);
             Assert.Equal("RadiationEquivalentDose", quantityInfo.Name);
-
-            var units = Enum.GetValues<RadiationEquivalentDoseUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(RadiationEquivalentDose.Zero, quantityInfo.Zero);
+            Assert.Equal(RadiationEquivalentDose.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(RadiationEquivalentDose.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<RadiationEquivalentDoseUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

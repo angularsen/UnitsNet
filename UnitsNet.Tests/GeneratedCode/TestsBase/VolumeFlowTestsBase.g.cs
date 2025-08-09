@@ -393,7 +393,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new VolumeFlow(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -406,15 +406,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void VolumeFlow_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            VolumeFlowUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumeFlowUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new VolumeFlow(1, VolumeFlowUnit.CubicMeterPerSecond);
 
-            QuantityInfo<VolumeFlowUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<VolumeFlow, VolumeFlowUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(VolumeFlow.Zero, quantityInfo.Zero);
             Assert.Equal("VolumeFlow", quantityInfo.Name);
-
-            var units = Enum.GetValues<VolumeFlowUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(VolumeFlow.Zero, quantityInfo.Zero);
+            Assert.Equal(VolumeFlow.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(VolumeFlow.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<VolumeFlowUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

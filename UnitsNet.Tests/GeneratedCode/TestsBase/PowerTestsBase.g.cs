@@ -201,7 +201,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new Power(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -214,15 +214,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Power_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            PowerUnit[] unitsOrderedByName = EnumHelper.GetValues<PowerUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Power(1, PowerUnit.Watt);
 
-            QuantityInfo<PowerUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Power, PowerUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Power.Zero, quantityInfo.Zero);
             Assert.Equal("Power", quantityInfo.Name);
-
-            var units = Enum.GetValues<PowerUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Power.Zero, quantityInfo.Zero);
+            Assert.Equal(Power.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Power.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<PowerUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

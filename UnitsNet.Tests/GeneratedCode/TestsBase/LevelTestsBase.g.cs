@@ -93,15 +93,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Level_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            LevelUnit[] unitsOrderedByName = EnumHelper.GetValues<LevelUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Level(1, LevelUnit.Decibel);
 
-            QuantityInfo<LevelUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Level, LevelUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Level.Zero, quantityInfo.Zero);
             Assert.Equal("Level", quantityInfo.Name);
-
-            var units = Enum.GetValues<LevelUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Level.Zero, quantityInfo.Zero);
+            Assert.Equal(Level.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Level.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<LevelUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

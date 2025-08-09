@@ -93,15 +93,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void PowerRatio_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            PowerRatioUnit[] unitsOrderedByName = EnumHelper.GetValues<PowerRatioUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new PowerRatio(1, PowerRatioUnit.DecibelWatt);
 
-            QuantityInfo<PowerRatioUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<PowerRatio, PowerRatioUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(PowerRatio.Zero, quantityInfo.Zero);
             Assert.Equal("PowerRatio", quantityInfo.Name);
-
-            var units = Enum.GetValues<PowerRatioUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(PowerRatio.Zero, quantityInfo.Zero);
+            Assert.Equal(PowerRatio.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(PowerRatio.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<PowerRatioUnit>)quantity).QuantityInfo);
         }
 
         [Fact]

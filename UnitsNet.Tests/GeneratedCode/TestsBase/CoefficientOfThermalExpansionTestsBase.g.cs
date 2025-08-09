@@ -117,7 +117,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new CoefficientOfThermalExpansion(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -130,15 +130,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void CoefficientOfThermalExpansion_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            CoefficientOfThermalExpansionUnit[] unitsOrderedByName = EnumHelper.GetValues<CoefficientOfThermalExpansionUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerKelvin);
 
-            QuantityInfo<CoefficientOfThermalExpansionUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(CoefficientOfThermalExpansion.Zero, quantityInfo.Zero);
             Assert.Equal("CoefficientOfThermalExpansion", quantityInfo.Name);
-
-            var units = Enum.GetValues<CoefficientOfThermalExpansionUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(CoefficientOfThermalExpansion.Zero, quantityInfo.Zero);
+            Assert.Equal(CoefficientOfThermalExpansion.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(CoefficientOfThermalExpansion.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<CoefficientOfThermalExpansionUnit>)quantity).QuantityInfo);
         }
 
         [Fact]
