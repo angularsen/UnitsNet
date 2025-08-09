@@ -1139,12 +1139,6 @@ namespace UnitsNet
             return As(unitKey.ToUnit<SpecificEnergyUnit>());
         }
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
-        {
-            return As(Info.GetDefaultUnit(unitSystem));
-        }
-
         /// <summary>
         ///     Converts this SpecificEnergy to another SpecificEnergy with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1277,12 +1271,6 @@ namespace UnitsNet
             return true;
         }
 
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public SpecificEnergy ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
         #region Explicit implementations
 
         double IQuantity.As(Enum unit)
@@ -1303,13 +1291,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         /// <inheritdoc />
         IQuantity<SpecificEnergyUnit> IQuantity<SpecificEnergyUnit>.ToUnit(SpecificEnergyUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<SpecificEnergyUnit> IQuantity<SpecificEnergyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<SpecificEnergyUnit> IQuantity<SpecificEnergyUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         #endregion
 

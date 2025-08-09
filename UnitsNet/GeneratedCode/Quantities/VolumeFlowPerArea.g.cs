@@ -634,12 +634,6 @@ namespace UnitsNet
             return As(unitKey.ToUnit<VolumeFlowPerAreaUnit>());
         }
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
-        {
-            return As(Info.GetDefaultUnit(unitSystem));
-        }
-
         /// <summary>
         ///     Converts this VolumeFlowPerArea to another VolumeFlowPerArea with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -716,12 +710,6 @@ namespace UnitsNet
             return true;
         }
 
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public VolumeFlowPerArea ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
         #region Explicit implementations
 
         double IQuantity.As(Enum unit)
@@ -742,13 +730,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         /// <inheritdoc />
         IQuantity<VolumeFlowPerAreaUnit> IQuantity<VolumeFlowPerAreaUnit>.ToUnit(VolumeFlowPerAreaUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<VolumeFlowPerAreaUnit> IQuantity<VolumeFlowPerAreaUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<VolumeFlowPerAreaUnit> IQuantity<VolumeFlowPerAreaUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         #endregion
 

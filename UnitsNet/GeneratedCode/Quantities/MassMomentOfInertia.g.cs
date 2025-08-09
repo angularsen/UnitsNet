@@ -1050,12 +1050,6 @@ namespace UnitsNet
             return As(unitKey.ToUnit<MassMomentOfInertiaUnit>());
         }
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
-        {
-            return As(Info.GetDefaultUnit(unitSystem));
-        }
-
         /// <summary>
         ///     Converts this MassMomentOfInertia to another MassMomentOfInertia with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1184,12 +1178,6 @@ namespace UnitsNet
             return true;
         }
 
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public MassMomentOfInertia ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
         #region Explicit implementations
 
         double IQuantity.As(Enum unit)
@@ -1210,13 +1198,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         /// <inheritdoc />
         IQuantity<MassMomentOfInertiaUnit> IQuantity<MassMomentOfInertiaUnit>.ToUnit(MassMomentOfInertiaUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<MassMomentOfInertiaUnit> IQuantity<MassMomentOfInertiaUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<MassMomentOfInertiaUnit> IQuantity<MassMomentOfInertiaUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         #endregion
 

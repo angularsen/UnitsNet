@@ -663,12 +663,6 @@ namespace UnitsNet
             return As(unitKey.ToUnit<MolarEnergyUnit>());
         }
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
-        {
-            return As(Info.GetDefaultUnit(unitSystem));
-        }
-
         /// <summary>
         ///     Converts this MolarEnergy to another MolarEnergy with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -747,12 +741,6 @@ namespace UnitsNet
             return true;
         }
 
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public MolarEnergy ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
         #region Explicit implementations
 
         double IQuantity.As(Enum unit)
@@ -773,13 +761,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         /// <inheritdoc />
         IQuantity<MolarEnergyUnit> IQuantity<MolarEnergyUnit>.ToUnit(MolarEnergyUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<MolarEnergyUnit> IQuantity<MolarEnergyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<MolarEnergyUnit> IQuantity<MolarEnergyUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         #endregion
 

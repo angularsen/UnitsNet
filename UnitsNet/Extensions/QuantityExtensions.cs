@@ -17,6 +17,61 @@ public static class QuantityExtensions
     {
         return quantity.As(toUnit);
     }
+
+    /// <summary>
+    ///     Converts the quantity to a value in the unit determined by the specified <see cref="UnitSystem" />.
+    ///     If multiple units are found for the given <see cref="UnitSystem" />, the first match will be used.
+    /// </summary>
+    /// <typeparam name="TQuantity">The type of the quantity being converted.</typeparam>
+    /// <param name="quantity">The quantity to convert.</param>
+    /// <param name="unitSystem">The <see cref="UnitSystem" /> to which the quantity value should be converted.</param>
+    /// <returns>The value of the quantity in the specified unit system.</returns>
+    /// <exception cref="ArgumentNullException">
+    ///     Thrown if <paramref name="unitSystem" /> is <c>null</c>.
+    /// </exception>
+    /// <exception cref="InvalidOperationException">
+    ///     Thrown if no matching unit is found for the given <see cref="UnitSystem" />.
+    /// </exception>
+    public static double As<TQuantity>(this TQuantity quantity, UnitSystem unitSystem)
+        where TQuantity : IQuantity
+    {
+        return quantity.GetValue(quantity.QuantityInfo.GetDefaultUnit(unitSystem).UnitKey);
+    }
+
+    /// <summary>
+    ///     Converts the specified quantity to a new quantity with a unit determined by the given <see cref="UnitSystem" />.
+    /// </summary>
+    /// <typeparam name="TQuantity">
+    ///     The type of the quantity to be converted. Must implement <see cref="IQuantityOfType{TQuantity}" />.
+    /// </typeparam>
+    /// <param name="quantity">The quantity to convert.</param>
+    /// <param name="unitSystem">The <see cref="UnitSystem" /> used to determine the target unit.</param>
+    /// <returns>
+    ///     A new quantity of type <typeparamref name="TQuantity" /> with the unit determined by the specified
+    ///     <see cref="UnitSystem" />.
+    /// </returns>
+    /// <remarks>
+    ///     If multiple units are associated with the given <see cref="UnitSystem" />, the first matching unit will be used.
+    /// </remarks>
+    /// <exception cref="ArgumentNullException">
+    ///     Thrown if <paramref name="unitSystem" /> is <c>null</c>.
+    /// </exception>
+    /// <exception cref="InvalidOperationException">
+    ///     Thrown if no matching unit is found for the specified <see cref="UnitSystem" />.
+    /// </exception>
+    public static TQuantity ToUnit<TQuantity>(this TQuantity quantity, UnitSystem unitSystem)
+        where TQuantity : IQuantityOfType<TQuantity>
+    {
+#if NET
+        QuantityInfo quantityInfo = quantity.QuantityInfo;
+        UnitKey unitKey = quantityInfo.GetDefaultUnit(unitSystem).UnitKey;
+        return TQuantity.Create(quantity.As(unitKey), unitKey);
+#else
+        QuantityInfo quantityInfo = ((IQuantity)quantity).QuantityInfo;
+        UnitKey unitKey = quantityInfo.GetDefaultUnit(unitSystem).UnitKey;
+        return quantity.QuantityInfo.Create(quantity.As(unitKey), unitKey);
+#endif
+    }
     
     /// <summary>
     ///     Returns the string representation of the specified quantity using the provided format provider.
