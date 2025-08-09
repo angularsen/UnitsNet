@@ -270,27 +270,24 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 F/m", PermittivityUnit.FaradPerMeter, 4.2)]
+        public void Parse(string culture, string quantityString, PermittivityUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = Permittivity.Parse("1 F/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.FaradsPerMeter, FaradsPerMeterTolerance);
-                Assert.Equal(PermittivityUnit.FaradPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = Permittivity.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 F/m", PermittivityUnit.FaradPerMeter, 4.2)]
+        public void TryParse(string culture, string quantityString, PermittivityUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(Permittivity.TryParse("1 F/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.FaradsPerMeter, FaradsPerMeterTolerance);
-                Assert.Equal(PermittivityUnit.FaradPerMeter, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(Permittivity.TryParse(quantityString, out Permittivity parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -365,6 +362,27 @@ namespace UnitsNet.Tests
         {
             Assert.True(Permittivity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out PermittivityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", PermittivityUnit.FaradPerMeter, "F/m")]
+        public void GetAbbreviationForCulture(string culture, PermittivityUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Permittivity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Permittivity.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Permittivity.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

@@ -282,53 +282,28 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 ft³/lb", SpecificVolumeUnit.CubicFootPerPound, 4.2)]
+        [InlineData("en-US", "4.2 m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram, 4.2)]
+        [InlineData("en-US", "4.2 mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram, 4.2)]
+        public void Parse(string culture, string quantityString, SpecificVolumeUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = SpecificVolume.Parse("1 ft³/lb", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CubicFeetPerPound, CubicFeetPerPoundTolerance);
-                Assert.Equal(SpecificVolumeUnit.CubicFootPerPound, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = SpecificVolume.Parse("1 m³/kg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
-                Assert.Equal(SpecificVolumeUnit.CubicMeterPerKilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = SpecificVolume.Parse("1 mm³/kg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillicubicMetersPerKilogram, MillicubicMetersPerKilogramTolerance);
-                Assert.Equal(SpecificVolumeUnit.MillicubicMeterPerKilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = SpecificVolume.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 ft³/lb", SpecificVolumeUnit.CubicFootPerPound, 4.2)]
+        [InlineData("en-US", "4.2 m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram, 4.2)]
+        [InlineData("en-US", "4.2 mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram, 4.2)]
+        public void TryParse(string culture, string quantityString, SpecificVolumeUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(SpecificVolume.TryParse("1 ft³/lb", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CubicFeetPerPound, CubicFeetPerPoundTolerance);
-                Assert.Equal(SpecificVolumeUnit.CubicFootPerPound, parsed.Unit);
-            }
-
-            {
-                Assert.True(SpecificVolume.TryParse("1 m³/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
-                Assert.Equal(SpecificVolumeUnit.CubicMeterPerKilogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(SpecificVolume.TryParse("1 mm³/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillicubicMetersPerKilogram, MillicubicMetersPerKilogramTolerance);
-                Assert.Equal(SpecificVolumeUnit.MillicubicMeterPerKilogram, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(SpecificVolume.TryParse(quantityString, out SpecificVolume parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -419,6 +394,29 @@ namespace UnitsNet.Tests
         {
             Assert.True(SpecificVolume.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out SpecificVolumeUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", SpecificVolumeUnit.CubicFootPerPound, "ft³/lb")]
+        [InlineData("en-US", SpecificVolumeUnit.CubicMeterPerKilogram, "m³/kg")]
+        [InlineData("en-US", SpecificVolumeUnit.MillicubicMeterPerKilogram, "mm³/kg")]
+        public void GetAbbreviationForCulture(string culture, SpecificVolumeUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = SpecificVolume.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(SpecificVolume.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = SpecificVolume.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

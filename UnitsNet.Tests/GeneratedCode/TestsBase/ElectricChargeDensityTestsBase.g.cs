@@ -270,27 +270,24 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter, 4.2)]
+        public void Parse(string culture, string quantityString, ElectricChargeDensityUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = ElectricChargeDensity.Parse("1 C/m³", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CoulombsPerCubicMeter, CoulombsPerCubicMeterTolerance);
-                Assert.Equal(ElectricChargeDensityUnit.CoulombPerCubicMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = ElectricChargeDensity.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter, 4.2)]
+        public void TryParse(string culture, string quantityString, ElectricChargeDensityUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(ElectricChargeDensity.TryParse("1 C/m³", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CoulombsPerCubicMeter, CoulombsPerCubicMeterTolerance);
-                Assert.Equal(ElectricChargeDensityUnit.CoulombPerCubicMeter, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricChargeDensity.TryParse(quantityString, out ElectricChargeDensity parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -365,6 +362,27 @@ namespace UnitsNet.Tests
         {
             Assert.True(ElectricChargeDensity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricChargeDensityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", ElectricChargeDensityUnit.CoulombPerCubicMeter, "C/m³")]
+        public void GetAbbreviationForCulture(string culture, ElectricChargeDensityUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ElectricChargeDensity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ElectricChargeDensity.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ElectricChargeDensity.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

@@ -282,53 +282,28 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 g/kWh", BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, 4.2)]
+        [InlineData("en-US", "4.2 kg/J", BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, 4.2)]
+        [InlineData("en-US", "4.2 lb/hph", BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, 4.2)]
+        public void Parse(string culture, string quantityString, BrakeSpecificFuelConsumptionUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = BrakeSpecificFuelConsumption.Parse("1 g/kWh", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GramsPerKiloWattHour, GramsPerKiloWattHourTolerance);
-                Assert.Equal(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = BrakeSpecificFuelConsumption.Parse("1 kg/J", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilogramsPerJoule, KilogramsPerJouleTolerance);
-                Assert.Equal(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = BrakeSpecificFuelConsumption.Parse("1 lb/hph", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerMechanicalHorsepowerHour, PoundsPerMechanicalHorsepowerHourTolerance);
-                Assert.Equal(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = BrakeSpecificFuelConsumption.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 g/kWh", BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, 4.2)]
+        [InlineData("en-US", "4.2 kg/J", BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, 4.2)]
+        [InlineData("en-US", "4.2 lb/hph", BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, 4.2)]
+        public void TryParse(string culture, string quantityString, BrakeSpecificFuelConsumptionUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(BrakeSpecificFuelConsumption.TryParse("1 g/kWh", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GramsPerKiloWattHour, GramsPerKiloWattHourTolerance);
-                Assert.Equal(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(BrakeSpecificFuelConsumption.TryParse("1 kg/J", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilogramsPerJoule, KilogramsPerJouleTolerance);
-                Assert.Equal(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, parsed.Unit);
-            }
-
-            {
-                Assert.True(BrakeSpecificFuelConsumption.TryParse("1 lb/hph", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PoundsPerMechanicalHorsepowerHour, PoundsPerMechanicalHorsepowerHourTolerance);
-                Assert.Equal(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(BrakeSpecificFuelConsumption.TryParse(quantityString, out BrakeSpecificFuelConsumption parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -419,6 +394,29 @@ namespace UnitsNet.Tests
         {
             Assert.True(BrakeSpecificFuelConsumption.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out BrakeSpecificFuelConsumptionUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, "g/kWh")]
+        [InlineData("en-US", BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, "kg/J")]
+        [InlineData("en-US", BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, "lb/hph")]
+        public void GetAbbreviationForCulture(string culture, BrakeSpecificFuelConsumptionUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = BrakeSpecificFuelConsumption.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(BrakeSpecificFuelConsumption.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = BrakeSpecificFuelConsumption.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

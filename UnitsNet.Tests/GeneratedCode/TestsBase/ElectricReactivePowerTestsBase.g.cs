@@ -288,66 +288,30 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 Gvar", ElectricReactivePowerUnit.GigavoltampereReactive, 4.2)]
+        [InlineData("en-US", "4.2 kvar", ElectricReactivePowerUnit.KilovoltampereReactive, 4.2)]
+        [InlineData("en-US", "4.2 Mvar", ElectricReactivePowerUnit.MegavoltampereReactive, 4.2)]
+        [InlineData("en-US", "4.2 var", ElectricReactivePowerUnit.VoltampereReactive, 4.2)]
+        public void Parse(string culture, string quantityString, ElectricReactivePowerUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = ElectricReactivePower.Parse("1 Gvar", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GigavoltamperesReactive, GigavoltamperesReactiveTolerance);
-                Assert.Equal(ElectricReactivePowerUnit.GigavoltampereReactive, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricReactivePower.Parse("1 kvar", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilovoltamperesReactive, KilovoltamperesReactiveTolerance);
-                Assert.Equal(ElectricReactivePowerUnit.KilovoltampereReactive, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricReactivePower.Parse("1 Mvar", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MegavoltamperesReactive, MegavoltamperesReactiveTolerance);
-                Assert.Equal(ElectricReactivePowerUnit.MegavoltampereReactive, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricReactivePower.Parse("1 var", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.VoltamperesReactive, VoltamperesReactiveTolerance);
-                Assert.Equal(ElectricReactivePowerUnit.VoltampereReactive, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = ElectricReactivePower.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 Gvar", ElectricReactivePowerUnit.GigavoltampereReactive, 4.2)]
+        [InlineData("en-US", "4.2 kvar", ElectricReactivePowerUnit.KilovoltampereReactive, 4.2)]
+        [InlineData("en-US", "4.2 Mvar", ElectricReactivePowerUnit.MegavoltampereReactive, 4.2)]
+        [InlineData("en-US", "4.2 var", ElectricReactivePowerUnit.VoltampereReactive, 4.2)]
+        public void TryParse(string culture, string quantityString, ElectricReactivePowerUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(ElectricReactivePower.TryParse("1 Gvar", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GigavoltamperesReactive, GigavoltamperesReactiveTolerance);
-                Assert.Equal(ElectricReactivePowerUnit.GigavoltampereReactive, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricReactivePower.TryParse("1 kvar", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilovoltamperesReactive, KilovoltamperesReactiveTolerance);
-                Assert.Equal(ElectricReactivePowerUnit.KilovoltampereReactive, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricReactivePower.TryParse("1 Mvar", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MegavoltamperesReactive, MegavoltamperesReactiveTolerance);
-                Assert.Equal(ElectricReactivePowerUnit.MegavoltampereReactive, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricReactivePower.TryParse("1 var", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.VoltamperesReactive, VoltamperesReactiveTolerance);
-                Assert.Equal(ElectricReactivePowerUnit.VoltampereReactive, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricReactivePower.TryParse(quantityString, out ElectricReactivePower parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -446,6 +410,30 @@ namespace UnitsNet.Tests
         {
             Assert.True(ElectricReactivePower.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricReactivePowerUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", ElectricReactivePowerUnit.GigavoltampereReactive, "Gvar")]
+        [InlineData("en-US", ElectricReactivePowerUnit.KilovoltampereReactive, "kvar")]
+        [InlineData("en-US", ElectricReactivePowerUnit.MegavoltampereReactive, "Mvar")]
+        [InlineData("en-US", ElectricReactivePowerUnit.VoltampereReactive, "var")]
+        public void GetAbbreviationForCulture(string culture, ElectricReactivePowerUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ElectricReactivePower.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ElectricReactivePower.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ElectricReactivePower.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

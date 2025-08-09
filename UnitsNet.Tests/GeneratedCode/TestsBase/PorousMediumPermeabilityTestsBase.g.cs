@@ -294,79 +294,32 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 D", PorousMediumPermeabilityUnit.Darcy, 4.2)]
+        [InlineData("en-US", "4.2 µD", PorousMediumPermeabilityUnit.Microdarcy, 4.2)]
+        [InlineData("en-US", "4.2 mD", PorousMediumPermeabilityUnit.Millidarcy, 4.2)]
+        [InlineData("en-US", "4.2 cm²", PorousMediumPermeabilityUnit.SquareCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 m²", PorousMediumPermeabilityUnit.SquareMeter, 4.2)]
+        public void Parse(string culture, string quantityString, PorousMediumPermeabilityUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = PorousMediumPermeability.Parse("1 D", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Darcys, DarcysTolerance);
-                Assert.Equal(PorousMediumPermeabilityUnit.Darcy, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = PorousMediumPermeability.Parse("1 µD", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Microdarcys, MicrodarcysTolerance);
-                Assert.Equal(PorousMediumPermeabilityUnit.Microdarcy, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = PorousMediumPermeability.Parse("1 mD", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Millidarcys, MillidarcysTolerance);
-                Assert.Equal(PorousMediumPermeabilityUnit.Millidarcy, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = PorousMediumPermeability.Parse("1 cm²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SquareCentimeters, SquareCentimetersTolerance);
-                Assert.Equal(PorousMediumPermeabilityUnit.SquareCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = PorousMediumPermeability.Parse("1 m²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SquareMeters, SquareMetersTolerance);
-                Assert.Equal(PorousMediumPermeabilityUnit.SquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = PorousMediumPermeability.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 D", PorousMediumPermeabilityUnit.Darcy, 4.2)]
+        [InlineData("en-US", "4.2 µD", PorousMediumPermeabilityUnit.Microdarcy, 4.2)]
+        [InlineData("en-US", "4.2 mD", PorousMediumPermeabilityUnit.Millidarcy, 4.2)]
+        [InlineData("en-US", "4.2 cm²", PorousMediumPermeabilityUnit.SquareCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 m²", PorousMediumPermeabilityUnit.SquareMeter, 4.2)]
+        public void TryParse(string culture, string quantityString, PorousMediumPermeabilityUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(PorousMediumPermeability.TryParse("1 D", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Darcys, DarcysTolerance);
-                Assert.Equal(PorousMediumPermeabilityUnit.Darcy, parsed.Unit);
-            }
-
-            {
-                Assert.True(PorousMediumPermeability.TryParse("1 µD", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microdarcys, MicrodarcysTolerance);
-                Assert.Equal(PorousMediumPermeabilityUnit.Microdarcy, parsed.Unit);
-            }
-
-            {
-                Assert.True(PorousMediumPermeability.TryParse("1 mD", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Millidarcys, MillidarcysTolerance);
-                Assert.Equal(PorousMediumPermeabilityUnit.Millidarcy, parsed.Unit);
-            }
-
-            {
-                Assert.True(PorousMediumPermeability.TryParse("1 cm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SquareCentimeters, SquareCentimetersTolerance);
-                Assert.Equal(PorousMediumPermeabilityUnit.SquareCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(PorousMediumPermeability.TryParse("1 m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SquareMeters, SquareMetersTolerance);
-                Assert.Equal(PorousMediumPermeabilityUnit.SquareMeter, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(PorousMediumPermeability.TryParse(quantityString, out PorousMediumPermeability parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -473,6 +426,31 @@ namespace UnitsNet.Tests
         {
             Assert.True(PorousMediumPermeability.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out PorousMediumPermeabilityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", PorousMediumPermeabilityUnit.Darcy, "D")]
+        [InlineData("en-US", PorousMediumPermeabilityUnit.Microdarcy, "µD")]
+        [InlineData("en-US", PorousMediumPermeabilityUnit.Millidarcy, "mD")]
+        [InlineData("en-US", PorousMediumPermeabilityUnit.SquareCentimeter, "cm²")]
+        [InlineData("en-US", PorousMediumPermeabilityUnit.SquareMeter, "m²")]
+        public void GetAbbreviationForCulture(string culture, PorousMediumPermeabilityUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = PorousMediumPermeability.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(PorousMediumPermeability.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = PorousMediumPermeability.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

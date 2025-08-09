@@ -324,144 +324,42 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 Cd/ft²", LuminanceUnit.CandelaPerSquareFoot, 4.2)]
+        [InlineData("en-US", "4.2 Cd/in²", LuminanceUnit.CandelaPerSquareInch, 4.2)]
+        [InlineData("en-US", "4.2 Cd/m²", LuminanceUnit.CandelaPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 cCd/m²", LuminanceUnit.CenticandelaPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 dCd/m²", LuminanceUnit.DecicandelaPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 kCd/m²", LuminanceUnit.KilocandelaPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 µCd/m²", LuminanceUnit.MicrocandelaPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 mCd/m²", LuminanceUnit.MillicandelaPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 nCd/m²", LuminanceUnit.NanocandelaPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 nt", LuminanceUnit.Nit, 4.2)]
+        public void Parse(string culture, string quantityString, LuminanceUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = Luminance.Parse("1 Cd/ft²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CandelasPerSquareFoot, CandelasPerSquareFootTolerance);
-                Assert.Equal(LuminanceUnit.CandelaPerSquareFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Luminance.Parse("1 Cd/in²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CandelasPerSquareInch, CandelasPerSquareInchTolerance);
-                Assert.Equal(LuminanceUnit.CandelaPerSquareInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Luminance.Parse("1 Cd/m²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CandelasPerSquareMeter, CandelasPerSquareMeterTolerance);
-                Assert.Equal(LuminanceUnit.CandelaPerSquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Luminance.Parse("1 cCd/m²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CenticandelasPerSquareMeter, CenticandelasPerSquareMeterTolerance);
-                Assert.Equal(LuminanceUnit.CenticandelaPerSquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Luminance.Parse("1 dCd/m²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecicandelasPerSquareMeter, DecicandelasPerSquareMeterTolerance);
-                Assert.Equal(LuminanceUnit.DecicandelaPerSquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Luminance.Parse("1 kCd/m²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilocandelasPerSquareMeter, KilocandelasPerSquareMeterTolerance);
-                Assert.Equal(LuminanceUnit.KilocandelaPerSquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Luminance.Parse("1 µCd/m²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicrocandelasPerSquareMeter, MicrocandelasPerSquareMeterTolerance);
-                Assert.Equal(LuminanceUnit.MicrocandelaPerSquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Luminance.Parse("1 mCd/m²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillicandelasPerSquareMeter, MillicandelasPerSquareMeterTolerance);
-                Assert.Equal(LuminanceUnit.MillicandelaPerSquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Luminance.Parse("1 nCd/m²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NanocandelasPerSquareMeter, NanocandelasPerSquareMeterTolerance);
-                Assert.Equal(LuminanceUnit.NanocandelaPerSquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Luminance.Parse("1 nt", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Nits, NitsTolerance);
-                Assert.Equal(LuminanceUnit.Nit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = Luminance.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 Cd/ft²", LuminanceUnit.CandelaPerSquareFoot, 4.2)]
+        [InlineData("en-US", "4.2 Cd/in²", LuminanceUnit.CandelaPerSquareInch, 4.2)]
+        [InlineData("en-US", "4.2 Cd/m²", LuminanceUnit.CandelaPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 cCd/m²", LuminanceUnit.CenticandelaPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 dCd/m²", LuminanceUnit.DecicandelaPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 kCd/m²", LuminanceUnit.KilocandelaPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 µCd/m²", LuminanceUnit.MicrocandelaPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 mCd/m²", LuminanceUnit.MillicandelaPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 nCd/m²", LuminanceUnit.NanocandelaPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 nt", LuminanceUnit.Nit, 4.2)]
+        public void TryParse(string culture, string quantityString, LuminanceUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(Luminance.TryParse("1 Cd/ft²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CandelasPerSquareFoot, CandelasPerSquareFootTolerance);
-                Assert.Equal(LuminanceUnit.CandelaPerSquareFoot, parsed.Unit);
-            }
-
-            {
-                Assert.True(Luminance.TryParse("1 Cd/in²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CandelasPerSquareInch, CandelasPerSquareInchTolerance);
-                Assert.Equal(LuminanceUnit.CandelaPerSquareInch, parsed.Unit);
-            }
-
-            {
-                Assert.True(Luminance.TryParse("1 Cd/m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CandelasPerSquareMeter, CandelasPerSquareMeterTolerance);
-                Assert.Equal(LuminanceUnit.CandelaPerSquareMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Luminance.TryParse("1 cCd/m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CenticandelasPerSquareMeter, CenticandelasPerSquareMeterTolerance);
-                Assert.Equal(LuminanceUnit.CenticandelaPerSquareMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Luminance.TryParse("1 dCd/m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecicandelasPerSquareMeter, DecicandelasPerSquareMeterTolerance);
-                Assert.Equal(LuminanceUnit.DecicandelaPerSquareMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Luminance.TryParse("1 kCd/m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilocandelasPerSquareMeter, KilocandelasPerSquareMeterTolerance);
-                Assert.Equal(LuminanceUnit.KilocandelaPerSquareMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Luminance.TryParse("1 µCd/m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrocandelasPerSquareMeter, MicrocandelasPerSquareMeterTolerance);
-                Assert.Equal(LuminanceUnit.MicrocandelaPerSquareMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Luminance.TryParse("1 mCd/m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillicandelasPerSquareMeter, MillicandelasPerSquareMeterTolerance);
-                Assert.Equal(LuminanceUnit.MillicandelaPerSquareMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Luminance.TryParse("1 nCd/m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanocandelasPerSquareMeter, NanocandelasPerSquareMeterTolerance);
-                Assert.Equal(LuminanceUnit.NanocandelaPerSquareMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(Luminance.TryParse("1 nt", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nits, NitsTolerance);
-                Assert.Equal(LuminanceUnit.Nit, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(Luminance.TryParse(quantityString, out Luminance parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -608,6 +506,36 @@ namespace UnitsNet.Tests
         {
             Assert.True(Luminance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out LuminanceUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", LuminanceUnit.CandelaPerSquareFoot, "Cd/ft²")]
+        [InlineData("en-US", LuminanceUnit.CandelaPerSquareInch, "Cd/in²")]
+        [InlineData("en-US", LuminanceUnit.CandelaPerSquareMeter, "Cd/m²")]
+        [InlineData("en-US", LuminanceUnit.CenticandelaPerSquareMeter, "cCd/m²")]
+        [InlineData("en-US", LuminanceUnit.DecicandelaPerSquareMeter, "dCd/m²")]
+        [InlineData("en-US", LuminanceUnit.KilocandelaPerSquareMeter, "kCd/m²")]
+        [InlineData("en-US", LuminanceUnit.MicrocandelaPerSquareMeter, "µCd/m²")]
+        [InlineData("en-US", LuminanceUnit.MillicandelaPerSquareMeter, "mCd/m²")]
+        [InlineData("en-US", LuminanceUnit.NanocandelaPerSquareMeter, "nCd/m²")]
+        [InlineData("en-US", LuminanceUnit.Nit, "nt")]
+        public void GetAbbreviationForCulture(string culture, LuminanceUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Luminance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Luminance.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Luminance.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

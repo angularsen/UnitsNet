@@ -276,40 +276,26 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 °C/W", ThermalResistanceUnit.DegreeCelsiusPerWatt, 4.2)]
+        [InlineData("en-US", "4.2 K/W", ThermalResistanceUnit.KelvinPerWatt, 4.2)]
+        public void Parse(string culture, string quantityString, ThermalResistanceUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = ThermalResistance.Parse("1 °C/W", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DegreesCelsiusPerWatt, DegreesCelsiusPerWattTolerance);
-                Assert.Equal(ThermalResistanceUnit.DegreeCelsiusPerWatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ThermalResistance.Parse("1 K/W", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KelvinsPerWatt, KelvinsPerWattTolerance);
-                Assert.Equal(ThermalResistanceUnit.KelvinPerWatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = ThermalResistance.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 °C/W", ThermalResistanceUnit.DegreeCelsiusPerWatt, 4.2)]
+        [InlineData("en-US", "4.2 K/W", ThermalResistanceUnit.KelvinPerWatt, 4.2)]
+        public void TryParse(string culture, string quantityString, ThermalResistanceUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(ThermalResistance.TryParse("1 °C/W", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DegreesCelsiusPerWatt, DegreesCelsiusPerWattTolerance);
-                Assert.Equal(ThermalResistanceUnit.DegreeCelsiusPerWatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(ThermalResistance.TryParse("1 K/W", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KelvinsPerWatt, KelvinsPerWattTolerance);
-                Assert.Equal(ThermalResistanceUnit.KelvinPerWatt, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(ThermalResistance.TryParse(quantityString, out ThermalResistance parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -392,6 +378,28 @@ namespace UnitsNet.Tests
         {
             Assert.True(ThermalResistance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ThermalResistanceUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", ThermalResistanceUnit.DegreeCelsiusPerWatt, "°C/W")]
+        [InlineData("en-US", ThermalResistanceUnit.KelvinPerWatt, "K/W")]
+        public void GetAbbreviationForCulture(string culture, ThermalResistanceUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ThermalResistance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ThermalResistance.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ThermalResistance.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

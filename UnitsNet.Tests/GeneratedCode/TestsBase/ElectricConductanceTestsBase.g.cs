@@ -360,198 +360,54 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 G℧", ElectricConductanceUnit.Gigamho, 4.2)]
+        [InlineData("en-US", "4.2 GS", ElectricConductanceUnit.Gigasiemens, 4.2)]
+        [InlineData("en-US", "4.2 k℧", ElectricConductanceUnit.Kilomho, 4.2)]
+        [InlineData("en-US", "4.2 kS", ElectricConductanceUnit.Kilosiemens, 4.2)]
+        [InlineData("en-US", "4.2 M℧", ElectricConductanceUnit.Megamho, 4.2)]
+        [InlineData("en-US", "4.2 MS", ElectricConductanceUnit.Megasiemens, 4.2)]
+        [InlineData("en-US", "4.2 ℧", ElectricConductanceUnit.Mho, 4.2)]
+        [InlineData("en-US", "4.2 µ℧", ElectricConductanceUnit.Micromho, 4.2)]
+        [InlineData("en-US", "4.2 µS", ElectricConductanceUnit.Microsiemens, 4.2)]
+        [InlineData("en-US", "4.2 m℧", ElectricConductanceUnit.Millimho, 4.2)]
+        [InlineData("en-US", "4.2 mS", ElectricConductanceUnit.Millisiemens, 4.2)]
+        [InlineData("en-US", "4.2 n℧", ElectricConductanceUnit.Nanomho, 4.2)]
+        [InlineData("en-US", "4.2 nS", ElectricConductanceUnit.Nanosiemens, 4.2)]
+        [InlineData("en-US", "4.2 S", ElectricConductanceUnit.Siemens, 4.2)]
+        [InlineData("en-US", "4.2 T℧", ElectricConductanceUnit.Teramho, 4.2)]
+        [InlineData("en-US", "4.2 TS", ElectricConductanceUnit.Terasiemens, 4.2)]
+        public void Parse(string culture, string quantityString, ElectricConductanceUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = ElectricConductance.Parse("1 G℧", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Gigamhos, GigamhosTolerance);
-                Assert.Equal(ElectricConductanceUnit.Gigamho, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricConductance.Parse("1 GS", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Gigasiemens, GigasiemensTolerance);
-                Assert.Equal(ElectricConductanceUnit.Gigasiemens, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricConductance.Parse("1 k℧", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kilomhos, KilomhosTolerance);
-                Assert.Equal(ElectricConductanceUnit.Kilomho, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricConductance.Parse("1 kS", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kilosiemens, KilosiemensTolerance);
-                Assert.Equal(ElectricConductanceUnit.Kilosiemens, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricConductance.Parse("1 M℧", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Megamhos, MegamhosTolerance);
-                Assert.Equal(ElectricConductanceUnit.Megamho, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricConductance.Parse("1 MS", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Megasiemens, MegasiemensTolerance);
-                Assert.Equal(ElectricConductanceUnit.Megasiemens, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricConductance.Parse("1 ℧", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Mhos, MhosTolerance);
-                Assert.Equal(ElectricConductanceUnit.Mho, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricConductance.Parse("1 µ℧", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Micromhos, MicromhosTolerance);
-                Assert.Equal(ElectricConductanceUnit.Micromho, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricConductance.Parse("1 µS", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Microsiemens, MicrosiemensTolerance);
-                Assert.Equal(ElectricConductanceUnit.Microsiemens, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricConductance.Parse("1 m℧", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Millimhos, MillimhosTolerance);
-                Assert.Equal(ElectricConductanceUnit.Millimho, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricConductance.Parse("1 mS", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Millisiemens, MillisiemensTolerance);
-                Assert.Equal(ElectricConductanceUnit.Millisiemens, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricConductance.Parse("1 n℧", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Nanomhos, NanomhosTolerance);
-                Assert.Equal(ElectricConductanceUnit.Nanomho, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricConductance.Parse("1 nS", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Nanosiemens, NanosiemensTolerance);
-                Assert.Equal(ElectricConductanceUnit.Nanosiemens, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricConductance.Parse("1 S", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Siemens, SiemensTolerance);
-                Assert.Equal(ElectricConductanceUnit.Siemens, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricConductance.Parse("1 T℧", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Teramhos, TeramhosTolerance);
-                Assert.Equal(ElectricConductanceUnit.Teramho, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricConductance.Parse("1 TS", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Terasiemens, TerasiemensTolerance);
-                Assert.Equal(ElectricConductanceUnit.Terasiemens, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = ElectricConductance.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 G℧", ElectricConductanceUnit.Gigamho, 4.2)]
+        [InlineData("en-US", "4.2 GS", ElectricConductanceUnit.Gigasiemens, 4.2)]
+        [InlineData("en-US", "4.2 k℧", ElectricConductanceUnit.Kilomho, 4.2)]
+        [InlineData("en-US", "4.2 kS", ElectricConductanceUnit.Kilosiemens, 4.2)]
+        [InlineData("en-US", "4.2 M℧", ElectricConductanceUnit.Megamho, 4.2)]
+        [InlineData("en-US", "4.2 MS", ElectricConductanceUnit.Megasiemens, 4.2)]
+        [InlineData("en-US", "4.2 ℧", ElectricConductanceUnit.Mho, 4.2)]
+        [InlineData("en-US", "4.2 µ℧", ElectricConductanceUnit.Micromho, 4.2)]
+        [InlineData("en-US", "4.2 µS", ElectricConductanceUnit.Microsiemens, 4.2)]
+        [InlineData("en-US", "4.2 m℧", ElectricConductanceUnit.Millimho, 4.2)]
+        [InlineData("en-US", "4.2 mS", ElectricConductanceUnit.Millisiemens, 4.2)]
+        [InlineData("en-US", "4.2 n℧", ElectricConductanceUnit.Nanomho, 4.2)]
+        [InlineData("en-US", "4.2 nS", ElectricConductanceUnit.Nanosiemens, 4.2)]
+        [InlineData("en-US", "4.2 S", ElectricConductanceUnit.Siemens, 4.2)]
+        [InlineData("en-US", "4.2 T℧", ElectricConductanceUnit.Teramho, 4.2)]
+        [InlineData("en-US", "4.2 TS", ElectricConductanceUnit.Terasiemens, 4.2)]
+        public void TryParse(string culture, string quantityString, ElectricConductanceUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(ElectricConductance.TryParse("1 G℧", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Gigamhos, GigamhosTolerance);
-                Assert.Equal(ElectricConductanceUnit.Gigamho, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricConductance.TryParse("1 GS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Gigasiemens, GigasiemensTolerance);
-                Assert.Equal(ElectricConductanceUnit.Gigasiemens, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricConductance.TryParse("1 k℧", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilomhos, KilomhosTolerance);
-                Assert.Equal(ElectricConductanceUnit.Kilomho, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricConductance.TryParse("1 kS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilosiemens, KilosiemensTolerance);
-                Assert.Equal(ElectricConductanceUnit.Kilosiemens, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricConductance.TryParse("1 ℧", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Mhos, MhosTolerance);
-                Assert.Equal(ElectricConductanceUnit.Mho, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricConductance.TryParse("1 µ℧", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Micromhos, MicromhosTolerance);
-                Assert.Equal(ElectricConductanceUnit.Micromho, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricConductance.TryParse("1 µS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microsiemens, MicrosiemensTolerance);
-                Assert.Equal(ElectricConductanceUnit.Microsiemens, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricConductance.TryParse("1 n℧", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanomhos, NanomhosTolerance);
-                Assert.Equal(ElectricConductanceUnit.Nanomho, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricConductance.TryParse("1 nS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanosiemens, NanosiemensTolerance);
-                Assert.Equal(ElectricConductanceUnit.Nanosiemens, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricConductance.TryParse("1 S", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Siemens, SiemensTolerance);
-                Assert.Equal(ElectricConductanceUnit.Siemens, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricConductance.TryParse("1 T℧", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Teramhos, TeramhosTolerance);
-                Assert.Equal(ElectricConductanceUnit.Teramho, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricConductance.TryParse("1 TS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Terasiemens, TerasiemensTolerance);
-                Assert.Equal(ElectricConductanceUnit.Terasiemens, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricConductance.TryParse(quantityString, out ElectricConductance parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -746,6 +602,42 @@ namespace UnitsNet.Tests
         {
             Assert.True(ElectricConductance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricConductanceUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", ElectricConductanceUnit.Gigamho, "G℧")]
+        [InlineData("en-US", ElectricConductanceUnit.Gigasiemens, "GS")]
+        [InlineData("en-US", ElectricConductanceUnit.Kilomho, "k℧")]
+        [InlineData("en-US", ElectricConductanceUnit.Kilosiemens, "kS")]
+        [InlineData("en-US", ElectricConductanceUnit.Megamho, "M℧")]
+        [InlineData("en-US", ElectricConductanceUnit.Megasiemens, "MS")]
+        [InlineData("en-US", ElectricConductanceUnit.Mho, "℧")]
+        [InlineData("en-US", ElectricConductanceUnit.Micromho, "µ℧")]
+        [InlineData("en-US", ElectricConductanceUnit.Microsiemens, "µS")]
+        [InlineData("en-US", ElectricConductanceUnit.Millimho, "m℧")]
+        [InlineData("en-US", ElectricConductanceUnit.Millisiemens, "mS")]
+        [InlineData("en-US", ElectricConductanceUnit.Nanomho, "n℧")]
+        [InlineData("en-US", ElectricConductanceUnit.Nanosiemens, "nS")]
+        [InlineData("en-US", ElectricConductanceUnit.Siemens, "S")]
+        [InlineData("en-US", ElectricConductanceUnit.Teramho, "T℧")]
+        [InlineData("en-US", ElectricConductanceUnit.Terasiemens, "TS")]
+        public void GetAbbreviationForCulture(string culture, ElectricConductanceUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ElectricConductance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ElectricConductance.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ElectricConductance.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

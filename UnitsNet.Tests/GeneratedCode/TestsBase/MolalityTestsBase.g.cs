@@ -282,53 +282,28 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 mmol/kg", MolalityUnit.MillimolePerKilogram, 4.2)]
+        [InlineData("en-US", "4.2 mol/g", MolalityUnit.MolePerGram, 4.2)]
+        [InlineData("en-US", "4.2 mol/kg", MolalityUnit.MolePerKilogram, 4.2)]
+        public void Parse(string culture, string quantityString, MolalityUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = Molality.Parse("1 mmol/kg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillimolesPerKilogram, MillimolesPerKilogramTolerance);
-                Assert.Equal(MolalityUnit.MillimolePerKilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Molality.Parse("1 mol/g", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MolesPerGram, MolesPerGramTolerance);
-                Assert.Equal(MolalityUnit.MolePerGram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Molality.Parse("1 mol/kg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MolesPerKilogram, MolesPerKilogramTolerance);
-                Assert.Equal(MolalityUnit.MolePerKilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = Molality.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 mmol/kg", MolalityUnit.MillimolePerKilogram, 4.2)]
+        [InlineData("en-US", "4.2 mol/g", MolalityUnit.MolePerGram, 4.2)]
+        [InlineData("en-US", "4.2 mol/kg", MolalityUnit.MolePerKilogram, 4.2)]
+        public void TryParse(string culture, string quantityString, MolalityUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(Molality.TryParse("1 mmol/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimolesPerKilogram, MillimolesPerKilogramTolerance);
-                Assert.Equal(MolalityUnit.MillimolePerKilogram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Molality.TryParse("1 mol/g", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MolesPerGram, MolesPerGramTolerance);
-                Assert.Equal(MolalityUnit.MolePerGram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Molality.TryParse("1 mol/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MolesPerKilogram, MolesPerKilogramTolerance);
-                Assert.Equal(MolalityUnit.MolePerKilogram, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(Molality.TryParse(quantityString, out Molality parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -419,6 +394,29 @@ namespace UnitsNet.Tests
         {
             Assert.True(Molality.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MolalityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", MolalityUnit.MillimolePerKilogram, "mmol/kg")]
+        [InlineData("en-US", MolalityUnit.MolePerGram, "mol/g")]
+        [InlineData("en-US", MolalityUnit.MolePerKilogram, "mol/kg")]
+        public void GetAbbreviationForCulture(string culture, MolalityUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Molality.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Molality.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Molality.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

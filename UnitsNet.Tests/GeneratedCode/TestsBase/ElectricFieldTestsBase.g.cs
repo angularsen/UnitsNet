@@ -270,27 +270,24 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 V/m", ElectricFieldUnit.VoltPerMeter, 4.2)]
+        public void Parse(string culture, string quantityString, ElectricFieldUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = ElectricField.Parse("1 V/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.VoltsPerMeter, VoltsPerMeterTolerance);
-                Assert.Equal(ElectricFieldUnit.VoltPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = ElectricField.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 V/m", ElectricFieldUnit.VoltPerMeter, 4.2)]
+        public void TryParse(string culture, string quantityString, ElectricFieldUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(ElectricField.TryParse("1 V/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.VoltsPerMeter, VoltsPerMeterTolerance);
-                Assert.Equal(ElectricFieldUnit.VoltPerMeter, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricField.TryParse(quantityString, out ElectricField parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -365,6 +362,27 @@ namespace UnitsNet.Tests
         {
             Assert.True(ElectricField.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricFieldUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", ElectricFieldUnit.VoltPerMeter, "V/m")]
+        public void GetAbbreviationForCulture(string culture, ElectricFieldUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ElectricField.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ElectricField.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ElectricField.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

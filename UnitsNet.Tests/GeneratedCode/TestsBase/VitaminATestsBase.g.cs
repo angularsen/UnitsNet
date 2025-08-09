@@ -210,27 +210,24 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 IU", VitaminAUnit.InternationalUnit, 4.2)]
+        public void Parse(string culture, string quantityString, VitaminAUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = VitaminA.Parse("1 IU", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.InternationalUnits, InternationalUnitsTolerance);
-                Assert.Equal(VitaminAUnit.InternationalUnit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = VitaminA.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 IU", VitaminAUnit.InternationalUnit, 4.2)]
+        public void TryParse(string culture, string quantityString, VitaminAUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(VitaminA.TryParse("1 IU", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InternationalUnits, InternationalUnitsTolerance);
-                Assert.Equal(VitaminAUnit.InternationalUnit, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(VitaminA.TryParse(quantityString, out VitaminA parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -305,6 +302,27 @@ namespace UnitsNet.Tests
         {
             Assert.True(VitaminA.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out VitaminAUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", VitaminAUnit.InternationalUnit, "IU")]
+        public void GetAbbreviationForCulture(string culture, VitaminAUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = VitaminA.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(VitaminA.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = VitaminA.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

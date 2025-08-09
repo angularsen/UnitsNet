@@ -210,27 +210,24 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 NTU", TurbidityUnit.NTU, 4.2)]
+        public void Parse(string culture, string quantityString, TurbidityUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = Turbidity.Parse("1 NTU", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NTU, NTUTolerance);
-                Assert.Equal(TurbidityUnit.NTU, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = Turbidity.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 NTU", TurbidityUnit.NTU, 4.2)]
+        public void TryParse(string culture, string quantityString, TurbidityUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(Turbidity.TryParse("1 NTU", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NTU, NTUTolerance);
-                Assert.Equal(TurbidityUnit.NTU, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(Turbidity.TryParse(quantityString, out Turbidity parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -305,6 +302,27 @@ namespace UnitsNet.Tests
         {
             Assert.True(Turbidity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out TurbidityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", TurbidityUnit.NTU, "NTU")]
+        public void GetAbbreviationForCulture(string culture, TurbidityUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Turbidity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Turbidity.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Turbidity.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

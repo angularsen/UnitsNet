@@ -324,248 +324,58 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 µSv/h", RadiationEquivalentDoseRateUnit.MicrosievertPerHour, 4.2)]
+        [InlineData("en-US", "4.2 µSv/s", RadiationEquivalentDoseRateUnit.MicrosievertPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 mrem/h", RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour, 4.2)]
+        [InlineData("en-US", "4.2 mSv/h", RadiationEquivalentDoseRateUnit.MillisievertPerHour, 4.2)]
+        [InlineData("en-US", "4.2 mSv/s", RadiationEquivalentDoseRateUnit.MillisievertPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 nSv/h", RadiationEquivalentDoseRateUnit.NanosievertPerHour, 4.2)]
+        [InlineData("en-US", "4.2 nSv/s", RadiationEquivalentDoseRateUnit.NanosievertPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 rem/h", RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour, 4.2)]
+        [InlineData("en-US", "4.2 Sv/h", RadiationEquivalentDoseRateUnit.SievertPerHour, 4.2)]
+        [InlineData("en-US", "4.2 Sv/s", RadiationEquivalentDoseRateUnit.SievertPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 мкЗв/ч", RadiationEquivalentDoseRateUnit.MicrosievertPerHour, 4.2)]
+        [InlineData("ru-RU", "4,2 мкЗв/с", RadiationEquivalentDoseRateUnit.MicrosievertPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 мЗв/ч", RadiationEquivalentDoseRateUnit.MillisievertPerHour, 4.2)]
+        [InlineData("ru-RU", "4,2 мЗв/с", RadiationEquivalentDoseRateUnit.MillisievertPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 нЗв/ч", RadiationEquivalentDoseRateUnit.NanosievertPerHour, 4.2)]
+        [InlineData("ru-RU", "4,2 нЗв/с", RadiationEquivalentDoseRateUnit.NanosievertPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 Зв/ч", RadiationEquivalentDoseRateUnit.SievertPerHour, 4.2)]
+        [InlineData("ru-RU", "4,2 Зв/с", RadiationEquivalentDoseRateUnit.SievertPerSecond, 4.2)]
+        public void Parse(string culture, string quantityString, RadiationEquivalentDoseRateUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = RadiationEquivalentDoseRate.Parse("1 µSv/h", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicrosievertsPerHour, MicrosievertsPerHourTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.MicrosievertPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationEquivalentDoseRate.Parse("1 мкЗв/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MicrosievertsPerHour, MicrosievertsPerHourTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.MicrosievertPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationEquivalentDoseRate.Parse("1 µSv/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicrosievertsPerSecond, MicrosievertsPerSecondTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.MicrosievertPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationEquivalentDoseRate.Parse("1 мкЗв/с", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MicrosievertsPerSecond, MicrosievertsPerSecondTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.MicrosievertPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationEquivalentDoseRate.Parse("1 mrem/h", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MilliroentgensEquivalentManPerHour, MilliroentgensEquivalentManPerHourTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationEquivalentDoseRate.Parse("1 mSv/h", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillisievertsPerHour, MillisievertsPerHourTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.MillisievertPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationEquivalentDoseRate.Parse("1 мЗв/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MillisievertsPerHour, MillisievertsPerHourTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.MillisievertPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationEquivalentDoseRate.Parse("1 mSv/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillisievertsPerSecond, MillisievertsPerSecondTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.MillisievertPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationEquivalentDoseRate.Parse("1 мЗв/с", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MillisievertsPerSecond, MillisievertsPerSecondTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.MillisievertPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationEquivalentDoseRate.Parse("1 nSv/h", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NanosievertsPerHour, NanosievertsPerHourTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.NanosievertPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationEquivalentDoseRate.Parse("1 нЗв/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.NanosievertsPerHour, NanosievertsPerHourTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.NanosievertPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationEquivalentDoseRate.Parse("1 nSv/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NanosievertsPerSecond, NanosievertsPerSecondTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.NanosievertPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationEquivalentDoseRate.Parse("1 нЗв/с", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.NanosievertsPerSecond, NanosievertsPerSecondTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.NanosievertPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationEquivalentDoseRate.Parse("1 rem/h", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.RoentgensEquivalentManPerHour, RoentgensEquivalentManPerHourTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationEquivalentDoseRate.Parse("1 Sv/h", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SievertsPerHour, SievertsPerHourTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.SievertPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationEquivalentDoseRate.Parse("1 Зв/ч", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.SievertsPerHour, SievertsPerHourTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.SievertPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationEquivalentDoseRate.Parse("1 Sv/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SievertsPerSecond, SievertsPerSecondTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.SievertPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RadiationEquivalentDoseRate.Parse("1 Зв/с", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.SievertsPerSecond, SievertsPerSecondTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.SievertPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = RadiationEquivalentDoseRate.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 µSv/h", RadiationEquivalentDoseRateUnit.MicrosievertPerHour, 4.2)]
+        [InlineData("en-US", "4.2 µSv/s", RadiationEquivalentDoseRateUnit.MicrosievertPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 mrem/h", RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour, 4.2)]
+        [InlineData("en-US", "4.2 mSv/h", RadiationEquivalentDoseRateUnit.MillisievertPerHour, 4.2)]
+        [InlineData("en-US", "4.2 mSv/s", RadiationEquivalentDoseRateUnit.MillisievertPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 nSv/h", RadiationEquivalentDoseRateUnit.NanosievertPerHour, 4.2)]
+        [InlineData("en-US", "4.2 nSv/s", RadiationEquivalentDoseRateUnit.NanosievertPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 rem/h", RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour, 4.2)]
+        [InlineData("en-US", "4.2 Sv/h", RadiationEquivalentDoseRateUnit.SievertPerHour, 4.2)]
+        [InlineData("en-US", "4.2 Sv/s", RadiationEquivalentDoseRateUnit.SievertPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 мкЗв/ч", RadiationEquivalentDoseRateUnit.MicrosievertPerHour, 4.2)]
+        [InlineData("ru-RU", "4,2 мкЗв/с", RadiationEquivalentDoseRateUnit.MicrosievertPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 мЗв/ч", RadiationEquivalentDoseRateUnit.MillisievertPerHour, 4.2)]
+        [InlineData("ru-RU", "4,2 мЗв/с", RadiationEquivalentDoseRateUnit.MillisievertPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 нЗв/ч", RadiationEquivalentDoseRateUnit.NanosievertPerHour, 4.2)]
+        [InlineData("ru-RU", "4,2 нЗв/с", RadiationEquivalentDoseRateUnit.NanosievertPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 Зв/ч", RadiationEquivalentDoseRateUnit.SievertPerHour, 4.2)]
+        [InlineData("ru-RU", "4,2 Зв/с", RadiationEquivalentDoseRateUnit.SievertPerSecond, 4.2)]
+        public void TryParse(string culture, string quantityString, RadiationEquivalentDoseRateUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(RadiationEquivalentDoseRate.TryParse("1 µSv/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrosievertsPerHour, MicrosievertsPerHourTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.MicrosievertPerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationEquivalentDoseRate.TryParse("1 мкЗв/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrosievertsPerHour, MicrosievertsPerHourTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.MicrosievertPerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationEquivalentDoseRate.TryParse("1 µSv/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrosievertsPerSecond, MicrosievertsPerSecondTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.MicrosievertPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationEquivalentDoseRate.TryParse("1 мкЗв/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrosievertsPerSecond, MicrosievertsPerSecondTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.MicrosievertPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationEquivalentDoseRate.TryParse("1 mrem/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MilliroentgensEquivalentManPerHour, MilliroentgensEquivalentManPerHourTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationEquivalentDoseRate.TryParse("1 mSv/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillisievertsPerHour, MillisievertsPerHourTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.MillisievertPerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationEquivalentDoseRate.TryParse("1 мЗв/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillisievertsPerHour, MillisievertsPerHourTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.MillisievertPerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationEquivalentDoseRate.TryParse("1 mSv/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillisievertsPerSecond, MillisievertsPerSecondTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.MillisievertPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationEquivalentDoseRate.TryParse("1 мЗв/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillisievertsPerSecond, MillisievertsPerSecondTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.MillisievertPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationEquivalentDoseRate.TryParse("1 nSv/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanosievertsPerHour, NanosievertsPerHourTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.NanosievertPerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationEquivalentDoseRate.TryParse("1 нЗв/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanosievertsPerHour, NanosievertsPerHourTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.NanosievertPerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationEquivalentDoseRate.TryParse("1 nSv/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanosievertsPerSecond, NanosievertsPerSecondTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.NanosievertPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationEquivalentDoseRate.TryParse("1 нЗв/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanosievertsPerSecond, NanosievertsPerSecondTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.NanosievertPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationEquivalentDoseRate.TryParse("1 rem/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.RoentgensEquivalentManPerHour, RoentgensEquivalentManPerHourTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationEquivalentDoseRate.TryParse("1 Sv/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SievertsPerHour, SievertsPerHourTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.SievertPerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationEquivalentDoseRate.TryParse("1 Зв/ч", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SievertsPerHour, SievertsPerHourTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.SievertPerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationEquivalentDoseRate.TryParse("1 Sv/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SievertsPerSecond, SievertsPerSecondTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.SievertPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RadiationEquivalentDoseRate.TryParse("1 Зв/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SievertsPerSecond, SievertsPerSecondTolerance);
-                Assert.Equal(RadiationEquivalentDoseRateUnit.SievertPerSecond, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(RadiationEquivalentDoseRate.TryParse(quantityString, out RadiationEquivalentDoseRate parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -744,6 +554,44 @@ namespace UnitsNet.Tests
         {
             Assert.True(RadiationEquivalentDoseRate.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out RadiationEquivalentDoseRateUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", RadiationEquivalentDoseRateUnit.MicrosievertPerHour, "µSv/h")]
+        [InlineData("en-US", RadiationEquivalentDoseRateUnit.MicrosievertPerSecond, "µSv/s")]
+        [InlineData("en-US", RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour, "mrem/h")]
+        [InlineData("en-US", RadiationEquivalentDoseRateUnit.MillisievertPerHour, "mSv/h")]
+        [InlineData("en-US", RadiationEquivalentDoseRateUnit.MillisievertPerSecond, "mSv/s")]
+        [InlineData("en-US", RadiationEquivalentDoseRateUnit.NanosievertPerHour, "nSv/h")]
+        [InlineData("en-US", RadiationEquivalentDoseRateUnit.NanosievertPerSecond, "nSv/s")]
+        [InlineData("en-US", RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour, "rem/h")]
+        [InlineData("en-US", RadiationEquivalentDoseRateUnit.SievertPerHour, "Sv/h")]
+        [InlineData("en-US", RadiationEquivalentDoseRateUnit.SievertPerSecond, "Sv/s")]
+        [InlineData("ru-RU", RadiationEquivalentDoseRateUnit.MicrosievertPerHour, "мкЗв/ч")]
+        [InlineData("ru-RU", RadiationEquivalentDoseRateUnit.MicrosievertPerSecond, "мкЗв/с")]
+        [InlineData("ru-RU", RadiationEquivalentDoseRateUnit.MillisievertPerHour, "мЗв/ч")]
+        [InlineData("ru-RU", RadiationEquivalentDoseRateUnit.MillisievertPerSecond, "мЗв/с")]
+        [InlineData("ru-RU", RadiationEquivalentDoseRateUnit.NanosievertPerHour, "нЗв/ч")]
+        [InlineData("ru-RU", RadiationEquivalentDoseRateUnit.NanosievertPerSecond, "нЗв/с")]
+        [InlineData("ru-RU", RadiationEquivalentDoseRateUnit.SievertPerHour, "Зв/ч")]
+        [InlineData("ru-RU", RadiationEquivalentDoseRateUnit.SievertPerSecond, "Зв/с")]
+        public void GetAbbreviationForCulture(string culture, RadiationEquivalentDoseRateUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = RadiationEquivalentDoseRate.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(RadiationEquivalentDoseRate.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = RadiationEquivalentDoseRate.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

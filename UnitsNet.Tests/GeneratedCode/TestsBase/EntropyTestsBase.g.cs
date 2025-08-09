@@ -306,105 +306,36 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 cal/K", EntropyUnit.CaloriePerKelvin, 4.2)]
+        [InlineData("en-US", "4.2 J/°C", EntropyUnit.JoulePerDegreeCelsius, 4.2)]
+        [InlineData("en-US", "4.2 J/K", EntropyUnit.JoulePerKelvin, 4.2)]
+        [InlineData("en-US", "4.2 kcal/K", EntropyUnit.KilocaloriePerKelvin, 4.2)]
+        [InlineData("en-US", "4.2 kJ/°C", EntropyUnit.KilojoulePerDegreeCelsius, 4.2)]
+        [InlineData("en-US", "4.2 kJ/K", EntropyUnit.KilojoulePerKelvin, 4.2)]
+        [InlineData("en-US", "4.2 MJ/K", EntropyUnit.MegajoulePerKelvin, 4.2)]
+        public void Parse(string culture, string quantityString, EntropyUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = Entropy.Parse("1 cal/K", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CaloriesPerKelvin, CaloriesPerKelvinTolerance);
-                Assert.Equal(EntropyUnit.CaloriePerKelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Entropy.Parse("1 J/°C", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.JoulesPerDegreeCelsius, JoulesPerDegreeCelsiusTolerance);
-                Assert.Equal(EntropyUnit.JoulePerDegreeCelsius, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Entropy.Parse("1 J/K", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.JoulesPerKelvin, JoulesPerKelvinTolerance);
-                Assert.Equal(EntropyUnit.JoulePerKelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Entropy.Parse("1 kcal/K", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilocaloriesPerKelvin, KilocaloriesPerKelvinTolerance);
-                Assert.Equal(EntropyUnit.KilocaloriePerKelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Entropy.Parse("1 kJ/°C", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilojoulesPerDegreeCelsius, KilojoulesPerDegreeCelsiusTolerance);
-                Assert.Equal(EntropyUnit.KilojoulePerDegreeCelsius, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Entropy.Parse("1 kJ/K", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilojoulesPerKelvin, KilojoulesPerKelvinTolerance);
-                Assert.Equal(EntropyUnit.KilojoulePerKelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Entropy.Parse("1 MJ/K", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MegajoulesPerKelvin, MegajoulesPerKelvinTolerance);
-                Assert.Equal(EntropyUnit.MegajoulePerKelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = Entropy.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 cal/K", EntropyUnit.CaloriePerKelvin, 4.2)]
+        [InlineData("en-US", "4.2 J/°C", EntropyUnit.JoulePerDegreeCelsius, 4.2)]
+        [InlineData("en-US", "4.2 J/K", EntropyUnit.JoulePerKelvin, 4.2)]
+        [InlineData("en-US", "4.2 kcal/K", EntropyUnit.KilocaloriePerKelvin, 4.2)]
+        [InlineData("en-US", "4.2 kJ/°C", EntropyUnit.KilojoulePerDegreeCelsius, 4.2)]
+        [InlineData("en-US", "4.2 kJ/K", EntropyUnit.KilojoulePerKelvin, 4.2)]
+        [InlineData("en-US", "4.2 MJ/K", EntropyUnit.MegajoulePerKelvin, 4.2)]
+        public void TryParse(string culture, string quantityString, EntropyUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(Entropy.TryParse("1 cal/K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CaloriesPerKelvin, CaloriesPerKelvinTolerance);
-                Assert.Equal(EntropyUnit.CaloriePerKelvin, parsed.Unit);
-            }
-
-            {
-                Assert.True(Entropy.TryParse("1 J/°C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.JoulesPerDegreeCelsius, JoulesPerDegreeCelsiusTolerance);
-                Assert.Equal(EntropyUnit.JoulePerDegreeCelsius, parsed.Unit);
-            }
-
-            {
-                Assert.True(Entropy.TryParse("1 J/K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.JoulesPerKelvin, JoulesPerKelvinTolerance);
-                Assert.Equal(EntropyUnit.JoulePerKelvin, parsed.Unit);
-            }
-
-            {
-                Assert.True(Entropy.TryParse("1 kcal/K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilocaloriesPerKelvin, KilocaloriesPerKelvinTolerance);
-                Assert.Equal(EntropyUnit.KilocaloriePerKelvin, parsed.Unit);
-            }
-
-            {
-                Assert.True(Entropy.TryParse("1 kJ/°C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilojoulesPerDegreeCelsius, KilojoulesPerDegreeCelsiusTolerance);
-                Assert.Equal(EntropyUnit.KilojoulePerDegreeCelsius, parsed.Unit);
-            }
-
-            {
-                Assert.True(Entropy.TryParse("1 kJ/K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilojoulesPerKelvin, KilojoulesPerKelvinTolerance);
-                Assert.Equal(EntropyUnit.KilojoulePerKelvin, parsed.Unit);
-            }
-
-            {
-                Assert.True(Entropy.TryParse("1 MJ/K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MegajoulesPerKelvin, MegajoulesPerKelvinTolerance);
-                Assert.Equal(EntropyUnit.MegajoulePerKelvin, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(Entropy.TryParse(quantityString, out Entropy parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -527,6 +458,33 @@ namespace UnitsNet.Tests
         {
             Assert.True(Entropy.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out EntropyUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", EntropyUnit.CaloriePerKelvin, "cal/K")]
+        [InlineData("en-US", EntropyUnit.JoulePerDegreeCelsius, "J/°C")]
+        [InlineData("en-US", EntropyUnit.JoulePerKelvin, "J/K")]
+        [InlineData("en-US", EntropyUnit.KilocaloriePerKelvin, "kcal/K")]
+        [InlineData("en-US", EntropyUnit.KilojoulePerDegreeCelsius, "kJ/°C")]
+        [InlineData("en-US", EntropyUnit.KilojoulePerKelvin, "kJ/K")]
+        [InlineData("en-US", EntropyUnit.MegajoulePerKelvin, "MJ/K")]
+        public void GetAbbreviationForCulture(string culture, EntropyUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Entropy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Entropy.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Entropy.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

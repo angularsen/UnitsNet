@@ -288,54 +288,30 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 klx", IlluminanceUnit.Kilolux, 4.2)]
+        [InlineData("en-US", "4.2 lx", IlluminanceUnit.Lux, 4.2)]
+        [InlineData("en-US", "4.2 Mlx", IlluminanceUnit.Megalux, 4.2)]
+        [InlineData("en-US", "4.2 mlx", IlluminanceUnit.Millilux, 4.2)]
+        public void Parse(string culture, string quantityString, IlluminanceUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = Illuminance.Parse("1 klx", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kilolux, KiloluxTolerance);
-                Assert.Equal(IlluminanceUnit.Kilolux, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Illuminance.Parse("1 lx", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Lux, LuxTolerance);
-                Assert.Equal(IlluminanceUnit.Lux, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Illuminance.Parse("1 Mlx", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Megalux, MegaluxTolerance);
-                Assert.Equal(IlluminanceUnit.Megalux, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Illuminance.Parse("1 mlx", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Millilux, MilliluxTolerance);
-                Assert.Equal(IlluminanceUnit.Millilux, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = Illuminance.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 klx", IlluminanceUnit.Kilolux, 4.2)]
+        [InlineData("en-US", "4.2 lx", IlluminanceUnit.Lux, 4.2)]
+        [InlineData("en-US", "4.2 Mlx", IlluminanceUnit.Megalux, 4.2)]
+        [InlineData("en-US", "4.2 mlx", IlluminanceUnit.Millilux, 4.2)]
+        public void TryParse(string culture, string quantityString, IlluminanceUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(Illuminance.TryParse("1 klx", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilolux, KiloluxTolerance);
-                Assert.Equal(IlluminanceUnit.Kilolux, parsed.Unit);
-            }
-
-            {
-                Assert.True(Illuminance.TryParse("1 lx", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Lux, LuxTolerance);
-                Assert.Equal(IlluminanceUnit.Lux, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(Illuminance.TryParse(quantityString, out Illuminance parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -434,6 +410,30 @@ namespace UnitsNet.Tests
         {
             Assert.True(Illuminance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out IlluminanceUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", IlluminanceUnit.Kilolux, "klx")]
+        [InlineData("en-US", IlluminanceUnit.Lux, "lx")]
+        [InlineData("en-US", IlluminanceUnit.Megalux, "Mlx")]
+        [InlineData("en-US", IlluminanceUnit.Millilux, "mlx")]
+        public void GetAbbreviationForCulture(string culture, IlluminanceUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Illuminance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Illuminance.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Illuminance.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

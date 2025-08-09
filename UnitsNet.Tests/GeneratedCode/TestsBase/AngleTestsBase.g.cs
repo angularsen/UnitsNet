@@ -294,495 +294,96 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 '", AngleUnit.Arcminute, 4.2)]
+        [InlineData("en-US", "4.2 arcmin", AngleUnit.Arcminute, 4.2)]
+        [InlineData("en-US", "4.2 amin", AngleUnit.Arcminute, 4.2)]
+        [InlineData("en-US", "4.2 min", AngleUnit.Arcminute, 4.2)]
+        [InlineData("en-US", "4.2 ″", AngleUnit.Arcsecond, 4.2)]
+        [InlineData("en-US", "4.2 arcsec", AngleUnit.Arcsecond, 4.2)]
+        [InlineData("en-US", "4.2 asec", AngleUnit.Arcsecond, 4.2)]
+        [InlineData("en-US", "4.2 sec", AngleUnit.Arcsecond, 4.2)]
+        [InlineData("en-US", "4.2 crad", AngleUnit.Centiradian, 4.2)]
+        [InlineData("en-US", "4.2 drad", AngleUnit.Deciradian, 4.2)]
+        [InlineData("en-US", "4.2 °", AngleUnit.Degree, 4.2)]
+        [InlineData("en-US", "4.2 deg", AngleUnit.Degree, 4.2)]
+        [InlineData("en-US", "4.2 g", AngleUnit.Gradian, 4.2)]
+        [InlineData("en-US", "4.2 µ°", AngleUnit.Microdegree, 4.2)]
+        [InlineData("en-US", "4.2 µdeg", AngleUnit.Microdegree, 4.2)]
+        [InlineData("en-US", "4.2 µrad", AngleUnit.Microradian, 4.2)]
+        [InlineData("en-US", "4.2 m°", AngleUnit.Millidegree, 4.2)]
+        [InlineData("en-US", "4.2 mdeg", AngleUnit.Millidegree, 4.2)]
+        [InlineData("en-US", "4.2 mrad", AngleUnit.Milliradian, 4.2)]
+        [InlineData("en-US", "4.2 n°", AngleUnit.Nanodegree, 4.2)]
+        [InlineData("en-US", "4.2 ndeg", AngleUnit.Nanodegree, 4.2)]
+        [InlineData("en-US", "4.2 nrad", AngleUnit.Nanoradian, 4.2)]
+        [InlineData("en-US", "4.2 mil", AngleUnit.NatoMil, 4.2)]
+        [InlineData("en-US", "4.2 rad", AngleUnit.Radian, 4.2)]
+        [InlineData("en-US", "4.2 r", AngleUnit.Revolution, 4.2)]
+        [InlineData("ru-RU", "4,2 срад", AngleUnit.Centiradian, 4.2)]
+        [InlineData("ru-RU", "4,2 драд", AngleUnit.Deciradian, 4.2)]
+        [InlineData("ru-RU", "4,2 °", AngleUnit.Degree, 4.2)]
+        [InlineData("ru-RU", "4,2 g", AngleUnit.Gradian, 4.2)]
+        [InlineData("ru-RU", "4,2 мк°", AngleUnit.Microdegree, 4.2)]
+        [InlineData("ru-RU", "4,2 мкрад", AngleUnit.Microradian, 4.2)]
+        [InlineData("ru-RU", "4,2 м°", AngleUnit.Millidegree, 4.2)]
+        [InlineData("ru-RU", "4,2 мрад", AngleUnit.Milliradian, 4.2)]
+        [InlineData("ru-RU", "4,2 н°", AngleUnit.Nanodegree, 4.2)]
+        [InlineData("ru-RU", "4,2 нрад", AngleUnit.Nanoradian, 4.2)]
+        [InlineData("ru-RU", "4,2 рад", AngleUnit.Radian, 4.2)]
+        [InlineData("ru-RU", "4,2 r", AngleUnit.Revolution, 4.2)]
+        public void Parse(string culture, string quantityString, AngleUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = Angle.Parse("1 '", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Arcminutes, ArcminutesTolerance);
-                Assert.Equal(AngleUnit.Arcminute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 arcmin", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Arcminutes, ArcminutesTolerance);
-                Assert.Equal(AngleUnit.Arcminute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 amin", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Arcminutes, ArcminutesTolerance);
-                Assert.Equal(AngleUnit.Arcminute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 min", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Arcminutes, ArcminutesTolerance);
-                Assert.Equal(AngleUnit.Arcminute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 ″", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Arcseconds, ArcsecondsTolerance);
-                Assert.Equal(AngleUnit.Arcsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 arcsec", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Arcseconds, ArcsecondsTolerance);
-                Assert.Equal(AngleUnit.Arcsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 asec", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Arcseconds, ArcsecondsTolerance);
-                Assert.Equal(AngleUnit.Arcsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 sec", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Arcseconds, ArcsecondsTolerance);
-                Assert.Equal(AngleUnit.Arcsecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 crad", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Centiradians, CentiradiansTolerance);
-                Assert.Equal(AngleUnit.Centiradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 срад", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Centiradians, CentiradiansTolerance);
-                Assert.Equal(AngleUnit.Centiradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 drad", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Deciradians, DeciradiansTolerance);
-                Assert.Equal(AngleUnit.Deciradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 драд", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Deciradians, DeciradiansTolerance);
-                Assert.Equal(AngleUnit.Deciradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 °", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Degrees, DegreesTolerance);
-                Assert.Equal(AngleUnit.Degree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 deg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Degrees, DegreesTolerance);
-                Assert.Equal(AngleUnit.Degree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 °", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Degrees, DegreesTolerance);
-                Assert.Equal(AngleUnit.Degree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 g", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Gradians, GradiansTolerance);
-                Assert.Equal(AngleUnit.Gradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 g", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Gradians, GradiansTolerance);
-                Assert.Equal(AngleUnit.Gradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 µ°", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Microdegrees, MicrodegreesTolerance);
-                Assert.Equal(AngleUnit.Microdegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 µdeg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Microdegrees, MicrodegreesTolerance);
-                Assert.Equal(AngleUnit.Microdegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 мк°", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Microdegrees, MicrodegreesTolerance);
-                Assert.Equal(AngleUnit.Microdegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 µrad", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Microradians, MicroradiansTolerance);
-                Assert.Equal(AngleUnit.Microradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 мкрад", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Microradians, MicroradiansTolerance);
-                Assert.Equal(AngleUnit.Microradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 m°", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Millidegrees, MillidegreesTolerance);
-                Assert.Equal(AngleUnit.Millidegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 mdeg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Millidegrees, MillidegreesTolerance);
-                Assert.Equal(AngleUnit.Millidegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 м°", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Millidegrees, MillidegreesTolerance);
-                Assert.Equal(AngleUnit.Millidegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 mrad", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Milliradians, MilliradiansTolerance);
-                Assert.Equal(AngleUnit.Milliradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 мрад", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Milliradians, MilliradiansTolerance);
-                Assert.Equal(AngleUnit.Milliradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 n°", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Nanodegrees, NanodegreesTolerance);
-                Assert.Equal(AngleUnit.Nanodegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 ndeg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Nanodegrees, NanodegreesTolerance);
-                Assert.Equal(AngleUnit.Nanodegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 н°", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Nanodegrees, NanodegreesTolerance);
-                Assert.Equal(AngleUnit.Nanodegree, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 nrad", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Nanoradians, NanoradiansTolerance);
-                Assert.Equal(AngleUnit.Nanoradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 нрад", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Nanoradians, NanoradiansTolerance);
-                Assert.Equal(AngleUnit.Nanoradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 mil", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NatoMils, NatoMilsTolerance);
-                Assert.Equal(AngleUnit.NatoMil, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 rad", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Radians, RadiansTolerance);
-                Assert.Equal(AngleUnit.Radian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 рад", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Radians, RadiansTolerance);
-                Assert.Equal(AngleUnit.Radian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 r", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Revolutions, RevolutionsTolerance);
-                Assert.Equal(AngleUnit.Revolution, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Angle.Parse("1 r", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Revolutions, RevolutionsTolerance);
-                Assert.Equal(AngleUnit.Revolution, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = Angle.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 '", AngleUnit.Arcminute, 4.2)]
+        [InlineData("en-US", "4.2 arcmin", AngleUnit.Arcminute, 4.2)]
+        [InlineData("en-US", "4.2 amin", AngleUnit.Arcminute, 4.2)]
+        [InlineData("en-US", "4.2 min", AngleUnit.Arcminute, 4.2)]
+        [InlineData("en-US", "4.2 ″", AngleUnit.Arcsecond, 4.2)]
+        [InlineData("en-US", "4.2 arcsec", AngleUnit.Arcsecond, 4.2)]
+        [InlineData("en-US", "4.2 asec", AngleUnit.Arcsecond, 4.2)]
+        [InlineData("en-US", "4.2 sec", AngleUnit.Arcsecond, 4.2)]
+        [InlineData("en-US", "4.2 crad", AngleUnit.Centiradian, 4.2)]
+        [InlineData("en-US", "4.2 drad", AngleUnit.Deciradian, 4.2)]
+        [InlineData("en-US", "4.2 °", AngleUnit.Degree, 4.2)]
+        [InlineData("en-US", "4.2 deg", AngleUnit.Degree, 4.2)]
+        [InlineData("en-US", "4.2 g", AngleUnit.Gradian, 4.2)]
+        [InlineData("en-US", "4.2 µ°", AngleUnit.Microdegree, 4.2)]
+        [InlineData("en-US", "4.2 µdeg", AngleUnit.Microdegree, 4.2)]
+        [InlineData("en-US", "4.2 µrad", AngleUnit.Microradian, 4.2)]
+        [InlineData("en-US", "4.2 m°", AngleUnit.Millidegree, 4.2)]
+        [InlineData("en-US", "4.2 mdeg", AngleUnit.Millidegree, 4.2)]
+        [InlineData("en-US", "4.2 mrad", AngleUnit.Milliradian, 4.2)]
+        [InlineData("en-US", "4.2 n°", AngleUnit.Nanodegree, 4.2)]
+        [InlineData("en-US", "4.2 ndeg", AngleUnit.Nanodegree, 4.2)]
+        [InlineData("en-US", "4.2 nrad", AngleUnit.Nanoradian, 4.2)]
+        [InlineData("en-US", "4.2 mil", AngleUnit.NatoMil, 4.2)]
+        [InlineData("en-US", "4.2 rad", AngleUnit.Radian, 4.2)]
+        [InlineData("en-US", "4.2 r", AngleUnit.Revolution, 4.2)]
+        [InlineData("ru-RU", "4,2 срад", AngleUnit.Centiradian, 4.2)]
+        [InlineData("ru-RU", "4,2 драд", AngleUnit.Deciradian, 4.2)]
+        [InlineData("ru-RU", "4,2 °", AngleUnit.Degree, 4.2)]
+        [InlineData("ru-RU", "4,2 g", AngleUnit.Gradian, 4.2)]
+        [InlineData("ru-RU", "4,2 мк°", AngleUnit.Microdegree, 4.2)]
+        [InlineData("ru-RU", "4,2 мкрад", AngleUnit.Microradian, 4.2)]
+        [InlineData("ru-RU", "4,2 м°", AngleUnit.Millidegree, 4.2)]
+        [InlineData("ru-RU", "4,2 мрад", AngleUnit.Milliradian, 4.2)]
+        [InlineData("ru-RU", "4,2 н°", AngleUnit.Nanodegree, 4.2)]
+        [InlineData("ru-RU", "4,2 нрад", AngleUnit.Nanoradian, 4.2)]
+        [InlineData("ru-RU", "4,2 рад", AngleUnit.Radian, 4.2)]
+        [InlineData("ru-RU", "4,2 r", AngleUnit.Revolution, 4.2)]
+        public void TryParse(string culture, string quantityString, AngleUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(Angle.TryParse("1 '", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Arcminutes, ArcminutesTolerance);
-                Assert.Equal(AngleUnit.Arcminute, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 arcmin", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Arcminutes, ArcminutesTolerance);
-                Assert.Equal(AngleUnit.Arcminute, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 amin", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Arcminutes, ArcminutesTolerance);
-                Assert.Equal(AngleUnit.Arcminute, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Arcminutes, ArcminutesTolerance);
-                Assert.Equal(AngleUnit.Arcminute, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 ″", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Arcseconds, ArcsecondsTolerance);
-                Assert.Equal(AngleUnit.Arcsecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 arcsec", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Arcseconds, ArcsecondsTolerance);
-                Assert.Equal(AngleUnit.Arcsecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 asec", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Arcseconds, ArcsecondsTolerance);
-                Assert.Equal(AngleUnit.Arcsecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 sec", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Arcseconds, ArcsecondsTolerance);
-                Assert.Equal(AngleUnit.Arcsecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 crad", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Centiradians, CentiradiansTolerance);
-                Assert.Equal(AngleUnit.Centiradian, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 срад", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Centiradians, CentiradiansTolerance);
-                Assert.Equal(AngleUnit.Centiradian, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 drad", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Deciradians, DeciradiansTolerance);
-                Assert.Equal(AngleUnit.Deciradian, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 драд", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Deciradians, DeciradiansTolerance);
-                Assert.Equal(AngleUnit.Deciradian, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 °", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Degrees, DegreesTolerance);
-                Assert.Equal(AngleUnit.Degree, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 deg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Degrees, DegreesTolerance);
-                Assert.Equal(AngleUnit.Degree, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 °", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Degrees, DegreesTolerance);
-                Assert.Equal(AngleUnit.Degree, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 g", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Gradians, GradiansTolerance);
-                Assert.Equal(AngleUnit.Gradian, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 g", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Gradians, GradiansTolerance);
-                Assert.Equal(AngleUnit.Gradian, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 µ°", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microdegrees, MicrodegreesTolerance);
-                Assert.Equal(AngleUnit.Microdegree, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 µdeg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microdegrees, MicrodegreesTolerance);
-                Assert.Equal(AngleUnit.Microdegree, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 мк°", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microdegrees, MicrodegreesTolerance);
-                Assert.Equal(AngleUnit.Microdegree, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 µrad", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microradians, MicroradiansTolerance);
-                Assert.Equal(AngleUnit.Microradian, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 мкрад", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microradians, MicroradiansTolerance);
-                Assert.Equal(AngleUnit.Microradian, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 m°", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Millidegrees, MillidegreesTolerance);
-                Assert.Equal(AngleUnit.Millidegree, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 mdeg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Millidegrees, MillidegreesTolerance);
-                Assert.Equal(AngleUnit.Millidegree, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 м°", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Millidegrees, MillidegreesTolerance);
-                Assert.Equal(AngleUnit.Millidegree, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 mrad", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Milliradians, MilliradiansTolerance);
-                Assert.Equal(AngleUnit.Milliradian, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 мрад", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Milliradians, MilliradiansTolerance);
-                Assert.Equal(AngleUnit.Milliradian, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 n°", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanodegrees, NanodegreesTolerance);
-                Assert.Equal(AngleUnit.Nanodegree, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 ndeg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanodegrees, NanodegreesTolerance);
-                Assert.Equal(AngleUnit.Nanodegree, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 н°", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanodegrees, NanodegreesTolerance);
-                Assert.Equal(AngleUnit.Nanodegree, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 nrad", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanoradians, NanoradiansTolerance);
-                Assert.Equal(AngleUnit.Nanoradian, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 нрад", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanoradians, NanoradiansTolerance);
-                Assert.Equal(AngleUnit.Nanoradian, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 mil", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NatoMils, NatoMilsTolerance);
-                Assert.Equal(AngleUnit.NatoMil, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 rad", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Radians, RadiansTolerance);
-                Assert.Equal(AngleUnit.Radian, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 рад", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Radians, RadiansTolerance);
-                Assert.Equal(AngleUnit.Radian, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 r", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Revolutions, RevolutionsTolerance);
-                Assert.Equal(AngleUnit.Revolution, parsed.Unit);
-            }
-
-            {
-                Assert.True(Angle.TryParse("1 r", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Revolutions, RevolutionsTolerance);
-                Assert.Equal(AngleUnit.Revolution, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(Angle.TryParse(quantityString, out Angle parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -1097,6 +698,53 @@ namespace UnitsNet.Tests
         {
             Assert.True(Angle.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out AngleUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", AngleUnit.Arcminute, "'")]
+        [InlineData("en-US", AngleUnit.Arcsecond, "″")]
+        [InlineData("en-US", AngleUnit.Centiradian, "crad")]
+        [InlineData("en-US", AngleUnit.Deciradian, "drad")]
+        [InlineData("en-US", AngleUnit.Degree, "°")]
+        [InlineData("en-US", AngleUnit.Gradian, "g")]
+        [InlineData("en-US", AngleUnit.Microdegree, "µ°")]
+        [InlineData("en-US", AngleUnit.Microradian, "µrad")]
+        [InlineData("en-US", AngleUnit.Millidegree, "m°")]
+        [InlineData("en-US", AngleUnit.Milliradian, "mrad")]
+        [InlineData("en-US", AngleUnit.Nanodegree, "n°")]
+        [InlineData("en-US", AngleUnit.Nanoradian, "nrad")]
+        [InlineData("en-US", AngleUnit.NatoMil, "mil")]
+        [InlineData("en-US", AngleUnit.Radian, "rad")]
+        [InlineData("en-US", AngleUnit.Revolution, "r")]
+        [InlineData("ru-RU", AngleUnit.Centiradian, "срад")]
+        [InlineData("ru-RU", AngleUnit.Deciradian, "драд")]
+        [InlineData("ru-RU", AngleUnit.Degree, "°")]
+        [InlineData("ru-RU", AngleUnit.Gradian, "g")]
+        [InlineData("ru-RU", AngleUnit.Microdegree, "мк°")]
+        [InlineData("ru-RU", AngleUnit.Microradian, "мкрад")]
+        [InlineData("ru-RU", AngleUnit.Millidegree, "м°")]
+        [InlineData("ru-RU", AngleUnit.Milliradian, "мрад")]
+        [InlineData("ru-RU", AngleUnit.Nanodegree, "н°")]
+        [InlineData("ru-RU", AngleUnit.Nanoradian, "нрад")]
+        [InlineData("ru-RU", AngleUnit.Radian, "рад")]
+        [InlineData("ru-RU", AngleUnit.Revolution, "r")]
+        public void GetAbbreviationForCulture(string culture, AngleUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Angle.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Angle.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Angle.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

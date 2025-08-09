@@ -282,53 +282,28 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 J/mol", MolarEnergyUnit.JoulePerMole, 4.2)]
+        [InlineData("en-US", "4.2 kJ/mol", MolarEnergyUnit.KilojoulePerMole, 4.2)]
+        [InlineData("en-US", "4.2 MJ/mol", MolarEnergyUnit.MegajoulePerMole, 4.2)]
+        public void Parse(string culture, string quantityString, MolarEnergyUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = MolarEnergy.Parse("1 J/mol", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.JoulesPerMole, JoulesPerMoleTolerance);
-                Assert.Equal(MolarEnergyUnit.JoulePerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = MolarEnergy.Parse("1 kJ/mol", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilojoulesPerMole, KilojoulesPerMoleTolerance);
-                Assert.Equal(MolarEnergyUnit.KilojoulePerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = MolarEnergy.Parse("1 MJ/mol", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MegajoulesPerMole, MegajoulesPerMoleTolerance);
-                Assert.Equal(MolarEnergyUnit.MegajoulePerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = MolarEnergy.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 J/mol", MolarEnergyUnit.JoulePerMole, 4.2)]
+        [InlineData("en-US", "4.2 kJ/mol", MolarEnergyUnit.KilojoulePerMole, 4.2)]
+        [InlineData("en-US", "4.2 MJ/mol", MolarEnergyUnit.MegajoulePerMole, 4.2)]
+        public void TryParse(string culture, string quantityString, MolarEnergyUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(MolarEnergy.TryParse("1 J/mol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.JoulesPerMole, JoulesPerMoleTolerance);
-                Assert.Equal(MolarEnergyUnit.JoulePerMole, parsed.Unit);
-            }
-
-            {
-                Assert.True(MolarEnergy.TryParse("1 kJ/mol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilojoulesPerMole, KilojoulesPerMoleTolerance);
-                Assert.Equal(MolarEnergyUnit.KilojoulePerMole, parsed.Unit);
-            }
-
-            {
-                Assert.True(MolarEnergy.TryParse("1 MJ/mol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MegajoulesPerMole, MegajoulesPerMoleTolerance);
-                Assert.Equal(MolarEnergyUnit.MegajoulePerMole, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(MolarEnergy.TryParse(quantityString, out MolarEnergy parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -419,6 +394,29 @@ namespace UnitsNet.Tests
         {
             Assert.True(MolarEnergy.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MolarEnergyUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", MolarEnergyUnit.JoulePerMole, "J/mol")]
+        [InlineData("en-US", MolarEnergyUnit.KilojoulePerMole, "kJ/mol")]
+        [InlineData("en-US", MolarEnergyUnit.MegajoulePerMole, "MJ/mol")]
+        public void GetAbbreviationForCulture(string culture, MolarEnergyUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = MolarEnergy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(MolarEnergy.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = MolarEnergy.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

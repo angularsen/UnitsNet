@@ -348,172 +348,50 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 kΩ·cm", ElectricResistivityUnit.KiloohmCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 kΩ·m", ElectricResistivityUnit.KiloohmMeter, 4.2)]
+        [InlineData("en-US", "4.2 MΩ·cm", ElectricResistivityUnit.MegaohmCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 MΩ·m", ElectricResistivityUnit.MegaohmMeter, 4.2)]
+        [InlineData("en-US", "4.2 µΩ·cm", ElectricResistivityUnit.MicroohmCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 µΩ·m", ElectricResistivityUnit.MicroohmMeter, 4.2)]
+        [InlineData("en-US", "4.2 mΩ·cm", ElectricResistivityUnit.MilliohmCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 mΩ·m", ElectricResistivityUnit.MilliohmMeter, 4.2)]
+        [InlineData("en-US", "4.2 nΩ·cm", ElectricResistivityUnit.NanoohmCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 nΩ·m", ElectricResistivityUnit.NanoohmMeter, 4.2)]
+        [InlineData("en-US", "4.2 Ω·cm", ElectricResistivityUnit.OhmCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 Ω·m", ElectricResistivityUnit.OhmMeter, 4.2)]
+        [InlineData("en-US", "4.2 pΩ·cm", ElectricResistivityUnit.PicoohmCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 pΩ·m", ElectricResistivityUnit.PicoohmMeter, 4.2)]
+        public void Parse(string culture, string quantityString, ElectricResistivityUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = ElectricResistivity.Parse("1 kΩ·cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KiloohmsCentimeter, KiloohmsCentimeterTolerance);
-                Assert.Equal(ElectricResistivityUnit.KiloohmCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricResistivity.Parse("1 kΩ·m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KiloohmMeters, KiloohmMetersTolerance);
-                Assert.Equal(ElectricResistivityUnit.KiloohmMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricResistivity.Parse("1 MΩ·cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MegaohmsCentimeter, MegaohmsCentimeterTolerance);
-                Assert.Equal(ElectricResistivityUnit.MegaohmCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricResistivity.Parse("1 MΩ·m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MegaohmMeters, MegaohmMetersTolerance);
-                Assert.Equal(ElectricResistivityUnit.MegaohmMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricResistivity.Parse("1 µΩ·cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicroohmsCentimeter, MicroohmsCentimeterTolerance);
-                Assert.Equal(ElectricResistivityUnit.MicroohmCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricResistivity.Parse("1 µΩ·m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicroohmMeters, MicroohmMetersTolerance);
-                Assert.Equal(ElectricResistivityUnit.MicroohmMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricResistivity.Parse("1 mΩ·cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MilliohmsCentimeter, MilliohmsCentimeterTolerance);
-                Assert.Equal(ElectricResistivityUnit.MilliohmCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricResistivity.Parse("1 mΩ·m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MilliohmMeters, MilliohmMetersTolerance);
-                Assert.Equal(ElectricResistivityUnit.MilliohmMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricResistivity.Parse("1 nΩ·cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NanoohmsCentimeter, NanoohmsCentimeterTolerance);
-                Assert.Equal(ElectricResistivityUnit.NanoohmCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricResistivity.Parse("1 nΩ·m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NanoohmMeters, NanoohmMetersTolerance);
-                Assert.Equal(ElectricResistivityUnit.NanoohmMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricResistivity.Parse("1 Ω·cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.OhmsCentimeter, OhmsCentimeterTolerance);
-                Assert.Equal(ElectricResistivityUnit.OhmCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricResistivity.Parse("1 Ω·m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.OhmMeters, OhmMetersTolerance);
-                Assert.Equal(ElectricResistivityUnit.OhmMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricResistivity.Parse("1 pΩ·cm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PicoohmsCentimeter, PicoohmsCentimeterTolerance);
-                Assert.Equal(ElectricResistivityUnit.PicoohmCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricResistivity.Parse("1 pΩ·m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.PicoohmMeters, PicoohmMetersTolerance);
-                Assert.Equal(ElectricResistivityUnit.PicoohmMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = ElectricResistivity.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 kΩ·cm", ElectricResistivityUnit.KiloohmCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 kΩ·m", ElectricResistivityUnit.KiloohmMeter, 4.2)]
+        [InlineData("en-US", "4.2 MΩ·cm", ElectricResistivityUnit.MegaohmCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 MΩ·m", ElectricResistivityUnit.MegaohmMeter, 4.2)]
+        [InlineData("en-US", "4.2 µΩ·cm", ElectricResistivityUnit.MicroohmCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 µΩ·m", ElectricResistivityUnit.MicroohmMeter, 4.2)]
+        [InlineData("en-US", "4.2 mΩ·cm", ElectricResistivityUnit.MilliohmCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 mΩ·m", ElectricResistivityUnit.MilliohmMeter, 4.2)]
+        [InlineData("en-US", "4.2 nΩ·cm", ElectricResistivityUnit.NanoohmCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 nΩ·m", ElectricResistivityUnit.NanoohmMeter, 4.2)]
+        [InlineData("en-US", "4.2 Ω·cm", ElectricResistivityUnit.OhmCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 Ω·m", ElectricResistivityUnit.OhmMeter, 4.2)]
+        [InlineData("en-US", "4.2 pΩ·cm", ElectricResistivityUnit.PicoohmCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 pΩ·m", ElectricResistivityUnit.PicoohmMeter, 4.2)]
+        public void TryParse(string culture, string quantityString, ElectricResistivityUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(ElectricResistivity.TryParse("1 kΩ·cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KiloohmsCentimeter, KiloohmsCentimeterTolerance);
-                Assert.Equal(ElectricResistivityUnit.KiloohmCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricResistivity.TryParse("1 kΩ·m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KiloohmMeters, KiloohmMetersTolerance);
-                Assert.Equal(ElectricResistivityUnit.KiloohmMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricResistivity.TryParse("1 µΩ·cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicroohmsCentimeter, MicroohmsCentimeterTolerance);
-                Assert.Equal(ElectricResistivityUnit.MicroohmCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricResistivity.TryParse("1 µΩ·m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicroohmMeters, MicroohmMetersTolerance);
-                Assert.Equal(ElectricResistivityUnit.MicroohmMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricResistivity.TryParse("1 nΩ·cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanoohmsCentimeter, NanoohmsCentimeterTolerance);
-                Assert.Equal(ElectricResistivityUnit.NanoohmCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricResistivity.TryParse("1 nΩ·m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanoohmMeters, NanoohmMetersTolerance);
-                Assert.Equal(ElectricResistivityUnit.NanoohmMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricResistivity.TryParse("1 Ω·cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.OhmsCentimeter, OhmsCentimeterTolerance);
-                Assert.Equal(ElectricResistivityUnit.OhmCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricResistivity.TryParse("1 Ω·m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.OhmMeters, OhmMetersTolerance);
-                Assert.Equal(ElectricResistivityUnit.OhmMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricResistivity.TryParse("1 pΩ·cm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PicoohmsCentimeter, PicoohmsCentimeterTolerance);
-                Assert.Equal(ElectricResistivityUnit.PicoohmCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricResistivity.TryParse("1 pΩ·m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.PicoohmMeters, PicoohmMetersTolerance);
-                Assert.Equal(ElectricResistivityUnit.PicoohmMeter, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricResistivity.TryParse(quantityString, out ElectricResistivity parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -692,6 +570,40 @@ namespace UnitsNet.Tests
         {
             Assert.True(ElectricResistivity.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricResistivityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", ElectricResistivityUnit.KiloohmCentimeter, "kΩ·cm")]
+        [InlineData("en-US", ElectricResistivityUnit.KiloohmMeter, "kΩ·m")]
+        [InlineData("en-US", ElectricResistivityUnit.MegaohmCentimeter, "MΩ·cm")]
+        [InlineData("en-US", ElectricResistivityUnit.MegaohmMeter, "MΩ·m")]
+        [InlineData("en-US", ElectricResistivityUnit.MicroohmCentimeter, "µΩ·cm")]
+        [InlineData("en-US", ElectricResistivityUnit.MicroohmMeter, "µΩ·m")]
+        [InlineData("en-US", ElectricResistivityUnit.MilliohmCentimeter, "mΩ·cm")]
+        [InlineData("en-US", ElectricResistivityUnit.MilliohmMeter, "mΩ·m")]
+        [InlineData("en-US", ElectricResistivityUnit.NanoohmCentimeter, "nΩ·cm")]
+        [InlineData("en-US", ElectricResistivityUnit.NanoohmMeter, "nΩ·m")]
+        [InlineData("en-US", ElectricResistivityUnit.OhmCentimeter, "Ω·cm")]
+        [InlineData("en-US", ElectricResistivityUnit.OhmMeter, "Ω·m")]
+        [InlineData("en-US", ElectricResistivityUnit.PicoohmCentimeter, "pΩ·cm")]
+        [InlineData("en-US", ElectricResistivityUnit.PicoohmMeter, "pΩ·m")]
+        public void GetAbbreviationForCulture(string culture, ElectricResistivityUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ElectricResistivity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ElectricResistivity.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ElectricResistivity.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

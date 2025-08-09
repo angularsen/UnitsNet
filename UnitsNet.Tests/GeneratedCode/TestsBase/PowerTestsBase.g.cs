@@ -426,368 +426,82 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 hp(S)", PowerUnit.BoilerHorsepower, 4.2)]
+        [InlineData("en-US", "4.2 Btu/h", PowerUnit.BritishThermalUnitPerHour, 4.2)]
+        [InlineData("en-US", "4.2 Btu/hr", PowerUnit.BritishThermalUnitPerHour, 4.2)]
+        [InlineData("en-US", "4.2 daW", PowerUnit.Decawatt, 4.2)]
+        [InlineData("en-US", "4.2 dW", PowerUnit.Deciwatt, 4.2)]
+        [InlineData("en-US", "4.2 hp(E)", PowerUnit.ElectricalHorsepower, 4.2)]
+        [InlineData("en-US", "4.2 fW", PowerUnit.Femtowatt, 4.2)]
+        [InlineData("en-US", "4.2 GJ/h", PowerUnit.GigajoulePerHour, 4.2)]
+        [InlineData("en-US", "4.2 GW", PowerUnit.Gigawatt, 4.2)]
+        [InlineData("en-US", "4.2 hp(H)", PowerUnit.HydraulicHorsepower, 4.2)]
+        [InlineData("en-US", "4.2 J/h", PowerUnit.JoulePerHour, 4.2)]
+        [InlineData("en-US", "4.2 kBtu/h", PowerUnit.KilobritishThermalUnitPerHour, 4.2)]
+        [InlineData("en-US", "4.2 kBtu/hr", PowerUnit.KilobritishThermalUnitPerHour, 4.2)]
+        [InlineData("en-US", "4.2 kJ/h", PowerUnit.KilojoulePerHour, 4.2)]
+        [InlineData("en-US", "4.2 kW", PowerUnit.Kilowatt, 4.2)]
+        [InlineData("en-US", "4.2 hp(I)", PowerUnit.MechanicalHorsepower, 4.2)]
+        [InlineData("en-US", "4.2 MBtu/h", PowerUnit.MegabritishThermalUnitPerHour, 4.2)]
+        [InlineData("en-US", "4.2 MBtu/hr", PowerUnit.MegabritishThermalUnitPerHour, 4.2)]
+        [InlineData("en-US", "4.2 MJ/h", PowerUnit.MegajoulePerHour, 4.2)]
+        [InlineData("en-US", "4.2 MW", PowerUnit.Megawatt, 4.2)]
+        [InlineData("en-US", "4.2 hp(M)", PowerUnit.MetricHorsepower, 4.2)]
+        [InlineData("en-US", "4.2 µW", PowerUnit.Microwatt, 4.2)]
+        [InlineData("en-US", "4.2 mJ/h", PowerUnit.MillijoulePerHour, 4.2)]
+        [InlineData("en-US", "4.2 mW", PowerUnit.Milliwatt, 4.2)]
+        [InlineData("en-US", "4.2 nW", PowerUnit.Nanowatt, 4.2)]
+        [InlineData("en-US", "4.2 PW", PowerUnit.Petawatt, 4.2)]
+        [InlineData("en-US", "4.2 pW", PowerUnit.Picowatt, 4.2)]
+        [InlineData("en-US", "4.2 TW", PowerUnit.Terawatt, 4.2)]
+        [InlineData("en-US", "4.2 TR", PowerUnit.TonOfRefrigeration, 4.2)]
+        [InlineData("en-US", "4.2 W", PowerUnit.Watt, 4.2)]
+        public void Parse(string culture, string quantityString, PowerUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = Power.Parse("1 hp(S)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.BoilerHorsepower, BoilerHorsepowerTolerance);
-                Assert.Equal(PowerUnit.BoilerHorsepower, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 Btu/h", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.BritishThermalUnitsPerHour, BritishThermalUnitsPerHourTolerance);
-                Assert.Equal(PowerUnit.BritishThermalUnitPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 Btu/hr", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.BritishThermalUnitsPerHour, BritishThermalUnitsPerHourTolerance);
-                Assert.Equal(PowerUnit.BritishThermalUnitPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 daW", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Decawatts, DecawattsTolerance);
-                Assert.Equal(PowerUnit.Decawatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 dW", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Deciwatts, DeciwattsTolerance);
-                Assert.Equal(PowerUnit.Deciwatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 hp(E)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.ElectricalHorsepower, ElectricalHorsepowerTolerance);
-                Assert.Equal(PowerUnit.ElectricalHorsepower, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 fW", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Femtowatts, FemtowattsTolerance);
-                Assert.Equal(PowerUnit.Femtowatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 GJ/h", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GigajoulesPerHour, GigajoulesPerHourTolerance);
-                Assert.Equal(PowerUnit.GigajoulePerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 GW", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Gigawatts, GigawattsTolerance);
-                Assert.Equal(PowerUnit.Gigawatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 hp(H)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.HydraulicHorsepower, HydraulicHorsepowerTolerance);
-                Assert.Equal(PowerUnit.HydraulicHorsepower, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 J/h", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.JoulesPerHour, JoulesPerHourTolerance);
-                Assert.Equal(PowerUnit.JoulePerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 kBtu/h", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilobritishThermalUnitsPerHour, KilobritishThermalUnitsPerHourTolerance);
-                Assert.Equal(PowerUnit.KilobritishThermalUnitPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 kBtu/hr", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilobritishThermalUnitsPerHour, KilobritishThermalUnitsPerHourTolerance);
-                Assert.Equal(PowerUnit.KilobritishThermalUnitPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 kJ/h", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilojoulesPerHour, KilojoulesPerHourTolerance);
-                Assert.Equal(PowerUnit.KilojoulePerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 kW", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kilowatts, KilowattsTolerance);
-                Assert.Equal(PowerUnit.Kilowatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 hp(I)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MechanicalHorsepower, MechanicalHorsepowerTolerance);
-                Assert.Equal(PowerUnit.MechanicalHorsepower, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 MBtu/h", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MegabritishThermalUnitsPerHour, MegabritishThermalUnitsPerHourTolerance);
-                Assert.Equal(PowerUnit.MegabritishThermalUnitPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 MBtu/hr", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MegabritishThermalUnitsPerHour, MegabritishThermalUnitsPerHourTolerance);
-                Assert.Equal(PowerUnit.MegabritishThermalUnitPerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 MJ/h", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MegajoulesPerHour, MegajoulesPerHourTolerance);
-                Assert.Equal(PowerUnit.MegajoulePerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 MW", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Megawatts, MegawattsTolerance);
-                Assert.Equal(PowerUnit.Megawatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 hp(M)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MetricHorsepower, MetricHorsepowerTolerance);
-                Assert.Equal(PowerUnit.MetricHorsepower, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 µW", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Microwatts, MicrowattsTolerance);
-                Assert.Equal(PowerUnit.Microwatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 mJ/h", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillijoulesPerHour, MillijoulesPerHourTolerance);
-                Assert.Equal(PowerUnit.MillijoulePerHour, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 mW", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Milliwatts, MilliwattsTolerance);
-                Assert.Equal(PowerUnit.Milliwatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 nW", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Nanowatts, NanowattsTolerance);
-                Assert.Equal(PowerUnit.Nanowatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 PW", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Petawatts, PetawattsTolerance);
-                Assert.Equal(PowerUnit.Petawatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 pW", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Picowatts, PicowattsTolerance);
-                Assert.Equal(PowerUnit.Picowatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 TW", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Terawatts, TerawattsTolerance);
-                Assert.Equal(PowerUnit.Terawatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 TR", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.TonsOfRefrigeration, TonsOfRefrigerationTolerance);
-                Assert.Equal(PowerUnit.TonOfRefrigeration, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Power.Parse("1 W", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Watts, WattsTolerance);
-                Assert.Equal(PowerUnit.Watt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = Power.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 hp(S)", PowerUnit.BoilerHorsepower, 4.2)]
+        [InlineData("en-US", "4.2 Btu/h", PowerUnit.BritishThermalUnitPerHour, 4.2)]
+        [InlineData("en-US", "4.2 Btu/hr", PowerUnit.BritishThermalUnitPerHour, 4.2)]
+        [InlineData("en-US", "4.2 daW", PowerUnit.Decawatt, 4.2)]
+        [InlineData("en-US", "4.2 dW", PowerUnit.Deciwatt, 4.2)]
+        [InlineData("en-US", "4.2 hp(E)", PowerUnit.ElectricalHorsepower, 4.2)]
+        [InlineData("en-US", "4.2 fW", PowerUnit.Femtowatt, 4.2)]
+        [InlineData("en-US", "4.2 GJ/h", PowerUnit.GigajoulePerHour, 4.2)]
+        [InlineData("en-US", "4.2 GW", PowerUnit.Gigawatt, 4.2)]
+        [InlineData("en-US", "4.2 hp(H)", PowerUnit.HydraulicHorsepower, 4.2)]
+        [InlineData("en-US", "4.2 J/h", PowerUnit.JoulePerHour, 4.2)]
+        [InlineData("en-US", "4.2 kBtu/h", PowerUnit.KilobritishThermalUnitPerHour, 4.2)]
+        [InlineData("en-US", "4.2 kBtu/hr", PowerUnit.KilobritishThermalUnitPerHour, 4.2)]
+        [InlineData("en-US", "4.2 kJ/h", PowerUnit.KilojoulePerHour, 4.2)]
+        [InlineData("en-US", "4.2 kW", PowerUnit.Kilowatt, 4.2)]
+        [InlineData("en-US", "4.2 hp(I)", PowerUnit.MechanicalHorsepower, 4.2)]
+        [InlineData("en-US", "4.2 MBtu/h", PowerUnit.MegabritishThermalUnitPerHour, 4.2)]
+        [InlineData("en-US", "4.2 MBtu/hr", PowerUnit.MegabritishThermalUnitPerHour, 4.2)]
+        [InlineData("en-US", "4.2 MJ/h", PowerUnit.MegajoulePerHour, 4.2)]
+        [InlineData("en-US", "4.2 MW", PowerUnit.Megawatt, 4.2)]
+        [InlineData("en-US", "4.2 hp(M)", PowerUnit.MetricHorsepower, 4.2)]
+        [InlineData("en-US", "4.2 µW", PowerUnit.Microwatt, 4.2)]
+        [InlineData("en-US", "4.2 mJ/h", PowerUnit.MillijoulePerHour, 4.2)]
+        [InlineData("en-US", "4.2 mW", PowerUnit.Milliwatt, 4.2)]
+        [InlineData("en-US", "4.2 nW", PowerUnit.Nanowatt, 4.2)]
+        [InlineData("en-US", "4.2 PW", PowerUnit.Petawatt, 4.2)]
+        [InlineData("en-US", "4.2 pW", PowerUnit.Picowatt, 4.2)]
+        [InlineData("en-US", "4.2 TW", PowerUnit.Terawatt, 4.2)]
+        [InlineData("en-US", "4.2 TR", PowerUnit.TonOfRefrigeration, 4.2)]
+        [InlineData("en-US", "4.2 W", PowerUnit.Watt, 4.2)]
+        public void TryParse(string culture, string quantityString, PowerUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(Power.TryParse("1 hp(S)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.BoilerHorsepower, BoilerHorsepowerTolerance);
-                Assert.Equal(PowerUnit.BoilerHorsepower, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 Btu/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.BritishThermalUnitsPerHour, BritishThermalUnitsPerHourTolerance);
-                Assert.Equal(PowerUnit.BritishThermalUnitPerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 Btu/hr", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.BritishThermalUnitsPerHour, BritishThermalUnitsPerHourTolerance);
-                Assert.Equal(PowerUnit.BritishThermalUnitPerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 daW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Decawatts, DecawattsTolerance);
-                Assert.Equal(PowerUnit.Decawatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 dW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Deciwatts, DeciwattsTolerance);
-                Assert.Equal(PowerUnit.Deciwatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 hp(E)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.ElectricalHorsepower, ElectricalHorsepowerTolerance);
-                Assert.Equal(PowerUnit.ElectricalHorsepower, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 fW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Femtowatts, FemtowattsTolerance);
-                Assert.Equal(PowerUnit.Femtowatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 GJ/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GigajoulesPerHour, GigajoulesPerHourTolerance);
-                Assert.Equal(PowerUnit.GigajoulePerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 GW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Gigawatts, GigawattsTolerance);
-                Assert.Equal(PowerUnit.Gigawatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 hp(H)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.HydraulicHorsepower, HydraulicHorsepowerTolerance);
-                Assert.Equal(PowerUnit.HydraulicHorsepower, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 J/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.JoulesPerHour, JoulesPerHourTolerance);
-                Assert.Equal(PowerUnit.JoulePerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 kBtu/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilobritishThermalUnitsPerHour, KilobritishThermalUnitsPerHourTolerance);
-                Assert.Equal(PowerUnit.KilobritishThermalUnitPerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 kBtu/hr", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilobritishThermalUnitsPerHour, KilobritishThermalUnitsPerHourTolerance);
-                Assert.Equal(PowerUnit.KilobritishThermalUnitPerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 kJ/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilojoulesPerHour, KilojoulesPerHourTolerance);
-                Assert.Equal(PowerUnit.KilojoulePerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 kW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilowatts, KilowattsTolerance);
-                Assert.Equal(PowerUnit.Kilowatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 hp(I)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MechanicalHorsepower, MechanicalHorsepowerTolerance);
-                Assert.Equal(PowerUnit.MechanicalHorsepower, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 MBtu/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MegabritishThermalUnitsPerHour, MegabritishThermalUnitsPerHourTolerance);
-                Assert.Equal(PowerUnit.MegabritishThermalUnitPerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 MBtu/hr", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MegabritishThermalUnitsPerHour, MegabritishThermalUnitsPerHourTolerance);
-                Assert.Equal(PowerUnit.MegabritishThermalUnitPerHour, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 hp(M)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MetricHorsepower, MetricHorsepowerTolerance);
-                Assert.Equal(PowerUnit.MetricHorsepower, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 µW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microwatts, MicrowattsTolerance);
-                Assert.Equal(PowerUnit.Microwatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 nW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanowatts, NanowattsTolerance);
-                Assert.Equal(PowerUnit.Nanowatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 TW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Terawatts, TerawattsTolerance);
-                Assert.Equal(PowerUnit.Terawatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 TR", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.TonsOfRefrigeration, TonsOfRefrigerationTolerance);
-                Assert.Equal(PowerUnit.TonOfRefrigeration, parsed.Unit);
-            }
-
-            {
-                Assert.True(Power.TryParse("1 W", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Watts, WattsTolerance);
-                Assert.Equal(PowerUnit.Watt, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(Power.TryParse(quantityString, out Power parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -1094,6 +808,53 @@ namespace UnitsNet.Tests
         {
             Assert.True(Power.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out PowerUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", PowerUnit.BoilerHorsepower, "hp(S)")]
+        [InlineData("en-US", PowerUnit.BritishThermalUnitPerHour, "Btu/h")]
+        [InlineData("en-US", PowerUnit.Decawatt, "daW")]
+        [InlineData("en-US", PowerUnit.Deciwatt, "dW")]
+        [InlineData("en-US", PowerUnit.ElectricalHorsepower, "hp(E)")]
+        [InlineData("en-US", PowerUnit.Femtowatt, "fW")]
+        [InlineData("en-US", PowerUnit.GigajoulePerHour, "GJ/h")]
+        [InlineData("en-US", PowerUnit.Gigawatt, "GW")]
+        [InlineData("en-US", PowerUnit.HydraulicHorsepower, "hp(H)")]
+        [InlineData("en-US", PowerUnit.JoulePerHour, "J/h")]
+        [InlineData("en-US", PowerUnit.KilobritishThermalUnitPerHour, "kBtu/h")]
+        [InlineData("en-US", PowerUnit.KilojoulePerHour, "kJ/h")]
+        [InlineData("en-US", PowerUnit.Kilowatt, "kW")]
+        [InlineData("en-US", PowerUnit.MechanicalHorsepower, "hp(I)")]
+        [InlineData("en-US", PowerUnit.MegabritishThermalUnitPerHour, "MBtu/h")]
+        [InlineData("en-US", PowerUnit.MegajoulePerHour, "MJ/h")]
+        [InlineData("en-US", PowerUnit.Megawatt, "MW")]
+        [InlineData("en-US", PowerUnit.MetricHorsepower, "hp(M)")]
+        [InlineData("en-US", PowerUnit.Microwatt, "µW")]
+        [InlineData("en-US", PowerUnit.MillijoulePerHour, "mJ/h")]
+        [InlineData("en-US", PowerUnit.Milliwatt, "mW")]
+        [InlineData("en-US", PowerUnit.Nanowatt, "nW")]
+        [InlineData("en-US", PowerUnit.Petawatt, "PW")]
+        [InlineData("en-US", PowerUnit.Picowatt, "pW")]
+        [InlineData("en-US", PowerUnit.Terawatt, "TW")]
+        [InlineData("en-US", PowerUnit.TonOfRefrigeration, "TR")]
+        [InlineData("en-US", PowerUnit.Watt, "W")]
+        public void GetAbbreviationForCulture(string culture, PowerUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Power.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Power.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Power.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

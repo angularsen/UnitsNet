@@ -306,93 +306,36 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 F", ElectricCapacitanceUnit.Farad, 4.2)]
+        [InlineData("en-US", "4.2 kF", ElectricCapacitanceUnit.Kilofarad, 4.2)]
+        [InlineData("en-US", "4.2 MF", ElectricCapacitanceUnit.Megafarad, 4.2)]
+        [InlineData("en-US", "4.2 µF", ElectricCapacitanceUnit.Microfarad, 4.2)]
+        [InlineData("en-US", "4.2 mF", ElectricCapacitanceUnit.Millifarad, 4.2)]
+        [InlineData("en-US", "4.2 nF", ElectricCapacitanceUnit.Nanofarad, 4.2)]
+        [InlineData("en-US", "4.2 pF", ElectricCapacitanceUnit.Picofarad, 4.2)]
+        public void Parse(string culture, string quantityString, ElectricCapacitanceUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = ElectricCapacitance.Parse("1 F", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Farads, FaradsTolerance);
-                Assert.Equal(ElectricCapacitanceUnit.Farad, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricCapacitance.Parse("1 kF", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kilofarads, KilofaradsTolerance);
-                Assert.Equal(ElectricCapacitanceUnit.Kilofarad, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricCapacitance.Parse("1 MF", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Megafarads, MegafaradsTolerance);
-                Assert.Equal(ElectricCapacitanceUnit.Megafarad, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricCapacitance.Parse("1 µF", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Microfarads, MicrofaradsTolerance);
-                Assert.Equal(ElectricCapacitanceUnit.Microfarad, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricCapacitance.Parse("1 mF", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Millifarads, MillifaradsTolerance);
-                Assert.Equal(ElectricCapacitanceUnit.Millifarad, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricCapacitance.Parse("1 nF", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Nanofarads, NanofaradsTolerance);
-                Assert.Equal(ElectricCapacitanceUnit.Nanofarad, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricCapacitance.Parse("1 pF", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Picofarads, PicofaradsTolerance);
-                Assert.Equal(ElectricCapacitanceUnit.Picofarad, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = ElectricCapacitance.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 F", ElectricCapacitanceUnit.Farad, 4.2)]
+        [InlineData("en-US", "4.2 kF", ElectricCapacitanceUnit.Kilofarad, 4.2)]
+        [InlineData("en-US", "4.2 MF", ElectricCapacitanceUnit.Megafarad, 4.2)]
+        [InlineData("en-US", "4.2 µF", ElectricCapacitanceUnit.Microfarad, 4.2)]
+        [InlineData("en-US", "4.2 mF", ElectricCapacitanceUnit.Millifarad, 4.2)]
+        [InlineData("en-US", "4.2 nF", ElectricCapacitanceUnit.Nanofarad, 4.2)]
+        [InlineData("en-US", "4.2 pF", ElectricCapacitanceUnit.Picofarad, 4.2)]
+        public void TryParse(string culture, string quantityString, ElectricCapacitanceUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(ElectricCapacitance.TryParse("1 F", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Farads, FaradsTolerance);
-                Assert.Equal(ElectricCapacitanceUnit.Farad, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricCapacitance.TryParse("1 kF", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilofarads, KilofaradsTolerance);
-                Assert.Equal(ElectricCapacitanceUnit.Kilofarad, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricCapacitance.TryParse("1 µF", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microfarads, MicrofaradsTolerance);
-                Assert.Equal(ElectricCapacitanceUnit.Microfarad, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricCapacitance.TryParse("1 nF", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanofarads, NanofaradsTolerance);
-                Assert.Equal(ElectricCapacitanceUnit.Nanofarad, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricCapacitance.TryParse("1 pF", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Picofarads, PicofaradsTolerance);
-                Assert.Equal(ElectricCapacitanceUnit.Picofarad, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricCapacitance.TryParse(quantityString, out ElectricCapacitance parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -515,6 +458,33 @@ namespace UnitsNet.Tests
         {
             Assert.True(ElectricCapacitance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricCapacitanceUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", ElectricCapacitanceUnit.Farad, "F")]
+        [InlineData("en-US", ElectricCapacitanceUnit.Kilofarad, "kF")]
+        [InlineData("en-US", ElectricCapacitanceUnit.Megafarad, "MF")]
+        [InlineData("en-US", ElectricCapacitanceUnit.Microfarad, "µF")]
+        [InlineData("en-US", ElectricCapacitanceUnit.Millifarad, "mF")]
+        [InlineData("en-US", ElectricCapacitanceUnit.Nanofarad, "nF")]
+        [InlineData("en-US", ElectricCapacitanceUnit.Picofarad, "pF")]
+        public void GetAbbreviationForCulture(string culture, ElectricCapacitanceUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ElectricCapacitance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ElectricCapacitance.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ElectricCapacitance.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]
