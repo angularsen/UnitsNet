@@ -114,7 +114,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ThermalResistance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ThermalResistanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ThermalResistanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            ThermalResistanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ThermalResistanceUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new ThermalResistance(1, ThermalResistanceUnit.KelvinPerWatt);
 
             QuantityInfo<ThermalResistance, ThermalResistanceUnit> quantityInfo = quantity.QuantityInfo;
@@ -389,7 +389,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ThermalResistanceUnit.KelvinPerWatt, "K/W")]
         public void GetAbbreviationForCulture(string culture, ThermalResistanceUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ThermalResistance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ThermalResistance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -400,7 +400,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ThermalResistance.GetAbbreviation(unit); 
+                var defaultAbbreviation = ThermalResistance.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

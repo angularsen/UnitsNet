@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Speed_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            SpeedUnit[] unitsOrderedByName = EnumHelper.GetValues<SpeedUnit>().OrderBy(x => x.ToString()).ToArray();
+            SpeedUnit[] unitsOrderedByName = EnumHelper.GetValues<SpeedUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new Speed(1, SpeedUnit.MeterPerSecond);
 
             QuantityInfo<Speed, SpeedUnit> quantityInfo = quantity.QuantityInfo;
@@ -1144,7 +1144,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", SpeedUnit.NanometerPerSecond, "нм/с")]
         public void GetAbbreviationForCulture(string culture, SpeedUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Speed.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Speed.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -1155,7 +1155,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Speed.GetAbbreviation(unit); 
+                var defaultAbbreviation = Speed.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

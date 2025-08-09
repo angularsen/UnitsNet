@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void RotationalStiffnessPerLength_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RotationalStiffnessPerLengthUnit[] unitsOrderedByName = EnumHelper.GetValues<RotationalStiffnessPerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
+            RotationalStiffnessPerLengthUnit[] unitsOrderedByName = EnumHelper.GetValues<RotationalStiffnessPerLengthUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new RotationalStiffnessPerLength(1, RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter);
 
             QuantityInfo<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit> quantityInfo = quantity.QuantityInfo;
@@ -520,7 +520,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, "lbf·ft/deg/ft")]
         public void GetAbbreviationForCulture(string culture, RotationalStiffnessPerLengthUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = RotationalStiffnessPerLength.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = RotationalStiffnessPerLength.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -531,7 +531,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = RotationalStiffnessPerLength.GetAbbreviation(unit); 
+                var defaultAbbreviation = RotationalStiffnessPerLength.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

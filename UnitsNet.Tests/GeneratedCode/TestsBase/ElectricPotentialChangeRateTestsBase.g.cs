@@ -186,7 +186,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricPotentialChangeRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricPotentialChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricPotentialChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricPotentialChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricPotentialChangeRateUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerSecond);
 
             QuantityInfo<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit> quantityInfo = quantity.QuantityInfo;
@@ -695,7 +695,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ElectricPotentialChangeRateUnit.VoltPerSecond, "V/s")]
         public void GetAbbreviationForCulture(string culture, ElectricPotentialChangeRateUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ElectricPotentialChangeRate.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ElectricPotentialChangeRate.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -706,7 +706,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ElectricPotentialChangeRate.GetAbbreviation(unit); 
+                var defaultAbbreviation = ElectricPotentialChangeRate.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

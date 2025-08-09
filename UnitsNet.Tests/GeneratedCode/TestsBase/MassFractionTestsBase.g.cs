@@ -181,7 +181,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MassFraction_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MassFractionUnit[] unitsOrderedByName = EnumHelper.GetValues<MassFractionUnit>().OrderBy(x => x.ToString()).ToArray();
+            MassFractionUnit[] unitsOrderedByName = EnumHelper.GetValues<MassFractionUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new MassFraction(1, MassFractionUnit.DecimalFraction);
 
             QuantityInfo<MassFraction, MassFractionUnit> quantityInfo = quantity.QuantityInfo;
@@ -713,7 +713,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", MassFractionUnit.Percent, "%")]
         public void GetAbbreviationForCulture(string culture, MassFractionUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = MassFraction.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = MassFraction.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -724,7 +724,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = MassFraction.GetAbbreviation(unit); 
+                var defaultAbbreviation = MassFraction.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

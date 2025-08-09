@@ -174,7 +174,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void SpecificWeight_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            SpecificWeightUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificWeightUnit>().OrderBy(x => x.ToString()).ToArray();
+            SpecificWeightUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificWeightUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new SpecificWeight(1, SpecificWeightUnit.NewtonPerCubicMeter);
 
             QuantityInfo<SpecificWeight, SpecificWeightUnit> quantityInfo = quantity.QuantityInfo;
@@ -644,7 +644,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", SpecificWeightUnit.TonneForcePerCubicMillimeter, "tf/mm³")]
         public void GetAbbreviationForCulture(string culture, SpecificWeightUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = SpecificWeight.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = SpecificWeight.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -655,7 +655,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = SpecificWeight.GetAbbreviation(unit); 
+                var defaultAbbreviation = SpecificWeight.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

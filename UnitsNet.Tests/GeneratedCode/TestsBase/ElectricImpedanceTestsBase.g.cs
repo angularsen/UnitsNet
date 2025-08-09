@@ -138,7 +138,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricImpedance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricImpedanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricImpedanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricImpedanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricImpedanceUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new ElectricImpedance(1, ElectricImpedanceUnit.Ohm);
 
             QuantityInfo<ElectricImpedance, ElectricImpedanceUnit> quantityInfo = quantity.QuantityInfo;
@@ -491,7 +491,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ElectricImpedanceUnit.Teraohm, "TΩ")]
         public void GetAbbreviationForCulture(string culture, ElectricImpedanceUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ElectricImpedance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ElectricImpedance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -502,7 +502,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ElectricImpedance.GetAbbreviation(unit); 
+                var defaultAbbreviation = ElectricImpedance.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

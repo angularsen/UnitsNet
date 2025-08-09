@@ -174,7 +174,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void TemperatureChangeRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            TemperatureChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            TemperatureChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureChangeRateUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
 
             QuantityInfo<TemperatureChangeRate, TemperatureChangeRateUnit> quantityInfo = quantity.QuantityInfo;
@@ -644,7 +644,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, "n°C/s")]
         public void GetAbbreviationForCulture(string culture, TemperatureChangeRateUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = TemperatureChangeRate.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = TemperatureChangeRate.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -655,7 +655,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = TemperatureChangeRate.GetAbbreviation(unit); 
+                var defaultAbbreviation = TemperatureChangeRate.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

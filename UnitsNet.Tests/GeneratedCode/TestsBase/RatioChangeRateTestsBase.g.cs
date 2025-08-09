@@ -114,7 +114,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void RatioChangeRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RatioChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<RatioChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            RatioChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<RatioChangeRateUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new RatioChangeRate(1, RatioChangeRateUnit.DecimalFractionPerSecond);
 
             QuantityInfo<RatioChangeRate, RatioChangeRateUnit> quantityInfo = quantity.QuantityInfo;
@@ -389,7 +389,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", RatioChangeRateUnit.PercentPerSecond, "%/s")]
         public void GetAbbreviationForCulture(string culture, RatioChangeRateUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = RatioChangeRate.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = RatioChangeRate.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -400,7 +400,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = RatioChangeRate.GetAbbreviation(unit); 
+                var defaultAbbreviation = RatioChangeRate.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

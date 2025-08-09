@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Luminosity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            LuminosityUnit[] unitsOrderedByName = EnumHelper.GetValues<LuminosityUnit>().OrderBy(x => x.ToString()).ToArray();
+            LuminosityUnit[] unitsOrderedByName = EnumHelper.GetValues<LuminosityUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new Luminosity(1, LuminosityUnit.Watt);
 
             QuantityInfo<Luminosity, LuminosityUnit> quantityInfo = quantity.QuantityInfo;
@@ -593,7 +593,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", LuminosityUnit.Watt, "W")]
         public void GetAbbreviationForCulture(string culture, LuminosityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Luminosity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Luminosity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -604,7 +604,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Luminosity.GetAbbreviation(unit); 
+                var defaultAbbreviation = Luminosity.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

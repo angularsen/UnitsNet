@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MolarEnergy_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MolarEnergyUnit[] unitsOrderedByName = EnumHelper.GetValues<MolarEnergyUnit>().OrderBy(x => x.ToString()).ToArray();
+            MolarEnergyUnit[] unitsOrderedByName = EnumHelper.GetValues<MolarEnergyUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new MolarEnergy(1, MolarEnergyUnit.JoulePerMole);
 
             QuantityInfo<MolarEnergy, MolarEnergyUnit> quantityInfo = quantity.QuantityInfo;
@@ -406,7 +406,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", MolarEnergyUnit.MegajoulePerMole, "MJ/mol")]
         public void GetAbbreviationForCulture(string culture, MolarEnergyUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = MolarEnergy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = MolarEnergy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -417,7 +417,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = MolarEnergy.GetAbbreviation(unit); 
+                var defaultAbbreviation = MolarEnergy.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

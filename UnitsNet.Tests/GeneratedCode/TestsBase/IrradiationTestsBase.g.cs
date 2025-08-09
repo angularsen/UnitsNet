@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Irradiation_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            IrradiationUnit[] unitsOrderedByName = EnumHelper.GetValues<IrradiationUnit>().OrderBy(x => x.ToString()).ToArray();
+            IrradiationUnit[] unitsOrderedByName = EnumHelper.GetValues<IrradiationUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new Irradiation(1, IrradiationUnit.JoulePerSquareMeter);
 
             QuantityInfo<Irradiation, IrradiationUnit> quantityInfo = quantity.QuantityInfo;
@@ -508,7 +508,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", IrradiationUnit.WattHourPerSquareMeter, "Wh/m²")]
         public void GetAbbreviationForCulture(string culture, IrradiationUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Irradiation.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Irradiation.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -519,7 +519,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Irradiation.GetAbbreviation(unit); 
+                var defaultAbbreviation = Irradiation.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

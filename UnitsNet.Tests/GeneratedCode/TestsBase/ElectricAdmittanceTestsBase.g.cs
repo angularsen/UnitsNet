@@ -170,7 +170,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricAdmittance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricAdmittanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricAdmittanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricAdmittanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricAdmittanceUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new ElectricAdmittance(1, ElectricAdmittanceUnit.Siemens);
 
             QuantityInfo<ElectricAdmittance, ElectricAdmittanceUnit> quantityInfo = quantity.QuantityInfo;
@@ -627,7 +627,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ElectricAdmittanceUnit.Terasiemens, "TS")]
         public void GetAbbreviationForCulture(string culture, ElectricAdmittanceUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ElectricAdmittance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ElectricAdmittance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -638,7 +638,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ElectricAdmittance.GetAbbreviation(unit); 
+                var defaultAbbreviation = ElectricAdmittance.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

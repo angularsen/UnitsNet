@@ -170,7 +170,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricSusceptance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricSusceptanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricSusceptanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricSusceptanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricSusceptanceUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new ElectricSusceptance(1, ElectricSusceptanceUnit.Siemens);
 
             QuantityInfo<ElectricSusceptance, ElectricSusceptanceUnit> quantityInfo = quantity.QuantityInfo;
@@ -627,7 +627,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ElectricSusceptanceUnit.Terasiemens, "TS")]
         public void GetAbbreviationForCulture(string culture, ElectricSusceptanceUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ElectricSusceptance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ElectricSusceptance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -638,7 +638,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ElectricSusceptance.GetAbbreviation(unit); 
+                var defaultAbbreviation = ElectricSusceptance.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

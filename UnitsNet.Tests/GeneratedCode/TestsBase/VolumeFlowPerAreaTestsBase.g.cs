@@ -114,7 +114,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void VolumeFlowPerArea_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            VolumeFlowPerAreaUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumeFlowPerAreaUnit>().OrderBy(x => x.ToString()).ToArray();
+            VolumeFlowPerAreaUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumeFlowPerAreaUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new VolumeFlowPerArea(1, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter);
 
             QuantityInfo<VolumeFlowPerArea, VolumeFlowPerAreaUnit> quantityInfo = quantity.QuantityInfo;
@@ -389,7 +389,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, "m³/(s·m²)")]
         public void GetAbbreviationForCulture(string culture, VolumeFlowPerAreaUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = VolumeFlowPerArea.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = VolumeFlowPerArea.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -400,7 +400,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = VolumeFlowPerArea.GetAbbreviation(unit); 
+                var defaultAbbreviation = VolumeFlowPerArea.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

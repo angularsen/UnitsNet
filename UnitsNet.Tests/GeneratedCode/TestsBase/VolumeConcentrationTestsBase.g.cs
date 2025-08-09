@@ -165,7 +165,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void VolumeConcentration_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            VolumeConcentrationUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumeConcentrationUnit>().OrderBy(x => x.ToString()).ToArray();
+            VolumeConcentrationUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumeConcentrationUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new VolumeConcentration(1, VolumeConcentrationUnit.DecimalFraction);
 
             QuantityInfo<VolumeConcentration, VolumeConcentrationUnit> quantityInfo = quantity.QuantityInfo;
@@ -645,7 +645,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", VolumeConcentrationUnit.PicoliterPerMilliliter, "pl/ml")]
         public void GetAbbreviationForCulture(string culture, VolumeConcentrationUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = VolumeConcentration.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = VolumeConcentration.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -656,7 +656,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = VolumeConcentration.GetAbbreviation(unit); 
+                var defaultAbbreviation = VolumeConcentration.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

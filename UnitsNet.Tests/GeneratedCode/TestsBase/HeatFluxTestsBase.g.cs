@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HeatFlux_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            HeatFluxUnit[] unitsOrderedByName = EnumHelper.GetValues<HeatFluxUnit>().OrderBy(x => x.ToString()).ToArray();
+            HeatFluxUnit[] unitsOrderedByName = EnumHelper.GetValues<HeatFluxUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new HeatFlux(1, HeatFluxUnit.WattPerSquareMeter);
 
             QuantityInfo<HeatFlux, HeatFluxUnit> quantityInfo = quantity.QuantityInfo;
@@ -671,7 +671,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", HeatFluxUnit.WattPerSquareMeter, "W/m²")]
         public void GetAbbreviationForCulture(string culture, HeatFluxUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = HeatFlux.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = HeatFlux.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -682,7 +682,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = HeatFlux.GetAbbreviation(unit); 
+                var defaultAbbreviation = HeatFlux.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

@@ -89,7 +89,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void VitaminA_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            VitaminAUnit[] unitsOrderedByName = EnumHelper.GetValues<VitaminAUnit>().OrderBy(x => x.ToString()).ToArray();
+            VitaminAUnit[] unitsOrderedByName = EnumHelper.GetValues<VitaminAUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new VitaminA(1, VitaminAUnit.InternationalUnit);
 
             QuantityInfo<VitaminA, VitaminAUnit> quantityInfo = quantity.QuantityInfo;
@@ -312,7 +312,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", VitaminAUnit.InternationalUnit, "IU")]
         public void GetAbbreviationForCulture(string culture, VitaminAUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = VitaminA.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = VitaminA.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -323,7 +323,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = VitaminA.GetAbbreviation(unit); 
+                var defaultAbbreviation = VitaminA.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

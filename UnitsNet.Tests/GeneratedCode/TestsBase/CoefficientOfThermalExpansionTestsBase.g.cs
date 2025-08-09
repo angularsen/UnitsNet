@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void CoefficientOfThermalExpansion_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            CoefficientOfThermalExpansionUnit[] unitsOrderedByName = EnumHelper.GetValues<CoefficientOfThermalExpansionUnit>().OrderBy(x => x.ToString()).ToArray();
+            CoefficientOfThermalExpansionUnit[] unitsOrderedByName = EnumHelper.GetValues<CoefficientOfThermalExpansionUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerKelvin);
 
             QuantityInfo<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit> quantityInfo = quantity.QuantityInfo;
@@ -457,7 +457,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", CoefficientOfThermalExpansionUnit.PpmPerKelvin, "ppm/K")]
         public void GetAbbreviationForCulture(string culture, CoefficientOfThermalExpansionUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = CoefficientOfThermalExpansion.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = CoefficientOfThermalExpansion.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -468,7 +468,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = CoefficientOfThermalExpansion.GetAbbreviation(unit); 
+                var defaultAbbreviation = CoefficientOfThermalExpansion.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricApparentEnergy_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricApparentEnergyUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricApparentEnergyUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricApparentEnergyUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricApparentEnergyUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new ElectricApparentEnergy(1, ElectricApparentEnergyUnit.VoltampereHour);
 
             QuantityInfo<ElectricApparentEnergy, ElectricApparentEnergyUnit> quantityInfo = quantity.QuantityInfo;
@@ -406,7 +406,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ElectricApparentEnergyUnit.VoltampereHour, "VAh")]
         public void GetAbbreviationForCulture(string culture, ElectricApparentEnergyUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ElectricApparentEnergy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ElectricApparentEnergy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -417,7 +417,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ElectricApparentEnergy.GetAbbreviation(unit); 
+                var defaultAbbreviation = ElectricApparentEnergy.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

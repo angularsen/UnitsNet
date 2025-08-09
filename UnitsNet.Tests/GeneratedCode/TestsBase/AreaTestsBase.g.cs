@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Area_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            AreaUnit[] unitsOrderedByName = EnumHelper.GetValues<AreaUnit>().OrderBy(x => x.ToString()).ToArray();
+            AreaUnit[] unitsOrderedByName = EnumHelper.GetValues<AreaUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new Area(1, AreaUnit.SquareMeter);
 
             QuantityInfo<Area, AreaUnit> quantityInfo = quantity.QuantityInfo;
@@ -798,7 +798,7 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", AreaUnit.SquareYard, "平方码")]
         public void GetAbbreviationForCulture(string culture, AreaUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Area.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Area.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -809,7 +809,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Area.GetAbbreviation(unit); 
+                var defaultAbbreviation = Area.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

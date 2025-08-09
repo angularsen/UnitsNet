@@ -118,7 +118,7 @@ namespace CodeGen.Generators.UnitsNetGen
             _otherOrBaseUnit = quantity.Units.Where(u => u != _baseUnit).DefaultIfEmpty(_baseUnit).First();
             _otherOrBaseUnitFullName = $"{_unitEnumName}.{_otherOrBaseUnit.SingularName}";
             _isDimensionless = quantity.BaseDimensions is { L: 0, M: 0, T: 0, I: 0, Θ: 0, N: 0, J: 0 };
-            
+
             _defaultAbbreviationsForCulture = new Dictionary<string, Dictionary<Unit, string>>();
             var abbreviationsForCulture = new Dictionary<string, Dictionary<string, List<Unit>>>();
             foreach (Unit unit in quantity.Units)
@@ -324,7 +324,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void {_quantity.Name}_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {{
-            {_unitEnumName}[] unitsOrderedByName = EnumHelper.GetValues<{_unitEnumName}>().OrderBy(x => x.ToString()).ToArray();
+            {_unitEnumName}[] unitsOrderedByName = EnumHelper.GetValues<{_unitEnumName}>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new {_quantity.Name}(1, {_baseUnitFullName});
 
             QuantityInfo<{_quantity.Name}, {_unitEnumName}> quantityInfo = quantity.QuantityInfo;
@@ -869,7 +869,7 @@ namespace UnitsNet.Tests
             Writer.WL($@"
         public void GetAbbreviationForCulture(string culture, {_unitEnumName} unit, string expectedAbbreviation)
         {{
-            var defaultAbbreviation = {_quantity.Name}.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = {_quantity.Name}.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }}
 ");
@@ -881,7 +881,7 @@ namespace UnitsNet.Tests
             {{
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = {_quantity.Name}.GetAbbreviation(unit); 
+                var defaultAbbreviation = {_quantity.Name}.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             }});
@@ -1124,7 +1124,7 @@ namespace UnitsNet.Tests
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, largerTolerance));
             Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
-            // note: it's currently not possible to test this due to the rounding error from (quantity - otherQuantity) 
+            // note: it's currently not possible to test this due to the rounding error from (quantity - otherQuantity)
             // Assert.True(quantity.Equals(otherQuantity, maxTolerance));
         }}
 
@@ -1187,7 +1187,7 @@ namespace UnitsNet.Tests
 ");
                 }
             }
-            
+
             Writer.WL($@"
 
         [Fact]

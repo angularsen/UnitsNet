@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void LinearDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            LinearDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<LinearDensityUnit>().OrderBy(x => x.ToString()).ToArray();
+            LinearDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<LinearDensityUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new LinearDensity(1, LinearDensityUnit.KilogramPerMeter);
 
             QuantityInfo<LinearDensity, LinearDensityUnit> quantityInfo = quantity.QuantityInfo;
@@ -661,7 +661,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", LinearDensityUnit.PoundPerInch, "lb/in")]
         public void GetAbbreviationForCulture(string culture, LinearDensityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = LinearDensity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = LinearDensity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -672,7 +672,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = LinearDensity.GetAbbreviation(unit); 
+                var defaultAbbreviation = LinearDensity.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

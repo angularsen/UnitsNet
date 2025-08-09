@@ -89,7 +89,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Scalar_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ScalarUnit[] unitsOrderedByName = EnumHelper.GetValues<ScalarUnit>().OrderBy(x => x.ToString()).ToArray();
+            ScalarUnit[] unitsOrderedByName = EnumHelper.GetValues<ScalarUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new Scalar(1, ScalarUnit.Amount);
 
             QuantityInfo<Scalar, ScalarUnit> quantityInfo = quantity.QuantityInfo;
@@ -312,7 +312,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ScalarUnit.Amount, "")]
         public void GetAbbreviationForCulture(string culture, ScalarUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Scalar.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Scalar.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -323,7 +323,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Scalar.GetAbbreviation(unit); 
+                var defaultAbbreviation = Scalar.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

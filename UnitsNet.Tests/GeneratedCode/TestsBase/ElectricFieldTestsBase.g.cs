@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricField_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricFieldUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricFieldUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricFieldUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricFieldUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new ElectricField(1, ElectricFieldUnit.VoltPerMeter);
 
             QuantityInfo<ElectricField, ElectricFieldUnit> quantityInfo = quantity.QuantityInfo;
@@ -372,7 +372,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ElectricFieldUnit.VoltPerMeter, "V/m")]
         public void GetAbbreviationForCulture(string culture, ElectricFieldUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ElectricField.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ElectricField.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -383,7 +383,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ElectricField.GetAbbreviation(unit); 
+                var defaultAbbreviation = ElectricField.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

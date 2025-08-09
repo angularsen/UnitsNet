@@ -154,7 +154,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void EnergyDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            EnergyDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<EnergyDensityUnit>().OrderBy(x => x.ToString()).ToArray();
+            EnergyDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<EnergyDensityUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new EnergyDensity(1, EnergyDensityUnit.JoulePerCubicMeter);
 
             QuantityInfo<EnergyDensity, EnergyDensityUnit> quantityInfo = quantity.QuantityInfo;
@@ -559,7 +559,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", EnergyDensityUnit.WattHourPerCubicMeter, "Wh/m³")]
         public void GetAbbreviationForCulture(string culture, EnergyDensityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = EnergyDensity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = EnergyDensity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -570,7 +570,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = EnergyDensity.GetAbbreviation(unit); 
+                var defaultAbbreviation = EnergyDensity.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

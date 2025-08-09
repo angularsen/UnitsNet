@@ -166,7 +166,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Force_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ForceUnit[] unitsOrderedByName = EnumHelper.GetValues<ForceUnit>().OrderBy(x => x.ToString()).ToArray();
+            ForceUnit[] unitsOrderedByName = EnumHelper.GetValues<ForceUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new Force(1, ForceUnit.Newton);
 
             QuantityInfo<Force, ForceUnit> quantityInfo = quantity.QuantityInfo;
@@ -779,7 +779,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", ForceUnit.TonneForce, "тс")]
         public void GetAbbreviationForCulture(string culture, ForceUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Force.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Force.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -790,7 +790,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Force.GetAbbreviation(unit); 
+                var defaultAbbreviation = Force.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

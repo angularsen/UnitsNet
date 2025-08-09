@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricCurrentDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricCurrentDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricCurrentDensityUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricCurrentDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricCurrentDensityUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new ElectricCurrentDensity(1, ElectricCurrentDensityUnit.AmperePerSquareMeter);
 
             QuantityInfo<ElectricCurrentDensity, ElectricCurrentDensityUnit> quantityInfo = quantity.QuantityInfo;
@@ -406,7 +406,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ElectricCurrentDensityUnit.AmperePerSquareMeter, "A/m²")]
         public void GetAbbreviationForCulture(string culture, ElectricCurrentDensityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ElectricCurrentDensity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ElectricCurrentDensity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -417,7 +417,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ElectricCurrentDensity.GetAbbreviation(unit); 
+                var defaultAbbreviation = ElectricCurrentDensity.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

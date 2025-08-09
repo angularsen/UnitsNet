@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void VolumetricHeatCapacity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            VolumetricHeatCapacityUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumetricHeatCapacityUnit>().OrderBy(x => x.ToString()).ToArray();
+            VolumetricHeatCapacityUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumetricHeatCapacityUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new VolumetricHeatCapacity(1, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin);
 
             QuantityInfo<VolumetricHeatCapacity, VolumetricHeatCapacityUnit> quantityInfo = quantity.QuantityInfo;
@@ -508,7 +508,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, "MJ/(m³·K)")]
         public void GetAbbreviationForCulture(string culture, VolumetricHeatCapacityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = VolumetricHeatCapacity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = VolumetricHeatCapacity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -519,7 +519,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = VolumetricHeatCapacity.GetAbbreviation(unit); 
+                var defaultAbbreviation = VolumetricHeatCapacity.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

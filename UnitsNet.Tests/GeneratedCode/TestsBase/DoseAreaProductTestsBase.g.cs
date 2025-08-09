@@ -206,7 +206,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void DoseAreaProduct_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            DoseAreaProductUnit[] unitsOrderedByName = EnumHelper.GetValues<DoseAreaProductUnit>().OrderBy(x => x.ToString()).ToArray();
+            DoseAreaProductUnit[] unitsOrderedByName = EnumHelper.GetValues<DoseAreaProductUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new DoseAreaProduct(1, DoseAreaProductUnit.GraySquareMeter);
 
             QuantityInfo<DoseAreaProduct, DoseAreaProductUnit> quantityInfo = quantity.QuantityInfo;
@@ -955,7 +955,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", DoseAreaProductUnit.MilligraySquareMillimeter, "мГр·мм²")]
         public void GetAbbreviationForCulture(string culture, DoseAreaProductUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = DoseAreaProduct.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = DoseAreaProduct.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -966,7 +966,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = DoseAreaProduct.GetAbbreviation(unit); 
+                var defaultAbbreviation = DoseAreaProduct.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

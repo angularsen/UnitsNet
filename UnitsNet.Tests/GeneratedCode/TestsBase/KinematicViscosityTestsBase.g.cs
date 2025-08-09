@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void KinematicViscosity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            KinematicViscosityUnit[] unitsOrderedByName = EnumHelper.GetValues<KinematicViscosityUnit>().OrderBy(x => x.ToString()).ToArray();
+            KinematicViscosityUnit[] unitsOrderedByName = EnumHelper.GetValues<KinematicViscosityUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new KinematicViscosity(1, KinematicViscosityUnit.SquareMeterPerSecond);
 
             QuantityInfo<KinematicViscosity, KinematicViscosityUnit> quantityInfo = quantity.QuantityInfo;
@@ -564,7 +564,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", KinematicViscosityUnit.Stokes, "Ст")]
         public void GetAbbreviationForCulture(string culture, KinematicViscosityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = KinematicViscosity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = KinematicViscosity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -575,7 +575,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = KinematicViscosity.GetAbbreviation(unit); 
+                var defaultAbbreviation = KinematicViscosity.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void PorousMediumPermeability_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            PorousMediumPermeabilityUnit[] unitsOrderedByName = EnumHelper.GetValues<PorousMediumPermeabilityUnit>().OrderBy(x => x.ToString()).ToArray();
+            PorousMediumPermeabilityUnit[] unitsOrderedByName = EnumHelper.GetValues<PorousMediumPermeabilityUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new PorousMediumPermeability(1, PorousMediumPermeabilityUnit.SquareMeter);
 
             QuantityInfo<PorousMediumPermeability, PorousMediumPermeabilityUnit> quantityInfo = quantity.QuantityInfo;
@@ -440,7 +440,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", PorousMediumPermeabilityUnit.SquareMeter, "m²")]
         public void GetAbbreviationForCulture(string culture, PorousMediumPermeabilityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = PorousMediumPermeability.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = PorousMediumPermeability.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -451,7 +451,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = PorousMediumPermeability.GetAbbreviation(unit); 
+                var defaultAbbreviation = PorousMediumPermeability.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

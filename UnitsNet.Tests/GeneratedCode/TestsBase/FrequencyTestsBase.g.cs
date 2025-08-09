@@ -154,7 +154,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Frequency_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            FrequencyUnit[] unitsOrderedByName = EnumHelper.GetValues<FrequencyUnit>().OrderBy(x => x.ToString()).ToArray();
+            FrequencyUnit[] unitsOrderedByName = EnumHelper.GetValues<FrequencyUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
             var quantity = new Frequency(1, FrequencyUnit.Hertz);
 
             QuantityInfo<Frequency, FrequencyUnit> quantityInfo = quantity.QuantityInfo;
@@ -622,7 +622,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", FrequencyUnit.Terahertz, "ТГц")]
         public void GetAbbreviationForCulture(string culture, FrequencyUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Frequency.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Frequency.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -633,7 +633,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Frequency.GetAbbreviation(unit); 
+                var defaultAbbreviation = Frequency.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });
