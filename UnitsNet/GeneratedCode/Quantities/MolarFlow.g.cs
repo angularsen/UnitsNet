@@ -890,9 +890,6 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
-        /// <inheritdoc />
         IQuantity<MolarFlowUnit> IQuantity<MolarFlowUnit>.ToUnit(MolarFlowUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />

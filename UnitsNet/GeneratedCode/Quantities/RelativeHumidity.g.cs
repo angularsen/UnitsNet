@@ -698,9 +698,6 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
-        /// <inheritdoc />
         IQuantity<RelativeHumidityUnit> IQuantity<RelativeHumidityUnit>.ToUnit(RelativeHumidityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />

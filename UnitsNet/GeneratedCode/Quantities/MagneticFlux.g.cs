@@ -715,9 +715,6 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
-        /// <inheritdoc />
         IQuantity<MagneticFluxUnit> IQuantity<MagneticFluxUnit>.ToUnit(MagneticFluxUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />

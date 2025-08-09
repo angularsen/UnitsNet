@@ -56,14 +56,6 @@ namespace UnitsNet
         IQuantity ToUnit(Enum unit);
 
         /// <summary>
-        ///     Converts to a quantity with a unit determined by the given <see cref="UnitSystem"/>.
-        ///     If multiple units were found for the given <see cref="UnitSystem"/>, the first match will be used.
-        /// </summary>
-        /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
-        /// <returns>A new quantity with the determined unit.</returns>
-        IQuantity ToUnit(UnitSystem unitSystem);
-
-        /// <summary>
         ///     Gets the unique key for the unit type and its corresponding value.
         /// </summary>
         /// <remarks>
@@ -104,9 +96,14 @@ namespace UnitsNet
         /// <exception cref="NotImplementedException">Conversion was not possible from this <see cref="IQuantity"/> to <paramref name="unit"/>.</exception>
         /// <returns>A new <see cref="IQuantity{TUnitType}"/> in the given <paramref name="unit"/>.</returns>
         IQuantity<TUnitType> ToUnit(TUnitType unit);
-        
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        new IQuantity<TUnitType> ToUnit(UnitSystem unitSystem);
+
+        /// <summary>
+        ///     Converts to a quantity with a unit determined by the given <see cref="UnitSystem"/>.
+        ///     If multiple units were found for the given <see cref="UnitSystem"/>, the first match will be used.
+        /// </summary>
+        /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
+        /// <returns>A new quantity with the determined unit.</returns>
+        IQuantity<TUnitType> ToUnit(UnitSystem unitSystem);
 
 #if NET
 

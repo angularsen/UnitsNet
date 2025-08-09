@@ -3,6 +3,7 @@
 
 using System.Globalization;
 
+// ReSharper disable once CheckNamespace
 namespace UnitsNet;
 
 /// <summary>
@@ -72,7 +73,31 @@ public static class QuantityExtensions
         return quantity.QuantityInfo.Create(quantity.As(unitKey), unitKey);
 #endif
     }
-    
+
+    /// <summary>
+    ///     Converts the specified quantity to a new quantity with a unit determined by the given <see cref="UnitSystem" />.
+    /// </summary>
+    /// <param name="quantity">The quantity to convert.</param>
+    /// <param name="unitSystem">The <see cref="UnitSystem" /> used to determine the target unit.</param>
+    /// <returns>
+    ///     A new quantity of the same type with the unit determined by the specified <see cref="UnitSystem" />.
+    /// </returns>
+    /// <remarks>
+    ///     If multiple units are associated with the given <see cref="UnitSystem" />, the first matching unit will be used.
+    /// </remarks>
+    /// <exception cref="ArgumentNullException">
+    ///     Thrown if <paramref name="unitSystem" /> is <c>null</c>.
+    /// </exception>
+    /// <exception cref="InvalidOperationException">
+    ///     Thrown if no matching unit is found for the specified <see cref="UnitSystem" />.
+    /// </exception>
+    public static IQuantity ToUnit(this IQuantity quantity, UnitSystem unitSystem)
+    {
+         QuantityInfo quantityInfo = quantity.QuantityInfo;
+         UnitKey unitKey = quantityInfo.GetDefaultUnit(unitSystem).UnitKey;
+         return quantityInfo.From(quantity.As(unitKey), unitKey);
+    }
+
     /// <summary>
     ///     Returns the string representation of the specified quantity using the provided format provider.
     /// </summary>
@@ -126,7 +151,7 @@ public static class QuantityExtensions
         {
             throw new ArgumentNullException(nameof(quantities));
         }
-        
+
         using IEnumerator<TQuantity> enumerator = quantities.GetEnumerator();
         if (!enumerator.MoveNext())
         {
@@ -172,7 +197,7 @@ public static class QuantityExtensions
         {
             throw new ArgumentNullException(nameof(quantities));
         }
-        
+
         using IEnumerator<TQuantity> enumerator = quantities.GetEnumerator();
         if (!enumerator.MoveNext())
         {

@@ -769,9 +769,6 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
-        /// <inheritdoc />
         IQuantity<LeakRateUnit> IQuantity<LeakRateUnit>.ToUnit(LeakRateUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />

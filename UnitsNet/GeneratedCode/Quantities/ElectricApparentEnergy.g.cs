@@ -748,9 +748,6 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
-        /// <inheritdoc />
         IQuantity<ElectricApparentEnergyUnit> IQuantity<ElectricApparentEnergyUnit>.ToUnit(ElectricApparentEnergyUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />

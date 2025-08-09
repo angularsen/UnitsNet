@@ -1216,9 +1216,6 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
-        /// <inheritdoc />
         IQuantity<RadioactivityUnit> IQuantity<RadioactivityUnit>.ToUnit(RadioactivityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
