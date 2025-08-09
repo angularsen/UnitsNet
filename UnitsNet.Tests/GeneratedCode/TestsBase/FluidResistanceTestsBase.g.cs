@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -220,82 +221,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = FluidResistance.From(1, FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth);
-            AssertEx.EqualTolerance(1, quantity00.DyneSecondsPerCentimeterToTheFifth, DyneSecondsPerCentimeterToTheFifthTolerance);
-            Assert.Equal(FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, quantity00.Unit);
-
-            var quantity01 = FluidResistance.From(1, FluidResistanceUnit.MegapascalSecondPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity01.MegapascalSecondsPerCubicMeter, MegapascalSecondsPerCubicMeterTolerance);
-            Assert.Equal(FluidResistanceUnit.MegapascalSecondPerCubicMeter, quantity01.Unit);
-
-            var quantity02 = FluidResistance.From(1, FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter);
-            AssertEx.EqualTolerance(1, quantity02.MillimeterMercuryMinutesPerCubicCentimeter, MillimeterMercuryMinutesPerCubicCentimeterTolerance);
-            Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter, quantity02.Unit);
-
-            var quantity03 = FluidResistance.From(1, FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity03.MillimeterMercuryMinutesPerCubicMeter, MillimeterMercuryMinutesPerCubicMeterTolerance);
-            Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter, quantity03.Unit);
-
-            var quantity04 = FluidResistance.From(1, FluidResistanceUnit.MillimeterMercuryMinutePerLiter);
-            AssertEx.EqualTolerance(1, quantity04.MillimeterMercuryMinutesPerLiter, MillimeterMercuryMinutesPerLiterTolerance);
-            Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerLiter, quantity04.Unit);
-
-            var quantity05 = FluidResistance.From(1, FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter);
-            AssertEx.EqualTolerance(1, quantity05.MillimeterMercuryMinutesPerMilliliter, MillimeterMercuryMinutesPerMilliliterTolerance);
-            Assert.Equal(FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter, quantity05.Unit);
-
-            var quantity06 = FluidResistance.From(1, FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter);
-            AssertEx.EqualTolerance(1, quantity06.MillimeterMercurySecondsPerCubicCentimeter, MillimeterMercurySecondsPerCubicCentimeterTolerance);
-            Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter, quantity06.Unit);
-
-            var quantity07 = FluidResistance.From(1, FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity07.MillimeterMercurySecondsPerCubicMeter, MillimeterMercurySecondsPerCubicMeterTolerance);
-            Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter, quantity07.Unit);
-
-            var quantity08 = FluidResistance.From(1, FluidResistanceUnit.MillimeterMercurySecondPerLiter);
-            AssertEx.EqualTolerance(1, quantity08.MillimeterMercurySecondsPerLiter, MillimeterMercurySecondsPerLiterTolerance);
-            Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerLiter, quantity08.Unit);
-
-            var quantity09 = FluidResistance.From(1, FluidResistanceUnit.MillimeterMercurySecondPerMilliliter);
-            AssertEx.EqualTolerance(1, quantity09.MillimeterMercurySecondsPerMilliliter, MillimeterMercurySecondsPerMilliliterTolerance);
-            Assert.Equal(FluidResistanceUnit.MillimeterMercurySecondPerMilliliter, quantity09.Unit);
-
-            var quantity10 = FluidResistance.From(1, FluidResistanceUnit.PascalMinutePerCubicCentimeter);
-            AssertEx.EqualTolerance(1, quantity10.PascalMinutesPerCubicCentimeter, PascalMinutesPerCubicCentimeterTolerance);
-            Assert.Equal(FluidResistanceUnit.PascalMinutePerCubicCentimeter, quantity10.Unit);
-
-            var quantity11 = FluidResistance.From(1, FluidResistanceUnit.PascalMinutePerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity11.PascalMinutesPerCubicMeter, PascalMinutesPerCubicMeterTolerance);
-            Assert.Equal(FluidResistanceUnit.PascalMinutePerCubicMeter, quantity11.Unit);
-
-            var quantity12 = FluidResistance.From(1, FluidResistanceUnit.PascalMinutePerLiter);
-            AssertEx.EqualTolerance(1, quantity12.PascalMinutesPerLiter, PascalMinutesPerLiterTolerance);
-            Assert.Equal(FluidResistanceUnit.PascalMinutePerLiter, quantity12.Unit);
-
-            var quantity13 = FluidResistance.From(1, FluidResistanceUnit.PascalMinutePerMilliliter);
-            AssertEx.EqualTolerance(1, quantity13.PascalMinutesPerMilliliter, PascalMinutesPerMilliliterTolerance);
-            Assert.Equal(FluidResistanceUnit.PascalMinutePerMilliliter, quantity13.Unit);
-
-            var quantity14 = FluidResistance.From(1, FluidResistanceUnit.PascalSecondPerCubicCentimeter);
-            AssertEx.EqualTolerance(1, quantity14.PascalSecondsPerCubicCentimeter, PascalSecondsPerCubicCentimeterTolerance);
-            Assert.Equal(FluidResistanceUnit.PascalSecondPerCubicCentimeter, quantity14.Unit);
-
-            var quantity15 = FluidResistance.From(1, FluidResistanceUnit.PascalSecondPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity15.PascalSecondsPerCubicMeter, PascalSecondsPerCubicMeterTolerance);
-            Assert.Equal(FluidResistanceUnit.PascalSecondPerCubicMeter, quantity15.Unit);
-
-            var quantity16 = FluidResistance.From(1, FluidResistanceUnit.PascalSecondPerLiter);
-            AssertEx.EqualTolerance(1, quantity16.PascalSecondsPerLiter, PascalSecondsPerLiterTolerance);
-            Assert.Equal(FluidResistanceUnit.PascalSecondPerLiter, quantity16.Unit);
-
-            var quantity17 = FluidResistance.From(1, FluidResistanceUnit.PascalSecondPerMilliliter);
-            AssertEx.EqualTolerance(1, quantity17.PascalSecondsPerMilliliter, PascalSecondsPerMilliliterTolerance);
-            Assert.Equal(FluidResistanceUnit.PascalSecondPerMilliliter, quantity17.Unit);
-
-            var quantity18 = FluidResistance.From(1, FluidResistanceUnit.WoodUnit);
-            AssertEx.EqualTolerance(1, quantity18.WoodUnits, WoodUnitsTolerance);
-            Assert.Equal(FluidResistanceUnit.WoodUnit, quantity18.Unit);
-
+            Assert.All(EnumHelper.GetValues<FluidResistanceUnit>(), unit =>
+            {
+                var quantity = FluidResistance.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

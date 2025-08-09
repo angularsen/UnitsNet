@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -299,162 +300,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Information.From(1, InformationUnit.Bit);
-            AssertEx.EqualTolerance(1, quantity00.Bits, BitsTolerance);
-            Assert.Equal(InformationUnit.Bit, quantity00.Unit);
-
-            var quantity01 = Information.From(1, InformationUnit.Byte);
-            AssertEx.EqualTolerance(1, quantity01.Bytes, BytesTolerance);
-            Assert.Equal(InformationUnit.Byte, quantity01.Unit);
-
-            var quantity02 = Information.From(1, InformationUnit.Exabit);
-            AssertEx.EqualTolerance(1, quantity02.Exabits, ExabitsTolerance);
-            Assert.Equal(InformationUnit.Exabit, quantity02.Unit);
-
-            var quantity03 = Information.From(1, InformationUnit.Exabyte);
-            AssertEx.EqualTolerance(1, quantity03.Exabytes, ExabytesTolerance);
-            Assert.Equal(InformationUnit.Exabyte, quantity03.Unit);
-
-            var quantity04 = Information.From(1, InformationUnit.Exaoctet);
-            AssertEx.EqualTolerance(1, quantity04.Exaoctets, ExaoctetsTolerance);
-            Assert.Equal(InformationUnit.Exaoctet, quantity04.Unit);
-
-            var quantity05 = Information.From(1, InformationUnit.Exbibit);
-            AssertEx.EqualTolerance(1, quantity05.Exbibits, ExbibitsTolerance);
-            Assert.Equal(InformationUnit.Exbibit, quantity05.Unit);
-
-            var quantity06 = Information.From(1, InformationUnit.Exbibyte);
-            AssertEx.EqualTolerance(1, quantity06.Exbibytes, ExbibytesTolerance);
-            Assert.Equal(InformationUnit.Exbibyte, quantity06.Unit);
-
-            var quantity07 = Information.From(1, InformationUnit.Exbioctet);
-            AssertEx.EqualTolerance(1, quantity07.Exbioctets, ExbioctetsTolerance);
-            Assert.Equal(InformationUnit.Exbioctet, quantity07.Unit);
-
-            var quantity08 = Information.From(1, InformationUnit.Gibibit);
-            AssertEx.EqualTolerance(1, quantity08.Gibibits, GibibitsTolerance);
-            Assert.Equal(InformationUnit.Gibibit, quantity08.Unit);
-
-            var quantity09 = Information.From(1, InformationUnit.Gibibyte);
-            AssertEx.EqualTolerance(1, quantity09.Gibibytes, GibibytesTolerance);
-            Assert.Equal(InformationUnit.Gibibyte, quantity09.Unit);
-
-            var quantity10 = Information.From(1, InformationUnit.Gibioctet);
-            AssertEx.EqualTolerance(1, quantity10.Gibioctets, GibioctetsTolerance);
-            Assert.Equal(InformationUnit.Gibioctet, quantity10.Unit);
-
-            var quantity11 = Information.From(1, InformationUnit.Gigabit);
-            AssertEx.EqualTolerance(1, quantity11.Gigabits, GigabitsTolerance);
-            Assert.Equal(InformationUnit.Gigabit, quantity11.Unit);
-
-            var quantity12 = Information.From(1, InformationUnit.Gigabyte);
-            AssertEx.EqualTolerance(1, quantity12.Gigabytes, GigabytesTolerance);
-            Assert.Equal(InformationUnit.Gigabyte, quantity12.Unit);
-
-            var quantity13 = Information.From(1, InformationUnit.Gigaoctet);
-            AssertEx.EqualTolerance(1, quantity13.Gigaoctets, GigaoctetsTolerance);
-            Assert.Equal(InformationUnit.Gigaoctet, quantity13.Unit);
-
-            var quantity14 = Information.From(1, InformationUnit.Kibibit);
-            AssertEx.EqualTolerance(1, quantity14.Kibibits, KibibitsTolerance);
-            Assert.Equal(InformationUnit.Kibibit, quantity14.Unit);
-
-            var quantity15 = Information.From(1, InformationUnit.Kibibyte);
-            AssertEx.EqualTolerance(1, quantity15.Kibibytes, KibibytesTolerance);
-            Assert.Equal(InformationUnit.Kibibyte, quantity15.Unit);
-
-            var quantity16 = Information.From(1, InformationUnit.Kibioctet);
-            AssertEx.EqualTolerance(1, quantity16.Kibioctets, KibioctetsTolerance);
-            Assert.Equal(InformationUnit.Kibioctet, quantity16.Unit);
-
-            var quantity17 = Information.From(1, InformationUnit.Kilobit);
-            AssertEx.EqualTolerance(1, quantity17.Kilobits, KilobitsTolerance);
-            Assert.Equal(InformationUnit.Kilobit, quantity17.Unit);
-
-            var quantity18 = Information.From(1, InformationUnit.Kilobyte);
-            AssertEx.EqualTolerance(1, quantity18.Kilobytes, KilobytesTolerance);
-            Assert.Equal(InformationUnit.Kilobyte, quantity18.Unit);
-
-            var quantity19 = Information.From(1, InformationUnit.Kilooctet);
-            AssertEx.EqualTolerance(1, quantity19.Kilooctets, KilooctetsTolerance);
-            Assert.Equal(InformationUnit.Kilooctet, quantity19.Unit);
-
-            var quantity20 = Information.From(1, InformationUnit.Mebibit);
-            AssertEx.EqualTolerance(1, quantity20.Mebibits, MebibitsTolerance);
-            Assert.Equal(InformationUnit.Mebibit, quantity20.Unit);
-
-            var quantity21 = Information.From(1, InformationUnit.Mebibyte);
-            AssertEx.EqualTolerance(1, quantity21.Mebibytes, MebibytesTolerance);
-            Assert.Equal(InformationUnit.Mebibyte, quantity21.Unit);
-
-            var quantity22 = Information.From(1, InformationUnit.Mebioctet);
-            AssertEx.EqualTolerance(1, quantity22.Mebioctets, MebioctetsTolerance);
-            Assert.Equal(InformationUnit.Mebioctet, quantity22.Unit);
-
-            var quantity23 = Information.From(1, InformationUnit.Megabit);
-            AssertEx.EqualTolerance(1, quantity23.Megabits, MegabitsTolerance);
-            Assert.Equal(InformationUnit.Megabit, quantity23.Unit);
-
-            var quantity24 = Information.From(1, InformationUnit.Megabyte);
-            AssertEx.EqualTolerance(1, quantity24.Megabytes, MegabytesTolerance);
-            Assert.Equal(InformationUnit.Megabyte, quantity24.Unit);
-
-            var quantity25 = Information.From(1, InformationUnit.Megaoctet);
-            AssertEx.EqualTolerance(1, quantity25.Megaoctets, MegaoctetsTolerance);
-            Assert.Equal(InformationUnit.Megaoctet, quantity25.Unit);
-
-            var quantity26 = Information.From(1, InformationUnit.Octet);
-            AssertEx.EqualTolerance(1, quantity26.Octets, OctetsTolerance);
-            Assert.Equal(InformationUnit.Octet, quantity26.Unit);
-
-            var quantity27 = Information.From(1, InformationUnit.Pebibit);
-            AssertEx.EqualTolerance(1, quantity27.Pebibits, PebibitsTolerance);
-            Assert.Equal(InformationUnit.Pebibit, quantity27.Unit);
-
-            var quantity28 = Information.From(1, InformationUnit.Pebibyte);
-            AssertEx.EqualTolerance(1, quantity28.Pebibytes, PebibytesTolerance);
-            Assert.Equal(InformationUnit.Pebibyte, quantity28.Unit);
-
-            var quantity29 = Information.From(1, InformationUnit.Pebioctet);
-            AssertEx.EqualTolerance(1, quantity29.Pebioctets, PebioctetsTolerance);
-            Assert.Equal(InformationUnit.Pebioctet, quantity29.Unit);
-
-            var quantity30 = Information.From(1, InformationUnit.Petabit);
-            AssertEx.EqualTolerance(1, quantity30.Petabits, PetabitsTolerance);
-            Assert.Equal(InformationUnit.Petabit, quantity30.Unit);
-
-            var quantity31 = Information.From(1, InformationUnit.Petabyte);
-            AssertEx.EqualTolerance(1, quantity31.Petabytes, PetabytesTolerance);
-            Assert.Equal(InformationUnit.Petabyte, quantity31.Unit);
-
-            var quantity32 = Information.From(1, InformationUnit.Petaoctet);
-            AssertEx.EqualTolerance(1, quantity32.Petaoctets, PetaoctetsTolerance);
-            Assert.Equal(InformationUnit.Petaoctet, quantity32.Unit);
-
-            var quantity33 = Information.From(1, InformationUnit.Tebibit);
-            AssertEx.EqualTolerance(1, quantity33.Tebibits, TebibitsTolerance);
-            Assert.Equal(InformationUnit.Tebibit, quantity33.Unit);
-
-            var quantity34 = Information.From(1, InformationUnit.Tebibyte);
-            AssertEx.EqualTolerance(1, quantity34.Tebibytes, TebibytesTolerance);
-            Assert.Equal(InformationUnit.Tebibyte, quantity34.Unit);
-
-            var quantity35 = Information.From(1, InformationUnit.Tebioctet);
-            AssertEx.EqualTolerance(1, quantity35.Tebioctets, TebioctetsTolerance);
-            Assert.Equal(InformationUnit.Tebioctet, quantity35.Unit);
-
-            var quantity36 = Information.From(1, InformationUnit.Terabit);
-            AssertEx.EqualTolerance(1, quantity36.Terabits, TerabitsTolerance);
-            Assert.Equal(InformationUnit.Terabit, quantity36.Unit);
-
-            var quantity37 = Information.From(1, InformationUnit.Terabyte);
-            AssertEx.EqualTolerance(1, quantity37.Terabytes, TerabytesTolerance);
-            Assert.Equal(InformationUnit.Terabyte, quantity37.Unit);
-
-            var quantity38 = Information.From(1, InformationUnit.Teraoctet);
-            AssertEx.EqualTolerance(1, quantity38.Teraoctets, TeraoctetsTolerance);
-            Assert.Equal(InformationUnit.Teraoctet, quantity38.Unit);
-
+            Assert.All(EnumHelper.GetValues<InformationUnit>(), unit =>
+            {
+                var quantity = Information.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

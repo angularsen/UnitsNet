@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -179,66 +180,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Angle.From(1, AngleUnit.Arcminute);
-            AssertEx.EqualTolerance(1, quantity00.Arcminutes, ArcminutesTolerance);
-            Assert.Equal(AngleUnit.Arcminute, quantity00.Unit);
-
-            var quantity01 = Angle.From(1, AngleUnit.Arcsecond);
-            AssertEx.EqualTolerance(1, quantity01.Arcseconds, ArcsecondsTolerance);
-            Assert.Equal(AngleUnit.Arcsecond, quantity01.Unit);
-
-            var quantity02 = Angle.From(1, AngleUnit.Centiradian);
-            AssertEx.EqualTolerance(1, quantity02.Centiradians, CentiradiansTolerance);
-            Assert.Equal(AngleUnit.Centiradian, quantity02.Unit);
-
-            var quantity03 = Angle.From(1, AngleUnit.Deciradian);
-            AssertEx.EqualTolerance(1, quantity03.Deciradians, DeciradiansTolerance);
-            Assert.Equal(AngleUnit.Deciradian, quantity03.Unit);
-
-            var quantity04 = Angle.From(1, AngleUnit.Degree);
-            AssertEx.EqualTolerance(1, quantity04.Degrees, DegreesTolerance);
-            Assert.Equal(AngleUnit.Degree, quantity04.Unit);
-
-            var quantity05 = Angle.From(1, AngleUnit.Gradian);
-            AssertEx.EqualTolerance(1, quantity05.Gradians, GradiansTolerance);
-            Assert.Equal(AngleUnit.Gradian, quantity05.Unit);
-
-            var quantity06 = Angle.From(1, AngleUnit.Microdegree);
-            AssertEx.EqualTolerance(1, quantity06.Microdegrees, MicrodegreesTolerance);
-            Assert.Equal(AngleUnit.Microdegree, quantity06.Unit);
-
-            var quantity07 = Angle.From(1, AngleUnit.Microradian);
-            AssertEx.EqualTolerance(1, quantity07.Microradians, MicroradiansTolerance);
-            Assert.Equal(AngleUnit.Microradian, quantity07.Unit);
-
-            var quantity08 = Angle.From(1, AngleUnit.Millidegree);
-            AssertEx.EqualTolerance(1, quantity08.Millidegrees, MillidegreesTolerance);
-            Assert.Equal(AngleUnit.Millidegree, quantity08.Unit);
-
-            var quantity09 = Angle.From(1, AngleUnit.Milliradian);
-            AssertEx.EqualTolerance(1, quantity09.Milliradians, MilliradiansTolerance);
-            Assert.Equal(AngleUnit.Milliradian, quantity09.Unit);
-
-            var quantity10 = Angle.From(1, AngleUnit.Nanodegree);
-            AssertEx.EqualTolerance(1, quantity10.Nanodegrees, NanodegreesTolerance);
-            Assert.Equal(AngleUnit.Nanodegree, quantity10.Unit);
-
-            var quantity11 = Angle.From(1, AngleUnit.Nanoradian);
-            AssertEx.EqualTolerance(1, quantity11.Nanoradians, NanoradiansTolerance);
-            Assert.Equal(AngleUnit.Nanoradian, quantity11.Unit);
-
-            var quantity12 = Angle.From(1, AngleUnit.NatoMil);
-            AssertEx.EqualTolerance(1, quantity12.NatoMils, NatoMilsTolerance);
-            Assert.Equal(AngleUnit.NatoMil, quantity12.Unit);
-
-            var quantity13 = Angle.From(1, AngleUnit.Radian);
-            AssertEx.EqualTolerance(1, quantity13.Radians, RadiansTolerance);
-            Assert.Equal(AngleUnit.Radian, quantity13.Unit);
-
-            var quantity14 = Angle.From(1, AngleUnit.Revolution);
-            AssertEx.EqualTolerance(1, quantity14.Revolutions, RevolutionsTolerance);
-            Assert.Equal(AngleUnit.Revolution, quantity14.Unit);
-
+            Assert.All(EnumHelper.GetValues<AngleUnit>(), unit =>
+            {
+                var quantity = Angle.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

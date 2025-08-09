@@ -485,7 +485,7 @@ namespace UnitsNet
                         SpeedUnit.YardPerHour => _value * 0.9144 / 3600,
                         SpeedUnit.YardPerMinute => _value * 0.9144 / 60,
                         SpeedUnit.YardPerSecond => _value * 0.9144,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -531,7 +531,7 @@ namespace UnitsNet
                         SpeedUnit.YardPerHour => baseUnitValue / 0.9144 * 3600,
                         SpeedUnit.YardPerMinute => baseUnitValue / 0.9144 * 60,
                         SpeedUnit.YardPerSecond => baseUnitValue / 0.9144,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

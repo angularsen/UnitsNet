@@ -287,7 +287,7 @@ namespace UnitsNet
                         ForceUnit.PoundForce => _value * 4.4482216152605,
                         ForceUnit.ShortTonForce => _value * (4.4482216152605 * 2000),
                         ForceUnit.TonneForce => _value * (9.80665 * 1000),
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -315,7 +315,7 @@ namespace UnitsNet
                         ForceUnit.PoundForce => baseUnitValue / 4.4482216152605,
                         ForceUnit.ShortTonForce => baseUnitValue / (4.4482216152605 * 2000),
                         ForceUnit.TonneForce => baseUnitValue / (9.80665 * 1000),
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

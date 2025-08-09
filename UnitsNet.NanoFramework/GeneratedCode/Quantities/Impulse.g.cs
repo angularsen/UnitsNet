@@ -265,7 +265,7 @@ namespace UnitsNet
                         ImpulseUnit.PoundFootPerSecond => _value * (0.45359237 * 0.3048),
                         ImpulseUnit.PoundForceSecond => _value * 0.45359237 * 9.80665,
                         ImpulseUnit.SlugFootPerSecond => _value * (0.45359237 * 9.80665),
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -291,7 +291,7 @@ namespace UnitsNet
                         ImpulseUnit.PoundFootPerSecond => baseUnitValue / (0.45359237 * 0.3048),
                         ImpulseUnit.PoundForceSecond => baseUnitValue / (0.45359237 * 9.80665),
                         ImpulseUnit.SlugFootPerSecond => baseUnitValue / (0.45359237 * 9.80665),
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

@@ -246,7 +246,7 @@ namespace UnitsNet
                         ElectricChargeUnit.Millicoulomb => (_value) * 1e-3d,
                         ElectricChargeUnit.Nanocoulomb => (_value) * 1e-9d,
                         ElectricChargeUnit.Picocoulomb => (_value) * 1e-12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -270,7 +270,7 @@ namespace UnitsNet
                         ElectricChargeUnit.Millicoulomb => (baseUnitValue) / 1e-3d,
                         ElectricChargeUnit.Nanocoulomb => (baseUnitValue) / 1e-9d,
                         ElectricChargeUnit.Picocoulomb => (baseUnitValue) / 1e-12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

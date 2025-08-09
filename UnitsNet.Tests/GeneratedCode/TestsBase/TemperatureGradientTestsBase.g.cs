@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -145,22 +146,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = TemperatureGradient.From(1, TemperatureGradientUnit.DegreeCelsiusPerKilometer);
-            AssertEx.EqualTolerance(1, quantity00.DegreesCelsiusPerKilometer, DegreesCelsiusPerKilometerTolerance);
-            Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerKilometer, quantity00.Unit);
-
-            var quantity01 = TemperatureGradient.From(1, TemperatureGradientUnit.DegreeCelsiusPerMeter);
-            AssertEx.EqualTolerance(1, quantity01.DegreesCelsiusPerMeter, DegreesCelsiusPerMeterTolerance);
-            Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerMeter, quantity01.Unit);
-
-            var quantity02 = TemperatureGradient.From(1, TemperatureGradientUnit.DegreeFahrenheitPerFoot);
-            AssertEx.EqualTolerance(1, quantity02.DegreesFahrenheitPerFoot, DegreesFahrenheitPerFootTolerance);
-            Assert.Equal(TemperatureGradientUnit.DegreeFahrenheitPerFoot, quantity02.Unit);
-
-            var quantity03 = TemperatureGradient.From(1, TemperatureGradientUnit.KelvinPerMeter);
-            AssertEx.EqualTolerance(1, quantity03.KelvinsPerMeter, KelvinsPerMeterTolerance);
-            Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, quantity03.Unit);
-
+            Assert.All(EnumHelper.GetValues<TemperatureGradientUnit>(), unit =>
+            {
+                var quantity = TemperatureGradient.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

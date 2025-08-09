@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -130,10 +131,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Magnetization.From(1, MagnetizationUnit.AmperePerMeter);
-            AssertEx.EqualTolerance(1, quantity00.AmperesPerMeter, AmperesPerMeterTolerance);
-            Assert.Equal(MagnetizationUnit.AmperePerMeter, quantity00.Unit);
-
+            Assert.All(EnumHelper.GetValues<MagnetizationUnit>(), unit =>
+            {
+                var quantity = Magnetization.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

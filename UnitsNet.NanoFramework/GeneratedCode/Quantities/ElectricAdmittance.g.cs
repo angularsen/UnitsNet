@@ -302,7 +302,7 @@ namespace UnitsNet
                         ElectricAdmittanceUnit.Siemens => _value,
                         ElectricAdmittanceUnit.Teramho => (_value) * 1e12d,
                         ElectricAdmittanceUnit.Terasiemens => (_value) * 1e12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -331,7 +331,7 @@ namespace UnitsNet
                         ElectricAdmittanceUnit.Siemens => baseUnitValue,
                         ElectricAdmittanceUnit.Teramho => (baseUnitValue) / 1e12d,
                         ElectricAdmittanceUnit.Terasiemens => (baseUnitValue) / 1e12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

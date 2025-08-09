@@ -188,7 +188,7 @@ namespace UnitsNet
                         RadiationEquivalentDoseUnit.Nanosievert => (_value) * 1e-9d,
                         RadiationEquivalentDoseUnit.RoentgenEquivalentMan => _value / 100,
                         RadiationEquivalentDoseUnit.Sievert => _value,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -207,7 +207,7 @@ namespace UnitsNet
                         RadiationEquivalentDoseUnit.Nanosievert => (baseUnitValue) / 1e-9d,
                         RadiationEquivalentDoseUnit.RoentgenEquivalentMan => baseUnitValue * 100,
                         RadiationEquivalentDoseUnit.Sievert => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

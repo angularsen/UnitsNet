@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -270,122 +271,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Radioactivity.From(1, RadioactivityUnit.Becquerel);
-            AssertEx.EqualTolerance(1, quantity00.Becquerels, BecquerelsTolerance);
-            Assert.Equal(RadioactivityUnit.Becquerel, quantity00.Unit);
-
-            var quantity01 = Radioactivity.From(1, RadioactivityUnit.Curie);
-            AssertEx.EqualTolerance(1, quantity01.Curies, CuriesTolerance);
-            Assert.Equal(RadioactivityUnit.Curie, quantity01.Unit);
-
-            var quantity02 = Radioactivity.From(1, RadioactivityUnit.Exabecquerel);
-            AssertEx.EqualTolerance(1, quantity02.Exabecquerels, ExabecquerelsTolerance);
-            Assert.Equal(RadioactivityUnit.Exabecquerel, quantity02.Unit);
-
-            var quantity03 = Radioactivity.From(1, RadioactivityUnit.Gigabecquerel);
-            AssertEx.EqualTolerance(1, quantity03.Gigabecquerels, GigabecquerelsTolerance);
-            Assert.Equal(RadioactivityUnit.Gigabecquerel, quantity03.Unit);
-
-            var quantity04 = Radioactivity.From(1, RadioactivityUnit.Gigacurie);
-            AssertEx.EqualTolerance(1, quantity04.Gigacuries, GigacuriesTolerance);
-            Assert.Equal(RadioactivityUnit.Gigacurie, quantity04.Unit);
-
-            var quantity05 = Radioactivity.From(1, RadioactivityUnit.Gigarutherford);
-            AssertEx.EqualTolerance(1, quantity05.Gigarutherfords, GigarutherfordsTolerance);
-            Assert.Equal(RadioactivityUnit.Gigarutherford, quantity05.Unit);
-
-            var quantity06 = Radioactivity.From(1, RadioactivityUnit.Kilobecquerel);
-            AssertEx.EqualTolerance(1, quantity06.Kilobecquerels, KilobecquerelsTolerance);
-            Assert.Equal(RadioactivityUnit.Kilobecquerel, quantity06.Unit);
-
-            var quantity07 = Radioactivity.From(1, RadioactivityUnit.Kilocurie);
-            AssertEx.EqualTolerance(1, quantity07.Kilocuries, KilocuriesTolerance);
-            Assert.Equal(RadioactivityUnit.Kilocurie, quantity07.Unit);
-
-            var quantity08 = Radioactivity.From(1, RadioactivityUnit.Kilorutherford);
-            AssertEx.EqualTolerance(1, quantity08.Kilorutherfords, KilorutherfordsTolerance);
-            Assert.Equal(RadioactivityUnit.Kilorutherford, quantity08.Unit);
-
-            var quantity09 = Radioactivity.From(1, RadioactivityUnit.Megabecquerel);
-            AssertEx.EqualTolerance(1, quantity09.Megabecquerels, MegabecquerelsTolerance);
-            Assert.Equal(RadioactivityUnit.Megabecquerel, quantity09.Unit);
-
-            var quantity10 = Radioactivity.From(1, RadioactivityUnit.Megacurie);
-            AssertEx.EqualTolerance(1, quantity10.Megacuries, MegacuriesTolerance);
-            Assert.Equal(RadioactivityUnit.Megacurie, quantity10.Unit);
-
-            var quantity11 = Radioactivity.From(1, RadioactivityUnit.Megarutherford);
-            AssertEx.EqualTolerance(1, quantity11.Megarutherfords, MegarutherfordsTolerance);
-            Assert.Equal(RadioactivityUnit.Megarutherford, quantity11.Unit);
-
-            var quantity12 = Radioactivity.From(1, RadioactivityUnit.Microbecquerel);
-            AssertEx.EqualTolerance(1, quantity12.Microbecquerels, MicrobecquerelsTolerance);
-            Assert.Equal(RadioactivityUnit.Microbecquerel, quantity12.Unit);
-
-            var quantity13 = Radioactivity.From(1, RadioactivityUnit.Microcurie);
-            AssertEx.EqualTolerance(1, quantity13.Microcuries, MicrocuriesTolerance);
-            Assert.Equal(RadioactivityUnit.Microcurie, quantity13.Unit);
-
-            var quantity14 = Radioactivity.From(1, RadioactivityUnit.Microrutherford);
-            AssertEx.EqualTolerance(1, quantity14.Microrutherfords, MicrorutherfordsTolerance);
-            Assert.Equal(RadioactivityUnit.Microrutherford, quantity14.Unit);
-
-            var quantity15 = Radioactivity.From(1, RadioactivityUnit.Millibecquerel);
-            AssertEx.EqualTolerance(1, quantity15.Millibecquerels, MillibecquerelsTolerance);
-            Assert.Equal(RadioactivityUnit.Millibecquerel, quantity15.Unit);
-
-            var quantity16 = Radioactivity.From(1, RadioactivityUnit.Millicurie);
-            AssertEx.EqualTolerance(1, quantity16.Millicuries, MillicuriesTolerance);
-            Assert.Equal(RadioactivityUnit.Millicurie, quantity16.Unit);
-
-            var quantity17 = Radioactivity.From(1, RadioactivityUnit.Millirutherford);
-            AssertEx.EqualTolerance(1, quantity17.Millirutherfords, MillirutherfordsTolerance);
-            Assert.Equal(RadioactivityUnit.Millirutherford, quantity17.Unit);
-
-            var quantity18 = Radioactivity.From(1, RadioactivityUnit.Nanobecquerel);
-            AssertEx.EqualTolerance(1, quantity18.Nanobecquerels, NanobecquerelsTolerance);
-            Assert.Equal(RadioactivityUnit.Nanobecquerel, quantity18.Unit);
-
-            var quantity19 = Radioactivity.From(1, RadioactivityUnit.Nanocurie);
-            AssertEx.EqualTolerance(1, quantity19.Nanocuries, NanocuriesTolerance);
-            Assert.Equal(RadioactivityUnit.Nanocurie, quantity19.Unit);
-
-            var quantity20 = Radioactivity.From(1, RadioactivityUnit.Nanorutherford);
-            AssertEx.EqualTolerance(1, quantity20.Nanorutherfords, NanorutherfordsTolerance);
-            Assert.Equal(RadioactivityUnit.Nanorutherford, quantity20.Unit);
-
-            var quantity21 = Radioactivity.From(1, RadioactivityUnit.Petabecquerel);
-            AssertEx.EqualTolerance(1, quantity21.Petabecquerels, PetabecquerelsTolerance);
-            Assert.Equal(RadioactivityUnit.Petabecquerel, quantity21.Unit);
-
-            var quantity22 = Radioactivity.From(1, RadioactivityUnit.Picobecquerel);
-            AssertEx.EqualTolerance(1, quantity22.Picobecquerels, PicobecquerelsTolerance);
-            Assert.Equal(RadioactivityUnit.Picobecquerel, quantity22.Unit);
-
-            var quantity23 = Radioactivity.From(1, RadioactivityUnit.Picocurie);
-            AssertEx.EqualTolerance(1, quantity23.Picocuries, PicocuriesTolerance);
-            Assert.Equal(RadioactivityUnit.Picocurie, quantity23.Unit);
-
-            var quantity24 = Radioactivity.From(1, RadioactivityUnit.Picorutherford);
-            AssertEx.EqualTolerance(1, quantity24.Picorutherfords, PicorutherfordsTolerance);
-            Assert.Equal(RadioactivityUnit.Picorutherford, quantity24.Unit);
-
-            var quantity25 = Radioactivity.From(1, RadioactivityUnit.Rutherford);
-            AssertEx.EqualTolerance(1, quantity25.Rutherfords, RutherfordsTolerance);
-            Assert.Equal(RadioactivityUnit.Rutherford, quantity25.Unit);
-
-            var quantity26 = Radioactivity.From(1, RadioactivityUnit.Terabecquerel);
-            AssertEx.EqualTolerance(1, quantity26.Terabecquerels, TerabecquerelsTolerance);
-            Assert.Equal(RadioactivityUnit.Terabecquerel, quantity26.Unit);
-
-            var quantity27 = Radioactivity.From(1, RadioactivityUnit.Teracurie);
-            AssertEx.EqualTolerance(1, quantity27.Teracuries, TeracuriesTolerance);
-            Assert.Equal(RadioactivityUnit.Teracurie, quantity27.Unit);
-
-            var quantity28 = Radioactivity.From(1, RadioactivityUnit.Terarutherford);
-            AssertEx.EqualTolerance(1, quantity28.Terarutherfords, TerarutherfordsTolerance);
-            Assert.Equal(RadioactivityUnit.Terarutherford, quantity28.Unit);
-
+            Assert.All(EnumHelper.GetValues<RadioactivityUnit>(), unit =>
+            {
+                var quantity = Radioactivity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

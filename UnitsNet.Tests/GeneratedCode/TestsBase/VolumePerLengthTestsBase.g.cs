@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -170,42 +171,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = VolumePerLength.From(1, VolumePerLengthUnit.CubicMeterPerMeter);
-            AssertEx.EqualTolerance(1, quantity00.CubicMetersPerMeter, CubicMetersPerMeterTolerance);
-            Assert.Equal(VolumePerLengthUnit.CubicMeterPerMeter, quantity00.Unit);
-
-            var quantity01 = VolumePerLength.From(1, VolumePerLengthUnit.CubicYardPerFoot);
-            AssertEx.EqualTolerance(1, quantity01.CubicYardsPerFoot, CubicYardsPerFootTolerance);
-            Assert.Equal(VolumePerLengthUnit.CubicYardPerFoot, quantity01.Unit);
-
-            var quantity02 = VolumePerLength.From(1, VolumePerLengthUnit.CubicYardPerUsSurveyFoot);
-            AssertEx.EqualTolerance(1, quantity02.CubicYardsPerUsSurveyFoot, CubicYardsPerUsSurveyFootTolerance);
-            Assert.Equal(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, quantity02.Unit);
-
-            var quantity03 = VolumePerLength.From(1, VolumePerLengthUnit.ImperialGallonPerMile);
-            AssertEx.EqualTolerance(1, quantity03.ImperialGallonsPerMile, ImperialGallonsPerMileTolerance);
-            Assert.Equal(VolumePerLengthUnit.ImperialGallonPerMile, quantity03.Unit);
-
-            var quantity04 = VolumePerLength.From(1, VolumePerLengthUnit.LiterPerKilometer);
-            AssertEx.EqualTolerance(1, quantity04.LitersPerKilometer, LitersPerKilometerTolerance);
-            Assert.Equal(VolumePerLengthUnit.LiterPerKilometer, quantity04.Unit);
-
-            var quantity05 = VolumePerLength.From(1, VolumePerLengthUnit.LiterPerMeter);
-            AssertEx.EqualTolerance(1, quantity05.LitersPerMeter, LitersPerMeterTolerance);
-            Assert.Equal(VolumePerLengthUnit.LiterPerMeter, quantity05.Unit);
-
-            var quantity06 = VolumePerLength.From(1, VolumePerLengthUnit.LiterPerMillimeter);
-            AssertEx.EqualTolerance(1, quantity06.LitersPerMillimeter, LitersPerMillimeterTolerance);
-            Assert.Equal(VolumePerLengthUnit.LiterPerMillimeter, quantity06.Unit);
-
-            var quantity07 = VolumePerLength.From(1, VolumePerLengthUnit.OilBarrelPerFoot);
-            AssertEx.EqualTolerance(1, quantity07.OilBarrelsPerFoot, OilBarrelsPerFootTolerance);
-            Assert.Equal(VolumePerLengthUnit.OilBarrelPerFoot, quantity07.Unit);
-
-            var quantity08 = VolumePerLength.From(1, VolumePerLengthUnit.UsGallonPerMile);
-            AssertEx.EqualTolerance(1, quantity08.UsGallonsPerMile, UsGallonsPerMileTolerance);
-            Assert.Equal(VolumePerLengthUnit.UsGallonPerMile, quantity08.Unit);
-
+            Assert.All(EnumHelper.GetValues<VolumePerLengthUnit>(), unit =>
+            {
+                var quantity = VolumePerLength.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

@@ -155,7 +155,7 @@ namespace UnitsNet
                         MolarEnergyUnit.JoulePerMole => _value,
                         MolarEnergyUnit.KilojoulePerMole => (_value) * 1e3d,
                         MolarEnergyUnit.MegajoulePerMole => (_value) * 1e6d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -171,7 +171,7 @@ namespace UnitsNet
                         MolarEnergyUnit.JoulePerMole => baseUnitValue,
                         MolarEnergyUnit.KilojoulePerMole => (baseUnitValue) / 1e3d,
                         MolarEnergyUnit.MegajoulePerMole => (baseUnitValue) / 1e6d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

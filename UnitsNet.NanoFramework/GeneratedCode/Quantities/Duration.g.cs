@@ -265,7 +265,7 @@ namespace UnitsNet
                         DurationUnit.Sol => _value * 88775.244,
                         DurationUnit.Week => _value * 7 * 24 * 3600,
                         DurationUnit.Year365 => _value * 365 * 24 * 3600,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -291,7 +291,7 @@ namespace UnitsNet
                         DurationUnit.Sol => baseUnitValue / 88775.244,
                         DurationUnit.Week => baseUnitValue / (7 * 24 * 3600),
                         DurationUnit.Year365 => baseUnitValue / (365 * 24 * 3600),
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

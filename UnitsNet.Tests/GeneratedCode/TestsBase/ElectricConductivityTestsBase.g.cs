@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -155,30 +156,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricConductivity.From(1, ElectricConductivityUnit.MicrosiemensPerCentimeter);
-            AssertEx.EqualTolerance(1, quantity00.MicrosiemensPerCentimeter, MicrosiemensPerCentimeterTolerance);
-            Assert.Equal(ElectricConductivityUnit.MicrosiemensPerCentimeter, quantity00.Unit);
-
-            var quantity01 = ElectricConductivity.From(1, ElectricConductivityUnit.MillisiemensPerCentimeter);
-            AssertEx.EqualTolerance(1, quantity01.MillisiemensPerCentimeter, MillisiemensPerCentimeterTolerance);
-            Assert.Equal(ElectricConductivityUnit.MillisiemensPerCentimeter, quantity01.Unit);
-
-            var quantity02 = ElectricConductivity.From(1, ElectricConductivityUnit.SiemensPerCentimeter);
-            AssertEx.EqualTolerance(1, quantity02.SiemensPerCentimeter, SiemensPerCentimeterTolerance);
-            Assert.Equal(ElectricConductivityUnit.SiemensPerCentimeter, quantity02.Unit);
-
-            var quantity03 = ElectricConductivity.From(1, ElectricConductivityUnit.SiemensPerFoot);
-            AssertEx.EqualTolerance(1, quantity03.SiemensPerFoot, SiemensPerFootTolerance);
-            Assert.Equal(ElectricConductivityUnit.SiemensPerFoot, quantity03.Unit);
-
-            var quantity04 = ElectricConductivity.From(1, ElectricConductivityUnit.SiemensPerInch);
-            AssertEx.EqualTolerance(1, quantity04.SiemensPerInch, SiemensPerInchTolerance);
-            Assert.Equal(ElectricConductivityUnit.SiemensPerInch, quantity04.Unit);
-
-            var quantity05 = ElectricConductivity.From(1, ElectricConductivityUnit.SiemensPerMeter);
-            AssertEx.EqualTolerance(1, quantity05.SiemensPerMeter, SiemensPerMeterTolerance);
-            Assert.Equal(ElectricConductivityUnit.SiemensPerMeter, quantity05.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricConductivityUnit>(), unit =>
+            {
+                var quantity = ElectricConductivity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

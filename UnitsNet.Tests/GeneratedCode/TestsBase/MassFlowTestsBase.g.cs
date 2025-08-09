@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -290,138 +291,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = MassFlow.From(1, MassFlowUnit.CentigramPerDay);
-            AssertEx.EqualTolerance(1, quantity00.CentigramsPerDay, CentigramsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.CentigramPerDay, quantity00.Unit);
-
-            var quantity01 = MassFlow.From(1, MassFlowUnit.CentigramPerSecond);
-            AssertEx.EqualTolerance(1, quantity01.CentigramsPerSecond, CentigramsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.CentigramPerSecond, quantity01.Unit);
-
-            var quantity02 = MassFlow.From(1, MassFlowUnit.DecagramPerDay);
-            AssertEx.EqualTolerance(1, quantity02.DecagramsPerDay, DecagramsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.DecagramPerDay, quantity02.Unit);
-
-            var quantity03 = MassFlow.From(1, MassFlowUnit.DecagramPerSecond);
-            AssertEx.EqualTolerance(1, quantity03.DecagramsPerSecond, DecagramsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.DecagramPerSecond, quantity03.Unit);
-
-            var quantity04 = MassFlow.From(1, MassFlowUnit.DecigramPerDay);
-            AssertEx.EqualTolerance(1, quantity04.DecigramsPerDay, DecigramsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.DecigramPerDay, quantity04.Unit);
-
-            var quantity05 = MassFlow.From(1, MassFlowUnit.DecigramPerSecond);
-            AssertEx.EqualTolerance(1, quantity05.DecigramsPerSecond, DecigramsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.DecigramPerSecond, quantity05.Unit);
-
-            var quantity06 = MassFlow.From(1, MassFlowUnit.GramPerDay);
-            AssertEx.EqualTolerance(1, quantity06.GramsPerDay, GramsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.GramPerDay, quantity06.Unit);
-
-            var quantity07 = MassFlow.From(1, MassFlowUnit.GramPerHour);
-            AssertEx.EqualTolerance(1, quantity07.GramsPerHour, GramsPerHourTolerance);
-            Assert.Equal(MassFlowUnit.GramPerHour, quantity07.Unit);
-
-            var quantity08 = MassFlow.From(1, MassFlowUnit.GramPerSecond);
-            AssertEx.EqualTolerance(1, quantity08.GramsPerSecond, GramsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.GramPerSecond, quantity08.Unit);
-
-            var quantity09 = MassFlow.From(1, MassFlowUnit.HectogramPerDay);
-            AssertEx.EqualTolerance(1, quantity09.HectogramsPerDay, HectogramsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.HectogramPerDay, quantity09.Unit);
-
-            var quantity10 = MassFlow.From(1, MassFlowUnit.HectogramPerSecond);
-            AssertEx.EqualTolerance(1, quantity10.HectogramsPerSecond, HectogramsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.HectogramPerSecond, quantity10.Unit);
-
-            var quantity11 = MassFlow.From(1, MassFlowUnit.KilogramPerDay);
-            AssertEx.EqualTolerance(1, quantity11.KilogramsPerDay, KilogramsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.KilogramPerDay, quantity11.Unit);
-
-            var quantity12 = MassFlow.From(1, MassFlowUnit.KilogramPerHour);
-            AssertEx.EqualTolerance(1, quantity12.KilogramsPerHour, KilogramsPerHourTolerance);
-            Assert.Equal(MassFlowUnit.KilogramPerHour, quantity12.Unit);
-
-            var quantity13 = MassFlow.From(1, MassFlowUnit.KilogramPerMinute);
-            AssertEx.EqualTolerance(1, quantity13.KilogramsPerMinute, KilogramsPerMinuteTolerance);
-            Assert.Equal(MassFlowUnit.KilogramPerMinute, quantity13.Unit);
-
-            var quantity14 = MassFlow.From(1, MassFlowUnit.KilogramPerSecond);
-            AssertEx.EqualTolerance(1, quantity14.KilogramsPerSecond, KilogramsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.KilogramPerSecond, quantity14.Unit);
-
-            var quantity15 = MassFlow.From(1, MassFlowUnit.MegagramPerDay);
-            AssertEx.EqualTolerance(1, quantity15.MegagramsPerDay, MegagramsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.MegagramPerDay, quantity15.Unit);
-
-            var quantity16 = MassFlow.From(1, MassFlowUnit.MegapoundPerDay);
-            AssertEx.EqualTolerance(1, quantity16.MegapoundsPerDay, MegapoundsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.MegapoundPerDay, quantity16.Unit);
-
-            var quantity17 = MassFlow.From(1, MassFlowUnit.MegapoundPerHour);
-            AssertEx.EqualTolerance(1, quantity17.MegapoundsPerHour, MegapoundsPerHourTolerance);
-            Assert.Equal(MassFlowUnit.MegapoundPerHour, quantity17.Unit);
-
-            var quantity18 = MassFlow.From(1, MassFlowUnit.MegapoundPerMinute);
-            AssertEx.EqualTolerance(1, quantity18.MegapoundsPerMinute, MegapoundsPerMinuteTolerance);
-            Assert.Equal(MassFlowUnit.MegapoundPerMinute, quantity18.Unit);
-
-            var quantity19 = MassFlow.From(1, MassFlowUnit.MegapoundPerSecond);
-            AssertEx.EqualTolerance(1, quantity19.MegapoundsPerSecond, MegapoundsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.MegapoundPerSecond, quantity19.Unit);
-
-            var quantity20 = MassFlow.From(1, MassFlowUnit.MicrogramPerDay);
-            AssertEx.EqualTolerance(1, quantity20.MicrogramsPerDay, MicrogramsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.MicrogramPerDay, quantity20.Unit);
-
-            var quantity21 = MassFlow.From(1, MassFlowUnit.MicrogramPerSecond);
-            AssertEx.EqualTolerance(1, quantity21.MicrogramsPerSecond, MicrogramsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.MicrogramPerSecond, quantity21.Unit);
-
-            var quantity22 = MassFlow.From(1, MassFlowUnit.MilligramPerDay);
-            AssertEx.EqualTolerance(1, quantity22.MilligramsPerDay, MilligramsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.MilligramPerDay, quantity22.Unit);
-
-            var quantity23 = MassFlow.From(1, MassFlowUnit.MilligramPerSecond);
-            AssertEx.EqualTolerance(1, quantity23.MilligramsPerSecond, MilligramsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.MilligramPerSecond, quantity23.Unit);
-
-            var quantity24 = MassFlow.From(1, MassFlowUnit.NanogramPerDay);
-            AssertEx.EqualTolerance(1, quantity24.NanogramsPerDay, NanogramsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.NanogramPerDay, quantity24.Unit);
-
-            var quantity25 = MassFlow.From(1, MassFlowUnit.NanogramPerSecond);
-            AssertEx.EqualTolerance(1, quantity25.NanogramsPerSecond, NanogramsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.NanogramPerSecond, quantity25.Unit);
-
-            var quantity26 = MassFlow.From(1, MassFlowUnit.PoundPerDay);
-            AssertEx.EqualTolerance(1, quantity26.PoundsPerDay, PoundsPerDayTolerance);
-            Assert.Equal(MassFlowUnit.PoundPerDay, quantity26.Unit);
-
-            var quantity27 = MassFlow.From(1, MassFlowUnit.PoundPerHour);
-            AssertEx.EqualTolerance(1, quantity27.PoundsPerHour, PoundsPerHourTolerance);
-            Assert.Equal(MassFlowUnit.PoundPerHour, quantity27.Unit);
-
-            var quantity28 = MassFlow.From(1, MassFlowUnit.PoundPerMinute);
-            AssertEx.EqualTolerance(1, quantity28.PoundsPerMinute, PoundsPerMinuteTolerance);
-            Assert.Equal(MassFlowUnit.PoundPerMinute, quantity28.Unit);
-
-            var quantity29 = MassFlow.From(1, MassFlowUnit.PoundPerSecond);
-            AssertEx.EqualTolerance(1, quantity29.PoundsPerSecond, PoundsPerSecondTolerance);
-            Assert.Equal(MassFlowUnit.PoundPerSecond, quantity29.Unit);
-
-            var quantity30 = MassFlow.From(1, MassFlowUnit.ShortTonPerHour);
-            AssertEx.EqualTolerance(1, quantity30.ShortTonsPerHour, ShortTonsPerHourTolerance);
-            Assert.Equal(MassFlowUnit.ShortTonPerHour, quantity30.Unit);
-
-            var quantity31 = MassFlow.From(1, MassFlowUnit.TonnePerDay);
-            AssertEx.EqualTolerance(1, quantity31.TonnesPerDay, TonnesPerDayTolerance);
-            Assert.Equal(MassFlowUnit.TonnePerDay, quantity31.Unit);
-
-            var quantity32 = MassFlow.From(1, MassFlowUnit.TonnePerHour);
-            AssertEx.EqualTolerance(1, quantity32.TonnesPerHour, TonnesPerHourTolerance);
-            Assert.Equal(MassFlowUnit.TonnePerHour, quantity32.Unit);
-
+            Assert.All(EnumHelper.GetValues<MassFlowUnit>(), unit =>
+            {
+                var quantity = MassFlow.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

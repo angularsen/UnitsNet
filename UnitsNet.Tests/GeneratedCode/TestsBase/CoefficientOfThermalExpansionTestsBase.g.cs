@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -155,30 +156,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PerDegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity00.PerDegreeCelsius, PerDegreeCelsiusTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeCelsius, quantity00.Unit);
-
-            var quantity01 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit);
-            AssertEx.EqualTolerance(1, quantity01.PerDegreeFahrenheit, PerDegreeFahrenheitTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, quantity01.Unit);
-
-            var quantity02 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PerKelvin);
-            AssertEx.EqualTolerance(1, quantity02.PerKelvin, PerKelvinTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.PerKelvin, quantity02.Unit);
-
-            var quantity03 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity03.PpmPerDegreeCelsius, PpmPerDegreeCelsiusTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius, quantity03.Unit);
-
-            var quantity04 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit);
-            AssertEx.EqualTolerance(1, quantity04.PpmPerDegreeFahrenheit, PpmPerDegreeFahrenheitTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit, quantity04.Unit);
-
-            var quantity05 = CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.PpmPerKelvin);
-            AssertEx.EqualTolerance(1, quantity05.PpmPerKelvin, PpmPerKelvinTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.PpmPerKelvin, quantity05.Unit);
-
+            Assert.All(EnumHelper.GetValues<CoefficientOfThermalExpansionUnit>(), unit =>
+            {
+                var quantity = CoefficientOfThermalExpansion.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

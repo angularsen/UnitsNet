@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -175,46 +176,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Temperature.From(1, TemperatureUnit.DegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity00.DegreesCelsius, DegreesCelsiusTolerance);
-            Assert.Equal(TemperatureUnit.DegreeCelsius, quantity00.Unit);
-
-            var quantity01 = Temperature.From(1, TemperatureUnit.DegreeDelisle);
-            AssertEx.EqualTolerance(1, quantity01.DegreesDelisle, DegreesDelisleTolerance);
-            Assert.Equal(TemperatureUnit.DegreeDelisle, quantity01.Unit);
-
-            var quantity02 = Temperature.From(1, TemperatureUnit.DegreeFahrenheit);
-            AssertEx.EqualTolerance(1, quantity02.DegreesFahrenheit, DegreesFahrenheitTolerance);
-            Assert.Equal(TemperatureUnit.DegreeFahrenheit, quantity02.Unit);
-
-            var quantity03 = Temperature.From(1, TemperatureUnit.DegreeNewton);
-            AssertEx.EqualTolerance(1, quantity03.DegreesNewton, DegreesNewtonTolerance);
-            Assert.Equal(TemperatureUnit.DegreeNewton, quantity03.Unit);
-
-            var quantity04 = Temperature.From(1, TemperatureUnit.DegreeRankine);
-            AssertEx.EqualTolerance(1, quantity04.DegreesRankine, DegreesRankineTolerance);
-            Assert.Equal(TemperatureUnit.DegreeRankine, quantity04.Unit);
-
-            var quantity05 = Temperature.From(1, TemperatureUnit.DegreeReaumur);
-            AssertEx.EqualTolerance(1, quantity05.DegreesReaumur, DegreesReaumurTolerance);
-            Assert.Equal(TemperatureUnit.DegreeReaumur, quantity05.Unit);
-
-            var quantity06 = Temperature.From(1, TemperatureUnit.DegreeRoemer);
-            AssertEx.EqualTolerance(1, quantity06.DegreesRoemer, DegreesRoemerTolerance);
-            Assert.Equal(TemperatureUnit.DegreeRoemer, quantity06.Unit);
-
-            var quantity07 = Temperature.From(1, TemperatureUnit.Kelvin);
-            AssertEx.EqualTolerance(1, quantity07.Kelvins, KelvinsTolerance);
-            Assert.Equal(TemperatureUnit.Kelvin, quantity07.Unit);
-
-            var quantity08 = Temperature.From(1, TemperatureUnit.MillidegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity08.MillidegreesCelsius, MillidegreesCelsiusTolerance);
-            Assert.Equal(TemperatureUnit.MillidegreeCelsius, quantity08.Unit);
-
-            var quantity09 = Temperature.From(1, TemperatureUnit.SolarTemperature);
-            AssertEx.EqualTolerance(1, quantity09.SolarTemperatures, SolarTemperaturesTolerance);
-            Assert.Equal(TemperatureUnit.SolarTemperature, quantity09.Unit);
-
+            Assert.All(EnumHelper.GetValues<TemperatureUnit>(), unit =>
+            {
+                var quantity = Temperature.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

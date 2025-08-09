@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -114,14 +115,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = PowerRatio.From(1, PowerRatioUnit.DecibelMilliwatt);
-            AssertEx.EqualTolerance(1, quantity00.DecibelMilliwatts, DecibelMilliwattsTolerance);
-            Assert.Equal(PowerRatioUnit.DecibelMilliwatt, quantity00.Unit);
-
-            var quantity01 = PowerRatio.From(1, PowerRatioUnit.DecibelWatt);
-            AssertEx.EqualTolerance(1, quantity01.DecibelWatts, DecibelWattsTolerance);
-            Assert.Equal(PowerRatioUnit.DecibelWatt, quantity01.Unit);
-
+            Assert.All(EnumHelper.GetValues<PowerRatioUnit>(), unit =>
+            {
+                var quantity = PowerRatio.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

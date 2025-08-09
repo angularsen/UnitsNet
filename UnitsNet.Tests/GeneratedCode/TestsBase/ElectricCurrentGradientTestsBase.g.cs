@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -160,34 +161,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricCurrentGradient.From(1, ElectricCurrentGradientUnit.AmperePerMicrosecond);
-            AssertEx.EqualTolerance(1, quantity00.AmperesPerMicrosecond, AmperesPerMicrosecondTolerance);
-            Assert.Equal(ElectricCurrentGradientUnit.AmperePerMicrosecond, quantity00.Unit);
-
-            var quantity01 = ElectricCurrentGradient.From(1, ElectricCurrentGradientUnit.AmperePerMillisecond);
-            AssertEx.EqualTolerance(1, quantity01.AmperesPerMillisecond, AmperesPerMillisecondTolerance);
-            Assert.Equal(ElectricCurrentGradientUnit.AmperePerMillisecond, quantity01.Unit);
-
-            var quantity02 = ElectricCurrentGradient.From(1, ElectricCurrentGradientUnit.AmperePerMinute);
-            AssertEx.EqualTolerance(1, quantity02.AmperesPerMinute, AmperesPerMinuteTolerance);
-            Assert.Equal(ElectricCurrentGradientUnit.AmperePerMinute, quantity02.Unit);
-
-            var quantity03 = ElectricCurrentGradient.From(1, ElectricCurrentGradientUnit.AmperePerNanosecond);
-            AssertEx.EqualTolerance(1, quantity03.AmperesPerNanosecond, AmperesPerNanosecondTolerance);
-            Assert.Equal(ElectricCurrentGradientUnit.AmperePerNanosecond, quantity03.Unit);
-
-            var quantity04 = ElectricCurrentGradient.From(1, ElectricCurrentGradientUnit.AmperePerSecond);
-            AssertEx.EqualTolerance(1, quantity04.AmperesPerSecond, AmperesPerSecondTolerance);
-            Assert.Equal(ElectricCurrentGradientUnit.AmperePerSecond, quantity04.Unit);
-
-            var quantity05 = ElectricCurrentGradient.From(1, ElectricCurrentGradientUnit.MilliamperePerMinute);
-            AssertEx.EqualTolerance(1, quantity05.MilliamperesPerMinute, MilliamperesPerMinuteTolerance);
-            Assert.Equal(ElectricCurrentGradientUnit.MilliamperePerMinute, quantity05.Unit);
-
-            var quantity06 = ElectricCurrentGradient.From(1, ElectricCurrentGradientUnit.MilliamperePerSecond);
-            AssertEx.EqualTolerance(1, quantity06.MilliamperesPerSecond, MilliamperesPerSecondTolerance);
-            Assert.Equal(ElectricCurrentGradientUnit.MilliamperePerSecond, quantity06.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricCurrentGradientUnit>(), unit =>
+            {
+                var quantity = ElectricCurrentGradient.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

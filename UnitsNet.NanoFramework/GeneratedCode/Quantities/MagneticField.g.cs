@@ -191,7 +191,7 @@ namespace UnitsNet
                         MagneticFieldUnit.Millitesla => (_value) * 1e-3d,
                         MagneticFieldUnit.Nanotesla => (_value) * 1e-9d,
                         MagneticFieldUnit.Tesla => _value,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -210,7 +210,7 @@ namespace UnitsNet
                         MagneticFieldUnit.Millitesla => (baseUnitValue) / 1e-3d,
                         MagneticFieldUnit.Nanotesla => (baseUnitValue) / 1e-9d,
                         MagneticFieldUnit.Tesla => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

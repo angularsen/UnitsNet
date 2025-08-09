@@ -254,7 +254,7 @@ namespace UnitsNet
                         MassFluxUnit.KilogramPerSecondPerSquareCentimeter => (_value / 1e-1) * 1e3d,
                         MassFluxUnit.KilogramPerSecondPerSquareMeter => (_value / 1e3) * 1e3d,
                         MassFluxUnit.KilogramPerSecondPerSquareMillimeter => (_value / 1e-3) * 1e3d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -279,7 +279,7 @@ namespace UnitsNet
                         MassFluxUnit.KilogramPerSecondPerSquareCentimeter => (baseUnitValue * 1e-1) / 1e3d,
                         MassFluxUnit.KilogramPerSecondPerSquareMeter => (baseUnitValue * 1e3) / 1e3d,
                         MassFluxUnit.KilogramPerSecondPerSquareMillimeter => (baseUnitValue * 1e-3) / 1e3d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

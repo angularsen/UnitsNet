@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -290,138 +291,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Speed.From(1, SpeedUnit.CentimeterPerHour);
-            AssertEx.EqualTolerance(1, quantity00.CentimetersPerHour, CentimetersPerHourTolerance);
-            Assert.Equal(SpeedUnit.CentimeterPerHour, quantity00.Unit);
-
-            var quantity01 = Speed.From(1, SpeedUnit.CentimeterPerMinute);
-            AssertEx.EqualTolerance(1, quantity01.CentimetersPerMinute, CentimetersPerMinuteTolerance);
-            Assert.Equal(SpeedUnit.CentimeterPerMinute, quantity01.Unit);
-
-            var quantity02 = Speed.From(1, SpeedUnit.CentimeterPerSecond);
-            AssertEx.EqualTolerance(1, quantity02.CentimetersPerSecond, CentimetersPerSecondTolerance);
-            Assert.Equal(SpeedUnit.CentimeterPerSecond, quantity02.Unit);
-
-            var quantity03 = Speed.From(1, SpeedUnit.DecimeterPerMinute);
-            AssertEx.EqualTolerance(1, quantity03.DecimetersPerMinute, DecimetersPerMinuteTolerance);
-            Assert.Equal(SpeedUnit.DecimeterPerMinute, quantity03.Unit);
-
-            var quantity04 = Speed.From(1, SpeedUnit.DecimeterPerSecond);
-            AssertEx.EqualTolerance(1, quantity04.DecimetersPerSecond, DecimetersPerSecondTolerance);
-            Assert.Equal(SpeedUnit.DecimeterPerSecond, quantity04.Unit);
-
-            var quantity05 = Speed.From(1, SpeedUnit.FootPerHour);
-            AssertEx.EqualTolerance(1, quantity05.FeetPerHour, FeetPerHourTolerance);
-            Assert.Equal(SpeedUnit.FootPerHour, quantity05.Unit);
-
-            var quantity06 = Speed.From(1, SpeedUnit.FootPerMinute);
-            AssertEx.EqualTolerance(1, quantity06.FeetPerMinute, FeetPerMinuteTolerance);
-            Assert.Equal(SpeedUnit.FootPerMinute, quantity06.Unit);
-
-            var quantity07 = Speed.From(1, SpeedUnit.FootPerSecond);
-            AssertEx.EqualTolerance(1, quantity07.FeetPerSecond, FeetPerSecondTolerance);
-            Assert.Equal(SpeedUnit.FootPerSecond, quantity07.Unit);
-
-            var quantity08 = Speed.From(1, SpeedUnit.InchPerHour);
-            AssertEx.EqualTolerance(1, quantity08.InchesPerHour, InchesPerHourTolerance);
-            Assert.Equal(SpeedUnit.InchPerHour, quantity08.Unit);
-
-            var quantity09 = Speed.From(1, SpeedUnit.InchPerMinute);
-            AssertEx.EqualTolerance(1, quantity09.InchesPerMinute, InchesPerMinuteTolerance);
-            Assert.Equal(SpeedUnit.InchPerMinute, quantity09.Unit);
-
-            var quantity10 = Speed.From(1, SpeedUnit.InchPerSecond);
-            AssertEx.EqualTolerance(1, quantity10.InchesPerSecond, InchesPerSecondTolerance);
-            Assert.Equal(SpeedUnit.InchPerSecond, quantity10.Unit);
-
-            var quantity11 = Speed.From(1, SpeedUnit.KilometerPerHour);
-            AssertEx.EqualTolerance(1, quantity11.KilometersPerHour, KilometersPerHourTolerance);
-            Assert.Equal(SpeedUnit.KilometerPerHour, quantity11.Unit);
-
-            var quantity12 = Speed.From(1, SpeedUnit.KilometerPerMinute);
-            AssertEx.EqualTolerance(1, quantity12.KilometersPerMinute, KilometersPerMinuteTolerance);
-            Assert.Equal(SpeedUnit.KilometerPerMinute, quantity12.Unit);
-
-            var quantity13 = Speed.From(1, SpeedUnit.KilometerPerSecond);
-            AssertEx.EqualTolerance(1, quantity13.KilometersPerSecond, KilometersPerSecondTolerance);
-            Assert.Equal(SpeedUnit.KilometerPerSecond, quantity13.Unit);
-
-            var quantity14 = Speed.From(1, SpeedUnit.Knot);
-            AssertEx.EqualTolerance(1, quantity14.Knots, KnotsTolerance);
-            Assert.Equal(SpeedUnit.Knot, quantity14.Unit);
-
-            var quantity15 = Speed.From(1, SpeedUnit.Mach);
-            AssertEx.EqualTolerance(1, quantity15.Mach, MachTolerance);
-            Assert.Equal(SpeedUnit.Mach, quantity15.Unit);
-
-            var quantity16 = Speed.From(1, SpeedUnit.MeterPerHour);
-            AssertEx.EqualTolerance(1, quantity16.MetersPerHour, MetersPerHourTolerance);
-            Assert.Equal(SpeedUnit.MeterPerHour, quantity16.Unit);
-
-            var quantity17 = Speed.From(1, SpeedUnit.MeterPerMinute);
-            AssertEx.EqualTolerance(1, quantity17.MetersPerMinute, MetersPerMinuteTolerance);
-            Assert.Equal(SpeedUnit.MeterPerMinute, quantity17.Unit);
-
-            var quantity18 = Speed.From(1, SpeedUnit.MeterPerSecond);
-            AssertEx.EqualTolerance(1, quantity18.MetersPerSecond, MetersPerSecondTolerance);
-            Assert.Equal(SpeedUnit.MeterPerSecond, quantity18.Unit);
-
-            var quantity19 = Speed.From(1, SpeedUnit.MicrometerPerMinute);
-            AssertEx.EqualTolerance(1, quantity19.MicrometersPerMinute, MicrometersPerMinuteTolerance);
-            Assert.Equal(SpeedUnit.MicrometerPerMinute, quantity19.Unit);
-
-            var quantity20 = Speed.From(1, SpeedUnit.MicrometerPerSecond);
-            AssertEx.EqualTolerance(1, quantity20.MicrometersPerSecond, MicrometersPerSecondTolerance);
-            Assert.Equal(SpeedUnit.MicrometerPerSecond, quantity20.Unit);
-
-            var quantity21 = Speed.From(1, SpeedUnit.MilePerHour);
-            AssertEx.EqualTolerance(1, quantity21.MilesPerHour, MilesPerHourTolerance);
-            Assert.Equal(SpeedUnit.MilePerHour, quantity21.Unit);
-
-            var quantity22 = Speed.From(1, SpeedUnit.MillimeterPerHour);
-            AssertEx.EqualTolerance(1, quantity22.MillimetersPerHour, MillimetersPerHourTolerance);
-            Assert.Equal(SpeedUnit.MillimeterPerHour, quantity22.Unit);
-
-            var quantity23 = Speed.From(1, SpeedUnit.MillimeterPerMinute);
-            AssertEx.EqualTolerance(1, quantity23.MillimetersPerMinute, MillimetersPerMinuteTolerance);
-            Assert.Equal(SpeedUnit.MillimeterPerMinute, quantity23.Unit);
-
-            var quantity24 = Speed.From(1, SpeedUnit.MillimeterPerSecond);
-            AssertEx.EqualTolerance(1, quantity24.MillimetersPerSecond, MillimetersPerSecondTolerance);
-            Assert.Equal(SpeedUnit.MillimeterPerSecond, quantity24.Unit);
-
-            var quantity25 = Speed.From(1, SpeedUnit.NanometerPerMinute);
-            AssertEx.EqualTolerance(1, quantity25.NanometersPerMinute, NanometersPerMinuteTolerance);
-            Assert.Equal(SpeedUnit.NanometerPerMinute, quantity25.Unit);
-
-            var quantity26 = Speed.From(1, SpeedUnit.NanometerPerSecond);
-            AssertEx.EqualTolerance(1, quantity26.NanometersPerSecond, NanometersPerSecondTolerance);
-            Assert.Equal(SpeedUnit.NanometerPerSecond, quantity26.Unit);
-
-            var quantity27 = Speed.From(1, SpeedUnit.UsSurveyFootPerHour);
-            AssertEx.EqualTolerance(1, quantity27.UsSurveyFeetPerHour, UsSurveyFeetPerHourTolerance);
-            Assert.Equal(SpeedUnit.UsSurveyFootPerHour, quantity27.Unit);
-
-            var quantity28 = Speed.From(1, SpeedUnit.UsSurveyFootPerMinute);
-            AssertEx.EqualTolerance(1, quantity28.UsSurveyFeetPerMinute, UsSurveyFeetPerMinuteTolerance);
-            Assert.Equal(SpeedUnit.UsSurveyFootPerMinute, quantity28.Unit);
-
-            var quantity29 = Speed.From(1, SpeedUnit.UsSurveyFootPerSecond);
-            AssertEx.EqualTolerance(1, quantity29.UsSurveyFeetPerSecond, UsSurveyFeetPerSecondTolerance);
-            Assert.Equal(SpeedUnit.UsSurveyFootPerSecond, quantity29.Unit);
-
-            var quantity30 = Speed.From(1, SpeedUnit.YardPerHour);
-            AssertEx.EqualTolerance(1, quantity30.YardsPerHour, YardsPerHourTolerance);
-            Assert.Equal(SpeedUnit.YardPerHour, quantity30.Unit);
-
-            var quantity31 = Speed.From(1, SpeedUnit.YardPerMinute);
-            AssertEx.EqualTolerance(1, quantity31.YardsPerMinute, YardsPerMinuteTolerance);
-            Assert.Equal(SpeedUnit.YardPerMinute, quantity31.Unit);
-
-            var quantity32 = Speed.From(1, SpeedUnit.YardPerSecond);
-            AssertEx.EqualTolerance(1, quantity32.YardsPerSecond, YardsPerSecondTolerance);
-            Assert.Equal(SpeedUnit.YardPerSecond, quantity32.Unit);
-
+            Assert.All(EnumHelper.GetValues<SpeedUnit>(), unit =>
+            {
+                var quantity = Speed.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

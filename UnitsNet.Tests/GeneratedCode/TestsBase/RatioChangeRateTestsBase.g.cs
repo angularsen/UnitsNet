@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -135,14 +136,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = RatioChangeRate.From(1, RatioChangeRateUnit.DecimalFractionPerSecond);
-            AssertEx.EqualTolerance(1, quantity00.DecimalFractionsPerSecond, DecimalFractionsPerSecondTolerance);
-            Assert.Equal(RatioChangeRateUnit.DecimalFractionPerSecond, quantity00.Unit);
-
-            var quantity01 = RatioChangeRate.From(1, RatioChangeRateUnit.PercentPerSecond);
-            AssertEx.EqualTolerance(1, quantity01.PercentsPerSecond, PercentsPerSecondTolerance);
-            Assert.Equal(RatioChangeRateUnit.PercentPerSecond, quantity01.Unit);
-
+            Assert.All(EnumHelper.GetValues<RatioChangeRateUnit>(), unit =>
+            {
+                var quantity = RatioChangeRate.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

@@ -254,7 +254,7 @@ namespace UnitsNet
                         FrequencyUnit.PerSecond => _value,
                         FrequencyUnit.RadianPerSecond => _value / (2 * 3.1415926535897931),
                         FrequencyUnit.Terahertz => (_value) * 1e12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -279,7 +279,7 @@ namespace UnitsNet
                         FrequencyUnit.PerSecond => baseUnitValue,
                         FrequencyUnit.RadianPerSecond => baseUnitValue * (2 * 3.1415926535897931),
                         FrequencyUnit.Terahertz => (baseUnitValue) / 1e12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

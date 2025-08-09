@@ -224,7 +224,7 @@ namespace UnitsNet
                         IrradiationUnit.KilowattHourPerSquareMeter => (_value * 3600d) * 1e3d,
                         IrradiationUnit.MillijoulePerSquareCentimeter => (_value * 1e4) * 1e-3d,
                         IrradiationUnit.WattHourPerSquareMeter => _value * 3600d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -246,7 +246,7 @@ namespace UnitsNet
                         IrradiationUnit.KilowattHourPerSquareMeter => (baseUnitValue / 3600d) / 1e3d,
                         IrradiationUnit.MillijoulePerSquareCentimeter => (baseUnitValue / 1e4) / 1e-3d,
                         IrradiationUnit.WattHourPerSquareMeter => baseUnitValue / 3600d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

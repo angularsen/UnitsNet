@@ -485,7 +485,7 @@ namespace UnitsNet
                         MassFlowUnit.ShortTonPerHour => _value * 907.18474 / 3.6,
                         MassFlowUnit.TonnePerDay => _value / 0.0864000,
                         MassFlowUnit.TonnePerHour => _value * 1000 / 3.6,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -531,7 +531,7 @@ namespace UnitsNet
                         MassFlowUnit.ShortTonPerHour => baseUnitValue * 3.6 / 907.18474,
                         MassFlowUnit.TonnePerDay => baseUnitValue * 0.0864000,
                         MassFlowUnit.TonnePerHour => baseUnitValue * 3.6 / 1000,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

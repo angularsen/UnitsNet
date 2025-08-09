@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -190,58 +191,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = RotationalSpeed.From(1, RotationalSpeedUnit.CentiradianPerSecond);
-            AssertEx.EqualTolerance(1, quantity00.CentiradiansPerSecond, CentiradiansPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.CentiradianPerSecond, quantity00.Unit);
-
-            var quantity01 = RotationalSpeed.From(1, RotationalSpeedUnit.DeciradianPerSecond);
-            AssertEx.EqualTolerance(1, quantity01.DeciradiansPerSecond, DeciradiansPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.DeciradianPerSecond, quantity01.Unit);
-
-            var quantity02 = RotationalSpeed.From(1, RotationalSpeedUnit.DegreePerMinute);
-            AssertEx.EqualTolerance(1, quantity02.DegreesPerMinute, DegreesPerMinuteTolerance);
-            Assert.Equal(RotationalSpeedUnit.DegreePerMinute, quantity02.Unit);
-
-            var quantity03 = RotationalSpeed.From(1, RotationalSpeedUnit.DegreePerSecond);
-            AssertEx.EqualTolerance(1, quantity03.DegreesPerSecond, DegreesPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.DegreePerSecond, quantity03.Unit);
-
-            var quantity04 = RotationalSpeed.From(1, RotationalSpeedUnit.MicrodegreePerSecond);
-            AssertEx.EqualTolerance(1, quantity04.MicrodegreesPerSecond, MicrodegreesPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.MicrodegreePerSecond, quantity04.Unit);
-
-            var quantity05 = RotationalSpeed.From(1, RotationalSpeedUnit.MicroradianPerSecond);
-            AssertEx.EqualTolerance(1, quantity05.MicroradiansPerSecond, MicroradiansPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.MicroradianPerSecond, quantity05.Unit);
-
-            var quantity06 = RotationalSpeed.From(1, RotationalSpeedUnit.MillidegreePerSecond);
-            AssertEx.EqualTolerance(1, quantity06.MillidegreesPerSecond, MillidegreesPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.MillidegreePerSecond, quantity06.Unit);
-
-            var quantity07 = RotationalSpeed.From(1, RotationalSpeedUnit.MilliradianPerSecond);
-            AssertEx.EqualTolerance(1, quantity07.MilliradiansPerSecond, MilliradiansPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.MilliradianPerSecond, quantity07.Unit);
-
-            var quantity08 = RotationalSpeed.From(1, RotationalSpeedUnit.NanodegreePerSecond);
-            AssertEx.EqualTolerance(1, quantity08.NanodegreesPerSecond, NanodegreesPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.NanodegreePerSecond, quantity08.Unit);
-
-            var quantity09 = RotationalSpeed.From(1, RotationalSpeedUnit.NanoradianPerSecond);
-            AssertEx.EqualTolerance(1, quantity09.NanoradiansPerSecond, NanoradiansPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.NanoradianPerSecond, quantity09.Unit);
-
-            var quantity10 = RotationalSpeed.From(1, RotationalSpeedUnit.RadianPerSecond);
-            AssertEx.EqualTolerance(1, quantity10.RadiansPerSecond, RadiansPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.RadianPerSecond, quantity10.Unit);
-
-            var quantity11 = RotationalSpeed.From(1, RotationalSpeedUnit.RevolutionPerMinute);
-            AssertEx.EqualTolerance(1, quantity11.RevolutionsPerMinute, RevolutionsPerMinuteTolerance);
-            Assert.Equal(RotationalSpeedUnit.RevolutionPerMinute, quantity11.Unit);
-
-            var quantity12 = RotationalSpeed.From(1, RotationalSpeedUnit.RevolutionPerSecond);
-            AssertEx.EqualTolerance(1, quantity12.RevolutionsPerSecond, RevolutionsPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.RevolutionPerSecond, quantity12.Unit);
-
+            Assert.All(EnumHelper.GetValues<RotationalSpeedUnit>(), unit =>
+            {
+                var quantity = RotationalSpeed.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -180,50 +181,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricCharge.From(1, ElectricChargeUnit.AmpereHour);
-            AssertEx.EqualTolerance(1, quantity00.AmpereHours, AmpereHoursTolerance);
-            Assert.Equal(ElectricChargeUnit.AmpereHour, quantity00.Unit);
-
-            var quantity01 = ElectricCharge.From(1, ElectricChargeUnit.Coulomb);
-            AssertEx.EqualTolerance(1, quantity01.Coulombs, CoulombsTolerance);
-            Assert.Equal(ElectricChargeUnit.Coulomb, quantity01.Unit);
-
-            var quantity02 = ElectricCharge.From(1, ElectricChargeUnit.KiloampereHour);
-            AssertEx.EqualTolerance(1, quantity02.KiloampereHours, KiloampereHoursTolerance);
-            Assert.Equal(ElectricChargeUnit.KiloampereHour, quantity02.Unit);
-
-            var quantity03 = ElectricCharge.From(1, ElectricChargeUnit.Kilocoulomb);
-            AssertEx.EqualTolerance(1, quantity03.Kilocoulombs, KilocoulombsTolerance);
-            Assert.Equal(ElectricChargeUnit.Kilocoulomb, quantity03.Unit);
-
-            var quantity04 = ElectricCharge.From(1, ElectricChargeUnit.MegaampereHour);
-            AssertEx.EqualTolerance(1, quantity04.MegaampereHours, MegaampereHoursTolerance);
-            Assert.Equal(ElectricChargeUnit.MegaampereHour, quantity04.Unit);
-
-            var quantity05 = ElectricCharge.From(1, ElectricChargeUnit.Megacoulomb);
-            AssertEx.EqualTolerance(1, quantity05.Megacoulombs, MegacoulombsTolerance);
-            Assert.Equal(ElectricChargeUnit.Megacoulomb, quantity05.Unit);
-
-            var quantity06 = ElectricCharge.From(1, ElectricChargeUnit.Microcoulomb);
-            AssertEx.EqualTolerance(1, quantity06.Microcoulombs, MicrocoulombsTolerance);
-            Assert.Equal(ElectricChargeUnit.Microcoulomb, quantity06.Unit);
-
-            var quantity07 = ElectricCharge.From(1, ElectricChargeUnit.MilliampereHour);
-            AssertEx.EqualTolerance(1, quantity07.MilliampereHours, MilliampereHoursTolerance);
-            Assert.Equal(ElectricChargeUnit.MilliampereHour, quantity07.Unit);
-
-            var quantity08 = ElectricCharge.From(1, ElectricChargeUnit.Millicoulomb);
-            AssertEx.EqualTolerance(1, quantity08.Millicoulombs, MillicoulombsTolerance);
-            Assert.Equal(ElectricChargeUnit.Millicoulomb, quantity08.Unit);
-
-            var quantity09 = ElectricCharge.From(1, ElectricChargeUnit.Nanocoulomb);
-            AssertEx.EqualTolerance(1, quantity09.Nanocoulombs, NanocoulombsTolerance);
-            Assert.Equal(ElectricChargeUnit.Nanocoulomb, quantity09.Unit);
-
-            var quantity10 = ElectricCharge.From(1, ElectricChargeUnit.Picocoulomb);
-            AssertEx.EqualTolerance(1, quantity10.Picocoulombs, PicocoulombsTolerance);
-            Assert.Equal(ElectricChargeUnit.Picocoulomb, quantity10.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricChargeUnit>(), unit =>
+            {
+                var quantity = ElectricCharge.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

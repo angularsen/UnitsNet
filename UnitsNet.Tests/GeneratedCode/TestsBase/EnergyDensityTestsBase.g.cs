@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -185,54 +186,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = EnergyDensity.From(1, EnergyDensityUnit.GigajoulePerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity00.GigajoulesPerCubicMeter, GigajoulesPerCubicMeterTolerance);
-            Assert.Equal(EnergyDensityUnit.GigajoulePerCubicMeter, quantity00.Unit);
-
-            var quantity01 = EnergyDensity.From(1, EnergyDensityUnit.GigawattHourPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity01.GigawattHoursPerCubicMeter, GigawattHoursPerCubicMeterTolerance);
-            Assert.Equal(EnergyDensityUnit.GigawattHourPerCubicMeter, quantity01.Unit);
-
-            var quantity02 = EnergyDensity.From(1, EnergyDensityUnit.JoulePerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity02.JoulesPerCubicMeter, JoulesPerCubicMeterTolerance);
-            Assert.Equal(EnergyDensityUnit.JoulePerCubicMeter, quantity02.Unit);
-
-            var quantity03 = EnergyDensity.From(1, EnergyDensityUnit.KilojoulePerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity03.KilojoulesPerCubicMeter, KilojoulesPerCubicMeterTolerance);
-            Assert.Equal(EnergyDensityUnit.KilojoulePerCubicMeter, quantity03.Unit);
-
-            var quantity04 = EnergyDensity.From(1, EnergyDensityUnit.KilowattHourPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity04.KilowattHoursPerCubicMeter, KilowattHoursPerCubicMeterTolerance);
-            Assert.Equal(EnergyDensityUnit.KilowattHourPerCubicMeter, quantity04.Unit);
-
-            var quantity05 = EnergyDensity.From(1, EnergyDensityUnit.MegajoulePerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity05.MegajoulesPerCubicMeter, MegajoulesPerCubicMeterTolerance);
-            Assert.Equal(EnergyDensityUnit.MegajoulePerCubicMeter, quantity05.Unit);
-
-            var quantity06 = EnergyDensity.From(1, EnergyDensityUnit.MegawattHourPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity06.MegawattHoursPerCubicMeter, MegawattHoursPerCubicMeterTolerance);
-            Assert.Equal(EnergyDensityUnit.MegawattHourPerCubicMeter, quantity06.Unit);
-
-            var quantity07 = EnergyDensity.From(1, EnergyDensityUnit.PetajoulePerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity07.PetajoulesPerCubicMeter, PetajoulesPerCubicMeterTolerance);
-            Assert.Equal(EnergyDensityUnit.PetajoulePerCubicMeter, quantity07.Unit);
-
-            var quantity08 = EnergyDensity.From(1, EnergyDensityUnit.PetawattHourPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity08.PetawattHoursPerCubicMeter, PetawattHoursPerCubicMeterTolerance);
-            Assert.Equal(EnergyDensityUnit.PetawattHourPerCubicMeter, quantity08.Unit);
-
-            var quantity09 = EnergyDensity.From(1, EnergyDensityUnit.TerajoulePerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity09.TerajoulesPerCubicMeter, TerajoulesPerCubicMeterTolerance);
-            Assert.Equal(EnergyDensityUnit.TerajoulePerCubicMeter, quantity09.Unit);
-
-            var quantity10 = EnergyDensity.From(1, EnergyDensityUnit.TerawattHourPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity10.TerawattHoursPerCubicMeter, TerawattHoursPerCubicMeterTolerance);
-            Assert.Equal(EnergyDensityUnit.TerawattHourPerCubicMeter, quantity10.Unit);
-
-            var quantity11 = EnergyDensity.From(1, EnergyDensityUnit.WattHourPerCubicMeter);
-            AssertEx.EqualTolerance(1, quantity11.WattHoursPerCubicMeter, WattHoursPerCubicMeterTolerance);
-            Assert.Equal(EnergyDensityUnit.WattHourPerCubicMeter, quantity11.Unit);
-
+            Assert.All(EnumHelper.GetValues<EnergyDensityUnit>(), unit =>
+            {
+                var quantity = EnergyDensity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -124,22 +125,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelMicrovolt);
-            AssertEx.EqualTolerance(1, quantity00.DecibelMicrovolts, DecibelMicrovoltsTolerance);
-            Assert.Equal(AmplitudeRatioUnit.DecibelMicrovolt, quantity00.Unit);
-
-            var quantity01 = AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelMillivolt);
-            AssertEx.EqualTolerance(1, quantity01.DecibelMillivolts, DecibelMillivoltsTolerance);
-            Assert.Equal(AmplitudeRatioUnit.DecibelMillivolt, quantity01.Unit);
-
-            var quantity02 = AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelUnloaded);
-            AssertEx.EqualTolerance(1, quantity02.DecibelsUnloaded, DecibelsUnloadedTolerance);
-            Assert.Equal(AmplitudeRatioUnit.DecibelUnloaded, quantity02.Unit);
-
-            var quantity03 = AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelVolt);
-            AssertEx.EqualTolerance(1, quantity03.DecibelVolts, DecibelVoltsTolerance);
-            Assert.Equal(AmplitudeRatioUnit.DecibelVolt, quantity03.Unit);
-
+            Assert.All(EnumHelper.GetValues<AmplitudeRatioUnit>(), unit =>
+            {
+                var quantity = AmplitudeRatio.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

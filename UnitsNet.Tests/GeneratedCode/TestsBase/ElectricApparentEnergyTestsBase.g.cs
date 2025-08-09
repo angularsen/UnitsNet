@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -140,18 +141,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricApparentEnergy.From(1, ElectricApparentEnergyUnit.KilovoltampereHour);
-            AssertEx.EqualTolerance(1, quantity00.KilovoltampereHours, KilovoltampereHoursTolerance);
-            Assert.Equal(ElectricApparentEnergyUnit.KilovoltampereHour, quantity00.Unit);
-
-            var quantity01 = ElectricApparentEnergy.From(1, ElectricApparentEnergyUnit.MegavoltampereHour);
-            AssertEx.EqualTolerance(1, quantity01.MegavoltampereHours, MegavoltampereHoursTolerance);
-            Assert.Equal(ElectricApparentEnergyUnit.MegavoltampereHour, quantity01.Unit);
-
-            var quantity02 = ElectricApparentEnergy.From(1, ElectricApparentEnergyUnit.VoltampereHour);
-            AssertEx.EqualTolerance(1, quantity02.VoltampereHours, VoltampereHoursTolerance);
-            Assert.Equal(ElectricApparentEnergyUnit.VoltampereHour, quantity02.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricApparentEnergyUnit>(), unit =>
+            {
+                var quantity = ElectricApparentEnergy.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

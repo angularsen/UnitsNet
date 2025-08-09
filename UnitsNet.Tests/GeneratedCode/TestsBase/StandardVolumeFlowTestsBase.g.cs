@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -170,42 +171,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute);
-            AssertEx.EqualTolerance(1, quantity00.StandardCubicCentimetersPerMinute, StandardCubicCentimetersPerMinuteTolerance);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, quantity00.Unit);
-
-            var quantity01 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicFootPerHour);
-            AssertEx.EqualTolerance(1, quantity01.StandardCubicFeetPerHour, StandardCubicFeetPerHourTolerance);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerHour, quantity01.Unit);
-
-            var quantity02 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicFootPerMinute);
-            AssertEx.EqualTolerance(1, quantity02.StandardCubicFeetPerMinute, StandardCubicFeetPerMinuteTolerance);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerMinute, quantity02.Unit);
-
-            var quantity03 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicFootPerSecond);
-            AssertEx.EqualTolerance(1, quantity03.StandardCubicFeetPerSecond, StandardCubicFeetPerSecondTolerance);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicFootPerSecond, quantity03.Unit);
-
-            var quantity04 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicMeterPerDay);
-            AssertEx.EqualTolerance(1, quantity04.StandardCubicMetersPerDay, StandardCubicMetersPerDayTolerance);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerDay, quantity04.Unit);
-
-            var quantity05 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicMeterPerHour);
-            AssertEx.EqualTolerance(1, quantity05.StandardCubicMetersPerHour, StandardCubicMetersPerHourTolerance);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerHour, quantity05.Unit);
-
-            var quantity06 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicMeterPerMinute);
-            AssertEx.EqualTolerance(1, quantity06.StandardCubicMetersPerMinute, StandardCubicMetersPerMinuteTolerance);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerMinute, quantity06.Unit);
-
-            var quantity07 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardCubicMeterPerSecond);
-            AssertEx.EqualTolerance(1, quantity07.StandardCubicMetersPerSecond, StandardCubicMetersPerSecondTolerance);
-            Assert.Equal(StandardVolumeFlowUnit.StandardCubicMeterPerSecond, quantity07.Unit);
-
-            var quantity08 = StandardVolumeFlow.From(1, StandardVolumeFlowUnit.StandardLiterPerMinute);
-            AssertEx.EqualTolerance(1, quantity08.StandardLitersPerMinute, StandardLitersPerMinuteTolerance);
-            Assert.Equal(StandardVolumeFlowUnit.StandardLiterPerMinute, quantity08.Unit);
-
+            Assert.All(EnumHelper.GetValues<StandardVolumeFlowUnit>(), unit =>
+            {
+                var quantity = StandardVolumeFlow.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

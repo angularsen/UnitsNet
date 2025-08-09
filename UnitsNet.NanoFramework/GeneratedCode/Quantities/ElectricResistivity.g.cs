@@ -279,7 +279,7 @@ namespace UnitsNet
                         ElectricResistivityUnit.OhmMeter => _value,
                         ElectricResistivityUnit.PicoohmCentimeter => (_value / 100) * 1e-12d,
                         ElectricResistivityUnit.PicoohmMeter => (_value) * 1e-12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -306,7 +306,7 @@ namespace UnitsNet
                         ElectricResistivityUnit.OhmMeter => baseUnitValue,
                         ElectricResistivityUnit.PicoohmCentimeter => (baseUnitValue * 100) / 1e-12d,
                         ElectricResistivityUnit.PicoohmMeter => (baseUnitValue) / 1e-12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 
