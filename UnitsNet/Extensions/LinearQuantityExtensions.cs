@@ -88,8 +88,8 @@ public static class LinearQuantityExtensions
             {
                 return default!;
             }
-            
-            return (TQuantity)UnitsNetSetup.Default.QuantityInfoLookup.GetQuantityInfo(typeof(TQuantity)).Zero;
+
+            return (TQuantity)UnitsNetSetup.Default.Quantities.GetQuantityInfo(typeof(TQuantity)).Zero;
 #endif
         }
 
@@ -107,7 +107,7 @@ public static class LinearQuantityExtensions
         return firstQuantity.QuantityInfo.Create(sumOfValues, resultUnit);
 #endif
     }
-    
+
     /// <summary>
     ///     Computes the sum of a sequence of quantities by applying a specified selector function to each element of the
     ///     sequence.

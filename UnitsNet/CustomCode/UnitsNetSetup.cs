@@ -39,7 +39,7 @@ public sealed class UnitsNetSetup
         Formatter = new QuantityFormatter(unitAbbreviations);
         UnitParser = new UnitParser(unitAbbreviations);
         QuantityParser = new QuantityParser(unitAbbreviations);
-        QuantityInfoLookup = quantityInfoLookup;
+        Quantities = quantityInfoLookup;
     }
 
     /// <summary>
@@ -83,5 +83,5 @@ public sealed class UnitsNetSetup
     /// <summary>
     ///     The quantities and units that are loaded.
     /// </summary>
-    public QuantityInfoLookup QuantityInfoLookup { get; }
+    public QuantityInfoLookup Quantities { get; }
 }
