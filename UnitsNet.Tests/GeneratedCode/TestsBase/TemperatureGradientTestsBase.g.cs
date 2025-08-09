@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -108,7 +109,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new TemperatureGradient(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -121,15 +122,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void TemperatureGradient_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            TemperatureGradientUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureGradientUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new TemperatureGradient(1, TemperatureGradientUnit.KelvinPerMeter);
 
-            QuantityInfo<TemperatureGradientUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<TemperatureGradient, TemperatureGradientUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(TemperatureGradient.Zero, quantityInfo.Zero);
             Assert.Equal("TemperatureGradient", quantityInfo.Name);
-
-            var units = Enum.GetValues<TemperatureGradientUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(TemperatureGradient.Zero, quantityInfo.Zero);
+            Assert.Equal(TemperatureGradient.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(TemperatureGradient.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<TemperatureGradientUnit>)quantity).QuantityInfo);
         }
 
         [Fact]
@@ -145,22 +150,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = TemperatureGradient.From(1, TemperatureGradientUnit.DegreeCelsiusPerKilometer);
-            AssertEx.EqualTolerance(1, quantity00.DegreesCelsiusPerKilometer, DegreesCelsiusPerKilometerTolerance);
-            Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerKilometer, quantity00.Unit);
-
-            var quantity01 = TemperatureGradient.From(1, TemperatureGradientUnit.DegreeCelsiusPerMeter);
-            AssertEx.EqualTolerance(1, quantity01.DegreesCelsiusPerMeter, DegreesCelsiusPerMeterTolerance);
-            Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerMeter, quantity01.Unit);
-
-            var quantity02 = TemperatureGradient.From(1, TemperatureGradientUnit.DegreeFahrenheitPerFoot);
-            AssertEx.EqualTolerance(1, quantity02.DegreesFahrenheitPerFoot, DegreesFahrenheitPerFootTolerance);
-            Assert.Equal(TemperatureGradientUnit.DegreeFahrenheitPerFoot, quantity02.Unit);
-
-            var quantity03 = TemperatureGradient.From(1, TemperatureGradientUnit.KelvinPerMeter);
-            AssertEx.EqualTolerance(1, quantity03.KelvinsPerMeter, KelvinsPerMeterTolerance);
-            Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, quantity03.Unit);
-
+            Assert.All(EnumHelper.GetValues<TemperatureGradientUnit>(), unit =>
+            {
+                var quantity = TemperatureGradient.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -297,66 +292,30 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 ∆°C/km", TemperatureGradientUnit.DegreeCelsiusPerKilometer, 4.2)]
+        [InlineData("en-US", "4.2 ∆°C/m", TemperatureGradientUnit.DegreeCelsiusPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 ∆°F/ft", TemperatureGradientUnit.DegreeFahrenheitPerFoot, 4.2)]
+        [InlineData("en-US", "4.2 ∆°K/m", TemperatureGradientUnit.KelvinPerMeter, 4.2)]
+        public void Parse(string culture, string quantityString, TemperatureGradientUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = TemperatureGradient.Parse("1 ∆°C/km", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DegreesCelsiusPerKilometer, DegreesCelsiusPerKilometerTolerance);
-                Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerKilometer, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = TemperatureGradient.Parse("1 ∆°C/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DegreesCelsiusPerMeter, DegreesCelsiusPerMeterTolerance);
-                Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = TemperatureGradient.Parse("1 ∆°F/ft", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DegreesFahrenheitPerFoot, DegreesFahrenheitPerFootTolerance);
-                Assert.Equal(TemperatureGradientUnit.DegreeFahrenheitPerFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = TemperatureGradient.Parse("1 ∆°K/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KelvinsPerMeter, KelvinsPerMeterTolerance);
-                Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = TemperatureGradient.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 ∆°C/km", TemperatureGradientUnit.DegreeCelsiusPerKilometer, 4.2)]
+        [InlineData("en-US", "4.2 ∆°C/m", TemperatureGradientUnit.DegreeCelsiusPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 ∆°F/ft", TemperatureGradientUnit.DegreeFahrenheitPerFoot, 4.2)]
+        [InlineData("en-US", "4.2 ∆°K/m", TemperatureGradientUnit.KelvinPerMeter, 4.2)]
+        public void TryParse(string culture, string quantityString, TemperatureGradientUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(TemperatureGradient.TryParse("1 ∆°C/km", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DegreesCelsiusPerKilometer, DegreesCelsiusPerKilometerTolerance);
-                Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerKilometer, parsed.Unit);
-            }
-
-            {
-                Assert.True(TemperatureGradient.TryParse("1 ∆°C/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DegreesCelsiusPerMeter, DegreesCelsiusPerMeterTolerance);
-                Assert.Equal(TemperatureGradientUnit.DegreeCelsiusPerMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(TemperatureGradient.TryParse("1 ∆°F/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DegreesFahrenheitPerFoot, DegreesFahrenheitPerFootTolerance);
-                Assert.Equal(TemperatureGradientUnit.DegreeFahrenheitPerFoot, parsed.Unit);
-            }
-
-            {
-                Assert.True(TemperatureGradient.TryParse("1 ∆°K/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KelvinsPerMeter, KelvinsPerMeterTolerance);
-                Assert.Equal(TemperatureGradientUnit.KelvinPerMeter, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(TemperatureGradient.TryParse(quantityString, out TemperatureGradient parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -455,6 +414,30 @@ namespace UnitsNet.Tests
         {
             Assert.True(TemperatureGradient.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out TemperatureGradientUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", TemperatureGradientUnit.DegreeCelsiusPerKilometer, "∆°C/km")]
+        [InlineData("en-US", TemperatureGradientUnit.DegreeCelsiusPerMeter, "∆°C/m")]
+        [InlineData("en-US", TemperatureGradientUnit.DegreeFahrenheitPerFoot, "∆°F/ft")]
+        [InlineData("en-US", TemperatureGradientUnit.KelvinPerMeter, "∆°K/m")]
+        public void GetAbbreviationForCulture(string culture, TemperatureGradientUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = TemperatureGradient.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(TemperatureGradient.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = TemperatureGradient.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

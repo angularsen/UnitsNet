@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -100,15 +101,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void AmplitudeRatio_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            AmplitudeRatioUnit[] unitsOrderedByName = EnumHelper.GetValues<AmplitudeRatioUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new AmplitudeRatio(1, AmplitudeRatioUnit.DecibelVolt);
 
-            QuantityInfo<AmplitudeRatioUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<AmplitudeRatio, AmplitudeRatioUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(AmplitudeRatio.Zero, quantityInfo.Zero);
             Assert.Equal("AmplitudeRatio", quantityInfo.Name);
-
-            var units = Enum.GetValues<AmplitudeRatioUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(AmplitudeRatio.Zero, quantityInfo.Zero);
+            Assert.Equal(AmplitudeRatio.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(AmplitudeRatio.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<AmplitudeRatioUnit>)quantity).QuantityInfo);
         }
 
         [Fact]
@@ -124,22 +129,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelMicrovolt);
-            AssertEx.EqualTolerance(1, quantity00.DecibelMicrovolts, DecibelMicrovoltsTolerance);
-            Assert.Equal(AmplitudeRatioUnit.DecibelMicrovolt, quantity00.Unit);
-
-            var quantity01 = AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelMillivolt);
-            AssertEx.EqualTolerance(1, quantity01.DecibelMillivolts, DecibelMillivoltsTolerance);
-            Assert.Equal(AmplitudeRatioUnit.DecibelMillivolt, quantity01.Unit);
-
-            var quantity02 = AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelUnloaded);
-            AssertEx.EqualTolerance(1, quantity02.DecibelsUnloaded, DecibelsUnloadedTolerance);
-            Assert.Equal(AmplitudeRatioUnit.DecibelUnloaded, quantity02.Unit);
-
-            var quantity03 = AmplitudeRatio.From(1, AmplitudeRatioUnit.DecibelVolt);
-            AssertEx.EqualTolerance(1, quantity03.DecibelVolts, DecibelVoltsTolerance);
-            Assert.Equal(AmplitudeRatioUnit.DecibelVolt, quantity03.Unit);
-
+            Assert.All(EnumHelper.GetValues<AmplitudeRatioUnit>(), unit =>
+            {
+                var quantity = AmplitudeRatio.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -237,66 +232,30 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 dBµV", AmplitudeRatioUnit.DecibelMicrovolt, 4.2)]
+        [InlineData("en-US", "4.2 dBmV", AmplitudeRatioUnit.DecibelMillivolt, 4.2)]
+        [InlineData("en-US", "4.2 dBu", AmplitudeRatioUnit.DecibelUnloaded, 4.2)]
+        [InlineData("en-US", "4.2 dBV", AmplitudeRatioUnit.DecibelVolt, 4.2)]
+        public void Parse(string culture, string quantityString, AmplitudeRatioUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = AmplitudeRatio.Parse("1 dBµV", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecibelMicrovolts, DecibelMicrovoltsTolerance);
-                Assert.Equal(AmplitudeRatioUnit.DecibelMicrovolt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = AmplitudeRatio.Parse("1 dBmV", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecibelMillivolts, DecibelMillivoltsTolerance);
-                Assert.Equal(AmplitudeRatioUnit.DecibelMillivolt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = AmplitudeRatio.Parse("1 dBu", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecibelsUnloaded, DecibelsUnloadedTolerance);
-                Assert.Equal(AmplitudeRatioUnit.DecibelUnloaded, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = AmplitudeRatio.Parse("1 dBV", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecibelVolts, DecibelVoltsTolerance);
-                Assert.Equal(AmplitudeRatioUnit.DecibelVolt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = AmplitudeRatio.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 dBµV", AmplitudeRatioUnit.DecibelMicrovolt, 4.2)]
+        [InlineData("en-US", "4.2 dBmV", AmplitudeRatioUnit.DecibelMillivolt, 4.2)]
+        [InlineData("en-US", "4.2 dBu", AmplitudeRatioUnit.DecibelUnloaded, 4.2)]
+        [InlineData("en-US", "4.2 dBV", AmplitudeRatioUnit.DecibelVolt, 4.2)]
+        public void TryParse(string culture, string quantityString, AmplitudeRatioUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(AmplitudeRatio.TryParse("1 dBµV", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecibelMicrovolts, DecibelMicrovoltsTolerance);
-                Assert.Equal(AmplitudeRatioUnit.DecibelMicrovolt, parsed.Unit);
-            }
-
-            {
-                Assert.True(AmplitudeRatio.TryParse("1 dBmV", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecibelMillivolts, DecibelMillivoltsTolerance);
-                Assert.Equal(AmplitudeRatioUnit.DecibelMillivolt, parsed.Unit);
-            }
-
-            {
-                Assert.True(AmplitudeRatio.TryParse("1 dBu", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecibelsUnloaded, DecibelsUnloadedTolerance);
-                Assert.Equal(AmplitudeRatioUnit.DecibelUnloaded, parsed.Unit);
-            }
-
-            {
-                Assert.True(AmplitudeRatio.TryParse("1 dBV", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecibelVolts, DecibelVoltsTolerance);
-                Assert.Equal(AmplitudeRatioUnit.DecibelVolt, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(AmplitudeRatio.TryParse(quantityString, out AmplitudeRatio parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -395,6 +354,30 @@ namespace UnitsNet.Tests
         {
             Assert.True(AmplitudeRatio.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out AmplitudeRatioUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", AmplitudeRatioUnit.DecibelMicrovolt, "dBµV")]
+        [InlineData("en-US", AmplitudeRatioUnit.DecibelMillivolt, "dBmV")]
+        [InlineData("en-US", AmplitudeRatioUnit.DecibelUnloaded, "dBu")]
+        [InlineData("en-US", AmplitudeRatioUnit.DecibelVolt, "dBV")]
+        public void GetAbbreviationForCulture(string culture, AmplitudeRatioUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = AmplitudeRatio.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(AmplitudeRatio.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = AmplitudeRatio.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

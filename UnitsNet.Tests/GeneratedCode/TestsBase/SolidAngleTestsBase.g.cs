@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -88,15 +89,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void SolidAngle_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            SolidAngleUnit[] unitsOrderedByName = EnumHelper.GetValues<SolidAngleUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new SolidAngle(1, SolidAngleUnit.Steradian);
 
-            QuantityInfo<SolidAngleUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<SolidAngle, SolidAngleUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(SolidAngle.Zero, quantityInfo.Zero);
             Assert.Equal("SolidAngle", quantityInfo.Name);
-
-            var units = Enum.GetValues<SolidAngleUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(SolidAngle.Zero, quantityInfo.Zero);
+            Assert.Equal(SolidAngle.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(SolidAngle.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<SolidAngleUnit>)quantity).QuantityInfo);
         }
 
         [Fact]
@@ -109,10 +114,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = SolidAngle.From(1, SolidAngleUnit.Steradian);
-            AssertEx.EqualTolerance(1, quantity00.Steradians, SteradiansTolerance);
-            Assert.Equal(SolidAngleUnit.Steradian, quantity00.Unit);
-
+            Assert.All(EnumHelper.GetValues<SolidAngleUnit>(), unit =>
+            {
+                var quantity = SolidAngle.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -207,27 +214,24 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 sr", SolidAngleUnit.Steradian, 4.2)]
+        public void Parse(string culture, string quantityString, SolidAngleUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = SolidAngle.Parse("1 sr", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Steradians, SteradiansTolerance);
-                Assert.Equal(SolidAngleUnit.Steradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = SolidAngle.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 sr", SolidAngleUnit.Steradian, 4.2)]
+        public void TryParse(string culture, string quantityString, SolidAngleUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(SolidAngle.TryParse("1 sr", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Steradians, SteradiansTolerance);
-                Assert.Equal(SolidAngleUnit.Steradian, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(SolidAngle.TryParse(quantityString, out SolidAngle parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -302,6 +306,27 @@ namespace UnitsNet.Tests
         {
             Assert.True(SolidAngle.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out SolidAngleUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", SolidAngleUnit.Steradian, "sr")]
+        public void GetAbbreviationForCulture(string culture, SolidAngleUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = SolidAngle.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(SolidAngle.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = SolidAngle.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

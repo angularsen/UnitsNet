@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -88,15 +89,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void VitaminA_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            VitaminAUnit[] unitsOrderedByName = EnumHelper.GetValues<VitaminAUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new VitaminA(1, VitaminAUnit.InternationalUnit);
 
-            QuantityInfo<VitaminAUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<VitaminA, VitaminAUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(VitaminA.Zero, quantityInfo.Zero);
             Assert.Equal("VitaminA", quantityInfo.Name);
-
-            var units = Enum.GetValues<VitaminAUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(VitaminA.Zero, quantityInfo.Zero);
+            Assert.Equal(VitaminA.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(VitaminA.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<VitaminAUnit>)quantity).QuantityInfo);
         }
 
         [Fact]
@@ -109,10 +114,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = VitaminA.From(1, VitaminAUnit.InternationalUnit);
-            AssertEx.EqualTolerance(1, quantity00.InternationalUnits, InternationalUnitsTolerance);
-            Assert.Equal(VitaminAUnit.InternationalUnit, quantity00.Unit);
-
+            Assert.All(EnumHelper.GetValues<VitaminAUnit>(), unit =>
+            {
+                var quantity = VitaminA.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -207,27 +214,24 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 IU", VitaminAUnit.InternationalUnit, 4.2)]
+        public void Parse(string culture, string quantityString, VitaminAUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = VitaminA.Parse("1 IU", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.InternationalUnits, InternationalUnitsTolerance);
-                Assert.Equal(VitaminAUnit.InternationalUnit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = VitaminA.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 IU", VitaminAUnit.InternationalUnit, 4.2)]
+        public void TryParse(string culture, string quantityString, VitaminAUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(VitaminA.TryParse("1 IU", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InternationalUnits, InternationalUnitsTolerance);
-                Assert.Equal(VitaminAUnit.InternationalUnit, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(VitaminA.TryParse(quantityString, out VitaminA parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -302,6 +306,27 @@ namespace UnitsNet.Tests
         {
             Assert.True(VitaminA.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out VitaminAUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", VitaminAUnit.InternationalUnit, "IU")]
+        public void GetAbbreviationForCulture(string culture, VitaminAUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = VitaminA.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(VitaminA.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = VitaminA.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

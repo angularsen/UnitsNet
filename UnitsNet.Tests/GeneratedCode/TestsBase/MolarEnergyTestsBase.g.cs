@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -104,7 +105,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new MolarEnergy(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -117,15 +118,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void MolarEnergy_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            MolarEnergyUnit[] unitsOrderedByName = EnumHelper.GetValues<MolarEnergyUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new MolarEnergy(1, MolarEnergyUnit.JoulePerMole);
 
-            QuantityInfo<MolarEnergyUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<MolarEnergy, MolarEnergyUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(MolarEnergy.Zero, quantityInfo.Zero);
             Assert.Equal("MolarEnergy", quantityInfo.Name);
-
-            var units = Enum.GetValues<MolarEnergyUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(MolarEnergy.Zero, quantityInfo.Zero);
+            Assert.Equal(MolarEnergy.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(MolarEnergy.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<MolarEnergyUnit>)quantity).QuantityInfo);
         }
 
         [Fact]
@@ -140,18 +145,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = MolarEnergy.From(1, MolarEnergyUnit.JoulePerMole);
-            AssertEx.EqualTolerance(1, quantity00.JoulesPerMole, JoulesPerMoleTolerance);
-            Assert.Equal(MolarEnergyUnit.JoulePerMole, quantity00.Unit);
-
-            var quantity01 = MolarEnergy.From(1, MolarEnergyUnit.KilojoulePerMole);
-            AssertEx.EqualTolerance(1, quantity01.KilojoulesPerMole, KilojoulesPerMoleTolerance);
-            Assert.Equal(MolarEnergyUnit.KilojoulePerMole, quantity01.Unit);
-
-            var quantity02 = MolarEnergy.From(1, MolarEnergyUnit.MegajoulePerMole);
-            AssertEx.EqualTolerance(1, quantity02.MegajoulesPerMole, MegajoulesPerMoleTolerance);
-            Assert.Equal(MolarEnergyUnit.MegajoulePerMole, quantity02.Unit);
-
+            Assert.All(EnumHelper.GetValues<MolarEnergyUnit>(), unit =>
+            {
+                var quantity = MolarEnergy.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -287,53 +286,28 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 J/mol", MolarEnergyUnit.JoulePerMole, 4.2)]
+        [InlineData("en-US", "4.2 kJ/mol", MolarEnergyUnit.KilojoulePerMole, 4.2)]
+        [InlineData("en-US", "4.2 MJ/mol", MolarEnergyUnit.MegajoulePerMole, 4.2)]
+        public void Parse(string culture, string quantityString, MolarEnergyUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = MolarEnergy.Parse("1 J/mol", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.JoulesPerMole, JoulesPerMoleTolerance);
-                Assert.Equal(MolarEnergyUnit.JoulePerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = MolarEnergy.Parse("1 kJ/mol", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilojoulesPerMole, KilojoulesPerMoleTolerance);
-                Assert.Equal(MolarEnergyUnit.KilojoulePerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = MolarEnergy.Parse("1 MJ/mol", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MegajoulesPerMole, MegajoulesPerMoleTolerance);
-                Assert.Equal(MolarEnergyUnit.MegajoulePerMole, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = MolarEnergy.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 J/mol", MolarEnergyUnit.JoulePerMole, 4.2)]
+        [InlineData("en-US", "4.2 kJ/mol", MolarEnergyUnit.KilojoulePerMole, 4.2)]
+        [InlineData("en-US", "4.2 MJ/mol", MolarEnergyUnit.MegajoulePerMole, 4.2)]
+        public void TryParse(string culture, string quantityString, MolarEnergyUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(MolarEnergy.TryParse("1 J/mol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.JoulesPerMole, JoulesPerMoleTolerance);
-                Assert.Equal(MolarEnergyUnit.JoulePerMole, parsed.Unit);
-            }
-
-            {
-                Assert.True(MolarEnergy.TryParse("1 kJ/mol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilojoulesPerMole, KilojoulesPerMoleTolerance);
-                Assert.Equal(MolarEnergyUnit.KilojoulePerMole, parsed.Unit);
-            }
-
-            {
-                Assert.True(MolarEnergy.TryParse("1 MJ/mol", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MegajoulesPerMole, MegajoulesPerMoleTolerance);
-                Assert.Equal(MolarEnergyUnit.MegajoulePerMole, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(MolarEnergy.TryParse(quantityString, out MolarEnergy parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -424,6 +398,29 @@ namespace UnitsNet.Tests
         {
             Assert.True(MolarEnergy.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MolarEnergyUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", MolarEnergyUnit.JoulePerMole, "J/mol")]
+        [InlineData("en-US", MolarEnergyUnit.KilojoulePerMole, "kJ/mol")]
+        [InlineData("en-US", MolarEnergyUnit.MegajoulePerMole, "MJ/mol")]
+        public void GetAbbreviationForCulture(string culture, MolarEnergyUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = MolarEnergy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(MolarEnergy.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = MolarEnergy.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

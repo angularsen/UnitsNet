@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -144,7 +145,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new RotationalSpeed(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -157,15 +158,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void RotationalSpeed_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            RotationalSpeedUnit[] unitsOrderedByName = EnumHelper.GetValues<RotationalSpeedUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new RotationalSpeed(1, RotationalSpeedUnit.RadianPerSecond);
 
-            QuantityInfo<RotationalSpeedUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<RotationalSpeed, RotationalSpeedUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(RotationalSpeed.Zero, quantityInfo.Zero);
             Assert.Equal("RotationalSpeed", quantityInfo.Name);
-
-            var units = Enum.GetValues<RotationalSpeedUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(RotationalSpeed.Zero, quantityInfo.Zero);
+            Assert.Equal(RotationalSpeed.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(RotationalSpeed.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<RotationalSpeedUnit>)quantity).QuantityInfo);
         }
 
         [Fact]
@@ -190,58 +195,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = RotationalSpeed.From(1, RotationalSpeedUnit.CentiradianPerSecond);
-            AssertEx.EqualTolerance(1, quantity00.CentiradiansPerSecond, CentiradiansPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.CentiradianPerSecond, quantity00.Unit);
-
-            var quantity01 = RotationalSpeed.From(1, RotationalSpeedUnit.DeciradianPerSecond);
-            AssertEx.EqualTolerance(1, quantity01.DeciradiansPerSecond, DeciradiansPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.DeciradianPerSecond, quantity01.Unit);
-
-            var quantity02 = RotationalSpeed.From(1, RotationalSpeedUnit.DegreePerMinute);
-            AssertEx.EqualTolerance(1, quantity02.DegreesPerMinute, DegreesPerMinuteTolerance);
-            Assert.Equal(RotationalSpeedUnit.DegreePerMinute, quantity02.Unit);
-
-            var quantity03 = RotationalSpeed.From(1, RotationalSpeedUnit.DegreePerSecond);
-            AssertEx.EqualTolerance(1, quantity03.DegreesPerSecond, DegreesPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.DegreePerSecond, quantity03.Unit);
-
-            var quantity04 = RotationalSpeed.From(1, RotationalSpeedUnit.MicrodegreePerSecond);
-            AssertEx.EqualTolerance(1, quantity04.MicrodegreesPerSecond, MicrodegreesPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.MicrodegreePerSecond, quantity04.Unit);
-
-            var quantity05 = RotationalSpeed.From(1, RotationalSpeedUnit.MicroradianPerSecond);
-            AssertEx.EqualTolerance(1, quantity05.MicroradiansPerSecond, MicroradiansPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.MicroradianPerSecond, quantity05.Unit);
-
-            var quantity06 = RotationalSpeed.From(1, RotationalSpeedUnit.MillidegreePerSecond);
-            AssertEx.EqualTolerance(1, quantity06.MillidegreesPerSecond, MillidegreesPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.MillidegreePerSecond, quantity06.Unit);
-
-            var quantity07 = RotationalSpeed.From(1, RotationalSpeedUnit.MilliradianPerSecond);
-            AssertEx.EqualTolerance(1, quantity07.MilliradiansPerSecond, MilliradiansPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.MilliradianPerSecond, quantity07.Unit);
-
-            var quantity08 = RotationalSpeed.From(1, RotationalSpeedUnit.NanodegreePerSecond);
-            AssertEx.EqualTolerance(1, quantity08.NanodegreesPerSecond, NanodegreesPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.NanodegreePerSecond, quantity08.Unit);
-
-            var quantity09 = RotationalSpeed.From(1, RotationalSpeedUnit.NanoradianPerSecond);
-            AssertEx.EqualTolerance(1, quantity09.NanoradiansPerSecond, NanoradiansPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.NanoradianPerSecond, quantity09.Unit);
-
-            var quantity10 = RotationalSpeed.From(1, RotationalSpeedUnit.RadianPerSecond);
-            AssertEx.EqualTolerance(1, quantity10.RadiansPerSecond, RadiansPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.RadianPerSecond, quantity10.Unit);
-
-            var quantity11 = RotationalSpeed.From(1, RotationalSpeedUnit.RevolutionPerMinute);
-            AssertEx.EqualTolerance(1, quantity11.RevolutionsPerMinute, RevolutionsPerMinuteTolerance);
-            Assert.Equal(RotationalSpeedUnit.RevolutionPerMinute, quantity11.Unit);
-
-            var quantity12 = RotationalSpeed.From(1, RotationalSpeedUnit.RevolutionPerSecond);
-            AssertEx.EqualTolerance(1, quantity12.RevolutionsPerSecond, RevolutionsPerSecondTolerance);
-            Assert.Equal(RotationalSpeedUnit.RevolutionPerSecond, quantity12.Unit);
-
+            Assert.All(EnumHelper.GetValues<RotationalSpeedUnit>(), unit =>
+            {
+                var quantity = RotationalSpeed.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -387,417 +346,84 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 crad/s", RotationalSpeedUnit.CentiradianPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 drad/s", RotationalSpeedUnit.DeciradianPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 °/min", RotationalSpeedUnit.DegreePerMinute, 4.2)]
+        [InlineData("en-US", "4.2 deg/min", RotationalSpeedUnit.DegreePerMinute, 4.2)]
+        [InlineData("en-US", "4.2 °/s", RotationalSpeedUnit.DegreePerSecond, 4.2)]
+        [InlineData("en-US", "4.2 deg/s", RotationalSpeedUnit.DegreePerSecond, 4.2)]
+        [InlineData("en-US", "4.2 µ°/s", RotationalSpeedUnit.MicrodegreePerSecond, 4.2)]
+        [InlineData("en-US", "4.2 µdeg/s", RotationalSpeedUnit.MicrodegreePerSecond, 4.2)]
+        [InlineData("en-US", "4.2 µrad/s", RotationalSpeedUnit.MicroradianPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 m°/s", RotationalSpeedUnit.MillidegreePerSecond, 4.2)]
+        [InlineData("en-US", "4.2 mdeg/s", RotationalSpeedUnit.MillidegreePerSecond, 4.2)]
+        [InlineData("en-US", "4.2 mrad/s", RotationalSpeedUnit.MilliradianPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 n°/s", RotationalSpeedUnit.NanodegreePerSecond, 4.2)]
+        [InlineData("en-US", "4.2 ndeg/s", RotationalSpeedUnit.NanodegreePerSecond, 4.2)]
+        [InlineData("en-US", "4.2 nrad/s", RotationalSpeedUnit.NanoradianPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 rad/s", RotationalSpeedUnit.RadianPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 rpm", RotationalSpeedUnit.RevolutionPerMinute, 4.2)]
+        [InlineData("en-US", "4.2 r/min", RotationalSpeedUnit.RevolutionPerMinute, 4.2)]
+        [InlineData("en-US", "4.2 r/s", RotationalSpeedUnit.RevolutionPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 срад/с", RotationalSpeedUnit.CentiradianPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 драд/с", RotationalSpeedUnit.DeciradianPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 °/с", RotationalSpeedUnit.DegreePerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 мк°/с", RotationalSpeedUnit.MicrodegreePerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 мкрад/с", RotationalSpeedUnit.MicroradianPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 м°/с", RotationalSpeedUnit.MillidegreePerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 мрад/с", RotationalSpeedUnit.MilliradianPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 н°/с", RotationalSpeedUnit.NanodegreePerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 нрад/с", RotationalSpeedUnit.NanoradianPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 рад/с", RotationalSpeedUnit.RadianPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 об/мин", RotationalSpeedUnit.RevolutionPerMinute, 4.2)]
+        [InlineData("ru-RU", "4,2 об/с", RotationalSpeedUnit.RevolutionPerSecond, 4.2)]
+        public void Parse(string culture, string quantityString, RotationalSpeedUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 crad/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CentiradiansPerSecond, CentiradiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.CentiradianPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 срад/с", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.CentiradiansPerSecond, CentiradiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.CentiradianPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 drad/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DeciradiansPerSecond, DeciradiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.DeciradianPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 драд/с", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.DeciradiansPerSecond, DeciradiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.DeciradianPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 °/min", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DegreesPerMinute, DegreesPerMinuteTolerance);
-                Assert.Equal(RotationalSpeedUnit.DegreePerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 deg/min", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DegreesPerMinute, DegreesPerMinuteTolerance);
-                Assert.Equal(RotationalSpeedUnit.DegreePerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 °/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DegreesPerSecond, DegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.DegreePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 deg/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DegreesPerSecond, DegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.DegreePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 °/с", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.DegreesPerSecond, DegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.DegreePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 µ°/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicrodegreesPerSecond, MicrodegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.MicrodegreePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 µdeg/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicrodegreesPerSecond, MicrodegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.MicrodegreePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 мк°/с", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MicrodegreesPerSecond, MicrodegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.MicrodegreePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 µrad/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MicroradiansPerSecond, MicroradiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.MicroradianPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 мкрад/с", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MicroradiansPerSecond, MicroradiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.MicroradianPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 m°/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillidegreesPerSecond, MillidegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.MillidegreePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 mdeg/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillidegreesPerSecond, MillidegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.MillidegreePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 м°/с", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MillidegreesPerSecond, MillidegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.MillidegreePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 mrad/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MilliradiansPerSecond, MilliradiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.MilliradianPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 мрад/с", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.MilliradiansPerSecond, MilliradiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.MilliradianPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 n°/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NanodegreesPerSecond, NanodegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.NanodegreePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 ndeg/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NanodegreesPerSecond, NanodegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.NanodegreePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 н°/с", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.NanodegreesPerSecond, NanodegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.NanodegreePerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 nrad/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.NanoradiansPerSecond, NanoradiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.NanoradianPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 нрад/с", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.NanoradiansPerSecond, NanoradiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.NanoradianPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 rad/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.RadiansPerSecond, RadiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.RadianPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 рад/с", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.RadiansPerSecond, RadiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.RadianPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 rpm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.RevolutionsPerMinute, RevolutionsPerMinuteTolerance);
-                Assert.Equal(RotationalSpeedUnit.RevolutionPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 r/min", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.RevolutionsPerMinute, RevolutionsPerMinuteTolerance);
-                Assert.Equal(RotationalSpeedUnit.RevolutionPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 об/мин", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.RevolutionsPerMinute, RevolutionsPerMinuteTolerance);
-                Assert.Equal(RotationalSpeedUnit.RevolutionPerMinute, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 r/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.RevolutionsPerSecond, RevolutionsPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.RevolutionPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = RotationalSpeed.Parse("1 об/с", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.RevolutionsPerSecond, RevolutionsPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.RevolutionPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = RotationalSpeed.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 crad/s", RotationalSpeedUnit.CentiradianPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 drad/s", RotationalSpeedUnit.DeciradianPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 °/min", RotationalSpeedUnit.DegreePerMinute, 4.2)]
+        [InlineData("en-US", "4.2 deg/min", RotationalSpeedUnit.DegreePerMinute, 4.2)]
+        [InlineData("en-US", "4.2 °/s", RotationalSpeedUnit.DegreePerSecond, 4.2)]
+        [InlineData("en-US", "4.2 deg/s", RotationalSpeedUnit.DegreePerSecond, 4.2)]
+        [InlineData("en-US", "4.2 µ°/s", RotationalSpeedUnit.MicrodegreePerSecond, 4.2)]
+        [InlineData("en-US", "4.2 µdeg/s", RotationalSpeedUnit.MicrodegreePerSecond, 4.2)]
+        [InlineData("en-US", "4.2 µrad/s", RotationalSpeedUnit.MicroradianPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 m°/s", RotationalSpeedUnit.MillidegreePerSecond, 4.2)]
+        [InlineData("en-US", "4.2 mdeg/s", RotationalSpeedUnit.MillidegreePerSecond, 4.2)]
+        [InlineData("en-US", "4.2 mrad/s", RotationalSpeedUnit.MilliradianPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 n°/s", RotationalSpeedUnit.NanodegreePerSecond, 4.2)]
+        [InlineData("en-US", "4.2 ndeg/s", RotationalSpeedUnit.NanodegreePerSecond, 4.2)]
+        [InlineData("en-US", "4.2 nrad/s", RotationalSpeedUnit.NanoradianPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 rad/s", RotationalSpeedUnit.RadianPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 rpm", RotationalSpeedUnit.RevolutionPerMinute, 4.2)]
+        [InlineData("en-US", "4.2 r/min", RotationalSpeedUnit.RevolutionPerMinute, 4.2)]
+        [InlineData("en-US", "4.2 r/s", RotationalSpeedUnit.RevolutionPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 срад/с", RotationalSpeedUnit.CentiradianPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 драд/с", RotationalSpeedUnit.DeciradianPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 °/с", RotationalSpeedUnit.DegreePerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 мк°/с", RotationalSpeedUnit.MicrodegreePerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 мкрад/с", RotationalSpeedUnit.MicroradianPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 м°/с", RotationalSpeedUnit.MillidegreePerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 мрад/с", RotationalSpeedUnit.MilliradianPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 н°/с", RotationalSpeedUnit.NanodegreePerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 нрад/с", RotationalSpeedUnit.NanoradianPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 рад/с", RotationalSpeedUnit.RadianPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 об/мин", RotationalSpeedUnit.RevolutionPerMinute, 4.2)]
+        [InlineData("ru-RU", "4,2 об/с", RotationalSpeedUnit.RevolutionPerSecond, 4.2)]
+        public void TryParse(string culture, string quantityString, RotationalSpeedUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(RotationalSpeed.TryParse("1 crad/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentiradiansPerSecond, CentiradiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.CentiradianPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 срад/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CentiradiansPerSecond, CentiradiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.CentiradianPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 drad/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DeciradiansPerSecond, DeciradiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.DeciradianPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 драд/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DeciradiansPerSecond, DeciradiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.DeciradianPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 °/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DegreesPerMinute, DegreesPerMinuteTolerance);
-                Assert.Equal(RotationalSpeedUnit.DegreePerMinute, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 deg/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DegreesPerMinute, DegreesPerMinuteTolerance);
-                Assert.Equal(RotationalSpeedUnit.DegreePerMinute, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 °/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DegreesPerSecond, DegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.DegreePerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 deg/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DegreesPerSecond, DegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.DegreePerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 °/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DegreesPerSecond, DegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.DegreePerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 µ°/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrodegreesPerSecond, MicrodegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.MicrodegreePerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 µdeg/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrodegreesPerSecond, MicrodegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.MicrodegreePerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 мк°/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicrodegreesPerSecond, MicrodegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.MicrodegreePerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 µrad/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicroradiansPerSecond, MicroradiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.MicroradianPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 мкрад/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MicroradiansPerSecond, MicroradiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.MicroradianPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 m°/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillidegreesPerSecond, MillidegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.MillidegreePerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 mdeg/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillidegreesPerSecond, MillidegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.MillidegreePerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 м°/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillidegreesPerSecond, MillidegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.MillidegreePerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 mrad/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MilliradiansPerSecond, MilliradiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.MilliradianPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 мрад/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MilliradiansPerSecond, MilliradiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.MilliradianPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 n°/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanodegreesPerSecond, NanodegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.NanodegreePerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 ndeg/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanodegreesPerSecond, NanodegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.NanodegreePerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 н°/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanodegreesPerSecond, NanodegreesPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.NanodegreePerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 nrad/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanoradiansPerSecond, NanoradiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.NanoradianPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 нрад/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.NanoradiansPerSecond, NanoradiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.NanoradianPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 rad/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.RadiansPerSecond, RadiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.RadianPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 рад/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.RadiansPerSecond, RadiansPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.RadianPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 rpm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.RevolutionsPerMinute, RevolutionsPerMinuteTolerance);
-                Assert.Equal(RotationalSpeedUnit.RevolutionPerMinute, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 r/min", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.RevolutionsPerMinute, RevolutionsPerMinuteTolerance);
-                Assert.Equal(RotationalSpeedUnit.RevolutionPerMinute, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 об/мин", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.RevolutionsPerMinute, RevolutionsPerMinuteTolerance);
-                Assert.Equal(RotationalSpeedUnit.RevolutionPerMinute, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 r/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.RevolutionsPerSecond, RevolutionsPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.RevolutionPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(RotationalSpeed.TryParse("1 об/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.RevolutionsPerSecond, RevolutionsPerSecondTolerance);
-                Assert.Equal(RotationalSpeedUnit.RevolutionPerSecond, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(RotationalSpeed.TryParse(quantityString, out RotationalSpeed parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -1064,6 +690,51 @@ namespace UnitsNet.Tests
         {
             Assert.True(RotationalSpeed.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out RotationalSpeedUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", RotationalSpeedUnit.CentiradianPerSecond, "crad/s")]
+        [InlineData("en-US", RotationalSpeedUnit.DeciradianPerSecond, "drad/s")]
+        [InlineData("en-US", RotationalSpeedUnit.DegreePerMinute, "°/min")]
+        [InlineData("en-US", RotationalSpeedUnit.DegreePerSecond, "°/s")]
+        [InlineData("en-US", RotationalSpeedUnit.MicrodegreePerSecond, "µ°/s")]
+        [InlineData("en-US", RotationalSpeedUnit.MicroradianPerSecond, "µrad/s")]
+        [InlineData("en-US", RotationalSpeedUnit.MillidegreePerSecond, "m°/s")]
+        [InlineData("en-US", RotationalSpeedUnit.MilliradianPerSecond, "mrad/s")]
+        [InlineData("en-US", RotationalSpeedUnit.NanodegreePerSecond, "n°/s")]
+        [InlineData("en-US", RotationalSpeedUnit.NanoradianPerSecond, "nrad/s")]
+        [InlineData("en-US", RotationalSpeedUnit.RadianPerSecond, "rad/s")]
+        [InlineData("en-US", RotationalSpeedUnit.RevolutionPerMinute, "rpm")]
+        [InlineData("en-US", RotationalSpeedUnit.RevolutionPerSecond, "r/s")]
+        [InlineData("ru-RU", RotationalSpeedUnit.CentiradianPerSecond, "срад/с")]
+        [InlineData("ru-RU", RotationalSpeedUnit.DeciradianPerSecond, "драд/с")]
+        [InlineData("ru-RU", RotationalSpeedUnit.DegreePerSecond, "°/с")]
+        [InlineData("ru-RU", RotationalSpeedUnit.MicrodegreePerSecond, "мк°/с")]
+        [InlineData("ru-RU", RotationalSpeedUnit.MicroradianPerSecond, "мкрад/с")]
+        [InlineData("ru-RU", RotationalSpeedUnit.MillidegreePerSecond, "м°/с")]
+        [InlineData("ru-RU", RotationalSpeedUnit.MilliradianPerSecond, "мрад/с")]
+        [InlineData("ru-RU", RotationalSpeedUnit.NanodegreePerSecond, "н°/с")]
+        [InlineData("ru-RU", RotationalSpeedUnit.NanoradianPerSecond, "нрад/с")]
+        [InlineData("ru-RU", RotationalSpeedUnit.RadianPerSecond, "рад/с")]
+        [InlineData("ru-RU", RotationalSpeedUnit.RevolutionPerMinute, "об/мин")]
+        [InlineData("ru-RU", RotationalSpeedUnit.RevolutionPerSecond, "об/с")]
+        public void GetAbbreviationForCulture(string culture, RotationalSpeedUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = RotationalSpeed.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(RotationalSpeed.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = RotationalSpeed.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -88,15 +89,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Scalar_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ScalarUnit[] unitsOrderedByName = EnumHelper.GetValues<ScalarUnit>().OrderBy(x => x.ToString()).ToArray();
             var quantity = new Scalar(1, ScalarUnit.Amount);
 
-            QuantityInfo<ScalarUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Scalar, ScalarUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Scalar.Zero, quantityInfo.Zero);
             Assert.Equal("Scalar", quantityInfo.Name);
-
-            var units = Enum.GetValues<ScalarUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Scalar.Zero, quantityInfo.Zero);
+            Assert.Equal(Scalar.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Scalar.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ScalarUnit>)quantity).QuantityInfo);
         }
 
         [Fact]
@@ -109,10 +114,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Scalar.From(1, ScalarUnit.Amount);
-            AssertEx.EqualTolerance(1, quantity00.Amount, AmountTolerance);
-            Assert.Equal(ScalarUnit.Amount, quantity00.Unit);
-
+            Assert.All(EnumHelper.GetValues<ScalarUnit>(), unit =>
+            {
+                var quantity = Scalar.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -207,27 +214,24 @@ namespace UnitsNet.Tests
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 ", ScalarUnit.Amount, 4.2)]
+        public void Parse(string culture, string quantityString, ScalarUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = Scalar.Parse("1 ", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Amount, AmountTolerance);
-                Assert.Equal(ScalarUnit.Amount, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = Scalar.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 ", ScalarUnit.Amount, 4.2)]
+        public void TryParse(string culture, string quantityString, ScalarUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(Scalar.TryParse("1 ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Amount, AmountTolerance);
-                Assert.Equal(ScalarUnit.Amount, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(Scalar.TryParse(quantityString, out Scalar parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -302,6 +306,27 @@ namespace UnitsNet.Tests
         {
             Assert.True(Scalar.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ScalarUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", ScalarUnit.Amount, "")]
+        public void GetAbbreviationForCulture(string culture, ScalarUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Scalar.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Scalar.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Scalar.GetAbbreviation(unit); 
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]

@@ -42,6 +42,64 @@ public abstract class UnitInfo : IUnitDefinition
         return Name;
     }
 
+    /// <summary>
+    ///     Filters a collection of unit information based on the specified base units.
+    /// </summary>
+    /// <typeparam name="TUnitInfo">The type of the unit information.</typeparam>
+    /// <param name="unitInfos">The collection of unit information to filter.</param>
+    /// <param name="baseUnits">The base units to filter by.</param>
+    /// <returns>An <see cref="IEnumerable{T}" /> containing the unit information that matches the specified base units.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="baseUnits" /> is null.</exception>
+    internal static IEnumerable<TUnitInfo> GetUnitsWithBase<TUnitInfo>(IEnumerable<TUnitInfo> unitInfos, BaseUnits baseUnits)
+        where TUnitInfo : UnitInfo
+    {
+        if (baseUnits is null)
+        {
+            throw new ArgumentNullException(nameof(baseUnits));
+        }
+
+        return unitInfos.Where(unitInfo => unitInfo.BaseUnits.IsSubsetOf(baseUnits));
+    }
+
+    /// <summary>
+    ///     Gets the <see cref="UnitInfo" /> whose <see cref="UnitsNet.BaseUnits" /> is a subset of
+    ///     <paramref name="baseUnits" />.
+    /// </summary>
+    /// <example>
+    ///     Length.Info.GetUnitInfoFor(unitSystemWithFootAsLengthUnit) returns <see cref="UnitInfo" /> for
+    ///     <see cref="LengthUnit.Foot" />.
+    /// </example>
+    /// <param name="unitInfos">The collection of unit information to filter.</param>
+    /// <param name="baseUnits">The <see cref="UnitsNet.BaseUnits" /> to check against.</param>
+    /// <returns>
+    ///     The <see cref="UnitInfo" /> that has <see cref="UnitsNet.BaseUnits" /> that is a subset of
+    ///     <paramref name="baseUnits" />.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="baseUnits" /> is null.</exception>
+    /// <exception cref="InvalidOperationException">No unit was found that is a subset of <paramref name="baseUnits" />.</exception>
+    /// <exception cref="InvalidOperationException">
+    ///     More than one unit was found that is a subset of
+    ///     <paramref name="baseUnits" />.
+    /// </exception>
+    internal static TUnitInfo GetUnitWithBase<TUnitInfo>(IEnumerable<TUnitInfo> unitInfos, BaseUnits baseUnits)
+        where TUnitInfo : UnitInfo
+    {
+        using IEnumerator<TUnitInfo> enumerator = GetUnitsWithBase(unitInfos, baseUnits).GetEnumerator();
+
+        if (!enumerator.MoveNext())
+        {
+            throw new InvalidOperationException($"No unit was found that is a subset of {nameof(baseUnits)}");
+        }
+
+        TUnitInfo firstUnitInfo = enumerator.Current!;
+        if (enumerator.MoveNext())
+        {
+            throw new InvalidOperationException($"More than one unit was found that is a subset of {nameof(baseUnits)}");
+        }
+
+        return firstUnitInfo;
+    }
+
     #region Implementation of IUnitDefinition
 
     /// <inheritdoc />
@@ -122,70 +180,13 @@ public abstract class UnitInfo : IUnitDefinition
     protected internal abstract IQuantity CreateGenericQuantity(double value);
 
     #endregion
-
-    /// <summary>
-    ///     Filters a collection of unit information based on the specified base units.
-    /// </summary>
-    /// <typeparam name="TUnitInfo">The type of the unit information.</typeparam>
-    /// <param name="unitInfos">The collection of unit information to filter.</param>
-    /// <param name="baseUnits">The base units to filter by.</param>
-    /// <returns>An <see cref="IEnumerable{T}" /> containing the unit information that matches the specified base units.</returns>
-    /// <exception cref="ArgumentNullException">Thrown when <paramref name="baseUnits" /> is null.</exception>
-    internal static IEnumerable<TUnitInfo> GetUnitsWithBase<TUnitInfo>(IEnumerable<TUnitInfo> unitInfos, BaseUnits baseUnits)
-        where TUnitInfo : UnitInfo
-    {
-        if (baseUnits is null)
-        {
-            throw new ArgumentNullException(nameof(baseUnits));
-        }
-
-        return unitInfos.Where(unitInfo => unitInfo.BaseUnits.IsSubsetOf(baseUnits));
-    }
-
-    /// <summary>
-    ///     Gets the <see cref="UnitInfo" /> whose <see cref="UnitsNet.BaseUnits" /> is a subset of <paramref name="baseUnits" />.
-    /// </summary>
-    /// <example>
-    ///     Length.Info.GetUnitInfoFor(unitSystemWithFootAsLengthUnit) returns <see cref="UnitInfo" /> for
-    ///     <see cref="LengthUnit.Foot" />.
-    /// </example>
-    /// <param name="unitInfos">The collection of unit information to filter.</param>
-    /// <param name="baseUnits">The <see cref="UnitsNet.BaseUnits" /> to check against.</param>
-    /// <returns>
-    ///     The <see cref="UnitInfo" /> that has <see cref="UnitsNet.BaseUnits" /> that is a subset of
-    ///     <paramref name="baseUnits" />.
-    /// </returns>
-    /// <exception cref="ArgumentNullException"><paramref name="baseUnits" /> is null.</exception>
-    /// <exception cref="InvalidOperationException">No unit was found that is a subset of <paramref name="baseUnits" />.</exception>
-    /// <exception cref="InvalidOperationException">
-    ///     More than one unit was found that is a subset of
-    ///     <paramref name="baseUnits" />.
-    /// </exception>
-    internal static TUnitInfo GetUnitWithBase<TUnitInfo>(IEnumerable<TUnitInfo> unitInfos, BaseUnits baseUnits)
-        where TUnitInfo : UnitInfo
-    {
-        using IEnumerator<TUnitInfo> enumerator = GetUnitsWithBase(unitInfos, baseUnits).GetEnumerator();
-
-        if (!enumerator.MoveNext())
-        {
-            throw new InvalidOperationException($"No unit was found that is a subset of {nameof(baseUnits)}");
-        }
-
-        TUnitInfo firstUnitInfo = enumerator.Current!;
-        if (enumerator.MoveNext())
-        {
-            throw new InvalidOperationException($"More than one unit was found that is a subset of {nameof(baseUnits)}");
-        }
-
-        return firstUnitInfo;
-    }
 }
 
-/// <inheritdoc cref="UnitInfo"/> />
+/// <inheritdoc cref="UnitInfo" />
 /// <remarks>
 ///     Typically you obtain this by looking it up via <see cref="QuantityInfo{TUnit}.UnitInfos" />.
 /// </remarks>
-public abstract class UnitInfo<TUnit> : UnitInfo, IUnitDefinition<TUnit> //, IUnitInfo<TUnit>, IUnitDefinition<TUnit>
+public abstract class UnitInfo<TUnit> : UnitInfo, IUnitDefinition<TUnit>
     where TUnit : struct, Enum
 {
     /// <summary>
@@ -202,7 +203,7 @@ public abstract class UnitInfo<TUnit> : UnitInfo, IUnitDefinition<TUnit> //, IUn
         Value = mapping.Value;
     }
 
-    /// <inheritdoc  />
+    /// <inheritdoc />
     [DebuggerBrowsable(DebuggerBrowsableState.Collapsed)]
     public new TUnit Value { get; }
 }

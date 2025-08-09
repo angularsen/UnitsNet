@@ -61,7 +61,7 @@ public sealed class UnitParser
     ///     This property provides access to the <see cref="QuantityInfoLookup" /> that contains
     ///     information about all quantities and their associated units.
     /// </remarks>
-    internal QuantityInfoLookup Quantities
+    public QuantityInfoLookup Quantities
     {
         get => Abbreviations.Quantities;
     }
