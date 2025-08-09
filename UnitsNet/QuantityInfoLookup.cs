@@ -18,7 +18,7 @@ namespace UnitsNet;
 /// <remarks>
 ///     Access type is <c>internal</c> until this class is matured and ready for external use.
 /// </remarks>
-internal class QuantityInfoLookup
+public class QuantityInfoLookup
 {
     private readonly QuantityInfo[] _quantities;
     private readonly Lazy<QuantityByNameLookupDictionary> _quantitiesByName;

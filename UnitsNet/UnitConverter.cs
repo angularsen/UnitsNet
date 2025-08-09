@@ -326,7 +326,7 @@ namespace UnitsNet
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
         public static double ConvertByName(double fromValue, string quantityName, string fromUnitName, string toUnitName)
         {
-            QuantityInfoLookup quantities = UnitsNetSetup.Default.QuantityInfoLookup;
+            QuantityInfoLookup quantities = UnitsNetSetup.Default.Quantities;
             UnitInfo fromUnit = quantities.GetUnitByName(quantityName, fromUnitName);
             UnitInfo toUnit = quantities.GetUnitByName(quantityName, toUnitName);
             return Quantity.From(fromValue, fromUnit.Value).As(toUnit.Value);
@@ -352,7 +352,7 @@ namespace UnitsNet
         /// <returns>True if conversion was successful.</returns>
         public static bool TryConvertByName(double inputValue, string quantityName, string fromUnit, string toUnit, out double result)
         {
-            QuantityInfoLookup quantities = UnitsNetSetup.Default.QuantityInfoLookup;
+            QuantityInfoLookup quantities = UnitsNetSetup.Default.Quantities;
             if (quantities.TryGetUnitByName(quantityName, fromUnit, out UnitInfo? fromUnitInfo) &&
                 quantities.TryGetUnitByName(quantityName, toUnit, out UnitInfo? toUnitInfo) &&
                 Quantity.TryFrom(inputValue, fromUnitInfo.Value, out IQuantity? quantity))
@@ -449,7 +449,7 @@ namespace UnitsNet
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
         public static double ConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, IFormatProvider? formatProvider)
         {
-            QuantityInfoLookup quantities = UnitsNetSetup.Default.QuantityInfoLookup;
+            QuantityInfoLookup quantities = UnitsNetSetup.Default.Quantities;
             UnitParser unitParser = UnitsNetSetup.Default.UnitParser;
             QuantityInfo quantityInfo = quantities.GetQuantityByName(quantityName);
             Enum fromUnit = unitParser.Parse(fromUnitAbbrev, quantityInfo.UnitType, formatProvider); // ex: ("m", LengthUnit) => LengthUnit.Meter
@@ -531,7 +531,7 @@ namespace UnitsNet
         public static bool TryConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out double result,
             IFormatProvider? formatProvider)
         {
-            QuantityInfoLookup quantities = UnitsNetSetup.Default.QuantityInfoLookup;
+            QuantityInfoLookup quantities = UnitsNetSetup.Default.Quantities;
             UnitParser unitParser = UnitsNetSetup.Default.UnitParser;
             if (!quantities.TryGetQuantityByName(quantityName, out QuantityInfo? quantityInfo) )
             {
