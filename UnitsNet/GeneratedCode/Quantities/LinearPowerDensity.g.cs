@@ -1005,12 +1005,6 @@ namespace UnitsNet
             return As(unitKey.ToUnit<LinearPowerDensityUnit>());
         }
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
-        {
-            return As(Info.GetDefaultUnit(unitSystem));
-        }
-
         /// <summary>
         ///     Converts this LinearPowerDensity to another LinearPowerDensity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1133,12 +1127,6 @@ namespace UnitsNet
             return true;
         }
 
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public LinearPowerDensity ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
         #region Explicit implementations
 
         double IQuantity.As(Enum unit)
@@ -1159,13 +1147,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         /// <inheritdoc />
         IQuantity<LinearPowerDensityUnit> IQuantity<LinearPowerDensityUnit>.ToUnit(LinearPowerDensityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<LinearPowerDensityUnit> IQuantity<LinearPowerDensityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<LinearPowerDensityUnit> IQuantity<LinearPowerDensityUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         #endregion
 

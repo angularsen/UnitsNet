@@ -801,12 +801,6 @@ namespace UnitsNet
             return As(unitKey.ToUnit<TemperatureDeltaUnit>());
         }
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
-        {
-            return As(Info.GetDefaultUnit(unitSystem));
-        }
-
         /// <summary>
         ///     Converts this TemperatureDelta to another TemperatureDelta with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -897,12 +891,6 @@ namespace UnitsNet
             return true;
         }
 
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public TemperatureDelta ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
         #region Explicit implementations
 
         double IQuantity.As(Enum unit)
@@ -923,13 +911,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         /// <inheritdoc />
         IQuantity<TemperatureDeltaUnit> IQuantity<TemperatureDeltaUnit>.ToUnit(TemperatureDeltaUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<TemperatureDeltaUnit> IQuantity<TemperatureDeltaUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<TemperatureDeltaUnit> IQuantity<TemperatureDeltaUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         #endregion
 

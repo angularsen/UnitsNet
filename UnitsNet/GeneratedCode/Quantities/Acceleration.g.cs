@@ -867,12 +867,6 @@ namespace UnitsNet
             return As(unitKey.ToUnit<AccelerationUnit>());
         }
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
-        {
-            return As(Info.GetDefaultUnit(unitSystem));
-        }
-
         /// <summary>
         ///     Converts this Acceleration to another Acceleration with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -973,12 +967,6 @@ namespace UnitsNet
             return true;
         }
 
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Acceleration ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
         #region Explicit implementations
 
         double IQuantity.As(Enum unit)
@@ -999,13 +987,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         /// <inheritdoc />
         IQuantity<AccelerationUnit> IQuantity<AccelerationUnit>.ToUnit(AccelerationUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<AccelerationUnit> IQuantity<AccelerationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<AccelerationUnit> IQuantity<AccelerationUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         #endregion
 

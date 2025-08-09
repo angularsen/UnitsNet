@@ -35,14 +35,6 @@ namespace UnitsNet
         double As(UnitKey unitKey);
 
         /// <summary>
-        ///     Gets the value in the unit determined by the given <see cref="UnitSystem"/>. If multiple units were found for the given <see cref="UnitSystem"/>,
-        ///     the first match will be used.
-        /// </summary>
-        /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity value to.</param>
-        /// <returns>The converted value.</returns>
-        double As(UnitSystem unitSystem);
-
-        /// <summary>
         ///     The unit this quantity was constructed with -or- BaseUnit if default ctor was used.
         /// </summary>
         Enum Unit { get; }

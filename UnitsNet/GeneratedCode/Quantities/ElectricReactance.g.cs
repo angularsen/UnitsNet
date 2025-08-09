@@ -733,12 +733,6 @@ namespace UnitsNet
             return As(unitKey.ToUnit<ElectricReactanceUnit>());
         }
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
-        {
-            return As(Info.GetDefaultUnit(unitSystem));
-        }
-
         /// <summary>
         ///     Converts this ElectricReactance to another ElectricReactance with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -827,12 +821,6 @@ namespace UnitsNet
             return true;
         }
 
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ElectricReactance ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
         #region Explicit implementations
 
         double IQuantity.As(Enum unit)
@@ -853,13 +841,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         /// <inheritdoc />
         IQuantity<ElectricReactanceUnit> IQuantity<ElectricReactanceUnit>.ToUnit(ElectricReactanceUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<ElectricReactanceUnit> IQuantity<ElectricReactanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<ElectricReactanceUnit> IQuantity<ElectricReactanceUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         #endregion
 

@@ -650,12 +650,6 @@ namespace UnitsNet
             return As(unitKey.ToUnit<MolarEntropyUnit>());
         }
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
-        {
-            return As(Info.GetDefaultUnit(unitSystem));
-        }
-
         /// <summary>
         ///     Converts this MolarEntropy to another MolarEntropy with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -734,12 +728,6 @@ namespace UnitsNet
             return true;
         }
 
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public MolarEntropy ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
         #region Explicit implementations
 
         double IQuantity.As(Enum unit)
@@ -760,13 +748,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         /// <inheritdoc />
         IQuantity<MolarEntropyUnit> IQuantity<MolarEntropyUnit>.ToUnit(MolarEntropyUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<MolarEntropyUnit> IQuantity<MolarEntropyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<MolarEntropyUnit> IQuantity<MolarEntropyUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         #endregion
 

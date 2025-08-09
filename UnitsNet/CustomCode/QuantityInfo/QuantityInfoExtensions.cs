@@ -64,4 +64,38 @@ internal static class QuantityInfoExtensions
 
         return firstUnitInfo.Value;
     }
+
+    /// <summary>
+    ///     Retrieves the default unit for a specified quantity and unit system.
+    /// </summary>
+    /// <param name="quantityInfo">
+    ///     The <see cref="QuantityInfo{TQuantity, TUnit}" /> instance containing information about the
+    ///     quantity.
+    /// </param>
+    /// <param name="unitSystem">The <see cref="UnitSystem" /> for which the default unit is to be retrieved.</param>
+    /// <returns>The default unit information for the specified quantity and unit system.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="unitSystem" /> is <c>null</c>.</exception>
+    /// <exception cref="ArgumentException">Thrown when no units are found for the given <paramref name="unitSystem" />.</exception>
+    internal static UnitInfo GetDefaultUnit(this QuantityInfo quantityInfo, UnitSystem unitSystem)
+    {
+        if (unitSystem is null)
+        {
+            throw new ArgumentNullException(nameof(unitSystem));
+        }
+
+        if (quantityInfo.BaseDimensions.IsDimensionless())
+        {
+            return quantityInfo.BaseUnitInfo;
+        }
+
+        IEnumerable<UnitInfo> unitInfos = quantityInfo.GetUnitInfosFor(unitSystem.BaseUnits);
+
+        UnitInfo? firstUnitInfo = unitInfos.FirstOrDefault();
+        if (firstUnitInfo == null)
+        {
+            throw new ArgumentException("No units were found for the given UnitSystem.", nameof(unitSystem));
+        }
+
+        return firstUnitInfo;
+    }
 }

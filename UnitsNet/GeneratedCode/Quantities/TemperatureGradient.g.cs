@@ -679,12 +679,6 @@ namespace UnitsNet
             return As(unitKey.ToUnit<TemperatureGradientUnit>());
         }
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
-        {
-            return As(Info.GetDefaultUnit(unitSystem));
-        }
-
         /// <summary>
         ///     Converts this TemperatureGradient to another TemperatureGradient with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -765,12 +759,6 @@ namespace UnitsNet
             return true;
         }
 
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public TemperatureGradient ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
         #region Explicit implementations
 
         double IQuantity.As(Enum unit)
@@ -791,13 +779,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         /// <inheritdoc />
         IQuantity<TemperatureGradientUnit> IQuantity<TemperatureGradientUnit>.ToUnit(TemperatureGradientUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<TemperatureGradientUnit> IQuantity<TemperatureGradientUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<TemperatureGradientUnit> IQuantity<TemperatureGradientUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         #endregion
 

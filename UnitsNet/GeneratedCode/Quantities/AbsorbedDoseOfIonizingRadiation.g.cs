@@ -877,12 +877,6 @@ namespace UnitsNet
             return As(unitKey.ToUnit<AbsorbedDoseOfIonizingRadiationUnit>());
         }
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
-        {
-            return As(Info.GetDefaultUnit(unitSystem));
-        }
-
         /// <summary>
         ///     Converts this AbsorbedDoseOfIonizingRadiation to another AbsorbedDoseOfIonizingRadiation with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -989,12 +983,6 @@ namespace UnitsNet
             return true;
         }
 
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public AbsorbedDoseOfIonizingRadiation ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
         #region Explicit implementations
 
         double IQuantity.As(Enum unit)
@@ -1015,13 +1003,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         /// <inheritdoc />
         IQuantity<AbsorbedDoseOfIonizingRadiationUnit> IQuantity<AbsorbedDoseOfIonizingRadiationUnit>.ToUnit(AbsorbedDoseOfIonizingRadiationUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<AbsorbedDoseOfIonizingRadiationUnit> IQuantity<AbsorbedDoseOfIonizingRadiationUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<AbsorbedDoseOfIonizingRadiationUnit> IQuantity<AbsorbedDoseOfIonizingRadiationUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         #endregion
 

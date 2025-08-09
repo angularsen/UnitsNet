@@ -621,12 +621,6 @@ namespace UnitsNet
             return As(unitKey.ToUnit<PermeabilityUnit>());
         }
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
-        {
-            return As(Info.GetDefaultUnit(unitSystem));
-        }
-
         /// <summary>
         ///     Converts this Permeability to another Permeability with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -701,12 +695,6 @@ namespace UnitsNet
             return true;
         }
 
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Permeability ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
         #region Explicit implementations
 
         double IQuantity.As(Enum unit)
@@ -727,13 +715,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         /// <inheritdoc />
         IQuantity<PermeabilityUnit> IQuantity<PermeabilityUnit>.ToUnit(PermeabilityUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<PermeabilityUnit> IQuantity<PermeabilityUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<PermeabilityUnit> IQuantity<PermeabilityUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         #endregion
 

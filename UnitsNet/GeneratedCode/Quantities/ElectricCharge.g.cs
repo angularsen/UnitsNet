@@ -808,12 +808,6 @@ namespace UnitsNet
             return As(unitKey.ToUnit<ElectricChargeUnit>());
         }
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
-        {
-            return As(Info.GetDefaultUnit(unitSystem));
-        }
-
         /// <summary>
         ///     Converts this ElectricCharge to another ElectricCharge with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -908,12 +902,6 @@ namespace UnitsNet
             return true;
         }
 
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ElectricCharge ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
         #region Explicit implementations
 
         double IQuantity.As(Enum unit)
@@ -934,13 +922,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         /// <inheritdoc />
         IQuantity<ElectricChargeUnit> IQuantity<ElectricChargeUnit>.ToUnit(ElectricChargeUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<ElectricChargeUnit> IQuantity<ElectricChargeUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<ElectricChargeUnit> IQuantity<ElectricChargeUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         #endregion
 
