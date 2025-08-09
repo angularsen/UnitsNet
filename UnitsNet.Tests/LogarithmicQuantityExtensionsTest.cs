@@ -2,8 +2,11 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace UnitsNet.Tests;
 
+[SuppressMessage("ReSharper", "InvokeAsExtensionMethod")]
 public class LogarithmicQuantityExtensionsTest
 {
     [Theory]
@@ -21,27 +24,8 @@ public class LogarithmicQuantityExtensionsTest
         Assert.True(quantity.Equals(quantity, maxTolerance));
         Assert.True(quantity.Equals(otherQuantity, largerTolerance));
         Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
-        // note: it's currently not possible to test this due to the rounding error from (quantity - otherQuantity) 
+        // note: it's currently not possible to test this due to the rounding error from (quantity - otherQuantity)
         // Assert.True(quantity.Equals(otherQuantity, maxTolerance));
-    }
-
-    [Theory]
-    [InlineData(1, 2)]
-    [InlineData(100, 110)]
-    [InlineData(100, 90)]
-    public void Equals_IQuantity_ComparesInLinearSpace(double firstValue, double secondValue)
-    {
-        var quantity = PowerRatio.FromDecibelWatts(firstValue);
-        var otherQuantity = PowerRatio.FromDecibelWatts(secondValue);
-        PowerRatio maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-        PowerRatio largerTolerance = maxTolerance * 1.1;
-        PowerRatio smallerTolerance = maxTolerance / 1.1;
-        Assert.True(quantity.Equals((IQuantity)quantity, PowerRatio.Zero));
-        Assert.True(quantity.Equals((IQuantity)quantity, maxTolerance));
-        Assert.True(quantity.Equals((IQuantity)otherQuantity, largerTolerance));
-        Assert.False(quantity.Equals((IQuantity)otherQuantity, smallerTolerance));
-        // note: it's currently not possible to test this due to the rounding error from (quantity - otherQuantity) 
-        // Assert.True(quantity.Equals((IQuantity)otherQuantity, maxTolerance));
     }
 
     [Fact]
@@ -49,9 +33,9 @@ public class LogarithmicQuantityExtensionsTest
     {
         var quantity = PowerRatio.FromDecibelWatts(1);
         var tolerance = PowerRatio.FromDecibelWatts(1);
-        Assert.False(quantity.Equals(null, tolerance));
+        Assert.False(LogarithmicQuantityExtensions.Equals(quantity, (PowerRatio?)null, tolerance));
     }
-    
+
     [Fact(Skip = "Currently throws a NotImplementedException")]
     public void Equals_TQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
     {
@@ -61,16 +45,6 @@ public class LogarithmicQuantityExtensionsTest
         Assert.Throws<UnitNotFoundException>(() => quantity.Equals(invalidQuantity, quantity));
         Assert.Throws<UnitNotFoundException>(() => quantity.Equals(quantity, invalidQuantity));
     }
-    
-    [Fact(Skip = "Currently throws a NotImplementedException")]
-    public void Equals_IQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
-    {
-        var quantity = PowerRatio.FromDecibelWatts(1);
-        var invalidQuantity = new PowerRatio(1, (PowerRatioUnit)(-1));
-        Assert.Throws<UnitNotFoundException>(() => invalidQuantity.Equals((IQuantity)quantity, quantity));
-        Assert.Throws<UnitNotFoundException>(() => quantity.Equals((IQuantity)invalidQuantity, quantity));
-        Assert.Throws<UnitNotFoundException>(() => quantity.Equals((IQuantity)quantity, invalidQuantity));
-    }
 
     [Fact]
     public void Equals_WithNegativeTolerance_DoesNotThrowArgumentOutOfRangeException()
@@ -79,7 +53,6 @@ public class LogarithmicQuantityExtensionsTest
         var quantity = PowerRatio.FromDecibelWatts(1);
         var negativeTolerance = PowerRatio.FromDecibelWatts(-1);
         Assert.True(quantity.Equals(quantity, negativeTolerance));
-        Assert.True(quantity.Equals((IQuantity)quantity, negativeTolerance));
     }
 
     [Fact]
@@ -167,7 +140,7 @@ public class LogarithmicQuantityExtensionsTest
         IEnumerable<PowerRatio> quantities = new List<PowerRatio> { quantity };
 
         PowerRatio result = quantities.Sum(x => x);
-        
+
         Assert.Equal(quantity.Value, result.Value, 1e-5);
         Assert.Equal(quantity.Unit, result.Unit);
     }
@@ -223,7 +196,7 @@ public class LogarithmicQuantityExtensionsTest
         PowerRatio expectedValue = quantity1 + quantity2;
 
         PowerRatio result = quantities.Sum(x => x);
-        
+
         Assert.Equal(expectedValue.Value, result.Value, 1e-5);
         Assert.Equal(unit1, result.Unit);
     }
@@ -251,7 +224,7 @@ public class LogarithmicQuantityExtensionsTest
         PowerRatio expectedValue = quantity1 + quantity2;
 
         PowerRatio result = quantities.Sum(x => x, unit1);
-        
+
         Assert.Equal(expectedValue.Value, result.Value, 1e-5);
         Assert.Equal(unit1, result.Unit);
     }
@@ -333,7 +306,7 @@ public class LogarithmicQuantityExtensionsTest
         IEnumerable<PowerRatio> quantities = new List<PowerRatio> { quantity };
 
         PowerRatio result = quantities.ArithmeticMean(x => x);
-        
+
         Assert.Equal(quantity.Value, result.Value, 1e-5);
         Assert.Equal(quantity.Unit, result.Unit);
     }

@@ -14,20 +14,22 @@ namespace UnitsNet;
 public static class AffineQuantityExtensions
 {
 #if NET
-    /// <inheritdoc cref="EqualsAbsolute{TQuantity,TOffset}" />
-    public static bool Equals<TQuantity, TOffset>(this TQuantity quantity, TQuantity? other, TOffset tolerance)
-        where TQuantity : IAffineQuantity<TQuantity, TOffset>, ISubtractionOperators<TQuantity, TQuantity, TOffset>
+    /// <inheritdoc cref="EqualsNotNull{TQuantity,TOther,TOffset}"/>
+    public static bool Equals<TQuantity, TOther, TOffset>(this TQuantity quantity, TOther? other, TOffset tolerance)
+        where TQuantity : IAffineQuantity<TQuantity, TOffset>, ISubtractionOperators<TQuantity, TOther, TOffset>
+        where TOther : struct, IAffineQuantity<TQuantity, TOffset>
         where TOffset : IQuantityOfType<TOffset>, IAdditiveIdentity<TOffset, TOffset>
     {
-        return other != null && quantity.EqualsAbsolute(other, tolerance);
+        return other is not null && EqualsNotNull(quantity, other.Value, tolerance);
     }
 
-    /// <inheritdoc cref="EqualsAbsolute{TQuantity,TOffset}" />
-    public static bool Equals<TQuantity, TOffset>(this TQuantity quantity, IQuantity? other, TOffset tolerance)
-        where TQuantity : IAffineQuantity<TQuantity, TOffset>, ISubtractionOperators<TQuantity, TQuantity, TOffset>
+    /// <inheritdoc cref="EqualsNotNull{TQuantity,TOther,TOffset}"/>
+    public static bool Equals<TQuantity, TOther, TOffset>(this TQuantity quantity, TOther? other, TOffset tolerance)
+        where TQuantity : IAffineQuantity<TQuantity, TOffset>, ISubtractionOperators<TQuantity, TOther, TOffset>
+        where TOther : IAffineQuantity<TQuantity, TOffset>
         where TOffset : IQuantityOfType<TOffset>, IAdditiveIdentity<TOffset, TOffset>
     {
-        return other is TQuantity otherInstance && quantity.EqualsAbsolute(otherInstance, tolerance);
+        return other is not null && EqualsNotNull(quantity, other, tolerance);
     }
 
     /// <summary>
@@ -47,6 +49,7 @@ public static class AffineQuantityExtensions
     ///     </example>
     /// </summary>
     /// <typeparam name="TQuantity">The type of the quantity being compared.</typeparam>
+    /// <typeparam name="TOther">The type of the other quantity being compared.</typeparam>
     /// <typeparam name="TOffset">The type of the tolerance quantity.</typeparam>
     /// <param name="quantity">The quantity to compare.</param>
     /// <param name="other">The other quantity to compare to.</param>
@@ -58,8 +61,9 @@ public static class AffineQuantityExtensions
     ///     It is generally advised against specifying "zero" tolerance, preferring the use of the default equality
     ///     comparer, which is significantly more performant.
     /// </remarks>
-    private static bool EqualsAbsolute<TQuantity, TOffset>(this TQuantity quantity, TQuantity other, TOffset tolerance)
-        where TQuantity : IAffineQuantity<TQuantity, TOffset>, ISubtractionOperators<TQuantity, TQuantity, TOffset>
+    private static bool EqualsNotNull<TQuantity, TOther, TOffset>(TQuantity quantity, TOther other, TOffset tolerance)
+        where TQuantity : IAffineQuantity<TQuantity, TOffset>, ISubtractionOperators<TQuantity, TOther, TOffset>
+        where TOther : IAffineQuantity<TQuantity, TOffset>
         where TOffset : IQuantityOfType<TOffset>, IAdditiveIdentity<TOffset, TOffset>
     {
         if (double.IsNegative(tolerance.Value))
