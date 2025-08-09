@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -250,106 +251,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = DoseAreaProduct.From(1, DoseAreaProductUnit.CentigraySquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity00.CentigraySquareCentimeters, CentigraySquareCentimetersTolerance);
-            Assert.Equal(DoseAreaProductUnit.CentigraySquareCentimeter, quantity00.Unit);
-
-            var quantity01 = DoseAreaProduct.From(1, DoseAreaProductUnit.CentigraySquareDecimeter);
-            AssertEx.EqualTolerance(1, quantity01.CentigraySquareDecimeters, CentigraySquareDecimetersTolerance);
-            Assert.Equal(DoseAreaProductUnit.CentigraySquareDecimeter, quantity01.Unit);
-
-            var quantity02 = DoseAreaProduct.From(1, DoseAreaProductUnit.CentigraySquareMeter);
-            AssertEx.EqualTolerance(1, quantity02.CentigraySquareMeters, CentigraySquareMetersTolerance);
-            Assert.Equal(DoseAreaProductUnit.CentigraySquareMeter, quantity02.Unit);
-
-            var quantity03 = DoseAreaProduct.From(1, DoseAreaProductUnit.CentigraySquareMicrometer);
-            AssertEx.EqualTolerance(1, quantity03.CentigraySquareMicrometers, CentigraySquareMicrometersTolerance);
-            Assert.Equal(DoseAreaProductUnit.CentigraySquareMicrometer, quantity03.Unit);
-
-            var quantity04 = DoseAreaProduct.From(1, DoseAreaProductUnit.CentigraySquareMillimeter);
-            AssertEx.EqualTolerance(1, quantity04.CentigraySquareMillimeters, CentigraySquareMillimetersTolerance);
-            Assert.Equal(DoseAreaProductUnit.CentigraySquareMillimeter, quantity04.Unit);
-
-            var quantity05 = DoseAreaProduct.From(1, DoseAreaProductUnit.DecigraySquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity05.DecigraySquareCentimeters, DecigraySquareCentimetersTolerance);
-            Assert.Equal(DoseAreaProductUnit.DecigraySquareCentimeter, quantity05.Unit);
-
-            var quantity06 = DoseAreaProduct.From(1, DoseAreaProductUnit.DecigraySquareDecimeter);
-            AssertEx.EqualTolerance(1, quantity06.DecigraySquareDecimeters, DecigraySquareDecimetersTolerance);
-            Assert.Equal(DoseAreaProductUnit.DecigraySquareDecimeter, quantity06.Unit);
-
-            var quantity07 = DoseAreaProduct.From(1, DoseAreaProductUnit.DecigraySquareMeter);
-            AssertEx.EqualTolerance(1, quantity07.DecigraySquareMeters, DecigraySquareMetersTolerance);
-            Assert.Equal(DoseAreaProductUnit.DecigraySquareMeter, quantity07.Unit);
-
-            var quantity08 = DoseAreaProduct.From(1, DoseAreaProductUnit.DecigraySquareMicrometer);
-            AssertEx.EqualTolerance(1, quantity08.DecigraySquareMicrometers, DecigraySquareMicrometersTolerance);
-            Assert.Equal(DoseAreaProductUnit.DecigraySquareMicrometer, quantity08.Unit);
-
-            var quantity09 = DoseAreaProduct.From(1, DoseAreaProductUnit.DecigraySquareMillimeter);
-            AssertEx.EqualTolerance(1, quantity09.DecigraySquareMillimeters, DecigraySquareMillimetersTolerance);
-            Assert.Equal(DoseAreaProductUnit.DecigraySquareMillimeter, quantity09.Unit);
-
-            var quantity10 = DoseAreaProduct.From(1, DoseAreaProductUnit.GraySquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity10.GraySquareCentimeters, GraySquareCentimetersTolerance);
-            Assert.Equal(DoseAreaProductUnit.GraySquareCentimeter, quantity10.Unit);
-
-            var quantity11 = DoseAreaProduct.From(1, DoseAreaProductUnit.GraySquareDecimeter);
-            AssertEx.EqualTolerance(1, quantity11.GraySquareDecimeters, GraySquareDecimetersTolerance);
-            Assert.Equal(DoseAreaProductUnit.GraySquareDecimeter, quantity11.Unit);
-
-            var quantity12 = DoseAreaProduct.From(1, DoseAreaProductUnit.GraySquareMeter);
-            AssertEx.EqualTolerance(1, quantity12.GraySquareMeters, GraySquareMetersTolerance);
-            Assert.Equal(DoseAreaProductUnit.GraySquareMeter, quantity12.Unit);
-
-            var quantity13 = DoseAreaProduct.From(1, DoseAreaProductUnit.GraySquareMicrometer);
-            AssertEx.EqualTolerance(1, quantity13.GraySquareMicrometers, GraySquareMicrometersTolerance);
-            Assert.Equal(DoseAreaProductUnit.GraySquareMicrometer, quantity13.Unit);
-
-            var quantity14 = DoseAreaProduct.From(1, DoseAreaProductUnit.GraySquareMillimeter);
-            AssertEx.EqualTolerance(1, quantity14.GraySquareMillimeters, GraySquareMillimetersTolerance);
-            Assert.Equal(DoseAreaProductUnit.GraySquareMillimeter, quantity14.Unit);
-
-            var quantity15 = DoseAreaProduct.From(1, DoseAreaProductUnit.MicrograySquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity15.MicrograySquareCentimeters, MicrograySquareCentimetersTolerance);
-            Assert.Equal(DoseAreaProductUnit.MicrograySquareCentimeter, quantity15.Unit);
-
-            var quantity16 = DoseAreaProduct.From(1, DoseAreaProductUnit.MicrograySquareDecimeter);
-            AssertEx.EqualTolerance(1, quantity16.MicrograySquareDecimeters, MicrograySquareDecimetersTolerance);
-            Assert.Equal(DoseAreaProductUnit.MicrograySquareDecimeter, quantity16.Unit);
-
-            var quantity17 = DoseAreaProduct.From(1, DoseAreaProductUnit.MicrograySquareMeter);
-            AssertEx.EqualTolerance(1, quantity17.MicrograySquareMeters, MicrograySquareMetersTolerance);
-            Assert.Equal(DoseAreaProductUnit.MicrograySquareMeter, quantity17.Unit);
-
-            var quantity18 = DoseAreaProduct.From(1, DoseAreaProductUnit.MicrograySquareMicrometer);
-            AssertEx.EqualTolerance(1, quantity18.MicrograySquareMicrometers, MicrograySquareMicrometersTolerance);
-            Assert.Equal(DoseAreaProductUnit.MicrograySquareMicrometer, quantity18.Unit);
-
-            var quantity19 = DoseAreaProduct.From(1, DoseAreaProductUnit.MicrograySquareMillimeter);
-            AssertEx.EqualTolerance(1, quantity19.MicrograySquareMillimeters, MicrograySquareMillimetersTolerance);
-            Assert.Equal(DoseAreaProductUnit.MicrograySquareMillimeter, quantity19.Unit);
-
-            var quantity20 = DoseAreaProduct.From(1, DoseAreaProductUnit.MilligraySquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity20.MilligraySquareCentimeters, MilligraySquareCentimetersTolerance);
-            Assert.Equal(DoseAreaProductUnit.MilligraySquareCentimeter, quantity20.Unit);
-
-            var quantity21 = DoseAreaProduct.From(1, DoseAreaProductUnit.MilligraySquareDecimeter);
-            AssertEx.EqualTolerance(1, quantity21.MilligraySquareDecimeters, MilligraySquareDecimetersTolerance);
-            Assert.Equal(DoseAreaProductUnit.MilligraySquareDecimeter, quantity21.Unit);
-
-            var quantity22 = DoseAreaProduct.From(1, DoseAreaProductUnit.MilligraySquareMeter);
-            AssertEx.EqualTolerance(1, quantity22.MilligraySquareMeters, MilligraySquareMetersTolerance);
-            Assert.Equal(DoseAreaProductUnit.MilligraySquareMeter, quantity22.Unit);
-
-            var quantity23 = DoseAreaProduct.From(1, DoseAreaProductUnit.MilligraySquareMicrometer);
-            AssertEx.EqualTolerance(1, quantity23.MilligraySquareMicrometers, MilligraySquareMicrometersTolerance);
-            Assert.Equal(DoseAreaProductUnit.MilligraySquareMicrometer, quantity23.Unit);
-
-            var quantity24 = DoseAreaProduct.From(1, DoseAreaProductUnit.MilligraySquareMillimeter);
-            AssertEx.EqualTolerance(1, quantity24.MilligraySquareMillimeters, MilligraySquareMillimetersTolerance);
-            Assert.Equal(DoseAreaProductUnit.MilligraySquareMillimeter, quantity24.Unit);
-
+            Assert.All(EnumHelper.GetValues<DoseAreaProductUnit>(), unit =>
+            {
+                var quantity = DoseAreaProduct.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

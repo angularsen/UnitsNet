@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -140,18 +141,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = MolarEnergy.From(1, MolarEnergyUnit.JoulePerMole);
-            AssertEx.EqualTolerance(1, quantity00.JoulesPerMole, JoulesPerMoleTolerance);
-            Assert.Equal(MolarEnergyUnit.JoulePerMole, quantity00.Unit);
-
-            var quantity01 = MolarEnergy.From(1, MolarEnergyUnit.KilojoulePerMole);
-            AssertEx.EqualTolerance(1, quantity01.KilojoulesPerMole, KilojoulesPerMoleTolerance);
-            Assert.Equal(MolarEnergyUnit.KilojoulePerMole, quantity01.Unit);
-
-            var quantity02 = MolarEnergy.From(1, MolarEnergyUnit.MegajoulePerMole);
-            AssertEx.EqualTolerance(1, quantity02.MegajoulesPerMole, MegajoulesPerMoleTolerance);
-            Assert.Equal(MolarEnergyUnit.MegajoulePerMole, quantity02.Unit);
-
+            Assert.All(EnumHelper.GetValues<MolarEnergyUnit>(), unit =>
+            {
+                var quantity = MolarEnergy.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

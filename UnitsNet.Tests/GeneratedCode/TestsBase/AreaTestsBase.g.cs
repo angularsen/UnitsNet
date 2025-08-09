@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -195,62 +196,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Area.From(1, AreaUnit.Acre);
-            AssertEx.EqualTolerance(1, quantity00.Acres, AcresTolerance);
-            Assert.Equal(AreaUnit.Acre, quantity00.Unit);
-
-            var quantity01 = Area.From(1, AreaUnit.Hectare);
-            AssertEx.EqualTolerance(1, quantity01.Hectares, HectaresTolerance);
-            Assert.Equal(AreaUnit.Hectare, quantity01.Unit);
-
-            var quantity02 = Area.From(1, AreaUnit.SquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity02.SquareCentimeters, SquareCentimetersTolerance);
-            Assert.Equal(AreaUnit.SquareCentimeter, quantity02.Unit);
-
-            var quantity03 = Area.From(1, AreaUnit.SquareDecimeter);
-            AssertEx.EqualTolerance(1, quantity03.SquareDecimeters, SquareDecimetersTolerance);
-            Assert.Equal(AreaUnit.SquareDecimeter, quantity03.Unit);
-
-            var quantity04 = Area.From(1, AreaUnit.SquareFoot);
-            AssertEx.EqualTolerance(1, quantity04.SquareFeet, SquareFeetTolerance);
-            Assert.Equal(AreaUnit.SquareFoot, quantity04.Unit);
-
-            var quantity05 = Area.From(1, AreaUnit.SquareInch);
-            AssertEx.EqualTolerance(1, quantity05.SquareInches, SquareInchesTolerance);
-            Assert.Equal(AreaUnit.SquareInch, quantity05.Unit);
-
-            var quantity06 = Area.From(1, AreaUnit.SquareKilometer);
-            AssertEx.EqualTolerance(1, quantity06.SquareKilometers, SquareKilometersTolerance);
-            Assert.Equal(AreaUnit.SquareKilometer, quantity06.Unit);
-
-            var quantity07 = Area.From(1, AreaUnit.SquareMeter);
-            AssertEx.EqualTolerance(1, quantity07.SquareMeters, SquareMetersTolerance);
-            Assert.Equal(AreaUnit.SquareMeter, quantity07.Unit);
-
-            var quantity08 = Area.From(1, AreaUnit.SquareMicrometer);
-            AssertEx.EqualTolerance(1, quantity08.SquareMicrometers, SquareMicrometersTolerance);
-            Assert.Equal(AreaUnit.SquareMicrometer, quantity08.Unit);
-
-            var quantity09 = Area.From(1, AreaUnit.SquareMile);
-            AssertEx.EqualTolerance(1, quantity09.SquareMiles, SquareMilesTolerance);
-            Assert.Equal(AreaUnit.SquareMile, quantity09.Unit);
-
-            var quantity10 = Area.From(1, AreaUnit.SquareMillimeter);
-            AssertEx.EqualTolerance(1, quantity10.SquareMillimeters, SquareMillimetersTolerance);
-            Assert.Equal(AreaUnit.SquareMillimeter, quantity10.Unit);
-
-            var quantity11 = Area.From(1, AreaUnit.SquareNauticalMile);
-            AssertEx.EqualTolerance(1, quantity11.SquareNauticalMiles, SquareNauticalMilesTolerance);
-            Assert.Equal(AreaUnit.SquareNauticalMile, quantity11.Unit);
-
-            var quantity12 = Area.From(1, AreaUnit.SquareYard);
-            AssertEx.EqualTolerance(1, quantity12.SquareYards, SquareYardsTolerance);
-            Assert.Equal(AreaUnit.SquareYard, quantity12.Unit);
-
-            var quantity13 = Area.From(1, AreaUnit.UsSurveySquareFoot);
-            AssertEx.EqualTolerance(1, quantity13.UsSurveySquareFeet, UsSurveySquareFeetTolerance);
-            Assert.Equal(AreaUnit.UsSurveySquareFoot, quantity13.Unit);
-
+            Assert.All(EnumHelper.GetValues<AreaUnit>(), unit =>
+            {
+                var quantity = Area.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

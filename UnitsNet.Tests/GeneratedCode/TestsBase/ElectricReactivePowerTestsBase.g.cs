@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -145,22 +146,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricReactivePower.From(1, ElectricReactivePowerUnit.GigavoltampereReactive);
-            AssertEx.EqualTolerance(1, quantity00.GigavoltamperesReactive, GigavoltamperesReactiveTolerance);
-            Assert.Equal(ElectricReactivePowerUnit.GigavoltampereReactive, quantity00.Unit);
-
-            var quantity01 = ElectricReactivePower.From(1, ElectricReactivePowerUnit.KilovoltampereReactive);
-            AssertEx.EqualTolerance(1, quantity01.KilovoltamperesReactive, KilovoltamperesReactiveTolerance);
-            Assert.Equal(ElectricReactivePowerUnit.KilovoltampereReactive, quantity01.Unit);
-
-            var quantity02 = ElectricReactivePower.From(1, ElectricReactivePowerUnit.MegavoltampereReactive);
-            AssertEx.EqualTolerance(1, quantity02.MegavoltamperesReactive, MegavoltamperesReactiveTolerance);
-            Assert.Equal(ElectricReactivePowerUnit.MegavoltampereReactive, quantity02.Unit);
-
-            var quantity03 = ElectricReactivePower.From(1, ElectricReactivePowerUnit.VoltampereReactive);
-            AssertEx.EqualTolerance(1, quantity03.VoltamperesReactive, VoltamperesReactiveTolerance);
-            Assert.Equal(ElectricReactivePowerUnit.VoltampereReactive, quantity03.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricReactivePowerUnit>(), unit =>
+            {
+                var quantity = ElectricReactivePower.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

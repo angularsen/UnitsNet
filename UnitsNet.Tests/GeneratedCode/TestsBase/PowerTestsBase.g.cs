@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -260,114 +261,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Power.From(1, PowerUnit.BoilerHorsepower);
-            AssertEx.EqualTolerance(1, quantity00.BoilerHorsepower, BoilerHorsepowerTolerance);
-            Assert.Equal(PowerUnit.BoilerHorsepower, quantity00.Unit);
-
-            var quantity01 = Power.From(1, PowerUnit.BritishThermalUnitPerHour);
-            AssertEx.EqualTolerance(1, quantity01.BritishThermalUnitsPerHour, BritishThermalUnitsPerHourTolerance);
-            Assert.Equal(PowerUnit.BritishThermalUnitPerHour, quantity01.Unit);
-
-            var quantity02 = Power.From(1, PowerUnit.Decawatt);
-            AssertEx.EqualTolerance(1, quantity02.Decawatts, DecawattsTolerance);
-            Assert.Equal(PowerUnit.Decawatt, quantity02.Unit);
-
-            var quantity03 = Power.From(1, PowerUnit.Deciwatt);
-            AssertEx.EqualTolerance(1, quantity03.Deciwatts, DeciwattsTolerance);
-            Assert.Equal(PowerUnit.Deciwatt, quantity03.Unit);
-
-            var quantity04 = Power.From(1, PowerUnit.ElectricalHorsepower);
-            AssertEx.EqualTolerance(1, quantity04.ElectricalHorsepower, ElectricalHorsepowerTolerance);
-            Assert.Equal(PowerUnit.ElectricalHorsepower, quantity04.Unit);
-
-            var quantity05 = Power.From(1, PowerUnit.Femtowatt);
-            AssertEx.EqualTolerance(1, quantity05.Femtowatts, FemtowattsTolerance);
-            Assert.Equal(PowerUnit.Femtowatt, quantity05.Unit);
-
-            var quantity06 = Power.From(1, PowerUnit.GigajoulePerHour);
-            AssertEx.EqualTolerance(1, quantity06.GigajoulesPerHour, GigajoulesPerHourTolerance);
-            Assert.Equal(PowerUnit.GigajoulePerHour, quantity06.Unit);
-
-            var quantity07 = Power.From(1, PowerUnit.Gigawatt);
-            AssertEx.EqualTolerance(1, quantity07.Gigawatts, GigawattsTolerance);
-            Assert.Equal(PowerUnit.Gigawatt, quantity07.Unit);
-
-            var quantity08 = Power.From(1, PowerUnit.HydraulicHorsepower);
-            AssertEx.EqualTolerance(1, quantity08.HydraulicHorsepower, HydraulicHorsepowerTolerance);
-            Assert.Equal(PowerUnit.HydraulicHorsepower, quantity08.Unit);
-
-            var quantity09 = Power.From(1, PowerUnit.JoulePerHour);
-            AssertEx.EqualTolerance(1, quantity09.JoulesPerHour, JoulesPerHourTolerance);
-            Assert.Equal(PowerUnit.JoulePerHour, quantity09.Unit);
-
-            var quantity10 = Power.From(1, PowerUnit.KilobritishThermalUnitPerHour);
-            AssertEx.EqualTolerance(1, quantity10.KilobritishThermalUnitsPerHour, KilobritishThermalUnitsPerHourTolerance);
-            Assert.Equal(PowerUnit.KilobritishThermalUnitPerHour, quantity10.Unit);
-
-            var quantity11 = Power.From(1, PowerUnit.KilojoulePerHour);
-            AssertEx.EqualTolerance(1, quantity11.KilojoulesPerHour, KilojoulesPerHourTolerance);
-            Assert.Equal(PowerUnit.KilojoulePerHour, quantity11.Unit);
-
-            var quantity12 = Power.From(1, PowerUnit.Kilowatt);
-            AssertEx.EqualTolerance(1, quantity12.Kilowatts, KilowattsTolerance);
-            Assert.Equal(PowerUnit.Kilowatt, quantity12.Unit);
-
-            var quantity13 = Power.From(1, PowerUnit.MechanicalHorsepower);
-            AssertEx.EqualTolerance(1, quantity13.MechanicalHorsepower, MechanicalHorsepowerTolerance);
-            Assert.Equal(PowerUnit.MechanicalHorsepower, quantity13.Unit);
-
-            var quantity14 = Power.From(1, PowerUnit.MegabritishThermalUnitPerHour);
-            AssertEx.EqualTolerance(1, quantity14.MegabritishThermalUnitsPerHour, MegabritishThermalUnitsPerHourTolerance);
-            Assert.Equal(PowerUnit.MegabritishThermalUnitPerHour, quantity14.Unit);
-
-            var quantity15 = Power.From(1, PowerUnit.MegajoulePerHour);
-            AssertEx.EqualTolerance(1, quantity15.MegajoulesPerHour, MegajoulesPerHourTolerance);
-            Assert.Equal(PowerUnit.MegajoulePerHour, quantity15.Unit);
-
-            var quantity16 = Power.From(1, PowerUnit.Megawatt);
-            AssertEx.EqualTolerance(1, quantity16.Megawatts, MegawattsTolerance);
-            Assert.Equal(PowerUnit.Megawatt, quantity16.Unit);
-
-            var quantity17 = Power.From(1, PowerUnit.MetricHorsepower);
-            AssertEx.EqualTolerance(1, quantity17.MetricHorsepower, MetricHorsepowerTolerance);
-            Assert.Equal(PowerUnit.MetricHorsepower, quantity17.Unit);
-
-            var quantity18 = Power.From(1, PowerUnit.Microwatt);
-            AssertEx.EqualTolerance(1, quantity18.Microwatts, MicrowattsTolerance);
-            Assert.Equal(PowerUnit.Microwatt, quantity18.Unit);
-
-            var quantity19 = Power.From(1, PowerUnit.MillijoulePerHour);
-            AssertEx.EqualTolerance(1, quantity19.MillijoulesPerHour, MillijoulesPerHourTolerance);
-            Assert.Equal(PowerUnit.MillijoulePerHour, quantity19.Unit);
-
-            var quantity20 = Power.From(1, PowerUnit.Milliwatt);
-            AssertEx.EqualTolerance(1, quantity20.Milliwatts, MilliwattsTolerance);
-            Assert.Equal(PowerUnit.Milliwatt, quantity20.Unit);
-
-            var quantity21 = Power.From(1, PowerUnit.Nanowatt);
-            AssertEx.EqualTolerance(1, quantity21.Nanowatts, NanowattsTolerance);
-            Assert.Equal(PowerUnit.Nanowatt, quantity21.Unit);
-
-            var quantity22 = Power.From(1, PowerUnit.Petawatt);
-            AssertEx.EqualTolerance(1, quantity22.Petawatts, PetawattsTolerance);
-            Assert.Equal(PowerUnit.Petawatt, quantity22.Unit);
-
-            var quantity23 = Power.From(1, PowerUnit.Picowatt);
-            AssertEx.EqualTolerance(1, quantity23.Picowatts, PicowattsTolerance);
-            Assert.Equal(PowerUnit.Picowatt, quantity23.Unit);
-
-            var quantity24 = Power.From(1, PowerUnit.Terawatt);
-            AssertEx.EqualTolerance(1, quantity24.Terawatts, TerawattsTolerance);
-            Assert.Equal(PowerUnit.Terawatt, quantity24.Unit);
-
-            var quantity25 = Power.From(1, PowerUnit.TonOfRefrigeration);
-            AssertEx.EqualTolerance(1, quantity25.TonsOfRefrigeration, TonsOfRefrigerationTolerance);
-            Assert.Equal(PowerUnit.TonOfRefrigeration, quantity25.Unit);
-
-            var quantity26 = Power.From(1, PowerUnit.Watt);
-            AssertEx.EqualTolerance(1, quantity26.Watts, WattsTolerance);
-            Assert.Equal(PowerUnit.Watt, quantity26.Unit);
-
+            Assert.All(EnumHelper.GetValues<PowerUnit>(), unit =>
+            {
+                var quantity = Power.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

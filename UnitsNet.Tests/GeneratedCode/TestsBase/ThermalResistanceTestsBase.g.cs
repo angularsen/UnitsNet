@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -135,14 +136,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ThermalResistance.From(1, ThermalResistanceUnit.DegreeCelsiusPerWatt);
-            AssertEx.EqualTolerance(1, quantity00.DegreesCelsiusPerWatt, DegreesCelsiusPerWattTolerance);
-            Assert.Equal(ThermalResistanceUnit.DegreeCelsiusPerWatt, quantity00.Unit);
-
-            var quantity01 = ThermalResistance.From(1, ThermalResistanceUnit.KelvinPerWatt);
-            AssertEx.EqualTolerance(1, quantity01.KelvinsPerWatt, KelvinsPerWattTolerance);
-            Assert.Equal(ThermalResistanceUnit.KelvinPerWatt, quantity01.Unit);
-
+            Assert.All(EnumHelper.GetValues<ThermalResistanceUnit>(), unit =>
+            {
+                var quantity = ThermalResistance.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

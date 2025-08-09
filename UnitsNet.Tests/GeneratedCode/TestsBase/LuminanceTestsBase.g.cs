@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -175,46 +176,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Luminance.From(1, LuminanceUnit.CandelaPerSquareFoot);
-            AssertEx.EqualTolerance(1, quantity00.CandelasPerSquareFoot, CandelasPerSquareFootTolerance);
-            Assert.Equal(LuminanceUnit.CandelaPerSquareFoot, quantity00.Unit);
-
-            var quantity01 = Luminance.From(1, LuminanceUnit.CandelaPerSquareInch);
-            AssertEx.EqualTolerance(1, quantity01.CandelasPerSquareInch, CandelasPerSquareInchTolerance);
-            Assert.Equal(LuminanceUnit.CandelaPerSquareInch, quantity01.Unit);
-
-            var quantity02 = Luminance.From(1, LuminanceUnit.CandelaPerSquareMeter);
-            AssertEx.EqualTolerance(1, quantity02.CandelasPerSquareMeter, CandelasPerSquareMeterTolerance);
-            Assert.Equal(LuminanceUnit.CandelaPerSquareMeter, quantity02.Unit);
-
-            var quantity03 = Luminance.From(1, LuminanceUnit.CenticandelaPerSquareMeter);
-            AssertEx.EqualTolerance(1, quantity03.CenticandelasPerSquareMeter, CenticandelasPerSquareMeterTolerance);
-            Assert.Equal(LuminanceUnit.CenticandelaPerSquareMeter, quantity03.Unit);
-
-            var quantity04 = Luminance.From(1, LuminanceUnit.DecicandelaPerSquareMeter);
-            AssertEx.EqualTolerance(1, quantity04.DecicandelasPerSquareMeter, DecicandelasPerSquareMeterTolerance);
-            Assert.Equal(LuminanceUnit.DecicandelaPerSquareMeter, quantity04.Unit);
-
-            var quantity05 = Luminance.From(1, LuminanceUnit.KilocandelaPerSquareMeter);
-            AssertEx.EqualTolerance(1, quantity05.KilocandelasPerSquareMeter, KilocandelasPerSquareMeterTolerance);
-            Assert.Equal(LuminanceUnit.KilocandelaPerSquareMeter, quantity05.Unit);
-
-            var quantity06 = Luminance.From(1, LuminanceUnit.MicrocandelaPerSquareMeter);
-            AssertEx.EqualTolerance(1, quantity06.MicrocandelasPerSquareMeter, MicrocandelasPerSquareMeterTolerance);
-            Assert.Equal(LuminanceUnit.MicrocandelaPerSquareMeter, quantity06.Unit);
-
-            var quantity07 = Luminance.From(1, LuminanceUnit.MillicandelaPerSquareMeter);
-            AssertEx.EqualTolerance(1, quantity07.MillicandelasPerSquareMeter, MillicandelasPerSquareMeterTolerance);
-            Assert.Equal(LuminanceUnit.MillicandelaPerSquareMeter, quantity07.Unit);
-
-            var quantity08 = Luminance.From(1, LuminanceUnit.NanocandelaPerSquareMeter);
-            AssertEx.EqualTolerance(1, quantity08.NanocandelasPerSquareMeter, NanocandelasPerSquareMeterTolerance);
-            Assert.Equal(LuminanceUnit.NanocandelaPerSquareMeter, quantity08.Unit);
-
-            var quantity09 = Luminance.From(1, LuminanceUnit.Nit);
-            AssertEx.EqualTolerance(1, quantity09.Nits, NitsTolerance);
-            Assert.Equal(LuminanceUnit.Nit, quantity09.Unit);
-
+            Assert.All(EnumHelper.GetValues<LuminanceUnit>(), unit =>
+            {
+                var quantity = Luminance.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

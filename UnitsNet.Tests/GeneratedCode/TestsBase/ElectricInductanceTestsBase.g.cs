@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -150,26 +151,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricInductance.From(1, ElectricInductanceUnit.Henry);
-            AssertEx.EqualTolerance(1, quantity00.Henries, HenriesTolerance);
-            Assert.Equal(ElectricInductanceUnit.Henry, quantity00.Unit);
-
-            var quantity01 = ElectricInductance.From(1, ElectricInductanceUnit.Microhenry);
-            AssertEx.EqualTolerance(1, quantity01.Microhenries, MicrohenriesTolerance);
-            Assert.Equal(ElectricInductanceUnit.Microhenry, quantity01.Unit);
-
-            var quantity02 = ElectricInductance.From(1, ElectricInductanceUnit.Millihenry);
-            AssertEx.EqualTolerance(1, quantity02.Millihenries, MillihenriesTolerance);
-            Assert.Equal(ElectricInductanceUnit.Millihenry, quantity02.Unit);
-
-            var quantity03 = ElectricInductance.From(1, ElectricInductanceUnit.Nanohenry);
-            AssertEx.EqualTolerance(1, quantity03.Nanohenries, NanohenriesTolerance);
-            Assert.Equal(ElectricInductanceUnit.Nanohenry, quantity03.Unit);
-
-            var quantity04 = ElectricInductance.From(1, ElectricInductanceUnit.Picohenry);
-            AssertEx.EqualTolerance(1, quantity04.Picohenries, PicohenriesTolerance);
-            Assert.Equal(ElectricInductanceUnit.Picohenry, quantity04.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricInductanceUnit>(), unit =>
+            {
+                var quantity = ElectricInductance.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

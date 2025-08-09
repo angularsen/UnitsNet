@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -160,34 +161,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Entropy.From(1, EntropyUnit.CaloriePerKelvin);
-            AssertEx.EqualTolerance(1, quantity00.CaloriesPerKelvin, CaloriesPerKelvinTolerance);
-            Assert.Equal(EntropyUnit.CaloriePerKelvin, quantity00.Unit);
-
-            var quantity01 = Entropy.From(1, EntropyUnit.JoulePerDegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity01.JoulesPerDegreeCelsius, JoulesPerDegreeCelsiusTolerance);
-            Assert.Equal(EntropyUnit.JoulePerDegreeCelsius, quantity01.Unit);
-
-            var quantity02 = Entropy.From(1, EntropyUnit.JoulePerKelvin);
-            AssertEx.EqualTolerance(1, quantity02.JoulesPerKelvin, JoulesPerKelvinTolerance);
-            Assert.Equal(EntropyUnit.JoulePerKelvin, quantity02.Unit);
-
-            var quantity03 = Entropy.From(1, EntropyUnit.KilocaloriePerKelvin);
-            AssertEx.EqualTolerance(1, quantity03.KilocaloriesPerKelvin, KilocaloriesPerKelvinTolerance);
-            Assert.Equal(EntropyUnit.KilocaloriePerKelvin, quantity03.Unit);
-
-            var quantity04 = Entropy.From(1, EntropyUnit.KilojoulePerDegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity04.KilojoulesPerDegreeCelsius, KilojoulesPerDegreeCelsiusTolerance);
-            Assert.Equal(EntropyUnit.KilojoulePerDegreeCelsius, quantity04.Unit);
-
-            var quantity05 = Entropy.From(1, EntropyUnit.KilojoulePerKelvin);
-            AssertEx.EqualTolerance(1, quantity05.KilojoulesPerKelvin, KilojoulesPerKelvinTolerance);
-            Assert.Equal(EntropyUnit.KilojoulePerKelvin, quantity05.Unit);
-
-            var quantity06 = Entropy.From(1, EntropyUnit.MegajoulePerKelvin);
-            AssertEx.EqualTolerance(1, quantity06.MegajoulesPerKelvin, MegajoulesPerKelvinTolerance);
-            Assert.Equal(EntropyUnit.MegajoulePerKelvin, quantity06.Unit);
-
+            Assert.All(EnumHelper.GetValues<EntropyUnit>(), unit =>
+            {
+                var quantity = Entropy.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

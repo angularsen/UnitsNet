@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -145,22 +146,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = SpecificFuelConsumption.From(1, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond);
-            AssertEx.EqualTolerance(1, quantity00.GramsPerKilonewtonSecond, GramsPerKilonewtonSecondTolerance);
-            Assert.Equal(SpecificFuelConsumptionUnit.GramPerKilonewtonSecond, quantity00.Unit);
-
-            var quantity01 = SpecificFuelConsumption.From(1, SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour);
-            AssertEx.EqualTolerance(1, quantity01.KilogramsPerKilogramForceHour, KilogramsPerKilogramForceHourTolerance);
-            Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, quantity01.Unit);
-
-            var quantity02 = SpecificFuelConsumption.From(1, SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond);
-            AssertEx.EqualTolerance(1, quantity02.KilogramsPerKilonewtonSecond, KilogramsPerKilonewtonSecondTolerance);
-            Assert.Equal(SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond, quantity02.Unit);
-
-            var quantity03 = SpecificFuelConsumption.From(1, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour);
-            AssertEx.EqualTolerance(1, quantity03.PoundsMassPerPoundForceHour, PoundsMassPerPoundForceHourTolerance);
-            Assert.Equal(SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, quantity03.Unit);
-
+            Assert.All(EnumHelper.GetValues<SpecificFuelConsumptionUnit>(), unit =>
+            {
+                var quantity = SpecificFuelConsumption.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

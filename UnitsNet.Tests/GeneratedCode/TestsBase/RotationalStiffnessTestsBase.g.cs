@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -290,138 +291,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = RotationalStiffness.From(1, RotationalStiffnessUnit.CentinewtonMeterPerDegree);
-            AssertEx.EqualTolerance(1, quantity00.CentinewtonMetersPerDegree, CentinewtonMetersPerDegreeTolerance);
-            Assert.Equal(RotationalStiffnessUnit.CentinewtonMeterPerDegree, quantity00.Unit);
-
-            var quantity01 = RotationalStiffness.From(1, RotationalStiffnessUnit.CentinewtonMillimeterPerDegree);
-            AssertEx.EqualTolerance(1, quantity01.CentinewtonMillimetersPerDegree, CentinewtonMillimetersPerDegreeTolerance);
-            Assert.Equal(RotationalStiffnessUnit.CentinewtonMillimeterPerDegree, quantity01.Unit);
-
-            var quantity02 = RotationalStiffness.From(1, RotationalStiffnessUnit.CentinewtonMillimeterPerRadian);
-            AssertEx.EqualTolerance(1, quantity02.CentinewtonMillimetersPerRadian, CentinewtonMillimetersPerRadianTolerance);
-            Assert.Equal(RotationalStiffnessUnit.CentinewtonMillimeterPerRadian, quantity02.Unit);
-
-            var quantity03 = RotationalStiffness.From(1, RotationalStiffnessUnit.DecanewtonMeterPerDegree);
-            AssertEx.EqualTolerance(1, quantity03.DecanewtonMetersPerDegree, DecanewtonMetersPerDegreeTolerance);
-            Assert.Equal(RotationalStiffnessUnit.DecanewtonMeterPerDegree, quantity03.Unit);
-
-            var quantity04 = RotationalStiffness.From(1, RotationalStiffnessUnit.DecanewtonMillimeterPerDegree);
-            AssertEx.EqualTolerance(1, quantity04.DecanewtonMillimetersPerDegree, DecanewtonMillimetersPerDegreeTolerance);
-            Assert.Equal(RotationalStiffnessUnit.DecanewtonMillimeterPerDegree, quantity04.Unit);
-
-            var quantity05 = RotationalStiffness.From(1, RotationalStiffnessUnit.DecanewtonMillimeterPerRadian);
-            AssertEx.EqualTolerance(1, quantity05.DecanewtonMillimetersPerRadian, DecanewtonMillimetersPerRadianTolerance);
-            Assert.Equal(RotationalStiffnessUnit.DecanewtonMillimeterPerRadian, quantity05.Unit);
-
-            var quantity06 = RotationalStiffness.From(1, RotationalStiffnessUnit.DecinewtonMeterPerDegree);
-            AssertEx.EqualTolerance(1, quantity06.DecinewtonMetersPerDegree, DecinewtonMetersPerDegreeTolerance);
-            Assert.Equal(RotationalStiffnessUnit.DecinewtonMeterPerDegree, quantity06.Unit);
-
-            var quantity07 = RotationalStiffness.From(1, RotationalStiffnessUnit.DecinewtonMillimeterPerDegree);
-            AssertEx.EqualTolerance(1, quantity07.DecinewtonMillimetersPerDegree, DecinewtonMillimetersPerDegreeTolerance);
-            Assert.Equal(RotationalStiffnessUnit.DecinewtonMillimeterPerDegree, quantity07.Unit);
-
-            var quantity08 = RotationalStiffness.From(1, RotationalStiffnessUnit.DecinewtonMillimeterPerRadian);
-            AssertEx.EqualTolerance(1, quantity08.DecinewtonMillimetersPerRadian, DecinewtonMillimetersPerRadianTolerance);
-            Assert.Equal(RotationalStiffnessUnit.DecinewtonMillimeterPerRadian, quantity08.Unit);
-
-            var quantity09 = RotationalStiffness.From(1, RotationalStiffnessUnit.KilonewtonMeterPerDegree);
-            AssertEx.EqualTolerance(1, quantity09.KilonewtonMetersPerDegree, KilonewtonMetersPerDegreeTolerance);
-            Assert.Equal(RotationalStiffnessUnit.KilonewtonMeterPerDegree, quantity09.Unit);
-
-            var quantity10 = RotationalStiffness.From(1, RotationalStiffnessUnit.KilonewtonMeterPerRadian);
-            AssertEx.EqualTolerance(1, quantity10.KilonewtonMetersPerRadian, KilonewtonMetersPerRadianTolerance);
-            Assert.Equal(RotationalStiffnessUnit.KilonewtonMeterPerRadian, quantity10.Unit);
-
-            var quantity11 = RotationalStiffness.From(1, RotationalStiffnessUnit.KilonewtonMillimeterPerDegree);
-            AssertEx.EqualTolerance(1, quantity11.KilonewtonMillimetersPerDegree, KilonewtonMillimetersPerDegreeTolerance);
-            Assert.Equal(RotationalStiffnessUnit.KilonewtonMillimeterPerDegree, quantity11.Unit);
-
-            var quantity12 = RotationalStiffness.From(1, RotationalStiffnessUnit.KilonewtonMillimeterPerRadian);
-            AssertEx.EqualTolerance(1, quantity12.KilonewtonMillimetersPerRadian, KilonewtonMillimetersPerRadianTolerance);
-            Assert.Equal(RotationalStiffnessUnit.KilonewtonMillimeterPerRadian, quantity12.Unit);
-
-            var quantity13 = RotationalStiffness.From(1, RotationalStiffnessUnit.KilopoundForceFootPerDegrees);
-            AssertEx.EqualTolerance(1, quantity13.KilopoundForceFeetPerDegrees, KilopoundForceFeetPerDegreesTolerance);
-            Assert.Equal(RotationalStiffnessUnit.KilopoundForceFootPerDegrees, quantity13.Unit);
-
-            var quantity14 = RotationalStiffness.From(1, RotationalStiffnessUnit.MeganewtonMeterPerDegree);
-            AssertEx.EqualTolerance(1, quantity14.MeganewtonMetersPerDegree, MeganewtonMetersPerDegreeTolerance);
-            Assert.Equal(RotationalStiffnessUnit.MeganewtonMeterPerDegree, quantity14.Unit);
-
-            var quantity15 = RotationalStiffness.From(1, RotationalStiffnessUnit.MeganewtonMeterPerRadian);
-            AssertEx.EqualTolerance(1, quantity15.MeganewtonMetersPerRadian, MeganewtonMetersPerRadianTolerance);
-            Assert.Equal(RotationalStiffnessUnit.MeganewtonMeterPerRadian, quantity15.Unit);
-
-            var quantity16 = RotationalStiffness.From(1, RotationalStiffnessUnit.MeganewtonMillimeterPerDegree);
-            AssertEx.EqualTolerance(1, quantity16.MeganewtonMillimetersPerDegree, MeganewtonMillimetersPerDegreeTolerance);
-            Assert.Equal(RotationalStiffnessUnit.MeganewtonMillimeterPerDegree, quantity16.Unit);
-
-            var quantity17 = RotationalStiffness.From(1, RotationalStiffnessUnit.MeganewtonMillimeterPerRadian);
-            AssertEx.EqualTolerance(1, quantity17.MeganewtonMillimetersPerRadian, MeganewtonMillimetersPerRadianTolerance);
-            Assert.Equal(RotationalStiffnessUnit.MeganewtonMillimeterPerRadian, quantity17.Unit);
-
-            var quantity18 = RotationalStiffness.From(1, RotationalStiffnessUnit.MicronewtonMeterPerDegree);
-            AssertEx.EqualTolerance(1, quantity18.MicronewtonMetersPerDegree, MicronewtonMetersPerDegreeTolerance);
-            Assert.Equal(RotationalStiffnessUnit.MicronewtonMeterPerDegree, quantity18.Unit);
-
-            var quantity19 = RotationalStiffness.From(1, RotationalStiffnessUnit.MicronewtonMillimeterPerDegree);
-            AssertEx.EqualTolerance(1, quantity19.MicronewtonMillimetersPerDegree, MicronewtonMillimetersPerDegreeTolerance);
-            Assert.Equal(RotationalStiffnessUnit.MicronewtonMillimeterPerDegree, quantity19.Unit);
-
-            var quantity20 = RotationalStiffness.From(1, RotationalStiffnessUnit.MicronewtonMillimeterPerRadian);
-            AssertEx.EqualTolerance(1, quantity20.MicronewtonMillimetersPerRadian, MicronewtonMillimetersPerRadianTolerance);
-            Assert.Equal(RotationalStiffnessUnit.MicronewtonMillimeterPerRadian, quantity20.Unit);
-
-            var quantity21 = RotationalStiffness.From(1, RotationalStiffnessUnit.MillinewtonMeterPerDegree);
-            AssertEx.EqualTolerance(1, quantity21.MillinewtonMetersPerDegree, MillinewtonMetersPerDegreeTolerance);
-            Assert.Equal(RotationalStiffnessUnit.MillinewtonMeterPerDegree, quantity21.Unit);
-
-            var quantity22 = RotationalStiffness.From(1, RotationalStiffnessUnit.MillinewtonMillimeterPerDegree);
-            AssertEx.EqualTolerance(1, quantity22.MillinewtonMillimetersPerDegree, MillinewtonMillimetersPerDegreeTolerance);
-            Assert.Equal(RotationalStiffnessUnit.MillinewtonMillimeterPerDegree, quantity22.Unit);
-
-            var quantity23 = RotationalStiffness.From(1, RotationalStiffnessUnit.MillinewtonMillimeterPerRadian);
-            AssertEx.EqualTolerance(1, quantity23.MillinewtonMillimetersPerRadian, MillinewtonMillimetersPerRadianTolerance);
-            Assert.Equal(RotationalStiffnessUnit.MillinewtonMillimeterPerRadian, quantity23.Unit);
-
-            var quantity24 = RotationalStiffness.From(1, RotationalStiffnessUnit.NanonewtonMeterPerDegree);
-            AssertEx.EqualTolerance(1, quantity24.NanonewtonMetersPerDegree, NanonewtonMetersPerDegreeTolerance);
-            Assert.Equal(RotationalStiffnessUnit.NanonewtonMeterPerDegree, quantity24.Unit);
-
-            var quantity25 = RotationalStiffness.From(1, RotationalStiffnessUnit.NanonewtonMillimeterPerDegree);
-            AssertEx.EqualTolerance(1, quantity25.NanonewtonMillimetersPerDegree, NanonewtonMillimetersPerDegreeTolerance);
-            Assert.Equal(RotationalStiffnessUnit.NanonewtonMillimeterPerDegree, quantity25.Unit);
-
-            var quantity26 = RotationalStiffness.From(1, RotationalStiffnessUnit.NanonewtonMillimeterPerRadian);
-            AssertEx.EqualTolerance(1, quantity26.NanonewtonMillimetersPerRadian, NanonewtonMillimetersPerRadianTolerance);
-            Assert.Equal(RotationalStiffnessUnit.NanonewtonMillimeterPerRadian, quantity26.Unit);
-
-            var quantity27 = RotationalStiffness.From(1, RotationalStiffnessUnit.NewtonMeterPerDegree);
-            AssertEx.EqualTolerance(1, quantity27.NewtonMetersPerDegree, NewtonMetersPerDegreeTolerance);
-            Assert.Equal(RotationalStiffnessUnit.NewtonMeterPerDegree, quantity27.Unit);
-
-            var quantity28 = RotationalStiffness.From(1, RotationalStiffnessUnit.NewtonMeterPerRadian);
-            AssertEx.EqualTolerance(1, quantity28.NewtonMetersPerRadian, NewtonMetersPerRadianTolerance);
-            Assert.Equal(RotationalStiffnessUnit.NewtonMeterPerRadian, quantity28.Unit);
-
-            var quantity29 = RotationalStiffness.From(1, RotationalStiffnessUnit.NewtonMillimeterPerDegree);
-            AssertEx.EqualTolerance(1, quantity29.NewtonMillimetersPerDegree, NewtonMillimetersPerDegreeTolerance);
-            Assert.Equal(RotationalStiffnessUnit.NewtonMillimeterPerDegree, quantity29.Unit);
-
-            var quantity30 = RotationalStiffness.From(1, RotationalStiffnessUnit.NewtonMillimeterPerRadian);
-            AssertEx.EqualTolerance(1, quantity30.NewtonMillimetersPerRadian, NewtonMillimetersPerRadianTolerance);
-            Assert.Equal(RotationalStiffnessUnit.NewtonMillimeterPerRadian, quantity30.Unit);
-
-            var quantity31 = RotationalStiffness.From(1, RotationalStiffnessUnit.PoundForceFeetPerRadian);
-            AssertEx.EqualTolerance(1, quantity31.PoundForceFeetPerRadian, PoundForceFeetPerRadianTolerance);
-            Assert.Equal(RotationalStiffnessUnit.PoundForceFeetPerRadian, quantity31.Unit);
-
-            var quantity32 = RotationalStiffness.From(1, RotationalStiffnessUnit.PoundForceFootPerDegrees);
-            AssertEx.EqualTolerance(1, quantity32.PoundForceFeetPerDegrees, PoundForceFeetPerDegreesTolerance);
-            Assert.Equal(RotationalStiffnessUnit.PoundForceFootPerDegrees, quantity32.Unit);
-
+            Assert.All(EnumHelper.GetValues<RotationalStiffnessUnit>(), unit =>
+            {
+                var quantity = RotationalStiffness.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

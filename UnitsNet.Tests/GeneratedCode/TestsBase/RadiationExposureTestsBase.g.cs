@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -165,38 +166,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = RadiationExposure.From(1, RadiationExposureUnit.CoulombPerKilogram);
-            AssertEx.EqualTolerance(1, quantity00.CoulombsPerKilogram, CoulombsPerKilogramTolerance);
-            Assert.Equal(RadiationExposureUnit.CoulombPerKilogram, quantity00.Unit);
-
-            var quantity01 = RadiationExposure.From(1, RadiationExposureUnit.MicrocoulombPerKilogram);
-            AssertEx.EqualTolerance(1, quantity01.MicrocoulombsPerKilogram, MicrocoulombsPerKilogramTolerance);
-            Assert.Equal(RadiationExposureUnit.MicrocoulombPerKilogram, quantity01.Unit);
-
-            var quantity02 = RadiationExposure.From(1, RadiationExposureUnit.Microroentgen);
-            AssertEx.EqualTolerance(1, quantity02.Microroentgens, MicroroentgensTolerance);
-            Assert.Equal(RadiationExposureUnit.Microroentgen, quantity02.Unit);
-
-            var quantity03 = RadiationExposure.From(1, RadiationExposureUnit.MillicoulombPerKilogram);
-            AssertEx.EqualTolerance(1, quantity03.MillicoulombsPerKilogram, MillicoulombsPerKilogramTolerance);
-            Assert.Equal(RadiationExposureUnit.MillicoulombPerKilogram, quantity03.Unit);
-
-            var quantity04 = RadiationExposure.From(1, RadiationExposureUnit.Milliroentgen);
-            AssertEx.EqualTolerance(1, quantity04.Milliroentgens, MilliroentgensTolerance);
-            Assert.Equal(RadiationExposureUnit.Milliroentgen, quantity04.Unit);
-
-            var quantity05 = RadiationExposure.From(1, RadiationExposureUnit.NanocoulombPerKilogram);
-            AssertEx.EqualTolerance(1, quantity05.NanocoulombsPerKilogram, NanocoulombsPerKilogramTolerance);
-            Assert.Equal(RadiationExposureUnit.NanocoulombPerKilogram, quantity05.Unit);
-
-            var quantity06 = RadiationExposure.From(1, RadiationExposureUnit.PicocoulombPerKilogram);
-            AssertEx.EqualTolerance(1, quantity06.PicocoulombsPerKilogram, PicocoulombsPerKilogramTolerance);
-            Assert.Equal(RadiationExposureUnit.PicocoulombPerKilogram, quantity06.Unit);
-
-            var quantity07 = RadiationExposure.From(1, RadiationExposureUnit.Roentgen);
-            AssertEx.EqualTolerance(1, quantity07.Roentgens, RoentgensTolerance);
-            Assert.Equal(RadiationExposureUnit.Roentgen, quantity07.Unit);
-
+            Assert.All(EnumHelper.GetValues<RadiationExposureUnit>(), unit =>
+            {
+                var quantity = RadiationExposure.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

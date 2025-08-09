@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -170,42 +171,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = SpecificEntropy.From(1, SpecificEntropyUnit.BtuPerPoundFahrenheit);
-            AssertEx.EqualTolerance(1, quantity00.BtusPerPoundFahrenheit, BtusPerPoundFahrenheitTolerance);
-            Assert.Equal(SpecificEntropyUnit.BtuPerPoundFahrenheit, quantity00.Unit);
-
-            var quantity01 = SpecificEntropy.From(1, SpecificEntropyUnit.CaloriePerGramKelvin);
-            AssertEx.EqualTolerance(1, quantity01.CaloriesPerGramKelvin, CaloriesPerGramKelvinTolerance);
-            Assert.Equal(SpecificEntropyUnit.CaloriePerGramKelvin, quantity01.Unit);
-
-            var quantity02 = SpecificEntropy.From(1, SpecificEntropyUnit.JoulePerKilogramDegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity02.JoulesPerKilogramDegreeCelsius, JoulesPerKilogramDegreeCelsiusTolerance);
-            Assert.Equal(SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, quantity02.Unit);
-
-            var quantity03 = SpecificEntropy.From(1, SpecificEntropyUnit.JoulePerKilogramKelvin);
-            AssertEx.EqualTolerance(1, quantity03.JoulesPerKilogramKelvin, JoulesPerKilogramKelvinTolerance);
-            Assert.Equal(SpecificEntropyUnit.JoulePerKilogramKelvin, quantity03.Unit);
-
-            var quantity04 = SpecificEntropy.From(1, SpecificEntropyUnit.KilocaloriePerGramKelvin);
-            AssertEx.EqualTolerance(1, quantity04.KilocaloriesPerGramKelvin, KilocaloriesPerGramKelvinTolerance);
-            Assert.Equal(SpecificEntropyUnit.KilocaloriePerGramKelvin, quantity04.Unit);
-
-            var quantity05 = SpecificEntropy.From(1, SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity05.KilojoulesPerKilogramDegreeCelsius, KilojoulesPerKilogramDegreeCelsiusTolerance);
-            Assert.Equal(SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, quantity05.Unit);
-
-            var quantity06 = SpecificEntropy.From(1, SpecificEntropyUnit.KilojoulePerKilogramKelvin);
-            AssertEx.EqualTolerance(1, quantity06.KilojoulesPerKilogramKelvin, KilojoulesPerKilogramKelvinTolerance);
-            Assert.Equal(SpecificEntropyUnit.KilojoulePerKilogramKelvin, quantity06.Unit);
-
-            var quantity07 = SpecificEntropy.From(1, SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity07.MegajoulesPerKilogramDegreeCelsius, MegajoulesPerKilogramDegreeCelsiusTolerance);
-            Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, quantity07.Unit);
-
-            var quantity08 = SpecificEntropy.From(1, SpecificEntropyUnit.MegajoulePerKilogramKelvin);
-            AssertEx.EqualTolerance(1, quantity08.MegajoulesPerKilogramKelvin, MegajoulesPerKilogramKelvinTolerance);
-            Assert.Equal(SpecificEntropyUnit.MegajoulePerKilogramKelvin, quantity08.Unit);
-
+            Assert.All(EnumHelper.GetValues<SpecificEntropyUnit>(), unit =>
+            {
+                var quantity = SpecificEntropy.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -160,34 +161,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricCapacitance.From(1, ElectricCapacitanceUnit.Farad);
-            AssertEx.EqualTolerance(1, quantity00.Farads, FaradsTolerance);
-            Assert.Equal(ElectricCapacitanceUnit.Farad, quantity00.Unit);
-
-            var quantity01 = ElectricCapacitance.From(1, ElectricCapacitanceUnit.Kilofarad);
-            AssertEx.EqualTolerance(1, quantity01.Kilofarads, KilofaradsTolerance);
-            Assert.Equal(ElectricCapacitanceUnit.Kilofarad, quantity01.Unit);
-
-            var quantity02 = ElectricCapacitance.From(1, ElectricCapacitanceUnit.Megafarad);
-            AssertEx.EqualTolerance(1, quantity02.Megafarads, MegafaradsTolerance);
-            Assert.Equal(ElectricCapacitanceUnit.Megafarad, quantity02.Unit);
-
-            var quantity03 = ElectricCapacitance.From(1, ElectricCapacitanceUnit.Microfarad);
-            AssertEx.EqualTolerance(1, quantity03.Microfarads, MicrofaradsTolerance);
-            Assert.Equal(ElectricCapacitanceUnit.Microfarad, quantity03.Unit);
-
-            var quantity04 = ElectricCapacitance.From(1, ElectricCapacitanceUnit.Millifarad);
-            AssertEx.EqualTolerance(1, quantity04.Millifarads, MillifaradsTolerance);
-            Assert.Equal(ElectricCapacitanceUnit.Millifarad, quantity04.Unit);
-
-            var quantity05 = ElectricCapacitance.From(1, ElectricCapacitanceUnit.Nanofarad);
-            AssertEx.EqualTolerance(1, quantity05.Nanofarads, NanofaradsTolerance);
-            Assert.Equal(ElectricCapacitanceUnit.Nanofarad, quantity05.Unit);
-
-            var quantity06 = ElectricCapacitance.From(1, ElectricCapacitanceUnit.Picofarad);
-            AssertEx.EqualTolerance(1, quantity06.Picofarads, PicofaradsTolerance);
-            Assert.Equal(ElectricCapacitanceUnit.Picofarad, quantity06.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricCapacitanceUnit>(), unit =>
+            {
+                var quantity = ElectricCapacitance.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

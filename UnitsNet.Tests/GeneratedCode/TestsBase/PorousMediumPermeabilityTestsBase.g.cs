@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -150,26 +151,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = PorousMediumPermeability.From(1, PorousMediumPermeabilityUnit.Darcy);
-            AssertEx.EqualTolerance(1, quantity00.Darcys, DarcysTolerance);
-            Assert.Equal(PorousMediumPermeabilityUnit.Darcy, quantity00.Unit);
-
-            var quantity01 = PorousMediumPermeability.From(1, PorousMediumPermeabilityUnit.Microdarcy);
-            AssertEx.EqualTolerance(1, quantity01.Microdarcys, MicrodarcysTolerance);
-            Assert.Equal(PorousMediumPermeabilityUnit.Microdarcy, quantity01.Unit);
-
-            var quantity02 = PorousMediumPermeability.From(1, PorousMediumPermeabilityUnit.Millidarcy);
-            AssertEx.EqualTolerance(1, quantity02.Millidarcys, MillidarcysTolerance);
-            Assert.Equal(PorousMediumPermeabilityUnit.Millidarcy, quantity02.Unit);
-
-            var quantity03 = PorousMediumPermeability.From(1, PorousMediumPermeabilityUnit.SquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity03.SquareCentimeters, SquareCentimetersTolerance);
-            Assert.Equal(PorousMediumPermeabilityUnit.SquareCentimeter, quantity03.Unit);
-
-            var quantity04 = PorousMediumPermeability.From(1, PorousMediumPermeabilityUnit.SquareMeter);
-            AssertEx.EqualTolerance(1, quantity04.SquareMeters, SquareMetersTolerance);
-            Assert.Equal(PorousMediumPermeabilityUnit.SquareMeter, quantity04.Unit);
-
+            Assert.All(EnumHelper.GetValues<PorousMediumPermeabilityUnit>(), unit =>
+            {
+                var quantity = PorousMediumPermeability.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]

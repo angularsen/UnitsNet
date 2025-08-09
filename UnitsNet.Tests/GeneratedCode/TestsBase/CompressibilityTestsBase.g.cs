@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -160,34 +161,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Compressibility.From(1, CompressibilityUnit.InverseAtmosphere);
-            AssertEx.EqualTolerance(1, quantity00.InverseAtmospheres, InverseAtmospheresTolerance);
-            Assert.Equal(CompressibilityUnit.InverseAtmosphere, quantity00.Unit);
-
-            var quantity01 = Compressibility.From(1, CompressibilityUnit.InverseBar);
-            AssertEx.EqualTolerance(1, quantity01.InverseBars, InverseBarsTolerance);
-            Assert.Equal(CompressibilityUnit.InverseBar, quantity01.Unit);
-
-            var quantity02 = Compressibility.From(1, CompressibilityUnit.InverseKilopascal);
-            AssertEx.EqualTolerance(1, quantity02.InverseKilopascals, InverseKilopascalsTolerance);
-            Assert.Equal(CompressibilityUnit.InverseKilopascal, quantity02.Unit);
-
-            var quantity03 = Compressibility.From(1, CompressibilityUnit.InverseMegapascal);
-            AssertEx.EqualTolerance(1, quantity03.InverseMegapascals, InverseMegapascalsTolerance);
-            Assert.Equal(CompressibilityUnit.InverseMegapascal, quantity03.Unit);
-
-            var quantity04 = Compressibility.From(1, CompressibilityUnit.InverseMillibar);
-            AssertEx.EqualTolerance(1, quantity04.InverseMillibars, InverseMillibarsTolerance);
-            Assert.Equal(CompressibilityUnit.InverseMillibar, quantity04.Unit);
-
-            var quantity05 = Compressibility.From(1, CompressibilityUnit.InversePascal);
-            AssertEx.EqualTolerance(1, quantity05.InversePascals, InversePascalsTolerance);
-            Assert.Equal(CompressibilityUnit.InversePascal, quantity05.Unit);
-
-            var quantity06 = Compressibility.From(1, CompressibilityUnit.InversePoundForcePerSquareInch);
-            AssertEx.EqualTolerance(1, quantity06.InversePoundsForcePerSquareInch, InversePoundsForcePerSquareInchTolerance);
-            Assert.Equal(CompressibilityUnit.InversePoundForcePerSquareInch, quantity06.Unit);
-
+            Assert.All(EnumHelper.GetValues<CompressibilityUnit>(), unit =>
+            {
+                var quantity = Compressibility.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
