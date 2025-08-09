@@ -400,7 +400,7 @@ namespace UnitsNet
                         LinearPowerDensityUnit.WattPerInch => _value / 2.54e-2,
                         LinearPowerDensityUnit.WattPerMeter => _value,
                         LinearPowerDensityUnit.WattPerMillimeter => _value * 1e3,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -438,7 +438,7 @@ namespace UnitsNet
                         LinearPowerDensityUnit.WattPerInch => baseUnitValue * 2.54e-2,
                         LinearPowerDensityUnit.WattPerMeter => baseUnitValue,
                         LinearPowerDensityUnit.WattPerMillimeter => baseUnitValue / 1e3,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

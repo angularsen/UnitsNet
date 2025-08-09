@@ -213,7 +213,7 @@ namespace UnitsNet
                         ElectricResistanceUnit.Nanoohm => (_value) * 1e-9d,
                         ElectricResistanceUnit.Ohm => _value,
                         ElectricResistanceUnit.Teraohm => (_value) * 1e12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -234,7 +234,7 @@ namespace UnitsNet
                         ElectricResistanceUnit.Nanoohm => (baseUnitValue) / 1e-9d,
                         ElectricResistanceUnit.Ohm => baseUnitValue,
                         ElectricResistanceUnit.Teraohm => (baseUnitValue) / 1e12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

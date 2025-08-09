@@ -180,7 +180,7 @@ namespace UnitsNet
                         PorousMediumPermeabilityUnit.Millidarcy => (_value * 9.869233e-13) * 1e-3d,
                         PorousMediumPermeabilityUnit.SquareCentimeter => _value * 1e-4,
                         PorousMediumPermeabilityUnit.SquareMeter => _value,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -198,7 +198,7 @@ namespace UnitsNet
                         PorousMediumPermeabilityUnit.Millidarcy => (baseUnitValue / 9.869233e-13) / 1e-3d,
                         PorousMediumPermeabilityUnit.SquareCentimeter => baseUnitValue / 1e-4,
                         PorousMediumPermeabilityUnit.SquareMeter => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

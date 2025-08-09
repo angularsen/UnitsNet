@@ -265,7 +265,7 @@ namespace UnitsNet
                         MolarMassUnit.MilligramPerMole => (_value / 1e3) * 1e-3d,
                         MolarMassUnit.NanogramPerMole => (_value / 1e3) * 1e-9d,
                         MolarMassUnit.PoundPerMole => _value * 0.45359237,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -291,7 +291,7 @@ namespace UnitsNet
                         MolarMassUnit.MilligramPerMole => (baseUnitValue * 1e3) / 1e-3d,
                         MolarMassUnit.NanogramPerMole => (baseUnitValue * 1e3) / 1e-9d,
                         MolarMassUnit.PoundPerMole => baseUnitValue / 0.45359237,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

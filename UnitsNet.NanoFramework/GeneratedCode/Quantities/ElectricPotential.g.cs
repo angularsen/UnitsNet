@@ -191,7 +191,7 @@ namespace UnitsNet
                         ElectricPotentialUnit.Millivolt => (_value) * 1e-3d,
                         ElectricPotentialUnit.Nanovolt => (_value) * 1e-9d,
                         ElectricPotentialUnit.Volt => _value,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -210,7 +210,7 @@ namespace UnitsNet
                         ElectricPotentialUnit.Millivolt => (baseUnitValue) / 1e-3d,
                         ElectricPotentialUnit.Nanovolt => (baseUnitValue) / 1e-9d,
                         ElectricPotentialUnit.Volt => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

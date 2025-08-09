@@ -202,7 +202,7 @@ namespace UnitsNet
                         ElectricCapacitanceUnit.Millifarad => (_value) * 1e-3d,
                         ElectricCapacitanceUnit.Nanofarad => (_value) * 1e-9d,
                         ElectricCapacitanceUnit.Picofarad => (_value) * 1e-12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -222,7 +222,7 @@ namespace UnitsNet
                         ElectricCapacitanceUnit.Millifarad => (baseUnitValue) / 1e-3d,
                         ElectricCapacitanceUnit.Nanofarad => (baseUnitValue) / 1e-9d,
                         ElectricCapacitanceUnit.Picofarad => (baseUnitValue) / 1e-12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

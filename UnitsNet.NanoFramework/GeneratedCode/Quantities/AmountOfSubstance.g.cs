@@ -309,7 +309,7 @@ namespace UnitsNet
                         AmountOfSubstanceUnit.NanopoundMole => (_value * 453.59237) * 1e-9d,
                         AmountOfSubstanceUnit.Picomole => (_value) * 1e-12d,
                         AmountOfSubstanceUnit.PoundMole => _value * 453.59237,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -339,7 +339,7 @@ namespace UnitsNet
                         AmountOfSubstanceUnit.NanopoundMole => (baseUnitValue / 453.59237) / 1e-9d,
                         AmountOfSubstanceUnit.Picomole => (baseUnitValue) / 1e-12d,
                         AmountOfSubstanceUnit.PoundMole => baseUnitValue / 453.59237,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

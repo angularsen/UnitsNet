@@ -158,7 +158,7 @@ namespace UnitsNet
                         ElectricCurrentDensityUnit.AmperePerSquareFoot => _value / 9.290304e-2,
                         ElectricCurrentDensityUnit.AmperePerSquareInch => _value / 0.00064516,
                         ElectricCurrentDensityUnit.AmperePerSquareMeter => _value,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -174,7 +174,7 @@ namespace UnitsNet
                         ElectricCurrentDensityUnit.AmperePerSquareFoot => baseUnitValue * 9.290304e-2,
                         ElectricCurrentDensityUnit.AmperePerSquareInch => baseUnitValue * 0.00064516,
                         ElectricCurrentDensityUnit.AmperePerSquareMeter => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

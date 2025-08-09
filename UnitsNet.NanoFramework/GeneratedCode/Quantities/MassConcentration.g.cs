@@ -664,7 +664,7 @@ namespace UnitsNet
                         MassConcentrationUnit.TonnePerCubicCentimeter => _value / 1e-9,
                         MassConcentrationUnit.TonnePerCubicMeter => _value / 0.001,
                         MassConcentrationUnit.TonnePerCubicMillimeter => _value / 1e-12,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -726,7 +726,7 @@ namespace UnitsNet
                         MassConcentrationUnit.TonnePerCubicCentimeter => baseUnitValue * 1e-9,
                         MassConcentrationUnit.TonnePerCubicMeter => baseUnitValue * 0.001,
                         MassConcentrationUnit.TonnePerCubicMillimeter => baseUnitValue * 1e-12,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

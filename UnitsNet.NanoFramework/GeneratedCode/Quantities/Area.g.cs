@@ -276,7 +276,7 @@ namespace UnitsNet
                         AreaUnit.SquareNauticalMile => _value * 3429904,
                         AreaUnit.SquareYard => _value * 0.9144 * 0.9144,
                         AreaUnit.UsSurveySquareFoot => _value * (1200.0 / 3937.0) * (1200.0 / 3937.0),
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -303,7 +303,7 @@ namespace UnitsNet
                         AreaUnit.SquareNauticalMile => baseUnitValue / 3429904,
                         AreaUnit.SquareYard => baseUnitValue / 0.9144 / 0.9144,
                         AreaUnit.UsSurveySquareFoot => baseUnitValue / (1200.0 / 3937.0) / (1200.0 / 3937.0),
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 
