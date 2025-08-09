@@ -199,7 +199,7 @@ namespace UnitsNet
                         CompressibilityUnit.InverseMillibar => _value * 100,
                         CompressibilityUnit.InversePascal => _value,
                         CompressibilityUnit.InversePoundForcePerSquareInch => _value * 6.894757293168361e3,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -219,7 +219,7 @@ namespace UnitsNet
                         CompressibilityUnit.InverseMillibar => baseUnitValue / 100,
                         CompressibilityUnit.InversePascal => baseUnitValue,
                         CompressibilityUnit.InversePoundForcePerSquareInch => baseUnitValue / 6.894757293168361e3,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

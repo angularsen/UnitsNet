@@ -776,7 +776,7 @@ namespace UnitsNet
             else
             {
                 // No possible conversion
-                throw new UnitNotFoundException($"Can not convert {Unit} to {unit}.");
+                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
             }
         }
 

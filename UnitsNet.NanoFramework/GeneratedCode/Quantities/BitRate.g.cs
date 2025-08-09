@@ -554,7 +554,7 @@ namespace UnitsNet
                         BitRateUnit.TerabitPerSecond => (_value) * 1e12d,
                         BitRateUnit.TerabytePerSecond => (_value * 8) * 1e12d,
                         BitRateUnit.TeraoctetPerSecond => (_value * 8) * 1e12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -606,7 +606,7 @@ namespace UnitsNet
                         BitRateUnit.TerabitPerSecond => (baseUnitValue) / 1e12d,
                         BitRateUnit.TerabytePerSecond => (baseUnitValue / 8) / 1e12d,
                         BitRateUnit.TeraoctetPerSecond => (baseUnitValue / 8) / 1e12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

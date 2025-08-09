@@ -246,7 +246,7 @@ namespace UnitsNet
                         ReciprocalAreaUnit.InverseSquareMillimeter => _value / 1e-6,
                         ReciprocalAreaUnit.InverseSquareYard => _value / (0.9144 * 0.9144),
                         ReciprocalAreaUnit.InverseUsSurveySquareFoot => _value / (1200.0 / 3937.0) / (1200.0 / 3937.0),
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -270,7 +270,7 @@ namespace UnitsNet
                         ReciprocalAreaUnit.InverseSquareMillimeter => baseUnitValue * 1e-6,
                         ReciprocalAreaUnit.InverseSquareYard => baseUnitValue * (0.9144 * 0.9144),
                         ReciprocalAreaUnit.InverseUsSurveySquareFoot => baseUnitValue * (1200.0 / 3937.0) * (1200.0 / 3937.0),
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

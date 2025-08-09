@@ -400,7 +400,7 @@ namespace UnitsNet
                         DoseAreaProductUnit.MilligraySquareMeter => (_value) * 1e-3d,
                         DoseAreaProductUnit.MilligraySquareMicrometer => (_value / 1000000000000) * 1e-3d,
                         DoseAreaProductUnit.MilligraySquareMillimeter => (_value / 1000000) * 1e-3d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -438,7 +438,7 @@ namespace UnitsNet
                         DoseAreaProductUnit.MilligraySquareMeter => (baseUnitValue) / 1e-3d,
                         DoseAreaProductUnit.MilligraySquareMicrometer => (baseUnitValue * 1000000000000) / 1e-3d,
                         DoseAreaProductUnit.MilligraySquareMillimeter => (baseUnitValue * 1000000) / 1e-3d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

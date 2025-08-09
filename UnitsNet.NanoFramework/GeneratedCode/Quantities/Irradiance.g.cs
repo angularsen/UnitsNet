@@ -276,7 +276,7 @@ namespace UnitsNet
                         IrradianceUnit.PicowattPerSquareMeter => (_value) * 1e-12d,
                         IrradianceUnit.WattPerSquareCentimeter => _value * 10000,
                         IrradianceUnit.WattPerSquareMeter => _value,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -303,7 +303,7 @@ namespace UnitsNet
                         IrradianceUnit.PicowattPerSquareMeter => (baseUnitValue) / 1e-12d,
                         IrradianceUnit.WattPerSquareCentimeter => baseUnitValue * 0.0001,
                         IrradianceUnit.WattPerSquareMeter => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

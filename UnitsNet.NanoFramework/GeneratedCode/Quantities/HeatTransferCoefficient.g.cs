@@ -177,7 +177,7 @@ namespace UnitsNet
                         HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius => ((_value * 4.184) / 3600) * 1e3d,
                         HeatTransferCoefficientUnit.WattPerSquareMeterCelsius => _value,
                         HeatTransferCoefficientUnit.WattPerSquareMeterKelvin => _value,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -195,7 +195,7 @@ namespace UnitsNet
                         HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius => ((baseUnitValue / 4.184) * 3600) / 1e3d,
                         HeatTransferCoefficientUnit.WattPerSquareMeterCelsius => baseUnitValue,
                         HeatTransferCoefficientUnit.WattPerSquareMeterKelvin => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

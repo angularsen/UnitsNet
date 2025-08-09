@@ -155,7 +155,7 @@ namespace UnitsNet
                         ElectricApparentEnergyUnit.KilovoltampereHour => (_value) * 1e3d,
                         ElectricApparentEnergyUnit.MegavoltampereHour => (_value) * 1e6d,
                         ElectricApparentEnergyUnit.VoltampereHour => _value,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -171,7 +171,7 @@ namespace UnitsNet
                         ElectricApparentEnergyUnit.KilovoltampereHour => (baseUnitValue) / 1e3d,
                         ElectricApparentEnergyUnit.MegavoltampereHour => (baseUnitValue) / 1e6d,
                         ElectricApparentEnergyUnit.VoltampereHour => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

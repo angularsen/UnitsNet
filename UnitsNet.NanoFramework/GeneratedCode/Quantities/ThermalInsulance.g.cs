@@ -199,7 +199,7 @@ namespace UnitsNet
                         ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt => _value,
                         ThermalInsulanceUnit.SquareMeterKelvinPerWatt => _value * 1000,
                         ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt => _value * 0.001,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -219,7 +219,7 @@ namespace UnitsNet
                         ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt => baseUnitValue,
                         ThermalInsulanceUnit.SquareMeterKelvinPerWatt => baseUnitValue / 1000,
                         ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt => baseUnitValue / 0.001,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

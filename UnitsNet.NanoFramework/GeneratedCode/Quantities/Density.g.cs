@@ -741,7 +741,7 @@ namespace UnitsNet
                         DensityUnit.TonnePerCubicInch => _value * 1000 / 1.6387064e-5,
                         DensityUnit.TonnePerCubicMeter => _value / 0.001,
                         DensityUnit.TonnePerCubicMillimeter => _value / 1e-12,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -810,7 +810,7 @@ namespace UnitsNet
                         DensityUnit.TonnePerCubicInch => baseUnitValue * 1.6387064e-5 / 1000,
                         DensityUnit.TonnePerCubicMeter => baseUnitValue * 0.001,
                         DensityUnit.TonnePerCubicMillimeter => baseUnitValue * 1e-12,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

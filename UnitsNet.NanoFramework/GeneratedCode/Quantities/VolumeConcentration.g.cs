@@ -345,7 +345,7 @@ namespace UnitsNet
                         VolumeConcentrationUnit.Percent => _value / 1e2,
                         VolumeConcentrationUnit.PicoliterPerLiter => (_value) * 1e-12d,
                         VolumeConcentrationUnit.PicoliterPerMilliliter => (_value / 1e-3) * 1e-12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -378,7 +378,7 @@ namespace UnitsNet
                         VolumeConcentrationUnit.Percent => baseUnitValue * 1e2,
                         VolumeConcentrationUnit.PicoliterPerLiter => (baseUnitValue) / 1e-12d,
                         VolumeConcentrationUnit.PicoliterPerMilliliter => (baseUnitValue * 1e-3) / 1e-12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

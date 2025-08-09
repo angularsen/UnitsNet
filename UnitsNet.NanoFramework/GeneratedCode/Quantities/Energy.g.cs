@@ -562,7 +562,7 @@ namespace UnitsNet
                         EnergyUnit.ThermUs => _value * 1.054804e8,
                         EnergyUnit.WattDay => _value * 24 * 3600d,
                         EnergyUnit.WattHour => _value * 3600d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -615,7 +615,7 @@ namespace UnitsNet
                         EnergyUnit.ThermUs => baseUnitValue / 1.054804e8,
                         EnergyUnit.WattDay => baseUnitValue / (24 * 3600d),
                         EnergyUnit.WattHour => baseUnitValue / 3600d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 
