@@ -79,6 +79,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">
         ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
         /// </exception>
+        [Obsolete("This extension will be removed in v6: consider using the version from System.Linq.Min")]
         public static TQuantity Min<TQuantity>(this IEnumerable<TQuantity> source, Enum unitType)
             where TQuantity : IQuantity
         {
@@ -102,6 +103,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">
         ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
         /// </exception>
+        [Obsolete("This extension will be removed in v6: consider using the version from System.Linq.Min")]
         public static TQuantity Min<TSource, TQuantity>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, Enum unitType)
             where TQuantity : IQuantity
         {
@@ -129,6 +131,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">
         ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
         /// </exception>
+        [Obsolete("This extension will be removed in v6: consider using the version from System.Linq.Max")]
         public static TQuantity Max<TQuantity>(this IEnumerable<TQuantity> source, Enum unitType)
             where TQuantity : IQuantity
         {
@@ -152,6 +155,7 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">
         ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
         /// </exception>
+        [Obsolete("This extension will be removed in v6: consider using the version from System.Linq.Max")]
         public static TQuantity Max<TSource, TQuantity>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, Enum unitType)
             where TQuantity : IQuantity
         {
