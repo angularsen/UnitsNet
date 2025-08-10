@@ -93,7 +93,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void PowerRatio_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            PowerRatioUnit[] unitsOrderedByName = EnumHelper.GetValues<PowerRatioUnit>().OrderBy(x => x.ToString()).ToArray();
+            PowerRatioUnit[] unitsOrderedByName = EnumHelper.GetValues<PowerRatioUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new PowerRatio(1, PowerRatioUnit.DecibelWatt);
 
             QuantityInfo<PowerRatio, PowerRatioUnit> quantityInfo = quantity.QuantityInfo;

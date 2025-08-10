@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BrakeSpecificFuelConsumption_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            BrakeSpecificFuelConsumptionUnit[] unitsOrderedByName = EnumHelper.GetValues<BrakeSpecificFuelConsumptionUnit>().OrderBy(x => x.ToString()).ToArray();
+            BrakeSpecificFuelConsumptionUnit[] unitsOrderedByName = EnumHelper.GetValues<BrakeSpecificFuelConsumptionUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new BrakeSpecificFuelConsumption(1, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule);
 
             QuantityInfo<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumptionUnit> quantityInfo = quantity.QuantityInfo;

@@ -134,7 +134,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricCurrentGradient_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricCurrentGradientUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricCurrentGradientUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricCurrentGradientUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricCurrentGradientUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerSecond);
 
             QuantityInfo<ElectricCurrentGradient, ElectricCurrentGradientUnit> quantityInfo = quantity.QuantityInfo;

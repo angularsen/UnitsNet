@@ -174,7 +174,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void AmountOfSubstance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            AmountOfSubstanceUnit[] unitsOrderedByName = EnumHelper.GetValues<AmountOfSubstanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            AmountOfSubstanceUnit[] unitsOrderedByName = EnumHelper.GetValues<AmountOfSubstanceUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new AmountOfSubstance(1, AmountOfSubstanceUnit.Mole);
 
             QuantityInfo<AmountOfSubstance, AmountOfSubstanceUnit> quantityInfo = quantity.QuantityInfo;

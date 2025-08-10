@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Molality_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MolalityUnit[] unitsOrderedByName = EnumHelper.GetValues<MolalityUnit>().OrderBy(x => x.ToString()).ToArray();
+            MolalityUnit[] unitsOrderedByName = EnumHelper.GetValues<MolalityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Molality(1, MolalityUnit.MolePerKilogram);
 
             QuantityInfo<Molality, MolalityUnit> quantityInfo = quantity.QuantityInfo;

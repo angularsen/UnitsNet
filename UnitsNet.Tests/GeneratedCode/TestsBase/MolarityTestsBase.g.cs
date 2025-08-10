@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Molarity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MolarityUnit[] unitsOrderedByName = EnumHelper.GetValues<MolarityUnit>().OrderBy(x => x.ToString()).ToArray();
+            MolarityUnit[] unitsOrderedByName = EnumHelper.GetValues<MolarityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Molarity(1, MolarityUnit.MolePerCubicMeter);
 
             QuantityInfo<Molarity, MolarityUnit> quantityInfo = quantity.QuantityInfo;

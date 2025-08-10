@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MassFlow_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MassFlowUnit[] unitsOrderedByName = EnumHelper.GetValues<MassFlowUnit>().OrderBy(x => x.ToString()).ToArray();
+            MassFlowUnit[] unitsOrderedByName = EnumHelper.GetValues<MassFlowUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new MassFlow(1, MassFlowUnit.GramPerSecond);
 
             QuantityInfo<MassFlow, MassFlowUnit> quantityInfo = quantity.QuantityInfo;

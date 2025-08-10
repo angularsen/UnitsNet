@@ -92,8 +92,8 @@
       ]
     },
     {
-      "SingularName": "KiloPond",
-      "PluralName": "KiloPonds",
+      "SingularName": "Kilopond",
+      "PluralName": "Kiloponds",
       "FromUnitToBaseFunc": "{x} * 9.80665",
       "FromBaseToUnitFunc": "{x} / 9.80665",
       "XmlDocSummary": "The kilogram-force, or kilopond, is equal to the magnitude of the force exerted on one kilogram of mass in a 9.80665 m/s2 gravitational field (standard gravity). Therefore, one kilogram-force is by definition equal to 9.80665 N.",

@@ -214,7 +214,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Power_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            PowerUnit[] unitsOrderedByName = EnumHelper.GetValues<PowerUnit>().OrderBy(x => x.ToString()).ToArray();
+            PowerUnit[] unitsOrderedByName = EnumHelper.GetValues<PowerUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Power(1, PowerUnit.Watt);
 
             QuantityInfo<Power, PowerUnit> quantityInfo = quantity.QuantityInfo;

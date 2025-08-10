@@ -166,7 +166,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ForceChangeRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ForceChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<ForceChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            ForceChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<ForceChangeRateUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerSecond);
 
             QuantityInfo<ForceChangeRate, ForceChangeRateUnit> quantityInfo = quantity.QuantityInfo;

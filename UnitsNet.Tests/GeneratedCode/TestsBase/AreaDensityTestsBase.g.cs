@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void AreaDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            AreaDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<AreaDensityUnit>().OrderBy(x => x.ToString()).ToArray();
+            AreaDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<AreaDensityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new AreaDensity(1, AreaDensityUnit.KilogramPerSquareMeter);
 
             QuantityInfo<AreaDensity, AreaDensityUnit> quantityInfo = quantity.QuantityInfo;

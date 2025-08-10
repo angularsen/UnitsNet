@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void VolumePerLength_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            VolumePerLengthUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumePerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
+            VolumePerLengthUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumePerLengthUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new VolumePerLength(1, VolumePerLengthUnit.CubicMeterPerMeter);
 
             QuantityInfo<VolumePerLength, VolumePerLengthUnit> quantityInfo = quantity.QuantityInfo;

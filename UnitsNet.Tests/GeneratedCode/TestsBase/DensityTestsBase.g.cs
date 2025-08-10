@@ -330,7 +330,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Density_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            DensityUnit[] unitsOrderedByName = EnumHelper.GetValues<DensityUnit>().OrderBy(x => x.ToString()).ToArray();
+            DensityUnit[] unitsOrderedByName = EnumHelper.GetValues<DensityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Density(1, DensityUnit.KilogramPerCubicMeter);
 
             QuantityInfo<Density, DensityUnit> quantityInfo = quantity.QuantityInfo;

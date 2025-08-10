@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HeatTransferCoefficient_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            HeatTransferCoefficientUnit[] unitsOrderedByName = EnumHelper.GetValues<HeatTransferCoefficientUnit>().OrderBy(x => x.ToString()).ToArray();
+            HeatTransferCoefficientUnit[] unitsOrderedByName = EnumHelper.GetValues<HeatTransferCoefficientUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin);
 
             QuantityInfo<HeatTransferCoefficient, HeatTransferCoefficientUnit> quantityInfo = quantity.QuantityInfo;

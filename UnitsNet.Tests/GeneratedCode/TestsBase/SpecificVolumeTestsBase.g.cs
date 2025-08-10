@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void SpecificVolume_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            SpecificVolumeUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificVolumeUnit>().OrderBy(x => x.ToString()).ToArray();
+            SpecificVolumeUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificVolumeUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new SpecificVolume(1, SpecificVolumeUnit.CubicMeterPerKilogram);
 
             QuantityInfo<SpecificVolume, SpecificVolumeUnit> quantityInfo = quantity.QuantityInfo;

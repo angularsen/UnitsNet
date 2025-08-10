@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void TemperatureDelta_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            TemperatureDeltaUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureDeltaUnit>().OrderBy(x => x.ToString()).ToArray();
+            TemperatureDeltaUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureDeltaUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new TemperatureDelta(1, TemperatureDeltaUnit.Kelvin);
 
             QuantityInfo<TemperatureDelta, TemperatureDeltaUnit> quantityInfo = quantity.QuantityInfo;

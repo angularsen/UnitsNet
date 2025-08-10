@@ -44,7 +44,7 @@ namespace UnitsNet.Tests
         protected abstract double DyneInOneNewton { get; }
         protected abstract double KilogramsForceInOneNewton { get; }
         protected abstract double KilonewtonsInOneNewton { get; }
-        protected abstract double KiloPondsInOneNewton { get; }
+        protected abstract double KilopondsInOneNewton { get; }
         protected abstract double KilopoundsForceInOneNewton { get; }
         protected abstract double MeganewtonsInOneNewton { get; }
         protected abstract double MicronewtonsInOneNewton { get; }
@@ -61,7 +61,7 @@ namespace UnitsNet.Tests
         protected virtual double DyneTolerance { get { return 1e-5; } }
         protected virtual double KilogramsForceTolerance { get { return 1e-5; } }
         protected virtual double KilonewtonsTolerance { get { return 1e-5; } }
-        protected virtual double KiloPondsTolerance { get { return 1e-5; } }
+        protected virtual double KilopondsTolerance { get { return 1e-5; } }
         protected virtual double KilopoundsForceTolerance { get { return 1e-5; } }
         protected virtual double MeganewtonsTolerance { get { return 1e-5; } }
         protected virtual double MicronewtonsTolerance { get { return 1e-5; } }
@@ -82,7 +82,7 @@ namespace UnitsNet.Tests
                 ForceUnit.Dyn => (DyneInOneNewton, DyneTolerance),
                 ForceUnit.KilogramForce => (KilogramsForceInOneNewton, KilogramsForceTolerance),
                 ForceUnit.Kilonewton => (KilonewtonsInOneNewton, KilonewtonsTolerance),
-                ForceUnit.KiloPond => (KiloPondsInOneNewton, KiloPondsTolerance),
+                ForceUnit.Kilopond => (KilopondsInOneNewton, KilopondsTolerance),
                 ForceUnit.KilopoundForce => (KilopoundsForceInOneNewton, KilopoundsForceTolerance),
                 ForceUnit.Meganewton => (MeganewtonsInOneNewton, MeganewtonsTolerance),
                 ForceUnit.Micronewton => (MicronewtonsInOneNewton, MicronewtonsTolerance),
@@ -103,7 +103,7 @@ namespace UnitsNet.Tests
             new object[] { ForceUnit.Dyn },
             new object[] { ForceUnit.KilogramForce },
             new object[] { ForceUnit.Kilonewton },
-            new object[] { ForceUnit.KiloPond },
+            new object[] { ForceUnit.Kilopond },
             new object[] { ForceUnit.KilopoundForce },
             new object[] { ForceUnit.Meganewton },
             new object[] { ForceUnit.Micronewton },
@@ -166,7 +166,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Force_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ForceUnit[] unitsOrderedByName = EnumHelper.GetValues<ForceUnit>().OrderBy(x => x.ToString()).ToArray();
+            ForceUnit[] unitsOrderedByName = EnumHelper.GetValues<ForceUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Force(1, ForceUnit.Newton);
 
             QuantityInfo<Force, ForceUnit> quantityInfo = quantity.QuantityInfo;
@@ -189,7 +189,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DyneInOneNewton, newton.Dyne, DyneTolerance);
             AssertEx.EqualTolerance(KilogramsForceInOneNewton, newton.KilogramsForce, KilogramsForceTolerance);
             AssertEx.EqualTolerance(KilonewtonsInOneNewton, newton.Kilonewtons, KilonewtonsTolerance);
-            AssertEx.EqualTolerance(KiloPondsInOneNewton, newton.KiloPonds, KiloPondsTolerance);
+            AssertEx.EqualTolerance(KilopondsInOneNewton, newton.Kiloponds, KilopondsTolerance);
             AssertEx.EqualTolerance(KilopoundsForceInOneNewton, newton.KilopoundsForce, KilopoundsForceTolerance);
             AssertEx.EqualTolerance(MeganewtonsInOneNewton, newton.Meganewtons, MeganewtonsTolerance);
             AssertEx.EqualTolerance(MicronewtonsInOneNewton, newton.Micronewtons, MicronewtonsTolerance);
@@ -239,7 +239,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DyneInOneNewton, newton.As(ForceUnit.Dyn), DyneTolerance);
             AssertEx.EqualTolerance(KilogramsForceInOneNewton, newton.As(ForceUnit.KilogramForce), KilogramsForceTolerance);
             AssertEx.EqualTolerance(KilonewtonsInOneNewton, newton.As(ForceUnit.Kilonewton), KilonewtonsTolerance);
-            AssertEx.EqualTolerance(KiloPondsInOneNewton, newton.As(ForceUnit.KiloPond), KiloPondsTolerance);
+            AssertEx.EqualTolerance(KilopondsInOneNewton, newton.As(ForceUnit.Kilopond), KilopondsTolerance);
             AssertEx.EqualTolerance(KilopoundsForceInOneNewton, newton.As(ForceUnit.KilopoundForce), KilopoundsForceTolerance);
             AssertEx.EqualTolerance(MeganewtonsInOneNewton, newton.As(ForceUnit.Meganewton), MeganewtonsTolerance);
             AssertEx.EqualTolerance(MicronewtonsInOneNewton, newton.As(ForceUnit.Micronewton), MicronewtonsTolerance);
@@ -378,7 +378,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 dyn", ForceUnit.Dyn, 4.2)]
         [InlineData("en-US", "4.2 kgf", ForceUnit.KilogramForce, 4.2)]
         [InlineData("en-US", "4.2 kN", ForceUnit.Kilonewton, 4.2)]
-        [InlineData("en-US", "4.2 kp", ForceUnit.KiloPond, 4.2)]
+        [InlineData("en-US", "4.2 kp", ForceUnit.Kilopond, 4.2)]
         [InlineData("en-US", "4.2 kipf", ForceUnit.KilopoundForce, 4.2)]
         [InlineData("en-US", "4.2 kip", ForceUnit.KilopoundForce, 4.2)]
         [InlineData("en-US", "4.2 k", ForceUnit.KilopoundForce, 4.2)]
@@ -416,7 +416,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("ru-RU", "1 кгс")] // [KilogramForce, KiloPond] 
+        [InlineData("ru-RU", "1 кгс")] // [KilogramForce, Kilopond] 
         public void ParseWithAmbiguousAbbreviation(string culture, string quantityString)
         {
             Assert.Throws<AmbiguousUnitParseException>(() => Force.Parse(quantityString, CultureInfo.GetCultureInfo(culture)));
@@ -427,7 +427,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 dyn", ForceUnit.Dyn, 4.2)]
         [InlineData("en-US", "4.2 kgf", ForceUnit.KilogramForce, 4.2)]
         [InlineData("en-US", "4.2 kN", ForceUnit.Kilonewton, 4.2)]
-        [InlineData("en-US", "4.2 kp", ForceUnit.KiloPond, 4.2)]
+        [InlineData("en-US", "4.2 kp", ForceUnit.Kilopond, 4.2)]
         [InlineData("en-US", "4.2 kipf", ForceUnit.KilopoundForce, 4.2)]
         [InlineData("en-US", "4.2 kip", ForceUnit.KilopoundForce, 4.2)]
         [InlineData("en-US", "4.2 k", ForceUnit.KilopoundForce, 4.2)]
@@ -465,7 +465,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("ru-RU", "1 кгс")] // [KilogramForce, KiloPond] 
+        [InlineData("ru-RU", "1 кгс")] // [KilogramForce, Kilopond] 
         public void TryParseWithAmbiguousAbbreviation(string culture, string quantityString)
         {
             Assert.False(Force.TryParse(quantityString, CultureInfo.GetCultureInfo(culture), out _));
@@ -476,7 +476,7 @@ namespace UnitsNet.Tests
         [InlineData("dyn", ForceUnit.Dyn)]
         [InlineData("kgf", ForceUnit.KilogramForce)]
         [InlineData("kN", ForceUnit.Kilonewton)]
-        [InlineData("kp", ForceUnit.KiloPond)]
+        [InlineData("kp", ForceUnit.Kilopond)]
         [InlineData("kipf", ForceUnit.KilopoundForce)]
         [InlineData("kip", ForceUnit.KilopoundForce)]
         [InlineData("k", ForceUnit.KilopoundForce)]
@@ -505,7 +505,7 @@ namespace UnitsNet.Tests
         [InlineData("dyn", ForceUnit.Dyn)]
         [InlineData("kgf", ForceUnit.KilogramForce)]
         [InlineData("kN", ForceUnit.Kilonewton)]
-        [InlineData("kp", ForceUnit.KiloPond)]
+        [InlineData("kp", ForceUnit.Kilopond)]
         [InlineData("kipf", ForceUnit.KilopoundForce)]
         [InlineData("kip", ForceUnit.KilopoundForce)]
         [InlineData("k", ForceUnit.KilopoundForce)]
@@ -534,7 +534,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "dyn", ForceUnit.Dyn)]
         [InlineData("en-US", "kgf", ForceUnit.KilogramForce)]
         [InlineData("en-US", "kN", ForceUnit.Kilonewton)]
-        [InlineData("en-US", "kp", ForceUnit.KiloPond)]
+        [InlineData("en-US", "kp", ForceUnit.Kilopond)]
         [InlineData("en-US", "kipf", ForceUnit.KilopoundForce)]
         [InlineData("en-US", "kip", ForceUnit.KilopoundForce)]
         [InlineData("en-US", "k", ForceUnit.KilopoundForce)]
@@ -575,7 +575,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "dyn", ForceUnit.Dyn)]
         [InlineData("en-US", "kgf", ForceUnit.KilogramForce)]
         [InlineData("en-US", "kN", ForceUnit.Kilonewton)]
-        [InlineData("en-US", "kp", ForceUnit.KiloPond)]
+        [InlineData("en-US", "kp", ForceUnit.Kilopond)]
         [InlineData("en-US", "kipf", ForceUnit.KilopoundForce)]
         [InlineData("en-US", "kip", ForceUnit.KilopoundForce)]
         [InlineData("en-US", "k", ForceUnit.KilopoundForce)]
@@ -611,7 +611,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("ru-RU", "кгс")] // [KilogramForce, KiloPond]
+        [InlineData("ru-RU", "кгс")] // [KilogramForce, Kilopond]
         public void ParseUnitWithAmbiguousAbbreviation(string culture, string abbreviation)
         {
             Assert.Throws<AmbiguousUnitParseException>(() => Force.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture)));
@@ -622,7 +622,7 @@ namespace UnitsNet.Tests
         [InlineData("dyn", ForceUnit.Dyn)]
         [InlineData("kgf", ForceUnit.KilogramForce)]
         [InlineData("kN", ForceUnit.Kilonewton)]
-        [InlineData("kp", ForceUnit.KiloPond)]
+        [InlineData("kp", ForceUnit.Kilopond)]
         [InlineData("kipf", ForceUnit.KilopoundForce)]
         [InlineData("kip", ForceUnit.KilopoundForce)]
         [InlineData("k", ForceUnit.KilopoundForce)]
@@ -651,7 +651,7 @@ namespace UnitsNet.Tests
         [InlineData("dyn", ForceUnit.Dyn)]
         [InlineData("kgf", ForceUnit.KilogramForce)]
         [InlineData("kN", ForceUnit.Kilonewton)]
-        [InlineData("kp", ForceUnit.KiloPond)]
+        [InlineData("kp", ForceUnit.Kilopond)]
         [InlineData("kipf", ForceUnit.KilopoundForce)]
         [InlineData("kip", ForceUnit.KilopoundForce)]
         [InlineData("k", ForceUnit.KilopoundForce)]
@@ -680,7 +680,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "dyn", ForceUnit.Dyn)]
         [InlineData("en-US", "kgf", ForceUnit.KilogramForce)]
         [InlineData("en-US", "kN", ForceUnit.Kilonewton)]
-        [InlineData("en-US", "kp", ForceUnit.KiloPond)]
+        [InlineData("en-US", "kp", ForceUnit.Kilopond)]
         [InlineData("en-US", "kipf", ForceUnit.KilopoundForce)]
         [InlineData("en-US", "kip", ForceUnit.KilopoundForce)]
         [InlineData("en-US", "k", ForceUnit.KilopoundForce)]
@@ -721,7 +721,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "dyn", ForceUnit.Dyn)]
         [InlineData("en-US", "kgf", ForceUnit.KilogramForce)]
         [InlineData("en-US", "kN", ForceUnit.Kilonewton)]
-        [InlineData("en-US", "kp", ForceUnit.KiloPond)]
+        [InlineData("en-US", "kp", ForceUnit.Kilopond)]
         [InlineData("en-US", "kipf", ForceUnit.KilopoundForce)]
         [InlineData("en-US", "kip", ForceUnit.KilopoundForce)]
         [InlineData("en-US", "k", ForceUnit.KilopoundForce)]
@@ -757,7 +757,7 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("ru-RU", "кгс")] // [KilogramForce, KiloPond]
+        [InlineData("ru-RU", "кгс")] // [KilogramForce, Kilopond]
         public void TryParseUnitWithAmbiguousAbbreviation(string culture, string abbreviation)
         {
             Assert.False(Force.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out _));
@@ -768,7 +768,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ForceUnit.Dyn, "dyn")]
         [InlineData("en-US", ForceUnit.KilogramForce, "kgf")]
         [InlineData("en-US", ForceUnit.Kilonewton, "kN")]
-        [InlineData("en-US", ForceUnit.KiloPond, "kp")]
+        [InlineData("en-US", ForceUnit.Kilopond, "kp")]
         [InlineData("en-US", ForceUnit.KilopoundForce, "kipf")]
         [InlineData("en-US", ForceUnit.Meganewton, "MN")]
         [InlineData("en-US", ForceUnit.Micronewton, "µN")]
@@ -783,7 +783,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", ForceUnit.Dyn, "дин")]
         [InlineData("ru-RU", ForceUnit.KilogramForce, "кгс")]
         [InlineData("ru-RU", ForceUnit.Kilonewton, "кН")]
-        [InlineData("ru-RU", ForceUnit.KiloPond, "кгс")]
+        [InlineData("ru-RU", ForceUnit.Kilopond, "кгс")]
         [InlineData("ru-RU", ForceUnit.KilopoundForce, "кипф")]
         [InlineData("ru-RU", ForceUnit.Meganewton, "МН")]
         [InlineData("ru-RU", ForceUnit.Micronewton, "мкН")]
@@ -880,7 +880,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Force.FromDyne(newton.Dyne).Newtons, DyneTolerance);
             AssertEx.EqualTolerance(1, Force.FromKilogramsForce(newton.KilogramsForce).Newtons, KilogramsForceTolerance);
             AssertEx.EqualTolerance(1, Force.FromKilonewtons(newton.Kilonewtons).Newtons, KilonewtonsTolerance);
-            AssertEx.EqualTolerance(1, Force.FromKiloPonds(newton.KiloPonds).Newtons, KiloPondsTolerance);
+            AssertEx.EqualTolerance(1, Force.FromKiloponds(newton.Kiloponds).Newtons, KilopondsTolerance);
             AssertEx.EqualTolerance(1, Force.FromKilopoundsForce(newton.KilopoundsForce).Newtons, KilopoundsForceTolerance);
             AssertEx.EqualTolerance(1, Force.FromMeganewtons(newton.Meganewtons).Newtons, MeganewtonsTolerance);
             AssertEx.EqualTolerance(1, Force.FromMicronewtons(newton.Micronewtons).Newtons, MicronewtonsTolerance);
@@ -1051,7 +1051,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 dyn", new Force(1, ForceUnit.Dyn).ToString());
             Assert.Equal("1 kgf", new Force(1, ForceUnit.KilogramForce).ToString());
             Assert.Equal("1 kN", new Force(1, ForceUnit.Kilonewton).ToString());
-            Assert.Equal("1 kp", new Force(1, ForceUnit.KiloPond).ToString());
+            Assert.Equal("1 kp", new Force(1, ForceUnit.Kilopond).ToString());
             Assert.Equal("1 kipf", new Force(1, ForceUnit.KilopoundForce).ToString());
             Assert.Equal("1 MN", new Force(1, ForceUnit.Meganewton).ToString());
             Assert.Equal("1 µN", new Force(1, ForceUnit.Micronewton).ToString());
@@ -1074,7 +1074,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 dyn", new Force(1, ForceUnit.Dyn).ToString(swedishCulture));
             Assert.Equal("1 kgf", new Force(1, ForceUnit.KilogramForce).ToString(swedishCulture));
             Assert.Equal("1 kN", new Force(1, ForceUnit.Kilonewton).ToString(swedishCulture));
-            Assert.Equal("1 kp", new Force(1, ForceUnit.KiloPond).ToString(swedishCulture));
+            Assert.Equal("1 kp", new Force(1, ForceUnit.Kilopond).ToString(swedishCulture));
             Assert.Equal("1 kipf", new Force(1, ForceUnit.KilopoundForce).ToString(swedishCulture));
             Assert.Equal("1 MN", new Force(1, ForceUnit.Meganewton).ToString(swedishCulture));
             Assert.Equal("1 µN", new Force(1, ForceUnit.Micronewton).ToString(swedishCulture));

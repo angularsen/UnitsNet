@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void RotationalStiffness_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RotationalStiffnessUnit[] unitsOrderedByName = EnumHelper.GetValues<RotationalStiffnessUnit>().OrderBy(x => x.ToString()).ToArray();
+            RotationalStiffnessUnit[] unitsOrderedByName = EnumHelper.GetValues<RotationalStiffnessUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new RotationalStiffness(1, RotationalStiffnessUnit.NewtonMeterPerRadian);
 
             QuantityInfo<RotationalStiffness, RotationalStiffnessUnit> quantityInfo = quantity.QuantityInfo;

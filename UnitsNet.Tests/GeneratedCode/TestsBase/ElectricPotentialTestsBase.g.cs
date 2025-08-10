@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricPotential_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricPotentialUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricPotentialUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricPotentialUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricPotentialUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricPotential(1, ElectricPotentialUnit.Volt);
 
             QuantityInfo<ElectricPotential, ElectricPotentialUnit> quantityInfo = quantity.QuantityInfo;

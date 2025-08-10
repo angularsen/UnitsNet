@@ -154,7 +154,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Frequency_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            FrequencyUnit[] unitsOrderedByName = EnumHelper.GetValues<FrequencyUnit>().OrderBy(x => x.ToString()).ToArray();
+            FrequencyUnit[] unitsOrderedByName = EnumHelper.GetValues<FrequencyUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Frequency(1, FrequencyUnit.Hertz);
 
             QuantityInfo<Frequency, FrequencyUnit> quantityInfo = quantity.QuantityInfo;

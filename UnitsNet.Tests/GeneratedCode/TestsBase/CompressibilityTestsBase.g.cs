@@ -134,7 +134,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Compressibility_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            CompressibilityUnit[] unitsOrderedByName = EnumHelper.GetValues<CompressibilityUnit>().OrderBy(x => x.ToString()).ToArray();
+            CompressibilityUnit[] unitsOrderedByName = EnumHelper.GetValues<CompressibilityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Compressibility(1, CompressibilityUnit.InversePascal);
 
             QuantityInfo<Compressibility, CompressibilityUnit> quantityInfo = quantity.QuantityInfo;

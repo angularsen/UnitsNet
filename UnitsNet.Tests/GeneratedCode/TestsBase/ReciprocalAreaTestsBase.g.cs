@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ReciprocalArea_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ReciprocalAreaUnit[] unitsOrderedByName = EnumHelper.GetValues<ReciprocalAreaUnit>().OrderBy(x => x.ToString()).ToArray();
+            ReciprocalAreaUnit[] unitsOrderedByName = EnumHelper.GetValues<ReciprocalAreaUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareMeter);
 
             QuantityInfo<ReciprocalArea, ReciprocalAreaUnit> quantityInfo = quantity.QuantityInfo;

@@ -165,7 +165,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void VolumeConcentration_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            VolumeConcentrationUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumeConcentrationUnit>().OrderBy(x => x.ToString()).ToArray();
+            VolumeConcentrationUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumeConcentrationUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new VolumeConcentration(1, VolumeConcentrationUnit.DecimalFraction);
 
             QuantityInfo<VolumeConcentration, VolumeConcentrationUnit> quantityInfo = quantity.QuantityInfo;

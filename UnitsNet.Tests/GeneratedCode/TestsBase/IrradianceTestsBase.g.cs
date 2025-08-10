@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Irradiance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            IrradianceUnit[] unitsOrderedByName = EnumHelper.GetValues<IrradianceUnit>().OrderBy(x => x.ToString()).ToArray();
+            IrradianceUnit[] unitsOrderedByName = EnumHelper.GetValues<IrradianceUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Irradiance(1, IrradianceUnit.WattPerSquareMeter);
 
             QuantityInfo<Irradiance, IrradianceUnit> quantityInfo = quantity.QuantityInfo;

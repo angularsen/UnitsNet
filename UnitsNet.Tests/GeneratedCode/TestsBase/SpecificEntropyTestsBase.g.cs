@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void SpecificEntropy_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            SpecificEntropyUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificEntropyUnit>().OrderBy(x => x.ToString()).ToArray();
+            SpecificEntropyUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificEntropyUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new SpecificEntropy(1, SpecificEntropyUnit.JoulePerKilogramKelvin);
 
             QuantityInfo<SpecificEntropy, SpecificEntropyUnit> quantityInfo = quantity.QuantityInfo;

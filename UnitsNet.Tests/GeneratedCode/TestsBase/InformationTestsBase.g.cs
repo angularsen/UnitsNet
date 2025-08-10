@@ -241,7 +241,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Information_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            InformationUnit[] unitsOrderedByName = EnumHelper.GetValues<InformationUnit>().OrderBy(x => x.ToString()).ToArray();
+            InformationUnit[] unitsOrderedByName = EnumHelper.GetValues<InformationUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Information(1, InformationUnit.Bit);
 
             QuantityInfo<Information, InformationUnit> quantityInfo = quantity.QuantityInfo;

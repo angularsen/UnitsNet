@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void LeakRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            LeakRateUnit[] unitsOrderedByName = EnumHelper.GetValues<LeakRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            LeakRateUnit[] unitsOrderedByName = EnumHelper.GetValues<LeakRateUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new LeakRate(1, LeakRateUnit.PascalCubicMeterPerSecond);
 
             QuantityInfo<LeakRate, LeakRateUnit> quantityInfo = quantity.QuantityInfo;

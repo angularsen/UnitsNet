@@ -322,7 +322,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Volume_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            VolumeUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumeUnit>().OrderBy(x => x.ToString()).ToArray();
+            VolumeUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumeUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Volume(1, VolumeUnit.CubicMeter);
 
             QuantityInfo<Volume, VolumeUnit> quantityInfo = quantity.QuantityInfo;

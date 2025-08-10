@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricResistivity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricResistivityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricResistivityUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricResistivityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricResistivityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricResistivity(1, ElectricResistivityUnit.OhmMeter);
 
             QuantityInfo<ElectricResistivity, ElectricResistivityUnit> quantityInfo = quantity.QuantityInfo;

@@ -170,7 +170,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricConductance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricConductanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricConductanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricConductanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricConductanceUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricConductance(1, ElectricConductanceUnit.Siemens);
 
             QuantityInfo<ElectricConductance, ElectricConductanceUnit> quantityInfo = quantity.QuantityInfo;

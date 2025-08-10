@@ -258,7 +258,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ForcePerLength_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ForcePerLengthUnit[] unitsOrderedByName = EnumHelper.GetValues<ForcePerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
+            ForcePerLengthUnit[] unitsOrderedByName = EnumHelper.GetValues<ForcePerLengthUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ForcePerLength(1, ForcePerLengthUnit.NewtonPerMeter);
 
             QuantityInfo<ForcePerLength, ForcePerLengthUnit> quantityInfo = quantity.QuantityInfo;

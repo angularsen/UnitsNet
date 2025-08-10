@@ -262,7 +262,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BitRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            BitRateUnit[] unitsOrderedByName = EnumHelper.GetValues<BitRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            BitRateUnit[] unitsOrderedByName = EnumHelper.GetValues<BitRateUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new BitRate(1, BitRateUnit.BitPerSecond);
 
             QuantityInfo<BitRate, BitRateUnit> quantityInfo = quantity.QuantityInfo;

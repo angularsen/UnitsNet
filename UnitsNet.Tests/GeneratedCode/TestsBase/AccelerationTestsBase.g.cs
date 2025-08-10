@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Acceleration_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            AccelerationUnit[] unitsOrderedByName = EnumHelper.GetValues<AccelerationUnit>().OrderBy(x => x.ToString()).ToArray();
+            AccelerationUnit[] unitsOrderedByName = EnumHelper.GetValues<AccelerationUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Acceleration(1, AccelerationUnit.MeterPerSecondSquared);
 
             QuantityInfo<Acceleration, AccelerationUnit> quantityInfo = quantity.QuantityInfo;

@@ -274,7 +274,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Length_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            LengthUnit[] unitsOrderedByName = EnumHelper.GetValues<LengthUnit>().OrderBy(x => x.ToString()).ToArray();
+            LengthUnit[] unitsOrderedByName = EnumHelper.GetValues<LengthUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Length(1, LengthUnit.Meter);
 
             QuantityInfo<Length, LengthUnit> quantityInfo = quantity.QuantityInfo;

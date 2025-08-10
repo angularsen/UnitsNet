@@ -89,7 +89,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void VitaminA_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            VitaminAUnit[] unitsOrderedByName = EnumHelper.GetValues<VitaminAUnit>().OrderBy(x => x.ToString()).ToArray();
+            VitaminAUnit[] unitsOrderedByName = EnumHelper.GetValues<VitaminAUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new VitaminA(1, VitaminAUnit.InternationalUnit);
 
             QuantityInfo<VitaminA, VitaminAUnit> quantityInfo = quantity.QuantityInfo;

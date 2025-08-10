@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricApparentEnergy_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricApparentEnergyUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricApparentEnergyUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricApparentEnergyUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricApparentEnergyUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricApparentEnergy(1, ElectricApparentEnergyUnit.VoltampereHour);
 
             QuantityInfo<ElectricApparentEnergy, ElectricApparentEnergyUnit> quantityInfo = quantity.QuantityInfo;

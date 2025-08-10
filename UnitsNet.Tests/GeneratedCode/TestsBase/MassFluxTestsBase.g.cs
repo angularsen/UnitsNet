@@ -154,7 +154,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MassFlux_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MassFluxUnit[] unitsOrderedByName = EnumHelper.GetValues<MassFluxUnit>().OrderBy(x => x.ToString()).ToArray();
+            MassFluxUnit[] unitsOrderedByName = EnumHelper.GetValues<MassFluxUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new MassFlux(1, MassFluxUnit.KilogramPerSecondPerSquareMeter);
 
             QuantityInfo<MassFlux, MassFluxUnit> quantityInfo = quantity.QuantityInfo;

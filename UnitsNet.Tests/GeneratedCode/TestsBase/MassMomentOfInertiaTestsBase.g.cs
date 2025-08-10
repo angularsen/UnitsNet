@@ -218,7 +218,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MassMomentOfInertia_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MassMomentOfInertiaUnit[] unitsOrderedByName = EnumHelper.GetValues<MassMomentOfInertiaUnit>().OrderBy(x => x.ToString()).ToArray();
+            MassMomentOfInertiaUnit[] unitsOrderedByName = EnumHelper.GetValues<MassMomentOfInertiaUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilogramSquareMeter);
 
             QuantityInfo<MassMomentOfInertia, MassMomentOfInertiaUnit> quantityInfo = quantity.QuantityInfo;

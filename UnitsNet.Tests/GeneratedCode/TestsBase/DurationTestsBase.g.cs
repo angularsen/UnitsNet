@@ -158,7 +158,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Duration_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            DurationUnit[] unitsOrderedByName = EnumHelper.GetValues<DurationUnit>().OrderBy(x => x.ToString()).ToArray();
+            DurationUnit[] unitsOrderedByName = EnumHelper.GetValues<DurationUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Duration(1, DurationUnit.Second);
 
             QuantityInfo<Duration, DurationUnit> quantityInfo = quantity.QuantityInfo;

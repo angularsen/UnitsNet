@@ -26,8 +26,8 @@
       ]
     },
     {
-      "SingularName": "MegaJoulePerTonne",
-      "PluralName": "MegaJoulesPerTonne",
+      "SingularName": "MegajoulePerTonne",
+      "PluralName": "MegajoulesPerTonne",
       "FromUnitToBaseFunc": "{x} * 1e3",
       "FromBaseToUnitFunc": "{x} / 1e3",
       "Localization": [

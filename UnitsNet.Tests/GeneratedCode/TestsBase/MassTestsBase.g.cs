@@ -214,7 +214,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Mass_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MassUnit[] unitsOrderedByName = EnumHelper.GetValues<MassUnit>().OrderBy(x => x.ToString()).ToArray();
+            MassUnit[] unitsOrderedByName = EnumHelper.GetValues<MassUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Mass(1, MassUnit.Kilogram);
 
             QuantityInfo<Mass, MassUnit> quantityInfo = quantity.QuantityInfo;

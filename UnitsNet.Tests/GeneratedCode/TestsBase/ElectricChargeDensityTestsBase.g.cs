@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricChargeDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricChargeDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricChargeDensityUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricChargeDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricChargeDensityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricChargeDensity(1, ElectricChargeDensityUnit.CoulombPerCubicMeter);
 
             QuantityInfo<ElectricChargeDensity, ElectricChargeDensityUnit> quantityInfo = quantity.QuantityInfo;

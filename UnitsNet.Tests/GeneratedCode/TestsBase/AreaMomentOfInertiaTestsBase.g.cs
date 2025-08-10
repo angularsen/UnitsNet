@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void AreaMomentOfInertia_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            AreaMomentOfInertiaUnit[] unitsOrderedByName = EnumHelper.GetValues<AreaMomentOfInertiaUnit>().OrderBy(x => x.ToString()).ToArray();
+            AreaMomentOfInertiaUnit[] unitsOrderedByName = EnumHelper.GetValues<AreaMomentOfInertiaUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new AreaMomentOfInertia(1, AreaMomentOfInertiaUnit.MeterToTheFourth);
 
             QuantityInfo<AreaMomentOfInertia, AreaMomentOfInertiaUnit> quantityInfo = quantity.QuantityInfo;

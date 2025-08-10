@@ -146,7 +146,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Luminance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            LuminanceUnit[] unitsOrderedByName = EnumHelper.GetValues<LuminanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            LuminanceUnit[] unitsOrderedByName = EnumHelper.GetValues<LuminanceUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Luminance(1, LuminanceUnit.CandelaPerSquareMeter);
 
             QuantityInfo<Luminance, LuminanceUnit> quantityInfo = quantity.QuantityInfo;

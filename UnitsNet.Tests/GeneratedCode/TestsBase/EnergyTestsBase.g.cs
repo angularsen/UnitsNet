@@ -266,7 +266,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Energy_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            EnergyUnit[] unitsOrderedByName = EnumHelper.GetValues<EnergyUnit>().OrderBy(x => x.ToString()).ToArray();
+            EnergyUnit[] unitsOrderedByName = EnumHelper.GetValues<EnergyUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Energy(1, EnergyUnit.Joule);
 
             QuantityInfo<Energy, EnergyUnit> quantityInfo = quantity.QuantityInfo;

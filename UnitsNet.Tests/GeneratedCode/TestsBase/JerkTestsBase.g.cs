@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Jerk_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            JerkUnit[] unitsOrderedByName = EnumHelper.GetValues<JerkUnit>().OrderBy(x => x.ToString()).ToArray();
+            JerkUnit[] unitsOrderedByName = EnumHelper.GetValues<JerkUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Jerk(1, JerkUnit.MeterPerSecondCubed);
 
             QuantityInfo<Jerk, JerkUnit> quantityInfo = quantity.QuantityInfo;

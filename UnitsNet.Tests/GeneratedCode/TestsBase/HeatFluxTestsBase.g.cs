@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HeatFlux_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            HeatFluxUnit[] unitsOrderedByName = EnumHelper.GetValues<HeatFluxUnit>().OrderBy(x => x.ToString()).ToArray();
+            HeatFluxUnit[] unitsOrderedByName = EnumHelper.GetValues<HeatFluxUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new HeatFlux(1, HeatFluxUnit.WattPerSquareMeter);
 
             QuantityInfo<HeatFlux, HeatFluxUnit> quantityInfo = quantity.QuantityInfo;

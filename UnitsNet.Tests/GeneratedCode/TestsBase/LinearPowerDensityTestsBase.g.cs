@@ -206,7 +206,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void LinearPowerDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            LinearPowerDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<LinearPowerDensityUnit>().OrderBy(x => x.ToString()).ToArray();
+            LinearPowerDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<LinearPowerDensityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new LinearPowerDensity(1, LinearPowerDensityUnit.WattPerMeter);
 
             QuantityInfo<LinearPowerDensity, LinearPowerDensityUnit> quantityInfo = quantity.QuantityInfo;

@@ -41,8 +41,8 @@ namespace UnitsNet.Tests
             Assert.Equal(Force.FromKilonewtons(2), 2.Kilonewtons());
 
         [Fact]
-        public void NumberToKiloPondsTest() =>
-            Assert.Equal(Force.FromKiloPonds(2), 2.KiloPonds());
+        public void NumberToKilopondsTest() =>
+            Assert.Equal(Force.FromKiloponds(2), 2.Kiloponds());
 
         [Fact]
         public void NumberToKilopoundsForceTest() =>
