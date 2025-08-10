@@ -44,7 +44,7 @@ namespace UnitsNet.Units
         ///     The kilogram-force, or kilopond, is equal to the magnitude of the force exerted on one kilogram of mass in a 9.80665 m/s2 gravitational field (standard gravity). Therefore, one kilogram-force is by definition equal to 9.80665 N.
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Kilogram-force</remarks>
-        KiloPond = 5,
+        Kilopond = 5,
         KilopoundForce = 6,
         Meganewton = 7,
         Micronewton = 8,
