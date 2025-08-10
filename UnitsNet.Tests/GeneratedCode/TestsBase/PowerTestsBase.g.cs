@@ -214,7 +214,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Power_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            PowerUnit[] unitsOrderedByName = EnumHelper.GetValues<PowerUnit>().OrderBy(x => x.ToString()).ToArray();
+            PowerUnit[] unitsOrderedByName = EnumHelper.GetValues<PowerUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Power(1, PowerUnit.Watt);
 
             QuantityInfo<Power, PowerUnit> quantityInfo = quantity.QuantityInfo;
@@ -844,7 +844,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", PowerUnit.Watt, "W")]
         public void GetAbbreviationForCulture(string culture, PowerUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Power.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Power.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -855,7 +855,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Power.GetAbbreviation(unit); 
+                var defaultAbbreviation = Power.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

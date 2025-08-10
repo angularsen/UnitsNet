@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void VolumePerLength_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            VolumePerLengthUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumePerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
+            VolumePerLengthUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumePerLengthUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new VolumePerLength(1, VolumePerLengthUnit.CubicMeterPerMeter);
 
             QuantityInfo<VolumePerLength, VolumePerLengthUnit> quantityInfo = quantity.QuantityInfo;
@@ -508,7 +508,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", VolumePerLengthUnit.UsGallonPerMile, "gal (U.S.)/mi")]
         public void GetAbbreviationForCulture(string culture, VolumePerLengthUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = VolumePerLength.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = VolumePerLength.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -519,7 +519,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = VolumePerLength.GetAbbreviation(unit); 
+                var defaultAbbreviation = VolumePerLength.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

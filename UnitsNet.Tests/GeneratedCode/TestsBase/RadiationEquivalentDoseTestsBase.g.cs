@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void RadiationEquivalentDose_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RadiationEquivalentDoseUnit[] unitsOrderedByName = EnumHelper.GetValues<RadiationEquivalentDoseUnit>().OrderBy(x => x.ToString()).ToArray();
+            RadiationEquivalentDoseUnit[] unitsOrderedByName = EnumHelper.GetValues<RadiationEquivalentDoseUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.Sievert);
 
             QuantityInfo<RadiationEquivalentDose, RadiationEquivalentDoseUnit> quantityInfo = quantity.QuantityInfo;
@@ -485,7 +485,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", RadiationEquivalentDoseUnit.Sievert, "Зв")]
         public void GetAbbreviationForCulture(string culture, RadiationEquivalentDoseUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = RadiationEquivalentDose.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = RadiationEquivalentDose.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -496,7 +496,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = RadiationEquivalentDose.GetAbbreviation(unit); 
+                var defaultAbbreviation = RadiationEquivalentDose.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void FuelEfficiency_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            FuelEfficiencyUnit[] unitsOrderedByName = EnumHelper.GetValues<FuelEfficiencyUnit>().OrderBy(x => x.ToString()).ToArray();
+            FuelEfficiencyUnit[] unitsOrderedByName = EnumHelper.GetValues<FuelEfficiencyUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new FuelEfficiency(1, FuelEfficiencyUnit.KilometerPerLiter);
 
             QuantityInfo<FuelEfficiency, FuelEfficiencyUnit> quantityInfo = quantity.QuantityInfo;
@@ -423,7 +423,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", FuelEfficiencyUnit.MilePerUsGallon, "mpg (U.S.)")]
         public void GetAbbreviationForCulture(string culture, FuelEfficiencyUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = FuelEfficiency.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = FuelEfficiency.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -434,7 +434,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = FuelEfficiency.GetAbbreviation(unit); 
+                var defaultAbbreviation = FuelEfficiency.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

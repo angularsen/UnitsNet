@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MolarEntropy_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MolarEntropyUnit[] unitsOrderedByName = EnumHelper.GetValues<MolarEntropyUnit>().OrderBy(x => x.ToString()).ToArray();
+            MolarEntropyUnit[] unitsOrderedByName = EnumHelper.GetValues<MolarEntropyUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new MolarEntropy(1, MolarEntropyUnit.JoulePerMoleKelvin);
 
             QuantityInfo<MolarEntropy, MolarEntropyUnit> quantityInfo = quantity.QuantityInfo;
@@ -406,7 +406,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", MolarEntropyUnit.MegajoulePerMoleKelvin, "MJ/(mol·K)")]
         public void GetAbbreviationForCulture(string culture, MolarEntropyUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = MolarEntropy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = MolarEntropy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -417,7 +417,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = MolarEntropy.GetAbbreviation(unit); 
+                var defaultAbbreviation = MolarEntropy.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

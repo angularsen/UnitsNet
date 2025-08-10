@@ -226,7 +226,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void SpecificEnergy_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            SpecificEnergyUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificEnergyUnit>().OrderBy(x => x.ToString()).ToArray();
+            SpecificEnergyUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificEnergyUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new SpecificEnergy(1, SpecificEnergyUnit.JoulePerKilogram);
 
             QuantityInfo<SpecificEnergy, SpecificEnergyUnit> quantityInfo = quantity.QuantityInfo;
@@ -865,7 +865,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", SpecificEnergyUnit.WattHourPerPound, "Wh/lbs")]
         public void GetAbbreviationForCulture(string culture, SpecificEnergyUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = SpecificEnergy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = SpecificEnergy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -876,7 +876,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = SpecificEnergy.GetAbbreviation(unit); 
+                var defaultAbbreviation = SpecificEnergy.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricCharge_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricChargeUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricChargeUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricChargeUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricChargeUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricCharge(1, ElectricChargeUnit.Coulomb);
 
             QuantityInfo<ElectricCharge, ElectricChargeUnit> quantityInfo = quantity.QuantityInfo;
@@ -582,7 +582,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ElectricChargeUnit.Picocoulomb, "pC")]
         public void GetAbbreviationForCulture(string culture, ElectricChargeUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ElectricCharge.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ElectricCharge.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -593,7 +593,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ElectricCharge.GetAbbreviation(unit); 
+                var defaultAbbreviation = ElectricCharge.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Permittivity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            PermittivityUnit[] unitsOrderedByName = EnumHelper.GetValues<PermittivityUnit>().OrderBy(x => x.ToString()).ToArray();
+            PermittivityUnit[] unitsOrderedByName = EnumHelper.GetValues<PermittivityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Permittivity(1, PermittivityUnit.FaradPerMeter);
 
             QuantityInfo<Permittivity, PermittivityUnit> quantityInfo = quantity.QuantityInfo;
@@ -372,7 +372,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", PermittivityUnit.FaradPerMeter, "F/m")]
         public void GetAbbreviationForCulture(string culture, PermittivityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Permittivity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Permittivity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -383,7 +383,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Permittivity.GetAbbreviation(unit); 
+                var defaultAbbreviation = Permittivity.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

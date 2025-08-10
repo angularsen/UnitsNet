@@ -158,7 +158,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Impulse_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ImpulseUnit[] unitsOrderedByName = EnumHelper.GetValues<ImpulseUnit>().OrderBy(x => x.ToString()).ToArray();
+            ImpulseUnit[] unitsOrderedByName = EnumHelper.GetValues<ImpulseUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Impulse(1, ImpulseUnit.NewtonSecond);
 
             QuantityInfo<Impulse, ImpulseUnit> quantityInfo = quantity.QuantityInfo;
@@ -576,7 +576,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ImpulseUnit.SlugFootPerSecond, "slug·ft/s")]
         public void GetAbbreviationForCulture(string culture, ImpulseUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Impulse.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Impulse.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -587,7 +587,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Impulse.GetAbbreviation(unit); 
+                var defaultAbbreviation = Impulse.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

@@ -222,7 +222,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Radioactivity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RadioactivityUnit[] unitsOrderedByName = EnumHelper.GetValues<RadioactivityUnit>().OrderBy(x => x.ToString()).ToArray();
+            RadioactivityUnit[] unitsOrderedByName = EnumHelper.GetValues<RadioactivityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Radioactivity(1, RadioactivityUnit.Becquerel);
 
             QuantityInfo<Radioactivity, RadioactivityUnit> quantityInfo = quantity.QuantityInfo;
@@ -1051,7 +1051,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", RadioactivityUnit.Terarutherford, "ТРд")]
         public void GetAbbreviationForCulture(string culture, RadioactivityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Radioactivity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Radioactivity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -1062,7 +1062,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Radioactivity.GetAbbreviation(unit); 
+                var defaultAbbreviation = Radioactivity.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

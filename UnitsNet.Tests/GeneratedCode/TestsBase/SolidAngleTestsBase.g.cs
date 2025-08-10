@@ -89,7 +89,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void SolidAngle_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            SolidAngleUnit[] unitsOrderedByName = EnumHelper.GetValues<SolidAngleUnit>().OrderBy(x => x.ToString()).ToArray();
+            SolidAngleUnit[] unitsOrderedByName = EnumHelper.GetValues<SolidAngleUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new SolidAngle(1, SolidAngleUnit.Steradian);
 
             QuantityInfo<SolidAngle, SolidAngleUnit> quantityInfo = quantity.QuantityInfo;
@@ -312,7 +312,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", SolidAngleUnit.Steradian, "sr")]
         public void GetAbbreviationForCulture(string culture, SolidAngleUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = SolidAngle.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = SolidAngle.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -323,7 +323,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = SolidAngle.GetAbbreviation(unit); 
+                var defaultAbbreviation = SolidAngle.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

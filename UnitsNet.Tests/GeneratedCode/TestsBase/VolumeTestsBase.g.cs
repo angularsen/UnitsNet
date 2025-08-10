@@ -322,7 +322,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Volume_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            VolumeUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumeUnit>().OrderBy(x => x.ToString()).ToArray();
+            VolumeUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumeUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Volume(1, VolumeUnit.CubicMeter);
 
             QuantityInfo<Volume, VolumeUnit> quantityInfo = quantity.QuantityInfo;
@@ -1677,7 +1677,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", VolumeUnit.UsOunce, "Американская унция")]
         public void GetAbbreviationForCulture(string culture, VolumeUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Volume.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Volume.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -1688,7 +1688,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Volume.GetAbbreviation(unit); 
+                var defaultAbbreviation = Volume.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

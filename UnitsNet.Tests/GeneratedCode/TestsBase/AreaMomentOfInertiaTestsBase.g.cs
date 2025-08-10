@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void AreaMomentOfInertia_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            AreaMomentOfInertiaUnit[] unitsOrderedByName = EnumHelper.GetValues<AreaMomentOfInertiaUnit>().OrderBy(x => x.ToString()).ToArray();
+            AreaMomentOfInertiaUnit[] unitsOrderedByName = EnumHelper.GetValues<AreaMomentOfInertiaUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new AreaMomentOfInertia(1, AreaMomentOfInertiaUnit.MeterToTheFourth);
 
             QuantityInfo<AreaMomentOfInertia, AreaMomentOfInertiaUnit> quantityInfo = quantity.QuantityInfo;
@@ -457,7 +457,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", AreaMomentOfInertiaUnit.MillimeterToTheFourth, "mm⁴")]
         public void GetAbbreviationForCulture(string culture, AreaMomentOfInertiaUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = AreaMomentOfInertia.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = AreaMomentOfInertia.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -468,7 +468,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = AreaMomentOfInertia.GetAbbreviation(unit); 
+                var defaultAbbreviation = AreaMomentOfInertia.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void LeakRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            LeakRateUnit[] unitsOrderedByName = EnumHelper.GetValues<LeakRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            LeakRateUnit[] unitsOrderedByName = EnumHelper.GetValues<LeakRateUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new LeakRate(1, LeakRateUnit.PascalCubicMeterPerSecond);
 
             QuantityInfo<LeakRate, LeakRateUnit> quantityInfo = quantity.QuantityInfo;
@@ -423,7 +423,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", LeakRateUnit.TorrLiterPerSecond, "Torr·l/s")]
         public void GetAbbreviationForCulture(string culture, LeakRateUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = LeakRate.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = LeakRate.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -434,7 +434,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = LeakRate.GetAbbreviation(unit); 
+                var defaultAbbreviation = LeakRate.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

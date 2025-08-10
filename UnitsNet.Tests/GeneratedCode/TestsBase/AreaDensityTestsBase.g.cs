@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void AreaDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            AreaDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<AreaDensityUnit>().OrderBy(x => x.ToString()).ToArray();
+            AreaDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<AreaDensityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new AreaDensity(1, AreaDensityUnit.KilogramPerSquareMeter);
 
             QuantityInfo<AreaDensity, AreaDensityUnit> quantityInfo = quantity.QuantityInfo;
@@ -416,7 +416,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", AreaDensityUnit.MilligramPerSquareMeter, "mg/m²")]
         public void GetAbbreviationForCulture(string culture, AreaDensityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = AreaDensity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = AreaDensity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -427,7 +427,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = AreaDensity.GetAbbreviation(unit); 
+                var defaultAbbreviation = AreaDensity.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

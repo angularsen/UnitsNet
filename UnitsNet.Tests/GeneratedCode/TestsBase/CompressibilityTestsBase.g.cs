@@ -134,7 +134,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Compressibility_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            CompressibilityUnit[] unitsOrderedByName = EnumHelper.GetValues<CompressibilityUnit>().OrderBy(x => x.ToString()).ToArray();
+            CompressibilityUnit[] unitsOrderedByName = EnumHelper.GetValues<CompressibilityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Compressibility(1, CompressibilityUnit.InversePascal);
 
             QuantityInfo<Compressibility, CompressibilityUnit> quantityInfo = quantity.QuantityInfo;
@@ -544,7 +544,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", CompressibilityUnit.InversePoundForcePerSquareInch, "psi⁻¹")]
         public void GetAbbreviationForCulture(string culture, CompressibilityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Compressibility.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Compressibility.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -555,7 +555,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Compressibility.GetAbbreviation(unit); 
+                var defaultAbbreviation = Compressibility.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });
