@@ -459,7 +459,7 @@
     "Dyn": 2,
     "KilogramForce": 3,
     "Kilonewton": 4,
-    "KiloPond": 5,
+    "Kilopond": 5,
     "KilopoundForce": 6,
     "Meganewton": 7,
     "Micronewton": 8,
@@ -1183,7 +1183,8 @@
     "TonneForcePerSquareMillimeter": 46,
     "Torr": 47,
     "MeterOfWaterColumn": 57,
-    "CentimeterOfWaterColumn": 48
+    "CentimeterOfWaterColumn": 48,
+    "Millitorr": 52
   },
   "PressureChangeRate": {
     "AtmospherePerSecond": 1,
@@ -1344,7 +1345,7 @@
     "WattDayPerTonne": 27,
     "WattHourPerKilogram": 28,
     "WattHourPerPound": 29,
-    "MegaJoulePerTonne": 37
+    "MegajoulePerTonne": 37
   },
   "SpecificEntropy": {
     "BtuPerPoundFahrenheit": 1,

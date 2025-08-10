@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -88,15 +89,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Scalar_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ScalarUnit[] unitsOrderedByName = EnumHelper.GetValues<ScalarUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Scalar(1, ScalarUnit.Amount);
 
-            QuantityInfo<ScalarUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Scalar, ScalarUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Scalar.Zero, quantityInfo.Zero);
             Assert.Equal("Scalar", quantityInfo.Name);
-
-            var units = Enum.GetValues<ScalarUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Scalar.Zero, quantityInfo.Zero);
+            Assert.Equal(Scalar.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Scalar.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ScalarUnit>)quantity).QuantityInfo);
         }
 
         [Fact]
@@ -109,10 +114,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Scalar.From(1, ScalarUnit.Amount);
-            AssertEx.EqualTolerance(1, quantity00.Amount, AmountTolerance);
-            Assert.Equal(ScalarUnit.Amount, quantity00.Unit);
-
+            Assert.All(EnumHelper.GetValues<ScalarUnit>(), unit =>
+            {
+                var quantity = Scalar.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -159,7 +166,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToUnitSystem_ReturnsValueInDimensionlessUnit()
+        public void ToUnit_UnitSystem_ReturnsValueInDimensionlessUnit()
         {
             Assert.Multiple(() =>
             {
@@ -177,16 +184,20 @@ namespace UnitsNet.Tests
 
                 Assert.Equal(ScalarUnit.Amount, convertedQuantity.Unit);
                 Assert.Equal(quantity.Value, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity quantity = new Scalar(value: 1, unit: ScalarUnit.Amount);
-
-                IQuantity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(ScalarUnit.Amount, convertedQuantity.Unit);
-                Assert.Equal(quantity.Value, convertedQuantity.Value);
             });
         }
+
+        [Fact]
+        public void ToUnitUntyped_UnitSystem_ReturnsValueInDimensionlessUnit()
+        {
+            IQuantity quantity = new Scalar(value: 1, unit: ScalarUnit.Amount);
+
+            IQuantity convertedQuantity = quantity.ToUnitUntyped(UnitSystem.SI);
+
+            Assert.Equal(ScalarUnit.Amount, convertedQuantity.Unit);
+            Assert.Equal(quantity.Value, convertedQuantity.Value);
+        }
+
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
@@ -195,39 +206,36 @@ namespace UnitsNet.Tests
             Assert.Multiple(() =>
             {
                 var quantity = new Scalar(value: 1, unit: Scalar.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
             }, () =>
             {
                 IQuantity<ScalarUnit> quantity = new Scalar(value: 1, unit: Scalar.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
             }, () =>
             {
                 IQuantity quantity = new Scalar(value: 1, unit: Scalar.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 ", ScalarUnit.Amount, 4.2)]
+        public void Parse(string culture, string quantityString, ScalarUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = Scalar.Parse("1 ", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Amount, AmountTolerance);
-                Assert.Equal(ScalarUnit.Amount, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = Scalar.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 ", ScalarUnit.Amount, 4.2)]
+        public void TryParse(string culture, string quantityString, ScalarUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(Scalar.TryParse("1 ", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Amount, AmountTolerance);
-                Assert.Equal(ScalarUnit.Amount, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(Scalar.TryParse(quantityString, out Scalar parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -302,6 +310,27 @@ namespace UnitsNet.Tests
         {
             Assert.True(Scalar.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ScalarUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", ScalarUnit.Amount, "")]
+        public void GetAbbreviationForCulture(string culture, ScalarUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Scalar.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Scalar.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Scalar.GetAbbreviation(unit);
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]
@@ -466,23 +495,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = Scalar.FromAmount(1);
-            Assert.True(v.Equals(Scalar.FromAmount(1), AmountTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Scalar.Zero, AmountTolerance, ComparisonType.Relative));
-            Assert.True(Scalar.FromAmount(100).Equals(Scalar.FromAmount(120), 0.3, ComparisonType.Relative));
-            Assert.False(Scalar.FromAmount(100).Equals(Scalar.FromAmount(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = Scalar.FromAmount(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Scalar.FromAmount(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Scalar amount = Scalar.FromAmount(1);
@@ -494,6 +506,32 @@ namespace UnitsNet.Tests
         {
             Scalar amount = Scalar.FromAmount(1);
             Assert.False(amount.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = Scalar.FromAmount(firstValue);
+            var otherQuantity = Scalar.FromAmount(secondValue);
+            Scalar maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, Scalar.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = Scalar.FromAmount(1);
+            var negativeTolerance = Scalar.FromAmount(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -574,7 +612,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal(new {Scalar.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

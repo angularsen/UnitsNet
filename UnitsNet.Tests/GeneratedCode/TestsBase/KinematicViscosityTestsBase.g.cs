@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -128,7 +129,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new KinematicViscosity(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -141,15 +142,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void KinematicViscosity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            KinematicViscosityUnit[] unitsOrderedByName = EnumHelper.GetValues<KinematicViscosityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new KinematicViscosity(1, KinematicViscosityUnit.SquareMeterPerSecond);
 
-            QuantityInfo<KinematicViscosityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<KinematicViscosity, KinematicViscosityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(KinematicViscosity.Zero, quantityInfo.Zero);
             Assert.Equal("KinematicViscosity", quantityInfo.Name);
-
-            var units = Enum.GetValues<KinematicViscosityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(KinematicViscosity.Zero, quantityInfo.Zero);
+            Assert.Equal(KinematicViscosity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(KinematicViscosity.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<KinematicViscosityUnit>)quantity).QuantityInfo);
         }
 
         [Fact]
@@ -170,42 +175,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = KinematicViscosity.From(1, KinematicViscosityUnit.Centistokes);
-            AssertEx.EqualTolerance(1, quantity00.Centistokes, CentistokesTolerance);
-            Assert.Equal(KinematicViscosityUnit.Centistokes, quantity00.Unit);
-
-            var quantity01 = KinematicViscosity.From(1, KinematicViscosityUnit.Decistokes);
-            AssertEx.EqualTolerance(1, quantity01.Decistokes, DecistokesTolerance);
-            Assert.Equal(KinematicViscosityUnit.Decistokes, quantity01.Unit);
-
-            var quantity02 = KinematicViscosity.From(1, KinematicViscosityUnit.Kilostokes);
-            AssertEx.EqualTolerance(1, quantity02.Kilostokes, KilostokesTolerance);
-            Assert.Equal(KinematicViscosityUnit.Kilostokes, quantity02.Unit);
-
-            var quantity03 = KinematicViscosity.From(1, KinematicViscosityUnit.Microstokes);
-            AssertEx.EqualTolerance(1, quantity03.Microstokes, MicrostokesTolerance);
-            Assert.Equal(KinematicViscosityUnit.Microstokes, quantity03.Unit);
-
-            var quantity04 = KinematicViscosity.From(1, KinematicViscosityUnit.Millistokes);
-            AssertEx.EqualTolerance(1, quantity04.Millistokes, MillistokesTolerance);
-            Assert.Equal(KinematicViscosityUnit.Millistokes, quantity04.Unit);
-
-            var quantity05 = KinematicViscosity.From(1, KinematicViscosityUnit.Nanostokes);
-            AssertEx.EqualTolerance(1, quantity05.Nanostokes, NanostokesTolerance);
-            Assert.Equal(KinematicViscosityUnit.Nanostokes, quantity05.Unit);
-
-            var quantity06 = KinematicViscosity.From(1, KinematicViscosityUnit.SquareFootPerSecond);
-            AssertEx.EqualTolerance(1, quantity06.SquareFeetPerSecond, SquareFeetPerSecondTolerance);
-            Assert.Equal(KinematicViscosityUnit.SquareFootPerSecond, quantity06.Unit);
-
-            var quantity07 = KinematicViscosity.From(1, KinematicViscosityUnit.SquareMeterPerSecond);
-            AssertEx.EqualTolerance(1, quantity07.SquareMetersPerSecond, SquareMetersPerSecondTolerance);
-            Assert.Equal(KinematicViscosityUnit.SquareMeterPerSecond, quantity07.Unit);
-
-            var quantity08 = KinematicViscosity.From(1, KinematicViscosityUnit.Stokes);
-            AssertEx.EqualTolerance(1, quantity08.Stokes, StokesTolerance);
-            Assert.Equal(KinematicViscosityUnit.Stokes, quantity08.Unit);
-
+            Assert.All(EnumHelper.GetValues<KinematicViscosityUnit>(), unit =>
+            {
+                var quantity = KinematicViscosity.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -298,15 +273,22 @@ namespace UnitsNet.Tests
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
                 Assert.Equal(expectedValue, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity quantityToConvert = quantity;
-
-                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);
             });
+        }
+
+        [Fact]
+        public virtual void ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new KinematicViscosity(value: 1, unit: KinematicViscosity.BaseUnit);
+            var expectedUnit = KinematicViscosity.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            IQuantity quantityToConvert = quantity;
+
+            IQuantity convertedQuantity = quantityToConvert.ToUnitUntyped(UnitSystem.SI);
+
+            Assert.Equal(expectedUnit, convertedQuantity.Unit);
+            Assert.Equal(expectedValue, convertedQuantity.Value);
         }
 
         [Fact]
@@ -321,11 +303,15 @@ namespace UnitsNet.Tests
             {
                 IQuantity<KinematicViscosityUnit> quantity = new KinematicViscosity(value: 1, unit: KinematicViscosity.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
-            }, () =>
-            {
-                IQuantity quantity = new KinematicViscosity(value: 1, unit: KinematicViscosity.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
+        }
+
+        [Fact]
+        public void ToUnitUntyped_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            IQuantity quantity = new KinematicViscosity(value: 1, unit: KinematicViscosity.BaseUnit);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
         }
 
         [Fact]
@@ -340,242 +326,67 @@ namespace UnitsNet.Tests
             {
                 IQuantity<KinematicViscosityUnit> quantity = new KinematicViscosity(value: 1, unit: KinematicViscosity.BaseUnit);
                 Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
-            }, () =>
-            {
-                IQuantity quantity = new KinematicViscosity(value: 1, unit: KinematicViscosity.BaseUnit);
-                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
             });
         }
 
         [Fact]
-        public void Parse()
+        public void ToUnitUntyped_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            try
-            {
-                var parsed = KinematicViscosity.Parse("1 cSt", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Centistokes, CentistokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Centistokes, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = KinematicViscosity.Parse("1 сСт", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Centistokes, CentistokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Centistokes, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = KinematicViscosity.Parse("1 dSt", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Decistokes, DecistokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Decistokes, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = KinematicViscosity.Parse("1 дСт", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Decistokes, DecistokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Decistokes, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = KinematicViscosity.Parse("1 kSt", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kilostokes, KilostokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Kilostokes, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = KinematicViscosity.Parse("1 кСт", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Kilostokes, KilostokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Kilostokes, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = KinematicViscosity.Parse("1 µSt", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Microstokes, MicrostokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Microstokes, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = KinematicViscosity.Parse("1 мкСт", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Microstokes, MicrostokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Microstokes, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = KinematicViscosity.Parse("1 mSt", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Millistokes, MillistokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Millistokes, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = KinematicViscosity.Parse("1 мСт", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Millistokes, MillistokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Millistokes, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = KinematicViscosity.Parse("1 nSt", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Nanostokes, NanostokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Nanostokes, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = KinematicViscosity.Parse("1 нСт", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Nanostokes, NanostokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Nanostokes, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = KinematicViscosity.Parse("1 ft²/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SquareFeetPerSecond, SquareFeetPerSecondTolerance);
-                Assert.Equal(KinematicViscosityUnit.SquareFootPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = KinematicViscosity.Parse("1 m²/s", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SquareMetersPerSecond, SquareMetersPerSecondTolerance);
-                Assert.Equal(KinematicViscosityUnit.SquareMeterPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = KinematicViscosity.Parse("1 м²/с", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.SquareMetersPerSecond, SquareMetersPerSecondTolerance);
-                Assert.Equal(KinematicViscosityUnit.SquareMeterPerSecond, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = KinematicViscosity.Parse("1 St", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Stokes, StokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Stokes, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = KinematicViscosity.Parse("1 Ст", CultureInfo.GetCultureInfo("ru-RU"));
-                AssertEx.EqualTolerance(1, parsed.Stokes, StokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Stokes, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            IQuantity quantity = new KinematicViscosity(value: 1, unit: KinematicViscosity.BaseUnit);
+            Assert.Throws<ArgumentException>(() => quantity.ToUnitUntyped(unsupportedUnitSystem));
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 cSt", KinematicViscosityUnit.Centistokes, 4.2)]
+        [InlineData("en-US", "4.2 dSt", KinematicViscosityUnit.Decistokes, 4.2)]
+        [InlineData("en-US", "4.2 kSt", KinematicViscosityUnit.Kilostokes, 4.2)]
+        [InlineData("en-US", "4.2 µSt", KinematicViscosityUnit.Microstokes, 4.2)]
+        [InlineData("en-US", "4.2 mSt", KinematicViscosityUnit.Millistokes, 4.2)]
+        [InlineData("en-US", "4.2 nSt", KinematicViscosityUnit.Nanostokes, 4.2)]
+        [InlineData("en-US", "4.2 ft²/s", KinematicViscosityUnit.SquareFootPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 m²/s", KinematicViscosityUnit.SquareMeterPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 St", KinematicViscosityUnit.Stokes, 4.2)]
+        [InlineData("ru-RU", "4,2 сСт", KinematicViscosityUnit.Centistokes, 4.2)]
+        [InlineData("ru-RU", "4,2 дСт", KinematicViscosityUnit.Decistokes, 4.2)]
+        [InlineData("ru-RU", "4,2 кСт", KinematicViscosityUnit.Kilostokes, 4.2)]
+        [InlineData("ru-RU", "4,2 мкСт", KinematicViscosityUnit.Microstokes, 4.2)]
+        [InlineData("ru-RU", "4,2 мСт", KinematicViscosityUnit.Millistokes, 4.2)]
+        [InlineData("ru-RU", "4,2 нСт", KinematicViscosityUnit.Nanostokes, 4.2)]
+        [InlineData("ru-RU", "4,2 м²/с", KinematicViscosityUnit.SquareMeterPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 Ст", KinematicViscosityUnit.Stokes, 4.2)]
+        public void Parse(string culture, string quantityString, KinematicViscosityUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(KinematicViscosity.TryParse("1 cSt", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Centistokes, CentistokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Centistokes, parsed.Unit);
-            }
+            using var _ = new CultureScope(culture);
+            var parsed = KinematicViscosity.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
+        }
 
-            {
-                Assert.True(KinematicViscosity.TryParse("1 сСт", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Centistokes, CentistokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Centistokes, parsed.Unit);
-            }
-
-            {
-                Assert.True(KinematicViscosity.TryParse("1 dSt", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Decistokes, DecistokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Decistokes, parsed.Unit);
-            }
-
-            {
-                Assert.True(KinematicViscosity.TryParse("1 дСт", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Decistokes, DecistokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Decistokes, parsed.Unit);
-            }
-
-            {
-                Assert.True(KinematicViscosity.TryParse("1 kSt", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilostokes, KilostokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Kilostokes, parsed.Unit);
-            }
-
-            {
-                Assert.True(KinematicViscosity.TryParse("1 кСт", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kilostokes, KilostokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Kilostokes, parsed.Unit);
-            }
-
-            {
-                Assert.True(KinematicViscosity.TryParse("1 µSt", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microstokes, MicrostokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Microstokes, parsed.Unit);
-            }
-
-            {
-                Assert.True(KinematicViscosity.TryParse("1 мкСт", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microstokes, MicrostokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Microstokes, parsed.Unit);
-            }
-
-            {
-                Assert.True(KinematicViscosity.TryParse("1 mSt", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Millistokes, MillistokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Millistokes, parsed.Unit);
-            }
-
-            {
-                Assert.True(KinematicViscosity.TryParse("1 мСт", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Millistokes, MillistokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Millistokes, parsed.Unit);
-            }
-
-            {
-                Assert.True(KinematicViscosity.TryParse("1 nSt", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanostokes, NanostokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Nanostokes, parsed.Unit);
-            }
-
-            {
-                Assert.True(KinematicViscosity.TryParse("1 нСт", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Nanostokes, NanostokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Nanostokes, parsed.Unit);
-            }
-
-            {
-                Assert.True(KinematicViscosity.TryParse("1 ft²/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SquareFeetPerSecond, SquareFeetPerSecondTolerance);
-                Assert.Equal(KinematicViscosityUnit.SquareFootPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(KinematicViscosity.TryParse("1 m²/s", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SquareMetersPerSecond, SquareMetersPerSecondTolerance);
-                Assert.Equal(KinematicViscosityUnit.SquareMeterPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(KinematicViscosity.TryParse("1 м²/с", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SquareMetersPerSecond, SquareMetersPerSecondTolerance);
-                Assert.Equal(KinematicViscosityUnit.SquareMeterPerSecond, parsed.Unit);
-            }
-
-            {
-                Assert.True(KinematicViscosity.TryParse("1 St", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Stokes, StokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Stokes, parsed.Unit);
-            }
-
-            {
-                Assert.True(KinematicViscosity.TryParse("1 Ст", CultureInfo.GetCultureInfo("ru-RU"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Stokes, StokesTolerance);
-                Assert.Equal(KinematicViscosityUnit.Stokes, parsed.Unit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "4.2 cSt", KinematicViscosityUnit.Centistokes, 4.2)]
+        [InlineData("en-US", "4.2 dSt", KinematicViscosityUnit.Decistokes, 4.2)]
+        [InlineData("en-US", "4.2 kSt", KinematicViscosityUnit.Kilostokes, 4.2)]
+        [InlineData("en-US", "4.2 µSt", KinematicViscosityUnit.Microstokes, 4.2)]
+        [InlineData("en-US", "4.2 mSt", KinematicViscosityUnit.Millistokes, 4.2)]
+        [InlineData("en-US", "4.2 nSt", KinematicViscosityUnit.Nanostokes, 4.2)]
+        [InlineData("en-US", "4.2 ft²/s", KinematicViscosityUnit.SquareFootPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 m²/s", KinematicViscosityUnit.SquareMeterPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 St", KinematicViscosityUnit.Stokes, 4.2)]
+        [InlineData("ru-RU", "4,2 сСт", KinematicViscosityUnit.Centistokes, 4.2)]
+        [InlineData("ru-RU", "4,2 дСт", KinematicViscosityUnit.Decistokes, 4.2)]
+        [InlineData("ru-RU", "4,2 кСт", KinematicViscosityUnit.Kilostokes, 4.2)]
+        [InlineData("ru-RU", "4,2 мкСт", KinematicViscosityUnit.Microstokes, 4.2)]
+        [InlineData("ru-RU", "4,2 мСт", KinematicViscosityUnit.Millistokes, 4.2)]
+        [InlineData("ru-RU", "4,2 нСт", KinematicViscosityUnit.Nanostokes, 4.2)]
+        [InlineData("ru-RU", "4,2 м²/с", KinematicViscosityUnit.SquareMeterPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 Ст", KinematicViscosityUnit.Stokes, 4.2)]
+        public void TryParse(string culture, string quantityString, KinematicViscosityUnit expectedUnit, double expectedValue)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(KinematicViscosity.TryParse(quantityString, out KinematicViscosity parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -749,6 +560,43 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", KinematicViscosityUnit.Centistokes, "cSt")]
+        [InlineData("en-US", KinematicViscosityUnit.Decistokes, "dSt")]
+        [InlineData("en-US", KinematicViscosityUnit.Kilostokes, "kSt")]
+        [InlineData("en-US", KinematicViscosityUnit.Microstokes, "µSt")]
+        [InlineData("en-US", KinematicViscosityUnit.Millistokes, "mSt")]
+        [InlineData("en-US", KinematicViscosityUnit.Nanostokes, "nSt")]
+        [InlineData("en-US", KinematicViscosityUnit.SquareFootPerSecond, "ft²/s")]
+        [InlineData("en-US", KinematicViscosityUnit.SquareMeterPerSecond, "m²/s")]
+        [InlineData("en-US", KinematicViscosityUnit.Stokes, "St")]
+        [InlineData("ru-RU", KinematicViscosityUnit.Centistokes, "сСт")]
+        [InlineData("ru-RU", KinematicViscosityUnit.Decistokes, "дСт")]
+        [InlineData("ru-RU", KinematicViscosityUnit.Kilostokes, "кСт")]
+        [InlineData("ru-RU", KinematicViscosityUnit.Microstokes, "мкСт")]
+        [InlineData("ru-RU", KinematicViscosityUnit.Millistokes, "мСт")]
+        [InlineData("ru-RU", KinematicViscosityUnit.Nanostokes, "нСт")]
+        [InlineData("ru-RU", KinematicViscosityUnit.SquareMeterPerSecond, "м²/с")]
+        [InlineData("ru-RU", KinematicViscosityUnit.Stokes, "Ст")]
+        public void GetAbbreviationForCulture(string culture, KinematicViscosityUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = KinematicViscosity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(KinematicViscosity.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = KinematicViscosity.GetAbbreviation(unit);
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
+        }
+
+        [Theory]
         [MemberData(nameof(UnitTypes))]
         public void ToUnit(KinematicViscosityUnit unit)
         {
@@ -919,23 +767,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = KinematicViscosity.FromSquareMetersPerSecond(1);
-            Assert.True(v.Equals(KinematicViscosity.FromSquareMetersPerSecond(1), SquareMetersPerSecondTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(KinematicViscosity.Zero, SquareMetersPerSecondTolerance, ComparisonType.Relative));
-            Assert.True(KinematicViscosity.FromSquareMetersPerSecond(100).Equals(KinematicViscosity.FromSquareMetersPerSecond(120), 0.3, ComparisonType.Relative));
-            Assert.False(KinematicViscosity.FromSquareMetersPerSecond(100).Equals(KinematicViscosity.FromSquareMetersPerSecond(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = KinematicViscosity.FromSquareMetersPerSecond(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(KinematicViscosity.FromSquareMetersPerSecond(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             KinematicViscosity squaremeterpersecond = KinematicViscosity.FromSquareMetersPerSecond(1);
@@ -947,6 +778,32 @@ namespace UnitsNet.Tests
         {
             KinematicViscosity squaremeterpersecond = KinematicViscosity.FromSquareMetersPerSecond(1);
             Assert.False(squaremeterpersecond.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = KinematicViscosity.FromSquareMetersPerSecond(firstValue);
+            var otherQuantity = KinematicViscosity.FromSquareMetersPerSecond(secondValue);
+            KinematicViscosity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, KinematicViscosity.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = KinematicViscosity.FromSquareMetersPerSecond(1);
+            var negativeTolerance = KinematicViscosity.FromSquareMetersPerSecond(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -1043,7 +900,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = KinematicViscosity.FromSquareMetersPerSecond(1.0);
-            Assert.Equal(new {KinematicViscosity.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

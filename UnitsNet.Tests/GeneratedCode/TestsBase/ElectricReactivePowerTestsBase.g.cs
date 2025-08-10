@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -108,7 +109,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new ElectricReactivePower(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -121,15 +122,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricReactivePower_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ElectricReactivePowerUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricReactivePowerUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricReactivePower(1, ElectricReactivePowerUnit.VoltampereReactive);
 
-            QuantityInfo<ElectricReactivePowerUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<ElectricReactivePower, ElectricReactivePowerUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(ElectricReactivePower.Zero, quantityInfo.Zero);
             Assert.Equal("ElectricReactivePower", quantityInfo.Name);
-
-            var units = Enum.GetValues<ElectricReactivePowerUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(ElectricReactivePower.Zero, quantityInfo.Zero);
+            Assert.Equal(ElectricReactivePower.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(ElectricReactivePower.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ElectricReactivePowerUnit>)quantity).QuantityInfo);
         }
 
         [Fact]
@@ -145,22 +150,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ElectricReactivePower.From(1, ElectricReactivePowerUnit.GigavoltampereReactive);
-            AssertEx.EqualTolerance(1, quantity00.GigavoltamperesReactive, GigavoltamperesReactiveTolerance);
-            Assert.Equal(ElectricReactivePowerUnit.GigavoltampereReactive, quantity00.Unit);
-
-            var quantity01 = ElectricReactivePower.From(1, ElectricReactivePowerUnit.KilovoltampereReactive);
-            AssertEx.EqualTolerance(1, quantity01.KilovoltamperesReactive, KilovoltamperesReactiveTolerance);
-            Assert.Equal(ElectricReactivePowerUnit.KilovoltampereReactive, quantity01.Unit);
-
-            var quantity02 = ElectricReactivePower.From(1, ElectricReactivePowerUnit.MegavoltampereReactive);
-            AssertEx.EqualTolerance(1, quantity02.MegavoltamperesReactive, MegavoltamperesReactiveTolerance);
-            Assert.Equal(ElectricReactivePowerUnit.MegavoltampereReactive, quantity02.Unit);
-
-            var quantity03 = ElectricReactivePower.From(1, ElectricReactivePowerUnit.VoltampereReactive);
-            AssertEx.EqualTolerance(1, quantity03.VoltamperesReactive, VoltamperesReactiveTolerance);
-            Assert.Equal(ElectricReactivePowerUnit.VoltampereReactive, quantity03.Unit);
-
+            Assert.All(EnumHelper.GetValues<ElectricReactivePowerUnit>(), unit =>
+            {
+                var quantity = ElectricReactivePower.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -248,15 +243,22 @@ namespace UnitsNet.Tests
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
                 Assert.Equal(expectedValue, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity quantityToConvert = quantity;
-
-                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);
             });
+        }
+
+        [Fact]
+        public virtual void ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new ElectricReactivePower(value: 1, unit: ElectricReactivePower.BaseUnit);
+            var expectedUnit = ElectricReactivePower.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            IQuantity quantityToConvert = quantity;
+
+            IQuantity convertedQuantity = quantityToConvert.ToUnitUntyped(UnitSystem.SI);
+
+            Assert.Equal(expectedUnit, convertedQuantity.Unit);
+            Assert.Equal(expectedValue, convertedQuantity.Value);
         }
 
         [Fact]
@@ -271,11 +273,15 @@ namespace UnitsNet.Tests
             {
                 IQuantity<ElectricReactivePowerUnit> quantity = new ElectricReactivePower(value: 1, unit: ElectricReactivePower.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
-            }, () =>
-            {
-                IQuantity quantity = new ElectricReactivePower(value: 1, unit: ElectricReactivePower.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
+        }
+
+        [Fact]
+        public void ToUnitUntyped_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            IQuantity quantity = new ElectricReactivePower(value: 1, unit: ElectricReactivePower.BaseUnit);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
         }
 
         [Fact]
@@ -290,73 +296,41 @@ namespace UnitsNet.Tests
             {
                 IQuantity<ElectricReactivePowerUnit> quantity = new ElectricReactivePower(value: 1, unit: ElectricReactivePower.BaseUnit);
                 Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
-            }, () =>
-            {
-                IQuantity quantity = new ElectricReactivePower(value: 1, unit: ElectricReactivePower.BaseUnit);
-                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
             });
         }
 
         [Fact]
-        public void Parse()
+        public void ToUnitUntyped_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            try
-            {
-                var parsed = ElectricReactivePower.Parse("1 Gvar", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.GigavoltamperesReactive, GigavoltamperesReactiveTolerance);
-                Assert.Equal(ElectricReactivePowerUnit.GigavoltampereReactive, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricReactivePower.Parse("1 kvar", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.KilovoltamperesReactive, KilovoltamperesReactiveTolerance);
-                Assert.Equal(ElectricReactivePowerUnit.KilovoltampereReactive, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricReactivePower.Parse("1 Mvar", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MegavoltamperesReactive, MegavoltamperesReactiveTolerance);
-                Assert.Equal(ElectricReactivePowerUnit.MegavoltampereReactive, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ElectricReactivePower.Parse("1 var", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.VoltamperesReactive, VoltamperesReactiveTolerance);
-                Assert.Equal(ElectricReactivePowerUnit.VoltampereReactive, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            IQuantity quantity = new ElectricReactivePower(value: 1, unit: ElectricReactivePower.BaseUnit);
+            Assert.Throws<ArgumentException>(() => quantity.ToUnitUntyped(unsupportedUnitSystem));
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 Gvar", ElectricReactivePowerUnit.GigavoltampereReactive, 4.2)]
+        [InlineData("en-US", "4.2 kvar", ElectricReactivePowerUnit.KilovoltampereReactive, 4.2)]
+        [InlineData("en-US", "4.2 Mvar", ElectricReactivePowerUnit.MegavoltampereReactive, 4.2)]
+        [InlineData("en-US", "4.2 var", ElectricReactivePowerUnit.VoltampereReactive, 4.2)]
+        public void Parse(string culture, string quantityString, ElectricReactivePowerUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(ElectricReactivePower.TryParse("1 Gvar", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.GigavoltamperesReactive, GigavoltamperesReactiveTolerance);
-                Assert.Equal(ElectricReactivePowerUnit.GigavoltampereReactive, parsed.Unit);
-            }
+            using var _ = new CultureScope(culture);
+            var parsed = ElectricReactivePower.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
+        }
 
-            {
-                Assert.True(ElectricReactivePower.TryParse("1 kvar", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.KilovoltamperesReactive, KilovoltamperesReactiveTolerance);
-                Assert.Equal(ElectricReactivePowerUnit.KilovoltampereReactive, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricReactivePower.TryParse("1 Mvar", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MegavoltamperesReactive, MegavoltamperesReactiveTolerance);
-                Assert.Equal(ElectricReactivePowerUnit.MegavoltampereReactive, parsed.Unit);
-            }
-
-            {
-                Assert.True(ElectricReactivePower.TryParse("1 var", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.VoltamperesReactive, VoltamperesReactiveTolerance);
-                Assert.Equal(ElectricReactivePowerUnit.VoltampereReactive, parsed.Unit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "4.2 Gvar", ElectricReactivePowerUnit.GigavoltampereReactive, 4.2)]
+        [InlineData("en-US", "4.2 kvar", ElectricReactivePowerUnit.KilovoltampereReactive, 4.2)]
+        [InlineData("en-US", "4.2 Mvar", ElectricReactivePowerUnit.MegavoltampereReactive, 4.2)]
+        [InlineData("en-US", "4.2 var", ElectricReactivePowerUnit.VoltampereReactive, 4.2)]
+        public void TryParse(string culture, string quantityString, ElectricReactivePowerUnit expectedUnit, double expectedValue)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ElectricReactivePower.TryParse(quantityString, out ElectricReactivePower parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -455,6 +429,30 @@ namespace UnitsNet.Tests
         {
             Assert.True(ElectricReactivePower.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ElectricReactivePowerUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", ElectricReactivePowerUnit.GigavoltampereReactive, "Gvar")]
+        [InlineData("en-US", ElectricReactivePowerUnit.KilovoltampereReactive, "kvar")]
+        [InlineData("en-US", ElectricReactivePowerUnit.MegavoltampereReactive, "Mvar")]
+        [InlineData("en-US", ElectricReactivePowerUnit.VoltampereReactive, "var")]
+        public void GetAbbreviationForCulture(string culture, ElectricReactivePowerUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ElectricReactivePower.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ElectricReactivePower.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ElectricReactivePower.GetAbbreviation(unit);
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]
@@ -623,23 +621,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = ElectricReactivePower.FromVoltamperesReactive(1);
-            Assert.True(v.Equals(ElectricReactivePower.FromVoltamperesReactive(1), VoltamperesReactiveTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ElectricReactivePower.Zero, VoltamperesReactiveTolerance, ComparisonType.Relative));
-            Assert.True(ElectricReactivePower.FromVoltamperesReactive(100).Equals(ElectricReactivePower.FromVoltamperesReactive(120), 0.3, ComparisonType.Relative));
-            Assert.False(ElectricReactivePower.FromVoltamperesReactive(100).Equals(ElectricReactivePower.FromVoltamperesReactive(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = ElectricReactivePower.FromVoltamperesReactive(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ElectricReactivePower.FromVoltamperesReactive(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             ElectricReactivePower voltamperereactive = ElectricReactivePower.FromVoltamperesReactive(1);
@@ -651,6 +632,32 @@ namespace UnitsNet.Tests
         {
             ElectricReactivePower voltamperereactive = ElectricReactivePower.FromVoltamperesReactive(1);
             Assert.False(voltamperereactive.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = ElectricReactivePower.FromVoltamperesReactive(firstValue);
+            var otherQuantity = ElectricReactivePower.FromVoltamperesReactive(secondValue);
+            ElectricReactivePower maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, ElectricReactivePower.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = ElectricReactivePower.FromVoltamperesReactive(1);
+            var negativeTolerance = ElectricReactivePower.FromVoltamperesReactive(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -737,7 +744,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricReactivePower.FromVoltamperesReactive(1.0);
-            Assert.Equal(new {ElectricReactivePower.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

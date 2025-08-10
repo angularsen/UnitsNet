@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -92,15 +93,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void PowerRatio_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            PowerRatioUnit[] unitsOrderedByName = EnumHelper.GetValues<PowerRatioUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new PowerRatio(1, PowerRatioUnit.DecibelWatt);
 
-            QuantityInfo<PowerRatioUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<PowerRatio, PowerRatioUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(PowerRatio.Zero, quantityInfo.Zero);
             Assert.Equal("PowerRatio", quantityInfo.Name);
-
-            var units = Enum.GetValues<PowerRatioUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(PowerRatio.Zero, quantityInfo.Zero);
+            Assert.Equal(PowerRatio.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(PowerRatio.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<PowerRatioUnit>)quantity).QuantityInfo);
         }
 
         [Fact]
@@ -114,14 +119,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = PowerRatio.From(1, PowerRatioUnit.DecibelMilliwatt);
-            AssertEx.EqualTolerance(1, quantity00.DecibelMilliwatts, DecibelMilliwattsTolerance);
-            Assert.Equal(PowerRatioUnit.DecibelMilliwatt, quantity00.Unit);
-
-            var quantity01 = PowerRatio.From(1, PowerRatioUnit.DecibelWatt);
-            AssertEx.EqualTolerance(1, quantity01.DecibelWatts, DecibelWattsTolerance);
-            Assert.Equal(PowerRatioUnit.DecibelWatt, quantity01.Unit);
-
+            Assert.All(EnumHelper.GetValues<PowerRatioUnit>(), unit =>
+            {
+                var quantity = PowerRatio.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -169,7 +172,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToUnitSystem_ReturnsValueInDimensionlessUnit()
+        public void ToUnit_UnitSystem_ReturnsValueInDimensionlessUnit()
         {
             Assert.Multiple(() =>
             {
@@ -187,16 +190,20 @@ namespace UnitsNet.Tests
 
                 Assert.Equal(PowerRatioUnit.DecibelWatt, convertedQuantity.Unit);
                 Assert.Equal(quantity.Value, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity quantity = new PowerRatio(value: 1, unit: PowerRatioUnit.DecibelWatt);
-
-                IQuantity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(PowerRatioUnit.DecibelWatt, convertedQuantity.Unit);
-                Assert.Equal(quantity.Value, convertedQuantity.Value);
             });
         }
+
+        [Fact]
+        public void ToUnitUntyped_UnitSystem_ReturnsValueInDimensionlessUnit()
+        {
+            IQuantity quantity = new PowerRatio(value: 1, unit: PowerRatioUnit.DecibelWatt);
+
+            IQuantity convertedQuantity = quantity.ToUnitUntyped(UnitSystem.SI);
+
+            Assert.Equal(PowerRatioUnit.DecibelWatt, convertedQuantity.Unit);
+            Assert.Equal(quantity.Value, convertedQuantity.Value);
+        }
+
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
@@ -205,65 +212,40 @@ namespace UnitsNet.Tests
             Assert.Multiple(() =>
             {
                 var quantity = new PowerRatio(value: 1, unit: PowerRatio.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
             }, () =>
             {
                 IQuantity<PowerRatioUnit> quantity = new PowerRatio(value: 1, unit: PowerRatio.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
             }, () =>
             {
                 IQuantity quantity = new PowerRatio(value: 1, unit: PowerRatio.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 dBmW", PowerRatioUnit.DecibelMilliwatt, 4.2)]
+        [InlineData("en-US", "4.2 dBm", PowerRatioUnit.DecibelMilliwatt, 4.2)]
+        [InlineData("en-US", "4.2 dBW", PowerRatioUnit.DecibelWatt, 4.2)]
+        public void Parse(string culture, string quantityString, PowerRatioUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = PowerRatio.Parse("1 dBmW", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecibelMilliwatts, DecibelMilliwattsTolerance);
-                Assert.Equal(PowerRatioUnit.DecibelMilliwatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = PowerRatio.Parse("1 dBm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecibelMilliwatts, DecibelMilliwattsTolerance);
-                Assert.Equal(PowerRatioUnit.DecibelMilliwatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = PowerRatio.Parse("1 dBW", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DecibelWatts, DecibelWattsTolerance);
-                Assert.Equal(PowerRatioUnit.DecibelWatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = PowerRatio.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 dBmW", PowerRatioUnit.DecibelMilliwatt, 4.2)]
+        [InlineData("en-US", "4.2 dBm", PowerRatioUnit.DecibelMilliwatt, 4.2)]
+        [InlineData("en-US", "4.2 dBW", PowerRatioUnit.DecibelWatt, 4.2)]
+        public void TryParse(string culture, string quantityString, PowerRatioUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(PowerRatio.TryParse("1 dBmW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecibelMilliwatts, DecibelMilliwattsTolerance);
-                Assert.Equal(PowerRatioUnit.DecibelMilliwatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(PowerRatio.TryParse("1 dBm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecibelMilliwatts, DecibelMilliwattsTolerance);
-                Assert.Equal(PowerRatioUnit.DecibelMilliwatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(PowerRatio.TryParse("1 dBW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DecibelWatts, DecibelWattsTolerance);
-                Assert.Equal(PowerRatioUnit.DecibelWatt, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(PowerRatio.TryParse(quantityString, out PowerRatio parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -354,6 +336,28 @@ namespace UnitsNet.Tests
         {
             Assert.True(PowerRatio.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out PowerRatioUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", PowerRatioUnit.DecibelMilliwatt, "dBmW")]
+        [InlineData("en-US", PowerRatioUnit.DecibelWatt, "dBW")]
+        public void GetAbbreviationForCulture(string culture, PowerRatioUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = PowerRatio.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(PowerRatio.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = PowerRatio.GetAbbreviation(unit);
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]
@@ -524,23 +528,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = PowerRatio.FromDecibelWatts(1);
-            Assert.True(v.Equals(PowerRatio.FromDecibelWatts(1), DecibelWattsTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(PowerRatio.Zero, DecibelWattsTolerance, ComparisonType.Relative));
-            Assert.True(PowerRatio.FromDecibelWatts(100).Equals(PowerRatio.FromDecibelWatts(120), 0.3, ComparisonType.Relative));
-            Assert.False(PowerRatio.FromDecibelWatts(100).Equals(PowerRatio.FromDecibelWatts(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = PowerRatio.FromDecibelWatts(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(PowerRatio.FromDecibelWatts(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             PowerRatio decibelwatt = PowerRatio.FromDecibelWatts(1);
@@ -552,6 +539,34 @@ namespace UnitsNet.Tests
         {
             PowerRatio decibelwatt = PowerRatio.FromDecibelWatts(1);
             Assert.False(decibelwatt.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_Logarithmic_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = PowerRatio.FromDecibelWatts(firstValue);
+            var otherQuantity = PowerRatio.FromDecibelWatts(secondValue);
+            PowerRatio maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, PowerRatio.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+            // note: it's currently not possible to test this due to the rounding error from (quantity - otherQuantity)
+            // Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+        }
+
+        [Fact]
+        public void Equals_Logarithmic_WithNegativeTolerance_DoesNotThrowArgumentOutOfRangeException()
+        {
+            // note: unlike with vector quantities- a small tolerance maybe positive in one unit and negative in another
+            var quantity = PowerRatio.FromDecibelWatts(1);
+            var negativeTolerance = PowerRatio.FromDecibelWatts(-1);
+            Assert.True(quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -634,7 +649,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = PowerRatio.FromDecibelWatts(1.0);
-            Assert.Equal(new {PowerRatio.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

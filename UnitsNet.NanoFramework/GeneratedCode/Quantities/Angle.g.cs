@@ -287,7 +287,7 @@ namespace UnitsNet
                         AngleUnit.NatoMil => _value * 3.1415926535897931 / 3200,
                         AngleUnit.Radian => _value,
                         AngleUnit.Revolution => _value * 2 * 3.1415926535897931,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -315,7 +315,7 @@ namespace UnitsNet
                         AngleUnit.NatoMil => baseUnitValue * 3200 / 3.1415926535897931,
                         AngleUnit.Radian => baseUnitValue,
                         AngleUnit.Revolution => baseUnitValue / (2 * 3.1415926535897931),
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

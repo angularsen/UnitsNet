@@ -198,6 +198,7 @@
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Torr",
       "FromUnitToBaseFunc": "{x} * 101325 / 760",
       "FromBaseToUnitFunc": "{x} * 760 / 101325",
+      "Prefixes": [ "Milli"],
       "Localization": [
         {
           "Culture": "en-US",

@@ -44,7 +44,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             Assert.NotNull(result);
             Assert.IsType<Power>(result);
-            Assert.True(Power.FromWatts(10.2365).Equals((Power)result, 1e-5, ComparisonType.Absolute));
+            Assert.True(Power.FromWatts(10.2365).Equals((Power)result));
         }
 
         [Fact]

@@ -32,6 +32,12 @@ public class SumOfTemperatureDeltasWithSameUnitsBenchmarks
     [Benchmark(Baseline = true)]
     public TemperatureDelta SumOfDeltas()
     {
+        return _quantities.Sum();
+    }
+
+    [Benchmark(Baseline = false)]
+    public TemperatureDelta GenericSumOfDeltas()
+    {
 #if NET
         return UnitsNet.GenericMath.GenericMathExtensions.Sum(_quantities);
 #else

@@ -169,7 +169,7 @@ namespace UnitsNet
                         IlluminanceUnit.Lux => _value,
                         IlluminanceUnit.Megalux => (_value) * 1e6d,
                         IlluminanceUnit.Millilux => (_value) * 1e-3d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -186,7 +186,7 @@ namespace UnitsNet
                         IlluminanceUnit.Lux => baseUnitValue,
                         IlluminanceUnit.Megalux => (baseUnitValue) / 1e6d,
                         IlluminanceUnit.Millilux => (baseUnitValue) / 1e-3d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

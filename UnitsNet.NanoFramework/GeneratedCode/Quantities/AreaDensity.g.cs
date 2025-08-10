@@ -155,7 +155,7 @@ namespace UnitsNet
                         AreaDensityUnit.GramPerSquareMeter => _value / 1000,
                         AreaDensityUnit.KilogramPerSquareMeter => _value,
                         AreaDensityUnit.MilligramPerSquareMeter => _value / 1000000,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -171,7 +171,7 @@ namespace UnitsNet
                         AreaDensityUnit.GramPerSquareMeter => baseUnitValue * 1000,
                         AreaDensityUnit.KilogramPerSquareMeter => baseUnitValue,
                         AreaDensityUnit.MilligramPerSquareMeter => baseUnitValue * 1000000,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

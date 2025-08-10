@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -136,7 +137,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new ReciprocalArea(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -149,15 +150,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void ReciprocalArea_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ReciprocalAreaUnit[] unitsOrderedByName = EnumHelper.GetValues<ReciprocalAreaUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ReciprocalArea(1, ReciprocalAreaUnit.InverseSquareMeter);
 
-            QuantityInfo<ReciprocalAreaUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<ReciprocalArea, ReciprocalAreaUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(ReciprocalArea.Zero, quantityInfo.Zero);
             Assert.Equal("ReciprocalArea", quantityInfo.Name);
-
-            var units = Enum.GetValues<ReciprocalAreaUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(ReciprocalArea.Zero, quantityInfo.Zero);
+            Assert.Equal(ReciprocalArea.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(ReciprocalArea.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ReciprocalAreaUnit>)quantity).QuantityInfo);
         }
 
         [Fact]
@@ -180,50 +185,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity00.InverseSquareCentimeters, InverseSquareCentimetersTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareCentimeter, quantity00.Unit);
-
-            var quantity01 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareDecimeter);
-            AssertEx.EqualTolerance(1, quantity01.InverseSquareDecimeters, InverseSquareDecimetersTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareDecimeter, quantity01.Unit);
-
-            var quantity02 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareFoot);
-            AssertEx.EqualTolerance(1, quantity02.InverseSquareFeet, InverseSquareFeetTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareFoot, quantity02.Unit);
-
-            var quantity03 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareInch);
-            AssertEx.EqualTolerance(1, quantity03.InverseSquareInches, InverseSquareInchesTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareInch, quantity03.Unit);
-
-            var quantity04 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareKilometer);
-            AssertEx.EqualTolerance(1, quantity04.InverseSquareKilometers, InverseSquareKilometersTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareKilometer, quantity04.Unit);
-
-            var quantity05 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareMeter);
-            AssertEx.EqualTolerance(1, quantity05.InverseSquareMeters, InverseSquareMetersTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareMeter, quantity05.Unit);
-
-            var quantity06 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareMicrometer);
-            AssertEx.EqualTolerance(1, quantity06.InverseSquareMicrometers, InverseSquareMicrometersTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareMicrometer, quantity06.Unit);
-
-            var quantity07 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareMile);
-            AssertEx.EqualTolerance(1, quantity07.InverseSquareMiles, InverseSquareMilesTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareMile, quantity07.Unit);
-
-            var quantity08 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareMillimeter);
-            AssertEx.EqualTolerance(1, quantity08.InverseSquareMillimeters, InverseSquareMillimetersTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareMillimeter, quantity08.Unit);
-
-            var quantity09 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseSquareYard);
-            AssertEx.EqualTolerance(1, quantity09.InverseSquareYards, InverseSquareYardsTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseSquareYard, quantity09.Unit);
-
-            var quantity10 = ReciprocalArea.From(1, ReciprocalAreaUnit.InverseUsSurveySquareFoot);
-            AssertEx.EqualTolerance(1, quantity10.InverseUsSurveySquareFeet, InverseUsSurveySquareFeetTolerance);
-            Assert.Equal(ReciprocalAreaUnit.InverseUsSurveySquareFoot, quantity10.Unit);
-
+            Assert.All(EnumHelper.GetValues<ReciprocalAreaUnit>(), unit =>
+            {
+                var quantity = ReciprocalArea.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -318,15 +285,22 @@ namespace UnitsNet.Tests
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
                 Assert.Equal(expectedValue, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity quantityToConvert = quantity;
-
-                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);
             });
+        }
+
+        [Fact]
+        public virtual void ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new ReciprocalArea(value: 1, unit: ReciprocalArea.BaseUnit);
+            var expectedUnit = ReciprocalArea.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            IQuantity quantityToConvert = quantity;
+
+            IQuantity convertedQuantity = quantityToConvert.ToUnitUntyped(UnitSystem.SI);
+
+            Assert.Equal(expectedUnit, convertedQuantity.Unit);
+            Assert.Equal(expectedValue, convertedQuantity.Value);
         }
 
         [Fact]
@@ -341,11 +315,15 @@ namespace UnitsNet.Tests
             {
                 IQuantity<ReciprocalAreaUnit> quantity = new ReciprocalArea(value: 1, unit: ReciprocalArea.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
-            }, () =>
-            {
-                IQuantity quantity = new ReciprocalArea(value: 1, unit: ReciprocalArea.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
+        }
+
+        [Fact]
+        public void ToUnitUntyped_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            IQuantity quantity = new ReciprocalArea(value: 1, unit: ReciprocalArea.BaseUnit);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
         }
 
         [Fact]
@@ -360,164 +338,55 @@ namespace UnitsNet.Tests
             {
                 IQuantity<ReciprocalAreaUnit> quantity = new ReciprocalArea(value: 1, unit: ReciprocalArea.BaseUnit);
                 Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
-            }, () =>
-            {
-                IQuantity quantity = new ReciprocalArea(value: 1, unit: ReciprocalArea.BaseUnit);
-                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
             });
         }
 
         [Fact]
-        public void Parse()
+        public void ToUnitUntyped_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            try
-            {
-                var parsed = ReciprocalArea.Parse("1 cm⁻²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.InverseSquareCentimeters, InverseSquareCentimetersTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ReciprocalArea.Parse("1 dm⁻²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.InverseSquareDecimeters, InverseSquareDecimetersTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareDecimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ReciprocalArea.Parse("1 ft⁻²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.InverseSquareFeet, InverseSquareFeetTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ReciprocalArea.Parse("1 in⁻²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.InverseSquareInches, InverseSquareInchesTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareInch, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ReciprocalArea.Parse("1 km⁻²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.InverseSquareKilometers, InverseSquareKilometersTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareKilometer, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ReciprocalArea.Parse("1 m⁻²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.InverseSquareMeters, InverseSquareMetersTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ReciprocalArea.Parse("1 µm⁻²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.InverseSquareMicrometers, InverseSquareMicrometersTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareMicrometer, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ReciprocalArea.Parse("1 mi⁻²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.InverseSquareMiles, InverseSquareMilesTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareMile, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ReciprocalArea.Parse("1 mm⁻²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.InverseSquareMillimeters, InverseSquareMillimetersTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ReciprocalArea.Parse("1 yd⁻²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.InverseSquareYards, InverseSquareYardsTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareYard, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ReciprocalArea.Parse("1 ft⁻² (US)", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.InverseUsSurveySquareFeet, InverseUsSurveySquareFeetTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseUsSurveySquareFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            IQuantity quantity = new ReciprocalArea(value: 1, unit: ReciprocalArea.BaseUnit);
+            Assert.Throws<ArgumentException>(() => quantity.ToUnitUntyped(unsupportedUnitSystem));
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 cm⁻²", ReciprocalAreaUnit.InverseSquareCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 dm⁻²", ReciprocalAreaUnit.InverseSquareDecimeter, 4.2)]
+        [InlineData("en-US", "4.2 ft⁻²", ReciprocalAreaUnit.InverseSquareFoot, 4.2)]
+        [InlineData("en-US", "4.2 in⁻²", ReciprocalAreaUnit.InverseSquareInch, 4.2)]
+        [InlineData("en-US", "4.2 km⁻²", ReciprocalAreaUnit.InverseSquareKilometer, 4.2)]
+        [InlineData("en-US", "4.2 m⁻²", ReciprocalAreaUnit.InverseSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 µm⁻²", ReciprocalAreaUnit.InverseSquareMicrometer, 4.2)]
+        [InlineData("en-US", "4.2 mi⁻²", ReciprocalAreaUnit.InverseSquareMile, 4.2)]
+        [InlineData("en-US", "4.2 mm⁻²", ReciprocalAreaUnit.InverseSquareMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 yd⁻²", ReciprocalAreaUnit.InverseSquareYard, 4.2)]
+        [InlineData("en-US", "4.2 ft⁻² (US)", ReciprocalAreaUnit.InverseUsSurveySquareFoot, 4.2)]
+        public void Parse(string culture, string quantityString, ReciprocalAreaUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(ReciprocalArea.TryParse("1 cm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InverseSquareCentimeters, InverseSquareCentimetersTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareCentimeter, parsed.Unit);
-            }
+            using var _ = new CultureScope(culture);
+            var parsed = ReciprocalArea.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
+        }
 
-            {
-                Assert.True(ReciprocalArea.TryParse("1 dm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InverseSquareDecimeters, InverseSquareDecimetersTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareDecimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ReciprocalArea.TryParse("1 ft⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InverseSquareFeet, InverseSquareFeetTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareFoot, parsed.Unit);
-            }
-
-            {
-                Assert.True(ReciprocalArea.TryParse("1 in⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InverseSquareInches, InverseSquareInchesTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareInch, parsed.Unit);
-            }
-
-            {
-                Assert.True(ReciprocalArea.TryParse("1 km⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InverseSquareKilometers, InverseSquareKilometersTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareKilometer, parsed.Unit);
-            }
-
-            {
-                Assert.True(ReciprocalArea.TryParse("1 m⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InverseSquareMeters, InverseSquareMetersTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ReciprocalArea.TryParse("1 µm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InverseSquareMicrometers, InverseSquareMicrometersTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareMicrometer, parsed.Unit);
-            }
-
-            {
-                Assert.True(ReciprocalArea.TryParse("1 mi⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InverseSquareMiles, InverseSquareMilesTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareMile, parsed.Unit);
-            }
-
-            {
-                Assert.True(ReciprocalArea.TryParse("1 mm⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InverseSquareMillimeters, InverseSquareMillimetersTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(ReciprocalArea.TryParse("1 yd⁻²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InverseSquareYards, InverseSquareYardsTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseSquareYard, parsed.Unit);
-            }
-
-            {
-                Assert.True(ReciprocalArea.TryParse("1 ft⁻² (US)", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.InverseUsSurveySquareFeet, InverseUsSurveySquareFeetTolerance);
-                Assert.Equal(ReciprocalAreaUnit.InverseUsSurveySquareFoot, parsed.Unit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "4.2 cm⁻²", ReciprocalAreaUnit.InverseSquareCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 dm⁻²", ReciprocalAreaUnit.InverseSquareDecimeter, 4.2)]
+        [InlineData("en-US", "4.2 ft⁻²", ReciprocalAreaUnit.InverseSquareFoot, 4.2)]
+        [InlineData("en-US", "4.2 in⁻²", ReciprocalAreaUnit.InverseSquareInch, 4.2)]
+        [InlineData("en-US", "4.2 km⁻²", ReciprocalAreaUnit.InverseSquareKilometer, 4.2)]
+        [InlineData("en-US", "4.2 m⁻²", ReciprocalAreaUnit.InverseSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 µm⁻²", ReciprocalAreaUnit.InverseSquareMicrometer, 4.2)]
+        [InlineData("en-US", "4.2 mi⁻²", ReciprocalAreaUnit.InverseSquareMile, 4.2)]
+        [InlineData("en-US", "4.2 mm⁻²", ReciprocalAreaUnit.InverseSquareMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 yd⁻²", ReciprocalAreaUnit.InverseSquareYard, 4.2)]
+        [InlineData("en-US", "4.2 ft⁻² (US)", ReciprocalAreaUnit.InverseUsSurveySquareFoot, 4.2)]
+        public void TryParse(string culture, string quantityString, ReciprocalAreaUnit expectedUnit, double expectedValue)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ReciprocalArea.TryParse(quantityString, out ReciprocalArea parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -672,6 +541,37 @@ namespace UnitsNet.Tests
         {
             Assert.True(ReciprocalArea.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ReciprocalAreaUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", ReciprocalAreaUnit.InverseSquareCentimeter, "cm⁻²")]
+        [InlineData("en-US", ReciprocalAreaUnit.InverseSquareDecimeter, "dm⁻²")]
+        [InlineData("en-US", ReciprocalAreaUnit.InverseSquareFoot, "ft⁻²")]
+        [InlineData("en-US", ReciprocalAreaUnit.InverseSquareInch, "in⁻²")]
+        [InlineData("en-US", ReciprocalAreaUnit.InverseSquareKilometer, "km⁻²")]
+        [InlineData("en-US", ReciprocalAreaUnit.InverseSquareMeter, "m⁻²")]
+        [InlineData("en-US", ReciprocalAreaUnit.InverseSquareMicrometer, "µm⁻²")]
+        [InlineData("en-US", ReciprocalAreaUnit.InverseSquareMile, "mi⁻²")]
+        [InlineData("en-US", ReciprocalAreaUnit.InverseSquareMillimeter, "mm⁻²")]
+        [InlineData("en-US", ReciprocalAreaUnit.InverseSquareYard, "yd⁻²")]
+        [InlineData("en-US", ReciprocalAreaUnit.InverseUsSurveySquareFoot, "ft⁻² (US)")]
+        public void GetAbbreviationForCulture(string culture, ReciprocalAreaUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ReciprocalArea.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ReciprocalArea.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ReciprocalArea.GetAbbreviation(unit);
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]
@@ -847,23 +747,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = ReciprocalArea.FromInverseSquareMeters(1);
-            Assert.True(v.Equals(ReciprocalArea.FromInverseSquareMeters(1), InverseSquareMetersTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ReciprocalArea.Zero, InverseSquareMetersTolerance, ComparisonType.Relative));
-            Assert.True(ReciprocalArea.FromInverseSquareMeters(100).Equals(ReciprocalArea.FromInverseSquareMeters(120), 0.3, ComparisonType.Relative));
-            Assert.False(ReciprocalArea.FromInverseSquareMeters(100).Equals(ReciprocalArea.FromInverseSquareMeters(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = ReciprocalArea.FromInverseSquareMeters(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ReciprocalArea.FromInverseSquareMeters(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             ReciprocalArea inversesquaremeter = ReciprocalArea.FromInverseSquareMeters(1);
@@ -875,6 +758,32 @@ namespace UnitsNet.Tests
         {
             ReciprocalArea inversesquaremeter = ReciprocalArea.FromInverseSquareMeters(1);
             Assert.False(inversesquaremeter.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = ReciprocalArea.FromInverseSquareMeters(firstValue);
+            var otherQuantity = ReciprocalArea.FromInverseSquareMeters(secondValue);
+            ReciprocalArea maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, ReciprocalArea.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = ReciprocalArea.FromInverseSquareMeters(1);
+            var negativeTolerance = ReciprocalArea.FromInverseSquareMeters(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -975,7 +884,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ReciprocalArea.FromInverseSquareMeters(1.0);
-            Assert.Equal(new {ReciprocalArea.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

@@ -143,7 +143,7 @@ namespace UnitsNet
                 yield return new (SpecificEnergyUnit.KilowattHourPerKilogram, "KilowattHourPerKilogram", "KilowattHoursPerKilogram", BaseUnits.Undefined);
                 yield return new (SpecificEnergyUnit.KilowattHourPerPound, "KilowattHourPerPound", "KilowattHoursPerPound", BaseUnits.Undefined);
                 yield return new (SpecificEnergyUnit.MegajoulePerKilogram, "MegajoulePerKilogram", "MegajoulesPerKilogram", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second));
-                yield return new (SpecificEnergyUnit.MegaJoulePerTonne, "MegaJoulePerTonne", "MegaJoulesPerTonne", BaseUnits.Undefined);
+                yield return new (SpecificEnergyUnit.MegajoulePerTonne, "MegajoulePerTonne", "MegajoulesPerTonne", BaseUnits.Undefined);
                 yield return new (SpecificEnergyUnit.MegawattDayPerKilogram, "MegawattDayPerKilogram", "MegawattDaysPerKilogram", BaseUnits.Undefined);
                 yield return new (SpecificEnergyUnit.MegawattDayPerShortTon, "MegawattDayPerShortTon", "MegawattDaysPerShortTon", BaseUnits.Undefined);
                 yield return new (SpecificEnergyUnit.MegawattDayPerTonne, "MegawattDayPerTonne", "MegawattDaysPerTonne", BaseUnits.Undefined);
@@ -222,9 +222,6 @@ namespace UnitsNet
         /// </summary>
         public static SpecificEnergy Zero => Info.Zero;
 
-        /// <inheritdoc cref="Zero"/>
-        public static SpecificEnergy AdditiveIdentity => Zero;
-
         #endregion
 
         #region Properties
@@ -258,6 +255,11 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo<SpecificEnergyUnit> IQuantity<SpecificEnergyUnit>.QuantityInfo => Info;
+
+#if NETSTANDARD2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        IQuantityInstanceInfo<SpecificEnergy> IQuantityOfType<SpecificEnergy>.QuantityInfo => Info;
+#endif
 
         #endregion
 
@@ -346,9 +348,9 @@ namespace UnitsNet
         public double MegajoulesPerKilogram => As(SpecificEnergyUnit.MegajoulePerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegaJoulePerTonne"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegajoulePerTonne"/>
         /// </summary>
-        public double MegaJoulesPerTonne => As(SpecificEnergyUnit.MegaJoulePerTonne);
+        public double MegajoulesPerTonne => As(SpecificEnergyUnit.MegajoulePerTonne);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattDayPerKilogram"/>
@@ -441,7 +443,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilowattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.JoulePerKilogram));
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.KilowattHourPerPound, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.JoulePerKilogram));
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegajoulePerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.JoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegaJoulePerTonne, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.JoulePerKilogram));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegajoulePerTonne, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.JoulePerKilogram));
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegawattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.JoulePerKilogram));
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegawattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.JoulePerKilogram));
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.MegawattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.JoulePerKilogram));
@@ -475,7 +477,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilowattHourPerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.KilowattHourPerKilogram));
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilowattHourPerPound, quantity => quantity.ToUnit(SpecificEnergyUnit.KilowattHourPerPound));
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegajoulePerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.MegajoulePerKilogram));
-            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegaJoulePerTonne, quantity => quantity.ToUnit(SpecificEnergyUnit.MegaJoulePerTonne));
+            unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegajoulePerTonne, quantity => quantity.ToUnit(SpecificEnergyUnit.MegajoulePerTonne));
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattDayPerKilogram, quantity => quantity.ToUnit(SpecificEnergyUnit.MegawattDayPerKilogram));
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattDayPerShortTon, quantity => quantity.ToUnit(SpecificEnergyUnit.MegawattDayPerShortTon));
             unitConverter.SetConversionFunction<SpecificEnergy>(SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattDayPerTonne, quantity => quantity.ToUnit(SpecificEnergyUnit.MegawattDayPerTonne));
@@ -645,11 +647,11 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegaJoulePerTonne"/>.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegajoulePerTonne"/>.
         /// </summary>
-        public static SpecificEnergy FromMegaJoulesPerTonne(double value)
+        public static SpecificEnergy FromMegajoulesPerTonne(double value)
         {
-            return new SpecificEnergy(value, SpecificEnergyUnit.MegaJoulePerTonne);
+            return new SpecificEnergy(value, SpecificEnergyUnit.MegajoulePerTonne);
         }
 
         /// <summary>
@@ -1070,6 +1072,15 @@ namespace UnitsNet
 
         #pragma warning restore CS0809
 
+        /// <summary>
+        ///     Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for the current SpecificEnergy.</returns>
+        public override int GetHashCode()
+        {
+            return Comparison.GetHashCode(Unit, Value);
+        }
+
         /// <summary>Compares the current <see cref="SpecificEnergy"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
@@ -1106,88 +1117,6 @@ namespace UnitsNet
             return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
-        /// <summary>
-        ///     <para>
-        ///     Compare equality to another SpecificEnergy within the given absolute or relative tolerance.
-        ///     </para>
-        ///     <para>
-        ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
-        ///     <paramref name="other"/> as a percentage of this quantity's value. <paramref name="other"/> will be converted into
-        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the absolute difference must be within +/- 1% of
-        ///     this quantity's value to be considered equal.
-        ///     <example>
-        ///     In this example, the two quantities will be equal if the value of b is within +/- 1% of a (0.02m or 2cm).
-        ///     <code>
-        ///     var a = Length.FromMeters(2.0);
-        ///     var b = Length.FromInches(50.0);
-        ///     a.Equals(b, 0.01, ComparisonType.Relative);
-        ///     </code>
-        ///     </example>
-        ///     </para>
-        ///     <para>
-        ///     Absolute tolerance is defined as the maximum allowable absolute difference between this quantity's value and
-        ///     <paramref name="other"/> as a fixed number in this quantity's unit. <paramref name="other"/> will be converted into
-        ///     this quantity's unit for comparison.
-        ///     <example>
-        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
-        ///     <code>
-        ///     var a = Length.FromMeters(2.0);
-        ///     var b = Length.FromInches(50.0);
-        ///     a.Equals(b, 0.01, ComparisonType.Absolute);
-        ///     </code>
-        ///     </example>
-        ///     </para>
-        ///     <para>
-        ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating-point operations and using double internally.
-        ///     </para>
-        /// </summary>
-        /// <param name="other">The other quantity to compare to.</param>
-        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
-        /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
-        /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        [Obsolete("Use Equals(SpecificEnergy other, SpecificEnergy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
-        public bool Equals(SpecificEnergy other, double tolerance, ComparisonType comparisonType)
-        {
-            if (tolerance < 0)
-                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
-
-            return UnitsNet.Comparison.Equals(
-                referenceValue: this.Value,
-                otherValue: other.As(this.Unit),
-                tolerance: tolerance,
-                comparisonType: comparisonType);
-        }
-
-        /// <inheritdoc />
-        public bool Equals(IQuantity? other, IQuantity tolerance)
-        {
-            return other is SpecificEnergy otherTyped
-                   && (tolerance is SpecificEnergy toleranceTyped
-                       ? true
-                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'SpecificEnergy'.", nameof(tolerance)))
-                   && Equals(otherTyped, toleranceTyped);
-        }
-
-        /// <inheritdoc />
-        public bool Equals(SpecificEnergy other, SpecificEnergy tolerance)
-        {
-            return UnitsNet.Comparison.Equals(
-                referenceValue: this.Value,
-                otherValue: other.As(this.Unit),
-                tolerance: tolerance.As(this.Unit),
-                comparisonType: ComparisonType.Absolute);
-        }
-
-        /// <summary>
-        ///     Returns the hash code for this instance.
-        /// </summary>
-        /// <returns>A hash code for the current SpecificEnergy.</returns>
-        public override int GetHashCode()
-        {
-            return new { Info.Name, Value, Unit }.GetHashCode();
-        }
-
         #endregion
 
         #region Conversion Methods
@@ -1204,10 +1133,10 @@ namespace UnitsNet
             return ToUnit(unit).Value;
         }
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
+        public double As(UnitKey unitKey)
         {
-            return As(Info.GetDefaultUnit(unitSystem));
+            return As(unitKey.ToUnit<SpecificEnergyUnit>());
         }
 
         /// <summary>
@@ -1247,7 +1176,7 @@ namespace UnitsNet
             else
             {
                 // No possible conversion
-                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
             }
         }
 
@@ -1283,7 +1212,7 @@ namespace UnitsNet
                 (SpecificEnergyUnit.KilowattHourPerKilogram, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((_value * 3.6e3) * 1e3d, SpecificEnergyUnit.JoulePerKilogram),
                 (SpecificEnergyUnit.KilowattHourPerPound, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((_value * 7.93664e3) * 1e3d, SpecificEnergyUnit.JoulePerKilogram),
                 (SpecificEnergyUnit.MegajoulePerKilogram, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((_value) * 1e6d, SpecificEnergyUnit.JoulePerKilogram),
-                (SpecificEnergyUnit.MegaJoulePerTonne, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy(_value * 1e3, SpecificEnergyUnit.JoulePerKilogram),
+                (SpecificEnergyUnit.MegajoulePerTonne, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy(_value * 1e3, SpecificEnergyUnit.JoulePerKilogram),
                 (SpecificEnergyUnit.MegawattDayPerKilogram, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((_value * (24 * 3.6e3)) * 1e6d, SpecificEnergyUnit.JoulePerKilogram),
                 (SpecificEnergyUnit.MegawattDayPerShortTon, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((_value * ((24 * 3.6e3) / 9.0718474e2)) * 1e6d, SpecificEnergyUnit.JoulePerKilogram),
                 (SpecificEnergyUnit.MegawattDayPerTonne, SpecificEnergyUnit.JoulePerKilogram) => new SpecificEnergy((_value * ((24 * 3.6e3) / 1e3)) * 1e6d, SpecificEnergyUnit.JoulePerKilogram),
@@ -1314,7 +1243,7 @@ namespace UnitsNet
                 (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilowattHourPerKilogram) => new SpecificEnergy((_value / 3.6e3) / 1e3d, SpecificEnergyUnit.KilowattHourPerKilogram),
                 (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.KilowattHourPerPound) => new SpecificEnergy((_value / 7.93664e3) / 1e3d, SpecificEnergyUnit.KilowattHourPerPound),
                 (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegajoulePerKilogram) => new SpecificEnergy((_value) / 1e6d, SpecificEnergyUnit.MegajoulePerKilogram),
-                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegaJoulePerTonne) => new SpecificEnergy(_value / 1e3, SpecificEnergyUnit.MegaJoulePerTonne),
+                (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegajoulePerTonne) => new SpecificEnergy(_value / 1e3, SpecificEnergyUnit.MegajoulePerTonne),
                 (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattDayPerKilogram) => new SpecificEnergy((_value / (24 * 3.6e3)) / 1e6d, SpecificEnergyUnit.MegawattDayPerKilogram),
                 (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattDayPerShortTon) => new SpecificEnergy((_value / ((24 * 3.6e3) / 9.0718474e2)) / 1e6d, SpecificEnergyUnit.MegawattDayPerShortTon),
                 (SpecificEnergyUnit.JoulePerKilogram, SpecificEnergyUnit.MegawattDayPerTonne) => new SpecificEnergy((_value / ((24 * 3.6e3) / 1e3)) / 1e6d, SpecificEnergyUnit.MegawattDayPerTonne),
@@ -1342,12 +1271,6 @@ namespace UnitsNet
             return true;
         }
 
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public SpecificEnergy ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
         #region Explicit implementations
 
         double IQuantity.As(Enum unit)
@@ -1368,13 +1291,10 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
         IQuantity<SpecificEnergyUnit> IQuantity<SpecificEnergyUnit>.ToUnit(SpecificEnergyUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<SpecificEnergyUnit> IQuantity<SpecificEnergyUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<SpecificEnergyUnit> IQuantity<SpecificEnergyUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         #endregion
 
@@ -1389,27 +1309,6 @@ namespace UnitsNet
         public override string ToString()
         {
             return ToString(null, null);
-        }
-
-        /// <summary>
-        ///     Gets the default string representation of value and unit using the given format provider.
-        /// </summary>
-        /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public string ToString(IFormatProvider? provider)
-        {
-            return ToString(null, provider);
-        }
-
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
-        /// <summary>
-        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentCulture" />.
-        /// </summary>
-        /// <param name="format">The format string.</param>
-        /// <returns>The string representation.</returns>
-        public string ToString(string? format)
-        {
-            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>

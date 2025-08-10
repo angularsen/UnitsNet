@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -128,7 +129,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new VolumePerLength(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -141,15 +142,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void VolumePerLength_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            VolumePerLengthUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumePerLengthUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new VolumePerLength(1, VolumePerLengthUnit.CubicMeterPerMeter);
 
-            QuantityInfo<VolumePerLengthUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<VolumePerLength, VolumePerLengthUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(VolumePerLength.Zero, quantityInfo.Zero);
             Assert.Equal("VolumePerLength", quantityInfo.Name);
-
-            var units = Enum.GetValues<VolumePerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(VolumePerLength.Zero, quantityInfo.Zero);
+            Assert.Equal(VolumePerLength.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(VolumePerLength.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<VolumePerLengthUnit>)quantity).QuantityInfo);
         }
 
         [Fact]
@@ -170,42 +175,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = VolumePerLength.From(1, VolumePerLengthUnit.CubicMeterPerMeter);
-            AssertEx.EqualTolerance(1, quantity00.CubicMetersPerMeter, CubicMetersPerMeterTolerance);
-            Assert.Equal(VolumePerLengthUnit.CubicMeterPerMeter, quantity00.Unit);
-
-            var quantity01 = VolumePerLength.From(1, VolumePerLengthUnit.CubicYardPerFoot);
-            AssertEx.EqualTolerance(1, quantity01.CubicYardsPerFoot, CubicYardsPerFootTolerance);
-            Assert.Equal(VolumePerLengthUnit.CubicYardPerFoot, quantity01.Unit);
-
-            var quantity02 = VolumePerLength.From(1, VolumePerLengthUnit.CubicYardPerUsSurveyFoot);
-            AssertEx.EqualTolerance(1, quantity02.CubicYardsPerUsSurveyFoot, CubicYardsPerUsSurveyFootTolerance);
-            Assert.Equal(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, quantity02.Unit);
-
-            var quantity03 = VolumePerLength.From(1, VolumePerLengthUnit.ImperialGallonPerMile);
-            AssertEx.EqualTolerance(1, quantity03.ImperialGallonsPerMile, ImperialGallonsPerMileTolerance);
-            Assert.Equal(VolumePerLengthUnit.ImperialGallonPerMile, quantity03.Unit);
-
-            var quantity04 = VolumePerLength.From(1, VolumePerLengthUnit.LiterPerKilometer);
-            AssertEx.EqualTolerance(1, quantity04.LitersPerKilometer, LitersPerKilometerTolerance);
-            Assert.Equal(VolumePerLengthUnit.LiterPerKilometer, quantity04.Unit);
-
-            var quantity05 = VolumePerLength.From(1, VolumePerLengthUnit.LiterPerMeter);
-            AssertEx.EqualTolerance(1, quantity05.LitersPerMeter, LitersPerMeterTolerance);
-            Assert.Equal(VolumePerLengthUnit.LiterPerMeter, quantity05.Unit);
-
-            var quantity06 = VolumePerLength.From(1, VolumePerLengthUnit.LiterPerMillimeter);
-            AssertEx.EqualTolerance(1, quantity06.LitersPerMillimeter, LitersPerMillimeterTolerance);
-            Assert.Equal(VolumePerLengthUnit.LiterPerMillimeter, quantity06.Unit);
-
-            var quantity07 = VolumePerLength.From(1, VolumePerLengthUnit.OilBarrelPerFoot);
-            AssertEx.EqualTolerance(1, quantity07.OilBarrelsPerFoot, OilBarrelsPerFootTolerance);
-            Assert.Equal(VolumePerLengthUnit.OilBarrelPerFoot, quantity07.Unit);
-
-            var quantity08 = VolumePerLength.From(1, VolumePerLengthUnit.UsGallonPerMile);
-            AssertEx.EqualTolerance(1, quantity08.UsGallonsPerMile, UsGallonsPerMileTolerance);
-            Assert.Equal(VolumePerLengthUnit.UsGallonPerMile, quantity08.Unit);
-
+            Assert.All(EnumHelper.GetValues<VolumePerLengthUnit>(), unit =>
+            {
+                var quantity = VolumePerLength.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -298,15 +273,22 @@ namespace UnitsNet.Tests
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
                 Assert.Equal(expectedValue, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity quantityToConvert = quantity;
-
-                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);
             });
+        }
+
+        [Fact]
+        public virtual void ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new VolumePerLength(value: 1, unit: VolumePerLength.BaseUnit);
+            var expectedUnit = VolumePerLength.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            IQuantity quantityToConvert = quantity;
+
+            IQuantity convertedQuantity = quantityToConvert.ToUnitUntyped(UnitSystem.SI);
+
+            Assert.Equal(expectedUnit, convertedQuantity.Unit);
+            Assert.Equal(expectedValue, convertedQuantity.Value);
         }
 
         [Fact]
@@ -321,11 +303,15 @@ namespace UnitsNet.Tests
             {
                 IQuantity<VolumePerLengthUnit> quantity = new VolumePerLength(value: 1, unit: VolumePerLength.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
-            }, () =>
-            {
-                IQuantity quantity = new VolumePerLength(value: 1, unit: VolumePerLength.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
+        }
+
+        [Fact]
+        public void ToUnitUntyped_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            IQuantity quantity = new VolumePerLength(value: 1, unit: VolumePerLength.BaseUnit);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
         }
 
         [Fact]
@@ -340,138 +326,51 @@ namespace UnitsNet.Tests
             {
                 IQuantity<VolumePerLengthUnit> quantity = new VolumePerLength(value: 1, unit: VolumePerLength.BaseUnit);
                 Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
-            }, () =>
-            {
-                IQuantity quantity = new VolumePerLength(value: 1, unit: VolumePerLength.BaseUnit);
-                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
             });
         }
 
         [Fact]
-        public void Parse()
+        public void ToUnitUntyped_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            try
-            {
-                var parsed = VolumePerLength.Parse("1 m³/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CubicMetersPerMeter, CubicMetersPerMeterTolerance);
-                Assert.Equal(VolumePerLengthUnit.CubicMeterPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = VolumePerLength.Parse("1 yd³/ft", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CubicYardsPerFoot, CubicYardsPerFootTolerance);
-                Assert.Equal(VolumePerLengthUnit.CubicYardPerFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = VolumePerLength.Parse("1 yd³/ftUS", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.CubicYardsPerUsSurveyFoot, CubicYardsPerUsSurveyFootTolerance);
-                Assert.Equal(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = VolumePerLength.Parse("1 gal (imp.)/mi", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.ImperialGallonsPerMile, ImperialGallonsPerMileTolerance);
-                Assert.Equal(VolumePerLengthUnit.ImperialGallonPerMile, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = VolumePerLength.Parse("1 l/km", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.LitersPerKilometer, LitersPerKilometerTolerance);
-                Assert.Equal(VolumePerLengthUnit.LiterPerKilometer, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = VolumePerLength.Parse("1 l/m", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.LitersPerMeter, LitersPerMeterTolerance);
-                Assert.Equal(VolumePerLengthUnit.LiterPerMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = VolumePerLength.Parse("1 l/mm", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.LitersPerMillimeter, LitersPerMillimeterTolerance);
-                Assert.Equal(VolumePerLengthUnit.LiterPerMillimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = VolumePerLength.Parse("1 bbl/ft", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.OilBarrelsPerFoot, OilBarrelsPerFootTolerance);
-                Assert.Equal(VolumePerLengthUnit.OilBarrelPerFoot, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = VolumePerLength.Parse("1 gal (U.S.)/mi", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.UsGallonsPerMile, UsGallonsPerMileTolerance);
-                Assert.Equal(VolumePerLengthUnit.UsGallonPerMile, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            IQuantity quantity = new VolumePerLength(value: 1, unit: VolumePerLength.BaseUnit);
+            Assert.Throws<ArgumentException>(() => quantity.ToUnitUntyped(unsupportedUnitSystem));
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 m³/m", VolumePerLengthUnit.CubicMeterPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 yd³/ft", VolumePerLengthUnit.CubicYardPerFoot, 4.2)]
+        [InlineData("en-US", "4.2 yd³/ftUS", VolumePerLengthUnit.CubicYardPerUsSurveyFoot, 4.2)]
+        [InlineData("en-US", "4.2 gal (imp.)/mi", VolumePerLengthUnit.ImperialGallonPerMile, 4.2)]
+        [InlineData("en-US", "4.2 l/km", VolumePerLengthUnit.LiterPerKilometer, 4.2)]
+        [InlineData("en-US", "4.2 l/m", VolumePerLengthUnit.LiterPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 l/mm", VolumePerLengthUnit.LiterPerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 bbl/ft", VolumePerLengthUnit.OilBarrelPerFoot, 4.2)]
+        [InlineData("en-US", "4.2 gal (U.S.)/mi", VolumePerLengthUnit.UsGallonPerMile, 4.2)]
+        public void Parse(string culture, string quantityString, VolumePerLengthUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(VolumePerLength.TryParse("1 m³/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CubicMetersPerMeter, CubicMetersPerMeterTolerance);
-                Assert.Equal(VolumePerLengthUnit.CubicMeterPerMeter, parsed.Unit);
-            }
+            using var _ = new CultureScope(culture);
+            var parsed = VolumePerLength.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
+        }
 
-            {
-                Assert.True(VolumePerLength.TryParse("1 yd³/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CubicYardsPerFoot, CubicYardsPerFootTolerance);
-                Assert.Equal(VolumePerLengthUnit.CubicYardPerFoot, parsed.Unit);
-            }
-
-            {
-                Assert.True(VolumePerLength.TryParse("1 yd³/ftUS", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.CubicYardsPerUsSurveyFoot, CubicYardsPerUsSurveyFootTolerance);
-                Assert.Equal(VolumePerLengthUnit.CubicYardPerUsSurveyFoot, parsed.Unit);
-            }
-
-            {
-                Assert.True(VolumePerLength.TryParse("1 gal (imp.)/mi", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.ImperialGallonsPerMile, ImperialGallonsPerMileTolerance);
-                Assert.Equal(VolumePerLengthUnit.ImperialGallonPerMile, parsed.Unit);
-            }
-
-            {
-                Assert.True(VolumePerLength.TryParse("1 l/km", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.LitersPerKilometer, LitersPerKilometerTolerance);
-                Assert.Equal(VolumePerLengthUnit.LiterPerKilometer, parsed.Unit);
-            }
-
-            {
-                Assert.True(VolumePerLength.TryParse("1 l/m", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.LitersPerMeter, LitersPerMeterTolerance);
-                Assert.Equal(VolumePerLengthUnit.LiterPerMeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(VolumePerLength.TryParse("1 l/mm", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.LitersPerMillimeter, LitersPerMillimeterTolerance);
-                Assert.Equal(VolumePerLengthUnit.LiterPerMillimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(VolumePerLength.TryParse("1 bbl/ft", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.OilBarrelsPerFoot, OilBarrelsPerFootTolerance);
-                Assert.Equal(VolumePerLengthUnit.OilBarrelPerFoot, parsed.Unit);
-            }
-
-            {
-                Assert.True(VolumePerLength.TryParse("1 gal (U.S.)/mi", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.UsGallonsPerMile, UsGallonsPerMileTolerance);
-                Assert.Equal(VolumePerLengthUnit.UsGallonPerMile, parsed.Unit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "4.2 m³/m", VolumePerLengthUnit.CubicMeterPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 yd³/ft", VolumePerLengthUnit.CubicYardPerFoot, 4.2)]
+        [InlineData("en-US", "4.2 yd³/ftUS", VolumePerLengthUnit.CubicYardPerUsSurveyFoot, 4.2)]
+        [InlineData("en-US", "4.2 gal (imp.)/mi", VolumePerLengthUnit.ImperialGallonPerMile, 4.2)]
+        [InlineData("en-US", "4.2 l/km", VolumePerLengthUnit.LiterPerKilometer, 4.2)]
+        [InlineData("en-US", "4.2 l/m", VolumePerLengthUnit.LiterPerMeter, 4.2)]
+        [InlineData("en-US", "4.2 l/mm", VolumePerLengthUnit.LiterPerMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 bbl/ft", VolumePerLengthUnit.OilBarrelPerFoot, 4.2)]
+        [InlineData("en-US", "4.2 gal (U.S.)/mi", VolumePerLengthUnit.UsGallonPerMile, 4.2)]
+        public void TryParse(string culture, string quantityString, VolumePerLengthUnit expectedUnit, double expectedValue)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(VolumePerLength.TryParse(quantityString, out VolumePerLength parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -610,6 +509,35 @@ namespace UnitsNet.Tests
         {
             Assert.True(VolumePerLength.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out VolumePerLengthUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", VolumePerLengthUnit.CubicMeterPerMeter, "m³/m")]
+        [InlineData("en-US", VolumePerLengthUnit.CubicYardPerFoot, "yd³/ft")]
+        [InlineData("en-US", VolumePerLengthUnit.CubicYardPerUsSurveyFoot, "yd³/ftUS")]
+        [InlineData("en-US", VolumePerLengthUnit.ImperialGallonPerMile, "gal (imp.)/mi")]
+        [InlineData("en-US", VolumePerLengthUnit.LiterPerKilometer, "l/km")]
+        [InlineData("en-US", VolumePerLengthUnit.LiterPerMeter, "l/m")]
+        [InlineData("en-US", VolumePerLengthUnit.LiterPerMillimeter, "l/mm")]
+        [InlineData("en-US", VolumePerLengthUnit.OilBarrelPerFoot, "bbl/ft")]
+        [InlineData("en-US", VolumePerLengthUnit.UsGallonPerMile, "gal (U.S.)/mi")]
+        public void GetAbbreviationForCulture(string culture, VolumePerLengthUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = VolumePerLength.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(VolumePerLength.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = VolumePerLength.GetAbbreviation(unit);
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]
@@ -783,23 +711,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = VolumePerLength.FromCubicMetersPerMeter(1);
-            Assert.True(v.Equals(VolumePerLength.FromCubicMetersPerMeter(1), CubicMetersPerMeterTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(VolumePerLength.Zero, CubicMetersPerMeterTolerance, ComparisonType.Relative));
-            Assert.True(VolumePerLength.FromCubicMetersPerMeter(100).Equals(VolumePerLength.FromCubicMetersPerMeter(120), 0.3, ComparisonType.Relative));
-            Assert.False(VolumePerLength.FromCubicMetersPerMeter(100).Equals(VolumePerLength.FromCubicMetersPerMeter(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = VolumePerLength.FromCubicMetersPerMeter(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(VolumePerLength.FromCubicMetersPerMeter(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             VolumePerLength cubicmeterpermeter = VolumePerLength.FromCubicMetersPerMeter(1);
@@ -811,6 +722,32 @@ namespace UnitsNet.Tests
         {
             VolumePerLength cubicmeterpermeter = VolumePerLength.FromCubicMetersPerMeter(1);
             Assert.False(cubicmeterpermeter.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = VolumePerLength.FromCubicMetersPerMeter(firstValue);
+            var otherQuantity = VolumePerLength.FromCubicMetersPerMeter(secondValue);
+            VolumePerLength maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, VolumePerLength.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = VolumePerLength.FromCubicMetersPerMeter(1);
+            var negativeTolerance = VolumePerLength.FromCubicMetersPerMeter(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -907,7 +844,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = VolumePerLength.FromCubicMetersPerMeter(1.0);
-            Assert.Equal(new {VolumePerLength.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

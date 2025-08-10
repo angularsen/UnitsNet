@@ -162,6 +162,7 @@ namespace UnitsNet
                 yield return new (PressureUnit.MillimeterOfMercury, "MillimeterOfMercury", "MillimetersOfMercury", BaseUnits.Undefined);
                 yield return new (PressureUnit.MillimeterOfWaterColumn, "MillimeterOfWaterColumn", "MillimetersOfWaterColumn", BaseUnits.Undefined);
                 yield return new (PressureUnit.Millipascal, "Millipascal", "Millipascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second));
+                yield return new (PressureUnit.Millitorr, "Millitorr", "Millitorrs", BaseUnits.Undefined);
                 yield return new (PressureUnit.NewtonPerSquareCentimeter, "NewtonPerSquareCentimeter", "NewtonsPerSquareCentimeter", BaseUnits.Undefined);
                 yield return new (PressureUnit.NewtonPerSquareMeter, "NewtonPerSquareMeter", "NewtonsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
                 yield return new (PressureUnit.NewtonPerSquareMillimeter, "NewtonPerSquareMillimeter", "NewtonsPerSquareMillimeter", BaseUnits.Undefined);
@@ -240,9 +241,6 @@ namespace UnitsNet
         /// </summary>
         public static Pressure Zero => Info.Zero;
 
-        /// <inheritdoc cref="Zero"/>
-        public static Pressure AdditiveIdentity => Zero;
-
         #endregion
 
         #region Properties
@@ -276,6 +274,11 @@ namespace UnitsNet
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo<PressureUnit> IQuantity<PressureUnit>.QuantityInfo => Info;
+
+#if NETSTANDARD2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        IQuantityInstanceInfo<Pressure> IQuantityOfType<Pressure>.QuantityInfo => Info;
+#endif
 
         #endregion
 
@@ -454,6 +457,11 @@ namespace UnitsNet
         public double Millipascals => As(PressureUnit.Millipascal);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Millitorr"/>
+        /// </summary>
+        public double Millitorrs => As(PressureUnit.Millitorr);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.NewtonPerSquareCentimeter"/>
         /// </summary>
         public double NewtonsPerSquareCentimeter => As(PressureUnit.NewtonPerSquareCentimeter);
@@ -563,6 +571,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.MillimeterOfMercury, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.MillimeterOfWaterColumn, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Millipascal, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
+            unitConverter.SetConversionFunction<Pressure>(PressureUnit.Millitorr, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.NewtonPerSquareCentimeter, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.NewtonPerSquareMeter, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.NewtonPerSquareMillimeter, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
@@ -614,6 +623,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.MillimeterOfMercury, quantity => quantity.ToUnit(PressureUnit.MillimeterOfMercury));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.MillimeterOfWaterColumn, quantity => quantity.ToUnit(PressureUnit.MillimeterOfWaterColumn));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Millipascal, quantity => quantity.ToUnit(PressureUnit.Millipascal));
+            unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Millitorr, quantity => quantity.ToUnit(PressureUnit.Millitorr));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.NewtonPerSquareCentimeter, quantity => quantity.ToUnit(PressureUnit.NewtonPerSquareCentimeter));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.NewtonPerSquareMeter, quantity => quantity.ToUnit(PressureUnit.NewtonPerSquareMeter));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.NewtonPerSquareMillimeter, quantity => quantity.ToUnit(PressureUnit.NewtonPerSquareMillimeter));
@@ -923,6 +933,14 @@ namespace UnitsNet
         public static Pressure FromMillipascals(double value)
         {
             return new Pressure(value, PressureUnit.Millipascal);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Millitorr"/>.
+        /// </summary>
+        public static Pressure FromMillitorrs(double value)
+        {
+            return new Pressure(value, PressureUnit.Millitorr);
         }
 
         /// <summary>
@@ -1361,6 +1379,15 @@ namespace UnitsNet
 
         #pragma warning restore CS0809
 
+        /// <summary>
+        ///     Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for the current Pressure.</returns>
+        public override int GetHashCode()
+        {
+            return Comparison.GetHashCode(Unit, Value);
+        }
+
         /// <summary>Compares the current <see cref="Pressure"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
@@ -1397,88 +1424,6 @@ namespace UnitsNet
             return _value.CompareTo(other.ToUnit(this.Unit).Value);
         }
 
-        /// <summary>
-        ///     <para>
-        ///     Compare equality to another Pressure within the given absolute or relative tolerance.
-        ///     </para>
-        ///     <para>
-        ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
-        ///     <paramref name="other"/> as a percentage of this quantity's value. <paramref name="other"/> will be converted into
-        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the absolute difference must be within +/- 1% of
-        ///     this quantity's value to be considered equal.
-        ///     <example>
-        ///     In this example, the two quantities will be equal if the value of b is within +/- 1% of a (0.02m or 2cm).
-        ///     <code>
-        ///     var a = Length.FromMeters(2.0);
-        ///     var b = Length.FromInches(50.0);
-        ///     a.Equals(b, 0.01, ComparisonType.Relative);
-        ///     </code>
-        ///     </example>
-        ///     </para>
-        ///     <para>
-        ///     Absolute tolerance is defined as the maximum allowable absolute difference between this quantity's value and
-        ///     <paramref name="other"/> as a fixed number in this quantity's unit. <paramref name="other"/> will be converted into
-        ///     this quantity's unit for comparison.
-        ///     <example>
-        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
-        ///     <code>
-        ///     var a = Length.FromMeters(2.0);
-        ///     var b = Length.FromInches(50.0);
-        ///     a.Equals(b, 0.01, ComparisonType.Absolute);
-        ///     </code>
-        ///     </example>
-        ///     </para>
-        ///     <para>
-        ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating-point operations and using double internally.
-        ///     </para>
-        /// </summary>
-        /// <param name="other">The other quantity to compare to.</param>
-        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
-        /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
-        /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        [Obsolete("Use Equals(Pressure other, Pressure tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
-        public bool Equals(Pressure other, double tolerance, ComparisonType comparisonType)
-        {
-            if (tolerance < 0)
-                throw new ArgumentOutOfRangeException(nameof(tolerance), "Tolerance must be greater than or equal to 0.");
-
-            return UnitsNet.Comparison.Equals(
-                referenceValue: this.Value,
-                otherValue: other.As(this.Unit),
-                tolerance: tolerance,
-                comparisonType: comparisonType);
-        }
-
-        /// <inheritdoc />
-        public bool Equals(IQuantity? other, IQuantity tolerance)
-        {
-            return other is Pressure otherTyped
-                   && (tolerance is Pressure toleranceTyped
-                       ? true
-                       : throw new ArgumentException($"Tolerance quantity ({tolerance.QuantityInfo.Name}) did not match the other quantities of type 'Pressure'.", nameof(tolerance)))
-                   && Equals(otherTyped, toleranceTyped);
-        }
-
-        /// <inheritdoc />
-        public bool Equals(Pressure other, Pressure tolerance)
-        {
-            return UnitsNet.Comparison.Equals(
-                referenceValue: this.Value,
-                otherValue: other.As(this.Unit),
-                tolerance: tolerance.As(this.Unit),
-                comparisonType: ComparisonType.Absolute);
-        }
-
-        /// <summary>
-        ///     Returns the hash code for this instance.
-        /// </summary>
-        /// <returns>A hash code for the current Pressure.</returns>
-        public override int GetHashCode()
-        {
-            return new { Info.Name, Value, Unit }.GetHashCode();
-        }
-
         #endregion
 
         #region Conversion Methods
@@ -1495,10 +1440,10 @@ namespace UnitsNet
             return ToUnit(unit).Value;
         }
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
+        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
+        public double As(UnitKey unitKey)
         {
-            return As(Info.GetDefaultUnit(unitSystem));
+            return As(unitKey.ToUnit<PressureUnit>());
         }
 
         /// <summary>
@@ -1538,7 +1483,7 @@ namespace UnitsNet
             else
             {
                 // No possible conversion
-                throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
             }
         }
 
@@ -1593,6 +1538,7 @@ namespace UnitsNet
                 (PressureUnit.MillimeterOfMercury, PressureUnit.Pascal) => new Pressure(_value * 133.322387415, PressureUnit.Pascal),
                 (PressureUnit.MillimeterOfWaterColumn, PressureUnit.Pascal) => new Pressure((_value * 9.80665e3) * 1e-3d, PressureUnit.Pascal),
                 (PressureUnit.Millipascal, PressureUnit.Pascal) => new Pressure((_value) * 1e-3d, PressureUnit.Pascal),
+                (PressureUnit.Millitorr, PressureUnit.Pascal) => new Pressure((_value * 101325 / 760) * 1e-3d, PressureUnit.Pascal),
                 (PressureUnit.NewtonPerSquareCentimeter, PressureUnit.Pascal) => new Pressure(_value * 1e4, PressureUnit.Pascal),
                 (PressureUnit.NewtonPerSquareMeter, PressureUnit.Pascal) => new Pressure(_value, PressureUnit.Pascal),
                 (PressureUnit.NewtonPerSquareMillimeter, PressureUnit.Pascal) => new Pressure(_value * 1e6, PressureUnit.Pascal),
@@ -1641,6 +1587,7 @@ namespace UnitsNet
                 (PressureUnit.Pascal, PressureUnit.MillimeterOfMercury) => new Pressure(_value / 133.322387415, PressureUnit.MillimeterOfMercury),
                 (PressureUnit.Pascal, PressureUnit.MillimeterOfWaterColumn) => new Pressure((_value / 9.80665e3) / 1e-3d, PressureUnit.MillimeterOfWaterColumn),
                 (PressureUnit.Pascal, PressureUnit.Millipascal) => new Pressure((_value) / 1e-3d, PressureUnit.Millipascal),
+                (PressureUnit.Pascal, PressureUnit.Millitorr) => new Pressure((_value * 760 / 101325) / 1e-3d, PressureUnit.Millitorr),
                 (PressureUnit.Pascal, PressureUnit.NewtonPerSquareCentimeter) => new Pressure(_value / 1e4, PressureUnit.NewtonPerSquareCentimeter),
                 (PressureUnit.Pascal, PressureUnit.NewtonPerSquareMeter) => new Pressure(_value, PressureUnit.NewtonPerSquareMeter),
                 (PressureUnit.Pascal, PressureUnit.NewtonPerSquareMillimeter) => new Pressure(_value / 1e6, PressureUnit.NewtonPerSquareMillimeter),
@@ -1667,12 +1614,6 @@ namespace UnitsNet
             return true;
         }
 
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Pressure ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
         #region Explicit implementations
 
         double IQuantity.As(Enum unit)
@@ -1693,13 +1634,10 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
         IQuantity<PressureUnit> IQuantity<PressureUnit>.ToUnit(PressureUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<PressureUnit> IQuantity<PressureUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<PressureUnit> IQuantity<PressureUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         #endregion
 
@@ -1714,27 +1652,6 @@ namespace UnitsNet
         public override string ToString()
         {
             return ToString(null, null);
-        }
-
-        /// <summary>
-        ///     Gets the default string representation of value and unit using the given format provider.
-        /// </summary>
-        /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
-        public string ToString(IFormatProvider? provider)
-        {
-            return ToString(null, provider);
-        }
-
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
-        /// <summary>
-        /// Gets the string representation of this instance in the specified format string using <see cref="CultureInfo.CurrentCulture" />.
-        /// </summary>
-        /// <param name="format">The format string.</param>
-        /// <returns>The string representation.</returns>
-        public string ToString(string? format)
-        {
-            return ToString(format, null);
         }
 
         /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>

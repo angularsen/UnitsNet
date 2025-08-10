@@ -158,7 +158,7 @@ namespace UnitsNet
                         MolalityUnit.MillimolePerKilogram => (_value) * 1e-3d,
                         MolalityUnit.MolePerGram => _value / 1e-3,
                         MolalityUnit.MolePerKilogram => _value,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -174,7 +174,7 @@ namespace UnitsNet
                         MolalityUnit.MillimolePerKilogram => (baseUnitValue) / 1e-3d,
                         MolalityUnit.MolePerGram => baseUnitValue * 1e-3,
                         MolalityUnit.MolePerKilogram => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

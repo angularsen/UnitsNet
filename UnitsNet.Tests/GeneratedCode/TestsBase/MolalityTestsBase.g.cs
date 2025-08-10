@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -104,7 +105,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new Molality(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -117,15 +118,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void Molality_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            MolalityUnit[] unitsOrderedByName = EnumHelper.GetValues<MolalityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Molality(1, MolalityUnit.MolePerKilogram);
 
-            QuantityInfo<MolalityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<Molality, MolalityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(Molality.Zero, quantityInfo.Zero);
             Assert.Equal("Molality", quantityInfo.Name);
-
-            var units = Enum.GetValues<MolalityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(Molality.Zero, quantityInfo.Zero);
+            Assert.Equal(Molality.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(Molality.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<MolalityUnit>)quantity).QuantityInfo);
         }
 
         [Fact]
@@ -140,18 +145,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = Molality.From(1, MolalityUnit.MillimolePerKilogram);
-            AssertEx.EqualTolerance(1, quantity00.MillimolesPerKilogram, MillimolesPerKilogramTolerance);
-            Assert.Equal(MolalityUnit.MillimolePerKilogram, quantity00.Unit);
-
-            var quantity01 = Molality.From(1, MolalityUnit.MolePerGram);
-            AssertEx.EqualTolerance(1, quantity01.MolesPerGram, MolesPerGramTolerance);
-            Assert.Equal(MolalityUnit.MolePerGram, quantity01.Unit);
-
-            var quantity02 = Molality.From(1, MolalityUnit.MolePerKilogram);
-            AssertEx.EqualTolerance(1, quantity02.MolesPerKilogram, MolesPerKilogramTolerance);
-            Assert.Equal(MolalityUnit.MolePerKilogram, quantity02.Unit);
-
+            Assert.All(EnumHelper.GetValues<MolalityUnit>(), unit =>
+            {
+                var quantity = Molality.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -238,15 +237,22 @@ namespace UnitsNet.Tests
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
                 Assert.Equal(expectedValue, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity quantityToConvert = quantity;
-
-                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);
             });
+        }
+
+        [Fact]
+        public virtual void ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new Molality(value: 1, unit: Molality.BaseUnit);
+            var expectedUnit = Molality.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            IQuantity quantityToConvert = quantity;
+
+            IQuantity convertedQuantity = quantityToConvert.ToUnitUntyped(UnitSystem.SI);
+
+            Assert.Equal(expectedUnit, convertedQuantity.Unit);
+            Assert.Equal(expectedValue, convertedQuantity.Value);
         }
 
         [Fact]
@@ -261,11 +267,15 @@ namespace UnitsNet.Tests
             {
                 IQuantity<MolalityUnit> quantity = new Molality(value: 1, unit: Molality.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
-            }, () =>
-            {
-                IQuantity quantity = new Molality(value: 1, unit: Molality.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
+        }
+
+        [Fact]
+        public void ToUnitUntyped_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            IQuantity quantity = new Molality(value: 1, unit: Molality.BaseUnit);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
         }
 
         [Fact]
@@ -280,60 +290,39 @@ namespace UnitsNet.Tests
             {
                 IQuantity<MolalityUnit> quantity = new Molality(value: 1, unit: Molality.BaseUnit);
                 Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
-            }, () =>
-            {
-                IQuantity quantity = new Molality(value: 1, unit: Molality.BaseUnit);
-                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
             });
         }
 
         [Fact]
-        public void Parse()
+        public void ToUnitUntyped_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            try
-            {
-                var parsed = Molality.Parse("1 mmol/kg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillimolesPerKilogram, MillimolesPerKilogramTolerance);
-                Assert.Equal(MolalityUnit.MillimolePerKilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Molality.Parse("1 mol/g", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MolesPerGram, MolesPerGramTolerance);
-                Assert.Equal(MolalityUnit.MolePerGram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = Molality.Parse("1 mol/kg", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MolesPerKilogram, MolesPerKilogramTolerance);
-                Assert.Equal(MolalityUnit.MolePerKilogram, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            IQuantity quantity = new Molality(value: 1, unit: Molality.BaseUnit);
+            Assert.Throws<ArgumentException>(() => quantity.ToUnitUntyped(unsupportedUnitSystem));
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 mmol/kg", MolalityUnit.MillimolePerKilogram, 4.2)]
+        [InlineData("en-US", "4.2 mol/g", MolalityUnit.MolePerGram, 4.2)]
+        [InlineData("en-US", "4.2 mol/kg", MolalityUnit.MolePerKilogram, 4.2)]
+        public void Parse(string culture, string quantityString, MolalityUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(Molality.TryParse("1 mmol/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillimolesPerKilogram, MillimolesPerKilogramTolerance);
-                Assert.Equal(MolalityUnit.MillimolePerKilogram, parsed.Unit);
-            }
+            using var _ = new CultureScope(culture);
+            var parsed = Molality.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
+        }
 
-            {
-                Assert.True(Molality.TryParse("1 mol/g", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MolesPerGram, MolesPerGramTolerance);
-                Assert.Equal(MolalityUnit.MolePerGram, parsed.Unit);
-            }
-
-            {
-                Assert.True(Molality.TryParse("1 mol/kg", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MolesPerKilogram, MolesPerKilogramTolerance);
-                Assert.Equal(MolalityUnit.MolePerKilogram, parsed.Unit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "4.2 mmol/kg", MolalityUnit.MillimolePerKilogram, 4.2)]
+        [InlineData("en-US", "4.2 mol/g", MolalityUnit.MolePerGram, 4.2)]
+        [InlineData("en-US", "4.2 mol/kg", MolalityUnit.MolePerKilogram, 4.2)]
+        public void TryParse(string culture, string quantityString, MolalityUnit expectedUnit, double expectedValue)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(Molality.TryParse(quantityString, out Molality parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -424,6 +413,29 @@ namespace UnitsNet.Tests
         {
             Assert.True(Molality.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out MolalityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", MolalityUnit.MillimolePerKilogram, "mmol/kg")]
+        [InlineData("en-US", MolalityUnit.MolePerGram, "mol/g")]
+        [InlineData("en-US", MolalityUnit.MolePerKilogram, "mol/kg")]
+        public void GetAbbreviationForCulture(string culture, MolalityUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = Molality.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(Molality.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = Molality.GetAbbreviation(unit);
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]
@@ -591,23 +603,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = Molality.FromMolesPerKilogram(1);
-            Assert.True(v.Equals(Molality.FromMolesPerKilogram(1), MolesPerKilogramTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(Molality.Zero, MolesPerKilogramTolerance, ComparisonType.Relative));
-            Assert.True(Molality.FromMolesPerKilogram(100).Equals(Molality.FromMolesPerKilogram(120), 0.3, ComparisonType.Relative));
-            Assert.False(Molality.FromMolesPerKilogram(100).Equals(Molality.FromMolesPerKilogram(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = Molality.FromMolesPerKilogram(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(Molality.FromMolesPerKilogram(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             Molality moleperkilogram = Molality.FromMolesPerKilogram(1);
@@ -619,6 +614,32 @@ namespace UnitsNet.Tests
         {
             Molality moleperkilogram = Molality.FromMolesPerKilogram(1);
             Assert.False(moleperkilogram.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = Molality.FromMolesPerKilogram(firstValue);
+            var otherQuantity = Molality.FromMolesPerKilogram(secondValue);
+            Molality maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, Molality.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = Molality.FromMolesPerKilogram(1);
+            var negativeTolerance = Molality.FromMolesPerKilogram(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -703,7 +724,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Molality.FromMolesPerKilogram(1.0);
-            Assert.Equal(new {Molality.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

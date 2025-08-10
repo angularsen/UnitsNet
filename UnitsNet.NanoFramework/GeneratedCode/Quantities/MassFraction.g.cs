@@ -389,7 +389,7 @@ namespace UnitsNet
                         MassFractionUnit.PartPerThousand => _value / 1e3,
                         MassFractionUnit.PartPerTrillion => _value / 1e12,
                         MassFractionUnit.Percent => _value / 1e2,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -426,7 +426,7 @@ namespace UnitsNet
                         MassFractionUnit.PartPerThousand => baseUnitValue * 1e3,
                         MassFractionUnit.PartPerTrillion => baseUnitValue * 1e12,
                         MassFractionUnit.Percent => baseUnitValue * 1e2,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

@@ -419,7 +419,7 @@ namespace UnitsNet
                         MassUnit.SolarMass => _value * 1.98947e30,
                         MassUnit.Stone => _value * 6.35029318,
                         MassUnit.Tonne => _value * 1e3,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -459,7 +459,7 @@ namespace UnitsNet
                         MassUnit.SolarMass => baseUnitValue / 1.98947e30,
                         MassUnit.Stone => baseUnitValue / 6.35029318,
                         MassUnit.Tonne => baseUnitValue / 1e3,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

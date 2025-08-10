@@ -40,7 +40,7 @@ namespace UnitsNet
         ///     information about quantities and their associated units. It is used internally to map units
         ///     to their abbreviations and vice versa.
         /// </remarks>
-        internal QuantityInfoLookup Quantities { get; }
+        public QuantityInfoLookup Quantities { get; }
 
         /// <summary>
         /// Culture name to abbreviations. To add a custom default abbreviation, add to the beginning of the list.
@@ -52,7 +52,7 @@ namespace UnitsNet
         /// </summary>
         /// <returns>Instance for mapping any of the built-in units.</returns>
         public UnitAbbreviationsCache()
-            :this(UnitsNetSetup.Default.QuantityInfoLookup)
+            :this(UnitsNetSetup.Default.Quantities)
         {
         }
         

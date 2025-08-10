@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -88,15 +89,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void SolidAngle_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            SolidAngleUnit[] unitsOrderedByName = EnumHelper.GetValues<SolidAngleUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new SolidAngle(1, SolidAngleUnit.Steradian);
 
-            QuantityInfo<SolidAngleUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<SolidAngle, SolidAngleUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(SolidAngle.Zero, quantityInfo.Zero);
             Assert.Equal("SolidAngle", quantityInfo.Name);
-
-            var units = Enum.GetValues<SolidAngleUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(SolidAngle.Zero, quantityInfo.Zero);
+            Assert.Equal(SolidAngle.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(SolidAngle.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<SolidAngleUnit>)quantity).QuantityInfo);
         }
 
         [Fact]
@@ -109,10 +114,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = SolidAngle.From(1, SolidAngleUnit.Steradian);
-            AssertEx.EqualTolerance(1, quantity00.Steradians, SteradiansTolerance);
-            Assert.Equal(SolidAngleUnit.Steradian, quantity00.Unit);
-
+            Assert.All(EnumHelper.GetValues<SolidAngleUnit>(), unit =>
+            {
+                var quantity = SolidAngle.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -159,7 +166,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToUnitSystem_ReturnsValueInDimensionlessUnit()
+        public void ToUnit_UnitSystem_ReturnsValueInDimensionlessUnit()
         {
             Assert.Multiple(() =>
             {
@@ -177,16 +184,20 @@ namespace UnitsNet.Tests
 
                 Assert.Equal(SolidAngleUnit.Steradian, convertedQuantity.Unit);
                 Assert.Equal(quantity.Value, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity quantity = new SolidAngle(value: 1, unit: SolidAngleUnit.Steradian);
-
-                IQuantity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(SolidAngleUnit.Steradian, convertedQuantity.Unit);
-                Assert.Equal(quantity.Value, convertedQuantity.Value);
             });
         }
+
+        [Fact]
+        public void ToUnitUntyped_UnitSystem_ReturnsValueInDimensionlessUnit()
+        {
+            IQuantity quantity = new SolidAngle(value: 1, unit: SolidAngleUnit.Steradian);
+
+            IQuantity convertedQuantity = quantity.ToUnitUntyped(UnitSystem.SI);
+
+            Assert.Equal(SolidAngleUnit.Steradian, convertedQuantity.Unit);
+            Assert.Equal(quantity.Value, convertedQuantity.Value);
+        }
+
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
@@ -195,39 +206,36 @@ namespace UnitsNet.Tests
             Assert.Multiple(() =>
             {
                 var quantity = new SolidAngle(value: 1, unit: SolidAngle.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
             }, () =>
             {
                 IQuantity<SolidAngleUnit> quantity = new SolidAngle(value: 1, unit: SolidAngle.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
             }, () =>
             {
                 IQuantity quantity = new SolidAngle(value: 1, unit: SolidAngle.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
             });
         }
 
-        [Fact]
-        public void Parse()
+        [Theory]
+        [InlineData("en-US", "4.2 sr", SolidAngleUnit.Steradian, 4.2)]
+        public void Parse(string culture, string quantityString, SolidAngleUnit expectedUnit, double expectedValue)
         {
-            try
-            {
-                var parsed = SolidAngle.Parse("1 sr", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Steradians, SteradiansTolerance);
-                Assert.Equal(SolidAngleUnit.Steradian, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            using var _ = new CultureScope(culture);
+            var parsed = SolidAngle.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 sr", SolidAngleUnit.Steradian, 4.2)]
+        public void TryParse(string culture, string quantityString, SolidAngleUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(SolidAngle.TryParse("1 sr", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Steradians, SteradiansTolerance);
-                Assert.Equal(SolidAngleUnit.Steradian, parsed.Unit);
-            }
-
+            using var _ = new CultureScope(culture);
+            Assert.True(SolidAngle.TryParse(quantityString, out SolidAngle parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -302,6 +310,27 @@ namespace UnitsNet.Tests
         {
             Assert.True(SolidAngle.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out SolidAngleUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", SolidAngleUnit.Steradian, "sr")]
+        public void GetAbbreviationForCulture(string culture, SolidAngleUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = SolidAngle.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(SolidAngle.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = SolidAngle.GetAbbreviation(unit);
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]
@@ -466,23 +495,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = SolidAngle.FromSteradians(1);
-            Assert.True(v.Equals(SolidAngle.FromSteradians(1), SteradiansTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(SolidAngle.Zero, SteradiansTolerance, ComparisonType.Relative));
-            Assert.True(SolidAngle.FromSteradians(100).Equals(SolidAngle.FromSteradians(120), 0.3, ComparisonType.Relative));
-            Assert.False(SolidAngle.FromSteradians(100).Equals(SolidAngle.FromSteradians(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = SolidAngle.FromSteradians(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(SolidAngle.FromSteradians(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             SolidAngle steradian = SolidAngle.FromSteradians(1);
@@ -494,6 +506,32 @@ namespace UnitsNet.Tests
         {
             SolidAngle steradian = SolidAngle.FromSteradians(1);
             Assert.False(steradian.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = SolidAngle.FromSteradians(firstValue);
+            var otherQuantity = SolidAngle.FromSteradians(secondValue);
+            SolidAngle maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, SolidAngle.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = SolidAngle.FromSteradians(1);
+            var negativeTolerance = SolidAngle.FromSteradians(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -574,7 +612,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = SolidAngle.FromSteradians(1.0);
-            Assert.Equal(new {SolidAngle.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

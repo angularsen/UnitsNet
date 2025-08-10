@@ -606,7 +606,7 @@ namespace UnitsNet
                         PowerDensityUnit.WattPerCubicInch => _value / 1.6387064e-5,
                         PowerDensityUnit.WattPerCubicMeter => _value,
                         PowerDensityUnit.WattPerLiter => _value * 1.0e3,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -663,7 +663,7 @@ namespace UnitsNet
                         PowerDensityUnit.WattPerCubicInch => baseUnitValue * 1.6387064e-5,
                         PowerDensityUnit.WattPerCubicMeter => baseUnitValue,
                         PowerDensityUnit.WattPerLiter => baseUnitValue / 1.0e3,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

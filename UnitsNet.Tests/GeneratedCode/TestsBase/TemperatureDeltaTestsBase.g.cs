@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -128,7 +129,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new TemperatureDelta(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -141,15 +142,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void TemperatureDelta_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            TemperatureDeltaUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureDeltaUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new TemperatureDelta(1, TemperatureDeltaUnit.Kelvin);
 
-            QuantityInfo<TemperatureDeltaUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<TemperatureDelta, TemperatureDeltaUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(TemperatureDelta.Zero, quantityInfo.Zero);
             Assert.Equal("TemperatureDelta", quantityInfo.Name);
-
-            var units = Enum.GetValues<TemperatureDeltaUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(TemperatureDelta.Zero, quantityInfo.Zero);
+            Assert.Equal(TemperatureDelta.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(TemperatureDelta.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<TemperatureDeltaUnit>)quantity).QuantityInfo);
         }
 
         [Fact]
@@ -170,42 +175,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity00.DegreesCelsius, DegreesCelsiusTolerance);
-            Assert.Equal(TemperatureDeltaUnit.DegreeCelsius, quantity00.Unit);
-
-            var quantity01 = TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeDelisle);
-            AssertEx.EqualTolerance(1, quantity01.DegreesDelisle, DegreesDelisleTolerance);
-            Assert.Equal(TemperatureDeltaUnit.DegreeDelisle, quantity01.Unit);
-
-            var quantity02 = TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeFahrenheit);
-            AssertEx.EqualTolerance(1, quantity02.DegreesFahrenheit, DegreesFahrenheitTolerance);
-            Assert.Equal(TemperatureDeltaUnit.DegreeFahrenheit, quantity02.Unit);
-
-            var quantity03 = TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeNewton);
-            AssertEx.EqualTolerance(1, quantity03.DegreesNewton, DegreesNewtonTolerance);
-            Assert.Equal(TemperatureDeltaUnit.DegreeNewton, quantity03.Unit);
-
-            var quantity04 = TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeRankine);
-            AssertEx.EqualTolerance(1, quantity04.DegreesRankine, DegreesRankineTolerance);
-            Assert.Equal(TemperatureDeltaUnit.DegreeRankine, quantity04.Unit);
-
-            var quantity05 = TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeReaumur);
-            AssertEx.EqualTolerance(1, quantity05.DegreesReaumur, DegreesReaumurTolerance);
-            Assert.Equal(TemperatureDeltaUnit.DegreeReaumur, quantity05.Unit);
-
-            var quantity06 = TemperatureDelta.From(1, TemperatureDeltaUnit.DegreeRoemer);
-            AssertEx.EqualTolerance(1, quantity06.DegreesRoemer, DegreesRoemerTolerance);
-            Assert.Equal(TemperatureDeltaUnit.DegreeRoemer, quantity06.Unit);
-
-            var quantity07 = TemperatureDelta.From(1, TemperatureDeltaUnit.Kelvin);
-            AssertEx.EqualTolerance(1, quantity07.Kelvins, KelvinsTolerance);
-            Assert.Equal(TemperatureDeltaUnit.Kelvin, quantity07.Unit);
-
-            var quantity08 = TemperatureDelta.From(1, TemperatureDeltaUnit.MillidegreeCelsius);
-            AssertEx.EqualTolerance(1, quantity08.MillidegreesCelsius, MillidegreesCelsiusTolerance);
-            Assert.Equal(TemperatureDeltaUnit.MillidegreeCelsius, quantity08.Unit);
-
+            Assert.All(EnumHelper.GetValues<TemperatureDeltaUnit>(), unit =>
+            {
+                var quantity = TemperatureDelta.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -298,15 +273,22 @@ namespace UnitsNet.Tests
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
                 Assert.Equal(expectedValue, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity quantityToConvert = quantity;
-
-                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);
             });
+        }
+
+        [Fact]
+        public virtual void ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new TemperatureDelta(value: 1, unit: TemperatureDelta.BaseUnit);
+            var expectedUnit = TemperatureDelta.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            IQuantity quantityToConvert = quantity;
+
+            IQuantity convertedQuantity = quantityToConvert.ToUnitUntyped(UnitSystem.SI);
+
+            Assert.Equal(expectedUnit, convertedQuantity.Unit);
+            Assert.Equal(expectedValue, convertedQuantity.Value);
         }
 
         [Fact]
@@ -321,11 +303,15 @@ namespace UnitsNet.Tests
             {
                 IQuantity<TemperatureDeltaUnit> quantity = new TemperatureDelta(value: 1, unit: TemperatureDelta.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
-            }, () =>
-            {
-                IQuantity quantity = new TemperatureDelta(value: 1, unit: TemperatureDelta.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
+        }
+
+        [Fact]
+        public void ToUnitUntyped_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            IQuantity quantity = new TemperatureDelta(value: 1, unit: TemperatureDelta.BaseUnit);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
         }
 
         [Fact]
@@ -340,138 +326,51 @@ namespace UnitsNet.Tests
             {
                 IQuantity<TemperatureDeltaUnit> quantity = new TemperatureDelta(value: 1, unit: TemperatureDelta.BaseUnit);
                 Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
-            }, () =>
-            {
-                IQuantity quantity = new TemperatureDelta(value: 1, unit: TemperatureDelta.BaseUnit);
-                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
             });
         }
 
         [Fact]
-        public void Parse()
+        public void ToUnitUntyped_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            try
-            {
-                var parsed = TemperatureDelta.Parse("1 ∆°C", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DegreesCelsius, DegreesCelsiusTolerance);
-                Assert.Equal(TemperatureDeltaUnit.DegreeCelsius, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = TemperatureDelta.Parse("1 ∆°De", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DegreesDelisle, DegreesDelisleTolerance);
-                Assert.Equal(TemperatureDeltaUnit.DegreeDelisle, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = TemperatureDelta.Parse("1 ∆°F", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DegreesFahrenheit, DegreesFahrenheitTolerance);
-                Assert.Equal(TemperatureDeltaUnit.DegreeFahrenheit, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = TemperatureDelta.Parse("1 ∆°N", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DegreesNewton, DegreesNewtonTolerance);
-                Assert.Equal(TemperatureDeltaUnit.DegreeNewton, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = TemperatureDelta.Parse("1 ∆°R", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DegreesRankine, DegreesRankineTolerance);
-                Assert.Equal(TemperatureDeltaUnit.DegreeRankine, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = TemperatureDelta.Parse("1 ∆°Ré", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DegreesReaumur, DegreesReaumurTolerance);
-                Assert.Equal(TemperatureDeltaUnit.DegreeReaumur, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = TemperatureDelta.Parse("1 ∆°Rø", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.DegreesRoemer, DegreesRoemerTolerance);
-                Assert.Equal(TemperatureDeltaUnit.DegreeRoemer, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = TemperatureDelta.Parse("1 ∆K", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Kelvins, KelvinsTolerance);
-                Assert.Equal(TemperatureDeltaUnit.Kelvin, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = TemperatureDelta.Parse("1 ∆m°C", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.MillidegreesCelsius, MillidegreesCelsiusTolerance);
-                Assert.Equal(TemperatureDeltaUnit.MillidegreeCelsius, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            IQuantity quantity = new TemperatureDelta(value: 1, unit: TemperatureDelta.BaseUnit);
+            Assert.Throws<ArgumentException>(() => quantity.ToUnitUntyped(unsupportedUnitSystem));
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 ∆°C", TemperatureDeltaUnit.DegreeCelsius, 4.2)]
+        [InlineData("en-US", "4.2 ∆°De", TemperatureDeltaUnit.DegreeDelisle, 4.2)]
+        [InlineData("en-US", "4.2 ∆°F", TemperatureDeltaUnit.DegreeFahrenheit, 4.2)]
+        [InlineData("en-US", "4.2 ∆°N", TemperatureDeltaUnit.DegreeNewton, 4.2)]
+        [InlineData("en-US", "4.2 ∆°R", TemperatureDeltaUnit.DegreeRankine, 4.2)]
+        [InlineData("en-US", "4.2 ∆°Ré", TemperatureDeltaUnit.DegreeReaumur, 4.2)]
+        [InlineData("en-US", "4.2 ∆°Rø", TemperatureDeltaUnit.DegreeRoemer, 4.2)]
+        [InlineData("en-US", "4.2 ∆K", TemperatureDeltaUnit.Kelvin, 4.2)]
+        [InlineData("en-US", "4.2 ∆m°C", TemperatureDeltaUnit.MillidegreeCelsius, 4.2)]
+        public void Parse(string culture, string quantityString, TemperatureDeltaUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(TemperatureDelta.TryParse("1 ∆°C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DegreesCelsius, DegreesCelsiusTolerance);
-                Assert.Equal(TemperatureDeltaUnit.DegreeCelsius, parsed.Unit);
-            }
+            using var _ = new CultureScope(culture);
+            var parsed = TemperatureDelta.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
+        }
 
-            {
-                Assert.True(TemperatureDelta.TryParse("1 ∆°De", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DegreesDelisle, DegreesDelisleTolerance);
-                Assert.Equal(TemperatureDeltaUnit.DegreeDelisle, parsed.Unit);
-            }
-
-            {
-                Assert.True(TemperatureDelta.TryParse("1 ∆°F", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DegreesFahrenheit, DegreesFahrenheitTolerance);
-                Assert.Equal(TemperatureDeltaUnit.DegreeFahrenheit, parsed.Unit);
-            }
-
-            {
-                Assert.True(TemperatureDelta.TryParse("1 ∆°N", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DegreesNewton, DegreesNewtonTolerance);
-                Assert.Equal(TemperatureDeltaUnit.DegreeNewton, parsed.Unit);
-            }
-
-            {
-                Assert.True(TemperatureDelta.TryParse("1 ∆°R", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DegreesRankine, DegreesRankineTolerance);
-                Assert.Equal(TemperatureDeltaUnit.DegreeRankine, parsed.Unit);
-            }
-
-            {
-                Assert.True(TemperatureDelta.TryParse("1 ∆°Ré", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DegreesReaumur, DegreesReaumurTolerance);
-                Assert.Equal(TemperatureDeltaUnit.DegreeReaumur, parsed.Unit);
-            }
-
-            {
-                Assert.True(TemperatureDelta.TryParse("1 ∆°Rø", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.DegreesRoemer, DegreesRoemerTolerance);
-                Assert.Equal(TemperatureDeltaUnit.DegreeRoemer, parsed.Unit);
-            }
-
-            {
-                Assert.True(TemperatureDelta.TryParse("1 ∆K", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Kelvins, KelvinsTolerance);
-                Assert.Equal(TemperatureDeltaUnit.Kelvin, parsed.Unit);
-            }
-
-            {
-                Assert.True(TemperatureDelta.TryParse("1 ∆m°C", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.MillidegreesCelsius, MillidegreesCelsiusTolerance);
-                Assert.Equal(TemperatureDeltaUnit.MillidegreeCelsius, parsed.Unit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "4.2 ∆°C", TemperatureDeltaUnit.DegreeCelsius, 4.2)]
+        [InlineData("en-US", "4.2 ∆°De", TemperatureDeltaUnit.DegreeDelisle, 4.2)]
+        [InlineData("en-US", "4.2 ∆°F", TemperatureDeltaUnit.DegreeFahrenheit, 4.2)]
+        [InlineData("en-US", "4.2 ∆°N", TemperatureDeltaUnit.DegreeNewton, 4.2)]
+        [InlineData("en-US", "4.2 ∆°R", TemperatureDeltaUnit.DegreeRankine, 4.2)]
+        [InlineData("en-US", "4.2 ∆°Ré", TemperatureDeltaUnit.DegreeReaumur, 4.2)]
+        [InlineData("en-US", "4.2 ∆°Rø", TemperatureDeltaUnit.DegreeRoemer, 4.2)]
+        [InlineData("en-US", "4.2 ∆K", TemperatureDeltaUnit.Kelvin, 4.2)]
+        [InlineData("en-US", "4.2 ∆m°C", TemperatureDeltaUnit.MillidegreeCelsius, 4.2)]
+        public void TryParse(string culture, string quantityString, TemperatureDeltaUnit expectedUnit, double expectedValue)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(TemperatureDelta.TryParse(quantityString, out TemperatureDelta parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -610,6 +509,35 @@ namespace UnitsNet.Tests
         {
             Assert.True(TemperatureDelta.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out TemperatureDeltaUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", TemperatureDeltaUnit.DegreeCelsius, "∆°C")]
+        [InlineData("en-US", TemperatureDeltaUnit.DegreeDelisle, "∆°De")]
+        [InlineData("en-US", TemperatureDeltaUnit.DegreeFahrenheit, "∆°F")]
+        [InlineData("en-US", TemperatureDeltaUnit.DegreeNewton, "∆°N")]
+        [InlineData("en-US", TemperatureDeltaUnit.DegreeRankine, "∆°R")]
+        [InlineData("en-US", TemperatureDeltaUnit.DegreeReaumur, "∆°Ré")]
+        [InlineData("en-US", TemperatureDeltaUnit.DegreeRoemer, "∆°Rø")]
+        [InlineData("en-US", TemperatureDeltaUnit.Kelvin, "∆K")]
+        [InlineData("en-US", TemperatureDeltaUnit.MillidegreeCelsius, "∆m°C")]
+        public void GetAbbreviationForCulture(string culture, TemperatureDeltaUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = TemperatureDelta.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(TemperatureDelta.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = TemperatureDelta.GetAbbreviation(unit);
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]
@@ -783,23 +711,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = TemperatureDelta.FromKelvins(1);
-            Assert.True(v.Equals(TemperatureDelta.FromKelvins(1), KelvinsTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(TemperatureDelta.Zero, KelvinsTolerance, ComparisonType.Relative));
-            Assert.True(TemperatureDelta.FromKelvins(100).Equals(TemperatureDelta.FromKelvins(120), 0.3, ComparisonType.Relative));
-            Assert.False(TemperatureDelta.FromKelvins(100).Equals(TemperatureDelta.FromKelvins(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = TemperatureDelta.FromKelvins(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(TemperatureDelta.FromKelvins(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             TemperatureDelta kelvin = TemperatureDelta.FromKelvins(1);
@@ -811,6 +722,32 @@ namespace UnitsNet.Tests
         {
             TemperatureDelta kelvin = TemperatureDelta.FromKelvins(1);
             Assert.False(kelvin.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = TemperatureDelta.FromKelvins(firstValue);
+            var otherQuantity = TemperatureDelta.FromKelvins(secondValue);
+            TemperatureDelta maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, TemperatureDelta.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = TemperatureDelta.FromKelvins(1);
+            var negativeTolerance = TemperatureDelta.FromKelvins(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -907,7 +844,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = TemperatureDelta.FromKelvins(1.0);
-            Assert.Equal(new {TemperatureDelta.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

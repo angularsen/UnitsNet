@@ -584,7 +584,7 @@ namespace UnitsNet
                         LengthUnit.Twip => _value * 2.54e-2 / 1440,
                         LengthUnit.UsSurveyFoot => _value * 1200 / 3937,
                         LengthUnit.Yard => _value * 0.9144,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -639,7 +639,7 @@ namespace UnitsNet
                         LengthUnit.Twip => baseUnitValue * 1440 / 2.54e-2,
                         LengthUnit.UsSurveyFoot => baseUnitValue * 3937 / 1200,
                         LengthUnit.Yard => baseUnitValue / 0.9144,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

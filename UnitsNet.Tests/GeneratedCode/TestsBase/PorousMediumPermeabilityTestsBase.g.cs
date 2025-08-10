@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -112,7 +113,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new PorousMediumPermeability(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -125,15 +126,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void PorousMediumPermeability_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            PorousMediumPermeabilityUnit[] unitsOrderedByName = EnumHelper.GetValues<PorousMediumPermeabilityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new PorousMediumPermeability(1, PorousMediumPermeabilityUnit.SquareMeter);
 
-            QuantityInfo<PorousMediumPermeabilityUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<PorousMediumPermeability, PorousMediumPermeabilityUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(PorousMediumPermeability.Zero, quantityInfo.Zero);
             Assert.Equal("PorousMediumPermeability", quantityInfo.Name);
-
-            var units = Enum.GetValues<PorousMediumPermeabilityUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(PorousMediumPermeability.Zero, quantityInfo.Zero);
+            Assert.Equal(PorousMediumPermeability.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(PorousMediumPermeability.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<PorousMediumPermeabilityUnit>)quantity).QuantityInfo);
         }
 
         [Fact]
@@ -150,26 +155,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = PorousMediumPermeability.From(1, PorousMediumPermeabilityUnit.Darcy);
-            AssertEx.EqualTolerance(1, quantity00.Darcys, DarcysTolerance);
-            Assert.Equal(PorousMediumPermeabilityUnit.Darcy, quantity00.Unit);
-
-            var quantity01 = PorousMediumPermeability.From(1, PorousMediumPermeabilityUnit.Microdarcy);
-            AssertEx.EqualTolerance(1, quantity01.Microdarcys, MicrodarcysTolerance);
-            Assert.Equal(PorousMediumPermeabilityUnit.Microdarcy, quantity01.Unit);
-
-            var quantity02 = PorousMediumPermeability.From(1, PorousMediumPermeabilityUnit.Millidarcy);
-            AssertEx.EqualTolerance(1, quantity02.Millidarcys, MillidarcysTolerance);
-            Assert.Equal(PorousMediumPermeabilityUnit.Millidarcy, quantity02.Unit);
-
-            var quantity03 = PorousMediumPermeability.From(1, PorousMediumPermeabilityUnit.SquareCentimeter);
-            AssertEx.EqualTolerance(1, quantity03.SquareCentimeters, SquareCentimetersTolerance);
-            Assert.Equal(PorousMediumPermeabilityUnit.SquareCentimeter, quantity03.Unit);
-
-            var quantity04 = PorousMediumPermeability.From(1, PorousMediumPermeabilityUnit.SquareMeter);
-            AssertEx.EqualTolerance(1, quantity04.SquareMeters, SquareMetersTolerance);
-            Assert.Equal(PorousMediumPermeabilityUnit.SquareMeter, quantity04.Unit);
-
+            Assert.All(EnumHelper.GetValues<PorousMediumPermeabilityUnit>(), unit =>
+            {
+                var quantity = PorousMediumPermeability.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -258,15 +249,22 @@ namespace UnitsNet.Tests
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
                 Assert.Equal(expectedValue, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity quantityToConvert = quantity;
-
-                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);
             });
+        }
+
+        [Fact]
+        public virtual void ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new PorousMediumPermeability(value: 1, unit: PorousMediumPermeability.BaseUnit);
+            var expectedUnit = PorousMediumPermeability.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            IQuantity quantityToConvert = quantity;
+
+            IQuantity convertedQuantity = quantityToConvert.ToUnitUntyped(UnitSystem.SI);
+
+            Assert.Equal(expectedUnit, convertedQuantity.Unit);
+            Assert.Equal(expectedValue, convertedQuantity.Value);
         }
 
         [Fact]
@@ -281,11 +279,15 @@ namespace UnitsNet.Tests
             {
                 IQuantity<PorousMediumPermeabilityUnit> quantity = new PorousMediumPermeability(value: 1, unit: PorousMediumPermeability.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
-            }, () =>
-            {
-                IQuantity quantity = new PorousMediumPermeability(value: 1, unit: PorousMediumPermeability.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
+        }
+
+        [Fact]
+        public void ToUnitUntyped_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            IQuantity quantity = new PorousMediumPermeability(value: 1, unit: PorousMediumPermeability.BaseUnit);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
         }
 
         [Fact]
@@ -300,86 +302,43 @@ namespace UnitsNet.Tests
             {
                 IQuantity<PorousMediumPermeabilityUnit> quantity = new PorousMediumPermeability(value: 1, unit: PorousMediumPermeability.BaseUnit);
                 Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
-            }, () =>
-            {
-                IQuantity quantity = new PorousMediumPermeability(value: 1, unit: PorousMediumPermeability.BaseUnit);
-                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
             });
         }
 
         [Fact]
-        public void Parse()
+        public void ToUnitUntyped_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            try
-            {
-                var parsed = PorousMediumPermeability.Parse("1 D", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Darcys, DarcysTolerance);
-                Assert.Equal(PorousMediumPermeabilityUnit.Darcy, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = PorousMediumPermeability.Parse("1 µD", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Microdarcys, MicrodarcysTolerance);
-                Assert.Equal(PorousMediumPermeabilityUnit.Microdarcy, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = PorousMediumPermeability.Parse("1 mD", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.Millidarcys, MillidarcysTolerance);
-                Assert.Equal(PorousMediumPermeabilityUnit.Millidarcy, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = PorousMediumPermeability.Parse("1 cm²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SquareCentimeters, SquareCentimetersTolerance);
-                Assert.Equal(PorousMediumPermeabilityUnit.SquareCentimeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = PorousMediumPermeability.Parse("1 m²", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SquareMeters, SquareMetersTolerance);
-                Assert.Equal(PorousMediumPermeabilityUnit.SquareMeter, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            IQuantity quantity = new PorousMediumPermeability(value: 1, unit: PorousMediumPermeability.BaseUnit);
+            Assert.Throws<ArgumentException>(() => quantity.ToUnitUntyped(unsupportedUnitSystem));
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 D", PorousMediumPermeabilityUnit.Darcy, 4.2)]
+        [InlineData("en-US", "4.2 µD", PorousMediumPermeabilityUnit.Microdarcy, 4.2)]
+        [InlineData("en-US", "4.2 mD", PorousMediumPermeabilityUnit.Millidarcy, 4.2)]
+        [InlineData("en-US", "4.2 cm²", PorousMediumPermeabilityUnit.SquareCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 m²", PorousMediumPermeabilityUnit.SquareMeter, 4.2)]
+        public void Parse(string culture, string quantityString, PorousMediumPermeabilityUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(PorousMediumPermeability.TryParse("1 D", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Darcys, DarcysTolerance);
-                Assert.Equal(PorousMediumPermeabilityUnit.Darcy, parsed.Unit);
-            }
+            using var _ = new CultureScope(culture);
+            var parsed = PorousMediumPermeability.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
+        }
 
-            {
-                Assert.True(PorousMediumPermeability.TryParse("1 µD", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Microdarcys, MicrodarcysTolerance);
-                Assert.Equal(PorousMediumPermeabilityUnit.Microdarcy, parsed.Unit);
-            }
-
-            {
-                Assert.True(PorousMediumPermeability.TryParse("1 mD", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.Millidarcys, MillidarcysTolerance);
-                Assert.Equal(PorousMediumPermeabilityUnit.Millidarcy, parsed.Unit);
-            }
-
-            {
-                Assert.True(PorousMediumPermeability.TryParse("1 cm²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SquareCentimeters, SquareCentimetersTolerance);
-                Assert.Equal(PorousMediumPermeabilityUnit.SquareCentimeter, parsed.Unit);
-            }
-
-            {
-                Assert.True(PorousMediumPermeability.TryParse("1 m²", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SquareMeters, SquareMetersTolerance);
-                Assert.Equal(PorousMediumPermeabilityUnit.SquareMeter, parsed.Unit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "4.2 D", PorousMediumPermeabilityUnit.Darcy, 4.2)]
+        [InlineData("en-US", "4.2 µD", PorousMediumPermeabilityUnit.Microdarcy, 4.2)]
+        [InlineData("en-US", "4.2 mD", PorousMediumPermeabilityUnit.Millidarcy, 4.2)]
+        [InlineData("en-US", "4.2 cm²", PorousMediumPermeabilityUnit.SquareCentimeter, 4.2)]
+        [InlineData("en-US", "4.2 m²", PorousMediumPermeabilityUnit.SquareMeter, 4.2)]
+        public void TryParse(string culture, string quantityString, PorousMediumPermeabilityUnit expectedUnit, double expectedValue)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(PorousMediumPermeability.TryParse(quantityString, out PorousMediumPermeability parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -486,6 +445,31 @@ namespace UnitsNet.Tests
         {
             Assert.True(PorousMediumPermeability.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out PorousMediumPermeabilityUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", PorousMediumPermeabilityUnit.Darcy, "D")]
+        [InlineData("en-US", PorousMediumPermeabilityUnit.Microdarcy, "µD")]
+        [InlineData("en-US", PorousMediumPermeabilityUnit.Millidarcy, "mD")]
+        [InlineData("en-US", PorousMediumPermeabilityUnit.SquareCentimeter, "cm²")]
+        [InlineData("en-US", PorousMediumPermeabilityUnit.SquareMeter, "m²")]
+        public void GetAbbreviationForCulture(string culture, PorousMediumPermeabilityUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = PorousMediumPermeability.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(PorousMediumPermeability.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = PorousMediumPermeability.GetAbbreviation(unit);
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]
@@ -655,23 +639,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = PorousMediumPermeability.FromSquareMeters(1);
-            Assert.True(v.Equals(PorousMediumPermeability.FromSquareMeters(1), SquareMetersTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(PorousMediumPermeability.Zero, SquareMetersTolerance, ComparisonType.Relative));
-            Assert.True(PorousMediumPermeability.FromSquareMeters(100).Equals(PorousMediumPermeability.FromSquareMeters(120), 0.3, ComparisonType.Relative));
-            Assert.False(PorousMediumPermeability.FromSquareMeters(100).Equals(PorousMediumPermeability.FromSquareMeters(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = PorousMediumPermeability.FromSquareMeters(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(PorousMediumPermeability.FromSquareMeters(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             PorousMediumPermeability squaremeter = PorousMediumPermeability.FromSquareMeters(1);
@@ -683,6 +650,32 @@ namespace UnitsNet.Tests
         {
             PorousMediumPermeability squaremeter = PorousMediumPermeability.FromSquareMeters(1);
             Assert.False(squaremeter.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = PorousMediumPermeability.FromSquareMeters(firstValue);
+            var otherQuantity = PorousMediumPermeability.FromSquareMeters(secondValue);
+            PorousMediumPermeability maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, PorousMediumPermeability.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = PorousMediumPermeability.FromSquareMeters(1);
+            var negativeTolerance = PorousMediumPermeability.FromSquareMeters(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -771,7 +764,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = PorousMediumPermeability.FromSquareMeters(1.0);
-            Assert.Equal(new {PorousMediumPermeability.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]

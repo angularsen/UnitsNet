@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Tests.Helpers;
 using UnitsNet.Tests.TestsBase;
 using UnitsNet.Units;
@@ -120,7 +121,7 @@ namespace UnitsNet.Tests
         {
             var quantity = new ThermalInsulance(value: 1, unitSystem: UnitSystem.SI);
             Assert.Equal(1, quantity.Value);
-            Assert.True(quantity.QuantityInfo.UnitInfos.First(x => x.Value == quantity.Unit).BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
+            Assert.True(quantity.QuantityInfo[quantity.Unit].BaseUnits.IsSubsetOf(UnitSystem.SI.BaseUnits));
         }
 
         [Fact]
@@ -133,15 +134,19 @@ namespace UnitsNet.Tests
         [Fact]
         public void ThermalInsulance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
+            ThermalInsulanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ThermalInsulanceUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt);
 
-            QuantityInfo<ThermalInsulanceUnit> quantityInfo = quantity.QuantityInfo;
+            QuantityInfo<ThermalInsulance, ThermalInsulanceUnit> quantityInfo = quantity.QuantityInfo;
 
-            Assert.Equal(ThermalInsulance.Zero, quantityInfo.Zero);
             Assert.Equal("ThermalInsulance", quantityInfo.Name);
-
-            var units = Enum.GetValues<ThermalInsulanceUnit>().OrderBy(x => x.ToString()).ToArray();
-            var unitNames = units.Select(x => x.ToString());
+            Assert.Equal(ThermalInsulance.Zero, quantityInfo.Zero);
+            Assert.Equal(ThermalInsulance.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(unitsOrderedByName, quantityInfo.Units);
+            Assert.Equal(unitsOrderedByName, quantityInfo.UnitInfos.Select(x => x.Value));
+            Assert.Equal(ThermalInsulance.Info, quantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity)quantity).QuantityInfo);
+            Assert.Equal(quantityInfo, ((IQuantity<ThermalInsulanceUnit>)quantity).QuantityInfo);
         }
 
         [Fact]
@@ -160,34 +165,12 @@ namespace UnitsNet.Tests
         [Fact]
         public void From_ValueAndUnit_ReturnsQuantityWithSameValueAndUnit()
         {
-            var quantity00 = ThermalInsulance.From(1, ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu);
-            AssertEx.EqualTolerance(1, quantity00.HourSquareFeetDegreesFahrenheitPerBtu, HourSquareFeetDegreesFahrenheitPerBtuTolerance);
-            Assert.Equal(ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, quantity00.Unit);
-
-            var quantity01 = ThermalInsulance.From(1, ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie);
-            AssertEx.EqualTolerance(1, quantity01.SquareCentimeterHourDegreesCelsiusPerKilocalorie, SquareCentimeterHourDegreesCelsiusPerKilocalorieTolerance);
-            Assert.Equal(ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, quantity01.Unit);
-
-            var quantity02 = ThermalInsulance.From(1, ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt);
-            AssertEx.EqualTolerance(1, quantity02.SquareCentimeterKelvinsPerWatt, SquareCentimeterKelvinsPerWattTolerance);
-            Assert.Equal(ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, quantity02.Unit);
-
-            var quantity03 = ThermalInsulance.From(1, ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt);
-            AssertEx.EqualTolerance(1, quantity03.SquareMeterDegreesCelsiusPerWatt, SquareMeterDegreesCelsiusPerWattTolerance);
-            Assert.Equal(ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, quantity03.Unit);
-
-            var quantity04 = ThermalInsulance.From(1, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt);
-            AssertEx.EqualTolerance(1, quantity04.SquareMeterKelvinsPerKilowatt, SquareMeterKelvinsPerKilowattTolerance);
-            Assert.Equal(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, quantity04.Unit);
-
-            var quantity05 = ThermalInsulance.From(1, ThermalInsulanceUnit.SquareMeterKelvinPerWatt);
-            AssertEx.EqualTolerance(1, quantity05.SquareMeterKelvinsPerWatt, SquareMeterKelvinsPerWattTolerance);
-            Assert.Equal(ThermalInsulanceUnit.SquareMeterKelvinPerWatt, quantity05.Unit);
-
-            var quantity06 = ThermalInsulance.From(1, ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt);
-            AssertEx.EqualTolerance(1, quantity06.SquareMillimeterKelvinsPerWatt, SquareMillimeterKelvinsPerWattTolerance);
-            Assert.Equal(ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, quantity06.Unit);
-
+            Assert.All(EnumHelper.GetValues<ThermalInsulanceUnit>(), unit =>
+            {
+                var quantity = ThermalInsulance.From(1, unit);
+                Assert.Equal(1, quantity.Value);
+                Assert.Equal(unit, quantity.Unit);
+            });
         }
 
         [Fact]
@@ -278,15 +261,22 @@ namespace UnitsNet.Tests
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
                 Assert.Equal(expectedValue, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity quantityToConvert = quantity;
-
-                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);
             });
+        }
+
+        [Fact]
+        public virtual void ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new ThermalInsulance(value: 1, unit: ThermalInsulance.BaseUnit);
+            var expectedUnit = ThermalInsulance.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            IQuantity quantityToConvert = quantity;
+
+            IQuantity convertedQuantity = quantityToConvert.ToUnitUntyped(UnitSystem.SI);
+
+            Assert.Equal(expectedUnit, convertedQuantity.Unit);
+            Assert.Equal(expectedValue, convertedQuantity.Value);
         }
 
         [Fact]
@@ -301,11 +291,15 @@ namespace UnitsNet.Tests
             {
                 IQuantity<ThermalInsulanceUnit> quantity = new ThermalInsulance(value: 1, unit: ThermalInsulance.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
-            }, () =>
-            {
-                IQuantity quantity = new ThermalInsulance(value: 1, unit: ThermalInsulance.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
+        }
+
+        [Fact]
+        public void ToUnitUntyped_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            IQuantity quantity = new ThermalInsulance(value: 1, unit: ThermalInsulance.BaseUnit);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
         }
 
         [Fact]
@@ -320,112 +314,47 @@ namespace UnitsNet.Tests
             {
                 IQuantity<ThermalInsulanceUnit> quantity = new ThermalInsulance(value: 1, unit: ThermalInsulance.BaseUnit);
                 Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
-            }, () =>
-            {
-                IQuantity quantity = new ThermalInsulance(value: 1, unit: ThermalInsulance.BaseUnit);
-                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
             });
         }
 
         [Fact]
-        public void Parse()
+        public void ToUnitUntyped_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
-            try
-            {
-                var parsed = ThermalInsulance.Parse("1 Hrft²°F/Btu", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.HourSquareFeetDegreesFahrenheitPerBtu, HourSquareFeetDegreesFahrenheitPerBtuTolerance);
-                Assert.Equal(ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ThermalInsulance.Parse("1 cm²Hr°C/kcal", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SquareCentimeterHourDegreesCelsiusPerKilocalorie, SquareCentimeterHourDegreesCelsiusPerKilocalorieTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ThermalInsulance.Parse("1 cm²K/W", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SquareCentimeterKelvinsPerWatt, SquareCentimeterKelvinsPerWattTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ThermalInsulance.Parse("1 m²°C/W", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SquareMeterDegreesCelsiusPerWatt, SquareMeterDegreesCelsiusPerWattTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ThermalInsulance.Parse("1 m²K/kW", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SquareMeterKelvinsPerKilowatt, SquareMeterKelvinsPerKilowattTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ThermalInsulance.Parse("1 m²K/W", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SquareMeterKelvinsPerWatt, SquareMeterKelvinsPerWattTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareMeterKelvinPerWatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
-            try
-            {
-                var parsed = ThermalInsulance.Parse("1 mm²K/W", CultureInfo.GetCultureInfo("en-US"));
-                AssertEx.EqualTolerance(1, parsed.SquareMillimeterKelvinsPerWatt, SquareMillimeterKelvinsPerWattTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, parsed.Unit);
-            } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
-
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            IQuantity quantity = new ThermalInsulance(value: 1, unit: ThermalInsulance.BaseUnit);
+            Assert.Throws<ArgumentException>(() => quantity.ToUnitUntyped(unsupportedUnitSystem));
         }
 
-        [Fact]
-        public void TryParse()
+        [Theory]
+        [InlineData("en-US", "4.2 Hrft²°F/Btu", ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, 4.2)]
+        [InlineData("en-US", "4.2 cm²Hr°C/kcal", ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, 4.2)]
+        [InlineData("en-US", "4.2 cm²K/W", ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, 4.2)]
+        [InlineData("en-US", "4.2 m²°C/W", ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, 4.2)]
+        [InlineData("en-US", "4.2 m²K/kW", ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, 4.2)]
+        [InlineData("en-US", "4.2 m²K/W", ThermalInsulanceUnit.SquareMeterKelvinPerWatt, 4.2)]
+        [InlineData("en-US", "4.2 mm²K/W", ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, 4.2)]
+        public void Parse(string culture, string quantityString, ThermalInsulanceUnit expectedUnit, double expectedValue)
         {
-            {
-                Assert.True(ThermalInsulance.TryParse("1 Hrft²°F/Btu", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.HourSquareFeetDegreesFahrenheitPerBtu, HourSquareFeetDegreesFahrenheitPerBtuTolerance);
-                Assert.Equal(ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, parsed.Unit);
-            }
+            using var _ = new CultureScope(culture);
+            var parsed = ThermalInsulance.Parse(quantityString);
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
+        }
 
-            {
-                Assert.True(ThermalInsulance.TryParse("1 cm²Hr°C/kcal", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SquareCentimeterHourDegreesCelsiusPerKilocalorie, SquareCentimeterHourDegreesCelsiusPerKilocalorieTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, parsed.Unit);
-            }
-
-            {
-                Assert.True(ThermalInsulance.TryParse("1 cm²K/W", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SquareCentimeterKelvinsPerWatt, SquareCentimeterKelvinsPerWattTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(ThermalInsulance.TryParse("1 m²°C/W", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SquareMeterDegreesCelsiusPerWatt, SquareMeterDegreesCelsiusPerWattTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(ThermalInsulance.TryParse("1 m²K/kW", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SquareMeterKelvinsPerKilowatt, SquareMeterKelvinsPerKilowattTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(ThermalInsulance.TryParse("1 m²K/W", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SquareMeterKelvinsPerWatt, SquareMeterKelvinsPerWattTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareMeterKelvinPerWatt, parsed.Unit);
-            }
-
-            {
-                Assert.True(ThermalInsulance.TryParse("1 mm²K/W", CultureInfo.GetCultureInfo("en-US"), out var parsed));
-                AssertEx.EqualTolerance(1, parsed.SquareMillimeterKelvinsPerWatt, SquareMillimeterKelvinsPerWattTolerance);
-                Assert.Equal(ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, parsed.Unit);
-            }
-
+        [Theory]
+        [InlineData("en-US", "4.2 Hrft²°F/Btu", ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, 4.2)]
+        [InlineData("en-US", "4.2 cm²Hr°C/kcal", ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, 4.2)]
+        [InlineData("en-US", "4.2 cm²K/W", ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, 4.2)]
+        [InlineData("en-US", "4.2 m²°C/W", ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, 4.2)]
+        [InlineData("en-US", "4.2 m²K/kW", ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, 4.2)]
+        [InlineData("en-US", "4.2 m²K/W", ThermalInsulanceUnit.SquareMeterKelvinPerWatt, 4.2)]
+        [InlineData("en-US", "4.2 mm²K/W", ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, 4.2)]
+        public void TryParse(string culture, string quantityString, ThermalInsulanceUnit expectedUnit, double expectedValue)
+        {
+            using var _ = new CultureScope(culture);
+            Assert.True(ThermalInsulance.TryParse(quantityString, out ThermalInsulance parsed));
+            Assert.Equal(expectedUnit, parsed.Unit);
+            Assert.Equal(expectedValue, parsed.Value);
         }
 
         [Theory]
@@ -548,6 +477,33 @@ namespace UnitsNet.Tests
         {
             Assert.True(ThermalInsulance.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out ThermalInsulanceUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
+        }
+
+        [Theory]
+        [InlineData("en-US", ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, "Hrft²°F/Btu")]
+        [InlineData("en-US", ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, "cm²Hr°C/kcal")]
+        [InlineData("en-US", ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt, "cm²K/W")]
+        [InlineData("en-US", ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt, "m²°C/W")]
+        [InlineData("en-US", ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, "m²K/kW")]
+        [InlineData("en-US", ThermalInsulanceUnit.SquareMeterKelvinPerWatt, "m²K/W")]
+        [InlineData("en-US", ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, "mm²K/W")]
+        public void GetAbbreviationForCulture(string culture, ThermalInsulanceUnit unit, string expectedAbbreviation)
+        {
+            var defaultAbbreviation = ThermalInsulance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
+            Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+        }
+
+        [Fact]
+        public void GetAbbreviationWithDefaultCulture()
+        {
+            Assert.All(ThermalInsulance.Units, unit =>
+            {
+                var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
+
+                var defaultAbbreviation = ThermalInsulance.GetAbbreviation(unit);
+
+                Assert.Equal(expectedAbbreviation, defaultAbbreviation);
+            });
         }
 
         [Theory]
@@ -719,23 +675,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Equals_RelativeTolerance_IsImplemented()
-        {
-            var v = ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(1);
-            Assert.True(v.Equals(ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(1), SquareMeterKelvinsPerKilowattTolerance, ComparisonType.Relative));
-            Assert.False(v.Equals(ThermalInsulance.Zero, SquareMeterKelvinsPerKilowattTolerance, ComparisonType.Relative));
-            Assert.True(ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(100).Equals(ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(120), 0.3, ComparisonType.Relative));
-            Assert.False(ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(100).Equals(ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(120), 0.1, ComparisonType.Relative));
-        }
-
-        [Fact]
-        public void Equals_NegativeRelativeTolerance_ThrowsArgumentOutOfRangeException()
-        {
-            var v = ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(1);
-            Assert.Throws<ArgumentOutOfRangeException>(() => v.Equals(ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(1), -1, ComparisonType.Relative));
-        }
-
-        [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
             ThermalInsulance squaremeterkelvinperkilowatt = ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(1);
@@ -747,6 +686,32 @@ namespace UnitsNet.Tests
         {
             ThermalInsulance squaremeterkelvinperkilowatt = ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(1);
             Assert.False(squaremeterkelvinperkilowatt.Equals(null));
+        }
+
+        [Theory]
+        [InlineData(1, 2)]
+        [InlineData(100, 110)]
+        [InlineData(100, 90)]
+        public void Equals_WithTolerance(double firstValue, double secondValue)
+        {
+            var quantity = ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(firstValue);
+            var otherQuantity = ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(secondValue);
+            ThermalInsulance maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
+            Assert.True(quantity.Equals(quantity, ThermalInsulance.Zero));
+            Assert.True(quantity.Equals(quantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, maxTolerance));
+            Assert.True(quantity.Equals(otherQuantity, largerTolerance));
+            Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
+        }
+
+        [Fact]
+        public void Equals_WithNegativeTolerance_ThrowsArgumentOutOfRangeException()
+        {
+            var quantity = ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(1);
+            var negativeTolerance = ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(-1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => quantity.Equals(quantity, negativeTolerance));
         }
 
         [Fact]
@@ -839,7 +804,7 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(1.0);
-            Assert.Equal(new {ThermalInsulance.Info.Name, quantity.Value, quantity.Unit}.GetHashCode(), quantity.GetHashCode());
+            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
         }
 
         [Theory]
