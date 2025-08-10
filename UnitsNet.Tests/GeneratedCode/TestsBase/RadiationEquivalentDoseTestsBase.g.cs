@@ -255,15 +255,22 @@ namespace UnitsNet.Tests
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
                 Assert.Equal(expectedValue, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity quantityToConvert = quantity;
-
-                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);
             });
+        }
+
+        [Fact]
+        public virtual void ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            var quantity = new RadiationEquivalentDose(value: 1, unit: RadiationEquivalentDose.BaseUnit);
+            var expectedUnit = RadiationEquivalentDose.Info.GetDefaultUnit(UnitSystem.SI);
+            var expectedValue = quantity.As(expectedUnit);
+
+            IQuantity quantityToConvert = quantity;
+
+            IQuantity convertedQuantity = quantityToConvert.ToUnitUntyped(UnitSystem.SI);
+
+            Assert.Equal(expectedUnit, convertedQuantity.Unit);
+            Assert.Equal(expectedValue, convertedQuantity.Value);
         }
 
         [Fact]
@@ -278,11 +285,15 @@ namespace UnitsNet.Tests
             {
                 IQuantity<RadiationEquivalentDoseUnit> quantity = new RadiationEquivalentDose(value: 1, unit: RadiationEquivalentDose.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
-            }, () =>
-            {
-                IQuantity quantity = new RadiationEquivalentDose(value: 1, unit: RadiationEquivalentDose.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
+        }
+
+        [Fact]
+        public void ToUnitUntyped_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+        {
+            UnitSystem nullUnitSystem = null!;
+            IQuantity quantity = new RadiationEquivalentDose(value: 1, unit: RadiationEquivalentDose.BaseUnit);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
         }
 
         [Fact]
@@ -297,11 +308,15 @@ namespace UnitsNet.Tests
             {
                 IQuantity<RadiationEquivalentDoseUnit> quantity = new RadiationEquivalentDose(value: 1, unit: RadiationEquivalentDose.BaseUnit);
                 Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
-            }, () =>
-            {
-                IQuantity quantity = new RadiationEquivalentDose(value: 1, unit: RadiationEquivalentDose.BaseUnit);
-                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
             });
+        }
+
+        [Fact]
+        public void ToUnitUntyped_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
+        {
+            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
+            IQuantity quantity = new RadiationEquivalentDose(value: 1, unit: RadiationEquivalentDose.BaseUnit);
+            Assert.Throws<ArgumentException>(() => quantity.ToUnitUntyped(unsupportedUnitSystem));
         }
 
         [Theory]
@@ -485,7 +500,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", RadiationEquivalentDoseUnit.Sievert, "Зв")]
         public void GetAbbreviationForCulture(string culture, RadiationEquivalentDoseUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = RadiationEquivalentDose.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = RadiationEquivalentDose.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -496,7 +511,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = RadiationEquivalentDose.GetAbbreviation(unit); 
+                var defaultAbbreviation = RadiationEquivalentDose.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

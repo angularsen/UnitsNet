@@ -37,23 +37,29 @@ namespace UnitsNet.Tests.CustomCode
         {
             base.Ctor_SIUnitSystem_ReturnsQuantityWithSIUnits();
         }
-        
+
         [Fact(Skip = "See about changing the BaseUnit to VoltampereSecond or Joule (adding the unit)")]
         public override void BaseUnit_HasSIBase()
         {
             base.BaseUnit_HasSIBase();
         }
-        
+
         [Fact(Skip = "See about adding an SI unit (VoltampereSecond, Joules?)")]
         public override void As_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             base.As_UnitSystem_SI_ReturnsQuantityInSIUnits();
         }
-        
+
         [Fact(Skip = "See about adding an SI unit (VoltampereSecond, Joules?)")]
         public override void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
         {
             base.ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits();
+        }
+
+        [Fact(Skip = "See about adding an SI unit (VoltampereSecond, Joules?)")]
+        public override void ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits()
+        {
+            base.ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits();
         }
     }
 }
