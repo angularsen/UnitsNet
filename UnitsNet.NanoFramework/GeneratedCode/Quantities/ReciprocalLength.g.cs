@@ -235,7 +235,7 @@ namespace UnitsNet
                         ReciprocalLengthUnit.InverseMillimeter => _value * 1e3,
                         ReciprocalLengthUnit.InverseUsSurveyFoot => _value * 3937 / 1200,
                         ReciprocalLengthUnit.InverseYard => _value / 0.9144,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -258,7 +258,7 @@ namespace UnitsNet
                         ReciprocalLengthUnit.InverseMillimeter => baseUnitValue / 1e3,
                         ReciprocalLengthUnit.InverseUsSurveyFoot => baseUnitValue * 1200 / 3937,
                         ReciprocalLengthUnit.InverseYard => baseUnitValue * 0.9144,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

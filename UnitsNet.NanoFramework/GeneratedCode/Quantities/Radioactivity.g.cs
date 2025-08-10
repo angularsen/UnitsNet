@@ -441,7 +441,7 @@ namespace UnitsNet
                         RadioactivityUnit.Terabecquerel => (_value) * 1e12d,
                         RadioactivityUnit.Teracurie => (_value * 3.7e10) * 1e12d,
                         RadioactivityUnit.Terarutherford => (_value * 1e6) * 1e12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -483,7 +483,7 @@ namespace UnitsNet
                         RadioactivityUnit.Terabecquerel => (baseUnitValue) / 1e12d,
                         RadioactivityUnit.Teracurie => (baseUnitValue / 3.7e10) / 1e12d,
                         RadioactivityUnit.Terarutherford => (baseUnitValue / 1e6) / 1e12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

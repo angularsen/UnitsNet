@@ -1,0 +1,57 @@
+<Solution>
+  <Folder Name="/PerfTests/">
+    <Project Path="PerfTests/PerfTest_Startup/PerfTest_Startup.csproj" />
+    <Project Path="PerfTests/PerfTest_Startup_Aot/PerfTest_Startup_Aot.csproj" />
+    <Project Path="PerfTests/PerfTest_Startup_v4_144_0/PerfTest_Startup_v4_144_0.csproj" />
+    <Project Path="PerfTests/PerfTest_Startup_v4_72_0/PerfTest_Startup_v4_72_0.csproj" />
+  </Folder>
+  <Folder Name="/_Files/">
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+    <File Path="azure-pipelines.yml" />
+    <File Path="build-all-targets.bat" />
+    <File Path="build.bat" />
+    <File Path="clean.bat" />
+    <File Path="CODE_OF_CONDUCT.md" />
+    <File Path="CONTRIBUTING.md" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="generate-code.bat" />
+    <File Path="init.bat" />
+    <File Path="LICENSE" />
+    <File Path="nuget.config" />
+    <File Path="publish-unitsnet.bat" />
+    <File Path="README.md" />
+    <File Path="test.bat" />
+    <File Path="UnitsNet.sln.DotSettings" />
+    <File Path="UnitsNet.snk" />
+  </Folder>
+  <Folder Name="/_Files/Build/">
+    <File Path="Build/build-functions.psm1" />
+    <File Path="Build/build-pack-nano-nugets.psm1" />
+    <File Path="Build/build.ps1" />
+    <File Path="Build/bump-version-json.bat" />
+    <File Path="Build/bump-version-json.sh" />
+    <File Path="Build/bump-version.bat" />
+    <File Path="Build/bump-version.sh" />
+    <File Path="Build/clean.ps1" />
+    <File Path="Build/codecov.sh" />
+    <File Path="Build/init.ps1" />
+    <File Path="Build/set-version-json.sh" />
+    <File Path="Build/set-version-UnitsNet.ps1" />
+    <File Path="Build/set-version-UnitsNet.Serialization.JsonNet.ps1" />
+    <File Path="Build/set-version.psm1" />
+    <File Path="Build/set-version.sh" />
+  </Folder>
+  <Project Path="CodeGen/CodeGen.csproj" />
+  <Project Path="UnitsNet.Benchmark/UnitsNet.Benchmark.csproj" />
+  <Project Path="UnitsNet.NumberExtensions.Tests/UnitsNet.NumberExtensions.Tests.csproj" />
+  <Project Path="UnitsNet.NumberExtensions/UnitsNet.NumberExtensions.csproj" />
+  <Project Path="UnitsNet.Serialization.JsonNet.Tests/UnitsNet.Serialization.JsonNet.Tests.csproj" />
+  <Project Path="UnitsNet.Serialization.JsonNet/UnitsNet.Serialization.JsonNet.csproj" />
+  <Project Path="UnitsNet.Serialization.SystemTextJson.Tests/UnitsNet.Serialization.SystemTextJson.Tests.csproj" />
+  <Project Path="UnitsNet.Serialization.SystemTextJson/UnitsNet.Serialization.SystemTextJson.csproj" />
+  <Project Path="UnitsNet.Tests/UnitsNet.Tests.csproj" />
+  <Project Path="UnitsNet/UnitsNet.csproj" />
+</Solution>

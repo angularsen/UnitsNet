@@ -254,7 +254,7 @@ namespace UnitsNet
                         EnergyDensityUnit.TerajoulePerCubicMeter => (_value) * 1e12d,
                         EnergyDensityUnit.TerawattHourPerCubicMeter => (_value * 3.6e+3) * 1e12d,
                         EnergyDensityUnit.WattHourPerCubicMeter => _value * 3.6e+3,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -279,7 +279,7 @@ namespace UnitsNet
                         EnergyDensityUnit.TerajoulePerCubicMeter => (baseUnitValue) / 1e12d,
                         EnergyDensityUnit.TerawattHourPerCubicMeter => (baseUnitValue / 3.6e+3) / 1e12d,
                         EnergyDensityUnit.WattHourPerCubicMeter => baseUnitValue / 3.6e+3,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

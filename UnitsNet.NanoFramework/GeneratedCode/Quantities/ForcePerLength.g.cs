@@ -540,7 +540,7 @@ namespace UnitsNet
                         ForcePerLengthUnit.TonneForcePerCentimeter => _value * 9.80665e5,
                         ForcePerLengthUnit.TonneForcePerMeter => _value * 9.80665e3,
                         ForcePerLengthUnit.TonneForcePerMillimeter => _value * 9.80665e6,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -591,7 +591,7 @@ namespace UnitsNet
                         ForcePerLengthUnit.TonneForcePerCentimeter => baseUnitValue / 9.80665e5,
                         ForcePerLengthUnit.TonneForcePerMeter => baseUnitValue / 9.80665e3,
                         ForcePerLengthUnit.TonneForcePerMillimeter => baseUnitValue / 9.80665e6,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

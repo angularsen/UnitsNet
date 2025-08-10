@@ -312,7 +312,7 @@ namespace UnitsNet
                         SpecificWeightUnit.TonneForcePerCubicCentimeter => _value * 9.80665e9,
                         SpecificWeightUnit.TonneForcePerCubicMeter => _value * 9.80665e3,
                         SpecificWeightUnit.TonneForcePerCubicMillimeter => _value * 9.80665e12,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -342,7 +342,7 @@ namespace UnitsNet
                         SpecificWeightUnit.TonneForcePerCubicCentimeter => baseUnitValue / 9.80665e9,
                         SpecificWeightUnit.TonneForcePerCubicMeter => baseUnitValue / 9.80665e3,
                         SpecificWeightUnit.TonneForcePerCubicMillimeter => baseUnitValue / 9.80665e12,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

@@ -232,7 +232,7 @@ namespace UnitsNet
                         RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour => _value / 100 / 3600,
                         RadiationEquivalentDoseRateUnit.SievertPerHour => _value/3600,
                         RadiationEquivalentDoseRateUnit.SievertPerSecond => _value,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -255,7 +255,7 @@ namespace UnitsNet
                         RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour => baseUnitValue * 100 * 3600,
                         RadiationEquivalentDoseRateUnit.SievertPerHour => baseUnitValue*3600,
                         RadiationEquivalentDoseRateUnit.SievertPerSecond => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

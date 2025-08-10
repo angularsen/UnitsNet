@@ -188,7 +188,7 @@ namespace UnitsNet
                         WarpingMomentOfInertiaUnit.InchToTheSixth => _value * 0.000000000268535866540096,
                         WarpingMomentOfInertiaUnit.MeterToTheSixth => _value,
                         WarpingMomentOfInertiaUnit.MillimeterToTheSixth => _value / 1e18,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -207,7 +207,7 @@ namespace UnitsNet
                         WarpingMomentOfInertiaUnit.InchToTheSixth => baseUnitValue / 0.000000000268535866540096,
                         WarpingMomentOfInertiaUnit.MeterToTheSixth => baseUnitValue,
                         WarpingMomentOfInertiaUnit.MillimeterToTheSixth => baseUnitValue * 1e18,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

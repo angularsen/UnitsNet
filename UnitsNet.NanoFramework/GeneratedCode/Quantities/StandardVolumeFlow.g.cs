@@ -221,7 +221,7 @@ namespace UnitsNet
                         StandardVolumeFlowUnit.StandardCubicMeterPerMinute => _value / 60,
                         StandardVolumeFlowUnit.StandardCubicMeterPerSecond => _value,
                         StandardVolumeFlowUnit.StandardLiterPerMinute => _value / 60000,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -243,7 +243,7 @@ namespace UnitsNet
                         StandardVolumeFlowUnit.StandardCubicMeterPerMinute => baseUnitValue * 60,
                         StandardVolumeFlowUnit.StandardCubicMeterPerSecond => baseUnitValue,
                         StandardVolumeFlowUnit.StandardLiterPerMinute => baseUnitValue * 60000,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

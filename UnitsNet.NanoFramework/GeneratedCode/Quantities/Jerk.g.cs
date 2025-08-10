@@ -243,7 +243,7 @@ namespace UnitsNet
                         JerkUnit.MillistandardGravitiesPerSecond => (_value * 9.80665) * 1e-3d,
                         JerkUnit.NanometerPerSecondCubed => (_value) * 1e-9d,
                         JerkUnit.StandardGravitiesPerSecond => _value * 9.80665,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -267,7 +267,7 @@ namespace UnitsNet
                         JerkUnit.MillistandardGravitiesPerSecond => (baseUnitValue / 9.80665) / 1e-3d,
                         JerkUnit.NanometerPerSecondCubed => (baseUnitValue) / 1e-9d,
                         JerkUnit.StandardGravitiesPerSecond => baseUnitValue / 9.80665,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

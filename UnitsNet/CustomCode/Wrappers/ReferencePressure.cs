@@ -145,7 +145,7 @@ namespace UnitsNet.Wrappers
                 PressureReference.Absolute => baseReferenceValue,
                 PressureReference.Gauge => baseReferenceValue - AtmosphericPressure.ToUnit(Pressure.Unit).Value,
                 PressureReference.Vacuum => AtmosphericPressure.ToUnit(Pressure.Unit).Value - negatingValue * baseReferenceValue,
-                _ => throw new NotImplementedException($"Can not convert {Reference} to {reference}.")
+                _ => throw new NotImplementedException($"Can't convert {Reference} to {reference}.")
             };
         }
 
@@ -186,7 +186,7 @@ namespace UnitsNet.Wrappers
                     return AtmosphericPressure.ToUnit(Pressure.Unit).Value - Pressure.Value;
                 }
                 default:
-                    throw new NotImplementedException($"Can not convert {Reference} to base reference.");
+                    throw new NotImplementedException($"Can't convert {Reference} to base reference.");
             }
         }
     }

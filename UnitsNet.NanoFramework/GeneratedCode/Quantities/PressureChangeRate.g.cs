@@ -320,7 +320,7 @@ namespace UnitsNet
                         PressureChangeRateUnit.PascalPerSecond => _value,
                         PressureChangeRateUnit.PoundForcePerSquareInchPerMinute => _value * (4.4482216152605 / 0.00064516) / 60,
                         PressureChangeRateUnit.PoundForcePerSquareInchPerSecond => _value * 4.4482216152605 / 0.00064516,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -351,7 +351,7 @@ namespace UnitsNet
                         PressureChangeRateUnit.PascalPerSecond => baseUnitValue,
                         PressureChangeRateUnit.PoundForcePerSquareInchPerMinute => baseUnitValue * 60 / (4.4482216152605 / 0.00064516),
                         PressureChangeRateUnit.PoundForcePerSquareInchPerSecond => baseUnitValue * 0.00064516 / 4.4482216152605,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

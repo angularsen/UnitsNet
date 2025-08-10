@@ -323,7 +323,7 @@ namespace UnitsNet
                         LinearDensityUnit.MilligramPerMillimeter => (_value) * 1e-3d,
                         LinearDensityUnit.PoundPerFoot => _value * 0.45359237 / 0.3048,
                         LinearDensityUnit.PoundPerInch => _value * 0.45359237 / 2.54e-2,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -354,7 +354,7 @@ namespace UnitsNet
                         LinearDensityUnit.MilligramPerMillimeter => (baseUnitValue) / 1e-3d,
                         LinearDensityUnit.PoundPerFoot => baseUnitValue * 0.3048 / 0.45359237,
                         LinearDensityUnit.PoundPerInch => baseUnitValue * 2.54e-2 / 0.45359237,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

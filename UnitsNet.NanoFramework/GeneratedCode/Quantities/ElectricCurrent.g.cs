@@ -224,7 +224,7 @@ namespace UnitsNet
                         ElectricCurrentUnit.Milliampere => (_value) * 1e-3d,
                         ElectricCurrentUnit.Nanoampere => (_value) * 1e-9d,
                         ElectricCurrentUnit.Picoampere => (_value) * 1e-12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -246,7 +246,7 @@ namespace UnitsNet
                         ElectricCurrentUnit.Milliampere => (baseUnitValue) / 1e-3d,
                         ElectricCurrentUnit.Nanoampere => (baseUnitValue) / 1e-9d,
                         ElectricCurrentUnit.Picoampere => (baseUnitValue) / 1e-12d,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

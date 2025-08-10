@@ -191,7 +191,7 @@ namespace UnitsNet
                         ElectricConductivityUnit.SiemensPerFoot => _value / 0.3048,
                         ElectricConductivityUnit.SiemensPerInch => _value / 2.54e-2,
                         ElectricConductivityUnit.SiemensPerMeter => _value,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -210,7 +210,7 @@ namespace UnitsNet
                         ElectricConductivityUnit.SiemensPerFoot => baseUnitValue * 0.3048,
                         ElectricConductivityUnit.SiemensPerInch => baseUnitValue * 2.54e-2,
                         ElectricConductivityUnit.SiemensPerMeter => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 

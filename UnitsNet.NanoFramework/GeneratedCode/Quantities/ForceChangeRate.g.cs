@@ -287,7 +287,7 @@ namespace UnitsNet
                         ForceChangeRateUnit.NewtonPerSecond => _value,
                         ForceChangeRateUnit.PoundForcePerMinute => _value * 4.4482216152605 / 60,
                         ForceChangeRateUnit.PoundForcePerSecond => _value * 4.4482216152605,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to base units.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
 
@@ -315,7 +315,7 @@ namespace UnitsNet
                         ForceChangeRateUnit.NewtonPerSecond => baseUnitValue,
                         ForceChangeRateUnit.PoundForcePerMinute => baseUnitValue / 4.4482216152605 * 60,
                         ForceChangeRateUnit.PoundForcePerSecond => baseUnitValue / 4.4482216152605,
-                        _ => throw new NotImplementedException($"Can not convert {Unit} to {unit}.")
+                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
 
