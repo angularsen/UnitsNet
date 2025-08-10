@@ -1034,15 +1034,6 @@ namespace UnitsNet
         }}
 ");
 
-            Writer.WL( $@"
-
-        /// <inheritdoc cref=""IQuantity.As(UnitSystem)""/>
-        public double As(UnitSystem unitSystem)
-        {{
-            return As(Info.GetDefaultUnit(unitSystem));
-        }}
-");
-
             Writer.WL($@"
         /// <summary>
         ///     Converts this {_quantity.Name} to another {_quantity.Name} with the unit representation <paramref name=""unit"" />.
@@ -1141,14 +1132,6 @@ namespace UnitsNet
         }}
 ");
             Writer.WL($@"
-        /// <inheritdoc cref=""IQuantity.ToUnit(UnitSystem)""/>
-        public {_quantity.Name} ToUnit(UnitSystem unitSystem)
-        {{
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }}
-");
-
-            Writer.WL($@"
         #region Explicit implementations
 
         double IQuantity.As(Enum unit)
@@ -1169,13 +1152,10 @@ namespace UnitsNet
         }}
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
         IQuantity<{_unitEnumName}> IQuantity<{_unitEnumName}>.ToUnit({_unitEnumName} unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<{_unitEnumName}> IQuantity<{_unitEnumName}>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<{_unitEnumName}> IQuantity<{_unitEnumName}>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         #endregion
 

@@ -669,12 +669,6 @@ namespace UnitsNet
             return As(unitKey.ToUnit<LeakRateUnit>());
         }
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
-        {
-            return As(Info.GetDefaultUnit(unitSystem));
-        }
-
         /// <summary>
         ///     Converts this LeakRate to another LeakRate with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -755,12 +749,6 @@ namespace UnitsNet
             return true;
         }
 
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public LeakRate ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
         #region Explicit implementations
 
         double IQuantity.As(Enum unit)
@@ -781,13 +769,10 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
         IQuantity<LeakRateUnit> IQuantity<LeakRateUnit>.ToUnit(LeakRateUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<LeakRateUnit> IQuantity<LeakRateUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<LeakRateUnit> IQuantity<LeakRateUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         #endregion
 

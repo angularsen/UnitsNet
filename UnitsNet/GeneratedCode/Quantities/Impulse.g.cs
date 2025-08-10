@@ -810,12 +810,6 @@ namespace UnitsNet
             return As(unitKey.ToUnit<ImpulseUnit>());
         }
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
-        {
-            return As(Info.GetDefaultUnit(unitSystem));
-        }
-
         /// <summary>
         ///     Converts this Impulse to another Impulse with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -914,12 +908,6 @@ namespace UnitsNet
             return true;
         }
 
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public Impulse ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
         #region Explicit implementations
 
         double IQuantity.As(Enum unit)
@@ -940,13 +928,10 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
         IQuantity<ImpulseUnit> IQuantity<ImpulseUnit>.ToUnit(ImpulseUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<ImpulseUnit> IQuantity<ImpulseUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<ImpulseUnit> IQuantity<ImpulseUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         #endregion
 

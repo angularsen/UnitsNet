@@ -714,12 +714,6 @@ namespace UnitsNet
             return As(unitKey.ToUnit<ThermalInsulanceUnit>());
         }
 
-        /// <inheritdoc cref="IQuantity.As(UnitSystem)"/>
-        public double As(UnitSystem unitSystem)
-        {
-            return As(Info.GetDefaultUnit(unitSystem));
-        }
-
         /// <summary>
         ///     Converts this ThermalInsulance to another ThermalInsulance with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -806,12 +800,6 @@ namespace UnitsNet
             return true;
         }
 
-        /// <inheritdoc cref="IQuantity.ToUnit(UnitSystem)"/>
-        public ThermalInsulance ToUnit(UnitSystem unitSystem)
-        {
-            return ToUnit(Info.GetDefaultUnit(unitSystem));
-        }
-
         #region Explicit implementations
 
         double IQuantity.As(Enum unit)
@@ -832,13 +820,10 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
-
-        /// <inheritdoc />
         IQuantity<ThermalInsulanceUnit> IQuantity<ThermalInsulanceUnit>.ToUnit(ThermalInsulanceUnit unit) => ToUnit(unit);
 
         /// <inheritdoc />
-        IQuantity<ThermalInsulanceUnit> IQuantity<ThermalInsulanceUnit>.ToUnit(UnitSystem unitSystem) => ToUnit(unitSystem);
+        IQuantity<ThermalInsulanceUnit> IQuantity<ThermalInsulanceUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
 
         #endregion
 
