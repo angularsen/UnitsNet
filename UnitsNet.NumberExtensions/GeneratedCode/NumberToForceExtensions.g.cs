@@ -76,15 +76,15 @@ namespace UnitsNet.NumberExtensions.NumberToForce
             => Force.FromKilonewtons(value.ToDouble(null));
 #endif
 
-        /// <inheritdoc cref="Force.FromKiloPonds(double)" />
-        public static Force KiloPonds<T>(this T value)
+        /// <inheritdoc cref="Force.FromKiloponds(double)" />
+        public static Force Kiloponds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Force.FromKiloPonds(double.CreateChecked(value));
+            => Force.FromKiloponds(double.CreateChecked(value));
 #else
             , IConvertible
-            => Force.FromKiloPonds(value.ToDouble(null));
+            => Force.FromKiloponds(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Force.FromKilopoundsForce(double)" />

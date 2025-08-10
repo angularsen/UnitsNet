@@ -134,7 +134,7 @@ namespace UnitsNet
                 yield return new (ForceUnit.Dyn, "Dyn", "Dyne", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Second));
                 yield return new (ForceUnit.KilogramForce, "KilogramForce", "KilogramsForce", BaseUnits.Undefined);
                 yield return new (ForceUnit.Kilonewton, "Kilonewton", "Kilonewtons", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (ForceUnit.KiloPond, "KiloPond", "KiloPonds", BaseUnits.Undefined);
+                yield return new (ForceUnit.Kilopond, "Kilopond", "Kiloponds", BaseUnits.Undefined);
                 yield return new (ForceUnit.KilopoundForce, "KilopoundForce", "KilopoundsForce", BaseUnits.Undefined);
                 yield return new (ForceUnit.Meganewton, "Meganewton", "Meganewtons", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
                 yield return new (ForceUnit.Micronewton, "Micronewton", "Micronewtons", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
@@ -276,9 +276,9 @@ namespace UnitsNet
         public double Kilonewtons => As(ForceUnit.Kilonewton);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.KiloPond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Kilopond"/>
         /// </summary>
-        public double KiloPonds => As(ForceUnit.KiloPond);
+        public double Kiloponds => As(ForceUnit.Kilopond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.KilopoundForce"/>
@@ -345,7 +345,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Force>(ForceUnit.Dyn, ForceUnit.Newton, quantity => quantity.ToUnit(ForceUnit.Newton));
             unitConverter.SetConversionFunction<Force>(ForceUnit.KilogramForce, ForceUnit.Newton, quantity => quantity.ToUnit(ForceUnit.Newton));
             unitConverter.SetConversionFunction<Force>(ForceUnit.Kilonewton, ForceUnit.Newton, quantity => quantity.ToUnit(ForceUnit.Newton));
-            unitConverter.SetConversionFunction<Force>(ForceUnit.KiloPond, ForceUnit.Newton, quantity => quantity.ToUnit(ForceUnit.Newton));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Kilopond, ForceUnit.Newton, quantity => quantity.ToUnit(ForceUnit.Newton));
             unitConverter.SetConversionFunction<Force>(ForceUnit.KilopoundForce, ForceUnit.Newton, quantity => quantity.ToUnit(ForceUnit.Newton));
             unitConverter.SetConversionFunction<Force>(ForceUnit.Meganewton, ForceUnit.Newton, quantity => quantity.ToUnit(ForceUnit.Newton));
             unitConverter.SetConversionFunction<Force>(ForceUnit.Micronewton, ForceUnit.Newton, quantity => quantity.ToUnit(ForceUnit.Newton));
@@ -364,7 +364,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Dyn, quantity => quantity.ToUnit(ForceUnit.Dyn));
             unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.KilogramForce, quantity => quantity.ToUnit(ForceUnit.KilogramForce));
             unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Kilonewton, quantity => quantity.ToUnit(ForceUnit.Kilonewton));
-            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.KiloPond, quantity => quantity.ToUnit(ForceUnit.KiloPond));
+            unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Kilopond, quantity => quantity.ToUnit(ForceUnit.Kilopond));
             unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.KilopoundForce, quantity => quantity.ToUnit(ForceUnit.KilopoundForce));
             unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Meganewton, quantity => quantity.ToUnit(ForceUnit.Meganewton));
             unitConverter.SetConversionFunction<Force>(ForceUnit.Newton, ForceUnit.Micronewton, quantity => quantity.ToUnit(ForceUnit.Micronewton));
@@ -434,11 +434,11 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KiloPond"/>.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Kilopond"/>.
         /// </summary>
-        public static Force FromKiloPonds(double value)
+        public static Force FromKiloponds(double value)
         {
-            return new Force(value, ForceUnit.KiloPond);
+            return new Force(value, ForceUnit.Kilopond);
         }
 
         /// <summary>
@@ -1000,7 +1000,7 @@ namespace UnitsNet
                 (ForceUnit.Dyn, ForceUnit.Newton) => new Force(_value / 1e5, ForceUnit.Newton),
                 (ForceUnit.KilogramForce, ForceUnit.Newton) => new Force(_value * 9.80665, ForceUnit.Newton),
                 (ForceUnit.Kilonewton, ForceUnit.Newton) => new Force((_value) * 1e3d, ForceUnit.Newton),
-                (ForceUnit.KiloPond, ForceUnit.Newton) => new Force(_value * 9.80665, ForceUnit.Newton),
+                (ForceUnit.Kilopond, ForceUnit.Newton) => new Force(_value * 9.80665, ForceUnit.Newton),
                 (ForceUnit.KilopoundForce, ForceUnit.Newton) => new Force((_value * 4.4482216152605) * 1e3d, ForceUnit.Newton),
                 (ForceUnit.Meganewton, ForceUnit.Newton) => new Force((_value) * 1e6d, ForceUnit.Newton),
                 (ForceUnit.Micronewton, ForceUnit.Newton) => new Force((_value) * 1e-6d, ForceUnit.Newton),
@@ -1016,7 +1016,7 @@ namespace UnitsNet
                 (ForceUnit.Newton, ForceUnit.Dyn) => new Force(_value * 1e5, ForceUnit.Dyn),
                 (ForceUnit.Newton, ForceUnit.KilogramForce) => new Force(_value / 9.80665, ForceUnit.KilogramForce),
                 (ForceUnit.Newton, ForceUnit.Kilonewton) => new Force((_value) / 1e3d, ForceUnit.Kilonewton),
-                (ForceUnit.Newton, ForceUnit.KiloPond) => new Force(_value / 9.80665, ForceUnit.KiloPond),
+                (ForceUnit.Newton, ForceUnit.Kilopond) => new Force(_value / 9.80665, ForceUnit.Kilopond),
                 (ForceUnit.Newton, ForceUnit.KilopoundForce) => new Force((_value / 4.4482216152605) / 1e3d, ForceUnit.KilopoundForce),
                 (ForceUnit.Newton, ForceUnit.Meganewton) => new Force((_value) / 1e6d, ForceUnit.Meganewton),
                 (ForceUnit.Newton, ForceUnit.Micronewton) => new Force((_value) / 1e-6d, ForceUnit.Micronewton),
