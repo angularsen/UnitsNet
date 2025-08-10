@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MolarFlow_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MolarFlowUnit[] unitsOrderedByName = EnumHelper.GetValues<MolarFlowUnit>().OrderBy(x => x.ToString()).ToArray();
+            MolarFlowUnit[] unitsOrderedByName = EnumHelper.GetValues<MolarFlowUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new MolarFlow(1, MolarFlowUnit.MolePerSecond);
 
             QuantityInfo<MolarFlow, MolarFlowUnit> quantityInfo = quantity.QuantityInfo;
@@ -508,7 +508,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", MolarFlowUnit.PoundMolePerSecond, "lbmol/s")]
         public void GetAbbreviationForCulture(string culture, MolarFlowUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = MolarFlow.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = MolarFlow.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -519,7 +519,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = MolarFlow.GetAbbreviation(unit); 
+                var defaultAbbreviation = MolarFlow.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

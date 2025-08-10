@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BrakeSpecificFuelConsumption_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            BrakeSpecificFuelConsumptionUnit[] unitsOrderedByName = EnumHelper.GetValues<BrakeSpecificFuelConsumptionUnit>().OrderBy(x => x.ToString()).ToArray();
+            BrakeSpecificFuelConsumptionUnit[] unitsOrderedByName = EnumHelper.GetValues<BrakeSpecificFuelConsumptionUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new BrakeSpecificFuelConsumption(1, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule);
 
             QuantityInfo<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumptionUnit> quantityInfo = quantity.QuantityInfo;
@@ -406,7 +406,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, "lb/hph")]
         public void GetAbbreviationForCulture(string culture, BrakeSpecificFuelConsumptionUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = BrakeSpecificFuelConsumption.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = BrakeSpecificFuelConsumption.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -417,7 +417,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = BrakeSpecificFuelConsumption.GetAbbreviation(unit); 
+                var defaultAbbreviation = BrakeSpecificFuelConsumption.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

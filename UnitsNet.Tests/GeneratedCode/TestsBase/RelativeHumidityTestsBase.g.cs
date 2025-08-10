@@ -89,7 +89,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void RelativeHumidity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RelativeHumidityUnit[] unitsOrderedByName = EnumHelper.GetValues<RelativeHumidityUnit>().OrderBy(x => x.ToString()).ToArray();
+            RelativeHumidityUnit[] unitsOrderedByName = EnumHelper.GetValues<RelativeHumidityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new RelativeHumidity(1, RelativeHumidityUnit.Percent);
 
             QuantityInfo<RelativeHumidity, RelativeHumidityUnit> quantityInfo = quantity.QuantityInfo;
@@ -312,7 +312,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", RelativeHumidityUnit.Percent, "%RH")]
         public void GetAbbreviationForCulture(string culture, RelativeHumidityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = RelativeHumidity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = RelativeHumidity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -323,7 +323,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = RelativeHumidity.GetAbbreviation(unit); 
+                var defaultAbbreviation = RelativeHumidity.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void TemperatureDelta_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            TemperatureDeltaUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureDeltaUnit>().OrderBy(x => x.ToString()).ToArray();
+            TemperatureDeltaUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureDeltaUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new TemperatureDelta(1, TemperatureDeltaUnit.Kelvin);
 
             QuantityInfo<TemperatureDelta, TemperatureDeltaUnit> quantityInfo = quantity.QuantityInfo;
@@ -508,7 +508,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", TemperatureDeltaUnit.MillidegreeCelsius, "∆m°C")]
         public void GetAbbreviationForCulture(string culture, TemperatureDeltaUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = TemperatureDelta.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = TemperatureDelta.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -519,7 +519,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = TemperatureDelta.GetAbbreviation(unit); 
+                var defaultAbbreviation = TemperatureDelta.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MagneticField_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MagneticFieldUnit[] unitsOrderedByName = EnumHelper.GetValues<MagneticFieldUnit>().OrderBy(x => x.ToString()).ToArray();
+            MagneticFieldUnit[] unitsOrderedByName = EnumHelper.GetValues<MagneticFieldUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new MagneticField(1, MagneticFieldUnit.Tesla);
 
             QuantityInfo<MagneticField, MagneticFieldUnit> quantityInfo = quantity.QuantityInfo;
@@ -457,7 +457,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", MagneticFieldUnit.Tesla, "T")]
         public void GetAbbreviationForCulture(string culture, MagneticFieldUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = MagneticField.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = MagneticField.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -468,7 +468,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = MagneticField.GetAbbreviation(unit); 
+                var defaultAbbreviation = MagneticField.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

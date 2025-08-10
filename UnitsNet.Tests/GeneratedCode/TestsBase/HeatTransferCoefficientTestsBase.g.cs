@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HeatTransferCoefficient_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            HeatTransferCoefficientUnit[] unitsOrderedByName = EnumHelper.GetValues<HeatTransferCoefficientUnit>().OrderBy(x => x.ToString()).ToArray();
+            HeatTransferCoefficientUnit[] unitsOrderedByName = EnumHelper.GetValues<HeatTransferCoefficientUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin);
 
             QuantityInfo<HeatTransferCoefficient, HeatTransferCoefficientUnit> quantityInfo = quantity.QuantityInfo;
@@ -530,7 +530,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, "W/(m²·K)")]
         public void GetAbbreviationForCulture(string culture, HeatTransferCoefficientUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = HeatTransferCoefficient.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = HeatTransferCoefficient.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -541,7 +541,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = HeatTransferCoefficient.GetAbbreviation(unit); 
+                var defaultAbbreviation = HeatTransferCoefficient.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void StandardVolumeFlow_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            StandardVolumeFlowUnit[] unitsOrderedByName = EnumHelper.GetValues<StandardVolumeFlowUnit>().OrderBy(x => x.ToString()).ToArray();
+            StandardVolumeFlowUnit[] unitsOrderedByName = EnumHelper.GetValues<StandardVolumeFlowUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerSecond);
 
             QuantityInfo<StandardVolumeFlow, StandardVolumeFlowUnit> quantityInfo = quantity.QuantityInfo;
@@ -508,7 +508,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", StandardVolumeFlowUnit.StandardLiterPerMinute, "slm")]
         public void GetAbbreviationForCulture(string culture, StandardVolumeFlowUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = StandardVolumeFlow.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = StandardVolumeFlow.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -519,7 +519,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = StandardVolumeFlow.GetAbbreviation(unit); 
+                var defaultAbbreviation = StandardVolumeFlow.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

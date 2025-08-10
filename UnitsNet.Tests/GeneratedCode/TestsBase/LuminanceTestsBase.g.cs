@@ -146,7 +146,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Luminance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            LuminanceUnit[] unitsOrderedByName = EnumHelper.GetValues<LuminanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            LuminanceUnit[] unitsOrderedByName = EnumHelper.GetValues<LuminanceUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Luminance(1, LuminanceUnit.CandelaPerSquareMeter);
 
             QuantityInfo<Luminance, LuminanceUnit> quantityInfo = quantity.QuantityInfo;
@@ -525,7 +525,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", LuminanceUnit.Nit, "nt")]
         public void GetAbbreviationForCulture(string culture, LuminanceUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Luminance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Luminance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -536,7 +536,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Luminance.GetAbbreviation(unit); 
+                var defaultAbbreviation = Luminance.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

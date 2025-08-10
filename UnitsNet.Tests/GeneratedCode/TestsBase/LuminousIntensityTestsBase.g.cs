@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void LuminousIntensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            LuminousIntensityUnit[] unitsOrderedByName = EnumHelper.GetValues<LuminousIntensityUnit>().OrderBy(x => x.ToString()).ToArray();
+            LuminousIntensityUnit[] unitsOrderedByName = EnumHelper.GetValues<LuminousIntensityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new LuminousIntensity(1, LuminousIntensityUnit.Candela);
 
             QuantityInfo<LuminousIntensity, LuminousIntensityUnit> quantityInfo = quantity.QuantityInfo;
@@ -372,7 +372,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", LuminousIntensityUnit.Candela, "cd")]
         public void GetAbbreviationForCulture(string culture, LuminousIntensityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = LuminousIntensity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = LuminousIntensity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -383,7 +383,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = LuminousIntensity.GetAbbreviation(unit); 
+                var defaultAbbreviation = LuminousIntensity.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

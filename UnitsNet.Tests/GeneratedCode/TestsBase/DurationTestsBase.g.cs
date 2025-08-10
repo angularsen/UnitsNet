@@ -158,7 +158,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Duration_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            DurationUnit[] unitsOrderedByName = EnumHelper.GetValues<DurationUnit>().OrderBy(x => x.ToString()).ToArray();
+            DurationUnit[] unitsOrderedByName = EnumHelper.GetValues<DurationUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Duration(1, DurationUnit.Second);
 
             QuantityInfo<Duration, DurationUnit> quantityInfo = quantity.QuantityInfo;
@@ -1065,7 +1065,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", DurationUnit.Year365, "год")]
         public void GetAbbreviationForCulture(string culture, DurationUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Duration.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Duration.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -1076,7 +1076,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Duration.GetAbbreviation(unit); 
+                var defaultAbbreviation = Duration.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

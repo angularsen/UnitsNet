@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricConductivity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricConductivityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricConductivityUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricConductivityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricConductivityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricConductivity(1, ElectricConductivityUnit.SiemensPerMeter);
 
             QuantityInfo<ElectricConductivity, ElectricConductivityUnit> quantityInfo = quantity.QuantityInfo;
@@ -457,7 +457,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ElectricConductivityUnit.SiemensPerMeter, "S/m")]
         public void GetAbbreviationForCulture(string culture, ElectricConductivityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ElectricConductivity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ElectricConductivity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -468,7 +468,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ElectricConductivity.GetAbbreviation(unit); 
+                var defaultAbbreviation = ElectricConductivity.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

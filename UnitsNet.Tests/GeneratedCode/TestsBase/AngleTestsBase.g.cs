@@ -145,7 +145,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Angle_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            AngleUnit[] unitsOrderedByName = EnumHelper.GetValues<AngleUnit>().OrderBy(x => x.ToString()).ToArray();
+            AngleUnit[] unitsOrderedByName = EnumHelper.GetValues<AngleUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Angle(1, AngleUnit.Radian);
 
             QuantityInfo<Angle, AngleUnit> quantityInfo = quantity.QuantityInfo;
@@ -734,7 +734,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", AngleUnit.Revolution, "r")]
         public void GetAbbreviationForCulture(string culture, AngleUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Angle.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Angle.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -745,7 +745,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Angle.GetAbbreviation(unit); 
+                var defaultAbbreviation = Angle.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

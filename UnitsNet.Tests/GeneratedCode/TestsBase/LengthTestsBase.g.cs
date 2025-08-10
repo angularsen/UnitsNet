@@ -274,7 +274,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Length_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            LengthUnit[] unitsOrderedByName = EnumHelper.GetValues<LengthUnit>().OrderBy(x => x.ToString()).ToArray();
+            LengthUnit[] unitsOrderedByName = EnumHelper.GetValues<LengthUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Length(1, LengthUnit.Meter);
 
             QuantityInfo<Length, LengthUnit> quantityInfo = quantity.QuantityInfo;
@@ -1453,7 +1453,7 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", LengthUnit.Yard, "码")]
         public void GetAbbreviationForCulture(string culture, LengthUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Length.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Length.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -1464,7 +1464,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Length.GetAbbreviation(unit); 
+                var defaultAbbreviation = Length.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

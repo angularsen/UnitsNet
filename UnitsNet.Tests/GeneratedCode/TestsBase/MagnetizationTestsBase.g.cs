@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Magnetization_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MagnetizationUnit[] unitsOrderedByName = EnumHelper.GetValues<MagnetizationUnit>().OrderBy(x => x.ToString()).ToArray();
+            MagnetizationUnit[] unitsOrderedByName = EnumHelper.GetValues<MagnetizationUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Magnetization(1, MagnetizationUnit.AmperePerMeter);
 
             QuantityInfo<Magnetization, MagnetizationUnit> quantityInfo = quantity.QuantityInfo;
@@ -372,7 +372,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", MagnetizationUnit.AmperePerMeter, "A/m")]
         public void GetAbbreviationForCulture(string culture, MagnetizationUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Magnetization.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Magnetization.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -383,7 +383,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Magnetization.GetAbbreviation(unit); 
+                var defaultAbbreviation = Magnetization.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

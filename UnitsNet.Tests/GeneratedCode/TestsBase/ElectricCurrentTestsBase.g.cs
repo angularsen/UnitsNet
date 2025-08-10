@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricCurrent_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricCurrentUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricCurrentUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricCurrentUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricCurrentUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricCurrent(1, ElectricCurrentUnit.Ampere);
 
             QuantityInfo<ElectricCurrent, ElectricCurrentUnit> quantityInfo = quantity.QuantityInfo;
@@ -508,7 +508,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ElectricCurrentUnit.Picoampere, "pA")]
         public void GetAbbreviationForCulture(string culture, ElectricCurrentUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ElectricCurrent.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ElectricCurrent.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -519,7 +519,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ElectricCurrent.GetAbbreviation(unit); 
+                var defaultAbbreviation = ElectricCurrent.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

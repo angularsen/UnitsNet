@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Jerk_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            JerkUnit[] unitsOrderedByName = EnumHelper.GetValues<JerkUnit>().OrderBy(x => x.ToString()).ToArray();
+            JerkUnit[] unitsOrderedByName = EnumHelper.GetValues<JerkUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Jerk(1, JerkUnit.MeterPerSecondCubed);
 
             QuantityInfo<Jerk, JerkUnit> quantityInfo = quantity.QuantityInfo;
@@ -619,7 +619,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", JerkUnit.StandardGravitiesPerSecond, "g/s")]
         public void GetAbbreviationForCulture(string culture, JerkUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Jerk.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Jerk.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -630,7 +630,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Jerk.GetAbbreviation(unit); 
+                var defaultAbbreviation = Jerk.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

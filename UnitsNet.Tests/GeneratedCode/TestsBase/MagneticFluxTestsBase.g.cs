@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MagneticFlux_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MagneticFluxUnit[] unitsOrderedByName = EnumHelper.GetValues<MagneticFluxUnit>().OrderBy(x => x.ToString()).ToArray();
+            MagneticFluxUnit[] unitsOrderedByName = EnumHelper.GetValues<MagneticFluxUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new MagneticFlux(1, MagneticFluxUnit.Weber);
 
             QuantityInfo<MagneticFlux, MagneticFluxUnit> quantityInfo = quantity.QuantityInfo;
@@ -372,7 +372,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", MagneticFluxUnit.Weber, "Wb")]
         public void GetAbbreviationForCulture(string culture, MagneticFluxUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = MagneticFlux.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = MagneticFlux.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -383,7 +383,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = MagneticFlux.GetAbbreviation(unit); 
+                var defaultAbbreviation = MagneticFlux.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

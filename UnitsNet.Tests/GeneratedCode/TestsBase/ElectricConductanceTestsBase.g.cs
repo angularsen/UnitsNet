@@ -170,7 +170,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricConductance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricConductanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricConductanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricConductanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricConductanceUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricConductance(1, ElectricConductanceUnit.Siemens);
 
             QuantityInfo<ElectricConductance, ElectricConductanceUnit> quantityInfo = quantity.QuantityInfo;
@@ -627,7 +627,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ElectricConductanceUnit.Terasiemens, "TS")]
         public void GetAbbreviationForCulture(string culture, ElectricConductanceUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ElectricConductance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ElectricConductance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -638,7 +638,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ElectricConductance.GetAbbreviation(unit); 
+                var defaultAbbreviation = ElectricConductance.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

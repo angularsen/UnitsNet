@@ -302,7 +302,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MassConcentration_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MassConcentrationUnit[] unitsOrderedByName = EnumHelper.GetValues<MassConcentrationUnit>().OrderBy(x => x.ToString()).ToArray();
+            MassConcentrationUnit[] unitsOrderedByName = EnumHelper.GetValues<MassConcentrationUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new MassConcentration(1, MassConcentrationUnit.KilogramPerCubicMeter);
 
             QuantityInfo<MassConcentration, MassConcentrationUnit> quantityInfo = quantity.QuantityInfo;
@@ -1216,7 +1216,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", MassConcentrationUnit.MilligramPerCubicMeter, "мг/м³")]
         public void GetAbbreviationForCulture(string culture, MassConcentrationUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = MassConcentration.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = MassConcentration.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -1227,7 +1227,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = MassConcentration.GetAbbreviation(unit); 
+                var defaultAbbreviation = MassConcentration.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

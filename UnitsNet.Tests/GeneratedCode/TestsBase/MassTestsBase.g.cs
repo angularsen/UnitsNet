@@ -214,7 +214,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Mass_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MassUnit[] unitsOrderedByName = EnumHelper.GetValues<MassUnit>().OrderBy(x => x.ToString()).ToArray();
+            MassUnit[] unitsOrderedByName = EnumHelper.GetValues<MassUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Mass(1, MassUnit.Kilogram);
 
             QuantityInfo<Mass, MassUnit> quantityInfo = quantity.QuantityInfo;
@@ -1185,7 +1185,7 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", MassUnit.Tonne, "吨")]
         public void GetAbbreviationForCulture(string culture, MassUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Mass.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Mass.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -1196,7 +1196,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Mass.GetAbbreviation(unit); 
+                var defaultAbbreviation = Mass.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

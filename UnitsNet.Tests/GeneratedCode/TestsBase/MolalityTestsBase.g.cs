@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Molality_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MolalityUnit[] unitsOrderedByName = EnumHelper.GetValues<MolalityUnit>().OrderBy(x => x.ToString()).ToArray();
+            MolalityUnit[] unitsOrderedByName = EnumHelper.GetValues<MolalityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Molality(1, MolalityUnit.MolePerKilogram);
 
             QuantityInfo<Molality, MolalityUnit> quantityInfo = quantity.QuantityInfo;
@@ -406,7 +406,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", MolalityUnit.MolePerKilogram, "mol/kg")]
         public void GetAbbreviationForCulture(string culture, MolalityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Molality.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Molality.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -417,7 +417,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Molality.GetAbbreviation(unit); 
+                var defaultAbbreviation = Molality.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

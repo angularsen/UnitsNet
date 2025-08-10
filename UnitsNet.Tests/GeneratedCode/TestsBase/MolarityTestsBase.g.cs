@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Molarity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MolarityUnit[] unitsOrderedByName = EnumHelper.GetValues<MolarityUnit>().OrderBy(x => x.ToString()).ToArray();
+            MolarityUnit[] unitsOrderedByName = EnumHelper.GetValues<MolarityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Molarity(1, MolarityUnit.MolePerCubicMeter);
 
             QuantityInfo<Molarity, MolarityUnit> quantityInfo = quantity.QuantityInfo;
@@ -622,7 +622,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", MolarityUnit.PoundMolePerCubicFoot, "lbmol/ft³")]
         public void GetAbbreviationForCulture(string culture, MolarityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Molarity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Molarity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -633,7 +633,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Molarity.GetAbbreviation(unit); 
+                var defaultAbbreviation = Molarity.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

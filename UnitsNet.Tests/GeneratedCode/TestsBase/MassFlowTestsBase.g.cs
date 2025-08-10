@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MassFlow_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MassFlowUnit[] unitsOrderedByName = EnumHelper.GetValues<MassFlowUnit>().OrderBy(x => x.ToString()).ToArray();
+            MassFlowUnit[] unitsOrderedByName = EnumHelper.GetValues<MassFlowUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new MassFlow(1, MassFlowUnit.GramPerSecond);
 
             QuantityInfo<MassFlow, MassFlowUnit> quantityInfo = quantity.QuantityInfo;
@@ -1020,7 +1020,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", MassFlowUnit.KilogramPerMinute, "кг/мин")]
         public void GetAbbreviationForCulture(string culture, MassFlowUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = MassFlow.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = MassFlow.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -1031,7 +1031,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = MassFlow.GetAbbreviation(unit); 
+                var defaultAbbreviation = MassFlow.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });
