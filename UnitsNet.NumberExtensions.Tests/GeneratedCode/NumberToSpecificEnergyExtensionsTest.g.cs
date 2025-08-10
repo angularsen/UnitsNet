@@ -89,8 +89,8 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificEnergy.FromMegajoulesPerKilogram(2), 2.MegajoulesPerKilogram());
 
         [Fact]
-        public void NumberToMegaJoulesPerTonneTest() =>
-            Assert.Equal(SpecificEnergy.FromMegaJoulesPerTonne(2), 2.MegaJoulesPerTonne());
+        public void NumberToMegajoulesPerTonneTest() =>
+            Assert.Equal(SpecificEnergy.FromMegajoulesPerTonne(2), 2.MegajoulesPerTonne());
 
         [Fact]
         public void NumberToMegawattDaysPerKilogramTest() =>
