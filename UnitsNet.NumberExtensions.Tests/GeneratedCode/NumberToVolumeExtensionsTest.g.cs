@@ -181,6 +181,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Volume.FromMetricCups(2), 2.MetricCups());
 
         [Fact]
+        public void NumberToMetricTablespoonsTest() =>
+            Assert.Equal(Volume.FromMetricTablespoons(2), 2.MetricTablespoons());
+
+        [Fact]
         public void NumberToMetricTeaspoonsTest() =>
             Assert.Equal(Volume.FromMetricTeaspoons(2), 2.MetricTeaspoons());
 
