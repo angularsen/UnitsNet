@@ -174,7 +174,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void SpecificWeight_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            SpecificWeightUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificWeightUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            SpecificWeightUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificWeightUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new SpecificWeight(1, SpecificWeightUnit.NewtonPerCubicMeter);
 
             QuantityInfo<SpecificWeight, SpecificWeightUnit> quantityInfo = quantity.QuantityInfo;

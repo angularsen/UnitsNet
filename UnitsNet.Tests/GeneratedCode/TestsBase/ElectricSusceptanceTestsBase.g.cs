@@ -170,7 +170,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricSusceptance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricSusceptanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricSusceptanceUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            ElectricSusceptanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricSusceptanceUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricSusceptance(1, ElectricSusceptanceUnit.Siemens);
 
             QuantityInfo<ElectricSusceptance, ElectricSusceptanceUnit> quantityInfo = quantity.QuantityInfo;

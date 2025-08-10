@@ -109,7 +109,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ratio_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RatioUnit[] unitsOrderedByName = EnumHelper.GetValues<RatioUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            RatioUnit[] unitsOrderedByName = EnumHelper.GetValues<RatioUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Ratio(1, RatioUnit.DecimalFraction);
 
             QuantityInfo<Ratio, RatioUnit> quantityInfo = quantity.QuantityInfo;

@@ -145,7 +145,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Angle_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            AngleUnit[] unitsOrderedByName = EnumHelper.GetValues<AngleUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            AngleUnit[] unitsOrderedByName = EnumHelper.GetValues<AngleUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Angle(1, AngleUnit.Radian);
 
             QuantityInfo<Angle, AngleUnit> quantityInfo = quantity.QuantityInfo;

@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MolarFlow_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MolarFlowUnit[] unitsOrderedByName = EnumHelper.GetValues<MolarFlowUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            MolarFlowUnit[] unitsOrderedByName = EnumHelper.GetValues<MolarFlowUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new MolarFlow(1, MolarFlowUnit.MolePerSecond);
 
             QuantityInfo<MolarFlow, MolarFlowUnit> quantityInfo = quantity.QuantityInfo;

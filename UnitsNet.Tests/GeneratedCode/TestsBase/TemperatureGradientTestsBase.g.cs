@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void TemperatureGradient_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            TemperatureGradientUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureGradientUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            TemperatureGradientUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureGradientUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new TemperatureGradient(1, TemperatureGradientUnit.KelvinPerMeter);
 
             QuantityInfo<TemperatureGradient, TemperatureGradientUnit> quantityInfo = quantity.QuantityInfo;

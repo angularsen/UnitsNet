@@ -206,7 +206,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Torque_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            TorqueUnit[] unitsOrderedByName = EnumHelper.GetValues<TorqueUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            TorqueUnit[] unitsOrderedByName = EnumHelper.GetValues<TorqueUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Torque(1, TorqueUnit.NewtonMeter);
 
             QuantityInfo<Torque, TorqueUnit> quantityInfo = quantity.QuantityInfo;

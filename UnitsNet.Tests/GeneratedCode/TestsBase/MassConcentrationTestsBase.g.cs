@@ -302,7 +302,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MassConcentration_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MassConcentrationUnit[] unitsOrderedByName = EnumHelper.GetValues<MassConcentrationUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            MassConcentrationUnit[] unitsOrderedByName = EnumHelper.GetValues<MassConcentrationUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new MassConcentration(1, MassConcentrationUnit.KilogramPerCubicMeter);
 
             QuantityInfo<MassConcentration, MassConcentrationUnit> quantityInfo = quantity.QuantityInfo;

@@ -174,7 +174,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void AbsorbedDoseOfIonizingRadiation_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            AbsorbedDoseOfIonizingRadiationUnit[] unitsOrderedByName = EnumHelper.GetValues<AbsorbedDoseOfIonizingRadiationUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            AbsorbedDoseOfIonizingRadiationUnit[] unitsOrderedByName = EnumHelper.GetValues<AbsorbedDoseOfIonizingRadiationUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new AbsorbedDoseOfIonizingRadiation(1, AbsorbedDoseOfIonizingRadiationUnit.Gray);
 
             QuantityInfo<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiationUnit> quantityInfo = quantity.QuantityInfo;

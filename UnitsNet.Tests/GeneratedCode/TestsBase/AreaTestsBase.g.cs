@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Area_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            AreaUnit[] unitsOrderedByName = EnumHelper.GetValues<AreaUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            AreaUnit[] unitsOrderedByName = EnumHelper.GetValues<AreaUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Area(1, AreaUnit.SquareMeter);
 
             QuantityInfo<Area, AreaUnit> quantityInfo = quantity.QuantityInfo;

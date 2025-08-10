@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MagneticFlux_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MagneticFluxUnit[] unitsOrderedByName = EnumHelper.GetValues<MagneticFluxUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            MagneticFluxUnit[] unitsOrderedByName = EnumHelper.GetValues<MagneticFluxUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new MagneticFlux(1, MagneticFluxUnit.Weber);
 
             QuantityInfo<MagneticFlux, MagneticFluxUnit> quantityInfo = quantity.QuantityInfo;

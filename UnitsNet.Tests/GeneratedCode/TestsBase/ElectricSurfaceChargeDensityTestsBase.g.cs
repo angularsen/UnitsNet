@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricSurfaceChargeDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricSurfaceChargeDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricSurfaceChargeDensityUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            ElectricSurfaceChargeDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricSurfaceChargeDensityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricSurfaceChargeDensity(1, ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter);
 
             QuantityInfo<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit> quantityInfo = quantity.QuantityInfo;

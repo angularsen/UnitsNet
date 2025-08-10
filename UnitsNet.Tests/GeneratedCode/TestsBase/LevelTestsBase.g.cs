@@ -93,7 +93,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Level_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            LevelUnit[] unitsOrderedByName = EnumHelper.GetValues<LevelUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            LevelUnit[] unitsOrderedByName = EnumHelper.GetValues<LevelUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Level(1, LevelUnit.Decibel);
 
             QuantityInfo<Level, LevelUnit> quantityInfo = quantity.QuantityInfo;

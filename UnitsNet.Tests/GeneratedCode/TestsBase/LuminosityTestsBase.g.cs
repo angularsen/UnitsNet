@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Luminosity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            LuminosityUnit[] unitsOrderedByName = EnumHelper.GetValues<LuminosityUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            LuminosityUnit[] unitsOrderedByName = EnumHelper.GetValues<LuminosityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Luminosity(1, LuminosityUnit.Watt);
 
             QuantityInfo<Luminosity, LuminosityUnit> quantityInfo = quantity.QuantityInfo;

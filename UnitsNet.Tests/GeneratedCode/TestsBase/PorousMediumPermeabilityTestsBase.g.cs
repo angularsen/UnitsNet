@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void PorousMediumPermeability_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            PorousMediumPermeabilityUnit[] unitsOrderedByName = EnumHelper.GetValues<PorousMediumPermeabilityUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            PorousMediumPermeabilityUnit[] unitsOrderedByName = EnumHelper.GetValues<PorousMediumPermeabilityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new PorousMediumPermeability(1, PorousMediumPermeabilityUnit.SquareMeter);
 
             QuantityInfo<PorousMediumPermeability, PorousMediumPermeabilityUnit> quantityInfo = quantity.QuantityInfo;

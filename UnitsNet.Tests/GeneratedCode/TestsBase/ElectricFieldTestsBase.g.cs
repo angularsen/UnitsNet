@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricField_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricFieldUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricFieldUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            ElectricFieldUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricFieldUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricField(1, ElectricFieldUnit.VoltPerMeter);
 
             QuantityInfo<ElectricField, ElectricFieldUnit> quantityInfo = quantity.QuantityInfo;

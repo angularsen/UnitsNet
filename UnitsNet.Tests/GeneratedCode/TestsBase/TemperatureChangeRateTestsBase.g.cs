@@ -174,7 +174,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void TemperatureChangeRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            TemperatureChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureChangeRateUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            TemperatureChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureChangeRateUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new TemperatureChangeRate(1, TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
 
             QuantityInfo<TemperatureChangeRate, TemperatureChangeRateUnit> quantityInfo = quantity.QuantityInfo;

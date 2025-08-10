@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Speed_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            SpeedUnit[] unitsOrderedByName = EnumHelper.GetValues<SpeedUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            SpeedUnit[] unitsOrderedByName = EnumHelper.GetValues<SpeedUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Speed(1, SpeedUnit.MeterPerSecond);
 
             QuantityInfo<Speed, SpeedUnit> quantityInfo = quantity.QuantityInfo;

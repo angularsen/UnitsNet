@@ -186,7 +186,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricPotentialChangeRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricPotentialChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricPotentialChangeRateUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            ElectricPotentialChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricPotentialChangeRateUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricPotentialChangeRate(1, ElectricPotentialChangeRateUnit.VoltPerSecond);
 
             QuantityInfo<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit> quantityInfo = quantity.QuantityInfo;

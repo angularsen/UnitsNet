@@ -89,7 +89,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Scalar_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ScalarUnit[] unitsOrderedByName = EnumHelper.GetValues<ScalarUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            ScalarUnit[] unitsOrderedByName = EnumHelper.GetValues<ScalarUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Scalar(1, ScalarUnit.Amount);
 
             QuantityInfo<Scalar, ScalarUnit> quantityInfo = quantity.QuantityInfo;

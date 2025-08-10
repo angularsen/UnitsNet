@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void RadiationEquivalentDose_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RadiationEquivalentDoseUnit[] unitsOrderedByName = EnumHelper.GetValues<RadiationEquivalentDoseUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            RadiationEquivalentDoseUnit[] unitsOrderedByName = EnumHelper.GetValues<RadiationEquivalentDoseUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new RadiationEquivalentDose(1, RadiationEquivalentDoseUnit.Sievert);
 
             QuantityInfo<RadiationEquivalentDose, RadiationEquivalentDoseUnit> quantityInfo = quantity.QuantityInfo;

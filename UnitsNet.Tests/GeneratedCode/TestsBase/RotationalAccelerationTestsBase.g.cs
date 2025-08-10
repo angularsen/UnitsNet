@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void RotationalAcceleration_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RotationalAccelerationUnit[] unitsOrderedByName = EnumHelper.GetValues<RotationalAccelerationUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            RotationalAccelerationUnit[] unitsOrderedByName = EnumHelper.GetValues<RotationalAccelerationUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new RotationalAcceleration(1, RotationalAccelerationUnit.RadianPerSecondSquared);
 
             QuantityInfo<RotationalAcceleration, RotationalAccelerationUnit> quantityInfo = quantity.QuantityInfo;

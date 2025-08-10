@@ -222,7 +222,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Radioactivity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RadioactivityUnit[] unitsOrderedByName = EnumHelper.GetValues<RadioactivityUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            RadioactivityUnit[] unitsOrderedByName = EnumHelper.GetValues<RadioactivityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Radioactivity(1, RadioactivityUnit.Becquerel);
 
             QuantityInfo<Radioactivity, RadioactivityUnit> quantityInfo = quantity.QuantityInfo;

@@ -181,7 +181,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MassFraction_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MassFractionUnit[] unitsOrderedByName = EnumHelper.GetValues<MassFractionUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            MassFractionUnit[] unitsOrderedByName = EnumHelper.GetValues<MassFractionUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new MassFraction(1, MassFractionUnit.DecimalFraction);
 
             QuantityInfo<MassFraction, MassFractionUnit> quantityInfo = quantity.QuantityInfo;

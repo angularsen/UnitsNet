@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void SpecificFuelConsumption_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            SpecificFuelConsumptionUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificFuelConsumptionUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            SpecificFuelConsumptionUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificFuelConsumptionUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new SpecificFuelConsumption(1, SpecificFuelConsumptionUnit.GramPerKilonewtonSecond);
 
             QuantityInfo<SpecificFuelConsumption, SpecificFuelConsumptionUnit> quantityInfo = quantity.QuantityInfo;

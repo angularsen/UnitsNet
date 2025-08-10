@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricReactivePower_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricReactivePowerUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricReactivePowerUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            ElectricReactivePowerUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricReactivePowerUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricReactivePower(1, ElectricReactivePowerUnit.VoltampereReactive);
 
             QuantityInfo<ElectricReactivePower, ElectricReactivePowerUnit> quantityInfo = quantity.QuantityInfo;

@@ -158,7 +158,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void RotationalSpeed_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RotationalSpeedUnit[] unitsOrderedByName = EnumHelper.GetValues<RotationalSpeedUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            RotationalSpeedUnit[] unitsOrderedByName = EnumHelper.GetValues<RotationalSpeedUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new RotationalSpeed(1, RotationalSpeedUnit.RadianPerSecond);
 
             QuantityInfo<RotationalSpeed, RotationalSpeedUnit> quantityInfo = quantity.QuantityInfo;

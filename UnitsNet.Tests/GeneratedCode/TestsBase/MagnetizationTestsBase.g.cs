@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Magnetization_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MagnetizationUnit[] unitsOrderedByName = EnumHelper.GetValues<MagnetizationUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            MagnetizationUnit[] unitsOrderedByName = EnumHelper.GetValues<MagnetizationUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Magnetization(1, MagnetizationUnit.AmperePerMeter);
 
             QuantityInfo<Magnetization, MagnetizationUnit> quantityInfo = quantity.QuantityInfo;

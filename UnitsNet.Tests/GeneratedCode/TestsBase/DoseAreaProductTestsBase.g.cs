@@ -206,7 +206,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void DoseAreaProduct_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            DoseAreaProductUnit[] unitsOrderedByName = EnumHelper.GetValues<DoseAreaProductUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            DoseAreaProductUnit[] unitsOrderedByName = EnumHelper.GetValues<DoseAreaProductUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new DoseAreaProduct(1, DoseAreaProductUnit.GraySquareMeter);
 
             QuantityInfo<DoseAreaProduct, DoseAreaProductUnit> quantityInfo = quantity.QuantityInfo;

@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void StandardVolumeFlow_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            StandardVolumeFlowUnit[] unitsOrderedByName = EnumHelper.GetValues<StandardVolumeFlowUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            StandardVolumeFlowUnit[] unitsOrderedByName = EnumHelper.GetValues<StandardVolumeFlowUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardCubicMeterPerSecond);
 
             QuantityInfo<StandardVolumeFlow, StandardVolumeFlowUnit> quantityInfo = quantity.QuantityInfo;

@@ -282,7 +282,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void PowerDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            PowerDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<PowerDensityUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            PowerDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<PowerDensityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new PowerDensity(1, PowerDensityUnit.WattPerCubicMeter);
 
             QuantityInfo<PowerDensity, PowerDensityUnit> quantityInfo = quantity.QuantityInfo;

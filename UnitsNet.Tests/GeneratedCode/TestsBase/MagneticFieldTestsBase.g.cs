@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MagneticField_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MagneticFieldUnit[] unitsOrderedByName = EnumHelper.GetValues<MagneticFieldUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            MagneticFieldUnit[] unitsOrderedByName = EnumHelper.GetValues<MagneticFieldUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new MagneticField(1, MagneticFieldUnit.Tesla);
 
             QuantityInfo<MagneticField, MagneticFieldUnit> quantityInfo = quantity.QuantityInfo;

@@ -226,7 +226,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void SpecificEnergy_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            SpecificEnergyUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificEnergyUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            SpecificEnergyUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificEnergyUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new SpecificEnergy(1, SpecificEnergyUnit.JoulePerKilogram);
 
             QuantityInfo<SpecificEnergy, SpecificEnergyUnit> quantityInfo = quantity.QuantityInfo;

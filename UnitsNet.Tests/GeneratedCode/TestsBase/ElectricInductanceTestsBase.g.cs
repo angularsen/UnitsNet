@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricInductance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricInductanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricInductanceUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            ElectricInductanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricInductanceUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricInductance(1, ElectricInductanceUnit.Henry);
 
             QuantityInfo<ElectricInductance, ElectricInductanceUnit> quantityInfo = quantity.QuantityInfo;

@@ -114,7 +114,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ThermalConductivity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ThermalConductivityUnit[] unitsOrderedByName = EnumHelper.GetValues<ThermalConductivityUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            ThermalConductivityUnit[] unitsOrderedByName = EnumHelper.GetValues<ThermalConductivityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ThermalConductivity(1, ThermalConductivityUnit.WattPerMeterKelvin);
 
             QuantityInfo<ThermalConductivity, ThermalConductivityUnit> quantityInfo = quantity.QuantityInfo;

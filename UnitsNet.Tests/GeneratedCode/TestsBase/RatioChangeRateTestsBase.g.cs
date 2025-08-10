@@ -114,7 +114,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void RatioChangeRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RatioChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<RatioChangeRateUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            RatioChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<RatioChangeRateUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new RatioChangeRate(1, RatioChangeRateUnit.DecimalFractionPerSecond);
 
             QuantityInfo<RatioChangeRate, RatioChangeRateUnit> quantityInfo = quantity.QuantityInfo;

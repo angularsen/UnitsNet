@@ -158,7 +158,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Impulse_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ImpulseUnit[] unitsOrderedByName = EnumHelper.GetValues<ImpulseUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            ImpulseUnit[] unitsOrderedByName = EnumHelper.GetValues<ImpulseUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Impulse(1, ImpulseUnit.NewtonSecond);
 
             QuantityInfo<Impulse, ImpulseUnit> quantityInfo = quantity.QuantityInfo;

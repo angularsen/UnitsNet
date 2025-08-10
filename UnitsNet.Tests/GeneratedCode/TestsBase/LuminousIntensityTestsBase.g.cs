@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void LuminousIntensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            LuminousIntensityUnit[] unitsOrderedByName = EnumHelper.GetValues<LuminousIntensityUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            LuminousIntensityUnit[] unitsOrderedByName = EnumHelper.GetValues<LuminousIntensityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new LuminousIntensity(1, LuminousIntensityUnit.Candela);
 
             QuantityInfo<LuminousIntensity, LuminousIntensityUnit> quantityInfo = quantity.QuantityInfo;

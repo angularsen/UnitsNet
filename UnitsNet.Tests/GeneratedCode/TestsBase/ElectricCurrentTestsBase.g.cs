@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricCurrent_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricCurrentUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricCurrentUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            ElectricCurrentUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricCurrentUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricCurrent(1, ElectricCurrentUnit.Ampere);
 
             QuantityInfo<ElectricCurrent, ElectricCurrentUnit> quantityInfo = quantity.QuantityInfo;

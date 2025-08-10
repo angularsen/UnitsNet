@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Permittivity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            PermittivityUnit[] unitsOrderedByName = EnumHelper.GetValues<PermittivityUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            PermittivityUnit[] unitsOrderedByName = EnumHelper.GetValues<PermittivityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Permittivity(1, PermittivityUnit.FaradPerMeter);
 
             QuantityInfo<Permittivity, PermittivityUnit> quantityInfo = quantity.QuantityInfo;

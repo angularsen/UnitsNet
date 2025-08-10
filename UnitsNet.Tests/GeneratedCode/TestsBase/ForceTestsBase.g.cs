@@ -166,7 +166,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Force_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ForceUnit[] unitsOrderedByName = EnumHelper.GetValues<ForceUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            ForceUnit[] unitsOrderedByName = EnumHelper.GetValues<ForceUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Force(1, ForceUnit.Newton);
 
             QuantityInfo<Force, ForceUnit> quantityInfo = quantity.QuantityInfo;

@@ -154,7 +154,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void EnergyDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            EnergyDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<EnergyDensityUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            EnergyDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<EnergyDensityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new EnergyDensity(1, EnergyDensityUnit.JoulePerCubicMeter);
 
             QuantityInfo<EnergyDensity, EnergyDensityUnit> quantityInfo = quantity.QuantityInfo;

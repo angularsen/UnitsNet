@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Irradiation_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            IrradiationUnit[] unitsOrderedByName = EnumHelper.GetValues<IrradiationUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            IrradiationUnit[] unitsOrderedByName = EnumHelper.GetValues<IrradiationUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Irradiation(1, IrradiationUnit.JoulePerSquareMeter);
 
             QuantityInfo<Irradiation, IrradiationUnit> quantityInfo = quantity.QuantityInfo;

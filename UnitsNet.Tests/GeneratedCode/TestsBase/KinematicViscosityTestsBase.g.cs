@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void KinematicViscosity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            KinematicViscosityUnit[] unitsOrderedByName = EnumHelper.GetValues<KinematicViscosityUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            KinematicViscosityUnit[] unitsOrderedByName = EnumHelper.GetValues<KinematicViscosityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new KinematicViscosity(1, KinematicViscosityUnit.SquareMeterPerSecond);
 
             QuantityInfo<KinematicViscosity, KinematicViscosityUnit> quantityInfo = quantity.QuantityInfo;

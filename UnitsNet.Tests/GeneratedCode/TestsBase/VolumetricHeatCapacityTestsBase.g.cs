@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void VolumetricHeatCapacity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            VolumetricHeatCapacityUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumetricHeatCapacityUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            VolumetricHeatCapacityUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumetricHeatCapacityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new VolumetricHeatCapacity(1, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin);
 
             QuantityInfo<VolumetricHeatCapacity, VolumetricHeatCapacityUnit> quantityInfo = quantity.QuantityInfo;

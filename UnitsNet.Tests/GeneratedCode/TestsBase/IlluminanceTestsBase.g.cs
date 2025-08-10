@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Illuminance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            IlluminanceUnit[] unitsOrderedByName = EnumHelper.GetValues<IlluminanceUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            IlluminanceUnit[] unitsOrderedByName = EnumHelper.GetValues<IlluminanceUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Illuminance(1, IlluminanceUnit.Lux);
 
             QuantityInfo<Illuminance, IlluminanceUnit> quantityInfo = quantity.QuantityInfo;

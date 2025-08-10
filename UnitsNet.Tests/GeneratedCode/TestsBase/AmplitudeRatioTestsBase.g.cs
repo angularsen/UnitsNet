@@ -101,7 +101,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void AmplitudeRatio_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            AmplitudeRatioUnit[] unitsOrderedByName = EnumHelper.GetValues<AmplitudeRatioUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            AmplitudeRatioUnit[] unitsOrderedByName = EnumHelper.GetValues<AmplitudeRatioUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new AmplitudeRatio(1, AmplitudeRatioUnit.DecibelVolt);
 
             QuantityInfo<AmplitudeRatio, AmplitudeRatioUnit> quantityInfo = quantity.QuantityInfo;

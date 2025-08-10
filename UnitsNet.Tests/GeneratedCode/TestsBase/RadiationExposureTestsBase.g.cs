@@ -138,7 +138,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void RadiationExposure_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RadiationExposureUnit[] unitsOrderedByName = EnumHelper.GetValues<RadiationExposureUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            RadiationExposureUnit[] unitsOrderedByName = EnumHelper.GetValues<RadiationExposureUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new RadiationExposure(1, RadiationExposureUnit.CoulombPerKilogram);
 
             QuantityInfo<RadiationExposure, RadiationExposureUnit> quantityInfo = quantity.QuantityInfo;

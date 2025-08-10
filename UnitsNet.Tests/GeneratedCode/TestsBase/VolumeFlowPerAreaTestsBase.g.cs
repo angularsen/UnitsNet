@@ -114,7 +114,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void VolumeFlowPerArea_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            VolumeFlowPerAreaUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumeFlowPerAreaUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            VolumeFlowPerAreaUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumeFlowPerAreaUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new VolumeFlowPerArea(1, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter);
 
             QuantityInfo<VolumeFlowPerArea, VolumeFlowPerAreaUnit> quantityInfo = quantity.QuantityInfo;

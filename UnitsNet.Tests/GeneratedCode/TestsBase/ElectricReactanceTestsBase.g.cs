@@ -138,7 +138,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricReactance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricReactanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricReactanceUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            ElectricReactanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricReactanceUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricReactance(1, ElectricReactanceUnit.Ohm);
 
             QuantityInfo<ElectricReactance, ElectricReactanceUnit> quantityInfo = quantity.QuantityInfo;

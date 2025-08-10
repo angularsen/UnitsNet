@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void LinearDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            LinearDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<LinearDensityUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            LinearDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<LinearDensityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new LinearDensity(1, LinearDensityUnit.KilogramPerMeter);
 
             QuantityInfo<LinearDensity, LinearDensityUnit> quantityInfo = quantity.QuantityInfo;

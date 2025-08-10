@@ -406,7 +406,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void VolumeFlow_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            VolumeFlowUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumeFlowUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            VolumeFlowUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumeFlowUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new VolumeFlow(1, VolumeFlowUnit.CubicMeterPerSecond);
 
             QuantityInfo<VolumeFlow, VolumeFlowUnit> quantityInfo = quantity.QuantityInfo;

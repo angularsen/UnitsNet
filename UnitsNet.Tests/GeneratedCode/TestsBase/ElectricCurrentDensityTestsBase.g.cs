@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricCurrentDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricCurrentDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricCurrentDensityUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            ElectricCurrentDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricCurrentDensityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricCurrentDensity(1, ElectricCurrentDensityUnit.AmperePerSquareMeter);
 
             QuantityInfo<ElectricCurrentDensity, ElectricCurrentDensityUnit> quantityInfo = quantity.QuantityInfo;

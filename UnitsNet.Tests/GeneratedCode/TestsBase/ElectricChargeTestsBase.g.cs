@@ -150,7 +150,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricCharge_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricChargeUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricChargeUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            ElectricChargeUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricChargeUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricCharge(1, ElectricChargeUnit.Coulomb);
 
             QuantityInfo<ElectricCharge, ElectricChargeUnit> quantityInfo = quantity.QuantityInfo;

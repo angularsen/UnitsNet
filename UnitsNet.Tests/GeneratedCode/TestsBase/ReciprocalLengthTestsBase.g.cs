@@ -146,7 +146,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ReciprocalLength_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ReciprocalLengthUnit[] unitsOrderedByName = EnumHelper.GetValues<ReciprocalLengthUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            ReciprocalLengthUnit[] unitsOrderedByName = EnumHelper.GetValues<ReciprocalLengthUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ReciprocalLength(1, ReciprocalLengthUnit.InverseMeter);
 
             QuantityInfo<ReciprocalLength, ReciprocalLengthUnit> quantityInfo = quantity.QuantityInfo;

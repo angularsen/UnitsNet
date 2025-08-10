@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void CoefficientOfThermalExpansion_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            CoefficientOfThermalExpansionUnit[] unitsOrderedByName = EnumHelper.GetValues<CoefficientOfThermalExpansionUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            CoefficientOfThermalExpansionUnit[] unitsOrderedByName = EnumHelper.GetValues<CoefficientOfThermalExpansionUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new CoefficientOfThermalExpansion(1, CoefficientOfThermalExpansionUnit.PerKelvin);
 
             QuantityInfo<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit> quantityInfo = quantity.QuantityInfo;

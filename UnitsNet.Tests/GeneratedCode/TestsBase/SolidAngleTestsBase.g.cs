@@ -89,7 +89,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void SolidAngle_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            SolidAngleUnit[] unitsOrderedByName = EnumHelper.GetValues<SolidAngleUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            SolidAngleUnit[] unitsOrderedByName = EnumHelper.GetValues<SolidAngleUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new SolidAngle(1, SolidAngleUnit.Steradian);
 
             QuantityInfo<SolidAngle, SolidAngleUnit> quantityInfo = quantity.QuantityInfo;

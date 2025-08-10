@@ -182,7 +182,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void FluidResistance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            FluidResistanceUnit[] unitsOrderedByName = EnumHelper.GetValues<FluidResistanceUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            FluidResistanceUnit[] unitsOrderedByName = EnumHelper.GetValues<FluidResistanceUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new FluidResistance(1, FluidResistanceUnit.PascalSecondPerCubicMeter);
 
             QuantityInfo<FluidResistance, FluidResistanceUnit> quantityInfo = quantity.QuantityInfo;

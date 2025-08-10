@@ -134,7 +134,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ThermalInsulance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ThermalInsulanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ThermalInsulanceUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            ThermalInsulanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ThermalInsulanceUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ThermalInsulance(1, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt);
 
             QuantityInfo<ThermalInsulance, ThermalInsulanceUnit> quantityInfo = quantity.QuantityInfo;

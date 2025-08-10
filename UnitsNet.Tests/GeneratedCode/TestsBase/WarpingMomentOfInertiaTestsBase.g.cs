@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void WarpingMomentOfInertia_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            WarpingMomentOfInertiaUnit[] unitsOrderedByName = EnumHelper.GetValues<WarpingMomentOfInertiaUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            WarpingMomentOfInertiaUnit[] unitsOrderedByName = EnumHelper.GetValues<WarpingMomentOfInertiaUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new WarpingMomentOfInertia(1, WarpingMomentOfInertiaUnit.MeterToTheSixth);
 
             QuantityInfo<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit> quantityInfo = quantity.QuantityInfo;

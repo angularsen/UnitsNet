@@ -298,7 +298,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Pressure_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            PressureUnit[] unitsOrderedByName = EnumHelper.GetValues<PressureUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            PressureUnit[] unitsOrderedByName = EnumHelper.GetValues<PressureUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Pressure(1, PressureUnit.Pascal);
 
             QuantityInfo<Pressure, PressureUnit> quantityInfo = quantity.QuantityInfo;

@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void PressureChangeRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            PressureChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<PressureChangeRateUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            PressureChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<PressureChangeRateUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new PressureChangeRate(1, PressureChangeRateUnit.PascalPerSecond);
 
             QuantityInfo<PressureChangeRate, PressureChangeRateUnit> quantityInfo = quantity.QuantityInfo;

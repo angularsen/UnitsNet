@@ -146,7 +146,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Temperature_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            TemperatureUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureUnit>().OrderBy(x => x.ToString(), StringComparer.Ordinal).ToArray();
+            TemperatureUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Temperature(1, TemperatureUnit.Kelvin);
 
             QuantityInfo<Temperature, TemperatureUnit> quantityInfo = quantity.QuantityInfo;
