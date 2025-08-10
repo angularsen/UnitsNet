@@ -47,51 +47,6 @@ namespace UnitsNet
             return val1.CompareTo(val2) == 1 ? val2 : val1;
         }
 
-        /// <summary>Computes the min of a sequence of <typeparamref name="TQuantity" /> values.</summary>
-        /// <param name="source">A sequence of <typeparamref name="TQuantity" /> values to calculate the min of.</param>
-        /// <param name="unitType">The desired unit type for the resulting quantity</param>
-        /// <returns>The min of the values in the sequence, represented in the specified unit type.</returns>
-        /// <exception cref="T:System.ArgumentNullException">
-        ///     <paramref name="source">source</paramref> is null.
-        /// </exception>
-        /// <exception cref="T:System.InvalidOperationException"><paramref name="source">source</paramref> contains no elements.</exception>
-        /// <exception cref="ArgumentException">
-        ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
-        /// </exception>
-        [Obsolete("Duplicate of System.Linq.Min")]
-        public static TQuantity Min<TQuantity, TUnitType>(this IEnumerable<TQuantity> source, TUnitType unitType)
-            where TUnitType : struct, Enum
-            where TQuantity : IQuantity<TUnitType>
-        {
-            return (TQuantity) Quantity.From(source.Min(x => x.As(unitType)), UnitKey.ForUnit(unitType));
-        }
-
-        /// <summary>
-        ///     Computes the min of the sequence of <typeparamref name="TQuantity" /> values that are obtained by invoking a
-        ///     transform function on each element of the input sequence.
-        /// </summary>
-        /// <param name="source">A sequence of values that are used to calculate a min.</param>
-        /// <param name="selector">A transform function to apply to each element.</param>
-        /// <param name="unitType">The desired unit type for the resulting quantity</param>
-        /// <typeparam name="TSource">The type of the elements of source.</typeparam>
-        /// <typeparam name="TQuantity">The type of quantity that is produced by this operation.</typeparam>
-        /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
-        /// <returns>The min of the projected values, represented in the specified unit type.</returns>
-        /// <exception cref="T:System.ArgumentNullException">
-        ///     <paramref name="source">source</paramref> or <paramref name="selector">selector</paramref> is null.
-        /// </exception>
-        /// <exception cref="T:System.InvalidOperationException"><paramref name="source">source</paramref> contains no elements.</exception>
-        /// <exception cref="ArgumentException">
-        ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
-        /// </exception>
-        [Obsolete("Duplicate of System.Linq.Min")]
-        public static TQuantity Min<TSource, TQuantity, TUnitType>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnitType unitType)
-            where TQuantity : IQuantity<TUnitType>
-            where TUnitType : struct, Enum
-        {
-            return source.Select(selector).Min(unitType);
-        }
-
         /// <summary>Returns the larger of two <typeparamref name="TQuantity" /> values.</summary>
         /// <typeparam name="TQuantity">The type of quantities to compare.</typeparam>
         /// <param name="val1">The first of two <typeparamref name="TQuantity" /> values to compare.</param>
@@ -101,51 +56,6 @@ namespace UnitsNet
             where TQuantity : IQuantity, IComparable<TQuantity>
         {
             return val1.CompareTo(val2) == -1 ? val2 : val1;
-        }
-
-        /// <summary>Computes the max of a sequence of <typeparamref name="TQuantity" /> values.</summary>
-        /// <param name="source">A sequence of <typeparamref name="TQuantity" /> values to calculate the max of.</param>
-        /// <param name="unitType">The desired unit type for the resulting quantity</param>
-        /// <returns>The max of the values in the sequence, represented in the specified unit type.</returns>
-        /// <exception cref="T:System.ArgumentNullException">
-        ///     <paramref name="source">source</paramref> is null.
-        /// </exception>
-        /// <exception cref="T:System.InvalidOperationException"><paramref name="source">source</paramref> contains no elements.</exception>
-        /// <exception cref="ArgumentException">
-        ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
-        /// </exception>
-        [Obsolete("Duplicate of System.Linq.Max")]
-        public static TQuantity Max<TQuantity, TUnitType>(this IEnumerable<TQuantity> source, TUnitType unitType)
-            where TQuantity : IQuantity<TUnitType>
-            where TUnitType : struct, Enum
-        {
-            return (TQuantity) Quantity.From(source.Max(x => x.As(unitType)), UnitKey.ForUnit(unitType));
-        }
-
-        /// <summary>
-        ///     Computes the max of the sequence of <typeparamref name="TQuantity" /> values that are obtained by invoking a
-        ///     transform function on each element of the input sequence.
-        /// </summary>
-        /// <param name="source">A sequence of values that are used to calculate a max.</param>
-        /// <param name="selector">A transform function to apply to each element.</param>
-        /// <param name="unitType">The desired unit type for the resulting quantity</param>
-        /// <typeparam name="TSource">The type of the elements of source.</typeparam>
-        /// <typeparam name="TQuantity">The type of quantity that is produced by this operation.</typeparam>
-        /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
-        /// <returns>The max of the projected values, represented in the specified unit type.</returns>
-        /// <exception cref="T:System.ArgumentNullException">
-        ///     <paramref name="source">source</paramref> or <paramref name="selector">selector</paramref> is null.
-        /// </exception>
-        /// <exception cref="T:System.InvalidOperationException"><paramref name="source">source</paramref> contains no elements.</exception>
-        /// <exception cref="ArgumentException">
-        ///     <paramref name="source">source</paramref> contains quantity types different from <paramref name="unitType" />.
-        /// </exception>
-        [Obsolete("Duplicate of System.Linq.Max")]
-        public static TQuantity Max<TSource, TQuantity, TUnitType>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnitType unitType)
-            where TQuantity : IQuantity<TUnitType>
-            where TUnitType : struct, Enum
-        {
-            return source.Select(selector).Max(unitType);
         }
         
         /// <summary>Returns <paramref name="value" /> clamped to the inclusive range of <paramref name="min" /> and <paramref name="max" />.</summary>

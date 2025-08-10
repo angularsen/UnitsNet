@@ -104,104 +104,12 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void MaxOfEmptySourceThrowsException()
-        {
-            var units = new Length[] { };
-
-            Assert.Throws<InvalidOperationException>(() => units.Max(LengthUnit.Centimeter));
-        }
-
-        [Fact]
-        public void MaxOfLengthsCalculatesCorrectly()
-        {
-            var units = new[] {Length.FromMeters(1), Length.FromCentimeters(50)};
-
-            Length max = units.Max(LengthUnit.Centimeter);
-
-            Assert.Equal(100, max.Value);
-            Assert.Equal(LengthUnit.Centimeter, max.Unit);
-        }
-
-        [Fact]
-        public void MaxOfLengthsWithNullSelectorThrowsException()
-        {
-            var units = new[]
-            {
-                new KeyValuePair<string, Length>("1", Length.FromMeters(1)),
-                new KeyValuePair<string, Length>("2", Length.FromCentimeters(50))
-            };
-
-            Assert.Throws<ArgumentNullException>(() => units.Max((Func<KeyValuePair<string, Length>, Length>) null!, LengthUnit.Centimeter));
-        }
-
-        [Fact]
-        public void MaxOfLengthsWithSelectorCalculatesCorrectly()
-        {
-            var units = new[]
-            {
-                new KeyValuePair<string, Length>("1", Length.FromMeters(1)),
-                new KeyValuePair<string, Length>("2", Length.FromCentimeters(50))
-            };
-
-            Length max = units.Max(x => x.Value, LengthUnit.Centimeter);
-
-            Assert.Equal(100, max.Value);
-            Assert.Equal(LengthUnit.Centimeter, max.Unit);
-        }
-
-        [Fact]
         public void MinOfTwoLengthsReturnsTheSmallestValue()
         {
             var firstValue = Length.FromMeters(1);
             var secondValue = Length.FromCentimeters(50);
 
             Length min = UnitMath.Min(firstValue, secondValue);
-
-            Assert.Equal(50, min.Value);
-            Assert.Equal(LengthUnit.Centimeter, min.Unit);
-        }
-
-        [Fact]
-        public void MinOfEmptySourceThrowsException()
-        {
-            var units = new Length[] { };
-
-            Assert.Throws<InvalidOperationException>(() => units.Min(LengthUnit.Centimeter));
-        }
-
-        [Fact]
-        public void MinOfLengthsCalculatesCorrectly()
-        {
-            var units = new[] {Length.FromMeters(1), Length.FromCentimeters(50)};
-
-            Length min = units.Min(LengthUnit.Centimeter);
-
-            Assert.Equal(50, min.Value);
-            Assert.Equal(LengthUnit.Centimeter, min.Unit);
-        }
-
-        [Fact]
-        public void MinOfLengthsWithNullSelectorThrowsException()
-        {
-            var units = new[]
-            {
-                new KeyValuePair<string, Length>("1", Length.FromMeters(1)),
-                new KeyValuePair<string, Length>("2", Length.FromCentimeters(50))
-            };
-
-            Assert.Throws<ArgumentNullException>(() => units.Min((Func<KeyValuePair<string, Length>, Length>) null!, LengthUnit.Centimeter));
-        }
-
-        [Fact]
-        public void MinOfLengthsWithSelectorCalculatesCorrectly()
-        {
-            var units = new[]
-            {
-                new KeyValuePair<string, Length>("1", Length.FromMeters(1)),
-                new KeyValuePair<string, Length>("2", Length.FromCentimeters(50))
-            };
-
-            Length min = units.Min(x => x.Value, LengthUnit.Centimeter);
 
             Assert.Equal(50, min.Value);
             Assert.Equal(LengthUnit.Centimeter, min.Unit);
