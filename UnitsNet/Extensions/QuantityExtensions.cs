@@ -91,7 +91,7 @@ public static class QuantityExtensions
     /// <exception cref="InvalidOperationException">
     ///     Thrown if no matching unit is found for the specified <see cref="UnitSystem" />.
     /// </exception>
-    public static IQuantity ToUnit(this IQuantity quantity, UnitSystem unitSystem)
+    public static IQuantity ToUnitUntyped(this IQuantity quantity, UnitSystem unitSystem)
     {
          QuantityInfo quantityInfo = quantity.QuantityInfo;
          UnitKey unitKey = quantityInfo.GetDefaultUnit(unitSystem).UnitKey;
