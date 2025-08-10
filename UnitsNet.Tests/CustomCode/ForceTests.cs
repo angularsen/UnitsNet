@@ -16,7 +16,7 @@ namespace UnitsNet.Tests
         protected override double MeganewtonsInOneNewton => 1E-6;
         protected override double KilonewtonsInOneNewton => 1E-3;
 
-        protected override double KiloPondsInOneNewton => 0.1019716;
+        protected override double KilopondsInOneNewton => 0.1019716;
 
         protected override double NewtonsInOneNewton => 1;
 

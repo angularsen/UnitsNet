@@ -99,9 +99,9 @@ namespace UnitsNet
         public double Kilonewtons => As(ForceUnit.Kilonewton);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.KiloPond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Kilopond"/>
         /// </summary>
-        public double KiloPonds => As(ForceUnit.KiloPond);
+        public double Kiloponds => As(ForceUnit.Kilopond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.KilopoundForce"/>
@@ -178,9 +178,9 @@ namespace UnitsNet
         public static Force FromKilonewtons(double kilonewtons) => new Force(kilonewtons, ForceUnit.Kilonewton);
 
         /// <summary>
-        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KiloPond"/>.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Kilopond"/>.
         /// </summary>
-        public static Force FromKiloPonds(double kiloponds) => new Force(kiloponds, ForceUnit.KiloPond);
+        public static Force FromKiloponds(double kiloponds) => new Force(kiloponds, ForceUnit.Kilopond);
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KilopoundForce"/>.
@@ -276,7 +276,7 @@ namespace UnitsNet
                         ForceUnit.Dyn => _value / 1e5,
                         ForceUnit.KilogramForce => _value * 9.80665,
                         ForceUnit.Kilonewton => (_value) * 1e3d,
-                        ForceUnit.KiloPond => _value * 9.80665,
+                        ForceUnit.Kilopond => _value * 9.80665,
                         ForceUnit.KilopoundForce => (_value * 4.4482216152605) * 1e3d,
                         ForceUnit.Meganewton => (_value) * 1e6d,
                         ForceUnit.Micronewton => (_value) * 1e-6d,
@@ -304,7 +304,7 @@ namespace UnitsNet
                         ForceUnit.Dyn => baseUnitValue * 1e5,
                         ForceUnit.KilogramForce => baseUnitValue / 9.80665,
                         ForceUnit.Kilonewton => (baseUnitValue) / 1e3d,
-                        ForceUnit.KiloPond => baseUnitValue / 9.80665,
+                        ForceUnit.Kilopond => baseUnitValue / 9.80665,
                         ForceUnit.KilopoundForce => (baseUnitValue / 4.4482216152605) / 1e3d,
                         ForceUnit.Meganewton => (baseUnitValue) / 1e6d,
                         ForceUnit.Micronewton => (baseUnitValue) / 1e-6d,
