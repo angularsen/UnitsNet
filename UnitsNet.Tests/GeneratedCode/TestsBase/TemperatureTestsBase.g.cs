@@ -146,7 +146,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Temperature_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            TemperatureUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureUnit>().OrderBy(x => x.ToString()).ToArray();
+            TemperatureUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Temperature(1, TemperatureUnit.Kelvin);
 
             QuantityInfo<Temperature, TemperatureUnit> quantityInfo = quantity.QuantityInfo;
@@ -539,7 +539,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", TemperatureUnit.SolarTemperature, "T⊙")]
         public void GetAbbreviationForCulture(string culture, TemperatureUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Temperature.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Temperature.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -550,7 +550,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Temperature.GetAbbreviation(unit); 
+                var defaultAbbreviation = Temperature.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

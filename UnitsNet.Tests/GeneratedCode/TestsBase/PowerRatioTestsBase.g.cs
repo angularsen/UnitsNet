@@ -93,7 +93,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void PowerRatio_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            PowerRatioUnit[] unitsOrderedByName = EnumHelper.GetValues<PowerRatioUnit>().OrderBy(x => x.ToString()).ToArray();
+            PowerRatioUnit[] unitsOrderedByName = EnumHelper.GetValues<PowerRatioUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new PowerRatio(1, PowerRatioUnit.DecibelWatt);
 
             QuantityInfo<PowerRatio, PowerRatioUnit> quantityInfo = quantity.QuantityInfo;
@@ -186,7 +186,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToUnitSystem_ReturnsValueInDimensionlessUnit()
+        public void ToUnit_UnitSystem_ReturnsValueInDimensionlessUnit()
         {
             Assert.Multiple(() =>
             {
@@ -353,7 +353,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", PowerRatioUnit.DecibelWatt, "dBW")]
         public void GetAbbreviationForCulture(string culture, PowerRatioUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = PowerRatio.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = PowerRatio.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -364,7 +364,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = PowerRatio.GetAbbreviation(unit); 
+                var defaultAbbreviation = PowerRatio.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });
@@ -567,7 +567,7 @@ namespace UnitsNet.Tests
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, largerTolerance));
             Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
-            // note: it's currently not possible to test this due to the rounding error from (quantity - otherQuantity) 
+            // note: it's currently not possible to test this due to the rounding error from (quantity - otherQuantity)
             // Assert.True(quantity.Equals(otherQuantity, maxTolerance));
         }
 

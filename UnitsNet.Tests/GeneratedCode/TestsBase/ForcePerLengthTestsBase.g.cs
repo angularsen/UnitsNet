@@ -258,7 +258,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ForcePerLength_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ForcePerLengthUnit[] unitsOrderedByName = EnumHelper.GetValues<ForcePerLengthUnit>().OrderBy(x => x.ToString()).ToArray();
+            ForcePerLengthUnit[] unitsOrderedByName = EnumHelper.GetValues<ForcePerLengthUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ForcePerLength(1, ForcePerLengthUnit.NewtonPerMeter);
 
             QuantityInfo<ForcePerLength, ForcePerLengthUnit> quantityInfo = quantity.QuantityInfo;
@@ -1097,7 +1097,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", ForcePerLengthUnit.TonneForcePerMillimeter, "тс/мм")]
         public void GetAbbreviationForCulture(string culture, ForcePerLengthUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ForcePerLength.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ForcePerLength.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -1108,7 +1108,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ForcePerLength.GetAbbreviation(unit); 
+                var defaultAbbreviation = ForcePerLength.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

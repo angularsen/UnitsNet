@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void SpecificVolume_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            SpecificVolumeUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificVolumeUnit>().OrderBy(x => x.ToString()).ToArray();
+            SpecificVolumeUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificVolumeUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new SpecificVolume(1, SpecificVolumeUnit.CubicMeterPerKilogram);
 
             QuantityInfo<SpecificVolume, SpecificVolumeUnit> quantityInfo = quantity.QuantityInfo;
@@ -420,7 +420,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", SpecificVolumeUnit.MillicubicMeterPerKilogram, "mm³/kg")]
         public void GetAbbreviationForCulture(string culture, SpecificVolumeUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = SpecificVolume.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = SpecificVolume.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -431,7 +431,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = SpecificVolume.GetAbbreviation(unit); 
+                var defaultAbbreviation = SpecificVolume.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

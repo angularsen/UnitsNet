@@ -172,7 +172,7 @@ namespace UnitsNet
                 yield return new (SpecificEnergyUnit.MegajoulePerKilogram, "MegajoulePerKilogram", "MegajoulesPerKilogram", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second),
                      new QuantityValue(1, 1000000)             
                 );
-                yield return new (SpecificEnergyUnit.MegaJoulePerTonne, "MegaJoulePerTonne", "MegaJoulesPerTonne", BaseUnits.Undefined,
+                yield return new (SpecificEnergyUnit.MegajoulePerTonne, "MegajoulePerTonne", "MegajoulesPerTonne", BaseUnits.Undefined,
                      new QuantityValue(1, 1000)             
                 );
                 yield return new (SpecificEnergyUnit.MegawattDayPerKilogram, "MegawattDayPerKilogram", "MegawattDaysPerKilogram", BaseUnits.Undefined,
@@ -402,9 +402,9 @@ namespace UnitsNet
         public QuantityValue MegajoulesPerKilogram => this.As(SpecificEnergyUnit.MegajoulePerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegaJoulePerTonne"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegajoulePerTonne"/>
         /// </summary>
-        public QuantityValue MegaJoulesPerTonne => this.As(SpecificEnergyUnit.MegaJoulePerTonne);
+        public QuantityValue MegajoulesPerTonne => this.As(SpecificEnergyUnit.MegajoulePerTonne);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattDayPerKilogram"/>
@@ -629,11 +629,11 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegaJoulePerTonne"/>.
+        ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegajoulePerTonne"/>.
         /// </summary>
-        public static SpecificEnergy FromMegaJoulesPerTonne(QuantityValue value)
+        public static SpecificEnergy FromMegajoulesPerTonne(QuantityValue value)
         {
-            return new SpecificEnergy(value, SpecificEnergyUnit.MegaJoulePerTonne);
+            return new SpecificEnergy(value, SpecificEnergyUnit.MegajoulePerTonne);
         }
 
         /// <summary>

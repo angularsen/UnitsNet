@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void WarpingMomentOfInertia_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            WarpingMomentOfInertiaUnit[] unitsOrderedByName = EnumHelper.GetValues<WarpingMomentOfInertiaUnit>().OrderBy(x => x.ToString()).ToArray();
+            WarpingMomentOfInertiaUnit[] unitsOrderedByName = EnumHelper.GetValues<WarpingMomentOfInertiaUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new WarpingMomentOfInertia(1, WarpingMomentOfInertiaUnit.MeterToTheSixth);
 
             QuantityInfo<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit> quantityInfo = quantity.QuantityInfo;
@@ -471,7 +471,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", WarpingMomentOfInertiaUnit.MillimeterToTheSixth, "mm⁶")]
         public void GetAbbreviationForCulture(string culture, WarpingMomentOfInertiaUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = WarpingMomentOfInertia.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = WarpingMomentOfInertia.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -482,7 +482,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = WarpingMomentOfInertia.GetAbbreviation(unit); 
+                var defaultAbbreviation = WarpingMomentOfInertia.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

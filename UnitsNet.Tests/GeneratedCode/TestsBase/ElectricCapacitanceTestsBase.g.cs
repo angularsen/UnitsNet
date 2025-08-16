@@ -134,7 +134,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricCapacitance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricCapacitanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricCapacitanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricCapacitanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricCapacitanceUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricCapacitance(1, ElectricCapacitanceUnit.Farad);
 
             QuantityInfo<ElectricCapacitance, ElectricCapacitanceUnit> quantityInfo = quantity.QuantityInfo;
@@ -488,7 +488,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ElectricCapacitanceUnit.Picofarad, "pF")]
         public void GetAbbreviationForCulture(string culture, ElectricCapacitanceUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ElectricCapacitance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ElectricCapacitance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -499,7 +499,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ElectricCapacitance.GetAbbreviation(unit); 
+                var defaultAbbreviation = ElectricCapacitance.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

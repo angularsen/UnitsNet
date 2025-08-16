@@ -262,7 +262,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void BitRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            BitRateUnit[] unitsOrderedByName = EnumHelper.GetValues<BitRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            BitRateUnit[] unitsOrderedByName = EnumHelper.GetValues<BitRateUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new BitRate(1, BitRateUnit.BitPerSecond);
 
             QuantityInfo<BitRate, BitRateUnit> quantityInfo = quantity.QuantityInfo;
@@ -1162,7 +1162,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", BitRateUnit.TeraoctetPerSecond, "To/s")]
         public void GetAbbreviationForCulture(string culture, BitRateUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = BitRate.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = BitRate.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -1173,7 +1173,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = BitRate.GetAbbreviation(unit); 
+                var defaultAbbreviation = BitRate.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

@@ -266,7 +266,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Energy_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            EnergyUnit[] unitsOrderedByName = EnumHelper.GetValues<EnergyUnit>().OrderBy(x => x.ToString()).ToArray();
+            EnergyUnit[] unitsOrderedByName = EnumHelper.GetValues<EnergyUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Energy(1, EnergyUnit.Joule);
 
             QuantityInfo<Energy, EnergyUnit> quantityInfo = quantity.QuantityInfo;
@@ -1196,7 +1196,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", EnergyUnit.WattHour, "Вт/ч")]
         public void GetAbbreviationForCulture(string culture, EnergyUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Energy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Energy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -1207,7 +1207,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Energy.GetAbbreviation(unit); 
+                var defaultAbbreviation = Energy.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

@@ -154,7 +154,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MassFlux_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MassFluxUnit[] unitsOrderedByName = EnumHelper.GetValues<MassFluxUnit>().OrderBy(x => x.ToString()).ToArray();
+            MassFluxUnit[] unitsOrderedByName = EnumHelper.GetValues<MassFluxUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new MassFlux(1, MassFluxUnit.KilogramPerSecondPerSquareMeter);
 
             QuantityInfo<MassFlux, MassFluxUnit> quantityInfo = quantity.QuantityInfo;
@@ -573,7 +573,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", MassFluxUnit.KilogramPerSecondPerSquareMillimeter, "kg·s⁻¹·mm⁻²")]
         public void GetAbbreviationForCulture(string culture, MassFluxUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = MassFlux.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = MassFlux.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -584,7 +584,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = MassFlux.GetAbbreviation(unit); 
+                var defaultAbbreviation = MassFlux.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

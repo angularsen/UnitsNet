@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricResistivity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricResistivityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricResistivityUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricResistivityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricResistivityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricResistivity(1, ElectricResistivityUnit.OhmMeter);
 
             QuantityInfo<ElectricResistivity, ElectricResistivityUnit> quantityInfo = quantity.QuantityInfo;
@@ -607,7 +607,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ElectricResistivityUnit.PicoohmMeter, "pΩ·m")]
         public void GetAbbreviationForCulture(string culture, ElectricResistivityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ElectricResistivity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ElectricResistivity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -618,7 +618,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ElectricResistivity.GetAbbreviation(unit); 
+                var defaultAbbreviation = ElectricResistivity.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

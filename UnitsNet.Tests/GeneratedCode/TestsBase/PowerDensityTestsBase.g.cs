@@ -282,7 +282,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void PowerDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            PowerDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<PowerDensityUnit>().OrderBy(x => x.ToString()).ToArray();
+            PowerDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<PowerDensityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new PowerDensity(1, PowerDensityUnit.WattPerCubicMeter);
 
             QuantityInfo<PowerDensity, PowerDensityUnit> quantityInfo = quantity.QuantityInfo;
@@ -1117,7 +1117,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", PowerDensityUnit.WattPerLiter, "W/l")]
         public void GetAbbreviationForCulture(string culture, PowerDensityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = PowerDensity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = PowerDensity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -1128,7 +1128,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = PowerDensity.GetAbbreviation(unit); 
+                var defaultAbbreviation = PowerDensity.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

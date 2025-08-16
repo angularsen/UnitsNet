@@ -461,6 +461,17 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             => Volume.FromMetricCups(value.ToQuantityValue());
 #endif
 
+        /// <inheritdoc cref="Volume.FromMetricTablespoons(QuantityValue)" />
+        public static Volume MetricTablespoons<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Volume.FromMetricTablespoons(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => Volume.FromMetricTablespoons(value.ToQuantityValue());
+#endif
+
         /// <inheritdoc cref="Volume.FromMetricTeaspoons(QuantityValue)" />
         public static Volume MetricTeaspoons<T>(this T value)
             where T : notnull

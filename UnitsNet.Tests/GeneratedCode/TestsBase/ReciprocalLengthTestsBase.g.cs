@@ -146,7 +146,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ReciprocalLength_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ReciprocalLengthUnit[] unitsOrderedByName = EnumHelper.GetValues<ReciprocalLengthUnit>().OrderBy(x => x.ToString()).ToArray();
+            ReciprocalLengthUnit[] unitsOrderedByName = EnumHelper.GetValues<ReciprocalLengthUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ReciprocalLength(1, ReciprocalLengthUnit.InverseMeter);
 
             QuantityInfo<ReciprocalLength, ReciprocalLengthUnit> quantityInfo = quantity.QuantityInfo;
@@ -639,7 +639,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ReciprocalLengthUnit.InverseYard, "yd⁻¹")]
         public void GetAbbreviationForCulture(string culture, ReciprocalLengthUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ReciprocalLength.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ReciprocalLength.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -650,7 +650,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ReciprocalLength.GetAbbreviation(unit); 
+                var defaultAbbreviation = ReciprocalLength.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

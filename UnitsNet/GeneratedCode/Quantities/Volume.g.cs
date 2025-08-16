@@ -245,6 +245,9 @@ namespace UnitsNet
                 yield return new (VolumeUnit.MetricCup, "MetricCup", "MetricCups", BaseUnits.Undefined,
                      4000             
                 );
+                yield return new (VolumeUnit.MetricTablespoon, "MetricTablespoon", "MetricTablespoons", BaseUnits.Undefined,
+                     new QuantityValue(200000, 3)             
+                );
                 yield return new (VolumeUnit.MetricTeaspoon, "MetricTeaspoon", "MetricTeaspoons", BaseUnits.Undefined,
                      200000             
                 );
@@ -591,6 +594,11 @@ namespace UnitsNet
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.MetricCup"/>
         /// </summary>
         public QuantityValue MetricCups => this.As(VolumeUnit.MetricCup);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.MetricTablespoon"/>
+        /// </summary>
+        public QuantityValue MetricTablespoons => this.As(VolumeUnit.MetricTablespoon);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.MetricTeaspoon"/>
@@ -1006,6 +1014,14 @@ namespace UnitsNet
         public static Volume FromMetricCups(QuantityValue value)
         {
             return new Volume(value, VolumeUnit.MetricCup);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MetricTablespoon"/>.
+        /// </summary>
+        public static Volume FromMetricTablespoons(QuantityValue value)
+        {
+            return new Volume(value, VolumeUnit.MetricTablespoon);
         }
 
         /// <summary>

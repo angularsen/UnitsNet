@@ -158,7 +158,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MolarMass_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MolarMassUnit[] unitsOrderedByName = EnumHelper.GetValues<MolarMassUnit>().OrderBy(x => x.ToString()).ToArray();
+            MolarMassUnit[] unitsOrderedByName = EnumHelper.GetValues<MolarMassUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new MolarMass(1, MolarMassUnit.KilogramPerMole);
 
             QuantityInfo<MolarMass, MolarMassUnit> quantityInfo = quantity.QuantityInfo;
@@ -674,7 +674,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", MolarMassUnit.PoundPerMole, "фунт/моль")]
         public void GetAbbreviationForCulture(string culture, MolarMassUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = MolarMass.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = MolarMass.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -685,7 +685,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = MolarMass.GetAbbreviation(unit); 
+                var defaultAbbreviation = MolarMass.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

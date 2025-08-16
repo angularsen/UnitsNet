@@ -241,7 +241,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Information_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            InformationUnit[] unitsOrderedByName = EnumHelper.GetValues<InformationUnit>().OrderBy(x => x.ToString()).ToArray();
+            InformationUnit[] unitsOrderedByName = EnumHelper.GetValues<InformationUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Information(1, InformationUnit.Bit);
 
             QuantityInfo<Information, InformationUnit> quantityInfo = quantity.QuantityInfo;
@@ -408,7 +408,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToUnitSystem_ReturnsValueInDimensionlessUnit()
+        public void ToUnit_UnitSystem_ReturnsValueInDimensionlessUnit()
         {
             Assert.Multiple(() =>
             {
@@ -972,7 +972,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", InformationUnit.Teraoctet, "To")]
         public void GetAbbreviationForCulture(string culture, InformationUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Information.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Information.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -983,7 +983,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Information.GetAbbreviation(unit); 
+                var defaultAbbreviation = Information.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

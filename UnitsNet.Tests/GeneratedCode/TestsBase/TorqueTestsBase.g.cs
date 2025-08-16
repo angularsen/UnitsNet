@@ -206,7 +206,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Torque_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            TorqueUnit[] unitsOrderedByName = EnumHelper.GetValues<TorqueUnit>().OrderBy(x => x.ToString()).ToArray();
+            TorqueUnit[] unitsOrderedByName = EnumHelper.GetValues<TorqueUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Torque(1, TorqueUnit.NewtonMeter);
 
             QuantityInfo<Torque, TorqueUnit> quantityInfo = quantity.QuantityInfo;
@@ -815,7 +815,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", TorqueUnit.NewtonMeter, "Н·м")]
         public void GetAbbreviationForCulture(string culture, TorqueUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Torque.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Torque.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -826,7 +826,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Torque.GetAbbreviation(unit); 
+                var defaultAbbreviation = Torque.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

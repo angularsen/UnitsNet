@@ -206,7 +206,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void LinearPowerDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            LinearPowerDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<LinearPowerDensityUnit>().OrderBy(x => x.ToString()).ToArray();
+            LinearPowerDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<LinearPowerDensityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new LinearPowerDensity(1, LinearPowerDensityUnit.WattPerMeter);
 
             QuantityInfo<LinearPowerDensity, LinearPowerDensityUnit> quantityInfo = quantity.QuantityInfo;
@@ -794,7 +794,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", LinearPowerDensityUnit.WattPerMillimeter, "W/mm")]
         public void GetAbbreviationForCulture(string culture, LinearPowerDensityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = LinearPowerDensity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = LinearPowerDensity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -805,7 +805,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = LinearPowerDensity.GetAbbreviation(unit); 
+                var defaultAbbreviation = LinearPowerDensity.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

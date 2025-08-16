@@ -93,7 +93,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Level_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            LevelUnit[] unitsOrderedByName = EnumHelper.GetValues<LevelUnit>().OrderBy(x => x.ToString()).ToArray();
+            LevelUnit[] unitsOrderedByName = EnumHelper.GetValues<LevelUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Level(1, LevelUnit.Decibel);
 
             QuantityInfo<Level, LevelUnit> quantityInfo = quantity.QuantityInfo;
@@ -186,7 +186,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToUnitSystem_ReturnsValueInDimensionlessUnit()
+        public void ToUnit_UnitSystem_ReturnsValueInDimensionlessUnit()
         {
             Assert.Multiple(() =>
             {
@@ -343,7 +343,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", LevelUnit.Neper, "Np")]
         public void GetAbbreviationForCulture(string culture, LevelUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Level.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Level.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -354,7 +354,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Level.GetAbbreviation(unit); 
+                var defaultAbbreviation = Level.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });
@@ -557,7 +557,7 @@ namespace UnitsNet.Tests
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, largerTolerance));
             Assert.False(quantity.Equals(otherQuantity, smallerTolerance));
-            // note: it's currently not possible to test this due to the rounding error from (quantity - otherQuantity) 
+            // note: it's currently not possible to test this due to the rounding error from (quantity - otherQuantity)
             // Assert.True(quantity.Equals(otherQuantity, maxTolerance));
         }
 

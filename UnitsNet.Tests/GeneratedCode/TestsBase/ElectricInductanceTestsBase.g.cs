@@ -126,7 +126,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricInductance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricInductanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricInductanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricInductanceUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricInductanceUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricInductance(1, ElectricInductanceUnit.Henry);
 
             QuantityInfo<ElectricInductance, ElectricInductanceUnit> quantityInfo = quantity.QuantityInfo;
@@ -454,7 +454,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ElectricInductanceUnit.Picohenry, "pH")]
         public void GetAbbreviationForCulture(string culture, ElectricInductanceUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ElectricInductance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ElectricInductance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -465,7 +465,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ElectricInductance.GetAbbreviation(unit); 
+                var defaultAbbreviation = ElectricInductance.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

@@ -134,7 +134,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricCurrentGradient_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricCurrentGradientUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricCurrentGradientUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricCurrentGradientUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricCurrentGradientUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricCurrentGradient(1, ElectricCurrentGradientUnit.AmperePerSecond);
 
             QuantityInfo<ElectricCurrentGradient, ElectricCurrentGradientUnit> quantityInfo = quantity.QuantityInfo;
@@ -488,7 +488,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ElectricCurrentGradientUnit.MilliamperePerSecond, "mA/s")]
         public void GetAbbreviationForCulture(string culture, ElectricCurrentGradientUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ElectricCurrentGradient.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ElectricCurrentGradient.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -499,7 +499,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ElectricCurrentGradient.GetAbbreviation(unit); 
+                var defaultAbbreviation = ElectricCurrentGradient.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

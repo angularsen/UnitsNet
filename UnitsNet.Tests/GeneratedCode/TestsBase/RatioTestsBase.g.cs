@@ -109,7 +109,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ratio_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RatioUnit[] unitsOrderedByName = EnumHelper.GetValues<RatioUnit>().OrderBy(x => x.ToString()).ToArray();
+            RatioUnit[] unitsOrderedByName = EnumHelper.GetValues<RatioUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Ratio(1, RatioUnit.DecimalFraction);
 
             QuantityInfo<Ratio, RatioUnit> quantityInfo = quantity.QuantityInfo;
@@ -210,7 +210,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToUnitSystem_ReturnsValueInDimensionlessUnit()
+        public void ToUnit_UnitSystem_ReturnsValueInDimensionlessUnit()
         {
             Assert.Multiple(() =>
             {
@@ -411,7 +411,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", RatioUnit.Percent, "%")]
         public void GetAbbreviationForCulture(string culture, RatioUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Ratio.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Ratio.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -422,7 +422,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Ratio.GetAbbreviation(unit); 
+                var defaultAbbreviation = Ratio.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

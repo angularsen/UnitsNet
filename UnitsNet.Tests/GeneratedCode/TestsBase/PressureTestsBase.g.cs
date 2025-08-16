@@ -298,7 +298,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Pressure_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            PressureUnit[] unitsOrderedByName = EnumHelper.GetValues<PressureUnit>().OrderBy(x => x.ToString()).ToArray();
+            PressureUnit[] unitsOrderedByName = EnumHelper.GetValues<PressureUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Pressure(1, PressureUnit.Pascal);
 
             QuantityInfo<Pressure, PressureUnit> quantityInfo = quantity.QuantityInfo;
@@ -1571,7 +1571,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", PressureUnit.Torr, "торр")]
         public void GetAbbreviationForCulture(string culture, PressureUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Pressure.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Pressure.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -1582,7 +1582,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Pressure.GetAbbreviation(unit); 
+                var defaultAbbreviation = Pressure.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

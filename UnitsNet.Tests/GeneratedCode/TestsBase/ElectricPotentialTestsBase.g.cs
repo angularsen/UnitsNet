@@ -130,7 +130,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricPotential_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricPotentialUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricPotentialUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricPotentialUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricPotentialUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricPotential(1, ElectricPotentialUnit.Volt);
 
             QuantityInfo<ElectricPotential, ElectricPotentialUnit> quantityInfo = quantity.QuantityInfo;
@@ -513,7 +513,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", ElectricPotentialUnit.Volt, "В")]
         public void GetAbbreviationForCulture(string culture, ElectricPotentialUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ElectricPotential.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ElectricPotential.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -524,7 +524,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ElectricPotential.GetAbbreviation(unit); 
+                var defaultAbbreviation = ElectricPotential.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

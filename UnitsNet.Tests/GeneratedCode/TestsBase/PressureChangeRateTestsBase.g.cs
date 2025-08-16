@@ -178,7 +178,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void PressureChangeRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            PressureChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<PressureChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            PressureChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<PressureChangeRateUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new PressureChangeRate(1, PressureChangeRateUnit.PascalPerSecond);
 
             QuantityInfo<PressureChangeRate, PressureChangeRateUnit> quantityInfo = quantity.QuantityInfo;
@@ -897,7 +897,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, "psi/с")]
         public void GetAbbreviationForCulture(string culture, PressureChangeRateUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = PressureChangeRate.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = PressureChangeRate.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -908,7 +908,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = PressureChangeRate.GetAbbreviation(unit); 
+                var defaultAbbreviation = PressureChangeRate.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

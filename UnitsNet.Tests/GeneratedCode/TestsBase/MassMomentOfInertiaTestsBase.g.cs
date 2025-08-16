@@ -218,7 +218,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void MassMomentOfInertia_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            MassMomentOfInertiaUnit[] unitsOrderedByName = EnumHelper.GetValues<MassMomentOfInertiaUnit>().OrderBy(x => x.ToString()).ToArray();
+            MassMomentOfInertiaUnit[] unitsOrderedByName = EnumHelper.GetValues<MassMomentOfInertiaUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new MassMomentOfInertia(1, MassMomentOfInertiaUnit.KilogramSquareMeter);
 
             QuantityInfo<MassMomentOfInertia, MassMomentOfInertiaUnit> quantityInfo = quantity.QuantityInfo;
@@ -845,7 +845,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", MassMomentOfInertiaUnit.TonneSquareMillimeter, "t·mm²")]
         public void GetAbbreviationForCulture(string culture, MassMomentOfInertiaUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = MassMomentOfInertia.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = MassMomentOfInertia.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -856,7 +856,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = MassMomentOfInertia.GetAbbreviation(unit); 
+                var defaultAbbreviation = MassMomentOfInertia.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

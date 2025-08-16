@@ -182,7 +182,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void FluidResistance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            FluidResistanceUnit[] unitsOrderedByName = EnumHelper.GetValues<FluidResistanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            FluidResistanceUnit[] unitsOrderedByName = EnumHelper.GetValues<FluidResistanceUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new FluidResistance(1, FluidResistanceUnit.PascalSecondPerCubicMeter);
 
             QuantityInfo<FluidResistance, FluidResistanceUnit> quantityInfo = quantity.QuantityInfo;
@@ -857,7 +857,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", FluidResistanceUnit.WoodUnit, "ЕВ")]
         public void GetAbbreviationForCulture(string culture, FluidResistanceUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = FluidResistance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = FluidResistance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -868,7 +868,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = FluidResistance.GetAbbreviation(unit); 
+                var defaultAbbreviation = FluidResistance.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

@@ -89,7 +89,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Turbidity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            TurbidityUnit[] unitsOrderedByName = EnumHelper.GetValues<TurbidityUnit>().OrderBy(x => x.ToString()).ToArray();
+            TurbidityUnit[] unitsOrderedByName = EnumHelper.GetValues<TurbidityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Turbidity(1, TurbidityUnit.NTU);
 
             QuantityInfo<Turbidity, TurbidityUnit> quantityInfo = quantity.QuantityInfo;
@@ -180,7 +180,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ToUnitSystem_ReturnsValueInDimensionlessUnit()
+        public void ToUnit_UnitSystem_ReturnsValueInDimensionlessUnit()
         {
             Assert.Multiple(() =>
             {
@@ -326,7 +326,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", TurbidityUnit.NTU, "NTU")]
         public void GetAbbreviationForCulture(string culture, TurbidityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Turbidity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Turbidity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -337,7 +337,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Turbidity.GetAbbreviation(unit); 
+                var defaultAbbreviation = Turbidity.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Permeability_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            PermeabilityUnit[] unitsOrderedByName = EnumHelper.GetValues<PermeabilityUnit>().OrderBy(x => x.ToString()).ToArray();
+            PermeabilityUnit[] unitsOrderedByName = EnumHelper.GetValues<PermeabilityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Permeability(1, PermeabilityUnit.HenryPerMeter);
 
             QuantityInfo<Permeability, PermeabilityUnit> quantityInfo = quantity.QuantityInfo;
@@ -386,7 +386,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", PermeabilityUnit.HenryPerMeter, "H/m")]
         public void GetAbbreviationForCulture(string culture, PermeabilityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Permeability.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Permeability.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -397,7 +397,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Permeability.GetAbbreviation(unit); 
+                var defaultAbbreviation = Permeability.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

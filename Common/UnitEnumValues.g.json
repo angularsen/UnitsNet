@@ -459,7 +459,7 @@
     "Dyn": 2,
     "KilogramForce": 3,
     "Kilonewton": 4,
-    "KiloPond": 5,
+    "Kilopond": 5,
     "KilopoundForce": 6,
     "Meganewton": 7,
     "Micronewton": 8,
@@ -1345,7 +1345,7 @@
     "WattDayPerTonne": 27,
     "WattHourPerKilogram": 28,
     "WattHourPerPound": 29,
-    "MegaJoulePerTonne": 37
+    "MegajoulePerTonne": 37
   },
   "SpecificEntropy": {
     "BtuPerPoundFahrenheit": 1,
@@ -1600,7 +1600,8 @@
     "UsTablespoon": 51,
     "UsTeaspoon": 52,
     "Nanoliter": 53,
-    "ImperialQuart": 57
+    "ImperialQuart": 57,
+    "MetricTablespoon": 63
   },
   "VolumeConcentration": {
     "CentiliterPerLiter": 1,

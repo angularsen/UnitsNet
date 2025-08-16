@@ -146,7 +146,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void DynamicViscosity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            DynamicViscosityUnit[] unitsOrderedByName = EnumHelper.GetValues<DynamicViscosityUnit>().OrderBy(x => x.ToString()).ToArray();
+            DynamicViscosityUnit[] unitsOrderedByName = EnumHelper.GetValues<DynamicViscosityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new DynamicViscosity(1, DynamicViscosityUnit.NewtonSecondPerMeterSquared);
 
             QuantityInfo<DynamicViscosity, DynamicViscosityUnit> quantityInfo = quantity.QuantityInfo;
@@ -569,7 +569,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", DynamicViscosityUnit.Reyn, "reyn")]
         public void GetAbbreviationForCulture(string culture, DynamicViscosityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = DynamicViscosity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = DynamicViscosity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -580,7 +580,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = DynamicViscosity.GetAbbreviation(unit); 
+                var defaultAbbreviation = DynamicViscosity.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

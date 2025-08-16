@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void LuminousFlux_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            LuminousFluxUnit[] unitsOrderedByName = EnumHelper.GetValues<LuminousFluxUnit>().OrderBy(x => x.ToString()).ToArray();
+            LuminousFluxUnit[] unitsOrderedByName = EnumHelper.GetValues<LuminousFluxUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new LuminousFlux(1, LuminousFluxUnit.Lumen);
 
             QuantityInfo<LuminousFlux, LuminousFluxUnit> quantityInfo = quantity.QuantityInfo;
@@ -386,7 +386,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", LuminousFluxUnit.Lumen, "lm")]
         public void GetAbbreviationForCulture(string culture, LuminousFluxUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = LuminousFlux.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = LuminousFlux.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -397,7 +397,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = LuminousFlux.GetAbbreviation(unit); 
+                var defaultAbbreviation = LuminousFlux.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

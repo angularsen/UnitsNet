@@ -134,7 +134,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Entropy_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            EntropyUnit[] unitsOrderedByName = EnumHelper.GetValues<EntropyUnit>().OrderBy(x => x.ToString()).ToArray();
+            EntropyUnit[] unitsOrderedByName = EnumHelper.GetValues<EntropyUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Entropy(1, EntropyUnit.JoulePerKelvin);
 
             QuantityInfo<Entropy, EntropyUnit> quantityInfo = quantity.QuantityInfo;
@@ -488,7 +488,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", EntropyUnit.MegajoulePerKelvin, "MJ/K")]
         public void GetAbbreviationForCulture(string culture, EntropyUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Entropy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Entropy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -499,7 +499,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Entropy.GetAbbreviation(unit); 
+                var defaultAbbreviation = Entropy.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

@@ -208,15 +208,15 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             => SpecificEnergy.FromMegajoulesPerKilogram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="SpecificEnergy.FromMegaJoulesPerTonne(QuantityValue)" />
-        public static SpecificEnergy MegaJoulesPerTonne<T>(this T value)
+        /// <inheritdoc cref="SpecificEnergy.FromMegajoulesPerTonne(QuantityValue)" />
+        public static SpecificEnergy MegajoulesPerTonne<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => SpecificEnergy.FromMegaJoulesPerTonne(QuantityValue.CreateChecked(value));
+            => SpecificEnergy.FromMegajoulesPerTonne(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => SpecificEnergy.FromMegaJoulesPerTonne(value.ToQuantityValue());
+            => SpecificEnergy.FromMegajoulesPerTonne(value.ToQuantityValue());
 #endif
 
         /// <inheritdoc cref="SpecificEnergy.FromMegawattDaysPerKilogram(QuantityValue)" />

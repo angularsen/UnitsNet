@@ -56,7 +56,7 @@ namespace UnitsNet.Tests
         protected abstract double KilowattHoursPerKilogramInOneJoulePerKilogram { get; }
         protected abstract double KilowattHoursPerPoundInOneJoulePerKilogram { get; }
         protected abstract double MegajoulesPerKilogramInOneJoulePerKilogram { get; }
-        protected abstract double MegaJoulesPerTonneInOneJoulePerKilogram { get; }
+        protected abstract double MegajoulesPerTonneInOneJoulePerKilogram { get; }
         protected abstract double MegawattDaysPerKilogramInOneJoulePerKilogram { get; }
         protected abstract double MegawattDaysPerShortTonInOneJoulePerKilogram { get; }
         protected abstract double MegawattDaysPerTonneInOneJoulePerKilogram { get; }
@@ -88,7 +88,7 @@ namespace UnitsNet.Tests
         protected virtual double KilowattHoursPerKilogramTolerance { get { return 1e-5; } }
         protected virtual double KilowattHoursPerPoundTolerance { get { return 1e-5; } }
         protected virtual double MegajoulesPerKilogramTolerance { get { return 1e-5; } }
-        protected virtual double MegaJoulesPerTonneTolerance { get { return 1e-5; } }
+        protected virtual double MegajoulesPerTonneTolerance { get { return 1e-5; } }
         protected virtual double MegawattDaysPerKilogramTolerance { get { return 1e-5; } }
         protected virtual double MegawattDaysPerShortTonTolerance { get { return 1e-5; } }
         protected virtual double MegawattDaysPerTonneTolerance { get { return 1e-5; } }
@@ -124,7 +124,7 @@ namespace UnitsNet.Tests
                 SpecificEnergyUnit.KilowattHourPerKilogram => (KilowattHoursPerKilogramInOneJoulePerKilogram, KilowattHoursPerKilogramTolerance),
                 SpecificEnergyUnit.KilowattHourPerPound => (KilowattHoursPerPoundInOneJoulePerKilogram, KilowattHoursPerPoundTolerance),
                 SpecificEnergyUnit.MegajoulePerKilogram => (MegajoulesPerKilogramInOneJoulePerKilogram, MegajoulesPerKilogramTolerance),
-                SpecificEnergyUnit.MegaJoulePerTonne => (MegaJoulesPerTonneInOneJoulePerKilogram, MegaJoulesPerTonneTolerance),
+                SpecificEnergyUnit.MegajoulePerTonne => (MegajoulesPerTonneInOneJoulePerKilogram, MegajoulesPerTonneTolerance),
                 SpecificEnergyUnit.MegawattDayPerKilogram => (MegawattDaysPerKilogramInOneJoulePerKilogram, MegawattDaysPerKilogramTolerance),
                 SpecificEnergyUnit.MegawattDayPerShortTon => (MegawattDaysPerShortTonInOneJoulePerKilogram, MegawattDaysPerShortTonTolerance),
                 SpecificEnergyUnit.MegawattDayPerTonne => (MegawattDaysPerTonneInOneJoulePerKilogram, MegawattDaysPerTonneTolerance),
@@ -160,7 +160,7 @@ namespace UnitsNet.Tests
             new object[] { SpecificEnergyUnit.KilowattHourPerKilogram },
             new object[] { SpecificEnergyUnit.KilowattHourPerPound },
             new object[] { SpecificEnergyUnit.MegajoulePerKilogram },
-            new object[] { SpecificEnergyUnit.MegaJoulePerTonne },
+            new object[] { SpecificEnergyUnit.MegajoulePerTonne },
             new object[] { SpecificEnergyUnit.MegawattDayPerKilogram },
             new object[] { SpecificEnergyUnit.MegawattDayPerShortTon },
             new object[] { SpecificEnergyUnit.MegawattDayPerTonne },
@@ -226,7 +226,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void SpecificEnergy_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            SpecificEnergyUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificEnergyUnit>().OrderBy(x => x.ToString()).ToArray();
+            SpecificEnergyUnit[] unitsOrderedByName = EnumHelper.GetValues<SpecificEnergyUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new SpecificEnergy(1, SpecificEnergyUnit.JoulePerKilogram);
 
             QuantityInfo<SpecificEnergy, SpecificEnergyUnit> quantityInfo = quantity.QuantityInfo;
@@ -275,7 +275,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(KilowattHoursPerKilogramInOneJoulePerKilogram, jouleperkilogram.KilowattHoursPerKilogram, KilowattHoursPerKilogramTolerance);
             AssertEx.EqualTolerance(KilowattHoursPerPoundInOneJoulePerKilogram, jouleperkilogram.KilowattHoursPerPound, KilowattHoursPerPoundTolerance);
             AssertEx.EqualTolerance(MegajoulesPerKilogramInOneJoulePerKilogram, jouleperkilogram.MegajoulesPerKilogram, MegajoulesPerKilogramTolerance);
-            AssertEx.EqualTolerance(MegaJoulesPerTonneInOneJoulePerKilogram, jouleperkilogram.MegaJoulesPerTonne, MegaJoulesPerTonneTolerance);
+            AssertEx.EqualTolerance(MegajoulesPerTonneInOneJoulePerKilogram, jouleperkilogram.MegajoulesPerTonne, MegajoulesPerTonneTolerance);
             AssertEx.EqualTolerance(MegawattDaysPerKilogramInOneJoulePerKilogram, jouleperkilogram.MegawattDaysPerKilogram, MegawattDaysPerKilogramTolerance);
             AssertEx.EqualTolerance(MegawattDaysPerShortTonInOneJoulePerKilogram, jouleperkilogram.MegawattDaysPerShortTon, MegawattDaysPerShortTonTolerance);
             AssertEx.EqualTolerance(MegawattDaysPerTonneInOneJoulePerKilogram, jouleperkilogram.MegawattDaysPerTonne, MegawattDaysPerTonneTolerance);
@@ -340,7 +340,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(KilowattHoursPerKilogramInOneJoulePerKilogram, jouleperkilogram.As(SpecificEnergyUnit.KilowattHourPerKilogram), KilowattHoursPerKilogramTolerance);
             AssertEx.EqualTolerance(KilowattHoursPerPoundInOneJoulePerKilogram, jouleperkilogram.As(SpecificEnergyUnit.KilowattHourPerPound), KilowattHoursPerPoundTolerance);
             AssertEx.EqualTolerance(MegajoulesPerKilogramInOneJoulePerKilogram, jouleperkilogram.As(SpecificEnergyUnit.MegajoulePerKilogram), MegajoulesPerKilogramTolerance);
-            AssertEx.EqualTolerance(MegaJoulesPerTonneInOneJoulePerKilogram, jouleperkilogram.As(SpecificEnergyUnit.MegaJoulePerTonne), MegaJoulesPerTonneTolerance);
+            AssertEx.EqualTolerance(MegajoulesPerTonneInOneJoulePerKilogram, jouleperkilogram.As(SpecificEnergyUnit.MegajoulePerTonne), MegajoulesPerTonneTolerance);
             AssertEx.EqualTolerance(MegawattDaysPerKilogramInOneJoulePerKilogram, jouleperkilogram.As(SpecificEnergyUnit.MegawattDayPerKilogram), MegawattDaysPerKilogramTolerance);
             AssertEx.EqualTolerance(MegawattDaysPerShortTonInOneJoulePerKilogram, jouleperkilogram.As(SpecificEnergyUnit.MegawattDayPerShortTon), MegawattDaysPerShortTonTolerance);
             AssertEx.EqualTolerance(MegawattDaysPerTonneInOneJoulePerKilogram, jouleperkilogram.As(SpecificEnergyUnit.MegawattDayPerTonne), MegawattDaysPerTonneTolerance);
@@ -479,7 +479,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kWh/kg", SpecificEnergyUnit.KilowattHourPerKilogram, 4.2)]
         [InlineData("en-US", "4.2 kWh/lbs", SpecificEnergyUnit.KilowattHourPerPound, 4.2)]
         [InlineData("en-US", "4.2 MJ/kg", SpecificEnergyUnit.MegajoulePerKilogram, 4.2)]
-        [InlineData("en-US", "4.2 MJ/t", SpecificEnergyUnit.MegaJoulePerTonne, 4.2)]
+        [InlineData("en-US", "4.2 MJ/t", SpecificEnergyUnit.MegajoulePerTonne, 4.2)]
         [InlineData("en-US", "4.2 MWd/kg", SpecificEnergyUnit.MegawattDayPerKilogram, 4.2)]
         [InlineData("en-US", "4.2 MWd/ST", SpecificEnergyUnit.MegawattDayPerShortTon, 4.2)]
         [InlineData("en-US", "4.2 MWd/t", SpecificEnergyUnit.MegawattDayPerTonne, 4.2)]
@@ -518,7 +518,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kWh/kg", SpecificEnergyUnit.KilowattHourPerKilogram, 4.2)]
         [InlineData("en-US", "4.2 kWh/lbs", SpecificEnergyUnit.KilowattHourPerPound, 4.2)]
         [InlineData("en-US", "4.2 MJ/kg", SpecificEnergyUnit.MegajoulePerKilogram, 4.2)]
-        [InlineData("en-US", "4.2 MJ/t", SpecificEnergyUnit.MegaJoulePerTonne, 4.2)]
+        [InlineData("en-US", "4.2 MJ/t", SpecificEnergyUnit.MegajoulePerTonne, 4.2)]
         [InlineData("en-US", "4.2 MWd/kg", SpecificEnergyUnit.MegawattDayPerKilogram, 4.2)]
         [InlineData("en-US", "4.2 MWd/ST", SpecificEnergyUnit.MegawattDayPerShortTon, 4.2)]
         [InlineData("en-US", "4.2 MWd/t", SpecificEnergyUnit.MegawattDayPerTonne, 4.2)]
@@ -557,7 +557,7 @@ namespace UnitsNet.Tests
         [InlineData("kWh/kg", SpecificEnergyUnit.KilowattHourPerKilogram)]
         [InlineData("kWh/lbs", SpecificEnergyUnit.KilowattHourPerPound)]
         [InlineData("MJ/kg", SpecificEnergyUnit.MegajoulePerKilogram)]
-        [InlineData("MJ/t", SpecificEnergyUnit.MegaJoulePerTonne)]
+        [InlineData("MJ/t", SpecificEnergyUnit.MegajoulePerTonne)]
         [InlineData("MWd/kg", SpecificEnergyUnit.MegawattDayPerKilogram)]
         [InlineData("MWd/ST", SpecificEnergyUnit.MegawattDayPerShortTon)]
         [InlineData("MWd/t", SpecificEnergyUnit.MegawattDayPerTonne)]
@@ -596,7 +596,7 @@ namespace UnitsNet.Tests
         [InlineData("kWh/kg", SpecificEnergyUnit.KilowattHourPerKilogram)]
         [InlineData("kWh/lbs", SpecificEnergyUnit.KilowattHourPerPound)]
         [InlineData("MJ/kg", SpecificEnergyUnit.MegajoulePerKilogram)]
-        [InlineData("MJ/t", SpecificEnergyUnit.MegaJoulePerTonne)]
+        [InlineData("MJ/t", SpecificEnergyUnit.MegajoulePerTonne)]
         [InlineData("MWd/kg", SpecificEnergyUnit.MegawattDayPerKilogram)]
         [InlineData("MWd/ST", SpecificEnergyUnit.MegawattDayPerShortTon)]
         [InlineData("MWd/t", SpecificEnergyUnit.MegawattDayPerTonne)]
@@ -635,7 +635,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "kWh/kg", SpecificEnergyUnit.KilowattHourPerKilogram)]
         [InlineData("en-US", "kWh/lbs", SpecificEnergyUnit.KilowattHourPerPound)]
         [InlineData("en-US", "MJ/kg", SpecificEnergyUnit.MegajoulePerKilogram)]
-        [InlineData("en-US", "MJ/t", SpecificEnergyUnit.MegaJoulePerTonne)]
+        [InlineData("en-US", "MJ/t", SpecificEnergyUnit.MegajoulePerTonne)]
         [InlineData("en-US", "MWd/kg", SpecificEnergyUnit.MegawattDayPerKilogram)]
         [InlineData("en-US", "MWd/ST", SpecificEnergyUnit.MegawattDayPerShortTon)]
         [InlineData("en-US", "MWd/t", SpecificEnergyUnit.MegawattDayPerTonne)]
@@ -673,7 +673,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "kWh/kg", SpecificEnergyUnit.KilowattHourPerKilogram)]
         [InlineData("en-US", "kWh/lbs", SpecificEnergyUnit.KilowattHourPerPound)]
         [InlineData("en-US", "MJ/kg", SpecificEnergyUnit.MegajoulePerKilogram)]
-        [InlineData("en-US", "MJ/t", SpecificEnergyUnit.MegaJoulePerTonne)]
+        [InlineData("en-US", "MJ/t", SpecificEnergyUnit.MegajoulePerTonne)]
         [InlineData("en-US", "MWd/kg", SpecificEnergyUnit.MegawattDayPerKilogram)]
         [InlineData("en-US", "MWd/ST", SpecificEnergyUnit.MegawattDayPerShortTon)]
         [InlineData("en-US", "MWd/t", SpecificEnergyUnit.MegawattDayPerTonne)]
@@ -710,7 +710,7 @@ namespace UnitsNet.Tests
         [InlineData("kWh/kg", SpecificEnergyUnit.KilowattHourPerKilogram)]
         [InlineData("kWh/lbs", SpecificEnergyUnit.KilowattHourPerPound)]
         [InlineData("MJ/kg", SpecificEnergyUnit.MegajoulePerKilogram)]
-        [InlineData("MJ/t", SpecificEnergyUnit.MegaJoulePerTonne)]
+        [InlineData("MJ/t", SpecificEnergyUnit.MegajoulePerTonne)]
         [InlineData("MWd/kg", SpecificEnergyUnit.MegawattDayPerKilogram)]
         [InlineData("MWd/ST", SpecificEnergyUnit.MegawattDayPerShortTon)]
         [InlineData("MWd/t", SpecificEnergyUnit.MegawattDayPerTonne)]
@@ -749,7 +749,7 @@ namespace UnitsNet.Tests
         [InlineData("kWh/kg", SpecificEnergyUnit.KilowattHourPerKilogram)]
         [InlineData("kWh/lbs", SpecificEnergyUnit.KilowattHourPerPound)]
         [InlineData("MJ/kg", SpecificEnergyUnit.MegajoulePerKilogram)]
-        [InlineData("MJ/t", SpecificEnergyUnit.MegaJoulePerTonne)]
+        [InlineData("MJ/t", SpecificEnergyUnit.MegajoulePerTonne)]
         [InlineData("MWd/kg", SpecificEnergyUnit.MegawattDayPerKilogram)]
         [InlineData("MWd/ST", SpecificEnergyUnit.MegawattDayPerShortTon)]
         [InlineData("MWd/t", SpecificEnergyUnit.MegawattDayPerTonne)]
@@ -788,7 +788,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "kWh/kg", SpecificEnergyUnit.KilowattHourPerKilogram)]
         [InlineData("en-US", "kWh/lbs", SpecificEnergyUnit.KilowattHourPerPound)]
         [InlineData("en-US", "MJ/kg", SpecificEnergyUnit.MegajoulePerKilogram)]
-        [InlineData("en-US", "MJ/t", SpecificEnergyUnit.MegaJoulePerTonne)]
+        [InlineData("en-US", "MJ/t", SpecificEnergyUnit.MegajoulePerTonne)]
         [InlineData("en-US", "MWd/kg", SpecificEnergyUnit.MegawattDayPerKilogram)]
         [InlineData("en-US", "MWd/ST", SpecificEnergyUnit.MegawattDayPerShortTon)]
         [InlineData("en-US", "MWd/t", SpecificEnergyUnit.MegawattDayPerTonne)]
@@ -826,7 +826,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "kWh/kg", SpecificEnergyUnit.KilowattHourPerKilogram)]
         [InlineData("en-US", "kWh/lbs", SpecificEnergyUnit.KilowattHourPerPound)]
         [InlineData("en-US", "MJ/kg", SpecificEnergyUnit.MegajoulePerKilogram)]
-        [InlineData("en-US", "MJ/t", SpecificEnergyUnit.MegaJoulePerTonne)]
+        [InlineData("en-US", "MJ/t", SpecificEnergyUnit.MegajoulePerTonne)]
         [InlineData("en-US", "MWd/kg", SpecificEnergyUnit.MegawattDayPerKilogram)]
         [InlineData("en-US", "MWd/ST", SpecificEnergyUnit.MegawattDayPerShortTon)]
         [InlineData("en-US", "MWd/t", SpecificEnergyUnit.MegawattDayPerTonne)]
@@ -863,7 +863,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", SpecificEnergyUnit.KilowattHourPerKilogram, "kWh/kg")]
         [InlineData("en-US", SpecificEnergyUnit.KilowattHourPerPound, "kWh/lbs")]
         [InlineData("en-US", SpecificEnergyUnit.MegajoulePerKilogram, "MJ/kg")]
-        [InlineData("en-US", SpecificEnergyUnit.MegaJoulePerTonne, "MJ/t")]
+        [InlineData("en-US", SpecificEnergyUnit.MegajoulePerTonne, "MJ/t")]
         [InlineData("en-US", SpecificEnergyUnit.MegawattDayPerKilogram, "MWd/kg")]
         [InlineData("en-US", SpecificEnergyUnit.MegawattDayPerShortTon, "MWd/ST")]
         [InlineData("en-US", SpecificEnergyUnit.MegawattDayPerTonne, "MWd/t")]
@@ -879,7 +879,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", SpecificEnergyUnit.WattHourPerPound, "Wh/lbs")]
         public void GetAbbreviationForCulture(string culture, SpecificEnergyUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = SpecificEnergy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = SpecificEnergy.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -890,7 +890,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = SpecificEnergy.GetAbbreviation(unit); 
+                var defaultAbbreviation = SpecificEnergy.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });
@@ -980,7 +980,7 @@ namespace UnitsNet.Tests
             Assert.Equal(3, SpecificEnergy.FromKilowattHoursPerKilogram(jouleperkilogram.KilowattHoursPerKilogram).JoulesPerKilogram);
             Assert.Equal(3, SpecificEnergy.FromKilowattHoursPerPound(jouleperkilogram.KilowattHoursPerPound).JoulesPerKilogram);
             Assert.Equal(3, SpecificEnergy.FromMegajoulesPerKilogram(jouleperkilogram.MegajoulesPerKilogram).JoulesPerKilogram);
-            Assert.Equal(3, SpecificEnergy.FromMegaJoulesPerTonne(jouleperkilogram.MegaJoulesPerTonne).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromMegajoulesPerTonne(jouleperkilogram.MegajoulesPerTonne).JoulesPerKilogram);
             Assert.Equal(3, SpecificEnergy.FromMegawattDaysPerKilogram(jouleperkilogram.MegawattDaysPerKilogram).JoulesPerKilogram);
             Assert.Equal(3, SpecificEnergy.FromMegawattDaysPerShortTon(jouleperkilogram.MegawattDaysPerShortTon).JoulesPerKilogram);
             Assert.Equal(3, SpecificEnergy.FromMegawattDaysPerTonne(jouleperkilogram.MegawattDaysPerTonne).JoulesPerKilogram);
@@ -1176,7 +1176,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 kWh/kg", new SpecificEnergy(1, SpecificEnergyUnit.KilowattHourPerKilogram).ToString());
             Assert.Equal("1 kWh/lbs", new SpecificEnergy(1, SpecificEnergyUnit.KilowattHourPerPound).ToString());
             Assert.Equal("1 MJ/kg", new SpecificEnergy(1, SpecificEnergyUnit.MegajoulePerKilogram).ToString());
-            Assert.Equal("1 MJ/t", new SpecificEnergy(1, SpecificEnergyUnit.MegaJoulePerTonne).ToString());
+            Assert.Equal("1 MJ/t", new SpecificEnergy(1, SpecificEnergyUnit.MegajoulePerTonne).ToString());
             Assert.Equal("1 MWd/kg", new SpecificEnergy(1, SpecificEnergyUnit.MegawattDayPerKilogram).ToString());
             Assert.Equal("1 MWd/ST", new SpecificEnergy(1, SpecificEnergyUnit.MegawattDayPerShortTon).ToString());
             Assert.Equal("1 MWd/t", new SpecificEnergy(1, SpecificEnergyUnit.MegawattDayPerTonne).ToString());
@@ -1214,7 +1214,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 kWh/kg", new SpecificEnergy(1, SpecificEnergyUnit.KilowattHourPerKilogram).ToString(swedishCulture));
             Assert.Equal("1 kWh/lbs", new SpecificEnergy(1, SpecificEnergyUnit.KilowattHourPerPound).ToString(swedishCulture));
             Assert.Equal("1 MJ/kg", new SpecificEnergy(1, SpecificEnergyUnit.MegajoulePerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 MJ/t", new SpecificEnergy(1, SpecificEnergyUnit.MegaJoulePerTonne).ToString(swedishCulture));
+            Assert.Equal("1 MJ/t", new SpecificEnergy(1, SpecificEnergyUnit.MegajoulePerTonne).ToString(swedishCulture));
             Assert.Equal("1 MWd/kg", new SpecificEnergy(1, SpecificEnergyUnit.MegawattDayPerKilogram).ToString(swedishCulture));
             Assert.Equal("1 MWd/ST", new SpecificEnergy(1, SpecificEnergyUnit.MegawattDayPerShortTon).ToString(swedishCulture));
             Assert.Equal("1 MWd/t", new SpecificEnergy(1, SpecificEnergyUnit.MegawattDayPerTonne).ToString(swedishCulture));

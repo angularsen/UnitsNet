@@ -162,7 +162,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Acceleration_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            AccelerationUnit[] unitsOrderedByName = EnumHelper.GetValues<AccelerationUnit>().OrderBy(x => x.ToString()).ToArray();
+            AccelerationUnit[] unitsOrderedByName = EnumHelper.GetValues<AccelerationUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Acceleration(1, AccelerationUnit.MeterPerSecondSquared);
 
             QuantityInfo<Acceleration, AccelerationUnit> quantityInfo = quantity.QuantityInfo;
@@ -705,7 +705,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", AccelerationUnit.StandardGravity, "g")]
         public void GetAbbreviationForCulture(string culture, AccelerationUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Acceleration.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Acceleration.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -716,7 +716,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Acceleration.GetAbbreviation(unit); 
+                var defaultAbbreviation = Acceleration.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

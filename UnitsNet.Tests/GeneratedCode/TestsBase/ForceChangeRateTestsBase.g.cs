@@ -166,7 +166,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ForceChangeRate_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ForceChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<ForceChangeRateUnit>().OrderBy(x => x.ToString()).ToArray();
+            ForceChangeRateUnit[] unitsOrderedByName = EnumHelper.GetValues<ForceChangeRateUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ForceChangeRate(1, ForceChangeRateUnit.NewtonPerSecond);
 
             QuantityInfo<ForceChangeRate, ForceChangeRateUnit> quantityInfo = quantity.QuantityInfo;
@@ -664,7 +664,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ForceChangeRateUnit.PoundForcePerSecond, "lbf/s")]
         public void GetAbbreviationForCulture(string culture, ForceChangeRateUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ForceChangeRate.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ForceChangeRate.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -675,7 +675,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ForceChangeRate.GetAbbreviation(unit); 
+                var defaultAbbreviation = ForceChangeRate.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

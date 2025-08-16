@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void ElectricChargeDensity_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            ElectricChargeDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricChargeDensityUnit>().OrderBy(x => x.ToString()).ToArray();
+            ElectricChargeDensityUnit[] unitsOrderedByName = EnumHelper.GetValues<ElectricChargeDensityUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new ElectricChargeDensity(1, ElectricChargeDensityUnit.CoulombPerCubicMeter);
 
             QuantityInfo<ElectricChargeDensity, ElectricChargeDensityUnit> quantityInfo = quantity.QuantityInfo;
@@ -386,7 +386,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", ElectricChargeDensityUnit.CoulombPerCubicMeter, "C/m³")]
         public void GetAbbreviationForCulture(string culture, ElectricChargeDensityUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = ElectricChargeDensity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = ElectricChargeDensity.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -397,7 +397,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = ElectricChargeDensity.GetAbbreviation(unit); 
+                var defaultAbbreviation = ElectricChargeDensity.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

@@ -3,6 +3,7 @@
 
 using System.Globalization;
 
+// ReSharper disable once CheckNamespace
 namespace UnitsNet;
 
 /// <summary>
@@ -35,7 +36,7 @@ public static class QuantityExtensions
         return quantity.QuantityInfo.Create(convertedValue, toUnit);
 #endif
     }
-    
+
     /// <summary>
     ///     Returns the string representation of the specified quantity using the provided format provider.
     /// </summary>
@@ -89,7 +90,7 @@ public static class QuantityExtensions
         {
             throw new ArgumentNullException(nameof(quantities));
         }
-        
+
         using IEnumerator<TQuantity> enumerator = quantities.GetEnumerator();
         if (!enumerator.MoveNext())
         {
@@ -135,7 +136,7 @@ public static class QuantityExtensions
         {
             throw new ArgumentNullException(nameof(quantities));
         }
-        
+
         using IEnumerator<TQuantity> enumerator = quantities.GetEnumerator();
         if (!enumerator.MoveNext())
         {

@@ -141,7 +141,7 @@ namespace UnitsNet
                 yield return new (ForceUnit.Kilonewton, "Kilonewton", "Kilonewtons", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
                      new QuantityValue(1, 1000)             
                 );
-                yield return new (ForceUnit.KiloPond, "KiloPond", "KiloPonds", BaseUnits.Undefined,
+                yield return new (ForceUnit.Kilopond, "Kilopond", "Kiloponds", BaseUnits.Undefined,
                      new QuantityValue(20000, 196133)             
                 );
                 yield return new (ForceUnit.KilopoundForce, "KilopoundForce", "KilopoundsForce", BaseUnits.Undefined,
@@ -300,9 +300,9 @@ namespace UnitsNet
         public QuantityValue Kilonewtons => this.As(ForceUnit.Kilonewton);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ForceUnit.KiloPond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ForceUnit.Kilopond"/>
         /// </summary>
-        public QuantityValue KiloPonds => this.As(ForceUnit.KiloPond);
+        public QuantityValue Kiloponds => this.As(ForceUnit.Kilopond);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ForceUnit.KilopoundForce"/>
@@ -416,11 +416,11 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KiloPond"/>.
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Kilopond"/>.
         /// </summary>
-        public static Force FromKiloPonds(QuantityValue value)
+        public static Force FromKiloponds(QuantityValue value)
         {
-            return new Force(value, ForceUnit.KiloPond);
+            return new Force(value, ForceUnit.Kilopond);
         }
 
         /// <summary>

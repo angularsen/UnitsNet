@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void TemperatureGradient_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            TemperatureGradientUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureGradientUnit>().OrderBy(x => x.ToString()).ToArray();
+            TemperatureGradientUnit[] unitsOrderedByName = EnumHelper.GetValues<TemperatureGradientUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new TemperatureGradient(1, TemperatureGradientUnit.KelvinPerMeter);
 
             QuantityInfo<TemperatureGradient, TemperatureGradientUnit> quantityInfo = quantity.QuantityInfo;
@@ -437,7 +437,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", TemperatureGradientUnit.KelvinPerMeter, "∆°K/m")]
         public void GetAbbreviationForCulture(string culture, TemperatureGradientUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = TemperatureGradient.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = TemperatureGradient.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -448,7 +448,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = TemperatureGradient.GetAbbreviation(unit); 
+                var defaultAbbreviation = TemperatureGradient.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

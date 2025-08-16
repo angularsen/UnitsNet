@@ -406,7 +406,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void VolumeFlow_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            VolumeFlowUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumeFlowUnit>().OrderBy(x => x.ToString()).ToArray();
+            VolumeFlowUnit[] unitsOrderedByName = EnumHelper.GetValues<VolumeFlowUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new VolumeFlow(1, VolumeFlowUnit.CubicMeterPerSecond);
 
             QuantityInfo<VolumeFlow, VolumeFlowUnit> quantityInfo = quantity.QuantityInfo;
@@ -2486,7 +2486,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", VolumeFlowUnit.NanoliterPerSecond, "нл/c")]
         public void GetAbbreviationForCulture(string culture, VolumeFlowUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = VolumeFlow.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = VolumeFlow.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -2497,7 +2497,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = VolumeFlow.GetAbbreviation(unit); 
+                var defaultAbbreviation = VolumeFlow.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

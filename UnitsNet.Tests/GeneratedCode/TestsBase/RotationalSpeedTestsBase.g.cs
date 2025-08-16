@@ -158,7 +158,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void RotationalSpeed_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            RotationalSpeedUnit[] unitsOrderedByName = EnumHelper.GetValues<RotationalSpeedUnit>().OrderBy(x => x.ToString()).ToArray();
+            RotationalSpeedUnit[] unitsOrderedByName = EnumHelper.GetValues<RotationalSpeedUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new RotationalSpeed(1, RotationalSpeedUnit.RadianPerSecond);
 
             QuantityInfo<RotationalSpeed, RotationalSpeedUnit> quantityInfo = quantity.QuantityInfo;
@@ -734,7 +734,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", RotationalSpeedUnit.RevolutionPerSecond, "об/с")]
         public void GetAbbreviationForCulture(string culture, RotationalSpeedUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = RotationalSpeed.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = RotationalSpeed.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -745,7 +745,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = RotationalSpeed.GetAbbreviation(unit); 
+                var defaultAbbreviation = RotationalSpeed.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });

@@ -122,7 +122,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Illuminance_QuantityInfo_ReturnsQuantityInfoDescribingQuantity()
         {
-            IlluminanceUnit[] unitsOrderedByName = EnumHelper.GetValues<IlluminanceUnit>().OrderBy(x => x.ToString()).ToArray();
+            IlluminanceUnit[] unitsOrderedByName = EnumHelper.GetValues<IlluminanceUnit>().OrderBy(x => x.ToString(), StringComparer.OrdinalIgnoreCase).ToArray();
             var quantity = new Illuminance(1, IlluminanceUnit.Lux);
 
             QuantityInfo<Illuminance, IlluminanceUnit> quantityInfo = quantity.QuantityInfo;
@@ -437,7 +437,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", IlluminanceUnit.Millilux, "mlx")]
         public void GetAbbreviationForCulture(string culture, IlluminanceUnit unit, string expectedAbbreviation)
         {
-            var defaultAbbreviation = Illuminance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture)); 
+            var defaultAbbreviation = Illuminance.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedAbbreviation, defaultAbbreviation);
         }
 
@@ -448,7 +448,7 @@ namespace UnitsNet.Tests
             {
                 var expectedAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
 
-                var defaultAbbreviation = Illuminance.GetAbbreviation(unit); 
+                var defaultAbbreviation = Illuminance.GetAbbreviation(unit);
 
                 Assert.Equal(expectedAbbreviation, defaultAbbreviation);
             });
