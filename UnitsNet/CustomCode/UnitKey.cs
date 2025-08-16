@@ -105,7 +105,7 @@ public readonly record struct UnitKey
 
         if (!unitType.IsEnum)
         {
-            throw new ArgumentException($"Unit type must be an enumeration, but was {unitType.FullName}.");
+            throw new ArgumentException($"Unit type must be an enumeration, but was {unitType.FullName}.", nameof(unitType));
         }
 
         return new UnitKey(unitType, unitValue);
