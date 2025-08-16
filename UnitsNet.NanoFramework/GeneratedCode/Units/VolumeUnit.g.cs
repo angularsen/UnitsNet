@@ -131,6 +131,12 @@ namespace UnitsNet.Units
         MetricCup = 38,
 
         /// <summary>
+        ///     An international metric tablespoon is exactly equal to 15 mL. It is the equivalence of 1⁠ 1/2 metric dessert spoons or 3 metric teaspoons.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Tablespoon#International_metric</remarks>
+        MetricTablespoon = 63,
+
+        /// <summary>
         ///     The metric teaspoon as a unit of culinary measure is 5 ml (0.18 imp fl oz; 0.17 US fl oz),[17] equal to 5 cm3, 1⁄3 UK/Canadian metric tablespoon, or 1⁄4 Australian metric tablespoon.
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Teaspoon#Metric_teaspoon</remarks>

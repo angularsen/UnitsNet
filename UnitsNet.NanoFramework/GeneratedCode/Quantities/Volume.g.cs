@@ -274,6 +274,11 @@ namespace UnitsNet
         public double MetricCups => As(VolumeUnit.MetricCup);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MetricTablespoon"/>
+        /// </summary>
+        public double MetricTablespoons => As(VolumeUnit.MetricTablespoon);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MetricTeaspoon"/>
         /// </summary>
         public double MetricTeaspoons => As(VolumeUnit.MetricTeaspoon);
@@ -548,6 +553,11 @@ namespace UnitsNet
         public static Volume FromMetricCups(double metriccups) => new Volume(metriccups, VolumeUnit.MetricCup);
 
         /// <summary>
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MetricTablespoon"/>.
+        /// </summary>
+        public static Volume FromMetricTablespoons(double metrictablespoons) => new Volume(metrictablespoons, VolumeUnit.MetricTablespoon);
+
+        /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MetricTeaspoon"/>.
         /// </summary>
         public static Volume FromMetricTeaspoons(double metricteaspoons) => new Volume(metricteaspoons, VolumeUnit.MetricTeaspoon);
@@ -701,6 +711,7 @@ namespace UnitsNet
                         VolumeUnit.Megaliter => (_value / 1e3) * 1e6d,
                         VolumeUnit.MegausGallon => (_value * 0.003785411784) * 1e6d,
                         VolumeUnit.MetricCup => _value * 0.00025,
+                        VolumeUnit.MetricTablespoon => _value * 1.5e-5,
                         VolumeUnit.MetricTeaspoon => _value * 0.5e-5,
                         VolumeUnit.Microliter => (_value / 1e3) * 1e-6d,
                         VolumeUnit.Milliliter => (_value / 1e3) * 1e-3d,
@@ -768,6 +779,7 @@ namespace UnitsNet
                         VolumeUnit.Megaliter => (baseUnitValue * 1e3) / 1e6d,
                         VolumeUnit.MegausGallon => (baseUnitValue / 0.003785411784) / 1e6d,
                         VolumeUnit.MetricCup => baseUnitValue / 0.00025,
+                        VolumeUnit.MetricTablespoon => baseUnitValue / 1.5e-5,
                         VolumeUnit.MetricTeaspoon => baseUnitValue / 0.5e-5,
                         VolumeUnit.Microliter => (baseUnitValue * 1e3) / 1e-6d,
                         VolumeUnit.Milliliter => (baseUnitValue * 1e3) / 1e-3d,

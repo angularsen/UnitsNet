@@ -79,6 +79,7 @@ namespace UnitsNet.Tests
         protected abstract double MegalitersInOneCubicMeter { get; }
         protected abstract double MegausGallonsInOneCubicMeter { get; }
         protected abstract double MetricCupsInOneCubicMeter { get; }
+        protected abstract double MetricTablespoonsInOneCubicMeter { get; }
         protected abstract double MetricTeaspoonsInOneCubicMeter { get; }
         protected abstract double MicrolitersInOneCubicMeter { get; }
         protected abstract double MillilitersInOneCubicMeter { get; }
@@ -135,6 +136,7 @@ namespace UnitsNet.Tests
         protected virtual double MegalitersTolerance { get { return 1e-5; } }
         protected virtual double MegausGallonsTolerance { get { return 1e-5; } }
         protected virtual double MetricCupsTolerance { get { return 1e-5; } }
+        protected virtual double MetricTablespoonsTolerance { get { return 1e-5; } }
         protected virtual double MetricTeaspoonsTolerance { get { return 1e-5; } }
         protected virtual double MicrolitersTolerance { get { return 1e-5; } }
         protected virtual double MillilitersTolerance { get { return 1e-5; } }
@@ -195,6 +197,7 @@ namespace UnitsNet.Tests
                 VolumeUnit.Megaliter => (MegalitersInOneCubicMeter, MegalitersTolerance),
                 VolumeUnit.MegausGallon => (MegausGallonsInOneCubicMeter, MegausGallonsTolerance),
                 VolumeUnit.MetricCup => (MetricCupsInOneCubicMeter, MetricCupsTolerance),
+                VolumeUnit.MetricTablespoon => (MetricTablespoonsInOneCubicMeter, MetricTablespoonsTolerance),
                 VolumeUnit.MetricTeaspoon => (MetricTeaspoonsInOneCubicMeter, MetricTeaspoonsTolerance),
                 VolumeUnit.Microliter => (MicrolitersInOneCubicMeter, MicrolitersTolerance),
                 VolumeUnit.Milliliter => (MillilitersInOneCubicMeter, MillilitersTolerance),
@@ -255,6 +258,7 @@ namespace UnitsNet.Tests
             new object[] { VolumeUnit.Megaliter },
             new object[] { VolumeUnit.MegausGallon },
             new object[] { VolumeUnit.MetricCup },
+            new object[] { VolumeUnit.MetricTablespoon },
             new object[] { VolumeUnit.MetricTeaspoon },
             new object[] { VolumeUnit.Microliter },
             new object[] { VolumeUnit.Milliliter },
@@ -380,6 +384,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MegalitersInOneCubicMeter, cubicmeter.Megaliters, MegalitersTolerance);
             AssertEx.EqualTolerance(MegausGallonsInOneCubicMeter, cubicmeter.MegausGallons, MegausGallonsTolerance);
             AssertEx.EqualTolerance(MetricCupsInOneCubicMeter, cubicmeter.MetricCups, MetricCupsTolerance);
+            AssertEx.EqualTolerance(MetricTablespoonsInOneCubicMeter, cubicmeter.MetricTablespoons, MetricTablespoonsTolerance);
             AssertEx.EqualTolerance(MetricTeaspoonsInOneCubicMeter, cubicmeter.MetricTeaspoons, MetricTeaspoonsTolerance);
             AssertEx.EqualTolerance(MicrolitersInOneCubicMeter, cubicmeter.Microliters, MicrolitersTolerance);
             AssertEx.EqualTolerance(MillilitersInOneCubicMeter, cubicmeter.Milliliters, MillilitersTolerance);
@@ -469,6 +474,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MegalitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Megaliter), MegalitersTolerance);
             AssertEx.EqualTolerance(MegausGallonsInOneCubicMeter, cubicmeter.As(VolumeUnit.MegausGallon), MegausGallonsTolerance);
             AssertEx.EqualTolerance(MetricCupsInOneCubicMeter, cubicmeter.As(VolumeUnit.MetricCup), MetricCupsTolerance);
+            AssertEx.EqualTolerance(MetricTablespoonsInOneCubicMeter, cubicmeter.As(VolumeUnit.MetricTablespoon), MetricTablespoonsTolerance);
             AssertEx.EqualTolerance(MetricTeaspoonsInOneCubicMeter, cubicmeter.As(VolumeUnit.MetricTeaspoon), MetricTeaspoonsTolerance);
             AssertEx.EqualTolerance(MicrolitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Microliter), MicrolitersTolerance);
             AssertEx.EqualTolerance(MillilitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Milliliter), MillilitersTolerance);
@@ -650,6 +656,11 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 Ml", VolumeUnit.Megaliter, 4.2)]
         [InlineData("en-US", "4.2 Mgal (U.S.)", VolumeUnit.MegausGallon, 4.2)]
         [InlineData("en-US", "4.2 metric cup", VolumeUnit.MetricCup, 4.2)]
+        [InlineData("en-US", "4.2 tablespoon", VolumeUnit.MetricTablespoon, 4.2)]
+        [InlineData("en-US", "4.2 tbsp", VolumeUnit.MetricTablespoon, 4.2)]
+        [InlineData("en-US", "4.2 tbsp.", VolumeUnit.MetricTablespoon, 4.2)]
+        [InlineData("en-US", "4.2 tblsp", VolumeUnit.MetricTablespoon, 4.2)]
+        [InlineData("en-US", "4.2 tblsp.", VolumeUnit.MetricTablespoon, 4.2)]
         [InlineData("en-US", "4.2 tsp", VolumeUnit.MetricTeaspoon, 4.2)]
         [InlineData("en-US", "4.2 t", VolumeUnit.MetricTeaspoon, 4.2)]
         [InlineData("en-US", "4.2 ts", VolumeUnit.MetricTeaspoon, 4.2)]
@@ -770,6 +781,11 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 Ml", VolumeUnit.Megaliter, 4.2)]
         [InlineData("en-US", "4.2 Mgal (U.S.)", VolumeUnit.MegausGallon, 4.2)]
         [InlineData("en-US", "4.2 metric cup", VolumeUnit.MetricCup, 4.2)]
+        [InlineData("en-US", "4.2 tablespoon", VolumeUnit.MetricTablespoon, 4.2)]
+        [InlineData("en-US", "4.2 tbsp", VolumeUnit.MetricTablespoon, 4.2)]
+        [InlineData("en-US", "4.2 tbsp.", VolumeUnit.MetricTablespoon, 4.2)]
+        [InlineData("en-US", "4.2 tblsp", VolumeUnit.MetricTablespoon, 4.2)]
+        [InlineData("en-US", "4.2 tblsp.", VolumeUnit.MetricTablespoon, 4.2)]
         [InlineData("en-US", "4.2 tsp", VolumeUnit.MetricTeaspoon, 4.2)]
         [InlineData("en-US", "4.2 t", VolumeUnit.MetricTeaspoon, 4.2)]
         [InlineData("en-US", "4.2 ts", VolumeUnit.MetricTeaspoon, 4.2)]
@@ -890,6 +906,11 @@ namespace UnitsNet.Tests
         [InlineData("Ml", VolumeUnit.Megaliter)]
         [InlineData("Mgal (U.S.)", VolumeUnit.MegausGallon)]
         [InlineData("metric cup", VolumeUnit.MetricCup)]
+        [InlineData("tablespoon", VolumeUnit.MetricTablespoon)]
+        [InlineData("tbsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("tbsp.", VolumeUnit.MetricTablespoon)]
+        [InlineData("tblsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("tblsp.", VolumeUnit.MetricTablespoon)]
         [InlineData("tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("t", VolumeUnit.MetricTeaspoon)]
         [InlineData("ts", VolumeUnit.MetricTeaspoon)]
@@ -964,6 +985,11 @@ namespace UnitsNet.Tests
         [InlineData("Ml", VolumeUnit.Megaliter)]
         [InlineData("Mgal (U.S.)", VolumeUnit.MegausGallon)]
         [InlineData("metric cup", VolumeUnit.MetricCup)]
+        [InlineData("tablespoon", VolumeUnit.MetricTablespoon)]
+        [InlineData("tbsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("tbsp.", VolumeUnit.MetricTablespoon)]
+        [InlineData("tblsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("tblsp.", VolumeUnit.MetricTablespoon)]
         [InlineData("tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("t", VolumeUnit.MetricTeaspoon)]
         [InlineData("ts", VolumeUnit.MetricTeaspoon)]
@@ -1038,6 +1064,11 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "Ml", VolumeUnit.Megaliter)]
         [InlineData("en-US", "Mgal (U.S.)", VolumeUnit.MegausGallon)]
         [InlineData("en-US", "metric cup", VolumeUnit.MetricCup)]
+        [InlineData("en-US", "tablespoon", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tbsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tbsp.", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tblsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tblsp.", VolumeUnit.MetricTablespoon)]
         [InlineData("en-US", "tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "t", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "ts", VolumeUnit.MetricTeaspoon)]
@@ -1147,6 +1178,11 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "Ml", VolumeUnit.Megaliter)]
         [InlineData("en-US", "Mgal (U.S.)", VolumeUnit.MegausGallon)]
         [InlineData("en-US", "metric cup", VolumeUnit.MetricCup)]
+        [InlineData("en-US", "tablespoon", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tbsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tbsp.", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tblsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tblsp.", VolumeUnit.MetricTablespoon)]
         [InlineData("en-US", "tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "t", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "ts", VolumeUnit.MetricTeaspoon)]
@@ -1265,6 +1301,11 @@ namespace UnitsNet.Tests
         [InlineData("Ml", VolumeUnit.Megaliter)]
         [InlineData("Mgal (U.S.)", VolumeUnit.MegausGallon)]
         [InlineData("metric cup", VolumeUnit.MetricCup)]
+        [InlineData("tablespoon", VolumeUnit.MetricTablespoon)]
+        [InlineData("tbsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("tbsp.", VolumeUnit.MetricTablespoon)]
+        [InlineData("tblsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("tblsp.", VolumeUnit.MetricTablespoon)]
         [InlineData("tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("t", VolumeUnit.MetricTeaspoon)]
         [InlineData("ts", VolumeUnit.MetricTeaspoon)]
@@ -1339,6 +1380,11 @@ namespace UnitsNet.Tests
         [InlineData("Ml", VolumeUnit.Megaliter)]
         [InlineData("Mgal (U.S.)", VolumeUnit.MegausGallon)]
         [InlineData("metric cup", VolumeUnit.MetricCup)]
+        [InlineData("tablespoon", VolumeUnit.MetricTablespoon)]
+        [InlineData("tbsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("tbsp.", VolumeUnit.MetricTablespoon)]
+        [InlineData("tblsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("tblsp.", VolumeUnit.MetricTablespoon)]
         [InlineData("tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("t", VolumeUnit.MetricTeaspoon)]
         [InlineData("ts", VolumeUnit.MetricTeaspoon)]
@@ -1413,6 +1459,11 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "Ml", VolumeUnit.Megaliter)]
         [InlineData("en-US", "Mgal (U.S.)", VolumeUnit.MegausGallon)]
         [InlineData("en-US", "metric cup", VolumeUnit.MetricCup)]
+        [InlineData("en-US", "tablespoon", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tbsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tbsp.", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tblsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tblsp.", VolumeUnit.MetricTablespoon)]
         [InlineData("en-US", "tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "t", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "ts", VolumeUnit.MetricTeaspoon)]
@@ -1522,6 +1573,11 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "Ml", VolumeUnit.Megaliter)]
         [InlineData("en-US", "Mgal (U.S.)", VolumeUnit.MegausGallon)]
         [InlineData("en-US", "metric cup", VolumeUnit.MetricCup)]
+        [InlineData("en-US", "tablespoon", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tbsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tbsp.", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tblsp", VolumeUnit.MetricTablespoon)]
+        [InlineData("en-US", "tblsp.", VolumeUnit.MetricTablespoon)]
         [InlineData("en-US", "tsp", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "t", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "ts", VolumeUnit.MetricTeaspoon)]
@@ -1637,6 +1693,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", VolumeUnit.Megaliter, "Ml")]
         [InlineData("en-US", VolumeUnit.MegausGallon, "Mgal (U.S.)")]
         [InlineData("en-US", VolumeUnit.MetricCup, "metric cup")]
+        [InlineData("en-US", VolumeUnit.MetricTablespoon, "tablespoon")]
         [InlineData("en-US", VolumeUnit.MetricTeaspoon, "tsp")]
         [InlineData("en-US", VolumeUnit.Microliter, "µl")]
         [InlineData("en-US", VolumeUnit.Milliliter, "ml")]
@@ -1813,6 +1870,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Volume.FromMegaliters(cubicmeter.Megaliters).CubicMeters, MegalitersTolerance);
             AssertEx.EqualTolerance(1, Volume.FromMegausGallons(cubicmeter.MegausGallons).CubicMeters, MegausGallonsTolerance);
             AssertEx.EqualTolerance(1, Volume.FromMetricCups(cubicmeter.MetricCups).CubicMeters, MetricCupsTolerance);
+            AssertEx.EqualTolerance(1, Volume.FromMetricTablespoons(cubicmeter.MetricTablespoons).CubicMeters, MetricTablespoonsTolerance);
             AssertEx.EqualTolerance(1, Volume.FromMetricTeaspoons(cubicmeter.MetricTeaspoons).CubicMeters, MetricTeaspoonsTolerance);
             AssertEx.EqualTolerance(1, Volume.FromMicroliters(cubicmeter.Microliters).CubicMeters, MicrolitersTolerance);
             AssertEx.EqualTolerance(1, Volume.FromMilliliters(cubicmeter.Milliliters).CubicMeters, MillilitersTolerance);
@@ -2023,6 +2081,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 Ml", new Volume(1, VolumeUnit.Megaliter).ToString());
             Assert.Equal("1 Mgal (U.S.)", new Volume(1, VolumeUnit.MegausGallon).ToString());
             Assert.Equal("1 metric cup", new Volume(1, VolumeUnit.MetricCup).ToString());
+            Assert.Equal("1 tablespoon", new Volume(1, VolumeUnit.MetricTablespoon).ToString());
             Assert.Equal("1 tsp", new Volume(1, VolumeUnit.MetricTeaspoon).ToString());
             Assert.Equal("1 µl", new Volume(1, VolumeUnit.Microliter).ToString());
             Assert.Equal("1 ml", new Volume(1, VolumeUnit.Milliliter).ToString());
@@ -2085,6 +2144,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 Ml", new Volume(1, VolumeUnit.Megaliter).ToString(swedishCulture));
             Assert.Equal("1 Mgal (U.S.)", new Volume(1, VolumeUnit.MegausGallon).ToString(swedishCulture));
             Assert.Equal("1 metric cup", new Volume(1, VolumeUnit.MetricCup).ToString(swedishCulture));
+            Assert.Equal("1 tablespoon", new Volume(1, VolumeUnit.MetricTablespoon).ToString(swedishCulture));
             Assert.Equal("1 tsp", new Volume(1, VolumeUnit.MetricTeaspoon).ToString(swedishCulture));
             Assert.Equal("1 µl", new Volume(1, VolumeUnit.Microliter).ToString(swedishCulture));
             Assert.Equal("1 ml", new Volume(1, VolumeUnit.Milliliter).ToString(swedishCulture));
