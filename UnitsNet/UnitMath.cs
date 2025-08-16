@@ -33,7 +33,7 @@ namespace UnitsNet
 // #else
 //             return value.QuantityInfo.Create(QuantityValue.Abs(value.Value), value.UnitKey);
 // #endif
-            return (TQuantity)value.QuantityInfo.From(Math.Abs(value.Value), value.UnitKey);
+            return QuantityValue.IsNegative(value.Value) ? (TQuantity)value.QuantityInfo.From(-value.Value, value.UnitKey) : value;
         }
 
         /// <summary>Returns the smaller of two <typeparamref name="TQuantity" /> values.</summary>
@@ -76,10 +76,12 @@ namespace UnitsNet
         /// <exception cref="ArgumentException">
         ///     <paramref name="min" /> cannot be greater than <paramref name="max" />.
         /// </exception>
-        public static TQuantity Clamp<TQuantity>(TQuantity value, TQuantity min, TQuantity max) where TQuantity : IComparable, IQuantity
+        public static TQuantity Clamp<TQuantity>(TQuantity value, TQuantity min, TQuantity max)
+            where TQuantity : IQuantityOfType<TQuantity>, IComparable<TQuantity>
         {
-            var minValue = (TQuantity)min.ToUnit(value.Unit);
-            var maxValue = (TQuantity)max.ToUnit(value.Unit);
+            UnitKey targetUnit = value.UnitKey;
+            TQuantity minValue = UnitConverter.Default.ConvertToUnit(min, targetUnit);
+            TQuantity maxValue = UnitConverter.Default.ConvertToUnit(max, targetUnit);
 
             if (minValue.CompareTo(maxValue) > 0)
             {

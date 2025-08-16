@@ -19,7 +19,7 @@ public
 #else
 internal
 #endif
-interface IQuantityInfo 
+interface IQuantityInfo
 {
     /// <summary>
     ///     Quantity name, such as "Length" or "Mass".
@@ -122,5 +122,5 @@ interface IQuantityInstanceInfo<out TQuantity> : IQuantityInfo
     /// <inheritdoc cref="IQuantityInfo.Zero" />
     new TQuantity Zero { get; }
 
-    internal TQuantity Create(double value, UnitKey unitKey);
+    internal TQuantity Create(QuantityValue value, UnitKey unitKey);
 }

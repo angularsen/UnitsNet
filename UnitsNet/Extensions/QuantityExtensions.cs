@@ -11,91 +11,30 @@ namespace UnitsNet;
 /// </summary>
 public static class QuantityExtensions
 {
-    /// <inheritdoc cref="IQuantity.As(UnitKey)" />
-    /// <remarks>This should be using UnitConverter.Default.ConvertValue(quantity, toUnit) </remarks>
-    internal static double GetValue<TQuantity>(this TQuantity quantity, UnitKey toUnit)
+    /// <inheritdoc cref="UnitConverter.ConvertValue(QuantityValue,UnitKey,UnitKey)" />
+    internal static QuantityValue GetValue<TQuantity>(this TQuantity quantity, UnitKey toUnit)
         where TQuantity : IQuantity
     {
-        return quantity.As(toUnit);
+        return UnitConverter.Default.ConvertValue(quantity, toUnit);
     }
 
-    /// <summary>
-    ///     Converts the quantity to a value in the unit determined by the specified <see cref="UnitSystem" />.
-    ///     If multiple units are found for the given <see cref="UnitSystem" />, the first match will be used.
-    /// </summary>
-    /// <typeparam name="TQuantity">The type of the quantity being converted.</typeparam>
-    /// <param name="quantity">The quantity to convert.</param>
-    /// <param name="unitSystem">The <see cref="UnitSystem" /> to which the quantity value should be converted.</param>
-    /// <returns>The value of the quantity in the specified unit system.</returns>
-    /// <exception cref="ArgumentNullException">
-    ///     Thrown if <paramref name="unitSystem" /> is <c>null</c>.
-    /// </exception>
-    /// <exception cref="InvalidOperationException">
-    ///     Thrown if no matching unit is found for the given <see cref="UnitSystem" />.
-    /// </exception>
-    public static double As<TQuantity>(this TQuantity quantity, UnitSystem unitSystem)
+    /// <inheritdoc cref="UnitConverter.ConvertValue(QuantityValue,UnitKey,UnitKey)" />
+    internal static QuantityValue ConvertValue<TQuantity>(this UnitConverter converter, TQuantity quantity, UnitKey toUnit)
         where TQuantity : IQuantity
     {
-        return quantity.GetValue(quantity.QuantityInfo.GetDefaultUnit(unitSystem).UnitKey);
+        return converter.ConvertValue(quantity.Value, quantity.UnitKey, toUnit);
     }
 
-    /// <summary>
-    ///     Converts the specified quantity to a new quantity with a unit determined by the given <see cref="UnitSystem" />.
-    /// </summary>
-    /// <typeparam name="TQuantity">
-    ///     The type of the quantity to be converted. Must implement <see cref="IQuantityOfType{TQuantity}" />.
-    /// </typeparam>
-    /// <param name="quantity">The quantity to convert.</param>
-    /// <param name="unitSystem">The <see cref="UnitSystem" /> used to determine the target unit.</param>
-    /// <returns>
-    ///     A new quantity of type <typeparamref name="TQuantity" /> with the unit determined by the specified
-    ///     <see cref="UnitSystem" />.
-    /// </returns>
-    /// <remarks>
-    ///     If multiple units are associated with the given <see cref="UnitSystem" />, the first matching unit will be used.
-    /// </remarks>
-    /// <exception cref="ArgumentNullException">
-    ///     Thrown if <paramref name="unitSystem" /> is <c>null</c>.
-    /// </exception>
-    /// <exception cref="InvalidOperationException">
-    ///     Thrown if no matching unit is found for the specified <see cref="UnitSystem" />.
-    /// </exception>
-    public static TQuantity ToUnit<TQuantity>(this TQuantity quantity, UnitSystem unitSystem)
+    /// <inheritdoc cref="UnitConverter.ConvertToUnit{TQuantity,TUnit}" />
+    internal static TQuantity ConvertToUnit<TQuantity>(this UnitConverter converter, TQuantity quantity, UnitKey toUnit)
         where TQuantity : IQuantityOfType<TQuantity>
     {
+        QuantityValue convertedValue = converter.ConvertValue(quantity.Value, quantity.UnitKey, toUnit);
 #if NET
-        QuantityInfo quantityInfo = quantity.QuantityInfo;
-        UnitKey unitKey = quantityInfo.GetDefaultUnit(unitSystem).UnitKey;
-        return TQuantity.Create(quantity.As(unitKey), unitKey);
+        return TQuantity.Create(convertedValue, toUnit);
 #else
-        QuantityInfo quantityInfo = ((IQuantity)quantity).QuantityInfo;
-        UnitKey unitKey = quantityInfo.GetDefaultUnit(unitSystem).UnitKey;
-        return quantity.QuantityInfo.Create(quantity.As(unitKey), unitKey);
+        return quantity.QuantityInfo.Create(convertedValue, toUnit);
 #endif
-    }
-
-    /// <summary>
-    ///     Converts the specified quantity to a new quantity with a unit determined by the given <see cref="UnitSystem" />.
-    /// </summary>
-    /// <param name="quantity">The quantity to convert.</param>
-    /// <param name="unitSystem">The <see cref="UnitSystem" /> used to determine the target unit.</param>
-    /// <returns>
-    ///     A new quantity of the same type with the unit determined by the specified <see cref="UnitSystem" />.
-    /// </returns>
-    /// <remarks>
-    ///     If multiple units are associated with the given <see cref="UnitSystem" />, the first matching unit will be used.
-    /// </remarks>
-    /// <exception cref="ArgumentNullException">
-    ///     Thrown if <paramref name="unitSystem" /> is <c>null</c>.
-    /// </exception>
-    /// <exception cref="InvalidOperationException">
-    ///     Thrown if no matching unit is found for the specified <see cref="UnitSystem" />.
-    /// </exception>
-    public static IQuantity ToUnitUntyped(this IQuantity quantity, UnitSystem unitSystem)
-    {
-         QuantityInfo quantityInfo = quantity.QuantityInfo;
-         UnitKey unitKey = quantityInfo.GetDefaultUnit(unitSystem).UnitKey;
-         return quantityInfo.From(quantity.As(unitKey), unitKey);
     }
 
     /// <summary>
@@ -160,7 +99,7 @@ public static class QuantityExtensions
 
         TQuantity firstQuantity = enumerator.Current!;
         UnitKey resultUnit = firstQuantity.UnitKey;
-        var sumOfValues = firstQuantity.Value;
+        QuantityValue sumOfValues = firstQuantity.Value;
         var nbValues = 1;
         while (enumerator.MoveNext())
         {
@@ -206,7 +145,7 @@ public static class QuantityExtensions
 
         TQuantity firstQuantity = enumerator.Current!;
         var unitKey = UnitKey.ForUnit(unit);
-        var sumOfValues = firstQuantity.GetValue(unitKey);
+        QuantityValue sumOfValues = firstQuantity.GetValue(unitKey);
         var nbValues = 1;
         while (enumerator.MoveNext())
         {

@@ -32,81 +32,81 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentGradient
     /// </summary>
     public static class NumberToElectricCurrentGradientExtensions
     {
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMicrosecond(double)" />
+        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMicrosecond(QuantityValue)" />
         public static ElectricCurrentGradient AmperesPerMicrosecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrentGradient.FromAmperesPerMicrosecond(double.CreateChecked(value));
+            => ElectricCurrentGradient.FromAmperesPerMicrosecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrentGradient.FromAmperesPerMicrosecond(value.ToDouble(null));
+            => ElectricCurrentGradient.FromAmperesPerMicrosecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMillisecond(double)" />
+        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMillisecond(QuantityValue)" />
         public static ElectricCurrentGradient AmperesPerMillisecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrentGradient.FromAmperesPerMillisecond(double.CreateChecked(value));
+            => ElectricCurrentGradient.FromAmperesPerMillisecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrentGradient.FromAmperesPerMillisecond(value.ToDouble(null));
+            => ElectricCurrentGradient.FromAmperesPerMillisecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMinute(double)" />
+        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerMinute(QuantityValue)" />
         public static ElectricCurrentGradient AmperesPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrentGradient.FromAmperesPerMinute(double.CreateChecked(value));
+            => ElectricCurrentGradient.FromAmperesPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrentGradient.FromAmperesPerMinute(value.ToDouble(null));
+            => ElectricCurrentGradient.FromAmperesPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerNanosecond(double)" />
+        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerNanosecond(QuantityValue)" />
         public static ElectricCurrentGradient AmperesPerNanosecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrentGradient.FromAmperesPerNanosecond(double.CreateChecked(value));
+            => ElectricCurrentGradient.FromAmperesPerNanosecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrentGradient.FromAmperesPerNanosecond(value.ToDouble(null));
+            => ElectricCurrentGradient.FromAmperesPerNanosecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(double)" />
+        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(QuantityValue)" />
         public static ElectricCurrentGradient AmperesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrentGradient.FromAmperesPerSecond(double.CreateChecked(value));
+            => ElectricCurrentGradient.FromAmperesPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrentGradient.FromAmperesPerSecond(value.ToDouble(null));
+            => ElectricCurrentGradient.FromAmperesPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricCurrentGradient.FromMilliamperesPerMinute(double)" />
+        /// <inheritdoc cref="ElectricCurrentGradient.FromMilliamperesPerMinute(QuantityValue)" />
         public static ElectricCurrentGradient MilliamperesPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrentGradient.FromMilliamperesPerMinute(double.CreateChecked(value));
+            => ElectricCurrentGradient.FromMilliamperesPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrentGradient.FromMilliamperesPerMinute(value.ToDouble(null));
+            => ElectricCurrentGradient.FromMilliamperesPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricCurrentGradient.FromMilliamperesPerSecond(double)" />
+        /// <inheritdoc cref="ElectricCurrentGradient.FromMilliamperesPerSecond(QuantityValue)" />
         public static ElectricCurrentGradient MilliamperesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrentGradient.FromMilliamperesPerSecond(double.CreateChecked(value));
+            => ElectricCurrentGradient.FromMilliamperesPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrentGradient.FromMilliamperesPerSecond(value.ToDouble(null));
+            => ElectricCurrentGradient.FromMilliamperesPerSecond(value.ToQuantityValue());
 #endif
 
     }

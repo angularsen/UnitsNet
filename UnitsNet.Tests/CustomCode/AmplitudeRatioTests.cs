@@ -79,9 +79,10 @@ namespace UnitsNet.Tests
         public void AmplitudeRatioToPowerRatio_50OhmImpedance(double dBmV, double expected)
         {
             AmplitudeRatio ampRatio = AmplitudeRatio.FromDecibelMillivolts(dBmV);
-            
-            var actual = Math.Round(ampRatio.ToPowerRatio(ElectricResistance.FromOhms(50)).DecibelMilliwatts, 2);
-            Assert.Equal(expected, actual);
+
+            QuantityValue actual = ampRatio.ToPowerRatio(ElectricResistance.FromOhms(50)).DecibelMilliwatts;
+
+            AssertEx.EqualTolerance(expected, actual, 1e-2m, ComparisonType.Absolute);
         }
 
         [Theory]
@@ -92,9 +93,10 @@ namespace UnitsNet.Tests
         public void AmplitudeRatioToPowerRatio_75OhmImpedance(double dBmV, double expected)
         {
             AmplitudeRatio ampRatio = AmplitudeRatio.FromDecibelMillivolts(dBmV);
-            
-            var actual = Math.Round(ampRatio.ToPowerRatio(ElectricResistance.FromOhms(75)).DecibelMilliwatts, 2);
-            Assert.Equal(expected, actual);
+
+            QuantityValue actual = ampRatio.ToPowerRatio(ElectricResistance.FromOhms(75)).DecibelMilliwatts;
+
+            AssertEx.EqualTolerance(expected, actual, 1e-2m, ComparisonType.Absolute);
         }
     }
 }

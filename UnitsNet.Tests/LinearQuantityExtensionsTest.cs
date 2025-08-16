@@ -7,8 +7,7 @@ public class LinearQuantityExtensionsTest
 {
     [Theory]
     [InlineData(2.0, 2.0, 0.1, true)]
-    // [InlineData(2.0, 2.1, 0.1, true)] // should be equal but fails due to rounding
-    [InlineData(2.0, 2.1, 0.10001, true)]
+    [InlineData(2.0, 2.1, 0.1, true)]
     [InlineData(2.0, 2.2, 0.1, false)]
     [InlineData(2.0, 2.0, 0.0, true)]
     [InlineData(2.0, 2.1, 0.0, false)]
@@ -23,7 +22,7 @@ public class LinearQuantityExtensionsTest
         Assert.Equal(expected, result);
     }
 
-    [Fact(Skip = "Fails due to rounding")]
+    [Fact]
     public void Equals_WithToleranceAtTheLimit_ReturnsTrue()
     {
         var quantity = Length.FromMeters(1);
@@ -46,8 +45,7 @@ public class LinearQuantityExtensionsTest
 
     [Theory]
     [InlineData(2.0, 2.0, 0.1, true)]
-    // [InlineData(2.0, 2.1, 0.1, true)]  // should be equal but fails due to rounding
-    [InlineData(2.0, 2.1, 0.10001, true)] 
+    [InlineData(2.0, 2.1, 0.1, true)]
     [InlineData(2.0, 2.2, 0.1, false)]
     [InlineData(2.0, 2.0, 0.0, true)]
     [InlineData(2.0, 2.1, 0.0, false)]
@@ -72,8 +70,8 @@ public class LinearQuantityExtensionsTest
 
         Assert.False(result);
     }
-    
-    [Fact(Skip = "Currently throws a StackOverflowException")]
+
+    [Fact]
     public void Equals_TQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
     {
         var quantity = Length.FromMeters(1);
@@ -83,7 +81,7 @@ public class LinearQuantityExtensionsTest
         Assert.Throws<UnitNotFoundException>(() => quantity.Equals(quantity, invalidQuantity));
     }
 
-    [Fact(Skip = "Currently throws a StackOverflowException")]
+    [Fact]
     public void Equals_IQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
     {
         var quantity = Length.FromMeters(1);

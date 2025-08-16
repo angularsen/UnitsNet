@@ -10,7 +10,7 @@ namespace UnitsNet
         /// <summary>Get <see cref="Force"/> from <see cref="Pressure"/> divided by <see cref="Area"/>.</summary>
         public static Force FromPressureByArea(Pressure p, Area area)
         {
-            double newtons = p.Pascals * area.SquareMeters;
+            QuantityValue newtons = p.Pascals * area.SquareMeters;
             return new Force(newtons, ForceUnit.Newton);
         }
 

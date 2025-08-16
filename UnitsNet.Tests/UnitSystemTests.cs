@@ -34,11 +34,19 @@ namespace UnitsNet.Tests
         [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Ampere, null, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela)]
         [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, null, LuminousIntensityUnit.Candela)]
         [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, null)]
-        public void ConstructorThrowsArgumentExceptionWithUndefinedUnits(LengthUnit? length, MassUnit? mass, DurationUnit? time, ElectricCurrentUnit? current,
+        public void ConstructorSupportPartialDimensions(LengthUnit? length, MassUnit? mass, DurationUnit? time, ElectricCurrentUnit? current,
             TemperatureUnit? temperature, AmountOfSubstanceUnit? amount, LuminousIntensityUnit? luminousIntensity)
         {
             var baseUnits = new BaseUnits(length, mass, time, current, temperature, amount, luminousIntensity);
-            Assert.Throws<ArgumentException>(() => new UnitSystem(baseUnits));
+            var unitSystem = new UnitSystem(baseUnits);
+
+            Assert.Equal(unitSystem.BaseUnits, baseUnits);
+        }
+
+        [Fact]
+        public void ConstructorThrowsArgumentExceptionWithUndefinedUnits()
+        {
+            Assert.Throws<ArgumentException>(() => new UnitSystem(BaseUnits.Undefined));
         }
 
         [Fact]
@@ -134,6 +142,20 @@ namespace UnitsNet.Tests
             UnitSystem? nullUnitSystem2 = null;
 
             Assert.False(nullUnitSystem1 != nullUnitSystem2);
+        }
+
+        [Fact]
+        public void GetHashCodeIsImplementedCorrectly()
+        {
+            var baseUnits1 = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin,
+                AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
+            var baseUnits2 = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin,
+                AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
+
+            var unitSystem1 = new UnitSystem(baseUnits1);
+            var unitSystem2 = new UnitSystem(baseUnits2);
+
+            Assert.Equal(unitSystem1.GetHashCode(), unitSystem2.GetHashCode());
         }
 
         [Fact]

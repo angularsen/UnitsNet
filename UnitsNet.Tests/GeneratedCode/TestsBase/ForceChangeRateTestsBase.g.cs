@@ -182,6 +182,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ForceChangeRateInfo_CreateWithCustomUnitInfos()
+        {
+            ForceChangeRateUnit[] expectedUnits = [ForceChangeRateUnit.NewtonPerSecond];
+
+            ForceChangeRate.ForceChangeRateInfo quantityInfo = ForceChangeRate.ForceChangeRateInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("ForceChangeRate", quantityInfo.Name);
+            Assert.Equal(ForceChangeRate.Zero, quantityInfo.Zero);
+            Assert.Equal(ForceChangeRate.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void NewtonPerSecondToForceChangeRateUnits()
         {
             ForceChangeRate newtonpersecond = ForceChangeRate.FromNewtonsPerSecond(1);
@@ -309,22 +323,15 @@ namespace UnitsNet.Tests
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
                 Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
             });
-        }
-
-        [Fact]
-        public virtual void ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits()
-        {
-            var quantity = new ForceChangeRate(value: 1, unit: ForceChangeRate.BaseUnit);
-            var expectedUnit = ForceChangeRate.Info.GetDefaultUnit(UnitSystem.SI);
-            var expectedValue = quantity.As(expectedUnit);
-
-            IQuantity quantityToConvert = quantity;
-
-            IQuantity convertedQuantity = quantityToConvert.ToUnitUntyped(UnitSystem.SI);
-
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
         }
 
         [Fact]
@@ -339,15 +346,11 @@ namespace UnitsNet.Tests
             {
                 IQuantity<ForceChangeRateUnit> quantity = new ForceChangeRate(value: 1, unit: ForceChangeRate.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ForceChangeRate(value: 1, unit: ForceChangeRate.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ThrowsArgumentNullExceptionIfNull()
-        {
-            UnitSystem nullUnitSystem = null!;
-            IQuantity quantity = new ForceChangeRate(value: 1, unit: ForceChangeRate.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
         }
 
         [Fact]
@@ -362,15 +365,11 @@ namespace UnitsNet.Tests
             {
                 IQuantity<ForceChangeRateUnit> quantity = new ForceChangeRate(value: 1, unit: ForceChangeRate.BaseUnit);
                 Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ForceChangeRate(value: 1, unit: ForceChangeRate.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
             });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
-        {
-            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            IQuantity quantity = new ForceChangeRate(value: 1, unit: ForceChangeRate.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnitUntyped(unsupportedUnitSystem));
         }
 
         [Theory]
@@ -393,7 +392,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 N/s", ForceChangeRateUnit.NewtonPerSecond, 4.2)]
         [InlineData("en-US", "4.2 lbf/min", ForceChangeRateUnit.PoundForcePerMinute, 4.2)]
         [InlineData("en-US", "4.2 lbf/s", ForceChangeRateUnit.PoundForcePerSecond, 4.2)]
-        public void Parse(string culture, string quantityString, ForceChangeRateUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, ForceChangeRateUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ForceChangeRate.Parse(quantityString);
@@ -421,7 +420,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 N/s", ForceChangeRateUnit.NewtonPerSecond, 4.2)]
         [InlineData("en-US", "4.2 lbf/min", ForceChangeRateUnit.PoundForcePerMinute, 4.2)]
         [InlineData("en-US", "4.2 lbf/s", ForceChangeRateUnit.PoundForcePerSecond, 4.2)]
-        public void TryParse(string culture, string quantityString, ForceChangeRateUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, ForceChangeRateUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ForceChangeRate.TryParse(quantityString, out ForceChangeRate parsed));
@@ -712,6 +711,7 @@ namespace UnitsNet.Tests
                 var quantity = ForceChangeRate.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -735,46 +735,48 @@ namespace UnitsNet.Tests
                 IQuantity<ForceChangeRateUnit> quantityToConvert = quantity;
                 IQuantity<ForceChangeRateUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            ForceChangeRate newtonpersecond = ForceChangeRate.FromNewtonsPerSecond(1);
-            AssertEx.EqualTolerance(1, ForceChangeRate.FromCentinewtonsPerSecond(newtonpersecond.CentinewtonsPerSecond).NewtonsPerSecond, CentinewtonsPerSecondTolerance);
-            AssertEx.EqualTolerance(1, ForceChangeRate.FromDecanewtonsPerMinute(newtonpersecond.DecanewtonsPerMinute).NewtonsPerSecond, DecanewtonsPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, ForceChangeRate.FromDecanewtonsPerSecond(newtonpersecond.DecanewtonsPerSecond).NewtonsPerSecond, DecanewtonsPerSecondTolerance);
-            AssertEx.EqualTolerance(1, ForceChangeRate.FromDecinewtonsPerSecond(newtonpersecond.DecinewtonsPerSecond).NewtonsPerSecond, DecinewtonsPerSecondTolerance);
-            AssertEx.EqualTolerance(1, ForceChangeRate.FromKilonewtonsPerMinute(newtonpersecond.KilonewtonsPerMinute).NewtonsPerSecond, KilonewtonsPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, ForceChangeRate.FromKilonewtonsPerSecond(newtonpersecond.KilonewtonsPerSecond).NewtonsPerSecond, KilonewtonsPerSecondTolerance);
-            AssertEx.EqualTolerance(1, ForceChangeRate.FromKilopoundsForcePerMinute(newtonpersecond.KilopoundsForcePerMinute).NewtonsPerSecond, KilopoundsForcePerMinuteTolerance);
-            AssertEx.EqualTolerance(1, ForceChangeRate.FromKilopoundsForcePerSecond(newtonpersecond.KilopoundsForcePerSecond).NewtonsPerSecond, KilopoundsForcePerSecondTolerance);
-            AssertEx.EqualTolerance(1, ForceChangeRate.FromMicronewtonsPerSecond(newtonpersecond.MicronewtonsPerSecond).NewtonsPerSecond, MicronewtonsPerSecondTolerance);
-            AssertEx.EqualTolerance(1, ForceChangeRate.FromMillinewtonsPerSecond(newtonpersecond.MillinewtonsPerSecond).NewtonsPerSecond, MillinewtonsPerSecondTolerance);
-            AssertEx.EqualTolerance(1, ForceChangeRate.FromNanonewtonsPerSecond(newtonpersecond.NanonewtonsPerSecond).NewtonsPerSecond, NanonewtonsPerSecondTolerance);
-            AssertEx.EqualTolerance(1, ForceChangeRate.FromNewtonsPerMinute(newtonpersecond.NewtonsPerMinute).NewtonsPerSecond, NewtonsPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, ForceChangeRate.FromNewtonsPerSecond(newtonpersecond.NewtonsPerSecond).NewtonsPerSecond, NewtonsPerSecondTolerance);
-            AssertEx.EqualTolerance(1, ForceChangeRate.FromPoundsForcePerMinute(newtonpersecond.PoundsForcePerMinute).NewtonsPerSecond, PoundsForcePerMinuteTolerance);
-            AssertEx.EqualTolerance(1, ForceChangeRate.FromPoundsForcePerSecond(newtonpersecond.PoundsForcePerSecond).NewtonsPerSecond, PoundsForcePerSecondTolerance);
+            ForceChangeRate newtonpersecond = ForceChangeRate.FromNewtonsPerSecond(3);
+            Assert.Equal(3, ForceChangeRate.FromCentinewtonsPerSecond(newtonpersecond.CentinewtonsPerSecond).NewtonsPerSecond);
+            Assert.Equal(3, ForceChangeRate.FromDecanewtonsPerMinute(newtonpersecond.DecanewtonsPerMinute).NewtonsPerSecond);
+            Assert.Equal(3, ForceChangeRate.FromDecanewtonsPerSecond(newtonpersecond.DecanewtonsPerSecond).NewtonsPerSecond);
+            Assert.Equal(3, ForceChangeRate.FromDecinewtonsPerSecond(newtonpersecond.DecinewtonsPerSecond).NewtonsPerSecond);
+            Assert.Equal(3, ForceChangeRate.FromKilonewtonsPerMinute(newtonpersecond.KilonewtonsPerMinute).NewtonsPerSecond);
+            Assert.Equal(3, ForceChangeRate.FromKilonewtonsPerSecond(newtonpersecond.KilonewtonsPerSecond).NewtonsPerSecond);
+            Assert.Equal(3, ForceChangeRate.FromKilopoundsForcePerMinute(newtonpersecond.KilopoundsForcePerMinute).NewtonsPerSecond);
+            Assert.Equal(3, ForceChangeRate.FromKilopoundsForcePerSecond(newtonpersecond.KilopoundsForcePerSecond).NewtonsPerSecond);
+            Assert.Equal(3, ForceChangeRate.FromMicronewtonsPerSecond(newtonpersecond.MicronewtonsPerSecond).NewtonsPerSecond);
+            Assert.Equal(3, ForceChangeRate.FromMillinewtonsPerSecond(newtonpersecond.MillinewtonsPerSecond).NewtonsPerSecond);
+            Assert.Equal(3, ForceChangeRate.FromNanonewtonsPerSecond(newtonpersecond.NanonewtonsPerSecond).NewtonsPerSecond);
+            Assert.Equal(3, ForceChangeRate.FromNewtonsPerMinute(newtonpersecond.NewtonsPerMinute).NewtonsPerSecond);
+            Assert.Equal(3, ForceChangeRate.FromNewtonsPerSecond(newtonpersecond.NewtonsPerSecond).NewtonsPerSecond);
+            Assert.Equal(3, ForceChangeRate.FromPoundsForcePerMinute(newtonpersecond.PoundsForcePerMinute).NewtonsPerSecond);
+            Assert.Equal(3, ForceChangeRate.FromPoundsForcePerSecond(newtonpersecond.PoundsForcePerSecond).NewtonsPerSecond);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             ForceChangeRate v = ForceChangeRate.FromNewtonsPerSecond(1);
-            AssertEx.EqualTolerance(-1, -v.NewtonsPerSecond, NewtonsPerSecondTolerance);
-            AssertEx.EqualTolerance(2, (ForceChangeRate.FromNewtonsPerSecond(3)-v).NewtonsPerSecond, NewtonsPerSecondTolerance);
-            AssertEx.EqualTolerance(2, (v + v).NewtonsPerSecond, NewtonsPerSecondTolerance);
-            AssertEx.EqualTolerance(10, (v*10).NewtonsPerSecond, NewtonsPerSecondTolerance);
-            AssertEx.EqualTolerance(10, (10*v).NewtonsPerSecond, NewtonsPerSecondTolerance);
-            AssertEx.EqualTolerance(2, (ForceChangeRate.FromNewtonsPerSecond(10)/5).NewtonsPerSecond, NewtonsPerSecondTolerance);
-            AssertEx.EqualTolerance(2, ForceChangeRate.FromNewtonsPerSecond(10)/ForceChangeRate.FromNewtonsPerSecond(5), NewtonsPerSecondTolerance);
+            Assert.Equal(-1, -v.NewtonsPerSecond);
+            Assert.Equal(2, (ForceChangeRate.FromNewtonsPerSecond(3) - v).NewtonsPerSecond);
+            Assert.Equal(2, (v + v).NewtonsPerSecond);
+            Assert.Equal(10, (v * 10).NewtonsPerSecond);
+            Assert.Equal(10, (10 * v).NewtonsPerSecond);
+            Assert.Equal(2, (ForceChangeRate.FromNewtonsPerSecond(10) / 5).NewtonsPerSecond);
+            Assert.Equal(2, ForceChangeRate.FromNewtonsPerSecond(10) / ForceChangeRate.FromNewtonsPerSecond(5));
         }
 
         [Fact]
@@ -820,8 +822,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ForceChangeRateUnit.NewtonPerSecond, 1, ForceChangeRateUnit.NewtonPerSecond, true)]  // Same value and unit.
         [InlineData(1, ForceChangeRateUnit.NewtonPerSecond, 2, ForceChangeRateUnit.NewtonPerSecond, false)] // Different value.
-        [InlineData(2, ForceChangeRateUnit.NewtonPerSecond, 1, ForceChangeRateUnit.CentinewtonPerSecond, false)] // Different value and unit.
-        [InlineData(1, ForceChangeRateUnit.NewtonPerSecond, 1, ForceChangeRateUnit.CentinewtonPerSecond, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ForceChangeRateUnit unitA, double valueB, ForceChangeRateUnit unitB, bool expectEqual)
         {
             var a = new ForceChangeRate(valueA, unitA);
@@ -881,8 +881,8 @@ namespace UnitsNet.Tests
             var quantity = ForceChangeRate.FromNewtonsPerSecond(firstValue);
             var otherQuantity = ForceChangeRate.FromNewtonsPerSecond(secondValue);
             ForceChangeRate maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, ForceChangeRate.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -901,7 +901,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<ForceChangeRateUnit>();
+            var units = EnumHelper.GetValues<ForceChangeRateUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -912,6 +912,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(ForceChangeRate.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(ForceChangeRate.Info.Units, ForceChangeRate.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, ForceChangeRate.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -1004,7 +1016,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ForceChangeRate.FromNewtonsPerSecond(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(ForceChangeRate), quantity.As(ForceChangeRate.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

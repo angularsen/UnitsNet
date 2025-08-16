@@ -33,8 +33,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         public void UnitsNetBaseJsonConverter_ConvertIQuantity_throws_ArgumentNullException_when_quantity_is_NULL()
         {
             var result = Assert.Throws<ArgumentNullException>(() => _sut.Test_ConvertDoubleIQuantity(null));
-
-            Assert.Equal("Value cannot be null. (Parameter 'quantity')", result.Message);
+            Assert.Equal("quantity", result.ParamName);
         }
 
         [Fact]

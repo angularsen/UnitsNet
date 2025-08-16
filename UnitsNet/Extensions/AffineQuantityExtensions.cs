@@ -1,10 +1,6 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-#if NET
-using System.Numerics;
-#endif
-
 namespace UnitsNet;
 
 /// <summary>
@@ -62,13 +58,13 @@ public static class AffineQuantityExtensions
         where TQuantity : IAffineQuantity<TQuantity, TOffset>, ISubtractionOperators<TQuantity, TQuantity, TOffset>
         where TOffset : IQuantityOfType<TOffset>, IAdditiveIdentity<TOffset, TOffset>
     {
-        if (double.IsNegative(tolerance.Value))
+        if (QuantityValue.IsNegative(tolerance.Value))
         {
             throw ExceptionHelper.CreateArgumentOutOfRangeExceptionForNegativeTolerance(nameof(tolerance));
         }
 
         TOffset difference = quantity - other;
-        return double.Abs(difference.Value) <= tolerance.GetValue(difference.UnitKey);
+        return QuantityValue.Abs(difference.Value) <= tolerance.GetValue(difference.UnitKey);
     }
 #else
     /// <summary>
@@ -99,13 +95,13 @@ public static class AffineQuantityExtensions
     /// </remarks>
     public static bool Equals(this Temperature quantity, Temperature other, TemperatureDelta tolerance)
     {
-        if (tolerance.Value < 0)
+        if (QuantityValue.IsNegative(tolerance.Value))
         {
             throw ExceptionHelper.CreateArgumentOutOfRangeExceptionForNegativeTolerance(nameof(tolerance));
         }
 
         TemperatureDelta difference = quantity - other;
-        return Math.Abs(difference.Value) <= tolerance.GetValue(UnitKey.ForUnit(difference.Unit));
+        return QuantityValue.Abs(difference.Value) <= tolerance.GetValue(UnitKey.ForUnit(difference.Unit));
     }
 
     /// <inheritdoc cref="Equals(UnitsNet.Temperature,UnitsNet.Temperature,UnitsNet.TemperatureDelta)" />
