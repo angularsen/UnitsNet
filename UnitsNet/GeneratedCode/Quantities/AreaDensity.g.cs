@@ -763,9 +763,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<AreaDensityUnit> IQuantity<AreaDensityUnit>.ToUnit(AreaDensityUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<AreaDensityUnit> IQuantity<AreaDensityUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

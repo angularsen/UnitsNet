@@ -930,9 +930,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ImpulseUnit> IQuantity<ImpulseUnit>.ToUnit(ImpulseUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<ImpulseUnit> IQuantity<ImpulseUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

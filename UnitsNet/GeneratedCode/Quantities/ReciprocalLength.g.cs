@@ -941,9 +941,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ReciprocalLengthUnit> IQuantity<ReciprocalLengthUnit>.ToUnit(ReciprocalLengthUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<ReciprocalLengthUnit> IQuantity<ReciprocalLengthUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

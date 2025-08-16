@@ -735,9 +735,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ThermalConductivityUnit> IQuantity<ThermalConductivityUnit>.ToUnit(ThermalConductivityUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<ThermalConductivityUnit> IQuantity<ThermalConductivityUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

@@ -703,9 +703,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<SolidAngleUnit> IQuantity<SolidAngleUnit>.ToUnit(SolidAngleUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<SolidAngleUnit> IQuantity<SolidAngleUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

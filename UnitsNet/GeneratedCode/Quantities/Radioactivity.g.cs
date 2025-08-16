@@ -1218,9 +1218,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<RadioactivityUnit> IQuantity<RadioactivityUnit>.ToUnit(RadioactivityUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<RadioactivityUnit> IQuantity<RadioactivityUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

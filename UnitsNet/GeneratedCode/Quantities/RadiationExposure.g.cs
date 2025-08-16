@@ -840,9 +840,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<RadiationExposureUnit> IQuantity<RadiationExposureUnit>.ToUnit(RadiationExposureUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<RadiationExposureUnit> IQuantity<RadiationExposureUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

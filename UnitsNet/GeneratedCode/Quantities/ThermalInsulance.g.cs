@@ -822,9 +822,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ThermalInsulanceUnit> IQuantity<ThermalInsulanceUnit>.ToUnit(ThermalInsulanceUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<ThermalInsulanceUnit> IQuantity<ThermalInsulanceUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

@@ -861,9 +861,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<VolumetricHeatCapacityUnit> IQuantity<VolumetricHeatCapacityUnit>.ToUnit(VolumetricHeatCapacityUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<VolumetricHeatCapacityUnit> IQuantity<VolumetricHeatCapacityUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

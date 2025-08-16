@@ -781,9 +781,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<TemperatureGradientUnit> IQuantity<TemperatureGradientUnit>.ToUnit(TemperatureGradientUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<TemperatureGradientUnit> IQuantity<TemperatureGradientUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

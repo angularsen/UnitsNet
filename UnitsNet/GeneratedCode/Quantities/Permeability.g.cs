@@ -717,9 +717,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<PermeabilityUnit> IQuantity<PermeabilityUnit>.ToUnit(PermeabilityUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<PermeabilityUnit> IQuantity<PermeabilityUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

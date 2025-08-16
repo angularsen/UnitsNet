@@ -1039,9 +1039,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<SpecificWeightUnit> IQuantity<SpecificWeightUnit>.ToUnit(SpecificWeightUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<SpecificWeightUnit> IQuantity<SpecificWeightUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

@@ -945,9 +945,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ReciprocalAreaUnit> IQuantity<ReciprocalAreaUnit>.ToUnit(ReciprocalAreaUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<ReciprocalAreaUnit> IQuantity<ReciprocalAreaUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

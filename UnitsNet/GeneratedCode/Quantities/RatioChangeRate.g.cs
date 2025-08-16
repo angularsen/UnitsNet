@@ -732,9 +732,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<RatioChangeRateUnit> IQuantity<RatioChangeRateUnit>.ToUnit(RatioChangeRateUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<RatioChangeRateUnit> IQuantity<RatioChangeRateUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

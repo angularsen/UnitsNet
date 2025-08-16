@@ -807,9 +807,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<MagneticFieldUnit> IQuantity<MagneticFieldUnit>.ToUnit(MagneticFieldUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<MagneticFieldUnit> IQuantity<MagneticFieldUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

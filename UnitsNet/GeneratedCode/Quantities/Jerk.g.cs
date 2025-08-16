@@ -907,9 +907,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<JerkUnit> IQuantity<JerkUnit>.ToUnit(JerkUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<JerkUnit> IQuantity<JerkUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

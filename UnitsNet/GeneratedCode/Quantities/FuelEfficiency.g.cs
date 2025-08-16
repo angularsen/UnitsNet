@@ -771,9 +771,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<FuelEfficiencyUnit> IQuantity<FuelEfficiencyUnit>.ToUnit(FuelEfficiencyUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<FuelEfficiencyUnit> IQuantity<FuelEfficiencyUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

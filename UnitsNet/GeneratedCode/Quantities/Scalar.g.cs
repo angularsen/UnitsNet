@@ -700,9 +700,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ScalarUnit> IQuantity<ScalarUnit>.ToUnit(ScalarUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<ScalarUnit> IQuantity<ScalarUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

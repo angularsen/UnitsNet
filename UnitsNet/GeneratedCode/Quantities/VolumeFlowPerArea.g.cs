@@ -732,9 +732,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<VolumeFlowPerAreaUnit> IQuantity<VolumeFlowPerAreaUnit>.ToUnit(VolumeFlowPerAreaUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<VolumeFlowPerAreaUnit> IQuantity<VolumeFlowPerAreaUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion
