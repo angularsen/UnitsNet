@@ -57,43 +57,53 @@ namespace UnitsNet
         {
             return val1.CompareTo(val2) == -1 ? val2 : val1;
         }
-        
-        /// <summary>Returns <paramref name="value" /> clamped to the inclusive range of <paramref name="min" /> and <paramref name="max" />.</summary>
-        /// <param name="value">The value to be clamped.</param>
-        /// <param name="min">The lower bound of the result.</param>
-        /// <param name="max">The upper bound of the result.</param>
+
+        /// <summary>
+        ///     Clamps the specified <paramref name="value" /> to the inclusive range defined by <paramref name="min" /> and
+        ///     <paramref name="max" />.
+        /// </summary>
+        /// <typeparam name="TQuantity">
+        ///     The type of the quantity, which must implement <see cref="IQuantity" /> and <see cref="IComparable{T}" />.
+        /// </typeparam>
+        /// <param name="value">The value to clamp.</param>
+        /// <param name="min">The minimum allowable value.</param>
+        /// <param name="max">The maximum allowable value.</param>
         /// <returns>
-        ///   <paramref name="value" /> if <paramref name="min" /> ≤ <paramref name="value" /> ≤ <paramref name="max" />.
-        ///
-        ///   -or-
-        ///
-        ///   <paramref name="min" /> (converted to value.Unit) if <paramref name="value" /> &lt; <paramref name="min" />.
-        ///
-        ///   -or-
-        ///
-        ///   <paramref name="max" /> (converted to value.Unit) if <paramref name="max" /> &lt; <paramref name="value" />.
+        ///     The clamped value:
+        ///     <list type="bullet">
+        ///         <item>
+        ///             <description>
+        ///                 <paramref name="value" /> if it lies within the range [<paramref name="min" />,
+        ///                 <paramref name="max" />].
+        ///             </description>
+        ///         </item>
+        ///         <item>
+        ///             <description><paramref name="min" /> if <paramref name="value" /> is less than <paramref name="min" />.</description>
+        ///         </item>
+        ///         <item>
+        ///             <description><paramref name="max" /> if <paramref name="value" /> is greater than <paramref name="max" />.</description>
+        ///         </item>
+        ///     </list>
         /// </returns>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="min" /> cannot be greater than <paramref name="max" />.
+        ///     Thrown if <paramref name="min" /> is greater than <paramref name="max" />.
         /// </exception>
-        public static TQuantity Clamp<TQuantity>(TQuantity value, TQuantity min, TQuantity max) where TQuantity : IComparable, IQuantity
+        public static TQuantity Clamp<TQuantity>(TQuantity value, TQuantity min, TQuantity max)
+            where TQuantity : IQuantity, IComparable<TQuantity>
         {
-            var minValue = (TQuantity)min.ToUnit(value.Unit);
-            var maxValue = (TQuantity)max.ToUnit(value.Unit);
-
-            if (minValue.CompareTo(maxValue) > 0)
+            if (min.CompareTo(max) > 0)
             {
                 throw new ArgumentException($"min ({min}) cannot be greater than max ({max})", nameof(min));
             }
 
-            if (value.CompareTo(minValue) < 0)
+            if (value.CompareTo(min) < 0)
             {
-                return minValue;
+                return min;
             }
 
-            if (value.CompareTo(maxValue) > 0)
+            if (value.CompareTo(max) > 0)
             {
-                return maxValue;
+                return max;
             }
 
             return value;
