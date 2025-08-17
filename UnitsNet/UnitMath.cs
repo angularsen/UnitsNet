@@ -10,32 +10,6 @@ namespace UnitsNet
     /// </summary>
     public static class UnitMath
     {
-        /// <summary>
-        ///     Returns the absolute value of the specified quantity.
-        /// </summary>
-        /// <typeparam name="TQuantity">
-        ///     The type of the quantity, which must implement <see cref="IQuantity" />.
-        /// </typeparam>
-        /// <param name="value">
-        ///     The quantity whose absolute value is to be calculated.
-        /// </param>
-        /// <returns>
-        ///     A quantity of type <typeparamref name="TQuantity" /> representing the absolute value of the input quantity.
-        /// </returns>
-        /// <exception cref="NullReferenceException">
-        ///     Thrown if the input <paramref name="value" /> is <c>null</c>.
-        /// </exception>
-        public static TQuantity Abs<TQuantity>(this TQuantity value) where TQuantity : IQuantity
-        {
-            // TODO see about constraining to IQuantityInstance<TQuantity>
-// #if NET
-//             return TQuantity.Create(QuantityValue.Abs(value.Value), value.UnitKey);
-// #else
-//             return value.QuantityInfo.Create(QuantityValue.Abs(value.Value), value.UnitKey);
-// #endif
-            return (TQuantity)value.QuantityInfo.From(Math.Abs(value.Value), value.UnitKey);
-        }
-
         /// <summary>Returns the smaller of two <typeparamref name="TQuantity" /> values.</summary>
         /// <typeparam name="TQuantity">The type of quantities to compare.</typeparam>
         /// <param name="val1">The first of two <typeparamref name="TQuantity" /> values to compare.</param>
