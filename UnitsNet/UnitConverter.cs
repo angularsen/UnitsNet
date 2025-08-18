@@ -494,7 +494,7 @@ public class UnitConverter
     /// if the
     /// conversion failed.
     /// <returns>
-    ///     <c>true</c> if the conversion succeeded; otherwise, <c>false</c>.
+    ///     A new instance of <typeparamref name="TQuantity" /> representing the converted value in the specified unit.
     /// </returns>
     /// <exception cref="UnitNotFoundException">Thrown when no unit information is found for the specified enum value.</exception>
     /// <exception cref="InvalidConversionException">
