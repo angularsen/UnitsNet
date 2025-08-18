@@ -5,21 +5,21 @@
   <ItemGroup>
     <PackageVersion Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
     <PackageVersion Include="Fractions" Version="8.3.2" />
-    <PackageVersion Include="BenchmarkDotNet" Version="0.14.0" />
-    <PackageVersion Include="System.Collections.Immutable" Version="9.0.4" />
-    <PackageVersion Include="System.Reflection.Metadata" Version="9.0.4" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+    <PackageVersion Include="BenchmarkDotNet" Version="0.15.2" />
+    <PackageVersion Include="System.Collections.Immutable" Version="9.0.8" />
+    <PackageVersion Include="System.Reflection.Metadata" Version="9.0.8" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageVersion Include="System.Text.Json" Version="9.0.4" />
-    <PackageVersion Include="NuGet.Protocol" Version="6.13.2" />
-    <PackageVersion Include="Serilog" Version="4.2.0" />
+    <PackageVersion Include="System.Text.Json" Version="9.0.8" />
+    <PackageVersion Include="NuGet.Protocol" Version="6.14.0" />
+    <PackageVersion Include="Serilog" Version="4.3.0" />
     <PackageVersion Include="Serilog.Sinks.Console" Version="6.0.0" />
     <PackageVersion Include="System.CommandLine.DragonFruit" Version="0.4.0-alpha.22272.1" />
     <PackageVersion Include="xunit" Version="2.9.3" />
-    <PackageVersion Include="xunit.runner.visualstudio" Version="3.0.2">
+    <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
-    <PackageVersion Include="JetBrains.Annotations" Version="2025.1.0-eap1" />
+    <PackageVersion Include="JetBrains.Annotations" Version="2025.2.0" />
   </ItemGroup>
 </Project>
