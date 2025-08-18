@@ -172,9 +172,8 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
+        /// <inheritdoc />
+        [Obsolete("This property will be removed in the next major release. Consider using ElectricReactance.BaseDimensions instead.")]
         public BaseDimensions Dimensions => ElectricReactance.BaseDimensions;
 
         #endregion

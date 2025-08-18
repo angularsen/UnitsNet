@@ -186,9 +186,8 @@ namespace UnitsNet
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
+        /// <inheritdoc />
+        [Obsolete("This property will be removed in the next major release. Consider using Torque.BaseDimensions instead.")]
         public BaseDimensions Dimensions => Torque.BaseDimensions;
 
         #endregion
