@@ -41,13 +41,12 @@ namespace UnitsNet
     public readonly partial struct MassConcentration :
         IArithmeticQuantity<MassConcentration, MassConcentrationUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<MassConcentration, MassConcentration, QuantityValue>,
         IDivisionOperators<MassConcentration, VolumeConcentration, Density>,
         IMultiplyOperators<MassConcentration, Volume, Mass>,
         IDivisionOperators<MassConcentration, Molarity, MolarMass>,
         IDivisionOperators<MassConcentration, MolarMass, Molarity>,
         IDivisionOperators<MassConcentration, Density, VolumeConcentration>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<MassConcentration, MassConcentration, bool>,
         IParsable<MassConcentration>,
 #endif

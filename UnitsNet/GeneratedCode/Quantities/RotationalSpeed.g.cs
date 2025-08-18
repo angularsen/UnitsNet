@@ -38,10 +38,9 @@ namespace UnitsNet
     public readonly partial struct RotationalSpeed :
         IArithmeticQuantity<RotationalSpeed, RotationalSpeedUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<RotationalSpeed, RotationalSpeed, QuantityValue>,
         IMultiplyOperators<RotationalSpeed, Duration, Angle>,
         IMultiplyOperators<RotationalSpeed, Torque, Power>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<RotationalSpeed, RotationalSpeed, bool>,
         IParsable<RotationalSpeed>,
 #endif

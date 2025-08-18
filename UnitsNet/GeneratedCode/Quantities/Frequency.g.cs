@@ -38,9 +38,8 @@ namespace UnitsNet
     public readonly partial struct Frequency :
         IArithmeticQuantity<Frequency, FrequencyUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Frequency, Frequency, QuantityValue>,
         IMultiplyOperators<Frequency, Energy, Power>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<Frequency, Frequency, bool>,
         IParsable<Frequency>,
 #endif

@@ -41,10 +41,9 @@ namespace UnitsNet
     public readonly partial struct VolumeConcentration :
         IArithmeticQuantity<VolumeConcentration, VolumeConcentrationUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<VolumeConcentration, VolumeConcentration, QuantityValue>,
         IMultiplyOperators<VolumeConcentration, Density, MassConcentration>,
         IMultiplyOperators<VolumeConcentration, Molarity, Molarity>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<VolumeConcentration, VolumeConcentration, bool>,
         IParsable<VolumeConcentration>,
 #endif

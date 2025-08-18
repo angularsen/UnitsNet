@@ -41,6 +41,7 @@ namespace UnitsNet
     public readonly partial struct Magnetization :
         IArithmeticQuantity<Magnetization, MagnetizationUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Magnetization, Magnetization, QuantityValue>,
         IComparisonOperators<Magnetization, Magnetization, bool>,
         IParsable<Magnetization>,
 #endif

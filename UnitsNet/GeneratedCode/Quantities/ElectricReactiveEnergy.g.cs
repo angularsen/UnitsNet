@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct ElectricReactiveEnergy :
         IArithmeticQuantity<ElectricReactiveEnergy, ElectricReactiveEnergyUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricReactiveEnergy, ElectricReactiveEnergy, QuantityValue>,
         IComparisonOperators<ElectricReactiveEnergy, ElectricReactiveEnergy, bool>,
         IParsable<ElectricReactiveEnergy>,
 #endif

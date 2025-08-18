@@ -41,6 +41,7 @@ namespace UnitsNet
     public readonly partial struct DoseAreaProduct :
         IArithmeticQuantity<DoseAreaProduct, DoseAreaProductUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<DoseAreaProduct, DoseAreaProduct, QuantityValue>,
         IComparisonOperators<DoseAreaProduct, DoseAreaProduct, bool>,
         IParsable<DoseAreaProduct>,
 #endif

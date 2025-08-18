@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct Irradiance :
         IArithmeticQuantity<Irradiance, IrradianceUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Irradiance, Irradiance, QuantityValue>,
         IComparisonOperators<Irradiance, Irradiance, bool>,
         IParsable<Irradiance>,
 #endif

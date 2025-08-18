@@ -38,13 +38,12 @@ namespace UnitsNet
     public readonly partial struct Acceleration :
         IArithmeticQuantity<Acceleration, AccelerationUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Acceleration, Acceleration, QuantityValue>,
         IDivisionOperators<Acceleration, Jerk, Duration>,
         IMultiplyOperators<Acceleration, Mass, Force>,
         IDivisionOperators<Acceleration, Duration, Jerk>,
         IMultiplyOperators<Acceleration, Density, SpecificWeight>,
         IMultiplyOperators<Acceleration, Duration, Speed>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<Acceleration, Acceleration, bool>,
         IParsable<Acceleration>,
 #endif

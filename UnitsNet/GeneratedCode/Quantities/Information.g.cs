@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct Information :
         IArithmeticQuantity<Information, InformationUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Information, Information, QuantityValue>,
         IComparisonOperators<Information, Information, bool>,
         IParsable<Information>,
 #endif

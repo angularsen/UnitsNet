@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct VolumeFlowPerArea :
         IArithmeticQuantity<VolumeFlowPerArea, VolumeFlowPerAreaUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<VolumeFlowPerArea, VolumeFlowPerArea, QuantityValue>,
         IComparisonOperators<VolumeFlowPerArea, VolumeFlowPerArea, bool>,
         IParsable<VolumeFlowPerArea>,
 #endif

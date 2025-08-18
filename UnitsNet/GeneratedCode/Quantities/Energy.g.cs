@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct Energy :
         IArithmeticQuantity<Energy, EnergyUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Energy, Energy, QuantityValue>,
         IDivisionOperators<Energy, MolarEnergy, AmountOfSubstance>,
         IDivisionOperators<Energy, Power, Duration>,
         IDivisionOperators<Energy, ElectricPotential, ElectricCharge>,
@@ -51,8 +52,6 @@ namespace UnitsNet
         IDivisionOperators<Energy, Mass, SpecificEnergy>,
         IDivisionOperators<Energy, Entropy, TemperatureDelta>,
         IDivisionOperators<Energy, EnergyDensity, Volume>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<Energy, Energy, bool>,
         IParsable<Energy>,
 #endif

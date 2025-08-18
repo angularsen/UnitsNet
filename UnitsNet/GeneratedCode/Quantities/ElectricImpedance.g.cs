@@ -42,6 +42,7 @@ namespace UnitsNet
     public readonly partial struct ElectricImpedance :
         IArithmeticQuantity<ElectricImpedance, ElectricImpedanceUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricImpedance, ElectricImpedance, QuantityValue>,
         IComparisonOperators<ElectricImpedance, ElectricImpedance, bool>,
         IParsable<ElectricImpedance>,
 #endif

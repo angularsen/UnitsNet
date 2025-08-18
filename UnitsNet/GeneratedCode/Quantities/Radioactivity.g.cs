@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct Radioactivity :
         IArithmeticQuantity<Radioactivity, RadioactivityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Radioactivity, Radioactivity, QuantityValue>,
         IComparisonOperators<Radioactivity, Radioactivity, bool>,
         IParsable<Radioactivity>,
 #endif

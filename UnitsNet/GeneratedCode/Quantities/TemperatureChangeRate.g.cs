@@ -38,9 +38,8 @@ namespace UnitsNet
     public readonly partial struct TemperatureChangeRate :
         IArithmeticQuantity<TemperatureChangeRate, TemperatureChangeRateUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<TemperatureChangeRate, TemperatureChangeRate, QuantityValue>,
         IMultiplyOperators<TemperatureChangeRate, Duration, TemperatureDelta>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<TemperatureChangeRate, TemperatureChangeRate, bool>,
         IParsable<TemperatureChangeRate>,
 #endif

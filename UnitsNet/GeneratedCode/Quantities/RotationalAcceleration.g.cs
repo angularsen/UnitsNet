@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct RotationalAcceleration :
         IArithmeticQuantity<RotationalAcceleration, RotationalAccelerationUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<RotationalAcceleration, RotationalAcceleration, QuantityValue>,
         IComparisonOperators<RotationalAcceleration, RotationalAcceleration, bool>,
         IParsable<RotationalAcceleration>,
 #endif

@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct PowerRatio :
         ILogarithmicQuantity<PowerRatio, PowerRatioUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<PowerRatio, PowerRatio, QuantityValue>,
         IComparisonOperators<PowerRatio, PowerRatio, bool>,
         IParsable<PowerRatio>,
 #endif

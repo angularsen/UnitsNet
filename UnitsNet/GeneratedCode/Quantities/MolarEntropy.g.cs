@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct MolarEntropy :
         IArithmeticQuantity<MolarEntropy, MolarEntropyUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<MolarEntropy, MolarEntropy, QuantityValue>,
         IComparisonOperators<MolarEntropy, MolarEntropy, bool>,
         IParsable<MolarEntropy>,
 #endif

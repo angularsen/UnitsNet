@@ -41,6 +41,7 @@ namespace UnitsNet
     public readonly partial struct ReciprocalLength :
         IArithmeticQuantity<ReciprocalLength, ReciprocalLengthUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ReciprocalLength, ReciprocalLength, QuantityValue>,
         IMultiplyOperators<ReciprocalLength, Volume, Area>,
         IMultiplyOperators<ReciprocalLength, Force, ForcePerLength>,
         IMultiplyOperators<ReciprocalLength, Area, Length>,
@@ -48,8 +49,6 @@ namespace UnitsNet
         IMultiplyOperators<ReciprocalLength, ForcePerLength, Pressure>,
         IMultiplyOperators<ReciprocalLength, ReciprocalLength, ReciprocalArea>,
         IDivisionOperators<ReciprocalLength, Length, ReciprocalArea>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<ReciprocalLength, ReciprocalLength, bool>,
         IParsable<ReciprocalLength>,
 #endif

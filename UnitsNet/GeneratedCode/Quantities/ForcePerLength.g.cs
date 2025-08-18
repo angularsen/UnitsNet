@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct ForcePerLength :
         IArithmeticQuantity<ForcePerLength, ForcePerLengthUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ForcePerLength, ForcePerLength, QuantityValue>,
         IDivisionOperators<ForcePerLength, SpecificWeight, Area>,
         IMultiplyOperators<ForcePerLength, Length, Force>,
         IDivisionOperators<ForcePerLength, ReciprocalLength, Force>,
@@ -47,8 +48,6 @@ namespace UnitsNet
         IDivisionOperators<ForcePerLength, Force, ReciprocalLength>,
         IDivisionOperators<ForcePerLength, Area, SpecificWeight>,
         IMultiplyOperators<ForcePerLength, Area, Torque>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<ForcePerLength, ForcePerLength, bool>,
         IParsable<ForcePerLength>,
 #endif

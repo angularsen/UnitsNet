@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct Level :
         ILogarithmicQuantity<Level, LevelUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Level, Level, QuantityValue>,
         IComparisonOperators<Level, Level, bool>,
         IParsable<Level>,
 #endif

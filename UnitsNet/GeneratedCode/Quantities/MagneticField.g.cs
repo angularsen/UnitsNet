@@ -41,6 +41,7 @@ namespace UnitsNet
     public readonly partial struct MagneticField :
         IArithmeticQuantity<MagneticField, MagneticFieldUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<MagneticField, MagneticField, QuantityValue>,
         IComparisonOperators<MagneticField, MagneticField, bool>,
         IParsable<MagneticField>,
 #endif

@@ -41,12 +41,11 @@ namespace UnitsNet
     public readonly partial struct ElectricPotential :
         IArithmeticQuantity<ElectricPotential, ElectricPotentialUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricPotential, ElectricPotential, QuantityValue>,
         IDivisionOperators<ElectricPotential, ElectricResistance, ElectricCurrent>,
         IDivisionOperators<ElectricPotential, ElectricCurrent, ElectricResistance>,
         IMultiplyOperators<ElectricPotential, ElectricCharge, Energy>,
         IMultiplyOperators<ElectricPotential, ElectricCurrent, Power>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<ElectricPotential, ElectricPotential, bool>,
         IParsable<ElectricPotential>,
 #endif

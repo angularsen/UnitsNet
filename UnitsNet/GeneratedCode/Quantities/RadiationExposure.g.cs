@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct RadiationExposure :
         IArithmeticQuantity<RadiationExposure, RadiationExposureUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<RadiationExposure, RadiationExposure, QuantityValue>,
         IComparisonOperators<RadiationExposure, RadiationExposure, bool>,
         IParsable<RadiationExposure>,
 #endif

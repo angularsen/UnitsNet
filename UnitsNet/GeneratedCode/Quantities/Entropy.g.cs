@@ -38,11 +38,10 @@ namespace UnitsNet
     public readonly partial struct Entropy :
         IArithmeticQuantity<Entropy, EntropyUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Entropy, Entropy, QuantityValue>,
         IMultiplyOperators<Entropy, TemperatureDelta, Energy>,
         IDivisionOperators<Entropy, SpecificEntropy, Mass>,
         IDivisionOperators<Entropy, Mass, SpecificEntropy>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<Entropy, Entropy, bool>,
         IParsable<Entropy>,
 #endif

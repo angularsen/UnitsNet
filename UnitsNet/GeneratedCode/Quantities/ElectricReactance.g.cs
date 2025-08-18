@@ -41,6 +41,7 @@ namespace UnitsNet
     public readonly partial struct ElectricReactance :
         IArithmeticQuantity<ElectricReactance, ElectricReactanceUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricReactance, ElectricReactance, QuantityValue>,
         IComparisonOperators<ElectricReactance, ElectricReactance, bool>,
         IParsable<ElectricReactance>,
 #endif

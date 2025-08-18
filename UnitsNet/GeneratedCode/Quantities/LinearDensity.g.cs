@@ -41,11 +41,10 @@ namespace UnitsNet
     public readonly partial struct LinearDensity :
         IArithmeticQuantity<LinearDensity, LinearDensityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<LinearDensity, LinearDensity, QuantityValue>,
         IDivisionOperators<LinearDensity, Density, Area>,
         IDivisionOperators<LinearDensity, Area, Density>,
         IMultiplyOperators<LinearDensity, Length, Mass>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<LinearDensity, LinearDensity, bool>,
         IParsable<LinearDensity>,
 #endif

@@ -38,9 +38,8 @@ namespace UnitsNet
     public readonly partial struct AreaDensity :
         IArithmeticQuantity<AreaDensity, AreaDensityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<AreaDensity, AreaDensity, QuantityValue>,
         IMultiplyOperators<AreaDensity, Area, Mass>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<AreaDensity, AreaDensity, bool>,
         IParsable<AreaDensity>,
 #endif

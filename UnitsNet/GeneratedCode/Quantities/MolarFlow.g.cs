@@ -38,12 +38,11 @@ namespace UnitsNet
     public readonly partial struct MolarFlow :
         IArithmeticQuantity<MolarFlow, MolarFlowUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<MolarFlow, MolarFlow, QuantityValue>,
         IMultiplyOperators<MolarFlow, Duration, AmountOfSubstance>,
         IMultiplyOperators<MolarFlow, MolarMass, MassFlow>,
         IDivisionOperators<MolarFlow, VolumeFlow, Molarity>,
         IDivisionOperators<MolarFlow, Molarity, VolumeFlow>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<MolarFlow, MolarFlow, bool>,
         IParsable<MolarFlow>,
 #endif

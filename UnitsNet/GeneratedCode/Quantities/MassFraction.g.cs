@@ -41,9 +41,8 @@ namespace UnitsNet
     public readonly partial struct MassFraction :
         IArithmeticQuantity<MassFraction, MassFractionUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<MassFraction, MassFraction, QuantityValue>,
         IMultiplyOperators<MassFraction, Mass, Mass>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<MassFraction, MassFraction, bool>,
         IParsable<MassFraction>,
 #endif

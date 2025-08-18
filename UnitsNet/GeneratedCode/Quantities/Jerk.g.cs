@@ -38,9 +38,8 @@ namespace UnitsNet
     public readonly partial struct Jerk :
         IArithmeticQuantity<Jerk, JerkUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Jerk, Jerk, QuantityValue>,
         IMultiplyOperators<Jerk, Duration, Acceleration>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<Jerk, Jerk, bool>,
         IParsable<Jerk>,
 #endif

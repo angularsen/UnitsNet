@@ -41,9 +41,8 @@ namespace UnitsNet
     public readonly partial struct ElectricResistance :
         IArithmeticQuantity<ElectricResistance, ElectricResistanceUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricResistance, ElectricResistance, QuantityValue>,
         IMultiplyOperators<ElectricResistance, ElectricCurrent, ElectricPotential>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<ElectricResistance, ElectricResistance, bool>,
         IParsable<ElectricResistance>,
 #endif

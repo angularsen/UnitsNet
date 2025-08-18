@@ -41,6 +41,7 @@ namespace UnitsNet
     public readonly partial struct ElectricCurrentDensity :
         IArithmeticQuantity<ElectricCurrentDensity, ElectricCurrentDensityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricCurrentDensity, ElectricCurrentDensity, QuantityValue>,
         IComparisonOperators<ElectricCurrentDensity, ElectricCurrentDensity, bool>,
         IParsable<ElectricCurrentDensity>,
 #endif

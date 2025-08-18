@@ -41,12 +41,11 @@ namespace UnitsNet
     public readonly partial struct SpecificWeight :
         IArithmeticQuantity<SpecificWeight, SpecificWeightUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<SpecificWeight, SpecificWeight, QuantityValue>,
         IDivisionOperators<SpecificWeight, Density, Acceleration>,
         IDivisionOperators<SpecificWeight, Acceleration, Density>,
         IMultiplyOperators<SpecificWeight, Area, ForcePerLength>,
         IMultiplyOperators<SpecificWeight, Length, Pressure>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<SpecificWeight, SpecificWeight, bool>,
         IParsable<SpecificWeight>,
 #endif

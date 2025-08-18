@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct Power :
         IArithmeticQuantity<Power, PowerUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Power, Power, QuantityValue>,
         IDivisionOperators<Power, HeatFlux, Area>,
         IDivisionOperators<Power, ElectricPotential, ElectricCurrent>,
         IDivisionOperators<Power, ElectricCurrent, ElectricPotential>,
@@ -52,8 +53,6 @@ namespace UnitsNet
         IDivisionOperators<Power, MassFlow, SpecificEnergy>,
         IDivisionOperators<Power, Force, Speed>,
         IDivisionOperators<Power, RotationalSpeed, Torque>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<Power, Power, bool>,
         IParsable<Power>,
 #endif

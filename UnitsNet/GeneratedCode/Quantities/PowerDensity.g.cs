@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct PowerDensity :
         IArithmeticQuantity<PowerDensity, PowerDensityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<PowerDensity, PowerDensity, QuantityValue>,
         IComparisonOperators<PowerDensity, PowerDensity, bool>,
         IParsable<PowerDensity>,
 #endif

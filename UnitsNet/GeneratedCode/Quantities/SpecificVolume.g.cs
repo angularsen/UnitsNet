@@ -38,9 +38,8 @@ namespace UnitsNet
     public readonly partial struct SpecificVolume :
         IArithmeticQuantity<SpecificVolume, SpecificVolumeUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<SpecificVolume, SpecificVolume, QuantityValue>,
         IMultiplyOperators<SpecificVolume, Mass, Volume>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<SpecificVolume, SpecificVolume, bool>,
         IParsable<SpecificVolume>,
 #endif

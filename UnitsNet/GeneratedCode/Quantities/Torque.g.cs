@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct Torque :
         IArithmeticQuantity<Torque, TorqueUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Torque, Torque, QuantityValue>,
         IDivisionOperators<Torque, RotationalStiffness, Angle>,
         IDivisionOperators<Torque, ForcePerLength, Area>,
         IDivisionOperators<Torque, Length, Force>,
@@ -45,8 +46,6 @@ namespace UnitsNet
         IDivisionOperators<Torque, Force, Length>,
         IMultiplyOperators<Torque, RotationalSpeed, Power>,
         IDivisionOperators<Torque, Angle, RotationalStiffness>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<Torque, Torque, bool>,
         IParsable<Torque>,
 #endif

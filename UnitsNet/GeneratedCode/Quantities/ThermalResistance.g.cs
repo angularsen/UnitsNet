@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct ThermalResistance :
         IArithmeticQuantity<ThermalResistance, ThermalResistanceUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ThermalResistance, ThermalResistance, QuantityValue>,
         IComparisonOperators<ThermalResistance, ThermalResistance, bool>,
         IParsable<ThermalResistance>,
 #endif

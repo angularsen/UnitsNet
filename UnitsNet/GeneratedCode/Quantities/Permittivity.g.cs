@@ -41,6 +41,7 @@ namespace UnitsNet
     public readonly partial struct Permittivity :
         IArithmeticQuantity<Permittivity, PermittivityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Permittivity, Permittivity, QuantityValue>,
         IComparisonOperators<Permittivity, Permittivity, bool>,
         IParsable<Permittivity>,
 #endif

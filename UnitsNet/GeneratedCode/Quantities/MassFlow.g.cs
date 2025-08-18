@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct MassFlow :
         IArithmeticQuantity<MassFlow, MassFlowUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<MassFlow, MassFlow, QuantityValue>,
         IDivisionOperators<MassFlow, MassFlux, Area>,
         IDivisionOperators<MassFlow, Power, BrakeSpecificFuelConsumption>,
         IDivisionOperators<MassFlow, VolumeFlow, Density>,
@@ -48,8 +49,6 @@ namespace UnitsNet
         IMultiplyOperators<MassFlow, SpecificEnergy, Power>,
         IDivisionOperators<MassFlow, BrakeSpecificFuelConsumption, Power>,
         IDivisionOperators<MassFlow, Density, VolumeFlow>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<MassFlow, MassFlow, bool>,
         IParsable<MassFlow>,
 #endif

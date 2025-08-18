@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct Ratio :
         IArithmeticQuantity<Ratio, RatioUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Ratio, Ratio, QuantityValue>,
         IComparisonOperators<Ratio, Ratio, bool>,
         IParsable<Ratio>,
 #endif

@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct Speed :
         IArithmeticQuantity<Speed, SpeedUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Speed, Speed, QuantityValue>,
         IDivisionOperators<Speed, Duration, Acceleration>,
         IDivisionOperators<Speed, Acceleration, Duration>,
         IMultiplyOperators<Speed, Length, KinematicViscosity>,
@@ -46,8 +47,6 @@ namespace UnitsNet
         IMultiplyOperators<Speed, Force, Power>,
         IMultiplyOperators<Speed, Speed, SpecificEnergy>,
         IMultiplyOperators<Speed, Area, VolumeFlow>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<Speed, Speed, bool>,
         IParsable<Speed>,
 #endif

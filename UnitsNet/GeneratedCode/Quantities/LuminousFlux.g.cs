@@ -41,10 +41,9 @@ namespace UnitsNet
     public readonly partial struct LuminousFlux :
         IArithmeticQuantity<LuminousFlux, LuminousFluxUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<LuminousFlux, LuminousFlux, QuantityValue>,
         IDivisionOperators<LuminousFlux, Illuminance, Area>,
         IDivisionOperators<LuminousFlux, Area, Illuminance>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<LuminousFlux, LuminousFlux, bool>,
         IParsable<LuminousFlux>,
 #endif

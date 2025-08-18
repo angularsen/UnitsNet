@@ -41,6 +41,7 @@ namespace UnitsNet
     public readonly partial struct VolumetricHeatCapacity :
         IArithmeticQuantity<VolumetricHeatCapacity, VolumetricHeatCapacityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<VolumetricHeatCapacity, VolumetricHeatCapacity, QuantityValue>,
         IComparisonOperators<VolumetricHeatCapacity, VolumetricHeatCapacity, bool>,
         IParsable<VolumetricHeatCapacity>,
 #endif

@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct RatioChangeRate :
         IArithmeticQuantity<RatioChangeRate, RatioChangeRateUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<RatioChangeRate, RatioChangeRate, QuantityValue>,
         IComparisonOperators<RatioChangeRate, RatioChangeRate, bool>,
         IParsable<RatioChangeRate>,
 #endif

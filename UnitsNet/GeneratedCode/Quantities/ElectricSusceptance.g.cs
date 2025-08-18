@@ -41,6 +41,7 @@ namespace UnitsNet
     public readonly partial struct ElectricSusceptance :
         IArithmeticQuantity<ElectricSusceptance, ElectricSusceptanceUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricSusceptance, ElectricSusceptance, QuantityValue>,
         IComparisonOperators<ElectricSusceptance, ElectricSusceptance, bool>,
         IParsable<ElectricSusceptance>,
 #endif

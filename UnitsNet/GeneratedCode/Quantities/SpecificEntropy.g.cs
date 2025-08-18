@@ -38,10 +38,9 @@ namespace UnitsNet
     public readonly partial struct SpecificEntropy :
         IArithmeticQuantity<SpecificEntropy, SpecificEntropyUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<SpecificEntropy, SpecificEntropy, QuantityValue>,
         IMultiplyOperators<SpecificEntropy, Mass, Entropy>,
         IMultiplyOperators<SpecificEntropy, TemperatureDelta, SpecificEnergy>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<SpecificEntropy, SpecificEntropy, bool>,
         IParsable<SpecificEntropy>,
 #endif

@@ -41,6 +41,7 @@ namespace UnitsNet
     public readonly partial struct ElectricApparentPower :
         IArithmeticQuantity<ElectricApparentPower, ElectricApparentPowerUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricApparentPower, ElectricApparentPower, QuantityValue>,
         IComparisonOperators<ElectricApparentPower, ElectricApparentPower, bool>,
         IParsable<ElectricApparentPower>,
 #endif

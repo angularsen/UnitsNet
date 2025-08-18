@@ -38,9 +38,8 @@ namespace UnitsNet
     public readonly partial struct HeatFlux :
         IArithmeticQuantity<HeatFlux, HeatFluxUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<HeatFlux, HeatFlux, QuantityValue>,
         IMultiplyOperators<HeatFlux, Area, Power>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<HeatFlux, HeatFlux, bool>,
         IParsable<HeatFlux>,
 #endif

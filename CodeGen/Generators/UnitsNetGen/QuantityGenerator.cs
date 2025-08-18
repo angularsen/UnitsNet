@@ -120,11 +120,17 @@ namespace UnitsNet
         IArithmeticQuantity<{_quantity.Name}, {_unitEnumName}>,");
             }
 
+            Writer.WL(@"
+#if NET7_0_OR_GREATER");
+            if (!_quantity.IsAffine)
+            {
+                Writer.WL($@"
+        IDivisionOperators<{_quantity.Name}, {_quantity.Name}, QuantityValue>,");
+            }
+
             if (_quantity.Relations.Any(r => r.Operator is "*" or "/"))
             {
-                Writer.WL(@$"
-#if NET7_0_OR_GREATER");
-                foreach (var relation in _quantity.Relations)
+                foreach (QuantityRelation relation in _quantity.Relations)
                 {
                     if (relation.LeftQuantity == _quantity)
                     {
@@ -141,15 +147,14 @@ namespace UnitsNet
                             default:
                                 continue;
                         }
-                        Writer.WL($"<{relation.LeftQuantity.Name}, {relation.RightQuantity.Name}, {relation.ResultQuantity.Name.Replace("double", "QuantityValue")}>,");
+
+                        Writer.WL(
+                            $"<{relation.LeftQuantity.Name}, {relation.RightQuantity.Name}, {relation.ResultQuantity.Name.Replace("double", "QuantityValue")}>,");
                     }
                 }
-
-                Writer.WL(@$"
-#endif");
             }
+
             Writer.WL(@$"
-#if NET7_0_OR_GREATER
         IComparisonOperators<{_quantity.Name}, {_quantity.Name}, bool>,
         IParsable<{_quantity.Name}>,
 #endif

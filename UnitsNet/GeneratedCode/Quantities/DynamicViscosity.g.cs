@@ -41,10 +41,9 @@ namespace UnitsNet
     public readonly partial struct DynamicViscosity :
         IArithmeticQuantity<DynamicViscosity, DynamicViscosityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<DynamicViscosity, DynamicViscosity, QuantityValue>,
         IDivisionOperators<DynamicViscosity, KinematicViscosity, Density>,
         IDivisionOperators<DynamicViscosity, Density, KinematicViscosity>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<DynamicViscosity, DynamicViscosity, bool>,
         IParsable<DynamicViscosity>,
 #endif

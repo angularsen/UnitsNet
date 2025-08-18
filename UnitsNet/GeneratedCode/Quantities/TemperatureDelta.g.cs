@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct TemperatureDelta :
         IArithmeticQuantity<TemperatureDelta, TemperatureDeltaUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<TemperatureDelta, TemperatureDelta, QuantityValue>,
         IDivisionOperators<TemperatureDelta, TemperatureChangeRate, Duration>,
         IMultiplyOperators<TemperatureDelta, Entropy, Energy>,
         IDivisionOperators<TemperatureDelta, TemperatureGradient, Length>,
@@ -45,8 +46,6 @@ namespace UnitsNet
         IMultiplyOperators<TemperatureDelta, SpecificEntropy, SpecificEnergy>,
         IDivisionOperators<TemperatureDelta, Duration, TemperatureChangeRate>,
         IDivisionOperators<TemperatureDelta, Length, TemperatureGradient>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<TemperatureDelta, TemperatureDelta, bool>,
         IParsable<TemperatureDelta>,
 #endif

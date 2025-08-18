@@ -41,6 +41,7 @@ namespace UnitsNet
     public readonly partial struct MagneticFlux :
         IArithmeticQuantity<MagneticFlux, MagneticFluxUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<MagneticFlux, MagneticFlux, QuantityValue>,
         IComparisonOperators<MagneticFlux, MagneticFlux, bool>,
         IParsable<MagneticFlux>,
 #endif

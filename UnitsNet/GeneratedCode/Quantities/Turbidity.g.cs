@@ -41,6 +41,7 @@ namespace UnitsNet
     public readonly partial struct Turbidity :
         IArithmeticQuantity<Turbidity, TurbidityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Turbidity, Turbidity, QuantityValue>,
         IComparisonOperators<Turbidity, Turbidity, bool>,
         IParsable<Turbidity>,
 #endif

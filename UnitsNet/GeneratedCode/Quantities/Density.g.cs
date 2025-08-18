@@ -41,6 +41,7 @@ namespace UnitsNet
     public readonly partial struct Density :
         IArithmeticQuantity<Density, DensityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Density, Density, QuantityValue>,
         IMultiplyOperators<Density, KinematicViscosity, DynamicViscosity>,
         IMultiplyOperators<Density, Area, LinearDensity>,
         IMultiplyOperators<Density, Volume, Mass>,
@@ -48,8 +49,6 @@ namespace UnitsNet
         IMultiplyOperators<Density, VolumeFlow, MassFlow>,
         IMultiplyOperators<Density, Speed, MassFlux>,
         IMultiplyOperators<Density, Acceleration, SpecificWeight>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<Density, Density, bool>,
         IParsable<Density>,
 #endif

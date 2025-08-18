@@ -38,9 +38,8 @@ namespace UnitsNet
     public readonly partial struct MolarEnergy :
         IArithmeticQuantity<MolarEnergy, MolarEnergyUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<MolarEnergy, MolarEnergy, QuantityValue>,
         IMultiplyOperators<MolarEnergy, AmountOfSubstance, Energy>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<MolarEnergy, MolarEnergy, bool>,
         IParsable<MolarEnergy>,
 #endif

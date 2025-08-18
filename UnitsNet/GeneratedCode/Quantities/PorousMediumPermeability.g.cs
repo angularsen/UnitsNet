@@ -41,6 +41,7 @@ namespace UnitsNet
     public readonly partial struct PorousMediumPermeability :
         IArithmeticQuantity<PorousMediumPermeability, PorousMediumPermeabilityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<PorousMediumPermeability, PorousMediumPermeability, QuantityValue>,
         IComparisonOperators<PorousMediumPermeability, PorousMediumPermeability, bool>,
         IParsable<PorousMediumPermeability>,
 #endif

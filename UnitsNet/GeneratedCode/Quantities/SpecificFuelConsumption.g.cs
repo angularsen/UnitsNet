@@ -41,6 +41,7 @@ namespace UnitsNet
     public readonly partial struct SpecificFuelConsumption :
         IArithmeticQuantity<SpecificFuelConsumption, SpecificFuelConsumptionUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<SpecificFuelConsumption, SpecificFuelConsumption, QuantityValue>,
         IComparisonOperators<SpecificFuelConsumption, SpecificFuelConsumption, bool>,
         IParsable<SpecificFuelConsumption>,
 #endif

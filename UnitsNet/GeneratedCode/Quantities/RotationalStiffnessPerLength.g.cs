@@ -38,9 +38,8 @@ namespace UnitsNet
     public readonly partial struct RotationalStiffnessPerLength :
         IArithmeticQuantity<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<RotationalStiffnessPerLength, RotationalStiffnessPerLength, QuantityValue>,
         IMultiplyOperators<RotationalStiffnessPerLength, Length, RotationalStiffness>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<RotationalStiffnessPerLength, RotationalStiffnessPerLength, bool>,
         IParsable<RotationalStiffnessPerLength>,
 #endif

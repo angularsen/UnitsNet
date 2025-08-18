@@ -41,6 +41,7 @@ namespace UnitsNet
     public readonly partial struct BitRate :
         IArithmeticQuantity<BitRate, BitRateUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<BitRate, BitRate, QuantityValue>,
         IComparisonOperators<BitRate, BitRate, bool>,
         IParsable<BitRate>,
 #endif

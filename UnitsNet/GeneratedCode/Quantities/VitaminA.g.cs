@@ -38,6 +38,7 @@ namespace UnitsNet
     public readonly partial struct VitaminA :
         IArithmeticQuantity<VitaminA, VitaminAUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<VitaminA, VitaminA, QuantityValue>,
         IComparisonOperators<VitaminA, VitaminA, bool>,
         IParsable<VitaminA>,
 #endif
