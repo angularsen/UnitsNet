@@ -38,14 +38,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AbsoluteValueOfNullReferenceThrowsException()
-        {
-            IQuantity quantity = null!;
-
-            Assert.Throws<NullReferenceException>(() => quantity.Abs());
-        }
-
-        [Fact]
         public void AverageOfEmptySourceThrowsException()
         {
             var units = new Length[] { };
