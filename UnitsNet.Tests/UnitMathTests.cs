@@ -169,7 +169,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void Clamp_ReturnsMin_WhenValueIsBelowMin()
+        public void Clamp_ReturnsMinAsValueUnit_WhenValueIsBelowMin()
         {
             var min = Length.FromMeters(-1);
             var max = Length.FromCentimeters(150);
@@ -177,12 +177,12 @@ namespace UnitsNet.Tests
             
             Length clampedMin = UnitMath.Clamp(value, min, max);
             
-            Assert.Equal(-1, clampedMin.Value);
-            Assert.Equal(LengthUnit.Meter, clampedMin.Unit);
+            Assert.Equal(-1000, clampedMin.Value);
+            Assert.Equal(LengthUnit.Millimeter, clampedMin.Unit);
         }
 
         [Fact]
-        public void Clamp_ReturnsMax_WhenValueIsAboveMax()
+        public void Clamp_ReturnsMaxAsValueUnit_WhenValueIsAboveMax()
         {
             var min = Length.FromMeters(-1);
             var max = Length.FromCentimeters(150);
@@ -190,8 +190,8 @@ namespace UnitsNet.Tests
             
             Length clampedMax = UnitMath.Clamp(value, min, max);
             
-            Assert.Equal(150, clampedMax.Value);
-            Assert.Equal(LengthUnit.Centimeter, clampedMax.Unit);
+            Assert.Equal(1500, clampedMax.Value);
+            Assert.Equal(LengthUnit.Millimeter, clampedMax.Unit);
         }
 
         [Fact]

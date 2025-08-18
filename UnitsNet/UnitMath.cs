@@ -52,10 +52,10 @@ namespace UnitsNet
         ///             </description>
         ///         </item>
         ///         <item>
-        ///             <description><paramref name="min" /> if <paramref name="value" /> is less than <paramref name="min" />.</description>
+        ///             <description><paramref name="min" /> (converted to value.Unit) if <paramref name="value" /> is less than <paramref name="min" />.</description>
         ///         </item>
         ///         <item>
-        ///             <description><paramref name="max" /> if <paramref name="value" /> is greater than <paramref name="max" />.</description>
+        ///             <description><paramref name="max" /> (converted to value.Unit) if <paramref name="value" /> is greater than <paramref name="max" />.</description>
         ///         </item>
         ///     </list>
         /// </returns>
@@ -63,21 +63,30 @@ namespace UnitsNet
         ///     Thrown if <paramref name="min" /> is greater than <paramref name="max" />.
         /// </exception>
         public static TQuantity Clamp<TQuantity>(TQuantity value, TQuantity min, TQuantity max)
-            where TQuantity : IQuantity, IComparable<TQuantity>
+            where TQuantity : IQuantityOfType<TQuantity>, IComparable<TQuantity>
         {
-            if (min.CompareTo(max) > 0)
+            UnitKey unitKey = value.UnitKey;
+            #if NET
+            TQuantity minValue = TQuantity.Create(min.As(unitKey), unitKey);
+            TQuantity maxValue = TQuantity.Create(max.As(unitKey), unitKey);
+            #else
+            TQuantity minValue = value.QuantityInfo.Create(min.As(unitKey), unitKey);
+            TQuantity maxValue = value.QuantityInfo.Create(max.As(unitKey), unitKey);
+            #endif
+            
+            if (minValue.CompareTo(maxValue) > 0)
             {
                 throw new ArgumentException($"min ({min}) cannot be greater than max ({max})", nameof(min));
             }
 
-            if (value.CompareTo(min) < 0)
+            if (value.CompareTo(minValue) < 0)
             {
-                return min;
+                return minValue;
             }
 
-            if (value.CompareTo(max) > 0)
+            if (value.CompareTo(maxValue) > 0)
             {
-                return max;
+                return maxValue;
             }
 
             return value;
