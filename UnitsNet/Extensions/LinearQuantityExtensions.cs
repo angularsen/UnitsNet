@@ -255,4 +255,29 @@ public static class LinearQuantityExtensions
     {
         return source.Select(selector).Average(targetUnit);
     }
+
+    /// <summary>
+    ///     Returns the absolute value of the specified quantity.
+    /// </summary>
+    /// <typeparam name="TQuantity">
+    ///     The type of the quantity, which must implement <see cref="ILinearQuantity{TSelf}" />.
+    /// </typeparam>
+    /// <param name="value">
+    ///     The quantity whose absolute value is to be calculated.
+    /// </param>
+    /// <returns>
+    ///     A quantity of type <typeparamref name="TQuantity" /> representing the absolute value of the input quantity.
+    /// </returns>
+    /// <exception cref="NullReferenceException">
+    ///     Thrown if the input <paramref name="value" /> is <c>null</c>.
+    /// </exception>
+    public static TQuantity Abs<TQuantity>(this TQuantity value)
+        where TQuantity : ILinearQuantity<TQuantity>
+    {
+#if NET
+        return TQuantity.Create(QuantityValue.Abs(value.Value), value.UnitKey);
+#else
+        return value.QuantityInfo.Create(QuantityValue.Abs(value.Value), value.UnitKey);
+#endif
+    }
 }
