@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
 using UnitsNet;
 using UnitsNet.Debug;
 using UnitsNet.Units;
@@ -24,32 +25,19 @@ internal static class ConfigureWithCustomQuantities
     /// </summary>
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
-    public readonly struct HowMuch : IArithmeticQuantity<HowMuch, HowMuchUnit>, IEquatable<HowMuch>, IComparable<HowMuch>
+    public readonly struct HowMuch(QuantityValue value, HowMuchUnit unit) :
+        IArithmeticQuantity<HowMuch, HowMuchUnit>,
+        IEquatable<HowMuch>, IComparable<HowMuch>, IComparisonOperators<HowMuch, HowMuch, bool>,
+        IParsable<HowMuch>
     {
-        public HowMuchUnit Unit { get; }
+        public HowMuchUnit Unit { get; } = unit;
 
-        public QuantityValue Value { get; }
-
-        public HowMuch(QuantityValue value, HowMuchUnit unit)
-        {
-            Unit = unit;
-            Value = value;
-        }
+        public QuantityValue Value { get; } = value;
 
         public static HowMuch From(QuantityValue value, HowMuchUnit unit)
         {
             return new HowMuch(value, unit);
         }
-
-        // public QuantityValue As(HowMuchUnit unit)
-        // {
-        //     return UnitConverter.Default.ConvertValue(this, unit);
-        // }
-
-        // public HowMuch ToUnit(HowMuchUnit unit)
-        // {
-        //     return new HowMuch(As(unit), unit);
-        // }
 
         public static HowMuch Zero { get; } = new(0, HowMuchUnit.Some);
 
@@ -66,68 +54,11 @@ internal static class ConfigureWithCustomQuantities
             Properties.CustomQuantities_HowMuch.ResourceManager); 
 
         #region IQuantity
-
-        public BaseDimensions Dimensions
-        {
-            get => BaseDimensions.Dimensionless;
-        }
-
-        // Enum IQuantity.Unit
-        // {
-        //     get => Unit;
-        // }
-
-        QuantityInfo<HowMuchUnit> IQuantity<HowMuchUnit>.QuantityInfo
-        {
-            get => Info;
-        }
-
-        // QuantityInfo IQuantity.QuantityInfo
-        // {
-        //     get => Info;
-        // }
-
+        
         QuantityInfo<HowMuch, HowMuchUnit> IQuantity<HowMuch, HowMuchUnit>.QuantityInfo
         {
             get => Info;
         }
-
-        // QuantityValue IQuantity.As(Enum unit)
-        // {
-        //     if (unit is HowMuchUnit howMuchUnit) return As(howMuchUnit);
-        //     throw new ArgumentException("Must be of type HowMuchUnit.", nameof(unit));
-        // }
-        //
-        // IQuantity IQuantity.ToUnit(Enum unit)
-        // {
-        //     if (unit is HowMuchUnit howMuchUnit) return ToUnit(howMuchUnit);
-        //     throw new ArgumentException("Must be of type HowMuchUnit.", nameof(unit));
-        // }
-
-        // QuantityValue IQuantity.As(UnitSystem unitSystem)
-        // {
-        //     throw new NotImplementedException();
-        // }
-        //
-        // HowMuch IQuantity<HowMuch, HowMuchUnit>.ToUnit(UnitSystem unitSystem)
-        // {
-        //     throw new NotImplementedException();
-        // }
-        //
-        // IQuantity<HowMuchUnit> IQuantity<HowMuchUnit>.ToUnit(UnitSystem unitSystem)
-        // {
-        //     throw new NotImplementedException();
-        // }
-        //
-        // IQuantity IQuantity.ToUnit(UnitSystem unitSystem)
-        // {
-        //     throw new NotImplementedException();
-        // }
-        //
-        // IQuantity<HowMuchUnit> IQuantity<HowMuchUnit>.ToUnit(HowMuchUnit unit)
-        // {
-        //     return ToUnit(unit);
-        // }
         
         public override string ToString()
         {
@@ -138,11 +69,6 @@ internal static class ConfigureWithCustomQuantities
         {
             return QuantityFormatter.Default.Format(this, format, formatProvider);
         }
-
-        // public string ToString(IFormatProvider? provider)
-        // {
-        //     return ToString("G", provider);
-        // }
 
         UnitKey IQuantity.UnitKey
         {
@@ -166,7 +92,6 @@ internal static class ConfigureWithCustomQuantities
         public override int GetHashCode()
         {
             return HashCode.Combine(typeof(HowMuch), this.As(Info.BaseUnitInfo.Value));
-            // return HashCode.Combine(typeof(HowMuch), As(Info.BaseUnitInfo.Value));
         }
 
         public int CompareTo(HowMuch other)
@@ -192,39 +117,39 @@ internal static class ConfigureWithCustomQuantities
 
         #region Implementation of IComparisonOperators<HowMuch,HowMuch,bool>
 
-        // public static bool operator >(HowMuch left, HowMuch right)
-        // {
-        //     throw new NotImplementedException();
-        // }
-        //
-        // public static bool operator >=(HowMuch left, HowMuch right)
-        // {
-        //     throw new NotImplementedException();
-        // }
-        //
-        // public static bool operator <(HowMuch left, HowMuch right)
-        // {
-        //     throw new NotImplementedException();
-        // }
-        //
-        // public static bool operator <=(HowMuch left, HowMuch right)
-        // {
-        //     throw new NotImplementedException();
-        // }
+        public static bool operator >(HowMuch left, HowMuch right)
+        {
+            return left.Value > right.As(left.Unit);
+        }
+        
+        public static bool operator >=(HowMuch left, HowMuch right)
+        {
+            return left.Value >= right.As(left.Unit);
+        }
+        
+        public static bool operator <(HowMuch left, HowMuch right)
+        {
+            return left.Value < right.As(left.Unit);
+        }
+        
+        public static bool operator <=(HowMuch left, HowMuch right)
+        {
+            return left.Value <= right.As(left.Unit);
+        }
 
         #endregion
 
         #region Implementation of IParsable<HowMuch>
 
-        // public static HowMuch Parse(string s, IFormatProvider? provider)
-        // {
-        //     throw new NotImplementedException();
-        // }
-        //
-        // public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out HowMuch result)
-        // {
-        //     throw new NotImplementedException();
-        // }
+        public static HowMuch Parse(string s, IFormatProvider? provider)
+        {
+            return QuantityParser.Default.Parse<HowMuch, HowMuchUnit>(s, provider, From);
+        }
+        
+        public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out HowMuch result)
+        {
+            return QuantityParser.Default.TryParse<HowMuch, HowMuchUnit>(s, provider, From, out result);
+        }
 
         #endregion
 
