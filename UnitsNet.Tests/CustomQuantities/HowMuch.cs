@@ -34,8 +34,6 @@ public readonly struct HowMuch : IQuantity<HowMuch, HowMuchUnit>
         new BaseDimensions(0, 1, 0, 0, 0, 0, 0),
         From);
 
-    public BaseDimensions Dimensions => Info.BaseDimensions;
-
     QuantityInfo<HowMuch, HowMuchUnit> IQuantity<HowMuch, HowMuchUnit>.QuantityInfo
     {
         get => Info;
