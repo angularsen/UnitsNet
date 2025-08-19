@@ -1,555 +1,1202 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System.Collections.Concurrent;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Linq;
 using UnitsNet.InternalHelpers;
 
-namespace UnitsNet
+#if NET
+using System.Collections.Frozen;
+#endif
+
+namespace UnitsNet;
+
+/// <summary>
+///     Convert between units of a quantity, such as converting from meters to centimeters of a given length.
+/// </summary>
+public class UnitConverter
 {
-    using ConversionFunctionLookupKey = ValueTuple<Type, Enum, Type, Enum>;
+    #if NET
+    private readonly FrozenSet<QuantityConversion> _quantityConversions;
+    #else
+    private readonly HashSet<QuantityConversion> _quantityConversions;
+    #endif
 
     /// <summary>
-    ///
+    ///     Initializes a new instance of the <see cref="UnitConverter" /> class with the specified
+    ///     <see cref="UnitParser" />.
     /// </summary>
-    /// <param name="inputValue"></param>
-    /// <returns></returns>
-    public delegate IQuantity ConversionFunction(IQuantity inputValue);
-
-    /// <summary>
-    ///
-    /// </summary>
-    /// <typeparam name="TQuantity"></typeparam>
-    /// <param name="inputValue"></param>
-    /// <returns></returns>
-    public delegate TQuantity ConversionFunction<TQuantity>(TQuantity inputValue)
-        where TQuantity : IQuantity;
-
-    /// <summary>
-    ///     Convert between units of a quantity, such as converting from meters to centimeters of a given length.
-    /// </summary>
-    public sealed class UnitConverter
+    /// <param name="unitParser">The <see cref="UnitParser" /> used for parsing units.</param>
+    public UnitConverter(UnitParser unitParser)
+        : this(unitParser, unitParser.Quantities.GetQuantityConversions(Quantity.DefaultProvider.Conversions))
     {
-        /// <summary>
-        ///     The default singleton instance for converting values from one unit to another.<br />
-        ///     Modify this to add/remove conversion functions at runtime, such as adding your own third-party units and quantities to convert between.
-        /// </summary>
-        /// <remarks>
-        ///     Convenience shortcut for <see cref="UnitsNetSetup"/>.<see cref="UnitsNetSetup.Default"/>.<see cref="UnitsNetSetup.UnitConverter"/>.
-        /// </remarks>
-        public static UnitConverter Default => UnitsNetSetup.Default.UnitConverter;
+        UnitParser = unitParser;
+    }
 
-        /// <summary>
-        /// Creates a new <see cref="UnitConverter"/> instance.
-        /// </summary>
-        public UnitConverter()
+    internal UnitConverter(UnitParser unitParser, IEnumerable<QuantityConversion> quantityConversions)
+    {
+        UnitParser = unitParser;
+#if NET
+        _quantityConversions = quantityConversions.ToFrozenSet();
+#else
+        _quantityConversions = [..quantityConversions];
+#endif
+    }
+
+
+    /// <summary>
+    ///     Gets the <see cref="UnitParser" /> instance used to parse unit abbreviations.
+    /// </summary>
+    private UnitParser UnitParser { get; }
+
+    /// <summary>
+    ///     Gets the lookup for quantity information, which provides access to details about available quantities,
+    ///     their associated units, and related metadata.
+    /// </summary>
+    /// <remarks>
+    ///     It enables retrieval of unit and quantity information for conversion operations.
+    /// </remarks>
+    public QuantityInfoLookup Quantities
+    {
+        get => UnitParser.Quantities;
+    }
+
+    /// <summary>
+    ///     Gets the default instance of the <see cref="UnitConverter" /> class.
+    /// </summary>
+    /// <value>
+    ///     The default <see cref="UnitConverter" /> instance configured by <see cref="UnitsNetSetup.Default" />.
+    /// </value>
+    public static UnitConverter Default => UnitsNetSetup.Default.UnitConverter;
+
+    /// <summary>
+    ///     Creates a new instance of the <see cref="UnitConverter" /> class.
+    /// </summary>
+    /// <param name="unitParser">The parser used to interpret unit abbreviations and symbols.</param>
+    /// <param name="options">
+    ///     Options for building the quantity converter, including whether to freeze
+    ///     the converter.
+    /// </param>
+    /// <returns>A new instance of <see cref="UnitConverter" /> configured according to the provided options.</returns>
+    /// <remarks>
+    ///     If <paramref name="options" /> specifies freezing, a <see cref="FrozenQuantityConverter" />
+    ///     is created.
+    ///     Otherwise, a <see cref="DynamicQuantityConverter" /> is created.
+    /// </remarks>
+    /// <exception cref="InvalidConversionException">
+    ///     Thrown when failing to create a conversion expression for one of the user-specified quantity-conversions.
+    /// </exception>
+    public static UnitConverter Create(UnitParser unitParser, QuantityConverterBuildOptions options)
+    {
+        if (options is { DefaultCachingMode: ConversionCachingMode.None, CustomQuantityOptions.Count: 0, QuantityConversionOptions: null, Freeze: true })
         {
-            ConversionFunctions = new ConcurrentDictionary<ConversionFunctionLookupKey, ConversionFunction>();
+            return new NoCachingConverter(unitParser); // this is just a sealed version of the default converter
         }
 
-        /// <summary>
-        /// Creates a new <see cref="UnitConverter"/> instance with the <see cref="ConversionFunction"/> copied from <paramref name="other"/>.
-        /// </summary>
-        /// <param name="other">The <see cref="UnitConverter"/> to copy from.</param>
-        public UnitConverter(UnitConverter other)
+        QuantityInfoLookup quantityLookup = unitParser.Quantities;
+        IEnumerable<KeyValuePair<UnitConversionKey, ConvertValueDelegate>> unitConversionFunctions =
+            quantityLookup.Infos.GetUnitConversionFunctions(options.DefaultCachingMode, options.ReduceConstants, options.CustomQuantityOptions);
+
+        var quantityConversions = new HashSet<QuantityConversion>(quantityLookup.GetQuantityConversions(Quantity.DefaultProvider.Conversions));
+
+        IEnumerable<KeyValuePair<QuantityConversionKey, QuantityConversionFunction>> quantityConversionFunctions;
+        if (options.QuantityConversionOptions is { } customConversionOptions)
         {
-            ConversionFunctions = new ConcurrentDictionary<ConversionFunctionLookupKey, ConversionFunction>(other.ConversionFunctions);
+            Dictionary<QuantityConversion, QuantityConversionMappingOptions> conversionOptions = quantityLookup.GetQuantityConversionMappingOptions(customConversionOptions);
+            quantityConversions.UnionWith(quantityLookup.GetQuantityConversions(customConversionOptions.CustomConversions).Concat(conversionOptions.Keys));
+            quantityConversionFunctions = quantityConversions.GetConversionFunctions(conversionOptions, options.DefaultCachingMode, options.ReduceConstants, options.CustomQuantityOptions);
+        }
+        else
+        {
+            quantityConversionFunctions = quantityConversions.GetConversionFunctions(options.DefaultCachingMode, options.ReduceConstants, options.CustomQuantityOptions);
+        }
+        
+        if (options.Freeze)
+        {
+            return new FrozenQuantityConverter(unitParser, quantityConversions, unitConversionFunctions, quantityConversionFunctions);
         }
 
-        /// <summary>
-        ///     Create an instance of the unit converter with all the built-in unit conversions defined in the library.
-        /// </summary>
-        /// <returns>The unit converter.</returns>
-        public static UnitConverter CreateDefault()
+        return new DynamicQuantityConverter(unitParser, quantityConversions, unitConversionFunctions, quantityConversionFunctions, options.ReduceConstants);
+    }
+
+    /// <summary>
+    ///     Attempts to convert the specified quantity to the specified unit.
+    /// </summary>
+    /// <param name="quantity">The quantity to convert. Must not be null.</param>
+    /// <param name="toUnitKey">The unit to convert the quantity to.</param>
+    /// <param name="convertedQuantity">
+    ///     When this method returns, contains the converted quantity if the conversion succeeded, or <c>null</c> if the
+    ///     conversion failed.
+    /// </param>
+    /// <returns>
+    ///     <c>true</c> if the conversion succeeded; otherwise, <c>false</c>.
+    /// </returns>
+    public bool TryConvertTo<TQuantity>(TQuantity quantity, UnitKey toUnitKey, [NotNullWhen(true)] out IQuantity? convertedQuantity)
+        where TQuantity : IQuantity
+    {
+        QuantityInfo quantityInfo = quantity.QuantityInfo;
+        if (quantityInfo.UnitType == toUnitKey.UnitEnumType)
         {
-            var unitConverter = new UnitConverter();
-            RegisterDefaultConversions(unitConverter);
-
-            return unitConverter;
-        }
-
-        private ConcurrentDictionary<ConversionFunctionLookupKey, ConversionFunction> ConversionFunctions
-        {
-            get;
-        }
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        private static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            if (unitConverter is null) throw new ArgumentNullException(nameof(unitConverter));
-
-            Quantity.DefaultProvider.RegisterUnitConversions(unitConverter);
-        }
-
-        /// <summary>
-        /// Sets the conversion function from two units of the same quantity type.
-        /// </summary>
-        /// <typeparam name="TQuantity">The type of quantity, must implement <see cref="IQuantity"/>.</typeparam>
-        /// <param name="from">From unit enum value, such as <see cref="LengthUnit.Kilometer" />.</param>
-        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
-        /// <param name="conversionFunction">The quantity conversion function.</param>
-        public void SetConversionFunction<TQuantity>(Enum from, Enum to, ConversionFunction<TQuantity> conversionFunction)
-            where TQuantity : IQuantity
-        {
-            var quantityType = typeof(TQuantity);
-            var conversionLookup = new ConversionFunctionLookupKey(quantityType, from, quantityType, to);
-            SetConversionFunction(conversionLookup, conversionFunction);
-        }
-
-        /// <summary>
-        /// Sets the conversion function from two units of different quantity types.
-        /// </summary>
-        /// <typeparam name="TQuantityFrom">From quantity type, must implement <see cref="IQuantity"/>.</typeparam>
-        /// <typeparam name="TQuantityTo">To quantity type, must implement <see cref="IQuantity"/>.</typeparam>
-        /// <param name="from">From unit enum value, such as <see cref="LengthUnit.Kilometer" />.</param>
-        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
-        /// <param name="conversionFunction">The quantity conversion function.</param>
-        public void SetConversionFunction<TQuantityFrom, TQuantityTo>(Enum from, Enum to, ConversionFunction conversionFunction)
-            where TQuantityFrom : IQuantity
-            where TQuantityTo : IQuantity
-        {
-            SetConversionFunction(typeof(TQuantityFrom), from, typeof(TQuantityTo), to, conversionFunction);
-        }
-
-        /// <summary>
-        /// Sets the conversion function from two units of different quantity types.
-        /// </summary>
-        /// <param name="fromType">From quantity type, must implement <see cref="IQuantity"/>.</param>
-        /// <param name="from">From unit enum value, such as <see cref="LengthUnit.Kilometer" />.</param>
-        /// <param name="toType">To quantity type, must implement <see cref="IQuantity"/>.</param>
-        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
-        /// <param name="conversionFunction">The quantity conversion function.</param>
-        public void SetConversionFunction(Type fromType, Enum from, Type toType, Enum to, ConversionFunction conversionFunction)
-        {
-            var conversionLookup = new ConversionFunctionLookupKey(fromType, from, toType, to);
-            SetConversionFunction(conversionLookup, conversionFunction);
-        }
-
-        /// <summary>
-        /// Sets the conversion function for a particular conversion function lookup.
-        /// </summary>
-        /// <param name="lookupKey">The lookup key.</param>
-        /// <param name="conversionFunction">The quantity conversion function.</param>
-        internal void SetConversionFunction(ConversionFunctionLookupKey lookupKey, ConversionFunction conversionFunction)
-        {
-            ConversionFunctions[lookupKey] = conversionFunction;
-        }
-
-        /// <summary>
-        /// Sets the conversion function for a particular conversion function lookup.
-        /// </summary>
-        /// <typeparam name="TQuantity">The quantity type, must implement <see cref="IQuantity"/>.</typeparam>
-        /// <param name="conversionLookup">The quantity conversion function lookup key.</param>
-        /// <param name="conversionFunction">The quantity conversion function.</param>
-        internal void SetConversionFunction<TQuantity>(ConversionFunctionLookupKey conversionLookup, ConversionFunction<TQuantity> conversionFunction)
-            where TQuantity : IQuantity
-        {
-            IQuantity TypelessConversionFunction(IQuantity quantity) => conversionFunction((TQuantity) quantity);
-
-            ConversionFunctions[conversionLookup] = TypelessConversionFunction;
-        }
-
-        /// <summary>
-        /// Gets the conversion function from two units of the same quantity type.
-        /// </summary>
-        /// <typeparam name="TQuantity">The quantity type, must implement <see cref="IQuantity"/>.</typeparam>
-        /// <param name="from">From unit enum value, such as <see cref="LengthUnit.Kilometer" />.</param>
-        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
-        /// <returns></returns>
-        public ConversionFunction GetConversionFunction<TQuantity>(Enum from, Enum to) where TQuantity : IQuantity
-        {
-            return GetConversionFunction(typeof(TQuantity), from, typeof(TQuantity), to);
-        }
-
-        /// <summary>
-        /// Gets the conversion function from two units of different quantity types.
-        /// </summary>
-        /// <typeparam name="TQuantityFrom">From quantity type, must implement <see cref="IQuantity"/>.</typeparam>
-        /// <typeparam name="TQuantityTo">To quantity type, must implement <see cref="IQuantity"/>.</typeparam>
-        /// <param name="from">From unit enum value, such as <see cref="LengthUnit.Kilometer" />.</param>
-        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
-        /// <returns></returns>
-        public ConversionFunction GetConversionFunction<TQuantityFrom, TQuantityTo>(Enum from, Enum to)
-            where TQuantityFrom : IQuantity
-            where TQuantityTo : IQuantity
-        {
-            return GetConversionFunction(typeof(TQuantityFrom), from, typeof(TQuantityTo), to);
-        }
-
-        /// <summary>
-        /// Gets the conversion function from two units of different quantity types.
-        /// </summary>
-        /// <param name="fromType">From quantity type, must implement <see cref="IQuantity"/>.</param>
-        /// <param name="from">From unit enum value, such as <see cref="LengthUnit.Kilometer" />.</param>
-        /// <param name="toType">To quantity type, must implement <see cref="IQuantity"/>.</param>
-        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
-        public ConversionFunction GetConversionFunction(Type fromType, Enum from, Type toType, Enum to)
-        {
-            var conversionLookup = new ConversionFunctionLookupKey(fromType, from, toType, to);
-            return GetConversionFunction(conversionLookup);
-        }
-
-        /// <summary>
-        /// Gets the conversion function by its lookup key.
-        /// </summary>
-        /// <param name="lookupKey"></param>
-        internal ConversionFunction GetConversionFunction(ConversionFunctionLookupKey lookupKey)
-        {
-            IQuantity EchoFunction(IQuantity fromQuantity) => fromQuantity;
-
-            // If from/to units and to quantity types are equal, then return a function that echoes the input quantity
-            // in order to not have to map conversion functions to "self".
-            if (lookupKey.Item1 == lookupKey.Item3 && Equals(lookupKey.Item2, lookupKey.Item4))
-                return EchoFunction;
-
-            return ConversionFunctions[lookupKey];
-        }
-
-        /// <summary>
-        /// Gets the conversion function for two units of the same quantity type.
-        /// </summary>
-        /// <typeparam name="TQuantity">The quantity type, must implement <see cref="IQuantity"/>.</typeparam>
-        /// <param name="from">From unit enum value, such as <see cref="LengthUnit.Kilometer" />.</param>
-        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
-        /// <param name="conversionFunction">The quantity conversion function.</param>
-        /// <returns>true if set; otherwise, false.</returns>
-        public bool TryGetConversionFunction<TQuantity>(Enum from, Enum to, [NotNullWhen(true)] out ConversionFunction? conversionFunction) where TQuantity : IQuantity
-        {
-            return TryGetConversionFunction(typeof(TQuantity), from, typeof(TQuantity), to, out conversionFunction);
-        }
-
-        /// <summary>
-        /// Gets the conversion function for two units of different quantity types.
-        /// </summary>
-        /// <typeparam name="TQuantityFrom">From quantity type, must implement <see cref="IQuantity"/>.</typeparam>
-        /// <typeparam name="TQuantityTo">To quantity type, must implement <see cref="IQuantity"/>.</typeparam>
-        /// <param name="from">From unit enum value, such as <see cref="LengthUnit.Kilometer" />.</param>
-        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
-        /// <param name="conversionFunction">The quantity conversion function.</param>
-        /// <returns>true if set; otherwise, false.</returns>
-        public bool TryGetConversionFunction<TQuantityFrom, TQuantityTo>(Enum from, Enum to, [NotNullWhen(true)] out ConversionFunction? conversionFunction)
-            where TQuantityFrom : IQuantity
-            where TQuantityTo : IQuantity
-        {
-            return TryGetConversionFunction(typeof(TQuantityFrom), from, typeof(TQuantityTo), to, out conversionFunction);
-        }
-
-        /// <summary>
-        /// Try to get the conversion function for two units of the same quantity type.
-        /// </summary>
-        /// <param name="fromType">From quantity type, must implement <see cref="IQuantity"/>.</param>
-        /// <param name="from">From unit enum value, such as <see cref="LengthUnit.Kilometer" />.</param>
-        /// <param name="toType">To quantity type, must implement <see cref="IQuantity"/>.</param>
-        /// <param name="to">To unit enum value, such as <see cref="LengthUnit.Centimeter"/>.</param>
-        /// <param name="conversionFunction">The quantity conversion function.</param>
-        /// <returns>true if set; otherwise, false.</returns>
-        public bool TryGetConversionFunction(Type fromType, Enum from, Type toType, Enum to, [NotNullWhen(true)] out ConversionFunction? conversionFunction)
-        {
-            var conversionLookup = new ConversionFunctionLookupKey(fromType, from, toType, to);
-            return TryGetConversionFunction(conversionLookup, out conversionFunction);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="lookupKey"></param>
-        /// <param name="conversionFunction"></param>
-        /// <returns>true if set; otherwise, false.</returns>
-        public bool TryGetConversionFunction(ConversionFunctionLookupKey lookupKey, [NotNullWhen(true)] out ConversionFunction? conversionFunction)
-        {
-            return ConversionFunctions.TryGetValue(lookupKey, out conversionFunction);
-        }
-
-        /// <summary>
-        ///     Convert between any two quantity units given a numeric value and two unit enum values.
-        /// </summary>
-        /// <param name="fromValue">Numeric value.</param>
-        /// <param name="fromUnitValue">From unit enum value.</param>
-        /// <param name="toUnitValue">To unit enum value, must be compatible with <paramref name="fromUnitValue" />.</param>
-        /// <returns>The converted value in the new unit representation.</returns>
-        public static double Convert(double fromValue, Enum fromUnitValue, Enum toUnitValue)
-        {
-            return Quantity
-                .From(fromValue, fromUnitValue)
-                .As(toUnitValue);
-        }
-
-        /// <summary>
-        ///     Try to convert between any two quantity units given a numeric value and two unit enum values.
-        /// </summary>
-        /// <param name="fromValue">Numeric value.</param>
-        /// <param name="fromUnitValue">From unit enum value.</param>
-        /// <param name="toUnitValue">To unit enum value, must be compatible with <paramref name="fromUnitValue" />.</param>
-        /// <param name="convertedValue">The converted value, if successful. Otherwise default.</param>
-        /// <returns>True if successful.</returns>
-        public static bool TryConvert(double fromValue, Enum fromUnitValue, Enum toUnitValue, out double convertedValue)
-        {
-            convertedValue = 0;
-            if (!Quantity.TryFrom(fromValue, fromUnitValue, out IQuantity? fromQuantity))
-                return false;
-
-            try
+            if (TryConvertValue(quantity.Value, quantity.UnitKey, toUnitKey, out QuantityValue convertedValue))
             {
-                // We're not going to implement TryAs() in all quantities, so let's just try-catch here
-                convertedValue = fromQuantity.As(toUnitValue);
+                convertedQuantity = quantityInfo.From(convertedValue, toUnitKey);
                 return true;
             }
-            catch
-            {
-                return false;
-            }
+        }
+        else if (TryGetUnitInfo(quantity.UnitKey, out UnitInfo? fromUnitInfo) && TryGetUnitInfo(toUnitKey, out UnitInfo? toUnitInfo) &&
+                 TryConvertValueInternal(quantity.Value, fromUnitInfo, toUnitInfo, out QuantityValue convertedValue))
+        {
+            convertedQuantity = toUnitInfo.From(convertedValue);
+            return true;    
         }
 
-        /// <summary>
-        ///     Convert between any two quantity units by their names, such as converting a "Length" of N "Meter" to "Centimeter".
-        ///     This is particularly useful for creating things like a generated unit conversion UI,
-        ///     where you list some selectors:
-        ///     a) Quantity: Length, Mass, Force etc.
-        ///     b) From unit: Meter, Centimeter etc if Length is selected
-        ///     c) To unit: Meter, Centimeter etc if Length is selected
-        /// </summary>
-        /// <param name="fromValue">
-        ///     Input value, which together with <paramref name="fromUnitName" /> represents the quantity to
-        ///     convert from.
-        /// </param>
-        /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
-        /// <param name="fromUnitName">The invariant unit enum name, such as "Meter". Does not support localization.</param>
-        /// <param name="toUnitName">The invariant unit enum name, such as "Meter". Does not support localization.</param>
-        /// <example>double centimeters = ConvertByName(5, "Length", "Meter", "Centimeter"); // 500</example>
-        /// <returns>Output value as the result of converting to <paramref name="toUnitName" />.</returns>
-        /// <exception cref="QuantityNotFoundException">
-        ///     Thrown when no quantity information is found for the specified quantity name.
-        /// </exception>
-        /// <exception cref="UnitNotFoundException">No units match the provided unit name.</exception>
-        /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        public static double ConvertByName(double fromValue, string quantityName, string fromUnitName, string toUnitName)
+        convertedQuantity = null;
+        return false;
+    }
+
+    /// <summary>
+    ///     Attempts to convert a quantity to a specified unit.
+    /// </summary>
+    /// <typeparam name="TQuantity">The type of the quantity.</typeparam>
+    /// <typeparam name="TUnit">The type of the unit.</typeparam>
+    /// <param name="quantity">The quantity to convert.</param>
+    /// <param name="toUnit">The unit to convert to.</param>
+    /// <param name="convertedQuantity">
+    ///     When this method returns, contains the converted quantity if the conversion succeeded, or <c>null</c> if the
+    ///     conversion failed.
+    /// </param>
+    /// <returns>
+    ///     <c>true</c> if the conversion succeeded; otherwise, <c>false</c>.
+    /// </returns>
+    public bool TryConvertToUnit<TQuantity, TUnit>(TQuantity quantity, TUnit toUnit, [NotNullWhen(true)] out TQuantity? convertedQuantity)
+        where TQuantity : IQuantity<TQuantity, TUnit>
+        where TUnit : struct, Enum
+    {
+        if (TryConvertValue(quantity.Value, quantity.Unit, toUnit, out QuantityValue convertedValue))
         {
-            QuantityInfoLookup quantities = UnitsNetSetup.Default.Quantities;
-            UnitInfo fromUnit = quantities.GetUnitByName(quantityName, fromUnitName);
-            UnitInfo toUnit = quantities.GetUnitByName(quantityName, toUnitName);
-            return Quantity.From(fromValue, fromUnit.Value).As(toUnit.Value);
+            convertedQuantity = quantity.QuantityInfo.From(convertedValue, toUnit);
+            return true;
         }
 
-        /// <summary>
-        ///     Convert between any two quantity units by their names, such as converting a "Length" of N "Meter" to "Centimeter".
-        ///     This is particularly useful for creating things like a generated unit conversion UI,
-        ///     where you list some selectors:
-        ///     a) Quantity: Length, Mass, Force etc.
-        ///     b) From unit: Meter, Centimeter etc if Length is selected
-        ///     c) To unit: Meter, Centimeter etc if Length is selected
-        /// </summary>
-        /// <param name="inputValue">
-        ///     Input value, which together with <paramref name="fromUnit" /> represents the quantity to
-        ///     convert from.
-        /// </param>
-        /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
-        /// <param name="fromUnit">The invariant unit enum name, such as "Meter". Does not support localization.</param>
-        /// <param name="toUnit">The invariant unit enum name, such as "Meter". Does not support localization.</param>
-        /// <param name="result">Result if conversion was successful, 0 if not.</param>
-        /// <example>bool ok = TryConvertByName(5, "Length", "Meter", "Centimeter", out double centimeters); // 500</example>
-        /// <returns>True if conversion was successful.</returns>
-        public static bool TryConvertByName(double inputValue, string quantityName, string fromUnit, string toUnit, out double result)
+        convertedQuantity = default;
+        return false;
+    }
+
+    /// <summary>
+    ///     Attempts to retrieve information about a specified unit.
+    /// </summary>
+    /// <param name="unit">The unit for which information is being requested.</param>
+    /// <param name="unitInfo">
+    ///     When this method returns, contains the unit information associated with the specified unit,
+    ///     if the unit is found; otherwise, <c>null</c>. This parameter is passed uninitialized.
+    /// </param>
+    /// <returns>
+    ///     <c>true</c> if the unit information was found; otherwise, <c>false</c>.
+    /// </returns>
+    protected bool TryGetUnitInfo(UnitKey unit, [NotNullWhen(true)] out UnitInfo? unitInfo)
+    {
+        return Quantities.TryGetUnitInfo(unit, out unitInfo);
+    }
+    
+    /// <summary>
+    ///     Determines whether a conversion is defined between the specified source and target quantities.
+    /// </summary>
+    /// <param name="sourceQuantity">The source quantity information.</param>
+    /// <param name="targetQuantity">The target quantity information.</param>
+    /// <returns>
+    ///     <c>true</c> if a conversion is defined between the source and target quantities; otherwise, <c>false</c>.
+    /// </returns>
+    protected bool ConversionDefined(QuantityInfo sourceQuantity, QuantityInfo targetQuantity)
+    {
+        return _quantityConversions.Contains(new QuantityConversion(sourceQuantity, targetQuantity));
+    }
+
+    /// <summary>
+    ///     Gets the collection of quantity conversions available in this <see cref="UnitConverter" />.
+    /// </summary>
+    /// <remarks>
+    ///     A quantity conversion defines the relationship between two quantities, enabling conversions
+    ///     between them. This property provides access to all such conversions configured for this instance.
+    /// </remarks>
+    internal IReadOnlyCollection<QuantityConversion> QuantityConversions => _quantityConversions;
+
+    /// <summary>
+    ///     Attempts to convert the specified quantity to a different unit.
+    /// </summary>
+    /// <typeparam name="TQuantity">The type of the quantity to be converted.</typeparam>
+    /// <typeparam name="TUnit">The type of the unit to convert to.</typeparam>
+    /// <param name="quantity">The quantity to be converted.</param>
+    /// <param name="toUnit">The unit to convert the quantity to.</param>
+    /// <param name="convertedValue">
+    ///     When this method returns, contains the converted value if the conversion succeeded; otherwise, the default value
+    ///     for the type of the converted value.
+    /// </param>
+    /// <returns>
+    ///     <c>true</c> if the conversion succeeded; otherwise, <c>false</c>.
+    /// </returns>
+    public bool TryConvertValue<TQuantity, TUnit>(TQuantity quantity, TUnit toUnit, out QuantityValue convertedValue)
+        where TQuantity : IQuantity<TUnit>
+        where TUnit : struct, Enum
+    {
+        return TryConvertValue(quantity.Value, quantity.Unit, toUnit, out convertedValue);
+    }
+
+    /// <summary>
+    ///     Attempts to convert a quantity value from one unit to another.
+    /// </summary>
+    /// <typeparam name="TUnit">The type of the unit enumeration.</typeparam>
+    /// <param name="value">The quantity value to be converted.</param>
+    /// <param name="fromUnit">The unit of the quantity value to convert from.</param>
+    /// <param name="toUnit">The unit of the quantity value to convert to.</param>
+    /// <param name="convertedValue">
+    ///     When this method returns, contains the converted quantity value if the conversion succeeded,
+    ///     or <c>null</c> if the conversion failed. This parameter is passed uninitialized.
+    /// </param>
+    /// <returns>
+    ///     <c>true</c> if the conversion succeeded; otherwise, <c>false</c>.
+    /// </returns>
+    public virtual bool TryConvertValue<TUnit>(QuantityValue value, TUnit fromUnit, TUnit toUnit, out QuantityValue convertedValue)
+        where TUnit : struct, Enum
+    {
+        var fromUnitKey = UnitKey.ForUnit(fromUnit);
+        var toUnitKey = UnitKey.ForUnit(toUnit);
+        if (fromUnitKey == toUnitKey)
         {
-            QuantityInfoLookup quantities = UnitsNetSetup.Default.Quantities;
-            if (quantities.TryGetUnitByName(quantityName, fromUnit, out UnitInfo? fromUnitInfo) &&
-                quantities.TryGetUnitByName(quantityName, toUnit, out UnitInfo? toUnitInfo) &&
-                Quantity.TryFrom(inputValue, fromUnitInfo.Value, out IQuantity? quantity))
+            convertedValue = value;
+            return true;
+        }
+        
+        if (TryGetUnitInfo(fromUnitKey, out UnitInfo? fromUnitInfo) && TryGetUnitInfo(toUnitKey, out UnitInfo? toUnitInfo))
+        {
+            convertedValue = toUnitInfo.GetValueFrom(value, fromUnitInfo);
+            return true;
+        }
+
+        convertedValue = default;
+        return false;
+    }
+
+    /// <summary>
+    ///     Attempts to convert a quantity value from one unit to another.
+    /// </summary>
+    /// <param name="value">The value to be converted.</param>
+    /// <param name="fromUnitKey">The unit of the value to be converted from.</param>
+    /// <param name="toUnitKey">The unit of the value to be converted to.</param>
+    /// <param name="convertedValue">
+    ///     When this method returns, contains the converted value if the conversion succeeded,
+    ///     or <c>null</c> if the conversion failed. This parameter is passed uninitialized.
+    /// </param>
+    /// <returns>
+    ///     <c>true</c> if the conversion succeeded; otherwise, <c>false</c>.
+    /// </returns>
+    public virtual bool TryConvertValue(QuantityValue value, UnitKey fromUnitKey, UnitKey toUnitKey, out QuantityValue convertedValue)
+    {
+        if (fromUnitKey == toUnitKey)
+        {
+            convertedValue = value;
+            return true;
+        }
+        
+        if (TryGetUnitInfo(fromUnitKey, out UnitInfo? fromUnitInfo) && TryGetUnitInfo(toUnitKey, out UnitInfo? toUnitInfo))
+        {
+            return TryConvertValueInternal(value, fromUnitInfo, toUnitInfo, out convertedValue);
+        }
+
+        convertedValue = default;
+        return false;
+    }
+
+    /// <summary>
+    ///     Attempts to convert a quantity value from one unit to another.
+    /// </summary>
+    /// <param name="value">The quantity value to convert.</param>
+    /// <param name="fromUnitInfo">The unit information of the source unit.</param>
+    /// <param name="toUnitInfo">The unit information of the target unit.</param>
+    /// <param name="convertedValue">
+    ///     When this method returns, contains the converted quantity value if the conversion succeeded,
+    ///     or <c>null</c> if the conversion failed. This parameter is passed uninitialized.
+    /// </param>
+    /// <returns>
+    ///     <c>true</c> if the conversion succeeded; otherwise, <c>false</c>.
+    /// </returns>
+    /// <remarks>
+    ///     This method should succeed for any two units of the same quantity, but may fail if the units are from two
+    ///     incompatible quantities.
+    /// </remarks>
+    protected virtual bool TryConvertValueInternal(QuantityValue value, UnitInfo fromUnitInfo, UnitInfo toUnitInfo, out QuantityValue convertedValue)
+    {
+        if (fromUnitInfo.QuantityInfo != toUnitInfo.QuantityInfo)
+        {
+            return TryConvertValueFromOneQuantityToAnother(value, fromUnitInfo, toUnitInfo, out convertedValue);
+        }
+
+        convertedValue = toUnitInfo.GetValueFrom(value, fromUnitInfo);
+        return true;
+    }
+
+    /// <summary>
+    ///     Attempts to convert a value from one quantity to another.
+    /// </summary>
+    /// <param name="value">The value to be converted.</param>
+    /// <param name="fromUnit">The unit of the value to be converted.</param>
+    /// <param name="toUnit">The unit to which the value should be converted.</param>
+    /// <param name="convertedValue">The converted value if the conversion is successful; otherwise, the default value.</param>
+    /// <returns>
+    ///     <c>true</c> if the conversion is successful; otherwise, <c>false</c>.
+    /// </returns>
+    /// <remarks>
+    ///     This method handles conversions between quantities with matching or inverse base dimensions.
+    /// </remarks>
+    protected bool TryConvertValueFromOneQuantityToAnother(QuantityValue value, UnitInfo fromUnit, UnitInfo toUnit, out QuantityValue convertedValue)
+    {
+        QuantityInfo sourceQuantity = fromUnit.QuantityInfo;
+        QuantityInfo targetQuantity = toUnit.QuantityInfo;
+        if (!ConversionDefined(sourceQuantity, targetQuantity))
+        {
+            convertedValue = default;
+            return false; 
+        }
+        
+        ConvertValueDelegate conversionExpression;
+        if (sourceQuantity.BaseDimensions.IsInverseOf(targetQuantity.BaseDimensions))
+        {
+            conversionExpression = QuantityValue.Inverse;
+        }
+        else if (sourceQuantity.BaseDimensions == targetQuantity.BaseDimensions)
+        {
+            if (sourceQuantity.BaseDimensions.IsDimensionless())
             {
-                result = quantity.As(toUnitInfo.Value);
+                convertedValue = toUnit.ConvertValueFromBaseUnit(fromUnit.ConvertValueToBaseUnit(value));
                 return true;
             }
 
-            result = 0d;
+            conversionExpression = sourceValue => sourceValue;
+        }
+        else
+        {
+            convertedValue = default;
             return false;
         }
 
-        /// <summary>
-        ///     Convert between any two quantity units by their abbreviations, such as converting a "Length" of N "m" to "cm".
-        ///     This is particularly useful for creating things like a generated unit conversion UI,
-        ///     where you list some selectors:
-        ///     a) Quantity: Length, Mass, Force etc.
-        ///     b) From unit: Meter, Centimeter etc if Length is selected
-        ///     c) To unit: Meter, Centimeter etc if Length is selected
-        /// </summary>
-        /// <param name="fromValue">
-        ///     Input value, which together with <paramref name="fromUnitAbbrev" /> represents the quantity to
-        ///     convert from.
-        /// </param>
-        /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
-        /// <param name="fromUnitAbbrev">The abbreviation of the unit in the thread's current culture, such as "m".</param>
-        /// <param name="toUnitAbbrev">The abbreviation of the unit in the thread's current culture, such as "m".</param>
-        /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
-        /// <returns>Output value as the result of converting to <paramref name="toUnitAbbrev" />.</returns>
-        /// <exception cref="QuantityNotFoundException">
-        ///     Thrown when no quantity information is found for the specified quantity name.
-        /// </exception>
-        /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
-        /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        public static double ConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev)
+        if (fromUnit.BaseUnits != BaseUnits.Undefined)
         {
-            return ConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, (IFormatProvider?)null);
-        }
-
-        /// <summary>
-        ///     Convert between any two quantity units by their abbreviations, such as converting a "Length" of N "m" to "cm".
-        ///     This is particularly useful for creating things like a generated unit conversion UI,
-        ///     where you list some selectors:
-        ///     a) Quantity: Length, Mass, Force etc.
-        ///     b) From unit: Meter, Centimeter etc if Length is selected
-        ///     c) To unit: Meter, Centimeter etc if Length is selected
-        /// </summary>
-        /// <param name="fromValue">
-        ///     Input value, which together with <paramref name="fromUnitAbbrev" /> represents the quantity to
-        ///     convert from.
-        /// </param>
-        /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
-        /// <param name="fromUnitAbbrev">The abbreviation of the unit in the given culture, such as "m".</param>
-        /// <param name="toUnitAbbrev">The abbreviation of the unit in the given culture, such as "m".</param>
-        /// <param name="culture">Culture to parse abbreviations with.</param>
-        /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
-        /// <returns>Output value as the result of converting to <paramref name="toUnitAbbrev" />.</returns>
-        /// <exception cref="QuantityNotFoundException">
-        ///     Thrown when no quantity information is found for the specified quantity name.
-        /// </exception>
-        /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
-        /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        [Obsolete("Methods accepting a culture name are deprecated in favor of using an instance of the IFormatProvider.")]
-        public static double ConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, string? culture)
-        {
-            return ConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, CultureHelper.GetCultureOrInvariant(culture));
-        }
-
-        /// <summary>
-        ///     Convert between any two quantity units by their abbreviations, such as converting a "Length" of N "m" to "cm".
-        ///     This is particularly useful for creating things like a generated unit conversion UI,
-        ///     where you list some selectors:
-        ///     a) Quantity: Length, Mass, Force etc.
-        ///     b) From unit: Meter, Centimeter etc if Length is selected
-        ///     c) To unit: Meter, Centimeter etc if Length is selected
-        /// </summary>
-        /// <param name="fromValue">
-        ///     Input value, which together with <paramref name="fromUnitAbbrev" /> represents the quantity to
-        ///     convert from.
-        /// </param>
-        /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
-        /// <param name="fromUnitAbbrev">The abbreviation of the unit in the given culture, such as "m".</param>
-        /// <param name="toUnitAbbrev">The abbreviation of the unit in the given culture, such as "m".</param>
-        /// <param name="formatProvider">
-        ///     The format provider to use for lookup. Defaults to <see cref="System.Globalization.CultureInfo.CurrentCulture" />
-        ///     if null.
-        /// </param>
-        /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
-        /// <returns>Output value as the result of converting to <paramref name="toUnitAbbrev" />.</returns>
-        /// <exception cref="QuantityNotFoundException">
-        ///     Thrown when no quantity information is found for the specified quantity name.
-        /// </exception>
-        /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
-        /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        public static double ConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, IFormatProvider? formatProvider)
-        {
-            QuantityInfoLookup quantities = UnitsNetSetup.Default.Quantities;
-            UnitParser unitParser = UnitsNetSetup.Default.UnitParser;
-            QuantityInfo quantityInfo = quantities.GetQuantityByName(quantityName);
-            Enum fromUnit = unitParser.Parse(fromUnitAbbrev, quantityInfo.UnitType, formatProvider); // ex: ("m", LengthUnit) => LengthUnit.Meter
-            Enum toUnit = unitParser.Parse(toUnitAbbrev, quantityInfo.UnitType, formatProvider); // ex:("cm", LengthUnit) => LengthUnit.Centimeter
-            return Quantity.From(fromValue, fromUnit).As(toUnit);
-        }
-
-        /// <summary>
-        ///     Convert between any two quantity units by their abbreviations, such as converting a "Length" of N "m" to "cm".
-        ///     This is particularly useful for creating things like a generated unit conversion UI,
-        ///     where you list some selectors:
-        ///     a) Quantity: Length, Mass, Force etc.
-        ///     b) From unit: Meter, Centimeter etc if Length is selected
-        ///     c) To unit: Meter, Centimeter etc if Length is selected
-        /// </summary>
-        /// <param name="fromValue">
-        ///     Input value, which together with <paramref name="fromUnitAbbrev" /> represents the quantity to
-        ///     convert from.
-        /// </param>
-        /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
-        /// <param name="fromUnitAbbrev">The abbreviation of the unit in the thread's current culture, such as "m".</param>
-        /// <param name="toUnitAbbrev">The abbreviation of the unit in the thread's current culture, such as "m".</param>
-        /// <param name="result">Result if conversion was successful, 0 if not.</param>
-        /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
-        /// <returns>True if conversion was successful.</returns>
-        public static bool TryConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out double result)
-        {
-            return TryConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, out result, (IFormatProvider?)null);
-        }
-
-        /// <summary>
-        ///     Convert between any two quantity units by their abbreviations, such as converting a "Length" of N "m" to "cm".
-        ///     This is particularly useful for creating things like a generated unit conversion UI,
-        ///     where you list some selectors:
-        ///     a) Quantity: Length, Mass, Force etc.
-        ///     b) From unit: Meter, Centimeter etc if Length is selected
-        ///     c) To unit: Meter, Centimeter etc if Length is selected
-        /// </summary>
-        /// <param name="fromValue">
-        ///     Input value, which together with <paramref name="fromUnitAbbrev" /> represents the quantity to
-        ///     convert from.
-        /// </param>
-        /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
-        /// <param name="fromUnitAbbrev">The abbreviation of the unit in the given culture, such as "m".</param>
-        /// <param name="toUnitAbbrev">The abbreviation of the unit in the given culture, such as "m".</param>
-        /// <param name="culture">Culture to parse abbreviations with.</param>
-        /// <param name="result">Result if conversion was successful, 0 if not.</param>
-        /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
-        /// <returns>True if conversion was successful.</returns>
-        [Obsolete("Methods accepting a culture name are deprecated in favor of using an instance of the IFormatProvider.")]
-        public static bool TryConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out double result,
-            string? culture)
-        {
-            return TryConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, out result, CultureHelper.GetCultureOrInvariant(culture));
-        }
-
-        /// <summary>
-        ///     Convert between any two quantity units by their abbreviations, such as converting a "Length" of N "m" to "cm".
-        ///     This is particularly useful for creating things like a generated unit conversion UI,
-        ///     where you list some selectors:
-        ///     a) Quantity: Length, Mass, Force etc.
-        ///     b) From unit: Meter, Centimeter etc if Length is selected
-        ///     c) To unit: Meter, Centimeter etc if Length is selected
-        /// </summary>
-        /// <param name="fromValue">
-        ///     Input value, which together with <paramref name="fromUnitAbbrev" /> represents the quantity to
-        ///     convert from.
-        /// </param>
-        /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
-        /// <param name="fromUnitAbbrev">The abbreviation of the unit in the given culture, such as "m".</param>
-        /// <param name="toUnitAbbrev">The abbreviation of the unit in the given culture, such as "m".</param>
-        /// <param name="formatProvider">
-        ///     The format provider to use for lookup. Defaults to <see cref="System.Globalization.CultureInfo.CurrentCulture" />
-        ///     if null.
-        /// </param>
-        /// <param name="result">Result if conversion was successful, 0 if not.</param>
-        /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
-        /// <returns>True if conversion was successful.</returns>
-        public static bool TryConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out double result,
-            IFormatProvider? formatProvider)
-        {
-            QuantityInfoLookup quantities = UnitsNetSetup.Default.Quantities;
-            UnitParser unitParser = UnitsNetSetup.Default.UnitParser;
-            if (!quantities.TryGetQuantityByName(quantityName, out QuantityInfo? quantityInfo) )
+            if (toUnit.BaseUnits == fromUnit.BaseUnits)
             {
-                result = 0;
-                return false;
+                convertedValue = conversionExpression(value);
+                return true;
             }
 
-            if (!unitParser.TryParse(fromUnitAbbrev, quantityInfo.UnitType, formatProvider, out Enum? fromUnit) ||
-                !unitParser.TryParse(toUnitAbbrev, quantityInfo.UnitType, formatProvider, out Enum? toUnit))
+            if (targetQuantity.UnitInfos.TryGetUnitWithBase(fromUnit.BaseUnits, out UnitInfo? matchingUnit))
             {
-                result = 0;
-                return false;
+                convertedValue = ConvertValueInternal(conversionExpression(value), matchingUnit, toUnit);
+                return true;
             }
 
-            result = Quantity.From(fromValue, fromUnit).As(toUnit);
-            return true;
+            UnitInfo fromBaseUnit = sourceQuantity.BaseUnitInfo;
+            if (fromUnit.BaseUnits != fromBaseUnit.BaseUnits && fromBaseUnit.BaseUnits != BaseUnits.Undefined)
+            {
+                if (toUnit.QuantityInfo.BaseUnitInfo.BaseUnits == fromBaseUnit.BaseUnits)
+                {
+                    convertedValue = toUnit.ConvertValueFromBaseUnit(conversionExpression(fromUnit.ConversionToBase.Evaluate(value)));
+                    return true;
+                }
+            }
+        }
+        else if (toUnit.BaseUnits != BaseUnits.Undefined)
+        {
+            if (sourceQuantity.UnitInfos.TryGetUnitWithBase(toUnit.BaseUnits, out UnitInfo? matchingUnit))
+            {
+                convertedValue = conversionExpression(ConvertValueInternal(value, fromUnit, matchingUnit));
+                return true;
+            }
 
+            UnitInfo toBaseUnit = targetQuantity.BaseUnitInfo;
+            if (toUnit.BaseUnits != toBaseUnit.BaseUnits && toBaseUnit.BaseUnits != BaseUnits.Undefined)
+            {
+                if (sourceQuantity.BaseUnitInfo.BaseUnits == toBaseUnit.BaseUnits)
+                {
+                    convertedValue = toUnit.ConversionFromBase.Evaluate(conversionExpression(fromUnit.ConvertValueToBaseUnit(value)));
+                    return true;
+                }
+            }
+        }
+
+        foreach (UnitInfo sourceUnit in sourceQuantity.UnitInfos)
+        {
+            if (sourceUnit.BaseUnits == BaseUnits.Undefined || sourceUnit.BaseUnits == fromUnit.BaseUnits)
+            {
+                continue;
+            }
+
+            if (targetQuantity.UnitInfos.TryGetUnitWithBase(sourceUnit.BaseUnits, out UnitInfo? matchingUnit))
+            {
+                convertedValue = ConvertValueInternal(conversionExpression(ConvertValueInternal(value, fromUnit, sourceUnit)), matchingUnit, toUnit);
+                return true;
+            }
+        }
+
+        convertedValue = default;
+        return false;
+    }
+
+    /// <summary>
+    ///     Attempts to convert a quantity value from a source unit to a target quantity type and unit.
+    /// </summary>
+    /// <typeparam name="TSourceUnit">The type of the source unit enumeration.</typeparam>
+    /// <typeparam name="TTargetQuantity">The type of the target quantity.</typeparam>
+    /// <typeparam name="TTargetUnit">The type of the target unit enumeration.</typeparam>
+    /// <param name="value">The quantity value to convert.</param>
+    /// <param name="fromUnit">The source unit of the quantity value.</param>
+    /// <param name="targetQuantityInfo">The information about the target quantity type and unit.</param>
+    /// <param name="convertedQuantity">
+    ///     When this method returns, contains the converted quantity if the conversion succeeded, or <c>null</c> if the
+    ///     conversion failed.
+    /// </param>
+    /// <returns><c>true</c> if the conversion succeeded; otherwise, <c>false</c>.</returns>
+    public virtual bool TryConvertTo<TSourceUnit, TTargetQuantity, TTargetUnit>(QuantityValue value, TSourceUnit fromUnit,
+        QuantityInfo<TTargetQuantity, TTargetUnit> targetQuantityInfo, [MaybeNullWhen(false)] out TTargetQuantity convertedQuantity)
+        where TSourceUnit : struct, Enum
+        where TTargetQuantity : IQuantity<TTargetQuantity, TTargetUnit>
+        where TTargetUnit : struct, Enum
+    {
+        if (TryGetUnitInfo(UnitKey.ForUnit(fromUnit), out UnitInfo? fromUnitInfo) && ConversionDefined(fromUnitInfo.QuantityInfo, targetQuantityInfo))
+        {
+            return targetQuantityInfo.TryConvertFrom(value, fromUnitInfo, out convertedQuantity);
+        }
+
+        convertedQuantity = default;
+        return false;
+    }
+
+    /// <inheritdoc cref="TryConvertTo{TSourceUnit,TTargetQuantity,TTargetUnit}" />
+    public virtual bool TryConvertTo(QuantityValue value, UnitKey fromUnitKey, QuantityInfo targetQuantityInfo,
+        [NotNullWhen(true)] out IQuantity? convertedQuantity)
+    {
+        if (TryGetUnitInfo(fromUnitKey, out UnitInfo? fromUnitInfo) && ConversionDefined(fromUnitInfo.QuantityInfo, targetQuantityInfo))
+        {
+            return targetQuantityInfo.TryConvertFrom(value, fromUnitInfo, out convertedQuantity);
+        }
+
+        convertedQuantity = null;
+        return false;
+    }
+    
+    /// <summary>
+    ///     Converts the quantity to the specified unit.
+    /// </summary>
+    /// <param name="quantity">The quantity to convert. Must not be null.</param>
+    /// <param name="toUnitKey">The unit to convert the quantity to.</param>
+    /// When this method returns, contains the converted quantity if the conversion succeeded, or
+    /// <c>null</c>
+    /// if the
+    /// conversion failed.
+    /// <returns>
+    ///     A new instance of <typeparamref name="TQuantity" /> representing the converted value in the specified unit.
+    /// </returns>
+    /// <exception cref="UnitNotFoundException">Thrown when no unit information is found for the specified enum value.</exception>
+    /// <exception cref="InvalidConversionException">
+    ///     Thrown when the conversion between the specified units is not possible.
+    /// </exception>
+    /// <remarks>
+    ///     This method should succeed for any two units of the same quantity, but may fail if the units are not found or are
+    ///     found to be from two
+    ///     incompatible quantities.
+    /// </remarks>
+    public IQuantity ConvertTo<TQuantity>(TQuantity quantity, UnitKey toUnitKey)
+        where TQuantity : IQuantity
+    {
+        QuantityInfo quantityInfo = quantity.QuantityInfo;
+        if (quantityInfo.UnitType == toUnitKey.UnitEnumType)
+        {
+            QuantityValue convertedValue = ConvertValue(quantity.Value, quantity.UnitKey, toUnitKey);
+            return quantityInfo.From(convertedValue, toUnitKey);
+        }
+        else
+        {
+            UnitInfo fromUnitInfo = GetUnitInfo(quantity.UnitKey);
+            UnitInfo toUnitInfo = GetUnitInfo(toUnitKey);
+            QuantityValue convertedValue = ConvertValueInternal(quantity.Value, fromUnitInfo, toUnitInfo);
+            return toUnitInfo.From(convertedValue);
         }
     }
-}
 
+    /// <summary>
+    ///     Converts a quantity from its current unit to the specified unit.
+    /// </summary>
+    /// <typeparam name="TQuantity">
+    ///     The type of the quantity being converted. Must implement <see cref="IQuantity{TSelf, TUnitType}" />.
+    /// </typeparam>
+    /// <typeparam name="TUnit">
+    ///     The type of the unit to convert to. Must be an enumeration.
+    /// </typeparam>
+    /// <param name="quantity">
+    ///     The quantity to be converted, including its value and current unit.
+    /// </param>
+    /// <param name="toUnit">
+    ///     The target unit to which the quantity should be converted.
+    /// </param>
+    /// <returns>
+    ///     A new instance of <typeparamref name="TQuantity" /> representing the converted value in the specified unit.
+    /// </returns>
+    /// <exception cref="UnitNotFoundException">Thrown when an unknown unit is provided.</exception>
+    public TQuantity ConvertToUnit<TQuantity, TUnit>(TQuantity quantity, TUnit toUnit)
+        where TQuantity : IQuantity<TQuantity, TUnit>
+        where TUnit : struct, Enum
+    {
+        QuantityValue convertedValue = ConvertValue(quantity.Value, quantity.Unit, toUnit);
+        return quantity.QuantityInfo.From(convertedValue, toUnit);
+    }
+
+    /// <summary>
+    ///     Retrieves information about a specific unit.
+    /// </summary>
+    /// <param name="unit">The unit for which information is being requested.</param>
+    /// <returns>An <see cref="UnitInfo" /> object containing details about the specified unit.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when the <paramref name="unit" /> is null.</exception>
+    /// <exception cref="UnitNotFoundException">Thrown when the <paramref name="unit" /> is not recognized.</exception>
+    protected UnitInfo GetUnitInfo(UnitKey unit)
+    {
+        return Quantities.GetUnitInfo(unit);
+    }
+
+    /// <summary>
+    ///     Converts the value of a quantity to a specified unit.
+    /// </summary>
+    /// <typeparam name="TQuantity">The type of quantity to use as the source of the conversion.</typeparam>
+    /// <typeparam name="TUnit">The type of the unit to convert to. Must be a struct and an enum.</typeparam>
+    /// <param name="quantity">The quantity to convert.</param>
+    /// <param name="toUnit">The unit to convert the quantity to.</param>
+    /// <returns>The converted quantity value.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when the <paramref name="quantity" /> is null.</exception>
+    /// <exception cref="ArgumentException">Thrown when the conversion is not possible.</exception>
+    /// <exception cref="UnitNotFoundException">Thrown when <paramref name="toUnit" /> is not found.</exception>
+    public QuantityValue ConvertValue<TQuantity, TUnit>(TQuantity quantity, TUnit toUnit)
+        where TQuantity : IQuantity<TUnit>
+        where TUnit : struct, Enum
+    {
+        return ConvertValue(quantity.Value, quantity.Unit, toUnit);
+    }
+
+    /// <summary>
+    ///     Converts a quantity value from one unit to another using the specified quantity information.
+    /// </summary>
+    /// <typeparam name="TUnit">The type of the unit.</typeparam>
+    /// <param name="value">The value to be converted.</param>
+    /// <param name="fromUnit">The unit of the value to be converted.</param>
+    /// <param name="toUnit">The unit to which the value should be converted.</param>
+    /// <exception cref="UnitNotFoundException">Thrown when either <paramref name="fromUnit" /> or <paramref name="toUnit" /> is not found.</exception>
+    /// <returns>The converted quantity value.</returns>
+    public virtual QuantityValue ConvertValue<TUnit>(QuantityValue value, TUnit fromUnit, TUnit toUnit)
+        where TUnit : struct, Enum
+    {
+        var fromUnitKey = UnitKey.ForUnit(fromUnit);
+        var toUnitKey = UnitKey.ForUnit(toUnit);
+        if (fromUnitKey.UnitEnumValue == toUnitKey.UnitEnumValue)
+        {
+            return value;
+        }
+        
+        UnitInfo fromUnitInfo = GetUnitInfo(fromUnitKey);
+        UnitInfo toUnitInfo = GetUnitInfo(toUnitKey);
+        return toUnitInfo.GetValueFrom(value, fromUnitInfo);
+    }
+
+    /// <summary>
+    ///     Converts a quantity value from one unit to another using the specified quantity information.
+    /// </summary>
+    /// <param name="value">The value to be converted.</param>
+    /// <param name="fromUnitKey">The unit of the value to be converted from.</param>
+    /// <param name="toUnitKey">The unit of the value to be converted to.</param>
+    /// <returns>The converted quantity value.</returns>
+    /// <exception cref="UnitNotFoundException">Thrown when no unit information is found for the specified enum value.</exception>
+    /// <exception cref="InvalidConversionException">
+    ///     Thrown when the conversion between the specified units is not possible.
+    /// </exception>
+    /// <remarks>
+    ///     This method should succeed for any two units of the same quantity, but may fail if the units are not found or are
+    ///     found to be from two
+    ///     incompatible quantities.
+    /// </remarks>
+    public virtual QuantityValue ConvertValue(QuantityValue value, UnitKey fromUnitKey, UnitKey toUnitKey)
+    {
+        if (fromUnitKey == toUnitKey)
+        {
+            return value;
+        }
+        
+        UnitInfo fromUnitInfo = GetUnitInfo(fromUnitKey);
+        UnitInfo toUnitInfo = GetUnitInfo(toUnitKey);
+        return ConvertValueInternal(value, fromUnitInfo, toUnitInfo);
+    }
+
+    /// <summary>
+    ///     Converts a quantity value from one unit to another.
+    /// </summary>
+    /// <param name="value">The quantity value to convert.</param>
+    /// <param name="fromUnitInfo">The unit information of the source unit.</param>
+    /// <param name="toUnitInfo">The unit information of the target unit.</param>
+    /// <returns>The converted quantity value.</returns>
+    /// <exception cref="InvalidConversionException">
+    ///     Thrown when the conversion between the specified units is not possible.
+    /// </exception>
+    /// <remarks>
+    ///     This method should succeed for any two units of the same quantity, but may fail if the units are from two
+    ///     incompatible quantities.
+    /// </remarks>
+    protected virtual QuantityValue ConvertValueInternal(QuantityValue value, UnitInfo fromUnitInfo, UnitInfo toUnitInfo)
+    {
+        return fromUnitInfo.QuantityInfo == toUnitInfo.QuantityInfo
+            ? toUnitInfo.GetValueFrom(value, fromUnitInfo)
+            : ConvertValueFromOneQuantityToAnother(value, fromUnitInfo, toUnitInfo);
+    }
+
+    /// <summary>
+    ///     Converts a value from one quantity to another, considering the units and their base dimensions.
+    /// </summary>
+    /// <param name="value">The value to be converted.</param>
+    /// <param name="fromUnitInfo">Information about the unit of the source quantity.</param>
+    /// <param name="toUnitInfo">Information about the unit of the target quantity.</param>
+    /// <returns>The converted value in the target quantity's unit.</returns>
+    /// <exception cref="InvalidConversionException">
+    ///     Thrown when no implicit conversion exists between the source and target quantities,
+    ///     or when no compatible units are found for the conversion.
+    /// </exception>
+    /// <remarks>
+    ///     This method handles conversions between quantities with matching or inverse base dimensions.
+    /// </remarks>
+    protected QuantityValue ConvertValueFromOneQuantityToAnother(QuantityValue value, UnitInfo fromUnitInfo, UnitInfo toUnitInfo)
+    {
+        QuantityInfo sourceQuantity = fromUnitInfo.QuantityInfo;
+        QuantityInfo targetQuantity = toUnitInfo.QuantityInfo;
+        if (!ConversionDefined(sourceQuantity, targetQuantity))
+        {
+            throw InvalidConversionException.CreateImplicitConversionException(sourceQuantity, targetQuantity);
+        }
+        
+        ConvertValueDelegate conversionExpression;
+        if (sourceQuantity.BaseDimensions.IsInverseOf(targetQuantity.BaseDimensions))
+        {
+            conversionExpression = QuantityValue.Inverse;
+        }
+        else if (sourceQuantity.BaseDimensions == targetQuantity.BaseDimensions)
+        {
+            if (sourceQuantity.BaseDimensions.IsDimensionless())
+            {
+                return toUnitInfo.ConvertValueFromBaseUnit(fromUnitInfo.ConvertValueToBaseUnit(value));
+            }
+
+            conversionExpression = sourceValue => sourceValue;
+        }
+        else
+        {
+            throw InvalidConversionException.CreateIncompatibleDimensionsException(sourceQuantity, targetQuantity);
+        }
+
+        if (fromUnitInfo.BaseUnits != BaseUnits.Undefined)
+        {
+            if (toUnitInfo.BaseUnits == fromUnitInfo.BaseUnits)
+            {
+                return conversionExpression(value);
+            }
+
+            if (targetQuantity.UnitInfos.TryGetUnitWithBase(fromUnitInfo.BaseUnits, out UnitInfo? matchingUnit))
+            {
+                return ConvertValueInternal(conversionExpression(value), matchingUnit, toUnitInfo);
+            }
+
+            UnitInfo fromBaseUnit = sourceQuantity.BaseUnitInfo;
+            if (fromUnitInfo.BaseUnits != fromBaseUnit.BaseUnits && fromBaseUnit.BaseUnits != BaseUnits.Undefined)
+            {
+                if (toUnitInfo.QuantityInfo.BaseUnitInfo.BaseUnits == fromBaseUnit.BaseUnits)
+                {
+                    return toUnitInfo.ConvertValueFromBaseUnit(conversionExpression(fromUnitInfo.ConversionToBase.Evaluate(value)));
+                }
+            }
+        }
+        else if (toUnitInfo.BaseUnits != BaseUnits.Undefined)
+        {
+            if (sourceQuantity.UnitInfos.TryGetUnitWithBase(toUnitInfo.BaseUnits, out UnitInfo? matchingUnit))
+            {
+                return conversionExpression(ConvertValueInternal(value, fromUnitInfo, matchingUnit));
+            }
+
+            UnitInfo toBaseUnit = targetQuantity.BaseUnitInfo;
+            if (toUnitInfo.BaseUnits != toBaseUnit.BaseUnits && toBaseUnit.BaseUnits != BaseUnits.Undefined)
+            {
+                if (sourceQuantity.BaseUnitInfo.BaseUnits == toBaseUnit.BaseUnits)
+                {
+                    return toUnitInfo.ConversionFromBase.Evaluate(conversionExpression(fromUnitInfo.ConvertValueToBaseUnit(value)));
+                }
+            }
+        }
+
+        IReadOnlyList<UnitInfo> sourceQuantityUnits = sourceQuantity.UnitInfos;
+        var nbSourceUnits = sourceQuantityUnits.Count;
+        for (var i = 0; i < nbSourceUnits; i++)
+        {
+            UnitInfo sourceUnit = sourceQuantityUnits[i];
+            if (sourceUnit.BaseUnits == BaseUnits.Undefined || sourceUnit.BaseUnits == fromUnitInfo.BaseUnits)
+            {
+                continue;
+            }
+
+            if (targetQuantity.UnitInfos.TryGetUnitWithBase(sourceUnit.BaseUnits, out UnitInfo? matchingUnit))
+            {
+                return ConvertValueInternal(conversionExpression(ConvertValueInternal(value, fromUnitInfo, sourceUnit)), matchingUnit, toUnitInfo);
+            }
+        }
+        
+        throw InvalidConversionException.CreateIncompatibleUnitsException(fromUnitInfo, targetQuantity);
+    }
+
+    /// <summary>
+    ///     Converts a quantity value from one unit to another specified unit type.
+    /// </summary>
+    /// <typeparam name="TSourceUnit">The type of the source unit.</typeparam>
+    /// <typeparam name="TTargetQuantity">The type of the target quantity.</typeparam>
+    /// <typeparam name="TTargetUnit">The type of the target unit.</typeparam>
+    /// <param name="value">The quantity value to convert.</param>
+    /// <param name="fromUnit">The source unit of the quantity value.</param>
+    /// <param name="targetQuantityInfo">The target quantity information which includes the target unit.</param>
+    /// <returns>The converted quantity in the target unit type.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when <paramref name="targetQuantityInfo" /> is null.</exception>
+    /// <exception cref="UnitNotFoundException">Thrown when the source unit is not found.</exception>
+    /// <exception cref="InvalidConversionException">Thrown when the conversion cannot be performed.</exception>
+    public virtual TTargetQuantity ConvertTo<TSourceUnit, TTargetQuantity, TTargetUnit>(QuantityValue value, TSourceUnit fromUnit,
+        QuantityInfo<TTargetQuantity, TTargetUnit> targetQuantityInfo)
+        where TSourceUnit : struct, Enum
+        where TTargetQuantity : IQuantity<TTargetQuantity, TTargetUnit>
+        where TTargetUnit : struct, Enum
+    {
+        UnitInfo fromUnitInfo = GetUnitInfo(UnitKey.ForUnit(fromUnit));
+        QuantityInfo sourceQuantityInfo = fromUnitInfo.QuantityInfo;
+        if (!ConversionDefined(sourceQuantityInfo, targetQuantityInfo))
+        {
+            throw InvalidConversionException.CreateImplicitConversionException(sourceQuantityInfo, targetQuantityInfo);
+        }
+        
+        return targetQuantityInfo.ConvertFrom(value, fromUnitInfo);
+    }
+
+    /// <inheritdoc cref="ConvertTo{TSourceUnit,TTargetQuantity,TTargetUnit}" />
+    public virtual IQuantity ConvertTo(QuantityValue value, UnitKey fromUnitKey, QuantityInfo targetQuantityInfo)
+    {
+        UnitInfo fromUnitInfo = GetUnitInfo(fromUnitKey);
+        QuantityInfo sourceQuantityInfo = fromUnitInfo.QuantityInfo;
+        if (!ConversionDefined(sourceQuantityInfo, targetQuantityInfo))
+        {
+            throw InvalidConversionException.CreateImplicitConversionException(sourceQuantityInfo, targetQuantityInfo);
+        }
+        
+        return targetQuantityInfo.ConvertFrom(value, fromUnitInfo);
+    }
+
+    /// <summary>
+    ///     Gets a conversion function that converts a value from one unit to another.
+    /// </summary>
+    /// <param name="fromUnitKey">The key representing the unit to convert from.</param>
+    /// <param name="toUnitKey">The key representing the unit to convert to.</param>
+    /// <returns>
+    ///     A delegate that converts a <see cref="QuantityValue" /> from the specified <paramref name="fromUnitKey" /> to
+    ///     the specified <paramref name="toUnitKey" />.
+    /// </returns>
+    /// <exception cref="UnitNotFoundException">
+    ///     Thrown if the specified <paramref name="fromUnitKey" /> or <paramref name="toUnitKey" /> does not exist.
+    /// </exception>
+    /// <exception cref="InvalidConversionException">
+    ///     Thrown if the quantities are different and no conversion function exists between them.
+    /// </exception>
+    /// <remarks>
+    ///     If the <paramref name="fromUnitKey" /> and <paramref name="toUnitKey" /> are the same, the returned function will
+    ///     be an identity function.
+    /// </remarks>
+    public virtual ConvertValueDelegate GetConversionFunction(UnitKey fromUnitKey, UnitKey toUnitKey)
+    {
+        if (fromUnitKey == toUnitKey)
+        {
+            return value => value;
+        }
+
+        UnitInfo fromUnitInfo = GetUnitInfo(fromUnitKey);
+        UnitInfo toUnitInfo = GetUnitInfo(toUnitKey);
+        return fromUnitKey.UnitEnumType == toUnitKey.UnitEnumType
+            ? fromUnitInfo.GetUnitConversionExpressionTo(toUnitInfo)
+            : GetConversionFromOneQuantityToAnother(fromUnitInfo, toUnitInfo);
+    }
+
+    /// <summary>
+    ///     Retrieves the conversion expression required to convert a value from one unit of quantity to another.
+    /// </summary>
+    /// <param name="fromUnitInfo">The unit information of the source quantity.</param>
+    /// <param name="toUnitInfo">The unit information of the target quantity.</param>
+    /// <param name="reduceConstants">
+    ///     A boolean value indicating whether to reduce constants in the conversion expression.
+    ///     Default is true.
+    /// </param>
+    /// <returns>A <see cref="ConversionExpression" /> representing the conversion from the source unit to the target unit.</returns>
+    /// <exception cref="InvalidConversionException">
+    ///     Thrown when no implicit conversion exists between the specified source and target quantities.
+    /// </exception>
+    protected ConversionExpression GetConversionFromOneQuantityToAnother(UnitInfo fromUnitInfo, UnitInfo toUnitInfo, bool reduceConstants = true)
+    {
+        QuantityInfo sourceQuantity = fromUnitInfo.QuantityInfo;
+        QuantityInfo targetQuantity = toUnitInfo.QuantityInfo;
+        if (!ConversionDefined(sourceQuantity, targetQuantity))
+        {
+            throw InvalidConversionException.CreateImplicitConversionException(sourceQuantity, targetQuantity);
+        }
+
+        return fromUnitInfo.GetQuantityConversionExpressionTo(toUnitInfo);
+    }
+
+    /// <summary>
+    ///     Attempts to get a conversion function that converts a value from one unit to another.
+    /// </summary>
+    /// <param name="fromUnitKey">The key representing the unit to convert from.</param>
+    /// <param name="toUnitKey">The key representing the unit to convert to.</param>
+    /// <param name="conversionFunction">
+    ///     When this method returns, contains the conversion function if the conversion is possible; otherwise, <c>null</c>.
+    /// </param>
+    /// <returns>
+    ///     <c>true</c> if the conversion function was successfully retrieved; otherwise, <c>false</c>.
+    /// </returns>
+    /// <remarks>
+    ///     If the <paramref name="fromUnitKey" /> and <paramref name="toUnitKey" /> are the same, the returned function will
+    ///     be an identity function.
+    /// </remarks>
+    public virtual bool TryGetConversionFunction(UnitKey fromUnitKey, UnitKey toUnitKey, [NotNullWhen(true)] out ConvertValueDelegate? conversionFunction)
+    {
+        if (fromUnitKey == toUnitKey)
+        {
+            conversionFunction = value => value;
+            return true;
+        }
+
+        if (!TryGetUnitInfo(fromUnitKey, out UnitInfo? fromUnitInfo) || !TryGetUnitInfo(toUnitKey, out UnitInfo? toUnitInfo))
+        {
+            conversionFunction = null;
+            return false;
+        }
+
+        if (fromUnitKey.UnitEnumType != toUnitKey.UnitEnumType)
+        {
+            return TryGetConversionFromOneQuantityToAnother(fromUnitInfo, toUnitInfo, out conversionFunction);
+        }
+
+        conversionFunction = fromUnitInfo.GetUnitConversionExpressionTo(toUnitInfo);
+        return true;
+    }
+
+    /// <summary>
+    ///     Attempts to retrieve a conversion function that converts a value from one unit to another unit of a different
+    ///     quantity.
+    /// </summary>
+    /// <param name="fromUnitInfo">The unit information of the source unit.</param>
+    /// <param name="toUnitInfo">The unit information of the target unit.</param>
+    /// <param name="conversionFunction">
+    ///     When this method returns, contains the conversion function if the conversion is defined; otherwise, <c>null</c>.
+    /// </param>
+    /// <returns>
+    ///     <c>true</c> if a conversion function is successfully retrieved; otherwise, <c>false</c>.
+    /// </returns>
+    protected bool TryGetConversionFromOneQuantityToAnother(UnitInfo fromUnitInfo, UnitInfo toUnitInfo, out ConvertValueDelegate? conversionFunction)
+    {
+        if (ConversionDefined(fromUnitInfo.QuantityInfo, toUnitInfo.QuantityInfo) &&
+            fromUnitInfo.TryGetQuantityConversionExpressionTo(toUnitInfo, true, out ConversionExpression? conversionExpression))
+        {
+            conversionFunction = conversionExpression;
+            return true;
+        }
+
+        conversionFunction = null;
+        return false;
+    }
+
+    /// <summary>
+    ///     Convert between any two quantity units by their names, such as converting a "Length" of N "Meter" to "Centimeter".
+    ///     This is particularly useful for creating things like a generated unit conversion UI,
+    ///     where you list some selectors:
+    ///     a) Quantity: Length, Mass, Force etc.
+    ///     b) From unit: Meter, Centimeter etc if Length is selected
+    ///     c) To unit: Meter, Centimeter etc if Length is selected
+    /// </summary>
+    /// <param name="fromValue">
+    ///     Input value, which together with <paramref name="fromUnitName" /> represents the quantity to
+    ///     convert from.
+    /// </param>
+    /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
+    /// <param name="fromUnitName">The invariant unit enum name, such as "Meter". Does not support localization.</param>
+    /// <param name="toUnitName">The invariant unit enum name, such as "Meter". Does not support localization.</param>
+    /// <example>double centimeters = ConvertByName(5, "Length", "Meter", "Centimeter"); // 500</example>
+    /// <returns>Output value as the result of converting to <paramref name="toUnitName" />.</returns>
+    /// <exception cref="QuantityNotFoundException">
+    ///     Thrown when no quantity information is found for the specified quantity name.
+    /// </exception>
+    /// <exception cref="UnitNotFoundException">No units match the provided unit name.</exception>
+    /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
+    public QuantityValue ConvertValueByName(QuantityValue fromValue, string quantityName, string fromUnitName, string toUnitName)
+    {
+        UnitInfo fromUnitInfo = Quantities.GetUnitByName(quantityName, fromUnitName);
+        UnitInfo toUnitInfo = Quantities.GetUnitByName(quantityName, toUnitName);
+        return ConvertValueInternal(fromValue, fromUnitInfo, toUnitInfo);
+    }
+
+    /// <summary>
+    ///     Convert between any two quantity units by their names, such as converting a "Length" of N "Meter" to "Centimeter".
+    ///     This is particularly useful for creating things like a generated unit conversion UI,
+    ///     where you list some selectors:
+    ///     a) Quantity: Length, Mass, Force etc.
+    ///     b) From unit: Meter, Centimeter etc if Length is selected
+    ///     c) To unit: Meter, Centimeter etc if Length is selected
+    /// </summary>
+    /// <param name="inputValue">
+    ///     Input value, which together with <paramref name="fromUnitName" /> represents the quantity to
+    ///     convert from.
+    /// </param>
+    /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
+    /// <param name="fromUnitName">The invariant unit enum name, such as "Meter". Does not support localization.</param>
+    /// <param name="toUnitName">The invariant unit enum name, such as "Meter". Does not support localization.</param>
+    /// <param name="result">Result if conversion was successful, 0 if not.</param>
+    /// <example>bool ok = TryConvertByName(5, "Length", "Meter", "Centimeter", out double centimeters); // 500</example>
+    /// <returns>True if conversion was successful.</returns>
+    public bool TryConvertValueByName(QuantityValue inputValue, string quantityName, string fromUnitName, string toUnitName, out QuantityValue result)
+    {
+        if (Quantities.TryGetUnitByName(quantityName, fromUnitName, out UnitInfo? fromUnitInfo) &&
+            Quantities.TryGetUnitByName(quantityName, toUnitName, out UnitInfo? toUnitInfo))
+        {
+            return TryConvertValueInternal(inputValue, fromUnitInfo, toUnitInfo, out result);
+        }
+
+        result = default;
+        return false;
+    }
+    
+    /// <summary>
+    ///     Convert between any two quantity units by their abbreviations, such as converting a "Length" of N "m" to "cm".
+    ///     This is particularly useful for creating things like a generated unit conversion UI,
+    ///     where you list some selectors:
+    ///     a) Quantity: Length, Mass, Force etc.
+    ///     b) From unit: Meter, Centimeter etc if Length is selected
+    ///     c) To unit: Meter, Centimeter etc if Length is selected
+    /// </summary>
+    /// <param name="fromValue">
+    ///     Input value, which together with <paramref name="fromUnitAbbrev" /> represents the quantity to
+    ///     convert from.
+    /// </param>
+    /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
+    /// <param name="fromUnitAbbrev">The abbreviation of the unit in the thread's current culture, such as "m".</param>
+    /// <param name="toUnitAbbrev">The abbreviation of the unit in the thread's current culture, such as "m".</param>
+    /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
+    /// <returns>Output value as the result of converting to <paramref name="toUnitAbbrev" />.</returns>
+    /// <exception cref="QuantityNotFoundException">
+    ///     Thrown when no quantity information is found for the specified quantity name.
+    /// </exception>
+    /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
+    /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
+    public QuantityValue ConvertValueByAbbreviation(QuantityValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev)
+    {
+        return ConvertValueByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, null);
+    }
+
+    /// <summary>
+    ///     Convert between any two quantity units by their abbreviations, such as converting a "Length" of N "m" to "cm".
+    ///     This is particularly useful for creating things like a generated unit conversion UI,
+    ///     where you list some selectors:
+    ///     a) Quantity: Length, Mass, Force etc.
+    ///     b) From unit: Meter, Centimeter etc if Length is selected
+    ///     c) To unit: Meter, Centimeter etc if Length is selected
+    /// </summary>
+    /// <param name="fromValue">
+    ///     Input value, which together with <paramref name="fromUnitAbbrev" /> represents the quantity to
+    ///     convert from.
+    /// </param>
+    /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
+    /// <param name="fromUnitAbbrev">The abbreviation of the unit in the given culture, such as "m".</param>
+    /// <param name="toUnitAbbrev">The abbreviation of the unit in the given culture, such as "m".</param>
+    /// <param name="culture">The unit localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+    /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
+    /// <returns>Output value as the result of converting to <paramref name="toUnitAbbrev" />.</returns>
+    /// <exception cref="QuantityNotFoundException">
+    ///     Thrown when no quantity information is found for the specified quantity name.
+    /// </exception>
+    /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
+    /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
+    public QuantityValue ConvertValueByAbbreviation(QuantityValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, CultureInfo? culture)
+    {
+        QuantityInfo quantityInfo = Quantities.GetQuantityByName(quantityName);
+        UnitInfo fromUnitInfo = UnitParser.Parse(fromUnitAbbrev, quantityInfo.UnitInfos, culture); // ex: ("m", LengthUnit) => LengthUnit.Meter
+        UnitInfo toUnitInfo = UnitParser.Parse(toUnitAbbrev, quantityInfo.UnitInfos, culture); // ex:("cm", LengthUnit) => LengthUnit.Centimeter
+        return ConvertValueInternal(fromValue, fromUnitInfo, toUnitInfo);
+    }
+
+    /// <summary>
+    ///     Convert between any two quantity units by their abbreviations, such as converting a "Length" of N "m" to "cm".
+    ///     This is particularly useful for creating things like a generated unit conversion UI,
+    ///     where you list some selectors:
+    ///     a) Quantity: Length, Mass, Force etc.
+    ///     b) From unit: Meter, Centimeter etc if Length is selected
+    ///     c) To unit: Meter, Centimeter etc if Length is selected
+    /// </summary>
+    /// <param name="fromValue">
+    ///     Input value, which together with <paramref name="fromUnitAbbrev" /> represents the quantity to
+    ///     convert from.
+    /// </param>
+    /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
+    /// <param name="fromUnitAbbrev">The abbreviation of the unit in the thread's current culture, such as "m".</param>
+    /// <param name="toUnitAbbrev">The abbreviation of the unit in the thread's current culture, such as "m".</param>
+    /// <param name="result">Result if conversion was successful, 0 if not.</param>
+    /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
+    /// <returns>True if conversion was successful.</returns>
+    public bool TryConvertValueByAbbreviation(QuantityValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out QuantityValue result)
+    {
+        return TryConvertValueByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, null, out result);
+    }
+
+    /// <summary>
+    ///     Convert between any two quantity units by their abbreviations, such as converting a "Length" of N "m" to "cm".
+    ///     This is particularly useful for creating things like a generated unit conversion UI,
+    ///     where you list some selectors:
+    ///     a) Quantity: Length, Mass, Force etc.
+    ///     b) From unit: Meter, Centimeter etc if Length is selected
+    ///     c) To unit: Meter, Centimeter etc if Length is selected
+    /// </summary>
+    /// <param name="fromValue">
+    ///     Input value, which together with <paramref name="fromUnitAbbrev" /> represents the quantity to
+    ///     convert from.
+    /// </param>
+    /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
+    /// <param name="fromUnitAbbrev">The abbreviation of the unit in the given culture, such as "m".</param>
+    /// <param name="toUnitAbbrev">The abbreviation of the unit in the given culture, such as "m".</param>
+    /// <param name="culture">The unit localization culture. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+    /// <param name="result">Result if conversion was successful, 0 if not.</param>
+    /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
+    /// <returns>True if conversion was successful.</returns>
+    public bool TryConvertValueByAbbreviation(QuantityValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, CultureInfo? culture,
+        out QuantityValue result)  
+    {
+        if (!Quantities.TryGetQuantityByName(quantityName, out QuantityInfo? quantityInfo))
+        {
+            result = default;
+            return false;
+        }
+
+        if (UnitParser.TryParse(fromUnitAbbrev, quantityInfo.UnitInfos, culture, out UnitInfo? fromUnitInfo) &&
+            UnitParser.TryParse(toUnitAbbrev, quantityInfo.UnitInfos, culture, out UnitInfo? toUnitInfo))
+        {
+            result = ConvertValueInternal(fromValue, fromUnitInfo, toUnitInfo);
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
+    #region Static methods
+    
+    /// <inheritdoc cref="ConvertValue"/>
+    public static QuantityValue Convert(QuantityValue value, UnitKey fromUnitKey, UnitKey toUnitKey)
+    {
+        return Default.ConvertValue(value, fromUnitKey, toUnitKey);
+    }
+
+    /// <inheritdoc cref="TryConvertValue"/>
+    public static bool TryConvert(QuantityValue value, UnitKey fromUnitKey, UnitKey toUnitKey, out QuantityValue result)
+    {
+        return Default.TryConvertValue(value, fromUnitKey, toUnitKey, out result);
+    }
+
+    /// <inheritdoc cref="ConvertValueByName"/>
+    public static QuantityValue ConvertByName(QuantityValue inputValue, string quantityName, string fromUnitName, string toUnitName)
+    {
+        return Default.ConvertValueByName(inputValue, quantityName, fromUnitName, toUnitName);
+    }
+
+    /// <inheritdoc cref="TryConvertByName"/>
+    public static bool TryConvertByName(QuantityValue inputValue, string quantityName, string fromUnitName, string toUnitName, out QuantityValue result)
+    {
+        return Default.TryConvertValueByName(inputValue, quantityName, fromUnitName, toUnitName, out result);
+    }
+
+    /// <inheritdoc cref="ConvertValueByAbbreviation(UnitsNet.QuantityValue,string,string,string)"/>
+    public static QuantityValue ConvertByAbbreviation(QuantityValue inputValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev)
+    {
+        return Default.ConvertValueByAbbreviation(inputValue, quantityName, fromUnitAbbrev, toUnitAbbrev);
+    }
+
+    /// <inheritdoc cref="TryConvertValueByAbbreviation(UnitsNet.QuantityValue,string,string,string,out UnitsNet.QuantityValue)"/>
+    public static bool TryConvertByAbbreviation(QuantityValue inputValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out QuantityValue result)
+    {
+        return Default.TryConvertValueByAbbreviation(inputValue, quantityName, fromUnitAbbrev, toUnitAbbrev, out result);
+    }
+
+    /// <inheritdoc cref="ConvertValueByAbbreviation(UnitsNet.QuantityValue,string,string,string,CultureInfo?)"/>
+    public static QuantityValue ConvertByAbbreviation(QuantityValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, CultureInfo? culture)
+    {
+        return Default.ConvertValueByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, culture);
+    }
+
+    /// <inheritdoc cref="TryConvertValueByAbbreviation(UnitsNet.QuantityValue,string,string,string,CultureInfo?,out UnitsNet.QuantityValue)"/>
+    public static bool TryConvertByAbbreviation(QuantityValue inputValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, CultureInfo? culture, out QuantityValue result) 
+    {
+        return Default.TryConvertValueByAbbreviation(inputValue, quantityName, fromUnitAbbrev, toUnitAbbrev, culture, out result);
+    }
+
+    /// <summary>
+    ///     Convert between any two quantity units by their abbreviations, such as converting a "Length" of N "m" to "cm".
+    ///     This is particularly useful for creating things like a generated unit conversion UI,
+    ///     where you list some selectors:
+    ///     a) Quantity: Length, Mass, Force etc.
+    ///     b) From unit: Meter, Centimeter etc if Length is selected
+    ///     c) To unit: Meter, Centimeter etc if Length is selected
+    /// </summary>
+    /// <param name="fromValue">
+    ///     Input value, which together with <paramref name="fromUnitAbbrev" /> represents the quantity to
+    ///     convert from.
+    /// </param>
+    /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
+    /// <param name="fromUnitAbbrev">The abbreviation of the unit in the given culture, such as "m".</param>
+    /// <param name="toUnitAbbrev">The abbreviation of the unit in the given culture, such as "m".</param>
+    /// <param name="culture">Culture to parse abbreviations with.</param>
+    /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
+    /// <returns>Output value as the result of converting to <paramref name="toUnitAbbrev" />.</returns>
+    /// <exception cref="QuantityNotFoundException">
+    ///     Thrown when no quantity information is found for the specified quantity name.
+    /// </exception>
+    /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
+    /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
+    [Obsolete("Methods accepting a culture name are deprecated in favor of using an instance of CultureInfo.")]
+    public static QuantityValue ConvertByAbbreviation(QuantityValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, string? culture)
+    {
+        return Default.ConvertValueByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, CultureHelper.GetCultureOrInvariant(culture));
+    }
+    
+    /// <summary>
+    ///     Convert between any two quantity units by their abbreviations, such as converting a "Length" of N "m" to "cm".
+    ///     This is particularly useful for creating things like a generated unit conversion UI,
+    ///     where you list some selectors:
+    ///     a) Quantity: Length, Mass, Force etc.
+    ///     b) From unit: Meter, Centimeter etc if Length is selected
+    ///     c) To unit: Meter, Centimeter etc if Length is selected
+    /// </summary>
+    /// <param name="inputValue">
+    ///     Input value, which together with <paramref name="fromUnitAbbrev" /> represents the quantity to
+    ///     convert from.
+    /// </param>
+    /// <param name="quantityName">The invariant quantity name, such as "Length". Does not support localization.</param>
+    /// <param name="fromUnitAbbrev">The abbreviation of the unit in the thread's current culture, such as "m".</param>
+    /// <param name="toUnitAbbrev">The abbreviation of the unit in the thread's current culture, such as "m".</param>
+    /// <param name="culture">Culture to parse abbreviations with.</param>
+    /// <param name="result">Result if conversion was successful, 0 if not.</param>
+    /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
+    /// <returns>True if conversion was successful.</returns>
+    [Obsolete("Methods accepting a culture name are deprecated in favor of using an instance of CultureInfo.")]
+    public static bool TryConvertByAbbreviation(QuantityValue inputValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out QuantityValue result, string? culture) 
+    {
+        return Default.TryConvertValueByAbbreviation(inputValue, quantityName, fromUnitAbbrev, toUnitAbbrev, CultureHelper.GetCultureOrInvariant(culture), out result);
+    }
+
+    #endregion
+}

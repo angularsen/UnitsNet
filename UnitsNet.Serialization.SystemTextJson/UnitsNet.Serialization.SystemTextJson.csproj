@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <!-- NuGet properties -->
+  <PropertyGroup>
+    <PackageId>UnitsNet.Serialization.SystemTextJson</PackageId>
+    <Version>6.0.0-pre019</Version>
+    <Authors>Andreas Gullberg Larsen</Authors>
+    <Title>Units.NET Serialization with System.Text.Json</Title>
+    <Description>A helper library for serializing and deserializing types in Units.NET using System.Text.Json.</Description>
+    <Copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).</Copyright>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <RepositoryUrl>https://github.com/angularsen/UnitsNet</RepositoryUrl>
+    <PackageIcon>logo-32.png</PackageIcon>
+    <PackageIconUrl>https://raw.githubusercontent.com/angularsen/UnitsNet/ce85185429be345d77eb2ce09c99d59cc9ab8aed/Docs/Images/logo-32.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/angularsen/UnitsNet</PackageProjectUrl>
+    <PackageLicenseExpression>MIT-0</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>unit units measurement json System.Text.Json serialize deserialize serialization deserialization</PackageTags>
+    <PackageReleaseNotes>Upgrade JSON.NET to 12.0.3. Support arrays.</PackageReleaseNotes>
+    <IsAotCompatible Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">true</IsAotCompatible>
+  </PropertyGroup>
+
+  <!-- Assembly and msbuild properties -->
+  <PropertyGroup>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion> <!-- Should reflect major part of Version -->
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>UnitsNet.Serialization.SystemTextJson</RootNamespace>
+    <TargetFrameworks>netstandard2.0;net8.0;net9.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <!-- Strong name signing -->
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>../UnitsNet.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+
+  <!-- NuGet references that work for both signed and unsigned -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Text.Json" />
+  </ItemGroup>
+
+  <!-- Project references, will also generate the corresponding nuget dependencies -->
+  <ItemGroup>
+    <ProjectReference Include="..\UnitsNet\UnitsNet.csproj" />
+  </ItemGroup>
+
+  <!-- Files to include in nuget package -->
+  <ItemGroup>
+    <None Include="../Docs/Images/logo-32.png" Pack="true" PackagePath="/" />
+  </ItemGroup>
+
+</Project>

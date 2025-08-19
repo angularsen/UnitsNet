@@ -32,532 +32,532 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
     /// </summary>
     public static class NumberToPressureExtensions
     {
-        /// <inheritdoc cref="Pressure.FromAtmospheres(double)" />
+        /// <inheritdoc cref="Pressure.FromAtmospheres(QuantityValue)" />
         public static Pressure Atmospheres<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromAtmospheres(double.CreateChecked(value));
+            => Pressure.FromAtmospheres(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromAtmospheres(value.ToDouble(null));
+            => Pressure.FromAtmospheres(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromBars(double)" />
+        /// <inheritdoc cref="Pressure.FromBars(QuantityValue)" />
         public static Pressure Bars<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromBars(double.CreateChecked(value));
+            => Pressure.FromBars(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromBars(value.ToDouble(null));
+            => Pressure.FromBars(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromCentibars(double)" />
+        /// <inheritdoc cref="Pressure.FromCentibars(QuantityValue)" />
         public static Pressure Centibars<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromCentibars(double.CreateChecked(value));
+            => Pressure.FromCentibars(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromCentibars(value.ToDouble(null));
+            => Pressure.FromCentibars(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromCentimetersOfWaterColumn(double)" />
+        /// <inheritdoc cref="Pressure.FromCentimetersOfWaterColumn(QuantityValue)" />
         public static Pressure CentimetersOfWaterColumn<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromCentimetersOfWaterColumn(double.CreateChecked(value));
+            => Pressure.FromCentimetersOfWaterColumn(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromCentimetersOfWaterColumn(value.ToDouble(null));
+            => Pressure.FromCentimetersOfWaterColumn(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromDecapascals(double)" />
+        /// <inheritdoc cref="Pressure.FromDecapascals(QuantityValue)" />
         public static Pressure Decapascals<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromDecapascals(double.CreateChecked(value));
+            => Pressure.FromDecapascals(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromDecapascals(value.ToDouble(null));
+            => Pressure.FromDecapascals(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromDecibars(double)" />
+        /// <inheritdoc cref="Pressure.FromDecibars(QuantityValue)" />
         public static Pressure Decibars<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromDecibars(double.CreateChecked(value));
+            => Pressure.FromDecibars(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromDecibars(value.ToDouble(null));
+            => Pressure.FromDecibars(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromDynesPerSquareCentimeter(double)" />
+        /// <inheritdoc cref="Pressure.FromDynesPerSquareCentimeter(QuantityValue)" />
         public static Pressure DynesPerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromDynesPerSquareCentimeter(double.CreateChecked(value));
+            => Pressure.FromDynesPerSquareCentimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromDynesPerSquareCentimeter(value.ToDouble(null));
+            => Pressure.FromDynesPerSquareCentimeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromFeetOfHead(double)" />
+        /// <inheritdoc cref="Pressure.FromFeetOfHead(QuantityValue)" />
         public static Pressure FeetOfHead<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromFeetOfHead(double.CreateChecked(value));
+            => Pressure.FromFeetOfHead(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromFeetOfHead(value.ToDouble(null));
+            => Pressure.FromFeetOfHead(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromGigapascals(double)" />
+        /// <inheritdoc cref="Pressure.FromGigapascals(QuantityValue)" />
         public static Pressure Gigapascals<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromGigapascals(double.CreateChecked(value));
+            => Pressure.FromGigapascals(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromGigapascals(value.ToDouble(null));
+            => Pressure.FromGigapascals(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromHectopascals(double)" />
+        /// <inheritdoc cref="Pressure.FromHectopascals(QuantityValue)" />
         public static Pressure Hectopascals<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromHectopascals(double.CreateChecked(value));
+            => Pressure.FromHectopascals(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromHectopascals(value.ToDouble(null));
+            => Pressure.FromHectopascals(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromInchesOfMercury(double)" />
+        /// <inheritdoc cref="Pressure.FromInchesOfMercury(QuantityValue)" />
         public static Pressure InchesOfMercury<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromInchesOfMercury(double.CreateChecked(value));
+            => Pressure.FromInchesOfMercury(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromInchesOfMercury(value.ToDouble(null));
+            => Pressure.FromInchesOfMercury(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromInchesOfWaterColumn(double)" />
+        /// <inheritdoc cref="Pressure.FromInchesOfWaterColumn(QuantityValue)" />
         public static Pressure InchesOfWaterColumn<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromInchesOfWaterColumn(double.CreateChecked(value));
+            => Pressure.FromInchesOfWaterColumn(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromInchesOfWaterColumn(value.ToDouble(null));
+            => Pressure.FromInchesOfWaterColumn(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromKilobars(double)" />
+        /// <inheritdoc cref="Pressure.FromKilobars(QuantityValue)" />
         public static Pressure Kilobars<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromKilobars(double.CreateChecked(value));
+            => Pressure.FromKilobars(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromKilobars(value.ToDouble(null));
+            => Pressure.FromKilobars(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareCentimeter(double)" />
+        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareCentimeter(QuantityValue)" />
         public static Pressure KilogramsForcePerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromKilogramsForcePerSquareCentimeter(double.CreateChecked(value));
+            => Pressure.FromKilogramsForcePerSquareCentimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromKilogramsForcePerSquareCentimeter(value.ToDouble(null));
+            => Pressure.FromKilogramsForcePerSquareCentimeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMeter(double)" />
+        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMeter(QuantityValue)" />
         public static Pressure KilogramsForcePerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromKilogramsForcePerSquareMeter(double.CreateChecked(value));
+            => Pressure.FromKilogramsForcePerSquareMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromKilogramsForcePerSquareMeter(value.ToDouble(null));
+            => Pressure.FromKilogramsForcePerSquareMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMillimeter(double)" />
+        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMillimeter(QuantityValue)" />
         public static Pressure KilogramsForcePerSquareMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromKilogramsForcePerSquareMillimeter(double.CreateChecked(value));
+            => Pressure.FromKilogramsForcePerSquareMillimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromKilogramsForcePerSquareMillimeter(value.ToDouble(null));
+            => Pressure.FromKilogramsForcePerSquareMillimeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareCentimeter(double)" />
+        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareCentimeter(QuantityValue)" />
         public static Pressure KilonewtonsPerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromKilonewtonsPerSquareCentimeter(double.CreateChecked(value));
+            => Pressure.FromKilonewtonsPerSquareCentimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromKilonewtonsPerSquareCentimeter(value.ToDouble(null));
+            => Pressure.FromKilonewtonsPerSquareCentimeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMeter(double)" />
+        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMeter(QuantityValue)" />
         public static Pressure KilonewtonsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromKilonewtonsPerSquareMeter(double.CreateChecked(value));
+            => Pressure.FromKilonewtonsPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromKilonewtonsPerSquareMeter(value.ToDouble(null));
+            => Pressure.FromKilonewtonsPerSquareMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMillimeter(double)" />
+        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMillimeter(QuantityValue)" />
         public static Pressure KilonewtonsPerSquareMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromKilonewtonsPerSquareMillimeter(double.CreateChecked(value));
+            => Pressure.FromKilonewtonsPerSquareMillimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromKilonewtonsPerSquareMillimeter(value.ToDouble(null));
+            => Pressure.FromKilonewtonsPerSquareMillimeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromKilopascals(double)" />
+        /// <inheritdoc cref="Pressure.FromKilopascals(QuantityValue)" />
         public static Pressure Kilopascals<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromKilopascals(double.CreateChecked(value));
+            => Pressure.FromKilopascals(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromKilopascals(value.ToDouble(null));
+            => Pressure.FromKilopascals(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareFoot(double)" />
+        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareFoot(QuantityValue)" />
         public static Pressure KilopoundsForcePerSquareFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromKilopoundsForcePerSquareFoot(double.CreateChecked(value));
+            => Pressure.FromKilopoundsForcePerSquareFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromKilopoundsForcePerSquareFoot(value.ToDouble(null));
+            => Pressure.FromKilopoundsForcePerSquareFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareInch(double)" />
+        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareInch(QuantityValue)" />
         public static Pressure KilopoundsForcePerSquareInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromKilopoundsForcePerSquareInch(double.CreateChecked(value));
+            => Pressure.FromKilopoundsForcePerSquareInch(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromKilopoundsForcePerSquareInch(value.ToDouble(null));
+            => Pressure.FromKilopoundsForcePerSquareInch(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareMil(double)" />
+        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareMil(QuantityValue)" />
         public static Pressure KilopoundsForcePerSquareMil<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromKilopoundsForcePerSquareMil(double.CreateChecked(value));
+            => Pressure.FromKilopoundsForcePerSquareMil(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromKilopoundsForcePerSquareMil(value.ToDouble(null));
+            => Pressure.FromKilopoundsForcePerSquareMil(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromMegabars(double)" />
+        /// <inheritdoc cref="Pressure.FromMegabars(QuantityValue)" />
         public static Pressure Megabars<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromMegabars(double.CreateChecked(value));
+            => Pressure.FromMegabars(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromMegabars(value.ToDouble(null));
+            => Pressure.FromMegabars(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double)" />
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(QuantityValue)" />
         public static Pressure MeganewtonsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromMeganewtonsPerSquareMeter(double.CreateChecked(value));
+            => Pressure.FromMeganewtonsPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromMeganewtonsPerSquareMeter(value.ToDouble(null));
+            => Pressure.FromMeganewtonsPerSquareMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromMegapascals(double)" />
+        /// <inheritdoc cref="Pressure.FromMegapascals(QuantityValue)" />
         public static Pressure Megapascals<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromMegapascals(double.CreateChecked(value));
+            => Pressure.FromMegapascals(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromMegapascals(value.ToDouble(null));
+            => Pressure.FromMegapascals(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromMetersOfHead(double)" />
+        /// <inheritdoc cref="Pressure.FromMetersOfHead(QuantityValue)" />
         public static Pressure MetersOfHead<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromMetersOfHead(double.CreateChecked(value));
+            => Pressure.FromMetersOfHead(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromMetersOfHead(value.ToDouble(null));
+            => Pressure.FromMetersOfHead(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromMetersOfWaterColumn(double)" />
+        /// <inheritdoc cref="Pressure.FromMetersOfWaterColumn(QuantityValue)" />
         public static Pressure MetersOfWaterColumn<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromMetersOfWaterColumn(double.CreateChecked(value));
+            => Pressure.FromMetersOfWaterColumn(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromMetersOfWaterColumn(value.ToDouble(null));
+            => Pressure.FromMetersOfWaterColumn(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromMicrobars(double)" />
+        /// <inheritdoc cref="Pressure.FromMicrobars(QuantityValue)" />
         public static Pressure Microbars<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromMicrobars(double.CreateChecked(value));
+            => Pressure.FromMicrobars(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromMicrobars(value.ToDouble(null));
+            => Pressure.FromMicrobars(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromMicropascals(double)" />
+        /// <inheritdoc cref="Pressure.FromMicropascals(QuantityValue)" />
         public static Pressure Micropascals<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromMicropascals(double.CreateChecked(value));
+            => Pressure.FromMicropascals(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromMicropascals(value.ToDouble(null));
+            => Pressure.FromMicropascals(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromMillibars(double)" />
+        /// <inheritdoc cref="Pressure.FromMillibars(QuantityValue)" />
         public static Pressure Millibars<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromMillibars(double.CreateChecked(value));
+            => Pressure.FromMillibars(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromMillibars(value.ToDouble(null));
+            => Pressure.FromMillibars(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(double)" />
+        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(QuantityValue)" />
         public static Pressure MillimetersOfMercury<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromMillimetersOfMercury(double.CreateChecked(value));
+            => Pressure.FromMillimetersOfMercury(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromMillimetersOfMercury(value.ToDouble(null));
+            => Pressure.FromMillimetersOfMercury(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromMillimetersOfWaterColumn(double)" />
+        /// <inheritdoc cref="Pressure.FromMillimetersOfWaterColumn(QuantityValue)" />
         public static Pressure MillimetersOfWaterColumn<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromMillimetersOfWaterColumn(double.CreateChecked(value));
+            => Pressure.FromMillimetersOfWaterColumn(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromMillimetersOfWaterColumn(value.ToDouble(null));
+            => Pressure.FromMillimetersOfWaterColumn(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromMillipascals(double)" />
+        /// <inheritdoc cref="Pressure.FromMillipascals(QuantityValue)" />
         public static Pressure Millipascals<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromMillipascals(double.CreateChecked(value));
+            => Pressure.FromMillipascals(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromMillipascals(value.ToDouble(null));
+            => Pressure.FromMillipascals(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromMillitorrs(double)" />
+        /// <inheritdoc cref="Pressure.FromMillitorrs(QuantityValue)" />
         public static Pressure Millitorrs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromMillitorrs(double.CreateChecked(value));
+            => Pressure.FromMillitorrs(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromMillitorrs(value.ToDouble(null));
+            => Pressure.FromMillitorrs(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareCentimeter(double)" />
+        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareCentimeter(QuantityValue)" />
         public static Pressure NewtonsPerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromNewtonsPerSquareCentimeter(double.CreateChecked(value));
+            => Pressure.FromNewtonsPerSquareCentimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromNewtonsPerSquareCentimeter(value.ToDouble(null));
+            => Pressure.FromNewtonsPerSquareCentimeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMeter(double)" />
+        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMeter(QuantityValue)" />
         public static Pressure NewtonsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromNewtonsPerSquareMeter(double.CreateChecked(value));
+            => Pressure.FromNewtonsPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromNewtonsPerSquareMeter(value.ToDouble(null));
+            => Pressure.FromNewtonsPerSquareMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMillimeter(double)" />
+        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMillimeter(QuantityValue)" />
         public static Pressure NewtonsPerSquareMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromNewtonsPerSquareMillimeter(double.CreateChecked(value));
+            => Pressure.FromNewtonsPerSquareMillimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromNewtonsPerSquareMillimeter(value.ToDouble(null));
+            => Pressure.FromNewtonsPerSquareMillimeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromPascals(double)" />
+        /// <inheritdoc cref="Pressure.FromPascals(QuantityValue)" />
         public static Pressure Pascals<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromPascals(double.CreateChecked(value));
+            => Pressure.FromPascals(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromPascals(value.ToDouble(null));
+            => Pressure.FromPascals(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareFoot(double)" />
+        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareFoot(QuantityValue)" />
         public static Pressure PoundsForcePerSquareFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromPoundsForcePerSquareFoot(double.CreateChecked(value));
+            => Pressure.FromPoundsForcePerSquareFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromPoundsForcePerSquareFoot(value.ToDouble(null));
+            => Pressure.FromPoundsForcePerSquareFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareInch(double)" />
+        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareInch(QuantityValue)" />
         public static Pressure PoundsForcePerSquareInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromPoundsForcePerSquareInch(double.CreateChecked(value));
+            => Pressure.FromPoundsForcePerSquareInch(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromPoundsForcePerSquareInch(value.ToDouble(null));
+            => Pressure.FromPoundsForcePerSquareInch(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareMil(double)" />
+        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareMil(QuantityValue)" />
         public static Pressure PoundsForcePerSquareMil<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromPoundsForcePerSquareMil(double.CreateChecked(value));
+            => Pressure.FromPoundsForcePerSquareMil(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromPoundsForcePerSquareMil(value.ToDouble(null));
+            => Pressure.FromPoundsForcePerSquareMil(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromPoundsPerInchSecondSquared(double)" />
+        /// <inheritdoc cref="Pressure.FromPoundsPerInchSecondSquared(QuantityValue)" />
         public static Pressure PoundsPerInchSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromPoundsPerInchSecondSquared(double.CreateChecked(value));
+            => Pressure.FromPoundsPerInchSecondSquared(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromPoundsPerInchSecondSquared(value.ToDouble(null));
+            => Pressure.FromPoundsPerInchSecondSquared(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromTechnicalAtmospheres(double)" />
+        /// <inheritdoc cref="Pressure.FromTechnicalAtmospheres(QuantityValue)" />
         public static Pressure TechnicalAtmospheres<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromTechnicalAtmospheres(double.CreateChecked(value));
+            => Pressure.FromTechnicalAtmospheres(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromTechnicalAtmospheres(value.ToDouble(null));
+            => Pressure.FromTechnicalAtmospheres(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareCentimeter(double)" />
+        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareCentimeter(QuantityValue)" />
         public static Pressure TonnesForcePerSquareCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromTonnesForcePerSquareCentimeter(double.CreateChecked(value));
+            => Pressure.FromTonnesForcePerSquareCentimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromTonnesForcePerSquareCentimeter(value.ToDouble(null));
+            => Pressure.FromTonnesForcePerSquareCentimeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMeter(double)" />
+        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMeter(QuantityValue)" />
         public static Pressure TonnesForcePerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromTonnesForcePerSquareMeter(double.CreateChecked(value));
+            => Pressure.FromTonnesForcePerSquareMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromTonnesForcePerSquareMeter(value.ToDouble(null));
+            => Pressure.FromTonnesForcePerSquareMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMillimeter(double)" />
+        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMillimeter(QuantityValue)" />
         public static Pressure TonnesForcePerSquareMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromTonnesForcePerSquareMillimeter(double.CreateChecked(value));
+            => Pressure.FromTonnesForcePerSquareMillimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromTonnesForcePerSquareMillimeter(value.ToDouble(null));
+            => Pressure.FromTonnesForcePerSquareMillimeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Pressure.FromTorrs(double)" />
+        /// <inheritdoc cref="Pressure.FromTorrs(QuantityValue)" />
         public static Pressure Torrs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Pressure.FromTorrs(double.CreateChecked(value));
+            => Pressure.FromTorrs(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Pressure.FromTorrs(value.ToDouble(null));
+            => Pressure.FromTorrs(value.ToQuantityValue());
 #endif
 
     }

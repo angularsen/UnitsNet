@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(Configuration)' != 'Official'">
+    <!-- <PackageReference Include="UnitsNet" VersionOverride="5.75.0" /> -->
+    <PackageReference Include="UnitsNet" VersionOverride="6.0.0-pre019" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Official'">
+    <PackageReference Include="UnitsNet" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\CustomQuantities.HowMuch.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CustomQuantities.HowMuch.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\CustomQuantities.HowMuch.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CustomQuantities.HowMuch.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

@@ -48,6 +48,29 @@ namespace UnitsNet.Tests
             Assert.Equal("g", unitAbbreviationCache.GetUnitAbbreviations(MassUnit.Gram, AmericanCulture)[0]);
             Assert.Throws<UnitNotFoundException>(() => unitAbbreviationCache.GetUnitAbbreviations(HowMuchUnit.Some));
         }
+        
+        [Fact]
+        public void CreateDefault_WithConfigureAction_ReturnsAnAbbreviationCacheWithNewQuantityInfoLookup()
+        {
+            var unitAbbreviationCache = UnitAbbreviationsCache.CreateDefault(configuration => configuration.WithAdditionalQuantities([HowMuch.Info]));
+
+            Assert.NotEqual(UnitsNetSetup.Default.Quantities, unitAbbreviationCache.Quantities);
+            Assert.Equal("g", unitAbbreviationCache.GetUnitAbbreviations(MassUnit.Gram, AmericanCulture)[0]);
+            Assert.Empty(unitAbbreviationCache.GetUnitAbbreviations(HowMuchUnit.Some, AmericanCulture));
+        }
+        
+        [Fact]
+        public void Create_WithQuantitiesAndConfigureAction_ReturnsAnAbbreviationCacheWithNewQuantityInfoLookup()
+        {
+            var unitAbbreviationCache = UnitAbbreviationsCache.Create([Mass.Info, HowMuch.Info],
+                configuration =>
+                    configuration.Configure(() => Mass.MassInfo.CreateDefault(mappings => mappings.SelectUnits(MassUnit.Kilogram, MassUnit.Gram))));
+
+            Assert.NotEqual(UnitsNetSetup.Default.Quantities, unitAbbreviationCache.Quantities);
+            Assert.Equal("g", unitAbbreviationCache.GetUnitAbbreviations(MassUnit.Gram, AmericanCulture)[0]);
+            Assert.Empty(unitAbbreviationCache.GetUnitAbbreviations(HowMuchUnit.Some, AmericanCulture));
+            Assert.Throws<UnitNotFoundException>(() => unitAbbreviationCache.GetUnitAbbreviations(MassUnit.EarthMass));
+        }
 
         [Fact]
         public void UnitAbbreviationsCache_Default_ReturnsInstanceFromUnitsNetSetup()

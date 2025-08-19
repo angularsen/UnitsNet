@@ -105,6 +105,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ScalarInfo_CreateWithCustomUnitInfos()
+        {
+            ScalarUnit[] expectedUnits = [ScalarUnit.Amount];
+
+            Scalar.ScalarInfo quantityInfo = Scalar.ScalarInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("Scalar", quantityInfo.Name);
+            Assert.Equal(Scalar.Zero, quantityInfo.Zero);
+            Assert.Equal(Scalar.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void AmountToScalarUnits()
         {
             Scalar amount = Scalar.FromAmount(1);
@@ -184,20 +198,16 @@ namespace UnitsNet.Tests
 
                 Assert.Equal(ScalarUnit.Amount, convertedQuantity.Unit);
                 Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantity = new Scalar(value: 1, unit: ScalarUnit.Amount);
+
+                IQuantity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(ScalarUnit.Amount, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
             });
         }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ReturnsValueInDimensionlessUnit()
-        {
-            IQuantity quantity = new Scalar(value: 1, unit: ScalarUnit.Amount);
-
-            IQuantity convertedQuantity = quantity.ToUnitUntyped(UnitSystem.SI);
-
-            Assert.Equal(ScalarUnit.Amount, convertedQuantity.Unit);
-            Assert.Equal(quantity.Value, convertedQuantity.Value);
-        }
-
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
@@ -206,21 +216,21 @@ namespace UnitsNet.Tests
             Assert.Multiple(() =>
             {
                 var quantity = new Scalar(value: 1, unit: Scalar.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             }, () =>
             {
                 IQuantity<ScalarUnit> quantity = new Scalar(value: 1, unit: Scalar.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             }, () =>
             {
                 IQuantity quantity = new Scalar(value: 1, unit: Scalar.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
         }
 
         [Theory]
         [InlineData("en-US", "4.2 ", ScalarUnit.Amount, 4.2)]
-        public void Parse(string culture, string quantityString, ScalarUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, ScalarUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Scalar.Parse(quantityString);
@@ -230,7 +240,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "4.2 ", ScalarUnit.Amount, 4.2)]
-        public void TryParse(string culture, string quantityString, ScalarUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, ScalarUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Scalar.TryParse(quantityString, out Scalar parsed));
@@ -363,6 +373,7 @@ namespace UnitsNet.Tests
                 var quantity = Scalar.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -386,32 +397,34 @@ namespace UnitsNet.Tests
                 IQuantity<ScalarUnit> quantityToConvert = quantity;
                 IQuantity<ScalarUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Scalar amount = Scalar.FromAmount(1);
-            AssertEx.EqualTolerance(1, Scalar.FromAmount(amount.Amount).Amount, AmountTolerance);
+            Scalar amount = Scalar.FromAmount(3);
+            Assert.Equal(3, Scalar.FromAmount(amount.Amount).Amount);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             Scalar v = Scalar.FromAmount(1);
-            AssertEx.EqualTolerance(-1, -v.Amount, AmountTolerance);
-            AssertEx.EqualTolerance(2, (Scalar.FromAmount(3)-v).Amount, AmountTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Amount, AmountTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Amount, AmountTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Amount, AmountTolerance);
-            AssertEx.EqualTolerance(2, (Scalar.FromAmount(10)/5).Amount, AmountTolerance);
-            AssertEx.EqualTolerance(2, Scalar.FromAmount(10)/Scalar.FromAmount(5), AmountTolerance);
+            Assert.Equal(-1, -v.Amount);
+            Assert.Equal(2, (Scalar.FromAmount(3) - v).Amount);
+            Assert.Equal(2, (v + v).Amount);
+            Assert.Equal(10, (v * 10).Amount);
+            Assert.Equal(10, (10 * v).Amount);
+            Assert.Equal(2, (Scalar.FromAmount(10) / 5).Amount);
+            Assert.Equal(2, Scalar.FromAmount(10) / Scalar.FromAmount(5));
         }
 
         [Fact]
@@ -457,7 +470,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ScalarUnit.Amount, 1, ScalarUnit.Amount, true)]  // Same value and unit.
         [InlineData(1, ScalarUnit.Amount, 2, ScalarUnit.Amount, false)] // Different value.
-        [InlineData(2, ScalarUnit.Amount, 1, ScalarUnit.Amount, false)] // Different value and unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ScalarUnit unitA, double valueB, ScalarUnit unitB, bool expectEqual)
         {
             var a = new Scalar(valueA, unitA);
@@ -517,8 +529,8 @@ namespace UnitsNet.Tests
             var quantity = Scalar.FromAmount(firstValue);
             var otherQuantity = Scalar.FromAmount(secondValue);
             Scalar maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, Scalar.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -537,7 +549,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<ScalarUnit>();
+            var units = EnumHelper.GetValues<ScalarUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -548,6 +560,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Scalar.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(Scalar.Info.Units, Scalar.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, Scalar.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -612,7 +636,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Scalar.FromAmount(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(Scalar), quantity.As(Scalar.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

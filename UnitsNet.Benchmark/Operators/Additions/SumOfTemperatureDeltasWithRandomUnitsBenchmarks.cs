@@ -14,7 +14,7 @@ namespace UnitsNet.Benchmark.Operators.Additions;
 [SimpleJob(RuntimeMoniker.Net90)]
 public class SumOfTemperatureDeltasWithRandomUnitsBenchmarks
 {
-    private static readonly double Value = 1.23;
+    private static readonly QuantityValue Value = 1.23;
 
     private readonly Random _random = new(42);
     private TemperatureDelta[] _quantities;
@@ -22,12 +22,20 @@ public class SumOfTemperatureDeltasWithRandomUnitsBenchmarks
     [Params(10, 1000)]
     public int NbOperations { get; set; }
 
+    [Params(true)]
+    public bool Frozen { get; set; }
+
+    [Params(ConversionCachingMode.All)]
+    public ConversionCachingMode CachingMode { get; set; }
+
     [GlobalSetup]
     public void PrepareQuantities()
     {
+        UnitsNetSetup.ConfigureDefaults(builder => builder.WithConverterOptions(new QuantityConverterBuildOptions(Frozen, CachingMode)));
+        
         _quantities = _random.GetRandomQuantities<TemperatureDelta, TemperatureDeltaUnit>(Value, TemperatureDelta.Units.ToArray(), NbOperations).ToArray();
     }
-
+    
     [Benchmark(Baseline = true)]
     public TemperatureDelta SumOfTemperatureDeltas()
     {

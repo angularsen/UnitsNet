@@ -178,6 +178,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AreaInfo_CreateWithCustomUnitInfos()
+        {
+            AreaUnit[] expectedUnits = [AreaUnit.SquareMeter];
+
+            Area.AreaInfo quantityInfo = Area.AreaInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("Area", quantityInfo.Name);
+            Assert.Equal(Area.Zero, quantityInfo.Zero);
+            Assert.Equal(Area.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void SquareMeterToAreaUnits()
         {
             Area squaremeter = Area.FromSquareMeters(1);
@@ -303,22 +317,15 @@ namespace UnitsNet.Tests
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
                 Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
             });
-        }
-
-        [Fact]
-        public virtual void ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits()
-        {
-            var quantity = new Area(value: 1, unit: Area.BaseUnit);
-            var expectedUnit = Area.Info.GetDefaultUnit(UnitSystem.SI);
-            var expectedValue = quantity.As(expectedUnit);
-
-            IQuantity quantityToConvert = quantity;
-
-            IQuantity convertedQuantity = quantityToConvert.ToUnitUntyped(UnitSystem.SI);
-
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
         }
 
         [Fact]
@@ -333,15 +340,11 @@ namespace UnitsNet.Tests
             {
                 IQuantity<AreaUnit> quantity = new Area(value: 1, unit: Area.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Area(value: 1, unit: Area.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ThrowsArgumentNullExceptionIfNull()
-        {
-            UnitSystem nullUnitSystem = null!;
-            IQuantity quantity = new Area(value: 1, unit: Area.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
         }
 
         [Fact]
@@ -356,15 +359,11 @@ namespace UnitsNet.Tests
             {
                 IQuantity<AreaUnit> quantity = new Area(value: 1, unit: Area.BaseUnit);
                 Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Area(value: 1, unit: Area.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
             });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
-        {
-            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            IQuantity quantity = new Area(value: 1, unit: Area.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnitUntyped(unsupportedUnitSystem));
         }
 
         [Theory]
@@ -407,7 +406,7 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", "4.2 平方毫米", AreaUnit.SquareMillimeter, 4.2)]
         [InlineData("zh-CN", "4.2 平方海里", AreaUnit.SquareNauticalMile, 4.2)]
         [InlineData("zh-CN", "4.2 平方码", AreaUnit.SquareYard, 4.2)]
-        public void Parse(string culture, string quantityString, AreaUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, AreaUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Area.Parse(quantityString);
@@ -462,7 +461,7 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", "4.2 平方毫米", AreaUnit.SquareMillimeter, 4.2)]
         [InlineData("zh-CN", "4.2 平方海里", AreaUnit.SquareNauticalMile, 4.2)]
         [InlineData("zh-CN", "4.2 平方码", AreaUnit.SquareYard, 4.2)]
-        public void TryParse(string culture, string quantityString, AreaUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, AreaUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Area.TryParse(quantityString, out Area parsed));
@@ -860,6 +859,7 @@ namespace UnitsNet.Tests
                 var quantity = Area.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -883,45 +883,47 @@ namespace UnitsNet.Tests
                 IQuantity<AreaUnit> quantityToConvert = quantity;
                 IQuantity<AreaUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Area squaremeter = Area.FromSquareMeters(1);
-            AssertEx.EqualTolerance(1, Area.FromAcres(squaremeter.Acres).SquareMeters, AcresTolerance);
-            AssertEx.EqualTolerance(1, Area.FromHectares(squaremeter.Hectares).SquareMeters, HectaresTolerance);
-            AssertEx.EqualTolerance(1, Area.FromSquareCentimeters(squaremeter.SquareCentimeters).SquareMeters, SquareCentimetersTolerance);
-            AssertEx.EqualTolerance(1, Area.FromSquareDecimeters(squaremeter.SquareDecimeters).SquareMeters, SquareDecimetersTolerance);
-            AssertEx.EqualTolerance(1, Area.FromSquareFeet(squaremeter.SquareFeet).SquareMeters, SquareFeetTolerance);
-            AssertEx.EqualTolerance(1, Area.FromSquareInches(squaremeter.SquareInches).SquareMeters, SquareInchesTolerance);
-            AssertEx.EqualTolerance(1, Area.FromSquareKilometers(squaremeter.SquareKilometers).SquareMeters, SquareKilometersTolerance);
-            AssertEx.EqualTolerance(1, Area.FromSquareMeters(squaremeter.SquareMeters).SquareMeters, SquareMetersTolerance);
-            AssertEx.EqualTolerance(1, Area.FromSquareMicrometers(squaremeter.SquareMicrometers).SquareMeters, SquareMicrometersTolerance);
-            AssertEx.EqualTolerance(1, Area.FromSquareMiles(squaremeter.SquareMiles).SquareMeters, SquareMilesTolerance);
-            AssertEx.EqualTolerance(1, Area.FromSquareMillimeters(squaremeter.SquareMillimeters).SquareMeters, SquareMillimetersTolerance);
-            AssertEx.EqualTolerance(1, Area.FromSquareNauticalMiles(squaremeter.SquareNauticalMiles).SquareMeters, SquareNauticalMilesTolerance);
-            AssertEx.EqualTolerance(1, Area.FromSquareYards(squaremeter.SquareYards).SquareMeters, SquareYardsTolerance);
-            AssertEx.EqualTolerance(1, Area.FromUsSurveySquareFeet(squaremeter.UsSurveySquareFeet).SquareMeters, UsSurveySquareFeetTolerance);
+            Area squaremeter = Area.FromSquareMeters(3);
+            Assert.Equal(3, Area.FromAcres(squaremeter.Acres).SquareMeters);
+            Assert.Equal(3, Area.FromHectares(squaremeter.Hectares).SquareMeters);
+            Assert.Equal(3, Area.FromSquareCentimeters(squaremeter.SquareCentimeters).SquareMeters);
+            Assert.Equal(3, Area.FromSquareDecimeters(squaremeter.SquareDecimeters).SquareMeters);
+            Assert.Equal(3, Area.FromSquareFeet(squaremeter.SquareFeet).SquareMeters);
+            Assert.Equal(3, Area.FromSquareInches(squaremeter.SquareInches).SquareMeters);
+            Assert.Equal(3, Area.FromSquareKilometers(squaremeter.SquareKilometers).SquareMeters);
+            Assert.Equal(3, Area.FromSquareMeters(squaremeter.SquareMeters).SquareMeters);
+            Assert.Equal(3, Area.FromSquareMicrometers(squaremeter.SquareMicrometers).SquareMeters);
+            Assert.Equal(3, Area.FromSquareMiles(squaremeter.SquareMiles).SquareMeters);
+            Assert.Equal(3, Area.FromSquareMillimeters(squaremeter.SquareMillimeters).SquareMeters);
+            Assert.Equal(3, Area.FromSquareNauticalMiles(squaremeter.SquareNauticalMiles).SquareMeters);
+            Assert.Equal(3, Area.FromSquareYards(squaremeter.SquareYards).SquareMeters);
+            Assert.Equal(3, Area.FromUsSurveySquareFeet(squaremeter.UsSurveySquareFeet).SquareMeters);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             Area v = Area.FromSquareMeters(1);
-            AssertEx.EqualTolerance(-1, -v.SquareMeters, SquareMetersTolerance);
-            AssertEx.EqualTolerance(2, (Area.FromSquareMeters(3)-v).SquareMeters, SquareMetersTolerance);
-            AssertEx.EqualTolerance(2, (v + v).SquareMeters, SquareMetersTolerance);
-            AssertEx.EqualTolerance(10, (v*10).SquareMeters, SquareMetersTolerance);
-            AssertEx.EqualTolerance(10, (10*v).SquareMeters, SquareMetersTolerance);
-            AssertEx.EqualTolerance(2, (Area.FromSquareMeters(10)/5).SquareMeters, SquareMetersTolerance);
-            AssertEx.EqualTolerance(2, Area.FromSquareMeters(10)/Area.FromSquareMeters(5), SquareMetersTolerance);
+            Assert.Equal(-1, -v.SquareMeters);
+            Assert.Equal(2, (Area.FromSquareMeters(3) - v).SquareMeters);
+            Assert.Equal(2, (v + v).SquareMeters);
+            Assert.Equal(10, (v * 10).SquareMeters);
+            Assert.Equal(10, (10 * v).SquareMeters);
+            Assert.Equal(2, (Area.FromSquareMeters(10) / 5).SquareMeters);
+            Assert.Equal(2, Area.FromSquareMeters(10) / Area.FromSquareMeters(5));
         }
 
         [Fact]
@@ -967,8 +969,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, AreaUnit.SquareMeter, 1, AreaUnit.SquareMeter, true)]  // Same value and unit.
         [InlineData(1, AreaUnit.SquareMeter, 2, AreaUnit.SquareMeter, false)] // Different value.
-        [InlineData(2, AreaUnit.SquareMeter, 1, AreaUnit.Acre, false)] // Different value and unit.
-        [InlineData(1, AreaUnit.SquareMeter, 1, AreaUnit.Acre, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, AreaUnit unitA, double valueB, AreaUnit unitB, bool expectEqual)
         {
             var a = new Area(valueA, unitA);
@@ -1028,8 +1028,8 @@ namespace UnitsNet.Tests
             var quantity = Area.FromSquareMeters(firstValue);
             var otherQuantity = Area.FromSquareMeters(secondValue);
             Area maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, Area.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -1048,7 +1048,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<AreaUnit>();
+            var units = EnumHelper.GetValues<AreaUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -1059,6 +1059,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Area.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(Area.Info.Units, Area.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, Area.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -1149,7 +1161,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Area.FromSquareMeters(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(Area), quantity.As(Area.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

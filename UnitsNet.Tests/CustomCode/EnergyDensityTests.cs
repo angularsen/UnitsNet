@@ -56,7 +56,7 @@ namespace UnitsNet.Tests.CustomCode
             Energy energy = EnergyDensity.CombustionEnergy(EnergyDensity.FromKilowattHoursPerCubicMeter(9.88),
                                                            Volume.FromCubicMeters(1),
                                                            Ratio.FromDecimalFractions(0.9543));
-            Assert.Equal(9.428484, energy.KilowattHours, 5);
+            Assert.Equal(9.428484, energy.KilowattHours);
         }
     }
 }

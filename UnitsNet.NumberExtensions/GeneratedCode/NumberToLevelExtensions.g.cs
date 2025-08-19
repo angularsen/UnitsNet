@@ -32,26 +32,26 @@ namespace UnitsNet.NumberExtensions.NumberToLevel
     /// </summary>
     public static class NumberToLevelExtensions
     {
-        /// <inheritdoc cref="Level.FromDecibels(double)" />
+        /// <inheritdoc cref="Level.FromDecibels(QuantityValue)" />
         public static Level Decibels<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Level.FromDecibels(double.CreateChecked(value));
+            => Level.FromDecibels(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Level.FromDecibels(value.ToDouble(null));
+            => Level.FromDecibels(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Level.FromNepers(double)" />
+        /// <inheritdoc cref="Level.FromNepers(QuantityValue)" />
         public static Level Nepers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Level.FromNepers(double.CreateChecked(value));
+            => Level.FromNepers(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Level.FromNepers(value.ToDouble(null));
+            => Level.FromNepers(value.ToQuantityValue());
 #endif
 
     }

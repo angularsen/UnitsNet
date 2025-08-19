@@ -1,7 +1,6 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-
 namespace UnitsNet.Tests;
 
 public class LogarithmicQuantityExtensionsTest
@@ -15,8 +14,8 @@ public class LogarithmicQuantityExtensionsTest
         var quantity = PowerRatio.FromDecibelWatts(firstValue);
         var otherQuantity = PowerRatio.FromDecibelWatts(secondValue);
         PowerRatio maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-        PowerRatio largerTolerance = maxTolerance * 1.1;
-        PowerRatio smallerTolerance = maxTolerance / 1.1;
+        PowerRatio largerTolerance = maxTolerance * 1.1m;
+        PowerRatio smallerTolerance = maxTolerance / 1.1m;
         Assert.True(quantity.Equals(quantity, PowerRatio.Zero));
         Assert.True(quantity.Equals(quantity, maxTolerance));
         Assert.True(quantity.Equals(otherQuantity, largerTolerance));
@@ -34,8 +33,8 @@ public class LogarithmicQuantityExtensionsTest
         var quantity = PowerRatio.FromDecibelWatts(firstValue);
         var otherQuantity = PowerRatio.FromDecibelWatts(secondValue);
         PowerRatio maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-        PowerRatio largerTolerance = maxTolerance * 1.1;
-        PowerRatio smallerTolerance = maxTolerance / 1.1;
+        PowerRatio largerTolerance = maxTolerance * 1.1m;
+        PowerRatio smallerTolerance = maxTolerance / 1.1m;
         Assert.True(quantity.Equals((IQuantity)quantity, PowerRatio.Zero));
         Assert.True(quantity.Equals((IQuantity)quantity, maxTolerance));
         Assert.True(quantity.Equals((IQuantity)otherQuantity, largerTolerance));
@@ -51,8 +50,8 @@ public class LogarithmicQuantityExtensionsTest
         var tolerance = PowerRatio.FromDecibelWatts(1);
         Assert.False(quantity.Equals(null, tolerance));
     }
-    
-    [Fact(Skip = "Currently throws a StackOverflowException")]
+
+    [Fact]
     public void Equals_TQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
     {
         var quantity = PowerRatio.FromDecibelWatts(1);
@@ -61,8 +60,8 @@ public class LogarithmicQuantityExtensionsTest
         Assert.Throws<UnitNotFoundException>(() => quantity.Equals(invalidQuantity, quantity));
         Assert.Throws<UnitNotFoundException>(() => quantity.Equals(quantity, invalidQuantity));
     }
-    
-    [Fact(Skip = "Currently throws a StackOverflowException")]
+
+    [Fact]
     public void Equals_IQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
     {
         var quantity = PowerRatio.FromDecibelWatts(1);
@@ -151,7 +150,7 @@ public class LogarithmicQuantityExtensionsTest
 
         PowerRatio result = quantities.Sum();
 
-        Assert.Equal(quantity.Value, result.Value, 1e-5);
+        Assert.Equal(quantity.Value, result.Value);
         Assert.Equal(quantity.Unit, result.Unit);
     }
 
@@ -167,8 +166,8 @@ public class LogarithmicQuantityExtensionsTest
         IEnumerable<PowerRatio> quantities = new List<PowerRatio> { quantity };
 
         PowerRatio result = quantities.Sum(x => x);
-        
-        Assert.Equal(quantity.Value, result.Value, 1e-5);
+
+        Assert.Equal(quantity.Value, result.Value);
         Assert.Equal(quantity.Unit, result.Unit);
     }
 
@@ -196,7 +195,7 @@ public class LogarithmicQuantityExtensionsTest
 
         PowerRatio result = quantities.Sum();
 
-        Assert.Equal(expectedValue.Value, result.Value, 1e-5);
+        Assert.Equal(expectedValue, result);
         Assert.Equal(unit1, result.Unit);
     }
 
@@ -223,8 +222,8 @@ public class LogarithmicQuantityExtensionsTest
         PowerRatio expectedValue = quantity1 + quantity2;
 
         PowerRatio result = quantities.Sum(x => x);
-        
-        Assert.Equal(expectedValue.Value, result.Value, 1e-5);
+
+        Assert.Equal(expectedValue, result);
         Assert.Equal(unit1, result.Unit);
     }
 
@@ -251,8 +250,8 @@ public class LogarithmicQuantityExtensionsTest
         PowerRatio expectedValue = quantity1 + quantity2;
 
         PowerRatio result = quantities.Sum(x => x, unit1);
-        
-        Assert.Equal(expectedValue.Value, result.Value, 1e-5);
+
+        Assert.Equal(expectedValue, result);
         Assert.Equal(unit1, result.Unit);
     }
 
@@ -261,7 +260,7 @@ public class LogarithmicQuantityExtensionsTest
     {
         PowerRatio[] quantities = [];
 
-        Assert.Throws<InvalidOperationException>(() => LogarithmicQuantityExtensions.ArithmeticMean(quantities));
+        Assert.Throws<InvalidOperationException>(() => quantities.ArithmeticMean(15));
     }
 
     [Fact]
@@ -285,7 +284,7 @@ public class LogarithmicQuantityExtensionsTest
     {
         PowerRatio[] quantities = null!;
 
-        Assert.Throws<ArgumentNullException>(() => LogarithmicQuantityExtensions.ArithmeticMean(quantities));
+        Assert.Throws<ArgumentNullException>(() => quantities.ArithmeticMean(15));
     }
 
     [Fact]
@@ -293,7 +292,7 @@ public class LogarithmicQuantityExtensionsTest
     {
         PowerRatio[] quantities = null!;
 
-        Assert.Throws<ArgumentNullException>(() => LogarithmicQuantityExtensions.ArithmeticMean(quantities, PowerRatioUnit.DecibelWatt));
+        Assert.Throws<ArgumentNullException>(() => quantities.ArithmeticMean(PowerRatioUnit.DecibelWatt, 15));
     }
 
     [Fact]
@@ -315,9 +314,9 @@ public class LogarithmicQuantityExtensionsTest
         var quantity = new PowerRatio(value, unit);
         IEnumerable<PowerRatio> quantities = new List<PowerRatio> { quantity };
 
-        PowerRatio result = LogarithmicQuantityExtensions.ArithmeticMean(quantities);
+        PowerRatio result = quantities.ArithmeticMean(15);
 
-        Assert.Equal(quantity.Value, result.Value, 1e-5);
+        Assert.Equal(quantity.Value, result.Value);
         Assert.Equal(quantity.Unit, result.Unit);
     }
 
@@ -333,8 +332,8 @@ public class LogarithmicQuantityExtensionsTest
         IEnumerable<PowerRatio> quantities = new List<PowerRatio> { quantity };
 
         PowerRatio result = quantities.ArithmeticMean(x => x);
-        
-        Assert.Equal(quantity.Value, result.Value, 1e-5);
+
+        Assert.Equal(quantity.Value, result.Value);
         Assert.Equal(quantity.Unit, result.Unit);
     }
 
@@ -358,13 +357,13 @@ public class LogarithmicQuantityExtensionsTest
         var quantity1 = new PowerRatio(value1, unit1);
         var quantity2 = new PowerRatio(value2, unit2);
         IEnumerable<PowerRatio> quantities = new List<PowerRatio> { quantity1, quantity2 };
-        var scalingFactor = PowerRatio.LogarithmicScalingFactor;
-        var expectedValue =
+        QuantityValue scalingFactor = PowerRatio.LogarithmicScalingFactor;
+        QuantityValue expectedValue =
             ((quantity1.Value.ToLinearSpace(scalingFactor) + quantity2.As(unit1).ToLinearSpace(scalingFactor)) / 2).ToLogSpace(scalingFactor);
 
-        PowerRatio result = LogarithmicQuantityExtensions.ArithmeticMean(quantities);
+        PowerRatio result = quantities.ArithmeticMean(15);
 
-        Assert.Equal(expectedValue, result.Value, 1e-5);
+        Assert.Equal(expectedValue, result.Value);
         Assert.Equal(unit1, result.Unit);
     }
 
@@ -388,13 +387,13 @@ public class LogarithmicQuantityExtensionsTest
         var quantity1 = new PowerRatio(value1, unit1);
         var quantity2 = new PowerRatio(value2, unit2);
         IEnumerable<PowerRatio> quantities = new List<PowerRatio> { quantity1, quantity2 };
-        var scalingFactor = PowerRatio.LogarithmicScalingFactor;
-        var expectedValue =
+        QuantityValue scalingFactor = PowerRatio.LogarithmicScalingFactor;
+        QuantityValue expectedValue =
             ((quantity1.Value.ToLinearSpace(scalingFactor) + quantity2.As(unit1).ToLinearSpace(scalingFactor)) / 2).ToLogSpace(scalingFactor);
 
         PowerRatio result = quantities.ArithmeticMean(x => x);
 
-        Assert.Equal(expectedValue, result.Value, 1e-5);
+        Assert.Equal(expectedValue, result.Value);
         Assert.Equal(unit1, result.Unit);
     }
 
@@ -418,13 +417,13 @@ public class LogarithmicQuantityExtensionsTest
         var quantity1 = new PowerRatio(value1, unit1);
         var quantity2 = new PowerRatio(value2, unit2);
         IEnumerable<PowerRatio> quantities = new List<PowerRatio> { quantity1, quantity2 };
-        var scalingFactor = PowerRatio.LogarithmicScalingFactor;
-        var expectedValue =
+        QuantityValue scalingFactor = PowerRatio.LogarithmicScalingFactor;
+        QuantityValue expectedValue =
             ((quantity1.Value.ToLinearSpace(scalingFactor) + quantity2.As(unit1).ToLinearSpace(scalingFactor)) / 2).ToLogSpace(scalingFactor);
 
         PowerRatio result = quantities.ArithmeticMean(x => x, unit1);
 
-        Assert.Equal(expectedValue, result.Value, 1e-5);
+        Assert.Equal(expectedValue, result.Value);
         Assert.Equal(unit1, result.Unit);
     }
 
@@ -489,7 +488,7 @@ public class LogarithmicQuantityExtensionsTest
 
         PowerRatio result = quantities.GeometricMean();
 
-        Assert.Equal(quantity.Value, result.Value, 1e-5);
+        Assert.Equal(quantity.Value, result.Value);
         Assert.Equal(quantity.Unit, result.Unit);
     }
 
@@ -506,7 +505,7 @@ public class LogarithmicQuantityExtensionsTest
 
         PowerRatio result = quantities.GeometricMean(x => x);
 
-        Assert.Equal(quantity.Value, result.Value, 1e-5);
+        Assert.Equal(quantity.Value, result.Value);
         Assert.Equal(quantity.Unit, result.Unit);
     }
 
@@ -530,11 +529,11 @@ public class LogarithmicQuantityExtensionsTest
         var quantity1 = new PowerRatio(value1, unit1);
         var quantity2 = new PowerRatio(value2, unit2);
         IEnumerable<PowerRatio> quantities = new List<PowerRatio> { quantity1, quantity2 };
-        var expectedValue = double.RootN(quantity1.Value + quantity2.As(unit1), 2);
+        var expectedValue = QuantityValue.RootN(quantity1.Value + quantity2.As(unit1), 2);
 
         PowerRatio result = quantities.GeometricMean();
 
-        Assert.Equal(expectedValue, result.Value, 1e-5);
+        Assert.Equal(expectedValue, result.Value);
         Assert.Equal(unit1, result.Unit);
     }
 
@@ -558,11 +557,11 @@ public class LogarithmicQuantityExtensionsTest
         var quantity1 = new PowerRatio(value1, unit1);
         var quantity2 = new PowerRatio(value2, unit2);
         IEnumerable<PowerRatio> quantities = new List<PowerRatio> { quantity1, quantity2 };
-        var expectedValue = double.RootN(quantity1.Value + quantity2.As(unit1), 2);
+        var expectedValue = QuantityValue.RootN(quantity1.Value + quantity2.As(unit1), 2);
 
         PowerRatio result = quantities.GeometricMean(x => x);
 
-        Assert.Equal(expectedValue, result.Value, 1e-5);
+        Assert.Equal(expectedValue, result.Value);
         Assert.Equal(unit1, result.Unit);
     }
 
@@ -586,11 +585,11 @@ public class LogarithmicQuantityExtensionsTest
         var quantity1 = new PowerRatio(value1, unit1);
         var quantity2 = new PowerRatio(value2, unit2);
         IEnumerable<PowerRatio> quantities = new List<PowerRatio> { quantity1, quantity2 };
-        var expectedValue = double.RootN(quantity1.Value + quantity2.As(unit1), 2);
+        var expectedValue = QuantityValue.RootN(quantity1.Value + quantity2.As(unit1), 2);
 
         PowerRatio result = quantities.GeometricMean(x => x, unit1);
 
-        Assert.Equal(expectedValue, result.Value, 1e-5);
+        Assert.Equal(expectedValue, result.Value);
         Assert.Equal(unit1, result.Unit);
     }
 }

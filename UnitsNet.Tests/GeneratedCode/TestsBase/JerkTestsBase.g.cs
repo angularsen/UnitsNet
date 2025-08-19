@@ -166,6 +166,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void JerkInfo_CreateWithCustomUnitInfos()
+        {
+            JerkUnit[] expectedUnits = [JerkUnit.MeterPerSecondCubed];
+
+            Jerk.JerkInfo quantityInfo = Jerk.JerkInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("Jerk", quantityInfo.Name);
+            Assert.Equal(Jerk.Zero, quantityInfo.Zero);
+            Assert.Equal(Jerk.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void MeterPerSecondCubedToJerkUnits()
         {
             Jerk meterpersecondcubed = Jerk.FromMetersPerSecondCubed(1);
@@ -285,22 +299,15 @@ namespace UnitsNet.Tests
 
                 Assert.Equal(expectedUnit, convertedQuantity.Unit);
                 Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
             });
-        }
-
-        [Fact]
-        public virtual void ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits()
-        {
-            var quantity = new Jerk(value: 1, unit: Jerk.BaseUnit);
-            var expectedUnit = Jerk.Info.GetDefaultUnit(UnitSystem.SI);
-            var expectedValue = quantity.As(expectedUnit);
-
-            IQuantity quantityToConvert = quantity;
-
-            IQuantity convertedQuantity = quantityToConvert.ToUnitUntyped(UnitSystem.SI);
-
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
         }
 
         [Fact]
@@ -315,15 +322,11 @@ namespace UnitsNet.Tests
             {
                 IQuantity<JerkUnit> quantity = new Jerk(value: 1, unit: Jerk.BaseUnit);
                 Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Jerk(value: 1, unit: Jerk.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ThrowsArgumentNullExceptionIfNull()
-        {
-            UnitSystem nullUnitSystem = null!;
-            IQuantity quantity = new Jerk(value: 1, unit: Jerk.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
         }
 
         [Fact]
@@ -338,15 +341,11 @@ namespace UnitsNet.Tests
             {
                 IQuantity<JerkUnit> quantity = new Jerk(value: 1, unit: Jerk.BaseUnit);
                 Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Jerk(value: 1, unit: Jerk.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
             });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
-        {
-            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            IQuantity quantity = new Jerk(value: 1, unit: Jerk.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnitUntyped(unsupportedUnitSystem));
         }
 
         [Theory]
@@ -372,7 +371,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 мg/s", JerkUnit.MillistandardGravitiesPerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 нм/с³", JerkUnit.NanometerPerSecondCubed, 4.2)]
         [InlineData("ru-RU", "4,2 g/s", JerkUnit.StandardGravitiesPerSecond, 4.2)]
-        public void Parse(string culture, string quantityString, JerkUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, JerkUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Jerk.Parse(quantityString);
@@ -403,7 +402,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 мg/s", JerkUnit.MillistandardGravitiesPerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 нм/с³", JerkUnit.NanometerPerSecondCubed, 4.2)]
         [InlineData("ru-RU", "4,2 g/s", JerkUnit.StandardGravitiesPerSecond, 4.2)]
-        public void TryParse(string culture, string quantityString, JerkUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, JerkUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Jerk.TryParse(quantityString, out Jerk parsed));
@@ -681,6 +680,7 @@ namespace UnitsNet.Tests
                 var quantity = Jerk.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -704,42 +704,44 @@ namespace UnitsNet.Tests
                 IQuantity<JerkUnit> quantityToConvert = quantity;
                 IQuantity<JerkUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Jerk meterpersecondcubed = Jerk.FromMetersPerSecondCubed(1);
-            AssertEx.EqualTolerance(1, Jerk.FromCentimetersPerSecondCubed(meterpersecondcubed.CentimetersPerSecondCubed).MetersPerSecondCubed, CentimetersPerSecondCubedTolerance);
-            AssertEx.EqualTolerance(1, Jerk.FromDecimetersPerSecondCubed(meterpersecondcubed.DecimetersPerSecondCubed).MetersPerSecondCubed, DecimetersPerSecondCubedTolerance);
-            AssertEx.EqualTolerance(1, Jerk.FromFeetPerSecondCubed(meterpersecondcubed.FeetPerSecondCubed).MetersPerSecondCubed, FeetPerSecondCubedTolerance);
-            AssertEx.EqualTolerance(1, Jerk.FromInchesPerSecondCubed(meterpersecondcubed.InchesPerSecondCubed).MetersPerSecondCubed, InchesPerSecondCubedTolerance);
-            AssertEx.EqualTolerance(1, Jerk.FromKilometersPerSecondCubed(meterpersecondcubed.KilometersPerSecondCubed).MetersPerSecondCubed, KilometersPerSecondCubedTolerance);
-            AssertEx.EqualTolerance(1, Jerk.FromMetersPerSecondCubed(meterpersecondcubed.MetersPerSecondCubed).MetersPerSecondCubed, MetersPerSecondCubedTolerance);
-            AssertEx.EqualTolerance(1, Jerk.FromMicrometersPerSecondCubed(meterpersecondcubed.MicrometersPerSecondCubed).MetersPerSecondCubed, MicrometersPerSecondCubedTolerance);
-            AssertEx.EqualTolerance(1, Jerk.FromMillimetersPerSecondCubed(meterpersecondcubed.MillimetersPerSecondCubed).MetersPerSecondCubed, MillimetersPerSecondCubedTolerance);
-            AssertEx.EqualTolerance(1, Jerk.FromMillistandardGravitiesPerSecond(meterpersecondcubed.MillistandardGravitiesPerSecond).MetersPerSecondCubed, MillistandardGravitiesPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Jerk.FromNanometersPerSecondCubed(meterpersecondcubed.NanometersPerSecondCubed).MetersPerSecondCubed, NanometersPerSecondCubedTolerance);
-            AssertEx.EqualTolerance(1, Jerk.FromStandardGravitiesPerSecond(meterpersecondcubed.StandardGravitiesPerSecond).MetersPerSecondCubed, StandardGravitiesPerSecondTolerance);
+            Jerk meterpersecondcubed = Jerk.FromMetersPerSecondCubed(3);
+            Assert.Equal(3, Jerk.FromCentimetersPerSecondCubed(meterpersecondcubed.CentimetersPerSecondCubed).MetersPerSecondCubed);
+            Assert.Equal(3, Jerk.FromDecimetersPerSecondCubed(meterpersecondcubed.DecimetersPerSecondCubed).MetersPerSecondCubed);
+            Assert.Equal(3, Jerk.FromFeetPerSecondCubed(meterpersecondcubed.FeetPerSecondCubed).MetersPerSecondCubed);
+            Assert.Equal(3, Jerk.FromInchesPerSecondCubed(meterpersecondcubed.InchesPerSecondCubed).MetersPerSecondCubed);
+            Assert.Equal(3, Jerk.FromKilometersPerSecondCubed(meterpersecondcubed.KilometersPerSecondCubed).MetersPerSecondCubed);
+            Assert.Equal(3, Jerk.FromMetersPerSecondCubed(meterpersecondcubed.MetersPerSecondCubed).MetersPerSecondCubed);
+            Assert.Equal(3, Jerk.FromMicrometersPerSecondCubed(meterpersecondcubed.MicrometersPerSecondCubed).MetersPerSecondCubed);
+            Assert.Equal(3, Jerk.FromMillimetersPerSecondCubed(meterpersecondcubed.MillimetersPerSecondCubed).MetersPerSecondCubed);
+            Assert.Equal(3, Jerk.FromMillistandardGravitiesPerSecond(meterpersecondcubed.MillistandardGravitiesPerSecond).MetersPerSecondCubed);
+            Assert.Equal(3, Jerk.FromNanometersPerSecondCubed(meterpersecondcubed.NanometersPerSecondCubed).MetersPerSecondCubed);
+            Assert.Equal(3, Jerk.FromStandardGravitiesPerSecond(meterpersecondcubed.StandardGravitiesPerSecond).MetersPerSecondCubed);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             Jerk v = Jerk.FromMetersPerSecondCubed(1);
-            AssertEx.EqualTolerance(-1, -v.MetersPerSecondCubed, MetersPerSecondCubedTolerance);
-            AssertEx.EqualTolerance(2, (Jerk.FromMetersPerSecondCubed(3)-v).MetersPerSecondCubed, MetersPerSecondCubedTolerance);
-            AssertEx.EqualTolerance(2, (v + v).MetersPerSecondCubed, MetersPerSecondCubedTolerance);
-            AssertEx.EqualTolerance(10, (v*10).MetersPerSecondCubed, MetersPerSecondCubedTolerance);
-            AssertEx.EqualTolerance(10, (10*v).MetersPerSecondCubed, MetersPerSecondCubedTolerance);
-            AssertEx.EqualTolerance(2, (Jerk.FromMetersPerSecondCubed(10)/5).MetersPerSecondCubed, MetersPerSecondCubedTolerance);
-            AssertEx.EqualTolerance(2, Jerk.FromMetersPerSecondCubed(10)/Jerk.FromMetersPerSecondCubed(5), MetersPerSecondCubedTolerance);
+            Assert.Equal(-1, -v.MetersPerSecondCubed);
+            Assert.Equal(2, (Jerk.FromMetersPerSecondCubed(3) - v).MetersPerSecondCubed);
+            Assert.Equal(2, (v + v).MetersPerSecondCubed);
+            Assert.Equal(10, (v * 10).MetersPerSecondCubed);
+            Assert.Equal(10, (10 * v).MetersPerSecondCubed);
+            Assert.Equal(2, (Jerk.FromMetersPerSecondCubed(10) / 5).MetersPerSecondCubed);
+            Assert.Equal(2, Jerk.FromMetersPerSecondCubed(10) / Jerk.FromMetersPerSecondCubed(5));
         }
 
         [Fact]
@@ -785,8 +787,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, JerkUnit.MeterPerSecondCubed, 1, JerkUnit.MeterPerSecondCubed, true)]  // Same value and unit.
         [InlineData(1, JerkUnit.MeterPerSecondCubed, 2, JerkUnit.MeterPerSecondCubed, false)] // Different value.
-        [InlineData(2, JerkUnit.MeterPerSecondCubed, 1, JerkUnit.CentimeterPerSecondCubed, false)] // Different value and unit.
-        [InlineData(1, JerkUnit.MeterPerSecondCubed, 1, JerkUnit.CentimeterPerSecondCubed, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, JerkUnit unitA, double valueB, JerkUnit unitB, bool expectEqual)
         {
             var a = new Jerk(valueA, unitA);
@@ -846,8 +846,8 @@ namespace UnitsNet.Tests
             var quantity = Jerk.FromMetersPerSecondCubed(firstValue);
             var otherQuantity = Jerk.FromMetersPerSecondCubed(secondValue);
             Jerk maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, Jerk.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -866,7 +866,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<JerkUnit>();
+            var units = EnumHelper.GetValues<JerkUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -877,6 +877,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Jerk.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(Jerk.Info.Units, Jerk.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, Jerk.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -961,7 +973,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Jerk.FromMetersPerSecondCubed(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(Jerk), quantity.As(Jerk.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

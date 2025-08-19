@@ -1,4 +1,6 @@
-﻿using CodeGen.JsonTypes;
+﻿using System.Collections.Generic;
+using System.Linq;
+using CodeGen.JsonTypes;
 
 namespace CodeGen.Generators.UnitsNetGen
 {
@@ -33,27 +35,46 @@ public partial class Quantity
         /// <summary>
         ///     All QuantityInfo instances that are present in UnitsNet by default.
         /// </summary>
-        internal static IReadOnlyList<QuantityInfo> Quantities { get; } =
-        [");
+        internal static IReadOnlyList<QuantityInfo> Quantities => new QuantityInfo[]
+        {");
             foreach (var quantity in _quantities)
                 Writer.WL($@"
             {quantity.Name}.Info,");
             Writer.WL(@"
-        ];
+        };
 
-        internal static void RegisterUnitConversions(UnitConverter unitConverter)
+        /// <summary>
+        ///     All implicit quantity conversions that exist by default.
+        /// </summary>
+        internal static readonly IReadOnlyList<QuantityConversionMapping> Conversions = new QuantityConversionMapping[]
         {");
-            foreach (Quantity quantity in _quantities)
-            {
+            foreach (var quantityRelation in _quantities.SelectMany(quantity => quantity.Relations.Where(x => x.Operator == "inverse")).Distinct(new CumulativeRelationshipEqualityComparer()).OrderBy(relation => relation.LeftQuantity.Name))
                 Writer.WL($@"
-            {quantity.Name}.RegisterDefaultConversions(unitConverter);");
-            }
-
+            new (typeof({quantityRelation.LeftQuantity.Name}), typeof({quantityRelation.RightQuantity.Name})),");
             Writer.WL(@"
-        }
+        };
     }
 }");
             return Writer.ToString();
+        }
+    }
+
+    internal class CumulativeRelationshipEqualityComparer: IEqualityComparer<QuantityRelation>{
+        public bool Equals(QuantityRelation? x, QuantityRelation? y)
+        {
+            if (ReferenceEquals(x, y)) return true;
+            if (x is null) return false;
+            if (y is null) return false;
+            if (x.GetType() != y.GetType()) return false;
+            return
+                x.ResultQuantity == y.ResultQuantity && (
+                    (x.LeftQuantity.Equals(y.LeftQuantity) && x.RightQuantity.Equals(y.RightQuantity))
+                    || (x.LeftQuantity.Equals(y.RightQuantity) && x.RightQuantity.Equals(y.LeftQuantity)));
+        }
+
+        public int GetHashCode(QuantityRelation obj)
+        {
+            return obj.LeftQuantity.GetHashCode() ^ obj.RightQuantity.GetHashCode();
         }
     }
 }
