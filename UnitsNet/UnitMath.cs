@@ -1,7 +1,7 @@
 ﻿namespace UnitsNet;
 
 /// <summary>
-///     A set of extension methods for some of the most common Math operations, such as Min, Max, Sum and Average
+///     Extension methods for common math operations.
 /// </summary>
 public static class UnitMath
 {
