@@ -164,6 +164,11 @@ namespace UnitsNet
 
         static TSelf IQuantityOfType<TSelf>.Create(double value, UnitKey unit) => TSelf.From(value, unit.ToUnit<TUnitType>());
 
+        QuantityInfo<TUnitType> IQuantity<TUnitType>.QuantityInfo
+        {
+            get => QuantityInfo;
+        }
+
         IQuantity<TUnitType> IQuantity<TUnitType>.ToUnit(TUnitType unit)
         {
             return TSelf.From(As(unit), unit);
