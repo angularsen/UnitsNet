@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <PackageReference Include="System.Collections.Immutable" />
-    <PackageReference Include="System.Reflection.Metadata" />
     <PackageReference Include="BenchmarkDotNet" />
     <PackageReference Include="System.Text.Json" />
   </ItemGroup>
