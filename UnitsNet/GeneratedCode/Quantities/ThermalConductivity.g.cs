@@ -42,6 +42,7 @@ namespace UnitsNet
     public readonly partial struct ThermalConductivity :
         IArithmeticQuantity<ThermalConductivity, ThermalConductivityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ThermalConductivity, ThermalConductivity, double>,
         IComparisonOperators<ThermalConductivity, ThermalConductivity, bool>,
         IParsable<ThermalConductivity>,
 #endif

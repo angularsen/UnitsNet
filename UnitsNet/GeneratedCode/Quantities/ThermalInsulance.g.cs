@@ -39,6 +39,7 @@ namespace UnitsNet
     public readonly partial struct ThermalInsulance :
         IArithmeticQuantity<ThermalInsulance, ThermalInsulanceUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ThermalInsulance, ThermalInsulance, double>,
         IComparisonOperators<ThermalInsulance, ThermalInsulance, bool>,
         IParsable<ThermalInsulance>,
 #endif

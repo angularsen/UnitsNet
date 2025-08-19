@@ -42,6 +42,7 @@ namespace UnitsNet
     public readonly partial struct ElectricReactivePower :
         IArithmeticQuantity<ElectricReactivePower, ElectricReactivePowerUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricReactivePower, ElectricReactivePower, double>,
         IComparisonOperators<ElectricReactivePower, ElectricReactivePower, bool>,
         IParsable<ElectricReactivePower>,
 #endif

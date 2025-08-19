@@ -42,13 +42,12 @@ namespace UnitsNet
     public readonly partial struct Molarity :
         IArithmeticQuantity<Molarity, MolarityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Molarity, Molarity, double>,
         IMultiplyOperators<Molarity, Volume, AmountOfSubstance>,
         IMultiplyOperators<Molarity, MolarMass, MassConcentration>,
         IMultiplyOperators<Molarity, VolumeFlow, MolarFlow>,
         IMultiplyOperators<Molarity, VolumeConcentration, Molarity>,
         IDivisionOperators<Molarity, VolumeConcentration, Molarity>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<Molarity, Molarity, bool>,
         IParsable<Molarity>,
 #endif

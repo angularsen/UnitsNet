@@ -39,6 +39,7 @@ namespace UnitsNet
     public readonly partial struct AmplitudeRatio :
         ILogarithmicQuantity<AmplitudeRatio, AmplitudeRatioUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<AmplitudeRatio, AmplitudeRatio, double>,
         IComparisonOperators<AmplitudeRatio, AmplitudeRatio, bool>,
         IParsable<AmplitudeRatio>,
 #endif
