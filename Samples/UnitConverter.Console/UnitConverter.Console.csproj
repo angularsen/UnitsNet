@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup Condition="'$(Configuration)' != 'Official'">
-    <PackageReference Include="UnitsNet" VersionOverride="6.0.0-pre018" />
+    <PackageReference Include="UnitsNet" VersionOverride="6.0.0-pre019" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)' == 'Official'">
