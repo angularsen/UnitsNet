@@ -156,26 +156,40 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ClampCalculatesCorrectly()
+        public void Clamp_ReturnsValue_WhenWithinBounds()
         {
             var min = Length.FromMeters(-1);
             var max = Length.FromCentimeters(150);
-
-            var value1 = Length.FromMillimeters(33);
-
-            Length clampedValue = UnitMath.Clamp(value1, min, max);
+            var value = Length.FromMillimeters(33);
+            
+            Length clampedValue = UnitMath.Clamp(value, min, max);
+            
             Assert.Equal(33, clampedValue.Value);
             Assert.Equal(LengthUnit.Millimeter, clampedValue.Unit);
+        }
 
-            var value2 = Length.FromMillimeters(-1500);
-
-            Length clampedMin = UnitMath.Clamp(value2, min, max);
+        [Fact]
+        public void Clamp_ReturnsMinAsValueUnit_WhenValueIsBelowMin()
+        {
+            var min = Length.FromMeters(-1);
+            var max = Length.FromCentimeters(150);
+            var value = Length.FromMillimeters(-1500);
+            
+            Length clampedMin = UnitMath.Clamp(value, min, max);
+            
             Assert.Equal(-1000, clampedMin.Value);
             Assert.Equal(LengthUnit.Millimeter, clampedMin.Unit);
+        }
 
-            var value3 = Length.FromMillimeters(2000);
-
-            Length clampedMax = UnitMath.Clamp(value3, min, max);
+        [Fact]
+        public void Clamp_ReturnsMaxAsValueUnit_WhenValueIsAboveMax()
+        {
+            var min = Length.FromMeters(-1);
+            var max = Length.FromCentimeters(150);
+            var value = Length.FromMillimeters(2000);
+            
+            Length clampedMax = UnitMath.Clamp(value, min, max);
+            
             Assert.Equal(1500, clampedMax.Value);
             Assert.Equal(LengthUnit.Millimeter, clampedMax.Unit);
         }
