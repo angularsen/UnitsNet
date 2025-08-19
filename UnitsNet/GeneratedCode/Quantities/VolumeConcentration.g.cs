@@ -209,11 +209,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<VolumeConcentration, VolumeConcentrationUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => VolumeConcentration.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

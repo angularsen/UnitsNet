@@ -214,11 +214,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<TemperatureDelta, TemperatureDeltaUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => TemperatureDelta.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

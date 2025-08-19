@@ -201,11 +201,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<HeatTransferCoefficient, HeatTransferCoefficientUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => HeatTransferCoefficient.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

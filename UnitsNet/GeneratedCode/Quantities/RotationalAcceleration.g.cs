@@ -200,11 +200,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<RotationalAcceleration, RotationalAccelerationUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => RotationalAcceleration.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

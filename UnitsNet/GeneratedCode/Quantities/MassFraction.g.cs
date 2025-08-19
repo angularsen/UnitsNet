@@ -212,11 +212,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<MassFraction, MassFractionUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => MassFraction.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

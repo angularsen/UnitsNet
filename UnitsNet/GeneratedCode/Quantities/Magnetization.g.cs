@@ -200,11 +200,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<Magnetization, MagnetizationUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => Magnetization.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

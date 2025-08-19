@@ -205,11 +205,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => CoefficientOfThermalExpansion.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

@@ -239,11 +239,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<Speed, SpeedUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => Speed.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

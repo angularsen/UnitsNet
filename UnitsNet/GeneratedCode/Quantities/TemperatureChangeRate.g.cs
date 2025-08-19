@@ -216,11 +216,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<TemperatureChangeRate, TemperatureChangeRateUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => TemperatureChangeRate.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

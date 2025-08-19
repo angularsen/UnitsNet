@@ -205,11 +205,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<VolumePerLength, VolumePerLengthUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => VolumePerLength.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

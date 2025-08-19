@@ -224,11 +224,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<DoseAreaProduct, DoseAreaProductUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => DoseAreaProduct.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

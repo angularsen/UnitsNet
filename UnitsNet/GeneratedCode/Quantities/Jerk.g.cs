@@ -210,11 +210,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<Jerk, JerkUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => Jerk.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

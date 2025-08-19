@@ -187,11 +187,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<PowerRatio, PowerRatioUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => PowerRatio.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
