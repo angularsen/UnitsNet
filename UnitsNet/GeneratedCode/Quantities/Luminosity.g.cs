@@ -236,11 +236,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<Luminosity, LuminosityUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => Luminosity.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

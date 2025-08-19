@@ -323,11 +323,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<PowerDensity, PowerDensityUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => PowerDensity.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

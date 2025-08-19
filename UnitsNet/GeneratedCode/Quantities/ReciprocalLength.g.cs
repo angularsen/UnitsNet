@@ -231,11 +231,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<ReciprocalLength, ReciprocalLengthUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => ReciprocalLength.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

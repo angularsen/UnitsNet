@@ -293,11 +293,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<RotationalStiffness, RotationalStiffnessUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => RotationalStiffness.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

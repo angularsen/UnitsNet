@@ -226,11 +226,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<DynamicViscosity, DynamicViscosityUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => DynamicViscosity.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

@@ -206,11 +206,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<LeakRate, LeakRateUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => LeakRate.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

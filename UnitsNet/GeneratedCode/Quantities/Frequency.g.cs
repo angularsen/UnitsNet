@@ -228,11 +228,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<Frequency, FrequencyUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => Frequency.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

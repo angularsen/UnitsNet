@@ -245,11 +245,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiationUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => AbsorbedDoseOfIonizingRadiation.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

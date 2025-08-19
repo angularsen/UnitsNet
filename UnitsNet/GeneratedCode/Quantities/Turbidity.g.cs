@@ -183,11 +183,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<Turbidity, TurbidityUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => Turbidity.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

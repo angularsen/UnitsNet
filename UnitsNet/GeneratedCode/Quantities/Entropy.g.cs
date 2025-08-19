@@ -215,11 +215,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<Entropy, EntropyUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => Entropy.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

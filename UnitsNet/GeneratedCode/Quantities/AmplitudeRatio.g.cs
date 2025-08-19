@@ -195,11 +195,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<AmplitudeRatio, AmplitudeRatioUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => AmplitudeRatio.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

@@ -209,11 +209,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<PorousMediumPermeability, PorousMediumPermeabilityUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => PorousMediumPermeability.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

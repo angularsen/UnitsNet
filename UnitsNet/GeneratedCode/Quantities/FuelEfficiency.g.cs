@@ -207,11 +207,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<FuelEfficiency, FuelEfficiencyUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => FuelEfficiency.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

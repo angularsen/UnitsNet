@@ -201,11 +201,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<AreaDensity, AreaDensityUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => AreaDensity.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

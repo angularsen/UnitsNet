@@ -219,11 +219,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<ElectricResistance, ElectricResistanceUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => ElectricResistance.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

@@ -218,11 +218,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<StandardVolumeFlow, StandardVolumeFlowUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => StandardVolumeFlow.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

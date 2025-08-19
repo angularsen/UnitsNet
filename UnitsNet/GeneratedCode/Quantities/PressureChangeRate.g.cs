@@ -246,11 +246,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<PressureChangeRate, PressureChangeRateUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => PressureChangeRate.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

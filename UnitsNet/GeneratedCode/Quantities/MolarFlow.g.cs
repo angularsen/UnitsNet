@@ -222,11 +222,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<MolarFlow, MolarFlowUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => MolarFlow.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

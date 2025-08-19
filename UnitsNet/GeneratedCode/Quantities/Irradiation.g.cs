@@ -221,11 +221,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<Irradiation, IrradiationUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => Irradiation.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

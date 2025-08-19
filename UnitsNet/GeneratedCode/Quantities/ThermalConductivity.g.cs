@@ -200,11 +200,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<ThermalConductivity, ThermalConductivityUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => ThermalConductivity.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

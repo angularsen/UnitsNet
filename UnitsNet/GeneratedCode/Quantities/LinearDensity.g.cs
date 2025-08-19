@@ -251,11 +251,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<LinearDensity, LinearDensityUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => LinearDensity.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

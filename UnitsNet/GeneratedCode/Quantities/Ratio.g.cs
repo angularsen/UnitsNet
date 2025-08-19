@@ -195,11 +195,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<Ratio, RatioUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => Ratio.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

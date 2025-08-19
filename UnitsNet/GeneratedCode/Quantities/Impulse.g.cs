@@ -230,11 +230,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<Impulse, ImpulseUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => Impulse.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

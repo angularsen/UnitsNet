@@ -199,11 +199,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<LuminousIntensity, LuminousIntensityUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => LuminousIntensity.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

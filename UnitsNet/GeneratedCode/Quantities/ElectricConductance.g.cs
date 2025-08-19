@@ -242,11 +242,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<ElectricConductance, ElectricConductanceUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => ElectricConductance.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

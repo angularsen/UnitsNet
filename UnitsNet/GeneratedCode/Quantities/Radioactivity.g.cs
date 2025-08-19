@@ -278,11 +278,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<Radioactivity, RadioactivityUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => Radioactivity.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

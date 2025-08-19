@@ -221,11 +221,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<VolumetricHeatCapacity, VolumetricHeatCapacityUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => VolumetricHeatCapacity.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

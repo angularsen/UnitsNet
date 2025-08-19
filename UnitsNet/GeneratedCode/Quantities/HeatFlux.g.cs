@@ -246,11 +246,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<HeatFlux, HeatFluxUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => HeatFlux.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

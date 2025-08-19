@@ -237,11 +237,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<ForceChangeRate, ForceChangeRateUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => ForceChangeRate.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

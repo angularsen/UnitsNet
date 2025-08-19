@@ -132,25 +132,22 @@ namespace UnitsNet
             {
                 foreach (QuantityRelation relation in _quantity.Relations)
                 {
-                    if (relation.LeftQuantity == _quantity)
+                    if (relation.LeftQuantity != _quantity) continue;
+                    switch (relation.Operator)
                     {
-                        switch (relation.Operator)
-                        {
-                            case "*":
-                                Writer.W(@"
+                        case "*":
+                            Writer.W(@"
         IMultiplyOperators");
-                                break;
-                            case "/":
-                                Writer.W(@"
+                            break;
+                        case "/":
+                            Writer.W(@"
         IDivisionOperators");
-                                break;
-                            default:
-                                continue;
-                        }
-
-                        Writer.WL(
-                            $"<{relation.LeftQuantity.Name}, {relation.RightQuantity.Name}, {relation.ResultQuantity.Name.Replace("double", "QuantityValue")}>,");
+                            break;
+                        default:
+                            continue;
                     }
+
+                    Writer.WL($"<{relation.LeftQuantity.Name}, {relation.RightQuantity.Name}, {relation.ResultQuantity.Name.Replace("double", "QuantityValue")}>,");
                 }
             }
 
@@ -396,11 +393,6 @@ namespace UnitsNet
 
         /// <inheritdoc />
         public QuantityInfo<{_quantity.Name}, {_unitEnumName}> QuantityInfo => Info;
-
-        /// <summary>
-        ///     The <see cref=""BaseDimensions"" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => {_quantity.Name}.BaseDimensions;
 
         #region Explicit implementations
 

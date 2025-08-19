@@ -9,11 +9,6 @@ namespace UnitsNet;
 public interface IQuantity : IFormattable
 {
     /// <summary>
-    ///     The <see cref="BaseDimensions" /> of this quantity.
-    /// </summary>
-    BaseDimensions Dimensions { get; }
-
-    /// <summary>
     ///     Information about the quantity type, such as unit values and names.
     /// </summary>
     QuantityInfo QuantityInfo { get; }

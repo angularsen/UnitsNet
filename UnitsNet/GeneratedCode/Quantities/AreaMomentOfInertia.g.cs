@@ -211,11 +211,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<AreaMomentOfInertia, AreaMomentOfInertiaUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => AreaMomentOfInertia.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
