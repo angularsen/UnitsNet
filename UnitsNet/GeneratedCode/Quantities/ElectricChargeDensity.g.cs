@@ -42,6 +42,7 @@ namespace UnitsNet
     public readonly partial struct ElectricChargeDensity :
         IArithmeticQuantity<ElectricChargeDensity, ElectricChargeDensityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricChargeDensity, ElectricChargeDensity, double>,
         IComparisonOperators<ElectricChargeDensity, ElectricChargeDensity, bool>,
         IParsable<ElectricChargeDensity>,
 #endif

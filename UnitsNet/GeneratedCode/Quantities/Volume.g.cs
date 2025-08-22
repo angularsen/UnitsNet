@@ -39,6 +39,7 @@ namespace UnitsNet
     public readonly partial struct Volume :
         IArithmeticQuantity<Volume, VolumeUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Volume, Volume, double>,
         IMultiplyOperators<Volume, Molarity, AmountOfSubstance>,
         IMultiplyOperators<Volume, ReciprocalLength, Area>,
         IDivisionOperators<Volume, Length, Area>,
@@ -52,8 +53,6 @@ namespace UnitsNet
         IDivisionOperators<Volume, SpecificVolume, Mass>,
         IDivisionOperators<Volume, Mass, SpecificVolume>,
         IDivisionOperators<Volume, Duration, VolumeFlow>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<Volume, Volume, bool>,
         IParsable<Volume>,
 #endif

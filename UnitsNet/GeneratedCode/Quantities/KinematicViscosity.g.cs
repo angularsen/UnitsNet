@@ -42,12 +42,11 @@ namespace UnitsNet
     public readonly partial struct KinematicViscosity :
         IArithmeticQuantity<KinematicViscosity, KinematicViscosityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<KinematicViscosity, KinematicViscosity, double>,
         IMultiplyOperators<KinematicViscosity, Duration, Area>,
         IMultiplyOperators<KinematicViscosity, Density, DynamicViscosity>,
         IDivisionOperators<KinematicViscosity, Speed, Length>,
         IDivisionOperators<KinematicViscosity, Length, Speed>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<KinematicViscosity, KinematicViscosity, bool>,
         IParsable<KinematicViscosity>,
 #endif

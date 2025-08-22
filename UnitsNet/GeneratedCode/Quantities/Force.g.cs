@@ -39,6 +39,7 @@ namespace UnitsNet
     public readonly partial struct Force :
         IArithmeticQuantity<Force, ForceUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Force, Force, double>,
         IDivisionOperators<Force, Mass, Acceleration>,
         IDivisionOperators<Force, Pressure, Area>,
         IDivisionOperators<Force, ForceChangeRate, Duration>,
@@ -51,8 +52,6 @@ namespace UnitsNet
         IMultiplyOperators<Force, ReciprocalArea, Pressure>,
         IDivisionOperators<Force, Area, Pressure>,
         IMultiplyOperators<Force, Length, Torque>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<Force, Force, bool>,
         IParsable<Force>,
 #endif

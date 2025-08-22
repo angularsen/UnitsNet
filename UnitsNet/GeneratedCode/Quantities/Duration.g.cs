@@ -39,6 +39,7 @@ namespace UnitsNet
     public readonly partial struct Duration :
         IArithmeticQuantity<Duration, DurationUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Duration, Duration, double>,
         IMultiplyOperators<Duration, Jerk, Acceleration>,
         IMultiplyOperators<Duration, MolarFlow, AmountOfSubstance>,
         IMultiplyOperators<Duration, RotationalSpeed, Angle>,
@@ -54,8 +55,6 @@ namespace UnitsNet
         IMultiplyOperators<Duration, Acceleration, Speed>,
         IMultiplyOperators<Duration, TemperatureChangeRate, TemperatureDelta>,
         IMultiplyOperators<Duration, VolumeFlow, Volume>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<Duration, Duration, bool>,
         IParsable<Duration>,
 #endif

@@ -39,6 +39,7 @@ namespace UnitsNet
     public readonly partial struct Mass :
         IArithmeticQuantity<Mass, MassUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Mass, Mass, double>,
         IDivisionOperators<Mass, MolarMass, AmountOfSubstance>,
         IDivisionOperators<Mass, AreaDensity, Area>,
         IDivisionOperators<Mass, Area, AreaDensity>,
@@ -55,8 +56,6 @@ namespace UnitsNet
         IDivisionOperators<Mass, AmountOfSubstance, MolarMass>,
         IMultiplyOperators<Mass, SpecificVolume, Volume>,
         IDivisionOperators<Mass, Density, Volume>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<Mass, Mass, bool>,
         IParsable<Mass>,
 #endif

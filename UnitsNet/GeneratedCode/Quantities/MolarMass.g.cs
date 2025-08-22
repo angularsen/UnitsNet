@@ -39,11 +39,10 @@ namespace UnitsNet
     public readonly partial struct MolarMass :
         IArithmeticQuantity<MolarMass, MolarMassUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<MolarMass, MolarMass, double>,
         IMultiplyOperators<MolarMass, AmountOfSubstance, Mass>,
         IMultiplyOperators<MolarMass, Molarity, MassConcentration>,
         IMultiplyOperators<MolarMass, MolarFlow, MassFlow>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<MolarMass, MolarMass, bool>,
         IParsable<MolarMass>,
 #endif

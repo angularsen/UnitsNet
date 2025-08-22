@@ -42,6 +42,7 @@ namespace UnitsNet
     public readonly partial struct ElectricField :
         IArithmeticQuantity<ElectricField, ElectricFieldUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricField, ElectricField, double>,
         IComparisonOperators<ElectricField, ElectricField, bool>,
         IParsable<ElectricField>,
 #endif

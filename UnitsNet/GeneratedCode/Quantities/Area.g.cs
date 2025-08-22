@@ -39,6 +39,7 @@ namespace UnitsNet
     public readonly partial struct Area :
         IArithmeticQuantity<Area, AreaUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Area, Area, double>,
         IMultiplyOperators<Area, Pressure, Force>,
         IMultiplyOperators<Area, SpecificWeight, ForcePerLength>,
         IMultiplyOperators<Area, ReciprocalLength, Length>,
@@ -55,8 +56,6 @@ namespace UnitsNet
         IMultiplyOperators<Area, Length, Volume>,
         IDivisionOperators<Area, ReciprocalLength, Volume>,
         IMultiplyOperators<Area, Speed, VolumeFlow>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<Area, Area, bool>,
         IParsable<Area>,
 #endif

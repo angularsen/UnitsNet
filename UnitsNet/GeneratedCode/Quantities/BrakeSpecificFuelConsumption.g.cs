@@ -39,10 +39,9 @@ namespace UnitsNet
     public readonly partial struct BrakeSpecificFuelConsumption :
         IArithmeticQuantity<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumptionUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumption, double>,
         IMultiplyOperators<BrakeSpecificFuelConsumption, Power, MassFlow>,
         IMultiplyOperators<BrakeSpecificFuelConsumption, SpecificEnergy, double>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumption, bool>,
         IParsable<BrakeSpecificFuelConsumption>,
 #endif

@@ -43,6 +43,7 @@ namespace UnitsNet
     public readonly partial struct ElectricAdmittance :
         IArithmeticQuantity<ElectricAdmittance, ElectricAdmittanceUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricAdmittance, ElectricAdmittance, double>,
         IComparisonOperators<ElectricAdmittance, ElectricAdmittance, bool>,
         IParsable<ElectricAdmittance>,
 #endif
