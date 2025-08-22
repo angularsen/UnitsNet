@@ -134,7 +134,13 @@ namespace UnitsNet
         where TQuantity : IQuantity
     {
 #if NET
-        internal static abstract TQuantity Create(double value, UnitKey unit);
+        /// <summary>
+        ///     Creates an instance of the quantity from a specified value and unit.
+        /// </summary>
+        /// <param name="value">The numerical value of the quantity.</param>
+        /// <param name="unit">The unit of the quantity.</param>
+        /// <returns>An instance of the quantity with the specified value and unit.</returns>
+        public static abstract TQuantity Create(double value, UnitKey unit);
 #else
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         new IQuantityInstanceInfo<TQuantity> QuantityInfo { get; }
