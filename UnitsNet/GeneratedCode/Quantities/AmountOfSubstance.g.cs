@@ -220,11 +220,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<AmountOfSubstance, AmountOfSubstanceUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => AmountOfSubstance.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

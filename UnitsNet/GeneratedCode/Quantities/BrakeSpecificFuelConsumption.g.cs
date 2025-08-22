@@ -202,11 +202,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumptionUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => BrakeSpecificFuelConsumption.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

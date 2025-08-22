@@ -203,11 +203,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<ElectricCurrentDensity, ElectricCurrentDensityUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => ElectricCurrentDensity.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

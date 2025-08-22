@@ -61,16 +61,6 @@ namespace UnitsNet.Tests
             Assertion({quantity.Name}.Info, {quantity.Name}.Zero);");
             Writer.WL($@"
         }}
-
-        [Fact]
-        public void Dimensions_IsSameAsStaticBaseDimensions()
-        {{
-            void Assertion(BaseDimensions expected, IQuantity quantity) => Assert.Equal(expected, quantity.Dimensions);
-");
-            foreach (var quantity in _quantities) Writer.WL($@"
-            Assertion({quantity.Name}.BaseDimensions, {quantity.Name}.Zero);");
-            Writer.WL($@"
-        }}
     }}
 }}");
 

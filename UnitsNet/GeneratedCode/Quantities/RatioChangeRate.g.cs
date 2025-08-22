@@ -199,11 +199,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<RatioChangeRate, RatioChangeRateUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => RatioChangeRate.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

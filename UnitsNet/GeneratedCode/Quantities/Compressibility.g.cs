@@ -204,11 +204,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<Compressibility, CompressibilityUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => Compressibility.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

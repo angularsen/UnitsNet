@@ -208,11 +208,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<RadiationEquivalentDoseRate, RadiationEquivalentDoseRateUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => RadiationEquivalentDoseRate.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

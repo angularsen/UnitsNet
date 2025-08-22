@@ -184,11 +184,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<VitaminA, VitaminAUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => VitaminA.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

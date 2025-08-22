@@ -203,11 +203,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => ElectricSurfaceChargeDensity.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

@@ -217,11 +217,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => ElectricPotentialChangeRate.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
