@@ -39,13 +39,12 @@ namespace UnitsNet
     public readonly partial struct VolumeFlow :
         IArithmeticQuantity<VolumeFlow, VolumeFlowUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<VolumeFlow, VolumeFlow, double>,
         IDivisionOperators<VolumeFlow, Speed, Area>,
         IMultiplyOperators<VolumeFlow, Density, MassFlow>,
         IMultiplyOperators<VolumeFlow, Molarity, MolarFlow>,
         IDivisionOperators<VolumeFlow, Area, Speed>,
         IMultiplyOperators<VolumeFlow, Duration, Volume>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<VolumeFlow, VolumeFlow, bool>,
         IParsable<VolumeFlow>,
 #endif

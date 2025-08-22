@@ -39,6 +39,7 @@ namespace UnitsNet
     public readonly partial struct StandardVolumeFlow :
         IArithmeticQuantity<StandardVolumeFlow, StandardVolumeFlowUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<StandardVolumeFlow, StandardVolumeFlow, double>,
         IComparisonOperators<StandardVolumeFlow, StandardVolumeFlow, bool>,
         IParsable<StandardVolumeFlow>,
 #endif

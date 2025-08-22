@@ -39,6 +39,7 @@ namespace UnitsNet
     public readonly partial struct Length :
         IArithmeticQuantity<Length, LengthUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Length, Length, double>,
         IMultiplyOperators<Length, Length, Area>,
         IDivisionOperators<Length, ReciprocalLength, Area>,
         IMultiplyOperators<Length, Volume, AreaMomentOfInertia>,
@@ -57,8 +58,6 @@ namespace UnitsNet
         IMultiplyOperators<Length, Force, Torque>,
         IMultiplyOperators<Length, Area, Volume>,
         IDivisionOperators<Length, ReciprocalArea, Volume>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<Length, Length, bool>,
         IParsable<Length>,
 #endif

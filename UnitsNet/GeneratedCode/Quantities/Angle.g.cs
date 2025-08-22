@@ -39,11 +39,10 @@ namespace UnitsNet
     public readonly partial struct Angle :
         IArithmeticQuantity<Angle, AngleUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Angle, Angle, double>,
         IDivisionOperators<Angle, RotationalSpeed, Duration>,
         IDivisionOperators<Angle, Duration, RotationalSpeed>,
         IMultiplyOperators<Angle, RotationalStiffness, Torque>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<Angle, Angle, bool>,
         IParsable<Angle>,
 #endif

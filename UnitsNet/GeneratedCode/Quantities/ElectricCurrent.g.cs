@@ -42,13 +42,12 @@ namespace UnitsNet
     public readonly partial struct ElectricCurrent :
         IArithmeticQuantity<ElectricCurrent, ElectricCurrentUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricCurrent, ElectricCurrent, double>,
         IDivisionOperators<ElectricCurrent, ElectricCurrentGradient, Duration>,
         IMultiplyOperators<ElectricCurrent, Duration, ElectricCharge>,
         IDivisionOperators<ElectricCurrent, Duration, ElectricCurrentGradient>,
         IMultiplyOperators<ElectricCurrent, ElectricResistance, ElectricPotential>,
         IMultiplyOperators<ElectricCurrent, ElectricPotential, Power>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<ElectricCurrent, ElectricCurrent, bool>,
         IParsable<ElectricCurrent>,
 #endif

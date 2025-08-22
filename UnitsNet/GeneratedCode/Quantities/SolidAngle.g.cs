@@ -42,6 +42,7 @@ namespace UnitsNet
     public readonly partial struct SolidAngle :
         IArithmeticQuantity<SolidAngle, SolidAngleUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<SolidAngle, SolidAngle, double>,
         IComparisonOperators<SolidAngle, SolidAngle, bool>,
         IParsable<SolidAngle>,
 #endif

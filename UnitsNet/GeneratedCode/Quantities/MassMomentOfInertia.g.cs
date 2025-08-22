@@ -39,6 +39,7 @@ namespace UnitsNet
     public readonly partial struct MassMomentOfInertia :
         IArithmeticQuantity<MassMomentOfInertia, MassMomentOfInertiaUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<MassMomentOfInertia, MassMomentOfInertia, double>,
         IComparisonOperators<MassMomentOfInertia, MassMomentOfInertia, bool>,
         IParsable<MassMomentOfInertia>,
 #endif

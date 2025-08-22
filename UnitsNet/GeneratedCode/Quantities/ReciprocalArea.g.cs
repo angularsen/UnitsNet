@@ -42,13 +42,12 @@ namespace UnitsNet
     public readonly partial struct ReciprocalArea :
         IArithmeticQuantity<ReciprocalArea, ReciprocalAreaUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ReciprocalArea, ReciprocalArea, double>,
         IMultiplyOperators<ReciprocalArea, Volume, Length>,
         IMultiplyOperators<ReciprocalArea, Force, Pressure>,
         IMultiplyOperators<ReciprocalArea, Area, Ratio>,
         IMultiplyOperators<ReciprocalArea, Length, ReciprocalLength>,
         IDivisionOperators<ReciprocalArea, ReciprocalLength, ReciprocalLength>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<ReciprocalArea, ReciprocalArea, bool>,
         IParsable<ReciprocalArea>,
 #endif

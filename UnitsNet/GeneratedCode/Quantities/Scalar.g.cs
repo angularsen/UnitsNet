@@ -39,6 +39,7 @@ namespace UnitsNet
     public readonly partial struct Scalar :
         IArithmeticQuantity<Scalar, ScalarUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Scalar, Scalar, double>,
         IComparisonOperators<Scalar, Scalar, bool>,
         IParsable<Scalar>,
 #endif

@@ -39,6 +39,7 @@ namespace UnitsNet
     public readonly partial struct Impulse :
         IArithmeticQuantity<Impulse, ImpulseUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Impulse, Impulse, double>,
         IComparisonOperators<Impulse, Impulse, bool>,
         IParsable<Impulse>,
 #endif

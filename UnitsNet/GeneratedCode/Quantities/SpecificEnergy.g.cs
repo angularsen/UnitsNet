@@ -42,14 +42,13 @@ namespace UnitsNet
     public readonly partial struct SpecificEnergy :
         IArithmeticQuantity<SpecificEnergy, SpecificEnergyUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<SpecificEnergy, SpecificEnergy, double>,
         IMultiplyOperators<SpecificEnergy, Mass, Energy>,
         IMultiplyOperators<SpecificEnergy, MassFlow, Power>,
         IDivisionOperators<SpecificEnergy, TemperatureDelta, SpecificEntropy>,
         IDivisionOperators<SpecificEnergy, Speed, Speed>,
         IDivisionOperators<SpecificEnergy, SpecificEntropy, TemperatureDelta>,
         IMultiplyOperators<SpecificEnergy, BrakeSpecificFuelConsumption, double>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<SpecificEnergy, SpecificEnergy, bool>,
         IParsable<SpecificEnergy>,
 #endif

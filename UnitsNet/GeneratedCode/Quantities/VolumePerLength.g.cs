@@ -39,6 +39,7 @@ namespace UnitsNet
     public readonly partial struct VolumePerLength :
         IArithmeticQuantity<VolumePerLength, VolumePerLengthUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<VolumePerLength, VolumePerLength, double>,
         IComparisonOperators<VolumePerLength, VolumePerLength, bool>,
         IParsable<VolumePerLength>,
 #endif

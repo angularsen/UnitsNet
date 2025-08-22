@@ -39,9 +39,8 @@ namespace UnitsNet
     public readonly partial struct EnergyDensity :
         IArithmeticQuantity<EnergyDensity, EnergyDensityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<EnergyDensity, EnergyDensity, double>,
         IMultiplyOperators<EnergyDensity, Volume, Energy>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<EnergyDensity, EnergyDensity, bool>,
         IParsable<EnergyDensity>,
 #endif

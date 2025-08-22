@@ -39,9 +39,8 @@ namespace UnitsNet
     public readonly partial struct CoefficientOfThermalExpansion :
         IArithmeticQuantity<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<CoefficientOfThermalExpansion, CoefficientOfThermalExpansion, double>,
         IMultiplyOperators<CoefficientOfThermalExpansion, TemperatureDelta, Ratio>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<CoefficientOfThermalExpansion, CoefficientOfThermalExpansion, bool>,
         IParsable<CoefficientOfThermalExpansion>,
 #endif

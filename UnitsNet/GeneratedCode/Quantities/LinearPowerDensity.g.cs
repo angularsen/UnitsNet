@@ -42,6 +42,7 @@ namespace UnitsNet
     public readonly partial struct LinearPowerDensity :
         IArithmeticQuantity<LinearPowerDensity, LinearPowerDensityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<LinearPowerDensity, LinearPowerDensity, double>,
         IComparisonOperators<LinearPowerDensity, LinearPowerDensity, bool>,
         IParsable<LinearPowerDensity>,
 #endif

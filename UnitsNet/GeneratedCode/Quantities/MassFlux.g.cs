@@ -39,11 +39,10 @@ namespace UnitsNet
     public readonly partial struct MassFlux :
         IArithmeticQuantity<MassFlux, MassFluxUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<MassFlux, MassFlux, double>,
         IDivisionOperators<MassFlux, Speed, Density>,
         IMultiplyOperators<MassFlux, Area, MassFlow>,
         IDivisionOperators<MassFlux, Density, Speed>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<MassFlux, MassFlux, bool>,
         IParsable<MassFlux>,
 #endif

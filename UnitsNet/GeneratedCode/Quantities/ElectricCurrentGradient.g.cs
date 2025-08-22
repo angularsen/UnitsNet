@@ -39,9 +39,8 @@ namespace UnitsNet
     public readonly partial struct ElectricCurrentGradient :
         IArithmeticQuantity<ElectricCurrentGradient, ElectricCurrentGradientUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricCurrentGradient, ElectricCurrentGradient, double>,
         IMultiplyOperators<ElectricCurrentGradient, Duration, ElectricCurrent>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<ElectricCurrentGradient, ElectricCurrentGradient, bool>,
         IParsable<ElectricCurrentGradient>,
 #endif

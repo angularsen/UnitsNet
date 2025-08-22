@@ -39,6 +39,7 @@ namespace UnitsNet
     public readonly partial struct Compressibility :
         IArithmeticQuantity<Compressibility, CompressibilityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Compressibility, Compressibility, double>,
         IComparisonOperators<Compressibility, Compressibility, bool>,
         IParsable<Compressibility>,
 #endif
