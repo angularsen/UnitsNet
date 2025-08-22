@@ -39,6 +39,7 @@ namespace UnitsNet
     public readonly partial struct WarpingMomentOfInertia :
         IArithmeticQuantity<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<WarpingMomentOfInertia, WarpingMomentOfInertia, double>,
         IComparisonOperators<WarpingMomentOfInertia, WarpingMomentOfInertia, bool>,
         IParsable<WarpingMomentOfInertia>,
 #endif

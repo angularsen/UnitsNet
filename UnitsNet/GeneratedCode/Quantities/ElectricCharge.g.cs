@@ -42,11 +42,10 @@ namespace UnitsNet
     public readonly partial struct ElectricCharge :
         IArithmeticQuantity<ElectricCharge, ElectricChargeUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricCharge, ElectricCharge, double>,
         IDivisionOperators<ElectricCharge, ElectricCurrent, Duration>,
         IDivisionOperators<ElectricCharge, Duration, ElectricCurrent>,
         IMultiplyOperators<ElectricCharge, ElectricPotential, Energy>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<ElectricCharge, ElectricCharge, bool>,
         IParsable<ElectricCharge>,
 #endif

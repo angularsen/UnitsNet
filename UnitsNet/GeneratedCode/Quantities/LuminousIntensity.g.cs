@@ -42,10 +42,9 @@ namespace UnitsNet
     public readonly partial struct LuminousIntensity :
         IArithmeticQuantity<LuminousIntensity, LuminousIntensityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<LuminousIntensity, LuminousIntensity, double>,
         IDivisionOperators<LuminousIntensity, Luminance, Area>,
         IDivisionOperators<LuminousIntensity, Area, Luminance>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<LuminousIntensity, LuminousIntensity, bool>,
         IParsable<LuminousIntensity>,
 #endif

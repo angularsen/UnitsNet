@@ -42,6 +42,7 @@ namespace UnitsNet
     public readonly partial struct LeakRate :
         IArithmeticQuantity<LeakRate, LeakRateUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<LeakRate, LeakRate, double>,
         IComparisonOperators<LeakRate, LeakRate, bool>,
         IParsable<LeakRate>,
 #endif

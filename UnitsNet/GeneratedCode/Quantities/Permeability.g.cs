@@ -42,6 +42,7 @@ namespace UnitsNet
     public readonly partial struct Permeability :
         IArithmeticQuantity<Permeability, PermeabilityUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Permeability, Permeability, double>,
         IComparisonOperators<Permeability, Permeability, bool>,
         IParsable<Permeability>,
 #endif

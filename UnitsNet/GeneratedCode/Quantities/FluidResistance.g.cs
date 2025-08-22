@@ -42,6 +42,7 @@ namespace UnitsNet
     public readonly partial struct FluidResistance :
         IArithmeticQuantity<FluidResistance, FluidResistanceUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<FluidResistance, FluidResistance, double>,
         IComparisonOperators<FluidResistance, FluidResistance, bool>,
         IParsable<FluidResistance>,
 #endif

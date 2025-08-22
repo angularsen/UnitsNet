@@ -42,9 +42,8 @@ namespace UnitsNet
     public readonly partial struct Luminance :
         IArithmeticQuantity<Luminance, LuminanceUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Luminance, Luminance, double>,
         IMultiplyOperators<Luminance, Area, LuminousIntensity>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<Luminance, Luminance, bool>,
         IParsable<Luminance>,
 #endif

@@ -121,6 +121,12 @@ interface IQuantityInstanceInfo<out TQuantity> : IQuantityInfo
 {
     /// <inheritdoc cref="IQuantityInfo.Zero" />
     new TQuantity Zero { get; }
-
-    internal TQuantity Create(double value, UnitKey unitKey);
+    
+    /// <summary>
+    ///     Creates an instance of the quantity from a specified value and unit.
+    /// </summary>
+    /// <param name="value">The numerical value of the quantity.</param>
+    /// <param name="unitKey">The unit key of the quantity.</param>
+    /// <returns>An instance of the quantity with the specified value and unit.</returns>
+    public TQuantity Create(double value, UnitKey unitKey);
 }

@@ -39,6 +39,7 @@ namespace UnitsNet
     public readonly partial struct Pressure :
         IArithmeticQuantity<Pressure, PressureUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<Pressure, Pressure, double>,
         IDivisionOperators<Pressure, PressureChangeRate, Duration>,
         IDivisionOperators<Pressure, ReciprocalArea, Force>,
         IMultiplyOperators<Pressure, Area, Force>,
@@ -49,8 +50,6 @@ namespace UnitsNet
         IDivisionOperators<Pressure, Force, ReciprocalArea>,
         IDivisionOperators<Pressure, ForcePerLength, ReciprocalLength>,
         IDivisionOperators<Pressure, Length, SpecificWeight>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<Pressure, Pressure, bool>,
         IParsable<Pressure>,
 #endif

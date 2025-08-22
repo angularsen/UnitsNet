@@ -39,9 +39,8 @@ namespace UnitsNet
     public readonly partial struct RadiationEquivalentDoseRate :
         IArithmeticQuantity<RadiationEquivalentDoseRate, RadiationEquivalentDoseRateUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<RadiationEquivalentDoseRate, RadiationEquivalentDoseRate, double>,
         IMultiplyOperators<RadiationEquivalentDoseRate, Duration, RadiationEquivalentDose>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<RadiationEquivalentDoseRate, RadiationEquivalentDoseRate, bool>,
         IParsable<RadiationEquivalentDoseRate>,
 #endif

@@ -42,6 +42,7 @@ namespace UnitsNet
     public readonly partial struct ElectricConductance :
         IArithmeticQuantity<ElectricConductance, ElectricConductanceUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ElectricConductance, ElectricConductance, double>,
         IComparisonOperators<ElectricConductance, ElectricConductance, bool>,
         IParsable<ElectricConductance>,
 #endif

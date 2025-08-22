@@ -39,10 +39,9 @@ namespace UnitsNet
     public readonly partial struct AreaMomentOfInertia :
         IArithmeticQuantity<AreaMomentOfInertia, AreaMomentOfInertiaUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<AreaMomentOfInertia, AreaMomentOfInertia, double>,
         IDivisionOperators<AreaMomentOfInertia, Volume, Length>,
         IDivisionOperators<AreaMomentOfInertia, Length, Volume>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<AreaMomentOfInertia, AreaMomentOfInertia, bool>,
         IParsable<AreaMomentOfInertia>,
 #endif

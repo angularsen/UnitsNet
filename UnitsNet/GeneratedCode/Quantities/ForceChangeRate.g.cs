@@ -39,9 +39,8 @@ namespace UnitsNet
     public readonly partial struct ForceChangeRate :
         IArithmeticQuantity<ForceChangeRate, ForceChangeRateUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<ForceChangeRate, ForceChangeRate, double>,
         IMultiplyOperators<ForceChangeRate, Duration, Force>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<ForceChangeRate, ForceChangeRate, bool>,
         IParsable<ForceChangeRate>,
 #endif

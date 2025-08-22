@@ -39,9 +39,8 @@ namespace UnitsNet
     public readonly partial struct TemperatureGradient :
         IArithmeticQuantity<TemperatureGradient, TemperatureGradientUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<TemperatureGradient, TemperatureGradient, double>,
         IMultiplyOperators<TemperatureGradient, Length, TemperatureDelta>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<TemperatureGradient, TemperatureGradient, bool>,
         IParsable<TemperatureGradient>,
 #endif
