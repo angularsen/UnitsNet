@@ -39,9 +39,8 @@ namespace UnitsNet
     public readonly partial struct PressureChangeRate :
         IArithmeticQuantity<PressureChangeRate, PressureChangeRateUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<PressureChangeRate, PressureChangeRate, double>,
         IMultiplyOperators<PressureChangeRate, Duration, Pressure>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<PressureChangeRate, PressureChangeRate, bool>,
         IParsable<PressureChangeRate>,
 #endif

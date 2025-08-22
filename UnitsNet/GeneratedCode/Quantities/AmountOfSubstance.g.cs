@@ -39,14 +39,13 @@ namespace UnitsNet
     public readonly partial struct AmountOfSubstance :
         IArithmeticQuantity<AmountOfSubstance, AmountOfSubstanceUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<AmountOfSubstance, AmountOfSubstance, double>,
         IDivisionOperators<AmountOfSubstance, MolarFlow, Duration>,
         IMultiplyOperators<AmountOfSubstance, MolarEnergy, Energy>,
         IMultiplyOperators<AmountOfSubstance, MolarMass, Mass>,
         IDivisionOperators<AmountOfSubstance, Duration, MolarFlow>,
         IDivisionOperators<AmountOfSubstance, Volume, Molarity>,
         IDivisionOperators<AmountOfSubstance, Molarity, Volume>,
-#endif
-#if NET7_0_OR_GREATER
         IComparisonOperators<AmountOfSubstance, AmountOfSubstance, bool>,
         IParsable<AmountOfSubstance>,
 #endif

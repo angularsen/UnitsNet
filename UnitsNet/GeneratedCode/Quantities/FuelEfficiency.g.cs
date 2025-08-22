@@ -42,6 +42,7 @@ namespace UnitsNet
     public readonly partial struct FuelEfficiency :
         IArithmeticQuantity<FuelEfficiency, FuelEfficiencyUnit>,
 #if NET7_0_OR_GREATER
+        IDivisionOperators<FuelEfficiency, FuelEfficiency, double>,
         IComparisonOperators<FuelEfficiency, FuelEfficiency, bool>,
         IParsable<FuelEfficiency>,
 #endif
