@@ -250,11 +250,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<Energy, EnergyUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => Energy.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

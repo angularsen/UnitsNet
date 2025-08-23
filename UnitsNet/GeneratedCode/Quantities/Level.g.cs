@@ -188,11 +188,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<Level, LevelUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => Level.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

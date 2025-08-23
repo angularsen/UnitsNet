@@ -213,11 +213,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<MolarMass, MolarMassUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => MolarMass.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

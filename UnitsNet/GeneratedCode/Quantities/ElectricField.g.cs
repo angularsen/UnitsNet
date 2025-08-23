@@ -201,11 +201,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<ElectricField, ElectricFieldUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => ElectricField.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

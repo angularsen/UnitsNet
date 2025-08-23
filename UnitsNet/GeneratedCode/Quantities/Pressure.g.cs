@@ -255,11 +255,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<Pressure, PressureUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => Pressure.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

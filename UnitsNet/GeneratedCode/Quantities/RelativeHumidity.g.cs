@@ -184,11 +184,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<RelativeHumidity, RelativeHumidityUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => RelativeHumidity.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

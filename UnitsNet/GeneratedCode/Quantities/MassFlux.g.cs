@@ -212,11 +212,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<MassFlux, MassFluxUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => MassFlux.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

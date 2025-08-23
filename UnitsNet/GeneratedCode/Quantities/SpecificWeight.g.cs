@@ -221,11 +221,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<SpecificWeight, SpecificWeightUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => SpecificWeight.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
