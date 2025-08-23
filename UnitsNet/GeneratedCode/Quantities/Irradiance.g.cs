@@ -944,9 +944,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<IrradianceUnit> IQuantity<IrradianceUnit>.ToUnit(IrradianceUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<IrradianceUnit> IQuantity<IrradianceUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

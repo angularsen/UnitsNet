@@ -749,9 +749,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ElectricSurfaceChargeDensityUnit> IQuantity<ElectricSurfaceChargeDensityUnit>.ToUnit(ElectricSurfaceChargeDensityUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<ElectricSurfaceChargeDensityUnit> IQuantity<ElectricSurfaceChargeDensityUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

@@ -973,9 +973,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ForceChangeRateUnit> IQuantity<ForceChangeRateUnit>.ToUnit(ForceChangeRateUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<ForceChangeRateUnit> IQuantity<ForceChangeRateUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

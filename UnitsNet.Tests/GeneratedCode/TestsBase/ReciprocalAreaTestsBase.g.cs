@@ -269,35 +269,7 @@ namespace UnitsNet.Tests
             var expectedUnit = ReciprocalArea.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            Assert.Multiple(() =>
-            {
-                ReciprocalArea quantityToConvert = quantity;
-
-                ReciprocalArea convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity<ReciprocalAreaUnit> quantityToConvert = quantity;
-
-                IQuantity<ReciprocalAreaUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);
-            });
-        }
-
-        [Fact]
-        public virtual void ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits()
-        {
-            var quantity = new ReciprocalArea(value: 1, unit: ReciprocalArea.BaseUnit);
-            var expectedUnit = ReciprocalArea.Info.GetDefaultUnit(UnitSystem.SI);
-            var expectedValue = quantity.As(expectedUnit);
-
-            IQuantity quantityToConvert = quantity;
-
-            IQuantity convertedQuantity = quantityToConvert.ToUnitUntyped(UnitSystem.SI);
+            ReciprocalArea convertedQuantity = quantity.ToUnit(UnitSystem.SI);
 
             Assert.Equal(expectedUnit, convertedQuantity.Unit);
             Assert.Equal(expectedValue, convertedQuantity.Value);
@@ -307,46 +279,16 @@ namespace UnitsNet.Tests
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            Assert.Multiple(() =>
-            {
-                var quantity = new ReciprocalArea(value: 1, unit: ReciprocalArea.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
-            }, () =>
-            {
-                IQuantity<ReciprocalAreaUnit> quantity = new ReciprocalArea(value: 1, unit: ReciprocalArea.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
-            });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ThrowsArgumentNullExceptionIfNull()
-        {
-            UnitSystem nullUnitSystem = null!;
-            IQuantity quantity = new ReciprocalArea(value: 1, unit: ReciprocalArea.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+            var quantity = new ReciprocalArea(value: 1, unit: ReciprocalArea.BaseUnit);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            Assert.Multiple(() =>
-            {
-                var quantity = new ReciprocalArea(value: 1, unit: ReciprocalArea.BaseUnit);
-                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
-            }, () =>
-            {
-                IQuantity<ReciprocalAreaUnit> quantity = new ReciprocalArea(value: 1, unit: ReciprocalArea.BaseUnit);
-                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
-            });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
-        {
-            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            IQuantity quantity = new ReciprocalArea(value: 1, unit: ReciprocalArea.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnitUntyped(unsupportedUnitSystem));
+            var quantity = new ReciprocalArea(value: 1, unit: ReciprocalArea.BaseUnit);
+            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
         }
 
         [Theory]

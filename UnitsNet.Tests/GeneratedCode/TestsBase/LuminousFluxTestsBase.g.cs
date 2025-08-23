@@ -209,35 +209,7 @@ namespace UnitsNet.Tests
             var expectedUnit = LuminousFlux.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            Assert.Multiple(() =>
-            {
-                LuminousFlux quantityToConvert = quantity;
-
-                LuminousFlux convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity<LuminousFluxUnit> quantityToConvert = quantity;
-
-                IQuantity<LuminousFluxUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);
-            });
-        }
-
-        [Fact]
-        public virtual void ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits()
-        {
-            var quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
-            var expectedUnit = LuminousFlux.Info.GetDefaultUnit(UnitSystem.SI);
-            var expectedValue = quantity.As(expectedUnit);
-
-            IQuantity quantityToConvert = quantity;
-
-            IQuantity convertedQuantity = quantityToConvert.ToUnitUntyped(UnitSystem.SI);
+            LuminousFlux convertedQuantity = quantity.ToUnit(UnitSystem.SI);
 
             Assert.Equal(expectedUnit, convertedQuantity.Unit);
             Assert.Equal(expectedValue, convertedQuantity.Value);
@@ -247,46 +219,16 @@ namespace UnitsNet.Tests
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            Assert.Multiple(() =>
-            {
-                var quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
-            }, () =>
-            {
-                IQuantity<LuminousFluxUnit> quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
-            });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ThrowsArgumentNullExceptionIfNull()
-        {
-            UnitSystem nullUnitSystem = null!;
-            IQuantity quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+            var quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            Assert.Multiple(() =>
-            {
-                var quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
-                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
-            }, () =>
-            {
-                IQuantity<LuminousFluxUnit> quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
-                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
-            });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
-        {
-            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            IQuantity quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnitUntyped(unsupportedUnitSystem));
+            var quantity = new LuminousFlux(value: 1, unit: LuminousFlux.BaseUnit);
+            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
         }
 
         [Theory]

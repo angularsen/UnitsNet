@@ -287,35 +287,7 @@ namespace UnitsNet.Tests
             var expectedUnit = Irradiance.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            Assert.Multiple(() =>
-            {
-                Irradiance quantityToConvert = quantity;
-
-                Irradiance convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity<IrradianceUnit> quantityToConvert = quantity;
-
-                IQuantity<IrradianceUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);
-            });
-        }
-
-        [Fact]
-        public virtual void ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits()
-        {
-            var quantity = new Irradiance(value: 1, unit: Irradiance.BaseUnit);
-            var expectedUnit = Irradiance.Info.GetDefaultUnit(UnitSystem.SI);
-            var expectedValue = quantity.As(expectedUnit);
-
-            IQuantity quantityToConvert = quantity;
-
-            IQuantity convertedQuantity = quantityToConvert.ToUnitUntyped(UnitSystem.SI);
+            Irradiance convertedQuantity = quantity.ToUnit(UnitSystem.SI);
 
             Assert.Equal(expectedUnit, convertedQuantity.Unit);
             Assert.Equal(expectedValue, convertedQuantity.Value);
@@ -325,46 +297,16 @@ namespace UnitsNet.Tests
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            Assert.Multiple(() =>
-            {
-                var quantity = new Irradiance(value: 1, unit: Irradiance.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
-            }, () =>
-            {
-                IQuantity<IrradianceUnit> quantity = new Irradiance(value: 1, unit: Irradiance.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
-            });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ThrowsArgumentNullExceptionIfNull()
-        {
-            UnitSystem nullUnitSystem = null!;
-            IQuantity quantity = new Irradiance(value: 1, unit: Irradiance.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+            var quantity = new Irradiance(value: 1, unit: Irradiance.BaseUnit);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            Assert.Multiple(() =>
-            {
-                var quantity = new Irradiance(value: 1, unit: Irradiance.BaseUnit);
-                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
-            }, () =>
-            {
-                IQuantity<IrradianceUnit> quantity = new Irradiance(value: 1, unit: Irradiance.BaseUnit);
-                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
-            });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
-        {
-            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            IQuantity quantity = new Irradiance(value: 1, unit: Irradiance.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnitUntyped(unsupportedUnitSystem));
+            var quantity = new Irradiance(value: 1, unit: Irradiance.BaseUnit);
+            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
         }
 
         [Theory]

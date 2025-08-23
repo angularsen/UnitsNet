@@ -209,35 +209,7 @@ namespace UnitsNet.Tests
             var expectedUnit = Permeability.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            Assert.Multiple(() =>
-            {
-                Permeability quantityToConvert = quantity;
-
-                Permeability convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity<PermeabilityUnit> quantityToConvert = quantity;
-
-                IQuantity<PermeabilityUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);
-            });
-        }
-
-        [Fact]
-        public virtual void ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits()
-        {
-            var quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
-            var expectedUnit = Permeability.Info.GetDefaultUnit(UnitSystem.SI);
-            var expectedValue = quantity.As(expectedUnit);
-
-            IQuantity quantityToConvert = quantity;
-
-            IQuantity convertedQuantity = quantityToConvert.ToUnitUntyped(UnitSystem.SI);
+            Permeability convertedQuantity = quantity.ToUnit(UnitSystem.SI);
 
             Assert.Equal(expectedUnit, convertedQuantity.Unit);
             Assert.Equal(expectedValue, convertedQuantity.Value);
@@ -247,46 +219,16 @@ namespace UnitsNet.Tests
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            Assert.Multiple(() =>
-            {
-                var quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
-            }, () =>
-            {
-                IQuantity<PermeabilityUnit> quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
-            });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ThrowsArgumentNullExceptionIfNull()
-        {
-            UnitSystem nullUnitSystem = null!;
-            IQuantity quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+            var quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            Assert.Multiple(() =>
-            {
-                var quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
-                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
-            }, () =>
-            {
-                IQuantity<PermeabilityUnit> quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
-                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
-            });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
-        {
-            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            IQuantity quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnitUntyped(unsupportedUnitSystem));
+            var quantity = new Permeability(value: 1, unit: Permeability.BaseUnit);
+            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
         }
 
         [Theory]

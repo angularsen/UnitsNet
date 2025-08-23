@@ -168,36 +168,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit_UnitSystem_ReturnsValueInDimensionlessUnit()
         {
-            Assert.Multiple(() =>
-            {
-                var quantity = new RelativeHumidity(value: 1, unit: RelativeHumidityUnit.Percent);
+            var quantity = new RelativeHumidity(value: 1, unit: RelativeHumidityUnit.Percent);
 
-                RelativeHumidity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(RelativeHumidityUnit.Percent, convertedQuantity.Unit);
-                Assert.Equal(quantity.Value, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity<RelativeHumidityUnit> quantity = new RelativeHumidity(value: 1, unit: RelativeHumidityUnit.Percent);
-
-                IQuantity<RelativeHumidityUnit> convertedQuantity = quantity.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(RelativeHumidityUnit.Percent, convertedQuantity.Unit);
-                Assert.Equal(quantity.Value, convertedQuantity.Value);
-            });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ReturnsValueInDimensionlessUnit()
-        {
-            IQuantity quantity = new RelativeHumidity(value: 1, unit: RelativeHumidityUnit.Percent);
-
-            IQuantity convertedQuantity = quantity.ToUnitUntyped(UnitSystem.SI);
+            RelativeHumidity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
 
             Assert.Equal(RelativeHumidityUnit.Percent, convertedQuantity.Unit);
             Assert.Equal(quantity.Value, convertedQuantity.Value);
         }
-
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
@@ -206,15 +183,15 @@ namespace UnitsNet.Tests
             Assert.Multiple(() =>
             {
                 var quantity = new RelativeHumidity(value: 1, unit: RelativeHumidity.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             }, () =>
             {
                 IQuantity<RelativeHumidityUnit> quantity = new RelativeHumidity(value: 1, unit: RelativeHumidity.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             }, () =>
             {
                 IQuantity quantity = new RelativeHumidity(value: 1, unit: RelativeHumidity.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
         }
 

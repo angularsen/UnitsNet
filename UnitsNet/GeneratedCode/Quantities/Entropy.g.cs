@@ -843,9 +843,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<EntropyUnit> IQuantity<EntropyUnit>.ToUnit(EntropyUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<EntropyUnit> IQuantity<EntropyUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

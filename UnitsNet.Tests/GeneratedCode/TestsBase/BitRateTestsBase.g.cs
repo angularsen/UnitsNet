@@ -437,35 +437,7 @@ namespace UnitsNet.Tests
             var expectedUnit = BitRate.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            Assert.Multiple(() =>
-            {
-                BitRate quantityToConvert = quantity;
-
-                BitRate convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity<BitRateUnit> quantityToConvert = quantity;
-
-                IQuantity<BitRateUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(expectedUnit, convertedQuantity.Unit);
-                Assert.Equal(expectedValue, convertedQuantity.Value);
-            });
-        }
-
-        [Fact]
-        public virtual void ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits()
-        {
-            var quantity = new BitRate(value: 1, unit: BitRate.BaseUnit);
-            var expectedUnit = BitRate.Info.GetDefaultUnit(UnitSystem.SI);
-            var expectedValue = quantity.As(expectedUnit);
-
-            IQuantity quantityToConvert = quantity;
-
-            IQuantity convertedQuantity = quantityToConvert.ToUnitUntyped(UnitSystem.SI);
+            BitRate convertedQuantity = quantity.ToUnit(UnitSystem.SI);
 
             Assert.Equal(expectedUnit, convertedQuantity.Unit);
             Assert.Equal(expectedValue, convertedQuantity.Value);
@@ -475,46 +447,16 @@ namespace UnitsNet.Tests
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            Assert.Multiple(() =>
-            {
-                var quantity = new BitRate(value: 1, unit: BitRate.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
-            }, () =>
-            {
-                IQuantity<BitRateUnit> quantity = new BitRate(value: 1, unit: BitRate.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
-            });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ThrowsArgumentNullExceptionIfNull()
-        {
-            UnitSystem nullUnitSystem = null!;
-            IQuantity quantity = new BitRate(value: 1, unit: BitRate.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+            var quantity = new BitRate(value: 1, unit: BitRate.BaseUnit);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            Assert.Multiple(() =>
-            {
-                var quantity = new BitRate(value: 1, unit: BitRate.BaseUnit);
-                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
-            }, () =>
-            {
-                IQuantity<BitRateUnit> quantity = new BitRate(value: 1, unit: BitRate.BaseUnit);
-                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
-            });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
-        {
-            var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            IQuantity quantity = new BitRate(value: 1, unit: BitRate.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnitUntyped(unsupportedUnitSystem));
+            var quantity = new BitRate(value: 1, unit: BitRate.BaseUnit);
+            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
         }
 
         [Theory]

@@ -396,36 +396,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit_UnitSystem_ReturnsValueInDimensionlessUnit()
         {
-            Assert.Multiple(() =>
-            {
-                var quantity = new Information(value: 1, unit: InformationUnit.Bit);
+            var quantity = new Information(value: 1, unit: InformationUnit.Bit);
 
-                Information convertedQuantity = quantity.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(InformationUnit.Bit, convertedQuantity.Unit);
-                Assert.Equal(quantity.Value, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity<InformationUnit> quantity = new Information(value: 1, unit: InformationUnit.Bit);
-
-                IQuantity<InformationUnit> convertedQuantity = quantity.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(InformationUnit.Bit, convertedQuantity.Unit);
-                Assert.Equal(quantity.Value, convertedQuantity.Value);
-            });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ReturnsValueInDimensionlessUnit()
-        {
-            IQuantity quantity = new Information(value: 1, unit: InformationUnit.Bit);
-
-            IQuantity convertedQuantity = quantity.ToUnitUntyped(UnitSystem.SI);
+            Information convertedQuantity = quantity.ToUnit(UnitSystem.SI);
 
             Assert.Equal(InformationUnit.Bit, convertedQuantity.Unit);
             Assert.Equal(quantity.Value, convertedQuantity.Value);
         }
-
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
@@ -434,15 +411,15 @@ namespace UnitsNet.Tests
             Assert.Multiple(() =>
             {
                 var quantity = new Information(value: 1, unit: Information.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             }, () =>
             {
                 IQuantity<InformationUnit> quantity = new Information(value: 1, unit: Information.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             }, () =>
             {
                 IQuantity quantity = new Information(value: 1, unit: Information.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
         }
 

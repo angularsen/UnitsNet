@@ -91,11 +91,38 @@ public static class QuantityExtensions
     /// <exception cref="InvalidOperationException">
     ///     Thrown if no matching unit is found for the specified <see cref="UnitSystem" />.
     /// </exception>
-    public static IQuantity ToUnitUntyped(this IQuantity quantity, UnitSystem unitSystem)
+    [Obsolete("This method will be removed from the interface in the next major update.")]
+    public static IQuantity ToUnit(this IQuantity quantity, UnitSystem unitSystem)
     {
          QuantityInfo quantityInfo = quantity.QuantityInfo;
          UnitKey unitKey = quantityInfo.GetDefaultUnit(unitSystem).UnitKey;
          return quantityInfo.From(quantity.As(unitKey), unitKey);
+    }
+
+    /// <summary>
+    ///     Converts the specified quantity to a new quantity with a unit determined by the given <see cref="UnitSystem" />.
+    /// </summary>
+    /// <param name="quantity">The quantity to convert.</param>
+    /// <param name="unitSystem">The <see cref="UnitSystem" /> used to determine the target unit.</param>
+    /// <returns>
+    ///     A new quantity of the same type with the unit determined by the specified <see cref="UnitSystem" />.
+    /// </returns>
+    /// <remarks>
+    ///     If multiple units are associated with the given <see cref="UnitSystem" />, the first matching unit will be used.
+    /// </remarks>
+    /// <exception cref="ArgumentNullException">
+    ///     Thrown if <paramref name="unitSystem" /> is <c>null</c>.
+    /// </exception>
+    /// <exception cref="InvalidOperationException">
+    ///     Thrown if no matching unit is found for the specified <see cref="UnitSystem" />.
+    /// </exception>
+    [Obsolete("This method will be removed from the interface in the next major update.")]
+    public static IQuantity<TUnit> ToUnit<TUnit>(this IQuantity<TUnit> quantity, UnitSystem unitSystem)
+        where TUnit : struct, Enum
+    {
+         QuantityInfo<TUnit> quantityInfo = quantity.QuantityInfo;
+         TUnit unit = quantityInfo.GetDefaultUnit(unitSystem);
+         return quantityInfo.From(quantity.As(unit), unit);
     }
 
     /// <summary>

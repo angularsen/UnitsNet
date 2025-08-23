@@ -1484,9 +1484,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<PowerDensityUnit> IQuantity<PowerDensityUnit>.ToUnit(PowerDensityUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<PowerDensityUnit> IQuantity<PowerDensityUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

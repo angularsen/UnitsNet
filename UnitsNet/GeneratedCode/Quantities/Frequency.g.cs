@@ -919,9 +919,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<FrequencyUnit> IQuantity<FrequencyUnit>.ToUnit(FrequencyUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<FrequencyUnit> IQuantity<FrequencyUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

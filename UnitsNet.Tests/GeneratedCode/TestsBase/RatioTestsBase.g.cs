@@ -198,36 +198,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit_UnitSystem_ReturnsValueInDimensionlessUnit()
         {
-            Assert.Multiple(() =>
-            {
-                var quantity = new Ratio(value: 1, unit: RatioUnit.DecimalFraction);
+            var quantity = new Ratio(value: 1, unit: RatioUnit.DecimalFraction);
 
-                Ratio convertedQuantity = quantity.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(RatioUnit.DecimalFraction, convertedQuantity.Unit);
-                Assert.Equal(quantity.Value, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity<RatioUnit> quantity = new Ratio(value: 1, unit: RatioUnit.DecimalFraction);
-
-                IQuantity<RatioUnit> convertedQuantity = quantity.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(RatioUnit.DecimalFraction, convertedQuantity.Unit);
-                Assert.Equal(quantity.Value, convertedQuantity.Value);
-            });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ReturnsValueInDimensionlessUnit()
-        {
-            IQuantity quantity = new Ratio(value: 1, unit: RatioUnit.DecimalFraction);
-
-            IQuantity convertedQuantity = quantity.ToUnitUntyped(UnitSystem.SI);
+            Ratio convertedQuantity = quantity.ToUnit(UnitSystem.SI);
 
             Assert.Equal(RatioUnit.DecimalFraction, convertedQuantity.Unit);
             Assert.Equal(quantity.Value, convertedQuantity.Value);
         }
-
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
@@ -236,15 +213,15 @@ namespace UnitsNet.Tests
             Assert.Multiple(() =>
             {
                 var quantity = new Ratio(value: 1, unit: Ratio.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             }, () =>
             {
                 IQuantity<RatioUnit> quantity = new Ratio(value: 1, unit: Ratio.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             }, () =>
             {
                 IQuantity quantity = new Ratio(value: 1, unit: Ratio.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
         }
 

@@ -168,36 +168,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit_UnitSystem_ReturnsValueInDimensionlessUnit()
         {
-            Assert.Multiple(() =>
-            {
-                var quantity = new Turbidity(value: 1, unit: TurbidityUnit.NTU);
+            var quantity = new Turbidity(value: 1, unit: TurbidityUnit.NTU);
 
-                Turbidity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(TurbidityUnit.NTU, convertedQuantity.Unit);
-                Assert.Equal(quantity.Value, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity<TurbidityUnit> quantity = new Turbidity(value: 1, unit: TurbidityUnit.NTU);
-
-                IQuantity<TurbidityUnit> convertedQuantity = quantity.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(TurbidityUnit.NTU, convertedQuantity.Unit);
-                Assert.Equal(quantity.Value, convertedQuantity.Value);
-            });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ReturnsValueInDimensionlessUnit()
-        {
-            IQuantity quantity = new Turbidity(value: 1, unit: TurbidityUnit.NTU);
-
-            IQuantity convertedQuantity = quantity.ToUnitUntyped(UnitSystem.SI);
+            Turbidity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
 
             Assert.Equal(TurbidityUnit.NTU, convertedQuantity.Unit);
             Assert.Equal(quantity.Value, convertedQuantity.Value);
         }
-
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
@@ -206,15 +183,15 @@ namespace UnitsNet.Tests
             Assert.Multiple(() =>
             {
                 var quantity = new Turbidity(value: 1, unit: Turbidity.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             }, () =>
             {
                 IQuantity<TurbidityUnit> quantity = new Turbidity(value: 1, unit: Turbidity.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             }, () =>
             {
                 IQuantity quantity = new Turbidity(value: 1, unit: Turbidity.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
         }
 

@@ -886,9 +886,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<LuminanceUnit> IQuantity<LuminanceUnit>.ToUnit(LuminanceUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<LuminanceUnit> IQuantity<LuminanceUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

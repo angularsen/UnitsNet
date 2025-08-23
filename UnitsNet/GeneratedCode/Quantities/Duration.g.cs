@@ -1035,9 +1035,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<DurationUnit> IQuantity<DurationUnit>.ToUnit(DurationUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<DurationUnit> IQuantity<DurationUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

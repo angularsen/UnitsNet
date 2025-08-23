@@ -282,36 +282,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit_UnitSystem_ReturnsValueInDimensionlessUnit()
         {
-            Assert.Multiple(() =>
-            {
-                var quantity = new VolumeConcentration(value: 1, unit: VolumeConcentrationUnit.DecimalFraction);
+            var quantity = new VolumeConcentration(value: 1, unit: VolumeConcentrationUnit.DecimalFraction);
 
-                VolumeConcentration convertedQuantity = quantity.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(VolumeConcentrationUnit.DecimalFraction, convertedQuantity.Unit);
-                Assert.Equal(quantity.Value, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity<VolumeConcentrationUnit> quantity = new VolumeConcentration(value: 1, unit: VolumeConcentrationUnit.DecimalFraction);
-
-                IQuantity<VolumeConcentrationUnit> convertedQuantity = quantity.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(VolumeConcentrationUnit.DecimalFraction, convertedQuantity.Unit);
-                Assert.Equal(quantity.Value, convertedQuantity.Value);
-            });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ReturnsValueInDimensionlessUnit()
-        {
-            IQuantity quantity = new VolumeConcentration(value: 1, unit: VolumeConcentrationUnit.DecimalFraction);
-
-            IQuantity convertedQuantity = quantity.ToUnitUntyped(UnitSystem.SI);
+            VolumeConcentration convertedQuantity = quantity.ToUnit(UnitSystem.SI);
 
             Assert.Equal(VolumeConcentrationUnit.DecimalFraction, convertedQuantity.Unit);
             Assert.Equal(quantity.Value, convertedQuantity.Value);
         }
-
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
@@ -320,15 +297,15 @@ namespace UnitsNet.Tests
             Assert.Multiple(() =>
             {
                 var quantity = new VolumeConcentration(value: 1, unit: VolumeConcentration.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             }, () =>
             {
                 IQuantity<VolumeConcentrationUnit> quantity = new VolumeConcentration(value: 1, unit: VolumeConcentration.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             }, () =>
             {
                 IQuantity quantity = new VolumeConcentration(value: 1, unit: VolumeConcentration.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
         }
 

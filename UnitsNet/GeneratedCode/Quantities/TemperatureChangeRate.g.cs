@@ -1009,9 +1009,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<TemperatureChangeRateUnit> IQuantity<TemperatureChangeRateUnit>.ToUnit(TemperatureChangeRateUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<TemperatureChangeRateUnit> IQuantity<TemperatureChangeRateUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

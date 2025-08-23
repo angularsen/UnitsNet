@@ -70,8 +70,6 @@ namespace UnitsNet.Tests.CustomQuantities
             return As(unitKey.ToUnit<HowMuchUnit>());
         }
 
-        public double As(UnitSystem unitSystem) => throw new NotImplementedException();
-
         public IQuantity ToUnit(Enum unit)
         {
             if (unit is HowMuchUnit howMuchUnit) return new HowMuch(As(unit), howMuchUnit);
@@ -82,13 +80,6 @@ namespace UnitsNet.Tests.CustomQuantities
         {
             throw new NotImplementedException();
         }
-        
-        IQuantity<HowMuchUnit> IQuantity<HowMuchUnit>.ToUnit(UnitSystem unitSystem)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQuantity ToUnit(UnitSystem unitSystem) => throw new NotImplementedException();
 
         public override string ToString()
         {

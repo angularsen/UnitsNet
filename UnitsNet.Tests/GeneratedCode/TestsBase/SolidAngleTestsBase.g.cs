@@ -168,36 +168,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit_UnitSystem_ReturnsValueInDimensionlessUnit()
         {
-            Assert.Multiple(() =>
-            {
-                var quantity = new SolidAngle(value: 1, unit: SolidAngleUnit.Steradian);
+            var quantity = new SolidAngle(value: 1, unit: SolidAngleUnit.Steradian);
 
-                SolidAngle convertedQuantity = quantity.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(SolidAngleUnit.Steradian, convertedQuantity.Unit);
-                Assert.Equal(quantity.Value, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity<SolidAngleUnit> quantity = new SolidAngle(value: 1, unit: SolidAngleUnit.Steradian);
-
-                IQuantity<SolidAngleUnit> convertedQuantity = quantity.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(SolidAngleUnit.Steradian, convertedQuantity.Unit);
-                Assert.Equal(quantity.Value, convertedQuantity.Value);
-            });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ReturnsValueInDimensionlessUnit()
-        {
-            IQuantity quantity = new SolidAngle(value: 1, unit: SolidAngleUnit.Steradian);
-
-            IQuantity convertedQuantity = quantity.ToUnitUntyped(UnitSystem.SI);
+            SolidAngle convertedQuantity = quantity.ToUnit(UnitSystem.SI);
 
             Assert.Equal(SolidAngleUnit.Steradian, convertedQuantity.Unit);
             Assert.Equal(quantity.Value, convertedQuantity.Value);
         }
-
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
@@ -206,15 +183,15 @@ namespace UnitsNet.Tests
             Assert.Multiple(() =>
             {
                 var quantity = new SolidAngle(value: 1, unit: SolidAngle.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             }, () =>
             {
                 IQuantity<SolidAngleUnit> quantity = new SolidAngle(value: 1, unit: SolidAngle.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             }, () =>
             {
                 IQuantity quantity = new SolidAngle(value: 1, unit: SolidAngle.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
         }
 

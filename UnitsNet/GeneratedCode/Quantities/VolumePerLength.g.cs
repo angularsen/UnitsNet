@@ -854,9 +854,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<VolumePerLengthUnit> IQuantity<VolumePerLengthUnit>.ToUnit(VolumePerLengthUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<VolumePerLengthUnit> IQuantity<VolumePerLengthUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion
