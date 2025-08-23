@@ -199,11 +199,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<VolumeFlowPerArea, VolumeFlowPerAreaUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => VolumeFlowPerArea.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

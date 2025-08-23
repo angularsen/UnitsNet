@@ -210,11 +210,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<ElectricPotential, ElectricPotentialUnit> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => ElectricPotential.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

@@ -374,11 +374,6 @@ namespace UnitsNet
         /// <inheritdoc />
         public QuantityInfo<{_quantity.Name}, {_unitEnumName}> QuantityInfo => Info;
 
-        /// <summary>
-        ///     The <see cref=""BaseDimensions"" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => {_quantity.Name}.BaseDimensions;
-
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]

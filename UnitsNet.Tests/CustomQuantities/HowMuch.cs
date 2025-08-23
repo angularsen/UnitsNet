@@ -58,10 +58,7 @@ namespace UnitsNet.Tests.CustomQuantities
         {
             get => Info;
         }
-
-        public BaseDimensions Dimensions => Info.BaseDimensions;
-
-
+        
         UnitKey IQuantity.UnitKey
         {
             get => UnitKey.ForUnit(Unit);
