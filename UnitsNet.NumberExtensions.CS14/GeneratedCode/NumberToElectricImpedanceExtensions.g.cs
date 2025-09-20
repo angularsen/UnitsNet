@@ -33,7 +33,9 @@ namespace UnitsNet.NumberExtensions.NumberToElectricImpedance
     [Obsolete("Impedance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricResistance or ElectricReactance instead.")]
     public static class NumberToElectricImpedanceExtensions
     {
+#pragma warning disable CS1591
         extension<T>(T value)
+#pragma warning restore CS1591
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>

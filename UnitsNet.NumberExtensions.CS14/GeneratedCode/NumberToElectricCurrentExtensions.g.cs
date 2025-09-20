@@ -32,7 +32,9 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
     /// </summary>
     public static class NumberToElectricCurrentExtensions
     {
+#pragma warning disable CS1591
         extension<T>(T value)
+#pragma warning restore CS1591
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net48;net8.0;net9.0</TargetFrameworks>
     <RootNamespace>UnitsNet.NumberExtensions.Tests</RootNamespace>
-    <LangVersion>14</LangVersion>
+    <LangVersion>preview</LangVersion>
     <Nullable>enable</Nullable>
     <IsTestProject>true</IsTestProject>
     <NoWarn>CS0618</NoWarn>

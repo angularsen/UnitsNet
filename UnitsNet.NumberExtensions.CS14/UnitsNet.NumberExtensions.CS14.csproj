@@ -23,7 +23,7 @@
     <VersionNoSuffix>$([System.Text.RegularExpressions.Regex]::Match($(Version), '^[0-9.]+')).0</VersionNoSuffix>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>    <!-- Fixed to major version, for strong naming -->
     <FileVersion>$(VersionNoSuffix)</FileVersion> <!-- Match the NuGet version number, except any suffix in the semantic version. -->
-    <LangVersion>14</LangVersion>
+    <LangVersion>preview</LangVersion>
     <Nullable>enable</Nullable>
     <RootNamespace>UnitsNet</RootNamespace>
     <TargetFrameworks>netstandard2.0;net8.0;net9.0</TargetFrameworks>
