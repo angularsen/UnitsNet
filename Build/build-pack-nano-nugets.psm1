@@ -12,11 +12,3 @@ Foreach ($nuget in $nugetsToProcess)
 }
 
 export-modulemember -function Invoke-BuildNanoNugets
-
-Foreach ($nuget in $nugetsToProcess)
-{
-    echo "-----------------------------------";
-    echo "Packing nuget file: $nuget";
-    &"nuget.exe" "pack" "$nuget" "-properties" "Configuration=Release" "-IncludeReferencedProjects" | Write-Host;
-    echo "Finished packing nuget file: $nuget";
-}
