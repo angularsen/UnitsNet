@@ -41,7 +41,7 @@ stages:
       displayName: 'Install .NET 10 SDK Preview (for C# 14)'
       inputs:
         packageType: 'sdk'
-        version: '10.0.100-preview.1'
+        version: '10.x'
         includePreviewVersions: true
 
     - task: InstallNanoMSBuildComponents@1

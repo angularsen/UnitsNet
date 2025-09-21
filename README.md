@@ -50,7 +50,7 @@ or go to [NuGet Gallery | UnitsNet](https://www.nuget.org/packages/UnitsNet) for
 * .NET Standard 2.0
 * .NET 8.0 (LTS)
 * .NET 9.0 (latest stable)
-* .NET 10.0.100-preview.1 (latest preview)
+* .NET 10.0 (preview)
 * [.NET nanoFramework](https://www.nanoframework.net/)
 
 
