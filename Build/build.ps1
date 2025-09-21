@@ -28,9 +28,22 @@ try {
 
   Remove-ArtifactsDir
   Update-GeneratedCode
-  Start-Build -IncludeNanoFramework $IncludeNanoFramework
+
+  # Build main projects with dotnet CLI (cross-platform)
+  Start-Build
   Start-Tests
-  Start-PackNugets -IncludeNanoFramework $IncludeNanoFramework
+  Start-PackNugets
+
+  # Build NanoFramework if requested (Windows-only, requires Visual Studio)
+  if ($IncludeNanoFramework) {
+    write-host -foreground cyan "`n===== Building NanoFramework projects (requires Visual Studio) =====`n"
+    Start-BuildNanoFramework
+    Start-PackNugetsNanoFramework
+  }
+  else {
+    write-host -foreground yellow "`nSkipping NanoFramework build. Use -IncludeNanoFramework flag to build NanoFramework projects.`n"
+  }
+
   Compress-ArtifactsAsZip
 }
 catch {
