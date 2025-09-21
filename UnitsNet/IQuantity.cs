@@ -92,14 +92,6 @@ namespace UnitsNet
         /// <returns>A new <see cref="IQuantity{TUnitType}"/> in the given <paramref name="unit"/>.</returns>
         IQuantity<TUnitType> ToUnit(TUnitType unit);
 
-        /// <summary>
-        ///     Converts to a quantity with a unit determined by the given <see cref="UnitSystem"/>.
-        ///     If multiple units were found for the given <see cref="UnitSystem"/>, the first match will be used.
-        /// </summary>
-        /// <param name="unitSystem">The <see cref="UnitSystem"/> to convert the quantity to.</param>
-        /// <returns>A new quantity with the determined unit.</returns>
-        IQuantity<TUnitType> ToUnit(UnitSystem unitSystem);
-
 #if NET
 
         #region Implementation of IQuantity
@@ -174,13 +166,6 @@ namespace UnitsNet
         {
             return TSelf.From(As(unit), unit);
         }
-
-        IQuantity<TUnitType> IQuantity<TUnitType>.ToUnit(UnitSystem unitSystem)
-        {
-            TUnitType unit = QuantityInfo.GetDefaultUnit(unitSystem);
-            return ToUnit(unit);
-        }
-
 #endif
 
     }

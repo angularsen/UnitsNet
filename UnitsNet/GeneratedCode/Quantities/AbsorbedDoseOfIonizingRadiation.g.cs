@@ -1001,9 +1001,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<AbsorbedDoseOfIonizingRadiationUnit> IQuantity<AbsorbedDoseOfIonizingRadiationUnit>.ToUnit(AbsorbedDoseOfIonizingRadiationUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<AbsorbedDoseOfIonizingRadiationUnit> IQuantity<AbsorbedDoseOfIonizingRadiationUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

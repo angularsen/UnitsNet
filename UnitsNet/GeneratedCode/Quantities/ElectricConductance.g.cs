@@ -983,9 +983,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ElectricConductanceUnit> IQuantity<ElectricConductanceUnit>.ToUnit(ElectricConductanceUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<ElectricConductanceUnit> IQuantity<ElectricConductanceUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

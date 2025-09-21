@@ -1052,9 +1052,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<ElectricPotentialChangeRateUnit> IQuantity<ElectricPotentialChangeRateUnit>.ToUnit(ElectricPotentialChangeRateUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<ElectricPotentialChangeRateUnit> IQuantity<ElectricPotentialChangeRateUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

@@ -800,9 +800,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<WarpingMomentOfInertiaUnit> IQuantity<WarpingMomentOfInertiaUnit>.ToUnit(WarpingMomentOfInertiaUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<WarpingMomentOfInertiaUnit> IQuantity<WarpingMomentOfInertiaUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

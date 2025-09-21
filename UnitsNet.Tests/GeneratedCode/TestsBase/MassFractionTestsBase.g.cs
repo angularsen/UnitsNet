@@ -306,36 +306,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit_UnitSystem_ReturnsValueInDimensionlessUnit()
         {
-            Assert.Multiple(() =>
-            {
-                var quantity = new MassFraction(value: 1, unit: MassFractionUnit.DecimalFraction);
+            var quantity = new MassFraction(value: 1, unit: MassFractionUnit.DecimalFraction);
 
-                MassFraction convertedQuantity = quantity.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(MassFractionUnit.DecimalFraction, convertedQuantity.Unit);
-                Assert.Equal(quantity.Value, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity<MassFractionUnit> quantity = new MassFraction(value: 1, unit: MassFractionUnit.DecimalFraction);
-
-                IQuantity<MassFractionUnit> convertedQuantity = quantity.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(MassFractionUnit.DecimalFraction, convertedQuantity.Unit);
-                Assert.Equal(quantity.Value, convertedQuantity.Value);
-            });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ReturnsValueInDimensionlessUnit()
-        {
-            IQuantity quantity = new MassFraction(value: 1, unit: MassFractionUnit.DecimalFraction);
-
-            IQuantity convertedQuantity = quantity.ToUnitUntyped(UnitSystem.SI);
+            MassFraction convertedQuantity = quantity.ToUnit(UnitSystem.SI);
 
             Assert.Equal(MassFractionUnit.DecimalFraction, convertedQuantity.Unit);
             Assert.Equal(quantity.Value, convertedQuantity.Value);
         }
-
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
@@ -344,15 +321,15 @@ namespace UnitsNet.Tests
             Assert.Multiple(() =>
             {
                 var quantity = new MassFraction(value: 1, unit: MassFraction.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             }, () =>
             {
                 IQuantity<MassFractionUnit> quantity = new MassFraction(value: 1, unit: MassFraction.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             }, () =>
             {
                 IQuantity quantity = new MassFraction(value: 1, unit: MassFraction.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
         }
 

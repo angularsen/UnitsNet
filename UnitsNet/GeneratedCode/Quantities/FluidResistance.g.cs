@@ -1037,9 +1037,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<FluidResistanceUnit> IQuantity<FluidResistanceUnit>.ToUnit(FluidResistanceUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<FluidResistanceUnit> IQuantity<FluidResistanceUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

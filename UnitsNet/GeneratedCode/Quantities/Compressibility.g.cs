@@ -818,9 +818,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<CompressibilityUnit> IQuantity<CompressibilityUnit>.ToUnit(CompressibilityUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<CompressibilityUnit> IQuantity<CompressibilityUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

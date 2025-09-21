@@ -1059,9 +1059,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<VolumeConcentrationUnit> IQuantity<VolumeConcentrationUnit>.ToUnit(VolumeConcentrationUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<VolumeConcentrationUnit> IQuantity<VolumeConcentrationUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion
