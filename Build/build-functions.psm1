@@ -8,10 +8,17 @@ $toolsDir = "$root\.tools"
 
 $nuget = "$toolsDir\NuGet.exe"
 $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
-$msbuildPath = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
 
-if ($msbuildPath) {
-  $msbuildx64 = join-path $msbuildPath 'MSBuild\Current\Bin\amd64\MSBuild.exe'
+# Check if Visual Studio is installed before trying to find MSBuild
+if (Test-Path $vswhere) {
+  $msbuildPath = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -property installationPath 2>$null
+
+  if ($msbuildPath) {
+    $msbuildx64 = join-path $msbuildPath 'MSBuild\Current\Bin\amd64\MSBuild.exe'
+  }
+} else {
+  $msbuildPath = $null
+  $msbuildx64 = $null
 }
 
 import-module $PSScriptRoot\build-pack-nano-nugets.psm1
@@ -45,15 +52,22 @@ function Start-Build([boolean] $IncludeNanoFramework = $false) {
   }
   else
   {
-    write-host -foreground green "Build .NET nanoFramework."
-    $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$logsDir\UnitsNet.NanoFramework.msbuild.log"
+    # Check if MSBuild is available before attempting NanoFramework build
+    if (-not $msbuildx64 -or -not (Test-Path $msbuildx64)) {
+      write-host -foreground yellow "Cannot build .NET nanoFramework - MSBuild not found. Install Visual Studio to build NanoFramework projects."
+      write-host -foreground yellow "Continuing with main build only..."
+    }
+    else {
+      write-host -foreground green "Build .NET nanoFramework."
+      $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$logsDir\UnitsNet.NanoFramework.msbuild.log"
 
-    # msbuild does not auto-restore nugets for this project type
-    & "$nuget" restore "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln"
+      # msbuild does not auto-restore nugets for this project type
+      & "$nuget" restore "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln"
 
-    # now build
-    & "$msbuildx64" "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release /p:Platform="Any CPU" /p:ContinuousIntegrationBuild=true $fileLoggerArg
-    if ($lastexitcode -ne 0) { exit 1 }
+      # now build
+      & "$msbuildx64" "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release /p:Platform="Any CPU" /p:ContinuousIntegrationBuild=true $fileLoggerArg
+      if ($lastexitcode -ne 0) { exit 1 }
+    }
   }
 
   write-host -foreground blue "Start-Build...END`n"
