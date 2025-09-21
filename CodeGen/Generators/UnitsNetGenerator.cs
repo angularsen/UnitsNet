@@ -39,6 +39,8 @@ namespace CodeGen.Generators
             var outputDir = $"{rootDir}/UnitsNet/GeneratedCode";
             var extensionsOutputDir = $"{rootDir}/UnitsNet.NumberExtensions/GeneratedCode";
             var extensionsTestOutputDir = $"{rootDir}/UnitsNet.NumberExtensions.Tests/GeneratedCode";
+            var extensionsCs14OutputDir = $"{rootDir}/UnitsNet.NumberExtensions.CS14/GeneratedCode";
+            var extensionsCs14TestOutputDir = $"{rootDir}/UnitsNet.NumberExtensions.CS14.Tests/GeneratedCode";
             var testProjectDir = $"{rootDir}/UnitsNet.Tests";
 
             // Ensure output directories exist
@@ -46,6 +48,8 @@ namespace CodeGen.Generators
             Directory.CreateDirectory($"{outputDir}/Units");
             Directory.CreateDirectory($"{extensionsOutputDir}");
             Directory.CreateDirectory($"{extensionsTestOutputDir}");
+            Directory.CreateDirectory($"{extensionsCs14OutputDir}");
+            Directory.CreateDirectory($"{extensionsCs14TestOutputDir}");
             Directory.CreateDirectory($"{testProjectDir}/GeneratedCode");
             Directory.CreateDirectory($"{testProjectDir}/GeneratedCode/TestsBase");
             Directory.CreateDirectory($"{testProjectDir}/GeneratedCode/QuantityTests");
@@ -58,6 +62,8 @@ namespace CodeGen.Generators
                 GenerateUnitType(quantity, $"{outputDir}/Units/{quantity.Name}Unit.g.cs", unitEnumValues);
                 GenerateNumberToExtensions(quantity, $"{extensionsOutputDir}/NumberTo{quantity.Name}Extensions.g.cs");
                 GenerateNumberToExtensionsTestClass(quantity, $"{extensionsTestOutputDir}/NumberTo{quantity.Name}ExtensionsTest.g.cs");
+                GenerateNumberToExtensionsCS14(quantity, $"{extensionsCs14OutputDir}/NumberTo{quantity.Name}Extensions.g.cs");
+                GenerateNumberToExtensionsCS14TestClass(quantity, $"{extensionsCs14TestOutputDir}/NumberTo{quantity.Name}ExtensionsTest.g.cs");
 
                 // Example: CustomCode/Quantities/LengthTests inherits GeneratedCode/TestsBase/LengthTestsBase
                 // This way when new units are added to the quantity JSON definition, we auto-generate the new
@@ -104,6 +110,18 @@ namespace CodeGen.Generators
         private static void GenerateNumberToExtensionsTestClass(Quantity quantity, string filePath)
         {
             var content = new NumberExtensionsTestClassGenerator(quantity).Generate();
+            File.WriteAllText(filePath, content);
+        }
+
+        private static void GenerateNumberToExtensionsCS14(Quantity quantity, string filePath)
+        {
+            var content = new NumberExtensionsCS14Generator(quantity).Generate();
+            File.WriteAllText(filePath, content);
+        }
+
+        private static void GenerateNumberToExtensionsCS14TestClass(Quantity quantity, string filePath)
+        {
+            var content = new NumberExtensionsCS14TestClassGenerator(quantity).Generate();
             File.WriteAllText(filePath, content);
         }
 
