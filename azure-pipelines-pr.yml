@@ -38,6 +38,12 @@ stages:
       fetchTags: false
 
     - task: UseDotNet@2
+      displayName: 'Install .NET 9 SDK'
+      inputs:
+        packageType: 'sdk'
+        version: '9.x'
+
+    - task: UseDotNet@2
       displayName: 'Install .NET 10 SDK Preview (for C# 14)'
       inputs:
         packageType: 'sdk'
