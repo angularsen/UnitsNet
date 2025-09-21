@@ -27,7 +27,12 @@
     <Nullable>enable</Nullable>
     <RootNamespace>UnitsNet</RootNamespace>
     <TargetFrameworks>netstandard2.0;net8.0;net9.0</TargetFrameworks>
-    <IsAotCompatible Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">true</IsAotCompatible>
+
+    <!-- TEMPORARY WORKAROUND UNTIL NET10 SDK IS STABLE
+         Disable ILLink analyzers due to incompatibility with C# 14 extension members preview
+         "CSC : error AD0001: Analyzer 'ILLink.RoslynAnalyzer.DynamicallyAccessedMembersAnalyzer' threw an exception of type 'System.InvalidCastException' with message 'Unable to cast object of type 'Microsoft.CodeAnalysis.CSharp.Symbols.PublicModel.NonErrorNamedTypeSymbol' to type 'Microsoft.CodeAnalysis.IMethodSymbol'.'." -->
+    <IsAotCompatible>false</IsAotCompatible>
+    <!-- <IsAotCompatible Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">true</IsAotCompatible> -->
   </PropertyGroup>
 
   <ItemGroup>
