@@ -15,12 +15,6 @@ env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
   DOTNET_CLI_TELEMETRY_OPTOUT: true
 
-permissions:
-  contents: read        # Clone and checkout repository
-  id-token: write       # OIDC token for codecov upload
-  checks: write         # Publish test results as GitHub checks
-  pull-requests: write  # Required by test result publisher action
-
 jobs:
   build-and-test:
     name: Build & Test
