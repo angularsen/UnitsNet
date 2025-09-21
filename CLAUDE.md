@@ -117,3 +117,9 @@ The project uses a sophisticated code generation system:
 ### Run performance benchmarks
 - Execute: `dotnet run -c Release --project UnitsNet.Benchmark`
 - Results saved to `Artifacts/` folder
+
+## Pull request reviews
+
+### Adding new quantities or units
+
+See `.claude/criteria-for-adding-quantities-and-units.md` for instructions on adding new quantities or units to ensure they are widely used and well defined.
