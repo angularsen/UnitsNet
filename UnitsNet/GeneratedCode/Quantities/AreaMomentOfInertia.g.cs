@@ -208,20 +208,20 @@ namespace UnitsNet
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        Enum IQuantity.Unit => Unit;
+        UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
+
+#if NETSTANDARD2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        IQuantityInstanceInfo<AreaMomentOfInertia> IQuantityOfType<AreaMomentOfInertia>.QuantityInfo => Info;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
+        QuantityInfo<AreaMomentOfInertiaUnit> IQuantity<AreaMomentOfInertiaUnit>.QuantityInfo => Info;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        QuantityInfo<AreaMomentOfInertiaUnit> IQuantity<AreaMomentOfInertiaUnit>.QuantityInfo => Info;
-
-#if NETSTANDARD2_0
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<AreaMomentOfInertia> IQuantityOfType<AreaMomentOfInertia>.QuantityInfo => Info;
+        Enum IQuantity.Unit => Unit;
 #endif
 
         #endregion

@@ -260,20 +260,20 @@ namespace UnitsNet
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        Enum IQuantity.Unit => Unit;
+        UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
+
+#if NETSTANDARD2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        IQuantityInstanceInfo<Length> IQuantityOfType<Length>.QuantityInfo => Info;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
+        QuantityInfo<LengthUnit> IQuantity<LengthUnit>.QuantityInfo => Info;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        QuantityInfo<LengthUnit> IQuantity<LengthUnit>.QuantityInfo => Info;
-
-#if NETSTANDARD2_0
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<Length> IQuantityOfType<Length>.QuantityInfo => Info;
+        Enum IQuantity.Unit => Unit;
 #endif
 
         #endregion
