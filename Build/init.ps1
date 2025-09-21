@@ -27,8 +27,23 @@ if (-not (Test-Path "$nugetPath")) {
 ###################################################
 ## TODO: OK to remove after moving to AZDO pipeline
 $VsWherePath = "${env:PROGRAMFILES(X86)}\Microsoft Visual Studio\Installer\vswhere.exe"
-$VsPath = $(&$VsWherePath -latest -property installationPath)
-$msbuildPath = Join-Path -Path $VsPath -ChildPath "\MSBuild"
+
+# Check if Visual Studio is installed
+if (Test-Path $VsWherePath) {
+  $VsPath = $(&$VsWherePath -latest -property installationPath 2>$null)
+  if ($VsPath) {
+    $msbuildPath = Join-Path -Path $VsPath -ChildPath "\MSBuild"
+    Write-Host -Foreground Green "Visual Studio found at: $VsPath"
+  } else {
+    Write-Host -Foreground Yellow "Visual Studio not found via vswhere, NanoFramework builds will be skipped"
+    $VsPath = $null
+    $msbuildPath = $null
+  }
+} else {
+  Write-Host -Foreground Yellow "Visual Studio not installed - NanoFramework builds will be skipped"
+  $VsPath = $null
+  $msbuildPath = $null
+}
 
 # Install dotnet CLI tools declared in /.config/dotnet-tools.json
 pushd $root
@@ -36,7 +51,7 @@ dotnet tool restore
 popd
 
 # Install .NET nanoFramework build components
-if (!(Test-Path "$msbuildPath/nanoFramework")) {
+if ($msbuildPath -and !(Test-Path "$msbuildPath/nanoFramework")) {
   Write-Host "Installing .NET nanoFramework VS extension..."
 
   [System.Net.WebClient]$webClient = New-Object System.Net.WebClient
@@ -60,7 +75,7 @@ if (!(Test-Path "$msbuildPath/nanoFramework")) {
 
   Write-Output "VsWherePath is: $VsWherePath"
 
-  $VsInstance = $(&$VSWherePath -latest -property displayName)
+  $VsInstance = $(&$VSWherePath -latest -property displayName 2>$null)
 
   Write-Output "Latest VS is: $VsInstance"
 
