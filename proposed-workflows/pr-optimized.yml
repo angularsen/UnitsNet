@@ -1,15 +1,15 @@
-name: CI Build
+name: PR Build (Optimized)
 
 on:
-  push:
+  pull_request:
     branches:
       - master
       - 'release/**'
       - 'maintenance/**'
     paths-ignore:
-      - '**/*.png'
-      - '**/*.md'
-  workflow_dispatch:
+      - '*.md'
+      - '*.png'
+      - '*.gitignore'
 
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
@@ -19,8 +19,6 @@ jobs:
   standard-build:
     name: Standard - Build & Test (Linux)
     runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.version.outputs.version }}
 
     steps:
     - name: Checkout
@@ -34,13 +32,7 @@ jobs:
       with:
         dotnet-version: |
           6.0.x
-          9.0.x
-
-    - name: Get Version
-      id: version
-      run: |
-        VERSION=$(grep -oP '(?<=<Version>)[^<]+' UnitsNet/UnitsNet.csproj | head -1)
-        echo "version=$VERSION" >> $GITHUB_OUTPUT
+          8.0.x
 
     - name: Generate Code
       run: dotnet run --project CodeGen
@@ -60,20 +52,22 @@ jobs:
           --results-directory "Artifacts/TestResults"
         echo "::endgroup::"
 
-    - name: Pack NuGets
-      run: |
-        echo "::group::Packing Standard NuGets..."
-        dotnet pack UnitsNet.slnx --configuration Release --no-build \
-          --output Artifacts/NuGet
-        echo "::endgroup::"
-
     - name: Upload Test Results
       uses: actions/upload-artifact@v4
       if: always()
       with:
         name: standard-test-results
         path: Artifacts/TestResults/*.trx
-        retention-days: 30
+        retention-days: 7
+
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always()
+      with:
+        files: |
+          Artifacts/TestResults/*.trx
+        check_name: Standard Test Results
+        comment_mode: off
 
     - name: Upload Coverage
       uses: codecov/codecov-action@v4
@@ -83,26 +77,16 @@ jobs:
         flags: standard
         name: standard-coverage
 
-    - name: Upload Standard NuGets
-      uses: actions/upload-artifact@v4
-      with:
-        name: standard-nugets
-        path: |
-          Artifacts/NuGet/*.nupkg
-          Artifacts/NuGet/*.snupkg
-        retention-days: 30
-
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: standard-artifacts
         path: Artifacts/
-        retention-days: 30
+        retention-days: 7
 
   nano-build:
     name: Nano - Build (Windows)
     runs-on: windows-latest
-    needs: [] # Run in parallel, no dependencies
 
     steps:
     - name: Checkout
@@ -116,7 +100,7 @@ jobs:
       with:
         dotnet-version: |
           6.0.x
-          9.0.x
+          8.0.x
 
     - name: Setup .NET nanoFramework
       uses: nanoframework/nanobuild@v1
@@ -150,68 +134,17 @@ jobs:
 
         Write-Host "::endgroup::"
 
-    - name: Pack Nano NuGets
-      shell: pwsh
-      run: |
-        Write-Host "::group::Packing NanoFramework NuGets..."
-
-        $msbuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
-          -latest -requires Microsoft.Component.MSBuild `
-          -find MSBuild\**\Bin\MSBuild.exe | Select-Object -First 1
-
-        & $msbuildPath UnitsNet.NanoFramework/UnitsNet.NanoFramework.nfproj `
-          /t:Pack /p:Configuration=Release /p:PackageOutputPath="$PWD\Artifacts\NuGet"
-
-        & $msbuildPath UnitsNet.NumberExtensions.NanoFramework/UnitsNet.NumberExtensions.NanoFramework.nfproj `
-          /t:Pack /p:Configuration=Release /p:PackageOutputPath="$PWD\Artifacts\NuGet"
-
-        Write-Host "::endgroup::"
-
-    - name: Upload Nano NuGets
+    - name: Upload Nano Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: nano-nugets
+        name: nano-artifacts
         path: |
-          Artifacts/NuGet/*.nupkg
-          Artifacts/NuGet/*.snupkg
-        retention-days: 30
+          UnitsNet.NanoFramework/bin/Release/**
+          UnitsNet.NumberExtensions.NanoFramework/bin/Release/**
+        retention-days: 7
 
-  publish-nuget:
-    name: Publish to NuGet
-    needs: [standard-build, nano-build]
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master' && github.repository_owner == 'angularsen'
-    environment: Publish
-
-    steps:
-    - name: Download Standard NuGets
-      uses: actions/download-artifact@v4
-      with:
-        name: standard-nugets
-        path: nugets/standard
-
-    - name: Download Nano NuGets
-      uses: actions/download-artifact@v4
-      with:
-        name: nano-nugets
-        path: nugets/nano
-
-    - name: Setup .NET SDK
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 9.0.x
-
-    - name: Push to nuget.org
-      env:
-        NUGET_ORG_APIKEY: ${{ secrets.NUGET_ORG_APIKEY }}
-      run: |
-        echo "::group::Publishing all NuGets to nuget.org..."
-        dotnet nuget push "**/*.nupkg" --skip-duplicate --api-key $NUGET_ORG_APIKEY --source https://api.nuget.org/v3/index.json
-        echo "::endgroup::"
-      working-directory: nugets
-
-  check-status:
-    name: Check Build Status
+  pr-status:
+    name: PR Build Status
     needs: [standard-build, nano-build]
     runs-on: ubuntu-latest
     if: always()
@@ -219,10 +152,12 @@ jobs:
     steps:
     - name: Check Status
       run: |
+        echo "## Build Results"
+        echo "Standard Build: ${{ needs.standard-build.result }}"
+        echo "Nano Build: ${{ needs.nano-build.result }}"
+
         if [[ "${{ needs.standard-build.result }}" != "success" ]] || [[ "${{ needs.nano-build.result }}" != "success" ]]; then
-          echo "❌ One or more builds failed"
-          echo "Standard Build: ${{ needs.standard-build.result }}"
-          echo "Nano Build: ${{ needs.nano-build.result }}"
+          echo "❌ PR builds failed"
           exit 1
         fi
-        echo "✅ All builds succeeded"
+        echo "✅ All PR builds succeeded"

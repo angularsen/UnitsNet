@@ -1,4 +1,4 @@
-name: CI Build
+name: CI Build (Optimized)
 
 on:
   push:
@@ -34,7 +34,7 @@ jobs:
       with:
         dotnet-version: |
           6.0.x
-          9.0.x
+          8.0.x
 
     - name: Get Version
       id: version
@@ -92,12 +92,15 @@ jobs:
           Artifacts/NuGet/*.snupkg
         retention-days: 30
 
-    - name: Upload Artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: standard-artifacts
-        path: Artifacts/
-        retention-days: 30
+    - name: Publish Standard NuGets
+      if: github.ref == 'refs/heads/master' && github.repository_owner == 'angularsen'
+      run: |
+        echo "::group::Publishing Standard NuGets to nuget.org..."
+        dotnet nuget push "Artifacts/NuGet/*.nupkg" \
+          --skip-duplicate \
+          --api-key ${{ secrets.NUGET_ORG_APIKEY }} \
+          --source https://api.nuget.org/v3/index.json
+        echo "::endgroup::"
 
   nano-build:
     name: Nano - Build (Windows)
@@ -116,7 +119,7 @@ jobs:
       with:
         dotnet-version: |
           6.0.x
-          9.0.x
+          8.0.x
 
     - name: Setup .NET nanoFramework
       uses: nanoframework/nanobuild@v1
@@ -176,39 +179,18 @@ jobs:
           Artifacts/NuGet/*.snupkg
         retention-days: 30
 
-  publish-nuget:
-    name: Publish to NuGet
-    needs: [standard-build, nano-build]
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master' && github.repository_owner == 'angularsen'
-    environment: Publish
-
-    steps:
-    - name: Download Standard NuGets
-      uses: actions/download-artifact@v4
-      with:
-        name: standard-nugets
-        path: nugets/standard
-
-    - name: Download Nano NuGets
-      uses: actions/download-artifact@v4
-      with:
-        name: nano-nugets
-        path: nugets/nano
-
-    - name: Setup .NET SDK
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 9.0.x
-
-    - name: Push to nuget.org
-      env:
-        NUGET_ORG_APIKEY: ${{ secrets.NUGET_ORG_APIKEY }}
+    - name: Publish Nano NuGets
+      if: github.ref == 'refs/heads/master' && github.repository_owner == 'angularsen'
+      shell: pwsh
       run: |
-        echo "::group::Publishing all NuGets to nuget.org..."
-        dotnet nuget push "**/*.nupkg" --skip-duplicate --api-key $NUGET_ORG_APIKEY --source https://api.nuget.org/v3/index.json
-        echo "::endgroup::"
-      working-directory: nugets
+        Write-Host "::group::Publishing NanoFramework NuGets to nuget.org..."
+
+        dotnet nuget push "Artifacts\NuGet\*.nupkg" `
+          --skip-duplicate `
+          --api-key "${{ secrets.NUGET_ORG_APIKEY }}" `
+          --source https://api.nuget.org/v3/index.json
+
+        Write-Host "::endgroup::"
 
   check-status:
     name: Check Build Status
