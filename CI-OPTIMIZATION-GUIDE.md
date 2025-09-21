@@ -51,8 +51,10 @@ graph TD
 ## Implementation Files
 
 ### GitHub Workflows
-- `.github/workflows/ci-optimized.yml` - Optimized CI for master/release branches
-- `.github/workflows/pr-optimized.yml` - Optimized PR validation
+- `proposed-workflows/ci-optimized.yml` - Optimized CI for master/release branches (ready to move to `.github/workflows/`)
+- `proposed-workflows/pr-optimized.yml` - Optimized PR validation (ready to move to `.github/workflows/`)
+
+**Note**: Workflow files are placed in `proposed-workflows/` directory due to permission restrictions. To activate them, manually move them to `.github/workflows/` directory.
 
 ### Build Scripts
 - `build.sh` - Linux/macOS build script for Standard projects
@@ -72,9 +74,9 @@ When confident (after 5-10 successful builds):
 mv .github/workflows/ci.yml .github/workflows/ci-old.yml
 mv .github/workflows/pr.yml .github/workflows/pr-old.yml
 
-# Activate optimized workflows
-mv .github/workflows/ci-optimized.yml .github/workflows/ci.yml
-mv .github/workflows/pr-optimized.yml .github/workflows/pr.yml
+# Move and activate optimized workflows
+mv proposed-workflows/ci-optimized.yml .github/workflows/ci.yml
+mv proposed-workflows/pr-optimized.yml .github/workflows/pr.yml
 ```
 
 ### Phase 3: Cleanup
