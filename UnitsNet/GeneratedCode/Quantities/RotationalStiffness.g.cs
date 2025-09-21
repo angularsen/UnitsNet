@@ -236,20 +236,20 @@ namespace UnitsNet
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        Enum IQuantity.Unit => Unit;
+        UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
+
+#if NETSTANDARD2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        IQuantityInstanceInfo<RotationalStiffness> IQuantityOfType<RotationalStiffness>.QuantityInfo => Info;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
+        QuantityInfo<RotationalStiffnessUnit> IQuantity<RotationalStiffnessUnit>.QuantityInfo => Info;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        QuantityInfo<RotationalStiffnessUnit> IQuantity<RotationalStiffnessUnit>.QuantityInfo => Info;
-
-#if NETSTANDARD2_0
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<RotationalStiffness> IQuantityOfType<RotationalStiffness>.QuantityInfo => Info;
+        Enum IQuantity.Unit => Unit;
 #endif
 
         #endregion

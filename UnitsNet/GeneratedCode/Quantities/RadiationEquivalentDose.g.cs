@@ -208,20 +208,20 @@ namespace UnitsNet
         #region Explicit implementations
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        Enum IQuantity.Unit => Unit;
+        UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
+
+#if NETSTANDARD2_0
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        IQuantityInstanceInfo<RadiationEquivalentDose> IQuantityOfType<RadiationEquivalentDose>.QuantityInfo => Info;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        UnitKey IQuantity.UnitKey => UnitKey.ForUnit(Unit);
+        QuantityInfo<RadiationEquivalentDoseUnit> IQuantity<RadiationEquivalentDoseUnit>.QuantityInfo => Info;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         QuantityInfo IQuantity.QuantityInfo => Info;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        QuantityInfo<RadiationEquivalentDoseUnit> IQuantity<RadiationEquivalentDoseUnit>.QuantityInfo => Info;
-
-#if NETSTANDARD2_0
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        IQuantityInstanceInfo<RadiationEquivalentDose> IQuantityOfType<RadiationEquivalentDose>.QuantityInfo => Info;
+        Enum IQuantity.Unit => Unit;
 #endif
 
         #endregion

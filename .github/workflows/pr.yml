@@ -1,0 +1,93 @@
+name: PR Build
+
+on:
+  pull_request:
+    branches:
+      - master
+      - 'release/**'
+      - 'maintenance/**'
+    paths-ignore:
+      - '*.md'
+      - '*.png'
+      - '*.gitignore'
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  build-and-test:
+    name: Build & Test
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+        lfs: true
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          6.0.x
+          8.0.x
+
+    - name: Setup .NET nanoFramework build components
+      uses: nanoframework/nanobuild@v1
+      with:
+        workload: 'nanoFramework'
+
+    - name: Build, Test and Pack
+      shell: pwsh
+      run: |
+        ./Build/build.ps1 -IncludeNanoFramework
+      working-directory: ${{ github.workspace }}
+
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results
+        path: Artifacts/TestResults/*.trx
+        retention-days: 7
+
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action/windows@v2
+      if: always()
+      with:
+        files: |
+          Artifacts/TestResults/*.trx
+        check_name: Test Results
+        comment_mode: off
+
+    - name: Upload to codecov.io
+      shell: pwsh
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      run: |
+        Write-Host -Foreground Green "Downloading codecov binaries..."
+
+        Invoke-WebRequest -Uri https://uploader.codecov.io/verification.gpg -OutFile codecov.asc
+        gpg.exe --import codecov.asc
+
+        Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe -Outfile codecov.exe
+        Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM -Outfile codecov.exe.SHA256SUM
+        Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM.sig -Outfile codecov.exe.SHA256SUM.sig
+
+        gpg.exe --verify codecov.exe.SHA256SUM.sig codecov.exe.SHA256SUM
+        If ($(Compare-Object -ReferenceObject  $(($(certUtil -hashfile codecov.exe SHA256)[1], "codecov.exe") -join "  ") -DifferenceObject $(Get-Content codecov.exe.SHA256SUM)).length -eq 0) { echo "SHASUM verified" } Else {exit 1}
+
+        Write-Host -Foreground Green "Uploading to codecov..."
+
+        .\codecov.exe --dir "Artifacts/Coverage" -t "$env:CODECOV_TOKEN" --build "${{ github.run_number }}"
+
+        Write-Host -Foreground Green "✅ Uploaded to codecov."
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: artifacts
+        path: Artifacts/
+        retention-days: 7
