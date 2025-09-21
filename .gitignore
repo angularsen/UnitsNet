@@ -259,3 +259,6 @@ Artifacts
 # Build server tooling
 /secure-file
 /.tools/
+
+# Claude Code assistant
+.claude/settings.local.json
