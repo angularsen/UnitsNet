@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <!-- NuGet properties -->
   <PropertyGroup>
-    <PackageId>UnitsNet.NumberExtensions</PackageId>
+    <PackageId>UnitsNet.NumberExtensions.CS14</PackageId>
     <Version>6.0.0-pre017</Version>
     <Authors>Andreas Gullberg Larsen, Lu Li, Jon Suda</Authors>
-    <Title>Units.NET NumberExtensions</Title>
-    <Description>Adds extension methods to number types to more easily create quantities, such as 5.Meters() instead of Length.FromMeters(5).</Description>
+    <Title>Units.NET NumberExtensions for C# 14</Title>
+    <Description>C# 14 extension members for number types to create quantities using the new syntax, such as 5.Meters instead of Length.FromMeters(5). Requires C# 14 preview.</Description>
     <Copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).</Copyright>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RepositoryUrl>https://github.com/angularsen/UnitsNet</RepositoryUrl>
