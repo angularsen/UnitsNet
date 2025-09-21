@@ -37,6 +37,16 @@ stages:
       submodules: false
       fetchTags: false
 
+    - task: UseDotNet@2
+      displayName: 'Install .NET 10 SDK Preview (for C# 14)'
+      inputs:
+        packageType: 'sdk'
+        version: '10.0.100-preview.1'
+        includePreviewVersions: true
+
+    - task: InstallNanoMSBuildComponents@1
+      displayName: Install .NET nanoFramework MSBuild components
+
     - task: PowerShell@2
       displayName: 'Build, test, pack'
       inputs:

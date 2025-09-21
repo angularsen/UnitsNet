@@ -63,6 +63,7 @@ function Start-Tests {
   $projectPaths = @(
     "UnitsNet.Tests\UnitsNet.Tests.csproj",
     "UnitsNet.NumberExtensions.Tests\UnitsNet.NumberExtensions.Tests.csproj",
+    "UnitsNet.NumberExtensions.CS14.Tests\UnitsNet.NumberExtensions.CS14.Tests.csproj",
     "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.csproj"
     )
 
@@ -102,7 +103,8 @@ function Start-PackNugets([boolean] $IncludeNanoFramework = $false) {
   $projectPaths = @(
     "UnitsNet\UnitsNet.csproj",
     "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj",
-    "UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj"
+    "UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj",
+    "UnitsNet.NumberExtensions.CS14\UnitsNet.NumberExtensions.CS14.csproj"
     )
 
   write-host -foreground blue "Pack nugets...`n---"
