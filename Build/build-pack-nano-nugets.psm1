@@ -8,7 +8,6 @@ function Invoke-BuildNanoNugets {
 Foreach ($nuspecFile in $nugetsToProcess)
   {
     & $nuget pack "$nuspecFile" -Verbosity detailed -OutputDirectory "$nugetOutDir"
-    echo "Succesfully packed nanoframework nuget file: $nuspecFile";
   }
 }
 
