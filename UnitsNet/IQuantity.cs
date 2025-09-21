@@ -18,6 +18,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
+        [Obsolete("This property will be removed in the next major release. Consider using QuantityInfo.BaseDimensions instead.")]
         BaseDimensions Dimensions { get; }
 
         /// <summary>
