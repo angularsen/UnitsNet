@@ -16,9 +16,11 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true
 
 jobs:
-  build-and-test:
-    name: Build & Test
-    runs-on: windows-latest
+  standard-build:
+    name: Standard - Build & Test (Linux)
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
 
     steps:
     - name: Checkout
@@ -34,69 +36,165 @@ jobs:
           6.0.x
           9.0.x
 
-    - name: Setup .NET nanoFramework build components
-      uses: nanoframework/nanobuild@v1
+    - name: Get Version
+      id: version
+      run: |
+        VERSION=$(grep -oP '(?<=<Version>)[^<]+' UnitsNet/UnitsNet.csproj | head -1)
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+    - name: Generate Code
+      run: dotnet run --project CodeGen
+
+    - name: Build Projects
+      run: |
+        echo "::group::Building Standard projects..."
+        dotnet build UnitsNet.slnx --configuration Release
+        echo "::endgroup::"
+
+    - name: Run Tests
+      run: |
+        echo "::group::Running tests..."
+        dotnet test UnitsNet.slnx --configuration Release --no-build \
+          --collect:"XPlat Code Coverage" \
+          --logger:trx \
+          --results-directory "Artifacts/TestResults"
+        echo "::endgroup::"
+
+    - name: Pack NuGets
+      run: |
+        echo "::group::Packing Standard NuGets..."
+        dotnet pack UnitsNet.slnx --configuration Release --no-build \
+          --output Artifacts/NuGet
+        echo "::endgroup::"
+
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v4
+      if: always()
       with:
-        workload: 'nanoFramework'
+        name: standard-test-results
+        path: Artifacts/TestResults/*.trx
+        retention-days: 30
 
-    - name: Build, Test and Pack
-      shell: pwsh
-      run: |
-        ./Build/build.ps1 -IncludeNanoFramework
-      working-directory: ${{ github.workspace }}
+    - name: Upload Coverage
+      uses: codecov/codecov-action@v4
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: Artifacts/TestResults/**/*.xml
+        flags: standard
+        name: standard-coverage
 
-    - name: Upload to codecov.io
-      shell: pwsh
-      env:
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-      run: |
-        Write-Host -Foreground Green "Downloading codecov binaries..."
-
-        Invoke-WebRequest -Uri https://uploader.codecov.io/verification.gpg -OutFile codecov.asc
-        gpg.exe --import codecov.asc
-
-        Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe -Outfile codecov.exe
-        Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM -Outfile codecov.exe.SHA256SUM
-        Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM.sig -Outfile codecov.exe.SHA256SUM.sig
-
-        gpg.exe --verify codecov.exe.SHA256SUM.sig codecov.exe.SHA256SUM
-        If ($(Compare-Object -ReferenceObject  $(($(certUtil -hashfile codecov.exe SHA256)[1], "codecov.exe") -join "  ") -DifferenceObject $(Get-Content codecov.exe.SHA256SUM)).length -eq 0) { echo "SHASUM verified" } Else {exit 1}
-
-        Write-Host -Foreground Green "Uploading to codecov..."
-
-        .\codecov.exe --dir "Artifacts/Coverage" -t "$env:CODECOV_TOKEN" --build "${{ github.run_number }}"
-
-        Write-Host -Foreground Green "✅ Uploaded to codecov."
+    - name: Upload Standard NuGets
+      uses: actions/upload-artifact@v4
+      with:
+        name: standard-nugets
+        path: |
+          Artifacts/NuGet/*.nupkg
+          Artifacts/NuGet/*.snupkg
+        retention-days: 30
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: artifacts
+        name: standard-artifacts
         path: Artifacts/
         retention-days: 30
 
-    - name: Upload NuGet packages
+  nano-build:
+    name: Nano - Build (Windows)
+    runs-on: windows-latest
+    needs: [] # Run in parallel, no dependencies
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+        lfs: true
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          6.0.x
+          9.0.x
+
+    - name: Setup .NET nanoFramework
+      uses: nanoframework/nanobuild@v1
+      with:
+        workload: 'nanoFramework'
+
+    - name: Generate Code
+      shell: pwsh
+      run: dotnet run --project CodeGen
+
+    - name: Build Nano Projects
+      shell: pwsh
+      run: |
+        Write-Host "::group::Building NanoFramework projects..."
+
+        # Build NanoFramework projects with MSBuild
+        $msbuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
+          -latest -requires Microsoft.Component.MSBuild `
+          -find MSBuild\**\Bin\MSBuild.exe | Select-Object -First 1
+
+        if (-not $msbuildPath) {
+          Write-Error "MSBuild not found. Ensure Visual Studio Build Tools are installed."
+          exit 1
+        }
+
+        & $msbuildPath UnitsNet.NanoFramework/UnitsNet.NanoFramework.nfproj `
+          /p:Configuration=Release /p:Platform="Any CPU" /restore
+
+        & $msbuildPath UnitsNet.NumberExtensions.NanoFramework/UnitsNet.NumberExtensions.NanoFramework.nfproj `
+          /p:Configuration=Release /p:Platform="Any CPU" /restore
+
+        Write-Host "::endgroup::"
+
+    - name: Pack Nano NuGets
+      shell: pwsh
+      run: |
+        Write-Host "::group::Packing NanoFramework NuGets..."
+
+        $msbuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
+          -latest -requires Microsoft.Component.MSBuild `
+          -find MSBuild\**\Bin\MSBuild.exe | Select-Object -First 1
+
+        & $msbuildPath UnitsNet.NanoFramework/UnitsNet.NanoFramework.nfproj `
+          /t:Pack /p:Configuration=Release /p:PackageOutputPath="$PWD\Artifacts\NuGet"
+
+        & $msbuildPath UnitsNet.NumberExtensions.NanoFramework/UnitsNet.NumberExtensions.NanoFramework.nfproj `
+          /t:Pack /p:Configuration=Release /p:PackageOutputPath="$PWD\Artifacts\NuGet"
+
+        Write-Host "::endgroup::"
+
+    - name: Upload Nano NuGets
       uses: actions/upload-artifact@v4
       with:
-        name: nuget-packages
+        name: nano-nugets
         path: |
-          Artifacts/**/*.nupkg
-          Artifacts/**/*.snupkg
+          Artifacts/NuGet/*.nupkg
+          Artifacts/NuGet/*.snupkg
         retention-days: 30
 
   publish-nuget:
     name: Publish to NuGet
-    needs: build-and-test
+    needs: [standard-build, nano-build]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' && github.repository_owner == 'angularsen'
     environment: Publish
 
     steps:
-    - name: Download NuGet packages
+    - name: Download Standard NuGets
       uses: actions/download-artifact@v4
       with:
-        name: nuget-packages
-        path: nugets
+        name: standard-nugets
+        path: nugets/standard
+
+    - name: Download Nano NuGets
+      uses: actions/download-artifact@v4
+      with:
+        name: nano-nugets
+        path: nugets/nano
 
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v4
@@ -107,5 +205,24 @@ jobs:
       env:
         NUGET_ORG_APIKEY: ${{ secrets.NUGET_ORG_APIKEY }}
       run: |
+        echo "::group::Publishing all NuGets to nuget.org..."
         dotnet nuget push "**/*.nupkg" --skip-duplicate --api-key $NUGET_ORG_APIKEY --source https://api.nuget.org/v3/index.json
+        echo "::endgroup::"
       working-directory: nugets
+
+  check-status:
+    name: Check Build Status
+    needs: [standard-build, nano-build]
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+    - name: Check Status
+      run: |
+        if [[ "${{ needs.standard-build.result }}" != "success" ]] || [[ "${{ needs.nano-build.result }}" != "success" ]]; then
+          echo "❌ One or more builds failed"
+          echo "Standard Build: ${{ needs.standard-build.result }}"
+          echo "Nano Build: ${{ needs.nano-build.result }}"
+          exit 1
+        fi
+        echo "✅ All builds succeeded"

@@ -16,8 +16,76 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true
 
 jobs:
-  build-and-test:
-    name: Build & Test
+  standard-build:
+    name: Standard - Build & Test (Linux)
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+        lfs: true
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          6.0.x
+          8.0.x
+
+    - name: Generate Code
+      run: dotnet run --project CodeGen
+
+    - name: Build Projects
+      run: |
+        echo "::group::Building Standard projects..."
+        dotnet build UnitsNet.slnx --configuration Release
+        echo "::endgroup::"
+
+    - name: Run Tests
+      run: |
+        echo "::group::Running tests..."
+        dotnet test UnitsNet.slnx --configuration Release --no-build \
+          --collect:"XPlat Code Coverage" \
+          --logger:trx \
+          --results-directory "Artifacts/TestResults"
+        echo "::endgroup::"
+
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: standard-test-results
+        path: Artifacts/TestResults/*.trx
+        retention-days: 7
+
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always()
+      with:
+        files: |
+          Artifacts/TestResults/*.trx
+        check_name: Standard Test Results
+        comment_mode: off
+
+    - name: Upload Coverage
+      uses: codecov/codecov-action@v4
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: Artifacts/TestResults/**/*.xml
+        flags: standard
+        name: standard-coverage
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: standard-artifacts
+        path: Artifacts/
+        retention-days: 7
+
+  nano-build:
+    name: Nano - Build (Windows)
     runs-on: windows-latest
 
     steps:
@@ -34,60 +102,62 @@ jobs:
           6.0.x
           8.0.x
 
-    - name: Setup .NET nanoFramework build components
+    - name: Setup .NET nanoFramework
       uses: nanoframework/nanobuild@v1
       with:
         workload: 'nanoFramework'
 
-    - name: Build, Test and Pack
+    - name: Generate Code
+      shell: pwsh
+      run: dotnet run --project CodeGen
+
+    - name: Build Nano Projects
       shell: pwsh
       run: |
-        ./Build/build.ps1 -IncludeNanoFramework
-      working-directory: ${{ github.workspace }}
+        Write-Host "::group::Building NanoFramework projects..."
 
-    - name: Upload Test Results
+        # Build NanoFramework projects with MSBuild
+        $msbuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
+          -latest -requires Microsoft.Component.MSBuild `
+          -find MSBuild\**\Bin\MSBuild.exe | Select-Object -First 1
+
+        if (-not $msbuildPath) {
+          Write-Error "MSBuild not found. Ensure Visual Studio Build Tools are installed."
+          exit 1
+        }
+
+        & $msbuildPath UnitsNet.NanoFramework/UnitsNet.NanoFramework.nfproj `
+          /p:Configuration=Release /p:Platform="Any CPU" /restore
+
+        & $msbuildPath UnitsNet.NumberExtensions.NanoFramework/UnitsNet.NumberExtensions.NanoFramework.nfproj `
+          /p:Configuration=Release /p:Platform="Any CPU" /restore
+
+        Write-Host "::endgroup::"
+
+    - name: Upload Nano Artifacts
       uses: actions/upload-artifact@v4
-      if: always()
       with:
-        name: test-results
-        path: Artifacts/TestResults/*.trx
+        name: nano-artifacts
+        path: |
+          UnitsNet.NanoFramework/bin/Release/**
+          UnitsNet.NumberExtensions.NanoFramework/bin/Release/**
         retention-days: 7
 
-    - name: Publish Test Results
-      uses: EnricoMi/publish-unit-test-result-action/windows@v2
-      if: always()
-      with:
-        files: |
-          Artifacts/TestResults/*.trx
-        check_name: Test Results
-        comment_mode: off
+  pr-status:
+    name: PR Build Status
+    needs: [standard-build, nano-build]
+    runs-on: ubuntu-latest
+    if: always()
 
-    - name: Upload to codecov.io
-      shell: pwsh
-      env:
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    steps:
+    - name: Check Status
       run: |
-        Write-Host -Foreground Green "Downloading codecov binaries..."
+        echo "## Build Results"
+        echo "Standard Build: ${{ needs.standard-build.result }}"
+        echo "Nano Build: ${{ needs.nano-build.result }}"
 
-        Invoke-WebRequest -Uri https://uploader.codecov.io/verification.gpg -OutFile codecov.asc
-        gpg.exe --import codecov.asc
-
-        Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe -Outfile codecov.exe
-        Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM -Outfile codecov.exe.SHA256SUM
-        Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM.sig -Outfile codecov.exe.SHA256SUM.sig
-
-        gpg.exe --verify codecov.exe.SHA256SUM.sig codecov.exe.SHA256SUM
-        If ($(Compare-Object -ReferenceObject  $(($(certUtil -hashfile codecov.exe SHA256)[1], "codecov.exe") -join "  ") -DifferenceObject $(Get-Content codecov.exe.SHA256SUM)).length -eq 0) { echo "SHASUM verified" } Else {exit 1}
-
-        Write-Host -Foreground Green "Uploading to codecov..."
-
-        .\codecov.exe --dir "Artifacts/Coverage" -t "$env:CODECOV_TOKEN" --build "${{ github.run_number }}"
-
-        Write-Host -Foreground Green "✅ Uploaded to codecov."
-
-    - name: Upload Artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: artifacts
-        path: Artifacts/
-        retention-days: 7
+        if [[ "${{ needs.standard-build.result }}" != "success" ]] || [[ "${{ needs.nano-build.result }}" != "success" ]]; then
+          echo "❌ PR builds failed"
+          exit 1
+        fi
+        echo "✅ All PR builds succeeded"
