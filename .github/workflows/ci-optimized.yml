@@ -1,0 +1,210 @@
+name: CI Build (Optimized)
+
+on:
+  push:
+    branches:
+      - master
+      - 'release/**'
+      - 'maintenance/**'
+    paths-ignore:
+      - '**/*.png'
+      - '**/*.md'
+  workflow_dispatch:
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  standard-build:
+    name: Standard - Build & Test (Linux)
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+        lfs: true
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          6.0.x
+          8.0.x
+
+    - name: Get Version
+      id: version
+      run: |
+        VERSION=$(grep -oP '(?<=<Version>)[^<]+' UnitsNet/UnitsNet.csproj | head -1)
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+    - name: Generate Code
+      run: dotnet run --project CodeGen
+
+    - name: Build Projects
+      run: |
+        echo "::group::Building Standard projects..."
+        dotnet build UnitsNet.slnx --configuration Release
+        echo "::endgroup::"
+
+    - name: Run Tests
+      run: |
+        echo "::group::Running tests..."
+        dotnet test UnitsNet.slnx --configuration Release --no-build \
+          --collect:"XPlat Code Coverage" \
+          --logger:trx \
+          --results-directory "Artifacts/TestResults"
+        echo "::endgroup::"
+
+    - name: Pack NuGets
+      run: |
+        echo "::group::Packing Standard NuGets..."
+        dotnet pack UnitsNet.slnx --configuration Release --no-build \
+          --output Artifacts/NuGet
+        echo "::endgroup::"
+
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: standard-test-results
+        path: Artifacts/TestResults/*.trx
+        retention-days: 30
+
+    - name: Upload Coverage
+      uses: codecov/codecov-action@v4
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: Artifacts/TestResults/**/*.xml
+        flags: standard
+        name: standard-coverage
+
+    - name: Upload Standard NuGets
+      uses: actions/upload-artifact@v4
+      with:
+        name: standard-nugets
+        path: |
+          Artifacts/NuGet/*.nupkg
+          Artifacts/NuGet/*.snupkg
+        retention-days: 30
+
+    - name: Publish Standard NuGets
+      if: github.ref == 'refs/heads/master' && github.repository_owner == 'angularsen'
+      run: |
+        echo "::group::Publishing Standard NuGets to nuget.org..."
+        dotnet nuget push "Artifacts/NuGet/*.nupkg" \
+          --skip-duplicate \
+          --api-key ${{ secrets.NUGET_ORG_APIKEY }} \
+          --source https://api.nuget.org/v3/index.json
+        echo "::endgroup::"
+
+  nano-build:
+    name: Nano - Build (Windows)
+    runs-on: windows-latest
+    needs: [] # Run in parallel, no dependencies
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+        lfs: true
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          6.0.x
+          8.0.x
+
+    - name: Setup .NET nanoFramework
+      uses: nanoframework/nanobuild@v1
+      with:
+        workload: 'nanoFramework'
+
+    - name: Generate Code
+      shell: pwsh
+      run: dotnet run --project CodeGen
+
+    - name: Build Nano Projects
+      shell: pwsh
+      run: |
+        Write-Host "::group::Building NanoFramework projects..."
+
+        # Build NanoFramework projects with MSBuild
+        $msbuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
+          -latest -requires Microsoft.Component.MSBuild `
+          -find MSBuild\**\Bin\MSBuild.exe | Select-Object -First 1
+
+        if (-not $msbuildPath) {
+          Write-Error "MSBuild not found. Ensure Visual Studio Build Tools are installed."
+          exit 1
+        }
+
+        & $msbuildPath UnitsNet.NanoFramework/UnitsNet.NanoFramework.nfproj `
+          /p:Configuration=Release /p:Platform="Any CPU" /restore
+
+        & $msbuildPath UnitsNet.NumberExtensions.NanoFramework/UnitsNet.NumberExtensions.NanoFramework.nfproj `
+          /p:Configuration=Release /p:Platform="Any CPU" /restore
+
+        Write-Host "::endgroup::"
+
+    - name: Pack Nano NuGets
+      shell: pwsh
+      run: |
+        Write-Host "::group::Packing NanoFramework NuGets..."
+
+        $msbuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
+          -latest -requires Microsoft.Component.MSBuild `
+          -find MSBuild\**\Bin\MSBuild.exe | Select-Object -First 1
+
+        & $msbuildPath UnitsNet.NanoFramework/UnitsNet.NanoFramework.nfproj `
+          /t:Pack /p:Configuration=Release /p:PackageOutputPath="$PWD\Artifacts\NuGet"
+
+        & $msbuildPath UnitsNet.NumberExtensions.NanoFramework/UnitsNet.NumberExtensions.NanoFramework.nfproj `
+          /t:Pack /p:Configuration=Release /p:PackageOutputPath="$PWD\Artifacts\NuGet"
+
+        Write-Host "::endgroup::"
+
+    - name: Upload Nano NuGets
+      uses: actions/upload-artifact@v4
+      with:
+        name: nano-nugets
+        path: |
+          Artifacts/NuGet/*.nupkg
+          Artifacts/NuGet/*.snupkg
+        retention-days: 30
+
+    - name: Publish Nano NuGets
+      if: github.ref == 'refs/heads/master' && github.repository_owner == 'angularsen'
+      shell: pwsh
+      run: |
+        Write-Host "::group::Publishing NanoFramework NuGets to nuget.org..."
+
+        dotnet nuget push "Artifacts\NuGet\*.nupkg" `
+          --skip-duplicate `
+          --api-key "${{ secrets.NUGET_ORG_APIKEY }}" `
+          --source https://api.nuget.org/v3/index.json
+
+        Write-Host "::endgroup::"
+
+  check-status:
+    name: Check Build Status
+    needs: [standard-build, nano-build]
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+    - name: Check Status
+      run: |
+        if [[ "${{ needs.standard-build.result }}" != "success" ]] || [[ "${{ needs.nano-build.result }}" != "success" ]]; then
+          echo "❌ One or more builds failed"
+          echo "Standard Build: ${{ needs.standard-build.result }}"
+          echo "Nano Build: ${{ needs.nano-build.result }}"
+          exit 1
+        fi
+        echo "✅ All builds succeeded"
