@@ -168,36 +168,13 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit_UnitSystem_ReturnsValueInDimensionlessUnit()
         {
-            Assert.Multiple(() =>
-            {
-                var quantity = new VitaminA(value: 1, unit: VitaminAUnit.InternationalUnit);
+            var quantity = new VitaminA(value: 1, unit: VitaminAUnit.InternationalUnit);
 
-                VitaminA convertedQuantity = quantity.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(VitaminAUnit.InternationalUnit, convertedQuantity.Unit);
-                Assert.Equal(quantity.Value, convertedQuantity.Value);
-            }, () =>
-            {
-                IQuantity<VitaminAUnit> quantity = new VitaminA(value: 1, unit: VitaminAUnit.InternationalUnit);
-
-                IQuantity<VitaminAUnit> convertedQuantity = quantity.ToUnit(UnitSystem.SI);
-
-                Assert.Equal(VitaminAUnit.InternationalUnit, convertedQuantity.Unit);
-                Assert.Equal(quantity.Value, convertedQuantity.Value);
-            });
-        }
-
-        [Fact]
-        public void ToUnitUntyped_UnitSystem_ReturnsValueInDimensionlessUnit()
-        {
-            IQuantity quantity = new VitaminA(value: 1, unit: VitaminAUnit.InternationalUnit);
-
-            IQuantity convertedQuantity = quantity.ToUnitUntyped(UnitSystem.SI);
+            VitaminA convertedQuantity = quantity.ToUnit(UnitSystem.SI);
 
             Assert.Equal(VitaminAUnit.InternationalUnit, convertedQuantity.Unit);
             Assert.Equal(quantity.Value, convertedQuantity.Value);
         }
-
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
@@ -206,15 +183,15 @@ namespace UnitsNet.Tests
             Assert.Multiple(() =>
             {
                 var quantity = new VitaminA(value: 1, unit: VitaminA.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             }, () =>
             {
                 IQuantity<VitaminAUnit> quantity = new VitaminA(value: 1, unit: VitaminA.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             }, () =>
             {
                 IQuantity quantity = new VitaminA(value: 1, unit: VitaminA.BaseUnit);
-                Assert.Throws<ArgumentNullException>(() => quantity.ToUnitUntyped(nullUnitSystem));
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
             });
         }
 

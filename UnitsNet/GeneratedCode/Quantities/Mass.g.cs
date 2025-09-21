@@ -1294,9 +1294,6 @@ namespace UnitsNet
         /// <inheritdoc />
         IQuantity<MassUnit> IQuantity<MassUnit>.ToUnit(MassUnit unit) => ToUnit(unit);
 
-        /// <inheritdoc />
-        IQuantity<MassUnit> IQuantity<MassUnit>.ToUnit(UnitSystem unitSystem) => this.ToUnit(unitSystem);
-
         #endregion
 
         #endregion

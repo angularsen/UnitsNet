@@ -54,11 +54,5 @@ namespace UnitsNet.Tests.CustomCode
         {
             base.ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits();
         }
-
-        [Fact(Skip = "See about adding an SI unit (VoltampereReactiveSecond, Joules?)")]
-        public override void ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits()
-        {
-            base.ToUnitUntyped_UnitSystem_SI_ReturnsQuantityInSIUnits();
-        }
     }
 }
