@@ -35,12 +35,12 @@ if (Test-Path $VsWherePath) {
     $msbuildPath = Join-Path -Path $VsPath -ChildPath "\MSBuild"
     Write-Host -Foreground Green "Visual Studio found at: $VsPath"
   } else {
-    Write-Host -Foreground Yellow "Visual Studio not found via vswhere"
+    Write-Host -Foreground Yellow "Visual Studio not found via vswhere, NanoFramework builds will be skipped"
     $VsPath = $null
     $msbuildPath = $null
   }
 } else {
-  Write-Host -Foreground Yellow "Visual Studio not installed - NanoFramework build will be skipped"
+  Write-Host -Foreground Yellow "Visual Studio not installed - NanoFramework builds will be skipped"
   $VsPath = $null
   $msbuildPath = $null
 }
