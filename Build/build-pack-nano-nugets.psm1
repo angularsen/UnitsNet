@@ -5,10 +5,10 @@ $nuget = "$toolsDir\NuGet.exe"
 $nugetsToProcess = (Get-ChildItem -Path "$root\UnitsNet.NanoFramework\GeneratedCode\" -Filter *.nuspec -r | % { echo $_.FullName });
 
 function Invoke-BuildNanoNugets {
-Foreach ($nuget in $nugetsToProcess)
+Foreach ($nuspecFile in $nugetsToProcess)
   {
-    & $nuget pack "$nuget" -Verbosity detailed -OutputDirectory "$nugetOutDir"
-    echo "Succesfully packed nanoframework nuget file: $nuget";
+    & $nuget pack "$nuspecFile" -Verbosity detailed -OutputDirectory "$nugetOutDir"
+    echo "Succesfully packed nanoframework nuget file: $nuspecFile";
   }
 }
 
