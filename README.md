@@ -45,10 +45,48 @@ dotnet add package UnitsNet
 
 or go to [NuGet Gallery | UnitsNet](https://www.nuget.org/packages/UnitsNet) for detailed instructions.
 
-#### Build Targets
+### Build Targets
 
 * .NET Standard 2.0
+* .NET 8.0 (LTS)
+* .NET 9.0 (latest stable)
+* .NET 10.0 (preview)
 * [.NET nanoFramework](https://www.nanoframework.net/)
+
+
+### Extension Packages
+
+#### UnitsNet.NumberExtensions.CS14 (C# 14 Extension Members)
+
+For C# 14 projects, use the new extension members syntax (no parentheses):
+
+```bash
+dotnet add package UnitsNet.NumberExtensions.CS14
+```
+
+```C#
+using UnitsNet.NumberExtensions.NumberToLength;
+
+// C# 14 extension members syntax, without parantheses
+Length distance = 5.Meters;        // Instead of Length.FromMeters(5)
+```
+
+> **Note:** Requires '<LangVersion>preview</LangVersion>' and .NET 10 SDK preview for now.
+
+#### UnitsNet.NumberExtensions (Classic)
+
+For C# 13 and lower (.NET SDK 9 or lower), use the classic extension methods:
+
+```bash
+dotnet add package UnitsNet.NumberExtensions
+```
+
+```C#
+using UnitsNet.NumberExtensions.NumberToLength;
+
+// Classic extension methods, with parentheses
+Length distance = 5.Meters();        // Instead of Length.FromMeters(5)
+```
 
 ### Static Typing
 

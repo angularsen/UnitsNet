@@ -46,6 +46,8 @@
   </Folder>
   <Project Path="CodeGen/CodeGen.csproj" />
   <Project Path="UnitsNet.Benchmark/UnitsNet.Benchmark.csproj" />
+  <Project Path="UnitsNet.NumberExtensions.CS14.Tests\UnitsNet.NumberExtensions.CS14.Tests.csproj" Type="Classic C#" />
+  <Project Path="UnitsNet.NumberExtensions.CS14\UnitsNet.NumberExtensions.CS14.csproj" Type="Classic C#" />
   <Project Path="UnitsNet.NumberExtensions.Tests/UnitsNet.NumberExtensions.Tests.csproj" />
   <Project Path="UnitsNet.NumberExtensions/UnitsNet.NumberExtensions.csproj" />
   <Project Path="UnitsNet.Serialization.JsonNet.Tests/UnitsNet.Serialization.JsonNet.Tests.csproj" />

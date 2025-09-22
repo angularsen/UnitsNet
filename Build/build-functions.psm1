@@ -8,10 +8,17 @@ $toolsDir = "$root\.tools"
 
 $nuget = "$toolsDir\NuGet.exe"
 $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
-$msbuildPath = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
 
-if ($msbuildPath) {
-  $msbuildx64 = join-path $msbuildPath 'MSBuild\Current\Bin\amd64\MSBuild.exe'
+# Check if Visual Studio is installed before trying to find MSBuild
+if (Test-Path $vswhere) {
+  $msbuildPath = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -property installationPath 2>$null
+
+  if ($msbuildPath) {
+    $msbuildx64 = join-path $msbuildPath 'MSBuild\Current\Bin\amd64\MSBuild.exe'
+  }
+} else {
+  $msbuildPath = $null
+  $msbuildx64 = $null
 }
 
 import-module $PSScriptRoot\build-pack-nano-nugets.psm1
@@ -31,38 +38,59 @@ function Update-GeneratedCode {
   write-host -foreground blue "Generate code...END`n"
 }
 
-function Start-Build([boolean] $IncludeNanoFramework = $false) {
-  write-host -foreground blue "Start-Build...`n---"
+function Start-Build {
+  write-host -foreground blue "Start-Build (dotnet CLI)...`n---"
 
-  $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$logsDir\UnitsNet.msbuild.log"
-
-  dotnet build --configuration Release /p:ContinuousIntegrationBuild=true "$root\UnitsNet.slnx" $fileLoggerArg
+  # Use dotnet CLI for all main projects - cross-platform compatible
+  dotnet build --configuration Release /p:ContinuousIntegrationBuild=true "$root\UnitsNet.slnx"
   if ($lastexitcode -ne 0) { exit 1 }
 
-  if (-not $IncludeNanoFramework)
-  {
-    write-host -foreground yellow "Skipping .NET nanoFramework build."
-  }
-  else
-  {
-    write-host -foreground green "Build .NET nanoFramework."
-    $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$logsDir\UnitsNet.NanoFramework.msbuild.log"
-
-    # msbuild does not auto-restore nugets for this project type
-    & "$nuget" restore "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln"
-
-    # now build
-    & "$msbuildx64" "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release /p:Platform="Any CPU" /p:ContinuousIntegrationBuild=true $fileLoggerArg
-    if ($lastexitcode -ne 0) { exit 1 }
-  }
-
   write-host -foreground blue "Start-Build...END`n"
+}
+
+function Start-BuildNanoFramework {
+  write-host -foreground blue "Start-BuildNanoFramework (MSBuild)...`n---"
+
+  # Check prerequisites
+  if (-not $msbuildx64 -or -not (Test-Path $msbuildx64)) {
+    write-host -foreground red "ERROR: Cannot build .NET nanoFramework - MSBuild not found."
+    write-host -foreground yellow "Install Visual Studio with .NET desktop development workload to build NanoFramework projects."
+    exit 1
+  }
+
+  if (-not (Test-Path $nuget)) {
+    write-host -foreground red "ERROR: NuGet.exe not found at $nuget"
+    write-host -foreground yellow "Run init.ps1 to download required tools."
+    exit 1
+  }
+
+  write-host -foreground green "Building .NET nanoFramework projects..."
+  $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$logsDir\UnitsNet.NanoFramework.msbuild.log"
+
+  # msbuild does not auto-restore nugets for this project type
+  write-host "Restoring NuGet packages for NanoFramework..."
+  & "$nuget" restore "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln"
+  if ($lastexitcode -ne 0) {
+    write-host -foreground red "Failed to restore NuGet packages for NanoFramework"
+    exit 1
+  }
+
+  # Build with MSBuild
+  write-host "Building NanoFramework solution..."
+  & "$msbuildx64" "$root\UnitsNet.NanoFramework\GeneratedCode\UnitsNet.nanoFramework.sln" /verbosity:minimal /p:Configuration=Release /p:Platform="Any CPU" /p:ContinuousIntegrationBuild=true $fileLoggerArg
+  if ($lastexitcode -ne 0) {
+    write-host -foreground red "Failed to build NanoFramework solution"
+    exit 1
+  }
+
+  write-host -foreground blue "Start-BuildNanoFramework...END`n"
 }
 
 function Start-Tests {
   $projectPaths = @(
     "UnitsNet.Tests\UnitsNet.Tests.csproj",
     "UnitsNet.NumberExtensions.Tests\UnitsNet.NumberExtensions.Tests.csproj",
+    "UnitsNet.NumberExtensions.CS14.Tests\UnitsNet.NumberExtensions.CS14.Tests.csproj",
     "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.csproj",
     "UnitsNet.Serialization.SystemTextJson.Tests\UnitsNet.Serialization.SystemTextJson.csproj"
     )
@@ -99,15 +127,16 @@ function Start-Tests {
   write-host -foreground blue "Run tests...END`n"
 }
 
-function Start-PackNugets([boolean] $IncludeNanoFramework = $false) {
+function Start-PackNugets {
   $projectPaths = @(
     "UnitsNet\UnitsNet.csproj",
     "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj",
     "UnitsNet.Serialization.SystemTextJson\UnitsNet.Serialization.SystemTextJson.csproj",
-    "UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj"
+    "UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj",
+    "UnitsNet.NumberExtensions.CS14\UnitsNet.NumberExtensions.CS14.csproj"
     )
 
-  write-host -foreground blue "Pack nugets...`n---"
+  write-host -foreground blue "Pack nugets (dotnet CLI)...`n---"
   foreach ($projectPath in $projectPaths) {
     dotnet pack --configuration Release `
       --no-build `
@@ -118,14 +147,23 @@ function Start-PackNugets([boolean] $IncludeNanoFramework = $false) {
     if ($lastexitcode -ne 0) { exit 1 }
   }
 
-  if (-not $IncludeNanoFramework) {
-    write-host -foreground yellow "Skipping nanoFramework nuget pack."
-  } else {
-    write-host -foreground yellow "nanoFramework project not yet supported by dotnet CLI, using nuget.exe instead"
-    Invoke-BuildNanoNugets
+  write-host -foreground blue "Pack nugets...END`n"
+}
+
+function Start-PackNugetsNanoFramework {
+  write-host -foreground blue "Pack NanoFramework nugets (NuGet.exe)...`n---"
+
+  # Check prerequisites
+  if (-not (Test-Path $nuget)) {
+    write-host -foreground red "ERROR: NuGet.exe not found at $nuget"
+    write-host -foreground yellow "Run init.ps1 to download required tools."
+    exit 1
   }
 
-  write-host -foreground blue "Pack nugets...END`n"
+  write-host -foreground yellow "nanoFramework project not yet supported by dotnet CLI, using nuget.exe instead"
+  Invoke-BuildNanoNugets
+
+  write-host -foreground blue "Pack NanoFramework nugets...END`n"
 }
 
 function Compress-ArtifactsAsZip {
@@ -148,4 +186,4 @@ function Compress-ArtifactsAsZip {
   write-host -foreground blue "Zip artifacts...END`n"
 }
 
-export-modulemember -function Start-NugetRestore, Remove-ArtifactsDir, Update-GeneratedCode, Start-Build, Start-SignedBuild, Start-Tests, Start-PackNugets, Compress-ArtifactsAsZip
+export-modulemember -function Remove-ArtifactsDir, Update-GeneratedCode, Start-Build, Start-BuildNanoFramework, Start-Tests, Start-PackNugets, Start-PackNugetsNanoFramework, Compress-ArtifactsAsZip
