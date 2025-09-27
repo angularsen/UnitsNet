@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -38,11 +36,12 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Permeability_(Earth_sciences)
     /// </remarks>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct PorousMediumPermeability :
         IArithmeticQuantity<PorousMediumPermeability, PorousMediumPermeabilityUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<PorousMediumPermeability, PorousMediumPermeability, double>,
+        IDivisionOperators<PorousMediumPermeability, PorousMediumPermeability, QuantityValue>,
         IComparisonOperators<PorousMediumPermeability, PorousMediumPermeability, bool>,
         IParsable<PorousMediumPermeability>,
 #endif
@@ -54,13 +53,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly PorousMediumPermeabilityUnit? _unit;
 
         /// <summary>
@@ -105,7 +104,7 @@ namespace UnitsNet
             }
 
             /// <summary>
-            ///     The <see cref="BaseDimensions" /> for <see cref="PorousMediumPermeability"/> is [L^2].
+            ///     The <see cref="BaseDimensions" /> for <see cref="PorousMediumPermeability"/> is L^2.
             /// </summary>
             public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
 
@@ -120,19 +119,25 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PorousMediumPermeabilityUnit}"/> representing the default unit mappings for PorousMediumPermeability.</returns>
             public static IEnumerable<UnitDefinition<PorousMediumPermeabilityUnit>> GetDefaultMappings()
             {
-                yield return new (PorousMediumPermeabilityUnit.Darcy, "Darcy", "Darcys", BaseUnits.Undefined);
-                yield return new (PorousMediumPermeabilityUnit.Microdarcy, "Microdarcy", "Microdarcys", BaseUnits.Undefined);
-                yield return new (PorousMediumPermeabilityUnit.Millidarcy, "Millidarcy", "Millidarcys", BaseUnits.Undefined);
-                yield return new (PorousMediumPermeabilityUnit.SquareCentimeter, "SquareCentimeter", "SquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter));
+                yield return new (PorousMediumPermeabilityUnit.Darcy, "Darcy", "Darcys", BaseUnits.Undefined,
+                     new QuantityValue(QuantityValue.PowerOfTen(19), 9869233)             
+                );
+                yield return new (PorousMediumPermeabilityUnit.Microdarcy, "Microdarcy", "Microdarcys", BaseUnits.Undefined,
+                     new QuantityValue(QuantityValue.PowerOfTen(25), 9869233)             
+                );
+                yield return new (PorousMediumPermeabilityUnit.Millidarcy, "Millidarcy", "Millidarcys", BaseUnits.Undefined,
+                     new QuantityValue(QuantityValue.PowerOfTen(22), 9869233)             
+                );
+                yield return new (PorousMediumPermeabilityUnit.SquareCentimeter, "SquareCentimeter", "SquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter),
+                     10000             
+                );
                 yield return new (PorousMediumPermeabilityUnit.SquareMeter, "SquareMeter", "SquareMeters", new BaseUnits(length: LengthUnit.Meter));
             }
         }
 
         static PorousMediumPermeability()
         {
-            Info = PorousMediumPermeabilityInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(PorousMediumPermeabilityInfo.CreateDefault);
         }
 
         /// <summary>
@@ -140,7 +145,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public PorousMediumPermeability(double value, PorousMediumPermeabilityUnit unit)
+        public PorousMediumPermeability(QuantityValue value, PorousMediumPermeabilityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -154,7 +159,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public PorousMediumPermeability(double value, UnitSystem unitSystem)
+        public PorousMediumPermeability(QuantityValue value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -165,7 +170,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="PorousMediumPermeability" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<PorousMediumPermeability, PorousMediumPermeabilityUnit> Info { get; }
@@ -194,10 +200,8 @@ namespace UnitsNet
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public PorousMediumPermeabilityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -231,55 +235,33 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PorousMediumPermeabilityUnit.Darcy"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PorousMediumPermeabilityUnit.Darcy"/>
         /// </summary>
-        public double Darcys => As(PorousMediumPermeabilityUnit.Darcy);
+        public QuantityValue Darcys => this.As(PorousMediumPermeabilityUnit.Darcy);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PorousMediumPermeabilityUnit.Microdarcy"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PorousMediumPermeabilityUnit.Microdarcy"/>
         /// </summary>
-        public double Microdarcys => As(PorousMediumPermeabilityUnit.Microdarcy);
+        public QuantityValue Microdarcys => this.As(PorousMediumPermeabilityUnit.Microdarcy);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PorousMediumPermeabilityUnit.Millidarcy"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PorousMediumPermeabilityUnit.Millidarcy"/>
         /// </summary>
-        public double Millidarcys => As(PorousMediumPermeabilityUnit.Millidarcy);
+        public QuantityValue Millidarcys => this.As(PorousMediumPermeabilityUnit.Millidarcy);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PorousMediumPermeabilityUnit.SquareCentimeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PorousMediumPermeabilityUnit.SquareCentimeter"/>
         /// </summary>
-        public double SquareCentimeters => As(PorousMediumPermeabilityUnit.SquareCentimeter);
+        public QuantityValue SquareCentimeters => this.As(PorousMediumPermeabilityUnit.SquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PorousMediumPermeabilityUnit.SquareMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PorousMediumPermeabilityUnit.SquareMeter"/>
         /// </summary>
-        public double SquareMeters => As(PorousMediumPermeabilityUnit.SquareMeter);
+        public QuantityValue SquareMeters => this.As(PorousMediumPermeabilityUnit.SquareMeter);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: PorousMediumPermeabilityUnit -> BaseUnit
-            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.Darcy, PorousMediumPermeabilityUnit.SquareMeter, quantity => quantity.ToUnit(PorousMediumPermeabilityUnit.SquareMeter));
-            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.Microdarcy, PorousMediumPermeabilityUnit.SquareMeter, quantity => quantity.ToUnit(PorousMediumPermeabilityUnit.SquareMeter));
-            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.Millidarcy, PorousMediumPermeabilityUnit.SquareMeter, quantity => quantity.ToUnit(PorousMediumPermeabilityUnit.SquareMeter));
-            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareCentimeter, PorousMediumPermeabilityUnit.SquareMeter, quantity => quantity.ToUnit(PorousMediumPermeabilityUnit.SquareMeter));
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.SquareMeter, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> PorousMediumPermeabilityUnit
-            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.Darcy, quantity => quantity.ToUnit(PorousMediumPermeabilityUnit.Darcy));
-            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.Microdarcy, quantity => quantity.ToUnit(PorousMediumPermeabilityUnit.Microdarcy));
-            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.Millidarcy, quantity => quantity.ToUnit(PorousMediumPermeabilityUnit.Millidarcy));
-            unitConverter.SetConversionFunction<PorousMediumPermeability>(PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.SquareCentimeter, quantity => quantity.ToUnit(PorousMediumPermeabilityUnit.SquareCentimeter));
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -309,7 +291,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.Darcy"/>.
         /// </summary>
-        public static PorousMediumPermeability FromDarcys(double value)
+        public static PorousMediumPermeability FromDarcys(QuantityValue value)
         {
             return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.Darcy);
         }
@@ -317,7 +299,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.Microdarcy"/>.
         /// </summary>
-        public static PorousMediumPermeability FromMicrodarcys(double value)
+        public static PorousMediumPermeability FromMicrodarcys(QuantityValue value)
         {
             return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.Microdarcy);
         }
@@ -325,7 +307,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.Millidarcy"/>.
         /// </summary>
-        public static PorousMediumPermeability FromMillidarcys(double value)
+        public static PorousMediumPermeability FromMillidarcys(QuantityValue value)
         {
             return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.Millidarcy);
         }
@@ -333,7 +315,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.SquareCentimeter"/>.
         /// </summary>
-        public static PorousMediumPermeability FromSquareCentimeters(double value)
+        public static PorousMediumPermeability FromSquareCentimeters(QuantityValue value)
         {
             return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.SquareCentimeter);
         }
@@ -341,7 +323,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.SquareMeter"/>.
         /// </summary>
-        public static PorousMediumPermeability FromSquareMeters(double value)
+        public static PorousMediumPermeability FromSquareMeters(QuantityValue value)
         {
             return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.SquareMeter);
         }
@@ -352,7 +334,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>PorousMediumPermeability unit value.</returns>
-        public static PorousMediumPermeability From(double value, PorousMediumPermeabilityUnit fromUnit)
+        public static PorousMediumPermeability From(QuantityValue value, PorousMediumPermeabilityUnit fromUnit)
         {
             return new PorousMediumPermeability(value, fromUnit);
         }
@@ -413,10 +395,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static PorousMediumPermeability Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<PorousMediumPermeability, PorousMediumPermeabilityUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<PorousMediumPermeability, PorousMediumPermeabilityUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -444,11 +423,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out PorousMediumPermeability result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<PorousMediumPermeability, PorousMediumPermeabilityUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<PorousMediumPermeability, PorousMediumPermeabilityUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -469,7 +444,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -480,7 +455,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.PorousMediumPermeabilityUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.PorousMediumPermeabilityUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out PorousMediumPermeabilityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -495,7 +470,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out PorousMediumPermeabilityUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -514,35 +489,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="PorousMediumPermeability"/> from adding two <see cref="PorousMediumPermeability"/>.</summary>
         public static PorousMediumPermeability operator +(PorousMediumPermeability left, PorousMediumPermeability right)
         {
-            return new PorousMediumPermeability(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new PorousMediumPermeability(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="PorousMediumPermeability"/> from subtracting two <see cref="PorousMediumPermeability"/>.</summary>
         public static PorousMediumPermeability operator -(PorousMediumPermeability left, PorousMediumPermeability right)
         {
-            return new PorousMediumPermeability(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new PorousMediumPermeability(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="PorousMediumPermeability"/> from multiplying value and <see cref="PorousMediumPermeability"/>.</summary>
-        public static PorousMediumPermeability operator *(double left, PorousMediumPermeability right)
+        public static PorousMediumPermeability operator *(QuantityValue left, PorousMediumPermeability right)
         {
             return new PorousMediumPermeability(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="PorousMediumPermeability"/> from multiplying value and <see cref="PorousMediumPermeability"/>.</summary>
-        public static PorousMediumPermeability operator *(PorousMediumPermeability left, double right)
+        public static PorousMediumPermeability operator *(PorousMediumPermeability left, QuantityValue right)
         {
             return new PorousMediumPermeability(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="PorousMediumPermeability"/> from dividing <see cref="PorousMediumPermeability"/> by value.</summary>
-        public static PorousMediumPermeability operator /(PorousMediumPermeability left, double right)
+        public static PorousMediumPermeability operator /(PorousMediumPermeability left, QuantityValue right)
         {
             return new PorousMediumPermeability(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="PorousMediumPermeability"/> by <see cref="PorousMediumPermeability"/>.</summary>
-        public static double operator /(PorousMediumPermeability left, PorousMediumPermeability right)
+        public static QuantityValue operator /(PorousMediumPermeability left, PorousMediumPermeability right)
         {
             return left.SquareMeters / right.SquareMeters;
         }
@@ -554,65 +529,55 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(PorousMediumPermeability left, PorousMediumPermeability right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(PorousMediumPermeability left, PorousMediumPermeability right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(PorousMediumPermeability left, PorousMediumPermeability right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(PorousMediumPermeability left, PorousMediumPermeability right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="PorousMediumPermeability"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(PorousMediumPermeability other, PorousMediumPermeability tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="PorousMediumPermeability"/> quantities.</summary>
         public static bool operator ==(PorousMediumPermeability left, PorousMediumPermeability right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="PorousMediumPermeability"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(PorousMediumPermeability other, PorousMediumPermeability tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="PorousMediumPermeability"/> quantities.</summary>
         public static bool operator !=(PorousMediumPermeability left, PorousMediumPermeability right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="PorousMediumPermeability"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(PorousMediumPermeability other, PorousMediumPermeability tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="PorousMediumPermeability"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is PorousMediumPermeability otherQuantity))
+            if (obj is not PorousMediumPermeability otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="PorousMediumPermeability"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(PorousMediumPermeability other, PorousMediumPermeability tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="PorousMediumPermeability"/> quantities.</summary>
         public bool Equals(PorousMediumPermeability other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>
         ///     Returns the hash code for this instance.
@@ -620,31 +585,26 @@ namespace UnitsNet
         /// <returns>A hash code for the current PorousMediumPermeability.</returns>
         public override int GetHashCode()
         {
-            return Comparison.GetHashCode(Unit, Value);
+            return Comparison.GetHashCode(typeof(PorousMediumPermeability), this.As(BaseUnit));
         }
-
-        /// <summary>Compares the current <see cref="PorousMediumPermeability"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        
+        /// <inheritdoc  cref="CompareTo(PorousMediumPermeability)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is PorousMediumPermeability otherQuantity)) throw new ArgumentException("Expected type PorousMediumPermeability.", nameof(obj));
+            if (obj is not PorousMediumPermeability otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<PorousMediumPermeability>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="PorousMediumPermeability"/> with another <see cref="PorousMediumPermeability"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="PorousMediumPermeability"/> with another <see cref="PorousMediumPermeability"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -656,136 +616,8 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(PorousMediumPermeability other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
+            return _value.CompareTo(other.As(this.Unit));
         }
-
-        #endregion
-
-        #region Conversion Methods
-
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(PorousMediumPermeabilityUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
-
-            return ToUnit(unit).Value;
-        }
-
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<PorousMediumPermeabilityUnit>());
-        }
-
-        /// <summary>
-        ///     Converts this PorousMediumPermeability to another PorousMediumPermeability with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A PorousMediumPermeability with the specified unit.</returns>
-        public PorousMediumPermeability ToUnit(PorousMediumPermeabilityUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
-
-        /// <summary>
-        ///     Converts this <see cref="PorousMediumPermeability"/> to another <see cref="PorousMediumPermeability"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A PorousMediumPermeability with the specified unit.</returns>
-        public PorousMediumPermeability ToUnit(PorousMediumPermeabilityUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(PorousMediumPermeability), Unit, typeof(PorousMediumPermeability), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (PorousMediumPermeability)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="PorousMediumPermeability"/> to another <see cref="PorousMediumPermeability"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="PorousMediumPermeability"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(PorousMediumPermeabilityUnit unit, [NotNullWhen(true)] out PorousMediumPermeability? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            PorousMediumPermeability? convertedOrNull = (Unit, unit) switch
-            {
-                // PorousMediumPermeabilityUnit -> BaseUnit
-                (PorousMediumPermeabilityUnit.Darcy, PorousMediumPermeabilityUnit.SquareMeter) => new PorousMediumPermeability(_value * 9.869233e-13, PorousMediumPermeabilityUnit.SquareMeter),
-                (PorousMediumPermeabilityUnit.Microdarcy, PorousMediumPermeabilityUnit.SquareMeter) => new PorousMediumPermeability((_value * 9.869233e-13) * 1e-6d, PorousMediumPermeabilityUnit.SquareMeter),
-                (PorousMediumPermeabilityUnit.Millidarcy, PorousMediumPermeabilityUnit.SquareMeter) => new PorousMediumPermeability((_value * 9.869233e-13) * 1e-3d, PorousMediumPermeabilityUnit.SquareMeter),
-                (PorousMediumPermeabilityUnit.SquareCentimeter, PorousMediumPermeabilityUnit.SquareMeter) => new PorousMediumPermeability(_value * 1e-4, PorousMediumPermeabilityUnit.SquareMeter),
-
-                // BaseUnit -> PorousMediumPermeabilityUnit
-                (PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.Darcy) => new PorousMediumPermeability(_value / 9.869233e-13, PorousMediumPermeabilityUnit.Darcy),
-                (PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.Microdarcy) => new PorousMediumPermeability((_value / 9.869233e-13) / 1e-6d, PorousMediumPermeabilityUnit.Microdarcy),
-                (PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.Millidarcy) => new PorousMediumPermeability((_value / 9.869233e-13) / 1e-3d, PorousMediumPermeabilityUnit.Millidarcy),
-                (PorousMediumPermeabilityUnit.SquareMeter, PorousMediumPermeabilityUnit.SquareCentimeter) => new PorousMediumPermeability(_value / 1e-4, PorousMediumPermeabilityUnit.SquareCentimeter),
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not PorousMediumPermeabilityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PorousMediumPermeabilityUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is PorousMediumPermeabilityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PorousMediumPermeabilityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<PorousMediumPermeabilityUnit> IQuantity<PorousMediumPermeabilityUnit>.ToUnit(PorousMediumPermeabilityUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
@@ -800,7 +632,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

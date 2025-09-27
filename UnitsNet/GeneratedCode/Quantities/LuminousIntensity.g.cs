@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -38,11 +36,12 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Luminous_intensity
     /// </remarks>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct LuminousIntensity :
         IArithmeticQuantity<LuminousIntensity, LuminousIntensityUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<LuminousIntensity, LuminousIntensity, double>,
+        IDivisionOperators<LuminousIntensity, LuminousIntensity, QuantityValue>,
         IDivisionOperators<LuminousIntensity, Luminance, Area>,
         IDivisionOperators<LuminousIntensity, Area, Luminance>,
         IComparisonOperators<LuminousIntensity, LuminousIntensity, bool>,
@@ -56,13 +55,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly LuminousIntensityUnit? _unit;
 
         /// <summary>
@@ -107,7 +106,7 @@ namespace UnitsNet
             }
 
             /// <summary>
-            ///     The <see cref="BaseDimensions" /> for <see cref="LuminousIntensity"/> is [J].
+            ///     The <see cref="BaseDimensions" /> for <see cref="LuminousIntensity"/> is J.
             /// </summary>
             public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
 
@@ -128,9 +127,7 @@ namespace UnitsNet
 
         static LuminousIntensity()
         {
-            Info = LuminousIntensityInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(LuminousIntensityInfo.CreateDefault);
         }
 
         /// <summary>
@@ -138,7 +135,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public LuminousIntensity(double value, LuminousIntensityUnit unit)
+        public LuminousIntensity(QuantityValue value, LuminousIntensityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -152,7 +149,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public LuminousIntensity(double value, UnitSystem unitSystem)
+        public LuminousIntensity(QuantityValue value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -163,7 +160,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="LuminousIntensity" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<LuminousIntensity, LuminousIntensityUnit> Info { get; }
@@ -192,10 +190,8 @@ namespace UnitsNet
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public LuminousIntensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -229,27 +225,13 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminousIntensityUnit.Candela"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LuminousIntensityUnit.Candela"/>
         /// </summary>
-        public double Candela => As(LuminousIntensityUnit.Candela);
+        public QuantityValue Candela => this.As(LuminousIntensityUnit.Candela);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: LuminousIntensityUnit -> BaseUnit
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<LuminousIntensity>(LuminousIntensityUnit.Candela, LuminousIntensityUnit.Candela, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> LuminousIntensityUnit
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -279,7 +261,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="LuminousIntensity"/> from <see cref="LuminousIntensityUnit.Candela"/>.
         /// </summary>
-        public static LuminousIntensity FromCandela(double value)
+        public static LuminousIntensity FromCandela(QuantityValue value)
         {
             return new LuminousIntensity(value, LuminousIntensityUnit.Candela);
         }
@@ -290,7 +272,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>LuminousIntensity unit value.</returns>
-        public static LuminousIntensity From(double value, LuminousIntensityUnit fromUnit)
+        public static LuminousIntensity From(QuantityValue value, LuminousIntensityUnit fromUnit)
         {
             return new LuminousIntensity(value, fromUnit);
         }
@@ -351,10 +333,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static LuminousIntensity Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<LuminousIntensity, LuminousIntensityUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<LuminousIntensity, LuminousIntensityUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -382,11 +361,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out LuminousIntensity result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<LuminousIntensity, LuminousIntensityUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<LuminousIntensity, LuminousIntensityUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -407,7 +382,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -418,7 +393,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.LuminousIntensityUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.LuminousIntensityUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out LuminousIntensityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -433,7 +408,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out LuminousIntensityUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -452,35 +427,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="LuminousIntensity"/> from adding two <see cref="LuminousIntensity"/>.</summary>
         public static LuminousIntensity operator +(LuminousIntensity left, LuminousIntensity right)
         {
-            return new LuminousIntensity(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new LuminousIntensity(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="LuminousIntensity"/> from subtracting two <see cref="LuminousIntensity"/>.</summary>
         public static LuminousIntensity operator -(LuminousIntensity left, LuminousIntensity right)
         {
-            return new LuminousIntensity(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new LuminousIntensity(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="LuminousIntensity"/> from multiplying value and <see cref="LuminousIntensity"/>.</summary>
-        public static LuminousIntensity operator *(double left, LuminousIntensity right)
+        public static LuminousIntensity operator *(QuantityValue left, LuminousIntensity right)
         {
             return new LuminousIntensity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="LuminousIntensity"/> from multiplying value and <see cref="LuminousIntensity"/>.</summary>
-        public static LuminousIntensity operator *(LuminousIntensity left, double right)
+        public static LuminousIntensity operator *(LuminousIntensity left, QuantityValue right)
         {
             return new LuminousIntensity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="LuminousIntensity"/> from dividing <see cref="LuminousIntensity"/> by value.</summary>
-        public static LuminousIntensity operator /(LuminousIntensity left, double right)
+        public static LuminousIntensity operator /(LuminousIntensity left, QuantityValue right)
         {
             return new LuminousIntensity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="LuminousIntensity"/> by <see cref="LuminousIntensity"/>.</summary>
-        public static double operator /(LuminousIntensity left, LuminousIntensity right)
+        public static QuantityValue operator /(LuminousIntensity left, LuminousIntensity right)
         {
             return left.Candela / right.Candela;
         }
@@ -508,65 +483,55 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(LuminousIntensity left, LuminousIntensity right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(LuminousIntensity left, LuminousIntensity right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(LuminousIntensity left, LuminousIntensity right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(LuminousIntensity left, LuminousIntensity right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="LuminousIntensity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(LuminousIntensity other, LuminousIntensity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="LuminousIntensity"/> quantities.</summary>
         public static bool operator ==(LuminousIntensity left, LuminousIntensity right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="LuminousIntensity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(LuminousIntensity other, LuminousIntensity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="LuminousIntensity"/> quantities.</summary>
         public static bool operator !=(LuminousIntensity left, LuminousIntensity right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="LuminousIntensity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(LuminousIntensity other, LuminousIntensity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="LuminousIntensity"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is LuminousIntensity otherQuantity))
+            if (obj is not LuminousIntensity otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="LuminousIntensity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(LuminousIntensity other, LuminousIntensity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="LuminousIntensity"/> quantities.</summary>
         public bool Equals(LuminousIntensity other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>
         ///     Returns the hash code for this instance.
@@ -574,31 +539,26 @@ namespace UnitsNet
         /// <returns>A hash code for the current LuminousIntensity.</returns>
         public override int GetHashCode()
         {
-            return Comparison.GetHashCode(Unit, Value);
+            return Comparison.GetHashCode(typeof(LuminousIntensity), this.As(BaseUnit));
         }
-
-        /// <summary>Compares the current <see cref="LuminousIntensity"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        
+        /// <inheritdoc  cref="CompareTo(LuminousIntensity)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is LuminousIntensity otherQuantity)) throw new ArgumentException("Expected type LuminousIntensity.", nameof(obj));
+            if (obj is not LuminousIntensity otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<LuminousIntensity>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="LuminousIntensity"/> with another <see cref="LuminousIntensity"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="LuminousIntensity"/> with another <see cref="LuminousIntensity"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -610,128 +570,8 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(LuminousIntensity other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
+            return _value.CompareTo(other.As(this.Unit));
         }
-
-        #endregion
-
-        #region Conversion Methods
-
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(LuminousIntensityUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
-
-            return ToUnit(unit).Value;
-        }
-
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<LuminousIntensityUnit>());
-        }
-
-        /// <summary>
-        ///     Converts this LuminousIntensity to another LuminousIntensity with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A LuminousIntensity with the specified unit.</returns>
-        public LuminousIntensity ToUnit(LuminousIntensityUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
-
-        /// <summary>
-        ///     Converts this <see cref="LuminousIntensity"/> to another <see cref="LuminousIntensity"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A LuminousIntensity with the specified unit.</returns>
-        public LuminousIntensity ToUnit(LuminousIntensityUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(LuminousIntensity), Unit, typeof(LuminousIntensity), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (LuminousIntensity)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="LuminousIntensity"/> to another <see cref="LuminousIntensity"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="LuminousIntensity"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(LuminousIntensityUnit unit, [NotNullWhen(true)] out LuminousIntensity? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            LuminousIntensity? convertedOrNull = (Unit, unit) switch
-            {
-                // LuminousIntensityUnit -> BaseUnit
-
-                // BaseUnit -> LuminousIntensityUnit
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not LuminousIntensityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminousIntensityUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is LuminousIntensityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminousIntensityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<LuminousIntensityUnit> IQuantity<LuminousIntensityUnit>.ToUnit(LuminousIntensityUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
@@ -746,7 +586,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

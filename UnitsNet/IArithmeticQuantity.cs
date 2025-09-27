@@ -1,10 +1,6 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-#if NET
-using System.Numerics;
-#endif
-
 namespace UnitsNet;
 
 /// <summary>
@@ -44,6 +40,30 @@ public interface ILinearQuantity<TSelf> : IQuantityOfType<TSelf>
     }
 
 #endif
+
+#if EXTENDED_EQUALS_INTERFACE
+        /// <summary>
+        ///     <para>
+        ///     Compare equality to <paramref name="other"/> given a <paramref name="tolerance"/> for the maximum allowed +/- difference.
+        ///     </para>
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromMeters(2.1);
+        ///     var tolerance = Length.FromCentimeters(10);
+        ///     a.Equals(b, tolerance); // true, 2m equals 2.1m +/- 0.1m
+        ///     </code>
+        ///     </example>
+        ///     <para>
+        ///     It is generally advised against specifying "zero" tolerance, due to the nature of floating-point operations.
+        ///     </para>
+        /// </summary>
+        /// <param name="other">The other quantity to compare to.</param>
+        /// <param name="tolerance">The absolute tolerance value. Must be greater than or equal to zero.</param>
+        /// <returns>True if the absolute difference between the two values is not greater than the specified tolerance.</returns>
+        bool Equals(TSelf? other, TSelf tolerance);
+#endif
 }
 
 /// <summary>
@@ -56,8 +76,8 @@ public interface IArithmeticQuantity<TSelf, TUnitType> : IQuantity<TSelf, TUnitT
 #if NET7_0_OR_GREATER
     , IAdditionOperators<TSelf, TSelf, TSelf>
     , ISubtractionOperators<TSelf, TSelf, TSelf>
-    , IMultiplyOperators<TSelf, double, TSelf>
-    , IDivisionOperators<TSelf, double, TSelf>
+    , IMultiplyOperators<TSelf, QuantityValue, TSelf>
+    , IDivisionOperators<TSelf, QuantityValue, TSelf>
     , IUnaryNegationOperators<TSelf, TSelf>
 #endif
     where TSelf : IArithmeticQuantity<TSelf, TUnitType>

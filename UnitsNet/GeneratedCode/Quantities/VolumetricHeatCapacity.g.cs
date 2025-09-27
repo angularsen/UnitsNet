@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -38,11 +36,12 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Volumetric_heat_capacity
     /// </remarks>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct VolumetricHeatCapacity :
         IArithmeticQuantity<VolumetricHeatCapacity, VolumetricHeatCapacityUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<VolumetricHeatCapacity, VolumetricHeatCapacity, double>,
+        IDivisionOperators<VolumetricHeatCapacity, VolumetricHeatCapacity, QuantityValue>,
         IComparisonOperators<VolumetricHeatCapacity, VolumetricHeatCapacity, bool>,
         IParsable<VolumetricHeatCapacity>,
 #endif
@@ -54,13 +53,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly VolumetricHeatCapacityUnit? _unit;
 
         /// <summary>
@@ -105,7 +104,7 @@ namespace UnitsNet
             }
 
             /// <summary>
-            ///     The <see cref="BaseDimensions" /> for <see cref="VolumetricHeatCapacity"/> is [T^-2][L^-1][M][Θ^-1].
+            ///     The <see cref="BaseDimensions" /> for <see cref="VolumetricHeatCapacity"/> is T^-2L^-1MΘ^-1.
             /// </summary>
             public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, -2, 0, -1, 0, 0);
 
@@ -120,23 +119,37 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{VolumetricHeatCapacityUnit}"/> representing the default unit mappings for VolumetricHeatCapacity.</returns>
             public static IEnumerable<UnitDefinition<VolumetricHeatCapacityUnit>> GetDefaultMappings()
             {
-                yield return new (VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, "BtuPerCubicFootDegreeFahrenheit", "BtusPerCubicFootDegreeFahrenheit", BaseUnits.Undefined);
-                yield return new (VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, "CaloriePerCubicCentimeterDegreeCelsius", "CaloriesPerCubicCentimeterDegreeCelsius", BaseUnits.Undefined);
-                yield return new (VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, "JoulePerCubicMeterDegreeCelsius", "JoulesPerCubicMeterDegreeCelsius", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius));
+                yield return new (VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, "BtuPerCubicFootDegreeFahrenheit", "BtusPerCubicFootDegreeFahrenheit", BaseUnits.Undefined,
+                     new QuantityValue(98322384, 6594099078875)             
+                );
+                yield return new (VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, "CaloriePerCubicCentimeterDegreeCelsius", "CaloriesPerCubicCentimeterDegreeCelsius", BaseUnits.Undefined,
+                     new QuantityValue(1, 4184000)             
+                );
+                yield return new (VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, "JoulePerCubicMeterDegreeCelsius", "JoulesPerCubicMeterDegreeCelsius", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius),
+                     1             
+                );
                 yield return new (VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, "JoulePerCubicMeterKelvin", "JoulesPerCubicMeterKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin));
-                yield return new (VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, "KilocaloriePerCubicCentimeterDegreeCelsius", "KilocaloriesPerCubicCentimeterDegreeCelsius", BaseUnits.Undefined);
-                yield return new (VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, "KilojoulePerCubicMeterDegreeCelsius", "KilojoulesPerCubicMeterDegreeCelsius", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius));
-                yield return new (VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, "KilojoulePerCubicMeterKelvin", "KilojoulesPerCubicMeterKelvin", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin));
-                yield return new (VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, "MegajoulePerCubicMeterDegreeCelsius", "MegajoulesPerCubicMeterDegreeCelsius", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius));
-                yield return new (VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, "MegajoulePerCubicMeterKelvin", "MegajoulesPerCubicMeterKelvin", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin));
+                yield return new (VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, "KilocaloriePerCubicCentimeterDegreeCelsius", "KilocaloriesPerCubicCentimeterDegreeCelsius", BaseUnits.Undefined,
+                     new QuantityValue(1, 4184000000)             
+                );
+                yield return new (VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, "KilojoulePerCubicMeterDegreeCelsius", "KilojoulesPerCubicMeterDegreeCelsius", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius),
+                     new QuantityValue(1, 1000)             
+                );
+                yield return new (VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, "KilojoulePerCubicMeterKelvin", "KilojoulesPerCubicMeterKelvin", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin),
+                     new QuantityValue(1, 1000)             
+                );
+                yield return new (VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, "MegajoulePerCubicMeterDegreeCelsius", "MegajoulesPerCubicMeterDegreeCelsius", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius),
+                     new QuantityValue(1, 1000000)             
+                );
+                yield return new (VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, "MegajoulePerCubicMeterKelvin", "MegajoulesPerCubicMeterKelvin", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin),
+                     new QuantityValue(1, 1000000)             
+                );
             }
         }
 
         static VolumetricHeatCapacity()
         {
-            Info = VolumetricHeatCapacityInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(VolumetricHeatCapacityInfo.CreateDefault);
         }
 
         /// <summary>
@@ -144,7 +157,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public VolumetricHeatCapacity(double value, VolumetricHeatCapacityUnit unit)
+        public VolumetricHeatCapacity(QuantityValue value, VolumetricHeatCapacityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -158,7 +171,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public VolumetricHeatCapacity(double value, UnitSystem unitSystem)
+        public VolumetricHeatCapacity(QuantityValue value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -169,7 +182,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="VolumetricHeatCapacity" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<VolumetricHeatCapacity, VolumetricHeatCapacityUnit> Info { get; }
@@ -198,10 +212,8 @@ namespace UnitsNet
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public VolumetricHeatCapacityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -235,83 +247,53 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit"/>
         /// </summary>
-        public double BtusPerCubicFootDegreeFahrenheit => As(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit);
+        public QuantityValue BtusPerCubicFootDegreeFahrenheit => this.As(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius"/>
         /// </summary>
-        public double CaloriesPerCubicCentimeterDegreeCelsius => As(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius);
+        public QuantityValue CaloriesPerCubicCentimeterDegreeCelsius => this.As(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius"/>
         /// </summary>
-        public double JoulesPerCubicMeterDegreeCelsius => As(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius);
+        public QuantityValue JoulesPerCubicMeterDegreeCelsius => this.As(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin"/>
         /// </summary>
-        public double JoulesPerCubicMeterKelvin => As(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin);
+        public QuantityValue JoulesPerCubicMeterKelvin => this.As(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius"/>
         /// </summary>
-        public double KilocaloriesPerCubicCentimeterDegreeCelsius => As(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius);
+        public QuantityValue KilocaloriesPerCubicCentimeterDegreeCelsius => this.As(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius"/>
         /// </summary>
-        public double KilojoulesPerCubicMeterDegreeCelsius => As(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius);
+        public QuantityValue KilojoulesPerCubicMeterDegreeCelsius => this.As(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin"/>
         /// </summary>
-        public double KilojoulesPerCubicMeterKelvin => As(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin);
+        public QuantityValue KilojoulesPerCubicMeterKelvin => this.As(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius"/>
         /// </summary>
-        public double MegajoulesPerCubicMeterDegreeCelsius => As(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius);
+        public QuantityValue MegajoulesPerCubicMeterDegreeCelsius => this.As(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin"/>
         /// </summary>
-        public double MegajoulesPerCubicMeterKelvin => As(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin);
+        public QuantityValue MegajoulesPerCubicMeterKelvin => this.As(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: VolumetricHeatCapacityUnit -> BaseUnit
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin));
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> VolumetricHeatCapacityUnit
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius));
-            unitConverter.SetConversionFunction<VolumetricHeatCapacity>(VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, quantity => quantity.ToUnit(VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin));
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -341,7 +323,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit"/>.
         /// </summary>
-        public static VolumetricHeatCapacity FromBtusPerCubicFootDegreeFahrenheit(double value)
+        public static VolumetricHeatCapacity FromBtusPerCubicFootDegreeFahrenheit(QuantityValue value)
         {
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit);
         }
@@ -349,7 +331,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius"/>.
         /// </summary>
-        public static VolumetricHeatCapacity FromCaloriesPerCubicCentimeterDegreeCelsius(double value)
+        public static VolumetricHeatCapacity FromCaloriesPerCubicCentimeterDegreeCelsius(QuantityValue value)
         {
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius);
         }
@@ -357,7 +339,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius"/>.
         /// </summary>
-        public static VolumetricHeatCapacity FromJoulesPerCubicMeterDegreeCelsius(double value)
+        public static VolumetricHeatCapacity FromJoulesPerCubicMeterDegreeCelsius(QuantityValue value)
         {
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius);
         }
@@ -365,7 +347,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin"/>.
         /// </summary>
-        public static VolumetricHeatCapacity FromJoulesPerCubicMeterKelvin(double value)
+        public static VolumetricHeatCapacity FromJoulesPerCubicMeterKelvin(QuantityValue value)
         {
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin);
         }
@@ -373,7 +355,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius"/>.
         /// </summary>
-        public static VolumetricHeatCapacity FromKilocaloriesPerCubicCentimeterDegreeCelsius(double value)
+        public static VolumetricHeatCapacity FromKilocaloriesPerCubicCentimeterDegreeCelsius(QuantityValue value)
         {
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius);
         }
@@ -381,7 +363,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius"/>.
         /// </summary>
-        public static VolumetricHeatCapacity FromKilojoulesPerCubicMeterDegreeCelsius(double value)
+        public static VolumetricHeatCapacity FromKilojoulesPerCubicMeterDegreeCelsius(QuantityValue value)
         {
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius);
         }
@@ -389,7 +371,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin"/>.
         /// </summary>
-        public static VolumetricHeatCapacity FromKilojoulesPerCubicMeterKelvin(double value)
+        public static VolumetricHeatCapacity FromKilojoulesPerCubicMeterKelvin(QuantityValue value)
         {
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin);
         }
@@ -397,7 +379,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius"/>.
         /// </summary>
-        public static VolumetricHeatCapacity FromMegajoulesPerCubicMeterDegreeCelsius(double value)
+        public static VolumetricHeatCapacity FromMegajoulesPerCubicMeterDegreeCelsius(QuantityValue value)
         {
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius);
         }
@@ -405,7 +387,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumetricHeatCapacity"/> from <see cref="VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin"/>.
         /// </summary>
-        public static VolumetricHeatCapacity FromMegajoulesPerCubicMeterKelvin(double value)
+        public static VolumetricHeatCapacity FromMegajoulesPerCubicMeterKelvin(QuantityValue value)
         {
             return new VolumetricHeatCapacity(value, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin);
         }
@@ -416,7 +398,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>VolumetricHeatCapacity unit value.</returns>
-        public static VolumetricHeatCapacity From(double value, VolumetricHeatCapacityUnit fromUnit)
+        public static VolumetricHeatCapacity From(QuantityValue value, VolumetricHeatCapacityUnit fromUnit)
         {
             return new VolumetricHeatCapacity(value, fromUnit);
         }
@@ -477,10 +459,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static VolumetricHeatCapacity Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<VolumetricHeatCapacity, VolumetricHeatCapacityUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<VolumetricHeatCapacity, VolumetricHeatCapacityUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -508,11 +487,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out VolumetricHeatCapacity result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<VolumetricHeatCapacity, VolumetricHeatCapacityUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<VolumetricHeatCapacity, VolumetricHeatCapacityUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -533,7 +508,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -544,7 +519,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.VolumetricHeatCapacityUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.VolumetricHeatCapacityUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out VolumetricHeatCapacityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -559,7 +534,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out VolumetricHeatCapacityUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -578,35 +553,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="VolumetricHeatCapacity"/> from adding two <see cref="VolumetricHeatCapacity"/>.</summary>
         public static VolumetricHeatCapacity operator +(VolumetricHeatCapacity left, VolumetricHeatCapacity right)
         {
-            return new VolumetricHeatCapacity(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new VolumetricHeatCapacity(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="VolumetricHeatCapacity"/> from subtracting two <see cref="VolumetricHeatCapacity"/>.</summary>
         public static VolumetricHeatCapacity operator -(VolumetricHeatCapacity left, VolumetricHeatCapacity right)
         {
-            return new VolumetricHeatCapacity(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new VolumetricHeatCapacity(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="VolumetricHeatCapacity"/> from multiplying value and <see cref="VolumetricHeatCapacity"/>.</summary>
-        public static VolumetricHeatCapacity operator *(double left, VolumetricHeatCapacity right)
+        public static VolumetricHeatCapacity operator *(QuantityValue left, VolumetricHeatCapacity right)
         {
             return new VolumetricHeatCapacity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="VolumetricHeatCapacity"/> from multiplying value and <see cref="VolumetricHeatCapacity"/>.</summary>
-        public static VolumetricHeatCapacity operator *(VolumetricHeatCapacity left, double right)
+        public static VolumetricHeatCapacity operator *(VolumetricHeatCapacity left, QuantityValue right)
         {
             return new VolumetricHeatCapacity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="VolumetricHeatCapacity"/> from dividing <see cref="VolumetricHeatCapacity"/> by value.</summary>
-        public static VolumetricHeatCapacity operator /(VolumetricHeatCapacity left, double right)
+        public static VolumetricHeatCapacity operator /(VolumetricHeatCapacity left, QuantityValue right)
         {
             return new VolumetricHeatCapacity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="VolumetricHeatCapacity"/> by <see cref="VolumetricHeatCapacity"/>.</summary>
-        public static double operator /(VolumetricHeatCapacity left, VolumetricHeatCapacity right)
+        public static QuantityValue operator /(VolumetricHeatCapacity left, VolumetricHeatCapacity right)
         {
             return left.JoulesPerCubicMeterKelvin / right.JoulesPerCubicMeterKelvin;
         }
@@ -618,65 +593,55 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(VolumetricHeatCapacity left, VolumetricHeatCapacity right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(VolumetricHeatCapacity left, VolumetricHeatCapacity right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(VolumetricHeatCapacity left, VolumetricHeatCapacity right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(VolumetricHeatCapacity left, VolumetricHeatCapacity right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="VolumetricHeatCapacity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(VolumetricHeatCapacity other, VolumetricHeatCapacity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="VolumetricHeatCapacity"/> quantities.</summary>
         public static bool operator ==(VolumetricHeatCapacity left, VolumetricHeatCapacity right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="VolumetricHeatCapacity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(VolumetricHeatCapacity other, VolumetricHeatCapacity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="VolumetricHeatCapacity"/> quantities.</summary>
         public static bool operator !=(VolumetricHeatCapacity left, VolumetricHeatCapacity right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="VolumetricHeatCapacity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(VolumetricHeatCapacity other, VolumetricHeatCapacity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="VolumetricHeatCapacity"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is VolumetricHeatCapacity otherQuantity))
+            if (obj is not VolumetricHeatCapacity otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="VolumetricHeatCapacity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(VolumetricHeatCapacity other, VolumetricHeatCapacity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="VolumetricHeatCapacity"/> quantities.</summary>
         public bool Equals(VolumetricHeatCapacity other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>
         ///     Returns the hash code for this instance.
@@ -684,31 +649,26 @@ namespace UnitsNet
         /// <returns>A hash code for the current VolumetricHeatCapacity.</returns>
         public override int GetHashCode()
         {
-            return Comparison.GetHashCode(Unit, Value);
+            return Comparison.GetHashCode(typeof(VolumetricHeatCapacity), this.As(BaseUnit));
         }
-
-        /// <summary>Compares the current <see cref="VolumetricHeatCapacity"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        
+        /// <inheritdoc  cref="CompareTo(VolumetricHeatCapacity)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is VolumetricHeatCapacity otherQuantity)) throw new ArgumentException("Expected type VolumetricHeatCapacity.", nameof(obj));
+            if (obj is not VolumetricHeatCapacity otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<VolumetricHeatCapacity>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="VolumetricHeatCapacity"/> with another <see cref="VolumetricHeatCapacity"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="VolumetricHeatCapacity"/> with another <see cref="VolumetricHeatCapacity"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -720,144 +680,8 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(VolumetricHeatCapacity other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
+            return _value.CompareTo(other.As(this.Unit));
         }
-
-        #endregion
-
-        #region Conversion Methods
-
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(VolumetricHeatCapacityUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
-
-            return ToUnit(unit).Value;
-        }
-
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<VolumetricHeatCapacityUnit>());
-        }
-
-        /// <summary>
-        ///     Converts this VolumetricHeatCapacity to another VolumetricHeatCapacity with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A VolumetricHeatCapacity with the specified unit.</returns>
-        public VolumetricHeatCapacity ToUnit(VolumetricHeatCapacityUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
-
-        /// <summary>
-        ///     Converts this <see cref="VolumetricHeatCapacity"/> to another <see cref="VolumetricHeatCapacity"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A VolumetricHeatCapacity with the specified unit.</returns>
-        public VolumetricHeatCapacity ToUnit(VolumetricHeatCapacityUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(VolumetricHeatCapacity), Unit, typeof(VolumetricHeatCapacity), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (VolumetricHeatCapacity)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="VolumetricHeatCapacity"/> to another <see cref="VolumetricHeatCapacity"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="VolumetricHeatCapacity"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(VolumetricHeatCapacityUnit unit, [NotNullWhen(true)] out VolumetricHeatCapacity? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            VolumetricHeatCapacity? convertedOrNull = (Unit, unit) switch
-            {
-                // VolumetricHeatCapacityUnit -> BaseUnit
-                (VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin) => new VolumetricHeatCapacity(_value * (1055.05585262 / 0.028316846592) * 1.8, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin),
-                (VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin) => new VolumetricHeatCapacity(_value * 4.184e6, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin),
-                (VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin) => new VolumetricHeatCapacity(_value, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin),
-                (VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin) => new VolumetricHeatCapacity((_value * 4.184e6) * 1e3d, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin),
-                (VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin) => new VolumetricHeatCapacity((_value) * 1e3d, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin),
-                (VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin) => new VolumetricHeatCapacity((_value) * 1e3d, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin),
-                (VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin) => new VolumetricHeatCapacity((_value) * 1e6d, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin),
-                (VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin) => new VolumetricHeatCapacity((_value) * 1e6d, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin),
-
-                // BaseUnit -> VolumetricHeatCapacityUnit
-                (VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit) => new VolumetricHeatCapacity(_value / ((1055.05585262 / 0.028316846592) * 1.8), VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit),
-                (VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius) => new VolumetricHeatCapacity(_value / 4.184e6, VolumetricHeatCapacityUnit.CaloriePerCubicCentimeterDegreeCelsius),
-                (VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius) => new VolumetricHeatCapacity(_value, VolumetricHeatCapacityUnit.JoulePerCubicMeterDegreeCelsius),
-                (VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius) => new VolumetricHeatCapacity((_value / 4.184e6) / 1e3d, VolumetricHeatCapacityUnit.KilocaloriePerCubicCentimeterDegreeCelsius),
-                (VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius) => new VolumetricHeatCapacity((_value) / 1e3d, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterDegreeCelsius),
-                (VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin) => new VolumetricHeatCapacity((_value) / 1e3d, VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin),
-                (VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius) => new VolumetricHeatCapacity((_value) / 1e6d, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius),
-                (VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin) => new VolumetricHeatCapacity((_value) / 1e6d, VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin),
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not VolumetricHeatCapacityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumetricHeatCapacityUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is VolumetricHeatCapacityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(VolumetricHeatCapacityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<VolumetricHeatCapacityUnit> IQuantity<VolumetricHeatCapacityUnit>.ToUnit(VolumetricHeatCapacityUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
@@ -872,7 +696,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

@@ -88,14 +88,14 @@ public static class LinearQuantityExtensions
             {
                 return default!;
             }
-
+            
             return (TQuantity)UnitsNetSetup.Default.Quantities.GetQuantityInfo(typeof(TQuantity)).Zero;
 #endif
         }
 
         TQuantity firstQuantity = enumerator.Current!;
         UnitKey resultUnit = firstQuantity.UnitKey;
-        var sumOfValues = firstQuantity.Value;
+        QuantityValue sumOfValues = firstQuantity.Value;
         while (enumerator.MoveNext())
         {
             sumOfValues += enumerator.Current!.GetValue(resultUnit);
@@ -107,7 +107,7 @@ public static class LinearQuantityExtensions
         return firstQuantity.QuantityInfo.Create(sumOfValues, resultUnit);
 #endif
     }
-
+    
     /// <summary>
     ///     Computes the sum of a sequence of quantities by applying a specified selector function to each element of the
     ///     sequence.
@@ -148,15 +148,15 @@ public static class LinearQuantityExtensions
         if (!enumerator.MoveNext())
         {
 #if NET
-            return TQuantity.From(0, unit);
+            return TQuantity.From(QuantityValue.Zero, unit);
 #else
-            return (TQuantity)Quantity.From(0, UnitKey.ForUnit(unit));
+            return (TQuantity)Quantity.From(QuantityValue.Zero, UnitKey.ForUnit(unit));
 #endif
         }
 
         var unitKey = UnitKey.ForUnit(unit);
         TQuantity firstQuantity = enumerator.Current!;
-        var resultValue = firstQuantity.GetValue(unitKey);
+        QuantityValue resultValue = firstQuantity.GetValue(unitKey);
         while (enumerator.MoveNext())
         {
             resultValue += enumerator.Current!.GetValue(unitKey);
@@ -275,9 +275,9 @@ public static class LinearQuantityExtensions
         where TQuantity : ILinearQuantity<TQuantity>
     {
 #if NET
-        return TQuantity.Create(Math.Abs(value.Value), value.UnitKey);
+        return TQuantity.Create(QuantityValue.Abs(value.Value), value.UnitKey);
 #else
-        return value.QuantityInfo.Create(Math.Abs(value.Value), value.UnitKey);
+        return value.QuantityInfo.Create(QuantityValue.Abs(value.Value), value.UnitKey);
 #endif
     }
 }

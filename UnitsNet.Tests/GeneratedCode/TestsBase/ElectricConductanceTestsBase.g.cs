@@ -186,6 +186,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ElectricConductanceInfo_CreateWithCustomUnitInfos()
+        {
+            ElectricConductanceUnit[] expectedUnits = [ElectricConductanceUnit.Siemens];
+
+            ElectricConductance.ElectricConductanceInfo quantityInfo = ElectricConductance.ElectricConductanceInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("ElectricConductance", quantityInfo.Name);
+            Assert.Equal(ElectricConductance.Zero, quantityInfo.Zero);
+            Assert.Equal(ElectricConductance.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void SiemensToElectricConductanceUnits()
         {
             ElectricConductance siemens = ElectricConductance.FromSiemens(1);
@@ -299,26 +313,69 @@ namespace UnitsNet.Tests
             var expectedUnit = ElectricConductance.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            ElectricConductance convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                ElectricConductance quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                ElectricConductance convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<ElectricConductanceUnit> quantityToConvert = quantity;
+
+                IQuantity<ElectricConductanceUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new ElectricConductance(value: 1, unit: ElectricConductance.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new ElectricConductance(value: 1, unit: ElectricConductance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricConductanceUnit> quantity = new ElectricConductance(value: 1, unit: ElectricConductance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricConductance(value: 1, unit: ElectricConductance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new ElectricConductance(value: 1, unit: ElectricConductance.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new ElectricConductance(value: 1, unit: ElectricConductance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricConductanceUnit> quantity = new ElectricConductance(value: 1, unit: ElectricConductance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricConductance(value: 1, unit: ElectricConductance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -338,7 +395,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 S", ElectricConductanceUnit.Siemens, 4.2)]
         [InlineData("en-US", "4.2 T℧", ElectricConductanceUnit.Teramho, 4.2)]
         [InlineData("en-US", "4.2 TS", ElectricConductanceUnit.Terasiemens, 4.2)]
-        public void Parse(string culture, string quantityString, ElectricConductanceUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, ElectricConductanceUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ElectricConductance.Parse(quantityString);
@@ -363,7 +420,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 S", ElectricConductanceUnit.Siemens, 4.2)]
         [InlineData("en-US", "4.2 T℧", ElectricConductanceUnit.Teramho, 4.2)]
         [InlineData("en-US", "4.2 TS", ElectricConductanceUnit.Terasiemens, 4.2)]
-        public void TryParse(string culture, string quantityString, ElectricConductanceUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, ElectricConductanceUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ElectricConductance.TryParse(quantityString, out ElectricConductance parsed));
@@ -631,6 +688,7 @@ namespace UnitsNet.Tests
                 var quantity = ElectricConductance.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -654,47 +712,49 @@ namespace UnitsNet.Tests
                 IQuantity<ElectricConductanceUnit> quantityToConvert = quantity;
                 IQuantity<ElectricConductanceUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            ElectricConductance siemens = ElectricConductance.FromSiemens(1);
-            AssertEx.EqualTolerance(1, ElectricConductance.FromGigamhos(siemens.Gigamhos).Siemens, GigamhosTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.FromGigasiemens(siemens.Gigasiemens).Siemens, GigasiemensTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.FromKilomhos(siemens.Kilomhos).Siemens, KilomhosTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.FromKilosiemens(siemens.Kilosiemens).Siemens, KilosiemensTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.FromMegamhos(siemens.Megamhos).Siemens, MegamhosTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.FromMegasiemens(siemens.Megasiemens).Siemens, MegasiemensTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.FromMhos(siemens.Mhos).Siemens, MhosTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.FromMicromhos(siemens.Micromhos).Siemens, MicromhosTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.FromMicrosiemens(siemens.Microsiemens).Siemens, MicrosiemensTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.FromMillimhos(siemens.Millimhos).Siemens, MillimhosTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.FromMillisiemens(siemens.Millisiemens).Siemens, MillisiemensTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.FromNanomhos(siemens.Nanomhos).Siemens, NanomhosTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.FromNanosiemens(siemens.Nanosiemens).Siemens, NanosiemensTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.FromSiemens(siemens.Siemens).Siemens, SiemensTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.FromTeramhos(siemens.Teramhos).Siemens, TeramhosTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductance.FromTerasiemens(siemens.Terasiemens).Siemens, TerasiemensTolerance);
+            ElectricConductance siemens = ElectricConductance.FromSiemens(3);
+            Assert.Equal(3, ElectricConductance.FromGigamhos(siemens.Gigamhos).Siemens);
+            Assert.Equal(3, ElectricConductance.FromGigasiemens(siemens.Gigasiemens).Siemens);
+            Assert.Equal(3, ElectricConductance.FromKilomhos(siemens.Kilomhos).Siemens);
+            Assert.Equal(3, ElectricConductance.FromKilosiemens(siemens.Kilosiemens).Siemens);
+            Assert.Equal(3, ElectricConductance.FromMegamhos(siemens.Megamhos).Siemens);
+            Assert.Equal(3, ElectricConductance.FromMegasiemens(siemens.Megasiemens).Siemens);
+            Assert.Equal(3, ElectricConductance.FromMhos(siemens.Mhos).Siemens);
+            Assert.Equal(3, ElectricConductance.FromMicromhos(siemens.Micromhos).Siemens);
+            Assert.Equal(3, ElectricConductance.FromMicrosiemens(siemens.Microsiemens).Siemens);
+            Assert.Equal(3, ElectricConductance.FromMillimhos(siemens.Millimhos).Siemens);
+            Assert.Equal(3, ElectricConductance.FromMillisiemens(siemens.Millisiemens).Siemens);
+            Assert.Equal(3, ElectricConductance.FromNanomhos(siemens.Nanomhos).Siemens);
+            Assert.Equal(3, ElectricConductance.FromNanosiemens(siemens.Nanosiemens).Siemens);
+            Assert.Equal(3, ElectricConductance.FromSiemens(siemens.Siemens).Siemens);
+            Assert.Equal(3, ElectricConductance.FromTeramhos(siemens.Teramhos).Siemens);
+            Assert.Equal(3, ElectricConductance.FromTerasiemens(siemens.Terasiemens).Siemens);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             ElectricConductance v = ElectricConductance.FromSiemens(1);
-            AssertEx.EqualTolerance(-1, -v.Siemens, SiemensTolerance);
-            AssertEx.EqualTolerance(2, (ElectricConductance.FromSiemens(3)-v).Siemens, SiemensTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Siemens, SiemensTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Siemens, SiemensTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Siemens, SiemensTolerance);
-            AssertEx.EqualTolerance(2, (ElectricConductance.FromSiemens(10)/5).Siemens, SiemensTolerance);
-            AssertEx.EqualTolerance(2, ElectricConductance.FromSiemens(10)/ElectricConductance.FromSiemens(5), SiemensTolerance);
+            Assert.Equal(-1, -v.Siemens);
+            Assert.Equal(2, (ElectricConductance.FromSiemens(3) - v).Siemens);
+            Assert.Equal(2, (v + v).Siemens);
+            Assert.Equal(10, (v * 10).Siemens);
+            Assert.Equal(10, (10 * v).Siemens);
+            Assert.Equal(2, (ElectricConductance.FromSiemens(10) / 5).Siemens);
+            Assert.Equal(2, ElectricConductance.FromSiemens(10) / ElectricConductance.FromSiemens(5));
         }
 
         [Fact]
@@ -740,8 +800,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ElectricConductanceUnit.Siemens, 1, ElectricConductanceUnit.Siemens, true)]  // Same value and unit.
         [InlineData(1, ElectricConductanceUnit.Siemens, 2, ElectricConductanceUnit.Siemens, false)] // Different value.
-        [InlineData(2, ElectricConductanceUnit.Siemens, 1, ElectricConductanceUnit.Gigamho, false)] // Different value and unit.
-        [InlineData(1, ElectricConductanceUnit.Siemens, 1, ElectricConductanceUnit.Gigamho, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricConductanceUnit unitA, double valueB, ElectricConductanceUnit unitB, bool expectEqual)
         {
             var a = new ElectricConductance(valueA, unitA);
@@ -801,8 +859,8 @@ namespace UnitsNet.Tests
             var quantity = ElectricConductance.FromSiemens(firstValue);
             var otherQuantity = ElectricConductance.FromSiemens(secondValue);
             ElectricConductance maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, ElectricConductance.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -821,7 +879,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<ElectricConductanceUnit>();
+            var units = EnumHelper.GetValues<ElectricConductanceUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -832,6 +890,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(ElectricConductance.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(ElectricConductance.Info.Units, ElectricConductance.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, ElectricConductance.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -926,7 +996,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricConductance.FromSiemens(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(ElectricConductance), quantity.As(ElectricConductance.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

@@ -126,6 +126,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void LuminousIntensityInfo_CreateWithCustomUnitInfos()
+        {
+            LuminousIntensityUnit[] expectedUnits = [LuminousIntensityUnit.Candela];
+
+            LuminousIntensity.LuminousIntensityInfo quantityInfo = LuminousIntensity.LuminousIntensityInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("LuminousIntensity", quantityInfo.Name);
+            Assert.Equal(LuminousIntensity.Zero, quantityInfo.Zero);
+            Assert.Equal(LuminousIntensity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void CandelaToLuminousIntensityUnits()
         {
             LuminousIntensity candela = LuminousIntensity.FromCandela(1);
@@ -209,31 +223,74 @@ namespace UnitsNet.Tests
             var expectedUnit = LuminousIntensity.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            LuminousIntensity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                LuminousIntensity quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                LuminousIntensity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<LuminousIntensityUnit> quantityToConvert = quantity;
+
+                IQuantity<LuminousIntensityUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new LuminousIntensity(value: 1, unit: LuminousIntensity.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new LuminousIntensity(value: 1, unit: LuminousIntensity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<LuminousIntensityUnit> quantity = new LuminousIntensity(value: 1, unit: LuminousIntensity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new LuminousIntensity(value: 1, unit: LuminousIntensity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new LuminousIntensity(value: 1, unit: LuminousIntensity.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new LuminousIntensity(value: 1, unit: LuminousIntensity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<LuminousIntensityUnit> quantity = new LuminousIntensity(value: 1, unit: LuminousIntensity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new LuminousIntensity(value: 1, unit: LuminousIntensity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
         [InlineData("en-US", "4.2 cd", LuminousIntensityUnit.Candela, 4.2)]
-        public void Parse(string culture, string quantityString, LuminousIntensityUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, LuminousIntensityUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = LuminousIntensity.Parse(quantityString);
@@ -243,7 +300,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "4.2 cd", LuminousIntensityUnit.Candela, 4.2)]
-        public void TryParse(string culture, string quantityString, LuminousIntensityUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, LuminousIntensityUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(LuminousIntensity.TryParse(quantityString, out LuminousIntensity parsed));
@@ -376,6 +433,7 @@ namespace UnitsNet.Tests
                 var quantity = LuminousIntensity.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -399,32 +457,34 @@ namespace UnitsNet.Tests
                 IQuantity<LuminousIntensityUnit> quantityToConvert = quantity;
                 IQuantity<LuminousIntensityUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            LuminousIntensity candela = LuminousIntensity.FromCandela(1);
-            AssertEx.EqualTolerance(1, LuminousIntensity.FromCandela(candela.Candela).Candela, CandelaTolerance);
+            LuminousIntensity candela = LuminousIntensity.FromCandela(3);
+            Assert.Equal(3, LuminousIntensity.FromCandela(candela.Candela).Candela);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             LuminousIntensity v = LuminousIntensity.FromCandela(1);
-            AssertEx.EqualTolerance(-1, -v.Candela, CandelaTolerance);
-            AssertEx.EqualTolerance(2, (LuminousIntensity.FromCandela(3)-v).Candela, CandelaTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Candela, CandelaTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Candela, CandelaTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Candela, CandelaTolerance);
-            AssertEx.EqualTolerance(2, (LuminousIntensity.FromCandela(10)/5).Candela, CandelaTolerance);
-            AssertEx.EqualTolerance(2, LuminousIntensity.FromCandela(10)/LuminousIntensity.FromCandela(5), CandelaTolerance);
+            Assert.Equal(-1, -v.Candela);
+            Assert.Equal(2, (LuminousIntensity.FromCandela(3) - v).Candela);
+            Assert.Equal(2, (v + v).Candela);
+            Assert.Equal(10, (v * 10).Candela);
+            Assert.Equal(10, (10 * v).Candela);
+            Assert.Equal(2, (LuminousIntensity.FromCandela(10) / 5).Candela);
+            Assert.Equal(2, LuminousIntensity.FromCandela(10) / LuminousIntensity.FromCandela(5));
         }
 
         [Fact]
@@ -470,7 +530,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, LuminousIntensityUnit.Candela, 1, LuminousIntensityUnit.Candela, true)]  // Same value and unit.
         [InlineData(1, LuminousIntensityUnit.Candela, 2, LuminousIntensityUnit.Candela, false)] // Different value.
-        [InlineData(2, LuminousIntensityUnit.Candela, 1, LuminousIntensityUnit.Candela, false)] // Different value and unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, LuminousIntensityUnit unitA, double valueB, LuminousIntensityUnit unitB, bool expectEqual)
         {
             var a = new LuminousIntensity(valueA, unitA);
@@ -530,8 +589,8 @@ namespace UnitsNet.Tests
             var quantity = LuminousIntensity.FromCandela(firstValue);
             var otherQuantity = LuminousIntensity.FromCandela(secondValue);
             LuminousIntensity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, LuminousIntensity.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -550,7 +609,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<LuminousIntensityUnit>();
+            var units = EnumHelper.GetValues<LuminousIntensityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -561,6 +620,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(LuminousIntensity.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(LuminousIntensity.Info.Units, LuminousIntensity.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, LuminousIntensity.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -625,7 +696,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = LuminousIntensity.FromCandela(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(LuminousIntensity), quantity.As(LuminousIntensity.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -35,11 +33,12 @@ namespace UnitsNet
     ///     Mass flow is the ratio of the mass change to the time during which the change occurred (value of mass changes per unit time).
     /// </summary>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct MassFlow :
         IArithmeticQuantity<MassFlow, MassFlowUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<MassFlow, MassFlow, double>,
+        IDivisionOperators<MassFlow, MassFlow, QuantityValue>,
         IDivisionOperators<MassFlow, MassFlux, Area>,
         IDivisionOperators<MassFlow, Power, BrakeSpecificFuelConsumption>,
         IDivisionOperators<MassFlow, VolumeFlow, Density>,
@@ -61,13 +60,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly MassFlowUnit? _unit;
 
         /// <summary>
@@ -112,7 +111,7 @@ namespace UnitsNet
             }
 
             /// <summary>
-            ///     The <see cref="BaseDimensions" /> for <see cref="MassFlow"/> is [T^-1][M].
+            ///     The <see cref="BaseDimensions" /> for <see cref="MassFlow"/> is T^-1M.
             /// </summary>
             public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
 
@@ -127,47 +126,109 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MassFlowUnit}"/> representing the default unit mappings for MassFlow.</returns>
             public static IEnumerable<UnitDefinition<MassFlowUnit>> GetDefaultMappings()
             {
-                yield return new (MassFlowUnit.CentigramPerDay, "CentigramPerDay", "CentigramsPerDay", new BaseUnits(mass: MassUnit.Centigram, time: DurationUnit.Day));
-                yield return new (MassFlowUnit.CentigramPerSecond, "CentigramPerSecond", "CentigramsPerSecond", new BaseUnits(mass: MassUnit.Centigram, time: DurationUnit.Second));
-                yield return new (MassFlowUnit.DecagramPerDay, "DecagramPerDay", "DecagramsPerDay", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Day));
-                yield return new (MassFlowUnit.DecagramPerSecond, "DecagramPerSecond", "DecagramsPerSecond", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Second));
-                yield return new (MassFlowUnit.DecigramPerDay, "DecigramPerDay", "DecigramsPerDay", new BaseUnits(mass: MassUnit.Decigram, time: DurationUnit.Day));
-                yield return new (MassFlowUnit.DecigramPerSecond, "DecigramPerSecond", "DecigramsPerSecond", new BaseUnits(mass: MassUnit.Decigram, time: DurationUnit.Second));
-                yield return new (MassFlowUnit.GramPerDay, "GramPerDay", "GramsPerDay", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Day));
-                yield return new (MassFlowUnit.GramPerHour, "GramPerHour", "GramsPerHour", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Hour));
+                yield return new (MassFlowUnit.CentigramPerDay, "CentigramPerDay", "CentigramsPerDay", new BaseUnits(mass: MassUnit.Centigram, time: DurationUnit.Day),
+                     8640000             
+                );
+                yield return new (MassFlowUnit.CentigramPerSecond, "CentigramPerSecond", "CentigramsPerSecond", new BaseUnits(mass: MassUnit.Centigram, time: DurationUnit.Second),
+                     100             
+                );
+                yield return new (MassFlowUnit.DecagramPerDay, "DecagramPerDay", "DecagramsPerDay", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Day),
+                     8640             
+                );
+                yield return new (MassFlowUnit.DecagramPerSecond, "DecagramPerSecond", "DecagramsPerSecond", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Second),
+                     new QuantityValue(1, 10)             
+                );
+                yield return new (MassFlowUnit.DecigramPerDay, "DecigramPerDay", "DecigramsPerDay", new BaseUnits(mass: MassUnit.Decigram, time: DurationUnit.Day),
+                     864000             
+                );
+                yield return new (MassFlowUnit.DecigramPerSecond, "DecigramPerSecond", "DecigramsPerSecond", new BaseUnits(mass: MassUnit.Decigram, time: DurationUnit.Second),
+                     10             
+                );
+                yield return new (MassFlowUnit.GramPerDay, "GramPerDay", "GramsPerDay", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Day),
+                     86400             
+                );
+                yield return new (MassFlowUnit.GramPerHour, "GramPerHour", "GramsPerHour", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Hour),
+                     3600             
+                );
                 yield return new (MassFlowUnit.GramPerSecond, "GramPerSecond", "GramsPerSecond", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second));
-                yield return new (MassFlowUnit.HectogramPerDay, "HectogramPerDay", "HectogramsPerDay", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Day));
-                yield return new (MassFlowUnit.HectogramPerSecond, "HectogramPerSecond", "HectogramsPerSecond", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Second));
-                yield return new (MassFlowUnit.KilogramPerDay, "KilogramPerDay", "KilogramsPerDay", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Day));
-                yield return new (MassFlowUnit.KilogramPerHour, "KilogramPerHour", "KilogramsPerHour", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Hour));
-                yield return new (MassFlowUnit.KilogramPerMinute, "KilogramPerMinute", "KilogramsPerMinute", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Minute));
-                yield return new (MassFlowUnit.KilogramPerSecond, "KilogramPerSecond", "KilogramsPerSecond", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (MassFlowUnit.MegagramPerDay, "MegagramPerDay", "MegagramsPerDay", BaseUnits.Undefined);
-                yield return new (MassFlowUnit.MegapoundPerDay, "MegapoundPerDay", "MegapoundsPerDay", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Day));
-                yield return new (MassFlowUnit.MegapoundPerHour, "MegapoundPerHour", "MegapoundsPerHour", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Hour));
-                yield return new (MassFlowUnit.MegapoundPerMinute, "MegapoundPerMinute", "MegapoundsPerMinute", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Minute));
-                yield return new (MassFlowUnit.MegapoundPerSecond, "MegapoundPerSecond", "MegapoundsPerSecond", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Second));
-                yield return new (MassFlowUnit.MicrogramPerDay, "MicrogramPerDay", "MicrogramsPerDay", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Day));
-                yield return new (MassFlowUnit.MicrogramPerSecond, "MicrogramPerSecond", "MicrogramsPerSecond", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second));
-                yield return new (MassFlowUnit.MilligramPerDay, "MilligramPerDay", "MilligramsPerDay", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Day));
-                yield return new (MassFlowUnit.MilligramPerSecond, "MilligramPerSecond", "MilligramsPerSecond", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second));
-                yield return new (MassFlowUnit.NanogramPerDay, "NanogramPerDay", "NanogramsPerDay", new BaseUnits(mass: MassUnit.Nanogram, time: DurationUnit.Day));
-                yield return new (MassFlowUnit.NanogramPerSecond, "NanogramPerSecond", "NanogramsPerSecond", new BaseUnits(mass: MassUnit.Nanogram, time: DurationUnit.Second));
-                yield return new (MassFlowUnit.PoundPerDay, "PoundPerDay", "PoundsPerDay", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Day));
-                yield return new (MassFlowUnit.PoundPerHour, "PoundPerHour", "PoundsPerHour", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Hour));
-                yield return new (MassFlowUnit.PoundPerMinute, "PoundPerMinute", "PoundsPerMinute", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Minute));
-                yield return new (MassFlowUnit.PoundPerSecond, "PoundPerSecond", "PoundsPerSecond", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Second));
-                yield return new (MassFlowUnit.ShortTonPerHour, "ShortTonPerHour", "ShortTonsPerHour", new BaseUnits(mass: MassUnit.ShortTon, time: DurationUnit.Hour));
-                yield return new (MassFlowUnit.TonnePerDay, "TonnePerDay", "TonnesPerDay", new BaseUnits(mass: MassUnit.Tonne, time: DurationUnit.Day));
-                yield return new (MassFlowUnit.TonnePerHour, "TonnePerHour", "TonnesPerHour", new BaseUnits(mass: MassUnit.Tonne, time: DurationUnit.Hour));
+                yield return new (MassFlowUnit.HectogramPerDay, "HectogramPerDay", "HectogramsPerDay", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Day),
+                     864             
+                );
+                yield return new (MassFlowUnit.HectogramPerSecond, "HectogramPerSecond", "HectogramsPerSecond", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Second),
+                     new QuantityValue(1, 100)             
+                );
+                yield return new (MassFlowUnit.KilogramPerDay, "KilogramPerDay", "KilogramsPerDay", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Day),
+                     new QuantityValue(432, 5)             
+                );
+                yield return new (MassFlowUnit.KilogramPerHour, "KilogramPerHour", "KilogramsPerHour", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Hour),
+                     new QuantityValue(18, 5)             
+                );
+                yield return new (MassFlowUnit.KilogramPerMinute, "KilogramPerMinute", "KilogramsPerMinute", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Minute),
+                     new QuantityValue(3, 50)             
+                );
+                yield return new (MassFlowUnit.KilogramPerSecond, "KilogramPerSecond", "KilogramsPerSecond", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second),
+                     new QuantityValue(1, 1000)             
+                );
+                yield return new (MassFlowUnit.MegagramPerDay, "MegagramPerDay", "MegagramsPerDay", BaseUnits.Undefined,
+                     new QuantityValue(54, 625)             
+                );
+                yield return new (MassFlowUnit.MegapoundPerDay, "MegapoundPerDay", "MegapoundsPerDay", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Day),
+                     new QuantityValue(8640, 45359237)             
+                );
+                yield return new (MassFlowUnit.MegapoundPerHour, "MegapoundPerHour", "MegapoundsPerHour", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Hour),
+                     new QuantityValue(360, 45359237)             
+                );
+                yield return new (MassFlowUnit.MegapoundPerMinute, "MegapoundPerMinute", "MegapoundsPerMinute", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Minute),
+                     new QuantityValue(6, 45359237)             
+                );
+                yield return new (MassFlowUnit.MegapoundPerSecond, "MegapoundPerSecond", "MegapoundsPerSecond", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Second),
+                     new QuantityValue(1, 453592370)             
+                );
+                yield return new (MassFlowUnit.MicrogramPerDay, "MicrogramPerDay", "MicrogramsPerDay", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Day),
+                     86400000000             
+                );
+                yield return new (MassFlowUnit.MicrogramPerSecond, "MicrogramPerSecond", "MicrogramsPerSecond", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second),
+                     1000000             
+                );
+                yield return new (MassFlowUnit.MilligramPerDay, "MilligramPerDay", "MilligramsPerDay", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Day),
+                     86400000             
+                );
+                yield return new (MassFlowUnit.MilligramPerSecond, "MilligramPerSecond", "MilligramsPerSecond", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second),
+                     1000             
+                );
+                yield return new (MassFlowUnit.NanogramPerDay, "NanogramPerDay", "NanogramsPerDay", new BaseUnits(mass: MassUnit.Nanogram, time: DurationUnit.Day),
+                     86400000000000             
+                );
+                yield return new (MassFlowUnit.NanogramPerSecond, "NanogramPerSecond", "NanogramsPerSecond", new BaseUnits(mass: MassUnit.Nanogram, time: DurationUnit.Second),
+                     1000000000             
+                );
+                yield return new (MassFlowUnit.PoundPerDay, "PoundPerDay", "PoundsPerDay", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Day),
+                     new QuantityValue(8640000000, 45359237)             
+                );
+                yield return new (MassFlowUnit.PoundPerHour, "PoundPerHour", "PoundsPerHour", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Hour),
+                     new QuantityValue(360000000, 45359237)             
+                );
+                yield return new (MassFlowUnit.PoundPerMinute, "PoundPerMinute", "PoundsPerMinute", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Minute),
+                     new QuantityValue(6000000, 45359237)             
+                );
+                yield return new (MassFlowUnit.PoundPerSecond, "PoundPerSecond", "PoundsPerSecond", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Second),
+                     new QuantityValue(100000, 45359237)             
+                );
+                yield return new (MassFlowUnit.ShortTonPerHour, "ShortTonPerHour", "ShortTonsPerHour", new BaseUnits(mass: MassUnit.ShortTon, time: DurationUnit.Hour),
+                     new QuantityValue(180000, 45359237)             
+                );
+                yield return new (MassFlowUnit.TonnePerDay, "TonnePerDay", "TonnesPerDay", new BaseUnits(mass: MassUnit.Tonne, time: DurationUnit.Day),
+                     new QuantityValue(54, 625)             
+                );
+                yield return new (MassFlowUnit.TonnePerHour, "TonnePerHour", "TonnesPerHour", new BaseUnits(mass: MassUnit.Tonne, time: DurationUnit.Hour),
+                     new QuantityValue(9, 2500)             
+                );
             }
         }
 
         static MassFlow()
         {
-            Info = MassFlowInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(MassFlowInfo.CreateDefault);
         }
 
         /// <summary>
@@ -175,7 +236,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public MassFlow(double value, MassFlowUnit unit)
+        public MassFlow(QuantityValue value, MassFlowUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -189,7 +250,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public MassFlow(double value, UnitSystem unitSystem)
+        public MassFlow(QuantityValue value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -200,7 +261,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="MassFlow" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<MassFlow, MassFlowUnit> Info { get; }
@@ -229,10 +291,8 @@ namespace UnitsNet
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public MassFlowUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -266,251 +326,173 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.CentigramPerDay"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.CentigramPerDay"/>
         /// </summary>
-        public double CentigramsPerDay => As(MassFlowUnit.CentigramPerDay);
+        public QuantityValue CentigramsPerDay => this.As(MassFlowUnit.CentigramPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.CentigramPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.CentigramPerSecond"/>
         /// </summary>
-        public double CentigramsPerSecond => As(MassFlowUnit.CentigramPerSecond);
+        public QuantityValue CentigramsPerSecond => this.As(MassFlowUnit.CentigramPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.DecagramPerDay"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.DecagramPerDay"/>
         /// </summary>
-        public double DecagramsPerDay => As(MassFlowUnit.DecagramPerDay);
+        public QuantityValue DecagramsPerDay => this.As(MassFlowUnit.DecagramPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.DecagramPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.DecagramPerSecond"/>
         /// </summary>
-        public double DecagramsPerSecond => As(MassFlowUnit.DecagramPerSecond);
+        public QuantityValue DecagramsPerSecond => this.As(MassFlowUnit.DecagramPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.DecigramPerDay"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.DecigramPerDay"/>
         /// </summary>
-        public double DecigramsPerDay => As(MassFlowUnit.DecigramPerDay);
+        public QuantityValue DecigramsPerDay => this.As(MassFlowUnit.DecigramPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.DecigramPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.DecigramPerSecond"/>
         /// </summary>
-        public double DecigramsPerSecond => As(MassFlowUnit.DecigramPerSecond);
+        public QuantityValue DecigramsPerSecond => this.As(MassFlowUnit.DecigramPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.GramPerDay"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.GramPerDay"/>
         /// </summary>
-        public double GramsPerDay => As(MassFlowUnit.GramPerDay);
+        public QuantityValue GramsPerDay => this.As(MassFlowUnit.GramPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.GramPerHour"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.GramPerHour"/>
         /// </summary>
-        public double GramsPerHour => As(MassFlowUnit.GramPerHour);
+        public QuantityValue GramsPerHour => this.As(MassFlowUnit.GramPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.GramPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.GramPerSecond"/>
         /// </summary>
-        public double GramsPerSecond => As(MassFlowUnit.GramPerSecond);
+        public QuantityValue GramsPerSecond => this.As(MassFlowUnit.GramPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.HectogramPerDay"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.HectogramPerDay"/>
         /// </summary>
-        public double HectogramsPerDay => As(MassFlowUnit.HectogramPerDay);
+        public QuantityValue HectogramsPerDay => this.As(MassFlowUnit.HectogramPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.HectogramPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.HectogramPerSecond"/>
         /// </summary>
-        public double HectogramsPerSecond => As(MassFlowUnit.HectogramPerSecond);
+        public QuantityValue HectogramsPerSecond => this.As(MassFlowUnit.HectogramPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.KilogramPerDay"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.KilogramPerDay"/>
         /// </summary>
-        public double KilogramsPerDay => As(MassFlowUnit.KilogramPerDay);
+        public QuantityValue KilogramsPerDay => this.As(MassFlowUnit.KilogramPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.KilogramPerHour"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.KilogramPerHour"/>
         /// </summary>
-        public double KilogramsPerHour => As(MassFlowUnit.KilogramPerHour);
+        public QuantityValue KilogramsPerHour => this.As(MassFlowUnit.KilogramPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.KilogramPerMinute"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.KilogramPerMinute"/>
         /// </summary>
-        public double KilogramsPerMinute => As(MassFlowUnit.KilogramPerMinute);
+        public QuantityValue KilogramsPerMinute => this.As(MassFlowUnit.KilogramPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.KilogramPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.KilogramPerSecond"/>
         /// </summary>
-        public double KilogramsPerSecond => As(MassFlowUnit.KilogramPerSecond);
+        public QuantityValue KilogramsPerSecond => this.As(MassFlowUnit.KilogramPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.MegagramPerDay"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.MegagramPerDay"/>
         /// </summary>
-        public double MegagramsPerDay => As(MassFlowUnit.MegagramPerDay);
+        public QuantityValue MegagramsPerDay => this.As(MassFlowUnit.MegagramPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.MegapoundPerDay"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.MegapoundPerDay"/>
         /// </summary>
-        public double MegapoundsPerDay => As(MassFlowUnit.MegapoundPerDay);
+        public QuantityValue MegapoundsPerDay => this.As(MassFlowUnit.MegapoundPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.MegapoundPerHour"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.MegapoundPerHour"/>
         /// </summary>
-        public double MegapoundsPerHour => As(MassFlowUnit.MegapoundPerHour);
+        public QuantityValue MegapoundsPerHour => this.As(MassFlowUnit.MegapoundPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.MegapoundPerMinute"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.MegapoundPerMinute"/>
         /// </summary>
-        public double MegapoundsPerMinute => As(MassFlowUnit.MegapoundPerMinute);
+        public QuantityValue MegapoundsPerMinute => this.As(MassFlowUnit.MegapoundPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.MegapoundPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.MegapoundPerSecond"/>
         /// </summary>
-        public double MegapoundsPerSecond => As(MassFlowUnit.MegapoundPerSecond);
+        public QuantityValue MegapoundsPerSecond => this.As(MassFlowUnit.MegapoundPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.MicrogramPerDay"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.MicrogramPerDay"/>
         /// </summary>
-        public double MicrogramsPerDay => As(MassFlowUnit.MicrogramPerDay);
+        public QuantityValue MicrogramsPerDay => this.As(MassFlowUnit.MicrogramPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.MicrogramPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.MicrogramPerSecond"/>
         /// </summary>
-        public double MicrogramsPerSecond => As(MassFlowUnit.MicrogramPerSecond);
+        public QuantityValue MicrogramsPerSecond => this.As(MassFlowUnit.MicrogramPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.MilligramPerDay"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.MilligramPerDay"/>
         /// </summary>
-        public double MilligramsPerDay => As(MassFlowUnit.MilligramPerDay);
+        public QuantityValue MilligramsPerDay => this.As(MassFlowUnit.MilligramPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.MilligramPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.MilligramPerSecond"/>
         /// </summary>
-        public double MilligramsPerSecond => As(MassFlowUnit.MilligramPerSecond);
+        public QuantityValue MilligramsPerSecond => this.As(MassFlowUnit.MilligramPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.NanogramPerDay"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.NanogramPerDay"/>
         /// </summary>
-        public double NanogramsPerDay => As(MassFlowUnit.NanogramPerDay);
+        public QuantityValue NanogramsPerDay => this.As(MassFlowUnit.NanogramPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.NanogramPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.NanogramPerSecond"/>
         /// </summary>
-        public double NanogramsPerSecond => As(MassFlowUnit.NanogramPerSecond);
+        public QuantityValue NanogramsPerSecond => this.As(MassFlowUnit.NanogramPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.PoundPerDay"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.PoundPerDay"/>
         /// </summary>
-        public double PoundsPerDay => As(MassFlowUnit.PoundPerDay);
+        public QuantityValue PoundsPerDay => this.As(MassFlowUnit.PoundPerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.PoundPerHour"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.PoundPerHour"/>
         /// </summary>
-        public double PoundsPerHour => As(MassFlowUnit.PoundPerHour);
+        public QuantityValue PoundsPerHour => this.As(MassFlowUnit.PoundPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.PoundPerMinute"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.PoundPerMinute"/>
         /// </summary>
-        public double PoundsPerMinute => As(MassFlowUnit.PoundPerMinute);
+        public QuantityValue PoundsPerMinute => this.As(MassFlowUnit.PoundPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.PoundPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.PoundPerSecond"/>
         /// </summary>
-        public double PoundsPerSecond => As(MassFlowUnit.PoundPerSecond);
+        public QuantityValue PoundsPerSecond => this.As(MassFlowUnit.PoundPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.ShortTonPerHour"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.ShortTonPerHour"/>
         /// </summary>
-        public double ShortTonsPerHour => As(MassFlowUnit.ShortTonPerHour);
+        public QuantityValue ShortTonsPerHour => this.As(MassFlowUnit.ShortTonPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.TonnePerDay"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.TonnePerDay"/>
         /// </summary>
-        public double TonnesPerDay => As(MassFlowUnit.TonnePerDay);
+        public QuantityValue TonnesPerDay => this.As(MassFlowUnit.TonnePerDay);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFlowUnit.TonnePerHour"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFlowUnit.TonnePerHour"/>
         /// </summary>
-        public double TonnesPerHour => As(MassFlowUnit.TonnePerHour);
+        public QuantityValue TonnesPerHour => this.As(MassFlowUnit.TonnePerHour);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: MassFlowUnit -> BaseUnit
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.CentigramPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.CentigramPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.DecagramPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.DecagramPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.DecigramPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.DecigramPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerHour, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.HectogramPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.HectogramPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.KilogramPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.KilogramPerHour, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.KilogramPerMinute, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.KilogramPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegagramPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerHour, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerMinute, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MegapoundPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MicrogramPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MicrogramPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MilligramPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.MilligramPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.NanogramPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.NanogramPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerHour, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerMinute, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.PoundPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.ShortTonPerHour, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.TonnePerDay, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.TonnePerHour, MassFlowUnit.GramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.GramPerSecond));
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.GramPerSecond, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> MassFlowUnit
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.CentigramPerDay, quantity => quantity.ToUnit(MassFlowUnit.CentigramPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.CentigramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.CentigramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.DecagramPerDay, quantity => quantity.ToUnit(MassFlowUnit.DecagramPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.DecagramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.DecagramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.DecigramPerDay, quantity => quantity.ToUnit(MassFlowUnit.DecigramPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.DecigramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.DecigramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.GramPerDay, quantity => quantity.ToUnit(MassFlowUnit.GramPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.GramPerHour, quantity => quantity.ToUnit(MassFlowUnit.GramPerHour));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.HectogramPerDay, quantity => quantity.ToUnit(MassFlowUnit.HectogramPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.HectogramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.HectogramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerDay, quantity => quantity.ToUnit(MassFlowUnit.KilogramPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerHour, quantity => quantity.ToUnit(MassFlowUnit.KilogramPerHour));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerMinute, quantity => quantity.ToUnit(MassFlowUnit.KilogramPerMinute));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.KilogramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MegagramPerDay, quantity => quantity.ToUnit(MassFlowUnit.MegagramPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerDay, quantity => quantity.ToUnit(MassFlowUnit.MegapoundPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerHour, quantity => quantity.ToUnit(MassFlowUnit.MegapoundPerHour));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerMinute, quantity => quantity.ToUnit(MassFlowUnit.MegapoundPerMinute));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerSecond, quantity => quantity.ToUnit(MassFlowUnit.MegapoundPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MicrogramPerDay, quantity => quantity.ToUnit(MassFlowUnit.MicrogramPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MicrogramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.MicrogramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MilligramPerDay, quantity => quantity.ToUnit(MassFlowUnit.MilligramPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.MilligramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.MilligramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.NanogramPerDay, quantity => quantity.ToUnit(MassFlowUnit.NanogramPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.NanogramPerSecond, quantity => quantity.ToUnit(MassFlowUnit.NanogramPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerDay, quantity => quantity.ToUnit(MassFlowUnit.PoundPerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerHour, quantity => quantity.ToUnit(MassFlowUnit.PoundPerHour));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerMinute, quantity => quantity.ToUnit(MassFlowUnit.PoundPerMinute));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerSecond, quantity => quantity.ToUnit(MassFlowUnit.PoundPerSecond));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.ShortTonPerHour, quantity => quantity.ToUnit(MassFlowUnit.ShortTonPerHour));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.TonnePerDay, quantity => quantity.ToUnit(MassFlowUnit.TonnePerDay));
-            unitConverter.SetConversionFunction<MassFlow>(MassFlowUnit.GramPerSecond, MassFlowUnit.TonnePerHour, quantity => quantity.ToUnit(MassFlowUnit.TonnePerHour));
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -540,7 +522,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.CentigramPerDay"/>.
         /// </summary>
-        public static MassFlow FromCentigramsPerDay(double value)
+        public static MassFlow FromCentigramsPerDay(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.CentigramPerDay);
         }
@@ -548,7 +530,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.CentigramPerSecond"/>.
         /// </summary>
-        public static MassFlow FromCentigramsPerSecond(double value)
+        public static MassFlow FromCentigramsPerSecond(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.CentigramPerSecond);
         }
@@ -556,7 +538,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.DecagramPerDay"/>.
         /// </summary>
-        public static MassFlow FromDecagramsPerDay(double value)
+        public static MassFlow FromDecagramsPerDay(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.DecagramPerDay);
         }
@@ -564,7 +546,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.DecagramPerSecond"/>.
         /// </summary>
-        public static MassFlow FromDecagramsPerSecond(double value)
+        public static MassFlow FromDecagramsPerSecond(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.DecagramPerSecond);
         }
@@ -572,7 +554,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.DecigramPerDay"/>.
         /// </summary>
-        public static MassFlow FromDecigramsPerDay(double value)
+        public static MassFlow FromDecigramsPerDay(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.DecigramPerDay);
         }
@@ -580,7 +562,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.DecigramPerSecond"/>.
         /// </summary>
-        public static MassFlow FromDecigramsPerSecond(double value)
+        public static MassFlow FromDecigramsPerSecond(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.DecigramPerSecond);
         }
@@ -588,7 +570,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.GramPerDay"/>.
         /// </summary>
-        public static MassFlow FromGramsPerDay(double value)
+        public static MassFlow FromGramsPerDay(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.GramPerDay);
         }
@@ -596,7 +578,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.GramPerHour"/>.
         /// </summary>
-        public static MassFlow FromGramsPerHour(double value)
+        public static MassFlow FromGramsPerHour(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.GramPerHour);
         }
@@ -604,7 +586,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.GramPerSecond"/>.
         /// </summary>
-        public static MassFlow FromGramsPerSecond(double value)
+        public static MassFlow FromGramsPerSecond(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.GramPerSecond);
         }
@@ -612,7 +594,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.HectogramPerDay"/>.
         /// </summary>
-        public static MassFlow FromHectogramsPerDay(double value)
+        public static MassFlow FromHectogramsPerDay(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.HectogramPerDay);
         }
@@ -620,7 +602,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.HectogramPerSecond"/>.
         /// </summary>
-        public static MassFlow FromHectogramsPerSecond(double value)
+        public static MassFlow FromHectogramsPerSecond(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.HectogramPerSecond);
         }
@@ -628,7 +610,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.KilogramPerDay"/>.
         /// </summary>
-        public static MassFlow FromKilogramsPerDay(double value)
+        public static MassFlow FromKilogramsPerDay(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.KilogramPerDay);
         }
@@ -636,7 +618,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.KilogramPerHour"/>.
         /// </summary>
-        public static MassFlow FromKilogramsPerHour(double value)
+        public static MassFlow FromKilogramsPerHour(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.KilogramPerHour);
         }
@@ -644,7 +626,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.KilogramPerMinute"/>.
         /// </summary>
-        public static MassFlow FromKilogramsPerMinute(double value)
+        public static MassFlow FromKilogramsPerMinute(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.KilogramPerMinute);
         }
@@ -652,7 +634,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.KilogramPerSecond"/>.
         /// </summary>
-        public static MassFlow FromKilogramsPerSecond(double value)
+        public static MassFlow FromKilogramsPerSecond(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.KilogramPerSecond);
         }
@@ -660,7 +642,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MegagramPerDay"/>.
         /// </summary>
-        public static MassFlow FromMegagramsPerDay(double value)
+        public static MassFlow FromMegagramsPerDay(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.MegagramPerDay);
         }
@@ -668,7 +650,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MegapoundPerDay"/>.
         /// </summary>
-        public static MassFlow FromMegapoundsPerDay(double value)
+        public static MassFlow FromMegapoundsPerDay(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.MegapoundPerDay);
         }
@@ -676,7 +658,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MegapoundPerHour"/>.
         /// </summary>
-        public static MassFlow FromMegapoundsPerHour(double value)
+        public static MassFlow FromMegapoundsPerHour(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.MegapoundPerHour);
         }
@@ -684,7 +666,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MegapoundPerMinute"/>.
         /// </summary>
-        public static MassFlow FromMegapoundsPerMinute(double value)
+        public static MassFlow FromMegapoundsPerMinute(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.MegapoundPerMinute);
         }
@@ -692,7 +674,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MegapoundPerSecond"/>.
         /// </summary>
-        public static MassFlow FromMegapoundsPerSecond(double value)
+        public static MassFlow FromMegapoundsPerSecond(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.MegapoundPerSecond);
         }
@@ -700,7 +682,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MicrogramPerDay"/>.
         /// </summary>
-        public static MassFlow FromMicrogramsPerDay(double value)
+        public static MassFlow FromMicrogramsPerDay(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.MicrogramPerDay);
         }
@@ -708,7 +690,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MicrogramPerSecond"/>.
         /// </summary>
-        public static MassFlow FromMicrogramsPerSecond(double value)
+        public static MassFlow FromMicrogramsPerSecond(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.MicrogramPerSecond);
         }
@@ -716,7 +698,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MilligramPerDay"/>.
         /// </summary>
-        public static MassFlow FromMilligramsPerDay(double value)
+        public static MassFlow FromMilligramsPerDay(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.MilligramPerDay);
         }
@@ -724,7 +706,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.MilligramPerSecond"/>.
         /// </summary>
-        public static MassFlow FromMilligramsPerSecond(double value)
+        public static MassFlow FromMilligramsPerSecond(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.MilligramPerSecond);
         }
@@ -732,7 +714,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.NanogramPerDay"/>.
         /// </summary>
-        public static MassFlow FromNanogramsPerDay(double value)
+        public static MassFlow FromNanogramsPerDay(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.NanogramPerDay);
         }
@@ -740,7 +722,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.NanogramPerSecond"/>.
         /// </summary>
-        public static MassFlow FromNanogramsPerSecond(double value)
+        public static MassFlow FromNanogramsPerSecond(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.NanogramPerSecond);
         }
@@ -748,7 +730,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.PoundPerDay"/>.
         /// </summary>
-        public static MassFlow FromPoundsPerDay(double value)
+        public static MassFlow FromPoundsPerDay(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.PoundPerDay);
         }
@@ -756,7 +738,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.PoundPerHour"/>.
         /// </summary>
-        public static MassFlow FromPoundsPerHour(double value)
+        public static MassFlow FromPoundsPerHour(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.PoundPerHour);
         }
@@ -764,7 +746,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.PoundPerMinute"/>.
         /// </summary>
-        public static MassFlow FromPoundsPerMinute(double value)
+        public static MassFlow FromPoundsPerMinute(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.PoundPerMinute);
         }
@@ -772,7 +754,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.PoundPerSecond"/>.
         /// </summary>
-        public static MassFlow FromPoundsPerSecond(double value)
+        public static MassFlow FromPoundsPerSecond(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.PoundPerSecond);
         }
@@ -780,7 +762,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.ShortTonPerHour"/>.
         /// </summary>
-        public static MassFlow FromShortTonsPerHour(double value)
+        public static MassFlow FromShortTonsPerHour(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.ShortTonPerHour);
         }
@@ -788,7 +770,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.TonnePerDay"/>.
         /// </summary>
-        public static MassFlow FromTonnesPerDay(double value)
+        public static MassFlow FromTonnesPerDay(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.TonnePerDay);
         }
@@ -796,7 +778,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlow"/> from <see cref="MassFlowUnit.TonnePerHour"/>.
         /// </summary>
-        public static MassFlow FromTonnesPerHour(double value)
+        public static MassFlow FromTonnesPerHour(QuantityValue value)
         {
             return new MassFlow(value, MassFlowUnit.TonnePerHour);
         }
@@ -807,7 +789,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MassFlow unit value.</returns>
-        public static MassFlow From(double value, MassFlowUnit fromUnit)
+        public static MassFlow From(QuantityValue value, MassFlowUnit fromUnit)
         {
             return new MassFlow(value, fromUnit);
         }
@@ -868,10 +850,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static MassFlow Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<MassFlow, MassFlowUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<MassFlow, MassFlowUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -899,11 +878,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out MassFlow result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<MassFlow, MassFlowUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<MassFlow, MassFlowUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -924,7 +899,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -935,7 +910,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MassFlowUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.MassFlowUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out MassFlowUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -950,7 +925,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out MassFlowUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -969,35 +944,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="MassFlow"/> from adding two <see cref="MassFlow"/>.</summary>
         public static MassFlow operator +(MassFlow left, MassFlow right)
         {
-            return new MassFlow(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new MassFlow(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="MassFlow"/> from subtracting two <see cref="MassFlow"/>.</summary>
         public static MassFlow operator -(MassFlow left, MassFlow right)
         {
-            return new MassFlow(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new MassFlow(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="MassFlow"/> from multiplying value and <see cref="MassFlow"/>.</summary>
-        public static MassFlow operator *(double left, MassFlow right)
+        public static MassFlow operator *(QuantityValue left, MassFlow right)
         {
             return new MassFlow(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="MassFlow"/> from multiplying value and <see cref="MassFlow"/>.</summary>
-        public static MassFlow operator *(MassFlow left, double right)
+        public static MassFlow operator *(MassFlow left, QuantityValue right)
         {
             return new MassFlow(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="MassFlow"/> from dividing <see cref="MassFlow"/> by value.</summary>
-        public static MassFlow operator /(MassFlow left, double right)
+        public static MassFlow operator /(MassFlow left, QuantityValue right)
         {
             return new MassFlow(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="MassFlow"/> by <see cref="MassFlow"/>.</summary>
-        public static double operator /(MassFlow left, MassFlow right)
+        public static QuantityValue operator /(MassFlow left, MassFlow right)
         {
             return left.GramsPerSecond / right.GramsPerSecond;
         }
@@ -1073,65 +1048,55 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(MassFlow left, MassFlow right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(MassFlow left, MassFlow right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(MassFlow left, MassFlow right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(MassFlow left, MassFlow right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="MassFlow"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(MassFlow other, MassFlow tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="MassFlow"/> quantities.</summary>
         public static bool operator ==(MassFlow left, MassFlow right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="MassFlow"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(MassFlow other, MassFlow tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="MassFlow"/> quantities.</summary>
         public static bool operator !=(MassFlow left, MassFlow right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="MassFlow"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(MassFlow other, MassFlow tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="MassFlow"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is MassFlow otherQuantity))
+            if (obj is not MassFlow otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="MassFlow"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(MassFlow other, MassFlow tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="MassFlow"/> quantities.</summary>
         public bool Equals(MassFlow other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>
         ///     Returns the hash code for this instance.
@@ -1139,31 +1104,26 @@ namespace UnitsNet
         /// <returns>A hash code for the current MassFlow.</returns>
         public override int GetHashCode()
         {
-            return Comparison.GetHashCode(Unit, Value);
+            return Comparison.GetHashCode(typeof(MassFlow), this.As(BaseUnit));
         }
-
-        /// <summary>Compares the current <see cref="MassFlow"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        
+        /// <inheritdoc  cref="CompareTo(MassFlow)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is MassFlow otherQuantity)) throw new ArgumentException("Expected type MassFlow.", nameof(obj));
+            if (obj is not MassFlow otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<MassFlow>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="MassFlow"/> with another <see cref="MassFlow"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="MassFlow"/> with another <see cref="MassFlow"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -1175,192 +1135,8 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(MassFlow other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
+            return _value.CompareTo(other.As(this.Unit));
         }
-
-        #endregion
-
-        #region Conversion Methods
-
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(MassFlowUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
-
-            return ToUnit(unit).Value;
-        }
-
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<MassFlowUnit>());
-        }
-
-        /// <summary>
-        ///     Converts this MassFlow to another MassFlow with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A MassFlow with the specified unit.</returns>
-        public MassFlow ToUnit(MassFlowUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
-
-        /// <summary>
-        ///     Converts this <see cref="MassFlow"/> to another <see cref="MassFlow"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A MassFlow with the specified unit.</returns>
-        public MassFlow ToUnit(MassFlowUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(MassFlow), Unit, typeof(MassFlow), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (MassFlow)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="MassFlow"/> to another <see cref="MassFlow"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="MassFlow"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(MassFlowUnit unit, [NotNullWhen(true)] out MassFlow? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            MassFlow? convertedOrNull = (Unit, unit) switch
-            {
-                // MassFlowUnit -> BaseUnit
-                (MassFlowUnit.CentigramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((_value / 86400) * 1e-2d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.CentigramPerSecond, MassFlowUnit.GramPerSecond) => new MassFlow((_value) * 1e-2d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.DecagramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((_value / 86400) * 1e1d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.DecagramPerSecond, MassFlowUnit.GramPerSecond) => new MassFlow((_value) * 1e1d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.DecigramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((_value / 86400) * 1e-1d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.DecigramPerSecond, MassFlowUnit.GramPerSecond) => new MassFlow((_value) * 1e-1d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.GramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow(_value / 86400, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.GramPerHour, MassFlowUnit.GramPerSecond) => new MassFlow(_value / 3600, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.HectogramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((_value / 86400) * 1e2d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.HectogramPerSecond, MassFlowUnit.GramPerSecond) => new MassFlow((_value) * 1e2d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.KilogramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((_value / 86400) * 1e3d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.KilogramPerHour, MassFlowUnit.GramPerSecond) => new MassFlow(_value / 3.6, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.KilogramPerMinute, MassFlowUnit.GramPerSecond) => new MassFlow(_value / 0.06, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.KilogramPerSecond, MassFlowUnit.GramPerSecond) => new MassFlow((_value) * 1e3d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.MegagramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((_value / 86400) * 1e6d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.MegapoundPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((_value * 453.59237 / 86400) * 1e6d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.MegapoundPerHour, MassFlowUnit.GramPerSecond) => new MassFlow((_value * 453.59237 / 3600) * 1e6d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.MegapoundPerMinute, MassFlowUnit.GramPerSecond) => new MassFlow((_value * 453.59237 / 60) * 1e6d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.MegapoundPerSecond, MassFlowUnit.GramPerSecond) => new MassFlow((_value * 453.59237) * 1e6d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.MicrogramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((_value / 86400) * 1e-6d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.MicrogramPerSecond, MassFlowUnit.GramPerSecond) => new MassFlow((_value) * 1e-6d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.MilligramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((_value / 86400) * 1e-3d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.MilligramPerSecond, MassFlowUnit.GramPerSecond) => new MassFlow((_value) * 1e-3d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.NanogramPerDay, MassFlowUnit.GramPerSecond) => new MassFlow((_value / 86400) * 1e-9d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.NanogramPerSecond, MassFlowUnit.GramPerSecond) => new MassFlow((_value) * 1e-9d, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.PoundPerDay, MassFlowUnit.GramPerSecond) => new MassFlow(_value * 453.59237 / 86400, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.PoundPerHour, MassFlowUnit.GramPerSecond) => new MassFlow(_value * 453.59237 / 3600, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.PoundPerMinute, MassFlowUnit.GramPerSecond) => new MassFlow(_value * 453.59237 / 60, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.PoundPerSecond, MassFlowUnit.GramPerSecond) => new MassFlow(_value * 453.59237, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.ShortTonPerHour, MassFlowUnit.GramPerSecond) => new MassFlow(_value * 907.18474 / 3.6, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.TonnePerDay, MassFlowUnit.GramPerSecond) => new MassFlow(_value / 0.0864000, MassFlowUnit.GramPerSecond),
-                (MassFlowUnit.TonnePerHour, MassFlowUnit.GramPerSecond) => new MassFlow(_value * 1000 / 3.6, MassFlowUnit.GramPerSecond),
-
-                // BaseUnit -> MassFlowUnit
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.CentigramPerDay) => new MassFlow((_value * 86400) / 1e-2d, MassFlowUnit.CentigramPerDay),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.CentigramPerSecond) => new MassFlow((_value) / 1e-2d, MassFlowUnit.CentigramPerSecond),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.DecagramPerDay) => new MassFlow((_value * 86400) / 1e1d, MassFlowUnit.DecagramPerDay),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.DecagramPerSecond) => new MassFlow((_value) / 1e1d, MassFlowUnit.DecagramPerSecond),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.DecigramPerDay) => new MassFlow((_value * 86400) / 1e-1d, MassFlowUnit.DecigramPerDay),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.DecigramPerSecond) => new MassFlow((_value) / 1e-1d, MassFlowUnit.DecigramPerSecond),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.GramPerDay) => new MassFlow(_value * 86400, MassFlowUnit.GramPerDay),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.GramPerHour) => new MassFlow(_value * 3600, MassFlowUnit.GramPerHour),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.HectogramPerDay) => new MassFlow((_value * 86400) / 1e2d, MassFlowUnit.HectogramPerDay),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.HectogramPerSecond) => new MassFlow((_value) / 1e2d, MassFlowUnit.HectogramPerSecond),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerDay) => new MassFlow((_value * 86400) / 1e3d, MassFlowUnit.KilogramPerDay),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerHour) => new MassFlow(_value * 3.6, MassFlowUnit.KilogramPerHour),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerMinute) => new MassFlow(_value * 0.06, MassFlowUnit.KilogramPerMinute),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.KilogramPerSecond) => new MassFlow((_value) / 1e3d, MassFlowUnit.KilogramPerSecond),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.MegagramPerDay) => new MassFlow((_value * 86400) / 1e6d, MassFlowUnit.MegagramPerDay),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerDay) => new MassFlow((_value * 86400 / 453.59237) / 1e6d, MassFlowUnit.MegapoundPerDay),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerHour) => new MassFlow((_value * 3600 / 453.59237) / 1e6d, MassFlowUnit.MegapoundPerHour),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerMinute) => new MassFlow((_value * 60 / 453.59237) / 1e6d, MassFlowUnit.MegapoundPerMinute),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.MegapoundPerSecond) => new MassFlow((_value / 453.59237) / 1e6d, MassFlowUnit.MegapoundPerSecond),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.MicrogramPerDay) => new MassFlow((_value * 86400) / 1e-6d, MassFlowUnit.MicrogramPerDay),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.MicrogramPerSecond) => new MassFlow((_value) / 1e-6d, MassFlowUnit.MicrogramPerSecond),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.MilligramPerDay) => new MassFlow((_value * 86400) / 1e-3d, MassFlowUnit.MilligramPerDay),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.MilligramPerSecond) => new MassFlow((_value) / 1e-3d, MassFlowUnit.MilligramPerSecond),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.NanogramPerDay) => new MassFlow((_value * 86400) / 1e-9d, MassFlowUnit.NanogramPerDay),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.NanogramPerSecond) => new MassFlow((_value) / 1e-9d, MassFlowUnit.NanogramPerSecond),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerDay) => new MassFlow(_value * 86400 / 453.59237, MassFlowUnit.PoundPerDay),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerHour) => new MassFlow(_value * 3600 / 453.59237, MassFlowUnit.PoundPerHour),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerMinute) => new MassFlow(_value * 60 / 453.59237, MassFlowUnit.PoundPerMinute),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.PoundPerSecond) => new MassFlow(_value / 453.59237, MassFlowUnit.PoundPerSecond),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.ShortTonPerHour) => new MassFlow(_value * 3.6 / 907.18474, MassFlowUnit.ShortTonPerHour),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.TonnePerDay) => new MassFlow(_value * 0.0864000, MassFlowUnit.TonnePerDay),
-                (MassFlowUnit.GramPerSecond, MassFlowUnit.TonnePerHour) => new MassFlow(_value * 3.6 / 1000, MassFlowUnit.TonnePerHour),
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not MassFlowUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFlowUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is MassFlowUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassFlowUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<MassFlowUnit> IQuantity<MassFlowUnit>.ToUnit(MassFlowUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
@@ -1375,7 +1151,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

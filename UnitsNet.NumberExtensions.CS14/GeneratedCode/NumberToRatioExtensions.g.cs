@@ -42,52 +42,52 @@ namespace UnitsNet.NumberExtensions.NumberToRatio
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Ratio.FromDecimalFractions(double)" />
+            /// <inheritdoc cref="Ratio.FromDecimalFractions(QuantityValue)" />
             public Ratio DecimalFractions
 #if NET7_0_OR_GREATER
-                => Ratio.FromDecimalFractions(double.CreateChecked(value));
+                => Ratio.FromDecimalFractions(QuantityValue.CreateChecked(value));
 #else
-                => Ratio.FromDecimalFractions(value.ToDouble(null));
+                => Ratio.FromDecimalFractions(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Ratio.FromPartsPerBillion(double)" />
+            /// <inheritdoc cref="Ratio.FromPartsPerBillion(QuantityValue)" />
             public Ratio PartsPerBillion
 #if NET7_0_OR_GREATER
-                => Ratio.FromPartsPerBillion(double.CreateChecked(value));
+                => Ratio.FromPartsPerBillion(QuantityValue.CreateChecked(value));
 #else
-                => Ratio.FromPartsPerBillion(value.ToDouble(null));
+                => Ratio.FromPartsPerBillion(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Ratio.FromPartsPerMillion(double)" />
+            /// <inheritdoc cref="Ratio.FromPartsPerMillion(QuantityValue)" />
             public Ratio PartsPerMillion
 #if NET7_0_OR_GREATER
-                => Ratio.FromPartsPerMillion(double.CreateChecked(value));
+                => Ratio.FromPartsPerMillion(QuantityValue.CreateChecked(value));
 #else
-                => Ratio.FromPartsPerMillion(value.ToDouble(null));
+                => Ratio.FromPartsPerMillion(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Ratio.FromPartsPerThousand(double)" />
+            /// <inheritdoc cref="Ratio.FromPartsPerThousand(QuantityValue)" />
             public Ratio PartsPerThousand
 #if NET7_0_OR_GREATER
-                => Ratio.FromPartsPerThousand(double.CreateChecked(value));
+                => Ratio.FromPartsPerThousand(QuantityValue.CreateChecked(value));
 #else
-                => Ratio.FromPartsPerThousand(value.ToDouble(null));
+                => Ratio.FromPartsPerThousand(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Ratio.FromPartsPerTrillion(double)" />
+            /// <inheritdoc cref="Ratio.FromPartsPerTrillion(QuantityValue)" />
             public Ratio PartsPerTrillion
 #if NET7_0_OR_GREATER
-                => Ratio.FromPartsPerTrillion(double.CreateChecked(value));
+                => Ratio.FromPartsPerTrillion(QuantityValue.CreateChecked(value));
 #else
-                => Ratio.FromPartsPerTrillion(value.ToDouble(null));
+                => Ratio.FromPartsPerTrillion(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Ratio.FromPercent(double)" />
+            /// <inheritdoc cref="Ratio.FromPercent(QuantityValue)" />
             public Ratio Percent
 #if NET7_0_OR_GREATER
-                => Ratio.FromPercent(double.CreateChecked(value));
+                => Ratio.FromPercent(QuantityValue.CreateChecked(value));
 #else
-                => Ratio.FromPercent(value.ToDouble(null));
+                => Ratio.FromPercent(value.ToQuantityValue());
 #endif
 
         }

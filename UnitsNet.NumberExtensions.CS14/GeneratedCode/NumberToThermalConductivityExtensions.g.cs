@@ -42,20 +42,20 @@ namespace UnitsNet.NumberExtensions.NumberToThermalConductivity
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(double)" />
+            /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(QuantityValue)" />
             public ThermalConductivity BtusPerHourFootFahrenheit
 #if NET7_0_OR_GREATER
-                => ThermalConductivity.FromBtusPerHourFootFahrenheit(double.CreateChecked(value));
+                => ThermalConductivity.FromBtusPerHourFootFahrenheit(QuantityValue.CreateChecked(value));
 #else
-                => ThermalConductivity.FromBtusPerHourFootFahrenheit(value.ToDouble(null));
+                => ThermalConductivity.FromBtusPerHourFootFahrenheit(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(double)" />
+            /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(QuantityValue)" />
             public ThermalConductivity WattsPerMeterKelvin
 #if NET7_0_OR_GREATER
-                => ThermalConductivity.FromWattsPerMeterKelvin(double.CreateChecked(value));
+                => ThermalConductivity.FromWattsPerMeterKelvin(QuantityValue.CreateChecked(value));
 #else
-                => ThermalConductivity.FromWattsPerMeterKelvin(value.ToDouble(null));
+                => ThermalConductivity.FromWattsPerMeterKelvin(value.ToQuantityValue());
 #endif
 
         }

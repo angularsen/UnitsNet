@@ -290,6 +290,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void LengthInfo_CreateWithCustomUnitInfos()
+        {
+            LengthUnit[] expectedUnits = [LengthUnit.Meter];
+
+            Length.LengthInfo quantityInfo = Length.LengthInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("Length", quantityInfo.Name);
+            Assert.Equal(Length.Zero, quantityInfo.Zero);
+            Assert.Equal(Length.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void MeterToLengthUnits()
         {
             Length meter = Length.FromMeters(1);
@@ -455,26 +469,69 @@ namespace UnitsNet.Tests
             var expectedUnit = Length.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            Length convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                Length quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                Length convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<LengthUnit> quantityToConvert = quantity;
+
+                IQuantity<LengthUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new Length(value: 1, unit: Length.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Length(value: 1, unit: Length.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<LengthUnit> quantity = new Length(value: 1, unit: Length.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Length(value: 1, unit: Length.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new Length(value: 1, unit: Length.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Length(value: 1, unit: Length.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<LengthUnit> quantity = new Length(value: 1, unit: Length.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Length(value: 1, unit: Length.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -566,7 +623,7 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", "4.2 毫米", LengthUnit.Millimeter, 4.2)]
         [InlineData("zh-CN", "4.2 皮米", LengthUnit.Picometer, 4.2)]
         [InlineData("zh-CN", "4.2 码", LengthUnit.Yard, 4.2)]
-        public void Parse(string culture, string quantityString, LengthUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, LengthUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Length.Parse(quantityString);
@@ -673,7 +730,7 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", "4.2 毫米", LengthUnit.Millimeter, 4.2)]
         [InlineData("zh-CN", "4.2 皮米", LengthUnit.Picometer, 4.2)]
         [InlineData("zh-CN", "4.2 码", LengthUnit.Yard, 4.2)]
-        public void TryParse(string culture, string quantityString, LengthUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, LengthUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Length.TryParse(quantityString, out Length parsed));
@@ -1457,6 +1514,7 @@ namespace UnitsNet.Tests
                 var quantity = Length.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -1480,73 +1538,75 @@ namespace UnitsNet.Tests
                 IQuantity<LengthUnit> quantityToConvert = quantity;
                 IQuantity<LengthUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Length meter = Length.FromMeters(1);
-            AssertEx.EqualTolerance(1, Length.FromAngstroms(meter.Angstroms).Meters, AngstromsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromAstronomicalUnits(meter.AstronomicalUnits).Meters, AstronomicalUnitsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromCentimeters(meter.Centimeters).Meters, CentimetersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromChains(meter.Chains).Meters, ChainsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromDataMiles(meter.DataMiles).Meters, DataMilesTolerance);
-            AssertEx.EqualTolerance(1, Length.FromDecameters(meter.Decameters).Meters, DecametersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromDecimeters(meter.Decimeters).Meters, DecimetersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromDtpPicas(meter.DtpPicas).Meters, DtpPicasTolerance);
-            AssertEx.EqualTolerance(1, Length.FromDtpPoints(meter.DtpPoints).Meters, DtpPointsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromFathoms(meter.Fathoms).Meters, FathomsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromFemtometers(meter.Femtometers).Meters, FemtometersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromFeet(meter.Feet).Meters, FeetTolerance);
-            AssertEx.EqualTolerance(1, Length.FromGigameters(meter.Gigameters).Meters, GigametersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromHands(meter.Hands).Meters, HandsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromHectometers(meter.Hectometers).Meters, HectometersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromInches(meter.Inches).Meters, InchesTolerance);
-            AssertEx.EqualTolerance(1, Length.FromKilofeet(meter.Kilofeet).Meters, KilofeetTolerance);
-            AssertEx.EqualTolerance(1, Length.FromKilolightYears(meter.KilolightYears).Meters, KilolightYearsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromKilometers(meter.Kilometers).Meters, KilometersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromKiloparsecs(meter.Kiloparsecs).Meters, KiloparsecsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromKiloyards(meter.Kiloyards).Meters, KiloyardsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromLightYears(meter.LightYears).Meters, LightYearsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromMegalightYears(meter.MegalightYears).Meters, MegalightYearsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromMegameters(meter.Megameters).Meters, MegametersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromMegaparsecs(meter.Megaparsecs).Meters, MegaparsecsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromMeters(meter.Meters).Meters, MetersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromMicroinches(meter.Microinches).Meters, MicroinchesTolerance);
-            AssertEx.EqualTolerance(1, Length.FromMicrometers(meter.Micrometers).Meters, MicrometersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromMils(meter.Mils).Meters, MilsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromMiles(meter.Miles).Meters, MilesTolerance);
-            AssertEx.EqualTolerance(1, Length.FromMillimeters(meter.Millimeters).Meters, MillimetersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromNanometers(meter.Nanometers).Meters, NanometersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromNauticalMiles(meter.NauticalMiles).Meters, NauticalMilesTolerance);
-            AssertEx.EqualTolerance(1, Length.FromParsecs(meter.Parsecs).Meters, ParsecsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromPicometers(meter.Picometers).Meters, PicometersTolerance);
-            AssertEx.EqualTolerance(1, Length.FromPrinterPicas(meter.PrinterPicas).Meters, PrinterPicasTolerance);
-            AssertEx.EqualTolerance(1, Length.FromPrinterPoints(meter.PrinterPoints).Meters, PrinterPointsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromShackles(meter.Shackles).Meters, ShacklesTolerance);
-            AssertEx.EqualTolerance(1, Length.FromSolarRadiuses(meter.SolarRadiuses).Meters, SolarRadiusesTolerance);
-            AssertEx.EqualTolerance(1, Length.FromTwips(meter.Twips).Meters, TwipsTolerance);
-            AssertEx.EqualTolerance(1, Length.FromUsSurveyFeet(meter.UsSurveyFeet).Meters, UsSurveyFeetTolerance);
-            AssertEx.EqualTolerance(1, Length.FromYards(meter.Yards).Meters, YardsTolerance);
+            Length meter = Length.FromMeters(3);
+            Assert.Equal(3, Length.FromAngstroms(meter.Angstroms).Meters);
+            Assert.Equal(3, Length.FromAstronomicalUnits(meter.AstronomicalUnits).Meters);
+            Assert.Equal(3, Length.FromCentimeters(meter.Centimeters).Meters);
+            Assert.Equal(3, Length.FromChains(meter.Chains).Meters);
+            Assert.Equal(3, Length.FromDataMiles(meter.DataMiles).Meters);
+            Assert.Equal(3, Length.FromDecameters(meter.Decameters).Meters);
+            Assert.Equal(3, Length.FromDecimeters(meter.Decimeters).Meters);
+            Assert.Equal(3, Length.FromDtpPicas(meter.DtpPicas).Meters);
+            Assert.Equal(3, Length.FromDtpPoints(meter.DtpPoints).Meters);
+            Assert.Equal(3, Length.FromFathoms(meter.Fathoms).Meters);
+            Assert.Equal(3, Length.FromFemtometers(meter.Femtometers).Meters);
+            Assert.Equal(3, Length.FromFeet(meter.Feet).Meters);
+            Assert.Equal(3, Length.FromGigameters(meter.Gigameters).Meters);
+            Assert.Equal(3, Length.FromHands(meter.Hands).Meters);
+            Assert.Equal(3, Length.FromHectometers(meter.Hectometers).Meters);
+            Assert.Equal(3, Length.FromInches(meter.Inches).Meters);
+            Assert.Equal(3, Length.FromKilofeet(meter.Kilofeet).Meters);
+            Assert.Equal(3, Length.FromKilolightYears(meter.KilolightYears).Meters);
+            Assert.Equal(3, Length.FromKilometers(meter.Kilometers).Meters);
+            Assert.Equal(3, Length.FromKiloparsecs(meter.Kiloparsecs).Meters);
+            Assert.Equal(3, Length.FromKiloyards(meter.Kiloyards).Meters);
+            Assert.Equal(3, Length.FromLightYears(meter.LightYears).Meters);
+            Assert.Equal(3, Length.FromMegalightYears(meter.MegalightYears).Meters);
+            Assert.Equal(3, Length.FromMegameters(meter.Megameters).Meters);
+            Assert.Equal(3, Length.FromMegaparsecs(meter.Megaparsecs).Meters);
+            Assert.Equal(3, Length.FromMeters(meter.Meters).Meters);
+            Assert.Equal(3, Length.FromMicroinches(meter.Microinches).Meters);
+            Assert.Equal(3, Length.FromMicrometers(meter.Micrometers).Meters);
+            Assert.Equal(3, Length.FromMils(meter.Mils).Meters);
+            Assert.Equal(3, Length.FromMiles(meter.Miles).Meters);
+            Assert.Equal(3, Length.FromMillimeters(meter.Millimeters).Meters);
+            Assert.Equal(3, Length.FromNanometers(meter.Nanometers).Meters);
+            Assert.Equal(3, Length.FromNauticalMiles(meter.NauticalMiles).Meters);
+            Assert.Equal(3, Length.FromParsecs(meter.Parsecs).Meters);
+            Assert.Equal(3, Length.FromPicometers(meter.Picometers).Meters);
+            Assert.Equal(3, Length.FromPrinterPicas(meter.PrinterPicas).Meters);
+            Assert.Equal(3, Length.FromPrinterPoints(meter.PrinterPoints).Meters);
+            Assert.Equal(3, Length.FromShackles(meter.Shackles).Meters);
+            Assert.Equal(3, Length.FromSolarRadiuses(meter.SolarRadiuses).Meters);
+            Assert.Equal(3, Length.FromTwips(meter.Twips).Meters);
+            Assert.Equal(3, Length.FromUsSurveyFeet(meter.UsSurveyFeet).Meters);
+            Assert.Equal(3, Length.FromYards(meter.Yards).Meters);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             Length v = Length.FromMeters(1);
-            AssertEx.EqualTolerance(-1, -v.Meters, MetersTolerance);
-            AssertEx.EqualTolerance(2, (Length.FromMeters(3)-v).Meters, MetersTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Meters, MetersTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Meters, MetersTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Meters, MetersTolerance);
-            AssertEx.EqualTolerance(2, (Length.FromMeters(10)/5).Meters, MetersTolerance);
-            AssertEx.EqualTolerance(2, Length.FromMeters(10)/Length.FromMeters(5), MetersTolerance);
+            Assert.Equal(-1, -v.Meters);
+            Assert.Equal(2, (Length.FromMeters(3) - v).Meters);
+            Assert.Equal(2, (v + v).Meters);
+            Assert.Equal(10, (v * 10).Meters);
+            Assert.Equal(10, (10 * v).Meters);
+            Assert.Equal(2, (Length.FromMeters(10) / 5).Meters);
+            Assert.Equal(2, Length.FromMeters(10) / Length.FromMeters(5));
         }
 
         [Fact]
@@ -1592,8 +1652,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, LengthUnit.Meter, 1, LengthUnit.Meter, true)]  // Same value and unit.
         [InlineData(1, LengthUnit.Meter, 2, LengthUnit.Meter, false)] // Different value.
-        [InlineData(2, LengthUnit.Meter, 1, LengthUnit.Angstrom, false)] // Different value and unit.
-        [InlineData(1, LengthUnit.Meter, 1, LengthUnit.Angstrom, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, LengthUnit unitA, double valueB, LengthUnit unitB, bool expectEqual)
         {
             var a = new Length(valueA, unitA);
@@ -1653,8 +1711,8 @@ namespace UnitsNet.Tests
             var quantity = Length.FromMeters(firstValue);
             var otherQuantity = Length.FromMeters(secondValue);
             Length maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, Length.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -1673,7 +1731,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<LengthUnit>();
+            var units = EnumHelper.GetValues<LengthUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -1684,6 +1742,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Length.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(Length.Info.Units, Length.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, Length.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -1830,7 +1900,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Length.FromMeters(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(Length), quantity.As(Length.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

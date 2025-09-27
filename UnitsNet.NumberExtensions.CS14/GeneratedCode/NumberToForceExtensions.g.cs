@@ -42,124 +42,124 @@ namespace UnitsNet.NumberExtensions.NumberToForce
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Force.FromDecanewtons(double)" />
+            /// <inheritdoc cref="Force.FromDecanewtons(QuantityValue)" />
             public Force Decanewtons
 #if NET7_0_OR_GREATER
-                => Force.FromDecanewtons(double.CreateChecked(value));
+                => Force.FromDecanewtons(QuantityValue.CreateChecked(value));
 #else
-                => Force.FromDecanewtons(value.ToDouble(null));
+                => Force.FromDecanewtons(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Force.FromDyne(double)" />
+            /// <inheritdoc cref="Force.FromDyne(QuantityValue)" />
             public Force Dyne
 #if NET7_0_OR_GREATER
-                => Force.FromDyne(double.CreateChecked(value));
+                => Force.FromDyne(QuantityValue.CreateChecked(value));
 #else
-                => Force.FromDyne(value.ToDouble(null));
+                => Force.FromDyne(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Force.FromKilogramsForce(double)" />
+            /// <inheritdoc cref="Force.FromKilogramsForce(QuantityValue)" />
             public Force KilogramsForce
 #if NET7_0_OR_GREATER
-                => Force.FromKilogramsForce(double.CreateChecked(value));
+                => Force.FromKilogramsForce(QuantityValue.CreateChecked(value));
 #else
-                => Force.FromKilogramsForce(value.ToDouble(null));
+                => Force.FromKilogramsForce(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Force.FromKilonewtons(double)" />
+            /// <inheritdoc cref="Force.FromKilonewtons(QuantityValue)" />
             public Force Kilonewtons
 #if NET7_0_OR_GREATER
-                => Force.FromKilonewtons(double.CreateChecked(value));
+                => Force.FromKilonewtons(QuantityValue.CreateChecked(value));
 #else
-                => Force.FromKilonewtons(value.ToDouble(null));
+                => Force.FromKilonewtons(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Force.FromKiloponds(double)" />
+            /// <inheritdoc cref="Force.FromKiloponds(QuantityValue)" />
             public Force Kiloponds
 #if NET7_0_OR_GREATER
-                => Force.FromKiloponds(double.CreateChecked(value));
+                => Force.FromKiloponds(QuantityValue.CreateChecked(value));
 #else
-                => Force.FromKiloponds(value.ToDouble(null));
+                => Force.FromKiloponds(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Force.FromKilopoundsForce(double)" />
+            /// <inheritdoc cref="Force.FromKilopoundsForce(QuantityValue)" />
             public Force KilopoundsForce
 #if NET7_0_OR_GREATER
-                => Force.FromKilopoundsForce(double.CreateChecked(value));
+                => Force.FromKilopoundsForce(QuantityValue.CreateChecked(value));
 #else
-                => Force.FromKilopoundsForce(value.ToDouble(null));
+                => Force.FromKilopoundsForce(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Force.FromMeganewtons(double)" />
+            /// <inheritdoc cref="Force.FromMeganewtons(QuantityValue)" />
             public Force Meganewtons
 #if NET7_0_OR_GREATER
-                => Force.FromMeganewtons(double.CreateChecked(value));
+                => Force.FromMeganewtons(QuantityValue.CreateChecked(value));
 #else
-                => Force.FromMeganewtons(value.ToDouble(null));
+                => Force.FromMeganewtons(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Force.FromMicronewtons(double)" />
+            /// <inheritdoc cref="Force.FromMicronewtons(QuantityValue)" />
             public Force Micronewtons
 #if NET7_0_OR_GREATER
-                => Force.FromMicronewtons(double.CreateChecked(value));
+                => Force.FromMicronewtons(QuantityValue.CreateChecked(value));
 #else
-                => Force.FromMicronewtons(value.ToDouble(null));
+                => Force.FromMicronewtons(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Force.FromMillinewtons(double)" />
+            /// <inheritdoc cref="Force.FromMillinewtons(QuantityValue)" />
             public Force Millinewtons
 #if NET7_0_OR_GREATER
-                => Force.FromMillinewtons(double.CreateChecked(value));
+                => Force.FromMillinewtons(QuantityValue.CreateChecked(value));
 #else
-                => Force.FromMillinewtons(value.ToDouble(null));
+                => Force.FromMillinewtons(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Force.FromNewtons(double)" />
+            /// <inheritdoc cref="Force.FromNewtons(QuantityValue)" />
             public Force Newtons
 #if NET7_0_OR_GREATER
-                => Force.FromNewtons(double.CreateChecked(value));
+                => Force.FromNewtons(QuantityValue.CreateChecked(value));
 #else
-                => Force.FromNewtons(value.ToDouble(null));
+                => Force.FromNewtons(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Force.FromOunceForce(double)" />
+            /// <inheritdoc cref="Force.FromOunceForce(QuantityValue)" />
             public Force OunceForce
 #if NET7_0_OR_GREATER
-                => Force.FromOunceForce(double.CreateChecked(value));
+                => Force.FromOunceForce(QuantityValue.CreateChecked(value));
 #else
-                => Force.FromOunceForce(value.ToDouble(null));
+                => Force.FromOunceForce(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Force.FromPoundals(double)" />
+            /// <inheritdoc cref="Force.FromPoundals(QuantityValue)" />
             public Force Poundals
 #if NET7_0_OR_GREATER
-                => Force.FromPoundals(double.CreateChecked(value));
+                => Force.FromPoundals(QuantityValue.CreateChecked(value));
 #else
-                => Force.FromPoundals(value.ToDouble(null));
+                => Force.FromPoundals(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Force.FromPoundsForce(double)" />
+            /// <inheritdoc cref="Force.FromPoundsForce(QuantityValue)" />
             public Force PoundsForce
 #if NET7_0_OR_GREATER
-                => Force.FromPoundsForce(double.CreateChecked(value));
+                => Force.FromPoundsForce(QuantityValue.CreateChecked(value));
 #else
-                => Force.FromPoundsForce(value.ToDouble(null));
+                => Force.FromPoundsForce(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Force.FromShortTonsForce(double)" />
+            /// <inheritdoc cref="Force.FromShortTonsForce(QuantityValue)" />
             public Force ShortTonsForce
 #if NET7_0_OR_GREATER
-                => Force.FromShortTonsForce(double.CreateChecked(value));
+                => Force.FromShortTonsForce(QuantityValue.CreateChecked(value));
 #else
-                => Force.FromShortTonsForce(value.ToDouble(null));
+                => Force.FromShortTonsForce(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Force.FromTonnesForce(double)" />
+            /// <inheritdoc cref="Force.FromTonnesForce(QuantityValue)" />
             public Force TonnesForce
 #if NET7_0_OR_GREATER
-                => Force.FromTonnesForce(double.CreateChecked(value));
+                => Force.FromTonnesForce(QuantityValue.CreateChecked(value));
 #else
-                => Force.FromTonnesForce(value.ToDouble(null));
+                => Force.FromTonnesForce(value.ToQuantityValue());
 #endif
 
         }

@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -38,11 +36,12 @@ namespace UnitsNet
     ///     https://www.leybold.com/en-in/knowledge/vacuum-fundamentals/leak-detection/definition-and-measurement-of-vacuum-leaks
     /// </remarks>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct LeakRate :
         IArithmeticQuantity<LeakRate, LeakRateUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<LeakRate, LeakRate, double>,
+        IDivisionOperators<LeakRate, LeakRate, QuantityValue>,
         IComparisonOperators<LeakRate, LeakRate, bool>,
         IParsable<LeakRate>,
 #endif
@@ -54,13 +53,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly LeakRateUnit? _unit;
 
         /// <summary>
@@ -105,7 +104,7 @@ namespace UnitsNet
             }
 
             /// <summary>
-            ///     The <see cref="BaseDimensions" /> for <see cref="LeakRate"/> is [T^-3][L^2][M].
+            ///     The <see cref="BaseDimensions" /> for <see cref="LeakRate"/> is T^-3L^2M.
             /// </summary>
             public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
 
@@ -120,18 +119,22 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LeakRateUnit}"/> representing the default unit mappings for LeakRate.</returns>
             public static IEnumerable<UnitDefinition<LeakRateUnit>> GetDefaultMappings()
             {
-                yield return new (LeakRateUnit.AtmCubicCentimeterPerSecond, "AtmCubicCentimeterPerSecond", "AtmCubicCentimetersPerSecond", BaseUnits.Undefined);
-                yield return new (LeakRateUnit.MillibarLiterPerSecond, "MillibarLiterPerSecond", "MillibarLitersPerSecond", BaseUnits.Undefined);
+                yield return new (LeakRateUnit.AtmCubicCentimeterPerSecond, "AtmCubicCentimeterPerSecond", "AtmCubicCentimetersPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(40000, 4053)             
+                );
+                yield return new (LeakRateUnit.MillibarLiterPerSecond, "MillibarLiterPerSecond", "MillibarLitersPerSecond", BaseUnits.Undefined,
+                     10             
+                );
                 yield return new (LeakRateUnit.PascalCubicMeterPerSecond, "PascalCubicMeterPerSecond", "PascalCubicMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (LeakRateUnit.TorrLiterPerSecond, "TorrLiterPerSecond", "TorrLitersPerSecond", BaseUnits.Undefined);
+                yield return new (LeakRateUnit.TorrLiterPerSecond, "TorrLiterPerSecond", "TorrLitersPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(15, 2)             
+                );
             }
         }
 
         static LeakRate()
         {
-            Info = LeakRateInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(LeakRateInfo.CreateDefault);
         }
 
         /// <summary>
@@ -139,7 +142,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public LeakRate(double value, LeakRateUnit unit)
+        public LeakRate(QuantityValue value, LeakRateUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -153,7 +156,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public LeakRate(double value, UnitSystem unitSystem)
+        public LeakRate(QuantityValue value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -164,7 +167,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="LeakRate" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<LeakRate, LeakRateUnit> Info { get; }
@@ -193,10 +197,8 @@ namespace UnitsNet
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public LeakRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -230,48 +232,28 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LeakRateUnit.AtmCubicCentimeterPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LeakRateUnit.AtmCubicCentimeterPerSecond"/>
         /// </summary>
-        public double AtmCubicCentimetersPerSecond => As(LeakRateUnit.AtmCubicCentimeterPerSecond);
+        public QuantityValue AtmCubicCentimetersPerSecond => this.As(LeakRateUnit.AtmCubicCentimeterPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LeakRateUnit.MillibarLiterPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LeakRateUnit.MillibarLiterPerSecond"/>
         /// </summary>
-        public double MillibarLitersPerSecond => As(LeakRateUnit.MillibarLiterPerSecond);
+        public QuantityValue MillibarLitersPerSecond => this.As(LeakRateUnit.MillibarLiterPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LeakRateUnit.PascalCubicMeterPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LeakRateUnit.PascalCubicMeterPerSecond"/>
         /// </summary>
-        public double PascalCubicMetersPerSecond => As(LeakRateUnit.PascalCubicMeterPerSecond);
+        public QuantityValue PascalCubicMetersPerSecond => this.As(LeakRateUnit.PascalCubicMeterPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LeakRateUnit.TorrLiterPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LeakRateUnit.TorrLiterPerSecond"/>
         /// </summary>
-        public double TorrLitersPerSecond => As(LeakRateUnit.TorrLiterPerSecond);
+        public QuantityValue TorrLitersPerSecond => this.As(LeakRateUnit.TorrLiterPerSecond);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: LeakRateUnit -> BaseUnit
-            unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.AtmCubicCentimeterPerSecond, LeakRateUnit.PascalCubicMeterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.PascalCubicMeterPerSecond));
-            unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.MillibarLiterPerSecond, LeakRateUnit.PascalCubicMeterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.PascalCubicMeterPerSecond));
-            unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.TorrLiterPerSecond, LeakRateUnit.PascalCubicMeterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.PascalCubicMeterPerSecond));
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.PascalCubicMeterPerSecond, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> LeakRateUnit
-            unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.AtmCubicCentimeterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.AtmCubicCentimeterPerSecond));
-            unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.MillibarLiterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.MillibarLiterPerSecond));
-            unitConverter.SetConversionFunction<LeakRate>(LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.TorrLiterPerSecond, quantity => quantity.ToUnit(LeakRateUnit.TorrLiterPerSecond));
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -301,7 +283,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.AtmCubicCentimeterPerSecond"/>.
         /// </summary>
-        public static LeakRate FromAtmCubicCentimetersPerSecond(double value)
+        public static LeakRate FromAtmCubicCentimetersPerSecond(QuantityValue value)
         {
             return new LeakRate(value, LeakRateUnit.AtmCubicCentimeterPerSecond);
         }
@@ -309,7 +291,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.MillibarLiterPerSecond"/>.
         /// </summary>
-        public static LeakRate FromMillibarLitersPerSecond(double value)
+        public static LeakRate FromMillibarLitersPerSecond(QuantityValue value)
         {
             return new LeakRate(value, LeakRateUnit.MillibarLiterPerSecond);
         }
@@ -317,7 +299,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.PascalCubicMeterPerSecond"/>.
         /// </summary>
-        public static LeakRate FromPascalCubicMetersPerSecond(double value)
+        public static LeakRate FromPascalCubicMetersPerSecond(QuantityValue value)
         {
             return new LeakRate(value, LeakRateUnit.PascalCubicMeterPerSecond);
         }
@@ -325,7 +307,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.TorrLiterPerSecond"/>.
         /// </summary>
-        public static LeakRate FromTorrLitersPerSecond(double value)
+        public static LeakRate FromTorrLitersPerSecond(QuantityValue value)
         {
             return new LeakRate(value, LeakRateUnit.TorrLiterPerSecond);
         }
@@ -336,7 +318,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>LeakRate unit value.</returns>
-        public static LeakRate From(double value, LeakRateUnit fromUnit)
+        public static LeakRate From(QuantityValue value, LeakRateUnit fromUnit)
         {
             return new LeakRate(value, fromUnit);
         }
@@ -397,10 +379,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static LeakRate Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<LeakRate, LeakRateUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<LeakRate, LeakRateUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -428,11 +407,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out LeakRate result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<LeakRate, LeakRateUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<LeakRate, LeakRateUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -453,7 +428,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -464,7 +439,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.LeakRateUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.LeakRateUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out LeakRateUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -479,7 +454,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out LeakRateUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -498,35 +473,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="LeakRate"/> from adding two <see cref="LeakRate"/>.</summary>
         public static LeakRate operator +(LeakRate left, LeakRate right)
         {
-            return new LeakRate(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new LeakRate(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="LeakRate"/> from subtracting two <see cref="LeakRate"/>.</summary>
         public static LeakRate operator -(LeakRate left, LeakRate right)
         {
-            return new LeakRate(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new LeakRate(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="LeakRate"/> from multiplying value and <see cref="LeakRate"/>.</summary>
-        public static LeakRate operator *(double left, LeakRate right)
+        public static LeakRate operator *(QuantityValue left, LeakRate right)
         {
             return new LeakRate(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="LeakRate"/> from multiplying value and <see cref="LeakRate"/>.</summary>
-        public static LeakRate operator *(LeakRate left, double right)
+        public static LeakRate operator *(LeakRate left, QuantityValue right)
         {
             return new LeakRate(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="LeakRate"/> from dividing <see cref="LeakRate"/> by value.</summary>
-        public static LeakRate operator /(LeakRate left, double right)
+        public static LeakRate operator /(LeakRate left, QuantityValue right)
         {
             return new LeakRate(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="LeakRate"/> by <see cref="LeakRate"/>.</summary>
-        public static double operator /(LeakRate left, LeakRate right)
+        public static QuantityValue operator /(LeakRate left, LeakRate right)
         {
             return left.PascalCubicMetersPerSecond / right.PascalCubicMetersPerSecond;
         }
@@ -538,65 +513,55 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(LeakRate left, LeakRate right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(LeakRate left, LeakRate right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(LeakRate left, LeakRate right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(LeakRate left, LeakRate right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="LeakRate"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(LeakRate other, LeakRate tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="LeakRate"/> quantities.</summary>
         public static bool operator ==(LeakRate left, LeakRate right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="LeakRate"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(LeakRate other, LeakRate tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="LeakRate"/> quantities.</summary>
         public static bool operator !=(LeakRate left, LeakRate right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="LeakRate"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(LeakRate other, LeakRate tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="LeakRate"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is LeakRate otherQuantity))
+            if (obj is not LeakRate otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="LeakRate"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(LeakRate other, LeakRate tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="LeakRate"/> quantities.</summary>
         public bool Equals(LeakRate other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>
         ///     Returns the hash code for this instance.
@@ -604,31 +569,26 @@ namespace UnitsNet
         /// <returns>A hash code for the current LeakRate.</returns>
         public override int GetHashCode()
         {
-            return Comparison.GetHashCode(Unit, Value);
+            return Comparison.GetHashCode(typeof(LeakRate), this.As(BaseUnit));
         }
-
-        /// <summary>Compares the current <see cref="LeakRate"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        
+        /// <inheritdoc  cref="CompareTo(LeakRate)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is LeakRate otherQuantity)) throw new ArgumentException("Expected type LeakRate.", nameof(obj));
+            if (obj is not LeakRate otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<LeakRate>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="LeakRate"/> with another <see cref="LeakRate"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="LeakRate"/> with another <see cref="LeakRate"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -640,134 +600,8 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(LeakRate other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
+            return _value.CompareTo(other.As(this.Unit));
         }
-
-        #endregion
-
-        #region Conversion Methods
-
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(LeakRateUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
-
-            return ToUnit(unit).Value;
-        }
-
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<LeakRateUnit>());
-        }
-
-        /// <summary>
-        ///     Converts this LeakRate to another LeakRate with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A LeakRate with the specified unit.</returns>
-        public LeakRate ToUnit(LeakRateUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
-
-        /// <summary>
-        ///     Converts this <see cref="LeakRate"/> to another <see cref="LeakRate"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A LeakRate with the specified unit.</returns>
-        public LeakRate ToUnit(LeakRateUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(LeakRate), Unit, typeof(LeakRate), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (LeakRate)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="LeakRate"/> to another <see cref="LeakRate"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="LeakRate"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(LeakRateUnit unit, [NotNullWhen(true)] out LeakRate? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            LeakRate? convertedOrNull = (Unit, unit) switch
-            {
-                // LeakRateUnit -> BaseUnit
-                (LeakRateUnit.AtmCubicCentimeterPerSecond, LeakRateUnit.PascalCubicMeterPerSecond) => new LeakRate(_value / (1e6 / 101325), LeakRateUnit.PascalCubicMeterPerSecond),
-                (LeakRateUnit.MillibarLiterPerSecond, LeakRateUnit.PascalCubicMeterPerSecond) => new LeakRate(_value / 10, LeakRateUnit.PascalCubicMeterPerSecond),
-                (LeakRateUnit.TorrLiterPerSecond, LeakRateUnit.PascalCubicMeterPerSecond) => new LeakRate(_value / 7.5, LeakRateUnit.PascalCubicMeterPerSecond),
-
-                // BaseUnit -> LeakRateUnit
-                (LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.AtmCubicCentimeterPerSecond) => new LeakRate(_value * (1e6 / 101325), LeakRateUnit.AtmCubicCentimeterPerSecond),
-                (LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.MillibarLiterPerSecond) => new LeakRate(_value * 10, LeakRateUnit.MillibarLiterPerSecond),
-                (LeakRateUnit.PascalCubicMeterPerSecond, LeakRateUnit.TorrLiterPerSecond) => new LeakRate(_value * 7.5, LeakRateUnit.TorrLiterPerSecond),
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not LeakRateUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LeakRateUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is LeakRateUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LeakRateUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<LeakRateUnit> IQuantity<LeakRateUnit>.ToUnit(LeakRateUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
@@ -782,7 +616,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

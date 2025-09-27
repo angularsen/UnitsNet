@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -38,11 +36,12 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Solid_angle
     /// </remarks>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct SolidAngle :
         IArithmeticQuantity<SolidAngle, SolidAngleUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<SolidAngle, SolidAngle, double>,
+        IDivisionOperators<SolidAngle, SolidAngle, QuantityValue>,
         IComparisonOperators<SolidAngle, SolidAngle, bool>,
         IParsable<SolidAngle>,
 #endif
@@ -54,13 +53,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly SolidAngleUnit? _unit;
 
         /// <summary>
@@ -126,9 +125,7 @@ namespace UnitsNet
 
         static SolidAngle()
         {
-            Info = SolidAngleInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(SolidAngleInfo.CreateDefault);
         }
 
         /// <summary>
@@ -136,7 +133,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public SolidAngle(double value, SolidAngleUnit unit)
+        public SolidAngle(QuantityValue value, SolidAngleUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -147,7 +144,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="SolidAngle" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<SolidAngle, SolidAngleUnit> Info { get; }
@@ -176,10 +174,8 @@ namespace UnitsNet
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public SolidAngleUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -213,27 +209,13 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SolidAngleUnit.Steradian"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SolidAngleUnit.Steradian"/>
         /// </summary>
-        public double Steradians => As(SolidAngleUnit.Steradian);
+        public QuantityValue Steradians => this.As(SolidAngleUnit.Steradian);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: SolidAngleUnit -> BaseUnit
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<SolidAngle>(SolidAngleUnit.Steradian, SolidAngleUnit.Steradian, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> SolidAngleUnit
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -263,7 +245,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SolidAngle"/> from <see cref="SolidAngleUnit.Steradian"/>.
         /// </summary>
-        public static SolidAngle FromSteradians(double value)
+        public static SolidAngle FromSteradians(QuantityValue value)
         {
             return new SolidAngle(value, SolidAngleUnit.Steradian);
         }
@@ -274,7 +256,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SolidAngle unit value.</returns>
-        public static SolidAngle From(double value, SolidAngleUnit fromUnit)
+        public static SolidAngle From(QuantityValue value, SolidAngleUnit fromUnit)
         {
             return new SolidAngle(value, fromUnit);
         }
@@ -335,10 +317,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static SolidAngle Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<SolidAngle, SolidAngleUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<SolidAngle, SolidAngleUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -366,11 +345,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out SolidAngle result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<SolidAngle, SolidAngleUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<SolidAngle, SolidAngleUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -391,7 +366,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -402,7 +377,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.SolidAngleUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.SolidAngleUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out SolidAngleUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -417,7 +392,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out SolidAngleUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -436,35 +411,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="SolidAngle"/> from adding two <see cref="SolidAngle"/>.</summary>
         public static SolidAngle operator +(SolidAngle left, SolidAngle right)
         {
-            return new SolidAngle(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new SolidAngle(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="SolidAngle"/> from subtracting two <see cref="SolidAngle"/>.</summary>
         public static SolidAngle operator -(SolidAngle left, SolidAngle right)
         {
-            return new SolidAngle(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new SolidAngle(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="SolidAngle"/> from multiplying value and <see cref="SolidAngle"/>.</summary>
-        public static SolidAngle operator *(double left, SolidAngle right)
+        public static SolidAngle operator *(QuantityValue left, SolidAngle right)
         {
             return new SolidAngle(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="SolidAngle"/> from multiplying value and <see cref="SolidAngle"/>.</summary>
-        public static SolidAngle operator *(SolidAngle left, double right)
+        public static SolidAngle operator *(SolidAngle left, QuantityValue right)
         {
             return new SolidAngle(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="SolidAngle"/> from dividing <see cref="SolidAngle"/> by value.</summary>
-        public static SolidAngle operator /(SolidAngle left, double right)
+        public static SolidAngle operator /(SolidAngle left, QuantityValue right)
         {
             return new SolidAngle(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="SolidAngle"/> by <see cref="SolidAngle"/>.</summary>
-        public static double operator /(SolidAngle left, SolidAngle right)
+        public static QuantityValue operator /(SolidAngle left, SolidAngle right)
         {
             return left.Steradians / right.Steradians;
         }
@@ -476,65 +451,55 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(SolidAngle left, SolidAngle right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(SolidAngle left, SolidAngle right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(SolidAngle left, SolidAngle right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(SolidAngle left, SolidAngle right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="SolidAngle"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(SolidAngle other, SolidAngle tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="SolidAngle"/> quantities.</summary>
         public static bool operator ==(SolidAngle left, SolidAngle right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="SolidAngle"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(SolidAngle other, SolidAngle tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="SolidAngle"/> quantities.</summary>
         public static bool operator !=(SolidAngle left, SolidAngle right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="SolidAngle"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(SolidAngle other, SolidAngle tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="SolidAngle"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is SolidAngle otherQuantity))
+            if (obj is not SolidAngle otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="SolidAngle"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(SolidAngle other, SolidAngle tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="SolidAngle"/> quantities.</summary>
         public bool Equals(SolidAngle other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>
         ///     Returns the hash code for this instance.
@@ -542,31 +507,26 @@ namespace UnitsNet
         /// <returns>A hash code for the current SolidAngle.</returns>
         public override int GetHashCode()
         {
-            return Comparison.GetHashCode(Unit, Value);
+            return Comparison.GetHashCode(typeof(SolidAngle), this.As(BaseUnit));
         }
-
-        /// <summary>Compares the current <see cref="SolidAngle"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        
+        /// <inheritdoc  cref="CompareTo(SolidAngle)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is SolidAngle otherQuantity)) throw new ArgumentException("Expected type SolidAngle.", nameof(obj));
+            if (obj is not SolidAngle otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<SolidAngle>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="SolidAngle"/> with another <see cref="SolidAngle"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="SolidAngle"/> with another <see cref="SolidAngle"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -578,128 +538,8 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(SolidAngle other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
+            return _value.CompareTo(other.As(this.Unit));
         }
-
-        #endregion
-
-        #region Conversion Methods
-
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(SolidAngleUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
-
-            return ToUnit(unit).Value;
-        }
-
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<SolidAngleUnit>());
-        }
-
-        /// <summary>
-        ///     Converts this SolidAngle to another SolidAngle with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A SolidAngle with the specified unit.</returns>
-        public SolidAngle ToUnit(SolidAngleUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
-
-        /// <summary>
-        ///     Converts this <see cref="SolidAngle"/> to another <see cref="SolidAngle"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A SolidAngle with the specified unit.</returns>
-        public SolidAngle ToUnit(SolidAngleUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(SolidAngle), Unit, typeof(SolidAngle), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (SolidAngle)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="SolidAngle"/> to another <see cref="SolidAngle"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="SolidAngle"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(SolidAngleUnit unit, [NotNullWhen(true)] out SolidAngle? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            SolidAngle? convertedOrNull = (Unit, unit) switch
-            {
-                // SolidAngleUnit -> BaseUnit
-
-                // BaseUnit -> SolidAngleUnit
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not SolidAngleUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SolidAngleUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is SolidAngleUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SolidAngleUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<SolidAngleUnit> IQuantity<SolidAngleUnit>.ToUnit(SolidAngleUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
@@ -714,7 +554,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

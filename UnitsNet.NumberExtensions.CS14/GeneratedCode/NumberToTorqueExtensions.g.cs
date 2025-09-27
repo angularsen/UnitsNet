@@ -42,204 +42,204 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Torque.FromGramForceCentimeters(double)" />
+            /// <inheritdoc cref="Torque.FromGramForceCentimeters(QuantityValue)" />
             public Torque GramForceCentimeters
 #if NET7_0_OR_GREATER
-                => Torque.FromGramForceCentimeters(double.CreateChecked(value));
+                => Torque.FromGramForceCentimeters(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromGramForceCentimeters(value.ToDouble(null));
+                => Torque.FromGramForceCentimeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromGramForceMeters(double)" />
+            /// <inheritdoc cref="Torque.FromGramForceMeters(QuantityValue)" />
             public Torque GramForceMeters
 #if NET7_0_OR_GREATER
-                => Torque.FromGramForceMeters(double.CreateChecked(value));
+                => Torque.FromGramForceMeters(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromGramForceMeters(value.ToDouble(null));
+                => Torque.FromGramForceMeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromGramForceMillimeters(double)" />
+            /// <inheritdoc cref="Torque.FromGramForceMillimeters(QuantityValue)" />
             public Torque GramForceMillimeters
 #if NET7_0_OR_GREATER
-                => Torque.FromGramForceMillimeters(double.CreateChecked(value));
+                => Torque.FromGramForceMillimeters(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromGramForceMillimeters(value.ToDouble(null));
+                => Torque.FromGramForceMillimeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromKilogramForceCentimeters(double)" />
+            /// <inheritdoc cref="Torque.FromKilogramForceCentimeters(QuantityValue)" />
             public Torque KilogramForceCentimeters
 #if NET7_0_OR_GREATER
-                => Torque.FromKilogramForceCentimeters(double.CreateChecked(value));
+                => Torque.FromKilogramForceCentimeters(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromKilogramForceCentimeters(value.ToDouble(null));
+                => Torque.FromKilogramForceCentimeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromKilogramForceMeters(double)" />
+            /// <inheritdoc cref="Torque.FromKilogramForceMeters(QuantityValue)" />
             public Torque KilogramForceMeters
 #if NET7_0_OR_GREATER
-                => Torque.FromKilogramForceMeters(double.CreateChecked(value));
+                => Torque.FromKilogramForceMeters(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromKilogramForceMeters(value.ToDouble(null));
+                => Torque.FromKilogramForceMeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromKilogramForceMillimeters(double)" />
+            /// <inheritdoc cref="Torque.FromKilogramForceMillimeters(QuantityValue)" />
             public Torque KilogramForceMillimeters
 #if NET7_0_OR_GREATER
-                => Torque.FromKilogramForceMillimeters(double.CreateChecked(value));
+                => Torque.FromKilogramForceMillimeters(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromKilogramForceMillimeters(value.ToDouble(null));
+                => Torque.FromKilogramForceMillimeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromKilonewtonCentimeters(double)" />
+            /// <inheritdoc cref="Torque.FromKilonewtonCentimeters(QuantityValue)" />
             public Torque KilonewtonCentimeters
 #if NET7_0_OR_GREATER
-                => Torque.FromKilonewtonCentimeters(double.CreateChecked(value));
+                => Torque.FromKilonewtonCentimeters(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromKilonewtonCentimeters(value.ToDouble(null));
+                => Torque.FromKilonewtonCentimeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromKilonewtonMeters(double)" />
+            /// <inheritdoc cref="Torque.FromKilonewtonMeters(QuantityValue)" />
             public Torque KilonewtonMeters
 #if NET7_0_OR_GREATER
-                => Torque.FromKilonewtonMeters(double.CreateChecked(value));
+                => Torque.FromKilonewtonMeters(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromKilonewtonMeters(value.ToDouble(null));
+                => Torque.FromKilonewtonMeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromKilonewtonMillimeters(double)" />
+            /// <inheritdoc cref="Torque.FromKilonewtonMillimeters(QuantityValue)" />
             public Torque KilonewtonMillimeters
 #if NET7_0_OR_GREATER
-                => Torque.FromKilonewtonMillimeters(double.CreateChecked(value));
+                => Torque.FromKilonewtonMillimeters(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromKilonewtonMillimeters(value.ToDouble(null));
+                => Torque.FromKilonewtonMillimeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromKilopoundForceFeet(double)" />
+            /// <inheritdoc cref="Torque.FromKilopoundForceFeet(QuantityValue)" />
             public Torque KilopoundForceFeet
 #if NET7_0_OR_GREATER
-                => Torque.FromKilopoundForceFeet(double.CreateChecked(value));
+                => Torque.FromKilopoundForceFeet(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromKilopoundForceFeet(value.ToDouble(null));
+                => Torque.FromKilopoundForceFeet(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromKilopoundForceInches(double)" />
+            /// <inheritdoc cref="Torque.FromKilopoundForceInches(QuantityValue)" />
             public Torque KilopoundForceInches
 #if NET7_0_OR_GREATER
-                => Torque.FromKilopoundForceInches(double.CreateChecked(value));
+                => Torque.FromKilopoundForceInches(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromKilopoundForceInches(value.ToDouble(null));
+                => Torque.FromKilopoundForceInches(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromMeganewtonCentimeters(double)" />
+            /// <inheritdoc cref="Torque.FromMeganewtonCentimeters(QuantityValue)" />
             public Torque MeganewtonCentimeters
 #if NET7_0_OR_GREATER
-                => Torque.FromMeganewtonCentimeters(double.CreateChecked(value));
+                => Torque.FromMeganewtonCentimeters(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromMeganewtonCentimeters(value.ToDouble(null));
+                => Torque.FromMeganewtonCentimeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromMeganewtonMeters(double)" />
+            /// <inheritdoc cref="Torque.FromMeganewtonMeters(QuantityValue)" />
             public Torque MeganewtonMeters
 #if NET7_0_OR_GREATER
-                => Torque.FromMeganewtonMeters(double.CreateChecked(value));
+                => Torque.FromMeganewtonMeters(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromMeganewtonMeters(value.ToDouble(null));
+                => Torque.FromMeganewtonMeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromMeganewtonMillimeters(double)" />
+            /// <inheritdoc cref="Torque.FromMeganewtonMillimeters(QuantityValue)" />
             public Torque MeganewtonMillimeters
 #if NET7_0_OR_GREATER
-                => Torque.FromMeganewtonMillimeters(double.CreateChecked(value));
+                => Torque.FromMeganewtonMillimeters(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromMeganewtonMillimeters(value.ToDouble(null));
+                => Torque.FromMeganewtonMillimeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromMegapoundForceFeet(double)" />
+            /// <inheritdoc cref="Torque.FromMegapoundForceFeet(QuantityValue)" />
             public Torque MegapoundForceFeet
 #if NET7_0_OR_GREATER
-                => Torque.FromMegapoundForceFeet(double.CreateChecked(value));
+                => Torque.FromMegapoundForceFeet(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromMegapoundForceFeet(value.ToDouble(null));
+                => Torque.FromMegapoundForceFeet(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromMegapoundForceInches(double)" />
+            /// <inheritdoc cref="Torque.FromMegapoundForceInches(QuantityValue)" />
             public Torque MegapoundForceInches
 #if NET7_0_OR_GREATER
-                => Torque.FromMegapoundForceInches(double.CreateChecked(value));
+                => Torque.FromMegapoundForceInches(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromMegapoundForceInches(value.ToDouble(null));
+                => Torque.FromMegapoundForceInches(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromNewtonCentimeters(double)" />
+            /// <inheritdoc cref="Torque.FromNewtonCentimeters(QuantityValue)" />
             public Torque NewtonCentimeters
 #if NET7_0_OR_GREATER
-                => Torque.FromNewtonCentimeters(double.CreateChecked(value));
+                => Torque.FromNewtonCentimeters(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromNewtonCentimeters(value.ToDouble(null));
+                => Torque.FromNewtonCentimeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromNewtonMeters(double)" />
+            /// <inheritdoc cref="Torque.FromNewtonMeters(QuantityValue)" />
             public Torque NewtonMeters
 #if NET7_0_OR_GREATER
-                => Torque.FromNewtonMeters(double.CreateChecked(value));
+                => Torque.FromNewtonMeters(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromNewtonMeters(value.ToDouble(null));
+                => Torque.FromNewtonMeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromNewtonMillimeters(double)" />
+            /// <inheritdoc cref="Torque.FromNewtonMillimeters(QuantityValue)" />
             public Torque NewtonMillimeters
 #if NET7_0_OR_GREATER
-                => Torque.FromNewtonMillimeters(double.CreateChecked(value));
+                => Torque.FromNewtonMillimeters(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromNewtonMillimeters(value.ToDouble(null));
+                => Torque.FromNewtonMillimeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromPoundalFeet(double)" />
+            /// <inheritdoc cref="Torque.FromPoundalFeet(QuantityValue)" />
             public Torque PoundalFeet
 #if NET7_0_OR_GREATER
-                => Torque.FromPoundalFeet(double.CreateChecked(value));
+                => Torque.FromPoundalFeet(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromPoundalFeet(value.ToDouble(null));
+                => Torque.FromPoundalFeet(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromPoundForceFeet(double)" />
+            /// <inheritdoc cref="Torque.FromPoundForceFeet(QuantityValue)" />
             public Torque PoundForceFeet
 #if NET7_0_OR_GREATER
-                => Torque.FromPoundForceFeet(double.CreateChecked(value));
+                => Torque.FromPoundForceFeet(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromPoundForceFeet(value.ToDouble(null));
+                => Torque.FromPoundForceFeet(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromPoundForceInches(double)" />
+            /// <inheritdoc cref="Torque.FromPoundForceInches(QuantityValue)" />
             public Torque PoundForceInches
 #if NET7_0_OR_GREATER
-                => Torque.FromPoundForceInches(double.CreateChecked(value));
+                => Torque.FromPoundForceInches(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromPoundForceInches(value.ToDouble(null));
+                => Torque.FromPoundForceInches(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromTonneForceCentimeters(double)" />
+            /// <inheritdoc cref="Torque.FromTonneForceCentimeters(QuantityValue)" />
             public Torque TonneForceCentimeters
 #if NET7_0_OR_GREATER
-                => Torque.FromTonneForceCentimeters(double.CreateChecked(value));
+                => Torque.FromTonneForceCentimeters(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromTonneForceCentimeters(value.ToDouble(null));
+                => Torque.FromTonneForceCentimeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromTonneForceMeters(double)" />
+            /// <inheritdoc cref="Torque.FromTonneForceMeters(QuantityValue)" />
             public Torque TonneForceMeters
 #if NET7_0_OR_GREATER
-                => Torque.FromTonneForceMeters(double.CreateChecked(value));
+                => Torque.FromTonneForceMeters(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromTonneForceMeters(value.ToDouble(null));
+                => Torque.FromTonneForceMeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Torque.FromTonneForceMillimeters(double)" />
+            /// <inheritdoc cref="Torque.FromTonneForceMillimeters(QuantityValue)" />
             public Torque TonneForceMillimeters
 #if NET7_0_OR_GREATER
-                => Torque.FromTonneForceMillimeters(double.CreateChecked(value));
+                => Torque.FromTonneForceMillimeters(QuantityValue.CreateChecked(value));
 #else
-                => Torque.FromTonneForceMillimeters(value.ToDouble(null));
+                => Torque.FromTonneForceMillimeters(value.ToQuantityValue());
 #endif
 
         }

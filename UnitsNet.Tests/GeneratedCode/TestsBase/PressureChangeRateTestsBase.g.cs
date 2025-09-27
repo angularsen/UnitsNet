@@ -194,6 +194,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void PressureChangeRateInfo_CreateWithCustomUnitInfos()
+        {
+            PressureChangeRateUnit[] expectedUnits = [PressureChangeRateUnit.PascalPerSecond];
+
+            PressureChangeRate.PressureChangeRateInfo quantityInfo = PressureChangeRate.PressureChangeRateInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("PressureChangeRate", quantityInfo.Name);
+            Assert.Equal(PressureChangeRate.Zero, quantityInfo.Zero);
+            Assert.Equal(PressureChangeRate.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void PascalPerSecondToPressureChangeRateUnits()
         {
             PressureChangeRate pascalpersecond = PressureChangeRate.FromPascalsPerSecond(1);
@@ -311,26 +325,69 @@ namespace UnitsNet.Tests
             var expectedUnit = PressureChangeRate.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            PressureChangeRate convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                PressureChangeRate quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                PressureChangeRate convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<PressureChangeRateUnit> quantityToConvert = quantity;
+
+                IQuantity<PressureChangeRateUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new PressureChangeRate(value: 1, unit: PressureChangeRate.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new PressureChangeRate(value: 1, unit: PressureChangeRate.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<PressureChangeRateUnit> quantity = new PressureChangeRate(value: 1, unit: PressureChangeRate.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new PressureChangeRate(value: 1, unit: PressureChangeRate.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new PressureChangeRate(value: 1, unit: PressureChangeRate.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new PressureChangeRate(value: 1, unit: PressureChangeRate.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<PressureChangeRateUnit> quantity = new PressureChangeRate(value: 1, unit: PressureChangeRate.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new PressureChangeRate(value: 1, unit: PressureChangeRate.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -382,7 +439,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 lb/in²/мин", PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, 4.2)]
         [InlineData("ru-RU", "4,2 psi/с", PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 lb/in²/с", PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, 4.2)]
-        public void Parse(string culture, string quantityString, PressureChangeRateUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, PressureChangeRateUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = PressureChangeRate.Parse(quantityString);
@@ -439,7 +496,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 lb/in²/мин", PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, 4.2)]
         [InlineData("ru-RU", "4,2 psi/с", PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 lb/in²/с", PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, 4.2)]
-        public void TryParse(string culture, string quantityString, PressureChangeRateUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, PressureChangeRateUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(PressureChangeRate.TryParse(quantityString, out PressureChangeRate parsed));
@@ -887,6 +944,7 @@ namespace UnitsNet.Tests
                 var quantity = PressureChangeRate.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -910,49 +968,51 @@ namespace UnitsNet.Tests
                 IQuantity<PressureChangeRateUnit> quantityToConvert = quantity;
                 IQuantity<PressureChangeRateUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            PressureChangeRate pascalpersecond = PressureChangeRate.FromPascalsPerSecond(1);
-            AssertEx.EqualTolerance(1, PressureChangeRate.FromAtmospheresPerSecond(pascalpersecond.AtmospheresPerSecond).PascalsPerSecond, AtmospheresPerSecondTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.FromBarsPerMinute(pascalpersecond.BarsPerMinute).PascalsPerSecond, BarsPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.FromBarsPerSecond(pascalpersecond.BarsPerSecond).PascalsPerSecond, BarsPerSecondTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.FromKilopascalsPerMinute(pascalpersecond.KilopascalsPerMinute).PascalsPerSecond, KilopascalsPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.FromKilopascalsPerSecond(pascalpersecond.KilopascalsPerSecond).PascalsPerSecond, KilopascalsPerSecondTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.FromKilopoundsForcePerSquareInchPerMinute(pascalpersecond.KilopoundsForcePerSquareInchPerMinute).PascalsPerSecond, KilopoundsForcePerSquareInchPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.FromKilopoundsForcePerSquareInchPerSecond(pascalpersecond.KilopoundsForcePerSquareInchPerSecond).PascalsPerSecond, KilopoundsForcePerSquareInchPerSecondTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.FromMegapascalsPerMinute(pascalpersecond.MegapascalsPerMinute).PascalsPerSecond, MegapascalsPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.FromMegapascalsPerSecond(pascalpersecond.MegapascalsPerSecond).PascalsPerSecond, MegapascalsPerSecondTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.FromMegapoundsForcePerSquareInchPerMinute(pascalpersecond.MegapoundsForcePerSquareInchPerMinute).PascalsPerSecond, MegapoundsForcePerSquareInchPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.FromMegapoundsForcePerSquareInchPerSecond(pascalpersecond.MegapoundsForcePerSquareInchPerSecond).PascalsPerSecond, MegapoundsForcePerSquareInchPerSecondTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.FromMillibarsPerMinute(pascalpersecond.MillibarsPerMinute).PascalsPerSecond, MillibarsPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.FromMillibarsPerSecond(pascalpersecond.MillibarsPerSecond).PascalsPerSecond, MillibarsPerSecondTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.FromMillimetersOfMercuryPerSecond(pascalpersecond.MillimetersOfMercuryPerSecond).PascalsPerSecond, MillimetersOfMercuryPerSecondTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.FromPascalsPerMinute(pascalpersecond.PascalsPerMinute).PascalsPerSecond, PascalsPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.FromPascalsPerSecond(pascalpersecond.PascalsPerSecond).PascalsPerSecond, PascalsPerSecondTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.FromPoundsForcePerSquareInchPerMinute(pascalpersecond.PoundsForcePerSquareInchPerMinute).PascalsPerSecond, PoundsForcePerSquareInchPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, PressureChangeRate.FromPoundsForcePerSquareInchPerSecond(pascalpersecond.PoundsForcePerSquareInchPerSecond).PascalsPerSecond, PoundsForcePerSquareInchPerSecondTolerance);
+            PressureChangeRate pascalpersecond = PressureChangeRate.FromPascalsPerSecond(3);
+            Assert.Equal(3, PressureChangeRate.FromAtmospheresPerSecond(pascalpersecond.AtmospheresPerSecond).PascalsPerSecond);
+            Assert.Equal(3, PressureChangeRate.FromBarsPerMinute(pascalpersecond.BarsPerMinute).PascalsPerSecond);
+            Assert.Equal(3, PressureChangeRate.FromBarsPerSecond(pascalpersecond.BarsPerSecond).PascalsPerSecond);
+            Assert.Equal(3, PressureChangeRate.FromKilopascalsPerMinute(pascalpersecond.KilopascalsPerMinute).PascalsPerSecond);
+            Assert.Equal(3, PressureChangeRate.FromKilopascalsPerSecond(pascalpersecond.KilopascalsPerSecond).PascalsPerSecond);
+            Assert.Equal(3, PressureChangeRate.FromKilopoundsForcePerSquareInchPerMinute(pascalpersecond.KilopoundsForcePerSquareInchPerMinute).PascalsPerSecond);
+            Assert.Equal(3, PressureChangeRate.FromKilopoundsForcePerSquareInchPerSecond(pascalpersecond.KilopoundsForcePerSquareInchPerSecond).PascalsPerSecond);
+            Assert.Equal(3, PressureChangeRate.FromMegapascalsPerMinute(pascalpersecond.MegapascalsPerMinute).PascalsPerSecond);
+            Assert.Equal(3, PressureChangeRate.FromMegapascalsPerSecond(pascalpersecond.MegapascalsPerSecond).PascalsPerSecond);
+            Assert.Equal(3, PressureChangeRate.FromMegapoundsForcePerSquareInchPerMinute(pascalpersecond.MegapoundsForcePerSquareInchPerMinute).PascalsPerSecond);
+            Assert.Equal(3, PressureChangeRate.FromMegapoundsForcePerSquareInchPerSecond(pascalpersecond.MegapoundsForcePerSquareInchPerSecond).PascalsPerSecond);
+            Assert.Equal(3, PressureChangeRate.FromMillibarsPerMinute(pascalpersecond.MillibarsPerMinute).PascalsPerSecond);
+            Assert.Equal(3, PressureChangeRate.FromMillibarsPerSecond(pascalpersecond.MillibarsPerSecond).PascalsPerSecond);
+            Assert.Equal(3, PressureChangeRate.FromMillimetersOfMercuryPerSecond(pascalpersecond.MillimetersOfMercuryPerSecond).PascalsPerSecond);
+            Assert.Equal(3, PressureChangeRate.FromPascalsPerMinute(pascalpersecond.PascalsPerMinute).PascalsPerSecond);
+            Assert.Equal(3, PressureChangeRate.FromPascalsPerSecond(pascalpersecond.PascalsPerSecond).PascalsPerSecond);
+            Assert.Equal(3, PressureChangeRate.FromPoundsForcePerSquareInchPerMinute(pascalpersecond.PoundsForcePerSquareInchPerMinute).PascalsPerSecond);
+            Assert.Equal(3, PressureChangeRate.FromPoundsForcePerSquareInchPerSecond(pascalpersecond.PoundsForcePerSquareInchPerSecond).PascalsPerSecond);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             PressureChangeRate v = PressureChangeRate.FromPascalsPerSecond(1);
-            AssertEx.EqualTolerance(-1, -v.PascalsPerSecond, PascalsPerSecondTolerance);
-            AssertEx.EqualTolerance(2, (PressureChangeRate.FromPascalsPerSecond(3)-v).PascalsPerSecond, PascalsPerSecondTolerance);
-            AssertEx.EqualTolerance(2, (v + v).PascalsPerSecond, PascalsPerSecondTolerance);
-            AssertEx.EqualTolerance(10, (v*10).PascalsPerSecond, PascalsPerSecondTolerance);
-            AssertEx.EqualTolerance(10, (10*v).PascalsPerSecond, PascalsPerSecondTolerance);
-            AssertEx.EqualTolerance(2, (PressureChangeRate.FromPascalsPerSecond(10)/5).PascalsPerSecond, PascalsPerSecondTolerance);
-            AssertEx.EqualTolerance(2, PressureChangeRate.FromPascalsPerSecond(10)/PressureChangeRate.FromPascalsPerSecond(5), PascalsPerSecondTolerance);
+            Assert.Equal(-1, -v.PascalsPerSecond);
+            Assert.Equal(2, (PressureChangeRate.FromPascalsPerSecond(3) - v).PascalsPerSecond);
+            Assert.Equal(2, (v + v).PascalsPerSecond);
+            Assert.Equal(10, (v * 10).PascalsPerSecond);
+            Assert.Equal(10, (10 * v).PascalsPerSecond);
+            Assert.Equal(2, (PressureChangeRate.FromPascalsPerSecond(10) / 5).PascalsPerSecond);
+            Assert.Equal(2, PressureChangeRate.FromPascalsPerSecond(10) / PressureChangeRate.FromPascalsPerSecond(5));
         }
 
         [Fact]
@@ -998,8 +1058,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, PressureChangeRateUnit.PascalPerSecond, 1, PressureChangeRateUnit.PascalPerSecond, true)]  // Same value and unit.
         [InlineData(1, PressureChangeRateUnit.PascalPerSecond, 2, PressureChangeRateUnit.PascalPerSecond, false)] // Different value.
-        [InlineData(2, PressureChangeRateUnit.PascalPerSecond, 1, PressureChangeRateUnit.AtmospherePerSecond, false)] // Different value and unit.
-        [InlineData(1, PressureChangeRateUnit.PascalPerSecond, 1, PressureChangeRateUnit.AtmospherePerSecond, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, PressureChangeRateUnit unitA, double valueB, PressureChangeRateUnit unitB, bool expectEqual)
         {
             var a = new PressureChangeRate(valueA, unitA);
@@ -1059,8 +1117,8 @@ namespace UnitsNet.Tests
             var quantity = PressureChangeRate.FromPascalsPerSecond(firstValue);
             var otherQuantity = PressureChangeRate.FromPascalsPerSecond(secondValue);
             PressureChangeRate maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, PressureChangeRate.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -1079,7 +1137,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<PressureChangeRateUnit>();
+            var units = EnumHelper.GetValues<PressureChangeRateUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -1090,6 +1148,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(PressureChangeRate.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(PressureChangeRate.Info.Units, PressureChangeRate.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, PressureChangeRate.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -1188,7 +1258,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = PressureChangeRate.FromPascalsPerSecond(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(PressureChangeRate), quantity.As(PressureChangeRate.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

@@ -32,488 +32,488 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
     /// </summary>
     public static class NumberToPowerDensityExtensions
     {
-        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicFoot(double)" />
+        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicFoot(QuantityValue)" />
         public static PowerDensity DecawattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromDecawattsPerCubicFoot(double.CreateChecked(value));
+            => PowerDensity.FromDecawattsPerCubicFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromDecawattsPerCubicFoot(value.ToDouble(null));
+            => PowerDensity.FromDecawattsPerCubicFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicInch(double)" />
+        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicInch(QuantityValue)" />
         public static PowerDensity DecawattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromDecawattsPerCubicInch(double.CreateChecked(value));
+            => PowerDensity.FromDecawattsPerCubicInch(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromDecawattsPerCubicInch(value.ToDouble(null));
+            => PowerDensity.FromDecawattsPerCubicInch(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicMeter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicMeter(QuantityValue)" />
         public static PowerDensity DecawattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromDecawattsPerCubicMeter(double.CreateChecked(value));
+            => PowerDensity.FromDecawattsPerCubicMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromDecawattsPerCubicMeter(value.ToDouble(null));
+            => PowerDensity.FromDecawattsPerCubicMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromDecawattsPerLiter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromDecawattsPerLiter(QuantityValue)" />
         public static PowerDensity DecawattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromDecawattsPerLiter(double.CreateChecked(value));
+            => PowerDensity.FromDecawattsPerLiter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromDecawattsPerLiter(value.ToDouble(null));
+            => PowerDensity.FromDecawattsPerLiter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicFoot(double)" />
+        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicFoot(QuantityValue)" />
         public static PowerDensity DeciwattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromDeciwattsPerCubicFoot(double.CreateChecked(value));
+            => PowerDensity.FromDeciwattsPerCubicFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromDeciwattsPerCubicFoot(value.ToDouble(null));
+            => PowerDensity.FromDeciwattsPerCubicFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicInch(double)" />
+        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicInch(QuantityValue)" />
         public static PowerDensity DeciwattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromDeciwattsPerCubicInch(double.CreateChecked(value));
+            => PowerDensity.FromDeciwattsPerCubicInch(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromDeciwattsPerCubicInch(value.ToDouble(null));
+            => PowerDensity.FromDeciwattsPerCubicInch(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicMeter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicMeter(QuantityValue)" />
         public static PowerDensity DeciwattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromDeciwattsPerCubicMeter(double.CreateChecked(value));
+            => PowerDensity.FromDeciwattsPerCubicMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromDeciwattsPerCubicMeter(value.ToDouble(null));
+            => PowerDensity.FromDeciwattsPerCubicMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerLiter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerLiter(QuantityValue)" />
         public static PowerDensity DeciwattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromDeciwattsPerLiter(double.CreateChecked(value));
+            => PowerDensity.FromDeciwattsPerLiter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromDeciwattsPerLiter(value.ToDouble(null));
+            => PowerDensity.FromDeciwattsPerLiter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicFoot(double)" />
+        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicFoot(QuantityValue)" />
         public static PowerDensity GigawattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromGigawattsPerCubicFoot(double.CreateChecked(value));
+            => PowerDensity.FromGigawattsPerCubicFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromGigawattsPerCubicFoot(value.ToDouble(null));
+            => PowerDensity.FromGigawattsPerCubicFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicInch(double)" />
+        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicInch(QuantityValue)" />
         public static PowerDensity GigawattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromGigawattsPerCubicInch(double.CreateChecked(value));
+            => PowerDensity.FromGigawattsPerCubicInch(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromGigawattsPerCubicInch(value.ToDouble(null));
+            => PowerDensity.FromGigawattsPerCubicInch(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicMeter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicMeter(QuantityValue)" />
         public static PowerDensity GigawattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromGigawattsPerCubicMeter(double.CreateChecked(value));
+            => PowerDensity.FromGigawattsPerCubicMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromGigawattsPerCubicMeter(value.ToDouble(null));
+            => PowerDensity.FromGigawattsPerCubicMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromGigawattsPerLiter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromGigawattsPerLiter(QuantityValue)" />
         public static PowerDensity GigawattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromGigawattsPerLiter(double.CreateChecked(value));
+            => PowerDensity.FromGigawattsPerLiter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromGigawattsPerLiter(value.ToDouble(null));
+            => PowerDensity.FromGigawattsPerLiter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicFoot(double)" />
+        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicFoot(QuantityValue)" />
         public static PowerDensity KilowattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromKilowattsPerCubicFoot(double.CreateChecked(value));
+            => PowerDensity.FromKilowattsPerCubicFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromKilowattsPerCubicFoot(value.ToDouble(null));
+            => PowerDensity.FromKilowattsPerCubicFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicInch(double)" />
+        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicInch(QuantityValue)" />
         public static PowerDensity KilowattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromKilowattsPerCubicInch(double.CreateChecked(value));
+            => PowerDensity.FromKilowattsPerCubicInch(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromKilowattsPerCubicInch(value.ToDouble(null));
+            => PowerDensity.FromKilowattsPerCubicInch(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicMeter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicMeter(QuantityValue)" />
         public static PowerDensity KilowattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromKilowattsPerCubicMeter(double.CreateChecked(value));
+            => PowerDensity.FromKilowattsPerCubicMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromKilowattsPerCubicMeter(value.ToDouble(null));
+            => PowerDensity.FromKilowattsPerCubicMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromKilowattsPerLiter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromKilowattsPerLiter(QuantityValue)" />
         public static PowerDensity KilowattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromKilowattsPerLiter(double.CreateChecked(value));
+            => PowerDensity.FromKilowattsPerLiter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromKilowattsPerLiter(value.ToDouble(null));
+            => PowerDensity.FromKilowattsPerLiter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicFoot(double)" />
+        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicFoot(QuantityValue)" />
         public static PowerDensity MegawattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMegawattsPerCubicFoot(double.CreateChecked(value));
+            => PowerDensity.FromMegawattsPerCubicFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMegawattsPerCubicFoot(value.ToDouble(null));
+            => PowerDensity.FromMegawattsPerCubicFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicInch(double)" />
+        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicInch(QuantityValue)" />
         public static PowerDensity MegawattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMegawattsPerCubicInch(double.CreateChecked(value));
+            => PowerDensity.FromMegawattsPerCubicInch(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMegawattsPerCubicInch(value.ToDouble(null));
+            => PowerDensity.FromMegawattsPerCubicInch(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicMeter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicMeter(QuantityValue)" />
         public static PowerDensity MegawattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMegawattsPerCubicMeter(double.CreateChecked(value));
+            => PowerDensity.FromMegawattsPerCubicMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMegawattsPerCubicMeter(value.ToDouble(null));
+            => PowerDensity.FromMegawattsPerCubicMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMegawattsPerLiter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromMegawattsPerLiter(QuantityValue)" />
         public static PowerDensity MegawattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMegawattsPerLiter(double.CreateChecked(value));
+            => PowerDensity.FromMegawattsPerLiter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMegawattsPerLiter(value.ToDouble(null));
+            => PowerDensity.FromMegawattsPerLiter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicFoot(double)" />
+        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicFoot(QuantityValue)" />
         public static PowerDensity MicrowattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMicrowattsPerCubicFoot(double.CreateChecked(value));
+            => PowerDensity.FromMicrowattsPerCubicFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMicrowattsPerCubicFoot(value.ToDouble(null));
+            => PowerDensity.FromMicrowattsPerCubicFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicInch(double)" />
+        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicInch(QuantityValue)" />
         public static PowerDensity MicrowattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMicrowattsPerCubicInch(double.CreateChecked(value));
+            => PowerDensity.FromMicrowattsPerCubicInch(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMicrowattsPerCubicInch(value.ToDouble(null));
+            => PowerDensity.FromMicrowattsPerCubicInch(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicMeter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicMeter(QuantityValue)" />
         public static PowerDensity MicrowattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMicrowattsPerCubicMeter(double.CreateChecked(value));
+            => PowerDensity.FromMicrowattsPerCubicMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMicrowattsPerCubicMeter(value.ToDouble(null));
+            => PowerDensity.FromMicrowattsPerCubicMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerLiter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerLiter(QuantityValue)" />
         public static PowerDensity MicrowattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMicrowattsPerLiter(double.CreateChecked(value));
+            => PowerDensity.FromMicrowattsPerLiter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMicrowattsPerLiter(value.ToDouble(null));
+            => PowerDensity.FromMicrowattsPerLiter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicFoot(double)" />
+        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicFoot(QuantityValue)" />
         public static PowerDensity MilliwattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMilliwattsPerCubicFoot(double.CreateChecked(value));
+            => PowerDensity.FromMilliwattsPerCubicFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMilliwattsPerCubicFoot(value.ToDouble(null));
+            => PowerDensity.FromMilliwattsPerCubicFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicInch(double)" />
+        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicInch(QuantityValue)" />
         public static PowerDensity MilliwattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMilliwattsPerCubicInch(double.CreateChecked(value));
+            => PowerDensity.FromMilliwattsPerCubicInch(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMilliwattsPerCubicInch(value.ToDouble(null));
+            => PowerDensity.FromMilliwattsPerCubicInch(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicMeter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicMeter(QuantityValue)" />
         public static PowerDensity MilliwattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMilliwattsPerCubicMeter(double.CreateChecked(value));
+            => PowerDensity.FromMilliwattsPerCubicMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMilliwattsPerCubicMeter(value.ToDouble(null));
+            => PowerDensity.FromMilliwattsPerCubicMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerLiter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerLiter(QuantityValue)" />
         public static PowerDensity MilliwattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMilliwattsPerLiter(double.CreateChecked(value));
+            => PowerDensity.FromMilliwattsPerLiter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMilliwattsPerLiter(value.ToDouble(null));
+            => PowerDensity.FromMilliwattsPerLiter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicFoot(double)" />
+        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicFoot(QuantityValue)" />
         public static PowerDensity NanowattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromNanowattsPerCubicFoot(double.CreateChecked(value));
+            => PowerDensity.FromNanowattsPerCubicFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromNanowattsPerCubicFoot(value.ToDouble(null));
+            => PowerDensity.FromNanowattsPerCubicFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicInch(double)" />
+        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicInch(QuantityValue)" />
         public static PowerDensity NanowattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromNanowattsPerCubicInch(double.CreateChecked(value));
+            => PowerDensity.FromNanowattsPerCubicInch(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromNanowattsPerCubicInch(value.ToDouble(null));
+            => PowerDensity.FromNanowattsPerCubicInch(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicMeter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicMeter(QuantityValue)" />
         public static PowerDensity NanowattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromNanowattsPerCubicMeter(double.CreateChecked(value));
+            => PowerDensity.FromNanowattsPerCubicMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromNanowattsPerCubicMeter(value.ToDouble(null));
+            => PowerDensity.FromNanowattsPerCubicMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromNanowattsPerLiter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromNanowattsPerLiter(QuantityValue)" />
         public static PowerDensity NanowattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromNanowattsPerLiter(double.CreateChecked(value));
+            => PowerDensity.FromNanowattsPerLiter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromNanowattsPerLiter(value.ToDouble(null));
+            => PowerDensity.FromNanowattsPerLiter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicFoot(double)" />
+        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicFoot(QuantityValue)" />
         public static PowerDensity PicowattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromPicowattsPerCubicFoot(double.CreateChecked(value));
+            => PowerDensity.FromPicowattsPerCubicFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromPicowattsPerCubicFoot(value.ToDouble(null));
+            => PowerDensity.FromPicowattsPerCubicFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicInch(double)" />
+        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicInch(QuantityValue)" />
         public static PowerDensity PicowattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromPicowattsPerCubicInch(double.CreateChecked(value));
+            => PowerDensity.FromPicowattsPerCubicInch(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromPicowattsPerCubicInch(value.ToDouble(null));
+            => PowerDensity.FromPicowattsPerCubicInch(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicMeter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicMeter(QuantityValue)" />
         public static PowerDensity PicowattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromPicowattsPerCubicMeter(double.CreateChecked(value));
+            => PowerDensity.FromPicowattsPerCubicMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromPicowattsPerCubicMeter(value.ToDouble(null));
+            => PowerDensity.FromPicowattsPerCubicMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromPicowattsPerLiter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromPicowattsPerLiter(QuantityValue)" />
         public static PowerDensity PicowattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromPicowattsPerLiter(double.CreateChecked(value));
+            => PowerDensity.FromPicowattsPerLiter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromPicowattsPerLiter(value.ToDouble(null));
+            => PowerDensity.FromPicowattsPerLiter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicFoot(double)" />
+        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicFoot(QuantityValue)" />
         public static PowerDensity TerawattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromTerawattsPerCubicFoot(double.CreateChecked(value));
+            => PowerDensity.FromTerawattsPerCubicFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromTerawattsPerCubicFoot(value.ToDouble(null));
+            => PowerDensity.FromTerawattsPerCubicFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicInch(double)" />
+        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicInch(QuantityValue)" />
         public static PowerDensity TerawattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromTerawattsPerCubicInch(double.CreateChecked(value));
+            => PowerDensity.FromTerawattsPerCubicInch(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromTerawattsPerCubicInch(value.ToDouble(null));
+            => PowerDensity.FromTerawattsPerCubicInch(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicMeter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicMeter(QuantityValue)" />
         public static PowerDensity TerawattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromTerawattsPerCubicMeter(double.CreateChecked(value));
+            => PowerDensity.FromTerawattsPerCubicMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromTerawattsPerCubicMeter(value.ToDouble(null));
+            => PowerDensity.FromTerawattsPerCubicMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromTerawattsPerLiter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromTerawattsPerLiter(QuantityValue)" />
         public static PowerDensity TerawattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromTerawattsPerLiter(double.CreateChecked(value));
+            => PowerDensity.FromTerawattsPerLiter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromTerawattsPerLiter(value.ToDouble(null));
+            => PowerDensity.FromTerawattsPerLiter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicFoot(double)" />
+        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicFoot(QuantityValue)" />
         public static PowerDensity WattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromWattsPerCubicFoot(double.CreateChecked(value));
+            => PowerDensity.FromWattsPerCubicFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromWattsPerCubicFoot(value.ToDouble(null));
+            => PowerDensity.FromWattsPerCubicFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicInch(double)" />
+        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicInch(QuantityValue)" />
         public static PowerDensity WattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromWattsPerCubicInch(double.CreateChecked(value));
+            => PowerDensity.FromWattsPerCubicInch(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromWattsPerCubicInch(value.ToDouble(null));
+            => PowerDensity.FromWattsPerCubicInch(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicMeter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicMeter(QuantityValue)" />
         public static PowerDensity WattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromWattsPerCubicMeter(double.CreateChecked(value));
+            => PowerDensity.FromWattsPerCubicMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromWattsPerCubicMeter(value.ToDouble(null));
+            => PowerDensity.FromWattsPerCubicMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromWattsPerLiter(double)" />
+        /// <inheritdoc cref="PowerDensity.FromWattsPerLiter(QuantityValue)" />
         public static PowerDensity WattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromWattsPerLiter(double.CreateChecked(value));
+            => PowerDensity.FromWattsPerLiter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromWattsPerLiter(value.ToDouble(null));
+            => PowerDensity.FromWattsPerLiter(value.ToQuantityValue());
 #endif
 
     }

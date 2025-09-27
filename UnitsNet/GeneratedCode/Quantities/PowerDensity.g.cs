@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -35,11 +33,12 @@ namespace UnitsNet
     ///     The amount of power in a volume.
     /// </summary>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct PowerDensity :
         IArithmeticQuantity<PowerDensity, PowerDensityUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<PowerDensity, PowerDensity, double>,
+        IDivisionOperators<PowerDensity, PowerDensity, QuantityValue>,
         IComparisonOperators<PowerDensity, PowerDensity, bool>,
         IParsable<PowerDensity>,
 #endif
@@ -51,13 +50,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly PowerDensityUnit? _unit;
 
         /// <summary>
@@ -102,7 +101,7 @@ namespace UnitsNet
             }
 
             /// <summary>
-            ///     The <see cref="BaseDimensions" /> for <see cref="PowerDensity"/> is [T^-3][L^-1][M].
+            ///     The <see cref="BaseDimensions" /> for <see cref="PowerDensity"/> is T^-3L^-1M.
             /// </summary>
             public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
 
@@ -117,58 +116,142 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PowerDensityUnit}"/> representing the default unit mappings for PowerDensity.</returns>
             public static IEnumerable<UnitDefinition<PowerDensityUnit>> GetDefaultMappings()
             {
-                yield return new (PowerDensityUnit.DecawattPerCubicFoot, "DecawattPerCubicFoot", "DecawattsPerCubicFoot", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.DecawattPerCubicInch, "DecawattPerCubicInch", "DecawattsPerCubicInch", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.DecawattPerCubicMeter, "DecawattPerCubicMeter", "DecawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (PowerDensityUnit.DecawattPerLiter, "DecawattPerLiter", "DecawattsPerLiter", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.DeciwattPerCubicFoot, "DeciwattPerCubicFoot", "DeciwattsPerCubicFoot", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.DeciwattPerCubicInch, "DeciwattPerCubicInch", "DeciwattsPerCubicInch", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.DeciwattPerCubicMeter, "DeciwattPerCubicMeter", "DeciwattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Hectogram, time: DurationUnit.Second));
-                yield return new (PowerDensityUnit.DeciwattPerLiter, "DeciwattPerLiter", "DeciwattsPerLiter", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.GigawattPerCubicFoot, "GigawattPerCubicFoot", "GigawattsPerCubicFoot", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.GigawattPerCubicInch, "GigawattPerCubicInch", "GigawattsPerCubicInch", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.GigawattPerCubicMeter, "GigawattPerCubicMeter", "GigawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (PowerDensityUnit.GigawattPerLiter, "GigawattPerLiter", "GigawattsPerLiter", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.KilowattPerCubicFoot, "KilowattPerCubicFoot", "KilowattsPerCubicFoot", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.KilowattPerCubicInch, "KilowattPerCubicInch", "KilowattsPerCubicInch", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.KilowattPerCubicMeter, "KilowattPerCubicMeter", "KilowattsPerCubicMeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (PowerDensityUnit.KilowattPerLiter, "KilowattPerLiter", "KilowattsPerLiter", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.MegawattPerCubicFoot, "MegawattPerCubicFoot", "MegawattsPerCubicFoot", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.MegawattPerCubicInch, "MegawattPerCubicInch", "MegawattsPerCubicInch", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.MegawattPerCubicMeter, "MegawattPerCubicMeter", "MegawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (PowerDensityUnit.MegawattPerLiter, "MegawattPerLiter", "MegawattsPerLiter", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.MicrowattPerCubicFoot, "MicrowattPerCubicFoot", "MicrowattsPerCubicFoot", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.MicrowattPerCubicInch, "MicrowattPerCubicInch", "MicrowattsPerCubicInch", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.MicrowattPerCubicMeter, "MicrowattPerCubicMeter", "MicrowattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second));
-                yield return new (PowerDensityUnit.MicrowattPerLiter, "MicrowattPerLiter", "MicrowattsPerLiter", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.MilliwattPerCubicFoot, "MilliwattPerCubicFoot", "MilliwattsPerCubicFoot", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.MilliwattPerCubicInch, "MilliwattPerCubicInch", "MilliwattsPerCubicInch", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.MilliwattPerCubicMeter, "MilliwattPerCubicMeter", "MilliwattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second));
-                yield return new (PowerDensityUnit.MilliwattPerLiter, "MilliwattPerLiter", "MilliwattsPerLiter", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.NanowattPerCubicFoot, "NanowattPerCubicFoot", "NanowattsPerCubicFoot", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.NanowattPerCubicInch, "NanowattPerCubicInch", "NanowattsPerCubicInch", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.NanowattPerCubicMeter, "NanowattPerCubicMeter", "NanowattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second));
-                yield return new (PowerDensityUnit.NanowattPerLiter, "NanowattPerLiter", "NanowattsPerLiter", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.PicowattPerCubicFoot, "PicowattPerCubicFoot", "PicowattsPerCubicFoot", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.PicowattPerCubicInch, "PicowattPerCubicInch", "PicowattsPerCubicInch", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.PicowattPerCubicMeter, "PicowattPerCubicMeter", "PicowattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second));
-                yield return new (PowerDensityUnit.PicowattPerLiter, "PicowattPerLiter", "PicowattsPerLiter", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.TerawattPerCubicFoot, "TerawattPerCubicFoot", "TerawattsPerCubicFoot", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.TerawattPerCubicInch, "TerawattPerCubicInch", "TerawattsPerCubicInch", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.TerawattPerCubicMeter, "TerawattPerCubicMeter", "TerawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Picometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (PowerDensityUnit.TerawattPerLiter, "TerawattPerLiter", "TerawattsPerLiter", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.WattPerCubicFoot, "WattPerCubicFoot", "WattsPerCubicFoot", BaseUnits.Undefined);
-                yield return new (PowerDensityUnit.WattPerCubicInch, "WattPerCubicInch", "WattsPerCubicInch", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.DecawattPerCubicFoot, "DecawattPerCubicFoot", "DecawattsPerCubicFoot", BaseUnits.Undefined,
+                     new QuantityValue(55306341, 19531250000)             
+                );
+                yield return new (PowerDensityUnit.DecawattPerCubicInch, "DecawattPerCubicInch", "DecawattsPerCubicInch", BaseUnits.Undefined,
+                     new QuantityValue(2048383, 1250000000000)             
+                );
+                yield return new (PowerDensityUnit.DecawattPerCubicMeter, "DecawattPerCubicMeter", "DecawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
+                     new QuantityValue(1, 10)             
+                );
+                yield return new (PowerDensityUnit.DecawattPerLiter, "DecawattPerLiter", "DecawattsPerLiter", BaseUnits.Undefined,
+                     new QuantityValue(1, 10000)             
+                );
+                yield return new (PowerDensityUnit.DeciwattPerCubicFoot, "DeciwattPerCubicFoot", "DeciwattsPerCubicFoot", BaseUnits.Undefined,
+                     new QuantityValue(55306341, 195312500)             
+                );
+                yield return new (PowerDensityUnit.DeciwattPerCubicInch, "DeciwattPerCubicInch", "DeciwattsPerCubicInch", BaseUnits.Undefined,
+                     new QuantityValue(2048383, 12500000000)             
+                );
+                yield return new (PowerDensityUnit.DeciwattPerCubicMeter, "DeciwattPerCubicMeter", "DeciwattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Hectogram, time: DurationUnit.Second),
+                     10             
+                );
+                yield return new (PowerDensityUnit.DeciwattPerLiter, "DeciwattPerLiter", "DeciwattsPerLiter", BaseUnits.Undefined,
+                     new QuantityValue(1, 100)             
+                );
+                yield return new (PowerDensityUnit.GigawattPerCubicFoot, "GigawattPerCubicFoot", "GigawattsPerCubicFoot", BaseUnits.Undefined,
+                     new QuantityValue(55306341, 1953125000000000000)             
+                );
+                yield return new (PowerDensityUnit.GigawattPerCubicInch, "GigawattPerCubicInch", "GigawattsPerCubicInch", BaseUnits.Undefined,
+                     new QuantityValue(2048383, new BigInteger(125) * QuantityValue.PowerOfTen(18))             
+                );
+                yield return new (PowerDensityUnit.GigawattPerCubicMeter, "GigawattPerCubicMeter", "GigawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
+                     new QuantityValue(1, 1000000000)             
+                );
+                yield return new (PowerDensityUnit.GigawattPerLiter, "GigawattPerLiter", "GigawattsPerLiter", BaseUnits.Undefined,
+                     new QuantityValue(1, 1000000000000)             
+                );
+                yield return new (PowerDensityUnit.KilowattPerCubicFoot, "KilowattPerCubicFoot", "KilowattsPerCubicFoot", BaseUnits.Undefined,
+                     new QuantityValue(55306341, 1953125000000)             
+                );
+                yield return new (PowerDensityUnit.KilowattPerCubicInch, "KilowattPerCubicInch", "KilowattsPerCubicInch", BaseUnits.Undefined,
+                     new QuantityValue(2048383, 125000000000000)             
+                );
+                yield return new (PowerDensityUnit.KilowattPerCubicMeter, "KilowattPerCubicMeter", "KilowattsPerCubicMeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
+                     new QuantityValue(1, 1000)             
+                );
+                yield return new (PowerDensityUnit.KilowattPerLiter, "KilowattPerLiter", "KilowattsPerLiter", BaseUnits.Undefined,
+                     new QuantityValue(1, 1000000)             
+                );
+                yield return new (PowerDensityUnit.MegawattPerCubicFoot, "MegawattPerCubicFoot", "MegawattsPerCubicFoot", BaseUnits.Undefined,
+                     new QuantityValue(55306341, 1953125000000000)             
+                );
+                yield return new (PowerDensityUnit.MegawattPerCubicInch, "MegawattPerCubicInch", "MegawattsPerCubicInch", BaseUnits.Undefined,
+                     new QuantityValue(2048383, 125000000000000000)             
+                );
+                yield return new (PowerDensityUnit.MegawattPerCubicMeter, "MegawattPerCubicMeter", "MegawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
+                     new QuantityValue(1, 1000000)             
+                );
+                yield return new (PowerDensityUnit.MegawattPerLiter, "MegawattPerLiter", "MegawattsPerLiter", BaseUnits.Undefined,
+                     new QuantityValue(1, 1000000000)             
+                );
+                yield return new (PowerDensityUnit.MicrowattPerCubicFoot, "MicrowattPerCubicFoot", "MicrowattsPerCubicFoot", BaseUnits.Undefined,
+                     new QuantityValue(442450728, 15625)             
+                );
+                yield return new (PowerDensityUnit.MicrowattPerCubicInch, "MicrowattPerCubicInch", "MicrowattsPerCubicInch", BaseUnits.Undefined,
+                     new QuantityValue(2048383, 125000)             
+                );
+                yield return new (PowerDensityUnit.MicrowattPerCubicMeter, "MicrowattPerCubicMeter", "MicrowattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second),
+                     1000000             
+                );
+                yield return new (PowerDensityUnit.MicrowattPerLiter, "MicrowattPerLiter", "MicrowattsPerLiter", BaseUnits.Undefined,
+                     1000             
+                );
+                yield return new (PowerDensityUnit.MilliwattPerCubicFoot, "MilliwattPerCubicFoot", "MilliwattsPerCubicFoot", BaseUnits.Undefined,
+                     new QuantityValue(55306341, 1953125)             
+                );
+                yield return new (PowerDensityUnit.MilliwattPerCubicInch, "MilliwattPerCubicInch", "MilliwattsPerCubicInch", BaseUnits.Undefined,
+                     new QuantityValue(2048383, 125000000)             
+                );
+                yield return new (PowerDensityUnit.MilliwattPerCubicMeter, "MilliwattPerCubicMeter", "MilliwattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second),
+                     1000             
+                );
+                yield return new (PowerDensityUnit.MilliwattPerLiter, "MilliwattPerLiter", "MilliwattsPerLiter", BaseUnits.Undefined,
+                     1             
+                );
+                yield return new (PowerDensityUnit.NanowattPerCubicFoot, "NanowattPerCubicFoot", "NanowattsPerCubicFoot", BaseUnits.Undefined,
+                     new QuantityValue(3539605824, 125)             
+                );
+                yield return new (PowerDensityUnit.NanowattPerCubicInch, "NanowattPerCubicInch", "NanowattsPerCubicInch", BaseUnits.Undefined,
+                     new QuantityValue(2048383, 125)             
+                );
+                yield return new (PowerDensityUnit.NanowattPerCubicMeter, "NanowattPerCubicMeter", "NanowattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second),
+                     1000000000             
+                );
+                yield return new (PowerDensityUnit.NanowattPerLiter, "NanowattPerLiter", "NanowattsPerLiter", BaseUnits.Undefined,
+                     1000000             
+                );
+                yield return new (PowerDensityUnit.PicowattPerCubicFoot, "PicowattPerCubicFoot", "PicowattsPerCubicFoot", BaseUnits.Undefined,
+                     28316846592             
+                );
+                yield return new (PowerDensityUnit.PicowattPerCubicInch, "PicowattPerCubicInch", "PicowattsPerCubicInch", BaseUnits.Undefined,
+                     16387064             
+                );
+                yield return new (PowerDensityUnit.PicowattPerCubicMeter, "PicowattPerCubicMeter", "PicowattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second),
+                     1000000000000             
+                );
+                yield return new (PowerDensityUnit.PicowattPerLiter, "PicowattPerLiter", "PicowattsPerLiter", BaseUnits.Undefined,
+                     1000000000             
+                );
+                yield return new (PowerDensityUnit.TerawattPerCubicFoot, "TerawattPerCubicFoot", "TerawattsPerCubicFoot", BaseUnits.Undefined,
+                     new QuantityValue(55306341, new BigInteger(1953125) * QuantityValue.PowerOfTen(15))             
+                );
+                yield return new (PowerDensityUnit.TerawattPerCubicInch, "TerawattPerCubicInch", "TerawattsPerCubicInch", BaseUnits.Undefined,
+                     new QuantityValue(2048383, new BigInteger(125) * QuantityValue.PowerOfTen(21))             
+                );
+                yield return new (PowerDensityUnit.TerawattPerCubicMeter, "TerawattPerCubicMeter", "TerawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Picometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
+                     new QuantityValue(1, 1000000000000)             
+                );
+                yield return new (PowerDensityUnit.TerawattPerLiter, "TerawattPerLiter", "TerawattsPerLiter", BaseUnits.Undefined,
+                     new QuantityValue(1, 1000000000000000)             
+                );
+                yield return new (PowerDensityUnit.WattPerCubicFoot, "WattPerCubicFoot", "WattsPerCubicFoot", BaseUnits.Undefined,
+                     new QuantityValue(55306341, 1953125000)             
+                );
+                yield return new (PowerDensityUnit.WattPerCubicInch, "WattPerCubicInch", "WattsPerCubicInch", BaseUnits.Undefined,
+                     new QuantityValue(2048383, 125000000000)             
+                );
                 yield return new (PowerDensityUnit.WattPerCubicMeter, "WattPerCubicMeter", "WattsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (PowerDensityUnit.WattPerLiter, "WattPerLiter", "WattsPerLiter", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.WattPerLiter, "WattPerLiter", "WattsPerLiter", BaseUnits.Undefined,
+                     new QuantityValue(1, 1000)             
+                );
             }
         }
 
         static PowerDensity()
         {
-            Info = PowerDensityInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(PowerDensityInfo.CreateDefault);
         }
 
         /// <summary>
@@ -176,7 +259,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public PowerDensity(double value, PowerDensityUnit unit)
+        public PowerDensity(QuantityValue value, PowerDensityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -190,7 +273,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public PowerDensity(double value, UnitSystem unitSystem)
+        public PowerDensity(QuantityValue value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -201,7 +284,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="PowerDensity" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<PowerDensity, PowerDensityUnit> Info { get; }
@@ -230,10 +314,8 @@ namespace UnitsNet
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public PowerDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -267,328 +349,228 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.DecawattPerCubicFoot"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.DecawattPerCubicFoot"/>
         /// </summary>
-        public double DecawattsPerCubicFoot => As(PowerDensityUnit.DecawattPerCubicFoot);
+        public QuantityValue DecawattsPerCubicFoot => this.As(PowerDensityUnit.DecawattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.DecawattPerCubicInch"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.DecawattPerCubicInch"/>
         /// </summary>
-        public double DecawattsPerCubicInch => As(PowerDensityUnit.DecawattPerCubicInch);
+        public QuantityValue DecawattsPerCubicInch => this.As(PowerDensityUnit.DecawattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.DecawattPerCubicMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.DecawattPerCubicMeter"/>
         /// </summary>
-        public double DecawattsPerCubicMeter => As(PowerDensityUnit.DecawattPerCubicMeter);
+        public QuantityValue DecawattsPerCubicMeter => this.As(PowerDensityUnit.DecawattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.DecawattPerLiter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.DecawattPerLiter"/>
         /// </summary>
-        public double DecawattsPerLiter => As(PowerDensityUnit.DecawattPerLiter);
+        public QuantityValue DecawattsPerLiter => this.As(PowerDensityUnit.DecawattPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.DeciwattPerCubicFoot"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.DeciwattPerCubicFoot"/>
         /// </summary>
-        public double DeciwattsPerCubicFoot => As(PowerDensityUnit.DeciwattPerCubicFoot);
+        public QuantityValue DeciwattsPerCubicFoot => this.As(PowerDensityUnit.DeciwattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.DeciwattPerCubicInch"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.DeciwattPerCubicInch"/>
         /// </summary>
-        public double DeciwattsPerCubicInch => As(PowerDensityUnit.DeciwattPerCubicInch);
+        public QuantityValue DeciwattsPerCubicInch => this.As(PowerDensityUnit.DeciwattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.DeciwattPerCubicMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.DeciwattPerCubicMeter"/>
         /// </summary>
-        public double DeciwattsPerCubicMeter => As(PowerDensityUnit.DeciwattPerCubicMeter);
+        public QuantityValue DeciwattsPerCubicMeter => this.As(PowerDensityUnit.DeciwattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.DeciwattPerLiter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.DeciwattPerLiter"/>
         /// </summary>
-        public double DeciwattsPerLiter => As(PowerDensityUnit.DeciwattPerLiter);
+        public QuantityValue DeciwattsPerLiter => this.As(PowerDensityUnit.DeciwattPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.GigawattPerCubicFoot"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.GigawattPerCubicFoot"/>
         /// </summary>
-        public double GigawattsPerCubicFoot => As(PowerDensityUnit.GigawattPerCubicFoot);
+        public QuantityValue GigawattsPerCubicFoot => this.As(PowerDensityUnit.GigawattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.GigawattPerCubicInch"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.GigawattPerCubicInch"/>
         /// </summary>
-        public double GigawattsPerCubicInch => As(PowerDensityUnit.GigawattPerCubicInch);
+        public QuantityValue GigawattsPerCubicInch => this.As(PowerDensityUnit.GigawattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.GigawattPerCubicMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.GigawattPerCubicMeter"/>
         /// </summary>
-        public double GigawattsPerCubicMeter => As(PowerDensityUnit.GigawattPerCubicMeter);
+        public QuantityValue GigawattsPerCubicMeter => this.As(PowerDensityUnit.GigawattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.GigawattPerLiter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.GigawattPerLiter"/>
         /// </summary>
-        public double GigawattsPerLiter => As(PowerDensityUnit.GigawattPerLiter);
+        public QuantityValue GigawattsPerLiter => this.As(PowerDensityUnit.GigawattPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.KilowattPerCubicFoot"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.KilowattPerCubicFoot"/>
         /// </summary>
-        public double KilowattsPerCubicFoot => As(PowerDensityUnit.KilowattPerCubicFoot);
+        public QuantityValue KilowattsPerCubicFoot => this.As(PowerDensityUnit.KilowattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.KilowattPerCubicInch"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.KilowattPerCubicInch"/>
         /// </summary>
-        public double KilowattsPerCubicInch => As(PowerDensityUnit.KilowattPerCubicInch);
+        public QuantityValue KilowattsPerCubicInch => this.As(PowerDensityUnit.KilowattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.KilowattPerCubicMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.KilowattPerCubicMeter"/>
         /// </summary>
-        public double KilowattsPerCubicMeter => As(PowerDensityUnit.KilowattPerCubicMeter);
+        public QuantityValue KilowattsPerCubicMeter => this.As(PowerDensityUnit.KilowattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.KilowattPerLiter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.KilowattPerLiter"/>
         /// </summary>
-        public double KilowattsPerLiter => As(PowerDensityUnit.KilowattPerLiter);
+        public QuantityValue KilowattsPerLiter => this.As(PowerDensityUnit.KilowattPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MegawattPerCubicFoot"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.MegawattPerCubicFoot"/>
         /// </summary>
-        public double MegawattsPerCubicFoot => As(PowerDensityUnit.MegawattPerCubicFoot);
+        public QuantityValue MegawattsPerCubicFoot => this.As(PowerDensityUnit.MegawattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MegawattPerCubicInch"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.MegawattPerCubicInch"/>
         /// </summary>
-        public double MegawattsPerCubicInch => As(PowerDensityUnit.MegawattPerCubicInch);
+        public QuantityValue MegawattsPerCubicInch => this.As(PowerDensityUnit.MegawattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MegawattPerCubicMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.MegawattPerCubicMeter"/>
         /// </summary>
-        public double MegawattsPerCubicMeter => As(PowerDensityUnit.MegawattPerCubicMeter);
+        public QuantityValue MegawattsPerCubicMeter => this.As(PowerDensityUnit.MegawattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MegawattPerLiter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.MegawattPerLiter"/>
         /// </summary>
-        public double MegawattsPerLiter => As(PowerDensityUnit.MegawattPerLiter);
+        public QuantityValue MegawattsPerLiter => this.As(PowerDensityUnit.MegawattPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MicrowattPerCubicFoot"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.MicrowattPerCubicFoot"/>
         /// </summary>
-        public double MicrowattsPerCubicFoot => As(PowerDensityUnit.MicrowattPerCubicFoot);
+        public QuantityValue MicrowattsPerCubicFoot => this.As(PowerDensityUnit.MicrowattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MicrowattPerCubicInch"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.MicrowattPerCubicInch"/>
         /// </summary>
-        public double MicrowattsPerCubicInch => As(PowerDensityUnit.MicrowattPerCubicInch);
+        public QuantityValue MicrowattsPerCubicInch => this.As(PowerDensityUnit.MicrowattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MicrowattPerCubicMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.MicrowattPerCubicMeter"/>
         /// </summary>
-        public double MicrowattsPerCubicMeter => As(PowerDensityUnit.MicrowattPerCubicMeter);
+        public QuantityValue MicrowattsPerCubicMeter => this.As(PowerDensityUnit.MicrowattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MicrowattPerLiter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.MicrowattPerLiter"/>
         /// </summary>
-        public double MicrowattsPerLiter => As(PowerDensityUnit.MicrowattPerLiter);
+        public QuantityValue MicrowattsPerLiter => this.As(PowerDensityUnit.MicrowattPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MilliwattPerCubicFoot"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.MilliwattPerCubicFoot"/>
         /// </summary>
-        public double MilliwattsPerCubicFoot => As(PowerDensityUnit.MilliwattPerCubicFoot);
+        public QuantityValue MilliwattsPerCubicFoot => this.As(PowerDensityUnit.MilliwattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MilliwattPerCubicInch"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.MilliwattPerCubicInch"/>
         /// </summary>
-        public double MilliwattsPerCubicInch => As(PowerDensityUnit.MilliwattPerCubicInch);
+        public QuantityValue MilliwattsPerCubicInch => this.As(PowerDensityUnit.MilliwattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MilliwattPerCubicMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.MilliwattPerCubicMeter"/>
         /// </summary>
-        public double MilliwattsPerCubicMeter => As(PowerDensityUnit.MilliwattPerCubicMeter);
+        public QuantityValue MilliwattsPerCubicMeter => this.As(PowerDensityUnit.MilliwattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.MilliwattPerLiter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.MilliwattPerLiter"/>
         /// </summary>
-        public double MilliwattsPerLiter => As(PowerDensityUnit.MilliwattPerLiter);
+        public QuantityValue MilliwattsPerLiter => this.As(PowerDensityUnit.MilliwattPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.NanowattPerCubicFoot"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.NanowattPerCubicFoot"/>
         /// </summary>
-        public double NanowattsPerCubicFoot => As(PowerDensityUnit.NanowattPerCubicFoot);
+        public QuantityValue NanowattsPerCubicFoot => this.As(PowerDensityUnit.NanowattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.NanowattPerCubicInch"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.NanowattPerCubicInch"/>
         /// </summary>
-        public double NanowattsPerCubicInch => As(PowerDensityUnit.NanowattPerCubicInch);
+        public QuantityValue NanowattsPerCubicInch => this.As(PowerDensityUnit.NanowattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.NanowattPerCubicMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.NanowattPerCubicMeter"/>
         /// </summary>
-        public double NanowattsPerCubicMeter => As(PowerDensityUnit.NanowattPerCubicMeter);
+        public QuantityValue NanowattsPerCubicMeter => this.As(PowerDensityUnit.NanowattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.NanowattPerLiter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.NanowattPerLiter"/>
         /// </summary>
-        public double NanowattsPerLiter => As(PowerDensityUnit.NanowattPerLiter);
+        public QuantityValue NanowattsPerLiter => this.As(PowerDensityUnit.NanowattPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.PicowattPerCubicFoot"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.PicowattPerCubicFoot"/>
         /// </summary>
-        public double PicowattsPerCubicFoot => As(PowerDensityUnit.PicowattPerCubicFoot);
+        public QuantityValue PicowattsPerCubicFoot => this.As(PowerDensityUnit.PicowattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.PicowattPerCubicInch"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.PicowattPerCubicInch"/>
         /// </summary>
-        public double PicowattsPerCubicInch => As(PowerDensityUnit.PicowattPerCubicInch);
+        public QuantityValue PicowattsPerCubicInch => this.As(PowerDensityUnit.PicowattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.PicowattPerCubicMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.PicowattPerCubicMeter"/>
         /// </summary>
-        public double PicowattsPerCubicMeter => As(PowerDensityUnit.PicowattPerCubicMeter);
+        public QuantityValue PicowattsPerCubicMeter => this.As(PowerDensityUnit.PicowattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.PicowattPerLiter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.PicowattPerLiter"/>
         /// </summary>
-        public double PicowattsPerLiter => As(PowerDensityUnit.PicowattPerLiter);
+        public QuantityValue PicowattsPerLiter => this.As(PowerDensityUnit.PicowattPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.TerawattPerCubicFoot"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.TerawattPerCubicFoot"/>
         /// </summary>
-        public double TerawattsPerCubicFoot => As(PowerDensityUnit.TerawattPerCubicFoot);
+        public QuantityValue TerawattsPerCubicFoot => this.As(PowerDensityUnit.TerawattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.TerawattPerCubicInch"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.TerawattPerCubicInch"/>
         /// </summary>
-        public double TerawattsPerCubicInch => As(PowerDensityUnit.TerawattPerCubicInch);
+        public QuantityValue TerawattsPerCubicInch => this.As(PowerDensityUnit.TerawattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.TerawattPerCubicMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.TerawattPerCubicMeter"/>
         /// </summary>
-        public double TerawattsPerCubicMeter => As(PowerDensityUnit.TerawattPerCubicMeter);
+        public QuantityValue TerawattsPerCubicMeter => this.As(PowerDensityUnit.TerawattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.TerawattPerLiter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.TerawattPerLiter"/>
         /// </summary>
-        public double TerawattsPerLiter => As(PowerDensityUnit.TerawattPerLiter);
+        public QuantityValue TerawattsPerLiter => this.As(PowerDensityUnit.TerawattPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.WattPerCubicFoot"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.WattPerCubicFoot"/>
         /// </summary>
-        public double WattsPerCubicFoot => As(PowerDensityUnit.WattPerCubicFoot);
+        public QuantityValue WattsPerCubicFoot => this.As(PowerDensityUnit.WattPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.WattPerCubicInch"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.WattPerCubicInch"/>
         /// </summary>
-        public double WattsPerCubicInch => As(PowerDensityUnit.WattPerCubicInch);
+        public QuantityValue WattsPerCubicInch => this.As(PowerDensityUnit.WattPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.WattPerCubicMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.WattPerCubicMeter"/>
         /// </summary>
-        public double WattsPerCubicMeter => As(PowerDensityUnit.WattPerCubicMeter);
+        public QuantityValue WattsPerCubicMeter => this.As(PowerDensityUnit.WattPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.WattPerLiter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.WattPerLiter"/>
         /// </summary>
-        public double WattsPerLiter => As(PowerDensityUnit.WattPerLiter);
+        public QuantityValue WattsPerLiter => this.As(PowerDensityUnit.WattPerLiter);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: PowerDensityUnit -> BaseUnit
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.DecawattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.DecawattPerCubicInch, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.DecawattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.DecawattPerLiter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.DeciwattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.DeciwattPerCubicInch, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.DeciwattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.DeciwattPerLiter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.GigawattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.GigawattPerCubicInch, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.GigawattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.GigawattPerLiter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.KilowattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.KilowattPerCubicInch, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.KilowattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.KilowattPerLiter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.MegawattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.MegawattPerCubicInch, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.MegawattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.MegawattPerLiter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.MicrowattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.MicrowattPerCubicInch, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.MicrowattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.MicrowattPerLiter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.MilliwattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.MilliwattPerCubicInch, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.MilliwattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.MilliwattPerLiter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.NanowattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.NanowattPerCubicInch, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.NanowattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.NanowattPerLiter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.PicowattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.PicowattPerCubicInch, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.PicowattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.PicowattPerLiter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.TerawattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.TerawattPerCubicInch, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.TerawattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.TerawattPerLiter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicInch, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerLiter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> PowerDensityUnit
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DecawattPerCubicFoot, quantity => quantity.ToUnit(PowerDensityUnit.DecawattPerCubicFoot));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DecawattPerCubicInch, quantity => quantity.ToUnit(PowerDensityUnit.DecawattPerCubicInch));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DecawattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.DecawattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DecawattPerLiter, quantity => quantity.ToUnit(PowerDensityUnit.DecawattPerLiter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DeciwattPerCubicFoot, quantity => quantity.ToUnit(PowerDensityUnit.DeciwattPerCubicFoot));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DeciwattPerCubicInch, quantity => quantity.ToUnit(PowerDensityUnit.DeciwattPerCubicInch));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DeciwattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.DeciwattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DeciwattPerLiter, quantity => quantity.ToUnit(PowerDensityUnit.DeciwattPerLiter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.GigawattPerCubicFoot, quantity => quantity.ToUnit(PowerDensityUnit.GigawattPerCubicFoot));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.GigawattPerCubicInch, quantity => quantity.ToUnit(PowerDensityUnit.GigawattPerCubicInch));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.GigawattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.GigawattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.GigawattPerLiter, quantity => quantity.ToUnit(PowerDensityUnit.GigawattPerLiter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.KilowattPerCubicFoot, quantity => quantity.ToUnit(PowerDensityUnit.KilowattPerCubicFoot));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.KilowattPerCubicInch, quantity => quantity.ToUnit(PowerDensityUnit.KilowattPerCubicInch));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.KilowattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.KilowattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.KilowattPerLiter, quantity => quantity.ToUnit(PowerDensityUnit.KilowattPerLiter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MegawattPerCubicFoot, quantity => quantity.ToUnit(PowerDensityUnit.MegawattPerCubicFoot));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MegawattPerCubicInch, quantity => quantity.ToUnit(PowerDensityUnit.MegawattPerCubicInch));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MegawattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.MegawattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MegawattPerLiter, quantity => quantity.ToUnit(PowerDensityUnit.MegawattPerLiter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MicrowattPerCubicFoot, quantity => quantity.ToUnit(PowerDensityUnit.MicrowattPerCubicFoot));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MicrowattPerCubicInch, quantity => quantity.ToUnit(PowerDensityUnit.MicrowattPerCubicInch));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MicrowattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.MicrowattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MicrowattPerLiter, quantity => quantity.ToUnit(PowerDensityUnit.MicrowattPerLiter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MilliwattPerCubicFoot, quantity => quantity.ToUnit(PowerDensityUnit.MilliwattPerCubicFoot));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MilliwattPerCubicInch, quantity => quantity.ToUnit(PowerDensityUnit.MilliwattPerCubicInch));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MilliwattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.MilliwattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MilliwattPerLiter, quantity => quantity.ToUnit(PowerDensityUnit.MilliwattPerLiter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.NanowattPerCubicFoot, quantity => quantity.ToUnit(PowerDensityUnit.NanowattPerCubicFoot));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.NanowattPerCubicInch, quantity => quantity.ToUnit(PowerDensityUnit.NanowattPerCubicInch));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.NanowattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.NanowattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.NanowattPerLiter, quantity => quantity.ToUnit(PowerDensityUnit.NanowattPerLiter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.PicowattPerCubicFoot, quantity => quantity.ToUnit(PowerDensityUnit.PicowattPerCubicFoot));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.PicowattPerCubicInch, quantity => quantity.ToUnit(PowerDensityUnit.PicowattPerCubicInch));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.PicowattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.PicowattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.PicowattPerLiter, quantity => quantity.ToUnit(PowerDensityUnit.PicowattPerLiter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.TerawattPerCubicFoot, quantity => quantity.ToUnit(PowerDensityUnit.TerawattPerCubicFoot));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.TerawattPerCubicInch, quantity => quantity.ToUnit(PowerDensityUnit.TerawattPerCubicInch));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.TerawattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.TerawattPerCubicMeter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.TerawattPerLiter, quantity => quantity.ToUnit(PowerDensityUnit.TerawattPerLiter));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.WattPerCubicFoot, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicFoot));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.WattPerCubicInch, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicInch));
-            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.WattPerLiter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerLiter));
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -618,7 +600,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.DecawattPerCubicFoot"/>.
         /// </summary>
-        public static PowerDensity FromDecawattsPerCubicFoot(double value)
+        public static PowerDensity FromDecawattsPerCubicFoot(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.DecawattPerCubicFoot);
         }
@@ -626,7 +608,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.DecawattPerCubicInch"/>.
         /// </summary>
-        public static PowerDensity FromDecawattsPerCubicInch(double value)
+        public static PowerDensity FromDecawattsPerCubicInch(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.DecawattPerCubicInch);
         }
@@ -634,7 +616,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.DecawattPerCubicMeter"/>.
         /// </summary>
-        public static PowerDensity FromDecawattsPerCubicMeter(double value)
+        public static PowerDensity FromDecawattsPerCubicMeter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.DecawattPerCubicMeter);
         }
@@ -642,7 +624,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.DecawattPerLiter"/>.
         /// </summary>
-        public static PowerDensity FromDecawattsPerLiter(double value)
+        public static PowerDensity FromDecawattsPerLiter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.DecawattPerLiter);
         }
@@ -650,7 +632,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.DeciwattPerCubicFoot"/>.
         /// </summary>
-        public static PowerDensity FromDeciwattsPerCubicFoot(double value)
+        public static PowerDensity FromDeciwattsPerCubicFoot(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.DeciwattPerCubicFoot);
         }
@@ -658,7 +640,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.DeciwattPerCubicInch"/>.
         /// </summary>
-        public static PowerDensity FromDeciwattsPerCubicInch(double value)
+        public static PowerDensity FromDeciwattsPerCubicInch(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.DeciwattPerCubicInch);
         }
@@ -666,7 +648,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.DeciwattPerCubicMeter"/>.
         /// </summary>
-        public static PowerDensity FromDeciwattsPerCubicMeter(double value)
+        public static PowerDensity FromDeciwattsPerCubicMeter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.DeciwattPerCubicMeter);
         }
@@ -674,7 +656,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.DeciwattPerLiter"/>.
         /// </summary>
-        public static PowerDensity FromDeciwattsPerLiter(double value)
+        public static PowerDensity FromDeciwattsPerLiter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.DeciwattPerLiter);
         }
@@ -682,7 +664,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.GigawattPerCubicFoot"/>.
         /// </summary>
-        public static PowerDensity FromGigawattsPerCubicFoot(double value)
+        public static PowerDensity FromGigawattsPerCubicFoot(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.GigawattPerCubicFoot);
         }
@@ -690,7 +672,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.GigawattPerCubicInch"/>.
         /// </summary>
-        public static PowerDensity FromGigawattsPerCubicInch(double value)
+        public static PowerDensity FromGigawattsPerCubicInch(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.GigawattPerCubicInch);
         }
@@ -698,7 +680,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.GigawattPerCubicMeter"/>.
         /// </summary>
-        public static PowerDensity FromGigawattsPerCubicMeter(double value)
+        public static PowerDensity FromGigawattsPerCubicMeter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.GigawattPerCubicMeter);
         }
@@ -706,7 +688,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.GigawattPerLiter"/>.
         /// </summary>
-        public static PowerDensity FromGigawattsPerLiter(double value)
+        public static PowerDensity FromGigawattsPerLiter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.GigawattPerLiter);
         }
@@ -714,7 +696,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.KilowattPerCubicFoot"/>.
         /// </summary>
-        public static PowerDensity FromKilowattsPerCubicFoot(double value)
+        public static PowerDensity FromKilowattsPerCubicFoot(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.KilowattPerCubicFoot);
         }
@@ -722,7 +704,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.KilowattPerCubicInch"/>.
         /// </summary>
-        public static PowerDensity FromKilowattsPerCubicInch(double value)
+        public static PowerDensity FromKilowattsPerCubicInch(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.KilowattPerCubicInch);
         }
@@ -730,7 +712,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.KilowattPerCubicMeter"/>.
         /// </summary>
-        public static PowerDensity FromKilowattsPerCubicMeter(double value)
+        public static PowerDensity FromKilowattsPerCubicMeter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.KilowattPerCubicMeter);
         }
@@ -738,7 +720,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.KilowattPerLiter"/>.
         /// </summary>
-        public static PowerDensity FromKilowattsPerLiter(double value)
+        public static PowerDensity FromKilowattsPerLiter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.KilowattPerLiter);
         }
@@ -746,7 +728,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MegawattPerCubicFoot"/>.
         /// </summary>
-        public static PowerDensity FromMegawattsPerCubicFoot(double value)
+        public static PowerDensity FromMegawattsPerCubicFoot(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.MegawattPerCubicFoot);
         }
@@ -754,7 +736,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MegawattPerCubicInch"/>.
         /// </summary>
-        public static PowerDensity FromMegawattsPerCubicInch(double value)
+        public static PowerDensity FromMegawattsPerCubicInch(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.MegawattPerCubicInch);
         }
@@ -762,7 +744,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MegawattPerCubicMeter"/>.
         /// </summary>
-        public static PowerDensity FromMegawattsPerCubicMeter(double value)
+        public static PowerDensity FromMegawattsPerCubicMeter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.MegawattPerCubicMeter);
         }
@@ -770,7 +752,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MegawattPerLiter"/>.
         /// </summary>
-        public static PowerDensity FromMegawattsPerLiter(double value)
+        public static PowerDensity FromMegawattsPerLiter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.MegawattPerLiter);
         }
@@ -778,7 +760,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MicrowattPerCubicFoot"/>.
         /// </summary>
-        public static PowerDensity FromMicrowattsPerCubicFoot(double value)
+        public static PowerDensity FromMicrowattsPerCubicFoot(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.MicrowattPerCubicFoot);
         }
@@ -786,7 +768,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MicrowattPerCubicInch"/>.
         /// </summary>
-        public static PowerDensity FromMicrowattsPerCubicInch(double value)
+        public static PowerDensity FromMicrowattsPerCubicInch(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.MicrowattPerCubicInch);
         }
@@ -794,7 +776,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MicrowattPerCubicMeter"/>.
         /// </summary>
-        public static PowerDensity FromMicrowattsPerCubicMeter(double value)
+        public static PowerDensity FromMicrowattsPerCubicMeter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.MicrowattPerCubicMeter);
         }
@@ -802,7 +784,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MicrowattPerLiter"/>.
         /// </summary>
-        public static PowerDensity FromMicrowattsPerLiter(double value)
+        public static PowerDensity FromMicrowattsPerLiter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.MicrowattPerLiter);
         }
@@ -810,7 +792,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MilliwattPerCubicFoot"/>.
         /// </summary>
-        public static PowerDensity FromMilliwattsPerCubicFoot(double value)
+        public static PowerDensity FromMilliwattsPerCubicFoot(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.MilliwattPerCubicFoot);
         }
@@ -818,7 +800,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MilliwattPerCubicInch"/>.
         /// </summary>
-        public static PowerDensity FromMilliwattsPerCubicInch(double value)
+        public static PowerDensity FromMilliwattsPerCubicInch(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.MilliwattPerCubicInch);
         }
@@ -826,7 +808,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MilliwattPerCubicMeter"/>.
         /// </summary>
-        public static PowerDensity FromMilliwattsPerCubicMeter(double value)
+        public static PowerDensity FromMilliwattsPerCubicMeter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.MilliwattPerCubicMeter);
         }
@@ -834,7 +816,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.MilliwattPerLiter"/>.
         /// </summary>
-        public static PowerDensity FromMilliwattsPerLiter(double value)
+        public static PowerDensity FromMilliwattsPerLiter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.MilliwattPerLiter);
         }
@@ -842,7 +824,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.NanowattPerCubicFoot"/>.
         /// </summary>
-        public static PowerDensity FromNanowattsPerCubicFoot(double value)
+        public static PowerDensity FromNanowattsPerCubicFoot(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.NanowattPerCubicFoot);
         }
@@ -850,7 +832,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.NanowattPerCubicInch"/>.
         /// </summary>
-        public static PowerDensity FromNanowattsPerCubicInch(double value)
+        public static PowerDensity FromNanowattsPerCubicInch(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.NanowattPerCubicInch);
         }
@@ -858,7 +840,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.NanowattPerCubicMeter"/>.
         /// </summary>
-        public static PowerDensity FromNanowattsPerCubicMeter(double value)
+        public static PowerDensity FromNanowattsPerCubicMeter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.NanowattPerCubicMeter);
         }
@@ -866,7 +848,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.NanowattPerLiter"/>.
         /// </summary>
-        public static PowerDensity FromNanowattsPerLiter(double value)
+        public static PowerDensity FromNanowattsPerLiter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.NanowattPerLiter);
         }
@@ -874,7 +856,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.PicowattPerCubicFoot"/>.
         /// </summary>
-        public static PowerDensity FromPicowattsPerCubicFoot(double value)
+        public static PowerDensity FromPicowattsPerCubicFoot(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.PicowattPerCubicFoot);
         }
@@ -882,7 +864,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.PicowattPerCubicInch"/>.
         /// </summary>
-        public static PowerDensity FromPicowattsPerCubicInch(double value)
+        public static PowerDensity FromPicowattsPerCubicInch(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.PicowattPerCubicInch);
         }
@@ -890,7 +872,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.PicowattPerCubicMeter"/>.
         /// </summary>
-        public static PowerDensity FromPicowattsPerCubicMeter(double value)
+        public static PowerDensity FromPicowattsPerCubicMeter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.PicowattPerCubicMeter);
         }
@@ -898,7 +880,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.PicowattPerLiter"/>.
         /// </summary>
-        public static PowerDensity FromPicowattsPerLiter(double value)
+        public static PowerDensity FromPicowattsPerLiter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.PicowattPerLiter);
         }
@@ -906,7 +888,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.TerawattPerCubicFoot"/>.
         /// </summary>
-        public static PowerDensity FromTerawattsPerCubicFoot(double value)
+        public static PowerDensity FromTerawattsPerCubicFoot(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.TerawattPerCubicFoot);
         }
@@ -914,7 +896,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.TerawattPerCubicInch"/>.
         /// </summary>
-        public static PowerDensity FromTerawattsPerCubicInch(double value)
+        public static PowerDensity FromTerawattsPerCubicInch(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.TerawattPerCubicInch);
         }
@@ -922,7 +904,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.TerawattPerCubicMeter"/>.
         /// </summary>
-        public static PowerDensity FromTerawattsPerCubicMeter(double value)
+        public static PowerDensity FromTerawattsPerCubicMeter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.TerawattPerCubicMeter);
         }
@@ -930,7 +912,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.TerawattPerLiter"/>.
         /// </summary>
-        public static PowerDensity FromTerawattsPerLiter(double value)
+        public static PowerDensity FromTerawattsPerLiter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.TerawattPerLiter);
         }
@@ -938,7 +920,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.WattPerCubicFoot"/>.
         /// </summary>
-        public static PowerDensity FromWattsPerCubicFoot(double value)
+        public static PowerDensity FromWattsPerCubicFoot(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.WattPerCubicFoot);
         }
@@ -946,7 +928,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.WattPerCubicInch"/>.
         /// </summary>
-        public static PowerDensity FromWattsPerCubicInch(double value)
+        public static PowerDensity FromWattsPerCubicInch(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.WattPerCubicInch);
         }
@@ -954,7 +936,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.WattPerCubicMeter"/>.
         /// </summary>
-        public static PowerDensity FromWattsPerCubicMeter(double value)
+        public static PowerDensity FromWattsPerCubicMeter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.WattPerCubicMeter);
         }
@@ -962,7 +944,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.WattPerLiter"/>.
         /// </summary>
-        public static PowerDensity FromWattsPerLiter(double value)
+        public static PowerDensity FromWattsPerLiter(QuantityValue value)
         {
             return new PowerDensity(value, PowerDensityUnit.WattPerLiter);
         }
@@ -973,7 +955,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>PowerDensity unit value.</returns>
-        public static PowerDensity From(double value, PowerDensityUnit fromUnit)
+        public static PowerDensity From(QuantityValue value, PowerDensityUnit fromUnit)
         {
             return new PowerDensity(value, fromUnit);
         }
@@ -1034,10 +1016,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static PowerDensity Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<PowerDensity, PowerDensityUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<PowerDensity, PowerDensityUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -1065,11 +1044,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out PowerDensity result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<PowerDensity, PowerDensityUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<PowerDensity, PowerDensityUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -1090,7 +1065,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -1101,7 +1076,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.PowerDensityUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.PowerDensityUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out PowerDensityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -1116,7 +1091,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out PowerDensityUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -1135,35 +1110,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="PowerDensity"/> from adding two <see cref="PowerDensity"/>.</summary>
         public static PowerDensity operator +(PowerDensity left, PowerDensity right)
         {
-            return new PowerDensity(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new PowerDensity(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="PowerDensity"/> from subtracting two <see cref="PowerDensity"/>.</summary>
         public static PowerDensity operator -(PowerDensity left, PowerDensity right)
         {
-            return new PowerDensity(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new PowerDensity(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="PowerDensity"/> from multiplying value and <see cref="PowerDensity"/>.</summary>
-        public static PowerDensity operator *(double left, PowerDensity right)
+        public static PowerDensity operator *(QuantityValue left, PowerDensity right)
         {
             return new PowerDensity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="PowerDensity"/> from multiplying value and <see cref="PowerDensity"/>.</summary>
-        public static PowerDensity operator *(PowerDensity left, double right)
+        public static PowerDensity operator *(PowerDensity left, QuantityValue right)
         {
             return new PowerDensity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="PowerDensity"/> from dividing <see cref="PowerDensity"/> by value.</summary>
-        public static PowerDensity operator /(PowerDensity left, double right)
+        public static PowerDensity operator /(PowerDensity left, QuantityValue right)
         {
             return new PowerDensity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="PowerDensity"/> by <see cref="PowerDensity"/>.</summary>
-        public static double operator /(PowerDensity left, PowerDensity right)
+        public static QuantityValue operator /(PowerDensity left, PowerDensity right)
         {
             return left.WattsPerCubicMeter / right.WattsPerCubicMeter;
         }
@@ -1175,65 +1150,55 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(PowerDensity left, PowerDensity right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(PowerDensity left, PowerDensity right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(PowerDensity left, PowerDensity right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(PowerDensity left, PowerDensity right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="PowerDensity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(PowerDensity other, PowerDensity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="PowerDensity"/> quantities.</summary>
         public static bool operator ==(PowerDensity left, PowerDensity right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="PowerDensity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(PowerDensity other, PowerDensity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="PowerDensity"/> quantities.</summary>
         public static bool operator !=(PowerDensity left, PowerDensity right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="PowerDensity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(PowerDensity other, PowerDensity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="PowerDensity"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is PowerDensity otherQuantity))
+            if (obj is not PowerDensity otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="PowerDensity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(PowerDensity other, PowerDensity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="PowerDensity"/> quantities.</summary>
         public bool Equals(PowerDensity other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>
         ///     Returns the hash code for this instance.
@@ -1241,31 +1206,26 @@ namespace UnitsNet
         /// <returns>A hash code for the current PowerDensity.</returns>
         public override int GetHashCode()
         {
-            return Comparison.GetHashCode(Unit, Value);
+            return Comparison.GetHashCode(typeof(PowerDensity), this.As(BaseUnit));
         }
-
-        /// <summary>Compares the current <see cref="PowerDensity"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        
+        /// <inheritdoc  cref="CompareTo(PowerDensity)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is PowerDensity otherQuantity)) throw new ArgumentException("Expected type PowerDensity.", nameof(obj));
+            if (obj is not PowerDensity otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<PowerDensity>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="PowerDensity"/> with another <see cref="PowerDensity"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="PowerDensity"/> with another <see cref="PowerDensity"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -1277,214 +1237,8 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(PowerDensity other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
+            return _value.CompareTo(other.As(this.Unit));
         }
-
-        #endregion
-
-        #region Conversion Methods
-
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(PowerDensityUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
-
-            return ToUnit(unit).Value;
-        }
-
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<PowerDensityUnit>());
-        }
-
-        /// <summary>
-        ///     Converts this PowerDensity to another PowerDensity with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A PowerDensity with the specified unit.</returns>
-        public PowerDensity ToUnit(PowerDensityUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
-
-        /// <summary>
-        ///     Converts this <see cref="PowerDensity"/> to another <see cref="PowerDensity"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A PowerDensity with the specified unit.</returns>
-        public PowerDensity ToUnit(PowerDensityUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(PowerDensity), Unit, typeof(PowerDensity), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (PowerDensity)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="PowerDensity"/> to another <see cref="PowerDensity"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="PowerDensity"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(PowerDensityUnit unit, [NotNullWhen(true)] out PowerDensity? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            PowerDensity? convertedOrNull = (Unit, unit) switch
-            {
-                // PowerDensityUnit -> BaseUnit
-                (PowerDensityUnit.DecawattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 0.028316846592) * 1e1d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.DecawattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 1.6387064e-5) * 1e1d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.DecawattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value) * 1e1d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.DecawattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value * 1.0e3) * 1e1d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.DeciwattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 0.028316846592) * 1e-1d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.DeciwattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 1.6387064e-5) * 1e-1d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.DeciwattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value) * 1e-1d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.DeciwattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value * 1.0e3) * 1e-1d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.GigawattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 0.028316846592) * 1e9d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.GigawattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 1.6387064e-5) * 1e9d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.GigawattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value) * 1e9d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.GigawattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value * 1.0e3) * 1e9d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.KilowattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 0.028316846592) * 1e3d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.KilowattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 1.6387064e-5) * 1e3d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.KilowattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value) * 1e3d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.KilowattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value * 1.0e3) * 1e3d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.MegawattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 0.028316846592) * 1e6d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.MegawattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 1.6387064e-5) * 1e6d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.MegawattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value) * 1e6d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.MegawattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value * 1.0e3) * 1e6d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.MicrowattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 0.028316846592) * 1e-6d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.MicrowattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 1.6387064e-5) * 1e-6d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.MicrowattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value) * 1e-6d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.MicrowattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value * 1.0e3) * 1e-6d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.MilliwattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 0.028316846592) * 1e-3d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.MilliwattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 1.6387064e-5) * 1e-3d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.MilliwattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value) * 1e-3d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.MilliwattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value * 1.0e3) * 1e-3d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.NanowattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 0.028316846592) * 1e-9d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.NanowattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 1.6387064e-5) * 1e-9d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.NanowattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value) * 1e-9d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.NanowattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value * 1.0e3) * 1e-9d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.PicowattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 0.028316846592) * 1e-12d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.PicowattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 1.6387064e-5) * 1e-12d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.PicowattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value) * 1e-12d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.PicowattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value * 1.0e3) * 1e-12d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.TerawattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 0.028316846592) * 1e12d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.TerawattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 1.6387064e-5) * 1e12d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.TerawattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value) * 1e12d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.TerawattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value * 1.0e3) * 1e12d, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.WattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity(_value / 0.028316846592, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.WattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity(_value / 1.6387064e-5, PowerDensityUnit.WattPerCubicMeter),
-                (PowerDensityUnit.WattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity(_value * 1.0e3, PowerDensityUnit.WattPerCubicMeter),
-
-                // BaseUnit -> PowerDensityUnit
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DecawattPerCubicFoot) => new PowerDensity((_value * 0.028316846592) / 1e1d, PowerDensityUnit.DecawattPerCubicFoot),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DecawattPerCubicInch) => new PowerDensity((_value * 1.6387064e-5) / 1e1d, PowerDensityUnit.DecawattPerCubicInch),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DecawattPerCubicMeter) => new PowerDensity((_value) / 1e1d, PowerDensityUnit.DecawattPerCubicMeter),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DecawattPerLiter) => new PowerDensity((_value / 1.0e3) / 1e1d, PowerDensityUnit.DecawattPerLiter),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DeciwattPerCubicFoot) => new PowerDensity((_value * 0.028316846592) / 1e-1d, PowerDensityUnit.DeciwattPerCubicFoot),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DeciwattPerCubicInch) => new PowerDensity((_value * 1.6387064e-5) / 1e-1d, PowerDensityUnit.DeciwattPerCubicInch),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DeciwattPerCubicMeter) => new PowerDensity((_value) / 1e-1d, PowerDensityUnit.DeciwattPerCubicMeter),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DeciwattPerLiter) => new PowerDensity((_value / 1.0e3) / 1e-1d, PowerDensityUnit.DeciwattPerLiter),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.GigawattPerCubicFoot) => new PowerDensity((_value * 0.028316846592) / 1e9d, PowerDensityUnit.GigawattPerCubicFoot),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.GigawattPerCubicInch) => new PowerDensity((_value * 1.6387064e-5) / 1e9d, PowerDensityUnit.GigawattPerCubicInch),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.GigawattPerCubicMeter) => new PowerDensity((_value) / 1e9d, PowerDensityUnit.GigawattPerCubicMeter),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.GigawattPerLiter) => new PowerDensity((_value / 1.0e3) / 1e9d, PowerDensityUnit.GigawattPerLiter),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.KilowattPerCubicFoot) => new PowerDensity((_value * 0.028316846592) / 1e3d, PowerDensityUnit.KilowattPerCubicFoot),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.KilowattPerCubicInch) => new PowerDensity((_value * 1.6387064e-5) / 1e3d, PowerDensityUnit.KilowattPerCubicInch),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.KilowattPerCubicMeter) => new PowerDensity((_value) / 1e3d, PowerDensityUnit.KilowattPerCubicMeter),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.KilowattPerLiter) => new PowerDensity((_value / 1.0e3) / 1e3d, PowerDensityUnit.KilowattPerLiter),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MegawattPerCubicFoot) => new PowerDensity((_value * 0.028316846592) / 1e6d, PowerDensityUnit.MegawattPerCubicFoot),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MegawattPerCubicInch) => new PowerDensity((_value * 1.6387064e-5) / 1e6d, PowerDensityUnit.MegawattPerCubicInch),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MegawattPerCubicMeter) => new PowerDensity((_value) / 1e6d, PowerDensityUnit.MegawattPerCubicMeter),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MegawattPerLiter) => new PowerDensity((_value / 1.0e3) / 1e6d, PowerDensityUnit.MegawattPerLiter),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MicrowattPerCubicFoot) => new PowerDensity((_value * 0.028316846592) / 1e-6d, PowerDensityUnit.MicrowattPerCubicFoot),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MicrowattPerCubicInch) => new PowerDensity((_value * 1.6387064e-5) / 1e-6d, PowerDensityUnit.MicrowattPerCubicInch),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MicrowattPerCubicMeter) => new PowerDensity((_value) / 1e-6d, PowerDensityUnit.MicrowattPerCubicMeter),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MicrowattPerLiter) => new PowerDensity((_value / 1.0e3) / 1e-6d, PowerDensityUnit.MicrowattPerLiter),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MilliwattPerCubicFoot) => new PowerDensity((_value * 0.028316846592) / 1e-3d, PowerDensityUnit.MilliwattPerCubicFoot),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MilliwattPerCubicInch) => new PowerDensity((_value * 1.6387064e-5) / 1e-3d, PowerDensityUnit.MilliwattPerCubicInch),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MilliwattPerCubicMeter) => new PowerDensity((_value) / 1e-3d, PowerDensityUnit.MilliwattPerCubicMeter),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.MilliwattPerLiter) => new PowerDensity((_value / 1.0e3) / 1e-3d, PowerDensityUnit.MilliwattPerLiter),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.NanowattPerCubicFoot) => new PowerDensity((_value * 0.028316846592) / 1e-9d, PowerDensityUnit.NanowattPerCubicFoot),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.NanowattPerCubicInch) => new PowerDensity((_value * 1.6387064e-5) / 1e-9d, PowerDensityUnit.NanowattPerCubicInch),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.NanowattPerCubicMeter) => new PowerDensity((_value) / 1e-9d, PowerDensityUnit.NanowattPerCubicMeter),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.NanowattPerLiter) => new PowerDensity((_value / 1.0e3) / 1e-9d, PowerDensityUnit.NanowattPerLiter),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.PicowattPerCubicFoot) => new PowerDensity((_value * 0.028316846592) / 1e-12d, PowerDensityUnit.PicowattPerCubicFoot),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.PicowattPerCubicInch) => new PowerDensity((_value * 1.6387064e-5) / 1e-12d, PowerDensityUnit.PicowattPerCubicInch),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.PicowattPerCubicMeter) => new PowerDensity((_value) / 1e-12d, PowerDensityUnit.PicowattPerCubicMeter),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.PicowattPerLiter) => new PowerDensity((_value / 1.0e3) / 1e-12d, PowerDensityUnit.PicowattPerLiter),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.TerawattPerCubicFoot) => new PowerDensity((_value * 0.028316846592) / 1e12d, PowerDensityUnit.TerawattPerCubicFoot),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.TerawattPerCubicInch) => new PowerDensity((_value * 1.6387064e-5) / 1e12d, PowerDensityUnit.TerawattPerCubicInch),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.TerawattPerCubicMeter) => new PowerDensity((_value) / 1e12d, PowerDensityUnit.TerawattPerCubicMeter),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.TerawattPerLiter) => new PowerDensity((_value / 1.0e3) / 1e12d, PowerDensityUnit.TerawattPerLiter),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.WattPerCubicFoot) => new PowerDensity(_value * 0.028316846592, PowerDensityUnit.WattPerCubicFoot),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.WattPerCubicInch) => new PowerDensity(_value * 1.6387064e-5, PowerDensityUnit.WattPerCubicInch),
-                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.WattPerLiter) => new PowerDensity(_value / 1.0e3, PowerDensityUnit.WattPerLiter),
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not PowerDensityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerDensityUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is PowerDensityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(PowerDensityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<PowerDensityUnit> IQuantity<PowerDensityUnit>.ToUnit(PowerDensityUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
@@ -1499,7 +1253,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

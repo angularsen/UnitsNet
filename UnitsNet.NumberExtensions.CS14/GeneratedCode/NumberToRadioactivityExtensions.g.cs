@@ -42,236 +42,236 @@ namespace UnitsNet.NumberExtensions.NumberToRadioactivity
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Radioactivity.FromBecquerels(double)" />
+            /// <inheritdoc cref="Radioactivity.FromBecquerels(QuantityValue)" />
             public Radioactivity Becquerels
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromBecquerels(double.CreateChecked(value));
+                => Radioactivity.FromBecquerels(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromBecquerels(value.ToDouble(null));
+                => Radioactivity.FromBecquerels(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromCuries(double)" />
+            /// <inheritdoc cref="Radioactivity.FromCuries(QuantityValue)" />
             public Radioactivity Curies
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromCuries(double.CreateChecked(value));
+                => Radioactivity.FromCuries(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromCuries(value.ToDouble(null));
+                => Radioactivity.FromCuries(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromExabecquerels(double)" />
+            /// <inheritdoc cref="Radioactivity.FromExabecquerels(QuantityValue)" />
             public Radioactivity Exabecquerels
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromExabecquerels(double.CreateChecked(value));
+                => Radioactivity.FromExabecquerels(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromExabecquerels(value.ToDouble(null));
+                => Radioactivity.FromExabecquerels(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromGigabecquerels(double)" />
+            /// <inheritdoc cref="Radioactivity.FromGigabecquerels(QuantityValue)" />
             public Radioactivity Gigabecquerels
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromGigabecquerels(double.CreateChecked(value));
+                => Radioactivity.FromGigabecquerels(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromGigabecquerels(value.ToDouble(null));
+                => Radioactivity.FromGigabecquerels(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromGigacuries(double)" />
+            /// <inheritdoc cref="Radioactivity.FromGigacuries(QuantityValue)" />
             public Radioactivity Gigacuries
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromGigacuries(double.CreateChecked(value));
+                => Radioactivity.FromGigacuries(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromGigacuries(value.ToDouble(null));
+                => Radioactivity.FromGigacuries(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromGigarutherfords(double)" />
+            /// <inheritdoc cref="Radioactivity.FromGigarutherfords(QuantityValue)" />
             public Radioactivity Gigarutherfords
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromGigarutherfords(double.CreateChecked(value));
+                => Radioactivity.FromGigarutherfords(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromGigarutherfords(value.ToDouble(null));
+                => Radioactivity.FromGigarutherfords(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromKilobecquerels(double)" />
+            /// <inheritdoc cref="Radioactivity.FromKilobecquerels(QuantityValue)" />
             public Radioactivity Kilobecquerels
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromKilobecquerels(double.CreateChecked(value));
+                => Radioactivity.FromKilobecquerels(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromKilobecquerels(value.ToDouble(null));
+                => Radioactivity.FromKilobecquerels(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromKilocuries(double)" />
+            /// <inheritdoc cref="Radioactivity.FromKilocuries(QuantityValue)" />
             public Radioactivity Kilocuries
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromKilocuries(double.CreateChecked(value));
+                => Radioactivity.FromKilocuries(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromKilocuries(value.ToDouble(null));
+                => Radioactivity.FromKilocuries(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromKilorutherfords(double)" />
+            /// <inheritdoc cref="Radioactivity.FromKilorutherfords(QuantityValue)" />
             public Radioactivity Kilorutherfords
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromKilorutherfords(double.CreateChecked(value));
+                => Radioactivity.FromKilorutherfords(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromKilorutherfords(value.ToDouble(null));
+                => Radioactivity.FromKilorutherfords(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromMegabecquerels(double)" />
+            /// <inheritdoc cref="Radioactivity.FromMegabecquerels(QuantityValue)" />
             public Radioactivity Megabecquerels
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromMegabecquerels(double.CreateChecked(value));
+                => Radioactivity.FromMegabecquerels(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromMegabecquerels(value.ToDouble(null));
+                => Radioactivity.FromMegabecquerels(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromMegacuries(double)" />
+            /// <inheritdoc cref="Radioactivity.FromMegacuries(QuantityValue)" />
             public Radioactivity Megacuries
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromMegacuries(double.CreateChecked(value));
+                => Radioactivity.FromMegacuries(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromMegacuries(value.ToDouble(null));
+                => Radioactivity.FromMegacuries(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromMegarutherfords(double)" />
+            /// <inheritdoc cref="Radioactivity.FromMegarutherfords(QuantityValue)" />
             public Radioactivity Megarutherfords
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromMegarutherfords(double.CreateChecked(value));
+                => Radioactivity.FromMegarutherfords(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromMegarutherfords(value.ToDouble(null));
+                => Radioactivity.FromMegarutherfords(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromMicrobecquerels(double)" />
+            /// <inheritdoc cref="Radioactivity.FromMicrobecquerels(QuantityValue)" />
             public Radioactivity Microbecquerels
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromMicrobecquerels(double.CreateChecked(value));
+                => Radioactivity.FromMicrobecquerels(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromMicrobecquerels(value.ToDouble(null));
+                => Radioactivity.FromMicrobecquerels(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromMicrocuries(double)" />
+            /// <inheritdoc cref="Radioactivity.FromMicrocuries(QuantityValue)" />
             public Radioactivity Microcuries
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromMicrocuries(double.CreateChecked(value));
+                => Radioactivity.FromMicrocuries(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromMicrocuries(value.ToDouble(null));
+                => Radioactivity.FromMicrocuries(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromMicrorutherfords(double)" />
+            /// <inheritdoc cref="Radioactivity.FromMicrorutherfords(QuantityValue)" />
             public Radioactivity Microrutherfords
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromMicrorutherfords(double.CreateChecked(value));
+                => Radioactivity.FromMicrorutherfords(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromMicrorutherfords(value.ToDouble(null));
+                => Radioactivity.FromMicrorutherfords(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromMillibecquerels(double)" />
+            /// <inheritdoc cref="Radioactivity.FromMillibecquerels(QuantityValue)" />
             public Radioactivity Millibecquerels
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromMillibecquerels(double.CreateChecked(value));
+                => Radioactivity.FromMillibecquerels(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromMillibecquerels(value.ToDouble(null));
+                => Radioactivity.FromMillibecquerels(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromMillicuries(double)" />
+            /// <inheritdoc cref="Radioactivity.FromMillicuries(QuantityValue)" />
             public Radioactivity Millicuries
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromMillicuries(double.CreateChecked(value));
+                => Radioactivity.FromMillicuries(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromMillicuries(value.ToDouble(null));
+                => Radioactivity.FromMillicuries(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromMillirutherfords(double)" />
+            /// <inheritdoc cref="Radioactivity.FromMillirutherfords(QuantityValue)" />
             public Radioactivity Millirutherfords
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromMillirutherfords(double.CreateChecked(value));
+                => Radioactivity.FromMillirutherfords(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromMillirutherfords(value.ToDouble(null));
+                => Radioactivity.FromMillirutherfords(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromNanobecquerels(double)" />
+            /// <inheritdoc cref="Radioactivity.FromNanobecquerels(QuantityValue)" />
             public Radioactivity Nanobecquerels
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromNanobecquerels(double.CreateChecked(value));
+                => Radioactivity.FromNanobecquerels(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromNanobecquerels(value.ToDouble(null));
+                => Radioactivity.FromNanobecquerels(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromNanocuries(double)" />
+            /// <inheritdoc cref="Radioactivity.FromNanocuries(QuantityValue)" />
             public Radioactivity Nanocuries
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromNanocuries(double.CreateChecked(value));
+                => Radioactivity.FromNanocuries(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromNanocuries(value.ToDouble(null));
+                => Radioactivity.FromNanocuries(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromNanorutherfords(double)" />
+            /// <inheritdoc cref="Radioactivity.FromNanorutherfords(QuantityValue)" />
             public Radioactivity Nanorutherfords
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromNanorutherfords(double.CreateChecked(value));
+                => Radioactivity.FromNanorutherfords(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromNanorutherfords(value.ToDouble(null));
+                => Radioactivity.FromNanorutherfords(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromPetabecquerels(double)" />
+            /// <inheritdoc cref="Radioactivity.FromPetabecquerels(QuantityValue)" />
             public Radioactivity Petabecquerels
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromPetabecquerels(double.CreateChecked(value));
+                => Radioactivity.FromPetabecquerels(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromPetabecquerels(value.ToDouble(null));
+                => Radioactivity.FromPetabecquerels(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromPicobecquerels(double)" />
+            /// <inheritdoc cref="Radioactivity.FromPicobecquerels(QuantityValue)" />
             public Radioactivity Picobecquerels
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromPicobecquerels(double.CreateChecked(value));
+                => Radioactivity.FromPicobecquerels(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromPicobecquerels(value.ToDouble(null));
+                => Radioactivity.FromPicobecquerels(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromPicocuries(double)" />
+            /// <inheritdoc cref="Radioactivity.FromPicocuries(QuantityValue)" />
             public Radioactivity Picocuries
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromPicocuries(double.CreateChecked(value));
+                => Radioactivity.FromPicocuries(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromPicocuries(value.ToDouble(null));
+                => Radioactivity.FromPicocuries(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromPicorutherfords(double)" />
+            /// <inheritdoc cref="Radioactivity.FromPicorutherfords(QuantityValue)" />
             public Radioactivity Picorutherfords
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromPicorutherfords(double.CreateChecked(value));
+                => Radioactivity.FromPicorutherfords(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromPicorutherfords(value.ToDouble(null));
+                => Radioactivity.FromPicorutherfords(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromRutherfords(double)" />
+            /// <inheritdoc cref="Radioactivity.FromRutherfords(QuantityValue)" />
             public Radioactivity Rutherfords
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromRutherfords(double.CreateChecked(value));
+                => Radioactivity.FromRutherfords(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromRutherfords(value.ToDouble(null));
+                => Radioactivity.FromRutherfords(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromTerabecquerels(double)" />
+            /// <inheritdoc cref="Radioactivity.FromTerabecquerels(QuantityValue)" />
             public Radioactivity Terabecquerels
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromTerabecquerels(double.CreateChecked(value));
+                => Radioactivity.FromTerabecquerels(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromTerabecquerels(value.ToDouble(null));
+                => Radioactivity.FromTerabecquerels(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromTeracuries(double)" />
+            /// <inheritdoc cref="Radioactivity.FromTeracuries(QuantityValue)" />
             public Radioactivity Teracuries
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromTeracuries(double.CreateChecked(value));
+                => Radioactivity.FromTeracuries(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromTeracuries(value.ToDouble(null));
+                => Radioactivity.FromTeracuries(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Radioactivity.FromTerarutherfords(double)" />
+            /// <inheritdoc cref="Radioactivity.FromTerarutherfords(QuantityValue)" />
             public Radioactivity Terarutherfords
 #if NET7_0_OR_GREATER
-                => Radioactivity.FromTerarutherfords(double.CreateChecked(value));
+                => Radioactivity.FromTerarutherfords(QuantityValue.CreateChecked(value));
 #else
-                => Radioactivity.FromTerarutherfords(value.ToDouble(null));
+                => Radioactivity.FromTerarutherfords(value.ToQuantityValue());
 #endif
 
         }

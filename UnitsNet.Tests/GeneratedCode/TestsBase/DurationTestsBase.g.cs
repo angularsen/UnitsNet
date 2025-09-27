@@ -174,6 +174,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DurationInfo_CreateWithCustomUnitInfos()
+        {
+            DurationUnit[] expectedUnits = [DurationUnit.Second];
+
+            Duration.DurationInfo quantityInfo = Duration.DurationInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("Duration", quantityInfo.Name);
+            Assert.Equal(Duration.Zero, quantityInfo.Zero);
+            Assert.Equal(Duration.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void SecondToDurationUnits()
         {
             Duration second = Duration.FromSeconds(1);
@@ -281,26 +295,69 @@ namespace UnitsNet.Tests
             var expectedUnit = Duration.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            Duration convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                Duration quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                Duration convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<DurationUnit> quantityToConvert = quantity;
+
+                IQuantity<DurationUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new Duration(value: 1, unit: Duration.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Duration(value: 1, unit: Duration.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<DurationUnit> quantity = new Duration(value: 1, unit: Duration.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Duration(value: 1, unit: Duration.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new Duration(value: 1, unit: Duration.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Duration(value: 1, unit: Duration.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<DurationUnit> quantity = new Duration(value: 1, unit: Duration.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Duration(value: 1, unit: Duration.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -372,7 +429,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 с", DurationUnit.Second, 4.2)]
         [InlineData("ru-RU", "4,2 нед", DurationUnit.Week, 4.2)]
         [InlineData("ru-RU", "4,2 год", DurationUnit.Year365, 4.2)]
-        public void Parse(string culture, string quantityString, DurationUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, DurationUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Duration.Parse(quantityString);
@@ -449,7 +506,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 с", DurationUnit.Second, 4.2)]
         [InlineData("ru-RU", "4,2 нед", DurationUnit.Week, 4.2)]
         [InlineData("ru-RU", "4,2 год", DurationUnit.Year365, 4.2)]
-        public void TryParse(string culture, string quantityString, DurationUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, DurationUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Duration.TryParse(quantityString, out Duration parsed));
@@ -1069,6 +1126,7 @@ namespace UnitsNet.Tests
                 var quantity = Duration.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -1092,44 +1150,46 @@ namespace UnitsNet.Tests
                 IQuantity<DurationUnit> quantityToConvert = quantity;
                 IQuantity<DurationUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Duration second = Duration.FromSeconds(1);
-            AssertEx.EqualTolerance(1, Duration.FromDays(second.Days).Seconds, DaysTolerance);
-            AssertEx.EqualTolerance(1, Duration.FromHours(second.Hours).Seconds, HoursTolerance);
-            AssertEx.EqualTolerance(1, Duration.FromJulianYears(second.JulianYears).Seconds, JulianYearsTolerance);
-            AssertEx.EqualTolerance(1, Duration.FromMicroseconds(second.Microseconds).Seconds, MicrosecondsTolerance);
-            AssertEx.EqualTolerance(1, Duration.FromMilliseconds(second.Milliseconds).Seconds, MillisecondsTolerance);
-            AssertEx.EqualTolerance(1, Duration.FromMinutes(second.Minutes).Seconds, MinutesTolerance);
-            AssertEx.EqualTolerance(1, Duration.FromMonths30(second.Months30).Seconds, Months30Tolerance);
-            AssertEx.EqualTolerance(1, Duration.FromNanoseconds(second.Nanoseconds).Seconds, NanosecondsTolerance);
-            AssertEx.EqualTolerance(1, Duration.FromPicoseconds(second.Picoseconds).Seconds, PicosecondsTolerance);
-            AssertEx.EqualTolerance(1, Duration.FromSeconds(second.Seconds).Seconds, SecondsTolerance);
-            AssertEx.EqualTolerance(1, Duration.FromSols(second.Sols).Seconds, SolsTolerance);
-            AssertEx.EqualTolerance(1, Duration.FromWeeks(second.Weeks).Seconds, WeeksTolerance);
-            AssertEx.EqualTolerance(1, Duration.FromYears365(second.Years365).Seconds, Years365Tolerance);
+            Duration second = Duration.FromSeconds(3);
+            Assert.Equal(3, Duration.FromDays(second.Days).Seconds);
+            Assert.Equal(3, Duration.FromHours(second.Hours).Seconds);
+            Assert.Equal(3, Duration.FromJulianYears(second.JulianYears).Seconds);
+            Assert.Equal(3, Duration.FromMicroseconds(second.Microseconds).Seconds);
+            Assert.Equal(3, Duration.FromMilliseconds(second.Milliseconds).Seconds);
+            Assert.Equal(3, Duration.FromMinutes(second.Minutes).Seconds);
+            Assert.Equal(3, Duration.FromMonths30(second.Months30).Seconds);
+            Assert.Equal(3, Duration.FromNanoseconds(second.Nanoseconds).Seconds);
+            Assert.Equal(3, Duration.FromPicoseconds(second.Picoseconds).Seconds);
+            Assert.Equal(3, Duration.FromSeconds(second.Seconds).Seconds);
+            Assert.Equal(3, Duration.FromSols(second.Sols).Seconds);
+            Assert.Equal(3, Duration.FromWeeks(second.Weeks).Seconds);
+            Assert.Equal(3, Duration.FromYears365(second.Years365).Seconds);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             Duration v = Duration.FromSeconds(1);
-            AssertEx.EqualTolerance(-1, -v.Seconds, SecondsTolerance);
-            AssertEx.EqualTolerance(2, (Duration.FromSeconds(3)-v).Seconds, SecondsTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Seconds, SecondsTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Seconds, SecondsTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Seconds, SecondsTolerance);
-            AssertEx.EqualTolerance(2, (Duration.FromSeconds(10)/5).Seconds, SecondsTolerance);
-            AssertEx.EqualTolerance(2, Duration.FromSeconds(10)/Duration.FromSeconds(5), SecondsTolerance);
+            Assert.Equal(-1, -v.Seconds);
+            Assert.Equal(2, (Duration.FromSeconds(3) - v).Seconds);
+            Assert.Equal(2, (v + v).Seconds);
+            Assert.Equal(10, (v * 10).Seconds);
+            Assert.Equal(10, (10 * v).Seconds);
+            Assert.Equal(2, (Duration.FromSeconds(10) / 5).Seconds);
+            Assert.Equal(2, Duration.FromSeconds(10) / Duration.FromSeconds(5));
         }
 
         [Fact]
@@ -1175,8 +1235,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, DurationUnit.Second, 1, DurationUnit.Second, true)]  // Same value and unit.
         [InlineData(1, DurationUnit.Second, 2, DurationUnit.Second, false)] // Different value.
-        [InlineData(2, DurationUnit.Second, 1, DurationUnit.Day, false)] // Different value and unit.
-        [InlineData(1, DurationUnit.Second, 1, DurationUnit.Day, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, DurationUnit unitA, double valueB, DurationUnit unitB, bool expectEqual)
         {
             var a = new Duration(valueA, unitA);
@@ -1236,8 +1294,8 @@ namespace UnitsNet.Tests
             var quantity = Duration.FromSeconds(firstValue);
             var otherQuantity = Duration.FromSeconds(secondValue);
             Duration maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, Duration.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -1256,7 +1314,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<DurationUnit>();
+            var units = EnumHelper.GetValues<DurationUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -1267,6 +1325,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Duration.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(Duration.Info.Units, Duration.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, Duration.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -1355,7 +1425,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Duration.FromSeconds(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(Duration), quantity.As(Duration.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

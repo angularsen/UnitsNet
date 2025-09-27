@@ -230,6 +230,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void PowerInfo_CreateWithCustomUnitInfos()
+        {
+            PowerUnit[] expectedUnits = [PowerUnit.Watt];
+
+            Power.PowerInfo quantityInfo = Power.PowerInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("Power", quantityInfo.Name);
+            Assert.Equal(Power.Zero, quantityInfo.Zero);
+            Assert.Equal(Power.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void WattToPowerUnits()
         {
             Power watt = Power.FromWatts(1);
@@ -365,26 +379,69 @@ namespace UnitsNet.Tests
             var expectedUnit = Power.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            Power convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                Power quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                Power convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<PowerUnit> quantityToConvert = quantity;
+
+                IQuantity<PowerUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new Power(value: 1, unit: Power.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Power(value: 1, unit: Power.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<PowerUnit> quantity = new Power(value: 1, unit: Power.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Power(value: 1, unit: Power.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new Power(value: 1, unit: Power.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Power(value: 1, unit: Power.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<PowerUnit> quantity = new Power(value: 1, unit: Power.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Power(value: 1, unit: Power.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -418,7 +475,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 TW", PowerUnit.Terawatt, 4.2)]
         [InlineData("en-US", "4.2 TR", PowerUnit.TonOfRefrigeration, 4.2)]
         [InlineData("en-US", "4.2 W", PowerUnit.Watt, 4.2)]
-        public void Parse(string culture, string quantityString, PowerUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, PowerUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Power.Parse(quantityString);
@@ -457,7 +514,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 TW", PowerUnit.Terawatt, 4.2)]
         [InlineData("en-US", "4.2 TR", PowerUnit.TonOfRefrigeration, 4.2)]
         [InlineData("en-US", "4.2 W", PowerUnit.Watt, 4.2)]
-        public void TryParse(string culture, string quantityString, PowerUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, PowerUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Power.TryParse(quantityString, out Power parsed));
@@ -848,6 +905,7 @@ namespace UnitsNet.Tests
                 var quantity = Power.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -871,58 +929,60 @@ namespace UnitsNet.Tests
                 IQuantity<PowerUnit> quantityToConvert = quantity;
                 IQuantity<PowerUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Power watt = Power.FromWatts(1);
-            AssertEx.EqualTolerance(1, Power.FromBoilerHorsepower(watt.BoilerHorsepower).Watts, BoilerHorsepowerTolerance);
-            AssertEx.EqualTolerance(1, Power.FromBritishThermalUnitsPerHour(watt.BritishThermalUnitsPerHour).Watts, BritishThermalUnitsPerHourTolerance);
-            AssertEx.EqualTolerance(1, Power.FromDecawatts(watt.Decawatts).Watts, DecawattsTolerance);
-            AssertEx.EqualTolerance(1, Power.FromDeciwatts(watt.Deciwatts).Watts, DeciwattsTolerance);
-            AssertEx.EqualTolerance(1, Power.FromElectricalHorsepower(watt.ElectricalHorsepower).Watts, ElectricalHorsepowerTolerance);
-            AssertEx.EqualTolerance(1, Power.FromFemtowatts(watt.Femtowatts).Watts, FemtowattsTolerance);
-            AssertEx.EqualTolerance(1, Power.FromGigajoulesPerHour(watt.GigajoulesPerHour).Watts, GigajoulesPerHourTolerance);
-            AssertEx.EqualTolerance(1, Power.FromGigawatts(watt.Gigawatts).Watts, GigawattsTolerance);
-            AssertEx.EqualTolerance(1, Power.FromHydraulicHorsepower(watt.HydraulicHorsepower).Watts, HydraulicHorsepowerTolerance);
-            AssertEx.EqualTolerance(1, Power.FromJoulesPerHour(watt.JoulesPerHour).Watts, JoulesPerHourTolerance);
-            AssertEx.EqualTolerance(1, Power.FromKilobritishThermalUnitsPerHour(watt.KilobritishThermalUnitsPerHour).Watts, KilobritishThermalUnitsPerHourTolerance);
-            AssertEx.EqualTolerance(1, Power.FromKilojoulesPerHour(watt.KilojoulesPerHour).Watts, KilojoulesPerHourTolerance);
-            AssertEx.EqualTolerance(1, Power.FromKilowatts(watt.Kilowatts).Watts, KilowattsTolerance);
-            AssertEx.EqualTolerance(1, Power.FromMechanicalHorsepower(watt.MechanicalHorsepower).Watts, MechanicalHorsepowerTolerance);
-            AssertEx.EqualTolerance(1, Power.FromMegabritishThermalUnitsPerHour(watt.MegabritishThermalUnitsPerHour).Watts, MegabritishThermalUnitsPerHourTolerance);
-            AssertEx.EqualTolerance(1, Power.FromMegajoulesPerHour(watt.MegajoulesPerHour).Watts, MegajoulesPerHourTolerance);
-            AssertEx.EqualTolerance(1, Power.FromMegawatts(watt.Megawatts).Watts, MegawattsTolerance);
-            AssertEx.EqualTolerance(1, Power.FromMetricHorsepower(watt.MetricHorsepower).Watts, MetricHorsepowerTolerance);
-            AssertEx.EqualTolerance(1, Power.FromMicrowatts(watt.Microwatts).Watts, MicrowattsTolerance);
-            AssertEx.EqualTolerance(1, Power.FromMillijoulesPerHour(watt.MillijoulesPerHour).Watts, MillijoulesPerHourTolerance);
-            AssertEx.EqualTolerance(1, Power.FromMilliwatts(watt.Milliwatts).Watts, MilliwattsTolerance);
-            AssertEx.EqualTolerance(1, Power.FromNanowatts(watt.Nanowatts).Watts, NanowattsTolerance);
-            AssertEx.EqualTolerance(1, Power.FromPetawatts(watt.Petawatts).Watts, PetawattsTolerance);
-            AssertEx.EqualTolerance(1, Power.FromPicowatts(watt.Picowatts).Watts, PicowattsTolerance);
-            AssertEx.EqualTolerance(1, Power.FromTerawatts(watt.Terawatts).Watts, TerawattsTolerance);
-            AssertEx.EqualTolerance(1, Power.FromTonsOfRefrigeration(watt.TonsOfRefrigeration).Watts, TonsOfRefrigerationTolerance);
-            AssertEx.EqualTolerance(1, Power.FromWatts(watt.Watts).Watts, WattsTolerance);
+            Power watt = Power.FromWatts(3);
+            Assert.Equal(3, Power.FromBoilerHorsepower(watt.BoilerHorsepower).Watts);
+            Assert.Equal(3, Power.FromBritishThermalUnitsPerHour(watt.BritishThermalUnitsPerHour).Watts);
+            Assert.Equal(3, Power.FromDecawatts(watt.Decawatts).Watts);
+            Assert.Equal(3, Power.FromDeciwatts(watt.Deciwatts).Watts);
+            Assert.Equal(3, Power.FromElectricalHorsepower(watt.ElectricalHorsepower).Watts);
+            Assert.Equal(3, Power.FromFemtowatts(watt.Femtowatts).Watts);
+            Assert.Equal(3, Power.FromGigajoulesPerHour(watt.GigajoulesPerHour).Watts);
+            Assert.Equal(3, Power.FromGigawatts(watt.Gigawatts).Watts);
+            Assert.Equal(3, Power.FromHydraulicHorsepower(watt.HydraulicHorsepower).Watts);
+            Assert.Equal(3, Power.FromJoulesPerHour(watt.JoulesPerHour).Watts);
+            Assert.Equal(3, Power.FromKilobritishThermalUnitsPerHour(watt.KilobritishThermalUnitsPerHour).Watts);
+            Assert.Equal(3, Power.FromKilojoulesPerHour(watt.KilojoulesPerHour).Watts);
+            Assert.Equal(3, Power.FromKilowatts(watt.Kilowatts).Watts);
+            Assert.Equal(3, Power.FromMechanicalHorsepower(watt.MechanicalHorsepower).Watts);
+            Assert.Equal(3, Power.FromMegabritishThermalUnitsPerHour(watt.MegabritishThermalUnitsPerHour).Watts);
+            Assert.Equal(3, Power.FromMegajoulesPerHour(watt.MegajoulesPerHour).Watts);
+            Assert.Equal(3, Power.FromMegawatts(watt.Megawatts).Watts);
+            Assert.Equal(3, Power.FromMetricHorsepower(watt.MetricHorsepower).Watts);
+            Assert.Equal(3, Power.FromMicrowatts(watt.Microwatts).Watts);
+            Assert.Equal(3, Power.FromMillijoulesPerHour(watt.MillijoulesPerHour).Watts);
+            Assert.Equal(3, Power.FromMilliwatts(watt.Milliwatts).Watts);
+            Assert.Equal(3, Power.FromNanowatts(watt.Nanowatts).Watts);
+            Assert.Equal(3, Power.FromPetawatts(watt.Petawatts).Watts);
+            Assert.Equal(3, Power.FromPicowatts(watt.Picowatts).Watts);
+            Assert.Equal(3, Power.FromTerawatts(watt.Terawatts).Watts);
+            Assert.Equal(3, Power.FromTonsOfRefrigeration(watt.TonsOfRefrigeration).Watts);
+            Assert.Equal(3, Power.FromWatts(watt.Watts).Watts);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             Power v = Power.FromWatts(1);
-            AssertEx.EqualTolerance(-1, -v.Watts, WattsTolerance);
-            AssertEx.EqualTolerance(2, (Power.FromWatts(3)-v).Watts, WattsTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Watts, WattsTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Watts, WattsTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Watts, WattsTolerance);
-            AssertEx.EqualTolerance(2, (Power.FromWatts(10)/5).Watts, WattsTolerance);
-            AssertEx.EqualTolerance(2, Power.FromWatts(10)/Power.FromWatts(5), WattsTolerance);
+            Assert.Equal(-1, -v.Watts);
+            Assert.Equal(2, (Power.FromWatts(3) - v).Watts);
+            Assert.Equal(2, (v + v).Watts);
+            Assert.Equal(10, (v * 10).Watts);
+            Assert.Equal(10, (10 * v).Watts);
+            Assert.Equal(2, (Power.FromWatts(10) / 5).Watts);
+            Assert.Equal(2, Power.FromWatts(10) / Power.FromWatts(5));
         }
 
         [Fact]
@@ -968,8 +1028,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, PowerUnit.Watt, 1, PowerUnit.Watt, true)]  // Same value and unit.
         [InlineData(1, PowerUnit.Watt, 2, PowerUnit.Watt, false)] // Different value.
-        [InlineData(2, PowerUnit.Watt, 1, PowerUnit.BoilerHorsepower, false)] // Different value and unit.
-        [InlineData(1, PowerUnit.Watt, 1, PowerUnit.BoilerHorsepower, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, PowerUnit unitA, double valueB, PowerUnit unitB, bool expectEqual)
         {
             var a = new Power(valueA, unitA);
@@ -1029,8 +1087,8 @@ namespace UnitsNet.Tests
             var quantity = Power.FromWatts(firstValue);
             var otherQuantity = Power.FromWatts(secondValue);
             Power maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, Power.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -1049,7 +1107,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<PowerUnit>();
+            var units = EnumHelper.GetValues<PowerUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -1060,6 +1118,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Power.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(Power.Info.Units, Power.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, Power.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -1176,7 +1246,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Power.FromWatts(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(Power), quantity.As(Power.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

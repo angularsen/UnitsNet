@@ -68,8 +68,9 @@ namespace UnitsNet.Tests
         {
             PowerRatio powerRatio = PowerRatio.FromDecibelMilliwatts(dBmW);
 
-            double actual = Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(50)).DecibelMillivolts, 2);
-            Assert.Equal(expected, actual);
+            QuantityValue actual = powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(50)).DecibelMillivolts;
+
+            AssertEx.EqualTolerance(expected, actual, 1e-2m, ComparisonType.Absolute);
         }
 
         [Theory]
@@ -81,8 +82,9 @@ namespace UnitsNet.Tests
         {
             PowerRatio powerRatio = PowerRatio.FromDecibelMilliwatts(dBmW);
 
-            double actual = Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(75)).DecibelMillivolts, 2);
-            Assert.Equal(expected, actual);
+            QuantityValue actual = powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(75)).DecibelMillivolts;
+
+            AssertEx.EqualTolerance(expected, actual, 1e-2m, ComparisonType.Absolute);
         }
     }
 }

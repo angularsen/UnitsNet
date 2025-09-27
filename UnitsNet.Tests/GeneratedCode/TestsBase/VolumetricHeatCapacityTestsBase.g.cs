@@ -158,6 +158,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void VolumetricHeatCapacityInfo_CreateWithCustomUnitInfos()
+        {
+            VolumetricHeatCapacityUnit[] expectedUnits = [VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin];
+
+            VolumetricHeatCapacity.VolumetricHeatCapacityInfo quantityInfo = VolumetricHeatCapacity.VolumetricHeatCapacityInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("VolumetricHeatCapacity", quantityInfo.Name);
+            Assert.Equal(VolumetricHeatCapacity.Zero, quantityInfo.Zero);
+            Assert.Equal(VolumetricHeatCapacity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void JoulePerCubicMeterKelvinToVolumetricHeatCapacityUnits()
         {
             VolumetricHeatCapacity joulepercubicmeterkelvin = VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(1);
@@ -257,26 +271,69 @@ namespace UnitsNet.Tests
             var expectedUnit = VolumetricHeatCapacity.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            VolumetricHeatCapacity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                VolumetricHeatCapacity quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                VolumetricHeatCapacity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<VolumetricHeatCapacityUnit> quantityToConvert = quantity;
+
+                IQuantity<VolumetricHeatCapacityUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new VolumetricHeatCapacity(value: 1, unit: VolumetricHeatCapacity.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new VolumetricHeatCapacity(value: 1, unit: VolumetricHeatCapacity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<VolumetricHeatCapacityUnit> quantity = new VolumetricHeatCapacity(value: 1, unit: VolumetricHeatCapacity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new VolumetricHeatCapacity(value: 1, unit: VolumetricHeatCapacity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new VolumetricHeatCapacity(value: 1, unit: VolumetricHeatCapacity.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new VolumetricHeatCapacity(value: 1, unit: VolumetricHeatCapacity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<VolumetricHeatCapacityUnit> quantity = new VolumetricHeatCapacity(value: 1, unit: VolumetricHeatCapacity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new VolumetricHeatCapacity(value: 1, unit: VolumetricHeatCapacity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -289,7 +346,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kJ/(m³·K)", VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, 4.2)]
         [InlineData("en-US", "4.2 MJ/(m³·°C)", VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, 4.2)]
         [InlineData("en-US", "4.2 MJ/(m³·K)", VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, 4.2)]
-        public void Parse(string culture, string quantityString, VolumetricHeatCapacityUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, VolumetricHeatCapacityUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = VolumetricHeatCapacity.Parse(quantityString);
@@ -307,7 +364,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kJ/(m³·K)", VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, 4.2)]
         [InlineData("en-US", "4.2 MJ/(m³·°C)", VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, 4.2)]
         [InlineData("en-US", "4.2 MJ/(m³·K)", VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, 4.2)]
-        public void TryParse(string culture, string quantityString, VolumetricHeatCapacityUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, VolumetricHeatCapacityUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(VolumetricHeatCapacity.TryParse(quantityString, out VolumetricHeatCapacity parsed));
@@ -512,6 +569,7 @@ namespace UnitsNet.Tests
                 var quantity = VolumetricHeatCapacity.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -535,40 +593,42 @@ namespace UnitsNet.Tests
                 IQuantity<VolumetricHeatCapacityUnit> quantityToConvert = quantity;
                 IQuantity<VolumetricHeatCapacityUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            VolumetricHeatCapacity joulepercubicmeterkelvin = VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(1);
-            AssertEx.EqualTolerance(1, VolumetricHeatCapacity.FromBtusPerCubicFootDegreeFahrenheit(joulepercubicmeterkelvin.BtusPerCubicFootDegreeFahrenheit).JoulesPerCubicMeterKelvin, BtusPerCubicFootDegreeFahrenheitTolerance);
-            AssertEx.EqualTolerance(1, VolumetricHeatCapacity.FromCaloriesPerCubicCentimeterDegreeCelsius(joulepercubicmeterkelvin.CaloriesPerCubicCentimeterDegreeCelsius).JoulesPerCubicMeterKelvin, CaloriesPerCubicCentimeterDegreeCelsiusTolerance);
-            AssertEx.EqualTolerance(1, VolumetricHeatCapacity.FromJoulesPerCubicMeterDegreeCelsius(joulepercubicmeterkelvin.JoulesPerCubicMeterDegreeCelsius).JoulesPerCubicMeterKelvin, JoulesPerCubicMeterDegreeCelsiusTolerance);
-            AssertEx.EqualTolerance(1, VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(joulepercubicmeterkelvin.JoulesPerCubicMeterKelvin).JoulesPerCubicMeterKelvin, JoulesPerCubicMeterKelvinTolerance);
-            AssertEx.EqualTolerance(1, VolumetricHeatCapacity.FromKilocaloriesPerCubicCentimeterDegreeCelsius(joulepercubicmeterkelvin.KilocaloriesPerCubicCentimeterDegreeCelsius).JoulesPerCubicMeterKelvin, KilocaloriesPerCubicCentimeterDegreeCelsiusTolerance);
-            AssertEx.EqualTolerance(1, VolumetricHeatCapacity.FromKilojoulesPerCubicMeterDegreeCelsius(joulepercubicmeterkelvin.KilojoulesPerCubicMeterDegreeCelsius).JoulesPerCubicMeterKelvin, KilojoulesPerCubicMeterDegreeCelsiusTolerance);
-            AssertEx.EqualTolerance(1, VolumetricHeatCapacity.FromKilojoulesPerCubicMeterKelvin(joulepercubicmeterkelvin.KilojoulesPerCubicMeterKelvin).JoulesPerCubicMeterKelvin, KilojoulesPerCubicMeterKelvinTolerance);
-            AssertEx.EqualTolerance(1, VolumetricHeatCapacity.FromMegajoulesPerCubicMeterDegreeCelsius(joulepercubicmeterkelvin.MegajoulesPerCubicMeterDegreeCelsius).JoulesPerCubicMeterKelvin, MegajoulesPerCubicMeterDegreeCelsiusTolerance);
-            AssertEx.EqualTolerance(1, VolumetricHeatCapacity.FromMegajoulesPerCubicMeterKelvin(joulepercubicmeterkelvin.MegajoulesPerCubicMeterKelvin).JoulesPerCubicMeterKelvin, MegajoulesPerCubicMeterKelvinTolerance);
+            VolumetricHeatCapacity joulepercubicmeterkelvin = VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(3);
+            Assert.Equal(3, VolumetricHeatCapacity.FromBtusPerCubicFootDegreeFahrenheit(joulepercubicmeterkelvin.BtusPerCubicFootDegreeFahrenheit).JoulesPerCubicMeterKelvin);
+            Assert.Equal(3, VolumetricHeatCapacity.FromCaloriesPerCubicCentimeterDegreeCelsius(joulepercubicmeterkelvin.CaloriesPerCubicCentimeterDegreeCelsius).JoulesPerCubicMeterKelvin);
+            Assert.Equal(3, VolumetricHeatCapacity.FromJoulesPerCubicMeterDegreeCelsius(joulepercubicmeterkelvin.JoulesPerCubicMeterDegreeCelsius).JoulesPerCubicMeterKelvin);
+            Assert.Equal(3, VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(joulepercubicmeterkelvin.JoulesPerCubicMeterKelvin).JoulesPerCubicMeterKelvin);
+            Assert.Equal(3, VolumetricHeatCapacity.FromKilocaloriesPerCubicCentimeterDegreeCelsius(joulepercubicmeterkelvin.KilocaloriesPerCubicCentimeterDegreeCelsius).JoulesPerCubicMeterKelvin);
+            Assert.Equal(3, VolumetricHeatCapacity.FromKilojoulesPerCubicMeterDegreeCelsius(joulepercubicmeterkelvin.KilojoulesPerCubicMeterDegreeCelsius).JoulesPerCubicMeterKelvin);
+            Assert.Equal(3, VolumetricHeatCapacity.FromKilojoulesPerCubicMeterKelvin(joulepercubicmeterkelvin.KilojoulesPerCubicMeterKelvin).JoulesPerCubicMeterKelvin);
+            Assert.Equal(3, VolumetricHeatCapacity.FromMegajoulesPerCubicMeterDegreeCelsius(joulepercubicmeterkelvin.MegajoulesPerCubicMeterDegreeCelsius).JoulesPerCubicMeterKelvin);
+            Assert.Equal(3, VolumetricHeatCapacity.FromMegajoulesPerCubicMeterKelvin(joulepercubicmeterkelvin.MegajoulesPerCubicMeterKelvin).JoulesPerCubicMeterKelvin);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             VolumetricHeatCapacity v = VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(1);
-            AssertEx.EqualTolerance(-1, -v.JoulesPerCubicMeterKelvin, JoulesPerCubicMeterKelvinTolerance);
-            AssertEx.EqualTolerance(2, (VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(3)-v).JoulesPerCubicMeterKelvin, JoulesPerCubicMeterKelvinTolerance);
-            AssertEx.EqualTolerance(2, (v + v).JoulesPerCubicMeterKelvin, JoulesPerCubicMeterKelvinTolerance);
-            AssertEx.EqualTolerance(10, (v*10).JoulesPerCubicMeterKelvin, JoulesPerCubicMeterKelvinTolerance);
-            AssertEx.EqualTolerance(10, (10*v).JoulesPerCubicMeterKelvin, JoulesPerCubicMeterKelvinTolerance);
-            AssertEx.EqualTolerance(2, (VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(10)/5).JoulesPerCubicMeterKelvin, JoulesPerCubicMeterKelvinTolerance);
-            AssertEx.EqualTolerance(2, VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(10)/VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(5), JoulesPerCubicMeterKelvinTolerance);
+            Assert.Equal(-1, -v.JoulesPerCubicMeterKelvin);
+            Assert.Equal(2, (VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(3) - v).JoulesPerCubicMeterKelvin);
+            Assert.Equal(2, (v + v).JoulesPerCubicMeterKelvin);
+            Assert.Equal(10, (v * 10).JoulesPerCubicMeterKelvin);
+            Assert.Equal(10, (10 * v).JoulesPerCubicMeterKelvin);
+            Assert.Equal(2, (VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(10) / 5).JoulesPerCubicMeterKelvin);
+            Assert.Equal(2, VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(10) / VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(5));
         }
 
         [Fact]
@@ -614,8 +674,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, 1, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, true)]  // Same value and unit.
         [InlineData(1, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, 2, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, false)] // Different value.
-        [InlineData(2, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, 1, VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, false)] // Different value and unit.
-        [InlineData(1, VolumetricHeatCapacityUnit.JoulePerCubicMeterKelvin, 1, VolumetricHeatCapacityUnit.BtuPerCubicFootDegreeFahrenheit, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, VolumetricHeatCapacityUnit unitA, double valueB, VolumetricHeatCapacityUnit unitB, bool expectEqual)
         {
             var a = new VolumetricHeatCapacity(valueA, unitA);
@@ -675,8 +733,8 @@ namespace UnitsNet.Tests
             var quantity = VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(firstValue);
             var otherQuantity = VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(secondValue);
             VolumetricHeatCapacity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, VolumetricHeatCapacity.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -695,7 +753,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<VolumetricHeatCapacityUnit>();
+            var units = EnumHelper.GetValues<VolumetricHeatCapacityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -706,6 +764,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(VolumetricHeatCapacity.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(VolumetricHeatCapacity.Info.Units, VolumetricHeatCapacity.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, VolumetricHeatCapacity.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -786,7 +856,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(VolumetricHeatCapacity), quantity.As(VolumetricHeatCapacity.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

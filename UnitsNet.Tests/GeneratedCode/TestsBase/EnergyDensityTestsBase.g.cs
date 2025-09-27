@@ -170,6 +170,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void EnergyDensityInfo_CreateWithCustomUnitInfos()
+        {
+            EnergyDensityUnit[] expectedUnits = [EnergyDensityUnit.JoulePerCubicMeter];
+
+            EnergyDensity.EnergyDensityInfo quantityInfo = EnergyDensity.EnergyDensityInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("EnergyDensity", quantityInfo.Name);
+            Assert.Equal(EnergyDensity.Zero, quantityInfo.Zero);
+            Assert.Equal(EnergyDensity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void JoulePerCubicMeterToEnergyDensityUnits()
         {
             EnergyDensity joulepercubicmeter = EnergyDensity.FromJoulesPerCubicMeter(1);
@@ -275,26 +289,69 @@ namespace UnitsNet.Tests
             var expectedUnit = EnergyDensity.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            EnergyDensity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                EnergyDensity quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                EnergyDensity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<EnergyDensityUnit> quantityToConvert = quantity;
+
+                IQuantity<EnergyDensityUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new EnergyDensity(value: 1, unit: EnergyDensity.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new EnergyDensity(value: 1, unit: EnergyDensity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<EnergyDensityUnit> quantity = new EnergyDensity(value: 1, unit: EnergyDensity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new EnergyDensity(value: 1, unit: EnergyDensity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new EnergyDensity(value: 1, unit: EnergyDensity.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new EnergyDensity(value: 1, unit: EnergyDensity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<EnergyDensityUnit> quantity = new EnergyDensity(value: 1, unit: EnergyDensity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new EnergyDensity(value: 1, unit: EnergyDensity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -310,7 +367,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 TJ/m³", EnergyDensityUnit.TerajoulePerCubicMeter, 4.2)]
         [InlineData("en-US", "4.2 TWh/m³", EnergyDensityUnit.TerawattHourPerCubicMeter, 4.2)]
         [InlineData("en-US", "4.2 Wh/m³", EnergyDensityUnit.WattHourPerCubicMeter, 4.2)]
-        public void Parse(string culture, string quantityString, EnergyDensityUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, EnergyDensityUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = EnergyDensity.Parse(quantityString);
@@ -331,7 +388,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 TJ/m³", EnergyDensityUnit.TerajoulePerCubicMeter, 4.2)]
         [InlineData("en-US", "4.2 TWh/m³", EnergyDensityUnit.TerawattHourPerCubicMeter, 4.2)]
         [InlineData("en-US", "4.2 Wh/m³", EnergyDensityUnit.WattHourPerCubicMeter, 4.2)]
-        public void TryParse(string culture, string quantityString, EnergyDensityUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, EnergyDensityUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(EnergyDensity.TryParse(quantityString, out EnergyDensity parsed));
@@ -563,6 +620,7 @@ namespace UnitsNet.Tests
                 var quantity = EnergyDensity.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -586,43 +644,45 @@ namespace UnitsNet.Tests
                 IQuantity<EnergyDensityUnit> quantityToConvert = quantity;
                 IQuantity<EnergyDensityUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            EnergyDensity joulepercubicmeter = EnergyDensity.FromJoulesPerCubicMeter(1);
-            AssertEx.EqualTolerance(1, EnergyDensity.FromGigajoulesPerCubicMeter(joulepercubicmeter.GigajoulesPerCubicMeter).JoulesPerCubicMeter, GigajoulesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, EnergyDensity.FromGigawattHoursPerCubicMeter(joulepercubicmeter.GigawattHoursPerCubicMeter).JoulesPerCubicMeter, GigawattHoursPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, EnergyDensity.FromJoulesPerCubicMeter(joulepercubicmeter.JoulesPerCubicMeter).JoulesPerCubicMeter, JoulesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, EnergyDensity.FromKilojoulesPerCubicMeter(joulepercubicmeter.KilojoulesPerCubicMeter).JoulesPerCubicMeter, KilojoulesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, EnergyDensity.FromKilowattHoursPerCubicMeter(joulepercubicmeter.KilowattHoursPerCubicMeter).JoulesPerCubicMeter, KilowattHoursPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, EnergyDensity.FromMegajoulesPerCubicMeter(joulepercubicmeter.MegajoulesPerCubicMeter).JoulesPerCubicMeter, MegajoulesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, EnergyDensity.FromMegawattHoursPerCubicMeter(joulepercubicmeter.MegawattHoursPerCubicMeter).JoulesPerCubicMeter, MegawattHoursPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, EnergyDensity.FromPetajoulesPerCubicMeter(joulepercubicmeter.PetajoulesPerCubicMeter).JoulesPerCubicMeter, PetajoulesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, EnergyDensity.FromPetawattHoursPerCubicMeter(joulepercubicmeter.PetawattHoursPerCubicMeter).JoulesPerCubicMeter, PetawattHoursPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, EnergyDensity.FromTerajoulesPerCubicMeter(joulepercubicmeter.TerajoulesPerCubicMeter).JoulesPerCubicMeter, TerajoulesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, EnergyDensity.FromTerawattHoursPerCubicMeter(joulepercubicmeter.TerawattHoursPerCubicMeter).JoulesPerCubicMeter, TerawattHoursPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, EnergyDensity.FromWattHoursPerCubicMeter(joulepercubicmeter.WattHoursPerCubicMeter).JoulesPerCubicMeter, WattHoursPerCubicMeterTolerance);
+            EnergyDensity joulepercubicmeter = EnergyDensity.FromJoulesPerCubicMeter(3);
+            Assert.Equal(3, EnergyDensity.FromGigajoulesPerCubicMeter(joulepercubicmeter.GigajoulesPerCubicMeter).JoulesPerCubicMeter);
+            Assert.Equal(3, EnergyDensity.FromGigawattHoursPerCubicMeter(joulepercubicmeter.GigawattHoursPerCubicMeter).JoulesPerCubicMeter);
+            Assert.Equal(3, EnergyDensity.FromJoulesPerCubicMeter(joulepercubicmeter.JoulesPerCubicMeter).JoulesPerCubicMeter);
+            Assert.Equal(3, EnergyDensity.FromKilojoulesPerCubicMeter(joulepercubicmeter.KilojoulesPerCubicMeter).JoulesPerCubicMeter);
+            Assert.Equal(3, EnergyDensity.FromKilowattHoursPerCubicMeter(joulepercubicmeter.KilowattHoursPerCubicMeter).JoulesPerCubicMeter);
+            Assert.Equal(3, EnergyDensity.FromMegajoulesPerCubicMeter(joulepercubicmeter.MegajoulesPerCubicMeter).JoulesPerCubicMeter);
+            Assert.Equal(3, EnergyDensity.FromMegawattHoursPerCubicMeter(joulepercubicmeter.MegawattHoursPerCubicMeter).JoulesPerCubicMeter);
+            Assert.Equal(3, EnergyDensity.FromPetajoulesPerCubicMeter(joulepercubicmeter.PetajoulesPerCubicMeter).JoulesPerCubicMeter);
+            Assert.Equal(3, EnergyDensity.FromPetawattHoursPerCubicMeter(joulepercubicmeter.PetawattHoursPerCubicMeter).JoulesPerCubicMeter);
+            Assert.Equal(3, EnergyDensity.FromTerajoulesPerCubicMeter(joulepercubicmeter.TerajoulesPerCubicMeter).JoulesPerCubicMeter);
+            Assert.Equal(3, EnergyDensity.FromTerawattHoursPerCubicMeter(joulepercubicmeter.TerawattHoursPerCubicMeter).JoulesPerCubicMeter);
+            Assert.Equal(3, EnergyDensity.FromWattHoursPerCubicMeter(joulepercubicmeter.WattHoursPerCubicMeter).JoulesPerCubicMeter);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             EnergyDensity v = EnergyDensity.FromJoulesPerCubicMeter(1);
-            AssertEx.EqualTolerance(-1, -v.JoulesPerCubicMeter, JoulesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(2, (EnergyDensity.FromJoulesPerCubicMeter(3)-v).JoulesPerCubicMeter, JoulesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(2, (v + v).JoulesPerCubicMeter, JoulesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(10, (v*10).JoulesPerCubicMeter, JoulesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(10, (10*v).JoulesPerCubicMeter, JoulesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(2, (EnergyDensity.FromJoulesPerCubicMeter(10)/5).JoulesPerCubicMeter, JoulesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(2, EnergyDensity.FromJoulesPerCubicMeter(10)/EnergyDensity.FromJoulesPerCubicMeter(5), JoulesPerCubicMeterTolerance);
+            Assert.Equal(-1, -v.JoulesPerCubicMeter);
+            Assert.Equal(2, (EnergyDensity.FromJoulesPerCubicMeter(3) - v).JoulesPerCubicMeter);
+            Assert.Equal(2, (v + v).JoulesPerCubicMeter);
+            Assert.Equal(10, (v * 10).JoulesPerCubicMeter);
+            Assert.Equal(10, (10 * v).JoulesPerCubicMeter);
+            Assert.Equal(2, (EnergyDensity.FromJoulesPerCubicMeter(10) / 5).JoulesPerCubicMeter);
+            Assert.Equal(2, EnergyDensity.FromJoulesPerCubicMeter(10) / EnergyDensity.FromJoulesPerCubicMeter(5));
         }
 
         [Fact]
@@ -668,8 +728,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, EnergyDensityUnit.JoulePerCubicMeter, 1, EnergyDensityUnit.JoulePerCubicMeter, true)]  // Same value and unit.
         [InlineData(1, EnergyDensityUnit.JoulePerCubicMeter, 2, EnergyDensityUnit.JoulePerCubicMeter, false)] // Different value.
-        [InlineData(2, EnergyDensityUnit.JoulePerCubicMeter, 1, EnergyDensityUnit.GigajoulePerCubicMeter, false)] // Different value and unit.
-        [InlineData(1, EnergyDensityUnit.JoulePerCubicMeter, 1, EnergyDensityUnit.GigajoulePerCubicMeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, EnergyDensityUnit unitA, double valueB, EnergyDensityUnit unitB, bool expectEqual)
         {
             var a = new EnergyDensity(valueA, unitA);
@@ -729,8 +787,8 @@ namespace UnitsNet.Tests
             var quantity = EnergyDensity.FromJoulesPerCubicMeter(firstValue);
             var otherQuantity = EnergyDensity.FromJoulesPerCubicMeter(secondValue);
             EnergyDensity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, EnergyDensity.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -749,7 +807,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<EnergyDensityUnit>();
+            var units = EnumHelper.GetValues<EnergyDensityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -760,6 +818,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(EnergyDensity.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(EnergyDensity.Info.Units, EnergyDensity.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, EnergyDensity.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -846,7 +916,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = EnergyDensity.FromJoulesPerCubicMeter(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(EnergyDensity), quantity.As(EnergyDensity.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

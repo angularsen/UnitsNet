@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -38,11 +36,12 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Capacitance
     /// </remarks>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct ElectricCapacitance :
         IArithmeticQuantity<ElectricCapacitance, ElectricCapacitanceUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricCapacitance, ElectricCapacitance, double>,
+        IDivisionOperators<ElectricCapacitance, ElectricCapacitance, QuantityValue>,
         IComparisonOperators<ElectricCapacitance, ElectricCapacitance, bool>,
         IParsable<ElectricCapacitance>,
 #endif
@@ -54,13 +53,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly ElectricCapacitanceUnit? _unit;
 
         /// <summary>
@@ -105,7 +104,7 @@ namespace UnitsNet
             }
 
             /// <summary>
-            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricCapacitance"/> is [T^4][L^-2][M^-1][I^2].
+            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricCapacitance"/> is T^4L^-2M^-1I^2.
             /// </summary>
             public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, -1, 4, 2, 0, 0, 0);
 
@@ -121,20 +120,30 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<ElectricCapacitanceUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricCapacitanceUnit.Farad, "Farad", "Farads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
-                yield return new (ElectricCapacitanceUnit.Kilofarad, "Kilofarad", "Kilofarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
-                yield return new (ElectricCapacitanceUnit.Megafarad, "Megafarad", "Megafarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
-                yield return new (ElectricCapacitanceUnit.Microfarad, "Microfarad", "Microfarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere));
-                yield return new (ElectricCapacitanceUnit.Millifarad, "Millifarad", "Millifarads", BaseUnits.Undefined);
-                yield return new (ElectricCapacitanceUnit.Nanofarad, "Nanofarad", "Nanofarads", BaseUnits.Undefined);
-                yield return new (ElectricCapacitanceUnit.Picofarad, "Picofarad", "Picofarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere));
+                yield return new (ElectricCapacitanceUnit.Kilofarad, "Kilofarad", "Kilofarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
+                     new QuantityValue(1, 1000)             
+                );
+                yield return new (ElectricCapacitanceUnit.Megafarad, "Megafarad", "Megafarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
+                     new QuantityValue(1, 1000000)             
+                );
+                yield return new (ElectricCapacitanceUnit.Microfarad, "Microfarad", "Microfarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere),
+                     1000000             
+                );
+                yield return new (ElectricCapacitanceUnit.Millifarad, "Millifarad", "Millifarads", BaseUnits.Undefined,
+                     1000             
+                );
+                yield return new (ElectricCapacitanceUnit.Nanofarad, "Nanofarad", "Nanofarads", BaseUnits.Undefined,
+                     1000000000             
+                );
+                yield return new (ElectricCapacitanceUnit.Picofarad, "Picofarad", "Picofarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere),
+                     1000000000000             
+                );
             }
         }
 
         static ElectricCapacitance()
         {
-            Info = ElectricCapacitanceInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(ElectricCapacitanceInfo.CreateDefault);
         }
 
         /// <summary>
@@ -142,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricCapacitance(double value, ElectricCapacitanceUnit unit)
+        public ElectricCapacitance(QuantityValue value, ElectricCapacitanceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -156,7 +165,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricCapacitance(double value, UnitSystem unitSystem)
+        public ElectricCapacitance(QuantityValue value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -167,7 +176,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ElectricCapacitance" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ElectricCapacitance, ElectricCapacitanceUnit> Info { get; }
@@ -196,10 +206,8 @@ namespace UnitsNet
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public ElectricCapacitanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -233,69 +241,43 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCapacitanceUnit.Farad"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricCapacitanceUnit.Farad"/>
         /// </summary>
-        public double Farads => As(ElectricCapacitanceUnit.Farad);
+        public QuantityValue Farads => this.As(ElectricCapacitanceUnit.Farad);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCapacitanceUnit.Kilofarad"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricCapacitanceUnit.Kilofarad"/>
         /// </summary>
-        public double Kilofarads => As(ElectricCapacitanceUnit.Kilofarad);
+        public QuantityValue Kilofarads => this.As(ElectricCapacitanceUnit.Kilofarad);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCapacitanceUnit.Megafarad"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricCapacitanceUnit.Megafarad"/>
         /// </summary>
-        public double Megafarads => As(ElectricCapacitanceUnit.Megafarad);
+        public QuantityValue Megafarads => this.As(ElectricCapacitanceUnit.Megafarad);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCapacitanceUnit.Microfarad"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricCapacitanceUnit.Microfarad"/>
         /// </summary>
-        public double Microfarads => As(ElectricCapacitanceUnit.Microfarad);
+        public QuantityValue Microfarads => this.As(ElectricCapacitanceUnit.Microfarad);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCapacitanceUnit.Millifarad"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricCapacitanceUnit.Millifarad"/>
         /// </summary>
-        public double Millifarads => As(ElectricCapacitanceUnit.Millifarad);
+        public QuantityValue Millifarads => this.As(ElectricCapacitanceUnit.Millifarad);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCapacitanceUnit.Nanofarad"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricCapacitanceUnit.Nanofarad"/>
         /// </summary>
-        public double Nanofarads => As(ElectricCapacitanceUnit.Nanofarad);
+        public QuantityValue Nanofarads => this.As(ElectricCapacitanceUnit.Nanofarad);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCapacitanceUnit.Picofarad"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricCapacitanceUnit.Picofarad"/>
         /// </summary>
-        public double Picofarads => As(ElectricCapacitanceUnit.Picofarad);
+        public QuantityValue Picofarads => this.As(ElectricCapacitanceUnit.Picofarad);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: ElectricCapacitanceUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ElectricCapacitance>(ElectricCapacitanceUnit.Kilofarad, ElectricCapacitanceUnit.Farad, quantity => quantity.ToUnit(ElectricCapacitanceUnit.Farad));
-            unitConverter.SetConversionFunction<ElectricCapacitance>(ElectricCapacitanceUnit.Megafarad, ElectricCapacitanceUnit.Farad, quantity => quantity.ToUnit(ElectricCapacitanceUnit.Farad));
-            unitConverter.SetConversionFunction<ElectricCapacitance>(ElectricCapacitanceUnit.Microfarad, ElectricCapacitanceUnit.Farad, quantity => quantity.ToUnit(ElectricCapacitanceUnit.Farad));
-            unitConverter.SetConversionFunction<ElectricCapacitance>(ElectricCapacitanceUnit.Millifarad, ElectricCapacitanceUnit.Farad, quantity => quantity.ToUnit(ElectricCapacitanceUnit.Farad));
-            unitConverter.SetConversionFunction<ElectricCapacitance>(ElectricCapacitanceUnit.Nanofarad, ElectricCapacitanceUnit.Farad, quantity => quantity.ToUnit(ElectricCapacitanceUnit.Farad));
-            unitConverter.SetConversionFunction<ElectricCapacitance>(ElectricCapacitanceUnit.Picofarad, ElectricCapacitanceUnit.Farad, quantity => quantity.ToUnit(ElectricCapacitanceUnit.Farad));
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<ElectricCapacitance>(ElectricCapacitanceUnit.Farad, ElectricCapacitanceUnit.Farad, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> ElectricCapacitanceUnit
-            unitConverter.SetConversionFunction<ElectricCapacitance>(ElectricCapacitanceUnit.Farad, ElectricCapacitanceUnit.Kilofarad, quantity => quantity.ToUnit(ElectricCapacitanceUnit.Kilofarad));
-            unitConverter.SetConversionFunction<ElectricCapacitance>(ElectricCapacitanceUnit.Farad, ElectricCapacitanceUnit.Megafarad, quantity => quantity.ToUnit(ElectricCapacitanceUnit.Megafarad));
-            unitConverter.SetConversionFunction<ElectricCapacitance>(ElectricCapacitanceUnit.Farad, ElectricCapacitanceUnit.Microfarad, quantity => quantity.ToUnit(ElectricCapacitanceUnit.Microfarad));
-            unitConverter.SetConversionFunction<ElectricCapacitance>(ElectricCapacitanceUnit.Farad, ElectricCapacitanceUnit.Millifarad, quantity => quantity.ToUnit(ElectricCapacitanceUnit.Millifarad));
-            unitConverter.SetConversionFunction<ElectricCapacitance>(ElectricCapacitanceUnit.Farad, ElectricCapacitanceUnit.Nanofarad, quantity => quantity.ToUnit(ElectricCapacitanceUnit.Nanofarad));
-            unitConverter.SetConversionFunction<ElectricCapacitance>(ElectricCapacitanceUnit.Farad, ElectricCapacitanceUnit.Picofarad, quantity => quantity.ToUnit(ElectricCapacitanceUnit.Picofarad));
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -325,7 +307,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCapacitance"/> from <see cref="ElectricCapacitanceUnit.Farad"/>.
         /// </summary>
-        public static ElectricCapacitance FromFarads(double value)
+        public static ElectricCapacitance FromFarads(QuantityValue value)
         {
             return new ElectricCapacitance(value, ElectricCapacitanceUnit.Farad);
         }
@@ -333,7 +315,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCapacitance"/> from <see cref="ElectricCapacitanceUnit.Kilofarad"/>.
         /// </summary>
-        public static ElectricCapacitance FromKilofarads(double value)
+        public static ElectricCapacitance FromKilofarads(QuantityValue value)
         {
             return new ElectricCapacitance(value, ElectricCapacitanceUnit.Kilofarad);
         }
@@ -341,7 +323,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCapacitance"/> from <see cref="ElectricCapacitanceUnit.Megafarad"/>.
         /// </summary>
-        public static ElectricCapacitance FromMegafarads(double value)
+        public static ElectricCapacitance FromMegafarads(QuantityValue value)
         {
             return new ElectricCapacitance(value, ElectricCapacitanceUnit.Megafarad);
         }
@@ -349,7 +331,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCapacitance"/> from <see cref="ElectricCapacitanceUnit.Microfarad"/>.
         /// </summary>
-        public static ElectricCapacitance FromMicrofarads(double value)
+        public static ElectricCapacitance FromMicrofarads(QuantityValue value)
         {
             return new ElectricCapacitance(value, ElectricCapacitanceUnit.Microfarad);
         }
@@ -357,7 +339,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCapacitance"/> from <see cref="ElectricCapacitanceUnit.Millifarad"/>.
         /// </summary>
-        public static ElectricCapacitance FromMillifarads(double value)
+        public static ElectricCapacitance FromMillifarads(QuantityValue value)
         {
             return new ElectricCapacitance(value, ElectricCapacitanceUnit.Millifarad);
         }
@@ -365,7 +347,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCapacitance"/> from <see cref="ElectricCapacitanceUnit.Nanofarad"/>.
         /// </summary>
-        public static ElectricCapacitance FromNanofarads(double value)
+        public static ElectricCapacitance FromNanofarads(QuantityValue value)
         {
             return new ElectricCapacitance(value, ElectricCapacitanceUnit.Nanofarad);
         }
@@ -373,7 +355,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCapacitance"/> from <see cref="ElectricCapacitanceUnit.Picofarad"/>.
         /// </summary>
-        public static ElectricCapacitance FromPicofarads(double value)
+        public static ElectricCapacitance FromPicofarads(QuantityValue value)
         {
             return new ElectricCapacitance(value, ElectricCapacitanceUnit.Picofarad);
         }
@@ -384,7 +366,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricCapacitance unit value.</returns>
-        public static ElectricCapacitance From(double value, ElectricCapacitanceUnit fromUnit)
+        public static ElectricCapacitance From(QuantityValue value, ElectricCapacitanceUnit fromUnit)
         {
             return new ElectricCapacitance(value, fromUnit);
         }
@@ -445,10 +427,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static ElectricCapacitance Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<ElectricCapacitance, ElectricCapacitanceUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<ElectricCapacitance, ElectricCapacitanceUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -476,11 +455,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out ElectricCapacitance result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<ElectricCapacitance, ElectricCapacitanceUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<ElectricCapacitance, ElectricCapacitanceUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -501,7 +476,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -512,7 +487,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ElectricCapacitanceUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.ElectricCapacitanceUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out ElectricCapacitanceUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -527,7 +502,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out ElectricCapacitanceUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -546,35 +521,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="ElectricCapacitance"/> from adding two <see cref="ElectricCapacitance"/>.</summary>
         public static ElectricCapacitance operator +(ElectricCapacitance left, ElectricCapacitance right)
         {
-            return new ElectricCapacitance(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new ElectricCapacitance(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCapacitance"/> from subtracting two <see cref="ElectricCapacitance"/>.</summary>
         public static ElectricCapacitance operator -(ElectricCapacitance left, ElectricCapacitance right)
         {
-            return new ElectricCapacitance(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new ElectricCapacitance(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCapacitance"/> from multiplying value and <see cref="ElectricCapacitance"/>.</summary>
-        public static ElectricCapacitance operator *(double left, ElectricCapacitance right)
+        public static ElectricCapacitance operator *(QuantityValue left, ElectricCapacitance right)
         {
             return new ElectricCapacitance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCapacitance"/> from multiplying value and <see cref="ElectricCapacitance"/>.</summary>
-        public static ElectricCapacitance operator *(ElectricCapacitance left, double right)
+        public static ElectricCapacitance operator *(ElectricCapacitance left, QuantityValue right)
         {
             return new ElectricCapacitance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCapacitance"/> from dividing <see cref="ElectricCapacitance"/> by value.</summary>
-        public static ElectricCapacitance operator /(ElectricCapacitance left, double right)
+        public static ElectricCapacitance operator /(ElectricCapacitance left, QuantityValue right)
         {
             return new ElectricCapacitance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricCapacitance"/> by <see cref="ElectricCapacitance"/>.</summary>
-        public static double operator /(ElectricCapacitance left, ElectricCapacitance right)
+        public static QuantityValue operator /(ElectricCapacitance left, ElectricCapacitance right)
         {
             return left.Farads / right.Farads;
         }
@@ -586,65 +561,55 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ElectricCapacitance left, ElectricCapacitance right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ElectricCapacitance left, ElectricCapacitance right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(ElectricCapacitance left, ElectricCapacitance right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ElectricCapacitance left, ElectricCapacitance right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="ElectricCapacitance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ElectricCapacitance other, ElectricCapacitance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ElectricCapacitance"/> quantities.</summary>
         public static bool operator ==(ElectricCapacitance left, ElectricCapacitance right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="ElectricCapacitance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ElectricCapacitance other, ElectricCapacitance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="ElectricCapacitance"/> quantities.</summary>
         public static bool operator !=(ElectricCapacitance left, ElectricCapacitance right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="ElectricCapacitance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(ElectricCapacitance other, ElectricCapacitance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ElectricCapacitance"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is ElectricCapacitance otherQuantity))
+            if (obj is not ElectricCapacitance otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="ElectricCapacitance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(ElectricCapacitance other, ElectricCapacitance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ElectricCapacitance"/> quantities.</summary>
         public bool Equals(ElectricCapacitance other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>
         ///     Returns the hash code for this instance.
@@ -652,31 +617,26 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricCapacitance.</returns>
         public override int GetHashCode()
         {
-            return Comparison.GetHashCode(Unit, Value);
+            return Comparison.GetHashCode(typeof(ElectricCapacitance), this.As(BaseUnit));
         }
-
-        /// <summary>Compares the current <see cref="ElectricCapacitance"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        
+        /// <inheritdoc  cref="CompareTo(ElectricCapacitance)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is ElectricCapacitance otherQuantity)) throw new ArgumentException("Expected type ElectricCapacitance.", nameof(obj));
+            if (obj is not ElectricCapacitance otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<ElectricCapacitance>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="ElectricCapacitance"/> with another <see cref="ElectricCapacitance"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="ElectricCapacitance"/> with another <see cref="ElectricCapacitance"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -688,140 +648,8 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(ElectricCapacitance other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
+            return _value.CompareTo(other.As(this.Unit));
         }
-
-        #endregion
-
-        #region Conversion Methods
-
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricCapacitanceUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
-
-            return ToUnit(unit).Value;
-        }
-
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<ElectricCapacitanceUnit>());
-        }
-
-        /// <summary>
-        ///     Converts this ElectricCapacitance to another ElectricCapacitance with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A ElectricCapacitance with the specified unit.</returns>
-        public ElectricCapacitance ToUnit(ElectricCapacitanceUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
-
-        /// <summary>
-        ///     Converts this <see cref="ElectricCapacitance"/> to another <see cref="ElectricCapacitance"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A ElectricCapacitance with the specified unit.</returns>
-        public ElectricCapacitance ToUnit(ElectricCapacitanceUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(ElectricCapacitance), Unit, typeof(ElectricCapacitance), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (ElectricCapacitance)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="ElectricCapacitance"/> to another <see cref="ElectricCapacitance"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="ElectricCapacitance"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(ElectricCapacitanceUnit unit, [NotNullWhen(true)] out ElectricCapacitance? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            ElectricCapacitance? convertedOrNull = (Unit, unit) switch
-            {
-                // ElectricCapacitanceUnit -> BaseUnit
-                (ElectricCapacitanceUnit.Kilofarad, ElectricCapacitanceUnit.Farad) => new ElectricCapacitance((_value) * 1e3d, ElectricCapacitanceUnit.Farad),
-                (ElectricCapacitanceUnit.Megafarad, ElectricCapacitanceUnit.Farad) => new ElectricCapacitance((_value) * 1e6d, ElectricCapacitanceUnit.Farad),
-                (ElectricCapacitanceUnit.Microfarad, ElectricCapacitanceUnit.Farad) => new ElectricCapacitance((_value) * 1e-6d, ElectricCapacitanceUnit.Farad),
-                (ElectricCapacitanceUnit.Millifarad, ElectricCapacitanceUnit.Farad) => new ElectricCapacitance((_value) * 1e-3d, ElectricCapacitanceUnit.Farad),
-                (ElectricCapacitanceUnit.Nanofarad, ElectricCapacitanceUnit.Farad) => new ElectricCapacitance((_value) * 1e-9d, ElectricCapacitanceUnit.Farad),
-                (ElectricCapacitanceUnit.Picofarad, ElectricCapacitanceUnit.Farad) => new ElectricCapacitance((_value) * 1e-12d, ElectricCapacitanceUnit.Farad),
-
-                // BaseUnit -> ElectricCapacitanceUnit
-                (ElectricCapacitanceUnit.Farad, ElectricCapacitanceUnit.Kilofarad) => new ElectricCapacitance((_value) / 1e3d, ElectricCapacitanceUnit.Kilofarad),
-                (ElectricCapacitanceUnit.Farad, ElectricCapacitanceUnit.Megafarad) => new ElectricCapacitance((_value) / 1e6d, ElectricCapacitanceUnit.Megafarad),
-                (ElectricCapacitanceUnit.Farad, ElectricCapacitanceUnit.Microfarad) => new ElectricCapacitance((_value) / 1e-6d, ElectricCapacitanceUnit.Microfarad),
-                (ElectricCapacitanceUnit.Farad, ElectricCapacitanceUnit.Millifarad) => new ElectricCapacitance((_value) / 1e-3d, ElectricCapacitanceUnit.Millifarad),
-                (ElectricCapacitanceUnit.Farad, ElectricCapacitanceUnit.Nanofarad) => new ElectricCapacitance((_value) / 1e-9d, ElectricCapacitanceUnit.Nanofarad),
-                (ElectricCapacitanceUnit.Farad, ElectricCapacitanceUnit.Picofarad) => new ElectricCapacitance((_value) / 1e-12d, ElectricCapacitanceUnit.Picofarad),
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not ElectricCapacitanceUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCapacitanceUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is ElectricCapacitanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricCapacitanceUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<ElectricCapacitanceUnit> IQuantity<ElectricCapacitanceUnit>.ToUnit(ElectricCapacitanceUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
@@ -836,7 +664,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

@@ -42,36 +42,36 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificFuelConsumption
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="SpecificFuelConsumption.FromGramsPerKilonewtonSecond(double)" />
+            /// <inheritdoc cref="SpecificFuelConsumption.FromGramsPerKilonewtonSecond(QuantityValue)" />
             public SpecificFuelConsumption GramsPerKilonewtonSecond
 #if NET7_0_OR_GREATER
-                => SpecificFuelConsumption.FromGramsPerKilonewtonSecond(double.CreateChecked(value));
+                => SpecificFuelConsumption.FromGramsPerKilonewtonSecond(QuantityValue.CreateChecked(value));
 #else
-                => SpecificFuelConsumption.FromGramsPerKilonewtonSecond(value.ToDouble(null));
+                => SpecificFuelConsumption.FromGramsPerKilonewtonSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(double)" />
+            /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(QuantityValue)" />
             public SpecificFuelConsumption KilogramsPerKilogramForceHour
 #if NET7_0_OR_GREATER
-                => SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(double.CreateChecked(value));
+                => SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(QuantityValue.CreateChecked(value));
 #else
-                => SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(value.ToDouble(null));
+                => SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(double)" />
+            /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(QuantityValue)" />
             public SpecificFuelConsumption KilogramsPerKilonewtonSecond
 #if NET7_0_OR_GREATER
-                => SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(double.CreateChecked(value));
+                => SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(QuantityValue.CreateChecked(value));
 #else
-                => SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(value.ToDouble(null));
+                => SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(double)" />
+            /// <inheritdoc cref="SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(QuantityValue)" />
             public SpecificFuelConsumption PoundsMassPerPoundForceHour
 #if NET7_0_OR_GREATER
-                => SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(double.CreateChecked(value));
+                => SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(QuantityValue.CreateChecked(value));
 #else
-                => SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(value.ToDouble(null));
+                => SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(value.ToQuantityValue());
 #endif
 
         }

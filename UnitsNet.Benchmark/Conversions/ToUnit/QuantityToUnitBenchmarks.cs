@@ -14,7 +14,7 @@ namespace UnitsNet.Benchmark.Conversions.ToUnit;
 [SimpleJob(RuntimeMoniker.Net80)]
 public class QuantityToUnitBenchmarks
 {
-    private static readonly double Value = 123.456;
+    private static readonly QuantityValue Value = 123.456;
     private readonly Random _random = new(42);
 
     private (Mass Quantity, MassUnit Unit)[] _massConversions = [];
@@ -23,16 +23,30 @@ public class QuantityToUnitBenchmarks
     [Params(1000)]
     public int NbConversions { get; set; }
 
+    [Params(true, false)]
+    public bool Frozen { get; set; }
+
+    [Params(ConversionCachingMode.All)]
+    public ConversionCachingMode CachingMode { get; set; }
+
+    [GlobalSetup]
+    public void ConfigureCaching()
+    {
+        UnitsNetSetup.ConfigureDefaults(builder => builder.WithConverterOptions(new QuantityConverterBuildOptions(Frozen, CachingMode)));
+    }
+
     [GlobalSetup(Target = nameof(MassToUnit))]
     public void PrepareMassConversionsToTest()
     {
-        _massConversions = _random.GetRandomConversions<Mass, MassUnit>(Value, Mass.Units.ToArray(), NbConversions);
+        ConfigureCaching();
+        _massConversions = _random.GetRandomConversions<Mass, MassUnit>(Value, Mass.Units, NbConversions);
     }
 
     [GlobalSetup(Target = nameof(VolumeFlowToUnit))]
     public void PrepareVolumeFlowConversionsToTest()
     {
-        _volumeFlowConversions = _random.GetRandomConversions<VolumeFlow, VolumeFlowUnit>(Value, VolumeFlow.Units.ToArray(), NbConversions);
+        ConfigureCaching();
+        _volumeFlowConversions = _random.GetRandomConversions<VolumeFlow, VolumeFlowUnit>(Value, VolumeFlow.Units, NbConversions);
     }
 
     [Benchmark(Baseline = true)]

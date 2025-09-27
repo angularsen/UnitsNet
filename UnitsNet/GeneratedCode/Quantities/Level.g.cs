@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -35,11 +33,12 @@ namespace UnitsNet
     ///     Level is the logarithm of the ratio of a quantity Q to a reference value of that quantity, Q₀, expressed in dimensionless units.
     /// </summary>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Level :
         ILogarithmicQuantity<Level, LevelUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Level, Level, double>,
+        IDivisionOperators<Level, Level, QuantityValue>,
         IComparisonOperators<Level, Level, bool>,
         IParsable<Level>,
 #endif
@@ -51,13 +50,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly LevelUnit? _unit;
 
         /// <summary>
@@ -118,15 +117,15 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<LevelUnit>> GetDefaultMappings()
             {
                 yield return new (LevelUnit.Decibel, "Decibel", "Decibels", BaseUnits.Undefined);
-                yield return new (LevelUnit.Neper, "Neper", "Nepers", BaseUnits.Undefined);
+                yield return new (LevelUnit.Neper, "Neper", "Nepers", BaseUnits.Undefined,
+                     new QuantityValue(57564627, 500000000)             
+                );
             }
         }
 
         static Level()
         {
-            Info = LevelInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(LevelInfo.CreateDefault);
         }
 
         /// <summary>
@@ -134,7 +133,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Level(double value, LevelUnit unit)
+        public Level(QuantityValue value, LevelUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -145,7 +144,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Level" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<Level, LevelUnit> Info { get; }
@@ -171,16 +171,14 @@ namespace UnitsNet
         public static Level Zero => Info.Zero;
 
         /// <inheritdoc />
-        public static double LogarithmicScalingFactor {get;} = 10;
+        public static QuantityValue LogarithmicScalingFactor {get;} = 10;
 
         #endregion
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public LevelUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -208,7 +206,7 @@ namespace UnitsNet
 #endif
 
 #if NETSTANDARD2_0
-        double ILogarithmicQuantity<Level>.LogarithmicScalingFactor => LogarithmicScalingFactor;
+        QuantityValue ILogarithmicQuantity<Level>.LogarithmicScalingFactor => LogarithmicScalingFactor;
 #endif
 
         #endregion
@@ -218,34 +216,18 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LevelUnit.Decibel"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LevelUnit.Decibel"/>
         /// </summary>
-        public double Decibels => As(LevelUnit.Decibel);
+        public QuantityValue Decibels => this.As(LevelUnit.Decibel);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LevelUnit.Neper"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LevelUnit.Neper"/>
         /// </summary>
-        public double Nepers => As(LevelUnit.Neper);
+        public QuantityValue Nepers => this.As(LevelUnit.Neper);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: LevelUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Level>(LevelUnit.Neper, LevelUnit.Decibel, quantity => quantity.ToUnit(LevelUnit.Decibel));
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<Level>(LevelUnit.Decibel, LevelUnit.Decibel, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> LevelUnit
-            unitConverter.SetConversionFunction<Level>(LevelUnit.Decibel, LevelUnit.Neper, quantity => quantity.ToUnit(LevelUnit.Neper));
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -275,7 +257,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Decibel"/>.
         /// </summary>
-        public static Level FromDecibels(double value)
+        public static Level FromDecibels(QuantityValue value)
         {
             return new Level(value, LevelUnit.Decibel);
         }
@@ -283,7 +265,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Neper"/>.
         /// </summary>
-        public static Level FromNepers(double value)
+        public static Level FromNepers(QuantityValue value)
         {
             return new Level(value, LevelUnit.Neper);
         }
@@ -294,7 +276,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Level unit value.</returns>
-        public static Level From(double value, LevelUnit fromUnit)
+        public static Level From(QuantityValue value, LevelUnit fromUnit)
         {
             return new Level(value, fromUnit);
         }
@@ -355,10 +337,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Level Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<Level, LevelUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<Level, LevelUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -386,11 +365,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Level result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<Level, LevelUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<Level, LevelUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -411,7 +386,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -422,7 +397,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.LevelUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.LevelUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out LevelUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -437,7 +412,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out LevelUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -448,53 +423,61 @@ namespace UnitsNet
         #region Logarithmic Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static Level operator -(Level right)
+        public static Level operator -(Level quantity)
         {
-            return new Level(-right.Value, right.Unit);
+            return new Level(-quantity.Value, quantity.Unit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic addition of two <see cref="Level"/>.</summary>
+        /// <remarks>This operation involves a conversion of the values to linear space, which is not guaranteed to produce an exact value.
+        /// <para>The final result is rounded to 15 significant digits.</para>
+        /// </remarks>
         public static Level operator +(Level left, Level right)
         {
             // Logarithmic addition
             // Formula: 10 * log10(10^(x/10) + 10^(y/10))
-            return new Level(10 * Math.Log10(Math.Pow(10, left.Value / 10) + Math.Pow(10, right.ToUnit(left.Unit).Value / 10)), left.Unit);
+            var leftUnit = left.Unit;
+            return new Level(QuantityValueExtensions.AddWithLogScaling(left.Value, right.As(leftUnit), LogarithmicScalingFactor), leftUnit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic subtraction of two <see cref="Level"/>.</summary>
+        /// <remarks>This operation involves a conversion of the values to linear space, which is not guaranteed to produce an exact value.
+        /// <para>The final result is rounded to 15 significant digits.</para>
+        /// </remarks>
         public static Level operator -(Level left, Level right)
         {
             // Logarithmic subtraction
             // Formula: 10 * log10(10^(x/10) - 10^(y/10))
-            return new Level(10 * Math.Log10(Math.Pow(10, left.Value / 10) - Math.Pow(10, right.ToUnit(left.Unit).Value / 10)), left.Unit);
+            var leftUnit = left.Unit;
+            return new Level(QuantityValueExtensions.SubtractWithLogScaling(left.Value, right.As(leftUnit), LogarithmicScalingFactor), leftUnit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic multiplication of value and <see cref="Level"/>.</summary>
-        public static Level operator *(double left, Level right)
+        public static Level operator *(QuantityValue left, Level right)
         {
             // Logarithmic multiplication = addition
             return new Level(left + right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic multiplication of value and <see cref="Level"/>.</summary>
-        public static Level operator *(Level left, double right)
+        public static Level operator *(Level left, QuantityValue right)
         {
             // Logarithmic multiplication = addition
             return new Level(left.Value + right, left.Unit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic division of <see cref="Level"/> by value.</summary>
-        public static Level operator /(Level left, double right)
+        public static Level operator /(Level left, QuantityValue right)
         {
             // Logarithmic division = subtraction
             return new Level(left.Value - right, left.Unit);
         }
 
         /// <summary>Get ratio value from logarithmic division of <see cref="Level"/> by <see cref="Level"/>.</summary>
-        public static double operator /(Level left, Level right)
+        public static QuantityValue operator /(Level left, Level right)
         {
             // Logarithmic division = subtraction
-            return Convert.ToDouble(left.Value - right.ToUnit(left.Unit).Value);
+            return left.Value - right.As(left.Unit);
         }
 
         #endregion
@@ -504,65 +487,55 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Level left, Level right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Level left, Level right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Level left, Level right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Level left, Level right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="Level"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Level other, Level tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Level"/> quantities.</summary>
         public static bool operator ==(Level left, Level right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="Level"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Level other, Level tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="Level"/> quantities.</summary>
         public static bool operator !=(Level left, Level right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Level"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Level other, Level tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Level"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is Level otherQuantity))
+            if (obj is not Level otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Level"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Level other, Level tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Level"/> quantities.</summary>
         public bool Equals(Level other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>
         ///     Returns the hash code for this instance.
@@ -570,31 +543,26 @@ namespace UnitsNet
         /// <returns>A hash code for the current Level.</returns>
         public override int GetHashCode()
         {
-            return Comparison.GetHashCode(Unit, Value);
+            return Comparison.GetHashCode(typeof(Level), this.As(BaseUnit));
         }
-
-        /// <summary>Compares the current <see cref="Level"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        
+        /// <inheritdoc  cref="CompareTo(Level)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is Level otherQuantity)) throw new ArgumentException("Expected type Level.", nameof(obj));
+            if (obj is not Level otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<Level>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="Level"/> with another <see cref="Level"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="Level"/> with another <see cref="Level"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -606,130 +574,8 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(Level other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
+            return _value.CompareTo(other.As(this.Unit));
         }
-
-        #endregion
-
-        #region Conversion Methods
-
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(LevelUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
-
-            return ToUnit(unit).Value;
-        }
-
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<LevelUnit>());
-        }
-
-        /// <summary>
-        ///     Converts this Level to another Level with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A Level with the specified unit.</returns>
-        public Level ToUnit(LevelUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
-
-        /// <summary>
-        ///     Converts this <see cref="Level"/> to another <see cref="Level"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A Level with the specified unit.</returns>
-        public Level ToUnit(LevelUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(Level), Unit, typeof(Level), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (Level)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="Level"/> to another <see cref="Level"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="Level"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(LevelUnit unit, [NotNullWhen(true)] out Level? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            Level? convertedOrNull = (Unit, unit) switch
-            {
-                // LevelUnit -> BaseUnit
-                (LevelUnit.Neper, LevelUnit.Decibel) => new Level((1 / 0.115129254) * _value, LevelUnit.Decibel),
-
-                // BaseUnit -> LevelUnit
-                (LevelUnit.Decibel, LevelUnit.Neper) => new Level(0.115129254 * _value, LevelUnit.Neper),
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not LevelUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LevelUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is LevelUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LevelUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<LevelUnit> IQuantity<LevelUnit>.ToUnit(LevelUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
@@ -744,7 +590,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

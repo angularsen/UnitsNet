@@ -23,8 +23,8 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
 
         string FromHeader { get; }
         string ToHeader { get; }
-        double FromValue { get; set; }
-        double ToValue { get; }
+        QuantityValue FromValue { get; set; }
+        QuantityValue ToValue { get; }
         ICommand SwapCommand { get; }
     }
 }

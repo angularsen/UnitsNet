@@ -138,6 +138,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void RotationalAccelerationInfo_CreateWithCustomUnitInfos()
+        {
+            RotationalAccelerationUnit[] expectedUnits = [RotationalAccelerationUnit.RadianPerSecondSquared];
+
+            RotationalAcceleration.RotationalAccelerationInfo quantityInfo = RotationalAcceleration.RotationalAccelerationInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("RotationalAcceleration", quantityInfo.Name);
+            Assert.Equal(RotationalAcceleration.Zero, quantityInfo.Zero);
+            Assert.Equal(RotationalAcceleration.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void RadianPerSecondSquaredToRotationalAccelerationUnits()
         {
             RotationalAcceleration radianpersecondsquared = RotationalAcceleration.FromRadiansPerSecondSquared(1);
@@ -227,26 +241,69 @@ namespace UnitsNet.Tests
             var expectedUnit = RotationalAcceleration.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            RotationalAcceleration convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                RotationalAcceleration quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                RotationalAcceleration convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<RotationalAccelerationUnit> quantityToConvert = quantity;
+
+                IQuantity<RotationalAccelerationUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new RotationalAcceleration(value: 1, unit: RotationalAcceleration.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new RotationalAcceleration(value: 1, unit: RotationalAcceleration.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<RotationalAccelerationUnit> quantity = new RotationalAcceleration(value: 1, unit: RotationalAcceleration.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new RotationalAcceleration(value: 1, unit: RotationalAcceleration.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new RotationalAcceleration(value: 1, unit: RotationalAcceleration.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new RotationalAcceleration(value: 1, unit: RotationalAcceleration.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<RotationalAccelerationUnit> quantity = new RotationalAcceleration(value: 1, unit: RotationalAcceleration.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new RotationalAcceleration(value: 1, unit: RotationalAcceleration.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -255,7 +312,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 rad/s²", RotationalAccelerationUnit.RadianPerSecondSquared, 4.2)]
         [InlineData("en-US", "4.2 rpm/s", RotationalAccelerationUnit.RevolutionPerMinutePerSecond, 4.2)]
         [InlineData("en-US", "4.2 r/s²", RotationalAccelerationUnit.RevolutionPerSecondSquared, 4.2)]
-        public void Parse(string culture, string quantityString, RotationalAccelerationUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, RotationalAccelerationUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = RotationalAcceleration.Parse(quantityString);
@@ -269,7 +326,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 rad/s²", RotationalAccelerationUnit.RadianPerSecondSquared, 4.2)]
         [InlineData("en-US", "4.2 rpm/s", RotationalAccelerationUnit.RevolutionPerMinutePerSecond, 4.2)]
         [InlineData("en-US", "4.2 r/s²", RotationalAccelerationUnit.RevolutionPerSecondSquared, 4.2)]
-        public void TryParse(string culture, string quantityString, RotationalAccelerationUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, RotationalAccelerationUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(RotationalAcceleration.TryParse(quantityString, out RotationalAcceleration parsed));
@@ -437,6 +494,7 @@ namespace UnitsNet.Tests
                 var quantity = RotationalAcceleration.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -460,35 +518,37 @@ namespace UnitsNet.Tests
                 IQuantity<RotationalAccelerationUnit> quantityToConvert = quantity;
                 IQuantity<RotationalAccelerationUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            RotationalAcceleration radianpersecondsquared = RotationalAcceleration.FromRadiansPerSecondSquared(1);
-            AssertEx.EqualTolerance(1, RotationalAcceleration.FromDegreesPerSecondSquared(radianpersecondsquared.DegreesPerSecondSquared).RadiansPerSecondSquared, DegreesPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(1, RotationalAcceleration.FromRadiansPerSecondSquared(radianpersecondsquared.RadiansPerSecondSquared).RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(1, RotationalAcceleration.FromRevolutionsPerMinutePerSecond(radianpersecondsquared.RevolutionsPerMinutePerSecond).RadiansPerSecondSquared, RevolutionsPerMinutePerSecondTolerance);
-            AssertEx.EqualTolerance(1, RotationalAcceleration.FromRevolutionsPerSecondSquared(radianpersecondsquared.RevolutionsPerSecondSquared).RadiansPerSecondSquared, RevolutionsPerSecondSquaredTolerance);
+            RotationalAcceleration radianpersecondsquared = RotationalAcceleration.FromRadiansPerSecondSquared(3);
+            Assert.Equal(3, RotationalAcceleration.FromDegreesPerSecondSquared(radianpersecondsquared.DegreesPerSecondSquared).RadiansPerSecondSquared);
+            Assert.Equal(3, RotationalAcceleration.FromRadiansPerSecondSquared(radianpersecondsquared.RadiansPerSecondSquared).RadiansPerSecondSquared);
+            Assert.Equal(3, RotationalAcceleration.FromRevolutionsPerMinutePerSecond(radianpersecondsquared.RevolutionsPerMinutePerSecond).RadiansPerSecondSquared);
+            Assert.Equal(3, RotationalAcceleration.FromRevolutionsPerSecondSquared(radianpersecondsquared.RevolutionsPerSecondSquared).RadiansPerSecondSquared);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             RotationalAcceleration v = RotationalAcceleration.FromRadiansPerSecondSquared(1);
-            AssertEx.EqualTolerance(-1, -v.RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(2, (RotationalAcceleration.FromRadiansPerSecondSquared(3)-v).RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(2, (v + v).RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(10, (v*10).RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(10, (10*v).RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(2, (RotationalAcceleration.FromRadiansPerSecondSquared(10)/5).RadiansPerSecondSquared, RadiansPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(2, RotationalAcceleration.FromRadiansPerSecondSquared(10)/RotationalAcceleration.FromRadiansPerSecondSquared(5), RadiansPerSecondSquaredTolerance);
+            Assert.Equal(-1, -v.RadiansPerSecondSquared);
+            Assert.Equal(2, (RotationalAcceleration.FromRadiansPerSecondSquared(3) - v).RadiansPerSecondSquared);
+            Assert.Equal(2, (v + v).RadiansPerSecondSquared);
+            Assert.Equal(10, (v * 10).RadiansPerSecondSquared);
+            Assert.Equal(10, (10 * v).RadiansPerSecondSquared);
+            Assert.Equal(2, (RotationalAcceleration.FromRadiansPerSecondSquared(10) / 5).RadiansPerSecondSquared);
+            Assert.Equal(2, RotationalAcceleration.FromRadiansPerSecondSquared(10) / RotationalAcceleration.FromRadiansPerSecondSquared(5));
         }
 
         [Fact]
@@ -534,8 +594,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, RotationalAccelerationUnit.RadianPerSecondSquared, 1, RotationalAccelerationUnit.RadianPerSecondSquared, true)]  // Same value and unit.
         [InlineData(1, RotationalAccelerationUnit.RadianPerSecondSquared, 2, RotationalAccelerationUnit.RadianPerSecondSquared, false)] // Different value.
-        [InlineData(2, RotationalAccelerationUnit.RadianPerSecondSquared, 1, RotationalAccelerationUnit.DegreePerSecondSquared, false)] // Different value and unit.
-        [InlineData(1, RotationalAccelerationUnit.RadianPerSecondSquared, 1, RotationalAccelerationUnit.DegreePerSecondSquared, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, RotationalAccelerationUnit unitA, double valueB, RotationalAccelerationUnit unitB, bool expectEqual)
         {
             var a = new RotationalAcceleration(valueA, unitA);
@@ -595,8 +653,8 @@ namespace UnitsNet.Tests
             var quantity = RotationalAcceleration.FromRadiansPerSecondSquared(firstValue);
             var otherQuantity = RotationalAcceleration.FromRadiansPerSecondSquared(secondValue);
             RotationalAcceleration maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, RotationalAcceleration.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -615,7 +673,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<RotationalAccelerationUnit>();
+            var units = EnumHelper.GetValues<RotationalAccelerationUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -626,6 +684,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(RotationalAcceleration.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(RotationalAcceleration.Info.Units, RotationalAcceleration.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, RotationalAcceleration.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -696,7 +766,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = RotationalAcceleration.FromRadiansPerSecondSquared(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(RotationalAcceleration), quantity.As(RotationalAcceleration.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

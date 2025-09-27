@@ -174,6 +174,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ImpulseInfo_CreateWithCustomUnitInfos()
+        {
+            ImpulseUnit[] expectedUnits = [ImpulseUnit.NewtonSecond];
+
+            Impulse.ImpulseInfo quantityInfo = Impulse.ImpulseInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("Impulse", quantityInfo.Name);
+            Assert.Equal(Impulse.Zero, quantityInfo.Zero);
+            Assert.Equal(Impulse.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void NewtonSecondToImpulseUnits()
         {
             Impulse newtonsecond = Impulse.FromNewtonSeconds(1);
@@ -281,26 +295,69 @@ namespace UnitsNet.Tests
             var expectedUnit = Impulse.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            Impulse convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                Impulse quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                Impulse convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<ImpulseUnit> quantityToConvert = quantity;
+
+                IQuantity<ImpulseUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new Impulse(value: 1, unit: Impulse.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Impulse(value: 1, unit: Impulse.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<ImpulseUnit> quantity = new Impulse(value: 1, unit: Impulse.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Impulse(value: 1, unit: Impulse.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new Impulse(value: 1, unit: Impulse.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Impulse(value: 1, unit: Impulse.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<ImpulseUnit> quantity = new Impulse(value: 1, unit: Impulse.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Impulse(value: 1, unit: Impulse.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -317,7 +374,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 lb·ft/s", ImpulseUnit.PoundFootPerSecond, 4.2)]
         [InlineData("en-US", "4.2 lbf·s", ImpulseUnit.PoundForceSecond, 4.2)]
         [InlineData("en-US", "4.2 slug·ft/s", ImpulseUnit.SlugFootPerSecond, 4.2)]
-        public void Parse(string culture, string quantityString, ImpulseUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, ImpulseUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Impulse.Parse(quantityString);
@@ -339,7 +396,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 lb·ft/s", ImpulseUnit.PoundFootPerSecond, 4.2)]
         [InlineData("en-US", "4.2 lbf·s", ImpulseUnit.PoundForceSecond, 4.2)]
         [InlineData("en-US", "4.2 slug·ft/s", ImpulseUnit.SlugFootPerSecond, 4.2)]
-        public void TryParse(string culture, string quantityString, ImpulseUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, ImpulseUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Impulse.TryParse(quantityString, out Impulse parsed));
@@ -580,6 +637,7 @@ namespace UnitsNet.Tests
                 var quantity = Impulse.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -603,44 +661,46 @@ namespace UnitsNet.Tests
                 IQuantity<ImpulseUnit> quantityToConvert = quantity;
                 IQuantity<ImpulseUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Impulse newtonsecond = Impulse.FromNewtonSeconds(1);
-            AssertEx.EqualTolerance(1, Impulse.FromCentinewtonSeconds(newtonsecond.CentinewtonSeconds).NewtonSeconds, CentinewtonSecondsTolerance);
-            AssertEx.EqualTolerance(1, Impulse.FromDecanewtonSeconds(newtonsecond.DecanewtonSeconds).NewtonSeconds, DecanewtonSecondsTolerance);
-            AssertEx.EqualTolerance(1, Impulse.FromDecinewtonSeconds(newtonsecond.DecinewtonSeconds).NewtonSeconds, DecinewtonSecondsTolerance);
-            AssertEx.EqualTolerance(1, Impulse.FromKilogramMetersPerSecond(newtonsecond.KilogramMetersPerSecond).NewtonSeconds, KilogramMetersPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Impulse.FromKilonewtonSeconds(newtonsecond.KilonewtonSeconds).NewtonSeconds, KilonewtonSecondsTolerance);
-            AssertEx.EqualTolerance(1, Impulse.FromMeganewtonSeconds(newtonsecond.MeganewtonSeconds).NewtonSeconds, MeganewtonSecondsTolerance);
-            AssertEx.EqualTolerance(1, Impulse.FromMicronewtonSeconds(newtonsecond.MicronewtonSeconds).NewtonSeconds, MicronewtonSecondsTolerance);
-            AssertEx.EqualTolerance(1, Impulse.FromMillinewtonSeconds(newtonsecond.MillinewtonSeconds).NewtonSeconds, MillinewtonSecondsTolerance);
-            AssertEx.EqualTolerance(1, Impulse.FromNanonewtonSeconds(newtonsecond.NanonewtonSeconds).NewtonSeconds, NanonewtonSecondsTolerance);
-            AssertEx.EqualTolerance(1, Impulse.FromNewtonSeconds(newtonsecond.NewtonSeconds).NewtonSeconds, NewtonSecondsTolerance);
-            AssertEx.EqualTolerance(1, Impulse.FromPoundFeetPerSecond(newtonsecond.PoundFeetPerSecond).NewtonSeconds, PoundFeetPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Impulse.FromPoundForceSeconds(newtonsecond.PoundForceSeconds).NewtonSeconds, PoundForceSecondsTolerance);
-            AssertEx.EqualTolerance(1, Impulse.FromSlugFeetPerSecond(newtonsecond.SlugFeetPerSecond).NewtonSeconds, SlugFeetPerSecondTolerance);
+            Impulse newtonsecond = Impulse.FromNewtonSeconds(3);
+            Assert.Equal(3, Impulse.FromCentinewtonSeconds(newtonsecond.CentinewtonSeconds).NewtonSeconds);
+            Assert.Equal(3, Impulse.FromDecanewtonSeconds(newtonsecond.DecanewtonSeconds).NewtonSeconds);
+            Assert.Equal(3, Impulse.FromDecinewtonSeconds(newtonsecond.DecinewtonSeconds).NewtonSeconds);
+            Assert.Equal(3, Impulse.FromKilogramMetersPerSecond(newtonsecond.KilogramMetersPerSecond).NewtonSeconds);
+            Assert.Equal(3, Impulse.FromKilonewtonSeconds(newtonsecond.KilonewtonSeconds).NewtonSeconds);
+            Assert.Equal(3, Impulse.FromMeganewtonSeconds(newtonsecond.MeganewtonSeconds).NewtonSeconds);
+            Assert.Equal(3, Impulse.FromMicronewtonSeconds(newtonsecond.MicronewtonSeconds).NewtonSeconds);
+            Assert.Equal(3, Impulse.FromMillinewtonSeconds(newtonsecond.MillinewtonSeconds).NewtonSeconds);
+            Assert.Equal(3, Impulse.FromNanonewtonSeconds(newtonsecond.NanonewtonSeconds).NewtonSeconds);
+            Assert.Equal(3, Impulse.FromNewtonSeconds(newtonsecond.NewtonSeconds).NewtonSeconds);
+            Assert.Equal(3, Impulse.FromPoundFeetPerSecond(newtonsecond.PoundFeetPerSecond).NewtonSeconds);
+            Assert.Equal(3, Impulse.FromPoundForceSeconds(newtonsecond.PoundForceSeconds).NewtonSeconds);
+            Assert.Equal(3, Impulse.FromSlugFeetPerSecond(newtonsecond.SlugFeetPerSecond).NewtonSeconds);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             Impulse v = Impulse.FromNewtonSeconds(1);
-            AssertEx.EqualTolerance(-1, -v.NewtonSeconds, NewtonSecondsTolerance);
-            AssertEx.EqualTolerance(2, (Impulse.FromNewtonSeconds(3)-v).NewtonSeconds, NewtonSecondsTolerance);
-            AssertEx.EqualTolerance(2, (v + v).NewtonSeconds, NewtonSecondsTolerance);
-            AssertEx.EqualTolerance(10, (v*10).NewtonSeconds, NewtonSecondsTolerance);
-            AssertEx.EqualTolerance(10, (10*v).NewtonSeconds, NewtonSecondsTolerance);
-            AssertEx.EqualTolerance(2, (Impulse.FromNewtonSeconds(10)/5).NewtonSeconds, NewtonSecondsTolerance);
-            AssertEx.EqualTolerance(2, Impulse.FromNewtonSeconds(10)/Impulse.FromNewtonSeconds(5), NewtonSecondsTolerance);
+            Assert.Equal(-1, -v.NewtonSeconds);
+            Assert.Equal(2, (Impulse.FromNewtonSeconds(3) - v).NewtonSeconds);
+            Assert.Equal(2, (v + v).NewtonSeconds);
+            Assert.Equal(10, (v * 10).NewtonSeconds);
+            Assert.Equal(10, (10 * v).NewtonSeconds);
+            Assert.Equal(2, (Impulse.FromNewtonSeconds(10) / 5).NewtonSeconds);
+            Assert.Equal(2, Impulse.FromNewtonSeconds(10) / Impulse.FromNewtonSeconds(5));
         }
 
         [Fact]
@@ -686,8 +746,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ImpulseUnit.NewtonSecond, 1, ImpulseUnit.NewtonSecond, true)]  // Same value and unit.
         [InlineData(1, ImpulseUnit.NewtonSecond, 2, ImpulseUnit.NewtonSecond, false)] // Different value.
-        [InlineData(2, ImpulseUnit.NewtonSecond, 1, ImpulseUnit.CentinewtonSecond, false)] // Different value and unit.
-        [InlineData(1, ImpulseUnit.NewtonSecond, 1, ImpulseUnit.CentinewtonSecond, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ImpulseUnit unitA, double valueB, ImpulseUnit unitB, bool expectEqual)
         {
             var a = new Impulse(valueA, unitA);
@@ -747,8 +805,8 @@ namespace UnitsNet.Tests
             var quantity = Impulse.FromNewtonSeconds(firstValue);
             var otherQuantity = Impulse.FromNewtonSeconds(secondValue);
             Impulse maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, Impulse.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -767,7 +825,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<ImpulseUnit>();
+            var units = EnumHelper.GetValues<ImpulseUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -778,6 +836,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Impulse.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(Impulse.Info.Units, Impulse.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, Impulse.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -866,7 +936,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Impulse.FromNewtonSeconds(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(Impulse), quantity.As(Impulse.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

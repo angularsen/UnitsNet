@@ -150,6 +150,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void EntropyInfo_CreateWithCustomUnitInfos()
+        {
+            EntropyUnit[] expectedUnits = [EntropyUnit.JoulePerKelvin];
+
+            Entropy.EntropyInfo quantityInfo = Entropy.EntropyInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("Entropy", quantityInfo.Name);
+            Assert.Equal(Entropy.Zero, quantityInfo.Zero);
+            Assert.Equal(Entropy.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void JoulePerKelvinToEntropyUnits()
         {
             Entropy jouleperkelvin = Entropy.FromJoulesPerKelvin(1);
@@ -245,26 +259,69 @@ namespace UnitsNet.Tests
             var expectedUnit = Entropy.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            Entropy convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                Entropy quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                Entropy convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<EntropyUnit> quantityToConvert = quantity;
+
+                IQuantity<EntropyUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new Entropy(value: 1, unit: Entropy.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Entropy(value: 1, unit: Entropy.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<EntropyUnit> quantity = new Entropy(value: 1, unit: Entropy.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Entropy(value: 1, unit: Entropy.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new Entropy(value: 1, unit: Entropy.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Entropy(value: 1, unit: Entropy.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<EntropyUnit> quantity = new Entropy(value: 1, unit: Entropy.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Entropy(value: 1, unit: Entropy.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -275,7 +332,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kJ/°C", EntropyUnit.KilojoulePerDegreeCelsius, 4.2)]
         [InlineData("en-US", "4.2 kJ/K", EntropyUnit.KilojoulePerKelvin, 4.2)]
         [InlineData("en-US", "4.2 MJ/K", EntropyUnit.MegajoulePerKelvin, 4.2)]
-        public void Parse(string culture, string quantityString, EntropyUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, EntropyUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Entropy.Parse(quantityString);
@@ -291,7 +348,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kJ/°C", EntropyUnit.KilojoulePerDegreeCelsius, 4.2)]
         [InlineData("en-US", "4.2 kJ/K", EntropyUnit.KilojoulePerKelvin, 4.2)]
         [InlineData("en-US", "4.2 MJ/K", EntropyUnit.MegajoulePerKelvin, 4.2)]
-        public void TryParse(string culture, string quantityString, EntropyUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, EntropyUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Entropy.TryParse(quantityString, out Entropy parsed));
@@ -478,6 +535,7 @@ namespace UnitsNet.Tests
                 var quantity = Entropy.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -501,38 +559,40 @@ namespace UnitsNet.Tests
                 IQuantity<EntropyUnit> quantityToConvert = quantity;
                 IQuantity<EntropyUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Entropy jouleperkelvin = Entropy.FromJoulesPerKelvin(1);
-            AssertEx.EqualTolerance(1, Entropy.FromCaloriesPerKelvin(jouleperkelvin.CaloriesPerKelvin).JoulesPerKelvin, CaloriesPerKelvinTolerance);
-            AssertEx.EqualTolerance(1, Entropy.FromJoulesPerDegreeCelsius(jouleperkelvin.JoulesPerDegreeCelsius).JoulesPerKelvin, JoulesPerDegreeCelsiusTolerance);
-            AssertEx.EqualTolerance(1, Entropy.FromJoulesPerKelvin(jouleperkelvin.JoulesPerKelvin).JoulesPerKelvin, JoulesPerKelvinTolerance);
-            AssertEx.EqualTolerance(1, Entropy.FromKilocaloriesPerKelvin(jouleperkelvin.KilocaloriesPerKelvin).JoulesPerKelvin, KilocaloriesPerKelvinTolerance);
-            AssertEx.EqualTolerance(1, Entropy.FromKilojoulesPerDegreeCelsius(jouleperkelvin.KilojoulesPerDegreeCelsius).JoulesPerKelvin, KilojoulesPerDegreeCelsiusTolerance);
-            AssertEx.EqualTolerance(1, Entropy.FromKilojoulesPerKelvin(jouleperkelvin.KilojoulesPerKelvin).JoulesPerKelvin, KilojoulesPerKelvinTolerance);
-            AssertEx.EqualTolerance(1, Entropy.FromMegajoulesPerKelvin(jouleperkelvin.MegajoulesPerKelvin).JoulesPerKelvin, MegajoulesPerKelvinTolerance);
+            Entropy jouleperkelvin = Entropy.FromJoulesPerKelvin(3);
+            Assert.Equal(3, Entropy.FromCaloriesPerKelvin(jouleperkelvin.CaloriesPerKelvin).JoulesPerKelvin);
+            Assert.Equal(3, Entropy.FromJoulesPerDegreeCelsius(jouleperkelvin.JoulesPerDegreeCelsius).JoulesPerKelvin);
+            Assert.Equal(3, Entropy.FromJoulesPerKelvin(jouleperkelvin.JoulesPerKelvin).JoulesPerKelvin);
+            Assert.Equal(3, Entropy.FromKilocaloriesPerKelvin(jouleperkelvin.KilocaloriesPerKelvin).JoulesPerKelvin);
+            Assert.Equal(3, Entropy.FromKilojoulesPerDegreeCelsius(jouleperkelvin.KilojoulesPerDegreeCelsius).JoulesPerKelvin);
+            Assert.Equal(3, Entropy.FromKilojoulesPerKelvin(jouleperkelvin.KilojoulesPerKelvin).JoulesPerKelvin);
+            Assert.Equal(3, Entropy.FromMegajoulesPerKelvin(jouleperkelvin.MegajoulesPerKelvin).JoulesPerKelvin);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             Entropy v = Entropy.FromJoulesPerKelvin(1);
-            AssertEx.EqualTolerance(-1, -v.JoulesPerKelvin, JoulesPerKelvinTolerance);
-            AssertEx.EqualTolerance(2, (Entropy.FromJoulesPerKelvin(3)-v).JoulesPerKelvin, JoulesPerKelvinTolerance);
-            AssertEx.EqualTolerance(2, (v + v).JoulesPerKelvin, JoulesPerKelvinTolerance);
-            AssertEx.EqualTolerance(10, (v*10).JoulesPerKelvin, JoulesPerKelvinTolerance);
-            AssertEx.EqualTolerance(10, (10*v).JoulesPerKelvin, JoulesPerKelvinTolerance);
-            AssertEx.EqualTolerance(2, (Entropy.FromJoulesPerKelvin(10)/5).JoulesPerKelvin, JoulesPerKelvinTolerance);
-            AssertEx.EqualTolerance(2, Entropy.FromJoulesPerKelvin(10)/Entropy.FromJoulesPerKelvin(5), JoulesPerKelvinTolerance);
+            Assert.Equal(-1, -v.JoulesPerKelvin);
+            Assert.Equal(2, (Entropy.FromJoulesPerKelvin(3) - v).JoulesPerKelvin);
+            Assert.Equal(2, (v + v).JoulesPerKelvin);
+            Assert.Equal(10, (v * 10).JoulesPerKelvin);
+            Assert.Equal(10, (10 * v).JoulesPerKelvin);
+            Assert.Equal(2, (Entropy.FromJoulesPerKelvin(10) / 5).JoulesPerKelvin);
+            Assert.Equal(2, Entropy.FromJoulesPerKelvin(10) / Entropy.FromJoulesPerKelvin(5));
         }
 
         [Fact]
@@ -578,8 +638,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, EntropyUnit.JoulePerKelvin, 1, EntropyUnit.JoulePerKelvin, true)]  // Same value and unit.
         [InlineData(1, EntropyUnit.JoulePerKelvin, 2, EntropyUnit.JoulePerKelvin, false)] // Different value.
-        [InlineData(2, EntropyUnit.JoulePerKelvin, 1, EntropyUnit.CaloriePerKelvin, false)] // Different value and unit.
-        [InlineData(1, EntropyUnit.JoulePerKelvin, 1, EntropyUnit.CaloriePerKelvin, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, EntropyUnit unitA, double valueB, EntropyUnit unitB, bool expectEqual)
         {
             var a = new Entropy(valueA, unitA);
@@ -639,8 +697,8 @@ namespace UnitsNet.Tests
             var quantity = Entropy.FromJoulesPerKelvin(firstValue);
             var otherQuantity = Entropy.FromJoulesPerKelvin(secondValue);
             Entropy maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, Entropy.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -659,7 +717,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<EntropyUnit>();
+            var units = EnumHelper.GetValues<EntropyUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -670,6 +728,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Entropy.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(Entropy.Info.Units, Entropy.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, Entropy.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -746,7 +816,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Entropy.FromJoulesPerKelvin(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(Entropy), quantity.As(Entropy.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

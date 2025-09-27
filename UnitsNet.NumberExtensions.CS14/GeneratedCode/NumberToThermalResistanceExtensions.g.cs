@@ -42,20 +42,20 @@ namespace UnitsNet.NumberExtensions.NumberToThermalResistance
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ThermalResistance.FromDegreesCelsiusPerWatt(double)" />
+            /// <inheritdoc cref="ThermalResistance.FromDegreesCelsiusPerWatt(QuantityValue)" />
             public ThermalResistance DegreesCelsiusPerWatt
 #if NET7_0_OR_GREATER
-                => ThermalResistance.FromDegreesCelsiusPerWatt(double.CreateChecked(value));
+                => ThermalResistance.FromDegreesCelsiusPerWatt(QuantityValue.CreateChecked(value));
 #else
-                => ThermalResistance.FromDegreesCelsiusPerWatt(value.ToDouble(null));
+                => ThermalResistance.FromDegreesCelsiusPerWatt(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ThermalResistance.FromKelvinsPerWatt(double)" />
+            /// <inheritdoc cref="ThermalResistance.FromKelvinsPerWatt(QuantityValue)" />
             public ThermalResistance KelvinsPerWatt
 #if NET7_0_OR_GREATER
-                => ThermalResistance.FromKelvinsPerWatt(double.CreateChecked(value));
+                => ThermalResistance.FromKelvinsPerWatt(QuantityValue.CreateChecked(value));
 #else
-                => ThermalResistance.FromKelvinsPerWatt(value.ToDouble(null));
+                => ThermalResistance.FromKelvinsPerWatt(value.ToQuantityValue());
 #endif
 
         }

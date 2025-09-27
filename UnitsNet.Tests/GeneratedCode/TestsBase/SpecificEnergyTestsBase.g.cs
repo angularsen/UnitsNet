@@ -242,6 +242,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void SpecificEnergyInfo_CreateWithCustomUnitInfos()
+        {
+            SpecificEnergyUnit[] expectedUnits = [SpecificEnergyUnit.JoulePerKilogram];
+
+            SpecificEnergy.SpecificEnergyInfo quantityInfo = SpecificEnergy.SpecificEnergyInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("SpecificEnergy", quantityInfo.Name);
+            Assert.Equal(SpecificEnergy.Zero, quantityInfo.Zero);
+            Assert.Equal(SpecificEnergy.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void JoulePerKilogramToSpecificEnergyUnits()
         {
             SpecificEnergy jouleperkilogram = SpecificEnergy.FromJoulesPerKilogram(1);
@@ -383,26 +397,69 @@ namespace UnitsNet.Tests
             var expectedUnit = SpecificEnergy.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            SpecificEnergy convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                SpecificEnergy quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                SpecificEnergy convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<SpecificEnergyUnit> quantityToConvert = quantity;
+
+                IQuantity<SpecificEnergyUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new SpecificEnergy(value: 1, unit: SpecificEnergy.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new SpecificEnergy(value: 1, unit: SpecificEnergy.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<SpecificEnergyUnit> quantity = new SpecificEnergy(value: 1, unit: SpecificEnergy.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new SpecificEnergy(value: 1, unit: SpecificEnergy.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new SpecificEnergy(value: 1, unit: SpecificEnergy.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new SpecificEnergy(value: 1, unit: SpecificEnergy.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<SpecificEnergyUnit> quantity = new SpecificEnergy(value: 1, unit: SpecificEnergy.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new SpecificEnergy(value: 1, unit: SpecificEnergy.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -436,7 +493,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 Wd/t", SpecificEnergyUnit.WattDayPerTonne, 4.2)]
         [InlineData("en-US", "4.2 Wh/kg", SpecificEnergyUnit.WattHourPerKilogram, 4.2)]
         [InlineData("en-US", "4.2 Wh/lbs", SpecificEnergyUnit.WattHourPerPound, 4.2)]
-        public void Parse(string culture, string quantityString, SpecificEnergyUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, SpecificEnergyUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = SpecificEnergy.Parse(quantityString);
@@ -475,7 +532,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 Wd/t", SpecificEnergyUnit.WattDayPerTonne, 4.2)]
         [InlineData("en-US", "4.2 Wh/kg", SpecificEnergyUnit.WattHourPerKilogram, 4.2)]
         [InlineData("en-US", "4.2 Wh/lbs", SpecificEnergyUnit.WattHourPerPound, 4.2)]
-        public void TryParse(string culture, string quantityString, SpecificEnergyUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, SpecificEnergyUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(SpecificEnergy.TryParse(quantityString, out SpecificEnergy parsed));
@@ -869,6 +926,7 @@ namespace UnitsNet.Tests
                 var quantity = SpecificEnergy.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -892,61 +950,63 @@ namespace UnitsNet.Tests
                 IQuantity<SpecificEnergyUnit> quantityToConvert = quantity;
                 IQuantity<SpecificEnergyUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            SpecificEnergy jouleperkilogram = SpecificEnergy.FromJoulesPerKilogram(1);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromBtuPerPound(jouleperkilogram.BtuPerPound).JoulesPerKilogram, BtuPerPoundTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromCaloriesPerGram(jouleperkilogram.CaloriesPerGram).JoulesPerKilogram, CaloriesPerGramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromGigawattDaysPerKilogram(jouleperkilogram.GigawattDaysPerKilogram).JoulesPerKilogram, GigawattDaysPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromGigawattDaysPerShortTon(jouleperkilogram.GigawattDaysPerShortTon).JoulesPerKilogram, GigawattDaysPerShortTonTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromGigawattDaysPerTonne(jouleperkilogram.GigawattDaysPerTonne).JoulesPerKilogram, GigawattDaysPerTonneTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromGigawattHoursPerKilogram(jouleperkilogram.GigawattHoursPerKilogram).JoulesPerKilogram, GigawattHoursPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromGigawattHoursPerPound(jouleperkilogram.GigawattHoursPerPound).JoulesPerKilogram, GigawattHoursPerPoundTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromJoulesPerKilogram(jouleperkilogram.JoulesPerKilogram).JoulesPerKilogram, JoulesPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromKilocaloriesPerGram(jouleperkilogram.KilocaloriesPerGram).JoulesPerKilogram, KilocaloriesPerGramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromKilojoulesPerKilogram(jouleperkilogram.KilojoulesPerKilogram).JoulesPerKilogram, KilojoulesPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromKilowattDaysPerKilogram(jouleperkilogram.KilowattDaysPerKilogram).JoulesPerKilogram, KilowattDaysPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromKilowattDaysPerShortTon(jouleperkilogram.KilowattDaysPerShortTon).JoulesPerKilogram, KilowattDaysPerShortTonTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromKilowattDaysPerTonne(jouleperkilogram.KilowattDaysPerTonne).JoulesPerKilogram, KilowattDaysPerTonneTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromKilowattHoursPerKilogram(jouleperkilogram.KilowattHoursPerKilogram).JoulesPerKilogram, KilowattHoursPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromKilowattHoursPerPound(jouleperkilogram.KilowattHoursPerPound).JoulesPerKilogram, KilowattHoursPerPoundTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromMegajoulesPerKilogram(jouleperkilogram.MegajoulesPerKilogram).JoulesPerKilogram, MegajoulesPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromMegajoulesPerTonne(jouleperkilogram.MegajoulesPerTonne).JoulesPerKilogram, MegajoulesPerTonneTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromMegawattDaysPerKilogram(jouleperkilogram.MegawattDaysPerKilogram).JoulesPerKilogram, MegawattDaysPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromMegawattDaysPerShortTon(jouleperkilogram.MegawattDaysPerShortTon).JoulesPerKilogram, MegawattDaysPerShortTonTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromMegawattDaysPerTonne(jouleperkilogram.MegawattDaysPerTonne).JoulesPerKilogram, MegawattDaysPerTonneTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromMegawattHoursPerKilogram(jouleperkilogram.MegawattHoursPerKilogram).JoulesPerKilogram, MegawattHoursPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromMegawattHoursPerPound(jouleperkilogram.MegawattHoursPerPound).JoulesPerKilogram, MegawattHoursPerPoundTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromTerawattDaysPerKilogram(jouleperkilogram.TerawattDaysPerKilogram).JoulesPerKilogram, TerawattDaysPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromTerawattDaysPerShortTon(jouleperkilogram.TerawattDaysPerShortTon).JoulesPerKilogram, TerawattDaysPerShortTonTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromTerawattDaysPerTonne(jouleperkilogram.TerawattDaysPerTonne).JoulesPerKilogram, TerawattDaysPerTonneTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromWattDaysPerKilogram(jouleperkilogram.WattDaysPerKilogram).JoulesPerKilogram, WattDaysPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromWattDaysPerShortTon(jouleperkilogram.WattDaysPerShortTon).JoulesPerKilogram, WattDaysPerShortTonTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromWattDaysPerTonne(jouleperkilogram.WattDaysPerTonne).JoulesPerKilogram, WattDaysPerTonneTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromWattHoursPerKilogram(jouleperkilogram.WattHoursPerKilogram).JoulesPerKilogram, WattHoursPerKilogramTolerance);
-            AssertEx.EqualTolerance(1, SpecificEnergy.FromWattHoursPerPound(jouleperkilogram.WattHoursPerPound).JoulesPerKilogram, WattHoursPerPoundTolerance);
+            SpecificEnergy jouleperkilogram = SpecificEnergy.FromJoulesPerKilogram(3);
+            Assert.Equal(3, SpecificEnergy.FromBtuPerPound(jouleperkilogram.BtuPerPound).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromCaloriesPerGram(jouleperkilogram.CaloriesPerGram).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromGigawattDaysPerKilogram(jouleperkilogram.GigawattDaysPerKilogram).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromGigawattDaysPerShortTon(jouleperkilogram.GigawattDaysPerShortTon).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromGigawattDaysPerTonne(jouleperkilogram.GigawattDaysPerTonne).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromGigawattHoursPerKilogram(jouleperkilogram.GigawattHoursPerKilogram).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromGigawattHoursPerPound(jouleperkilogram.GigawattHoursPerPound).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromJoulesPerKilogram(jouleperkilogram.JoulesPerKilogram).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromKilocaloriesPerGram(jouleperkilogram.KilocaloriesPerGram).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromKilojoulesPerKilogram(jouleperkilogram.KilojoulesPerKilogram).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromKilowattDaysPerKilogram(jouleperkilogram.KilowattDaysPerKilogram).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromKilowattDaysPerShortTon(jouleperkilogram.KilowattDaysPerShortTon).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromKilowattDaysPerTonne(jouleperkilogram.KilowattDaysPerTonne).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromKilowattHoursPerKilogram(jouleperkilogram.KilowattHoursPerKilogram).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromKilowattHoursPerPound(jouleperkilogram.KilowattHoursPerPound).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromMegajoulesPerKilogram(jouleperkilogram.MegajoulesPerKilogram).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromMegajoulesPerTonne(jouleperkilogram.MegajoulesPerTonne).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromMegawattDaysPerKilogram(jouleperkilogram.MegawattDaysPerKilogram).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromMegawattDaysPerShortTon(jouleperkilogram.MegawattDaysPerShortTon).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromMegawattDaysPerTonne(jouleperkilogram.MegawattDaysPerTonne).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromMegawattHoursPerKilogram(jouleperkilogram.MegawattHoursPerKilogram).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromMegawattHoursPerPound(jouleperkilogram.MegawattHoursPerPound).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromTerawattDaysPerKilogram(jouleperkilogram.TerawattDaysPerKilogram).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromTerawattDaysPerShortTon(jouleperkilogram.TerawattDaysPerShortTon).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromTerawattDaysPerTonne(jouleperkilogram.TerawattDaysPerTonne).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromWattDaysPerKilogram(jouleperkilogram.WattDaysPerKilogram).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromWattDaysPerShortTon(jouleperkilogram.WattDaysPerShortTon).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromWattDaysPerTonne(jouleperkilogram.WattDaysPerTonne).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromWattHoursPerKilogram(jouleperkilogram.WattHoursPerKilogram).JoulesPerKilogram);
+            Assert.Equal(3, SpecificEnergy.FromWattHoursPerPound(jouleperkilogram.WattHoursPerPound).JoulesPerKilogram);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             SpecificEnergy v = SpecificEnergy.FromJoulesPerKilogram(1);
-            AssertEx.EqualTolerance(-1, -v.JoulesPerKilogram, JoulesPerKilogramTolerance);
-            AssertEx.EqualTolerance(2, (SpecificEnergy.FromJoulesPerKilogram(3)-v).JoulesPerKilogram, JoulesPerKilogramTolerance);
-            AssertEx.EqualTolerance(2, (v + v).JoulesPerKilogram, JoulesPerKilogramTolerance);
-            AssertEx.EqualTolerance(10, (v*10).JoulesPerKilogram, JoulesPerKilogramTolerance);
-            AssertEx.EqualTolerance(10, (10*v).JoulesPerKilogram, JoulesPerKilogramTolerance);
-            AssertEx.EqualTolerance(2, (SpecificEnergy.FromJoulesPerKilogram(10)/5).JoulesPerKilogram, JoulesPerKilogramTolerance);
-            AssertEx.EqualTolerance(2, SpecificEnergy.FromJoulesPerKilogram(10)/SpecificEnergy.FromJoulesPerKilogram(5), JoulesPerKilogramTolerance);
+            Assert.Equal(-1, -v.JoulesPerKilogram);
+            Assert.Equal(2, (SpecificEnergy.FromJoulesPerKilogram(3) - v).JoulesPerKilogram);
+            Assert.Equal(2, (v + v).JoulesPerKilogram);
+            Assert.Equal(10, (v * 10).JoulesPerKilogram);
+            Assert.Equal(10, (10 * v).JoulesPerKilogram);
+            Assert.Equal(2, (SpecificEnergy.FromJoulesPerKilogram(10) / 5).JoulesPerKilogram);
+            Assert.Equal(2, SpecificEnergy.FromJoulesPerKilogram(10) / SpecificEnergy.FromJoulesPerKilogram(5));
         }
 
         [Fact]
@@ -992,8 +1052,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, SpecificEnergyUnit.JoulePerKilogram, 1, SpecificEnergyUnit.JoulePerKilogram, true)]  // Same value and unit.
         [InlineData(1, SpecificEnergyUnit.JoulePerKilogram, 2, SpecificEnergyUnit.JoulePerKilogram, false)] // Different value.
-        [InlineData(2, SpecificEnergyUnit.JoulePerKilogram, 1, SpecificEnergyUnit.BtuPerPound, false)] // Different value and unit.
-        [InlineData(1, SpecificEnergyUnit.JoulePerKilogram, 1, SpecificEnergyUnit.BtuPerPound, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, SpecificEnergyUnit unitA, double valueB, SpecificEnergyUnit unitB, bool expectEqual)
         {
             var a = new SpecificEnergy(valueA, unitA);
@@ -1053,8 +1111,8 @@ namespace UnitsNet.Tests
             var quantity = SpecificEnergy.FromJoulesPerKilogram(firstValue);
             var otherQuantity = SpecificEnergy.FromJoulesPerKilogram(secondValue);
             SpecificEnergy maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, SpecificEnergy.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -1073,7 +1131,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<SpecificEnergyUnit>();
+            var units = EnumHelper.GetValues<SpecificEnergyUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -1084,6 +1142,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(SpecificEnergy.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(SpecificEnergy.Info.Units, SpecificEnergy.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, SpecificEnergy.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -1206,7 +1276,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = SpecificEnergy.FromJoulesPerKilogram(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(SpecificEnergy), quantity.As(SpecificEnergy.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

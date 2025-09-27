@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -35,11 +33,12 @@ namespace UnitsNet
     ///     In thermodynamics, the specific volume of a substance is the ratio of the substance's volume to its mass. It is the reciprocal of density and an intrinsic property of matter as well.
     /// </summary>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct SpecificVolume :
         IArithmeticQuantity<SpecificVolume, SpecificVolumeUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<SpecificVolume, SpecificVolume, double>,
+        IDivisionOperators<SpecificVolume, SpecificVolume, QuantityValue>,
         IMultiplyOperators<SpecificVolume, Mass, Volume>,
         IComparisonOperators<SpecificVolume, SpecificVolume, bool>,
         IParsable<SpecificVolume>,
@@ -52,13 +51,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly SpecificVolumeUnit? _unit;
 
         /// <summary>
@@ -103,7 +102,7 @@ namespace UnitsNet
             }
 
             /// <summary>
-            ///     The <see cref="BaseDimensions" /> for <see cref="SpecificVolume"/> is [L^3][M^-1].
+            ///     The <see cref="BaseDimensions" /> for <see cref="SpecificVolume"/> is L^3M^-1.
             /// </summary>
             public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(3, -1, 0, 0, 0, 0, 0);
 
@@ -118,17 +117,19 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{SpecificVolumeUnit}"/> representing the default unit mappings for SpecificVolume.</returns>
             public static IEnumerable<UnitDefinition<SpecificVolumeUnit>> GetDefaultMappings()
             {
-                yield return new (SpecificVolumeUnit.CubicFootPerPound, "CubicFootPerPound", "CubicFeetPerPound", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound));
+                yield return new (SpecificVolumeUnit.CubicFootPerPound, "CubicFootPerPound", "CubicFeetPerPound", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound),
+                     new QuantityValue(28349523125, 1769802912)             
+                );
                 yield return new (SpecificVolumeUnit.CubicMeterPerKilogram, "CubicMeterPerKilogram", "CubicMetersPerKilogram", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
-                yield return new (SpecificVolumeUnit.MillicubicMeterPerKilogram, "MillicubicMeterPerKilogram", "MillicubicMetersPerKilogram", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram));
+                yield return new (SpecificVolumeUnit.MillicubicMeterPerKilogram, "MillicubicMeterPerKilogram", "MillicubicMetersPerKilogram", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram),
+                     1000             
+                );
             }
         }
 
         static SpecificVolume()
         {
-            Info = SpecificVolumeInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(SpecificVolumeInfo.CreateDefault);
         }
 
         /// <summary>
@@ -136,7 +137,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public SpecificVolume(double value, SpecificVolumeUnit unit)
+        public SpecificVolume(QuantityValue value, SpecificVolumeUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -150,7 +151,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public SpecificVolume(double value, UnitSystem unitSystem)
+        public SpecificVolume(QuantityValue value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -161,7 +162,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="SpecificVolume" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<SpecificVolume, SpecificVolumeUnit> Info { get; }
@@ -190,10 +192,8 @@ namespace UnitsNet
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public SpecificVolumeUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -227,41 +227,23 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificVolumeUnit.CubicFootPerPound"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificVolumeUnit.CubicFootPerPound"/>
         /// </summary>
-        public double CubicFeetPerPound => As(SpecificVolumeUnit.CubicFootPerPound);
+        public QuantityValue CubicFeetPerPound => this.As(SpecificVolumeUnit.CubicFootPerPound);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificVolumeUnit.CubicMeterPerKilogram"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificVolumeUnit.CubicMeterPerKilogram"/>
         /// </summary>
-        public double CubicMetersPerKilogram => As(SpecificVolumeUnit.CubicMeterPerKilogram);
+        public QuantityValue CubicMetersPerKilogram => this.As(SpecificVolumeUnit.CubicMeterPerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>
         /// </summary>
-        public double MillicubicMetersPerKilogram => As(SpecificVolumeUnit.MillicubicMeterPerKilogram);
+        public QuantityValue MillicubicMetersPerKilogram => this.As(SpecificVolumeUnit.MillicubicMeterPerKilogram);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: SpecificVolumeUnit -> BaseUnit
-            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicFootPerPound, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => quantity.ToUnit(SpecificVolumeUnit.CubicMeterPerKilogram));
-            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => quantity.ToUnit(SpecificVolumeUnit.CubicMeterPerKilogram));
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> SpecificVolumeUnit
-            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicFootPerPound, quantity => quantity.ToUnit(SpecificVolumeUnit.CubicFootPerPound));
-            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.MillicubicMeterPerKilogram, quantity => quantity.ToUnit(SpecificVolumeUnit.MillicubicMeterPerKilogram));
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -291,7 +273,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.CubicFootPerPound"/>.
         /// </summary>
-        public static SpecificVolume FromCubicFeetPerPound(double value)
+        public static SpecificVolume FromCubicFeetPerPound(QuantityValue value)
         {
             return new SpecificVolume(value, SpecificVolumeUnit.CubicFootPerPound);
         }
@@ -299,7 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.CubicMeterPerKilogram"/>.
         /// </summary>
-        public static SpecificVolume FromCubicMetersPerKilogram(double value)
+        public static SpecificVolume FromCubicMetersPerKilogram(QuantityValue value)
         {
             return new SpecificVolume(value, SpecificVolumeUnit.CubicMeterPerKilogram);
         }
@@ -307,7 +289,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>.
         /// </summary>
-        public static SpecificVolume FromMillicubicMetersPerKilogram(double value)
+        public static SpecificVolume FromMillicubicMetersPerKilogram(QuantityValue value)
         {
             return new SpecificVolume(value, SpecificVolumeUnit.MillicubicMeterPerKilogram);
         }
@@ -318,7 +300,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SpecificVolume unit value.</returns>
-        public static SpecificVolume From(double value, SpecificVolumeUnit fromUnit)
+        public static SpecificVolume From(QuantityValue value, SpecificVolumeUnit fromUnit)
         {
             return new SpecificVolume(value, fromUnit);
         }
@@ -379,10 +361,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static SpecificVolume Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<SpecificVolume, SpecificVolumeUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<SpecificVolume, SpecificVolumeUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -410,11 +389,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out SpecificVolume result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<SpecificVolume, SpecificVolumeUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<SpecificVolume, SpecificVolumeUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -435,7 +410,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -446,7 +421,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.SpecificVolumeUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.SpecificVolumeUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out SpecificVolumeUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -461,7 +436,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out SpecificVolumeUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -480,35 +455,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="SpecificVolume"/> from adding two <see cref="SpecificVolume"/>.</summary>
         public static SpecificVolume operator +(SpecificVolume left, SpecificVolume right)
         {
-            return new SpecificVolume(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new SpecificVolume(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="SpecificVolume"/> from subtracting two <see cref="SpecificVolume"/>.</summary>
         public static SpecificVolume operator -(SpecificVolume left, SpecificVolume right)
         {
-            return new SpecificVolume(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new SpecificVolume(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="SpecificVolume"/> from multiplying value and <see cref="SpecificVolume"/>.</summary>
-        public static SpecificVolume operator *(double left, SpecificVolume right)
+        public static SpecificVolume operator *(QuantityValue left, SpecificVolume right)
         {
             return new SpecificVolume(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="SpecificVolume"/> from multiplying value and <see cref="SpecificVolume"/>.</summary>
-        public static SpecificVolume operator *(SpecificVolume left, double right)
+        public static SpecificVolume operator *(SpecificVolume left, QuantityValue right)
         {
             return new SpecificVolume(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="SpecificVolume"/> from dividing <see cref="SpecificVolume"/> by value.</summary>
-        public static SpecificVolume operator /(SpecificVolume left, double right)
+        public static SpecificVolume operator /(SpecificVolume left, QuantityValue right)
         {
             return new SpecificVolume(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="SpecificVolume"/> by <see cref="SpecificVolume"/>.</summary>
-        public static double operator /(SpecificVolume left, SpecificVolume right)
+        public static QuantityValue operator /(SpecificVolume left, SpecificVolume right)
         {
             return left.CubicMetersPerKilogram / right.CubicMetersPerKilogram;
         }
@@ -521,7 +496,7 @@ namespace UnitsNet
         /// <returns>The corresponding inverse quantity, <see cref="Density"/>.</returns>
         public Density Inverse()
         {
-            return Density.FromKilogramsPerCubicMeter(1 / CubicMetersPerKilogram);
+            return UnitConverter.Default.ConvertTo(Value, Unit, Density.Info);
         }
 
         /// <summary>Get <see cref="Volume"/> from <see cref="SpecificVolume"/> * <see cref="Mass"/>.</summary>
@@ -537,65 +512,55 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(SpecificVolume left, SpecificVolume right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(SpecificVolume left, SpecificVolume right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(SpecificVolume left, SpecificVolume right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(SpecificVolume left, SpecificVolume right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="SpecificVolume"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(SpecificVolume other, SpecificVolume tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="SpecificVolume"/> quantities.</summary>
         public static bool operator ==(SpecificVolume left, SpecificVolume right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="SpecificVolume"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(SpecificVolume other, SpecificVolume tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="SpecificVolume"/> quantities.</summary>
         public static bool operator !=(SpecificVolume left, SpecificVolume right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="SpecificVolume"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(SpecificVolume other, SpecificVolume tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="SpecificVolume"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is SpecificVolume otherQuantity))
+            if (obj is not SpecificVolume otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="SpecificVolume"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(SpecificVolume other, SpecificVolume tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="SpecificVolume"/> quantities.</summary>
         public bool Equals(SpecificVolume other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>
         ///     Returns the hash code for this instance.
@@ -603,31 +568,26 @@ namespace UnitsNet
         /// <returns>A hash code for the current SpecificVolume.</returns>
         public override int GetHashCode()
         {
-            return Comparison.GetHashCode(Unit, Value);
+            return Comparison.GetHashCode(typeof(SpecificVolume), this.As(BaseUnit));
         }
-
-        /// <summary>Compares the current <see cref="SpecificVolume"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        
+        /// <inheritdoc  cref="CompareTo(SpecificVolume)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is SpecificVolume otherQuantity)) throw new ArgumentException("Expected type SpecificVolume.", nameof(obj));
+            if (obj is not SpecificVolume otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<SpecificVolume>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="SpecificVolume"/> with another <see cref="SpecificVolume"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="SpecificVolume"/> with another <see cref="SpecificVolume"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -639,132 +599,8 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(SpecificVolume other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
+            return _value.CompareTo(other.As(this.Unit));
         }
-
-        #endregion
-
-        #region Conversion Methods
-
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(SpecificVolumeUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
-
-            return ToUnit(unit).Value;
-        }
-
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<SpecificVolumeUnit>());
-        }
-
-        /// <summary>
-        ///     Converts this SpecificVolume to another SpecificVolume with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A SpecificVolume with the specified unit.</returns>
-        public SpecificVolume ToUnit(SpecificVolumeUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
-
-        /// <summary>
-        ///     Converts this <see cref="SpecificVolume"/> to another <see cref="SpecificVolume"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A SpecificVolume with the specified unit.</returns>
-        public SpecificVolume ToUnit(SpecificVolumeUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(SpecificVolume), Unit, typeof(SpecificVolume), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (SpecificVolume)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="SpecificVolume"/> to another <see cref="SpecificVolume"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="SpecificVolume"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(SpecificVolumeUnit unit, [NotNullWhen(true)] out SpecificVolume? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            SpecificVolume? convertedOrNull = (Unit, unit) switch
-            {
-                // SpecificVolumeUnit -> BaseUnit
-                (SpecificVolumeUnit.CubicFootPerPound, SpecificVolumeUnit.CubicMeterPerKilogram) => new SpecificVolume(_value * 0.028316846592 / 0.45359237, SpecificVolumeUnit.CubicMeterPerKilogram),
-                (SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram) => new SpecificVolume((_value) * 1e-3d, SpecificVolumeUnit.CubicMeterPerKilogram),
-
-                // BaseUnit -> SpecificVolumeUnit
-                (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicFootPerPound) => new SpecificVolume(_value * 0.45359237 / 0.028316846592, SpecificVolumeUnit.CubicFootPerPound),
-                (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.MillicubicMeterPerKilogram) => new SpecificVolume((_value) / 1e-3d, SpecificVolumeUnit.MillicubicMeterPerKilogram),
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not SpecificVolumeUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificVolumeUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is SpecificVolumeUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(SpecificVolumeUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<SpecificVolumeUnit> IQuantity<SpecificVolumeUnit>.ToUnit(SpecificVolumeUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
@@ -779,7 +615,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

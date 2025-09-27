@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -38,11 +36,12 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Luminance
     /// </remarks>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Luminance :
         IArithmeticQuantity<Luminance, LuminanceUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Luminance, Luminance, double>,
+        IDivisionOperators<Luminance, Luminance, QuantityValue>,
         IMultiplyOperators<Luminance, Area, LuminousIntensity>,
         IComparisonOperators<Luminance, Luminance, bool>,
         IParsable<Luminance>,
@@ -55,13 +54,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly LuminanceUnit? _unit;
 
         /// <summary>
@@ -106,7 +105,7 @@ namespace UnitsNet
             }
 
             /// <summary>
-            ///     The <see cref="BaseDimensions" /> for <see cref="Luminance"/> is [L^-2][J].
+            ///     The <see cref="BaseDimensions" /> for <see cref="Luminance"/> is L^-2J.
             /// </summary>
             public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
 
@@ -121,24 +120,40 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{LuminanceUnit}"/> representing the default unit mappings for Luminance.</returns>
             public static IEnumerable<UnitDefinition<LuminanceUnit>> GetDefaultMappings()
             {
-                yield return new (LuminanceUnit.CandelaPerSquareFoot, "CandelaPerSquareFoot", "CandelasPerSquareFoot", BaseUnits.Undefined);
-                yield return new (LuminanceUnit.CandelaPerSquareInch, "CandelaPerSquareInch", "CandelasPerSquareInch", BaseUnits.Undefined);
+                yield return new (LuminanceUnit.CandelaPerSquareFoot, "CandelaPerSquareFoot", "CandelasPerSquareFoot", BaseUnits.Undefined,
+                     new QuantityValue(145161, 1562500)             
+                );
+                yield return new (LuminanceUnit.CandelaPerSquareInch, "CandelaPerSquareInch", "CandelasPerSquareInch", BaseUnits.Undefined,
+                     new QuantityValue(16129, 25000000)             
+                );
                 yield return new (LuminanceUnit.CandelaPerSquareMeter, "CandelaPerSquareMeter", "CandelasPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, luminousIntensity: LuminousIntensityUnit.Candela));
-                yield return new (LuminanceUnit.CenticandelaPerSquareMeter, "CenticandelaPerSquareMeter", "CenticandelasPerSquareMeter", new BaseUnits(length: LengthUnit.Decameter, luminousIntensity: LuminousIntensityUnit.Candela));
-                yield return new (LuminanceUnit.DecicandelaPerSquareMeter, "DecicandelaPerSquareMeter", "DecicandelasPerSquareMeter", BaseUnits.Undefined);
-                yield return new (LuminanceUnit.KilocandelaPerSquareMeter, "KilocandelaPerSquareMeter", "KilocandelasPerSquareMeter", BaseUnits.Undefined);
-                yield return new (LuminanceUnit.MicrocandelaPerSquareMeter, "MicrocandelaPerSquareMeter", "MicrocandelasPerSquareMeter", new BaseUnits(length: LengthUnit.Kilometer, luminousIntensity: LuminousIntensityUnit.Candela));
-                yield return new (LuminanceUnit.MillicandelaPerSquareMeter, "MillicandelaPerSquareMeter", "MillicandelasPerSquareMeter", BaseUnits.Undefined);
-                yield return new (LuminanceUnit.NanocandelaPerSquareMeter, "NanocandelaPerSquareMeter", "NanocandelasPerSquareMeter", BaseUnits.Undefined);
-                yield return new (LuminanceUnit.Nit, "Nit", "Nits", BaseUnits.Undefined);
+                yield return new (LuminanceUnit.CenticandelaPerSquareMeter, "CenticandelaPerSquareMeter", "CenticandelasPerSquareMeter", new BaseUnits(length: LengthUnit.Decameter, luminousIntensity: LuminousIntensityUnit.Candela),
+                     100             
+                );
+                yield return new (LuminanceUnit.DecicandelaPerSquareMeter, "DecicandelaPerSquareMeter", "DecicandelasPerSquareMeter", BaseUnits.Undefined,
+                     10             
+                );
+                yield return new (LuminanceUnit.KilocandelaPerSquareMeter, "KilocandelaPerSquareMeter", "KilocandelasPerSquareMeter", BaseUnits.Undefined,
+                     new QuantityValue(1, 1000)             
+                );
+                yield return new (LuminanceUnit.MicrocandelaPerSquareMeter, "MicrocandelaPerSquareMeter", "MicrocandelasPerSquareMeter", new BaseUnits(length: LengthUnit.Kilometer, luminousIntensity: LuminousIntensityUnit.Candela),
+                     1000000             
+                );
+                yield return new (LuminanceUnit.MillicandelaPerSquareMeter, "MillicandelaPerSquareMeter", "MillicandelasPerSquareMeter", BaseUnits.Undefined,
+                     1000             
+                );
+                yield return new (LuminanceUnit.NanocandelaPerSquareMeter, "NanocandelaPerSquareMeter", "NanocandelasPerSquareMeter", BaseUnits.Undefined,
+                     1000000000             
+                );
+                yield return new (LuminanceUnit.Nit, "Nit", "Nits", BaseUnits.Undefined,
+                     1             
+                );
             }
         }
 
         static Luminance()
         {
-            Info = LuminanceInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(LuminanceInfo.CreateDefault);
         }
 
         /// <summary>
@@ -146,7 +161,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Luminance(double value, LuminanceUnit unit)
+        public Luminance(QuantityValue value, LuminanceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -160,7 +175,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Luminance(double value, UnitSystem unitSystem)
+        public Luminance(QuantityValue value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -171,7 +186,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Luminance" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<Luminance, LuminanceUnit> Info { get; }
@@ -200,10 +216,8 @@ namespace UnitsNet
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public LuminanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -237,90 +251,58 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.CandelaPerSquareFoot"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LuminanceUnit.CandelaPerSquareFoot"/>
         /// </summary>
-        public double CandelasPerSquareFoot => As(LuminanceUnit.CandelaPerSquareFoot);
+        public QuantityValue CandelasPerSquareFoot => this.As(LuminanceUnit.CandelaPerSquareFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.CandelaPerSquareInch"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LuminanceUnit.CandelaPerSquareInch"/>
         /// </summary>
-        public double CandelasPerSquareInch => As(LuminanceUnit.CandelaPerSquareInch);
+        public QuantityValue CandelasPerSquareInch => this.As(LuminanceUnit.CandelaPerSquareInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.CandelaPerSquareMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LuminanceUnit.CandelaPerSquareMeter"/>
         /// </summary>
-        public double CandelasPerSquareMeter => As(LuminanceUnit.CandelaPerSquareMeter);
+        public QuantityValue CandelasPerSquareMeter => this.As(LuminanceUnit.CandelaPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.CenticandelaPerSquareMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LuminanceUnit.CenticandelaPerSquareMeter"/>
         /// </summary>
-        public double CenticandelasPerSquareMeter => As(LuminanceUnit.CenticandelaPerSquareMeter);
+        public QuantityValue CenticandelasPerSquareMeter => this.As(LuminanceUnit.CenticandelaPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.DecicandelaPerSquareMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LuminanceUnit.DecicandelaPerSquareMeter"/>
         /// </summary>
-        public double DecicandelasPerSquareMeter => As(LuminanceUnit.DecicandelaPerSquareMeter);
+        public QuantityValue DecicandelasPerSquareMeter => this.As(LuminanceUnit.DecicandelaPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.KilocandelaPerSquareMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LuminanceUnit.KilocandelaPerSquareMeter"/>
         /// </summary>
-        public double KilocandelasPerSquareMeter => As(LuminanceUnit.KilocandelaPerSquareMeter);
+        public QuantityValue KilocandelasPerSquareMeter => this.As(LuminanceUnit.KilocandelaPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.MicrocandelaPerSquareMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LuminanceUnit.MicrocandelaPerSquareMeter"/>
         /// </summary>
-        public double MicrocandelasPerSquareMeter => As(LuminanceUnit.MicrocandelaPerSquareMeter);
+        public QuantityValue MicrocandelasPerSquareMeter => this.As(LuminanceUnit.MicrocandelaPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.MillicandelaPerSquareMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LuminanceUnit.MillicandelaPerSquareMeter"/>
         /// </summary>
-        public double MillicandelasPerSquareMeter => As(LuminanceUnit.MillicandelaPerSquareMeter);
+        public QuantityValue MillicandelasPerSquareMeter => this.As(LuminanceUnit.MillicandelaPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.NanocandelaPerSquareMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LuminanceUnit.NanocandelaPerSquareMeter"/>
         /// </summary>
-        public double NanocandelasPerSquareMeter => As(LuminanceUnit.NanocandelaPerSquareMeter);
+        public QuantityValue NanocandelasPerSquareMeter => this.As(LuminanceUnit.NanocandelaPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminanceUnit.Nit"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LuminanceUnit.Nit"/>
         /// </summary>
-        public double Nits => As(LuminanceUnit.Nit);
+        public QuantityValue Nits => this.As(LuminanceUnit.Nit);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: LuminanceUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter, quantity => quantity.ToUnit(LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter, quantity => quantity.ToUnit(LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CenticandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => quantity.ToUnit(LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.DecicandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => quantity.ToUnit(LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.KilocandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => quantity.ToUnit(LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.MicrocandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => quantity.ToUnit(LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.MillicandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => quantity.ToUnit(LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.NanocandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => quantity.ToUnit(LuminanceUnit.CandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.Nit, LuminanceUnit.CandelaPerSquareMeter, quantity => quantity.ToUnit(LuminanceUnit.CandelaPerSquareMeter));
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> LuminanceUnit
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareFoot, quantity => quantity.ToUnit(LuminanceUnit.CandelaPerSquareFoot));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareInch, quantity => quantity.ToUnit(LuminanceUnit.CandelaPerSquareInch));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CenticandelaPerSquareMeter, quantity => quantity.ToUnit(LuminanceUnit.CenticandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.DecicandelaPerSquareMeter, quantity => quantity.ToUnit(LuminanceUnit.DecicandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.KilocandelaPerSquareMeter, quantity => quantity.ToUnit(LuminanceUnit.KilocandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.MicrocandelaPerSquareMeter, quantity => quantity.ToUnit(LuminanceUnit.MicrocandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.MillicandelaPerSquareMeter, quantity => quantity.ToUnit(LuminanceUnit.MillicandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.NanocandelaPerSquareMeter, quantity => quantity.ToUnit(LuminanceUnit.NanocandelaPerSquareMeter));
-            unitConverter.SetConversionFunction<Luminance>(LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.Nit, quantity => quantity.ToUnit(LuminanceUnit.Nit));
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -350,7 +332,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.CandelaPerSquareFoot"/>.
         /// </summary>
-        public static Luminance FromCandelasPerSquareFoot(double value)
+        public static Luminance FromCandelasPerSquareFoot(QuantityValue value)
         {
             return new Luminance(value, LuminanceUnit.CandelaPerSquareFoot);
         }
@@ -358,7 +340,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.CandelaPerSquareInch"/>.
         /// </summary>
-        public static Luminance FromCandelasPerSquareInch(double value)
+        public static Luminance FromCandelasPerSquareInch(QuantityValue value)
         {
             return new Luminance(value, LuminanceUnit.CandelaPerSquareInch);
         }
@@ -366,7 +348,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.CandelaPerSquareMeter"/>.
         /// </summary>
-        public static Luminance FromCandelasPerSquareMeter(double value)
+        public static Luminance FromCandelasPerSquareMeter(QuantityValue value)
         {
             return new Luminance(value, LuminanceUnit.CandelaPerSquareMeter);
         }
@@ -374,7 +356,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.CenticandelaPerSquareMeter"/>.
         /// </summary>
-        public static Luminance FromCenticandelasPerSquareMeter(double value)
+        public static Luminance FromCenticandelasPerSquareMeter(QuantityValue value)
         {
             return new Luminance(value, LuminanceUnit.CenticandelaPerSquareMeter);
         }
@@ -382,7 +364,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.DecicandelaPerSquareMeter"/>.
         /// </summary>
-        public static Luminance FromDecicandelasPerSquareMeter(double value)
+        public static Luminance FromDecicandelasPerSquareMeter(QuantityValue value)
         {
             return new Luminance(value, LuminanceUnit.DecicandelaPerSquareMeter);
         }
@@ -390,7 +372,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.KilocandelaPerSquareMeter"/>.
         /// </summary>
-        public static Luminance FromKilocandelasPerSquareMeter(double value)
+        public static Luminance FromKilocandelasPerSquareMeter(QuantityValue value)
         {
             return new Luminance(value, LuminanceUnit.KilocandelaPerSquareMeter);
         }
@@ -398,7 +380,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.MicrocandelaPerSquareMeter"/>.
         /// </summary>
-        public static Luminance FromMicrocandelasPerSquareMeter(double value)
+        public static Luminance FromMicrocandelasPerSquareMeter(QuantityValue value)
         {
             return new Luminance(value, LuminanceUnit.MicrocandelaPerSquareMeter);
         }
@@ -406,7 +388,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.MillicandelaPerSquareMeter"/>.
         /// </summary>
-        public static Luminance FromMillicandelasPerSquareMeter(double value)
+        public static Luminance FromMillicandelasPerSquareMeter(QuantityValue value)
         {
             return new Luminance(value, LuminanceUnit.MillicandelaPerSquareMeter);
         }
@@ -414,7 +396,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.NanocandelaPerSquareMeter"/>.
         /// </summary>
-        public static Luminance FromNanocandelasPerSquareMeter(double value)
+        public static Luminance FromNanocandelasPerSquareMeter(QuantityValue value)
         {
             return new Luminance(value, LuminanceUnit.NanocandelaPerSquareMeter);
         }
@@ -422,7 +404,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Luminance"/> from <see cref="LuminanceUnit.Nit"/>.
         /// </summary>
-        public static Luminance FromNits(double value)
+        public static Luminance FromNits(QuantityValue value)
         {
             return new Luminance(value, LuminanceUnit.Nit);
         }
@@ -433,7 +415,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Luminance unit value.</returns>
-        public static Luminance From(double value, LuminanceUnit fromUnit)
+        public static Luminance From(QuantityValue value, LuminanceUnit fromUnit)
         {
             return new Luminance(value, fromUnit);
         }
@@ -494,10 +476,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Luminance Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<Luminance, LuminanceUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<Luminance, LuminanceUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -525,11 +504,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Luminance result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<Luminance, LuminanceUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<Luminance, LuminanceUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -550,7 +525,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -561,7 +536,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.LuminanceUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.LuminanceUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out LuminanceUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -576,7 +551,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out LuminanceUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -595,35 +570,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="Luminance"/> from adding two <see cref="Luminance"/>.</summary>
         public static Luminance operator +(Luminance left, Luminance right)
         {
-            return new Luminance(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new Luminance(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="Luminance"/> from subtracting two <see cref="Luminance"/>.</summary>
         public static Luminance operator -(Luminance left, Luminance right)
         {
-            return new Luminance(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new Luminance(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="Luminance"/> from multiplying value and <see cref="Luminance"/>.</summary>
-        public static Luminance operator *(double left, Luminance right)
+        public static Luminance operator *(QuantityValue left, Luminance right)
         {
             return new Luminance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Luminance"/> from multiplying value and <see cref="Luminance"/>.</summary>
-        public static Luminance operator *(Luminance left, double right)
+        public static Luminance operator *(Luminance left, QuantityValue right)
         {
             return new Luminance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Luminance"/> from dividing <see cref="Luminance"/> by value.</summary>
-        public static Luminance operator /(Luminance left, double right)
+        public static Luminance operator /(Luminance left, QuantityValue right)
         {
             return new Luminance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Luminance"/> by <see cref="Luminance"/>.</summary>
-        public static double operator /(Luminance left, Luminance right)
+        public static QuantityValue operator /(Luminance left, Luminance right)
         {
             return left.CandelasPerSquareMeter / right.CandelasPerSquareMeter;
         }
@@ -645,65 +620,55 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Luminance left, Luminance right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Luminance left, Luminance right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Luminance left, Luminance right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Luminance left, Luminance right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="Luminance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Luminance other, Luminance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Luminance"/> quantities.</summary>
         public static bool operator ==(Luminance left, Luminance right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="Luminance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Luminance other, Luminance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="Luminance"/> quantities.</summary>
         public static bool operator !=(Luminance left, Luminance right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Luminance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Luminance other, Luminance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Luminance"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is Luminance otherQuantity))
+            if (obj is not Luminance otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Luminance"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Luminance other, Luminance tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Luminance"/> quantities.</summary>
         public bool Equals(Luminance other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>
         ///     Returns the hash code for this instance.
@@ -711,31 +676,26 @@ namespace UnitsNet
         /// <returns>A hash code for the current Luminance.</returns>
         public override int GetHashCode()
         {
-            return Comparison.GetHashCode(Unit, Value);
+            return Comparison.GetHashCode(typeof(Luminance), this.As(BaseUnit));
         }
-
-        /// <summary>Compares the current <see cref="Luminance"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        
+        /// <inheritdoc  cref="CompareTo(Luminance)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is Luminance otherQuantity)) throw new ArgumentException("Expected type Luminance.", nameof(obj));
+            if (obj is not Luminance otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<Luminance>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="Luminance"/> with another <see cref="Luminance"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="Luminance"/> with another <see cref="Luminance"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -747,146 +707,8 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(Luminance other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
+            return _value.CompareTo(other.As(this.Unit));
         }
-
-        #endregion
-
-        #region Conversion Methods
-
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(LuminanceUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
-
-            return ToUnit(unit).Value;
-        }
-
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<LuminanceUnit>());
-        }
-
-        /// <summary>
-        ///     Converts this Luminance to another Luminance with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A Luminance with the specified unit.</returns>
-        public Luminance ToUnit(LuminanceUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
-
-        /// <summary>
-        ///     Converts this <see cref="Luminance"/> to another <see cref="Luminance"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A Luminance with the specified unit.</returns>
-        public Luminance ToUnit(LuminanceUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(Luminance), Unit, typeof(Luminance), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (Luminance)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="Luminance"/> to another <see cref="Luminance"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="Luminance"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(LuminanceUnit unit, [NotNullWhen(true)] out Luminance? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            Luminance? convertedOrNull = (Unit, unit) switch
-            {
-                // LuminanceUnit -> BaseUnit
-                (LuminanceUnit.CandelaPerSquareFoot, LuminanceUnit.CandelaPerSquareMeter) => new Luminance(_value / 9.290304e-2, LuminanceUnit.CandelaPerSquareMeter),
-                (LuminanceUnit.CandelaPerSquareInch, LuminanceUnit.CandelaPerSquareMeter) => new Luminance(_value / 0.00064516, LuminanceUnit.CandelaPerSquareMeter),
-                (LuminanceUnit.CenticandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter) => new Luminance((_value) * 1e-2d, LuminanceUnit.CandelaPerSquareMeter),
-                (LuminanceUnit.DecicandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter) => new Luminance((_value) * 1e-1d, LuminanceUnit.CandelaPerSquareMeter),
-                (LuminanceUnit.KilocandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter) => new Luminance((_value) * 1e3d, LuminanceUnit.CandelaPerSquareMeter),
-                (LuminanceUnit.MicrocandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter) => new Luminance((_value) * 1e-6d, LuminanceUnit.CandelaPerSquareMeter),
-                (LuminanceUnit.MillicandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter) => new Luminance((_value) * 1e-3d, LuminanceUnit.CandelaPerSquareMeter),
-                (LuminanceUnit.NanocandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareMeter) => new Luminance((_value) * 1e-9d, LuminanceUnit.CandelaPerSquareMeter),
-                (LuminanceUnit.Nit, LuminanceUnit.CandelaPerSquareMeter) => new Luminance(_value, LuminanceUnit.CandelaPerSquareMeter),
-
-                // BaseUnit -> LuminanceUnit
-                (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareFoot) => new Luminance(_value * 9.290304e-2, LuminanceUnit.CandelaPerSquareFoot),
-                (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CandelaPerSquareInch) => new Luminance(_value * 0.00064516, LuminanceUnit.CandelaPerSquareInch),
-                (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.CenticandelaPerSquareMeter) => new Luminance((_value) / 1e-2d, LuminanceUnit.CenticandelaPerSquareMeter),
-                (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.DecicandelaPerSquareMeter) => new Luminance((_value) / 1e-1d, LuminanceUnit.DecicandelaPerSquareMeter),
-                (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.KilocandelaPerSquareMeter) => new Luminance((_value) / 1e3d, LuminanceUnit.KilocandelaPerSquareMeter),
-                (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.MicrocandelaPerSquareMeter) => new Luminance((_value) / 1e-6d, LuminanceUnit.MicrocandelaPerSquareMeter),
-                (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.MillicandelaPerSquareMeter) => new Luminance((_value) / 1e-3d, LuminanceUnit.MillicandelaPerSquareMeter),
-                (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.NanocandelaPerSquareMeter) => new Luminance((_value) / 1e-9d, LuminanceUnit.NanocandelaPerSquareMeter),
-                (LuminanceUnit.CandelaPerSquareMeter, LuminanceUnit.Nit) => new Luminance(_value, LuminanceUnit.Nit),
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not LuminanceUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminanceUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is LuminanceUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminanceUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<LuminanceUnit> IQuantity<LuminanceUnit>.ToUnit(LuminanceUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
@@ -901,7 +723,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

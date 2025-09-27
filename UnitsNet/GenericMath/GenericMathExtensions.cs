@@ -2,7 +2,6 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 #if NET7_0_OR_GREATER
-using System.Numerics;
 
 namespace UnitsNet.GenericMath;
 
@@ -81,12 +80,12 @@ public static class GenericMathExtensions
     /// </remarks>
     public static TQuantity Average<TQuantity>(this IEnumerable<TQuantity> source)
         where TQuantity : IQuantity, IAdditionOperators<TQuantity, TQuantity, TQuantity>, IAdditiveIdentity<TQuantity, TQuantity>,
-        IDivisionOperators<TQuantity, double, TQuantity>
+        IDivisionOperators<TQuantity, QuantityValue, TQuantity>
     {
         using IEnumerator<TQuantity> e = source.GetEnumerator();
         if (!e.MoveNext())
         {
-            throw new InvalidOperationException("Sequence contains no elements");
+            throw ExceptionHelper.CreateInvalidOperationOnEmptyCollectionException();
         }
 
         TQuantity result = e.Current;

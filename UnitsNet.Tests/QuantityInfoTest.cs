@@ -16,7 +16,7 @@ public class QuantityInfoTest
         UnitDefinition<LengthUnit>[] expectedUnitInfos =
         [
             new(LengthUnit.Centimeter, "Centimeters", new BaseUnits(LengthUnit.Centimeter)),
-            new(LengthUnit.Kilometer, "Kilometers", new BaseUnits(LengthUnit.Kilometer))
+            new(LengthUnit.Kilometer, "Kilometers", new BaseUnits(LengthUnit.Kilometer), 100)
         ];
         const LengthUnit expectedBaseUnit = LengthUnit.Centimeter;
         var expectedZero = Length.FromCentimeters(10);
@@ -56,6 +56,8 @@ public class QuantityInfoTest
                 Assert.Equal(expectedUnitInfos[0].Name, firstUnitInfo.Name);
                 Assert.Equal(expectedUnitInfos[0].PluralName, firstUnitInfo.PluralName);
                 Assert.Equal(expectedUnitInfos[0].BaseUnits, firstUnitInfo.BaseUnits);
+                Assert.Equal(expectedUnitInfos[0].ConversionFromBase, firstUnitInfo.ConversionFromBase);
+                Assert.Equal(expectedUnitInfos[0].ConversionToBase, firstUnitInfo.ConversionToBase);
                 Assert.Equal(quantityInfo, firstUnitInfo.QuantityInfo);
             }, secondUnitInfo =>
             {
@@ -63,6 +65,8 @@ public class QuantityInfoTest
                 Assert.Equal(expectedUnitInfos[1].Name, secondUnitInfo.Name);
                 Assert.Equal(expectedUnitInfos[1].PluralName, secondUnitInfo.PluralName);
                 Assert.Equal(expectedUnitInfos[1].BaseUnits, secondUnitInfo.BaseUnits);
+                Assert.Equal(expectedUnitInfos[1].ConversionFromBase, secondUnitInfo.ConversionFromBase);
+                Assert.Equal(expectedUnitInfos[1].ConversionToBase, secondUnitInfo.ConversionToBase);
                 Assert.Equal(quantityInfo, secondUnitInfo.QuantityInfo);
             });
         }, () =>
@@ -105,8 +109,8 @@ public class QuantityInfoTest
         UnitDefinition<HowMuchUnit>[] expectedUnitInfos =
         [
             new(HowMuchUnit.Some, "Some", BaseUnits.Undefined),
-            new(HowMuchUnit.ATon, "Tons", BaseUnits.Undefined),
-            new(HowMuchUnit.AShitTon, "ShitTons", BaseUnits.Undefined)
+            new(HowMuchUnit.ATon, "Tons", BaseUnits.Undefined, new QuantityValue(1, 10)),
+            new(HowMuchUnit.AShitTon, "ShitTons", BaseUnits.Undefined, new QuantityValue(1, 100))
         ];
         const HowMuchUnit expectedBaseUnit = HowMuchUnit.Some;
         var expectedZero = new HowMuch(10, HowMuchUnit.Some);
@@ -125,6 +129,8 @@ public class QuantityInfoTest
             Assert.Equal(expectedUnitInfos[0].Name, firstUnitInfo.Name);
             Assert.Equal(expectedUnitInfos[0].PluralName, firstUnitInfo.PluralName);
             Assert.Equal(expectedUnitInfos[0].BaseUnits, firstUnitInfo.BaseUnits);
+            Assert.Equal(expectedUnitInfos[0].ConversionFromBase, firstUnitInfo.ConversionFromBase);
+            Assert.Equal(expectedUnitInfos[0].ConversionToBase, firstUnitInfo.ConversionToBase);
             Assert.Equal(quantityInfo, firstUnitInfo.QuantityInfo);
         }, secondUnitInfo =>
         {
@@ -132,6 +138,8 @@ public class QuantityInfoTest
             Assert.Equal(expectedUnitInfos[1].Name, secondUnitInfo.Name);
             Assert.Equal(expectedUnitInfos[1].PluralName, secondUnitInfo.PluralName);
             Assert.Equal(expectedUnitInfos[1].BaseUnits, secondUnitInfo.BaseUnits);
+            Assert.Equal(expectedUnitInfos[1].ConversionFromBase, secondUnitInfo.ConversionFromBase);
+            Assert.Equal(expectedUnitInfos[1].ConversionToBase, secondUnitInfo.ConversionToBase);
             Assert.Equal(quantityInfo, secondUnitInfo.QuantityInfo);
         }, thirdUnitInfo =>
         {
@@ -139,6 +147,8 @@ public class QuantityInfoTest
             Assert.Equal(expectedUnitInfos[2].Name, thirdUnitInfo.Name);
             Assert.Equal(expectedUnitInfos[2].PluralName, thirdUnitInfo.PluralName);
             Assert.Equal(expectedUnitInfos[2].BaseUnits, thirdUnitInfo.BaseUnits);
+            Assert.Equal(expectedUnitInfos[2].ConversionFromBase, thirdUnitInfo.ConversionFromBase);
+            Assert.Equal(expectedUnitInfos[2].ConversionToBase, thirdUnitInfo.ConversionToBase);
             Assert.Equal(quantityInfo, thirdUnitInfo.QuantityInfo);
         });
         Assert.Equal(expectedZero, quantityInfo.Zero);
@@ -167,7 +177,9 @@ public class QuantityInfoTest
             expectedBaseUnit == unitInfo.Value &&
             expectedUnitInfos[0].Name == unitInfo.Name &&
             expectedUnitInfos[0].PluralName == unitInfo.PluralName &&
-            expectedUnitInfos[0].BaseUnits == unitInfo.BaseUnits
+            expectedUnitInfos[0].BaseUnits == unitInfo.BaseUnits &&
+            expectedUnitInfos[0].ConversionFromBase == unitInfo.ConversionFromBase &&
+            expectedUnitInfos[0].ConversionToBase == unitInfo.ConversionToBase
         );
         Assert.Equal(expectedBaseDimensions, quantityInfo.BaseDimensions);
         Assert.Null(quantityInfo.UnitAbbreviations);
@@ -195,7 +207,9 @@ public class QuantityInfoTest
             expectedBaseUnit == firstUnitInfo.Value &&
             expectedUnitInfos[0].Name == firstUnitInfo.Name &&
             expectedUnitInfos[0].PluralName == firstUnitInfo.PluralName &&
-            expectedUnitInfos[0].BaseUnits == firstUnitInfo.BaseUnits
+            expectedUnitInfos[0].BaseUnits == firstUnitInfo.BaseUnits &&
+            expectedUnitInfos[0].ConversionFromBase == firstUnitInfo.ConversionFromBase &&
+            expectedUnitInfos[0].ConversionToBase == firstUnitInfo.ConversionToBase
         );
         Assert.Equal(expectedBaseDimensions, quantityInfo.BaseDimensions);
         Assert.Equal(abbreviations, quantityInfo.UnitAbbreviations);
@@ -227,8 +241,8 @@ public class QuantityInfoTest
         Assert.Throws<ArgumentNullException>(() => new QuantityInfo<Length, LengthUnit>(nameof(Length),
             LengthUnit.Meter, collectionContainingANull, Length.BaseDimensions, Length.From));
 #else
-            Assert.Throws<NullReferenceException>(() => new QuantityInfo<Length, LengthUnit>(nameof(Length),
-                LengthUnit.Meter, collectionContainingANull, Length.BaseDimensions, Length.From));
+        Assert.Throws<NullReferenceException>(() => new QuantityInfo<Length, LengthUnit>(nameof(Length),
+            LengthUnit.Meter, collectionContainingANull, Length.BaseDimensions, Length.From));
 #endif
     }
 
@@ -611,7 +625,6 @@ public class QuantityInfoTest
     }
 
 #if NET
-
     [Fact]
     public void Constructor_WithoutDelegate_UsesTheDefaultQuantityFrom()
     {
@@ -634,7 +647,9 @@ public class QuantityInfoTest
             expectedBaseUnit == firstUnitInfo.Value &&
             expectedUnitInfos[0].Name == firstUnitInfo.Name &&
             expectedUnitInfos[0].PluralName == firstUnitInfo.PluralName &&
-            expectedUnitInfos[0].BaseUnits == firstUnitInfo.BaseUnits
+            expectedUnitInfos[0].BaseUnits == firstUnitInfo.BaseUnits &&
+            expectedUnitInfos[0].ConversionFromBase == firstUnitInfo.ConversionFromBase &&
+            expectedUnitInfos[0].ConversionToBase == firstUnitInfo.ConversionToBase
         );
         Assert.Equal(expectedBaseDimensions, quantityInfo.BaseDimensions);
         Assert.Equal(abbreviations, quantityInfo.UnitAbbreviations);
@@ -661,7 +676,9 @@ public class QuantityInfoTest
             expectedBaseUnit == firstUnitInfo.Value &&
             expectedUnitInfos[0].Name == firstUnitInfo.Name &&
             expectedUnitInfos[0].PluralName == firstUnitInfo.PluralName &&
-            expectedUnitInfos[0].BaseUnits == firstUnitInfo.BaseUnits
+            expectedUnitInfos[0].BaseUnits == firstUnitInfo.BaseUnits &&
+            expectedUnitInfos[0].ConversionFromBase == firstUnitInfo.ConversionFromBase &&
+            expectedUnitInfos[0].ConversionToBase == firstUnitInfo.ConversionToBase
         );
         Assert.Equal(expectedBaseDimensions, quantityInfo.BaseDimensions);
         Assert.Equal(abbreviations, quantityInfo.UnitAbbreviations);

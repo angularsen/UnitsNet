@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -35,11 +33,12 @@ namespace UnitsNet
     ///     Radiation exposure is a measure of the ionization of air due to ionizing radiation from photons.
     /// </summary>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct RadiationExposure :
         IArithmeticQuantity<RadiationExposure, RadiationExposureUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<RadiationExposure, RadiationExposure, double>,
+        IDivisionOperators<RadiationExposure, RadiationExposure, QuantityValue>,
         IComparisonOperators<RadiationExposure, RadiationExposure, bool>,
         IParsable<RadiationExposure>,
 #endif
@@ -51,13 +50,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly RadiationExposureUnit? _unit;
 
         /// <summary>
@@ -102,7 +101,7 @@ namespace UnitsNet
             }
 
             /// <summary>
-            ///     The <see cref="BaseDimensions" /> for <see cref="RadiationExposure"/> is [T][M^-1][I].
+            ///     The <see cref="BaseDimensions" /> for <see cref="RadiationExposure"/> is TM^-1I.
             /// </summary>
             public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, -1, 1, 1, 0, 0, 0);
 
@@ -118,21 +117,33 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<RadiationExposureUnit>> GetDefaultMappings()
             {
                 yield return new (RadiationExposureUnit.CoulombPerKilogram, "CoulombPerKilogram", "CoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
-                yield return new (RadiationExposureUnit.MicrocoulombPerKilogram, "MicrocoulombPerKilogram", "MicrocoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere));
-                yield return new (RadiationExposureUnit.Microroentgen, "Microroentgen", "Microroentgens", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere));
-                yield return new (RadiationExposureUnit.MillicoulombPerKilogram, "MillicoulombPerKilogram", "MillicoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere));
-                yield return new (RadiationExposureUnit.Milliroentgen, "Milliroentgen", "Milliroentgens", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere));
-                yield return new (RadiationExposureUnit.NanocoulombPerKilogram, "NanocoulombPerKilogram", "NanocoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Nanoampere));
-                yield return new (RadiationExposureUnit.PicocoulombPerKilogram, "PicocoulombPerKilogram", "PicocoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Picoampere));
-                yield return new (RadiationExposureUnit.Roentgen, "Roentgen", "Roentgens", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
+                yield return new (RadiationExposureUnit.MicrocoulombPerKilogram, "MicrocoulombPerKilogram", "MicrocoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere),
+                     1000000             
+                );
+                yield return new (RadiationExposureUnit.Microroentgen, "Microroentgen", "Microroentgens", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere),
+                     new QuantityValue(500000000000, 129)             
+                );
+                yield return new (RadiationExposureUnit.MillicoulombPerKilogram, "MillicoulombPerKilogram", "MillicoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere),
+                     1000             
+                );
+                yield return new (RadiationExposureUnit.Milliroentgen, "Milliroentgen", "Milliroentgens", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere),
+                     new QuantityValue(500000000, 129)             
+                );
+                yield return new (RadiationExposureUnit.NanocoulombPerKilogram, "NanocoulombPerKilogram", "NanocoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Nanoampere),
+                     1000000000             
+                );
+                yield return new (RadiationExposureUnit.PicocoulombPerKilogram, "PicocoulombPerKilogram", "PicocoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Picoampere),
+                     1000000000000             
+                );
+                yield return new (RadiationExposureUnit.Roentgen, "Roentgen", "Roentgens", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
+                     new QuantityValue(500000, 129)             
+                );
             }
         }
 
         static RadiationExposure()
         {
-            Info = RadiationExposureInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(RadiationExposureInfo.CreateDefault);
         }
 
         /// <summary>
@@ -140,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public RadiationExposure(double value, RadiationExposureUnit unit)
+        public RadiationExposure(QuantityValue value, RadiationExposureUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -154,7 +165,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public RadiationExposure(double value, UnitSystem unitSystem)
+        public RadiationExposure(QuantityValue value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -165,7 +176,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="RadiationExposure" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<RadiationExposure, RadiationExposureUnit> Info { get; }
@@ -194,10 +206,8 @@ namespace UnitsNet
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public RadiationExposureUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -231,76 +241,48 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationExposureUnit.CoulombPerKilogram"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RadiationExposureUnit.CoulombPerKilogram"/>
         /// </summary>
-        public double CoulombsPerKilogram => As(RadiationExposureUnit.CoulombPerKilogram);
+        public QuantityValue CoulombsPerKilogram => this.As(RadiationExposureUnit.CoulombPerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationExposureUnit.MicrocoulombPerKilogram"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RadiationExposureUnit.MicrocoulombPerKilogram"/>
         /// </summary>
-        public double MicrocoulombsPerKilogram => As(RadiationExposureUnit.MicrocoulombPerKilogram);
+        public QuantityValue MicrocoulombsPerKilogram => this.As(RadiationExposureUnit.MicrocoulombPerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationExposureUnit.Microroentgen"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RadiationExposureUnit.Microroentgen"/>
         /// </summary>
-        public double Microroentgens => As(RadiationExposureUnit.Microroentgen);
+        public QuantityValue Microroentgens => this.As(RadiationExposureUnit.Microroentgen);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationExposureUnit.MillicoulombPerKilogram"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RadiationExposureUnit.MillicoulombPerKilogram"/>
         /// </summary>
-        public double MillicoulombsPerKilogram => As(RadiationExposureUnit.MillicoulombPerKilogram);
+        public QuantityValue MillicoulombsPerKilogram => this.As(RadiationExposureUnit.MillicoulombPerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationExposureUnit.Milliroentgen"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RadiationExposureUnit.Milliroentgen"/>
         /// </summary>
-        public double Milliroentgens => As(RadiationExposureUnit.Milliroentgen);
+        public QuantityValue Milliroentgens => this.As(RadiationExposureUnit.Milliroentgen);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationExposureUnit.NanocoulombPerKilogram"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RadiationExposureUnit.NanocoulombPerKilogram"/>
         /// </summary>
-        public double NanocoulombsPerKilogram => As(RadiationExposureUnit.NanocoulombPerKilogram);
+        public QuantityValue NanocoulombsPerKilogram => this.As(RadiationExposureUnit.NanocoulombPerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationExposureUnit.PicocoulombPerKilogram"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RadiationExposureUnit.PicocoulombPerKilogram"/>
         /// </summary>
-        public double PicocoulombsPerKilogram => As(RadiationExposureUnit.PicocoulombPerKilogram);
+        public QuantityValue PicocoulombsPerKilogram => this.As(RadiationExposureUnit.PicocoulombPerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationExposureUnit.Roentgen"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RadiationExposureUnit.Roentgen"/>
         /// </summary>
-        public double Roentgens => As(RadiationExposureUnit.Roentgen);
+        public QuantityValue Roentgens => this.As(RadiationExposureUnit.Roentgen);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: RadiationExposureUnit -> BaseUnit
-            unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.MicrocoulombPerKilogram, RadiationExposureUnit.CoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.CoulombPerKilogram));
-            unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.Microroentgen, RadiationExposureUnit.CoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.CoulombPerKilogram));
-            unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.MillicoulombPerKilogram, RadiationExposureUnit.CoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.CoulombPerKilogram));
-            unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.Milliroentgen, RadiationExposureUnit.CoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.CoulombPerKilogram));
-            unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.NanocoulombPerKilogram, RadiationExposureUnit.CoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.CoulombPerKilogram));
-            unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.PicocoulombPerKilogram, RadiationExposureUnit.CoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.CoulombPerKilogram));
-            unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.Roentgen, RadiationExposureUnit.CoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.CoulombPerKilogram));
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.CoulombPerKilogram, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> RadiationExposureUnit
-            unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.MicrocoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.MicrocoulombPerKilogram));
-            unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.Microroentgen, quantity => quantity.ToUnit(RadiationExposureUnit.Microroentgen));
-            unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.MillicoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.MillicoulombPerKilogram));
-            unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.Milliroentgen, quantity => quantity.ToUnit(RadiationExposureUnit.Milliroentgen));
-            unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.NanocoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.NanocoulombPerKilogram));
-            unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.PicocoulombPerKilogram, quantity => quantity.ToUnit(RadiationExposureUnit.PicocoulombPerKilogram));
-            unitConverter.SetConversionFunction<RadiationExposure>(RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.Roentgen, quantity => quantity.ToUnit(RadiationExposureUnit.Roentgen));
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -330,7 +312,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.CoulombPerKilogram"/>.
         /// </summary>
-        public static RadiationExposure FromCoulombsPerKilogram(double value)
+        public static RadiationExposure FromCoulombsPerKilogram(QuantityValue value)
         {
             return new RadiationExposure(value, RadiationExposureUnit.CoulombPerKilogram);
         }
@@ -338,7 +320,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.MicrocoulombPerKilogram"/>.
         /// </summary>
-        public static RadiationExposure FromMicrocoulombsPerKilogram(double value)
+        public static RadiationExposure FromMicrocoulombsPerKilogram(QuantityValue value)
         {
             return new RadiationExposure(value, RadiationExposureUnit.MicrocoulombPerKilogram);
         }
@@ -346,7 +328,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.Microroentgen"/>.
         /// </summary>
-        public static RadiationExposure FromMicroroentgens(double value)
+        public static RadiationExposure FromMicroroentgens(QuantityValue value)
         {
             return new RadiationExposure(value, RadiationExposureUnit.Microroentgen);
         }
@@ -354,7 +336,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.MillicoulombPerKilogram"/>.
         /// </summary>
-        public static RadiationExposure FromMillicoulombsPerKilogram(double value)
+        public static RadiationExposure FromMillicoulombsPerKilogram(QuantityValue value)
         {
             return new RadiationExposure(value, RadiationExposureUnit.MillicoulombPerKilogram);
         }
@@ -362,7 +344,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.Milliroentgen"/>.
         /// </summary>
-        public static RadiationExposure FromMilliroentgens(double value)
+        public static RadiationExposure FromMilliroentgens(QuantityValue value)
         {
             return new RadiationExposure(value, RadiationExposureUnit.Milliroentgen);
         }
@@ -370,7 +352,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.NanocoulombPerKilogram"/>.
         /// </summary>
-        public static RadiationExposure FromNanocoulombsPerKilogram(double value)
+        public static RadiationExposure FromNanocoulombsPerKilogram(QuantityValue value)
         {
             return new RadiationExposure(value, RadiationExposureUnit.NanocoulombPerKilogram);
         }
@@ -378,7 +360,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.PicocoulombPerKilogram"/>.
         /// </summary>
-        public static RadiationExposure FromPicocoulombsPerKilogram(double value)
+        public static RadiationExposure FromPicocoulombsPerKilogram(QuantityValue value)
         {
             return new RadiationExposure(value, RadiationExposureUnit.PicocoulombPerKilogram);
         }
@@ -386,7 +368,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationExposure"/> from <see cref="RadiationExposureUnit.Roentgen"/>.
         /// </summary>
-        public static RadiationExposure FromRoentgens(double value)
+        public static RadiationExposure FromRoentgens(QuantityValue value)
         {
             return new RadiationExposure(value, RadiationExposureUnit.Roentgen);
         }
@@ -397,7 +379,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>RadiationExposure unit value.</returns>
-        public static RadiationExposure From(double value, RadiationExposureUnit fromUnit)
+        public static RadiationExposure From(QuantityValue value, RadiationExposureUnit fromUnit)
         {
             return new RadiationExposure(value, fromUnit);
         }
@@ -458,10 +440,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static RadiationExposure Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<RadiationExposure, RadiationExposureUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<RadiationExposure, RadiationExposureUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -489,11 +468,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out RadiationExposure result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<RadiationExposure, RadiationExposureUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<RadiationExposure, RadiationExposureUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -514,7 +489,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -525,7 +500,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.RadiationExposureUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.RadiationExposureUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out RadiationExposureUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -540,7 +515,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out RadiationExposureUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -559,35 +534,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="RadiationExposure"/> from adding two <see cref="RadiationExposure"/>.</summary>
         public static RadiationExposure operator +(RadiationExposure left, RadiationExposure right)
         {
-            return new RadiationExposure(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new RadiationExposure(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="RadiationExposure"/> from subtracting two <see cref="RadiationExposure"/>.</summary>
         public static RadiationExposure operator -(RadiationExposure left, RadiationExposure right)
         {
-            return new RadiationExposure(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new RadiationExposure(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="RadiationExposure"/> from multiplying value and <see cref="RadiationExposure"/>.</summary>
-        public static RadiationExposure operator *(double left, RadiationExposure right)
+        public static RadiationExposure operator *(QuantityValue left, RadiationExposure right)
         {
             return new RadiationExposure(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="RadiationExposure"/> from multiplying value and <see cref="RadiationExposure"/>.</summary>
-        public static RadiationExposure operator *(RadiationExposure left, double right)
+        public static RadiationExposure operator *(RadiationExposure left, QuantityValue right)
         {
             return new RadiationExposure(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="RadiationExposure"/> from dividing <see cref="RadiationExposure"/> by value.</summary>
-        public static RadiationExposure operator /(RadiationExposure left, double right)
+        public static RadiationExposure operator /(RadiationExposure left, QuantityValue right)
         {
             return new RadiationExposure(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="RadiationExposure"/> by <see cref="RadiationExposure"/>.</summary>
-        public static double operator /(RadiationExposure left, RadiationExposure right)
+        public static QuantityValue operator /(RadiationExposure left, RadiationExposure right)
         {
             return left.CoulombsPerKilogram / right.CoulombsPerKilogram;
         }
@@ -599,65 +574,55 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(RadiationExposure left, RadiationExposure right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(RadiationExposure left, RadiationExposure right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(RadiationExposure left, RadiationExposure right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(RadiationExposure left, RadiationExposure right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="RadiationExposure"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(RadiationExposure other, RadiationExposure tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="RadiationExposure"/> quantities.</summary>
         public static bool operator ==(RadiationExposure left, RadiationExposure right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="RadiationExposure"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(RadiationExposure other, RadiationExposure tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="RadiationExposure"/> quantities.</summary>
         public static bool operator !=(RadiationExposure left, RadiationExposure right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="RadiationExposure"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(RadiationExposure other, RadiationExposure tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="RadiationExposure"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is RadiationExposure otherQuantity))
+            if (obj is not RadiationExposure otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="RadiationExposure"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(RadiationExposure other, RadiationExposure tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="RadiationExposure"/> quantities.</summary>
         public bool Equals(RadiationExposure other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>
         ///     Returns the hash code for this instance.
@@ -665,31 +630,26 @@ namespace UnitsNet
         /// <returns>A hash code for the current RadiationExposure.</returns>
         public override int GetHashCode()
         {
-            return Comparison.GetHashCode(Unit, Value);
+            return Comparison.GetHashCode(typeof(RadiationExposure), this.As(BaseUnit));
         }
-
-        /// <summary>Compares the current <see cref="RadiationExposure"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        
+        /// <inheritdoc  cref="CompareTo(RadiationExposure)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is RadiationExposure otherQuantity)) throw new ArgumentException("Expected type RadiationExposure.", nameof(obj));
+            if (obj is not RadiationExposure otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<RadiationExposure>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="RadiationExposure"/> with another <see cref="RadiationExposure"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="RadiationExposure"/> with another <see cref="RadiationExposure"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -701,142 +661,8 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(RadiationExposure other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
+            return _value.CompareTo(other.As(this.Unit));
         }
-
-        #endregion
-
-        #region Conversion Methods
-
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(RadiationExposureUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
-
-            return ToUnit(unit).Value;
-        }
-
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<RadiationExposureUnit>());
-        }
-
-        /// <summary>
-        ///     Converts this RadiationExposure to another RadiationExposure with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A RadiationExposure with the specified unit.</returns>
-        public RadiationExposure ToUnit(RadiationExposureUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
-
-        /// <summary>
-        ///     Converts this <see cref="RadiationExposure"/> to another <see cref="RadiationExposure"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A RadiationExposure with the specified unit.</returns>
-        public RadiationExposure ToUnit(RadiationExposureUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(RadiationExposure), Unit, typeof(RadiationExposure), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (RadiationExposure)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="RadiationExposure"/> to another <see cref="RadiationExposure"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="RadiationExposure"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(RadiationExposureUnit unit, [NotNullWhen(true)] out RadiationExposure? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            RadiationExposure? convertedOrNull = (Unit, unit) switch
-            {
-                // RadiationExposureUnit -> BaseUnit
-                (RadiationExposureUnit.MicrocoulombPerKilogram, RadiationExposureUnit.CoulombPerKilogram) => new RadiationExposure((_value) * 1e-6d, RadiationExposureUnit.CoulombPerKilogram),
-                (RadiationExposureUnit.Microroentgen, RadiationExposureUnit.CoulombPerKilogram) => new RadiationExposure((_value * 2.58e-4) * 1e-6d, RadiationExposureUnit.CoulombPerKilogram),
-                (RadiationExposureUnit.MillicoulombPerKilogram, RadiationExposureUnit.CoulombPerKilogram) => new RadiationExposure((_value) * 1e-3d, RadiationExposureUnit.CoulombPerKilogram),
-                (RadiationExposureUnit.Milliroentgen, RadiationExposureUnit.CoulombPerKilogram) => new RadiationExposure((_value * 2.58e-4) * 1e-3d, RadiationExposureUnit.CoulombPerKilogram),
-                (RadiationExposureUnit.NanocoulombPerKilogram, RadiationExposureUnit.CoulombPerKilogram) => new RadiationExposure((_value) * 1e-9d, RadiationExposureUnit.CoulombPerKilogram),
-                (RadiationExposureUnit.PicocoulombPerKilogram, RadiationExposureUnit.CoulombPerKilogram) => new RadiationExposure((_value) * 1e-12d, RadiationExposureUnit.CoulombPerKilogram),
-                (RadiationExposureUnit.Roentgen, RadiationExposureUnit.CoulombPerKilogram) => new RadiationExposure(_value * 2.58e-4, RadiationExposureUnit.CoulombPerKilogram),
-
-                // BaseUnit -> RadiationExposureUnit
-                (RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.MicrocoulombPerKilogram) => new RadiationExposure((_value) / 1e-6d, RadiationExposureUnit.MicrocoulombPerKilogram),
-                (RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.Microroentgen) => new RadiationExposure((_value / 2.58e-4) / 1e-6d, RadiationExposureUnit.Microroentgen),
-                (RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.MillicoulombPerKilogram) => new RadiationExposure((_value) / 1e-3d, RadiationExposureUnit.MillicoulombPerKilogram),
-                (RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.Milliroentgen) => new RadiationExposure((_value / 2.58e-4) / 1e-3d, RadiationExposureUnit.Milliroentgen),
-                (RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.NanocoulombPerKilogram) => new RadiationExposure((_value) / 1e-9d, RadiationExposureUnit.NanocoulombPerKilogram),
-                (RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.PicocoulombPerKilogram) => new RadiationExposure((_value) / 1e-12d, RadiationExposureUnit.PicocoulombPerKilogram),
-                (RadiationExposureUnit.CoulombPerKilogram, RadiationExposureUnit.Roentgen) => new RadiationExposure(_value / 2.58e-4, RadiationExposureUnit.Roentgen),
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not RadiationExposureUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RadiationExposureUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is RadiationExposureUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(RadiationExposureUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<RadiationExposureUnit> IQuantity<RadiationExposureUnit>.ToUnit(RadiationExposureUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
@@ -851,7 +677,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

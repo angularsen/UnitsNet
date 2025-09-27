@@ -162,6 +162,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void LuminanceInfo_CreateWithCustomUnitInfos()
+        {
+            LuminanceUnit[] expectedUnits = [LuminanceUnit.CandelaPerSquareMeter];
+
+            Luminance.LuminanceInfo quantityInfo = Luminance.LuminanceInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("Luminance", quantityInfo.Name);
+            Assert.Equal(Luminance.Zero, quantityInfo.Zero);
+            Assert.Equal(Luminance.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void CandelaPerSquareMeterToLuminanceUnits()
         {
             Luminance candelapersquaremeter = Luminance.FromCandelasPerSquareMeter(1);
@@ -263,26 +277,69 @@ namespace UnitsNet.Tests
             var expectedUnit = Luminance.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            Luminance convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                Luminance quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                Luminance convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<LuminanceUnit> quantityToConvert = quantity;
+
+                IQuantity<LuminanceUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new Luminance(value: 1, unit: Luminance.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Luminance(value: 1, unit: Luminance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<LuminanceUnit> quantity = new Luminance(value: 1, unit: Luminance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Luminance(value: 1, unit: Luminance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new Luminance(value: 1, unit: Luminance.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Luminance(value: 1, unit: Luminance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<LuminanceUnit> quantity = new Luminance(value: 1, unit: Luminance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Luminance(value: 1, unit: Luminance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -296,7 +353,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 mCd/m²", LuminanceUnit.MillicandelaPerSquareMeter, 4.2)]
         [InlineData("en-US", "4.2 nCd/m²", LuminanceUnit.NanocandelaPerSquareMeter, 4.2)]
         [InlineData("en-US", "4.2 nt", LuminanceUnit.Nit, 4.2)]
-        public void Parse(string culture, string quantityString, LuminanceUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, LuminanceUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Luminance.Parse(quantityString);
@@ -315,7 +372,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 mCd/m²", LuminanceUnit.MillicandelaPerSquareMeter, 4.2)]
         [InlineData("en-US", "4.2 nCd/m²", LuminanceUnit.NanocandelaPerSquareMeter, 4.2)]
         [InlineData("en-US", "4.2 nt", LuminanceUnit.Nit, 4.2)]
-        public void TryParse(string culture, string quantityString, LuminanceUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, LuminanceUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Luminance.TryParse(quantityString, out Luminance parsed));
@@ -529,6 +586,7 @@ namespace UnitsNet.Tests
                 var quantity = Luminance.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -552,41 +610,43 @@ namespace UnitsNet.Tests
                 IQuantity<LuminanceUnit> quantityToConvert = quantity;
                 IQuantity<LuminanceUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Luminance candelapersquaremeter = Luminance.FromCandelasPerSquareMeter(1);
-            AssertEx.EqualTolerance(1, Luminance.FromCandelasPerSquareFoot(candelapersquaremeter.CandelasPerSquareFoot).CandelasPerSquareMeter, CandelasPerSquareFootTolerance);
-            AssertEx.EqualTolerance(1, Luminance.FromCandelasPerSquareInch(candelapersquaremeter.CandelasPerSquareInch).CandelasPerSquareMeter, CandelasPerSquareInchTolerance);
-            AssertEx.EqualTolerance(1, Luminance.FromCandelasPerSquareMeter(candelapersquaremeter.CandelasPerSquareMeter).CandelasPerSquareMeter, CandelasPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, Luminance.FromCenticandelasPerSquareMeter(candelapersquaremeter.CenticandelasPerSquareMeter).CandelasPerSquareMeter, CenticandelasPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, Luminance.FromDecicandelasPerSquareMeter(candelapersquaremeter.DecicandelasPerSquareMeter).CandelasPerSquareMeter, DecicandelasPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, Luminance.FromKilocandelasPerSquareMeter(candelapersquaremeter.KilocandelasPerSquareMeter).CandelasPerSquareMeter, KilocandelasPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, Luminance.FromMicrocandelasPerSquareMeter(candelapersquaremeter.MicrocandelasPerSquareMeter).CandelasPerSquareMeter, MicrocandelasPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, Luminance.FromMillicandelasPerSquareMeter(candelapersquaremeter.MillicandelasPerSquareMeter).CandelasPerSquareMeter, MillicandelasPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, Luminance.FromNanocandelasPerSquareMeter(candelapersquaremeter.NanocandelasPerSquareMeter).CandelasPerSquareMeter, NanocandelasPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, Luminance.FromNits(candelapersquaremeter.Nits).CandelasPerSquareMeter, NitsTolerance);
+            Luminance candelapersquaremeter = Luminance.FromCandelasPerSquareMeter(3);
+            Assert.Equal(3, Luminance.FromCandelasPerSquareFoot(candelapersquaremeter.CandelasPerSquareFoot).CandelasPerSquareMeter);
+            Assert.Equal(3, Luminance.FromCandelasPerSquareInch(candelapersquaremeter.CandelasPerSquareInch).CandelasPerSquareMeter);
+            Assert.Equal(3, Luminance.FromCandelasPerSquareMeter(candelapersquaremeter.CandelasPerSquareMeter).CandelasPerSquareMeter);
+            Assert.Equal(3, Luminance.FromCenticandelasPerSquareMeter(candelapersquaremeter.CenticandelasPerSquareMeter).CandelasPerSquareMeter);
+            Assert.Equal(3, Luminance.FromDecicandelasPerSquareMeter(candelapersquaremeter.DecicandelasPerSquareMeter).CandelasPerSquareMeter);
+            Assert.Equal(3, Luminance.FromKilocandelasPerSquareMeter(candelapersquaremeter.KilocandelasPerSquareMeter).CandelasPerSquareMeter);
+            Assert.Equal(3, Luminance.FromMicrocandelasPerSquareMeter(candelapersquaremeter.MicrocandelasPerSquareMeter).CandelasPerSquareMeter);
+            Assert.Equal(3, Luminance.FromMillicandelasPerSquareMeter(candelapersquaremeter.MillicandelasPerSquareMeter).CandelasPerSquareMeter);
+            Assert.Equal(3, Luminance.FromNanocandelasPerSquareMeter(candelapersquaremeter.NanocandelasPerSquareMeter).CandelasPerSquareMeter);
+            Assert.Equal(3, Luminance.FromNits(candelapersquaremeter.Nits).CandelasPerSquareMeter);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             Luminance v = Luminance.FromCandelasPerSquareMeter(1);
-            AssertEx.EqualTolerance(-1, -v.CandelasPerSquareMeter, CandelasPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(2, (Luminance.FromCandelasPerSquareMeter(3)-v).CandelasPerSquareMeter, CandelasPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(2, (v + v).CandelasPerSquareMeter, CandelasPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(10, (v*10).CandelasPerSquareMeter, CandelasPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(10, (10*v).CandelasPerSquareMeter, CandelasPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(2, (Luminance.FromCandelasPerSquareMeter(10)/5).CandelasPerSquareMeter, CandelasPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(2, Luminance.FromCandelasPerSquareMeter(10)/Luminance.FromCandelasPerSquareMeter(5), CandelasPerSquareMeterTolerance);
+            Assert.Equal(-1, -v.CandelasPerSquareMeter);
+            Assert.Equal(2, (Luminance.FromCandelasPerSquareMeter(3) - v).CandelasPerSquareMeter);
+            Assert.Equal(2, (v + v).CandelasPerSquareMeter);
+            Assert.Equal(10, (v * 10).CandelasPerSquareMeter);
+            Assert.Equal(10, (10 * v).CandelasPerSquareMeter);
+            Assert.Equal(2, (Luminance.FromCandelasPerSquareMeter(10) / 5).CandelasPerSquareMeter);
+            Assert.Equal(2, Luminance.FromCandelasPerSquareMeter(10) / Luminance.FromCandelasPerSquareMeter(5));
         }
 
         [Fact]
@@ -632,8 +692,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, LuminanceUnit.CandelaPerSquareMeter, 1, LuminanceUnit.CandelaPerSquareMeter, true)]  // Same value and unit.
         [InlineData(1, LuminanceUnit.CandelaPerSquareMeter, 2, LuminanceUnit.CandelaPerSquareMeter, false)] // Different value.
-        [InlineData(2, LuminanceUnit.CandelaPerSquareMeter, 1, LuminanceUnit.CandelaPerSquareFoot, false)] // Different value and unit.
-        [InlineData(1, LuminanceUnit.CandelaPerSquareMeter, 1, LuminanceUnit.CandelaPerSquareFoot, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, LuminanceUnit unitA, double valueB, LuminanceUnit unitB, bool expectEqual)
         {
             var a = new Luminance(valueA, unitA);
@@ -693,8 +751,8 @@ namespace UnitsNet.Tests
             var quantity = Luminance.FromCandelasPerSquareMeter(firstValue);
             var otherQuantity = Luminance.FromCandelasPerSquareMeter(secondValue);
             Luminance maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, Luminance.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -713,7 +771,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<LuminanceUnit>();
+            var units = EnumHelper.GetValues<LuminanceUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -724,6 +782,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Luminance.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(Luminance.Info.Units, Luminance.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, Luminance.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -806,7 +876,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Luminance.FromCandelasPerSquareMeter(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(Luminance), quantity.As(Luminance.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

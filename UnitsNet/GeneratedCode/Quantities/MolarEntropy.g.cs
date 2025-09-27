@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -35,11 +33,12 @@ namespace UnitsNet
     ///     Molar entropy is amount of energy required to increase temperature of 1 mole substance by 1 Kelvin.
     /// </summary>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct MolarEntropy :
         IArithmeticQuantity<MolarEntropy, MolarEntropyUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<MolarEntropy, MolarEntropy, double>,
+        IDivisionOperators<MolarEntropy, MolarEntropy, QuantityValue>,
         IComparisonOperators<MolarEntropy, MolarEntropy, bool>,
         IParsable<MolarEntropy>,
 #endif
@@ -51,13 +50,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly MolarEntropyUnit? _unit;
 
         /// <summary>
@@ -102,7 +101,7 @@ namespace UnitsNet
             }
 
             /// <summary>
-            ///     The <see cref="BaseDimensions" /> for <see cref="MolarEntropy"/> is [T^-2][L^2][M][Θ^-1][N^-1].
+            ///     The <see cref="BaseDimensions" /> for <see cref="MolarEntropy"/> is T^-2L^2MΘ^-1N^-1.
             /// </summary>
             public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, -1, -1, 0);
 
@@ -118,16 +117,18 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<MolarEntropyUnit>> GetDefaultMappings()
             {
                 yield return new (MolarEntropyUnit.JoulePerMoleKelvin, "JoulePerMoleKelvin", "JoulesPerMoleKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin, amount: AmountOfSubstanceUnit.Mole));
-                yield return new (MolarEntropyUnit.KilojoulePerMoleKelvin, "KilojoulePerMoleKelvin", "KilojoulesPerMoleKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin, amount: AmountOfSubstanceUnit.Millimole));
-                yield return new (MolarEntropyUnit.MegajoulePerMoleKelvin, "MegajoulePerMoleKelvin", "MegajoulesPerMoleKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin, amount: AmountOfSubstanceUnit.Micromole));
+                yield return new (MolarEntropyUnit.KilojoulePerMoleKelvin, "KilojoulePerMoleKelvin", "KilojoulesPerMoleKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin, amount: AmountOfSubstanceUnit.Millimole),
+                     new QuantityValue(1, 1000)             
+                );
+                yield return new (MolarEntropyUnit.MegajoulePerMoleKelvin, "MegajoulePerMoleKelvin", "MegajoulesPerMoleKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin, amount: AmountOfSubstanceUnit.Micromole),
+                     new QuantityValue(1, 1000000)             
+                );
             }
         }
 
         static MolarEntropy()
         {
-            Info = MolarEntropyInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(MolarEntropyInfo.CreateDefault);
         }
 
         /// <summary>
@@ -135,7 +136,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public MolarEntropy(double value, MolarEntropyUnit unit)
+        public MolarEntropy(QuantityValue value, MolarEntropyUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -149,7 +150,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public MolarEntropy(double value, UnitSystem unitSystem)
+        public MolarEntropy(QuantityValue value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -160,7 +161,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="MolarEntropy" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<MolarEntropy, MolarEntropyUnit> Info { get; }
@@ -189,10 +191,8 @@ namespace UnitsNet
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public MolarEntropyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -226,41 +226,23 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEntropyUnit.JoulePerMoleKelvin"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarEntropyUnit.JoulePerMoleKelvin"/>
         /// </summary>
-        public double JoulesPerMoleKelvin => As(MolarEntropyUnit.JoulePerMoleKelvin);
+        public QuantityValue JoulesPerMoleKelvin => this.As(MolarEntropyUnit.JoulePerMoleKelvin);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEntropyUnit.KilojoulePerMoleKelvin"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarEntropyUnit.KilojoulePerMoleKelvin"/>
         /// </summary>
-        public double KilojoulesPerMoleKelvin => As(MolarEntropyUnit.KilojoulePerMoleKelvin);
+        public QuantityValue KilojoulesPerMoleKelvin => this.As(MolarEntropyUnit.KilojoulePerMoleKelvin);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEntropyUnit.MegajoulePerMoleKelvin"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarEntropyUnit.MegajoulePerMoleKelvin"/>
         /// </summary>
-        public double MegajoulesPerMoleKelvin => As(MolarEntropyUnit.MegajoulePerMoleKelvin);
+        public QuantityValue MegajoulesPerMoleKelvin => this.As(MolarEntropyUnit.MegajoulePerMoleKelvin);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: MolarEntropyUnit -> BaseUnit
-            unitConverter.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.KilojoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin, quantity => quantity.ToUnit(MolarEntropyUnit.JoulePerMoleKelvin));
-            unitConverter.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.MegajoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin, quantity => quantity.ToUnit(MolarEntropyUnit.JoulePerMoleKelvin));
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> MolarEntropyUnit
-            unitConverter.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.KilojoulePerMoleKelvin, quantity => quantity.ToUnit(MolarEntropyUnit.KilojoulePerMoleKelvin));
-            unitConverter.SetConversionFunction<MolarEntropy>(MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.MegajoulePerMoleKelvin, quantity => quantity.ToUnit(MolarEntropyUnit.MegajoulePerMoleKelvin));
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -290,7 +272,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarEntropy"/> from <see cref="MolarEntropyUnit.JoulePerMoleKelvin"/>.
         /// </summary>
-        public static MolarEntropy FromJoulesPerMoleKelvin(double value)
+        public static MolarEntropy FromJoulesPerMoleKelvin(QuantityValue value)
         {
             return new MolarEntropy(value, MolarEntropyUnit.JoulePerMoleKelvin);
         }
@@ -298,7 +280,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarEntropy"/> from <see cref="MolarEntropyUnit.KilojoulePerMoleKelvin"/>.
         /// </summary>
-        public static MolarEntropy FromKilojoulesPerMoleKelvin(double value)
+        public static MolarEntropy FromKilojoulesPerMoleKelvin(QuantityValue value)
         {
             return new MolarEntropy(value, MolarEntropyUnit.KilojoulePerMoleKelvin);
         }
@@ -306,7 +288,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarEntropy"/> from <see cref="MolarEntropyUnit.MegajoulePerMoleKelvin"/>.
         /// </summary>
-        public static MolarEntropy FromMegajoulesPerMoleKelvin(double value)
+        public static MolarEntropy FromMegajoulesPerMoleKelvin(QuantityValue value)
         {
             return new MolarEntropy(value, MolarEntropyUnit.MegajoulePerMoleKelvin);
         }
@@ -317,7 +299,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MolarEntropy unit value.</returns>
-        public static MolarEntropy From(double value, MolarEntropyUnit fromUnit)
+        public static MolarEntropy From(QuantityValue value, MolarEntropyUnit fromUnit)
         {
             return new MolarEntropy(value, fromUnit);
         }
@@ -378,10 +360,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static MolarEntropy Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<MolarEntropy, MolarEntropyUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<MolarEntropy, MolarEntropyUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -409,11 +388,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out MolarEntropy result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<MolarEntropy, MolarEntropyUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<MolarEntropy, MolarEntropyUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -434,7 +409,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -445,7 +420,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.MolarEntropyUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.MolarEntropyUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out MolarEntropyUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -460,7 +435,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out MolarEntropyUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -479,35 +454,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="MolarEntropy"/> from adding two <see cref="MolarEntropy"/>.</summary>
         public static MolarEntropy operator +(MolarEntropy left, MolarEntropy right)
         {
-            return new MolarEntropy(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new MolarEntropy(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="MolarEntropy"/> from subtracting two <see cref="MolarEntropy"/>.</summary>
         public static MolarEntropy operator -(MolarEntropy left, MolarEntropy right)
         {
-            return new MolarEntropy(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new MolarEntropy(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="MolarEntropy"/> from multiplying value and <see cref="MolarEntropy"/>.</summary>
-        public static MolarEntropy operator *(double left, MolarEntropy right)
+        public static MolarEntropy operator *(QuantityValue left, MolarEntropy right)
         {
             return new MolarEntropy(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="MolarEntropy"/> from multiplying value and <see cref="MolarEntropy"/>.</summary>
-        public static MolarEntropy operator *(MolarEntropy left, double right)
+        public static MolarEntropy operator *(MolarEntropy left, QuantityValue right)
         {
             return new MolarEntropy(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="MolarEntropy"/> from dividing <see cref="MolarEntropy"/> by value.</summary>
-        public static MolarEntropy operator /(MolarEntropy left, double right)
+        public static MolarEntropy operator /(MolarEntropy left, QuantityValue right)
         {
             return new MolarEntropy(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="MolarEntropy"/> by <see cref="MolarEntropy"/>.</summary>
-        public static double operator /(MolarEntropy left, MolarEntropy right)
+        public static QuantityValue operator /(MolarEntropy left, MolarEntropy right)
         {
             return left.JoulesPerMoleKelvin / right.JoulesPerMoleKelvin;
         }
@@ -519,65 +494,55 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(MolarEntropy left, MolarEntropy right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(MolarEntropy left, MolarEntropy right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(MolarEntropy left, MolarEntropy right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(MolarEntropy left, MolarEntropy right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="MolarEntropy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(MolarEntropy other, MolarEntropy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="MolarEntropy"/> quantities.</summary>
         public static bool operator ==(MolarEntropy left, MolarEntropy right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="MolarEntropy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(MolarEntropy other, MolarEntropy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="MolarEntropy"/> quantities.</summary>
         public static bool operator !=(MolarEntropy left, MolarEntropy right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="MolarEntropy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(MolarEntropy other, MolarEntropy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="MolarEntropy"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is MolarEntropy otherQuantity))
+            if (obj is not MolarEntropy otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="MolarEntropy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(MolarEntropy other, MolarEntropy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="MolarEntropy"/> quantities.</summary>
         public bool Equals(MolarEntropy other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>
         ///     Returns the hash code for this instance.
@@ -585,31 +550,26 @@ namespace UnitsNet
         /// <returns>A hash code for the current MolarEntropy.</returns>
         public override int GetHashCode()
         {
-            return Comparison.GetHashCode(Unit, Value);
+            return Comparison.GetHashCode(typeof(MolarEntropy), this.As(BaseUnit));
         }
-
-        /// <summary>Compares the current <see cref="MolarEntropy"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        
+        /// <inheritdoc  cref="CompareTo(MolarEntropy)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is MolarEntropy otherQuantity)) throw new ArgumentException("Expected type MolarEntropy.", nameof(obj));
+            if (obj is not MolarEntropy otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<MolarEntropy>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="MolarEntropy"/> with another <see cref="MolarEntropy"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="MolarEntropy"/> with another <see cref="MolarEntropy"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -621,132 +581,8 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(MolarEntropy other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
+            return _value.CompareTo(other.As(this.Unit));
         }
-
-        #endregion
-
-        #region Conversion Methods
-
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(MolarEntropyUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
-
-            return ToUnit(unit).Value;
-        }
-
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<MolarEntropyUnit>());
-        }
-
-        /// <summary>
-        ///     Converts this MolarEntropy to another MolarEntropy with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A MolarEntropy with the specified unit.</returns>
-        public MolarEntropy ToUnit(MolarEntropyUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
-
-        /// <summary>
-        ///     Converts this <see cref="MolarEntropy"/> to another <see cref="MolarEntropy"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A MolarEntropy with the specified unit.</returns>
-        public MolarEntropy ToUnit(MolarEntropyUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(MolarEntropy), Unit, typeof(MolarEntropy), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (MolarEntropy)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="MolarEntropy"/> to another <see cref="MolarEntropy"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="MolarEntropy"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(MolarEntropyUnit unit, [NotNullWhen(true)] out MolarEntropy? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            MolarEntropy? convertedOrNull = (Unit, unit) switch
-            {
-                // MolarEntropyUnit -> BaseUnit
-                (MolarEntropyUnit.KilojoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin) => new MolarEntropy((_value) * 1e3d, MolarEntropyUnit.JoulePerMoleKelvin),
-                (MolarEntropyUnit.MegajoulePerMoleKelvin, MolarEntropyUnit.JoulePerMoleKelvin) => new MolarEntropy((_value) * 1e6d, MolarEntropyUnit.JoulePerMoleKelvin),
-
-                // BaseUnit -> MolarEntropyUnit
-                (MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.KilojoulePerMoleKelvin) => new MolarEntropy((_value) / 1e3d, MolarEntropyUnit.KilojoulePerMoleKelvin),
-                (MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnit.MegajoulePerMoleKelvin) => new MolarEntropy((_value) / 1e6d, MolarEntropyUnit.MegajoulePerMoleKelvin),
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not MolarEntropyUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEntropyUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is MolarEntropyUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MolarEntropyUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<MolarEntropyUnit> IQuantity<MolarEntropyUnit>.ToUnit(MolarEntropyUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
@@ -761,7 +597,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

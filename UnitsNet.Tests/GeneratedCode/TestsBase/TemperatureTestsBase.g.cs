@@ -162,6 +162,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void TemperatureInfo_CreateWithCustomUnitInfos()
+        {
+            TemperatureUnit[] expectedUnits = [TemperatureUnit.Kelvin];
+
+            Temperature.TemperatureInfo quantityInfo = Temperature.TemperatureInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("Temperature", quantityInfo.Name);
+            Assert.Equal(Temperature.Zero, quantityInfo.Zero);
+            Assert.Equal(Temperature.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void KelvinToTemperatureUnits()
         {
             Temperature kelvin = Temperature.FromKelvins(1);
@@ -263,26 +277,69 @@ namespace UnitsNet.Tests
             var expectedUnit = Temperature.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            Temperature convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                Temperature quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                Temperature convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<TemperatureUnit> quantityToConvert = quantity;
+
+                IQuantity<TemperatureUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new Temperature(value: 1, unit: Temperature.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Temperature(value: 1, unit: Temperature.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<TemperatureUnit> quantity = new Temperature(value: 1, unit: Temperature.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Temperature(value: 1, unit: Temperature.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new Temperature(value: 1, unit: Temperature.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Temperature(value: 1, unit: Temperature.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<TemperatureUnit> quantity = new Temperature(value: 1, unit: Temperature.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Temperature(value: 1, unit: Temperature.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -296,7 +353,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 K", TemperatureUnit.Kelvin, 4.2)]
         [InlineData("en-US", "4.2 m°C", TemperatureUnit.MillidegreeCelsius, 4.2)]
         [InlineData("en-US", "4.2 T⊙", TemperatureUnit.SolarTemperature, 4.2)]
-        public void Parse(string culture, string quantityString, TemperatureUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, TemperatureUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Temperature.Parse(quantityString);
@@ -315,7 +372,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 K", TemperatureUnit.Kelvin, 4.2)]
         [InlineData("en-US", "4.2 m°C", TemperatureUnit.MillidegreeCelsius, 4.2)]
         [InlineData("en-US", "4.2 T⊙", TemperatureUnit.SolarTemperature, 4.2)]
-        public void TryParse(string culture, string quantityString, TemperatureUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, TemperatureUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Temperature.TryParse(quantityString, out Temperature parsed));
@@ -529,6 +586,7 @@ namespace UnitsNet.Tests
                 var quantity = Temperature.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -552,28 +610,30 @@ namespace UnitsNet.Tests
                 IQuantity<TemperatureUnit> quantityToConvert = quantity;
                 IQuantity<TemperatureUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Temperature kelvin = Temperature.FromKelvins(1);
-            AssertEx.EqualTolerance(1, Temperature.FromDegreesCelsius(kelvin.DegreesCelsius).Kelvins, DegreesCelsiusTolerance);
-            AssertEx.EqualTolerance(1, Temperature.FromDegreesDelisle(kelvin.DegreesDelisle).Kelvins, DegreesDelisleTolerance);
-            AssertEx.EqualTolerance(1, Temperature.FromDegreesFahrenheit(kelvin.DegreesFahrenheit).Kelvins, DegreesFahrenheitTolerance);
-            AssertEx.EqualTolerance(1, Temperature.FromDegreesNewton(kelvin.DegreesNewton).Kelvins, DegreesNewtonTolerance);
-            AssertEx.EqualTolerance(1, Temperature.FromDegreesRankine(kelvin.DegreesRankine).Kelvins, DegreesRankineTolerance);
-            AssertEx.EqualTolerance(1, Temperature.FromDegreesReaumur(kelvin.DegreesReaumur).Kelvins, DegreesReaumurTolerance);
-            AssertEx.EqualTolerance(1, Temperature.FromDegreesRoemer(kelvin.DegreesRoemer).Kelvins, DegreesRoemerTolerance);
-            AssertEx.EqualTolerance(1, Temperature.FromKelvins(kelvin.Kelvins).Kelvins, KelvinsTolerance);
-            AssertEx.EqualTolerance(1, Temperature.FromMillidegreesCelsius(kelvin.MillidegreesCelsius).Kelvins, MillidegreesCelsiusTolerance);
-            AssertEx.EqualTolerance(1, Temperature.FromSolarTemperatures(kelvin.SolarTemperatures).Kelvins, SolarTemperaturesTolerance);
+            Temperature kelvin = Temperature.FromKelvins(3);
+            Assert.Equal(3, Temperature.FromDegreesCelsius(kelvin.DegreesCelsius).Kelvins);
+            Assert.Equal(3, Temperature.FromDegreesDelisle(kelvin.DegreesDelisle).Kelvins);
+            Assert.Equal(3, Temperature.FromDegreesFahrenheit(kelvin.DegreesFahrenheit).Kelvins);
+            Assert.Equal(3, Temperature.FromDegreesNewton(kelvin.DegreesNewton).Kelvins);
+            Assert.Equal(3, Temperature.FromDegreesRankine(kelvin.DegreesRankine).Kelvins);
+            Assert.Equal(3, Temperature.FromDegreesReaumur(kelvin.DegreesReaumur).Kelvins);
+            Assert.Equal(3, Temperature.FromDegreesRoemer(kelvin.DegreesRoemer).Kelvins);
+            Assert.Equal(3, Temperature.FromKelvins(kelvin.Kelvins).Kelvins);
+            Assert.Equal(3, Temperature.FromMillidegreesCelsius(kelvin.MillidegreesCelsius).Kelvins);
+            Assert.Equal(3, Temperature.FromSolarTemperatures(kelvin.SolarTemperatures).Kelvins);
         }
 
 
@@ -620,8 +680,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, TemperatureUnit.Kelvin, 1, TemperatureUnit.Kelvin, true)]  // Same value and unit.
         [InlineData(1, TemperatureUnit.Kelvin, 2, TemperatureUnit.Kelvin, false)] // Different value.
-        [InlineData(2, TemperatureUnit.Kelvin, 1, TemperatureUnit.DegreeCelsius, false)] // Different value and unit.
-        [InlineData(1, TemperatureUnit.Kelvin, 1, TemperatureUnit.DegreeCelsius, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, TemperatureUnit unitA, double valueB, TemperatureUnit unitB, bool expectEqual)
         {
             var a = new Temperature(valueA, unitA);
@@ -681,8 +739,8 @@ namespace UnitsNet.Tests
             var quantity = Temperature.FromKelvins(firstValue);
             var otherQuantity = Temperature.FromKelvins(secondValue);
             TemperatureDelta maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, TemperatureDelta.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -701,7 +759,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<TemperatureUnit>();
+            var units = EnumHelper.GetValues<TemperatureUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -712,6 +770,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Temperature.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(Temperature.Info.Units, Temperature.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, Temperature.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -794,7 +864,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Temperature.FromKelvins(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(Temperature), quantity.As(Temperature.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
     }

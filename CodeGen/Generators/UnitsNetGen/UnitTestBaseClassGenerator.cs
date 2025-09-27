@@ -59,7 +59,7 @@ namespace CodeGen.Generators.UnitsNetGen
         /// A dimensionless quantity has all base dimensions (L, M, T, I, Θ, N, J) equal to zero.
         /// </remarks>
         private readonly bool _isDimensionless;
-
+        
         /// <summary>
         ///     Stores a mapping of culture names to their corresponding unique unit abbreviations.
         ///     Each culture maps to a dictionary where the key is the unit abbreviation and the value is the corresponding
@@ -101,7 +101,7 @@ namespace CodeGen.Generators.UnitsNetGen
         ///     is not available for the defined unit localizations.
         /// </remarks>
         private const string FallbackCultureName = "en-US";
-
+        
         public UnitTestBaseClassGenerator(Quantity quantity)
         {
             _quantity = quantity;
@@ -263,6 +263,7 @@ namespace UnitsNet.Tests
                 Writer.WL($@"
             new object[] {{ {GetUnitFullName(unit)} }},");
             }
+
             Writer.WL($@"
         }};
 
@@ -340,6 +341,20 @@ namespace UnitsNet.Tests
         }}
 
         [Fact]
+        public void {_quantity.Name}Info_CreateWithCustomUnitInfos()
+        {{
+            {_unitEnumName}[] expectedUnits = [{_baseUnitFullName}];
+
+            {_quantity.Name}.{_quantity.Name}Info quantityInfo = {_quantity.Name}.{_quantity.Name}Info.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal(""{_quantity.Name}"", quantityInfo.Name);
+            Assert.Equal({_quantity.Name}.Zero, quantityInfo.Zero);
+            Assert.Equal({_quantity.Name}.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }}
+
+        [Fact]
         public void {_baseUnit.SingularName}To{_quantity.Name}Units()
         {{
             {_quantity.Name} {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
@@ -412,12 +427,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit_UnitSystem_ReturnsValueInDimensionlessUnit()
         {{
-            var quantity = new {_quantity.Name}(value: 1, unit: {_baseUnitFullName});
+            Assert.Multiple(() =>
+            {{
+                var quantity = new {_quantity.Name}(value: 1, unit: {_baseUnitFullName});
 
-            {_quantity.Name} convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+                {_quantity.Name} convertedQuantity = quantity.ToUnit(UnitSystem.SI);
 
-            Assert.Equal({_baseUnitFullName}, convertedQuantity.Unit);
-            Assert.Equal(quantity.Value, convertedQuantity.Value);
+                Assert.Equal({_baseUnitFullName}, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }}, () =>
+            {{
+                IQuantity<{_unitEnumName}> quantity = new {_quantity.Name}(value: 1, unit: {_baseUnitFullName});
+
+                IQuantity<{_unitEnumName}> convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal({_baseUnitFullName}, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }}, () =>
+            {{
+                IQuantity quantity = new {_quantity.Name}(value: 1, unit: {_baseUnitFullName});
+
+                IQuantity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal({_baseUnitFullName}, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }});
         }}
 
         [Fact]
@@ -485,26 +519,69 @@ namespace UnitsNet.Tests
             var expectedUnit = {_quantity.Name}.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            {_quantity.Name} convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {{
+                {_quantity.Name} quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                {_quantity.Name} convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }}, () =>
+            {{
+                IQuantity<{_unitEnumName}> quantityToConvert = quantity;
+
+                IQuantity<{_unitEnumName}> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }}, () =>
+            {{
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }});
         }}
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {{
             UnitSystem nullUnitSystem = null!;
-            var quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {{
+                var quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }}, () =>
+            {{
+                IQuantity<{_unitEnumName}> quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }}, () =>
+            {{
+                IQuantity quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }});
         }}
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {{
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {{
+                var quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }}, () =>
+            {{
+                IQuantity<{_unitEnumName}> quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }}, () =>
+            {{
+                IQuantity quantity = new {_quantity.Name}(value: 1, unit: {_quantity.Name}.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }});
         }}
 ");
             }
@@ -522,7 +599,7 @@ namespace UnitsNet.Tests
             }
 
             Writer.WL($@"
-        public void Parse(string culture, string quantityString, {_unitEnumName} expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, {_unitEnumName} expectedUnit, decimal expectedValue)
         {{
             using var _ = new CultureScope(culture);
             var parsed = {_quantity.Name}.Parse(quantityString);
@@ -567,7 +644,7 @@ namespace UnitsNet.Tests
             }
 
             Writer.WL($@"
-        public void TryParse(string culture, string quantityString, {_unitEnumName} expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, {_unitEnumName} expectedUnit, decimal expectedValue)
         {{
             using var _ = new CultureScope(culture);
             Assert.True({_quantity.Name}.TryParse(quantityString, out {_quantity.Name} parsed));
@@ -825,7 +902,7 @@ namespace UnitsNet.Tests
             }});
         }}
 ");
-
+            
             Writer.WL($@"
         [Theory]
         [MemberData(nameof(UnitTypes))]
@@ -857,6 +934,7 @@ namespace UnitsNet.Tests
                 var quantity = {_quantity.Name}.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             }});
         }}
 
@@ -880,20 +958,22 @@ namespace UnitsNet.Tests
                 IQuantity<{_unitEnumName}> quantityToConvert = quantity;
                 IQuantity<{_unitEnumName}> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }}, () =>
             {{
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }});
         }}
 
         [Fact]
         public void ConversionRoundTrip()
         {{
-            {_quantity.Name} {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(1);");
+            {_quantity.Name} {baseUnitVariableName} = {_quantity.Name}.From{_baseUnit.PluralName}(3);");
             foreach (var unit in _quantity.Units) Writer.WL($@"
-            AssertEx.EqualTolerance(1, {_quantity.Name}.From{unit.PluralName}({baseUnitVariableName}.{unit.PluralName}).{_baseUnit.PluralName}, {unit.PluralName}Tolerance);");
+            Assert.Equal(3, {_quantity.Name}.From{unit.PluralName}({baseUnitVariableName}.{unit.PluralName}).{_baseUnit.PluralName});");
             Writer.WL($@"
         }}
 ");
@@ -905,13 +985,13 @@ namespace UnitsNet.Tests
         public void LogarithmicArithmeticOperators()
         {{
             {_quantity.Name} v = {_quantity.Name}.From{_baseUnit.PluralName}(40);
-            AssertEx.EqualTolerance(-40, -v.{_baseUnit.PluralName}, {unit.PluralName}Tolerance);
+            Assert.Equal(-40, -v.{_baseUnit.PluralName});
             AssertLogarithmicAddition();
             AssertLogarithmicSubtraction();
-            AssertEx.EqualTolerance(50, (v*10).{_baseUnit.PluralName}, {unit.PluralName}Tolerance);
-            AssertEx.EqualTolerance(50, (10*v).{_baseUnit.PluralName}, {unit.PluralName}Tolerance);
-            AssertEx.EqualTolerance(35, (v/5).{_baseUnit.PluralName}, {unit.PluralName}Tolerance);
-            AssertEx.EqualTolerance(35, v/{_quantity.Name}.From{_baseUnit.PluralName}(5), {unit.PluralName}Tolerance);
+            Assert.Equal(50, (v * 10).{_baseUnit.PluralName});
+            Assert.Equal(50, (10 * v).{_baseUnit.PluralName});
+            Assert.Equal(35, (v / 5).{_baseUnit.PluralName});
+            Assert.Equal(35, v / {_quantity.Name}.From{_baseUnit.PluralName}(5));
         }}
 
         protected abstract void AssertLogarithmicAddition();
@@ -926,13 +1006,13 @@ namespace UnitsNet.Tests
         public void ArithmeticOperators()
         {{
             {_quantity.Name} v = {_quantity.Name}.From{_baseUnit.PluralName}(1);
-            AssertEx.EqualTolerance(-1, -v.{_baseUnit.PluralName}, {_baseUnit.PluralName}Tolerance);
-            AssertEx.EqualTolerance(2, ({_quantity.Name}.From{_baseUnit.PluralName}(3)-v).{_baseUnit.PluralName}, {_baseUnit.PluralName}Tolerance);
-            AssertEx.EqualTolerance(2, (v + v).{_baseUnit.PluralName}, {_baseUnit.PluralName}Tolerance);
-            AssertEx.EqualTolerance(10, (v*10).{_baseUnit.PluralName}, {_baseUnit.PluralName}Tolerance);
-            AssertEx.EqualTolerance(10, (10*v).{_baseUnit.PluralName}, {_baseUnit.PluralName}Tolerance);
-            AssertEx.EqualTolerance(2, ({_quantity.Name}.From{_baseUnit.PluralName}(10)/5).{_baseUnit.PluralName}, {_baseUnit.PluralName}Tolerance);
-            AssertEx.EqualTolerance(2, {_quantity.Name}.From{_baseUnit.PluralName}(10)/{_quantity.Name}.From{_baseUnit.PluralName}(5), {_baseUnit.PluralName}Tolerance);
+            Assert.Equal(-1, -v.{_baseUnit.PluralName});
+            Assert.Equal(2, ({_quantity.Name}.From{_baseUnit.PluralName}(3) - v).{_baseUnit.PluralName});
+            Assert.Equal(2, (v + v).{_baseUnit.PluralName});
+            Assert.Equal(10, (v * 10).{_baseUnit.PluralName});
+            Assert.Equal(10, (10 * v).{_baseUnit.PluralName});
+            Assert.Equal(2, ({_quantity.Name}.From{_baseUnit.PluralName}(10) / 5).{_baseUnit.PluralName});
+            Assert.Equal(2, {_quantity.Name}.From{_baseUnit.PluralName}(10) / {_quantity.Name}.From{_baseUnit.PluralName}(5));
         }}
 ");
             }
@@ -985,13 +1065,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, {_baseUnitFullName}, 1, {_baseUnitFullName}, true)]  // Same value and unit.
         [InlineData(1, {_baseUnitFullName}, 2, {_baseUnitFullName}, false)] // Different value.
-        [InlineData(2, {_baseUnitFullName}, 1, {_otherOrBaseUnitFullName}, false)] // Different value and unit.");
-            if (_baseUnit != _otherOrBaseUnit)
-            {
-                Writer.WL($@"
-        [InlineData(1, {_baseUnitFullName}, 1, {_otherOrBaseUnitFullName}, false)] // Different unit.");
-            }
-            Writer.WL($@"
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, {_unitEnumName} unitA, double valueB, {_unitEnumName} unitB, bool expectEqual)
         {{
             var a = new {_quantity.Name}(valueA, unitA);
@@ -1056,8 +1129,8 @@ namespace UnitsNet.Tests
             var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(firstValue);
             var otherQuantity = {_quantity.Name}.From{_baseUnit.PluralName}(secondValue);
             {differenceResultType} maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, {differenceResultType}.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, largerTolerance));
@@ -1089,8 +1162,8 @@ namespace UnitsNet.Tests
             var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(firstValue);
             var otherQuantity = {_quantity.Name}.From{_baseUnit.PluralName}(secondValue);
             {differenceResultType} maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, {differenceResultType}.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -1131,7 +1204,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {{
-            var units = Enum.GetValues<{_unitEnumName}>();
+            var units = EnumHelper.GetValues<{_unitEnumName}>();
             foreach (var unit in units)
             {{
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -1142,6 +1215,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {{
             Assert.False({_quantity.Name}.BaseDimensions is null);
+        }}
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {{
+            Assert.Equal({_quantity.Name}.Info.Units, {_quantity.Name}.Units);
+        }}
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {{
+            Assert.Equal(UnitConverter.Default, {_quantity.Name}.DefaultConversionFunctions);
         }}
 
         [Fact]
@@ -1216,7 +1301,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {{
             var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof({_quantity.Name}), quantity.As({_quantity.Name}.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }}
 ");
 

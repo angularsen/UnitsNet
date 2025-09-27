@@ -13,12 +13,18 @@ namespace UnitsNet.Benchmark.Operators.Additions;
 [SimpleJob(RuntimeMoniker.Net80)]
 public class SumOfVolumesWithSameUnitsBenchmarks
 {
-    private static readonly double Value = 1.23;
+    private static readonly QuantityValue Value = 1.23;
     
     private Volume[] _quantities;
 
     [Params(10, 1000)]
     public int NbOperations { get; set; }
+    
+    [Params(true)]
+    public bool Frozen { get; set; }
+
+    [Params(ConversionCachingMode.All)]
+    public ConversionCachingMode CachingMode { get; set; }
 
     [Params(VolumeUnit.CubicMeter, VolumeUnit.Liter, VolumeUnit.Milliliter)]
     public VolumeUnit Unit { get; set; }
@@ -26,6 +32,9 @@ public class SumOfVolumesWithSameUnitsBenchmarks
     [GlobalSetup]
     public void PrepareQuantities()
     {
+        UnitsNetSetup.ConfigureDefaults(builder => builder.WithConverterOptions(new QuantityConverterBuildOptions(Frozen, CachingMode)));
+        Quantity.From(Value, Volume.BaseUnit); // TODO we need a better way to "disable" the lazy loading of the _quantitiesByUnitType (QuantityInfoLookup)
+        
         _quantities = Enumerable.Range(0, NbOperations).Select(_ => Volume.From(Value, Unit)).ToArray();
     }
 

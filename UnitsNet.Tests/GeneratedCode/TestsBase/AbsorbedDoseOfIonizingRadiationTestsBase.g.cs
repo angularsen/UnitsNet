@@ -190,6 +190,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AbsorbedDoseOfIonizingRadiationInfo_CreateWithCustomUnitInfos()
+        {
+            AbsorbedDoseOfIonizingRadiationUnit[] expectedUnits = [AbsorbedDoseOfIonizingRadiationUnit.Gray];
+
+            AbsorbedDoseOfIonizingRadiation.AbsorbedDoseOfIonizingRadiationInfo quantityInfo = AbsorbedDoseOfIonizingRadiation.AbsorbedDoseOfIonizingRadiationInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("AbsorbedDoseOfIonizingRadiation", quantityInfo.Name);
+            Assert.Equal(AbsorbedDoseOfIonizingRadiation.Zero, quantityInfo.Zero);
+            Assert.Equal(AbsorbedDoseOfIonizingRadiation.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void GrayToAbsorbedDoseOfIonizingRadiationUnits()
         {
             AbsorbedDoseOfIonizingRadiation gray = AbsorbedDoseOfIonizingRadiation.FromGrays(1);
@@ -305,26 +319,69 @@ namespace UnitsNet.Tests
             var expectedUnit = AbsorbedDoseOfIonizingRadiation.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            AbsorbedDoseOfIonizingRadiation convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                AbsorbedDoseOfIonizingRadiation quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                AbsorbedDoseOfIonizingRadiation convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<AbsorbedDoseOfIonizingRadiationUnit> quantityToConvert = quantity;
+
+                IQuantity<AbsorbedDoseOfIonizingRadiationUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new AbsorbedDoseOfIonizingRadiation(value: 1, unit: AbsorbedDoseOfIonizingRadiation.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new AbsorbedDoseOfIonizingRadiation(value: 1, unit: AbsorbedDoseOfIonizingRadiation.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<AbsorbedDoseOfIonizingRadiationUnit> quantity = new AbsorbedDoseOfIonizingRadiation(value: 1, unit: AbsorbedDoseOfIonizingRadiation.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new AbsorbedDoseOfIonizingRadiation(value: 1, unit: AbsorbedDoseOfIonizingRadiation.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new AbsorbedDoseOfIonizingRadiation(value: 1, unit: AbsorbedDoseOfIonizingRadiation.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new AbsorbedDoseOfIonizingRadiation(value: 1, unit: AbsorbedDoseOfIonizingRadiation.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<AbsorbedDoseOfIonizingRadiationUnit> quantity = new AbsorbedDoseOfIonizingRadiation(value: 1, unit: AbsorbedDoseOfIonizingRadiation.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new AbsorbedDoseOfIonizingRadiation(value: 1, unit: AbsorbedDoseOfIonizingRadiation.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -362,7 +419,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 пГр", AbsorbedDoseOfIonizingRadiationUnit.Picogray, 4.2)]
         [InlineData("ru-RU", "4,2 рад", AbsorbedDoseOfIonizingRadiationUnit.Rad, 4.2)]
         [InlineData("ru-RU", "4,2 ТГр", AbsorbedDoseOfIonizingRadiationUnit.Teragray, 4.2)]
-        public void Parse(string culture, string quantityString, AbsorbedDoseOfIonizingRadiationUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, AbsorbedDoseOfIonizingRadiationUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = AbsorbedDoseOfIonizingRadiation.Parse(quantityString);
@@ -405,7 +462,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 пГр", AbsorbedDoseOfIonizingRadiationUnit.Picogray, 4.2)]
         [InlineData("ru-RU", "4,2 рад", AbsorbedDoseOfIonizingRadiationUnit.Rad, 4.2)]
         [InlineData("ru-RU", "4,2 ТГр", AbsorbedDoseOfIonizingRadiationUnit.Teragray, 4.2)]
-        public void TryParse(string culture, string quantityString, AbsorbedDoseOfIonizingRadiationUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, AbsorbedDoseOfIonizingRadiationUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(AbsorbedDoseOfIonizingRadiation.TryParse(quantityString, out AbsorbedDoseOfIonizingRadiation parsed));
@@ -767,6 +824,7 @@ namespace UnitsNet.Tests
                 var quantity = AbsorbedDoseOfIonizingRadiation.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -790,48 +848,50 @@ namespace UnitsNet.Tests
                 IQuantity<AbsorbedDoseOfIonizingRadiationUnit> quantityToConvert = quantity;
                 IQuantity<AbsorbedDoseOfIonizingRadiationUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            AbsorbedDoseOfIonizingRadiation gray = AbsorbedDoseOfIonizingRadiation.FromGrays(1);
-            AssertEx.EqualTolerance(1, AbsorbedDoseOfIonizingRadiation.FromCentigrays(gray.Centigrays).Grays, CentigraysTolerance);
-            AssertEx.EqualTolerance(1, AbsorbedDoseOfIonizingRadiation.FromDecigrays(gray.Decigrays).Grays, DecigraysTolerance);
-            AssertEx.EqualTolerance(1, AbsorbedDoseOfIonizingRadiation.FromFemtograys(gray.Femtograys).Grays, FemtograysTolerance);
-            AssertEx.EqualTolerance(1, AbsorbedDoseOfIonizingRadiation.FromGigagrays(gray.Gigagrays).Grays, GigagraysTolerance);
-            AssertEx.EqualTolerance(1, AbsorbedDoseOfIonizingRadiation.FromGrays(gray.Grays).Grays, GraysTolerance);
-            AssertEx.EqualTolerance(1, AbsorbedDoseOfIonizingRadiation.FromKilograys(gray.Kilograys).Grays, KilograysTolerance);
-            AssertEx.EqualTolerance(1, AbsorbedDoseOfIonizingRadiation.FromKilorads(gray.Kilorads).Grays, KiloradsTolerance);
-            AssertEx.EqualTolerance(1, AbsorbedDoseOfIonizingRadiation.FromMegagrays(gray.Megagrays).Grays, MegagraysTolerance);
-            AssertEx.EqualTolerance(1, AbsorbedDoseOfIonizingRadiation.FromMegarads(gray.Megarads).Grays, MegaradsTolerance);
-            AssertEx.EqualTolerance(1, AbsorbedDoseOfIonizingRadiation.FromMicrograys(gray.Micrograys).Grays, MicrograysTolerance);
-            AssertEx.EqualTolerance(1, AbsorbedDoseOfIonizingRadiation.FromMilligrays(gray.Milligrays).Grays, MilligraysTolerance);
-            AssertEx.EqualTolerance(1, AbsorbedDoseOfIonizingRadiation.FromMillirads(gray.Millirads).Grays, MilliradsTolerance);
-            AssertEx.EqualTolerance(1, AbsorbedDoseOfIonizingRadiation.FromNanograys(gray.Nanograys).Grays, NanograysTolerance);
-            AssertEx.EqualTolerance(1, AbsorbedDoseOfIonizingRadiation.FromPetagrays(gray.Petagrays).Grays, PetagraysTolerance);
-            AssertEx.EqualTolerance(1, AbsorbedDoseOfIonizingRadiation.FromPicograys(gray.Picograys).Grays, PicograysTolerance);
-            AssertEx.EqualTolerance(1, AbsorbedDoseOfIonizingRadiation.FromRads(gray.Rads).Grays, RadsTolerance);
-            AssertEx.EqualTolerance(1, AbsorbedDoseOfIonizingRadiation.FromTeragrays(gray.Teragrays).Grays, TeragraysTolerance);
+            AbsorbedDoseOfIonizingRadiation gray = AbsorbedDoseOfIonizingRadiation.FromGrays(3);
+            Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromCentigrays(gray.Centigrays).Grays);
+            Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromDecigrays(gray.Decigrays).Grays);
+            Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromFemtograys(gray.Femtograys).Grays);
+            Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromGigagrays(gray.Gigagrays).Grays);
+            Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromGrays(gray.Grays).Grays);
+            Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromKilograys(gray.Kilograys).Grays);
+            Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromKilorads(gray.Kilorads).Grays);
+            Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromMegagrays(gray.Megagrays).Grays);
+            Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromMegarads(gray.Megarads).Grays);
+            Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromMicrograys(gray.Micrograys).Grays);
+            Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromMilligrays(gray.Milligrays).Grays);
+            Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromMillirads(gray.Millirads).Grays);
+            Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromNanograys(gray.Nanograys).Grays);
+            Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromPetagrays(gray.Petagrays).Grays);
+            Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromPicograys(gray.Picograys).Grays);
+            Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromRads(gray.Rads).Grays);
+            Assert.Equal(3, AbsorbedDoseOfIonizingRadiation.FromTeragrays(gray.Teragrays).Grays);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             AbsorbedDoseOfIonizingRadiation v = AbsorbedDoseOfIonizingRadiation.FromGrays(1);
-            AssertEx.EqualTolerance(-1, -v.Grays, GraysTolerance);
-            AssertEx.EqualTolerance(2, (AbsorbedDoseOfIonizingRadiation.FromGrays(3)-v).Grays, GraysTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Grays, GraysTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Grays, GraysTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Grays, GraysTolerance);
-            AssertEx.EqualTolerance(2, (AbsorbedDoseOfIonizingRadiation.FromGrays(10)/5).Grays, GraysTolerance);
-            AssertEx.EqualTolerance(2, AbsorbedDoseOfIonizingRadiation.FromGrays(10)/AbsorbedDoseOfIonizingRadiation.FromGrays(5), GraysTolerance);
+            Assert.Equal(-1, -v.Grays);
+            Assert.Equal(2, (AbsorbedDoseOfIonizingRadiation.FromGrays(3) - v).Grays);
+            Assert.Equal(2, (v + v).Grays);
+            Assert.Equal(10, (v * 10).Grays);
+            Assert.Equal(10, (10 * v).Grays);
+            Assert.Equal(2, (AbsorbedDoseOfIonizingRadiation.FromGrays(10) / 5).Grays);
+            Assert.Equal(2, AbsorbedDoseOfIonizingRadiation.FromGrays(10) / AbsorbedDoseOfIonizingRadiation.FromGrays(5));
         }
 
         [Fact]
@@ -877,8 +937,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, AbsorbedDoseOfIonizingRadiationUnit.Gray, 1, AbsorbedDoseOfIonizingRadiationUnit.Gray, true)]  // Same value and unit.
         [InlineData(1, AbsorbedDoseOfIonizingRadiationUnit.Gray, 2, AbsorbedDoseOfIonizingRadiationUnit.Gray, false)] // Different value.
-        [InlineData(2, AbsorbedDoseOfIonizingRadiationUnit.Gray, 1, AbsorbedDoseOfIonizingRadiationUnit.Centigray, false)] // Different value and unit.
-        [InlineData(1, AbsorbedDoseOfIonizingRadiationUnit.Gray, 1, AbsorbedDoseOfIonizingRadiationUnit.Centigray, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, AbsorbedDoseOfIonizingRadiationUnit unitA, double valueB, AbsorbedDoseOfIonizingRadiationUnit unitB, bool expectEqual)
         {
             var a = new AbsorbedDoseOfIonizingRadiation(valueA, unitA);
@@ -938,8 +996,8 @@ namespace UnitsNet.Tests
             var quantity = AbsorbedDoseOfIonizingRadiation.FromGrays(firstValue);
             var otherQuantity = AbsorbedDoseOfIonizingRadiation.FromGrays(secondValue);
             AbsorbedDoseOfIonizingRadiation maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, AbsorbedDoseOfIonizingRadiation.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -958,7 +1016,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<AbsorbedDoseOfIonizingRadiationUnit>();
+            var units = EnumHelper.GetValues<AbsorbedDoseOfIonizingRadiationUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -969,6 +1027,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(AbsorbedDoseOfIonizingRadiation.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(AbsorbedDoseOfIonizingRadiation.Info.Units, AbsorbedDoseOfIonizingRadiation.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, AbsorbedDoseOfIonizingRadiation.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -1065,7 +1135,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = AbsorbedDoseOfIonizingRadiation.FromGrays(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(AbsorbedDoseOfIonizingRadiation), quantity.As(AbsorbedDoseOfIonizingRadiation.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

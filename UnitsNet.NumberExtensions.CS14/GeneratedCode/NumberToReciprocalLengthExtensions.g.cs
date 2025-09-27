@@ -42,84 +42,84 @@ namespace UnitsNet.NumberExtensions.NumberToReciprocalLength
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ReciprocalLength.FromInverseCentimeters(double)" />
+            /// <inheritdoc cref="ReciprocalLength.FromInverseCentimeters(QuantityValue)" />
             public ReciprocalLength InverseCentimeters
 #if NET7_0_OR_GREATER
-                => ReciprocalLength.FromInverseCentimeters(double.CreateChecked(value));
+                => ReciprocalLength.FromInverseCentimeters(QuantityValue.CreateChecked(value));
 #else
-                => ReciprocalLength.FromInverseCentimeters(value.ToDouble(null));
+                => ReciprocalLength.FromInverseCentimeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ReciprocalLength.FromInverseFeet(double)" />
+            /// <inheritdoc cref="ReciprocalLength.FromInverseFeet(QuantityValue)" />
             public ReciprocalLength InverseFeet
 #if NET7_0_OR_GREATER
-                => ReciprocalLength.FromInverseFeet(double.CreateChecked(value));
+                => ReciprocalLength.FromInverseFeet(QuantityValue.CreateChecked(value));
 #else
-                => ReciprocalLength.FromInverseFeet(value.ToDouble(null));
+                => ReciprocalLength.FromInverseFeet(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ReciprocalLength.FromInverseInches(double)" />
+            /// <inheritdoc cref="ReciprocalLength.FromInverseInches(QuantityValue)" />
             public ReciprocalLength InverseInches
 #if NET7_0_OR_GREATER
-                => ReciprocalLength.FromInverseInches(double.CreateChecked(value));
+                => ReciprocalLength.FromInverseInches(QuantityValue.CreateChecked(value));
 #else
-                => ReciprocalLength.FromInverseInches(value.ToDouble(null));
+                => ReciprocalLength.FromInverseInches(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ReciprocalLength.FromInverseMeters(double)" />
+            /// <inheritdoc cref="ReciprocalLength.FromInverseMeters(QuantityValue)" />
             public ReciprocalLength InverseMeters
 #if NET7_0_OR_GREATER
-                => ReciprocalLength.FromInverseMeters(double.CreateChecked(value));
+                => ReciprocalLength.FromInverseMeters(QuantityValue.CreateChecked(value));
 #else
-                => ReciprocalLength.FromInverseMeters(value.ToDouble(null));
+                => ReciprocalLength.FromInverseMeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ReciprocalLength.FromInverseMicroinches(double)" />
+            /// <inheritdoc cref="ReciprocalLength.FromInverseMicroinches(QuantityValue)" />
             public ReciprocalLength InverseMicroinches
 #if NET7_0_OR_GREATER
-                => ReciprocalLength.FromInverseMicroinches(double.CreateChecked(value));
+                => ReciprocalLength.FromInverseMicroinches(QuantityValue.CreateChecked(value));
 #else
-                => ReciprocalLength.FromInverseMicroinches(value.ToDouble(null));
+                => ReciprocalLength.FromInverseMicroinches(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ReciprocalLength.FromInverseMils(double)" />
+            /// <inheritdoc cref="ReciprocalLength.FromInverseMils(QuantityValue)" />
             public ReciprocalLength InverseMils
 #if NET7_0_OR_GREATER
-                => ReciprocalLength.FromInverseMils(double.CreateChecked(value));
+                => ReciprocalLength.FromInverseMils(QuantityValue.CreateChecked(value));
 #else
-                => ReciprocalLength.FromInverseMils(value.ToDouble(null));
+                => ReciprocalLength.FromInverseMils(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ReciprocalLength.FromInverseMiles(double)" />
+            /// <inheritdoc cref="ReciprocalLength.FromInverseMiles(QuantityValue)" />
             public ReciprocalLength InverseMiles
 #if NET7_0_OR_GREATER
-                => ReciprocalLength.FromInverseMiles(double.CreateChecked(value));
+                => ReciprocalLength.FromInverseMiles(QuantityValue.CreateChecked(value));
 #else
-                => ReciprocalLength.FromInverseMiles(value.ToDouble(null));
+                => ReciprocalLength.FromInverseMiles(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ReciprocalLength.FromInverseMillimeters(double)" />
+            /// <inheritdoc cref="ReciprocalLength.FromInverseMillimeters(QuantityValue)" />
             public ReciprocalLength InverseMillimeters
 #if NET7_0_OR_GREATER
-                => ReciprocalLength.FromInverseMillimeters(double.CreateChecked(value));
+                => ReciprocalLength.FromInverseMillimeters(QuantityValue.CreateChecked(value));
 #else
-                => ReciprocalLength.FromInverseMillimeters(value.ToDouble(null));
+                => ReciprocalLength.FromInverseMillimeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ReciprocalLength.FromInverseUsSurveyFeet(double)" />
+            /// <inheritdoc cref="ReciprocalLength.FromInverseUsSurveyFeet(QuantityValue)" />
             public ReciprocalLength InverseUsSurveyFeet
 #if NET7_0_OR_GREATER
-                => ReciprocalLength.FromInverseUsSurveyFeet(double.CreateChecked(value));
+                => ReciprocalLength.FromInverseUsSurveyFeet(QuantityValue.CreateChecked(value));
 #else
-                => ReciprocalLength.FromInverseUsSurveyFeet(value.ToDouble(null));
+                => ReciprocalLength.FromInverseUsSurveyFeet(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ReciprocalLength.FromInverseYards(double)" />
+            /// <inheritdoc cref="ReciprocalLength.FromInverseYards(QuantityValue)" />
             public ReciprocalLength InverseYards
 #if NET7_0_OR_GREATER
-                => ReciprocalLength.FromInverseYards(double.CreateChecked(value));
+                => ReciprocalLength.FromInverseYards(QuantityValue.CreateChecked(value));
 #else
-                => ReciprocalLength.FromInverseYards(value.ToDouble(null));
+                => ReciprocalLength.FromInverseYards(value.ToQuantityValue());
 #endif
 
         }

@@ -42,140 +42,140 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureChangeRate
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="TemperatureChangeRate.FromCentidegreesCelsiusPerSecond(double)" />
+            /// <inheritdoc cref="TemperatureChangeRate.FromCentidegreesCelsiusPerSecond(QuantityValue)" />
             public TemperatureChangeRate CentidegreesCelsiusPerSecond
 #if NET7_0_OR_GREATER
-                => TemperatureChangeRate.FromCentidegreesCelsiusPerSecond(double.CreateChecked(value));
+                => TemperatureChangeRate.FromCentidegreesCelsiusPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => TemperatureChangeRate.FromCentidegreesCelsiusPerSecond(value.ToDouble(null));
+                => TemperatureChangeRate.FromCentidegreesCelsiusPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(double)" />
+            /// <inheritdoc cref="TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(QuantityValue)" />
             public TemperatureChangeRate DecadegreesCelsiusPerSecond
 #if NET7_0_OR_GREATER
-                => TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(double.CreateChecked(value));
+                => TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(value.ToDouble(null));
+                => TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(double)" />
+            /// <inheritdoc cref="TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(QuantityValue)" />
             public TemperatureChangeRate DecidegreesCelsiusPerSecond
 #if NET7_0_OR_GREATER
-                => TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(double.CreateChecked(value));
+                => TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(value.ToDouble(null));
+                => TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerHour(double)" />
+            /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerHour(QuantityValue)" />
             public TemperatureChangeRate DegreesCelsiusPerHour
 #if NET7_0_OR_GREATER
-                => TemperatureChangeRate.FromDegreesCelsiusPerHour(double.CreateChecked(value));
+                => TemperatureChangeRate.FromDegreesCelsiusPerHour(QuantityValue.CreateChecked(value));
 #else
-                => TemperatureChangeRate.FromDegreesCelsiusPerHour(value.ToDouble(null));
+                => TemperatureChangeRate.FromDegreesCelsiusPerHour(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerMinute(double)" />
+            /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerMinute(QuantityValue)" />
             public TemperatureChangeRate DegreesCelsiusPerMinute
 #if NET7_0_OR_GREATER
-                => TemperatureChangeRate.FromDegreesCelsiusPerMinute(double.CreateChecked(value));
+                => TemperatureChangeRate.FromDegreesCelsiusPerMinute(QuantityValue.CreateChecked(value));
 #else
-                => TemperatureChangeRate.FromDegreesCelsiusPerMinute(value.ToDouble(null));
+                => TemperatureChangeRate.FromDegreesCelsiusPerMinute(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerSecond(double)" />
+            /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerSecond(QuantityValue)" />
             public TemperatureChangeRate DegreesCelsiusPerSecond
 #if NET7_0_OR_GREATER
-                => TemperatureChangeRate.FromDegreesCelsiusPerSecond(double.CreateChecked(value));
+                => TemperatureChangeRate.FromDegreesCelsiusPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => TemperatureChangeRate.FromDegreesCelsiusPerSecond(value.ToDouble(null));
+                => TemperatureChangeRate.FromDegreesCelsiusPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="TemperatureChangeRate.FromDegreesFahrenheitPerHour(double)" />
+            /// <inheritdoc cref="TemperatureChangeRate.FromDegreesFahrenheitPerHour(QuantityValue)" />
             public TemperatureChangeRate DegreesFahrenheitPerHour
 #if NET7_0_OR_GREATER
-                => TemperatureChangeRate.FromDegreesFahrenheitPerHour(double.CreateChecked(value));
+                => TemperatureChangeRate.FromDegreesFahrenheitPerHour(QuantityValue.CreateChecked(value));
 #else
-                => TemperatureChangeRate.FromDegreesFahrenheitPerHour(value.ToDouble(null));
+                => TemperatureChangeRate.FromDegreesFahrenheitPerHour(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="TemperatureChangeRate.FromDegreesFahrenheitPerMinute(double)" />
+            /// <inheritdoc cref="TemperatureChangeRate.FromDegreesFahrenheitPerMinute(QuantityValue)" />
             public TemperatureChangeRate DegreesFahrenheitPerMinute
 #if NET7_0_OR_GREATER
-                => TemperatureChangeRate.FromDegreesFahrenheitPerMinute(double.CreateChecked(value));
+                => TemperatureChangeRate.FromDegreesFahrenheitPerMinute(QuantityValue.CreateChecked(value));
 #else
-                => TemperatureChangeRate.FromDegreesFahrenheitPerMinute(value.ToDouble(null));
+                => TemperatureChangeRate.FromDegreesFahrenheitPerMinute(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="TemperatureChangeRate.FromDegreesFahrenheitPerSecond(double)" />
+            /// <inheritdoc cref="TemperatureChangeRate.FromDegreesFahrenheitPerSecond(QuantityValue)" />
             public TemperatureChangeRate DegreesFahrenheitPerSecond
 #if NET7_0_OR_GREATER
-                => TemperatureChangeRate.FromDegreesFahrenheitPerSecond(double.CreateChecked(value));
+                => TemperatureChangeRate.FromDegreesFahrenheitPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => TemperatureChangeRate.FromDegreesFahrenheitPerSecond(value.ToDouble(null));
+                => TemperatureChangeRate.FromDegreesFahrenheitPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="TemperatureChangeRate.FromDegreesKelvinPerHour(double)" />
+            /// <inheritdoc cref="TemperatureChangeRate.FromDegreesKelvinPerHour(QuantityValue)" />
             public TemperatureChangeRate DegreesKelvinPerHour
 #if NET7_0_OR_GREATER
-                => TemperatureChangeRate.FromDegreesKelvinPerHour(double.CreateChecked(value));
+                => TemperatureChangeRate.FromDegreesKelvinPerHour(QuantityValue.CreateChecked(value));
 #else
-                => TemperatureChangeRate.FromDegreesKelvinPerHour(value.ToDouble(null));
+                => TemperatureChangeRate.FromDegreesKelvinPerHour(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="TemperatureChangeRate.FromDegreesKelvinPerMinute(double)" />
+            /// <inheritdoc cref="TemperatureChangeRate.FromDegreesKelvinPerMinute(QuantityValue)" />
             public TemperatureChangeRate DegreesKelvinPerMinute
 #if NET7_0_OR_GREATER
-                => TemperatureChangeRate.FromDegreesKelvinPerMinute(double.CreateChecked(value));
+                => TemperatureChangeRate.FromDegreesKelvinPerMinute(QuantityValue.CreateChecked(value));
 #else
-                => TemperatureChangeRate.FromDegreesKelvinPerMinute(value.ToDouble(null));
+                => TemperatureChangeRate.FromDegreesKelvinPerMinute(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="TemperatureChangeRate.FromDegreesKelvinPerSecond(double)" />
+            /// <inheritdoc cref="TemperatureChangeRate.FromDegreesKelvinPerSecond(QuantityValue)" />
             public TemperatureChangeRate DegreesKelvinPerSecond
 #if NET7_0_OR_GREATER
-                => TemperatureChangeRate.FromDegreesKelvinPerSecond(double.CreateChecked(value));
+                => TemperatureChangeRate.FromDegreesKelvinPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => TemperatureChangeRate.FromDegreesKelvinPerSecond(value.ToDouble(null));
+                => TemperatureChangeRate.FromDegreesKelvinPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(double)" />
+            /// <inheritdoc cref="TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(QuantityValue)" />
             public TemperatureChangeRate HectodegreesCelsiusPerSecond
 #if NET7_0_OR_GREATER
-                => TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(double.CreateChecked(value));
+                => TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(value.ToDouble(null));
+                => TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(double)" />
+            /// <inheritdoc cref="TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(QuantityValue)" />
             public TemperatureChangeRate KilodegreesCelsiusPerSecond
 #if NET7_0_OR_GREATER
-                => TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(double.CreateChecked(value));
+                => TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(value.ToDouble(null));
+                => TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(double)" />
+            /// <inheritdoc cref="TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(QuantityValue)" />
             public TemperatureChangeRate MicrodegreesCelsiusPerSecond
 #if NET7_0_OR_GREATER
-                => TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(double.CreateChecked(value));
+                => TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(value.ToDouble(null));
+                => TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="TemperatureChangeRate.FromMillidegreesCelsiusPerSecond(double)" />
+            /// <inheritdoc cref="TemperatureChangeRate.FromMillidegreesCelsiusPerSecond(QuantityValue)" />
             public TemperatureChangeRate MillidegreesCelsiusPerSecond
 #if NET7_0_OR_GREATER
-                => TemperatureChangeRate.FromMillidegreesCelsiusPerSecond(double.CreateChecked(value));
+                => TemperatureChangeRate.FromMillidegreesCelsiusPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => TemperatureChangeRate.FromMillidegreesCelsiusPerSecond(value.ToDouble(null));
+                => TemperatureChangeRate.FromMillidegreesCelsiusPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="TemperatureChangeRate.FromNanodegreesCelsiusPerSecond(double)" />
+            /// <inheritdoc cref="TemperatureChangeRate.FromNanodegreesCelsiusPerSecond(QuantityValue)" />
             public TemperatureChangeRate NanodegreesCelsiusPerSecond
 #if NET7_0_OR_GREATER
-                => TemperatureChangeRate.FromNanodegreesCelsiusPerSecond(double.CreateChecked(value));
+                => TemperatureChangeRate.FromNanodegreesCelsiusPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => TemperatureChangeRate.FromNanodegreesCelsiusPerSecond(value.ToDouble(null));
+                => TemperatureChangeRate.FromNanodegreesCelsiusPerSecond(value.ToQuantityValue());
 #endif
 
         }

@@ -42,164 +42,164 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotentialChangeRate
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ElectricPotentialChangeRate.FromKilovoltsPerHour(double)" />
+            /// <inheritdoc cref="ElectricPotentialChangeRate.FromKilovoltsPerHour(QuantityValue)" />
             public ElectricPotentialChangeRate KilovoltsPerHour
 #if NET7_0_OR_GREATER
-                => ElectricPotentialChangeRate.FromKilovoltsPerHour(double.CreateChecked(value));
+                => ElectricPotentialChangeRate.FromKilovoltsPerHour(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotentialChangeRate.FromKilovoltsPerHour(value.ToDouble(null));
+                => ElectricPotentialChangeRate.FromKilovoltsPerHour(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotentialChangeRate.FromKilovoltsPerMicrosecond(double)" />
+            /// <inheritdoc cref="ElectricPotentialChangeRate.FromKilovoltsPerMicrosecond(QuantityValue)" />
             public ElectricPotentialChangeRate KilovoltsPerMicrosecond
 #if NET7_0_OR_GREATER
-                => ElectricPotentialChangeRate.FromKilovoltsPerMicrosecond(double.CreateChecked(value));
+                => ElectricPotentialChangeRate.FromKilovoltsPerMicrosecond(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotentialChangeRate.FromKilovoltsPerMicrosecond(value.ToDouble(null));
+                => ElectricPotentialChangeRate.FromKilovoltsPerMicrosecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotentialChangeRate.FromKilovoltsPerMinute(double)" />
+            /// <inheritdoc cref="ElectricPotentialChangeRate.FromKilovoltsPerMinute(QuantityValue)" />
             public ElectricPotentialChangeRate KilovoltsPerMinute
 #if NET7_0_OR_GREATER
-                => ElectricPotentialChangeRate.FromKilovoltsPerMinute(double.CreateChecked(value));
+                => ElectricPotentialChangeRate.FromKilovoltsPerMinute(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotentialChangeRate.FromKilovoltsPerMinute(value.ToDouble(null));
+                => ElectricPotentialChangeRate.FromKilovoltsPerMinute(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotentialChangeRate.FromKilovoltsPerSecond(double)" />
+            /// <inheritdoc cref="ElectricPotentialChangeRate.FromKilovoltsPerSecond(QuantityValue)" />
             public ElectricPotentialChangeRate KilovoltsPerSecond
 #if NET7_0_OR_GREATER
-                => ElectricPotentialChangeRate.FromKilovoltsPerSecond(double.CreateChecked(value));
+                => ElectricPotentialChangeRate.FromKilovoltsPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotentialChangeRate.FromKilovoltsPerSecond(value.ToDouble(null));
+                => ElectricPotentialChangeRate.FromKilovoltsPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMegavoltsPerHour(double)" />
+            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMegavoltsPerHour(QuantityValue)" />
             public ElectricPotentialChangeRate MegavoltsPerHour
 #if NET7_0_OR_GREATER
-                => ElectricPotentialChangeRate.FromMegavoltsPerHour(double.CreateChecked(value));
+                => ElectricPotentialChangeRate.FromMegavoltsPerHour(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotentialChangeRate.FromMegavoltsPerHour(value.ToDouble(null));
+                => ElectricPotentialChangeRate.FromMegavoltsPerHour(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMegavoltsPerMicrosecond(double)" />
+            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMegavoltsPerMicrosecond(QuantityValue)" />
             public ElectricPotentialChangeRate MegavoltsPerMicrosecond
 #if NET7_0_OR_GREATER
-                => ElectricPotentialChangeRate.FromMegavoltsPerMicrosecond(double.CreateChecked(value));
+                => ElectricPotentialChangeRate.FromMegavoltsPerMicrosecond(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotentialChangeRate.FromMegavoltsPerMicrosecond(value.ToDouble(null));
+                => ElectricPotentialChangeRate.FromMegavoltsPerMicrosecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMegavoltsPerMinute(double)" />
+            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMegavoltsPerMinute(QuantityValue)" />
             public ElectricPotentialChangeRate MegavoltsPerMinute
 #if NET7_0_OR_GREATER
-                => ElectricPotentialChangeRate.FromMegavoltsPerMinute(double.CreateChecked(value));
+                => ElectricPotentialChangeRate.FromMegavoltsPerMinute(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotentialChangeRate.FromMegavoltsPerMinute(value.ToDouble(null));
+                => ElectricPotentialChangeRate.FromMegavoltsPerMinute(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMegavoltsPerSecond(double)" />
+            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMegavoltsPerSecond(QuantityValue)" />
             public ElectricPotentialChangeRate MegavoltsPerSecond
 #if NET7_0_OR_GREATER
-                => ElectricPotentialChangeRate.FromMegavoltsPerSecond(double.CreateChecked(value));
+                => ElectricPotentialChangeRate.FromMegavoltsPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotentialChangeRate.FromMegavoltsPerSecond(value.ToDouble(null));
+                => ElectricPotentialChangeRate.FromMegavoltsPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMicrovoltsPerHour(double)" />
+            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMicrovoltsPerHour(QuantityValue)" />
             public ElectricPotentialChangeRate MicrovoltsPerHour
 #if NET7_0_OR_GREATER
-                => ElectricPotentialChangeRate.FromMicrovoltsPerHour(double.CreateChecked(value));
+                => ElectricPotentialChangeRate.FromMicrovoltsPerHour(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotentialChangeRate.FromMicrovoltsPerHour(value.ToDouble(null));
+                => ElectricPotentialChangeRate.FromMicrovoltsPerHour(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMicrovoltsPerMicrosecond(double)" />
+            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMicrovoltsPerMicrosecond(QuantityValue)" />
             public ElectricPotentialChangeRate MicrovoltsPerMicrosecond
 #if NET7_0_OR_GREATER
-                => ElectricPotentialChangeRate.FromMicrovoltsPerMicrosecond(double.CreateChecked(value));
+                => ElectricPotentialChangeRate.FromMicrovoltsPerMicrosecond(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotentialChangeRate.FromMicrovoltsPerMicrosecond(value.ToDouble(null));
+                => ElectricPotentialChangeRate.FromMicrovoltsPerMicrosecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMicrovoltsPerMinute(double)" />
+            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMicrovoltsPerMinute(QuantityValue)" />
             public ElectricPotentialChangeRate MicrovoltsPerMinute
 #if NET7_0_OR_GREATER
-                => ElectricPotentialChangeRate.FromMicrovoltsPerMinute(double.CreateChecked(value));
+                => ElectricPotentialChangeRate.FromMicrovoltsPerMinute(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotentialChangeRate.FromMicrovoltsPerMinute(value.ToDouble(null));
+                => ElectricPotentialChangeRate.FromMicrovoltsPerMinute(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMicrovoltsPerSecond(double)" />
+            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMicrovoltsPerSecond(QuantityValue)" />
             public ElectricPotentialChangeRate MicrovoltsPerSecond
 #if NET7_0_OR_GREATER
-                => ElectricPotentialChangeRate.FromMicrovoltsPerSecond(double.CreateChecked(value));
+                => ElectricPotentialChangeRate.FromMicrovoltsPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotentialChangeRate.FromMicrovoltsPerSecond(value.ToDouble(null));
+                => ElectricPotentialChangeRate.FromMicrovoltsPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMillivoltsPerHour(double)" />
+            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMillivoltsPerHour(QuantityValue)" />
             public ElectricPotentialChangeRate MillivoltsPerHour
 #if NET7_0_OR_GREATER
-                => ElectricPotentialChangeRate.FromMillivoltsPerHour(double.CreateChecked(value));
+                => ElectricPotentialChangeRate.FromMillivoltsPerHour(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotentialChangeRate.FromMillivoltsPerHour(value.ToDouble(null));
+                => ElectricPotentialChangeRate.FromMillivoltsPerHour(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMillivoltsPerMicrosecond(double)" />
+            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMillivoltsPerMicrosecond(QuantityValue)" />
             public ElectricPotentialChangeRate MillivoltsPerMicrosecond
 #if NET7_0_OR_GREATER
-                => ElectricPotentialChangeRate.FromMillivoltsPerMicrosecond(double.CreateChecked(value));
+                => ElectricPotentialChangeRate.FromMillivoltsPerMicrosecond(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotentialChangeRate.FromMillivoltsPerMicrosecond(value.ToDouble(null));
+                => ElectricPotentialChangeRate.FromMillivoltsPerMicrosecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMillivoltsPerMinute(double)" />
+            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMillivoltsPerMinute(QuantityValue)" />
             public ElectricPotentialChangeRate MillivoltsPerMinute
 #if NET7_0_OR_GREATER
-                => ElectricPotentialChangeRate.FromMillivoltsPerMinute(double.CreateChecked(value));
+                => ElectricPotentialChangeRate.FromMillivoltsPerMinute(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotentialChangeRate.FromMillivoltsPerMinute(value.ToDouble(null));
+                => ElectricPotentialChangeRate.FromMillivoltsPerMinute(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMillivoltsPerSecond(double)" />
+            /// <inheritdoc cref="ElectricPotentialChangeRate.FromMillivoltsPerSecond(QuantityValue)" />
             public ElectricPotentialChangeRate MillivoltsPerSecond
 #if NET7_0_OR_GREATER
-                => ElectricPotentialChangeRate.FromMillivoltsPerSecond(double.CreateChecked(value));
+                => ElectricPotentialChangeRate.FromMillivoltsPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotentialChangeRate.FromMillivoltsPerSecond(value.ToDouble(null));
+                => ElectricPotentialChangeRate.FromMillivoltsPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotentialChangeRate.FromVoltsPerHour(double)" />
+            /// <inheritdoc cref="ElectricPotentialChangeRate.FromVoltsPerHour(QuantityValue)" />
             public ElectricPotentialChangeRate VoltsPerHour
 #if NET7_0_OR_GREATER
-                => ElectricPotentialChangeRate.FromVoltsPerHour(double.CreateChecked(value));
+                => ElectricPotentialChangeRate.FromVoltsPerHour(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotentialChangeRate.FromVoltsPerHour(value.ToDouble(null));
+                => ElectricPotentialChangeRate.FromVoltsPerHour(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotentialChangeRate.FromVoltsPerMicrosecond(double)" />
+            /// <inheritdoc cref="ElectricPotentialChangeRate.FromVoltsPerMicrosecond(QuantityValue)" />
             public ElectricPotentialChangeRate VoltsPerMicrosecond
 #if NET7_0_OR_GREATER
-                => ElectricPotentialChangeRate.FromVoltsPerMicrosecond(double.CreateChecked(value));
+                => ElectricPotentialChangeRate.FromVoltsPerMicrosecond(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotentialChangeRate.FromVoltsPerMicrosecond(value.ToDouble(null));
+                => ElectricPotentialChangeRate.FromVoltsPerMicrosecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotentialChangeRate.FromVoltsPerMinute(double)" />
+            /// <inheritdoc cref="ElectricPotentialChangeRate.FromVoltsPerMinute(QuantityValue)" />
             public ElectricPotentialChangeRate VoltsPerMinute
 #if NET7_0_OR_GREATER
-                => ElectricPotentialChangeRate.FromVoltsPerMinute(double.CreateChecked(value));
+                => ElectricPotentialChangeRate.FromVoltsPerMinute(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotentialChangeRate.FromVoltsPerMinute(value.ToDouble(null));
+                => ElectricPotentialChangeRate.FromVoltsPerMinute(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotentialChangeRate.FromVoltsPerSecond(double)" />
+            /// <inheritdoc cref="ElectricPotentialChangeRate.FromVoltsPerSecond(QuantityValue)" />
             public ElectricPotentialChangeRate VoltsPerSecond
 #if NET7_0_OR_GREATER
-                => ElectricPotentialChangeRate.FromVoltsPerSecond(double.CreateChecked(value));
+                => ElectricPotentialChangeRate.FromVoltsPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotentialChangeRate.FromVoltsPerSecond(value.ToDouble(null));
+                => ElectricPotentialChangeRate.FromVoltsPerSecond(value.ToQuantityValue());
 #endif
 
         }

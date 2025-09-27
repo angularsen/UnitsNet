@@ -42,220 +42,220 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Power.FromBoilerHorsepower(double)" />
+            /// <inheritdoc cref="Power.FromBoilerHorsepower(QuantityValue)" />
             public Power BoilerHorsepower
 #if NET7_0_OR_GREATER
-                => Power.FromBoilerHorsepower(double.CreateChecked(value));
+                => Power.FromBoilerHorsepower(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromBoilerHorsepower(value.ToDouble(null));
+                => Power.FromBoilerHorsepower(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromBritishThermalUnitsPerHour(double)" />
+            /// <inheritdoc cref="Power.FromBritishThermalUnitsPerHour(QuantityValue)" />
             public Power BritishThermalUnitsPerHour
 #if NET7_0_OR_GREATER
-                => Power.FromBritishThermalUnitsPerHour(double.CreateChecked(value));
+                => Power.FromBritishThermalUnitsPerHour(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromBritishThermalUnitsPerHour(value.ToDouble(null));
+                => Power.FromBritishThermalUnitsPerHour(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromDecawatts(double)" />
+            /// <inheritdoc cref="Power.FromDecawatts(QuantityValue)" />
             public Power Decawatts
 #if NET7_0_OR_GREATER
-                => Power.FromDecawatts(double.CreateChecked(value));
+                => Power.FromDecawatts(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromDecawatts(value.ToDouble(null));
+                => Power.FromDecawatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromDeciwatts(double)" />
+            /// <inheritdoc cref="Power.FromDeciwatts(QuantityValue)" />
             public Power Deciwatts
 #if NET7_0_OR_GREATER
-                => Power.FromDeciwatts(double.CreateChecked(value));
+                => Power.FromDeciwatts(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromDeciwatts(value.ToDouble(null));
+                => Power.FromDeciwatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromElectricalHorsepower(double)" />
+            /// <inheritdoc cref="Power.FromElectricalHorsepower(QuantityValue)" />
             public Power ElectricalHorsepower
 #if NET7_0_OR_GREATER
-                => Power.FromElectricalHorsepower(double.CreateChecked(value));
+                => Power.FromElectricalHorsepower(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromElectricalHorsepower(value.ToDouble(null));
+                => Power.FromElectricalHorsepower(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromFemtowatts(double)" />
+            /// <inheritdoc cref="Power.FromFemtowatts(QuantityValue)" />
             public Power Femtowatts
 #if NET7_0_OR_GREATER
-                => Power.FromFemtowatts(double.CreateChecked(value));
+                => Power.FromFemtowatts(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromFemtowatts(value.ToDouble(null));
+                => Power.FromFemtowatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromGigajoulesPerHour(double)" />
+            /// <inheritdoc cref="Power.FromGigajoulesPerHour(QuantityValue)" />
             public Power GigajoulesPerHour
 #if NET7_0_OR_GREATER
-                => Power.FromGigajoulesPerHour(double.CreateChecked(value));
+                => Power.FromGigajoulesPerHour(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromGigajoulesPerHour(value.ToDouble(null));
+                => Power.FromGigajoulesPerHour(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromGigawatts(double)" />
+            /// <inheritdoc cref="Power.FromGigawatts(QuantityValue)" />
             public Power Gigawatts
 #if NET7_0_OR_GREATER
-                => Power.FromGigawatts(double.CreateChecked(value));
+                => Power.FromGigawatts(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromGigawatts(value.ToDouble(null));
+                => Power.FromGigawatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromHydraulicHorsepower(double)" />
+            /// <inheritdoc cref="Power.FromHydraulicHorsepower(QuantityValue)" />
             public Power HydraulicHorsepower
 #if NET7_0_OR_GREATER
-                => Power.FromHydraulicHorsepower(double.CreateChecked(value));
+                => Power.FromHydraulicHorsepower(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromHydraulicHorsepower(value.ToDouble(null));
+                => Power.FromHydraulicHorsepower(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromJoulesPerHour(double)" />
+            /// <inheritdoc cref="Power.FromJoulesPerHour(QuantityValue)" />
             public Power JoulesPerHour
 #if NET7_0_OR_GREATER
-                => Power.FromJoulesPerHour(double.CreateChecked(value));
+                => Power.FromJoulesPerHour(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromJoulesPerHour(value.ToDouble(null));
+                => Power.FromJoulesPerHour(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromKilobritishThermalUnitsPerHour(double)" />
+            /// <inheritdoc cref="Power.FromKilobritishThermalUnitsPerHour(QuantityValue)" />
             public Power KilobritishThermalUnitsPerHour
 #if NET7_0_OR_GREATER
-                => Power.FromKilobritishThermalUnitsPerHour(double.CreateChecked(value));
+                => Power.FromKilobritishThermalUnitsPerHour(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromKilobritishThermalUnitsPerHour(value.ToDouble(null));
+                => Power.FromKilobritishThermalUnitsPerHour(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromKilojoulesPerHour(double)" />
+            /// <inheritdoc cref="Power.FromKilojoulesPerHour(QuantityValue)" />
             public Power KilojoulesPerHour
 #if NET7_0_OR_GREATER
-                => Power.FromKilojoulesPerHour(double.CreateChecked(value));
+                => Power.FromKilojoulesPerHour(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromKilojoulesPerHour(value.ToDouble(null));
+                => Power.FromKilojoulesPerHour(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromKilowatts(double)" />
+            /// <inheritdoc cref="Power.FromKilowatts(QuantityValue)" />
             public Power Kilowatts
 #if NET7_0_OR_GREATER
-                => Power.FromKilowatts(double.CreateChecked(value));
+                => Power.FromKilowatts(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromKilowatts(value.ToDouble(null));
+                => Power.FromKilowatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromMechanicalHorsepower(double)" />
+            /// <inheritdoc cref="Power.FromMechanicalHorsepower(QuantityValue)" />
             public Power MechanicalHorsepower
 #if NET7_0_OR_GREATER
-                => Power.FromMechanicalHorsepower(double.CreateChecked(value));
+                => Power.FromMechanicalHorsepower(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromMechanicalHorsepower(value.ToDouble(null));
+                => Power.FromMechanicalHorsepower(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromMegabritishThermalUnitsPerHour(double)" />
+            /// <inheritdoc cref="Power.FromMegabritishThermalUnitsPerHour(QuantityValue)" />
             public Power MegabritishThermalUnitsPerHour
 #if NET7_0_OR_GREATER
-                => Power.FromMegabritishThermalUnitsPerHour(double.CreateChecked(value));
+                => Power.FromMegabritishThermalUnitsPerHour(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromMegabritishThermalUnitsPerHour(value.ToDouble(null));
+                => Power.FromMegabritishThermalUnitsPerHour(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromMegajoulesPerHour(double)" />
+            /// <inheritdoc cref="Power.FromMegajoulesPerHour(QuantityValue)" />
             public Power MegajoulesPerHour
 #if NET7_0_OR_GREATER
-                => Power.FromMegajoulesPerHour(double.CreateChecked(value));
+                => Power.FromMegajoulesPerHour(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromMegajoulesPerHour(value.ToDouble(null));
+                => Power.FromMegajoulesPerHour(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromMegawatts(double)" />
+            /// <inheritdoc cref="Power.FromMegawatts(QuantityValue)" />
             public Power Megawatts
 #if NET7_0_OR_GREATER
-                => Power.FromMegawatts(double.CreateChecked(value));
+                => Power.FromMegawatts(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromMegawatts(value.ToDouble(null));
+                => Power.FromMegawatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromMetricHorsepower(double)" />
+            /// <inheritdoc cref="Power.FromMetricHorsepower(QuantityValue)" />
             public Power MetricHorsepower
 #if NET7_0_OR_GREATER
-                => Power.FromMetricHorsepower(double.CreateChecked(value));
+                => Power.FromMetricHorsepower(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromMetricHorsepower(value.ToDouble(null));
+                => Power.FromMetricHorsepower(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromMicrowatts(double)" />
+            /// <inheritdoc cref="Power.FromMicrowatts(QuantityValue)" />
             public Power Microwatts
 #if NET7_0_OR_GREATER
-                => Power.FromMicrowatts(double.CreateChecked(value));
+                => Power.FromMicrowatts(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromMicrowatts(value.ToDouble(null));
+                => Power.FromMicrowatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromMillijoulesPerHour(double)" />
+            /// <inheritdoc cref="Power.FromMillijoulesPerHour(QuantityValue)" />
             public Power MillijoulesPerHour
 #if NET7_0_OR_GREATER
-                => Power.FromMillijoulesPerHour(double.CreateChecked(value));
+                => Power.FromMillijoulesPerHour(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromMillijoulesPerHour(value.ToDouble(null));
+                => Power.FromMillijoulesPerHour(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromMilliwatts(double)" />
+            /// <inheritdoc cref="Power.FromMilliwatts(QuantityValue)" />
             public Power Milliwatts
 #if NET7_0_OR_GREATER
-                => Power.FromMilliwatts(double.CreateChecked(value));
+                => Power.FromMilliwatts(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromMilliwatts(value.ToDouble(null));
+                => Power.FromMilliwatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromNanowatts(double)" />
+            /// <inheritdoc cref="Power.FromNanowatts(QuantityValue)" />
             public Power Nanowatts
 #if NET7_0_OR_GREATER
-                => Power.FromNanowatts(double.CreateChecked(value));
+                => Power.FromNanowatts(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromNanowatts(value.ToDouble(null));
+                => Power.FromNanowatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromPetawatts(double)" />
+            /// <inheritdoc cref="Power.FromPetawatts(QuantityValue)" />
             public Power Petawatts
 #if NET7_0_OR_GREATER
-                => Power.FromPetawatts(double.CreateChecked(value));
+                => Power.FromPetawatts(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromPetawatts(value.ToDouble(null));
+                => Power.FromPetawatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromPicowatts(double)" />
+            /// <inheritdoc cref="Power.FromPicowatts(QuantityValue)" />
             public Power Picowatts
 #if NET7_0_OR_GREATER
-                => Power.FromPicowatts(double.CreateChecked(value));
+                => Power.FromPicowatts(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromPicowatts(value.ToDouble(null));
+                => Power.FromPicowatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromTerawatts(double)" />
+            /// <inheritdoc cref="Power.FromTerawatts(QuantityValue)" />
             public Power Terawatts
 #if NET7_0_OR_GREATER
-                => Power.FromTerawatts(double.CreateChecked(value));
+                => Power.FromTerawatts(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromTerawatts(value.ToDouble(null));
+                => Power.FromTerawatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromTonsOfRefrigeration(double)" />
+            /// <inheritdoc cref="Power.FromTonsOfRefrigeration(QuantityValue)" />
             public Power TonsOfRefrigeration
 #if NET7_0_OR_GREATER
-                => Power.FromTonsOfRefrigeration(double.CreateChecked(value));
+                => Power.FromTonsOfRefrigeration(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromTonsOfRefrigeration(value.ToDouble(null));
+                => Power.FromTonsOfRefrigeration(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Power.FromWatts(double)" />
+            /// <inheritdoc cref="Power.FromWatts(QuantityValue)" />
             public Power Watts
 #if NET7_0_OR_GREATER
-                => Power.FromWatts(double.CreateChecked(value));
+                => Power.FromWatts(QuantityValue.CreateChecked(value));
 #else
-                => Power.FromWatts(value.ToDouble(null));
+                => Power.FromWatts(value.ToQuantityValue());
 #endif
 
         }

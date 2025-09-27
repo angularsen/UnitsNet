@@ -20,7 +20,7 @@ namespace UnitsNet
         public UnitSystem(BaseUnits baseUnits)
         {
             if (baseUnits is null) throw new ArgumentNullException(nameof(baseUnits));
-            if (!baseUnits.IsFullyDefined) throw new ArgumentException("A unit system must have all base units defined.", nameof(baseUnits));
+            if(baseUnits == BaseUnits.Undefined) throw new ArgumentException("A unit system must at least some base units defined.", nameof(baseUnits));
 
             BaseUnits = baseUnits;
         }
@@ -64,7 +64,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public override int GetHashCode()
         {
-            return new {BaseUnits}.GetHashCode();
+            return BaseUnits.GetHashCode();
         }
 
         /// <summary>
@@ -72,12 +72,10 @@ namespace UnitsNet
         /// </summary>
         public BaseUnits BaseUnits{ get; }
 
-        private static readonly BaseUnits SIBaseUnits = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
-            ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
-
         /// <summary>
         /// Gets the SI unit system.
         /// </summary>
-        public static UnitSystem SI { get; } = new UnitSystem(SIBaseUnits);
+        public static UnitSystem SI { get; } = new UnitSystem(new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
+            ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela));
     }
 }

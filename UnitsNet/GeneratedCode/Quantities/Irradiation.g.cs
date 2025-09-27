@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -38,11 +36,12 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Irradiation
     /// </remarks>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Irradiation :
         IArithmeticQuantity<Irradiation, IrradiationUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Irradiation, Irradiation, double>,
+        IDivisionOperators<Irradiation, Irradiation, QuantityValue>,
         IComparisonOperators<Irradiation, Irradiation, bool>,
         IParsable<Irradiation>,
 #endif
@@ -54,13 +53,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly IrradiationUnit? _unit;
 
         /// <summary>
@@ -105,7 +104,7 @@ namespace UnitsNet
             }
 
             /// <summary>
-            ///     The <see cref="BaseDimensions" /> for <see cref="Irradiation"/> is [T^-2][M].
+            ///     The <see cref="BaseDimensions" /> for <see cref="Irradiation"/> is T^-2M.
             /// </summary>
             public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
 
@@ -120,23 +119,37 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{IrradiationUnit}"/> representing the default unit mappings for Irradiation.</returns>
             public static IEnumerable<UnitDefinition<IrradiationUnit>> GetDefaultMappings()
             {
-                yield return new (IrradiationUnit.BtuPerSquareFoot, "BtuPerSquareFoot", "BtusPerSquareFoot", BaseUnits.Undefined);
-                yield return new (IrradiationUnit.JoulePerSquareCentimeter, "JoulePerSquareCentimeter", "JoulesPerSquareCentimeter", BaseUnits.Undefined);
+                yield return new (IrradiationUnit.BtuPerSquareFoot, "BtuPerSquareFoot", "BtusPerSquareFoot", BaseUnits.Undefined,
+                     new QuantityValue(4645152, 52752792631)             
+                );
+                yield return new (IrradiationUnit.JoulePerSquareCentimeter, "JoulePerSquareCentimeter", "JoulesPerSquareCentimeter", BaseUnits.Undefined,
+                     new QuantityValue(1, 10000)             
+                );
                 yield return new (IrradiationUnit.JoulePerSquareMeter, "JoulePerSquareMeter", "JoulesPerSquareMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (IrradiationUnit.JoulePerSquareMillimeter, "JoulePerSquareMillimeter", "JoulesPerSquareMillimeter", BaseUnits.Undefined);
-                yield return new (IrradiationUnit.KilobtuPerSquareFoot, "KilobtuPerSquareFoot", "KilobtusPerSquareFoot", BaseUnits.Undefined);
-                yield return new (IrradiationUnit.KilojoulePerSquareMeter, "KilojoulePerSquareMeter", "KilojoulesPerSquareMeter", BaseUnits.Undefined);
-                yield return new (IrradiationUnit.KilowattHourPerSquareMeter, "KilowattHourPerSquareMeter", "KilowattHoursPerSquareMeter", BaseUnits.Undefined);
-                yield return new (IrradiationUnit.MillijoulePerSquareCentimeter, "MillijoulePerSquareCentimeter", "MillijoulesPerSquareCentimeter", BaseUnits.Undefined);
-                yield return new (IrradiationUnit.WattHourPerSquareMeter, "WattHourPerSquareMeter", "WattHoursPerSquareMeter", BaseUnits.Undefined);
+                yield return new (IrradiationUnit.JoulePerSquareMillimeter, "JoulePerSquareMillimeter", "JoulesPerSquareMillimeter", BaseUnits.Undefined,
+                     new QuantityValue(1, 1000000)             
+                );
+                yield return new (IrradiationUnit.KilobtuPerSquareFoot, "KilobtuPerSquareFoot", "KilobtusPerSquareFoot", BaseUnits.Undefined,
+                     new QuantityValue(580644, 6594099078875)             
+                );
+                yield return new (IrradiationUnit.KilojoulePerSquareMeter, "KilojoulePerSquareMeter", "KilojoulesPerSquareMeter", BaseUnits.Undefined,
+                     new QuantityValue(1, 1000)             
+                );
+                yield return new (IrradiationUnit.KilowattHourPerSquareMeter, "KilowattHourPerSquareMeter", "KilowattHoursPerSquareMeter", BaseUnits.Undefined,
+                     new QuantityValue(1, 3600000)             
+                );
+                yield return new (IrradiationUnit.MillijoulePerSquareCentimeter, "MillijoulePerSquareCentimeter", "MillijoulesPerSquareCentimeter", BaseUnits.Undefined,
+                     new QuantityValue(1, 10)             
+                );
+                yield return new (IrradiationUnit.WattHourPerSquareMeter, "WattHourPerSquareMeter", "WattHoursPerSquareMeter", BaseUnits.Undefined,
+                     new QuantityValue(1, 3600)             
+                );
             }
         }
 
         static Irradiation()
         {
-            Info = IrradiationInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(IrradiationInfo.CreateDefault);
         }
 
         /// <summary>
@@ -144,7 +157,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Irradiation(double value, IrradiationUnit unit)
+        public Irradiation(QuantityValue value, IrradiationUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -158,7 +171,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Irradiation(double value, UnitSystem unitSystem)
+        public Irradiation(QuantityValue value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -169,7 +182,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Irradiation" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<Irradiation, IrradiationUnit> Info { get; }
@@ -198,10 +212,8 @@ namespace UnitsNet
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public IrradiationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -235,83 +247,53 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.BtuPerSquareFoot"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradiationUnit.BtuPerSquareFoot"/>
         /// </summary>
-        public double BtusPerSquareFoot => As(IrradiationUnit.BtuPerSquareFoot);
+        public QuantityValue BtusPerSquareFoot => this.As(IrradiationUnit.BtuPerSquareFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.JoulePerSquareCentimeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradiationUnit.JoulePerSquareCentimeter"/>
         /// </summary>
-        public double JoulesPerSquareCentimeter => As(IrradiationUnit.JoulePerSquareCentimeter);
+        public QuantityValue JoulesPerSquareCentimeter => this.As(IrradiationUnit.JoulePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.JoulePerSquareMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradiationUnit.JoulePerSquareMeter"/>
         /// </summary>
-        public double JoulesPerSquareMeter => As(IrradiationUnit.JoulePerSquareMeter);
+        public QuantityValue JoulesPerSquareMeter => this.As(IrradiationUnit.JoulePerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.JoulePerSquareMillimeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradiationUnit.JoulePerSquareMillimeter"/>
         /// </summary>
-        public double JoulesPerSquareMillimeter => As(IrradiationUnit.JoulePerSquareMillimeter);
+        public QuantityValue JoulesPerSquareMillimeter => this.As(IrradiationUnit.JoulePerSquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.KilobtuPerSquareFoot"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradiationUnit.KilobtuPerSquareFoot"/>
         /// </summary>
-        public double KilobtusPerSquareFoot => As(IrradiationUnit.KilobtuPerSquareFoot);
+        public QuantityValue KilobtusPerSquareFoot => this.As(IrradiationUnit.KilobtuPerSquareFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.KilojoulePerSquareMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradiationUnit.KilojoulePerSquareMeter"/>
         /// </summary>
-        public double KilojoulesPerSquareMeter => As(IrradiationUnit.KilojoulePerSquareMeter);
+        public QuantityValue KilojoulesPerSquareMeter => this.As(IrradiationUnit.KilojoulePerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.KilowattHourPerSquareMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradiationUnit.KilowattHourPerSquareMeter"/>
         /// </summary>
-        public double KilowattHoursPerSquareMeter => As(IrradiationUnit.KilowattHourPerSquareMeter);
+        public QuantityValue KilowattHoursPerSquareMeter => this.As(IrradiationUnit.KilowattHourPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.MillijoulePerSquareCentimeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradiationUnit.MillijoulePerSquareCentimeter"/>
         /// </summary>
-        public double MillijoulesPerSquareCentimeter => As(IrradiationUnit.MillijoulePerSquareCentimeter);
+        public QuantityValue MillijoulesPerSquareCentimeter => this.As(IrradiationUnit.MillijoulePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.WattHourPerSquareMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradiationUnit.WattHourPerSquareMeter"/>
         /// </summary>
-        public double WattHoursPerSquareMeter => As(IrradiationUnit.WattHourPerSquareMeter);
+        public QuantityValue WattHoursPerSquareMeter => this.As(IrradiationUnit.WattHourPerSquareMeter);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: IrradiationUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.BtuPerSquareFoot, IrradiationUnit.JoulePerSquareMeter, quantity => quantity.ToUnit(IrradiationUnit.JoulePerSquareMeter));
-            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareCentimeter, IrradiationUnit.JoulePerSquareMeter, quantity => quantity.ToUnit(IrradiationUnit.JoulePerSquareMeter));
-            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMillimeter, IrradiationUnit.JoulePerSquareMeter, quantity => quantity.ToUnit(IrradiationUnit.JoulePerSquareMeter));
-            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.KilobtuPerSquareFoot, IrradiationUnit.JoulePerSquareMeter, quantity => quantity.ToUnit(IrradiationUnit.JoulePerSquareMeter));
-            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.KilojoulePerSquareMeter, IrradiationUnit.JoulePerSquareMeter, quantity => quantity.ToUnit(IrradiationUnit.JoulePerSquareMeter));
-            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.KilowattHourPerSquareMeter, IrradiationUnit.JoulePerSquareMeter, quantity => quantity.ToUnit(IrradiationUnit.JoulePerSquareMeter));
-            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.MillijoulePerSquareCentimeter, IrradiationUnit.JoulePerSquareMeter, quantity => quantity.ToUnit(IrradiationUnit.JoulePerSquareMeter));
-            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.WattHourPerSquareMeter, IrradiationUnit.JoulePerSquareMeter, quantity => quantity.ToUnit(IrradiationUnit.JoulePerSquareMeter));
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.JoulePerSquareMeter, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> IrradiationUnit
-            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.BtuPerSquareFoot, quantity => quantity.ToUnit(IrradiationUnit.BtuPerSquareFoot));
-            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.JoulePerSquareCentimeter, quantity => quantity.ToUnit(IrradiationUnit.JoulePerSquareCentimeter));
-            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.JoulePerSquareMillimeter, quantity => quantity.ToUnit(IrradiationUnit.JoulePerSquareMillimeter));
-            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.KilobtuPerSquareFoot, quantity => quantity.ToUnit(IrradiationUnit.KilobtuPerSquareFoot));
-            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.KilojoulePerSquareMeter, quantity => quantity.ToUnit(IrradiationUnit.KilojoulePerSquareMeter));
-            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.KilowattHourPerSquareMeter, quantity => quantity.ToUnit(IrradiationUnit.KilowattHourPerSquareMeter));
-            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.MillijoulePerSquareCentimeter, quantity => quantity.ToUnit(IrradiationUnit.MillijoulePerSquareCentimeter));
-            unitConverter.SetConversionFunction<Irradiation>(IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.WattHourPerSquareMeter, quantity => quantity.ToUnit(IrradiationUnit.WattHourPerSquareMeter));
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -341,7 +323,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.BtuPerSquareFoot"/>.
         /// </summary>
-        public static Irradiation FromBtusPerSquareFoot(double value)
+        public static Irradiation FromBtusPerSquareFoot(QuantityValue value)
         {
             return new Irradiation(value, IrradiationUnit.BtuPerSquareFoot);
         }
@@ -349,7 +331,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareCentimeter"/>.
         /// </summary>
-        public static Irradiation FromJoulesPerSquareCentimeter(double value)
+        public static Irradiation FromJoulesPerSquareCentimeter(QuantityValue value)
         {
             return new Irradiation(value, IrradiationUnit.JoulePerSquareCentimeter);
         }
@@ -357,7 +339,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareMeter"/>.
         /// </summary>
-        public static Irradiation FromJoulesPerSquareMeter(double value)
+        public static Irradiation FromJoulesPerSquareMeter(QuantityValue value)
         {
             return new Irradiation(value, IrradiationUnit.JoulePerSquareMeter);
         }
@@ -365,7 +347,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareMillimeter"/>.
         /// </summary>
-        public static Irradiation FromJoulesPerSquareMillimeter(double value)
+        public static Irradiation FromJoulesPerSquareMillimeter(QuantityValue value)
         {
             return new Irradiation(value, IrradiationUnit.JoulePerSquareMillimeter);
         }
@@ -373,7 +355,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.KilobtuPerSquareFoot"/>.
         /// </summary>
-        public static Irradiation FromKilobtusPerSquareFoot(double value)
+        public static Irradiation FromKilobtusPerSquareFoot(QuantityValue value)
         {
             return new Irradiation(value, IrradiationUnit.KilobtuPerSquareFoot);
         }
@@ -381,7 +363,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.KilojoulePerSquareMeter"/>.
         /// </summary>
-        public static Irradiation FromKilojoulesPerSquareMeter(double value)
+        public static Irradiation FromKilojoulesPerSquareMeter(QuantityValue value)
         {
             return new Irradiation(value, IrradiationUnit.KilojoulePerSquareMeter);
         }
@@ -389,7 +371,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.KilowattHourPerSquareMeter"/>.
         /// </summary>
-        public static Irradiation FromKilowattHoursPerSquareMeter(double value)
+        public static Irradiation FromKilowattHoursPerSquareMeter(QuantityValue value)
         {
             return new Irradiation(value, IrradiationUnit.KilowattHourPerSquareMeter);
         }
@@ -397,7 +379,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.MillijoulePerSquareCentimeter"/>.
         /// </summary>
-        public static Irradiation FromMillijoulesPerSquareCentimeter(double value)
+        public static Irradiation FromMillijoulesPerSquareCentimeter(QuantityValue value)
         {
             return new Irradiation(value, IrradiationUnit.MillijoulePerSquareCentimeter);
         }
@@ -405,7 +387,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.WattHourPerSquareMeter"/>.
         /// </summary>
-        public static Irradiation FromWattHoursPerSquareMeter(double value)
+        public static Irradiation FromWattHoursPerSquareMeter(QuantityValue value)
         {
             return new Irradiation(value, IrradiationUnit.WattHourPerSquareMeter);
         }
@@ -416,7 +398,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Irradiation unit value.</returns>
-        public static Irradiation From(double value, IrradiationUnit fromUnit)
+        public static Irradiation From(QuantityValue value, IrradiationUnit fromUnit)
         {
             return new Irradiation(value, fromUnit);
         }
@@ -477,10 +459,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Irradiation Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<Irradiation, IrradiationUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<Irradiation, IrradiationUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -508,11 +487,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Irradiation result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<Irradiation, IrradiationUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<Irradiation, IrradiationUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -533,7 +508,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -544,7 +519,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.IrradiationUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.IrradiationUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out IrradiationUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -559,7 +534,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out IrradiationUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -578,35 +553,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="Irradiation"/> from adding two <see cref="Irradiation"/>.</summary>
         public static Irradiation operator +(Irradiation left, Irradiation right)
         {
-            return new Irradiation(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new Irradiation(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="Irradiation"/> from subtracting two <see cref="Irradiation"/>.</summary>
         public static Irradiation operator -(Irradiation left, Irradiation right)
         {
-            return new Irradiation(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new Irradiation(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="Irradiation"/> from multiplying value and <see cref="Irradiation"/>.</summary>
-        public static Irradiation operator *(double left, Irradiation right)
+        public static Irradiation operator *(QuantityValue left, Irradiation right)
         {
             return new Irradiation(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Irradiation"/> from multiplying value and <see cref="Irradiation"/>.</summary>
-        public static Irradiation operator *(Irradiation left, double right)
+        public static Irradiation operator *(Irradiation left, QuantityValue right)
         {
             return new Irradiation(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Irradiation"/> from dividing <see cref="Irradiation"/> by value.</summary>
-        public static Irradiation operator /(Irradiation left, double right)
+        public static Irradiation operator /(Irradiation left, QuantityValue right)
         {
             return new Irradiation(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Irradiation"/> by <see cref="Irradiation"/>.</summary>
-        public static double operator /(Irradiation left, Irradiation right)
+        public static QuantityValue operator /(Irradiation left, Irradiation right)
         {
             return left.JoulesPerSquareMeter / right.JoulesPerSquareMeter;
         }
@@ -618,65 +593,55 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Irradiation left, Irradiation right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Irradiation left, Irradiation right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Irradiation left, Irradiation right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Irradiation left, Irradiation right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="Irradiation"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Irradiation other, Irradiation tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Irradiation"/> quantities.</summary>
         public static bool operator ==(Irradiation left, Irradiation right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="Irradiation"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Irradiation other, Irradiation tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="Irradiation"/> quantities.</summary>
         public static bool operator !=(Irradiation left, Irradiation right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Irradiation"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Irradiation other, Irradiation tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Irradiation"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is Irradiation otherQuantity))
+            if (obj is not Irradiation otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Irradiation"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Irradiation other, Irradiation tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Irradiation"/> quantities.</summary>
         public bool Equals(Irradiation other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>
         ///     Returns the hash code for this instance.
@@ -684,31 +649,26 @@ namespace UnitsNet
         /// <returns>A hash code for the current Irradiation.</returns>
         public override int GetHashCode()
         {
-            return Comparison.GetHashCode(Unit, Value);
+            return Comparison.GetHashCode(typeof(Irradiation), this.As(BaseUnit));
         }
-
-        /// <summary>Compares the current <see cref="Irradiation"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        
+        /// <inheritdoc  cref="CompareTo(Irradiation)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is Irradiation otherQuantity)) throw new ArgumentException("Expected type Irradiation.", nameof(obj));
+            if (obj is not Irradiation otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<Irradiation>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="Irradiation"/> with another <see cref="Irradiation"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="Irradiation"/> with another <see cref="Irradiation"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -720,144 +680,8 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(Irradiation other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
+            return _value.CompareTo(other.As(this.Unit));
         }
-
-        #endregion
-
-        #region Conversion Methods
-
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(IrradiationUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
-
-            return ToUnit(unit).Value;
-        }
-
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<IrradiationUnit>());
-        }
-
-        /// <summary>
-        ///     Converts this Irradiation to another Irradiation with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A Irradiation with the specified unit.</returns>
-        public Irradiation ToUnit(IrradiationUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
-
-        /// <summary>
-        ///     Converts this <see cref="Irradiation"/> to another <see cref="Irradiation"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A Irradiation with the specified unit.</returns>
-        public Irradiation ToUnit(IrradiationUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(Irradiation), Unit, typeof(Irradiation), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (Irradiation)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="Irradiation"/> to another <see cref="Irradiation"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="Irradiation"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(IrradiationUnit unit, [NotNullWhen(true)] out Irradiation? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            Irradiation? convertedOrNull = (Unit, unit) switch
-            {
-                // IrradiationUnit -> BaseUnit
-                (IrradiationUnit.BtuPerSquareFoot, IrradiationUnit.JoulePerSquareMeter) => new Irradiation(_value * 1055.05585262 / 9.290304e-2, IrradiationUnit.JoulePerSquareMeter),
-                (IrradiationUnit.JoulePerSquareCentimeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation(_value * 1e4, IrradiationUnit.JoulePerSquareMeter),
-                (IrradiationUnit.JoulePerSquareMillimeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation(_value * 1e6, IrradiationUnit.JoulePerSquareMeter),
-                (IrradiationUnit.KilobtuPerSquareFoot, IrradiationUnit.JoulePerSquareMeter) => new Irradiation((_value * 1055.05585262 / 9.290304e-2) * 1e3d, IrradiationUnit.JoulePerSquareMeter),
-                (IrradiationUnit.KilojoulePerSquareMeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation((_value) * 1e3d, IrradiationUnit.JoulePerSquareMeter),
-                (IrradiationUnit.KilowattHourPerSquareMeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation((_value * 3600d) * 1e3d, IrradiationUnit.JoulePerSquareMeter),
-                (IrradiationUnit.MillijoulePerSquareCentimeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation((_value * 1e4) * 1e-3d, IrradiationUnit.JoulePerSquareMeter),
-                (IrradiationUnit.WattHourPerSquareMeter, IrradiationUnit.JoulePerSquareMeter) => new Irradiation(_value * 3600d, IrradiationUnit.JoulePerSquareMeter),
-
-                // BaseUnit -> IrradiationUnit
-                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.BtuPerSquareFoot) => new Irradiation(_value * 9.290304e-2 / 1055.05585262, IrradiationUnit.BtuPerSquareFoot),
-                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.JoulePerSquareCentimeter) => new Irradiation(_value / 1e4, IrradiationUnit.JoulePerSquareCentimeter),
-                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.JoulePerSquareMillimeter) => new Irradiation(_value / 1e6, IrradiationUnit.JoulePerSquareMillimeter),
-                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.KilobtuPerSquareFoot) => new Irradiation((_value * 9.290304e-2 / 1055.05585262) / 1e3d, IrradiationUnit.KilobtuPerSquareFoot),
-                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.KilojoulePerSquareMeter) => new Irradiation((_value) / 1e3d, IrradiationUnit.KilojoulePerSquareMeter),
-                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.KilowattHourPerSquareMeter) => new Irradiation((_value / 3600d) / 1e3d, IrradiationUnit.KilowattHourPerSquareMeter),
-                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.MillijoulePerSquareCentimeter) => new Irradiation((_value / 1e4) / 1e-3d, IrradiationUnit.MillijoulePerSquareCentimeter),
-                (IrradiationUnit.JoulePerSquareMeter, IrradiationUnit.WattHourPerSquareMeter) => new Irradiation(_value / 3600d, IrradiationUnit.WattHourPerSquareMeter),
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not IrradiationUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IrradiationUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is IrradiationUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(IrradiationUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<IrradiationUnit> IQuantity<IrradiationUnit>.ToUnit(IrradiationUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
@@ -872,7 +696,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

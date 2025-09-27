@@ -31,6 +31,8 @@ namespace UnitsNet.Tests.Serialization
         [InlineData(1.0)]
         [InlineData(0)]
         [InlineData(-1.0)]
+        [InlineData(1.2)]
+        [InlineData(-1.2)]
         [InlineData(1E+36)]
         [InlineData(1E-36)]
         [InlineData(-1E+36)]

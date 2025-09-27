@@ -161,6 +161,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AngleInfo_CreateWithCustomUnitInfos()
+        {
+            AngleUnit[] expectedUnits = [AngleUnit.Radian];
+
+            Angle.AngleInfo quantityInfo = Angle.AngleInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("Angle", quantityInfo.Name);
+            Assert.Equal(Angle.Zero, quantityInfo.Zero);
+            Assert.Equal(Angle.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void RadianToAngleUnits()
         {
             Angle radian = Angle.FromRadians(1);
@@ -252,12 +266,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit_UnitSystem_ReturnsValueInDimensionlessUnit()
         {
-            var quantity = new Angle(value: 1, unit: AngleUnit.Radian);
+            Assert.Multiple(() =>
+            {
+                var quantity = new Angle(value: 1, unit: AngleUnit.Radian);
 
-            Angle convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+                Angle convertedQuantity = quantity.ToUnit(UnitSystem.SI);
 
-            Assert.Equal(AngleUnit.Radian, convertedQuantity.Unit);
-            Assert.Equal(quantity.Value, convertedQuantity.Value);
+                Assert.Equal(AngleUnit.Radian, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<AngleUnit> quantity = new Angle(value: 1, unit: AngleUnit.Radian);
+
+                IQuantity<AngleUnit> convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(AngleUnit.Radian, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantity = new Angle(value: 1, unit: AngleUnit.Radian);
+
+                IQuantity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(AngleUnit.Radian, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            });
         }
 
         [Fact]
@@ -317,7 +350,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 нрад", AngleUnit.Nanoradian, 4.2)]
         [InlineData("ru-RU", "4,2 рад", AngleUnit.Radian, 4.2)]
         [InlineData("ru-RU", "4,2 r", AngleUnit.Revolution, 4.2)]
-        public void Parse(string culture, string quantityString, AngleUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, AngleUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Angle.Parse(quantityString);
@@ -363,7 +396,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 нрад", AngleUnit.Nanoradian, 4.2)]
         [InlineData("ru-RU", "4,2 рад", AngleUnit.Radian, 4.2)]
         [InlineData("ru-RU", "4,2 r", AngleUnit.Revolution, 4.2)]
-        public void TryParse(string culture, string quantityString, AngleUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, AngleUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Angle.TryParse(quantityString, out Angle parsed));
@@ -762,6 +795,7 @@ namespace UnitsNet.Tests
                 var quantity = Angle.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -785,46 +819,48 @@ namespace UnitsNet.Tests
                 IQuantity<AngleUnit> quantityToConvert = quantity;
                 IQuantity<AngleUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Angle radian = Angle.FromRadians(1);
-            AssertEx.EqualTolerance(1, Angle.FromArcminutes(radian.Arcminutes).Radians, ArcminutesTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromArcseconds(radian.Arcseconds).Radians, ArcsecondsTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromCentiradians(radian.Centiradians).Radians, CentiradiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromDeciradians(radian.Deciradians).Radians, DeciradiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromDegrees(radian.Degrees).Radians, DegreesTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromGradians(radian.Gradians).Radians, GradiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromMicrodegrees(radian.Microdegrees).Radians, MicrodegreesTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromMicroradians(radian.Microradians).Radians, MicroradiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromMillidegrees(radian.Millidegrees).Radians, MillidegreesTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromMilliradians(radian.Milliradians).Radians, MilliradiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromNanodegrees(radian.Nanodegrees).Radians, NanodegreesTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromNanoradians(radian.Nanoradians).Radians, NanoradiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromNatoMils(radian.NatoMils).Radians, NatoMilsTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromRadians(radian.Radians).Radians, RadiansTolerance);
-            AssertEx.EqualTolerance(1, Angle.FromRevolutions(radian.Revolutions).Radians, RevolutionsTolerance);
+            Angle radian = Angle.FromRadians(3);
+            Assert.Equal(3, Angle.FromArcminutes(radian.Arcminutes).Radians);
+            Assert.Equal(3, Angle.FromArcseconds(radian.Arcseconds).Radians);
+            Assert.Equal(3, Angle.FromCentiradians(radian.Centiradians).Radians);
+            Assert.Equal(3, Angle.FromDeciradians(radian.Deciradians).Radians);
+            Assert.Equal(3, Angle.FromDegrees(radian.Degrees).Radians);
+            Assert.Equal(3, Angle.FromGradians(radian.Gradians).Radians);
+            Assert.Equal(3, Angle.FromMicrodegrees(radian.Microdegrees).Radians);
+            Assert.Equal(3, Angle.FromMicroradians(radian.Microradians).Radians);
+            Assert.Equal(3, Angle.FromMillidegrees(radian.Millidegrees).Radians);
+            Assert.Equal(3, Angle.FromMilliradians(radian.Milliradians).Radians);
+            Assert.Equal(3, Angle.FromNanodegrees(radian.Nanodegrees).Radians);
+            Assert.Equal(3, Angle.FromNanoradians(radian.Nanoradians).Radians);
+            Assert.Equal(3, Angle.FromNatoMils(radian.NatoMils).Radians);
+            Assert.Equal(3, Angle.FromRadians(radian.Radians).Radians);
+            Assert.Equal(3, Angle.FromRevolutions(radian.Revolutions).Radians);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             Angle v = Angle.FromRadians(1);
-            AssertEx.EqualTolerance(-1, -v.Radians, RadiansTolerance);
-            AssertEx.EqualTolerance(2, (Angle.FromRadians(3)-v).Radians, RadiansTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Radians, RadiansTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Radians, RadiansTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Radians, RadiansTolerance);
-            AssertEx.EqualTolerance(2, (Angle.FromRadians(10)/5).Radians, RadiansTolerance);
-            AssertEx.EqualTolerance(2, Angle.FromRadians(10)/Angle.FromRadians(5), RadiansTolerance);
+            Assert.Equal(-1, -v.Radians);
+            Assert.Equal(2, (Angle.FromRadians(3) - v).Radians);
+            Assert.Equal(2, (v + v).Radians);
+            Assert.Equal(10, (v * 10).Radians);
+            Assert.Equal(10, (10 * v).Radians);
+            Assert.Equal(2, (Angle.FromRadians(10) / 5).Radians);
+            Assert.Equal(2, Angle.FromRadians(10) / Angle.FromRadians(5));
         }
 
         [Fact]
@@ -870,8 +906,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, AngleUnit.Radian, 1, AngleUnit.Radian, true)]  // Same value and unit.
         [InlineData(1, AngleUnit.Radian, 2, AngleUnit.Radian, false)] // Different value.
-        [InlineData(2, AngleUnit.Radian, 1, AngleUnit.Arcminute, false)] // Different value and unit.
-        [InlineData(1, AngleUnit.Radian, 1, AngleUnit.Arcminute, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, AngleUnit unitA, double valueB, AngleUnit unitB, bool expectEqual)
         {
             var a = new Angle(valueA, unitA);
@@ -931,8 +965,8 @@ namespace UnitsNet.Tests
             var quantity = Angle.FromRadians(firstValue);
             var otherQuantity = Angle.FromRadians(secondValue);
             Angle maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, Angle.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -951,7 +985,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<AngleUnit>();
+            var units = EnumHelper.GetValues<AngleUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -962,6 +996,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Angle.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(Angle.Info.Units, Angle.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, Angle.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -1054,7 +1100,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Angle.FromRadians(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(Angle), quantity.As(Angle.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

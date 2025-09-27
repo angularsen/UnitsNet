@@ -121,10 +121,16 @@ public class QuantityFormatter
         {
             switch (format[0])
             {
-                case 'G' or 'g':
-                    return FormatWithValueAndAbbreviation(quantity, format, formatProvider);
-                case 'S' or 's':
-                    return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, 0);
+                case 'S':
+                {
+                    format = "S15";
+                    break;
+                }
+                case 's':
+                {
+                    format = "s15";
+                    break;
+                }
                 case 'A' or 'a':
                     return _unitAbbreviations.GetDefaultAbbreviation(quantity.UnitKey, formatProvider);
                 case 'U' or 'u':
@@ -144,8 +150,6 @@ public class QuantityFormatter
             switch (format[0])
             {
 #if NET
-                case 'S' or 's' when int.TryParse(format.AsSpan(1), out var precisionSpecifier):
-                    return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, precisionSpecifier);
                 case 'A' or 'a' when int.TryParse(format.AsSpan(1), out var abbreviationIndex):
                 {
                     IReadOnlyList<string> abbreviations = _unitAbbreviations.GetUnitAbbreviations(quantity.UnitKey, formatProvider);
@@ -162,8 +166,6 @@ public class QuantityFormatter
                 case 'P' or 'p' when int.TryParse(format.AsSpan(1), out _):
                     throw new FormatException($"The \"{format}\" (percent) format is not supported.");
 #else
-                case 'S' or 's' when int.TryParse(format.Substring(1), out var precisionSpecifier):
-                    return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, precisionSpecifier);
                 case 'A' or 'a' when int.TryParse(format.Substring(1), out var abbreviationIndex):
                 {
                     IReadOnlyList<string> abbreviations = _unitAbbreviations.GetUnitAbbreviations(quantity.UnitKey, formatProvider);
@@ -182,14 +184,7 @@ public class QuantityFormatter
 #endif
             }
         }
-
-        // Anything else is a standard numeric format string with default unit abbreviation postfix.
-        return FormatWithValueAndAbbreviation(quantity, format, formatProvider);
-    }
-    
-    private string FormatWithValueAndAbbreviation<TQuantity>(TQuantity quantity, string format, IFormatProvider formatProvider)
-        where TQuantity : IQuantity
-    {
+ 
         var abbreviation = _unitAbbreviations.GetDefaultAbbreviation(quantity.UnitKey, formatProvider);
         if (abbreviation.Length == 0)
         {
@@ -202,14 +197,5 @@ public class QuantityFormatter
 #else
         return quantity.Value.ToString(format, formatProvider) + ' ' + abbreviation;
 #endif
-    }
-
-    private string ToStringWithSignificantDigitsAfterRadix<TQuantity>(TQuantity quantity, IFormatProvider formatProvider, int number)
-        where TQuantity : IQuantity
-    {
-        var formatForSignificantDigits = UnitFormatter.GetFormat(quantity.Value, number);
-        var abbreviation = _unitAbbreviations.GetDefaultAbbreviation(quantity.UnitKey, formatProvider);
-        var formatArgs = UnitFormatter.GetFormatArgs(quantity.Value, abbreviation, formatProvider, []);
-        return string.Format(formatProvider, formatForSignificantDigits, formatArgs).TrimEnd();
     }
 }

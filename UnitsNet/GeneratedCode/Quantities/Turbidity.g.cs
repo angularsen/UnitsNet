@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -38,11 +36,12 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Turbidity
     /// </remarks>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Turbidity :
         IArithmeticQuantity<Turbidity, TurbidityUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Turbidity, Turbidity, double>,
+        IDivisionOperators<Turbidity, Turbidity, QuantityValue>,
         IComparisonOperators<Turbidity, Turbidity, bool>,
         IParsable<Turbidity>,
 #endif
@@ -54,13 +53,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly TurbidityUnit? _unit;
 
         /// <summary>
@@ -126,9 +125,7 @@ namespace UnitsNet
 
         static Turbidity()
         {
-            Info = TurbidityInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(TurbidityInfo.CreateDefault);
         }
 
         /// <summary>
@@ -136,7 +133,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Turbidity(double value, TurbidityUnit unit)
+        public Turbidity(QuantityValue value, TurbidityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -147,7 +144,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Turbidity" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<Turbidity, TurbidityUnit> Info { get; }
@@ -176,10 +174,8 @@ namespace UnitsNet
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public TurbidityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -213,27 +209,13 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TurbidityUnit.NTU"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TurbidityUnit.NTU"/>
         /// </summary>
-        public double NTU => As(TurbidityUnit.NTU);
+        public QuantityValue NTU => this.As(TurbidityUnit.NTU);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: TurbidityUnit -> BaseUnit
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<Turbidity>(TurbidityUnit.NTU, TurbidityUnit.NTU, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> TurbidityUnit
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -263,7 +245,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Turbidity"/> from <see cref="TurbidityUnit.NTU"/>.
         /// </summary>
-        public static Turbidity FromNTU(double value)
+        public static Turbidity FromNTU(QuantityValue value)
         {
             return new Turbidity(value, TurbidityUnit.NTU);
         }
@@ -274,7 +256,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Turbidity unit value.</returns>
-        public static Turbidity From(double value, TurbidityUnit fromUnit)
+        public static Turbidity From(QuantityValue value, TurbidityUnit fromUnit)
         {
             return new Turbidity(value, fromUnit);
         }
@@ -335,10 +317,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Turbidity Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<Turbidity, TurbidityUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<Turbidity, TurbidityUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -366,11 +345,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Turbidity result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<Turbidity, TurbidityUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<Turbidity, TurbidityUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -391,7 +366,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -402,7 +377,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.TurbidityUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.TurbidityUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out TurbidityUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -417,7 +392,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out TurbidityUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -436,35 +411,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="Turbidity"/> from adding two <see cref="Turbidity"/>.</summary>
         public static Turbidity operator +(Turbidity left, Turbidity right)
         {
-            return new Turbidity(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new Turbidity(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="Turbidity"/> from subtracting two <see cref="Turbidity"/>.</summary>
         public static Turbidity operator -(Turbidity left, Turbidity right)
         {
-            return new Turbidity(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new Turbidity(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="Turbidity"/> from multiplying value and <see cref="Turbidity"/>.</summary>
-        public static Turbidity operator *(double left, Turbidity right)
+        public static Turbidity operator *(QuantityValue left, Turbidity right)
         {
             return new Turbidity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Turbidity"/> from multiplying value and <see cref="Turbidity"/>.</summary>
-        public static Turbidity operator *(Turbidity left, double right)
+        public static Turbidity operator *(Turbidity left, QuantityValue right)
         {
             return new Turbidity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Turbidity"/> from dividing <see cref="Turbidity"/> by value.</summary>
-        public static Turbidity operator /(Turbidity left, double right)
+        public static Turbidity operator /(Turbidity left, QuantityValue right)
         {
             return new Turbidity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Turbidity"/> by <see cref="Turbidity"/>.</summary>
-        public static double operator /(Turbidity left, Turbidity right)
+        public static QuantityValue operator /(Turbidity left, Turbidity right)
         {
             return left.NTU / right.NTU;
         }
@@ -476,65 +451,55 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Turbidity left, Turbidity right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Turbidity left, Turbidity right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Turbidity left, Turbidity right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Turbidity left, Turbidity right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="Turbidity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Turbidity other, Turbidity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Turbidity"/> quantities.</summary>
         public static bool operator ==(Turbidity left, Turbidity right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="Turbidity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Turbidity other, Turbidity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="Turbidity"/> quantities.</summary>
         public static bool operator !=(Turbidity left, Turbidity right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Turbidity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Turbidity other, Turbidity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Turbidity"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is Turbidity otherQuantity))
+            if (obj is not Turbidity otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Turbidity"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Turbidity other, Turbidity tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Turbidity"/> quantities.</summary>
         public bool Equals(Turbidity other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>
         ///     Returns the hash code for this instance.
@@ -542,31 +507,26 @@ namespace UnitsNet
         /// <returns>A hash code for the current Turbidity.</returns>
         public override int GetHashCode()
         {
-            return Comparison.GetHashCode(Unit, Value);
+            return Comparison.GetHashCode(typeof(Turbidity), this.As(BaseUnit));
         }
-
-        /// <summary>Compares the current <see cref="Turbidity"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        
+        /// <inheritdoc  cref="CompareTo(Turbidity)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is Turbidity otherQuantity)) throw new ArgumentException("Expected type Turbidity.", nameof(obj));
+            if (obj is not Turbidity otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<Turbidity>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="Turbidity"/> with another <see cref="Turbidity"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="Turbidity"/> with another <see cref="Turbidity"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -578,128 +538,8 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(Turbidity other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
+            return _value.CompareTo(other.As(this.Unit));
         }
-
-        #endregion
-
-        #region Conversion Methods
-
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(TurbidityUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
-
-            return ToUnit(unit).Value;
-        }
-
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<TurbidityUnit>());
-        }
-
-        /// <summary>
-        ///     Converts this Turbidity to another Turbidity with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A Turbidity with the specified unit.</returns>
-        public Turbidity ToUnit(TurbidityUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
-
-        /// <summary>
-        ///     Converts this <see cref="Turbidity"/> to another <see cref="Turbidity"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A Turbidity with the specified unit.</returns>
-        public Turbidity ToUnit(TurbidityUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(Turbidity), Unit, typeof(Turbidity), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (Turbidity)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="Turbidity"/> to another <see cref="Turbidity"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="Turbidity"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(TurbidityUnit unit, [NotNullWhen(true)] out Turbidity? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            Turbidity? convertedOrNull = (Unit, unit) switch
-            {
-                // TurbidityUnit -> BaseUnit
-
-                // BaseUnit -> TurbidityUnit
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not TurbidityUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TurbidityUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is TurbidityUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(TurbidityUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<TurbidityUnit> IQuantity<TurbidityUnit>.ToUnit(TurbidityUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
@@ -714,7 +554,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

@@ -198,6 +198,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void FluidResistanceInfo_CreateWithCustomUnitInfos()
+        {
+            FluidResistanceUnit[] expectedUnits = [FluidResistanceUnit.PascalSecondPerCubicMeter];
+
+            FluidResistance.FluidResistanceInfo quantityInfo = FluidResistance.FluidResistanceInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("FluidResistance", quantityInfo.Name);
+            Assert.Equal(FluidResistance.Zero, quantityInfo.Zero);
+            Assert.Equal(FluidResistance.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void PascalSecondPerCubicMeterToFluidResistanceUnits()
         {
             FluidResistance pascalsecondpercubicmeter = FluidResistance.FromPascalSecondsPerCubicMeter(1);
@@ -317,26 +331,69 @@ namespace UnitsNet.Tests
             var expectedUnit = FluidResistance.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            FluidResistance convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                FluidResistance quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                FluidResistance convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<FluidResistanceUnit> quantityToConvert = quantity;
+
+                IQuantity<FluidResistanceUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new FluidResistance(value: 1, unit: FluidResistance.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new FluidResistance(value: 1, unit: FluidResistance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<FluidResistanceUnit> quantity = new FluidResistance(value: 1, unit: FluidResistance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new FluidResistance(value: 1, unit: FluidResistance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new FluidResistance(value: 1, unit: FluidResistance.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new FluidResistance(value: 1, unit: FluidResistance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<FluidResistanceUnit> quantity = new FluidResistance(value: 1, unit: FluidResistance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new FluidResistance(value: 1, unit: FluidResistance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -382,7 +439,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 Па·с/мл", FluidResistanceUnit.PascalSecondPerMilliliter, 4.2)]
         [InlineData("ru-RU", "4,2 ЕВ", FluidResistanceUnit.WoodUnit, 4.2)]
         [InlineData("ru-RU", "4,2 ЕГС", FluidResistanceUnit.WoodUnit, 4.2)]
-        public void Parse(string culture, string quantityString, FluidResistanceUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, FluidResistanceUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = FluidResistance.Parse(quantityString);
@@ -433,7 +490,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 Па·с/мл", FluidResistanceUnit.PascalSecondPerMilliliter, 4.2)]
         [InlineData("ru-RU", "4,2 ЕВ", FluidResistanceUnit.WoodUnit, 4.2)]
         [InlineData("ru-RU", "4,2 ЕГС", FluidResistanceUnit.WoodUnit, 4.2)]
-        public void TryParse(string culture, string quantityString, FluidResistanceUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, FluidResistanceUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(FluidResistance.TryParse(quantityString, out FluidResistance parsed));
@@ -847,6 +904,7 @@ namespace UnitsNet.Tests
                 var quantity = FluidResistance.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -870,50 +928,52 @@ namespace UnitsNet.Tests
                 IQuantity<FluidResistanceUnit> quantityToConvert = quantity;
                 IQuantity<FluidResistanceUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            FluidResistance pascalsecondpercubicmeter = FluidResistance.FromPascalSecondsPerCubicMeter(1);
-            AssertEx.EqualTolerance(1, FluidResistance.FromDyneSecondsPerCentimeterToTheFifth(pascalsecondpercubicmeter.DyneSecondsPerCentimeterToTheFifth).PascalSecondsPerCubicMeter, DyneSecondsPerCentimeterToTheFifthTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromMegapascalSecondsPerCubicMeter(pascalsecondpercubicmeter.MegapascalSecondsPerCubicMeter).PascalSecondsPerCubicMeter, MegapascalSecondsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromMillimeterMercuryMinutesPerCubicCentimeter(pascalsecondpercubicmeter.MillimeterMercuryMinutesPerCubicCentimeter).PascalSecondsPerCubicMeter, MillimeterMercuryMinutesPerCubicCentimeterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromMillimeterMercuryMinutesPerCubicMeter(pascalsecondpercubicmeter.MillimeterMercuryMinutesPerCubicMeter).PascalSecondsPerCubicMeter, MillimeterMercuryMinutesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromMillimeterMercuryMinutesPerLiter(pascalsecondpercubicmeter.MillimeterMercuryMinutesPerLiter).PascalSecondsPerCubicMeter, MillimeterMercuryMinutesPerLiterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromMillimeterMercuryMinutesPerMilliliter(pascalsecondpercubicmeter.MillimeterMercuryMinutesPerMilliliter).PascalSecondsPerCubicMeter, MillimeterMercuryMinutesPerMilliliterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromMillimeterMercurySecondsPerCubicCentimeter(pascalsecondpercubicmeter.MillimeterMercurySecondsPerCubicCentimeter).PascalSecondsPerCubicMeter, MillimeterMercurySecondsPerCubicCentimeterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromMillimeterMercurySecondsPerCubicMeter(pascalsecondpercubicmeter.MillimeterMercurySecondsPerCubicMeter).PascalSecondsPerCubicMeter, MillimeterMercurySecondsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromMillimeterMercurySecondsPerLiter(pascalsecondpercubicmeter.MillimeterMercurySecondsPerLiter).PascalSecondsPerCubicMeter, MillimeterMercurySecondsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromMillimeterMercurySecondsPerMilliliter(pascalsecondpercubicmeter.MillimeterMercurySecondsPerMilliliter).PascalSecondsPerCubicMeter, MillimeterMercurySecondsPerMilliliterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromPascalMinutesPerCubicCentimeter(pascalsecondpercubicmeter.PascalMinutesPerCubicCentimeter).PascalSecondsPerCubicMeter, PascalMinutesPerCubicCentimeterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromPascalMinutesPerCubicMeter(pascalsecondpercubicmeter.PascalMinutesPerCubicMeter).PascalSecondsPerCubicMeter, PascalMinutesPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromPascalMinutesPerLiter(pascalsecondpercubicmeter.PascalMinutesPerLiter).PascalSecondsPerCubicMeter, PascalMinutesPerLiterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromPascalMinutesPerMilliliter(pascalsecondpercubicmeter.PascalMinutesPerMilliliter).PascalSecondsPerCubicMeter, PascalMinutesPerMilliliterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromPascalSecondsPerCubicCentimeter(pascalsecondpercubicmeter.PascalSecondsPerCubicCentimeter).PascalSecondsPerCubicMeter, PascalSecondsPerCubicCentimeterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromPascalSecondsPerCubicMeter(pascalsecondpercubicmeter.PascalSecondsPerCubicMeter).PascalSecondsPerCubicMeter, PascalSecondsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromPascalSecondsPerLiter(pascalsecondpercubicmeter.PascalSecondsPerLiter).PascalSecondsPerCubicMeter, PascalSecondsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromPascalSecondsPerMilliliter(pascalsecondpercubicmeter.PascalSecondsPerMilliliter).PascalSecondsPerCubicMeter, PascalSecondsPerMilliliterTolerance);
-            AssertEx.EqualTolerance(1, FluidResistance.FromWoodUnits(pascalsecondpercubicmeter.WoodUnits).PascalSecondsPerCubicMeter, WoodUnitsTolerance);
+            FluidResistance pascalsecondpercubicmeter = FluidResistance.FromPascalSecondsPerCubicMeter(3);
+            Assert.Equal(3, FluidResistance.FromDyneSecondsPerCentimeterToTheFifth(pascalsecondpercubicmeter.DyneSecondsPerCentimeterToTheFifth).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromMegapascalSecondsPerCubicMeter(pascalsecondpercubicmeter.MegapascalSecondsPerCubicMeter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromMillimeterMercuryMinutesPerCubicCentimeter(pascalsecondpercubicmeter.MillimeterMercuryMinutesPerCubicCentimeter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromMillimeterMercuryMinutesPerCubicMeter(pascalsecondpercubicmeter.MillimeterMercuryMinutesPerCubicMeter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromMillimeterMercuryMinutesPerLiter(pascalsecondpercubicmeter.MillimeterMercuryMinutesPerLiter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromMillimeterMercuryMinutesPerMilliliter(pascalsecondpercubicmeter.MillimeterMercuryMinutesPerMilliliter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromMillimeterMercurySecondsPerCubicCentimeter(pascalsecondpercubicmeter.MillimeterMercurySecondsPerCubicCentimeter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromMillimeterMercurySecondsPerCubicMeter(pascalsecondpercubicmeter.MillimeterMercurySecondsPerCubicMeter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromMillimeterMercurySecondsPerLiter(pascalsecondpercubicmeter.MillimeterMercurySecondsPerLiter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromMillimeterMercurySecondsPerMilliliter(pascalsecondpercubicmeter.MillimeterMercurySecondsPerMilliliter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromPascalMinutesPerCubicCentimeter(pascalsecondpercubicmeter.PascalMinutesPerCubicCentimeter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromPascalMinutesPerCubicMeter(pascalsecondpercubicmeter.PascalMinutesPerCubicMeter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromPascalMinutesPerLiter(pascalsecondpercubicmeter.PascalMinutesPerLiter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromPascalMinutesPerMilliliter(pascalsecondpercubicmeter.PascalMinutesPerMilliliter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromPascalSecondsPerCubicCentimeter(pascalsecondpercubicmeter.PascalSecondsPerCubicCentimeter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromPascalSecondsPerCubicMeter(pascalsecondpercubicmeter.PascalSecondsPerCubicMeter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromPascalSecondsPerLiter(pascalsecondpercubicmeter.PascalSecondsPerLiter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromPascalSecondsPerMilliliter(pascalsecondpercubicmeter.PascalSecondsPerMilliliter).PascalSecondsPerCubicMeter);
+            Assert.Equal(3, FluidResistance.FromWoodUnits(pascalsecondpercubicmeter.WoodUnits).PascalSecondsPerCubicMeter);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             FluidResistance v = FluidResistance.FromPascalSecondsPerCubicMeter(1);
-            AssertEx.EqualTolerance(-1, -v.PascalSecondsPerCubicMeter, PascalSecondsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(2, (FluidResistance.FromPascalSecondsPerCubicMeter(3)-v).PascalSecondsPerCubicMeter, PascalSecondsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(2, (v + v).PascalSecondsPerCubicMeter, PascalSecondsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(10, (v*10).PascalSecondsPerCubicMeter, PascalSecondsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(10, (10*v).PascalSecondsPerCubicMeter, PascalSecondsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(2, (FluidResistance.FromPascalSecondsPerCubicMeter(10)/5).PascalSecondsPerCubicMeter, PascalSecondsPerCubicMeterTolerance);
-            AssertEx.EqualTolerance(2, FluidResistance.FromPascalSecondsPerCubicMeter(10)/FluidResistance.FromPascalSecondsPerCubicMeter(5), PascalSecondsPerCubicMeterTolerance);
+            Assert.Equal(-1, -v.PascalSecondsPerCubicMeter);
+            Assert.Equal(2, (FluidResistance.FromPascalSecondsPerCubicMeter(3) - v).PascalSecondsPerCubicMeter);
+            Assert.Equal(2, (v + v).PascalSecondsPerCubicMeter);
+            Assert.Equal(10, (v * 10).PascalSecondsPerCubicMeter);
+            Assert.Equal(10, (10 * v).PascalSecondsPerCubicMeter);
+            Assert.Equal(2, (FluidResistance.FromPascalSecondsPerCubicMeter(10) / 5).PascalSecondsPerCubicMeter);
+            Assert.Equal(2, FluidResistance.FromPascalSecondsPerCubicMeter(10) / FluidResistance.FromPascalSecondsPerCubicMeter(5));
         }
 
         [Fact]
@@ -959,8 +1019,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, FluidResistanceUnit.PascalSecondPerCubicMeter, 1, FluidResistanceUnit.PascalSecondPerCubicMeter, true)]  // Same value and unit.
         [InlineData(1, FluidResistanceUnit.PascalSecondPerCubicMeter, 2, FluidResistanceUnit.PascalSecondPerCubicMeter, false)] // Different value.
-        [InlineData(2, FluidResistanceUnit.PascalSecondPerCubicMeter, 1, FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, false)] // Different value and unit.
-        [InlineData(1, FluidResistanceUnit.PascalSecondPerCubicMeter, 1, FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, FluidResistanceUnit unitA, double valueB, FluidResistanceUnit unitB, bool expectEqual)
         {
             var a = new FluidResistance(valueA, unitA);
@@ -1020,8 +1078,8 @@ namespace UnitsNet.Tests
             var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(firstValue);
             var otherQuantity = FluidResistance.FromPascalSecondsPerCubicMeter(secondValue);
             FluidResistance maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, FluidResistance.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -1040,7 +1098,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<FluidResistanceUnit>();
+            var units = EnumHelper.GetValues<FluidResistanceUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -1051,6 +1109,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(FluidResistance.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(FluidResistance.Info.Units, FluidResistance.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, FluidResistance.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -1151,7 +1221,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = FluidResistance.FromPascalSecondsPerCubicMeter(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(FluidResistance), quantity.As(FluidResistance.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

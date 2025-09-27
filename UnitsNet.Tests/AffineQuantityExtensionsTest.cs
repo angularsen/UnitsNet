@@ -7,8 +7,7 @@ public class AffineQuantityExtensionsTest
 {
     [Theory]
     [InlineData(25.0, 25.0, 0.1, true)] // Equal values
-    // [InlineData(25.0, 25.1, 0.1, true)] // Within tolerance (but fails due to rounding)
-    [InlineData(25.0, 25.1, 0.10001, true)] // Within tolerance
+    [InlineData(25.0, 25.1, 0.1, true)] // Within tolerance
     [InlineData(25.0, 25.2, 0.1, false)] // Outside tolerance
     [InlineData(25.0, 25.0, 0.0, true)] // Zero tolerance, equal values
     [InlineData(25.0, 25.1, 0.0, false)] // Zero tolerance, different values
@@ -56,8 +55,7 @@ public class AffineQuantityExtensionsTest
 
     [Theory]
     [InlineData(25.0, 25.0, 0.1, true)] // Equal values
-    // [InlineData(25.0, 25.1, 0.1, true)] // Within tolerance (but fails due to rounding)
-    [InlineData(25.0, 25.1, 0.10001, true)] // Within tolerance
+    [InlineData(25.0, 25.1, 0.1, true)] // Within tolerance
     [InlineData(25.0, 25.2, 0.1, false)] // Outside tolerance
     [InlineData(25.0, 25.0, 0.0, true)] // Zero tolerance, equal values
     [InlineData(25.0, 25.1, 0.0, false)] // Zero tolerance, different values
@@ -76,7 +74,7 @@ public class AffineQuantityExtensionsTest
     public void Equals_Temperature_IQuantity_WithDifferentType_ReturnsFalse()
     {
         var temperature1 = Temperature.FromDegreesCelsius(25.0);
-        IQuantity length = Length.From(1, LengthUnit.Meter);
+        IQuantity length = Length.From(QuantityValue.One, LengthUnit.Meter);
         var tolerance = TemperatureDelta.FromDegreesCelsius(1);
 
         var result = temperature1.Equals(length, tolerance);

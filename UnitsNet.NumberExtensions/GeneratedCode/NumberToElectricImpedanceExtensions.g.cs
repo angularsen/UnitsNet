@@ -33,100 +33,100 @@ namespace UnitsNet.NumberExtensions.NumberToElectricImpedance
     [Obsolete("Impedance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricResistance or ElectricReactance instead.")]
     public static class NumberToElectricImpedanceExtensions
     {
-        /// <inheritdoc cref="ElectricImpedance.FromGigaohms(double)" />
+        /// <inheritdoc cref="ElectricImpedance.FromGigaohms(QuantityValue)" />
         [Obsolete("Impedance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricResistance or ElectricReactance instead.")]
         public static ElectricImpedance Gigaohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricImpedance.FromGigaohms(double.CreateChecked(value));
+            => ElectricImpedance.FromGigaohms(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricImpedance.FromGigaohms(value.ToDouble(null));
+            => ElectricImpedance.FromGigaohms(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricImpedance.FromKiloohms(double)" />
+        /// <inheritdoc cref="ElectricImpedance.FromKiloohms(QuantityValue)" />
         [Obsolete("Impedance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricResistance or ElectricReactance instead.")]
         public static ElectricImpedance Kiloohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricImpedance.FromKiloohms(double.CreateChecked(value));
+            => ElectricImpedance.FromKiloohms(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricImpedance.FromKiloohms(value.ToDouble(null));
+            => ElectricImpedance.FromKiloohms(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricImpedance.FromMegaohms(double)" />
+        /// <inheritdoc cref="ElectricImpedance.FromMegaohms(QuantityValue)" />
         [Obsolete("Impedance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricResistance or ElectricReactance instead.")]
         public static ElectricImpedance Megaohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricImpedance.FromMegaohms(double.CreateChecked(value));
+            => ElectricImpedance.FromMegaohms(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricImpedance.FromMegaohms(value.ToDouble(null));
+            => ElectricImpedance.FromMegaohms(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricImpedance.FromMicroohms(double)" />
+        /// <inheritdoc cref="ElectricImpedance.FromMicroohms(QuantityValue)" />
         [Obsolete("Impedance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricResistance or ElectricReactance instead.")]
         public static ElectricImpedance Microohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricImpedance.FromMicroohms(double.CreateChecked(value));
+            => ElectricImpedance.FromMicroohms(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricImpedance.FromMicroohms(value.ToDouble(null));
+            => ElectricImpedance.FromMicroohms(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricImpedance.FromMilliohms(double)" />
+        /// <inheritdoc cref="ElectricImpedance.FromMilliohms(QuantityValue)" />
         [Obsolete("Impedance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricResistance or ElectricReactance instead.")]
         public static ElectricImpedance Milliohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricImpedance.FromMilliohms(double.CreateChecked(value));
+            => ElectricImpedance.FromMilliohms(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricImpedance.FromMilliohms(value.ToDouble(null));
+            => ElectricImpedance.FromMilliohms(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricImpedance.FromNanoohms(double)" />
+        /// <inheritdoc cref="ElectricImpedance.FromNanoohms(QuantityValue)" />
         [Obsolete("Impedance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricResistance or ElectricReactance instead.")]
         public static ElectricImpedance Nanoohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricImpedance.FromNanoohms(double.CreateChecked(value));
+            => ElectricImpedance.FromNanoohms(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricImpedance.FromNanoohms(value.ToDouble(null));
+            => ElectricImpedance.FromNanoohms(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricImpedance.FromOhms(double)" />
+        /// <inheritdoc cref="ElectricImpedance.FromOhms(QuantityValue)" />
         [Obsolete("Impedance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricResistance or ElectricReactance instead.")]
         public static ElectricImpedance Ohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricImpedance.FromOhms(double.CreateChecked(value));
+            => ElectricImpedance.FromOhms(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricImpedance.FromOhms(value.ToDouble(null));
+            => ElectricImpedance.FromOhms(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricImpedance.FromTeraohms(double)" />
+        /// <inheritdoc cref="ElectricImpedance.FromTeraohms(QuantityValue)" />
         [Obsolete("Impedance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricResistance or ElectricReactance instead.")]
         public static ElectricImpedance Teraohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricImpedance.FromTeraohms(double.CreateChecked(value));
+            => ElectricImpedance.FromTeraohms(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricImpedance.FromTeraohms(value.ToDouble(null));
+            => ElectricImpedance.FromTeraohms(value.ToQuantityValue());
 #endif
 
     }

@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -38,11 +36,12 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Bit_rate
     /// </remarks>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct BitRate :
         IArithmeticQuantity<BitRate, BitRateUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<BitRate, BitRate, double>,
+        IDivisionOperators<BitRate, BitRate, QuantityValue>,
         IComparisonOperators<BitRate, BitRate, bool>,
         IParsable<BitRate>,
 #endif
@@ -54,13 +53,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly BitRateUnit? _unit;
 
         /// <summary>
@@ -105,7 +104,7 @@ namespace UnitsNet
             }
 
             /// <summary>
-            ///     The <see cref="BaseDimensions" /> for <see cref="BitRate"/> is [T^-1].
+            ///     The <see cref="BaseDimensions" /> for <see cref="BitRate"/> is T^-1.
             /// </summary>
             public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
 
@@ -121,52 +120,126 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<BitRateUnit>> GetDefaultMappings()
             {
                 yield return new (BitRateUnit.BitPerSecond, "BitPerSecond", "BitsPerSecond", new BaseUnits(time: DurationUnit.Second));
-                yield return new (BitRateUnit.BytePerSecond, "BytePerSecond", "BytesPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.ExabitPerSecond, "ExabitPerSecond", "ExabitsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.ExabytePerSecond, "ExabytePerSecond", "ExabytesPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.ExaoctetPerSecond, "ExaoctetPerSecond", "ExaoctetsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.ExbibitPerSecond, "ExbibitPerSecond", "ExbibitsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.ExbibytePerSecond, "ExbibytePerSecond", "ExbibytesPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.ExbioctetPerSecond, "ExbioctetPerSecond", "ExbioctetsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.GibibitPerSecond, "GibibitPerSecond", "GibibitsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.GibibytePerSecond, "GibibytePerSecond", "GibibytesPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.GibioctetPerSecond, "GibioctetPerSecond", "GibioctetsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.GigabitPerSecond, "GigabitPerSecond", "GigabitsPerSecond", new BaseUnits(time: DurationUnit.Nanosecond));
-                yield return new (BitRateUnit.GigabytePerSecond, "GigabytePerSecond", "GigabytesPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.GigaoctetPerSecond, "GigaoctetPerSecond", "GigaoctetsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.KibibitPerSecond, "KibibitPerSecond", "KibibitsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.KibibytePerSecond, "KibibytePerSecond", "KibibytesPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.KibioctetPerSecond, "KibioctetPerSecond", "KibioctetsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.KilobitPerSecond, "KilobitPerSecond", "KilobitsPerSecond", new BaseUnits(time: DurationUnit.Millisecond));
-                yield return new (BitRateUnit.KilobytePerSecond, "KilobytePerSecond", "KilobytesPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.KilooctetPerSecond, "KilooctetPerSecond", "KilooctetsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.MebibitPerSecond, "MebibitPerSecond", "MebibitsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.MebibytePerSecond, "MebibytePerSecond", "MebibytesPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.MebioctetPerSecond, "MebioctetPerSecond", "MebioctetsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.MegabitPerSecond, "MegabitPerSecond", "MegabitsPerSecond", new BaseUnits(time: DurationUnit.Microsecond));
-                yield return new (BitRateUnit.MegabytePerSecond, "MegabytePerSecond", "MegabytesPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.MegaoctetPerSecond, "MegaoctetPerSecond", "MegaoctetsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.OctetPerSecond, "OctetPerSecond", "OctetsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.PebibitPerSecond, "PebibitPerSecond", "PebibitsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.PebibytePerSecond, "PebibytePerSecond", "PebibytesPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.PebioctetPerSecond, "PebioctetPerSecond", "PebioctetsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.PetabitPerSecond, "PetabitPerSecond", "PetabitsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.PetabytePerSecond, "PetabytePerSecond", "PetabytesPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.PetaoctetPerSecond, "PetaoctetPerSecond", "PetaoctetsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.TebibitPerSecond, "TebibitPerSecond", "TebibitsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.TebibytePerSecond, "TebibytePerSecond", "TebibytesPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.TebioctetPerSecond, "TebioctetPerSecond", "TebioctetsPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.TerabitPerSecond, "TerabitPerSecond", "TerabitsPerSecond", new BaseUnits(time: DurationUnit.Picosecond));
-                yield return new (BitRateUnit.TerabytePerSecond, "TerabytePerSecond", "TerabytesPerSecond", BaseUnits.Undefined);
-                yield return new (BitRateUnit.TeraoctetPerSecond, "TeraoctetPerSecond", "TeraoctetsPerSecond", BaseUnits.Undefined);
+                yield return new (BitRateUnit.BytePerSecond, "BytePerSecond", "BytesPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8)             
+                );
+                yield return new (BitRateUnit.ExabitPerSecond, "ExabitPerSecond", "ExabitsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 1000000000000000000)             
+                );
+                yield return new (BitRateUnit.ExabytePerSecond, "ExabytePerSecond", "ExabytesPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8000000000000000000)             
+                );
+                yield return new (BitRateUnit.ExaoctetPerSecond, "ExaoctetPerSecond", "ExaoctetsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8000000000000000000)             
+                );
+                yield return new (BitRateUnit.ExbibitPerSecond, "ExbibitPerSecond", "ExbibitsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 1152921504606846976)             
+                );
+                yield return new (BitRateUnit.ExbibytePerSecond, "ExbibytePerSecond", "ExbibytesPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, BigInteger.Pow(2, 63))             
+                );
+                yield return new (BitRateUnit.ExbioctetPerSecond, "ExbioctetPerSecond", "ExbioctetsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, BigInteger.Pow(2, 63))             
+                );
+                yield return new (BitRateUnit.GibibitPerSecond, "GibibitPerSecond", "GibibitsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 1073741824)             
+                );
+                yield return new (BitRateUnit.GibibytePerSecond, "GibibytePerSecond", "GibibytesPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8589934592)             
+                );
+                yield return new (BitRateUnit.GibioctetPerSecond, "GibioctetPerSecond", "GibioctetsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8589934592)             
+                );
+                yield return new (BitRateUnit.GigabitPerSecond, "GigabitPerSecond", "GigabitsPerSecond", new BaseUnits(time: DurationUnit.Nanosecond),
+                     new QuantityValue(1, 1000000000)             
+                );
+                yield return new (BitRateUnit.GigabytePerSecond, "GigabytePerSecond", "GigabytesPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8000000000)             
+                );
+                yield return new (BitRateUnit.GigaoctetPerSecond, "GigaoctetPerSecond", "GigaoctetsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8000000000)             
+                );
+                yield return new (BitRateUnit.KibibitPerSecond, "KibibitPerSecond", "KibibitsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 1024)             
+                );
+                yield return new (BitRateUnit.KibibytePerSecond, "KibibytePerSecond", "KibibytesPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8192)             
+                );
+                yield return new (BitRateUnit.KibioctetPerSecond, "KibioctetPerSecond", "KibioctetsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8192)             
+                );
+                yield return new (BitRateUnit.KilobitPerSecond, "KilobitPerSecond", "KilobitsPerSecond", new BaseUnits(time: DurationUnit.Millisecond),
+                     new QuantityValue(1, 1000)             
+                );
+                yield return new (BitRateUnit.KilobytePerSecond, "KilobytePerSecond", "KilobytesPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8000)             
+                );
+                yield return new (BitRateUnit.KilooctetPerSecond, "KilooctetPerSecond", "KilooctetsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8000)             
+                );
+                yield return new (BitRateUnit.MebibitPerSecond, "MebibitPerSecond", "MebibitsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 1048576)             
+                );
+                yield return new (BitRateUnit.MebibytePerSecond, "MebibytePerSecond", "MebibytesPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8388608)             
+                );
+                yield return new (BitRateUnit.MebioctetPerSecond, "MebioctetPerSecond", "MebioctetsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8388608)             
+                );
+                yield return new (BitRateUnit.MegabitPerSecond, "MegabitPerSecond", "MegabitsPerSecond", new BaseUnits(time: DurationUnit.Microsecond),
+                     new QuantityValue(1, 1000000)             
+                );
+                yield return new (BitRateUnit.MegabytePerSecond, "MegabytePerSecond", "MegabytesPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8000000)             
+                );
+                yield return new (BitRateUnit.MegaoctetPerSecond, "MegaoctetPerSecond", "MegaoctetsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8000000)             
+                );
+                yield return new (BitRateUnit.OctetPerSecond, "OctetPerSecond", "OctetsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8)             
+                );
+                yield return new (BitRateUnit.PebibitPerSecond, "PebibitPerSecond", "PebibitsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 1125899906842624)             
+                );
+                yield return new (BitRateUnit.PebibytePerSecond, "PebibytePerSecond", "PebibytesPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 9007199254740992)             
+                );
+                yield return new (BitRateUnit.PebioctetPerSecond, "PebioctetPerSecond", "PebioctetsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 9007199254740992)             
+                );
+                yield return new (BitRateUnit.PetabitPerSecond, "PetabitPerSecond", "PetabitsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 1000000000000000)             
+                );
+                yield return new (BitRateUnit.PetabytePerSecond, "PetabytePerSecond", "PetabytesPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8000000000000000)             
+                );
+                yield return new (BitRateUnit.PetaoctetPerSecond, "PetaoctetPerSecond", "PetaoctetsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8000000000000000)             
+                );
+                yield return new (BitRateUnit.TebibitPerSecond, "TebibitPerSecond", "TebibitsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 1099511627776)             
+                );
+                yield return new (BitRateUnit.TebibytePerSecond, "TebibytePerSecond", "TebibytesPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8796093022208)             
+                );
+                yield return new (BitRateUnit.TebioctetPerSecond, "TebioctetPerSecond", "TebioctetsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8796093022208)             
+                );
+                yield return new (BitRateUnit.TerabitPerSecond, "TerabitPerSecond", "TerabitsPerSecond", new BaseUnits(time: DurationUnit.Picosecond),
+                     new QuantityValue(1, 1000000000000)             
+                );
+                yield return new (BitRateUnit.TerabytePerSecond, "TerabytePerSecond", "TerabytesPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8000000000000)             
+                );
+                yield return new (BitRateUnit.TeraoctetPerSecond, "TeraoctetPerSecond", "TeraoctetsPerSecond", BaseUnits.Undefined,
+                     new QuantityValue(1, 8000000000000)             
+                );
             }
         }
 
         static BitRate()
         {
-            Info = BitRateInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(BitRateInfo.CreateDefault);
         }
 
         /// <summary>
@@ -174,7 +247,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public BitRate(double value, BitRateUnit unit)
+        public BitRate(QuantityValue value, BitRateUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -188,7 +261,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public BitRate(double value, UnitSystem unitSystem)
+        public BitRate(QuantityValue value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -199,7 +272,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="BitRate" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<BitRate, BitRateUnit> Info { get; }
@@ -228,10 +302,8 @@ namespace UnitsNet
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public BitRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -265,293 +337,203 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.BitPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.BitPerSecond"/>
         /// </summary>
-        public double BitsPerSecond => As(BitRateUnit.BitPerSecond);
+        public QuantityValue BitsPerSecond => this.As(BitRateUnit.BitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.BytePerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.BytePerSecond"/>
         /// </summary>
-        public double BytesPerSecond => As(BitRateUnit.BytePerSecond);
+        public QuantityValue BytesPerSecond => this.As(BitRateUnit.BytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.ExabitPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.ExabitPerSecond"/>
         /// </summary>
-        public double ExabitsPerSecond => As(BitRateUnit.ExabitPerSecond);
+        public QuantityValue ExabitsPerSecond => this.As(BitRateUnit.ExabitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.ExabytePerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.ExabytePerSecond"/>
         /// </summary>
-        public double ExabytesPerSecond => As(BitRateUnit.ExabytePerSecond);
+        public QuantityValue ExabytesPerSecond => this.As(BitRateUnit.ExabytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.ExaoctetPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.ExaoctetPerSecond"/>
         /// </summary>
-        public double ExaoctetsPerSecond => As(BitRateUnit.ExaoctetPerSecond);
+        public QuantityValue ExaoctetsPerSecond => this.As(BitRateUnit.ExaoctetPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.ExbibitPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.ExbibitPerSecond"/>
         /// </summary>
-        public double ExbibitsPerSecond => As(BitRateUnit.ExbibitPerSecond);
+        public QuantityValue ExbibitsPerSecond => this.As(BitRateUnit.ExbibitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.ExbibytePerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.ExbibytePerSecond"/>
         /// </summary>
-        public double ExbibytesPerSecond => As(BitRateUnit.ExbibytePerSecond);
+        public QuantityValue ExbibytesPerSecond => this.As(BitRateUnit.ExbibytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.ExbioctetPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.ExbioctetPerSecond"/>
         /// </summary>
-        public double ExbioctetsPerSecond => As(BitRateUnit.ExbioctetPerSecond);
+        public QuantityValue ExbioctetsPerSecond => this.As(BitRateUnit.ExbioctetPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.GibibitPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.GibibitPerSecond"/>
         /// </summary>
-        public double GibibitsPerSecond => As(BitRateUnit.GibibitPerSecond);
+        public QuantityValue GibibitsPerSecond => this.As(BitRateUnit.GibibitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.GibibytePerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.GibibytePerSecond"/>
         /// </summary>
-        public double GibibytesPerSecond => As(BitRateUnit.GibibytePerSecond);
+        public QuantityValue GibibytesPerSecond => this.As(BitRateUnit.GibibytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.GibioctetPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.GibioctetPerSecond"/>
         /// </summary>
-        public double GibioctetsPerSecond => As(BitRateUnit.GibioctetPerSecond);
+        public QuantityValue GibioctetsPerSecond => this.As(BitRateUnit.GibioctetPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.GigabitPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.GigabitPerSecond"/>
         /// </summary>
-        public double GigabitsPerSecond => As(BitRateUnit.GigabitPerSecond);
+        public QuantityValue GigabitsPerSecond => this.As(BitRateUnit.GigabitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.GigabytePerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.GigabytePerSecond"/>
         /// </summary>
-        public double GigabytesPerSecond => As(BitRateUnit.GigabytePerSecond);
+        public QuantityValue GigabytesPerSecond => this.As(BitRateUnit.GigabytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.GigaoctetPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.GigaoctetPerSecond"/>
         /// </summary>
-        public double GigaoctetsPerSecond => As(BitRateUnit.GigaoctetPerSecond);
+        public QuantityValue GigaoctetsPerSecond => this.As(BitRateUnit.GigaoctetPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.KibibitPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.KibibitPerSecond"/>
         /// </summary>
-        public double KibibitsPerSecond => As(BitRateUnit.KibibitPerSecond);
+        public QuantityValue KibibitsPerSecond => this.As(BitRateUnit.KibibitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.KibibytePerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.KibibytePerSecond"/>
         /// </summary>
-        public double KibibytesPerSecond => As(BitRateUnit.KibibytePerSecond);
+        public QuantityValue KibibytesPerSecond => this.As(BitRateUnit.KibibytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.KibioctetPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.KibioctetPerSecond"/>
         /// </summary>
-        public double KibioctetsPerSecond => As(BitRateUnit.KibioctetPerSecond);
+        public QuantityValue KibioctetsPerSecond => this.As(BitRateUnit.KibioctetPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.KilobitPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.KilobitPerSecond"/>
         /// </summary>
-        public double KilobitsPerSecond => As(BitRateUnit.KilobitPerSecond);
+        public QuantityValue KilobitsPerSecond => this.As(BitRateUnit.KilobitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.KilobytePerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.KilobytePerSecond"/>
         /// </summary>
-        public double KilobytesPerSecond => As(BitRateUnit.KilobytePerSecond);
+        public QuantityValue KilobytesPerSecond => this.As(BitRateUnit.KilobytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.KilooctetPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.KilooctetPerSecond"/>
         /// </summary>
-        public double KilooctetsPerSecond => As(BitRateUnit.KilooctetPerSecond);
+        public QuantityValue KilooctetsPerSecond => this.As(BitRateUnit.KilooctetPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.MebibitPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.MebibitPerSecond"/>
         /// </summary>
-        public double MebibitsPerSecond => As(BitRateUnit.MebibitPerSecond);
+        public QuantityValue MebibitsPerSecond => this.As(BitRateUnit.MebibitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.MebibytePerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.MebibytePerSecond"/>
         /// </summary>
-        public double MebibytesPerSecond => As(BitRateUnit.MebibytePerSecond);
+        public QuantityValue MebibytesPerSecond => this.As(BitRateUnit.MebibytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.MebioctetPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.MebioctetPerSecond"/>
         /// </summary>
-        public double MebioctetsPerSecond => As(BitRateUnit.MebioctetPerSecond);
+        public QuantityValue MebioctetsPerSecond => this.As(BitRateUnit.MebioctetPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.MegabitPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.MegabitPerSecond"/>
         /// </summary>
-        public double MegabitsPerSecond => As(BitRateUnit.MegabitPerSecond);
+        public QuantityValue MegabitsPerSecond => this.As(BitRateUnit.MegabitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.MegabytePerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.MegabytePerSecond"/>
         /// </summary>
-        public double MegabytesPerSecond => As(BitRateUnit.MegabytePerSecond);
+        public QuantityValue MegabytesPerSecond => this.As(BitRateUnit.MegabytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.MegaoctetPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.MegaoctetPerSecond"/>
         /// </summary>
-        public double MegaoctetsPerSecond => As(BitRateUnit.MegaoctetPerSecond);
+        public QuantityValue MegaoctetsPerSecond => this.As(BitRateUnit.MegaoctetPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.OctetPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.OctetPerSecond"/>
         /// </summary>
-        public double OctetsPerSecond => As(BitRateUnit.OctetPerSecond);
+        public QuantityValue OctetsPerSecond => this.As(BitRateUnit.OctetPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.PebibitPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.PebibitPerSecond"/>
         /// </summary>
-        public double PebibitsPerSecond => As(BitRateUnit.PebibitPerSecond);
+        public QuantityValue PebibitsPerSecond => this.As(BitRateUnit.PebibitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.PebibytePerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.PebibytePerSecond"/>
         /// </summary>
-        public double PebibytesPerSecond => As(BitRateUnit.PebibytePerSecond);
+        public QuantityValue PebibytesPerSecond => this.As(BitRateUnit.PebibytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.PebioctetPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.PebioctetPerSecond"/>
         /// </summary>
-        public double PebioctetsPerSecond => As(BitRateUnit.PebioctetPerSecond);
+        public QuantityValue PebioctetsPerSecond => this.As(BitRateUnit.PebioctetPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.PetabitPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.PetabitPerSecond"/>
         /// </summary>
-        public double PetabitsPerSecond => As(BitRateUnit.PetabitPerSecond);
+        public QuantityValue PetabitsPerSecond => this.As(BitRateUnit.PetabitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.PetabytePerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.PetabytePerSecond"/>
         /// </summary>
-        public double PetabytesPerSecond => As(BitRateUnit.PetabytePerSecond);
+        public QuantityValue PetabytesPerSecond => this.As(BitRateUnit.PetabytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.PetaoctetPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.PetaoctetPerSecond"/>
         /// </summary>
-        public double PetaoctetsPerSecond => As(BitRateUnit.PetaoctetPerSecond);
+        public QuantityValue PetaoctetsPerSecond => this.As(BitRateUnit.PetaoctetPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.TebibitPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.TebibitPerSecond"/>
         /// </summary>
-        public double TebibitsPerSecond => As(BitRateUnit.TebibitPerSecond);
+        public QuantityValue TebibitsPerSecond => this.As(BitRateUnit.TebibitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.TebibytePerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.TebibytePerSecond"/>
         /// </summary>
-        public double TebibytesPerSecond => As(BitRateUnit.TebibytePerSecond);
+        public QuantityValue TebibytesPerSecond => this.As(BitRateUnit.TebibytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.TebioctetPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.TebioctetPerSecond"/>
         /// </summary>
-        public double TebioctetsPerSecond => As(BitRateUnit.TebioctetPerSecond);
+        public QuantityValue TebioctetsPerSecond => this.As(BitRateUnit.TebioctetPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.TerabitPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.TerabitPerSecond"/>
         /// </summary>
-        public double TerabitsPerSecond => As(BitRateUnit.TerabitPerSecond);
+        public QuantityValue TerabitsPerSecond => this.As(BitRateUnit.TerabitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.TerabytePerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.TerabytePerSecond"/>
         /// </summary>
-        public double TerabytesPerSecond => As(BitRateUnit.TerabytePerSecond);
+        public QuantityValue TerabytesPerSecond => this.As(BitRateUnit.TerabytePerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BitRateUnit.TeraoctetPerSecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BitRateUnit.TeraoctetPerSecond"/>
         /// </summary>
-        public double TeraoctetsPerSecond => As(BitRateUnit.TeraoctetPerSecond);
+        public QuantityValue TeraoctetsPerSecond => this.As(BitRateUnit.TeraoctetPerSecond);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: BitRateUnit -> BaseUnit
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.ExabitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.ExabytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.ExaoctetPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.ExbibitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.ExbibytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.ExbioctetPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.GibibitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.GibibytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.GibioctetPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.GigabitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.GigabytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.GigaoctetPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.KibibitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.KibibytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.KibioctetPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.KilobitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.KilobytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.KilooctetPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.MebibitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.MebibytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.MebioctetPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.MegabitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.MegabytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.MegaoctetPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.OctetPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.PebibitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.PebibytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.PebioctetPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.PetabitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.PetabytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.PetaoctetPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.TebibitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.TebibytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.TebioctetPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.TerabitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.TerabytePerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.TeraoctetPerSecond, BitRateUnit.BitPerSecond, quantity => quantity.ToUnit(BitRateUnit.BitPerSecond));
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.BitPerSecond, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> BitRateUnit
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.BytePerSecond, quantity => quantity.ToUnit(BitRateUnit.BytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.ExabitPerSecond, quantity => quantity.ToUnit(BitRateUnit.ExabitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.ExabytePerSecond, quantity => quantity.ToUnit(BitRateUnit.ExabytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.ExaoctetPerSecond, quantity => quantity.ToUnit(BitRateUnit.ExaoctetPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.ExbibitPerSecond, quantity => quantity.ToUnit(BitRateUnit.ExbibitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.ExbibytePerSecond, quantity => quantity.ToUnit(BitRateUnit.ExbibytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.ExbioctetPerSecond, quantity => quantity.ToUnit(BitRateUnit.ExbioctetPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.GibibitPerSecond, quantity => quantity.ToUnit(BitRateUnit.GibibitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.GibibytePerSecond, quantity => quantity.ToUnit(BitRateUnit.GibibytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.GibioctetPerSecond, quantity => quantity.ToUnit(BitRateUnit.GibioctetPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.GigabitPerSecond, quantity => quantity.ToUnit(BitRateUnit.GigabitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.GigabytePerSecond, quantity => quantity.ToUnit(BitRateUnit.GigabytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.GigaoctetPerSecond, quantity => quantity.ToUnit(BitRateUnit.GigaoctetPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.KibibitPerSecond, quantity => quantity.ToUnit(BitRateUnit.KibibitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.KibibytePerSecond, quantity => quantity.ToUnit(BitRateUnit.KibibytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.KibioctetPerSecond, quantity => quantity.ToUnit(BitRateUnit.KibioctetPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.KilobitPerSecond, quantity => quantity.ToUnit(BitRateUnit.KilobitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.KilobytePerSecond, quantity => quantity.ToUnit(BitRateUnit.KilobytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.KilooctetPerSecond, quantity => quantity.ToUnit(BitRateUnit.KilooctetPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.MebibitPerSecond, quantity => quantity.ToUnit(BitRateUnit.MebibitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.MebibytePerSecond, quantity => quantity.ToUnit(BitRateUnit.MebibytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.MebioctetPerSecond, quantity => quantity.ToUnit(BitRateUnit.MebioctetPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.MegabitPerSecond, quantity => quantity.ToUnit(BitRateUnit.MegabitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.MegabytePerSecond, quantity => quantity.ToUnit(BitRateUnit.MegabytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.MegaoctetPerSecond, quantity => quantity.ToUnit(BitRateUnit.MegaoctetPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.OctetPerSecond, quantity => quantity.ToUnit(BitRateUnit.OctetPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.PebibitPerSecond, quantity => quantity.ToUnit(BitRateUnit.PebibitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.PebibytePerSecond, quantity => quantity.ToUnit(BitRateUnit.PebibytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.PebioctetPerSecond, quantity => quantity.ToUnit(BitRateUnit.PebioctetPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.PetabitPerSecond, quantity => quantity.ToUnit(BitRateUnit.PetabitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.PetabytePerSecond, quantity => quantity.ToUnit(BitRateUnit.PetabytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.PetaoctetPerSecond, quantity => quantity.ToUnit(BitRateUnit.PetaoctetPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.TebibitPerSecond, quantity => quantity.ToUnit(BitRateUnit.TebibitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.TebibytePerSecond, quantity => quantity.ToUnit(BitRateUnit.TebibytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.TebioctetPerSecond, quantity => quantity.ToUnit(BitRateUnit.TebioctetPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.TerabitPerSecond, quantity => quantity.ToUnit(BitRateUnit.TerabitPerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.TerabytePerSecond, quantity => quantity.ToUnit(BitRateUnit.TerabytePerSecond));
-            unitConverter.SetConversionFunction<BitRate>(BitRateUnit.BitPerSecond, BitRateUnit.TeraoctetPerSecond, quantity => quantity.ToUnit(BitRateUnit.TeraoctetPerSecond));
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -581,7 +563,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.BitPerSecond"/>.
         /// </summary>
-        public static BitRate FromBitsPerSecond(double value)
+        public static BitRate FromBitsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.BitPerSecond);
         }
@@ -589,7 +571,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.BytePerSecond"/>.
         /// </summary>
-        public static BitRate FromBytesPerSecond(double value)
+        public static BitRate FromBytesPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.BytePerSecond);
         }
@@ -597,7 +579,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.ExabitPerSecond"/>.
         /// </summary>
-        public static BitRate FromExabitsPerSecond(double value)
+        public static BitRate FromExabitsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.ExabitPerSecond);
         }
@@ -605,7 +587,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.ExabytePerSecond"/>.
         /// </summary>
-        public static BitRate FromExabytesPerSecond(double value)
+        public static BitRate FromExabytesPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.ExabytePerSecond);
         }
@@ -613,7 +595,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.ExaoctetPerSecond"/>.
         /// </summary>
-        public static BitRate FromExaoctetsPerSecond(double value)
+        public static BitRate FromExaoctetsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.ExaoctetPerSecond);
         }
@@ -621,7 +603,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.ExbibitPerSecond"/>.
         /// </summary>
-        public static BitRate FromExbibitsPerSecond(double value)
+        public static BitRate FromExbibitsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.ExbibitPerSecond);
         }
@@ -629,7 +611,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.ExbibytePerSecond"/>.
         /// </summary>
-        public static BitRate FromExbibytesPerSecond(double value)
+        public static BitRate FromExbibytesPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.ExbibytePerSecond);
         }
@@ -637,7 +619,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.ExbioctetPerSecond"/>.
         /// </summary>
-        public static BitRate FromExbioctetsPerSecond(double value)
+        public static BitRate FromExbioctetsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.ExbioctetPerSecond);
         }
@@ -645,7 +627,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.GibibitPerSecond"/>.
         /// </summary>
-        public static BitRate FromGibibitsPerSecond(double value)
+        public static BitRate FromGibibitsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.GibibitPerSecond);
         }
@@ -653,7 +635,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.GibibytePerSecond"/>.
         /// </summary>
-        public static BitRate FromGibibytesPerSecond(double value)
+        public static BitRate FromGibibytesPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.GibibytePerSecond);
         }
@@ -661,7 +643,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.GibioctetPerSecond"/>.
         /// </summary>
-        public static BitRate FromGibioctetsPerSecond(double value)
+        public static BitRate FromGibioctetsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.GibioctetPerSecond);
         }
@@ -669,7 +651,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.GigabitPerSecond"/>.
         /// </summary>
-        public static BitRate FromGigabitsPerSecond(double value)
+        public static BitRate FromGigabitsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.GigabitPerSecond);
         }
@@ -677,7 +659,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.GigabytePerSecond"/>.
         /// </summary>
-        public static BitRate FromGigabytesPerSecond(double value)
+        public static BitRate FromGigabytesPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.GigabytePerSecond);
         }
@@ -685,7 +667,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.GigaoctetPerSecond"/>.
         /// </summary>
-        public static BitRate FromGigaoctetsPerSecond(double value)
+        public static BitRate FromGigaoctetsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.GigaoctetPerSecond);
         }
@@ -693,7 +675,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.KibibitPerSecond"/>.
         /// </summary>
-        public static BitRate FromKibibitsPerSecond(double value)
+        public static BitRate FromKibibitsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.KibibitPerSecond);
         }
@@ -701,7 +683,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.KibibytePerSecond"/>.
         /// </summary>
-        public static BitRate FromKibibytesPerSecond(double value)
+        public static BitRate FromKibibytesPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.KibibytePerSecond);
         }
@@ -709,7 +691,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.KibioctetPerSecond"/>.
         /// </summary>
-        public static BitRate FromKibioctetsPerSecond(double value)
+        public static BitRate FromKibioctetsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.KibioctetPerSecond);
         }
@@ -717,7 +699,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.KilobitPerSecond"/>.
         /// </summary>
-        public static BitRate FromKilobitsPerSecond(double value)
+        public static BitRate FromKilobitsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.KilobitPerSecond);
         }
@@ -725,7 +707,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.KilobytePerSecond"/>.
         /// </summary>
-        public static BitRate FromKilobytesPerSecond(double value)
+        public static BitRate FromKilobytesPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.KilobytePerSecond);
         }
@@ -733,7 +715,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.KilooctetPerSecond"/>.
         /// </summary>
-        public static BitRate FromKilooctetsPerSecond(double value)
+        public static BitRate FromKilooctetsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.KilooctetPerSecond);
         }
@@ -741,7 +723,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.MebibitPerSecond"/>.
         /// </summary>
-        public static BitRate FromMebibitsPerSecond(double value)
+        public static BitRate FromMebibitsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.MebibitPerSecond);
         }
@@ -749,7 +731,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.MebibytePerSecond"/>.
         /// </summary>
-        public static BitRate FromMebibytesPerSecond(double value)
+        public static BitRate FromMebibytesPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.MebibytePerSecond);
         }
@@ -757,7 +739,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.MebioctetPerSecond"/>.
         /// </summary>
-        public static BitRate FromMebioctetsPerSecond(double value)
+        public static BitRate FromMebioctetsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.MebioctetPerSecond);
         }
@@ -765,7 +747,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.MegabitPerSecond"/>.
         /// </summary>
-        public static BitRate FromMegabitsPerSecond(double value)
+        public static BitRate FromMegabitsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.MegabitPerSecond);
         }
@@ -773,7 +755,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.MegabytePerSecond"/>.
         /// </summary>
-        public static BitRate FromMegabytesPerSecond(double value)
+        public static BitRate FromMegabytesPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.MegabytePerSecond);
         }
@@ -781,7 +763,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.MegaoctetPerSecond"/>.
         /// </summary>
-        public static BitRate FromMegaoctetsPerSecond(double value)
+        public static BitRate FromMegaoctetsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.MegaoctetPerSecond);
         }
@@ -789,7 +771,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.OctetPerSecond"/>.
         /// </summary>
-        public static BitRate FromOctetsPerSecond(double value)
+        public static BitRate FromOctetsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.OctetPerSecond);
         }
@@ -797,7 +779,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.PebibitPerSecond"/>.
         /// </summary>
-        public static BitRate FromPebibitsPerSecond(double value)
+        public static BitRate FromPebibitsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.PebibitPerSecond);
         }
@@ -805,7 +787,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.PebibytePerSecond"/>.
         /// </summary>
-        public static BitRate FromPebibytesPerSecond(double value)
+        public static BitRate FromPebibytesPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.PebibytePerSecond);
         }
@@ -813,7 +795,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.PebioctetPerSecond"/>.
         /// </summary>
-        public static BitRate FromPebioctetsPerSecond(double value)
+        public static BitRate FromPebioctetsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.PebioctetPerSecond);
         }
@@ -821,7 +803,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.PetabitPerSecond"/>.
         /// </summary>
-        public static BitRate FromPetabitsPerSecond(double value)
+        public static BitRate FromPetabitsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.PetabitPerSecond);
         }
@@ -829,7 +811,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.PetabytePerSecond"/>.
         /// </summary>
-        public static BitRate FromPetabytesPerSecond(double value)
+        public static BitRate FromPetabytesPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.PetabytePerSecond);
         }
@@ -837,7 +819,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.PetaoctetPerSecond"/>.
         /// </summary>
-        public static BitRate FromPetaoctetsPerSecond(double value)
+        public static BitRate FromPetaoctetsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.PetaoctetPerSecond);
         }
@@ -845,7 +827,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.TebibitPerSecond"/>.
         /// </summary>
-        public static BitRate FromTebibitsPerSecond(double value)
+        public static BitRate FromTebibitsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.TebibitPerSecond);
         }
@@ -853,7 +835,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.TebibytePerSecond"/>.
         /// </summary>
-        public static BitRate FromTebibytesPerSecond(double value)
+        public static BitRate FromTebibytesPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.TebibytePerSecond);
         }
@@ -861,7 +843,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.TebioctetPerSecond"/>.
         /// </summary>
-        public static BitRate FromTebioctetsPerSecond(double value)
+        public static BitRate FromTebioctetsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.TebioctetPerSecond);
         }
@@ -869,7 +851,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.TerabitPerSecond"/>.
         /// </summary>
-        public static BitRate FromTerabitsPerSecond(double value)
+        public static BitRate FromTerabitsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.TerabitPerSecond);
         }
@@ -877,7 +859,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.TerabytePerSecond"/>.
         /// </summary>
-        public static BitRate FromTerabytesPerSecond(double value)
+        public static BitRate FromTerabytesPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.TerabytePerSecond);
         }
@@ -885,7 +867,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BitRate"/> from <see cref="BitRateUnit.TeraoctetPerSecond"/>.
         /// </summary>
-        public static BitRate FromTeraoctetsPerSecond(double value)
+        public static BitRate FromTeraoctetsPerSecond(QuantityValue value)
         {
             return new BitRate(value, BitRateUnit.TeraoctetPerSecond);
         }
@@ -896,7 +878,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>BitRate unit value.</returns>
-        public static BitRate From(double value, BitRateUnit fromUnit)
+        public static BitRate From(QuantityValue value, BitRateUnit fromUnit)
         {
             return new BitRate(value, fromUnit);
         }
@@ -957,10 +939,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static BitRate Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<BitRate, BitRateUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<BitRate, BitRateUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -988,11 +967,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out BitRate result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<BitRate, BitRateUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<BitRate, BitRateUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -1013,7 +988,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -1024,7 +999,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.BitRateUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.BitRateUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out BitRateUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -1039,7 +1014,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out BitRateUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -1058,35 +1033,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="BitRate"/> from adding two <see cref="BitRate"/>.</summary>
         public static BitRate operator +(BitRate left, BitRate right)
         {
-            return new BitRate(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new BitRate(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="BitRate"/> from subtracting two <see cref="BitRate"/>.</summary>
         public static BitRate operator -(BitRate left, BitRate right)
         {
-            return new BitRate(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new BitRate(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="BitRate"/> from multiplying value and <see cref="BitRate"/>.</summary>
-        public static BitRate operator *(double left, BitRate right)
+        public static BitRate operator *(QuantityValue left, BitRate right)
         {
             return new BitRate(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="BitRate"/> from multiplying value and <see cref="BitRate"/>.</summary>
-        public static BitRate operator *(BitRate left, double right)
+        public static BitRate operator *(BitRate left, QuantityValue right)
         {
             return new BitRate(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="BitRate"/> from dividing <see cref="BitRate"/> by value.</summary>
-        public static BitRate operator /(BitRate left, double right)
+        public static BitRate operator /(BitRate left, QuantityValue right)
         {
             return new BitRate(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="BitRate"/> by <see cref="BitRate"/>.</summary>
-        public static double operator /(BitRate left, BitRate right)
+        public static QuantityValue operator /(BitRate left, BitRate right)
         {
             return left.BitsPerSecond / right.BitsPerSecond;
         }
@@ -1098,65 +1073,55 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(BitRate left, BitRate right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(BitRate left, BitRate right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(BitRate left, BitRate right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(BitRate left, BitRate right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="BitRate"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(BitRate other, BitRate tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="BitRate"/> quantities.</summary>
         public static bool operator ==(BitRate left, BitRate right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="BitRate"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(BitRate other, BitRate tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="BitRate"/> quantities.</summary>
         public static bool operator !=(BitRate left, BitRate right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="BitRate"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(BitRate other, BitRate tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="BitRate"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is BitRate otherQuantity))
+            if (obj is not BitRate otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="BitRate"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(BitRate other, BitRate tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="BitRate"/> quantities.</summary>
         public bool Equals(BitRate other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>
         ///     Returns the hash code for this instance.
@@ -1164,31 +1129,26 @@ namespace UnitsNet
         /// <returns>A hash code for the current BitRate.</returns>
         public override int GetHashCode()
         {
-            return Comparison.GetHashCode(Unit, Value);
+            return Comparison.GetHashCode(typeof(BitRate), this.As(BaseUnit));
         }
-
-        /// <summary>Compares the current <see cref="BitRate"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        
+        /// <inheritdoc  cref="CompareTo(BitRate)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is BitRate otherQuantity)) throw new ArgumentException("Expected type BitRate.", nameof(obj));
+            if (obj is not BitRate otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<BitRate>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="BitRate"/> with another <see cref="BitRate"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="BitRate"/> with another <see cref="BitRate"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -1200,204 +1160,8 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(BitRate other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
+            return _value.CompareTo(other.As(this.Unit));
         }
-
-        #endregion
-
-        #region Conversion Methods
-
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(BitRateUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
-
-            return ToUnit(unit).Value;
-        }
-
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<BitRateUnit>());
-        }
-
-        /// <summary>
-        ///     Converts this BitRate to another BitRate with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A BitRate with the specified unit.</returns>
-        public BitRate ToUnit(BitRateUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
-
-        /// <summary>
-        ///     Converts this <see cref="BitRate"/> to another <see cref="BitRate"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A BitRate with the specified unit.</returns>
-        public BitRate ToUnit(BitRateUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(BitRate), Unit, typeof(BitRate), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (BitRate)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="BitRate"/> to another <see cref="BitRate"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="BitRate"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(BitRateUnit unit, [NotNullWhen(true)] out BitRate? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            BitRate? convertedOrNull = (Unit, unit) switch
-            {
-                // BitRateUnit -> BaseUnit
-                (BitRateUnit.BytePerSecond, BitRateUnit.BitPerSecond) => new BitRate(_value * 8, BitRateUnit.BitPerSecond),
-                (BitRateUnit.ExabitPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value) * 1e18d, BitRateUnit.BitPerSecond),
-                (BitRateUnit.ExabytePerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * 1e18d, BitRateUnit.BitPerSecond),
-                (BitRateUnit.ExaoctetPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * 1e18d, BitRateUnit.BitPerSecond),
-                (BitRateUnit.ExbibitPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024), BitRateUnit.BitPerSecond),
-                (BitRateUnit.ExbibytePerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024), BitRateUnit.BitPerSecond),
-                (BitRateUnit.ExbioctetPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024), BitRateUnit.BitPerSecond),
-                (BitRateUnit.GibibitPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value) * (1024d * 1024 * 1024), BitRateUnit.BitPerSecond),
-                (BitRateUnit.GibibytePerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * (1024d * 1024 * 1024), BitRateUnit.BitPerSecond),
-                (BitRateUnit.GibioctetPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * (1024d * 1024 * 1024), BitRateUnit.BitPerSecond),
-                (BitRateUnit.GigabitPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value) * 1e9d, BitRateUnit.BitPerSecond),
-                (BitRateUnit.GigabytePerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * 1e9d, BitRateUnit.BitPerSecond),
-                (BitRateUnit.GigaoctetPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * 1e9d, BitRateUnit.BitPerSecond),
-                (BitRateUnit.KibibitPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value) * 1024d, BitRateUnit.BitPerSecond),
-                (BitRateUnit.KibibytePerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * 1024d, BitRateUnit.BitPerSecond),
-                (BitRateUnit.KibioctetPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * 1024d, BitRateUnit.BitPerSecond),
-                (BitRateUnit.KilobitPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value) * 1e3d, BitRateUnit.BitPerSecond),
-                (BitRateUnit.KilobytePerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * 1e3d, BitRateUnit.BitPerSecond),
-                (BitRateUnit.KilooctetPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * 1e3d, BitRateUnit.BitPerSecond),
-                (BitRateUnit.MebibitPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value) * (1024d * 1024), BitRateUnit.BitPerSecond),
-                (BitRateUnit.MebibytePerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * (1024d * 1024), BitRateUnit.BitPerSecond),
-                (BitRateUnit.MebioctetPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * (1024d * 1024), BitRateUnit.BitPerSecond),
-                (BitRateUnit.MegabitPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value) * 1e6d, BitRateUnit.BitPerSecond),
-                (BitRateUnit.MegabytePerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * 1e6d, BitRateUnit.BitPerSecond),
-                (BitRateUnit.MegaoctetPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * 1e6d, BitRateUnit.BitPerSecond),
-                (BitRateUnit.OctetPerSecond, BitRateUnit.BitPerSecond) => new BitRate(_value * 8, BitRateUnit.BitPerSecond),
-                (BitRateUnit.PebibitPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value) * (1024d * 1024 * 1024 * 1024 * 1024), BitRateUnit.BitPerSecond),
-                (BitRateUnit.PebibytePerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * (1024d * 1024 * 1024 * 1024 * 1024), BitRateUnit.BitPerSecond),
-                (BitRateUnit.PebioctetPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * (1024d * 1024 * 1024 * 1024 * 1024), BitRateUnit.BitPerSecond),
-                (BitRateUnit.PetabitPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value) * 1e15d, BitRateUnit.BitPerSecond),
-                (BitRateUnit.PetabytePerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * 1e15d, BitRateUnit.BitPerSecond),
-                (BitRateUnit.PetaoctetPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * 1e15d, BitRateUnit.BitPerSecond),
-                (BitRateUnit.TebibitPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value) * (1024d * 1024 * 1024 * 1024), BitRateUnit.BitPerSecond),
-                (BitRateUnit.TebibytePerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * (1024d * 1024 * 1024 * 1024), BitRateUnit.BitPerSecond),
-                (BitRateUnit.TebioctetPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * (1024d * 1024 * 1024 * 1024), BitRateUnit.BitPerSecond),
-                (BitRateUnit.TerabitPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value) * 1e12d, BitRateUnit.BitPerSecond),
-                (BitRateUnit.TerabytePerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * 1e12d, BitRateUnit.BitPerSecond),
-                (BitRateUnit.TeraoctetPerSecond, BitRateUnit.BitPerSecond) => new BitRate((_value * 8) * 1e12d, BitRateUnit.BitPerSecond),
-
-                // BaseUnit -> BitRateUnit
-                (BitRateUnit.BitPerSecond, BitRateUnit.BytePerSecond) => new BitRate(_value / 8, BitRateUnit.BytePerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.ExabitPerSecond) => new BitRate((_value) / 1e18d, BitRateUnit.ExabitPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.ExabytePerSecond) => new BitRate((_value / 8) / 1e18d, BitRateUnit.ExabytePerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.ExaoctetPerSecond) => new BitRate((_value / 8) / 1e18d, BitRateUnit.ExaoctetPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.ExbibitPerSecond) => new BitRate((_value) / (1024d * 1024 * 1024 * 1024 * 1024 * 1024), BitRateUnit.ExbibitPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.ExbibytePerSecond) => new BitRate((_value / 8) / (1024d * 1024 * 1024 * 1024 * 1024 * 1024), BitRateUnit.ExbibytePerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.ExbioctetPerSecond) => new BitRate((_value / 8) / (1024d * 1024 * 1024 * 1024 * 1024 * 1024), BitRateUnit.ExbioctetPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.GibibitPerSecond) => new BitRate((_value) / (1024d * 1024 * 1024), BitRateUnit.GibibitPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.GibibytePerSecond) => new BitRate((_value / 8) / (1024d * 1024 * 1024), BitRateUnit.GibibytePerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.GibioctetPerSecond) => new BitRate((_value / 8) / (1024d * 1024 * 1024), BitRateUnit.GibioctetPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.GigabitPerSecond) => new BitRate((_value) / 1e9d, BitRateUnit.GigabitPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.GigabytePerSecond) => new BitRate((_value / 8) / 1e9d, BitRateUnit.GigabytePerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.GigaoctetPerSecond) => new BitRate((_value / 8) / 1e9d, BitRateUnit.GigaoctetPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.KibibitPerSecond) => new BitRate((_value) / 1024d, BitRateUnit.KibibitPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.KibibytePerSecond) => new BitRate((_value / 8) / 1024d, BitRateUnit.KibibytePerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.KibioctetPerSecond) => new BitRate((_value / 8) / 1024d, BitRateUnit.KibioctetPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.KilobitPerSecond) => new BitRate((_value) / 1e3d, BitRateUnit.KilobitPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.KilobytePerSecond) => new BitRate((_value / 8) / 1e3d, BitRateUnit.KilobytePerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.KilooctetPerSecond) => new BitRate((_value / 8) / 1e3d, BitRateUnit.KilooctetPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.MebibitPerSecond) => new BitRate((_value) / (1024d * 1024), BitRateUnit.MebibitPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.MebibytePerSecond) => new BitRate((_value / 8) / (1024d * 1024), BitRateUnit.MebibytePerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.MebioctetPerSecond) => new BitRate((_value / 8) / (1024d * 1024), BitRateUnit.MebioctetPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.MegabitPerSecond) => new BitRate((_value) / 1e6d, BitRateUnit.MegabitPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.MegabytePerSecond) => new BitRate((_value / 8) / 1e6d, BitRateUnit.MegabytePerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.MegaoctetPerSecond) => new BitRate((_value / 8) / 1e6d, BitRateUnit.MegaoctetPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.OctetPerSecond) => new BitRate(_value / 8, BitRateUnit.OctetPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.PebibitPerSecond) => new BitRate((_value) / (1024d * 1024 * 1024 * 1024 * 1024), BitRateUnit.PebibitPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.PebibytePerSecond) => new BitRate((_value / 8) / (1024d * 1024 * 1024 * 1024 * 1024), BitRateUnit.PebibytePerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.PebioctetPerSecond) => new BitRate((_value / 8) / (1024d * 1024 * 1024 * 1024 * 1024), BitRateUnit.PebioctetPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.PetabitPerSecond) => new BitRate((_value) / 1e15d, BitRateUnit.PetabitPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.PetabytePerSecond) => new BitRate((_value / 8) / 1e15d, BitRateUnit.PetabytePerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.PetaoctetPerSecond) => new BitRate((_value / 8) / 1e15d, BitRateUnit.PetaoctetPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.TebibitPerSecond) => new BitRate((_value) / (1024d * 1024 * 1024 * 1024), BitRateUnit.TebibitPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.TebibytePerSecond) => new BitRate((_value / 8) / (1024d * 1024 * 1024 * 1024), BitRateUnit.TebibytePerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.TebioctetPerSecond) => new BitRate((_value / 8) / (1024d * 1024 * 1024 * 1024), BitRateUnit.TebioctetPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.TerabitPerSecond) => new BitRate((_value) / 1e12d, BitRateUnit.TerabitPerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.TerabytePerSecond) => new BitRate((_value / 8) / 1e12d, BitRateUnit.TerabytePerSecond),
-                (BitRateUnit.BitPerSecond, BitRateUnit.TeraoctetPerSecond) => new BitRate((_value / 8) / 1e12d, BitRateUnit.TeraoctetPerSecond),
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not BitRateUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(BitRateUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is BitRateUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(BitRateUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<BitRateUnit> IQuantity<BitRateUnit>.ToUnit(BitRateUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
@@ -1412,7 +1176,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

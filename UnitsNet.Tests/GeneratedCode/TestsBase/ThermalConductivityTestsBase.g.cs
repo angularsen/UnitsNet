@@ -130,6 +130,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ThermalConductivityInfo_CreateWithCustomUnitInfos()
+        {
+            ThermalConductivityUnit[] expectedUnits = [ThermalConductivityUnit.WattPerMeterKelvin];
+
+            ThermalConductivity.ThermalConductivityInfo quantityInfo = ThermalConductivity.ThermalConductivityInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("ThermalConductivity", quantityInfo.Name);
+            Assert.Equal(ThermalConductivity.Zero, quantityInfo.Zero);
+            Assert.Equal(ThermalConductivity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void WattPerMeterKelvinToThermalConductivityUnits()
         {
             ThermalConductivity wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(1);
@@ -215,32 +229,75 @@ namespace UnitsNet.Tests
             var expectedUnit = ThermalConductivity.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            ThermalConductivity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                ThermalConductivity quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                ThermalConductivity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<ThermalConductivityUnit> quantityToConvert = quantity;
+
+                IQuantity<ThermalConductivityUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new ThermalConductivity(value: 1, unit: ThermalConductivity.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new ThermalConductivity(value: 1, unit: ThermalConductivity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<ThermalConductivityUnit> quantity = new ThermalConductivity(value: 1, unit: ThermalConductivity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ThermalConductivity(value: 1, unit: ThermalConductivity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new ThermalConductivity(value: 1, unit: ThermalConductivity.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new ThermalConductivity(value: 1, unit: ThermalConductivity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<ThermalConductivityUnit> quantity = new ThermalConductivity(value: 1, unit: ThermalConductivity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ThermalConductivity(value: 1, unit: ThermalConductivity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
         [InlineData("en-US", "4.2 BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit, 4.2)]
         [InlineData("en-US", "4.2 W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin, 4.2)]
-        public void Parse(string culture, string quantityString, ThermalConductivityUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, ThermalConductivityUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ThermalConductivity.Parse(quantityString);
@@ -251,7 +308,7 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("en-US", "4.2 BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit, 4.2)]
         [InlineData("en-US", "4.2 W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin, 4.2)]
-        public void TryParse(string culture, string quantityString, ThermalConductivityUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, ThermalConductivityUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ThermalConductivity.TryParse(quantityString, out ThermalConductivity parsed));
@@ -393,6 +450,7 @@ namespace UnitsNet.Tests
                 var quantity = ThermalConductivity.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -416,33 +474,35 @@ namespace UnitsNet.Tests
                 IQuantity<ThermalConductivityUnit> quantityToConvert = quantity;
                 IQuantity<ThermalConductivityUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            ThermalConductivity wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(1);
-            AssertEx.EqualTolerance(1, ThermalConductivity.FromBtusPerHourFootFahrenheit(wattpermeterkelvin.BtusPerHourFootFahrenheit).WattsPerMeterKelvin, BtusPerHourFootFahrenheitTolerance);
-            AssertEx.EqualTolerance(1, ThermalConductivity.FromWattsPerMeterKelvin(wattpermeterkelvin.WattsPerMeterKelvin).WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
+            ThermalConductivity wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(3);
+            Assert.Equal(3, ThermalConductivity.FromBtusPerHourFootFahrenheit(wattpermeterkelvin.BtusPerHourFootFahrenheit).WattsPerMeterKelvin);
+            Assert.Equal(3, ThermalConductivity.FromWattsPerMeterKelvin(wattpermeterkelvin.WattsPerMeterKelvin).WattsPerMeterKelvin);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             ThermalConductivity v = ThermalConductivity.FromWattsPerMeterKelvin(1);
-            AssertEx.EqualTolerance(-1, -v.WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
-            AssertEx.EqualTolerance(2, (ThermalConductivity.FromWattsPerMeterKelvin(3)-v).WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
-            AssertEx.EqualTolerance(2, (v + v).WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
-            AssertEx.EqualTolerance(10, (v*10).WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
-            AssertEx.EqualTolerance(10, (10*v).WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
-            AssertEx.EqualTolerance(2, (ThermalConductivity.FromWattsPerMeterKelvin(10)/5).WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
-            AssertEx.EqualTolerance(2, ThermalConductivity.FromWattsPerMeterKelvin(10)/ThermalConductivity.FromWattsPerMeterKelvin(5), WattsPerMeterKelvinTolerance);
+            Assert.Equal(-1, -v.WattsPerMeterKelvin);
+            Assert.Equal(2, (ThermalConductivity.FromWattsPerMeterKelvin(3) - v).WattsPerMeterKelvin);
+            Assert.Equal(2, (v + v).WattsPerMeterKelvin);
+            Assert.Equal(10, (v * 10).WattsPerMeterKelvin);
+            Assert.Equal(10, (10 * v).WattsPerMeterKelvin);
+            Assert.Equal(2, (ThermalConductivity.FromWattsPerMeterKelvin(10) / 5).WattsPerMeterKelvin);
+            Assert.Equal(2, ThermalConductivity.FromWattsPerMeterKelvin(10) / ThermalConductivity.FromWattsPerMeterKelvin(5));
         }
 
         [Fact]
@@ -488,8 +548,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ThermalConductivityUnit.WattPerMeterKelvin, 1, ThermalConductivityUnit.WattPerMeterKelvin, true)]  // Same value and unit.
         [InlineData(1, ThermalConductivityUnit.WattPerMeterKelvin, 2, ThermalConductivityUnit.WattPerMeterKelvin, false)] // Different value.
-        [InlineData(2, ThermalConductivityUnit.WattPerMeterKelvin, 1, ThermalConductivityUnit.BtuPerHourFootFahrenheit, false)] // Different value and unit.
-        [InlineData(1, ThermalConductivityUnit.WattPerMeterKelvin, 1, ThermalConductivityUnit.BtuPerHourFootFahrenheit, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ThermalConductivityUnit unitA, double valueB, ThermalConductivityUnit unitB, bool expectEqual)
         {
             var a = new ThermalConductivity(valueA, unitA);
@@ -549,8 +607,8 @@ namespace UnitsNet.Tests
             var quantity = ThermalConductivity.FromWattsPerMeterKelvin(firstValue);
             var otherQuantity = ThermalConductivity.FromWattsPerMeterKelvin(secondValue);
             ThermalConductivity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, ThermalConductivity.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -569,7 +627,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<ThermalConductivityUnit>();
+            var units = EnumHelper.GetValues<ThermalConductivityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -580,6 +638,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(ThermalConductivity.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(ThermalConductivity.Info.Units, ThermalConductivity.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, ThermalConductivity.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -646,7 +716,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ThermalConductivity.FromWattsPerMeterKelvin(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(ThermalConductivity), quantity.As(ThermalConductivity.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

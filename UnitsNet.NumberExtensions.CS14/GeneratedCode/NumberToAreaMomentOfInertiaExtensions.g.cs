@@ -42,52 +42,52 @@ namespace UnitsNet.NumberExtensions.NumberToAreaMomentOfInertia
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="AreaMomentOfInertia.FromCentimetersToTheFourth(double)" />
+            /// <inheritdoc cref="AreaMomentOfInertia.FromCentimetersToTheFourth(QuantityValue)" />
             public AreaMomentOfInertia CentimetersToTheFourth
 #if NET7_0_OR_GREATER
-                => AreaMomentOfInertia.FromCentimetersToTheFourth(double.CreateChecked(value));
+                => AreaMomentOfInertia.FromCentimetersToTheFourth(QuantityValue.CreateChecked(value));
 #else
-                => AreaMomentOfInertia.FromCentimetersToTheFourth(value.ToDouble(null));
+                => AreaMomentOfInertia.FromCentimetersToTheFourth(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AreaMomentOfInertia.FromDecimetersToTheFourth(double)" />
+            /// <inheritdoc cref="AreaMomentOfInertia.FromDecimetersToTheFourth(QuantityValue)" />
             public AreaMomentOfInertia DecimetersToTheFourth
 #if NET7_0_OR_GREATER
-                => AreaMomentOfInertia.FromDecimetersToTheFourth(double.CreateChecked(value));
+                => AreaMomentOfInertia.FromDecimetersToTheFourth(QuantityValue.CreateChecked(value));
 #else
-                => AreaMomentOfInertia.FromDecimetersToTheFourth(value.ToDouble(null));
+                => AreaMomentOfInertia.FromDecimetersToTheFourth(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AreaMomentOfInertia.FromFeetToTheFourth(double)" />
+            /// <inheritdoc cref="AreaMomentOfInertia.FromFeetToTheFourth(QuantityValue)" />
             public AreaMomentOfInertia FeetToTheFourth
 #if NET7_0_OR_GREATER
-                => AreaMomentOfInertia.FromFeetToTheFourth(double.CreateChecked(value));
+                => AreaMomentOfInertia.FromFeetToTheFourth(QuantityValue.CreateChecked(value));
 #else
-                => AreaMomentOfInertia.FromFeetToTheFourth(value.ToDouble(null));
+                => AreaMomentOfInertia.FromFeetToTheFourth(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AreaMomentOfInertia.FromInchesToTheFourth(double)" />
+            /// <inheritdoc cref="AreaMomentOfInertia.FromInchesToTheFourth(QuantityValue)" />
             public AreaMomentOfInertia InchesToTheFourth
 #if NET7_0_OR_GREATER
-                => AreaMomentOfInertia.FromInchesToTheFourth(double.CreateChecked(value));
+                => AreaMomentOfInertia.FromInchesToTheFourth(QuantityValue.CreateChecked(value));
 #else
-                => AreaMomentOfInertia.FromInchesToTheFourth(value.ToDouble(null));
+                => AreaMomentOfInertia.FromInchesToTheFourth(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AreaMomentOfInertia.FromMetersToTheFourth(double)" />
+            /// <inheritdoc cref="AreaMomentOfInertia.FromMetersToTheFourth(QuantityValue)" />
             public AreaMomentOfInertia MetersToTheFourth
 #if NET7_0_OR_GREATER
-                => AreaMomentOfInertia.FromMetersToTheFourth(double.CreateChecked(value));
+                => AreaMomentOfInertia.FromMetersToTheFourth(QuantityValue.CreateChecked(value));
 #else
-                => AreaMomentOfInertia.FromMetersToTheFourth(value.ToDouble(null));
+                => AreaMomentOfInertia.FromMetersToTheFourth(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AreaMomentOfInertia.FromMillimetersToTheFourth(double)" />
+            /// <inheritdoc cref="AreaMomentOfInertia.FromMillimetersToTheFourth(QuantityValue)" />
             public AreaMomentOfInertia MillimetersToTheFourth
 #if NET7_0_OR_GREATER
-                => AreaMomentOfInertia.FromMillimetersToTheFourth(double.CreateChecked(value));
+                => AreaMomentOfInertia.FromMillimetersToTheFourth(QuantityValue.CreateChecked(value));
 #else
-                => AreaMomentOfInertia.FromMillimetersToTheFourth(value.ToDouble(null));
+                => AreaMomentOfInertia.FromMillimetersToTheFourth(value.ToQuantityValue());
 #endif
 
         }

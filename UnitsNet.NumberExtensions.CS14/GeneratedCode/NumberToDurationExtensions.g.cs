@@ -42,108 +42,108 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Duration.FromDays(double)" />
+            /// <inheritdoc cref="Duration.FromDays(QuantityValue)" />
             public Duration Days
 #if NET7_0_OR_GREATER
-                => Duration.FromDays(double.CreateChecked(value));
+                => Duration.FromDays(QuantityValue.CreateChecked(value));
 #else
-                => Duration.FromDays(value.ToDouble(null));
+                => Duration.FromDays(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Duration.FromHours(double)" />
+            /// <inheritdoc cref="Duration.FromHours(QuantityValue)" />
             public Duration Hours
 #if NET7_0_OR_GREATER
-                => Duration.FromHours(double.CreateChecked(value));
+                => Duration.FromHours(QuantityValue.CreateChecked(value));
 #else
-                => Duration.FromHours(value.ToDouble(null));
+                => Duration.FromHours(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Duration.FromJulianYears(double)" />
+            /// <inheritdoc cref="Duration.FromJulianYears(QuantityValue)" />
             public Duration JulianYears
 #if NET7_0_OR_GREATER
-                => Duration.FromJulianYears(double.CreateChecked(value));
+                => Duration.FromJulianYears(QuantityValue.CreateChecked(value));
 #else
-                => Duration.FromJulianYears(value.ToDouble(null));
+                => Duration.FromJulianYears(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Duration.FromMicroseconds(double)" />
+            /// <inheritdoc cref="Duration.FromMicroseconds(QuantityValue)" />
             public Duration Microseconds
 #if NET7_0_OR_GREATER
-                => Duration.FromMicroseconds(double.CreateChecked(value));
+                => Duration.FromMicroseconds(QuantityValue.CreateChecked(value));
 #else
-                => Duration.FromMicroseconds(value.ToDouble(null));
+                => Duration.FromMicroseconds(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Duration.FromMilliseconds(double)" />
+            /// <inheritdoc cref="Duration.FromMilliseconds(QuantityValue)" />
             public Duration Milliseconds
 #if NET7_0_OR_GREATER
-                => Duration.FromMilliseconds(double.CreateChecked(value));
+                => Duration.FromMilliseconds(QuantityValue.CreateChecked(value));
 #else
-                => Duration.FromMilliseconds(value.ToDouble(null));
+                => Duration.FromMilliseconds(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Duration.FromMinutes(double)" />
+            /// <inheritdoc cref="Duration.FromMinutes(QuantityValue)" />
             public Duration Minutes
 #if NET7_0_OR_GREATER
-                => Duration.FromMinutes(double.CreateChecked(value));
+                => Duration.FromMinutes(QuantityValue.CreateChecked(value));
 #else
-                => Duration.FromMinutes(value.ToDouble(null));
+                => Duration.FromMinutes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Duration.FromMonths30(double)" />
+            /// <inheritdoc cref="Duration.FromMonths30(QuantityValue)" />
             public Duration Months30
 #if NET7_0_OR_GREATER
-                => Duration.FromMonths30(double.CreateChecked(value));
+                => Duration.FromMonths30(QuantityValue.CreateChecked(value));
 #else
-                => Duration.FromMonths30(value.ToDouble(null));
+                => Duration.FromMonths30(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Duration.FromNanoseconds(double)" />
+            /// <inheritdoc cref="Duration.FromNanoseconds(QuantityValue)" />
             public Duration Nanoseconds
 #if NET7_0_OR_GREATER
-                => Duration.FromNanoseconds(double.CreateChecked(value));
+                => Duration.FromNanoseconds(QuantityValue.CreateChecked(value));
 #else
-                => Duration.FromNanoseconds(value.ToDouble(null));
+                => Duration.FromNanoseconds(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Duration.FromPicoseconds(double)" />
+            /// <inheritdoc cref="Duration.FromPicoseconds(QuantityValue)" />
             public Duration Picoseconds
 #if NET7_0_OR_GREATER
-                => Duration.FromPicoseconds(double.CreateChecked(value));
+                => Duration.FromPicoseconds(QuantityValue.CreateChecked(value));
 #else
-                => Duration.FromPicoseconds(value.ToDouble(null));
+                => Duration.FromPicoseconds(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Duration.FromSeconds(double)" />
+            /// <inheritdoc cref="Duration.FromSeconds(QuantityValue)" />
             public Duration Seconds
 #if NET7_0_OR_GREATER
-                => Duration.FromSeconds(double.CreateChecked(value));
+                => Duration.FromSeconds(QuantityValue.CreateChecked(value));
 #else
-                => Duration.FromSeconds(value.ToDouble(null));
+                => Duration.FromSeconds(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Duration.FromSols(double)" />
+            /// <inheritdoc cref="Duration.FromSols(QuantityValue)" />
             public Duration Sols
 #if NET7_0_OR_GREATER
-                => Duration.FromSols(double.CreateChecked(value));
+                => Duration.FromSols(QuantityValue.CreateChecked(value));
 #else
-                => Duration.FromSols(value.ToDouble(null));
+                => Duration.FromSols(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Duration.FromWeeks(double)" />
+            /// <inheritdoc cref="Duration.FromWeeks(QuantityValue)" />
             public Duration Weeks
 #if NET7_0_OR_GREATER
-                => Duration.FromWeeks(double.CreateChecked(value));
+                => Duration.FromWeeks(QuantityValue.CreateChecked(value));
 #else
-                => Duration.FromWeeks(value.ToDouble(null));
+                => Duration.FromWeeks(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Duration.FromYears365(double)" />
+            /// <inheritdoc cref="Duration.FromYears365(QuantityValue)" />
             public Duration Years365
 #if NET7_0_OR_GREATER
-                => Duration.FromYears365(double.CreateChecked(value));
+                => Duration.FromYears365(QuantityValue.CreateChecked(value));
 #else
-                => Duration.FromYears365(value.ToDouble(null));
+                => Duration.FromYears365(value.ToQuantityValue());
 #endif
 
         }

@@ -42,52 +42,52 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotential
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ElectricPotential.FromKilovolts(double)" />
+            /// <inheritdoc cref="ElectricPotential.FromKilovolts(QuantityValue)" />
             public ElectricPotential Kilovolts
 #if NET7_0_OR_GREATER
-                => ElectricPotential.FromKilovolts(double.CreateChecked(value));
+                => ElectricPotential.FromKilovolts(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotential.FromKilovolts(value.ToDouble(null));
+                => ElectricPotential.FromKilovolts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotential.FromMegavolts(double)" />
+            /// <inheritdoc cref="ElectricPotential.FromMegavolts(QuantityValue)" />
             public ElectricPotential Megavolts
 #if NET7_0_OR_GREATER
-                => ElectricPotential.FromMegavolts(double.CreateChecked(value));
+                => ElectricPotential.FromMegavolts(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotential.FromMegavolts(value.ToDouble(null));
+                => ElectricPotential.FromMegavolts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotential.FromMicrovolts(double)" />
+            /// <inheritdoc cref="ElectricPotential.FromMicrovolts(QuantityValue)" />
             public ElectricPotential Microvolts
 #if NET7_0_OR_GREATER
-                => ElectricPotential.FromMicrovolts(double.CreateChecked(value));
+                => ElectricPotential.FromMicrovolts(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotential.FromMicrovolts(value.ToDouble(null));
+                => ElectricPotential.FromMicrovolts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotential.FromMillivolts(double)" />
+            /// <inheritdoc cref="ElectricPotential.FromMillivolts(QuantityValue)" />
             public ElectricPotential Millivolts
 #if NET7_0_OR_GREATER
-                => ElectricPotential.FromMillivolts(double.CreateChecked(value));
+                => ElectricPotential.FromMillivolts(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotential.FromMillivolts(value.ToDouble(null));
+                => ElectricPotential.FromMillivolts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotential.FromNanovolts(double)" />
+            /// <inheritdoc cref="ElectricPotential.FromNanovolts(QuantityValue)" />
             public ElectricPotential Nanovolts
 #if NET7_0_OR_GREATER
-                => ElectricPotential.FromNanovolts(double.CreateChecked(value));
+                => ElectricPotential.FromNanovolts(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotential.FromNanovolts(value.ToDouble(null));
+                => ElectricPotential.FromNanovolts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricPotential.FromVolts(double)" />
+            /// <inheritdoc cref="ElectricPotential.FromVolts(QuantityValue)" />
             public ElectricPotential Volts
 #if NET7_0_OR_GREATER
-                => ElectricPotential.FromVolts(double.CreateChecked(value));
+                => ElectricPotential.FromVolts(QuantityValue.CreateChecked(value));
 #else
-                => ElectricPotential.FromVolts(value.ToDouble(null));
+                => ElectricPotential.FromVolts(value.ToQuantityValue());
 #endif
 
         }

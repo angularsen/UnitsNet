@@ -154,6 +154,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ElectricReactanceInfo_CreateWithCustomUnitInfos()
+        {
+            ElectricReactanceUnit[] expectedUnits = [ElectricReactanceUnit.Ohm];
+
+            ElectricReactance.ElectricReactanceInfo quantityInfo = ElectricReactance.ElectricReactanceInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("ElectricReactance", quantityInfo.Name);
+            Assert.Equal(ElectricReactance.Zero, quantityInfo.Zero);
+            Assert.Equal(ElectricReactance.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void OhmToElectricReactanceUnits()
         {
             ElectricReactance ohm = ElectricReactance.FromOhms(1);
@@ -251,26 +265,69 @@ namespace UnitsNet.Tests
             var expectedUnit = ElectricReactance.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            ElectricReactance convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                ElectricReactance quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                ElectricReactance convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<ElectricReactanceUnit> quantityToConvert = quantity;
+
+                IQuantity<ElectricReactanceUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new ElectricReactance(value: 1, unit: ElectricReactance.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new ElectricReactance(value: 1, unit: ElectricReactance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricReactanceUnit> quantity = new ElectricReactance(value: 1, unit: ElectricReactance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricReactance(value: 1, unit: ElectricReactance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new ElectricReactance(value: 1, unit: ElectricReactance.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new ElectricReactance(value: 1, unit: ElectricReactance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricReactanceUnit> quantity = new ElectricReactance(value: 1, unit: ElectricReactance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricReactance(value: 1, unit: ElectricReactance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -282,7 +339,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 nΩ", ElectricReactanceUnit.Nanoohm, 4.2)]
         [InlineData("en-US", "4.2 Ω", ElectricReactanceUnit.Ohm, 4.2)]
         [InlineData("en-US", "4.2 TΩ", ElectricReactanceUnit.Teraohm, 4.2)]
-        public void Parse(string culture, string quantityString, ElectricReactanceUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, ElectricReactanceUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ElectricReactance.Parse(quantityString);
@@ -299,7 +356,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 nΩ", ElectricReactanceUnit.Nanoohm, 4.2)]
         [InlineData("en-US", "4.2 Ω", ElectricReactanceUnit.Ohm, 4.2)]
         [InlineData("en-US", "4.2 TΩ", ElectricReactanceUnit.Teraohm, 4.2)]
-        public void TryParse(string culture, string quantityString, ElectricReactanceUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, ElectricReactanceUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ElectricReactance.TryParse(quantityString, out ElectricReactance parsed));
@@ -495,6 +552,7 @@ namespace UnitsNet.Tests
                 var quantity = ElectricReactance.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -518,39 +576,41 @@ namespace UnitsNet.Tests
                 IQuantity<ElectricReactanceUnit> quantityToConvert = quantity;
                 IQuantity<ElectricReactanceUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            ElectricReactance ohm = ElectricReactance.FromOhms(1);
-            AssertEx.EqualTolerance(1, ElectricReactance.FromGigaohms(ohm.Gigaohms).Ohms, GigaohmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricReactance.FromKiloohms(ohm.Kiloohms).Ohms, KiloohmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricReactance.FromMegaohms(ohm.Megaohms).Ohms, MegaohmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricReactance.FromMicroohms(ohm.Microohms).Ohms, MicroohmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricReactance.FromMilliohms(ohm.Milliohms).Ohms, MilliohmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricReactance.FromNanoohms(ohm.Nanoohms).Ohms, NanoohmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricReactance.FromOhms(ohm.Ohms).Ohms, OhmsTolerance);
-            AssertEx.EqualTolerance(1, ElectricReactance.FromTeraohms(ohm.Teraohms).Ohms, TeraohmsTolerance);
+            ElectricReactance ohm = ElectricReactance.FromOhms(3);
+            Assert.Equal(3, ElectricReactance.FromGigaohms(ohm.Gigaohms).Ohms);
+            Assert.Equal(3, ElectricReactance.FromKiloohms(ohm.Kiloohms).Ohms);
+            Assert.Equal(3, ElectricReactance.FromMegaohms(ohm.Megaohms).Ohms);
+            Assert.Equal(3, ElectricReactance.FromMicroohms(ohm.Microohms).Ohms);
+            Assert.Equal(3, ElectricReactance.FromMilliohms(ohm.Milliohms).Ohms);
+            Assert.Equal(3, ElectricReactance.FromNanoohms(ohm.Nanoohms).Ohms);
+            Assert.Equal(3, ElectricReactance.FromOhms(ohm.Ohms).Ohms);
+            Assert.Equal(3, ElectricReactance.FromTeraohms(ohm.Teraohms).Ohms);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             ElectricReactance v = ElectricReactance.FromOhms(1);
-            AssertEx.EqualTolerance(-1, -v.Ohms, OhmsTolerance);
-            AssertEx.EqualTolerance(2, (ElectricReactance.FromOhms(3)-v).Ohms, OhmsTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Ohms, OhmsTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Ohms, OhmsTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Ohms, OhmsTolerance);
-            AssertEx.EqualTolerance(2, (ElectricReactance.FromOhms(10)/5).Ohms, OhmsTolerance);
-            AssertEx.EqualTolerance(2, ElectricReactance.FromOhms(10)/ElectricReactance.FromOhms(5), OhmsTolerance);
+            Assert.Equal(-1, -v.Ohms);
+            Assert.Equal(2, (ElectricReactance.FromOhms(3) - v).Ohms);
+            Assert.Equal(2, (v + v).Ohms);
+            Assert.Equal(10, (v * 10).Ohms);
+            Assert.Equal(10, (10 * v).Ohms);
+            Assert.Equal(2, (ElectricReactance.FromOhms(10) / 5).Ohms);
+            Assert.Equal(2, ElectricReactance.FromOhms(10) / ElectricReactance.FromOhms(5));
         }
 
         [Fact]
@@ -596,8 +656,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ElectricReactanceUnit.Ohm, 1, ElectricReactanceUnit.Ohm, true)]  // Same value and unit.
         [InlineData(1, ElectricReactanceUnit.Ohm, 2, ElectricReactanceUnit.Ohm, false)] // Different value.
-        [InlineData(2, ElectricReactanceUnit.Ohm, 1, ElectricReactanceUnit.Gigaohm, false)] // Different value and unit.
-        [InlineData(1, ElectricReactanceUnit.Ohm, 1, ElectricReactanceUnit.Gigaohm, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricReactanceUnit unitA, double valueB, ElectricReactanceUnit unitB, bool expectEqual)
         {
             var a = new ElectricReactance(valueA, unitA);
@@ -657,8 +715,8 @@ namespace UnitsNet.Tests
             var quantity = ElectricReactance.FromOhms(firstValue);
             var otherQuantity = ElectricReactance.FromOhms(secondValue);
             ElectricReactance maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, ElectricReactance.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -677,7 +735,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<ElectricReactanceUnit>();
+            var units = EnumHelper.GetValues<ElectricReactanceUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -688,6 +746,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(ElectricReactance.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(ElectricReactance.Info.Units, ElectricReactance.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, ElectricReactance.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -766,7 +836,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricReactance.FromOhms(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(ElectricReactance), quantity.As(ElectricReactance.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

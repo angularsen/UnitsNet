@@ -42,36 +42,36 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactivePower
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ElectricReactivePower.FromGigavoltamperesReactive(double)" />
+            /// <inheritdoc cref="ElectricReactivePower.FromGigavoltamperesReactive(QuantityValue)" />
             public ElectricReactivePower GigavoltamperesReactive
 #if NET7_0_OR_GREATER
-                => ElectricReactivePower.FromGigavoltamperesReactive(double.CreateChecked(value));
+                => ElectricReactivePower.FromGigavoltamperesReactive(QuantityValue.CreateChecked(value));
 #else
-                => ElectricReactivePower.FromGigavoltamperesReactive(value.ToDouble(null));
+                => ElectricReactivePower.FromGigavoltamperesReactive(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricReactivePower.FromKilovoltamperesReactive(double)" />
+            /// <inheritdoc cref="ElectricReactivePower.FromKilovoltamperesReactive(QuantityValue)" />
             public ElectricReactivePower KilovoltamperesReactive
 #if NET7_0_OR_GREATER
-                => ElectricReactivePower.FromKilovoltamperesReactive(double.CreateChecked(value));
+                => ElectricReactivePower.FromKilovoltamperesReactive(QuantityValue.CreateChecked(value));
 #else
-                => ElectricReactivePower.FromKilovoltamperesReactive(value.ToDouble(null));
+                => ElectricReactivePower.FromKilovoltamperesReactive(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricReactivePower.FromMegavoltamperesReactive(double)" />
+            /// <inheritdoc cref="ElectricReactivePower.FromMegavoltamperesReactive(QuantityValue)" />
             public ElectricReactivePower MegavoltamperesReactive
 #if NET7_0_OR_GREATER
-                => ElectricReactivePower.FromMegavoltamperesReactive(double.CreateChecked(value));
+                => ElectricReactivePower.FromMegavoltamperesReactive(QuantityValue.CreateChecked(value));
 #else
-                => ElectricReactivePower.FromMegavoltamperesReactive(value.ToDouble(null));
+                => ElectricReactivePower.FromMegavoltamperesReactive(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricReactivePower.FromVoltamperesReactive(double)" />
+            /// <inheritdoc cref="ElectricReactivePower.FromVoltamperesReactive(QuantityValue)" />
             public ElectricReactivePower VoltamperesReactive
 #if NET7_0_OR_GREATER
-                => ElectricReactivePower.FromVoltamperesReactive(double.CreateChecked(value));
+                => ElectricReactivePower.FromVoltamperesReactive(QuantityValue.CreateChecked(value));
 #else
-                => ElectricReactivePower.FromVoltamperesReactive(value.ToDouble(null));
+                => ElectricReactivePower.FromVoltamperesReactive(value.ToQuantityValue());
 #endif
 
         }

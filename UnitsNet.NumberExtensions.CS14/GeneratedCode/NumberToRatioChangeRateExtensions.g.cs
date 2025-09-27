@@ -42,20 +42,20 @@ namespace UnitsNet.NumberExtensions.NumberToRatioChangeRate
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="RatioChangeRate.FromDecimalFractionsPerSecond(double)" />
+            /// <inheritdoc cref="RatioChangeRate.FromDecimalFractionsPerSecond(QuantityValue)" />
             public RatioChangeRate DecimalFractionsPerSecond
 #if NET7_0_OR_GREATER
-                => RatioChangeRate.FromDecimalFractionsPerSecond(double.CreateChecked(value));
+                => RatioChangeRate.FromDecimalFractionsPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => RatioChangeRate.FromDecimalFractionsPerSecond(value.ToDouble(null));
+                => RatioChangeRate.FromDecimalFractionsPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="RatioChangeRate.FromPercentsPerSecond(double)" />
+            /// <inheritdoc cref="RatioChangeRate.FromPercentsPerSecond(QuantityValue)" />
             public RatioChangeRate PercentsPerSecond
 #if NET7_0_OR_GREATER
-                => RatioChangeRate.FromPercentsPerSecond(double.CreateChecked(value));
+                => RatioChangeRate.FromPercentsPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => RatioChangeRate.FromPercentsPerSecond(value.ToDouble(null));
+                => RatioChangeRate.FromPercentsPerSecond(value.ToQuantityValue());
 #endif
 
         }

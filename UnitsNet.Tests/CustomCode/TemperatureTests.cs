@@ -33,73 +33,73 @@ public class TemperatureTests : TemperatureTestsBase
 
     public static IEnumerable<object[]> TemperatureDeltaPlusTemperatureEqualsTemperatureData { get; } =
     [
-        [-10d, TemperatureUnit.DegreeCelsius, 0d, TemperatureDeltaUnit.DegreeCelsius, -10d, TemperatureUnit.DegreeCelsius],
-        [-10d, TemperatureUnit.DegreeCelsius, 10d, TemperatureDeltaUnit.DegreeCelsius, 0d, TemperatureUnit.DegreeCelsius],
-        [-10d, TemperatureUnit.DegreeCelsius, 20d, TemperatureDeltaUnit.DegreeCelsius, 10d, TemperatureUnit.DegreeCelsius],
-        [-10d, TemperatureUnit.DegreeFahrenheit, 0d, TemperatureDeltaUnit.DegreeFahrenheit, -10d, TemperatureUnit.DegreeFahrenheit],
-        [-10d, TemperatureUnit.DegreeFahrenheit, 10d, TemperatureDeltaUnit.DegreeFahrenheit, 0d, TemperatureUnit.DegreeFahrenheit],
-        [-10d, TemperatureUnit.DegreeFahrenheit, 20d, TemperatureDeltaUnit.DegreeFahrenheit, 10d, TemperatureUnit.DegreeFahrenheit]
+        [-10m, TemperatureUnit.DegreeCelsius, 0m, TemperatureDeltaUnit.DegreeCelsius, -10m, TemperatureUnit.DegreeCelsius],
+        [-10m, TemperatureUnit.DegreeCelsius, 10m, TemperatureDeltaUnit.DegreeCelsius, 0m, TemperatureUnit.DegreeCelsius],
+        [-10m, TemperatureUnit.DegreeCelsius, 20m, TemperatureDeltaUnit.DegreeCelsius, 10m, TemperatureUnit.DegreeCelsius],
+        [-10m, TemperatureUnit.DegreeFahrenheit, 0m, TemperatureDeltaUnit.DegreeFahrenheit, -10m, TemperatureUnit.DegreeFahrenheit],
+        [-10m, TemperatureUnit.DegreeFahrenheit, 10m, TemperatureDeltaUnit.DegreeFahrenheit, 0m, TemperatureUnit.DegreeFahrenheit],
+        [-10m, TemperatureUnit.DegreeFahrenheit, 20m, TemperatureDeltaUnit.DegreeFahrenheit, 10m, TemperatureUnit.DegreeFahrenheit]
     ];
 
     [Theory]
     [MemberData(nameof(TemperatureDeltaPlusTemperatureEqualsTemperatureData))]
-    public void TemperatureDeltaPlusTemperatureEqualsTemperature(double temperatureValue, TemperatureUnit temperatureUnit, double deltaValue,
-        TemperatureDeltaUnit deltaUnit, double expectedValue, TemperatureUnit expectedUnit)
+    public void TemperatureDeltaPlusTemperatureEqualsTemperature(decimal temperatureValue, TemperatureUnit temperatureUnit, decimal deltaValue,
+        TemperatureDeltaUnit deltaUnit, decimal expectedValue, TemperatureUnit expectedUnit)
     {
         var temperature = new Temperature(temperatureValue, temperatureUnit);
         var temperatureDelta = new TemperatureDelta(deltaValue, deltaUnit);
         var expectedTemperature = new Temperature(expectedValue, expectedUnit);
-
+            
         Temperature result = temperature + temperatureDelta;
-
-        Assert.True(expectedTemperature.Equals(result, TemperatureDelta.FromKelvins(KelvinsTolerance)));
+            
+        Assert.Equal(expectedTemperature, result);
     }
 
     public static IEnumerable<object[]> TemperatureMinusTemperatureDeltaEqualsTemperatureData { get; } =
     [
-        [20d, TemperatureUnit.DegreeCelsius, 10d, TemperatureDeltaUnit.DegreeCelsius, 10d, TemperatureUnit.DegreeCelsius],
-        [20d, TemperatureUnit.DegreeCelsius, 20d, TemperatureDeltaUnit.DegreeCelsius, 0d, TemperatureUnit.DegreeCelsius],
-        [20d, TemperatureUnit.DegreeCelsius, 30d, TemperatureDeltaUnit.DegreeCelsius, -10d, TemperatureUnit.DegreeCelsius],
-        [20d, TemperatureUnit.DegreeFahrenheit, 10d, TemperatureDeltaUnit.DegreeFahrenheit, 10d, TemperatureUnit.DegreeFahrenheit],
-        [20d, TemperatureUnit.DegreeFahrenheit, 20d, TemperatureDeltaUnit.DegreeFahrenheit, 0d, TemperatureUnit.DegreeFahrenheit],
-        [20d, TemperatureUnit.DegreeFahrenheit, 30d, TemperatureDeltaUnit.DegreeFahrenheit, -10d, TemperatureUnit.DegreeFahrenheit]
+        [20m, TemperatureUnit.DegreeCelsius, 10m, TemperatureDeltaUnit.DegreeCelsius, 10m, TemperatureUnit.DegreeCelsius],
+        [20m, TemperatureUnit.DegreeCelsius, 20m, TemperatureDeltaUnit.DegreeCelsius, 0m, TemperatureUnit.DegreeCelsius],
+        [20m, TemperatureUnit.DegreeCelsius, 30m, TemperatureDeltaUnit.DegreeCelsius, -10m, TemperatureUnit.DegreeCelsius],
+        [20m, TemperatureUnit.DegreeFahrenheit, 10m, TemperatureDeltaUnit.DegreeFahrenheit, 10m, TemperatureUnit.DegreeFahrenheit],
+        [20m, TemperatureUnit.DegreeFahrenheit, 20m, TemperatureDeltaUnit.DegreeFahrenheit, 0m, TemperatureUnit.DegreeFahrenheit],
+        [20m, TemperatureUnit.DegreeFahrenheit, 30m, TemperatureDeltaUnit.DegreeFahrenheit, -10m, TemperatureUnit.DegreeFahrenheit]
     ];
 
     [Theory]
     [MemberData(nameof(TemperatureMinusTemperatureDeltaEqualsTemperatureData))]
-    public void TemperatureMinusTemperatureDeltaEqualsTemperature(double temperatureValue, TemperatureUnit temperatureUnit, double deltaValue,
-        TemperatureDeltaUnit deltaUnit, double expectedValue, TemperatureUnit expectedUnit)
+    public void TemperatureMinusTemperatureDeltaEqualsTemperature(decimal temperatureValue, TemperatureUnit temperatureUnit, decimal deltaValue,
+        TemperatureDeltaUnit deltaUnit, decimal expectedValue, TemperatureUnit expectedUnit)
     {
         var temp = new Temperature(temperatureValue, temperatureUnit);
         var delta = new TemperatureDelta(deltaValue, deltaUnit);
         var expectedTemperature = new Temperature(expectedValue, expectedUnit);
-
+            
         Temperature result = temp - delta;
-
-        Assert.True(expectedTemperature.Equals(result, TemperatureDelta.FromKelvins(KelvinsTolerance)));
+            
+        Assert.Equal(expectedTemperature, result);
     }
 
     public static IEnumerable<object[]> TemperaturePlusTemperatureDeltaEqualsTemperatureData { get; } =
     [
-        [-10d, TemperatureUnit.DegreeCelsius, 0d, TemperatureDeltaUnit.DegreeCelsius, -10d, TemperatureUnit.DegreeCelsius],
-        [-10d, TemperatureUnit.DegreeCelsius, 10d, TemperatureDeltaUnit.DegreeCelsius, 0d, TemperatureUnit.DegreeCelsius],
-        [-10d, TemperatureUnit.DegreeCelsius, 20d, TemperatureDeltaUnit.DegreeCelsius, 10d, TemperatureUnit.DegreeCelsius],
-        [-10d, TemperatureUnit.DegreeFahrenheit, 0d, TemperatureDeltaUnit.DegreeFahrenheit, -10d, TemperatureUnit.DegreeFahrenheit],
-        [-10d, TemperatureUnit.DegreeFahrenheit, 10d, TemperatureDeltaUnit.DegreeFahrenheit, 0d, TemperatureUnit.DegreeFahrenheit],
-        [-10d, TemperatureUnit.DegreeFahrenheit, 20d, TemperatureDeltaUnit.DegreeFahrenheit, 10d, TemperatureUnit.DegreeFahrenheit]
+        [-10m, TemperatureUnit.DegreeCelsius, 0m, TemperatureDeltaUnit.DegreeCelsius, -10m, TemperatureUnit.DegreeCelsius],
+        [-10m, TemperatureUnit.DegreeCelsius, 10m, TemperatureDeltaUnit.DegreeCelsius, 0m, TemperatureUnit.DegreeCelsius],
+        [-10m, TemperatureUnit.DegreeCelsius, 20m, TemperatureDeltaUnit.DegreeCelsius, 10m, TemperatureUnit.DegreeCelsius],
+        [-10m, TemperatureUnit.DegreeFahrenheit, 0m, TemperatureDeltaUnit.DegreeFahrenheit, -10m, TemperatureUnit.DegreeFahrenheit],
+        [-10m, TemperatureUnit.DegreeFahrenheit, 10m, TemperatureDeltaUnit.DegreeFahrenheit, 0m, TemperatureUnit.DegreeFahrenheit],
+        [-10m, TemperatureUnit.DegreeFahrenheit, 20m, TemperatureDeltaUnit.DegreeFahrenheit, 10m, TemperatureUnit.DegreeFahrenheit]
     ];
 
     [Theory]
     [MemberData(nameof(TemperaturePlusTemperatureDeltaEqualsTemperatureData))]
-    public void TemperaturePlusTemperatureDeltaEqualsTemperature(double temperatureValue, TemperatureUnit temperatureUnit, double deltaValue,
-        TemperatureDeltaUnit deltaUnit, double expectedValue, TemperatureUnit expectedUnit)
+    public void TemperaturePlusTemperatureDeltaEqualsTemperature(decimal temperatureValue, TemperatureUnit temperatureUnit, decimal deltaValue,
+        TemperatureDeltaUnit deltaUnit, decimal expectedValue, TemperatureUnit expectedUnit)
     {
         var temp = new Temperature(temperatureValue, temperatureUnit);
         var delta = new TemperatureDelta(deltaValue, deltaUnit);
         var expectedTemperature = new Temperature(expectedValue, expectedUnit);
-
+            
         Temperature result = temp + delta;
-
-        Assert.True(expectedTemperature.Equals(result, TemperatureDelta.FromKelvins(KelvinsTolerance)));
+            
+        Assert.Equal(expectedTemperature, result);
     }
 }

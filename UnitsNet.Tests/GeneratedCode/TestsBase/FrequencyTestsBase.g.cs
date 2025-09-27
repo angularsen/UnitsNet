@@ -170,6 +170,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void FrequencyInfo_CreateWithCustomUnitInfos()
+        {
+            FrequencyUnit[] expectedUnits = [FrequencyUnit.Hertz];
+
+            Frequency.FrequencyInfo quantityInfo = Frequency.FrequencyInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("Frequency", quantityInfo.Name);
+            Assert.Equal(Frequency.Zero, quantityInfo.Zero);
+            Assert.Equal(Frequency.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void HertzToFrequencyUnits()
         {
             Frequency hertz = Frequency.FromHertz(1);
@@ -275,26 +289,69 @@ namespace UnitsNet.Tests
             var expectedUnit = Frequency.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            Frequency convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                Frequency quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                Frequency convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<FrequencyUnit> quantityToConvert = quantity;
+
+                IQuantity<FrequencyUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new Frequency(value: 1, unit: Frequency.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Frequency(value: 1, unit: Frequency.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<FrequencyUnit> quantity = new Frequency(value: 1, unit: Frequency.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Frequency(value: 1, unit: Frequency.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new Frequency(value: 1, unit: Frequency.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Frequency(value: 1, unit: Frequency.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<FrequencyUnit> quantity = new Frequency(value: 1, unit: Frequency.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Frequency(value: 1, unit: Frequency.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -319,7 +376,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 с⁻¹", FrequencyUnit.PerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 рад/с", FrequencyUnit.RadianPerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 ТГц", FrequencyUnit.Terahertz, 4.2)]
-        public void Parse(string culture, string quantityString, FrequencyUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, FrequencyUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Frequency.Parse(quantityString);
@@ -349,7 +406,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 с⁻¹", FrequencyUnit.PerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 рад/с", FrequencyUnit.RadianPerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 ТГц", FrequencyUnit.Terahertz, 4.2)]
-        public void TryParse(string culture, string quantityString, FrequencyUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, FrequencyUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Frequency.TryParse(quantityString, out Frequency parsed));
@@ -626,6 +683,7 @@ namespace UnitsNet.Tests
                 var quantity = Frequency.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -649,43 +707,45 @@ namespace UnitsNet.Tests
                 IQuantity<FrequencyUnit> quantityToConvert = quantity;
                 IQuantity<FrequencyUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Frequency hertz = Frequency.FromHertz(1);
-            AssertEx.EqualTolerance(1, Frequency.FromBeatsPerMinute(hertz.BeatsPerMinute).Hertz, BeatsPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, Frequency.FromCyclesPerHour(hertz.CyclesPerHour).Hertz, CyclesPerHourTolerance);
-            AssertEx.EqualTolerance(1, Frequency.FromCyclesPerMinute(hertz.CyclesPerMinute).Hertz, CyclesPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, Frequency.FromGigahertz(hertz.Gigahertz).Hertz, GigahertzTolerance);
-            AssertEx.EqualTolerance(1, Frequency.FromHertz(hertz.Hertz).Hertz, HertzTolerance);
-            AssertEx.EqualTolerance(1, Frequency.FromKilohertz(hertz.Kilohertz).Hertz, KilohertzTolerance);
-            AssertEx.EqualTolerance(1, Frequency.FromMegahertz(hertz.Megahertz).Hertz, MegahertzTolerance);
-            AssertEx.EqualTolerance(1, Frequency.FromMicrohertz(hertz.Microhertz).Hertz, MicrohertzTolerance);
-            AssertEx.EqualTolerance(1, Frequency.FromMillihertz(hertz.Millihertz).Hertz, MillihertzTolerance);
-            AssertEx.EqualTolerance(1, Frequency.FromPerSecond(hertz.PerSecond).Hertz, PerSecondTolerance);
-            AssertEx.EqualTolerance(1, Frequency.FromRadiansPerSecond(hertz.RadiansPerSecond).Hertz, RadiansPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Frequency.FromTerahertz(hertz.Terahertz).Hertz, TerahertzTolerance);
+            Frequency hertz = Frequency.FromHertz(3);
+            Assert.Equal(3, Frequency.FromBeatsPerMinute(hertz.BeatsPerMinute).Hertz);
+            Assert.Equal(3, Frequency.FromCyclesPerHour(hertz.CyclesPerHour).Hertz);
+            Assert.Equal(3, Frequency.FromCyclesPerMinute(hertz.CyclesPerMinute).Hertz);
+            Assert.Equal(3, Frequency.FromGigahertz(hertz.Gigahertz).Hertz);
+            Assert.Equal(3, Frequency.FromHertz(hertz.Hertz).Hertz);
+            Assert.Equal(3, Frequency.FromKilohertz(hertz.Kilohertz).Hertz);
+            Assert.Equal(3, Frequency.FromMegahertz(hertz.Megahertz).Hertz);
+            Assert.Equal(3, Frequency.FromMicrohertz(hertz.Microhertz).Hertz);
+            Assert.Equal(3, Frequency.FromMillihertz(hertz.Millihertz).Hertz);
+            Assert.Equal(3, Frequency.FromPerSecond(hertz.PerSecond).Hertz);
+            Assert.Equal(3, Frequency.FromRadiansPerSecond(hertz.RadiansPerSecond).Hertz);
+            Assert.Equal(3, Frequency.FromTerahertz(hertz.Terahertz).Hertz);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             Frequency v = Frequency.FromHertz(1);
-            AssertEx.EqualTolerance(-1, -v.Hertz, HertzTolerance);
-            AssertEx.EqualTolerance(2, (Frequency.FromHertz(3)-v).Hertz, HertzTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Hertz, HertzTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Hertz, HertzTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Hertz, HertzTolerance);
-            AssertEx.EqualTolerance(2, (Frequency.FromHertz(10)/5).Hertz, HertzTolerance);
-            AssertEx.EqualTolerance(2, Frequency.FromHertz(10)/Frequency.FromHertz(5), HertzTolerance);
+            Assert.Equal(-1, -v.Hertz);
+            Assert.Equal(2, (Frequency.FromHertz(3) - v).Hertz);
+            Assert.Equal(2, (v + v).Hertz);
+            Assert.Equal(10, (v * 10).Hertz);
+            Assert.Equal(10, (10 * v).Hertz);
+            Assert.Equal(2, (Frequency.FromHertz(10) / 5).Hertz);
+            Assert.Equal(2, Frequency.FromHertz(10) / Frequency.FromHertz(5));
         }
 
         [Fact]
@@ -731,8 +791,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, FrequencyUnit.Hertz, 1, FrequencyUnit.Hertz, true)]  // Same value and unit.
         [InlineData(1, FrequencyUnit.Hertz, 2, FrequencyUnit.Hertz, false)] // Different value.
-        [InlineData(2, FrequencyUnit.Hertz, 1, FrequencyUnit.BeatPerMinute, false)] // Different value and unit.
-        [InlineData(1, FrequencyUnit.Hertz, 1, FrequencyUnit.BeatPerMinute, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, FrequencyUnit unitA, double valueB, FrequencyUnit unitB, bool expectEqual)
         {
             var a = new Frequency(valueA, unitA);
@@ -792,8 +850,8 @@ namespace UnitsNet.Tests
             var quantity = Frequency.FromHertz(firstValue);
             var otherQuantity = Frequency.FromHertz(secondValue);
             Frequency maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, Frequency.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -812,7 +870,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<FrequencyUnit>();
+            var units = EnumHelper.GetValues<FrequencyUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -823,6 +881,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Frequency.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(Frequency.Info.Units, Frequency.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, Frequency.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -909,7 +979,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Frequency.FromHertz(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(Frequency), quantity.As(Frequency.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

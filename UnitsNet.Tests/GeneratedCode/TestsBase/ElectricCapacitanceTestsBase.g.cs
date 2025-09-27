@@ -150,6 +150,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ElectricCapacitanceInfo_CreateWithCustomUnitInfos()
+        {
+            ElectricCapacitanceUnit[] expectedUnits = [ElectricCapacitanceUnit.Farad];
+
+            ElectricCapacitance.ElectricCapacitanceInfo quantityInfo = ElectricCapacitance.ElectricCapacitanceInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("ElectricCapacitance", quantityInfo.Name);
+            Assert.Equal(ElectricCapacitance.Zero, quantityInfo.Zero);
+            Assert.Equal(ElectricCapacitance.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void FaradToElectricCapacitanceUnits()
         {
             ElectricCapacitance farad = ElectricCapacitance.FromFarads(1);
@@ -245,26 +259,69 @@ namespace UnitsNet.Tests
             var expectedUnit = ElectricCapacitance.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            ElectricCapacitance convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                ElectricCapacitance quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                ElectricCapacitance convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<ElectricCapacitanceUnit> quantityToConvert = quantity;
+
+                IQuantity<ElectricCapacitanceUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new ElectricCapacitance(value: 1, unit: ElectricCapacitance.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new ElectricCapacitance(value: 1, unit: ElectricCapacitance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricCapacitanceUnit> quantity = new ElectricCapacitance(value: 1, unit: ElectricCapacitance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricCapacitance(value: 1, unit: ElectricCapacitance.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new ElectricCapacitance(value: 1, unit: ElectricCapacitance.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new ElectricCapacitance(value: 1, unit: ElectricCapacitance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricCapacitanceUnit> quantity = new ElectricCapacitance(value: 1, unit: ElectricCapacitance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricCapacitance(value: 1, unit: ElectricCapacitance.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -275,7 +332,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 mF", ElectricCapacitanceUnit.Millifarad, 4.2)]
         [InlineData("en-US", "4.2 nF", ElectricCapacitanceUnit.Nanofarad, 4.2)]
         [InlineData("en-US", "4.2 pF", ElectricCapacitanceUnit.Picofarad, 4.2)]
-        public void Parse(string culture, string quantityString, ElectricCapacitanceUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, ElectricCapacitanceUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ElectricCapacitance.Parse(quantityString);
@@ -291,7 +348,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 mF", ElectricCapacitanceUnit.Millifarad, 4.2)]
         [InlineData("en-US", "4.2 nF", ElectricCapacitanceUnit.Nanofarad, 4.2)]
         [InlineData("en-US", "4.2 pF", ElectricCapacitanceUnit.Picofarad, 4.2)]
-        public void TryParse(string culture, string quantityString, ElectricCapacitanceUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, ElectricCapacitanceUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ElectricCapacitance.TryParse(quantityString, out ElectricCapacitance parsed));
@@ -478,6 +535,7 @@ namespace UnitsNet.Tests
                 var quantity = ElectricCapacitance.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -501,38 +559,40 @@ namespace UnitsNet.Tests
                 IQuantity<ElectricCapacitanceUnit> quantityToConvert = quantity;
                 IQuantity<ElectricCapacitanceUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            ElectricCapacitance farad = ElectricCapacitance.FromFarads(1);
-            AssertEx.EqualTolerance(1, ElectricCapacitance.FromFarads(farad.Farads).Farads, FaradsTolerance);
-            AssertEx.EqualTolerance(1, ElectricCapacitance.FromKilofarads(farad.Kilofarads).Farads, KilofaradsTolerance);
-            AssertEx.EqualTolerance(1, ElectricCapacitance.FromMegafarads(farad.Megafarads).Farads, MegafaradsTolerance);
-            AssertEx.EqualTolerance(1, ElectricCapacitance.FromMicrofarads(farad.Microfarads).Farads, MicrofaradsTolerance);
-            AssertEx.EqualTolerance(1, ElectricCapacitance.FromMillifarads(farad.Millifarads).Farads, MillifaradsTolerance);
-            AssertEx.EqualTolerance(1, ElectricCapacitance.FromNanofarads(farad.Nanofarads).Farads, NanofaradsTolerance);
-            AssertEx.EqualTolerance(1, ElectricCapacitance.FromPicofarads(farad.Picofarads).Farads, PicofaradsTolerance);
+            ElectricCapacitance farad = ElectricCapacitance.FromFarads(3);
+            Assert.Equal(3, ElectricCapacitance.FromFarads(farad.Farads).Farads);
+            Assert.Equal(3, ElectricCapacitance.FromKilofarads(farad.Kilofarads).Farads);
+            Assert.Equal(3, ElectricCapacitance.FromMegafarads(farad.Megafarads).Farads);
+            Assert.Equal(3, ElectricCapacitance.FromMicrofarads(farad.Microfarads).Farads);
+            Assert.Equal(3, ElectricCapacitance.FromMillifarads(farad.Millifarads).Farads);
+            Assert.Equal(3, ElectricCapacitance.FromNanofarads(farad.Nanofarads).Farads);
+            Assert.Equal(3, ElectricCapacitance.FromPicofarads(farad.Picofarads).Farads);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             ElectricCapacitance v = ElectricCapacitance.FromFarads(1);
-            AssertEx.EqualTolerance(-1, -v.Farads, FaradsTolerance);
-            AssertEx.EqualTolerance(2, (ElectricCapacitance.FromFarads(3)-v).Farads, FaradsTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Farads, FaradsTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Farads, FaradsTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Farads, FaradsTolerance);
-            AssertEx.EqualTolerance(2, (ElectricCapacitance.FromFarads(10)/5).Farads, FaradsTolerance);
-            AssertEx.EqualTolerance(2, ElectricCapacitance.FromFarads(10)/ElectricCapacitance.FromFarads(5), FaradsTolerance);
+            Assert.Equal(-1, -v.Farads);
+            Assert.Equal(2, (ElectricCapacitance.FromFarads(3) - v).Farads);
+            Assert.Equal(2, (v + v).Farads);
+            Assert.Equal(10, (v * 10).Farads);
+            Assert.Equal(10, (10 * v).Farads);
+            Assert.Equal(2, (ElectricCapacitance.FromFarads(10) / 5).Farads);
+            Assert.Equal(2, ElectricCapacitance.FromFarads(10) / ElectricCapacitance.FromFarads(5));
         }
 
         [Fact]
@@ -578,8 +638,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ElectricCapacitanceUnit.Farad, 1, ElectricCapacitanceUnit.Farad, true)]  // Same value and unit.
         [InlineData(1, ElectricCapacitanceUnit.Farad, 2, ElectricCapacitanceUnit.Farad, false)] // Different value.
-        [InlineData(2, ElectricCapacitanceUnit.Farad, 1, ElectricCapacitanceUnit.Kilofarad, false)] // Different value and unit.
-        [InlineData(1, ElectricCapacitanceUnit.Farad, 1, ElectricCapacitanceUnit.Kilofarad, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricCapacitanceUnit unitA, double valueB, ElectricCapacitanceUnit unitB, bool expectEqual)
         {
             var a = new ElectricCapacitance(valueA, unitA);
@@ -639,8 +697,8 @@ namespace UnitsNet.Tests
             var quantity = ElectricCapacitance.FromFarads(firstValue);
             var otherQuantity = ElectricCapacitance.FromFarads(secondValue);
             ElectricCapacitance maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, ElectricCapacitance.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -659,7 +717,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<ElectricCapacitanceUnit>();
+            var units = EnumHelper.GetValues<ElectricCapacitanceUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -670,6 +728,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(ElectricCapacitance.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(ElectricCapacitance.Info.Units, ElectricCapacitance.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, ElectricCapacitance.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -746,7 +816,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricCapacitance.FromFarads(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(ElectricCapacitance), quantity.As(ElectricCapacitance.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

@@ -238,6 +238,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void RadioactivityInfo_CreateWithCustomUnitInfos()
+        {
+            RadioactivityUnit[] expectedUnits = [RadioactivityUnit.Becquerel];
+
+            Radioactivity.RadioactivityInfo quantityInfo = Radioactivity.RadioactivityInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("Radioactivity", quantityInfo.Name);
+            Assert.Equal(Radioactivity.Zero, quantityInfo.Zero);
+            Assert.Equal(Radioactivity.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void BecquerelToRadioactivityUnits()
         {
             Radioactivity becquerel = Radioactivity.FromBecquerels(1);
@@ -377,26 +391,69 @@ namespace UnitsNet.Tests
             var expectedUnit = Radioactivity.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            Radioactivity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                Radioactivity quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                Radioactivity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<RadioactivityUnit> quantityToConvert = quantity;
+
+                IQuantity<RadioactivityUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new Radioactivity(value: 1, unit: Radioactivity.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Radioactivity(value: 1, unit: Radioactivity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<RadioactivityUnit> quantity = new Radioactivity(value: 1, unit: Radioactivity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Radioactivity(value: 1, unit: Radioactivity.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new Radioactivity(value: 1, unit: Radioactivity.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Radioactivity(value: 1, unit: Radioactivity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<RadioactivityUnit> quantity = new Radioactivity(value: 1, unit: Radioactivity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Radioactivity(value: 1, unit: Radioactivity.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -458,7 +515,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 ТБк", RadioactivityUnit.Terabecquerel, 4.2)]
         [InlineData("ru-RU", "4,2 ТКи", RadioactivityUnit.Teracurie, 4.2)]
         [InlineData("ru-RU", "4,2 ТРд", RadioactivityUnit.Terarutherford, 4.2)]
-        public void Parse(string culture, string quantityString, RadioactivityUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, RadioactivityUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Radioactivity.Parse(quantityString);
@@ -525,7 +582,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 ТБк", RadioactivityUnit.Terabecquerel, 4.2)]
         [InlineData("ru-RU", "4,2 ТКи", RadioactivityUnit.Teracurie, 4.2)]
         [InlineData("ru-RU", "4,2 ТРд", RadioactivityUnit.Terarutherford, 4.2)]
-        public void TryParse(string culture, string quantityString, RadioactivityUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, RadioactivityUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Radioactivity.TryParse(quantityString, out Radioactivity parsed));
@@ -1055,6 +1112,7 @@ namespace UnitsNet.Tests
                 var quantity = Radioactivity.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -1078,60 +1136,62 @@ namespace UnitsNet.Tests
                 IQuantity<RadioactivityUnit> quantityToConvert = quantity;
                 IQuantity<RadioactivityUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Radioactivity becquerel = Radioactivity.FromBecquerels(1);
-            AssertEx.EqualTolerance(1, Radioactivity.FromBecquerels(becquerel.Becquerels).Becquerels, BecquerelsTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromCuries(becquerel.Curies).Becquerels, CuriesTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromExabecquerels(becquerel.Exabecquerels).Becquerels, ExabecquerelsTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromGigabecquerels(becquerel.Gigabecquerels).Becquerels, GigabecquerelsTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromGigacuries(becquerel.Gigacuries).Becquerels, GigacuriesTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromGigarutherfords(becquerel.Gigarutherfords).Becquerels, GigarutherfordsTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromKilobecquerels(becquerel.Kilobecquerels).Becquerels, KilobecquerelsTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromKilocuries(becquerel.Kilocuries).Becquerels, KilocuriesTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromKilorutherfords(becquerel.Kilorutherfords).Becquerels, KilorutherfordsTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromMegabecquerels(becquerel.Megabecquerels).Becquerels, MegabecquerelsTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromMegacuries(becquerel.Megacuries).Becquerels, MegacuriesTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromMegarutherfords(becquerel.Megarutherfords).Becquerels, MegarutherfordsTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromMicrobecquerels(becquerel.Microbecquerels).Becquerels, MicrobecquerelsTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromMicrocuries(becquerel.Microcuries).Becquerels, MicrocuriesTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromMicrorutherfords(becquerel.Microrutherfords).Becquerels, MicrorutherfordsTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromMillibecquerels(becquerel.Millibecquerels).Becquerels, MillibecquerelsTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromMillicuries(becquerel.Millicuries).Becquerels, MillicuriesTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromMillirutherfords(becquerel.Millirutherfords).Becquerels, MillirutherfordsTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromNanobecquerels(becquerel.Nanobecquerels).Becquerels, NanobecquerelsTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromNanocuries(becquerel.Nanocuries).Becquerels, NanocuriesTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromNanorutherfords(becquerel.Nanorutherfords).Becquerels, NanorutherfordsTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromPetabecquerels(becquerel.Petabecquerels).Becquerels, PetabecquerelsTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromPicobecquerels(becquerel.Picobecquerels).Becquerels, PicobecquerelsTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromPicocuries(becquerel.Picocuries).Becquerels, PicocuriesTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromPicorutherfords(becquerel.Picorutherfords).Becquerels, PicorutherfordsTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromRutherfords(becquerel.Rutherfords).Becquerels, RutherfordsTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromTerabecquerels(becquerel.Terabecquerels).Becquerels, TerabecquerelsTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromTeracuries(becquerel.Teracuries).Becquerels, TeracuriesTolerance);
-            AssertEx.EqualTolerance(1, Radioactivity.FromTerarutherfords(becquerel.Terarutherfords).Becquerels, TerarutherfordsTolerance);
+            Radioactivity becquerel = Radioactivity.FromBecquerels(3);
+            Assert.Equal(3, Radioactivity.FromBecquerels(becquerel.Becquerels).Becquerels);
+            Assert.Equal(3, Radioactivity.FromCuries(becquerel.Curies).Becquerels);
+            Assert.Equal(3, Radioactivity.FromExabecquerels(becquerel.Exabecquerels).Becquerels);
+            Assert.Equal(3, Radioactivity.FromGigabecquerels(becquerel.Gigabecquerels).Becquerels);
+            Assert.Equal(3, Radioactivity.FromGigacuries(becquerel.Gigacuries).Becquerels);
+            Assert.Equal(3, Radioactivity.FromGigarutherfords(becquerel.Gigarutherfords).Becquerels);
+            Assert.Equal(3, Radioactivity.FromKilobecquerels(becquerel.Kilobecquerels).Becquerels);
+            Assert.Equal(3, Radioactivity.FromKilocuries(becquerel.Kilocuries).Becquerels);
+            Assert.Equal(3, Radioactivity.FromKilorutherfords(becquerel.Kilorutherfords).Becquerels);
+            Assert.Equal(3, Radioactivity.FromMegabecquerels(becquerel.Megabecquerels).Becquerels);
+            Assert.Equal(3, Radioactivity.FromMegacuries(becquerel.Megacuries).Becquerels);
+            Assert.Equal(3, Radioactivity.FromMegarutherfords(becquerel.Megarutherfords).Becquerels);
+            Assert.Equal(3, Radioactivity.FromMicrobecquerels(becquerel.Microbecquerels).Becquerels);
+            Assert.Equal(3, Radioactivity.FromMicrocuries(becquerel.Microcuries).Becquerels);
+            Assert.Equal(3, Radioactivity.FromMicrorutherfords(becquerel.Microrutherfords).Becquerels);
+            Assert.Equal(3, Radioactivity.FromMillibecquerels(becquerel.Millibecquerels).Becquerels);
+            Assert.Equal(3, Radioactivity.FromMillicuries(becquerel.Millicuries).Becquerels);
+            Assert.Equal(3, Radioactivity.FromMillirutherfords(becquerel.Millirutherfords).Becquerels);
+            Assert.Equal(3, Radioactivity.FromNanobecquerels(becquerel.Nanobecquerels).Becquerels);
+            Assert.Equal(3, Radioactivity.FromNanocuries(becquerel.Nanocuries).Becquerels);
+            Assert.Equal(3, Radioactivity.FromNanorutherfords(becquerel.Nanorutherfords).Becquerels);
+            Assert.Equal(3, Radioactivity.FromPetabecquerels(becquerel.Petabecquerels).Becquerels);
+            Assert.Equal(3, Radioactivity.FromPicobecquerels(becquerel.Picobecquerels).Becquerels);
+            Assert.Equal(3, Radioactivity.FromPicocuries(becquerel.Picocuries).Becquerels);
+            Assert.Equal(3, Radioactivity.FromPicorutherfords(becquerel.Picorutherfords).Becquerels);
+            Assert.Equal(3, Radioactivity.FromRutherfords(becquerel.Rutherfords).Becquerels);
+            Assert.Equal(3, Radioactivity.FromTerabecquerels(becquerel.Terabecquerels).Becquerels);
+            Assert.Equal(3, Radioactivity.FromTeracuries(becquerel.Teracuries).Becquerels);
+            Assert.Equal(3, Radioactivity.FromTerarutherfords(becquerel.Terarutherfords).Becquerels);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             Radioactivity v = Radioactivity.FromBecquerels(1);
-            AssertEx.EqualTolerance(-1, -v.Becquerels, BecquerelsTolerance);
-            AssertEx.EqualTolerance(2, (Radioactivity.FromBecquerels(3)-v).Becquerels, BecquerelsTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Becquerels, BecquerelsTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Becquerels, BecquerelsTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Becquerels, BecquerelsTolerance);
-            AssertEx.EqualTolerance(2, (Radioactivity.FromBecquerels(10)/5).Becquerels, BecquerelsTolerance);
-            AssertEx.EqualTolerance(2, Radioactivity.FromBecquerels(10)/Radioactivity.FromBecquerels(5), BecquerelsTolerance);
+            Assert.Equal(-1, -v.Becquerels);
+            Assert.Equal(2, (Radioactivity.FromBecquerels(3) - v).Becquerels);
+            Assert.Equal(2, (v + v).Becquerels);
+            Assert.Equal(10, (v * 10).Becquerels);
+            Assert.Equal(10, (10 * v).Becquerels);
+            Assert.Equal(2, (Radioactivity.FromBecquerels(10) / 5).Becquerels);
+            Assert.Equal(2, Radioactivity.FromBecquerels(10) / Radioactivity.FromBecquerels(5));
         }
 
         [Fact]
@@ -1177,8 +1237,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, RadioactivityUnit.Becquerel, 1, RadioactivityUnit.Becquerel, true)]  // Same value and unit.
         [InlineData(1, RadioactivityUnit.Becquerel, 2, RadioactivityUnit.Becquerel, false)] // Different value.
-        [InlineData(2, RadioactivityUnit.Becquerel, 1, RadioactivityUnit.Curie, false)] // Different value and unit.
-        [InlineData(1, RadioactivityUnit.Becquerel, 1, RadioactivityUnit.Curie, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, RadioactivityUnit unitA, double valueB, RadioactivityUnit unitB, bool expectEqual)
         {
             var a = new Radioactivity(valueA, unitA);
@@ -1238,8 +1296,8 @@ namespace UnitsNet.Tests
             var quantity = Radioactivity.FromBecquerels(firstValue);
             var otherQuantity = Radioactivity.FromBecquerels(secondValue);
             Radioactivity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, Radioactivity.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -1258,7 +1316,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<RadioactivityUnit>();
+            var units = EnumHelper.GetValues<RadioactivityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -1269,6 +1327,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Radioactivity.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(Radioactivity.Info.Units, Radioactivity.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, Radioactivity.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -1389,7 +1459,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Radioactivity.FromBecquerels(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(Radioactivity), quantity.As(Radioactivity.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

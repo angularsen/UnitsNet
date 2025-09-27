@@ -230,6 +230,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void MassInfo_CreateWithCustomUnitInfos()
+        {
+            MassUnit[] expectedUnits = [MassUnit.Kilogram];
+
+            Mass.MassInfo quantityInfo = Mass.MassInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("Mass", quantityInfo.Name);
+            Assert.Equal(Mass.Zero, quantityInfo.Zero);
+            Assert.Equal(Mass.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void KilogramToMassUnits()
         {
             Mass kilogram = Mass.FromKilograms(1);
@@ -365,26 +379,69 @@ namespace UnitsNet.Tests
             var expectedUnit = Mass.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            Mass convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                Mass quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                Mass convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<MassUnit> quantityToConvert = quantity;
+
+                IQuantity<MassUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new Mass(value: 1, unit: Mass.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Mass(value: 1, unit: Mass.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<MassUnit> quantity = new Mass(value: 1, unit: Mass.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Mass(value: 1, unit: Mass.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new Mass(value: 1, unit: Mass.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Mass(value: 1, unit: Mass.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<MassUnit> quantity = new Mass(value: 1, unit: Mass.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Mass(value: 1, unit: Mass.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -461,7 +518,7 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", "4.2 磅", MassUnit.Pound, 4.2)]
         [InlineData("zh-CN", "4.2 短吨", MassUnit.ShortTon, 4.2)]
         [InlineData("zh-CN", "4.2 吨", MassUnit.Tonne, 4.2)]
-        public void Parse(string culture, string quantityString, MassUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, MassUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Mass.Parse(quantityString);
@@ -550,7 +607,7 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", "4.2 磅", MassUnit.Pound, 4.2)]
         [InlineData("zh-CN", "4.2 短吨", MassUnit.ShortTon, 4.2)]
         [InlineData("zh-CN", "4.2 吨", MassUnit.Tonne, 4.2)]
-        public void TryParse(string culture, string quantityString, MassUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, MassUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Mass.TryParse(quantityString, out Mass parsed));
@@ -1189,6 +1246,7 @@ namespace UnitsNet.Tests
                 var quantity = Mass.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -1212,58 +1270,60 @@ namespace UnitsNet.Tests
                 IQuantity<MassUnit> quantityToConvert = quantity;
                 IQuantity<MassUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Mass kilogram = Mass.FromKilograms(1);
-            AssertEx.EqualTolerance(1, Mass.FromCentigrams(kilogram.Centigrams).Kilograms, CentigramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromDecagrams(kilogram.Decagrams).Kilograms, DecagramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromDecigrams(kilogram.Decigrams).Kilograms, DecigramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromEarthMasses(kilogram.EarthMasses).Kilograms, EarthMassesTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromFemtograms(kilogram.Femtograms).Kilograms, FemtogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromGrains(kilogram.Grains).Kilograms, GrainsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromGrams(kilogram.Grams).Kilograms, GramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromHectograms(kilogram.Hectograms).Kilograms, HectogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromKilograms(kilogram.Kilograms).Kilograms, KilogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromKilopounds(kilogram.Kilopounds).Kilograms, KilopoundsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromKilotonnes(kilogram.Kilotonnes).Kilograms, KilotonnesTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromLongHundredweight(kilogram.LongHundredweight).Kilograms, LongHundredweightTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromLongTons(kilogram.LongTons).Kilograms, LongTonsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromMegapounds(kilogram.Megapounds).Kilograms, MegapoundsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromMegatonnes(kilogram.Megatonnes).Kilograms, MegatonnesTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromMicrograms(kilogram.Micrograms).Kilograms, MicrogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromMilligrams(kilogram.Milligrams).Kilograms, MilligramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromNanograms(kilogram.Nanograms).Kilograms, NanogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromOunces(kilogram.Ounces).Kilograms, OuncesTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromPicograms(kilogram.Picograms).Kilograms, PicogramsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromPounds(kilogram.Pounds).Kilograms, PoundsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromShortHundredweight(kilogram.ShortHundredweight).Kilograms, ShortHundredweightTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromShortTons(kilogram.ShortTons).Kilograms, ShortTonsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromSlugs(kilogram.Slugs).Kilograms, SlugsTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromSolarMasses(kilogram.SolarMasses).Kilograms, SolarMassesTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromStone(kilogram.Stone).Kilograms, StoneTolerance);
-            AssertEx.EqualTolerance(1, Mass.FromTonnes(kilogram.Tonnes).Kilograms, TonnesTolerance);
+            Mass kilogram = Mass.FromKilograms(3);
+            Assert.Equal(3, Mass.FromCentigrams(kilogram.Centigrams).Kilograms);
+            Assert.Equal(3, Mass.FromDecagrams(kilogram.Decagrams).Kilograms);
+            Assert.Equal(3, Mass.FromDecigrams(kilogram.Decigrams).Kilograms);
+            Assert.Equal(3, Mass.FromEarthMasses(kilogram.EarthMasses).Kilograms);
+            Assert.Equal(3, Mass.FromFemtograms(kilogram.Femtograms).Kilograms);
+            Assert.Equal(3, Mass.FromGrains(kilogram.Grains).Kilograms);
+            Assert.Equal(3, Mass.FromGrams(kilogram.Grams).Kilograms);
+            Assert.Equal(3, Mass.FromHectograms(kilogram.Hectograms).Kilograms);
+            Assert.Equal(3, Mass.FromKilograms(kilogram.Kilograms).Kilograms);
+            Assert.Equal(3, Mass.FromKilopounds(kilogram.Kilopounds).Kilograms);
+            Assert.Equal(3, Mass.FromKilotonnes(kilogram.Kilotonnes).Kilograms);
+            Assert.Equal(3, Mass.FromLongHundredweight(kilogram.LongHundredweight).Kilograms);
+            Assert.Equal(3, Mass.FromLongTons(kilogram.LongTons).Kilograms);
+            Assert.Equal(3, Mass.FromMegapounds(kilogram.Megapounds).Kilograms);
+            Assert.Equal(3, Mass.FromMegatonnes(kilogram.Megatonnes).Kilograms);
+            Assert.Equal(3, Mass.FromMicrograms(kilogram.Micrograms).Kilograms);
+            Assert.Equal(3, Mass.FromMilligrams(kilogram.Milligrams).Kilograms);
+            Assert.Equal(3, Mass.FromNanograms(kilogram.Nanograms).Kilograms);
+            Assert.Equal(3, Mass.FromOunces(kilogram.Ounces).Kilograms);
+            Assert.Equal(3, Mass.FromPicograms(kilogram.Picograms).Kilograms);
+            Assert.Equal(3, Mass.FromPounds(kilogram.Pounds).Kilograms);
+            Assert.Equal(3, Mass.FromShortHundredweight(kilogram.ShortHundredweight).Kilograms);
+            Assert.Equal(3, Mass.FromShortTons(kilogram.ShortTons).Kilograms);
+            Assert.Equal(3, Mass.FromSlugs(kilogram.Slugs).Kilograms);
+            Assert.Equal(3, Mass.FromSolarMasses(kilogram.SolarMasses).Kilograms);
+            Assert.Equal(3, Mass.FromStone(kilogram.Stone).Kilograms);
+            Assert.Equal(3, Mass.FromTonnes(kilogram.Tonnes).Kilograms);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             Mass v = Mass.FromKilograms(1);
-            AssertEx.EqualTolerance(-1, -v.Kilograms, KilogramsTolerance);
-            AssertEx.EqualTolerance(2, (Mass.FromKilograms(3)-v).Kilograms, KilogramsTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Kilograms, KilogramsTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Kilograms, KilogramsTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Kilograms, KilogramsTolerance);
-            AssertEx.EqualTolerance(2, (Mass.FromKilograms(10)/5).Kilograms, KilogramsTolerance);
-            AssertEx.EqualTolerance(2, Mass.FromKilograms(10)/Mass.FromKilograms(5), KilogramsTolerance);
+            Assert.Equal(-1, -v.Kilograms);
+            Assert.Equal(2, (Mass.FromKilograms(3) - v).Kilograms);
+            Assert.Equal(2, (v + v).Kilograms);
+            Assert.Equal(10, (v * 10).Kilograms);
+            Assert.Equal(10, (10 * v).Kilograms);
+            Assert.Equal(2, (Mass.FromKilograms(10) / 5).Kilograms);
+            Assert.Equal(2, Mass.FromKilograms(10) / Mass.FromKilograms(5));
         }
 
         [Fact]
@@ -1309,8 +1369,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, MassUnit.Kilogram, 1, MassUnit.Kilogram, true)]  // Same value and unit.
         [InlineData(1, MassUnit.Kilogram, 2, MassUnit.Kilogram, false)] // Different value.
-        [InlineData(2, MassUnit.Kilogram, 1, MassUnit.Centigram, false)] // Different value and unit.
-        [InlineData(1, MassUnit.Kilogram, 1, MassUnit.Centigram, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, MassUnit unitA, double valueB, MassUnit unitB, bool expectEqual)
         {
             var a = new Mass(valueA, unitA);
@@ -1370,8 +1428,8 @@ namespace UnitsNet.Tests
             var quantity = Mass.FromKilograms(firstValue);
             var otherQuantity = Mass.FromKilograms(secondValue);
             Mass maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, Mass.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -1390,7 +1448,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<MassUnit>();
+            var units = EnumHelper.GetValues<MassUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -1401,6 +1459,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Mass.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(Mass.Info.Units, Mass.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, Mass.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -1517,7 +1587,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Mass.FromKilograms(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(Mass), quantity.As(Mass.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

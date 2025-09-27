@@ -68,13 +68,8 @@ public static class UnitMath
         where TQuantity : IQuantityOfType<TQuantity>, IComparable<TQuantity>
     {
         UnitKey unitKey = value.UnitKey;
-#if NET
-        TQuantity minValue = TQuantity.Create(min.As(unitKey), unitKey);
-        TQuantity maxValue = TQuantity.Create(max.As(unitKey), unitKey);
-#else
-        TQuantity minValue = value.QuantityInfo.Create(min.As(unitKey), unitKey);
-        TQuantity maxValue = value.QuantityInfo.Create(max.As(unitKey), unitKey);
-#endif
+        TQuantity minValue = UnitConverter.Default.ConvertToUnit(min, unitKey);
+        TQuantity maxValue = UnitConverter.Default.ConvertToUnit(max, unitKey);
 
         if (minValue.CompareTo(maxValue) > 0)
         {

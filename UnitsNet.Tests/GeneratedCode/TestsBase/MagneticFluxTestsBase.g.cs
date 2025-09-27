@@ -126,6 +126,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void MagneticFluxInfo_CreateWithCustomUnitInfos()
+        {
+            MagneticFluxUnit[] expectedUnits = [MagneticFluxUnit.Weber];
+
+            MagneticFlux.MagneticFluxInfo quantityInfo = MagneticFlux.MagneticFluxInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("MagneticFlux", quantityInfo.Name);
+            Assert.Equal(MagneticFlux.Zero, quantityInfo.Zero);
+            Assert.Equal(MagneticFlux.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void WeberToMagneticFluxUnits()
         {
             MagneticFlux weber = MagneticFlux.FromWebers(1);
@@ -209,31 +223,74 @@ namespace UnitsNet.Tests
             var expectedUnit = MagneticFlux.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            MagneticFlux convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                MagneticFlux quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                MagneticFlux convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<MagneticFluxUnit> quantityToConvert = quantity;
+
+                IQuantity<MagneticFluxUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new MagneticFlux(value: 1, unit: MagneticFlux.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new MagneticFlux(value: 1, unit: MagneticFlux.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<MagneticFluxUnit> quantity = new MagneticFlux(value: 1, unit: MagneticFlux.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new MagneticFlux(value: 1, unit: MagneticFlux.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new MagneticFlux(value: 1, unit: MagneticFlux.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new MagneticFlux(value: 1, unit: MagneticFlux.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<MagneticFluxUnit> quantity = new MagneticFlux(value: 1, unit: MagneticFlux.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new MagneticFlux(value: 1, unit: MagneticFlux.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
         [InlineData("en-US", "4.2 Wb", MagneticFluxUnit.Weber, 4.2)]
-        public void Parse(string culture, string quantityString, MagneticFluxUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, MagneticFluxUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = MagneticFlux.Parse(quantityString);
@@ -243,7 +300,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "4.2 Wb", MagneticFluxUnit.Weber, 4.2)]
-        public void TryParse(string culture, string quantityString, MagneticFluxUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, MagneticFluxUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(MagneticFlux.TryParse(quantityString, out MagneticFlux parsed));
@@ -376,6 +433,7 @@ namespace UnitsNet.Tests
                 var quantity = MagneticFlux.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -399,32 +457,34 @@ namespace UnitsNet.Tests
                 IQuantity<MagneticFluxUnit> quantityToConvert = quantity;
                 IQuantity<MagneticFluxUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            MagneticFlux weber = MagneticFlux.FromWebers(1);
-            AssertEx.EqualTolerance(1, MagneticFlux.FromWebers(weber.Webers).Webers, WebersTolerance);
+            MagneticFlux weber = MagneticFlux.FromWebers(3);
+            Assert.Equal(3, MagneticFlux.FromWebers(weber.Webers).Webers);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             MagneticFlux v = MagneticFlux.FromWebers(1);
-            AssertEx.EqualTolerance(-1, -v.Webers, WebersTolerance);
-            AssertEx.EqualTolerance(2, (MagneticFlux.FromWebers(3)-v).Webers, WebersTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Webers, WebersTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Webers, WebersTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Webers, WebersTolerance);
-            AssertEx.EqualTolerance(2, (MagneticFlux.FromWebers(10)/5).Webers, WebersTolerance);
-            AssertEx.EqualTolerance(2, MagneticFlux.FromWebers(10)/MagneticFlux.FromWebers(5), WebersTolerance);
+            Assert.Equal(-1, -v.Webers);
+            Assert.Equal(2, (MagneticFlux.FromWebers(3) - v).Webers);
+            Assert.Equal(2, (v + v).Webers);
+            Assert.Equal(10, (v * 10).Webers);
+            Assert.Equal(10, (10 * v).Webers);
+            Assert.Equal(2, (MagneticFlux.FromWebers(10) / 5).Webers);
+            Assert.Equal(2, MagneticFlux.FromWebers(10) / MagneticFlux.FromWebers(5));
         }
 
         [Fact]
@@ -470,7 +530,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, MagneticFluxUnit.Weber, 1, MagneticFluxUnit.Weber, true)]  // Same value and unit.
         [InlineData(1, MagneticFluxUnit.Weber, 2, MagneticFluxUnit.Weber, false)] // Different value.
-        [InlineData(2, MagneticFluxUnit.Weber, 1, MagneticFluxUnit.Weber, false)] // Different value and unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, MagneticFluxUnit unitA, double valueB, MagneticFluxUnit unitB, bool expectEqual)
         {
             var a = new MagneticFlux(valueA, unitA);
@@ -530,8 +589,8 @@ namespace UnitsNet.Tests
             var quantity = MagneticFlux.FromWebers(firstValue);
             var otherQuantity = MagneticFlux.FromWebers(secondValue);
             MagneticFlux maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, MagneticFlux.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -550,7 +609,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<MagneticFluxUnit>();
+            var units = EnumHelper.GetValues<MagneticFluxUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -561,6 +620,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(MagneticFlux.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(MagneticFlux.Info.Units, MagneticFlux.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, MagneticFlux.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -625,7 +696,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = MagneticFlux.FromWebers(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(MagneticFlux), quantity.As(MagneticFlux.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

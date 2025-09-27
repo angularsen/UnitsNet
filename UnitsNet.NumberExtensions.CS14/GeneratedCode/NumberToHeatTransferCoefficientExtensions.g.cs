@@ -42,44 +42,44 @@ namespace UnitsNet.NumberExtensions.NumberToHeatTransferCoefficient
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="HeatTransferCoefficient.FromBtusPerHourSquareFootDegreeFahrenheit(double)" />
+            /// <inheritdoc cref="HeatTransferCoefficient.FromBtusPerHourSquareFootDegreeFahrenheit(QuantityValue)" />
             public HeatTransferCoefficient BtusPerHourSquareFootDegreeFahrenheit
 #if NET7_0_OR_GREATER
-                => HeatTransferCoefficient.FromBtusPerHourSquareFootDegreeFahrenheit(double.CreateChecked(value));
+                => HeatTransferCoefficient.FromBtusPerHourSquareFootDegreeFahrenheit(QuantityValue.CreateChecked(value));
 #else
-                => HeatTransferCoefficient.FromBtusPerHourSquareFootDegreeFahrenheit(value.ToDouble(null));
+                => HeatTransferCoefficient.FromBtusPerHourSquareFootDegreeFahrenheit(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="HeatTransferCoefficient.FromCaloriesPerHourSquareMeterDegreeCelsius(double)" />
+            /// <inheritdoc cref="HeatTransferCoefficient.FromCaloriesPerHourSquareMeterDegreeCelsius(QuantityValue)" />
             public HeatTransferCoefficient CaloriesPerHourSquareMeterDegreeCelsius
 #if NET7_0_OR_GREATER
-                => HeatTransferCoefficient.FromCaloriesPerHourSquareMeterDegreeCelsius(double.CreateChecked(value));
+                => HeatTransferCoefficient.FromCaloriesPerHourSquareMeterDegreeCelsius(QuantityValue.CreateChecked(value));
 #else
-                => HeatTransferCoefficient.FromCaloriesPerHourSquareMeterDegreeCelsius(value.ToDouble(null));
+                => HeatTransferCoefficient.FromCaloriesPerHourSquareMeterDegreeCelsius(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="HeatTransferCoefficient.FromKilocaloriesPerHourSquareMeterDegreeCelsius(double)" />
+            /// <inheritdoc cref="HeatTransferCoefficient.FromKilocaloriesPerHourSquareMeterDegreeCelsius(QuantityValue)" />
             public HeatTransferCoefficient KilocaloriesPerHourSquareMeterDegreeCelsius
 #if NET7_0_OR_GREATER
-                => HeatTransferCoefficient.FromKilocaloriesPerHourSquareMeterDegreeCelsius(double.CreateChecked(value));
+                => HeatTransferCoefficient.FromKilocaloriesPerHourSquareMeterDegreeCelsius(QuantityValue.CreateChecked(value));
 #else
-                => HeatTransferCoefficient.FromKilocaloriesPerHourSquareMeterDegreeCelsius(value.ToDouble(null));
+                => HeatTransferCoefficient.FromKilocaloriesPerHourSquareMeterDegreeCelsius(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(double)" />
+            /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(QuantityValue)" />
             public HeatTransferCoefficient WattsPerSquareMeterCelsius
 #if NET7_0_OR_GREATER
-                => HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(double.CreateChecked(value));
+                => HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(QuantityValue.CreateChecked(value));
 #else
-                => HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(value.ToDouble(null));
+                => HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double)" />
+            /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(QuantityValue)" />
             public HeatTransferCoefficient WattsPerSquareMeterKelvin
 #if NET7_0_OR_GREATER
-                => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double.CreateChecked(value));
+                => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(QuantityValue.CreateChecked(value));
 #else
-                => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(value.ToDouble(null));
+                => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(value.ToQuantityValue());
 #endif
 
         }

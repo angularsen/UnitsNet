@@ -42,124 +42,124 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ForceChangeRate.FromCentinewtonsPerSecond(double)" />
+            /// <inheritdoc cref="ForceChangeRate.FromCentinewtonsPerSecond(QuantityValue)" />
             public ForceChangeRate CentinewtonsPerSecond
 #if NET7_0_OR_GREATER
-                => ForceChangeRate.FromCentinewtonsPerSecond(double.CreateChecked(value));
+                => ForceChangeRate.FromCentinewtonsPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => ForceChangeRate.FromCentinewtonsPerSecond(value.ToDouble(null));
+                => ForceChangeRate.FromCentinewtonsPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerMinute(double)" />
+            /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerMinute(QuantityValue)" />
             public ForceChangeRate DecanewtonsPerMinute
 #if NET7_0_OR_GREATER
-                => ForceChangeRate.FromDecanewtonsPerMinute(double.CreateChecked(value));
+                => ForceChangeRate.FromDecanewtonsPerMinute(QuantityValue.CreateChecked(value));
 #else
-                => ForceChangeRate.FromDecanewtonsPerMinute(value.ToDouble(null));
+                => ForceChangeRate.FromDecanewtonsPerMinute(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(double)" />
+            /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(QuantityValue)" />
             public ForceChangeRate DecanewtonsPerSecond
 #if NET7_0_OR_GREATER
-                => ForceChangeRate.FromDecanewtonsPerSecond(double.CreateChecked(value));
+                => ForceChangeRate.FromDecanewtonsPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => ForceChangeRate.FromDecanewtonsPerSecond(value.ToDouble(null));
+                => ForceChangeRate.FromDecanewtonsPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(double)" />
+            /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(QuantityValue)" />
             public ForceChangeRate DecinewtonsPerSecond
 #if NET7_0_OR_GREATER
-                => ForceChangeRate.FromDecinewtonsPerSecond(double.CreateChecked(value));
+                => ForceChangeRate.FromDecinewtonsPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => ForceChangeRate.FromDecinewtonsPerSecond(value.ToDouble(null));
+                => ForceChangeRate.FromDecinewtonsPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerMinute(double)" />
+            /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerMinute(QuantityValue)" />
             public ForceChangeRate KilonewtonsPerMinute
 #if NET7_0_OR_GREATER
-                => ForceChangeRate.FromKilonewtonsPerMinute(double.CreateChecked(value));
+                => ForceChangeRate.FromKilonewtonsPerMinute(QuantityValue.CreateChecked(value));
 #else
-                => ForceChangeRate.FromKilonewtonsPerMinute(value.ToDouble(null));
+                => ForceChangeRate.FromKilonewtonsPerMinute(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerSecond(double)" />
+            /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerSecond(QuantityValue)" />
             public ForceChangeRate KilonewtonsPerSecond
 #if NET7_0_OR_GREATER
-                => ForceChangeRate.FromKilonewtonsPerSecond(double.CreateChecked(value));
+                => ForceChangeRate.FromKilonewtonsPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => ForceChangeRate.FromKilonewtonsPerSecond(value.ToDouble(null));
+                => ForceChangeRate.FromKilonewtonsPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ForceChangeRate.FromKilopoundsForcePerMinute(double)" />
+            /// <inheritdoc cref="ForceChangeRate.FromKilopoundsForcePerMinute(QuantityValue)" />
             public ForceChangeRate KilopoundsForcePerMinute
 #if NET7_0_OR_GREATER
-                => ForceChangeRate.FromKilopoundsForcePerMinute(double.CreateChecked(value));
+                => ForceChangeRate.FromKilopoundsForcePerMinute(QuantityValue.CreateChecked(value));
 #else
-                => ForceChangeRate.FromKilopoundsForcePerMinute(value.ToDouble(null));
+                => ForceChangeRate.FromKilopoundsForcePerMinute(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ForceChangeRate.FromKilopoundsForcePerSecond(double)" />
+            /// <inheritdoc cref="ForceChangeRate.FromKilopoundsForcePerSecond(QuantityValue)" />
             public ForceChangeRate KilopoundsForcePerSecond
 #if NET7_0_OR_GREATER
-                => ForceChangeRate.FromKilopoundsForcePerSecond(double.CreateChecked(value));
+                => ForceChangeRate.FromKilopoundsForcePerSecond(QuantityValue.CreateChecked(value));
 #else
-                => ForceChangeRate.FromKilopoundsForcePerSecond(value.ToDouble(null));
+                => ForceChangeRate.FromKilopoundsForcePerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ForceChangeRate.FromMicronewtonsPerSecond(double)" />
+            /// <inheritdoc cref="ForceChangeRate.FromMicronewtonsPerSecond(QuantityValue)" />
             public ForceChangeRate MicronewtonsPerSecond
 #if NET7_0_OR_GREATER
-                => ForceChangeRate.FromMicronewtonsPerSecond(double.CreateChecked(value));
+                => ForceChangeRate.FromMicronewtonsPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => ForceChangeRate.FromMicronewtonsPerSecond(value.ToDouble(null));
+                => ForceChangeRate.FromMicronewtonsPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ForceChangeRate.FromMillinewtonsPerSecond(double)" />
+            /// <inheritdoc cref="ForceChangeRate.FromMillinewtonsPerSecond(QuantityValue)" />
             public ForceChangeRate MillinewtonsPerSecond
 #if NET7_0_OR_GREATER
-                => ForceChangeRate.FromMillinewtonsPerSecond(double.CreateChecked(value));
+                => ForceChangeRate.FromMillinewtonsPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => ForceChangeRate.FromMillinewtonsPerSecond(value.ToDouble(null));
+                => ForceChangeRate.FromMillinewtonsPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ForceChangeRate.FromNanonewtonsPerSecond(double)" />
+            /// <inheritdoc cref="ForceChangeRate.FromNanonewtonsPerSecond(QuantityValue)" />
             public ForceChangeRate NanonewtonsPerSecond
 #if NET7_0_OR_GREATER
-                => ForceChangeRate.FromNanonewtonsPerSecond(double.CreateChecked(value));
+                => ForceChangeRate.FromNanonewtonsPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => ForceChangeRate.FromNanonewtonsPerSecond(value.ToDouble(null));
+                => ForceChangeRate.FromNanonewtonsPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerMinute(double)" />
+            /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerMinute(QuantityValue)" />
             public ForceChangeRate NewtonsPerMinute
 #if NET7_0_OR_GREATER
-                => ForceChangeRate.FromNewtonsPerMinute(double.CreateChecked(value));
+                => ForceChangeRate.FromNewtonsPerMinute(QuantityValue.CreateChecked(value));
 #else
-                => ForceChangeRate.FromNewtonsPerMinute(value.ToDouble(null));
+                => ForceChangeRate.FromNewtonsPerMinute(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerSecond(double)" />
+            /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerSecond(QuantityValue)" />
             public ForceChangeRate NewtonsPerSecond
 #if NET7_0_OR_GREATER
-                => ForceChangeRate.FromNewtonsPerSecond(double.CreateChecked(value));
+                => ForceChangeRate.FromNewtonsPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => ForceChangeRate.FromNewtonsPerSecond(value.ToDouble(null));
+                => ForceChangeRate.FromNewtonsPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ForceChangeRate.FromPoundsForcePerMinute(double)" />
+            /// <inheritdoc cref="ForceChangeRate.FromPoundsForcePerMinute(QuantityValue)" />
             public ForceChangeRate PoundsForcePerMinute
 #if NET7_0_OR_GREATER
-                => ForceChangeRate.FromPoundsForcePerMinute(double.CreateChecked(value));
+                => ForceChangeRate.FromPoundsForcePerMinute(QuantityValue.CreateChecked(value));
 #else
-                => ForceChangeRate.FromPoundsForcePerMinute(value.ToDouble(null));
+                => ForceChangeRate.FromPoundsForcePerMinute(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ForceChangeRate.FromPoundsForcePerSecond(double)" />
+            /// <inheritdoc cref="ForceChangeRate.FromPoundsForcePerSecond(QuantityValue)" />
             public ForceChangeRate PoundsForcePerSecond
 #if NET7_0_OR_GREATER
-                => ForceChangeRate.FromPoundsForcePerSecond(double.CreateChecked(value));
+                => ForceChangeRate.FromPoundsForcePerSecond(QuantityValue.CreateChecked(value));
 #else
-                => ForceChangeRate.FromPoundsForcePerSecond(value.ToDouble(null));
+                => ForceChangeRate.FromPoundsForcePerSecond(value.ToQuantityValue());
 #endif
 
         }

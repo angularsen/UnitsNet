@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -35,11 +33,12 @@ namespace UnitsNet
     ///     A unit for expressing the integral of apparent power over time, equal to the product of 1 volt-ampere and 1 hour, or to 3600 joules.
     /// </summary>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct ElectricApparentEnergy :
         IArithmeticQuantity<ElectricApparentEnergy, ElectricApparentEnergyUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricApparentEnergy, ElectricApparentEnergy, double>,
+        IDivisionOperators<ElectricApparentEnergy, ElectricApparentEnergy, QuantityValue>,
         IComparisonOperators<ElectricApparentEnergy, ElectricApparentEnergy, bool>,
         IParsable<ElectricApparentEnergy>,
 #endif
@@ -51,13 +50,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly ElectricApparentEnergyUnit? _unit;
 
         /// <summary>
@@ -102,7 +101,7 @@ namespace UnitsNet
             }
 
             /// <summary>
-            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricApparentEnergy"/> is [T^-2][L^2][M].
+            ///     The <see cref="BaseDimensions" /> for <see cref="ElectricApparentEnergy"/> is T^-2L^2M.
             /// </summary>
             public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
@@ -117,17 +116,19 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricApparentEnergyUnit}"/> representing the default unit mappings for ElectricApparentEnergy.</returns>
             public static IEnumerable<UnitDefinition<ElectricApparentEnergyUnit>> GetDefaultMappings()
             {
-                yield return new (ElectricApparentEnergyUnit.KilovoltampereHour, "KilovoltampereHour", "KilovoltampereHours", BaseUnits.Undefined);
-                yield return new (ElectricApparentEnergyUnit.MegavoltampereHour, "MegavoltampereHour", "MegavoltampereHours", BaseUnits.Undefined);
+                yield return new (ElectricApparentEnergyUnit.KilovoltampereHour, "KilovoltampereHour", "KilovoltampereHours", BaseUnits.Undefined,
+                     new QuantityValue(1, 1000)             
+                );
+                yield return new (ElectricApparentEnergyUnit.MegavoltampereHour, "MegavoltampereHour", "MegavoltampereHours", BaseUnits.Undefined,
+                     new QuantityValue(1, 1000000)             
+                );
                 yield return new (ElectricApparentEnergyUnit.VoltampereHour, "VoltampereHour", "VoltampereHours", BaseUnits.Undefined);
             }
         }
 
         static ElectricApparentEnergy()
         {
-            Info = ElectricApparentEnergyInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(ElectricApparentEnergyInfo.CreateDefault);
         }
 
         /// <summary>
@@ -135,7 +136,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricApparentEnergy(double value, ElectricApparentEnergyUnit unit)
+        public ElectricApparentEnergy(QuantityValue value, ElectricApparentEnergyUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -149,7 +150,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricApparentEnergy(double value, UnitSystem unitSystem)
+        public ElectricApparentEnergy(QuantityValue value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -160,7 +161,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="ElectricApparentEnergy" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<ElectricApparentEnergy, ElectricApparentEnergyUnit> Info { get; }
@@ -189,10 +191,8 @@ namespace UnitsNet
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public ElectricApparentEnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -226,41 +226,23 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricApparentEnergyUnit.KilovoltampereHour"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricApparentEnergyUnit.KilovoltampereHour"/>
         /// </summary>
-        public double KilovoltampereHours => As(ElectricApparentEnergyUnit.KilovoltampereHour);
+        public QuantityValue KilovoltampereHours => this.As(ElectricApparentEnergyUnit.KilovoltampereHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricApparentEnergyUnit.MegavoltampereHour"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricApparentEnergyUnit.MegavoltampereHour"/>
         /// </summary>
-        public double MegavoltampereHours => As(ElectricApparentEnergyUnit.MegavoltampereHour);
+        public QuantityValue MegavoltampereHours => this.As(ElectricApparentEnergyUnit.MegavoltampereHour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricApparentEnergyUnit.VoltampereHour"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricApparentEnergyUnit.VoltampereHour"/>
         /// </summary>
-        public double VoltampereHours => As(ElectricApparentEnergyUnit.VoltampereHour);
+        public QuantityValue VoltampereHours => this.As(ElectricApparentEnergyUnit.VoltampereHour);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: ElectricApparentEnergyUnit -> BaseUnit
-            unitConverter.SetConversionFunction<ElectricApparentEnergy>(ElectricApparentEnergyUnit.KilovoltampereHour, ElectricApparentEnergyUnit.VoltampereHour, quantity => quantity.ToUnit(ElectricApparentEnergyUnit.VoltampereHour));
-            unitConverter.SetConversionFunction<ElectricApparentEnergy>(ElectricApparentEnergyUnit.MegavoltampereHour, ElectricApparentEnergyUnit.VoltampereHour, quantity => quantity.ToUnit(ElectricApparentEnergyUnit.VoltampereHour));
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<ElectricApparentEnergy>(ElectricApparentEnergyUnit.VoltampereHour, ElectricApparentEnergyUnit.VoltampereHour, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> ElectricApparentEnergyUnit
-            unitConverter.SetConversionFunction<ElectricApparentEnergy>(ElectricApparentEnergyUnit.VoltampereHour, ElectricApparentEnergyUnit.KilovoltampereHour, quantity => quantity.ToUnit(ElectricApparentEnergyUnit.KilovoltampereHour));
-            unitConverter.SetConversionFunction<ElectricApparentEnergy>(ElectricApparentEnergyUnit.VoltampereHour, ElectricApparentEnergyUnit.MegavoltampereHour, quantity => quantity.ToUnit(ElectricApparentEnergyUnit.MegavoltampereHour));
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -290,7 +272,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricApparentEnergy"/> from <see cref="ElectricApparentEnergyUnit.KilovoltampereHour"/>.
         /// </summary>
-        public static ElectricApparentEnergy FromKilovoltampereHours(double value)
+        public static ElectricApparentEnergy FromKilovoltampereHours(QuantityValue value)
         {
             return new ElectricApparentEnergy(value, ElectricApparentEnergyUnit.KilovoltampereHour);
         }
@@ -298,7 +280,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricApparentEnergy"/> from <see cref="ElectricApparentEnergyUnit.MegavoltampereHour"/>.
         /// </summary>
-        public static ElectricApparentEnergy FromMegavoltampereHours(double value)
+        public static ElectricApparentEnergy FromMegavoltampereHours(QuantityValue value)
         {
             return new ElectricApparentEnergy(value, ElectricApparentEnergyUnit.MegavoltampereHour);
         }
@@ -306,7 +288,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricApparentEnergy"/> from <see cref="ElectricApparentEnergyUnit.VoltampereHour"/>.
         /// </summary>
-        public static ElectricApparentEnergy FromVoltampereHours(double value)
+        public static ElectricApparentEnergy FromVoltampereHours(QuantityValue value)
         {
             return new ElectricApparentEnergy(value, ElectricApparentEnergyUnit.VoltampereHour);
         }
@@ -317,7 +299,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricApparentEnergy unit value.</returns>
-        public static ElectricApparentEnergy From(double value, ElectricApparentEnergyUnit fromUnit)
+        public static ElectricApparentEnergy From(QuantityValue value, ElectricApparentEnergyUnit fromUnit)
         {
             return new ElectricApparentEnergy(value, fromUnit);
         }
@@ -378,10 +360,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static ElectricApparentEnergy Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<ElectricApparentEnergy, ElectricApparentEnergyUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<ElectricApparentEnergy, ElectricApparentEnergyUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -409,11 +388,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out ElectricApparentEnergy result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<ElectricApparentEnergy, ElectricApparentEnergyUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<ElectricApparentEnergy, ElectricApparentEnergyUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -434,7 +409,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -445,7 +420,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.ElectricApparentEnergyUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.ElectricApparentEnergyUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out ElectricApparentEnergyUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -460,7 +435,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out ElectricApparentEnergyUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -479,35 +454,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="ElectricApparentEnergy"/> from adding two <see cref="ElectricApparentEnergy"/>.</summary>
         public static ElectricApparentEnergy operator +(ElectricApparentEnergy left, ElectricApparentEnergy right)
         {
-            return new ElectricApparentEnergy(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new ElectricApparentEnergy(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricApparentEnergy"/> from subtracting two <see cref="ElectricApparentEnergy"/>.</summary>
         public static ElectricApparentEnergy operator -(ElectricApparentEnergy left, ElectricApparentEnergy right)
         {
-            return new ElectricApparentEnergy(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new ElectricApparentEnergy(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricApparentEnergy"/> from multiplying value and <see cref="ElectricApparentEnergy"/>.</summary>
-        public static ElectricApparentEnergy operator *(double left, ElectricApparentEnergy right)
+        public static ElectricApparentEnergy operator *(QuantityValue left, ElectricApparentEnergy right)
         {
             return new ElectricApparentEnergy(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricApparentEnergy"/> from multiplying value and <see cref="ElectricApparentEnergy"/>.</summary>
-        public static ElectricApparentEnergy operator *(ElectricApparentEnergy left, double right)
+        public static ElectricApparentEnergy operator *(ElectricApparentEnergy left, QuantityValue right)
         {
             return new ElectricApparentEnergy(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricApparentEnergy"/> from dividing <see cref="ElectricApparentEnergy"/> by value.</summary>
-        public static ElectricApparentEnergy operator /(ElectricApparentEnergy left, double right)
+        public static ElectricApparentEnergy operator /(ElectricApparentEnergy left, QuantityValue right)
         {
             return new ElectricApparentEnergy(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricApparentEnergy"/> by <see cref="ElectricApparentEnergy"/>.</summary>
-        public static double operator /(ElectricApparentEnergy left, ElectricApparentEnergy right)
+        public static QuantityValue operator /(ElectricApparentEnergy left, ElectricApparentEnergy right)
         {
             return left.VoltampereHours / right.VoltampereHours;
         }
@@ -519,65 +494,55 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(ElectricApparentEnergy left, ElectricApparentEnergy right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(ElectricApparentEnergy left, ElectricApparentEnergy right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(ElectricApparentEnergy left, ElectricApparentEnergy right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(ElectricApparentEnergy left, ElectricApparentEnergy right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="ElectricApparentEnergy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ElectricApparentEnergy other, ElectricApparentEnergy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ElectricApparentEnergy"/> quantities.</summary>
         public static bool operator ==(ElectricApparentEnergy left, ElectricApparentEnergy right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="ElectricApparentEnergy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(ElectricApparentEnergy other, ElectricApparentEnergy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="ElectricApparentEnergy"/> quantities.</summary>
         public static bool operator !=(ElectricApparentEnergy left, ElectricApparentEnergy right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="ElectricApparentEnergy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(ElectricApparentEnergy other, ElectricApparentEnergy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ElectricApparentEnergy"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is ElectricApparentEnergy otherQuantity))
+            if (obj is not ElectricApparentEnergy otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="ElectricApparentEnergy"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(ElectricApparentEnergy other, ElectricApparentEnergy tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="ElectricApparentEnergy"/> quantities.</summary>
         public bool Equals(ElectricApparentEnergy other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>
         ///     Returns the hash code for this instance.
@@ -585,31 +550,26 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricApparentEnergy.</returns>
         public override int GetHashCode()
         {
-            return Comparison.GetHashCode(Unit, Value);
+            return Comparison.GetHashCode(typeof(ElectricApparentEnergy), this.As(BaseUnit));
         }
-
-        /// <summary>Compares the current <see cref="ElectricApparentEnergy"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        
+        /// <inheritdoc  cref="CompareTo(ElectricApparentEnergy)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is ElectricApparentEnergy otherQuantity)) throw new ArgumentException("Expected type ElectricApparentEnergy.", nameof(obj));
+            if (obj is not ElectricApparentEnergy otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<ElectricApparentEnergy>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="ElectricApparentEnergy"/> with another <see cref="ElectricApparentEnergy"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="ElectricApparentEnergy"/> with another <see cref="ElectricApparentEnergy"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -621,132 +581,8 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(ElectricApparentEnergy other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
+            return _value.CompareTo(other.As(this.Unit));
         }
-
-        #endregion
-
-        #region Conversion Methods
-
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(ElectricApparentEnergyUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
-
-            return ToUnit(unit).Value;
-        }
-
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<ElectricApparentEnergyUnit>());
-        }
-
-        /// <summary>
-        ///     Converts this ElectricApparentEnergy to another ElectricApparentEnergy with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A ElectricApparentEnergy with the specified unit.</returns>
-        public ElectricApparentEnergy ToUnit(ElectricApparentEnergyUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
-
-        /// <summary>
-        ///     Converts this <see cref="ElectricApparentEnergy"/> to another <see cref="ElectricApparentEnergy"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A ElectricApparentEnergy with the specified unit.</returns>
-        public ElectricApparentEnergy ToUnit(ElectricApparentEnergyUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(ElectricApparentEnergy), Unit, typeof(ElectricApparentEnergy), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (ElectricApparentEnergy)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="ElectricApparentEnergy"/> to another <see cref="ElectricApparentEnergy"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="ElectricApparentEnergy"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(ElectricApparentEnergyUnit unit, [NotNullWhen(true)] out ElectricApparentEnergy? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            ElectricApparentEnergy? convertedOrNull = (Unit, unit) switch
-            {
-                // ElectricApparentEnergyUnit -> BaseUnit
-                (ElectricApparentEnergyUnit.KilovoltampereHour, ElectricApparentEnergyUnit.VoltampereHour) => new ElectricApparentEnergy((_value) * 1e3d, ElectricApparentEnergyUnit.VoltampereHour),
-                (ElectricApparentEnergyUnit.MegavoltampereHour, ElectricApparentEnergyUnit.VoltampereHour) => new ElectricApparentEnergy((_value) * 1e6d, ElectricApparentEnergyUnit.VoltampereHour),
-
-                // BaseUnit -> ElectricApparentEnergyUnit
-                (ElectricApparentEnergyUnit.VoltampereHour, ElectricApparentEnergyUnit.KilovoltampereHour) => new ElectricApparentEnergy((_value) / 1e3d, ElectricApparentEnergyUnit.KilovoltampereHour),
-                (ElectricApparentEnergyUnit.VoltampereHour, ElectricApparentEnergyUnit.MegavoltampereHour) => new ElectricApparentEnergy((_value) / 1e6d, ElectricApparentEnergyUnit.MegavoltampereHour),
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not ElectricApparentEnergyUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricApparentEnergyUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is ElectricApparentEnergyUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(ElectricApparentEnergyUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<ElectricApparentEnergyUnit> IQuantity<ElectricApparentEnergyUnit>.ToUnit(ElectricApparentEnergyUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
@@ -761,7 +597,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

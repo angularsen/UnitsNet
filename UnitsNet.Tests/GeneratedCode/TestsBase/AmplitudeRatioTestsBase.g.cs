@@ -117,6 +117,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AmplitudeRatioInfo_CreateWithCustomUnitInfos()
+        {
+            AmplitudeRatioUnit[] expectedUnits = [AmplitudeRatioUnit.DecibelVolt];
+
+            AmplitudeRatio.AmplitudeRatioInfo quantityInfo = AmplitudeRatio.AmplitudeRatioInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("AmplitudeRatio", quantityInfo.Name);
+            Assert.Equal(AmplitudeRatio.Zero, quantityInfo.Zero);
+            Assert.Equal(AmplitudeRatio.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void DecibelVoltToAmplitudeRatioUnits()
         {
             AmplitudeRatio decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
@@ -186,12 +200,31 @@ namespace UnitsNet.Tests
         [Fact]
         public void ToUnit_UnitSystem_ReturnsValueInDimensionlessUnit()
         {
-            var quantity = new AmplitudeRatio(value: 1, unit: AmplitudeRatioUnit.DecibelVolt);
+            Assert.Multiple(() =>
+            {
+                var quantity = new AmplitudeRatio(value: 1, unit: AmplitudeRatioUnit.DecibelVolt);
 
-            AmplitudeRatio convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+                AmplitudeRatio convertedQuantity = quantity.ToUnit(UnitSystem.SI);
 
-            Assert.Equal(AmplitudeRatioUnit.DecibelVolt, convertedQuantity.Unit);
-            Assert.Equal(quantity.Value, convertedQuantity.Value);
+                Assert.Equal(AmplitudeRatioUnit.DecibelVolt, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<AmplitudeRatioUnit> quantity = new AmplitudeRatio(value: 1, unit: AmplitudeRatioUnit.DecibelVolt);
+
+                IQuantity<AmplitudeRatioUnit> convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(AmplitudeRatioUnit.DecibelVolt, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantity = new AmplitudeRatio(value: 1, unit: AmplitudeRatioUnit.DecibelVolt);
+
+                IQuantity convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(AmplitudeRatioUnit.DecibelVolt, convertedQuantity.Unit);
+                Assert.Equal(quantity.Value, convertedQuantity.Value);
+            });
         }
 
         [Fact]
@@ -218,7 +251,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 dBmV", AmplitudeRatioUnit.DecibelMillivolt, 4.2)]
         [InlineData("en-US", "4.2 dBu", AmplitudeRatioUnit.DecibelUnloaded, 4.2)]
         [InlineData("en-US", "4.2 dBV", AmplitudeRatioUnit.DecibelVolt, 4.2)]
-        public void Parse(string culture, string quantityString, AmplitudeRatioUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, AmplitudeRatioUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = AmplitudeRatio.Parse(quantityString);
@@ -231,7 +264,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 dBmV", AmplitudeRatioUnit.DecibelMillivolt, 4.2)]
         [InlineData("en-US", "4.2 dBu", AmplitudeRatioUnit.DecibelUnloaded, 4.2)]
         [InlineData("en-US", "4.2 dBV", AmplitudeRatioUnit.DecibelVolt, 4.2)]
-        public void TryParse(string culture, string quantityString, AmplitudeRatioUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, AmplitudeRatioUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(AmplitudeRatio.TryParse(quantityString, out AmplitudeRatio parsed));
@@ -391,6 +424,7 @@ namespace UnitsNet.Tests
                 var quantity = AmplitudeRatio.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -414,35 +448,37 @@ namespace UnitsNet.Tests
                 IQuantity<AmplitudeRatioUnit> quantityToConvert = quantity;
                 IQuantity<AmplitudeRatioUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            AmplitudeRatio decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
-            AssertEx.EqualTolerance(1, AmplitudeRatio.FromDecibelMicrovolts(decibelvolt.DecibelMicrovolts).DecibelVolts, DecibelMicrovoltsTolerance);
-            AssertEx.EqualTolerance(1, AmplitudeRatio.FromDecibelMillivolts(decibelvolt.DecibelMillivolts).DecibelVolts, DecibelMillivoltsTolerance);
-            AssertEx.EqualTolerance(1, AmplitudeRatio.FromDecibelsUnloaded(decibelvolt.DecibelsUnloaded).DecibelVolts, DecibelsUnloadedTolerance);
-            AssertEx.EqualTolerance(1, AmplitudeRatio.FromDecibelVolts(decibelvolt.DecibelVolts).DecibelVolts, DecibelVoltsTolerance);
+            AmplitudeRatio decibelvolt = AmplitudeRatio.FromDecibelVolts(3);
+            Assert.Equal(3, AmplitudeRatio.FromDecibelMicrovolts(decibelvolt.DecibelMicrovolts).DecibelVolts);
+            Assert.Equal(3, AmplitudeRatio.FromDecibelMillivolts(decibelvolt.DecibelMillivolts).DecibelVolts);
+            Assert.Equal(3, AmplitudeRatio.FromDecibelsUnloaded(decibelvolt.DecibelsUnloaded).DecibelVolts);
+            Assert.Equal(3, AmplitudeRatio.FromDecibelVolts(decibelvolt.DecibelVolts).DecibelVolts);
         }
 
         [Fact]
         public void LogarithmicArithmeticOperators()
         {
             AmplitudeRatio v = AmplitudeRatio.FromDecibelVolts(40);
-            AssertEx.EqualTolerance(-40, -v.DecibelVolts, DecibelVoltsTolerance);
+            Assert.Equal(-40, -v.DecibelVolts);
             AssertLogarithmicAddition();
             AssertLogarithmicSubtraction();
-            AssertEx.EqualTolerance(50, (v*10).DecibelVolts, DecibelVoltsTolerance);
-            AssertEx.EqualTolerance(50, (10*v).DecibelVolts, DecibelVoltsTolerance);
-            AssertEx.EqualTolerance(35, (v/5).DecibelVolts, DecibelVoltsTolerance);
-            AssertEx.EqualTolerance(35, v/AmplitudeRatio.FromDecibelVolts(5), DecibelVoltsTolerance);
+            Assert.Equal(50, (v * 10).DecibelVolts);
+            Assert.Equal(50, (10 * v).DecibelVolts);
+            Assert.Equal(35, (v / 5).DecibelVolts);
+            Assert.Equal(35, v / AmplitudeRatio.FromDecibelVolts(5));
         }
 
         protected abstract void AssertLogarithmicAddition();
@@ -492,8 +528,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, AmplitudeRatioUnit.DecibelVolt, 1, AmplitudeRatioUnit.DecibelVolt, true)]  // Same value and unit.
         [InlineData(1, AmplitudeRatioUnit.DecibelVolt, 2, AmplitudeRatioUnit.DecibelVolt, false)] // Different value.
-        [InlineData(2, AmplitudeRatioUnit.DecibelVolt, 1, AmplitudeRatioUnit.DecibelMicrovolt, false)] // Different value and unit.
-        [InlineData(1, AmplitudeRatioUnit.DecibelVolt, 1, AmplitudeRatioUnit.DecibelMicrovolt, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, AmplitudeRatioUnit unitA, double valueB, AmplitudeRatioUnit unitB, bool expectEqual)
         {
             var a = new AmplitudeRatio(valueA, unitA);
@@ -553,8 +587,8 @@ namespace UnitsNet.Tests
             var quantity = AmplitudeRatio.FromDecibelVolts(firstValue);
             var otherQuantity = AmplitudeRatio.FromDecibelVolts(secondValue);
             AmplitudeRatio maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, AmplitudeRatio.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, largerTolerance));
@@ -575,7 +609,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<AmplitudeRatioUnit>();
+            var units = EnumHelper.GetValues<AmplitudeRatioUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -586,6 +620,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(AmplitudeRatio.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(AmplitudeRatio.Info.Units, AmplitudeRatio.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, AmplitudeRatio.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -656,7 +702,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = AmplitudeRatio.FromDecibelVolts(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(AmplitudeRatio), quantity.As(AmplitudeRatio.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

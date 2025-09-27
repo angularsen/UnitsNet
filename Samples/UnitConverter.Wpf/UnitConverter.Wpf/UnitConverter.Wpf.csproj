@@ -22,8 +22,14 @@
   <ItemGroup>
     <PackageReference Include="MahApps.Metro" />
   </ItemGroup>
+  
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' != 'Release'">
+    <!-- <PackageReference Include="UnitsNet" VersionOverride="5.75.0" /> -->
+    <PackageReference Include="UnitsNet" VersionOverride="6.0.0-pre019" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Release'">
     <PackageReference Include="UnitsNet" />
   </ItemGroup>
 

@@ -53,16 +53,16 @@ namespace UnitsNet.NumberExtensions.NumberTo{_quantityName}
                     continue;
 
                 Writer.WL(3, $@"
-/// <inheritdoc cref=""{_quantityName}.From{unit.PluralName}(double)"" />");
+/// <inheritdoc cref=""{_quantityName}.From{unit.PluralName}(QuantityValue)"" />");
 
                 // Include obsolete text from the quantity per extension method, to make it visible when the class is not explicitly referenced in code.
                 Writer.WLIfText(3, GetObsoleteAttributeOrNull(unit.ObsoleteText ?? _quantity.ObsoleteText));
 
                 Writer.WL(3, $@"public {_quantityName} {unit.PluralName}
 #if NET7_0_OR_GREATER
-                => {_quantityName}.From{unit.PluralName}(double.CreateChecked(value));
+                => {_quantityName}.From{unit.PluralName}(QuantityValue.CreateChecked(value));
 #else
-                => {_quantityName}.From{unit.PluralName}(value.ToDouble(null));
+                => {_quantityName}.From{unit.PluralName}(value.ToQuantityValue());
 #endif
 ");
             }

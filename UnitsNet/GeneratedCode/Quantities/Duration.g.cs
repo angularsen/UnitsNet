@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -35,11 +33,12 @@ namespace UnitsNet
     ///     Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them.
     /// </summary>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Duration :
         IArithmeticQuantity<Duration, DurationUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Duration, Duration, double>,
+        IDivisionOperators<Duration, Duration, QuantityValue>,
         IMultiplyOperators<Duration, Jerk, Acceleration>,
         IMultiplyOperators<Duration, MolarFlow, AmountOfSubstance>,
         IMultiplyOperators<Duration, RotationalSpeed, Angle>,
@@ -66,13 +65,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly DurationUnit? _unit;
 
         /// <summary>
@@ -117,7 +116,7 @@ namespace UnitsNet
             }
 
             /// <summary>
-            ///     The <see cref="BaseDimensions" /> for <see cref="Duration"/> is [T].
+            ///     The <see cref="BaseDimensions" /> for <see cref="Duration"/> is T.
             /// </summary>
             public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(0, 0, 1, 0, 0, 0, 0);
 
@@ -132,27 +131,49 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{DurationUnit}"/> representing the default unit mappings for Duration.</returns>
             public static IEnumerable<UnitDefinition<DurationUnit>> GetDefaultMappings()
             {
-                yield return new (DurationUnit.Day, "Day", "Days", new BaseUnits(time: DurationUnit.Day));
-                yield return new (DurationUnit.Hour, "Hour", "Hours", new BaseUnits(time: DurationUnit.Hour));
-                yield return new (DurationUnit.JulianYear, "JulianYear", "JulianYears", new BaseUnits(time: DurationUnit.JulianYear));
-                yield return new (DurationUnit.Microsecond, "Microsecond", "Microseconds", new BaseUnits(time: DurationUnit.Microsecond));
-                yield return new (DurationUnit.Millisecond, "Millisecond", "Milliseconds", new BaseUnits(time: DurationUnit.Millisecond));
-                yield return new (DurationUnit.Minute, "Minute", "Minutes", new BaseUnits(time: DurationUnit.Minute));
-                yield return new (DurationUnit.Month30, "Month30", "Months30", new BaseUnits(time: DurationUnit.Month30));
-                yield return new (DurationUnit.Nanosecond, "Nanosecond", "Nanoseconds", new BaseUnits(time: DurationUnit.Nanosecond));
-                yield return new (DurationUnit.Picosecond, "Picosecond", "Picoseconds", new BaseUnits(time: DurationUnit.Picosecond));
+                yield return new (DurationUnit.Day, "Day", "Days", new BaseUnits(time: DurationUnit.Day),
+                     new QuantityValue(1, 86400)             
+                );
+                yield return new (DurationUnit.Hour, "Hour", "Hours", new BaseUnits(time: DurationUnit.Hour),
+                     new QuantityValue(1, 3600)             
+                );
+                yield return new (DurationUnit.JulianYear, "JulianYear", "JulianYears", new BaseUnits(time: DurationUnit.JulianYear),
+                     new QuantityValue(1, 31557600)             
+                );
+                yield return new (DurationUnit.Microsecond, "Microsecond", "Microseconds", new BaseUnits(time: DurationUnit.Microsecond),
+                     1000000             
+                );
+                yield return new (DurationUnit.Millisecond, "Millisecond", "Milliseconds", new BaseUnits(time: DurationUnit.Millisecond),
+                     1000             
+                );
+                yield return new (DurationUnit.Minute, "Minute", "Minutes", new BaseUnits(time: DurationUnit.Minute),
+                     new QuantityValue(1, 60)             
+                );
+                yield return new (DurationUnit.Month30, "Month30", "Months30", new BaseUnits(time: DurationUnit.Month30),
+                     new QuantityValue(1, 2592000)             
+                );
+                yield return new (DurationUnit.Nanosecond, "Nanosecond", "Nanoseconds", new BaseUnits(time: DurationUnit.Nanosecond),
+                     1000000000             
+                );
+                yield return new (DurationUnit.Picosecond, "Picosecond", "Picoseconds", new BaseUnits(time: DurationUnit.Picosecond),
+                     1000000000000             
+                );
                 yield return new (DurationUnit.Second, "Second", "Seconds", new BaseUnits(time: DurationUnit.Second));
-                yield return new (DurationUnit.Sol, "Sol", "Sols", new BaseUnits(time: DurationUnit.Sol));
-                yield return new (DurationUnit.Week, "Week", "Weeks", new BaseUnits(time: DurationUnit.Week));
-                yield return new (DurationUnit.Year365, "Year365", "Years365", new BaseUnits(time: DurationUnit.Year365));
+                yield return new (DurationUnit.Sol, "Sol", "Sols", new BaseUnits(time: DurationUnit.Sol),
+                     new QuantityValue(250, 22193811)             
+                );
+                yield return new (DurationUnit.Week, "Week", "Weeks", new BaseUnits(time: DurationUnit.Week),
+                     new QuantityValue(1, 604800)             
+                );
+                yield return new (DurationUnit.Year365, "Year365", "Years365", new BaseUnits(time: DurationUnit.Year365),
+                     new QuantityValue(1, 31536000)             
+                );
             }
         }
 
         static Duration()
         {
-            Info = DurationInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(DurationInfo.CreateDefault);
         }
 
         /// <summary>
@@ -160,7 +181,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Duration(double value, DurationUnit unit)
+        public Duration(QuantityValue value, DurationUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -174,7 +195,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Duration(double value, UnitSystem unitSystem)
+        public Duration(QuantityValue value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -185,7 +206,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="Duration" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<Duration, DurationUnit> Info { get; }
@@ -214,10 +236,8 @@ namespace UnitsNet
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public DurationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -251,111 +271,73 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Day"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Day"/>
         /// </summary>
-        public double Days => As(DurationUnit.Day);
+        public QuantityValue Days => this.As(DurationUnit.Day);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Hour"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Hour"/>
         /// </summary>
-        public double Hours => As(DurationUnit.Hour);
+        public QuantityValue Hours => this.As(DurationUnit.Hour);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.JulianYear"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.JulianYear"/>
         /// </summary>
-        public double JulianYears => As(DurationUnit.JulianYear);
+        public QuantityValue JulianYears => this.As(DurationUnit.JulianYear);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Microsecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Microsecond"/>
         /// </summary>
-        public double Microseconds => As(DurationUnit.Microsecond);
+        public QuantityValue Microseconds => this.As(DurationUnit.Microsecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Millisecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Millisecond"/>
         /// </summary>
-        public double Milliseconds => As(DurationUnit.Millisecond);
+        public QuantityValue Milliseconds => this.As(DurationUnit.Millisecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Minute"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Minute"/>
         /// </summary>
-        public double Minutes => As(DurationUnit.Minute);
+        public QuantityValue Minutes => this.As(DurationUnit.Minute);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Month30"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Month30"/>
         /// </summary>
-        public double Months30 => As(DurationUnit.Month30);
+        public QuantityValue Months30 => this.As(DurationUnit.Month30);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Nanosecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Nanosecond"/>
         /// </summary>
-        public double Nanoseconds => As(DurationUnit.Nanosecond);
+        public QuantityValue Nanoseconds => this.As(DurationUnit.Nanosecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Picosecond"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Picosecond"/>
         /// </summary>
-        public double Picoseconds => As(DurationUnit.Picosecond);
+        public QuantityValue Picoseconds => this.As(DurationUnit.Picosecond);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Second"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Second"/>
         /// </summary>
-        public double Seconds => As(DurationUnit.Second);
+        public QuantityValue Seconds => this.As(DurationUnit.Second);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Sol"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Sol"/>
         /// </summary>
-        public double Sols => As(DurationUnit.Sol);
+        public QuantityValue Sols => this.As(DurationUnit.Sol);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Week"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Week"/>
         /// </summary>
-        public double Weeks => As(DurationUnit.Week);
+        public QuantityValue Weeks => this.As(DurationUnit.Week);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Year365"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Year365"/>
         /// </summary>
-        public double Years365 => As(DurationUnit.Year365);
+        public QuantityValue Years365 => this.As(DurationUnit.Year365);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: DurationUnit -> BaseUnit
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Day, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Hour, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.JulianYear, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Microsecond, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Millisecond, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Minute, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Month30, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Nanosecond, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Picosecond, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Sol, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Week, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Year365, DurationUnit.Second, quantity => quantity.ToUnit(DurationUnit.Second));
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Second, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> DurationUnit
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Day, quantity => quantity.ToUnit(DurationUnit.Day));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Hour, quantity => quantity.ToUnit(DurationUnit.Hour));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.JulianYear, quantity => quantity.ToUnit(DurationUnit.JulianYear));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Microsecond, quantity => quantity.ToUnit(DurationUnit.Microsecond));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Millisecond, quantity => quantity.ToUnit(DurationUnit.Millisecond));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Minute, quantity => quantity.ToUnit(DurationUnit.Minute));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Month30, quantity => quantity.ToUnit(DurationUnit.Month30));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Nanosecond, quantity => quantity.ToUnit(DurationUnit.Nanosecond));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Picosecond, quantity => quantity.ToUnit(DurationUnit.Picosecond));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Sol, quantity => quantity.ToUnit(DurationUnit.Sol));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Week, quantity => quantity.ToUnit(DurationUnit.Week));
-            unitConverter.SetConversionFunction<Duration>(DurationUnit.Second, DurationUnit.Year365, quantity => quantity.ToUnit(DurationUnit.Year365));
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -385,7 +367,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Day"/>.
         /// </summary>
-        public static Duration FromDays(double value)
+        public static Duration FromDays(QuantityValue value)
         {
             return new Duration(value, DurationUnit.Day);
         }
@@ -393,7 +375,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Hour"/>.
         /// </summary>
-        public static Duration FromHours(double value)
+        public static Duration FromHours(QuantityValue value)
         {
             return new Duration(value, DurationUnit.Hour);
         }
@@ -401,7 +383,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.JulianYear"/>.
         /// </summary>
-        public static Duration FromJulianYears(double value)
+        public static Duration FromJulianYears(QuantityValue value)
         {
             return new Duration(value, DurationUnit.JulianYear);
         }
@@ -409,7 +391,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Microsecond"/>.
         /// </summary>
-        public static Duration FromMicroseconds(double value)
+        public static Duration FromMicroseconds(QuantityValue value)
         {
             return new Duration(value, DurationUnit.Microsecond);
         }
@@ -417,7 +399,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Millisecond"/>.
         /// </summary>
-        public static Duration FromMilliseconds(double value)
+        public static Duration FromMilliseconds(QuantityValue value)
         {
             return new Duration(value, DurationUnit.Millisecond);
         }
@@ -425,7 +407,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Minute"/>.
         /// </summary>
-        public static Duration FromMinutes(double value)
+        public static Duration FromMinutes(QuantityValue value)
         {
             return new Duration(value, DurationUnit.Minute);
         }
@@ -433,7 +415,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Month30"/>.
         /// </summary>
-        public static Duration FromMonths30(double value)
+        public static Duration FromMonths30(QuantityValue value)
         {
             return new Duration(value, DurationUnit.Month30);
         }
@@ -441,7 +423,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Nanosecond"/>.
         /// </summary>
-        public static Duration FromNanoseconds(double value)
+        public static Duration FromNanoseconds(QuantityValue value)
         {
             return new Duration(value, DurationUnit.Nanosecond);
         }
@@ -449,7 +431,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Picosecond"/>.
         /// </summary>
-        public static Duration FromPicoseconds(double value)
+        public static Duration FromPicoseconds(QuantityValue value)
         {
             return new Duration(value, DurationUnit.Picosecond);
         }
@@ -457,7 +439,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Second"/>.
         /// </summary>
-        public static Duration FromSeconds(double value)
+        public static Duration FromSeconds(QuantityValue value)
         {
             return new Duration(value, DurationUnit.Second);
         }
@@ -465,7 +447,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Sol"/>.
         /// </summary>
-        public static Duration FromSols(double value)
+        public static Duration FromSols(QuantityValue value)
         {
             return new Duration(value, DurationUnit.Sol);
         }
@@ -473,7 +455,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Week"/>.
         /// </summary>
-        public static Duration FromWeeks(double value)
+        public static Duration FromWeeks(QuantityValue value)
         {
             return new Duration(value, DurationUnit.Week);
         }
@@ -481,7 +463,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Year365"/>.
         /// </summary>
-        public static Duration FromYears365(double value)
+        public static Duration FromYears365(QuantityValue value)
         {
             return new Duration(value, DurationUnit.Year365);
         }
@@ -492,7 +474,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Duration unit value.</returns>
-        public static Duration From(double value, DurationUnit fromUnit)
+        public static Duration From(QuantityValue value, DurationUnit fromUnit)
         {
             return new Duration(value, fromUnit);
         }
@@ -553,10 +535,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static Duration Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<Duration, DurationUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<Duration, DurationUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -584,11 +563,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out Duration result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<Duration, DurationUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<Duration, DurationUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -609,7 +584,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -620,7 +595,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.DurationUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.DurationUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out DurationUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -635,7 +610,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out DurationUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -654,35 +629,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="Duration"/> from adding two <see cref="Duration"/>.</summary>
         public static Duration operator +(Duration left, Duration right)
         {
-            return new Duration(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new Duration(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="Duration"/> from subtracting two <see cref="Duration"/>.</summary>
         public static Duration operator -(Duration left, Duration right)
         {
-            return new Duration(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new Duration(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="Duration"/> from multiplying value and <see cref="Duration"/>.</summary>
-        public static Duration operator *(double left, Duration right)
+        public static Duration operator *(QuantityValue left, Duration right)
         {
             return new Duration(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Duration"/> from multiplying value and <see cref="Duration"/>.</summary>
-        public static Duration operator *(Duration left, double right)
+        public static Duration operator *(Duration left, QuantityValue right)
         {
             return new Duration(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Duration"/> from dividing <see cref="Duration"/> by value.</summary>
-        public static Duration operator /(Duration left, double right)
+        public static Duration operator /(Duration left, QuantityValue right)
         {
             return new Duration(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Duration"/> by <see cref="Duration"/>.</summary>
-        public static double operator /(Duration left, Duration right)
+        public static QuantityValue operator /(Duration left, Duration right)
         {
             return left.Seconds / right.Seconds;
         }
@@ -788,65 +763,55 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(Duration left, Duration right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(Duration left, Duration right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(Duration left, Duration right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(Duration left, Duration right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="Duration"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Duration other, Duration tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Duration"/> quantities.</summary>
         public static bool operator ==(Duration left, Duration right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="Duration"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(Duration other, Duration tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="Duration"/> quantities.</summary>
         public static bool operator !=(Duration left, Duration right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Duration"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Duration other, Duration tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Duration"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is Duration otherQuantity))
+            if (obj is not Duration otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Duration"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(Duration other, Duration tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="Duration"/> quantities.</summary>
         public bool Equals(Duration other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>
         ///     Returns the hash code for this instance.
@@ -854,31 +819,26 @@ namespace UnitsNet
         /// <returns>A hash code for the current Duration.</returns>
         public override int GetHashCode()
         {
-            return Comparison.GetHashCode(Unit, Value);
+            return Comparison.GetHashCode(typeof(Duration), this.As(BaseUnit));
         }
-
-        /// <summary>Compares the current <see cref="Duration"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        
+        /// <inheritdoc  cref="CompareTo(Duration)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is Duration otherQuantity)) throw new ArgumentException("Expected type Duration.", nameof(obj));
+            if (obj is not Duration otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<Duration>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="Duration"/> with another <see cref="Duration"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="Duration"/> with another <see cref="Duration"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -890,152 +850,8 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(Duration other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
+            return _value.CompareTo(other.As(this.Unit));
         }
-
-        #endregion
-
-        #region Conversion Methods
-
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(DurationUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
-
-            return ToUnit(unit).Value;
-        }
-
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<DurationUnit>());
-        }
-
-        /// <summary>
-        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Duration ToUnit(DurationUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
-
-        /// <summary>
-        ///     Converts this <see cref="Duration"/> to another <see cref="Duration"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A Duration with the specified unit.</returns>
-        public Duration ToUnit(DurationUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(Duration), Unit, typeof(Duration), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (Duration)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="Duration"/> to another <see cref="Duration"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="Duration"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(DurationUnit unit, [NotNullWhen(true)] out Duration? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            Duration? convertedOrNull = (Unit, unit) switch
-            {
-                // DurationUnit -> BaseUnit
-                (DurationUnit.Day, DurationUnit.Second) => new Duration(_value * 24 * 3600, DurationUnit.Second),
-                (DurationUnit.Hour, DurationUnit.Second) => new Duration(_value * 3600, DurationUnit.Second),
-                (DurationUnit.JulianYear, DurationUnit.Second) => new Duration(_value * 365.25 * 24 * 3600, DurationUnit.Second),
-                (DurationUnit.Microsecond, DurationUnit.Second) => new Duration((_value) * 1e-6d, DurationUnit.Second),
-                (DurationUnit.Millisecond, DurationUnit.Second) => new Duration((_value) * 1e-3d, DurationUnit.Second),
-                (DurationUnit.Minute, DurationUnit.Second) => new Duration(_value * 60, DurationUnit.Second),
-                (DurationUnit.Month30, DurationUnit.Second) => new Duration(_value * 30 * 24 * 3600, DurationUnit.Second),
-                (DurationUnit.Nanosecond, DurationUnit.Second) => new Duration((_value) * 1e-9d, DurationUnit.Second),
-                (DurationUnit.Picosecond, DurationUnit.Second) => new Duration((_value) * 1e-12d, DurationUnit.Second),
-                (DurationUnit.Sol, DurationUnit.Second) => new Duration(_value * 88775.244, DurationUnit.Second),
-                (DurationUnit.Week, DurationUnit.Second) => new Duration(_value * 7 * 24 * 3600, DurationUnit.Second),
-                (DurationUnit.Year365, DurationUnit.Second) => new Duration(_value * 365 * 24 * 3600, DurationUnit.Second),
-
-                // BaseUnit -> DurationUnit
-                (DurationUnit.Second, DurationUnit.Day) => new Duration(_value / (24 * 3600), DurationUnit.Day),
-                (DurationUnit.Second, DurationUnit.Hour) => new Duration(_value / 3600, DurationUnit.Hour),
-                (DurationUnit.Second, DurationUnit.JulianYear) => new Duration(_value / (365.25 * 24 * 3600), DurationUnit.JulianYear),
-                (DurationUnit.Second, DurationUnit.Microsecond) => new Duration((_value) / 1e-6d, DurationUnit.Microsecond),
-                (DurationUnit.Second, DurationUnit.Millisecond) => new Duration((_value) / 1e-3d, DurationUnit.Millisecond),
-                (DurationUnit.Second, DurationUnit.Minute) => new Duration(_value / 60, DurationUnit.Minute),
-                (DurationUnit.Second, DurationUnit.Month30) => new Duration(_value / (30 * 24 * 3600), DurationUnit.Month30),
-                (DurationUnit.Second, DurationUnit.Nanosecond) => new Duration((_value) / 1e-9d, DurationUnit.Nanosecond),
-                (DurationUnit.Second, DurationUnit.Picosecond) => new Duration((_value) / 1e-12d, DurationUnit.Picosecond),
-                (DurationUnit.Second, DurationUnit.Sol) => new Duration(_value / 88775.244, DurationUnit.Sol),
-                (DurationUnit.Second, DurationUnit.Week) => new Duration(_value / (7 * 24 * 3600), DurationUnit.Week),
-                (DurationUnit.Second, DurationUnit.Year365) => new Duration(_value / (365 * 24 * 3600), DurationUnit.Year365),
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not DurationUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DurationUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is DurationUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(DurationUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<DurationUnit> IQuantity<DurationUnit>.ToUnit(DurationUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
@@ -1050,7 +866,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

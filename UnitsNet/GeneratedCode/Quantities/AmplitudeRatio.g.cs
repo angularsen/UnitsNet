@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -35,11 +33,12 @@ namespace UnitsNet
     ///     The strength of a signal expressed in decibels (dB) relative to one volt RMS.
     /// </summary>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct AmplitudeRatio :
         ILogarithmicQuantity<AmplitudeRatio, AmplitudeRatioUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<AmplitudeRatio, AmplitudeRatio, double>,
+        IDivisionOperators<AmplitudeRatio, AmplitudeRatio, QuantityValue>,
         IComparisonOperators<AmplitudeRatio, AmplitudeRatio, bool>,
         IParsable<AmplitudeRatio>,
 #endif
@@ -51,13 +50,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2)]
+        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
         private readonly AmplitudeRatioUnit? _unit;
 
         /// <summary>
@@ -117,18 +116,25 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{AmplitudeRatioUnit}"/> representing the default unit mappings for AmplitudeRatio.</returns>
             public static IEnumerable<UnitDefinition<AmplitudeRatioUnit>> GetDefaultMappings()
             {
-                yield return new (AmplitudeRatioUnit.DecibelMicrovolt, "DecibelMicrovolt", "DecibelMicrovolts", BaseUnits.Undefined);
-                yield return new (AmplitudeRatioUnit.DecibelMillivolt, "DecibelMillivolt", "DecibelMillivolts", BaseUnits.Undefined);
-                yield return new (AmplitudeRatioUnit.DecibelUnloaded, "DecibelUnloaded", "DecibelsUnloaded", BaseUnits.Undefined);
+                yield return new (AmplitudeRatioUnit.DecibelMicrovolt, "DecibelMicrovolt", "DecibelMicrovolts", BaseUnits.Undefined,
+                     new ConversionExpression(1, 120),
+                     new ConversionExpression(1, -120)                
+                );
+                yield return new (AmplitudeRatioUnit.DecibelMillivolt, "DecibelMillivolt", "DecibelMillivolts", BaseUnits.Undefined,
+                     new ConversionExpression(1, 60),
+                     new ConversionExpression(1, -60)                
+                );
+                yield return new (AmplitudeRatioUnit.DecibelUnloaded, "DecibelUnloaded", "DecibelsUnloaded", BaseUnits.Undefined,
+                     new ConversionExpression(1, new QuantityValue(2218487499, 1000000000)),
+                     new ConversionExpression(1, new QuantityValue(-2218487499, 1000000000))                
+                );
                 yield return new (AmplitudeRatioUnit.DecibelVolt, "DecibelVolt", "DecibelVolts", BaseUnits.Undefined);
             }
         }
 
         static AmplitudeRatio()
         {
-            Info = AmplitudeRatioInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(AmplitudeRatioInfo.CreateDefault);
         }
 
         /// <summary>
@@ -136,7 +142,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public AmplitudeRatio(double value, AmplitudeRatioUnit unit)
+        public AmplitudeRatio(QuantityValue value, AmplitudeRatioUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -147,7 +153,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="AmplitudeRatio" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<AmplitudeRatio, AmplitudeRatioUnit> Info { get; }
@@ -173,16 +180,14 @@ namespace UnitsNet
         public static AmplitudeRatio Zero => Info.Zero;
 
         /// <inheritdoc />
-        public static double LogarithmicScalingFactor {get;} = 20;
+        public static QuantityValue LogarithmicScalingFactor {get;} = 20;
 
         #endregion
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public AmplitudeRatioUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -210,7 +215,7 @@ namespace UnitsNet
 #endif
 
 #if NETSTANDARD2_0
-        double ILogarithmicQuantity<AmplitudeRatio>.LogarithmicScalingFactor => LogarithmicScalingFactor;
+        QuantityValue ILogarithmicQuantity<AmplitudeRatio>.LogarithmicScalingFactor => LogarithmicScalingFactor;
 #endif
 
         #endregion
@@ -220,48 +225,28 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelMicrovolt"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelMicrovolt"/>
         /// </summary>
-        public double DecibelMicrovolts => As(AmplitudeRatioUnit.DecibelMicrovolt);
+        public QuantityValue DecibelMicrovolts => this.As(AmplitudeRatioUnit.DecibelMicrovolt);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelMillivolt"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelMillivolt"/>
         /// </summary>
-        public double DecibelMillivolts => As(AmplitudeRatioUnit.DecibelMillivolt);
+        public QuantityValue DecibelMillivolts => this.As(AmplitudeRatioUnit.DecibelMillivolt);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelUnloaded"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelUnloaded"/>
         /// </summary>
-        public double DecibelsUnloaded => As(AmplitudeRatioUnit.DecibelUnloaded);
+        public QuantityValue DecibelsUnloaded => this.As(AmplitudeRatioUnit.DecibelUnloaded);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelVolt"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelVolt"/>
         /// </summary>
-        public double DecibelVolts => As(AmplitudeRatioUnit.DecibelVolt);
+        public QuantityValue DecibelVolts => this.As(AmplitudeRatioUnit.DecibelVolt);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: AmplitudeRatioUnit -> BaseUnit
-            unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelMicrovolt, AmplitudeRatioUnit.DecibelVolt, quantity => quantity.ToUnit(AmplitudeRatioUnit.DecibelVolt));
-            unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelMillivolt, AmplitudeRatioUnit.DecibelVolt, quantity => quantity.ToUnit(AmplitudeRatioUnit.DecibelVolt));
-            unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelUnloaded, AmplitudeRatioUnit.DecibelVolt, quantity => quantity.ToUnit(AmplitudeRatioUnit.DecibelVolt));
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelVolt, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> AmplitudeRatioUnit
-            unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelMicrovolt, quantity => quantity.ToUnit(AmplitudeRatioUnit.DecibelMicrovolt));
-            unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelMillivolt, quantity => quantity.ToUnit(AmplitudeRatioUnit.DecibelMillivolt));
-            unitConverter.SetConversionFunction<AmplitudeRatio>(AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelUnloaded, quantity => quantity.ToUnit(AmplitudeRatioUnit.DecibelUnloaded));
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -291,7 +276,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelMicrovolt"/>.
         /// </summary>
-        public static AmplitudeRatio FromDecibelMicrovolts(double value)
+        public static AmplitudeRatio FromDecibelMicrovolts(QuantityValue value)
         {
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelMicrovolt);
         }
@@ -299,7 +284,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelMillivolt"/>.
         /// </summary>
-        public static AmplitudeRatio FromDecibelMillivolts(double value)
+        public static AmplitudeRatio FromDecibelMillivolts(QuantityValue value)
         {
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelMillivolt);
         }
@@ -307,7 +292,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelUnloaded"/>.
         /// </summary>
-        public static AmplitudeRatio FromDecibelsUnloaded(double value)
+        public static AmplitudeRatio FromDecibelsUnloaded(QuantityValue value)
         {
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelUnloaded);
         }
@@ -315,7 +300,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelVolt"/>.
         /// </summary>
-        public static AmplitudeRatio FromDecibelVolts(double value)
+        public static AmplitudeRatio FromDecibelVolts(QuantityValue value)
         {
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelVolt);
         }
@@ -326,7 +311,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AmplitudeRatio unit value.</returns>
-        public static AmplitudeRatio From(double value, AmplitudeRatioUnit fromUnit)
+        public static AmplitudeRatio From(QuantityValue value, AmplitudeRatioUnit fromUnit)
         {
             return new AmplitudeRatio(value, fromUnit);
         }
@@ -387,10 +372,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static AmplitudeRatio Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<AmplitudeRatio, AmplitudeRatioUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<AmplitudeRatio, AmplitudeRatioUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -418,11 +400,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out AmplitudeRatio result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<AmplitudeRatio, AmplitudeRatioUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<AmplitudeRatio, AmplitudeRatioUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -443,7 +421,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -454,7 +432,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.AmplitudeRatioUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.AmplitudeRatioUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out AmplitudeRatioUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -469,7 +447,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out AmplitudeRatioUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -480,53 +458,61 @@ namespace UnitsNet
         #region Logarithmic Arithmetic Operators
 
         /// <summary>Negate the value.</summary>
-        public static AmplitudeRatio operator -(AmplitudeRatio right)
+        public static AmplitudeRatio operator -(AmplitudeRatio quantity)
         {
-            return new AmplitudeRatio(-right.Value, right.Unit);
+            return new AmplitudeRatio(-quantity.Value, quantity.Unit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic addition of two <see cref="AmplitudeRatio"/>.</summary>
+        /// <remarks>This operation involves a conversion of the values to linear space, which is not guaranteed to produce an exact value.
+        /// <para>The final result is rounded to 15 significant digits.</para>
+        /// </remarks>
         public static AmplitudeRatio operator +(AmplitudeRatio left, AmplitudeRatio right)
         {
             // Logarithmic addition
             // Formula: 20 * log10(10^(x/20) + 10^(y/20))
-            return new AmplitudeRatio(20 * Math.Log10(Math.Pow(10, left.Value / 20) + Math.Pow(10, right.ToUnit(left.Unit).Value / 20)), left.Unit);
+            var leftUnit = left.Unit;
+            return new AmplitudeRatio(QuantityValueExtensions.AddWithLogScaling(left.Value, right.As(leftUnit), LogarithmicScalingFactor), leftUnit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic subtraction of two <see cref="AmplitudeRatio"/>.</summary>
+        /// <remarks>This operation involves a conversion of the values to linear space, which is not guaranteed to produce an exact value.
+        /// <para>The final result is rounded to 15 significant digits.</para>
+        /// </remarks>
         public static AmplitudeRatio operator -(AmplitudeRatio left, AmplitudeRatio right)
         {
             // Logarithmic subtraction
             // Formula: 20 * log10(10^(x/20) - 10^(y/20))
-            return new AmplitudeRatio(20 * Math.Log10(Math.Pow(10, left.Value / 20) - Math.Pow(10, right.ToUnit(left.Unit).Value / 20)), left.Unit);
+            var leftUnit = left.Unit;
+            return new AmplitudeRatio(QuantityValueExtensions.SubtractWithLogScaling(left.Value, right.As(leftUnit), LogarithmicScalingFactor), leftUnit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic multiplication of value and <see cref="AmplitudeRatio"/>.</summary>
-        public static AmplitudeRatio operator *(double left, AmplitudeRatio right)
+        public static AmplitudeRatio operator *(QuantityValue left, AmplitudeRatio right)
         {
             // Logarithmic multiplication = addition
             return new AmplitudeRatio(left + right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic multiplication of value and <see cref="AmplitudeRatio"/>.</summary>
-        public static AmplitudeRatio operator *(AmplitudeRatio left, double right)
+        public static AmplitudeRatio operator *(AmplitudeRatio left, QuantityValue right)
         {
             // Logarithmic multiplication = addition
             return new AmplitudeRatio(left.Value + right, left.Unit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic division of <see cref="AmplitudeRatio"/> by value.</summary>
-        public static AmplitudeRatio operator /(AmplitudeRatio left, double right)
+        public static AmplitudeRatio operator /(AmplitudeRatio left, QuantityValue right)
         {
             // Logarithmic division = subtraction
             return new AmplitudeRatio(left.Value - right, left.Unit);
         }
 
         /// <summary>Get ratio value from logarithmic division of <see cref="AmplitudeRatio"/> by <see cref="AmplitudeRatio"/>.</summary>
-        public static double operator /(AmplitudeRatio left, AmplitudeRatio right)
+        public static QuantityValue operator /(AmplitudeRatio left, AmplitudeRatio right)
         {
             // Logarithmic division = subtraction
-            return Convert.ToDouble(left.Value - right.ToUnit(left.Unit).Value);
+            return left.Value - right.As(left.Unit);
         }
 
         #endregion
@@ -536,65 +522,55 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(AmplitudeRatio left, AmplitudeRatio right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(AmplitudeRatio left, AmplitudeRatio right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(AmplitudeRatio left, AmplitudeRatio right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(AmplitudeRatio left, AmplitudeRatio right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="AmplitudeRatio"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(AmplitudeRatio other, AmplitudeRatio tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="AmplitudeRatio"/> quantities.</summary>
         public static bool operator ==(AmplitudeRatio left, AmplitudeRatio right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="AmplitudeRatio"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(AmplitudeRatio other, AmplitudeRatio tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict inequality of two <see cref="AmplitudeRatio"/> quantities.</summary>
         public static bool operator !=(AmplitudeRatio left, AmplitudeRatio right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="AmplitudeRatio"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(AmplitudeRatio other, AmplitudeRatio tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="AmplitudeRatio"/> quantities.</summary>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is AmplitudeRatio otherQuantity))
+            if (obj is not AmplitudeRatio otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="AmplitudeRatio"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(AmplitudeRatio other, AmplitudeRatio tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>Indicates strict equality of two <see cref="AmplitudeRatio"/> quantities.</summary>
         public bool Equals(AmplitudeRatio other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>
         ///     Returns the hash code for this instance.
@@ -602,31 +578,26 @@ namespace UnitsNet
         /// <returns>A hash code for the current AmplitudeRatio.</returns>
         public override int GetHashCode()
         {
-            return Comparison.GetHashCode(Unit, Value);
+            return Comparison.GetHashCode(typeof(AmplitudeRatio), this.As(BaseUnit));
         }
-
-        /// <summary>Compares the current <see cref="AmplitudeRatio"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        
+        /// <inheritdoc  cref="CompareTo(AmplitudeRatio)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is AmplitudeRatio otherQuantity)) throw new ArgumentException("Expected type AmplitudeRatio.", nameof(obj));
+            if (obj is not AmplitudeRatio otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<AmplitudeRatio>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="AmplitudeRatio"/> with another <see cref="AmplitudeRatio"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="AmplitudeRatio"/> with another <see cref="AmplitudeRatio"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -638,134 +609,8 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(AmplitudeRatio other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
+            return _value.CompareTo(other.As(this.Unit));
         }
-
-        #endregion
-
-        #region Conversion Methods
-
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(AmplitudeRatioUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
-
-            return ToUnit(unit).Value;
-        }
-
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<AmplitudeRatioUnit>());
-        }
-
-        /// <summary>
-        ///     Converts this AmplitudeRatio to another AmplitudeRatio with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A AmplitudeRatio with the specified unit.</returns>
-        public AmplitudeRatio ToUnit(AmplitudeRatioUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
-
-        /// <summary>
-        ///     Converts this <see cref="AmplitudeRatio"/> to another <see cref="AmplitudeRatio"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A AmplitudeRatio with the specified unit.</returns>
-        public AmplitudeRatio ToUnit(AmplitudeRatioUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(AmplitudeRatio), Unit, typeof(AmplitudeRatio), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (AmplitudeRatio)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="AmplitudeRatio"/> to another <see cref="AmplitudeRatio"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="AmplitudeRatio"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(AmplitudeRatioUnit unit, [NotNullWhen(true)] out AmplitudeRatio? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            AmplitudeRatio? convertedOrNull = (Unit, unit) switch
-            {
-                // AmplitudeRatioUnit -> BaseUnit
-                (AmplitudeRatioUnit.DecibelMicrovolt, AmplitudeRatioUnit.DecibelVolt) => new AmplitudeRatio(_value - 120, AmplitudeRatioUnit.DecibelVolt),
-                (AmplitudeRatioUnit.DecibelMillivolt, AmplitudeRatioUnit.DecibelVolt) => new AmplitudeRatio(_value - 60, AmplitudeRatioUnit.DecibelVolt),
-                (AmplitudeRatioUnit.DecibelUnloaded, AmplitudeRatioUnit.DecibelVolt) => new AmplitudeRatio(_value - 2.218487499, AmplitudeRatioUnit.DecibelVolt),
-
-                // BaseUnit -> AmplitudeRatioUnit
-                (AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelMicrovolt) => new AmplitudeRatio(_value + 120, AmplitudeRatioUnit.DecibelMicrovolt),
-                (AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelMillivolt) => new AmplitudeRatio(_value + 60, AmplitudeRatioUnit.DecibelMillivolt),
-                (AmplitudeRatioUnit.DecibelVolt, AmplitudeRatioUnit.DecibelUnloaded) => new AmplitudeRatio(_value + 2.218487499, AmplitudeRatioUnit.DecibelUnloaded),
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not AmplitudeRatioUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmplitudeRatioUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is AmplitudeRatioUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AmplitudeRatioUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<AmplitudeRatioUnit> IQuantity<AmplitudeRatioUnit>.ToUnit(AmplitudeRatioUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
@@ -780,7 +625,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

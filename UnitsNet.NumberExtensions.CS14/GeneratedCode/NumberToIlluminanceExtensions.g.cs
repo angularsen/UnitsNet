@@ -42,36 +42,36 @@ namespace UnitsNet.NumberExtensions.NumberToIlluminance
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Illuminance.FromKilolux(double)" />
+            /// <inheritdoc cref="Illuminance.FromKilolux(QuantityValue)" />
             public Illuminance Kilolux
 #if NET7_0_OR_GREATER
-                => Illuminance.FromKilolux(double.CreateChecked(value));
+                => Illuminance.FromKilolux(QuantityValue.CreateChecked(value));
 #else
-                => Illuminance.FromKilolux(value.ToDouble(null));
+                => Illuminance.FromKilolux(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Illuminance.FromLux(double)" />
+            /// <inheritdoc cref="Illuminance.FromLux(QuantityValue)" />
             public Illuminance Lux
 #if NET7_0_OR_GREATER
-                => Illuminance.FromLux(double.CreateChecked(value));
+                => Illuminance.FromLux(QuantityValue.CreateChecked(value));
 #else
-                => Illuminance.FromLux(value.ToDouble(null));
+                => Illuminance.FromLux(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Illuminance.FromMegalux(double)" />
+            /// <inheritdoc cref="Illuminance.FromMegalux(QuantityValue)" />
             public Illuminance Megalux
 #if NET7_0_OR_GREATER
-                => Illuminance.FromMegalux(double.CreateChecked(value));
+                => Illuminance.FromMegalux(QuantityValue.CreateChecked(value));
 #else
-                => Illuminance.FromMegalux(value.ToDouble(null));
+                => Illuminance.FromMegalux(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Illuminance.FromMillilux(double)" />
+            /// <inheritdoc cref="Illuminance.FromMillilux(QuantityValue)" />
             public Illuminance Millilux
 #if NET7_0_OR_GREATER
-                => Illuminance.FromMillilux(double.CreateChecked(value));
+                => Illuminance.FromMillilux(QuantityValue.CreateChecked(value));
 #else
-                => Illuminance.FromMillilux(value.ToDouble(null));
+                => Illuminance.FromMillilux(value.ToQuantityValue());
 #endif
 
         }

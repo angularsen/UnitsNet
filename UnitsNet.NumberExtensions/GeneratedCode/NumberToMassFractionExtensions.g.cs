@@ -32,268 +32,268 @@ namespace UnitsNet.NumberExtensions.NumberToMassFraction
     /// </summary>
     public static class NumberToMassFractionExtensions
     {
-        /// <inheritdoc cref="MassFraction.FromCentigramsPerGram(double)" />
+        /// <inheritdoc cref="MassFraction.FromCentigramsPerGram(QuantityValue)" />
         public static MassFraction CentigramsPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromCentigramsPerGram(double.CreateChecked(value));
+            => MassFraction.FromCentigramsPerGram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromCentigramsPerGram(value.ToDouble(null));
+            => MassFraction.FromCentigramsPerGram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromCentigramsPerKilogram(double)" />
+        /// <inheritdoc cref="MassFraction.FromCentigramsPerKilogram(QuantityValue)" />
         public static MassFraction CentigramsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromCentigramsPerKilogram(double.CreateChecked(value));
+            => MassFraction.FromCentigramsPerKilogram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromCentigramsPerKilogram(value.ToDouble(null));
+            => MassFraction.FromCentigramsPerKilogram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromDecagramsPerGram(double)" />
+        /// <inheritdoc cref="MassFraction.FromDecagramsPerGram(QuantityValue)" />
         public static MassFraction DecagramsPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromDecagramsPerGram(double.CreateChecked(value));
+            => MassFraction.FromDecagramsPerGram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromDecagramsPerGram(value.ToDouble(null));
+            => MassFraction.FromDecagramsPerGram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromDecagramsPerKilogram(double)" />
+        /// <inheritdoc cref="MassFraction.FromDecagramsPerKilogram(QuantityValue)" />
         public static MassFraction DecagramsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromDecagramsPerKilogram(double.CreateChecked(value));
+            => MassFraction.FromDecagramsPerKilogram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromDecagramsPerKilogram(value.ToDouble(null));
+            => MassFraction.FromDecagramsPerKilogram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromDecigramsPerGram(double)" />
+        /// <inheritdoc cref="MassFraction.FromDecigramsPerGram(QuantityValue)" />
         public static MassFraction DecigramsPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromDecigramsPerGram(double.CreateChecked(value));
+            => MassFraction.FromDecigramsPerGram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromDecigramsPerGram(value.ToDouble(null));
+            => MassFraction.FromDecigramsPerGram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromDecigramsPerKilogram(double)" />
+        /// <inheritdoc cref="MassFraction.FromDecigramsPerKilogram(QuantityValue)" />
         public static MassFraction DecigramsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromDecigramsPerKilogram(double.CreateChecked(value));
+            => MassFraction.FromDecigramsPerKilogram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromDecigramsPerKilogram(value.ToDouble(null));
+            => MassFraction.FromDecigramsPerKilogram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromDecimalFractions(double)" />
+        /// <inheritdoc cref="MassFraction.FromDecimalFractions(QuantityValue)" />
         public static MassFraction DecimalFractions<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromDecimalFractions(double.CreateChecked(value));
+            => MassFraction.FromDecimalFractions(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromDecimalFractions(value.ToDouble(null));
+            => MassFraction.FromDecimalFractions(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromGramsPerGram(double)" />
+        /// <inheritdoc cref="MassFraction.FromGramsPerGram(QuantityValue)" />
         public static MassFraction GramsPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromGramsPerGram(double.CreateChecked(value));
+            => MassFraction.FromGramsPerGram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromGramsPerGram(value.ToDouble(null));
+            => MassFraction.FromGramsPerGram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromGramsPerKilogram(double)" />
+        /// <inheritdoc cref="MassFraction.FromGramsPerKilogram(QuantityValue)" />
         public static MassFraction GramsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromGramsPerKilogram(double.CreateChecked(value));
+            => MassFraction.FromGramsPerKilogram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromGramsPerKilogram(value.ToDouble(null));
+            => MassFraction.FromGramsPerKilogram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromHectogramsPerGram(double)" />
+        /// <inheritdoc cref="MassFraction.FromHectogramsPerGram(QuantityValue)" />
         public static MassFraction HectogramsPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromHectogramsPerGram(double.CreateChecked(value));
+            => MassFraction.FromHectogramsPerGram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromHectogramsPerGram(value.ToDouble(null));
+            => MassFraction.FromHectogramsPerGram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromHectogramsPerKilogram(double)" />
+        /// <inheritdoc cref="MassFraction.FromHectogramsPerKilogram(QuantityValue)" />
         public static MassFraction HectogramsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromHectogramsPerKilogram(double.CreateChecked(value));
+            => MassFraction.FromHectogramsPerKilogram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromHectogramsPerKilogram(value.ToDouble(null));
+            => MassFraction.FromHectogramsPerKilogram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromKilogramsPerGram(double)" />
+        /// <inheritdoc cref="MassFraction.FromKilogramsPerGram(QuantityValue)" />
         public static MassFraction KilogramsPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromKilogramsPerGram(double.CreateChecked(value));
+            => MassFraction.FromKilogramsPerGram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromKilogramsPerGram(value.ToDouble(null));
+            => MassFraction.FromKilogramsPerGram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromKilogramsPerKilogram(double)" />
+        /// <inheritdoc cref="MassFraction.FromKilogramsPerKilogram(QuantityValue)" />
         public static MassFraction KilogramsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromKilogramsPerKilogram(double.CreateChecked(value));
+            => MassFraction.FromKilogramsPerKilogram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromKilogramsPerKilogram(value.ToDouble(null));
+            => MassFraction.FromKilogramsPerKilogram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromMicrogramsPerGram(double)" />
+        /// <inheritdoc cref="MassFraction.FromMicrogramsPerGram(QuantityValue)" />
         public static MassFraction MicrogramsPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromMicrogramsPerGram(double.CreateChecked(value));
+            => MassFraction.FromMicrogramsPerGram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromMicrogramsPerGram(value.ToDouble(null));
+            => MassFraction.FromMicrogramsPerGram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromMicrogramsPerKilogram(double)" />
+        /// <inheritdoc cref="MassFraction.FromMicrogramsPerKilogram(QuantityValue)" />
         public static MassFraction MicrogramsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromMicrogramsPerKilogram(double.CreateChecked(value));
+            => MassFraction.FromMicrogramsPerKilogram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromMicrogramsPerKilogram(value.ToDouble(null));
+            => MassFraction.FromMicrogramsPerKilogram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromMilligramsPerGram(double)" />
+        /// <inheritdoc cref="MassFraction.FromMilligramsPerGram(QuantityValue)" />
         public static MassFraction MilligramsPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromMilligramsPerGram(double.CreateChecked(value));
+            => MassFraction.FromMilligramsPerGram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromMilligramsPerGram(value.ToDouble(null));
+            => MassFraction.FromMilligramsPerGram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromMilligramsPerKilogram(double)" />
+        /// <inheritdoc cref="MassFraction.FromMilligramsPerKilogram(QuantityValue)" />
         public static MassFraction MilligramsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromMilligramsPerKilogram(double.CreateChecked(value));
+            => MassFraction.FromMilligramsPerKilogram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromMilligramsPerKilogram(value.ToDouble(null));
+            => MassFraction.FromMilligramsPerKilogram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromNanogramsPerGram(double)" />
+        /// <inheritdoc cref="MassFraction.FromNanogramsPerGram(QuantityValue)" />
         public static MassFraction NanogramsPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromNanogramsPerGram(double.CreateChecked(value));
+            => MassFraction.FromNanogramsPerGram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromNanogramsPerGram(value.ToDouble(null));
+            => MassFraction.FromNanogramsPerGram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromNanogramsPerKilogram(double)" />
+        /// <inheritdoc cref="MassFraction.FromNanogramsPerKilogram(QuantityValue)" />
         public static MassFraction NanogramsPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromNanogramsPerKilogram(double.CreateChecked(value));
+            => MassFraction.FromNanogramsPerKilogram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromNanogramsPerKilogram(value.ToDouble(null));
+            => MassFraction.FromNanogramsPerKilogram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromPartsPerBillion(double)" />
+        /// <inheritdoc cref="MassFraction.FromPartsPerBillion(QuantityValue)" />
         public static MassFraction PartsPerBillion<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromPartsPerBillion(double.CreateChecked(value));
+            => MassFraction.FromPartsPerBillion(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromPartsPerBillion(value.ToDouble(null));
+            => MassFraction.FromPartsPerBillion(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromPartsPerMillion(double)" />
+        /// <inheritdoc cref="MassFraction.FromPartsPerMillion(QuantityValue)" />
         public static MassFraction PartsPerMillion<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromPartsPerMillion(double.CreateChecked(value));
+            => MassFraction.FromPartsPerMillion(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromPartsPerMillion(value.ToDouble(null));
+            => MassFraction.FromPartsPerMillion(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromPartsPerThousand(double)" />
+        /// <inheritdoc cref="MassFraction.FromPartsPerThousand(QuantityValue)" />
         public static MassFraction PartsPerThousand<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromPartsPerThousand(double.CreateChecked(value));
+            => MassFraction.FromPartsPerThousand(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromPartsPerThousand(value.ToDouble(null));
+            => MassFraction.FromPartsPerThousand(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromPartsPerTrillion(double)" />
+        /// <inheritdoc cref="MassFraction.FromPartsPerTrillion(QuantityValue)" />
         public static MassFraction PartsPerTrillion<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromPartsPerTrillion(double.CreateChecked(value));
+            => MassFraction.FromPartsPerTrillion(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromPartsPerTrillion(value.ToDouble(null));
+            => MassFraction.FromPartsPerTrillion(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MassFraction.FromPercent(double)" />
+        /// <inheritdoc cref="MassFraction.FromPercent(QuantityValue)" />
         public static MassFraction Percent<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFraction.FromPercent(double.CreateChecked(value));
+            => MassFraction.FromPercent(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MassFraction.FromPercent(value.ToDouble(null));
+            => MassFraction.FromPercent(value.ToQuantityValue());
 #endif
 
     }

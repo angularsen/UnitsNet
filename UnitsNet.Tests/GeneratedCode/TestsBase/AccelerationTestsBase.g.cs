@@ -178,6 +178,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AccelerationInfo_CreateWithCustomUnitInfos()
+        {
+            AccelerationUnit[] expectedUnits = [AccelerationUnit.MeterPerSecondSquared];
+
+            Acceleration.AccelerationInfo quantityInfo = Acceleration.AccelerationInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("Acceleration", quantityInfo.Name);
+            Assert.Equal(Acceleration.Zero, quantityInfo.Zero);
+            Assert.Equal(Acceleration.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void MeterPerSecondSquaredToAccelerationUnits()
         {
             Acceleration meterpersecondsquared = Acceleration.FromMetersPerSecondSquared(1);
@@ -287,26 +301,69 @@ namespace UnitsNet.Tests
             var expectedUnit = Acceleration.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            Acceleration convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                Acceleration quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                Acceleration convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<AccelerationUnit> quantityToConvert = quantity;
+
+                IQuantity<AccelerationUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new Acceleration(value: 1, unit: Acceleration.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Acceleration(value: 1, unit: Acceleration.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<AccelerationUnit> quantity = new Acceleration(value: 1, unit: Acceleration.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Acceleration(value: 1, unit: Acceleration.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new Acceleration(value: 1, unit: Acceleration.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Acceleration(value: 1, unit: Acceleration.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<AccelerationUnit> quantity = new Acceleration(value: 1, unit: Acceleration.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Acceleration(value: 1, unit: Acceleration.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -338,7 +395,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 мg", AccelerationUnit.MillistandardGravity, 4.2)]
         [InlineData("ru-RU", "4,2 нм/с²", AccelerationUnit.NanometerPerSecondSquared, 4.2)]
         [InlineData("ru-RU", "4,2 g", AccelerationUnit.StandardGravity, 4.2)]
-        public void Parse(string culture, string quantityString, AccelerationUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, AccelerationUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Acceleration.Parse(quantityString);
@@ -375,7 +432,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 мg", AccelerationUnit.MillistandardGravity, 4.2)]
         [InlineData("ru-RU", "4,2 нм/с²", AccelerationUnit.NanometerPerSecondSquared, 4.2)]
         [InlineData("ru-RU", "4,2 g", AccelerationUnit.StandardGravity, 4.2)]
-        public void TryParse(string culture, string quantityString, AccelerationUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, AccelerationUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Acceleration.TryParse(quantityString, out Acceleration parsed));
@@ -695,6 +752,7 @@ namespace UnitsNet.Tests
                 var quantity = Acceleration.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -718,45 +776,47 @@ namespace UnitsNet.Tests
                 IQuantity<AccelerationUnit> quantityToConvert = quantity;
                 IQuantity<AccelerationUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Acceleration meterpersecondsquared = Acceleration.FromMetersPerSecondSquared(1);
-            AssertEx.EqualTolerance(1, Acceleration.FromCentimetersPerSecondSquared(meterpersecondsquared.CentimetersPerSecondSquared).MetersPerSecondSquared, CentimetersPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(1, Acceleration.FromDecimetersPerSecondSquared(meterpersecondsquared.DecimetersPerSecondSquared).MetersPerSecondSquared, DecimetersPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(1, Acceleration.FromFeetPerSecondSquared(meterpersecondsquared.FeetPerSecondSquared).MetersPerSecondSquared, FeetPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(1, Acceleration.FromInchesPerSecondSquared(meterpersecondsquared.InchesPerSecondSquared).MetersPerSecondSquared, InchesPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(1, Acceleration.FromKilometersPerSecondSquared(meterpersecondsquared.KilometersPerSecondSquared).MetersPerSecondSquared, KilometersPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(1, Acceleration.FromKnotsPerHour(meterpersecondsquared.KnotsPerHour).MetersPerSecondSquared, KnotsPerHourTolerance);
-            AssertEx.EqualTolerance(1, Acceleration.FromKnotsPerMinute(meterpersecondsquared.KnotsPerMinute).MetersPerSecondSquared, KnotsPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, Acceleration.FromKnotsPerSecond(meterpersecondsquared.KnotsPerSecond).MetersPerSecondSquared, KnotsPerSecondTolerance);
-            AssertEx.EqualTolerance(1, Acceleration.FromMetersPerSecondSquared(meterpersecondsquared.MetersPerSecondSquared).MetersPerSecondSquared, MetersPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(1, Acceleration.FromMicrometersPerSecondSquared(meterpersecondsquared.MicrometersPerSecondSquared).MetersPerSecondSquared, MicrometersPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(1, Acceleration.FromMillimetersPerSecondSquared(meterpersecondsquared.MillimetersPerSecondSquared).MetersPerSecondSquared, MillimetersPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(1, Acceleration.FromMillistandardGravity(meterpersecondsquared.MillistandardGravity).MetersPerSecondSquared, MillistandardGravityTolerance);
-            AssertEx.EqualTolerance(1, Acceleration.FromNanometersPerSecondSquared(meterpersecondsquared.NanometersPerSecondSquared).MetersPerSecondSquared, NanometersPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(1, Acceleration.FromStandardGravity(meterpersecondsquared.StandardGravity).MetersPerSecondSquared, StandardGravityTolerance);
+            Acceleration meterpersecondsquared = Acceleration.FromMetersPerSecondSquared(3);
+            Assert.Equal(3, Acceleration.FromCentimetersPerSecondSquared(meterpersecondsquared.CentimetersPerSecondSquared).MetersPerSecondSquared);
+            Assert.Equal(3, Acceleration.FromDecimetersPerSecondSquared(meterpersecondsquared.DecimetersPerSecondSquared).MetersPerSecondSquared);
+            Assert.Equal(3, Acceleration.FromFeetPerSecondSquared(meterpersecondsquared.FeetPerSecondSquared).MetersPerSecondSquared);
+            Assert.Equal(3, Acceleration.FromInchesPerSecondSquared(meterpersecondsquared.InchesPerSecondSquared).MetersPerSecondSquared);
+            Assert.Equal(3, Acceleration.FromKilometersPerSecondSquared(meterpersecondsquared.KilometersPerSecondSquared).MetersPerSecondSquared);
+            Assert.Equal(3, Acceleration.FromKnotsPerHour(meterpersecondsquared.KnotsPerHour).MetersPerSecondSquared);
+            Assert.Equal(3, Acceleration.FromKnotsPerMinute(meterpersecondsquared.KnotsPerMinute).MetersPerSecondSquared);
+            Assert.Equal(3, Acceleration.FromKnotsPerSecond(meterpersecondsquared.KnotsPerSecond).MetersPerSecondSquared);
+            Assert.Equal(3, Acceleration.FromMetersPerSecondSquared(meterpersecondsquared.MetersPerSecondSquared).MetersPerSecondSquared);
+            Assert.Equal(3, Acceleration.FromMicrometersPerSecondSquared(meterpersecondsquared.MicrometersPerSecondSquared).MetersPerSecondSquared);
+            Assert.Equal(3, Acceleration.FromMillimetersPerSecondSquared(meterpersecondsquared.MillimetersPerSecondSquared).MetersPerSecondSquared);
+            Assert.Equal(3, Acceleration.FromMillistandardGravity(meterpersecondsquared.MillistandardGravity).MetersPerSecondSquared);
+            Assert.Equal(3, Acceleration.FromNanometersPerSecondSquared(meterpersecondsquared.NanometersPerSecondSquared).MetersPerSecondSquared);
+            Assert.Equal(3, Acceleration.FromStandardGravity(meterpersecondsquared.StandardGravity).MetersPerSecondSquared);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             Acceleration v = Acceleration.FromMetersPerSecondSquared(1);
-            AssertEx.EqualTolerance(-1, -v.MetersPerSecondSquared, MetersPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(2, (Acceleration.FromMetersPerSecondSquared(3)-v).MetersPerSecondSquared, MetersPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(2, (v + v).MetersPerSecondSquared, MetersPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(10, (v*10).MetersPerSecondSquared, MetersPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(10, (10*v).MetersPerSecondSquared, MetersPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(2, (Acceleration.FromMetersPerSecondSquared(10)/5).MetersPerSecondSquared, MetersPerSecondSquaredTolerance);
-            AssertEx.EqualTolerance(2, Acceleration.FromMetersPerSecondSquared(10)/Acceleration.FromMetersPerSecondSquared(5), MetersPerSecondSquaredTolerance);
+            Assert.Equal(-1, -v.MetersPerSecondSquared);
+            Assert.Equal(2, (Acceleration.FromMetersPerSecondSquared(3) - v).MetersPerSecondSquared);
+            Assert.Equal(2, (v + v).MetersPerSecondSquared);
+            Assert.Equal(10, (v * 10).MetersPerSecondSquared);
+            Assert.Equal(10, (10 * v).MetersPerSecondSquared);
+            Assert.Equal(2, (Acceleration.FromMetersPerSecondSquared(10) / 5).MetersPerSecondSquared);
+            Assert.Equal(2, Acceleration.FromMetersPerSecondSquared(10) / Acceleration.FromMetersPerSecondSquared(5));
         }
 
         [Fact]
@@ -802,8 +862,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, AccelerationUnit.MeterPerSecondSquared, 1, AccelerationUnit.MeterPerSecondSquared, true)]  // Same value and unit.
         [InlineData(1, AccelerationUnit.MeterPerSecondSquared, 2, AccelerationUnit.MeterPerSecondSquared, false)] // Different value.
-        [InlineData(2, AccelerationUnit.MeterPerSecondSquared, 1, AccelerationUnit.CentimeterPerSecondSquared, false)] // Different value and unit.
-        [InlineData(1, AccelerationUnit.MeterPerSecondSquared, 1, AccelerationUnit.CentimeterPerSecondSquared, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, AccelerationUnit unitA, double valueB, AccelerationUnit unitB, bool expectEqual)
         {
             var a = new Acceleration(valueA, unitA);
@@ -863,8 +921,8 @@ namespace UnitsNet.Tests
             var quantity = Acceleration.FromMetersPerSecondSquared(firstValue);
             var otherQuantity = Acceleration.FromMetersPerSecondSquared(secondValue);
             Acceleration maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, Acceleration.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -883,7 +941,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<AccelerationUnit>();
+            var units = EnumHelper.GetValues<AccelerationUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -894,6 +952,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(Acceleration.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(Acceleration.Info.Units, Acceleration.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, Acceleration.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -984,7 +1054,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Acceleration.FromMetersPerSecondSquared(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(Acceleration), quantity.As(Acceleration.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

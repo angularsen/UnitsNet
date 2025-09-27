@@ -174,6 +174,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void RotationalSpeedInfo_CreateWithCustomUnitInfos()
+        {
+            RotationalSpeedUnit[] expectedUnits = [RotationalSpeedUnit.RadianPerSecond];
+
+            RotationalSpeed.RotationalSpeedInfo quantityInfo = RotationalSpeed.RotationalSpeedInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("RotationalSpeed", quantityInfo.Name);
+            Assert.Equal(RotationalSpeed.Zero, quantityInfo.Zero);
+            Assert.Equal(RotationalSpeed.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void RadianPerSecondToRotationalSpeedUnits()
         {
             RotationalSpeed radianpersecond = RotationalSpeed.FromRadiansPerSecond(1);
@@ -281,26 +295,69 @@ namespace UnitsNet.Tests
             var expectedUnit = RotationalSpeed.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            RotationalSpeed convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                RotationalSpeed quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                RotationalSpeed convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<RotationalSpeedUnit> quantityToConvert = quantity;
+
+                IQuantity<RotationalSpeedUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new RotationalSpeed(value: 1, unit: RotationalSpeed.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new RotationalSpeed(value: 1, unit: RotationalSpeed.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<RotationalSpeedUnit> quantity = new RotationalSpeed(value: 1, unit: RotationalSpeed.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new RotationalSpeed(value: 1, unit: RotationalSpeed.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new RotationalSpeed(value: 1, unit: RotationalSpeed.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new RotationalSpeed(value: 1, unit: RotationalSpeed.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<RotationalSpeedUnit> quantity = new RotationalSpeed(value: 1, unit: RotationalSpeed.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new RotationalSpeed(value: 1, unit: RotationalSpeed.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -335,7 +392,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 рад/с", RotationalSpeedUnit.RadianPerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 об/мин", RotationalSpeedUnit.RevolutionPerMinute, 4.2)]
         [InlineData("ru-RU", "4,2 об/с", RotationalSpeedUnit.RevolutionPerSecond, 4.2)]
-        public void Parse(string culture, string quantityString, RotationalSpeedUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, RotationalSpeedUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = RotationalSpeed.Parse(quantityString);
@@ -375,7 +432,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 рад/с", RotationalSpeedUnit.RadianPerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 об/мин", RotationalSpeedUnit.RevolutionPerMinute, 4.2)]
         [InlineData("ru-RU", "4,2 об/с", RotationalSpeedUnit.RevolutionPerSecond, 4.2)]
-        public void TryParse(string culture, string quantityString, RotationalSpeedUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, RotationalSpeedUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(RotationalSpeed.TryParse(quantityString, out RotationalSpeed parsed));
@@ -724,6 +781,7 @@ namespace UnitsNet.Tests
                 var quantity = RotationalSpeed.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -747,44 +805,46 @@ namespace UnitsNet.Tests
                 IQuantity<RotationalSpeedUnit> quantityToConvert = quantity;
                 IQuantity<RotationalSpeedUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            RotationalSpeed radianpersecond = RotationalSpeed.FromRadiansPerSecond(1);
-            AssertEx.EqualTolerance(1, RotationalSpeed.FromCentiradiansPerSecond(radianpersecond.CentiradiansPerSecond).RadiansPerSecond, CentiradiansPerSecondTolerance);
-            AssertEx.EqualTolerance(1, RotationalSpeed.FromDeciradiansPerSecond(radianpersecond.DeciradiansPerSecond).RadiansPerSecond, DeciradiansPerSecondTolerance);
-            AssertEx.EqualTolerance(1, RotationalSpeed.FromDegreesPerMinute(radianpersecond.DegreesPerMinute).RadiansPerSecond, DegreesPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, RotationalSpeed.FromDegreesPerSecond(radianpersecond.DegreesPerSecond).RadiansPerSecond, DegreesPerSecondTolerance);
-            AssertEx.EqualTolerance(1, RotationalSpeed.FromMicrodegreesPerSecond(radianpersecond.MicrodegreesPerSecond).RadiansPerSecond, MicrodegreesPerSecondTolerance);
-            AssertEx.EqualTolerance(1, RotationalSpeed.FromMicroradiansPerSecond(radianpersecond.MicroradiansPerSecond).RadiansPerSecond, MicroradiansPerSecondTolerance);
-            AssertEx.EqualTolerance(1, RotationalSpeed.FromMillidegreesPerSecond(radianpersecond.MillidegreesPerSecond).RadiansPerSecond, MillidegreesPerSecondTolerance);
-            AssertEx.EqualTolerance(1, RotationalSpeed.FromMilliradiansPerSecond(radianpersecond.MilliradiansPerSecond).RadiansPerSecond, MilliradiansPerSecondTolerance);
-            AssertEx.EqualTolerance(1, RotationalSpeed.FromNanodegreesPerSecond(radianpersecond.NanodegreesPerSecond).RadiansPerSecond, NanodegreesPerSecondTolerance);
-            AssertEx.EqualTolerance(1, RotationalSpeed.FromNanoradiansPerSecond(radianpersecond.NanoradiansPerSecond).RadiansPerSecond, NanoradiansPerSecondTolerance);
-            AssertEx.EqualTolerance(1, RotationalSpeed.FromRadiansPerSecond(radianpersecond.RadiansPerSecond).RadiansPerSecond, RadiansPerSecondTolerance);
-            AssertEx.EqualTolerance(1, RotationalSpeed.FromRevolutionsPerMinute(radianpersecond.RevolutionsPerMinute).RadiansPerSecond, RevolutionsPerMinuteTolerance);
-            AssertEx.EqualTolerance(1, RotationalSpeed.FromRevolutionsPerSecond(radianpersecond.RevolutionsPerSecond).RadiansPerSecond, RevolutionsPerSecondTolerance);
+            RotationalSpeed radianpersecond = RotationalSpeed.FromRadiansPerSecond(3);
+            Assert.Equal(3, RotationalSpeed.FromCentiradiansPerSecond(radianpersecond.CentiradiansPerSecond).RadiansPerSecond);
+            Assert.Equal(3, RotationalSpeed.FromDeciradiansPerSecond(radianpersecond.DeciradiansPerSecond).RadiansPerSecond);
+            Assert.Equal(3, RotationalSpeed.FromDegreesPerMinute(radianpersecond.DegreesPerMinute).RadiansPerSecond);
+            Assert.Equal(3, RotationalSpeed.FromDegreesPerSecond(radianpersecond.DegreesPerSecond).RadiansPerSecond);
+            Assert.Equal(3, RotationalSpeed.FromMicrodegreesPerSecond(radianpersecond.MicrodegreesPerSecond).RadiansPerSecond);
+            Assert.Equal(3, RotationalSpeed.FromMicroradiansPerSecond(radianpersecond.MicroradiansPerSecond).RadiansPerSecond);
+            Assert.Equal(3, RotationalSpeed.FromMillidegreesPerSecond(radianpersecond.MillidegreesPerSecond).RadiansPerSecond);
+            Assert.Equal(3, RotationalSpeed.FromMilliradiansPerSecond(radianpersecond.MilliradiansPerSecond).RadiansPerSecond);
+            Assert.Equal(3, RotationalSpeed.FromNanodegreesPerSecond(radianpersecond.NanodegreesPerSecond).RadiansPerSecond);
+            Assert.Equal(3, RotationalSpeed.FromNanoradiansPerSecond(radianpersecond.NanoradiansPerSecond).RadiansPerSecond);
+            Assert.Equal(3, RotationalSpeed.FromRadiansPerSecond(radianpersecond.RadiansPerSecond).RadiansPerSecond);
+            Assert.Equal(3, RotationalSpeed.FromRevolutionsPerMinute(radianpersecond.RevolutionsPerMinute).RadiansPerSecond);
+            Assert.Equal(3, RotationalSpeed.FromRevolutionsPerSecond(radianpersecond.RevolutionsPerSecond).RadiansPerSecond);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             RotationalSpeed v = RotationalSpeed.FromRadiansPerSecond(1);
-            AssertEx.EqualTolerance(-1, -v.RadiansPerSecond, RadiansPerSecondTolerance);
-            AssertEx.EqualTolerance(2, (RotationalSpeed.FromRadiansPerSecond(3)-v).RadiansPerSecond, RadiansPerSecondTolerance);
-            AssertEx.EqualTolerance(2, (v + v).RadiansPerSecond, RadiansPerSecondTolerance);
-            AssertEx.EqualTolerance(10, (v*10).RadiansPerSecond, RadiansPerSecondTolerance);
-            AssertEx.EqualTolerance(10, (10*v).RadiansPerSecond, RadiansPerSecondTolerance);
-            AssertEx.EqualTolerance(2, (RotationalSpeed.FromRadiansPerSecond(10)/5).RadiansPerSecond, RadiansPerSecondTolerance);
-            AssertEx.EqualTolerance(2, RotationalSpeed.FromRadiansPerSecond(10)/RotationalSpeed.FromRadiansPerSecond(5), RadiansPerSecondTolerance);
+            Assert.Equal(-1, -v.RadiansPerSecond);
+            Assert.Equal(2, (RotationalSpeed.FromRadiansPerSecond(3) - v).RadiansPerSecond);
+            Assert.Equal(2, (v + v).RadiansPerSecond);
+            Assert.Equal(10, (v * 10).RadiansPerSecond);
+            Assert.Equal(10, (10 * v).RadiansPerSecond);
+            Assert.Equal(2, (RotationalSpeed.FromRadiansPerSecond(10) / 5).RadiansPerSecond);
+            Assert.Equal(2, RotationalSpeed.FromRadiansPerSecond(10) / RotationalSpeed.FromRadiansPerSecond(5));
         }
 
         [Fact]
@@ -830,8 +890,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, RotationalSpeedUnit.RadianPerSecond, 1, RotationalSpeedUnit.RadianPerSecond, true)]  // Same value and unit.
         [InlineData(1, RotationalSpeedUnit.RadianPerSecond, 2, RotationalSpeedUnit.RadianPerSecond, false)] // Different value.
-        [InlineData(2, RotationalSpeedUnit.RadianPerSecond, 1, RotationalSpeedUnit.CentiradianPerSecond, false)] // Different value and unit.
-        [InlineData(1, RotationalSpeedUnit.RadianPerSecond, 1, RotationalSpeedUnit.CentiradianPerSecond, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, RotationalSpeedUnit unitA, double valueB, RotationalSpeedUnit unitB, bool expectEqual)
         {
             var a = new RotationalSpeed(valueA, unitA);
@@ -891,8 +949,8 @@ namespace UnitsNet.Tests
             var quantity = RotationalSpeed.FromRadiansPerSecond(firstValue);
             var otherQuantity = RotationalSpeed.FromRadiansPerSecond(secondValue);
             RotationalSpeed maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, RotationalSpeed.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -911,7 +969,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<RotationalSpeedUnit>();
+            var units = EnumHelper.GetValues<RotationalSpeedUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -922,6 +980,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(RotationalSpeed.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(RotationalSpeed.Info.Units, RotationalSpeed.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, RotationalSpeed.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -1010,7 +1080,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = RotationalSpeed.FromRadiansPerSecond(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(RotationalSpeed), quantity.As(RotationalSpeed.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

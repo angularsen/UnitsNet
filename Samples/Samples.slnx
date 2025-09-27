@@ -17,4 +17,5 @@
   <Project Path="UnitConverter.Wpf/UnitConverter.Wpf/UnitConverter.Wpf.csproj">
     <Build Solution="*|ARM" Project="false" />
   </Project>
+  <Project Path="UnitsNetSetup.Configuration/UnitsNetSetup.Configuration.csproj" />
 </Solution>

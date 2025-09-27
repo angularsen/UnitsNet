@@ -11,10 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Collections.Immutable" />
     <PackageReference Include="BenchmarkDotNet" />
+    <PackageReference Include="System.Text.Json" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\UnitsNet.Serialization.SystemTextJson\UnitsNet.Serialization.SystemTextJson.csproj" />
     <ProjectReference Include="..\UnitsNet\UnitsNet.csproj" />
   </ItemGroup>
 </Project>

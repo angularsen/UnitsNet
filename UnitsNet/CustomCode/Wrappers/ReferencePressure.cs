@@ -29,7 +29,7 @@ namespace UnitsNet.Wrappers
         /// </summary>
         public Pressure AtmosphericPressure { get; set; }
 
-        private static readonly Pressure DefaultAtmosphericPressure = new Pressure(1, PressureUnit.Atmosphere);
+        private static readonly Pressure DefaultAtmosphericPressure = new(1, PressureUnit.Atmosphere);
 
         /// <summary>
         ///     Gets a list of <see cref="PressureReference" /> options: <see cref="PressureReference.Gauge" />,
@@ -98,26 +98,26 @@ namespace UnitsNet.Wrappers
         ///     Get Gauge <see cref="UnitsNet.Pressure" />.
         ///     It references pressure level above Atmospheric pressure.
         /// </summary>
-        public Pressure Gauge => As(PressureReference.Gauge);
+        public readonly Pressure Gauge => As(PressureReference.Gauge);
 
         /// <summary>
         ///     Get Absolute <see cref="UnitsNet.Pressure" />.
         ///     It is zero-referenced pressure to the perfect vacuum.
         /// </summary>
-        public Pressure Absolute => As(PressureReference.Absolute);
+        public readonly Pressure Absolute => As(PressureReference.Absolute);
 
         /// <summary>
         ///     Get Vacuum <see cref="UnitsNet.Pressure" />.
         ///     It is a negative Gauge pressure when Absolute pressure is below Atmospheric pressure.
         /// </summary>
-        public Pressure Vacuum => As(PressureReference.Vacuum);
+        public readonly Pressure Vacuum => As(PressureReference.Vacuum);
 
         /// <summary>
         ///     Converts <see cref="ReferencePressure" /> to <see cref="UnitsNet.Pressure" /> at <see cref="PressureReference" />
         /// </summary>
         /// <param name="reference">The <see cref="PressureReference" /> to convert <see cref="ReferencePressure" /> to.</param>
         /// <returns>The <see cref="UnitsNet.Pressure" /> at the specified <see cref="PressureReference" /></returns>
-        private Pressure As(PressureReference reference)
+        private readonly Pressure As(PressureReference reference)
         {
             var converted = AsBaseNumericType(reference);
 
@@ -129,7 +129,7 @@ namespace UnitsNet.Wrappers
         /// </summary>
         /// <param name="reference">The <see cref="PressureReference" /> to convert <see cref="ReferencePressure" /> to.</param>
         /// <returns>The value of pressure at <see cref="PressureReference" /></returns>
-        private double AsBaseNumericType(PressureReference reference)
+        private readonly QuantityValue AsBaseNumericType(PressureReference reference)
         {
             var baseReferenceValue = AsBaseReference();
 
@@ -140,14 +140,13 @@ namespace UnitsNet.Wrappers
 
             var negatingValue = Reference == PressureReference.Vacuum ? -1 : 1;
 
-            switch (reference)
+            return reference switch
             {
-                case PressureReference.Absolute: return baseReferenceValue;
-                case PressureReference.Gauge: return baseReferenceValue - AtmosphericPressure.ToUnit(Pressure.Unit).Value;
-                case PressureReference.Vacuum: return AtmosphericPressure.ToUnit(Pressure.Unit).Value - negatingValue * baseReferenceValue;
-                default:
-                    throw new NotImplementedException($"Can't convert {Reference} to {reference}.");
-            }
+                PressureReference.Absolute => baseReferenceValue,
+                PressureReference.Gauge => baseReferenceValue - AtmosphericPressure.ToUnit(Pressure.Unit).Value,
+                PressureReference.Vacuum => AtmosphericPressure.ToUnit(Pressure.Unit).Value - negatingValue * baseReferenceValue,
+                _ => throw new NotImplementedException($"Can't convert {Reference} to {reference}.")
+            };
         }
 
         /// <summary>
@@ -155,7 +154,7 @@ namespace UnitsNet.Wrappers
         ///     <see cref="BaseReference" />
         /// </summary>
         /// <returns>The value of pressure at the <see cref="BaseReference" /></returns>
-        private double AsBaseReference()
+        private readonly QuantityValue AsBaseReference()
         {
             switch (Reference)
             {

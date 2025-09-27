@@ -146,6 +146,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ElectricPotentialInfo_CreateWithCustomUnitInfos()
+        {
+            ElectricPotentialUnit[] expectedUnits = [ElectricPotentialUnit.Volt];
+
+            ElectricPotential.ElectricPotentialInfo quantityInfo = ElectricPotential.ElectricPotentialInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("ElectricPotential", quantityInfo.Name);
+            Assert.Equal(ElectricPotential.Zero, quantityInfo.Zero);
+            Assert.Equal(ElectricPotential.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void VoltToElectricPotentialUnits()
         {
             ElectricPotential volt = ElectricPotential.FromVolts(1);
@@ -239,26 +253,69 @@ namespace UnitsNet.Tests
             var expectedUnit = ElectricPotential.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            ElectricPotential convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                ElectricPotential quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                ElectricPotential convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<ElectricPotentialUnit> quantityToConvert = quantity;
+
+                IQuantity<ElectricPotentialUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new ElectricPotential(value: 1, unit: ElectricPotential.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new ElectricPotential(value: 1, unit: ElectricPotential.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricPotentialUnit> quantity = new ElectricPotential(value: 1, unit: ElectricPotential.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricPotential(value: 1, unit: ElectricPotential.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new ElectricPotential(value: 1, unit: ElectricPotential.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new ElectricPotential(value: 1, unit: ElectricPotential.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<ElectricPotentialUnit> quantity = new ElectricPotential(value: 1, unit: ElectricPotential.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new ElectricPotential(value: 1, unit: ElectricPotential.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -274,7 +331,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 мВ", ElectricPotentialUnit.Millivolt, 4.2)]
         [InlineData("ru-RU", "4,2 нВ", ElectricPotentialUnit.Nanovolt, 4.2)]
         [InlineData("ru-RU", "4,2 В", ElectricPotentialUnit.Volt, 4.2)]
-        public void Parse(string culture, string quantityString, ElectricPotentialUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, ElectricPotentialUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ElectricPotential.Parse(quantityString);
@@ -295,7 +352,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 мВ", ElectricPotentialUnit.Millivolt, 4.2)]
         [InlineData("ru-RU", "4,2 нВ", ElectricPotentialUnit.Nanovolt, 4.2)]
         [InlineData("ru-RU", "4,2 В", ElectricPotentialUnit.Volt, 4.2)]
-        public void TryParse(string culture, string quantityString, ElectricPotentialUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, ElectricPotentialUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ElectricPotential.TryParse(quantityString, out ElectricPotential parsed));
@@ -503,6 +560,7 @@ namespace UnitsNet.Tests
                 var quantity = ElectricPotential.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -526,37 +584,39 @@ namespace UnitsNet.Tests
                 IQuantity<ElectricPotentialUnit> quantityToConvert = quantity;
                 IQuantity<ElectricPotentialUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            ElectricPotential volt = ElectricPotential.FromVolts(1);
-            AssertEx.EqualTolerance(1, ElectricPotential.FromKilovolts(volt.Kilovolts).Volts, KilovoltsTolerance);
-            AssertEx.EqualTolerance(1, ElectricPotential.FromMegavolts(volt.Megavolts).Volts, MegavoltsTolerance);
-            AssertEx.EqualTolerance(1, ElectricPotential.FromMicrovolts(volt.Microvolts).Volts, MicrovoltsTolerance);
-            AssertEx.EqualTolerance(1, ElectricPotential.FromMillivolts(volt.Millivolts).Volts, MillivoltsTolerance);
-            AssertEx.EqualTolerance(1, ElectricPotential.FromNanovolts(volt.Nanovolts).Volts, NanovoltsTolerance);
-            AssertEx.EqualTolerance(1, ElectricPotential.FromVolts(volt.Volts).Volts, VoltsTolerance);
+            ElectricPotential volt = ElectricPotential.FromVolts(3);
+            Assert.Equal(3, ElectricPotential.FromKilovolts(volt.Kilovolts).Volts);
+            Assert.Equal(3, ElectricPotential.FromMegavolts(volt.Megavolts).Volts);
+            Assert.Equal(3, ElectricPotential.FromMicrovolts(volt.Microvolts).Volts);
+            Assert.Equal(3, ElectricPotential.FromMillivolts(volt.Millivolts).Volts);
+            Assert.Equal(3, ElectricPotential.FromNanovolts(volt.Nanovolts).Volts);
+            Assert.Equal(3, ElectricPotential.FromVolts(volt.Volts).Volts);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             ElectricPotential v = ElectricPotential.FromVolts(1);
-            AssertEx.EqualTolerance(-1, -v.Volts, VoltsTolerance);
-            AssertEx.EqualTolerance(2, (ElectricPotential.FromVolts(3)-v).Volts, VoltsTolerance);
-            AssertEx.EqualTolerance(2, (v + v).Volts, VoltsTolerance);
-            AssertEx.EqualTolerance(10, (v*10).Volts, VoltsTolerance);
-            AssertEx.EqualTolerance(10, (10*v).Volts, VoltsTolerance);
-            AssertEx.EqualTolerance(2, (ElectricPotential.FromVolts(10)/5).Volts, VoltsTolerance);
-            AssertEx.EqualTolerance(2, ElectricPotential.FromVolts(10)/ElectricPotential.FromVolts(5), VoltsTolerance);
+            Assert.Equal(-1, -v.Volts);
+            Assert.Equal(2, (ElectricPotential.FromVolts(3) - v).Volts);
+            Assert.Equal(2, (v + v).Volts);
+            Assert.Equal(10, (v * 10).Volts);
+            Assert.Equal(10, (10 * v).Volts);
+            Assert.Equal(2, (ElectricPotential.FromVolts(10) / 5).Volts);
+            Assert.Equal(2, ElectricPotential.FromVolts(10) / ElectricPotential.FromVolts(5));
         }
 
         [Fact]
@@ -602,8 +662,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, ElectricPotentialUnit.Volt, 1, ElectricPotentialUnit.Volt, true)]  // Same value and unit.
         [InlineData(1, ElectricPotentialUnit.Volt, 2, ElectricPotentialUnit.Volt, false)] // Different value.
-        [InlineData(2, ElectricPotentialUnit.Volt, 1, ElectricPotentialUnit.Kilovolt, false)] // Different value and unit.
-        [InlineData(1, ElectricPotentialUnit.Volt, 1, ElectricPotentialUnit.Kilovolt, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, ElectricPotentialUnit unitA, double valueB, ElectricPotentialUnit unitB, bool expectEqual)
         {
             var a = new ElectricPotential(valueA, unitA);
@@ -663,8 +721,8 @@ namespace UnitsNet.Tests
             var quantity = ElectricPotential.FromVolts(firstValue);
             var otherQuantity = ElectricPotential.FromVolts(secondValue);
             ElectricPotential maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, ElectricPotential.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -683,7 +741,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<ElectricPotentialUnit>();
+            var units = EnumHelper.GetValues<ElectricPotentialUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
@@ -694,6 +752,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(ElectricPotential.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(ElectricPotential.Info.Units, ElectricPotential.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, ElectricPotential.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -768,7 +838,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = ElectricPotential.FromVolts(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(ElectricPotential), quantity.As(ElectricPotential.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

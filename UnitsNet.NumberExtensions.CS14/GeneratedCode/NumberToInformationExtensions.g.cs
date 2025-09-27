@@ -42,316 +42,316 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Information.FromBits(double)" />
+            /// <inheritdoc cref="Information.FromBits(QuantityValue)" />
             public Information Bits
 #if NET7_0_OR_GREATER
-                => Information.FromBits(double.CreateChecked(value));
+                => Information.FromBits(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromBits(value.ToDouble(null));
+                => Information.FromBits(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromBytes(double)" />
+            /// <inheritdoc cref="Information.FromBytes(QuantityValue)" />
             public Information Bytes
 #if NET7_0_OR_GREATER
-                => Information.FromBytes(double.CreateChecked(value));
+                => Information.FromBytes(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromBytes(value.ToDouble(null));
+                => Information.FromBytes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromExabits(double)" />
+            /// <inheritdoc cref="Information.FromExabits(QuantityValue)" />
             public Information Exabits
 #if NET7_0_OR_GREATER
-                => Information.FromExabits(double.CreateChecked(value));
+                => Information.FromExabits(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromExabits(value.ToDouble(null));
+                => Information.FromExabits(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromExabytes(double)" />
+            /// <inheritdoc cref="Information.FromExabytes(QuantityValue)" />
             public Information Exabytes
 #if NET7_0_OR_GREATER
-                => Information.FromExabytes(double.CreateChecked(value));
+                => Information.FromExabytes(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromExabytes(value.ToDouble(null));
+                => Information.FromExabytes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromExaoctets(double)" />
+            /// <inheritdoc cref="Information.FromExaoctets(QuantityValue)" />
             public Information Exaoctets
 #if NET7_0_OR_GREATER
-                => Information.FromExaoctets(double.CreateChecked(value));
+                => Information.FromExaoctets(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromExaoctets(value.ToDouble(null));
+                => Information.FromExaoctets(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromExbibits(double)" />
+            /// <inheritdoc cref="Information.FromExbibits(QuantityValue)" />
             public Information Exbibits
 #if NET7_0_OR_GREATER
-                => Information.FromExbibits(double.CreateChecked(value));
+                => Information.FromExbibits(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromExbibits(value.ToDouble(null));
+                => Information.FromExbibits(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromExbibytes(double)" />
+            /// <inheritdoc cref="Information.FromExbibytes(QuantityValue)" />
             public Information Exbibytes
 #if NET7_0_OR_GREATER
-                => Information.FromExbibytes(double.CreateChecked(value));
+                => Information.FromExbibytes(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromExbibytes(value.ToDouble(null));
+                => Information.FromExbibytes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromExbioctets(double)" />
+            /// <inheritdoc cref="Information.FromExbioctets(QuantityValue)" />
             public Information Exbioctets
 #if NET7_0_OR_GREATER
-                => Information.FromExbioctets(double.CreateChecked(value));
+                => Information.FromExbioctets(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromExbioctets(value.ToDouble(null));
+                => Information.FromExbioctets(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromGibibits(double)" />
+            /// <inheritdoc cref="Information.FromGibibits(QuantityValue)" />
             public Information Gibibits
 #if NET7_0_OR_GREATER
-                => Information.FromGibibits(double.CreateChecked(value));
+                => Information.FromGibibits(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromGibibits(value.ToDouble(null));
+                => Information.FromGibibits(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromGibibytes(double)" />
+            /// <inheritdoc cref="Information.FromGibibytes(QuantityValue)" />
             public Information Gibibytes
 #if NET7_0_OR_GREATER
-                => Information.FromGibibytes(double.CreateChecked(value));
+                => Information.FromGibibytes(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromGibibytes(value.ToDouble(null));
+                => Information.FromGibibytes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromGibioctets(double)" />
+            /// <inheritdoc cref="Information.FromGibioctets(QuantityValue)" />
             public Information Gibioctets
 #if NET7_0_OR_GREATER
-                => Information.FromGibioctets(double.CreateChecked(value));
+                => Information.FromGibioctets(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromGibioctets(value.ToDouble(null));
+                => Information.FromGibioctets(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromGigabits(double)" />
+            /// <inheritdoc cref="Information.FromGigabits(QuantityValue)" />
             public Information Gigabits
 #if NET7_0_OR_GREATER
-                => Information.FromGigabits(double.CreateChecked(value));
+                => Information.FromGigabits(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromGigabits(value.ToDouble(null));
+                => Information.FromGigabits(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromGigabytes(double)" />
+            /// <inheritdoc cref="Information.FromGigabytes(QuantityValue)" />
             public Information Gigabytes
 #if NET7_0_OR_GREATER
-                => Information.FromGigabytes(double.CreateChecked(value));
+                => Information.FromGigabytes(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromGigabytes(value.ToDouble(null));
+                => Information.FromGigabytes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromGigaoctets(double)" />
+            /// <inheritdoc cref="Information.FromGigaoctets(QuantityValue)" />
             public Information Gigaoctets
 #if NET7_0_OR_GREATER
-                => Information.FromGigaoctets(double.CreateChecked(value));
+                => Information.FromGigaoctets(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromGigaoctets(value.ToDouble(null));
+                => Information.FromGigaoctets(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromKibibits(double)" />
+            /// <inheritdoc cref="Information.FromKibibits(QuantityValue)" />
             public Information Kibibits
 #if NET7_0_OR_GREATER
-                => Information.FromKibibits(double.CreateChecked(value));
+                => Information.FromKibibits(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromKibibits(value.ToDouble(null));
+                => Information.FromKibibits(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromKibibytes(double)" />
+            /// <inheritdoc cref="Information.FromKibibytes(QuantityValue)" />
             public Information Kibibytes
 #if NET7_0_OR_GREATER
-                => Information.FromKibibytes(double.CreateChecked(value));
+                => Information.FromKibibytes(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromKibibytes(value.ToDouble(null));
+                => Information.FromKibibytes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromKibioctets(double)" />
+            /// <inheritdoc cref="Information.FromKibioctets(QuantityValue)" />
             public Information Kibioctets
 #if NET7_0_OR_GREATER
-                => Information.FromKibioctets(double.CreateChecked(value));
+                => Information.FromKibioctets(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromKibioctets(value.ToDouble(null));
+                => Information.FromKibioctets(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromKilobits(double)" />
+            /// <inheritdoc cref="Information.FromKilobits(QuantityValue)" />
             public Information Kilobits
 #if NET7_0_OR_GREATER
-                => Information.FromKilobits(double.CreateChecked(value));
+                => Information.FromKilobits(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromKilobits(value.ToDouble(null));
+                => Information.FromKilobits(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromKilobytes(double)" />
+            /// <inheritdoc cref="Information.FromKilobytes(QuantityValue)" />
             public Information Kilobytes
 #if NET7_0_OR_GREATER
-                => Information.FromKilobytes(double.CreateChecked(value));
+                => Information.FromKilobytes(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromKilobytes(value.ToDouble(null));
+                => Information.FromKilobytes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromKilooctets(double)" />
+            /// <inheritdoc cref="Information.FromKilooctets(QuantityValue)" />
             public Information Kilooctets
 #if NET7_0_OR_GREATER
-                => Information.FromKilooctets(double.CreateChecked(value));
+                => Information.FromKilooctets(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromKilooctets(value.ToDouble(null));
+                => Information.FromKilooctets(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromMebibits(double)" />
+            /// <inheritdoc cref="Information.FromMebibits(QuantityValue)" />
             public Information Mebibits
 #if NET7_0_OR_GREATER
-                => Information.FromMebibits(double.CreateChecked(value));
+                => Information.FromMebibits(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromMebibits(value.ToDouble(null));
+                => Information.FromMebibits(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromMebibytes(double)" />
+            /// <inheritdoc cref="Information.FromMebibytes(QuantityValue)" />
             public Information Mebibytes
 #if NET7_0_OR_GREATER
-                => Information.FromMebibytes(double.CreateChecked(value));
+                => Information.FromMebibytes(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromMebibytes(value.ToDouble(null));
+                => Information.FromMebibytes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromMebioctets(double)" />
+            /// <inheritdoc cref="Information.FromMebioctets(QuantityValue)" />
             public Information Mebioctets
 #if NET7_0_OR_GREATER
-                => Information.FromMebioctets(double.CreateChecked(value));
+                => Information.FromMebioctets(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromMebioctets(value.ToDouble(null));
+                => Information.FromMebioctets(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromMegabits(double)" />
+            /// <inheritdoc cref="Information.FromMegabits(QuantityValue)" />
             public Information Megabits
 #if NET7_0_OR_GREATER
-                => Information.FromMegabits(double.CreateChecked(value));
+                => Information.FromMegabits(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromMegabits(value.ToDouble(null));
+                => Information.FromMegabits(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromMegabytes(double)" />
+            /// <inheritdoc cref="Information.FromMegabytes(QuantityValue)" />
             public Information Megabytes
 #if NET7_0_OR_GREATER
-                => Information.FromMegabytes(double.CreateChecked(value));
+                => Information.FromMegabytes(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromMegabytes(value.ToDouble(null));
+                => Information.FromMegabytes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromMegaoctets(double)" />
+            /// <inheritdoc cref="Information.FromMegaoctets(QuantityValue)" />
             public Information Megaoctets
 #if NET7_0_OR_GREATER
-                => Information.FromMegaoctets(double.CreateChecked(value));
+                => Information.FromMegaoctets(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromMegaoctets(value.ToDouble(null));
+                => Information.FromMegaoctets(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromOctets(double)" />
+            /// <inheritdoc cref="Information.FromOctets(QuantityValue)" />
             public Information Octets
 #if NET7_0_OR_GREATER
-                => Information.FromOctets(double.CreateChecked(value));
+                => Information.FromOctets(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromOctets(value.ToDouble(null));
+                => Information.FromOctets(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromPebibits(double)" />
+            /// <inheritdoc cref="Information.FromPebibits(QuantityValue)" />
             public Information Pebibits
 #if NET7_0_OR_GREATER
-                => Information.FromPebibits(double.CreateChecked(value));
+                => Information.FromPebibits(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromPebibits(value.ToDouble(null));
+                => Information.FromPebibits(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromPebibytes(double)" />
+            /// <inheritdoc cref="Information.FromPebibytes(QuantityValue)" />
             public Information Pebibytes
 #if NET7_0_OR_GREATER
-                => Information.FromPebibytes(double.CreateChecked(value));
+                => Information.FromPebibytes(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromPebibytes(value.ToDouble(null));
+                => Information.FromPebibytes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromPebioctets(double)" />
+            /// <inheritdoc cref="Information.FromPebioctets(QuantityValue)" />
             public Information Pebioctets
 #if NET7_0_OR_GREATER
-                => Information.FromPebioctets(double.CreateChecked(value));
+                => Information.FromPebioctets(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromPebioctets(value.ToDouble(null));
+                => Information.FromPebioctets(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromPetabits(double)" />
+            /// <inheritdoc cref="Information.FromPetabits(QuantityValue)" />
             public Information Petabits
 #if NET7_0_OR_GREATER
-                => Information.FromPetabits(double.CreateChecked(value));
+                => Information.FromPetabits(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromPetabits(value.ToDouble(null));
+                => Information.FromPetabits(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromPetabytes(double)" />
+            /// <inheritdoc cref="Information.FromPetabytes(QuantityValue)" />
             public Information Petabytes
 #if NET7_0_OR_GREATER
-                => Information.FromPetabytes(double.CreateChecked(value));
+                => Information.FromPetabytes(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromPetabytes(value.ToDouble(null));
+                => Information.FromPetabytes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromPetaoctets(double)" />
+            /// <inheritdoc cref="Information.FromPetaoctets(QuantityValue)" />
             public Information Petaoctets
 #if NET7_0_OR_GREATER
-                => Information.FromPetaoctets(double.CreateChecked(value));
+                => Information.FromPetaoctets(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromPetaoctets(value.ToDouble(null));
+                => Information.FromPetaoctets(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromTebibits(double)" />
+            /// <inheritdoc cref="Information.FromTebibits(QuantityValue)" />
             public Information Tebibits
 #if NET7_0_OR_GREATER
-                => Information.FromTebibits(double.CreateChecked(value));
+                => Information.FromTebibits(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromTebibits(value.ToDouble(null));
+                => Information.FromTebibits(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromTebibytes(double)" />
+            /// <inheritdoc cref="Information.FromTebibytes(QuantityValue)" />
             public Information Tebibytes
 #if NET7_0_OR_GREATER
-                => Information.FromTebibytes(double.CreateChecked(value));
+                => Information.FromTebibytes(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromTebibytes(value.ToDouble(null));
+                => Information.FromTebibytes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromTebioctets(double)" />
+            /// <inheritdoc cref="Information.FromTebioctets(QuantityValue)" />
             public Information Tebioctets
 #if NET7_0_OR_GREATER
-                => Information.FromTebioctets(double.CreateChecked(value));
+                => Information.FromTebioctets(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromTebioctets(value.ToDouble(null));
+                => Information.FromTebioctets(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromTerabits(double)" />
+            /// <inheritdoc cref="Information.FromTerabits(QuantityValue)" />
             public Information Terabits
 #if NET7_0_OR_GREATER
-                => Information.FromTerabits(double.CreateChecked(value));
+                => Information.FromTerabits(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromTerabits(value.ToDouble(null));
+                => Information.FromTerabits(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromTerabytes(double)" />
+            /// <inheritdoc cref="Information.FromTerabytes(QuantityValue)" />
             public Information Terabytes
 #if NET7_0_OR_GREATER
-                => Information.FromTerabytes(double.CreateChecked(value));
+                => Information.FromTerabytes(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromTerabytes(value.ToDouble(null));
+                => Information.FromTerabytes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Information.FromTeraoctets(double)" />
+            /// <inheritdoc cref="Information.FromTeraoctets(QuantityValue)" />
             public Information Teraoctets
 #if NET7_0_OR_GREATER
-                => Information.FromTeraoctets(double.CreateChecked(value));
+                => Information.FromTeraoctets(QuantityValue.CreateChecked(value));
 #else
-                => Information.FromTeraoctets(value.ToDouble(null));
+                => Information.FromTeraoctets(value.ToQuantityValue());
 #endif
 
         }
