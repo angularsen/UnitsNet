@@ -38,7 +38,7 @@ public class JsonQuantityConverterTest
         Assert.Equal(json, actualJson);
         Assert.Equal(expected, result);
     }
-    
+
     [Fact]
     public void Serializing_WithDecimalNotationAndAbbreviatedUnit_WithCamelCase()
     {
@@ -59,7 +59,7 @@ public class JsonQuantityConverterTest
         Assert.Equal(json, actualJson);
         Assert.Equal(expected, result);
     }
-    
+
     [Fact]
     public void Serializing_OneKilogram_WithGenericQuantityConverter_IgnoringDefaultValues()
     {
@@ -129,7 +129,7 @@ public class JsonQuantityConverterTest
 
         // Act
         var json = JsonSerializer.Serialize(testObject, options);
-        
+
         // Assert
         Assert.Equal(expectedJson, json);
     }
@@ -148,7 +148,7 @@ public class JsonQuantityConverterTest
 
         // Act
         var json = JsonSerializer.Serialize(testObject, options);
-        
+
         // Assert
         Assert.Equal(expectedJson, json);
     }
@@ -167,7 +167,7 @@ public class JsonQuantityConverterTest
 
         // Act
         var json = JsonSerializer.Serialize(testObject, options);
-        
+
         // Assert
         Assert.Equal(expectedJson, json);
     }
@@ -186,7 +186,7 @@ public class JsonQuantityConverterTest
 
         // Act
         var json = JsonSerializer.Serialize(testObject, options);
-        
+
         // Assert
         Assert.Equal(expectedJson, json);
     }
@@ -209,7 +209,7 @@ public class JsonQuantityConverterTest
         // Assert
         Assert.Equal(expected, result);
     }
-    
+
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
@@ -242,7 +242,7 @@ public class JsonQuantityConverterTest
         options.Converters.Add(new QuantityValueDecimalNotationConverter());
         options.Converters.Add(new AbbreviatedUnitConverter());
         options.Converters.Add(new JsonQuantityConverter<Mass, MassUnit>(Mass.Info));
-        
+
         // Assert
         Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<Mass>(invalidJson, options));
     }
