@@ -5,10 +5,11 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Configurations>Debug;Release;Official</Configurations>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(Configuration)' != 'Official'">
-    <!-- <PackageReference Include="UnitsNet" VersionOverride="5.75.0" /> -->
     <PackageReference Include="UnitsNet" VersionOverride="6.0.0-pre019" />
   </ItemGroup>
 

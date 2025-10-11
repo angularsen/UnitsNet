@@ -6,6 +6,8 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <Configurations>Debug;Release;Official</Configurations>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Prism.Unity" />
@@ -20,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)' != 'Official'">
-    <!-- <PackageReference Include="UnitsNet" VersionOverride="5.75.0" /> -->
     <PackageReference Include="UnitsNet" VersionOverride="6.0.0-pre019" />
   </ItemGroup>
 
