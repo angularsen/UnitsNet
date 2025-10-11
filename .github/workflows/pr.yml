@@ -17,7 +17,7 @@ env:
 
 jobs:
   standard-build:
-    name: Standard - Build & Test (Linux)
+    name: Standard .NET Build & Test (Linux)
     runs-on: ubuntu-latest
 
     steps:
@@ -37,16 +37,29 @@ jobs:
     - name: Generate Code
       run: dotnet run --project CodeGen
 
-    - name: Build Projects
+    - name: Build All Projects
       run: |
-        echo "::group::Building Standard projects..."
+        echo "::group::Building all .NET projects..."
         dotnet build UnitsNet.slnx --configuration Release
         echo "::endgroup::"
 
-    - name: Run Tests
+    - name: Run Tests (Linux-compatible)
       run: |
         echo "::group::Running tests..."
-        dotnet test UnitsNet.slnx --configuration Release --no-build \
+        # Run tests only for frameworks that work on Linux
+        dotnet test UnitsNet.Tests/UnitsNet.Tests.csproj --configuration Release --no-build \
+          --collect:"XPlat Code Coverage" \
+          --logger:trx \
+          --results-directory "Artifacts/TestResults"
+
+        dotnet test UnitsNet.Serialization.JsonNet.Tests/UnitsNet.Serialization.JsonNet.Tests.csproj --configuration Release --no-build \
+          --collect:"XPlat Code Coverage" \
+          --logger:trx \
+          --results-directory "Artifacts/TestResults"
+
+        # For NumberExtensions, only test non-net48 frameworks
+        dotnet test UnitsNet.NumberExtensions.Tests/UnitsNet.NumberExtensions.Tests.csproj --configuration Release --no-build \
+          --framework net8.0 \
           --collect:"XPlat Code Coverage" \
           --logger:trx \
           --results-directory "Artifacts/TestResults"
@@ -84,8 +97,8 @@ jobs:
         path: Artifacts/
         retention-days: 7
 
-  nano-build:
-    name: Nano - Build (Windows)
+  windows-nano-net48-build:
+    name: Windows net48 Tests & NanoFramework Build
     runs-on: windows-latest
 
     steps:
@@ -102,7 +115,7 @@ jobs:
           6.0.x
           8.0.x
 
-    - name: Setup .NET nanoFramework
+    - name: Setup .NET nanoFramework build components
       uses: nanoframework/nanobuild@v1
       with:
         workload: 'nanoFramework'
@@ -111,41 +124,66 @@ jobs:
       shell: pwsh
       run: dotnet run --project CodeGen
 
-    - name: Build Nano Projects
+    - name: Build for net48 Tests
       shell: pwsh
       run: |
-        Write-Host "::group::Building NanoFramework projects..."
-
-        # Build NanoFramework projects with MSBuild
-        $msbuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" `
-          -latest -requires Microsoft.Component.MSBuild `
-          -find MSBuild\**\Bin\MSBuild.exe | Select-Object -First 1
-
-        if (-not $msbuildPath) {
-          Write-Error "MSBuild not found. Ensure Visual Studio Build Tools are installed."
-          exit 1
-        }
-
-        & $msbuildPath UnitsNet.NanoFramework/UnitsNet.NanoFramework.nfproj `
-          /p:Configuration=Release /p:Platform="Any CPU" /restore
-
-        & $msbuildPath UnitsNet.NumberExtensions.NanoFramework/UnitsNet.NumberExtensions.NanoFramework.nfproj `
-          /p:Configuration=Release /p:Platform="Any CPU" /restore
-
+        Write-Host "::group::Building projects with net48 targets..."
+        # Only NumberExtensions.Tests has net48 target
+        dotnet build UnitsNet.NumberExtensions.Tests/UnitsNet.NumberExtensions.Tests.csproj --configuration Release --framework net48
         Write-Host "::endgroup::"
 
-    - name: Upload Nano Artifacts
+    - name: Run net48 Tests
+      shell: pwsh
+      run: |
+        Write-Host "::group::Running net48 tests..."
+        dotnet test UnitsNet.NumberExtensions.Tests/UnitsNet.NumberExtensions.Tests.csproj --configuration Release --no-build `
+          --framework net48 `
+          --logger:trx `
+          --results-directory "Artifacts/TestResults"
+        Write-Host "::endgroup::"
+
+    - name: Build NanoFramework
+      shell: pwsh
+      run: |
+        Write-Host "::group::Building NanoFramework..."
+        # Initialize build tools
+        & "${{ github.workspace }}/Build/init.ps1"
+
+        # Import build functions
+        Remove-Module build-functions -ErrorAction SilentlyContinue
+        Import-Module "${{ github.workspace }}/Build/build-functions.psm1"
+
+        # Build NanoFramework
+        Start-BuildNanoFramework
+        Write-Host "::endgroup::"
+
+    - name: Upload net48 Test Results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: net48-test-results
+        path: Artifacts/TestResults/*.trx
+        retention-days: 7
+
+    - name: Publish Windows Test Results
+      uses: EnricoMi/publish-unit-test-result-action/windows@v2
+      if: always()
+      with:
+        files: |
+          Artifacts/TestResults/*.trx
+        check_name: Windows Test Results
+        comment_mode: off
+
+    - name: Upload Windows Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: nano-artifacts
-        path: |
-          UnitsNet.NanoFramework/bin/Release/**
-          UnitsNet.NumberExtensions.NanoFramework/bin/Release/**
+        name: windows-artifacts
+        path: Artifacts/
         retention-days: 7
 
   pr-status:
     name: PR Build Status
-    needs: [standard-build, nano-build]
+    needs: [standard-build, windows-nano-net48-build]
     runs-on: ubuntu-latest
     if: always()
 
@@ -154,9 +192,9 @@ jobs:
       run: |
         echo "## Build Results"
         echo "Standard Build: ${{ needs.standard-build.result }}"
-        echo "Nano Build: ${{ needs.nano-build.result }}"
+        echo "Windows/Nano/net48 Build: ${{ needs.windows-nano-net48-build.result }}"
 
-        if [[ "${{ needs.standard-build.result }}" != "success" ]] || [[ "${{ needs.nano-build.result }}" != "success" ]]; then
+        if [[ "${{ needs.standard-build.result }}" != "success" ]] || [[ "${{ needs.windows-nano-net48-build.result }}" != "success" ]]; then
           echo "❌ PR builds failed"
           exit 1
         fi
