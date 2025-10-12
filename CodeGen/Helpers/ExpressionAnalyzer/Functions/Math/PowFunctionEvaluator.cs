@@ -16,7 +16,7 @@ internal class PowFunctionEvaluator : IFunctionEvaluator
         Func<ExpressionEvaluationTerm, CompositeExpression> expressionResolver)
     {
         var functionParams = expressionToParse.Expression.Split(',');
-        if (functionParams.Length != 2 || !Fraction.TryParse(functionParams[1], out Fraction exponentParsed))
+        if (functionParams.Length != 2 || !FractionHelper.TryParseInvariant(functionParams[1], out Fraction exponentParsed))
         {
             throw new FormatException($"The provided string is not in the correct format for the Pow function {expressionToParse}");
         }
@@ -37,7 +37,7 @@ internal class PowFunctionEvaluator : IFunctionEvaluator
         }
 
         // while it's possible to expand the expression (even for non-rational powers)- we shouldn't, as the operation would not be reversible: the result of (x^0.5)^2 may be different from x
-        if (functionBody.Terms.Count == 1) 
+        if (functionBody.Terms.Count == 1)
         {
             var singleTerm = (ExpressionTerm)functionBody;
             Fraction coefficient = singleTerm.Coefficient.Pow(power);

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -9,6 +8,7 @@ using CodeGen.Helpers.ExpressionAnalyzer.Expressions;
 using CodeGen.Helpers.ExpressionAnalyzer.Functions;
 using CodeGen.Helpers.ExpressionAnalyzer.Functions.Math;
 using Fractions;
+using static System.Globalization.CultureInfo;
 
 namespace CodeGen.Helpers.ExpressionAnalyzer;
 
@@ -219,7 +219,7 @@ internal partial class ExpressionEvaluator // TODO make public (and move out in 
             return true;
         }
 
-        if (_constantValues.TryGetValue(expressionToParse, out Fraction constantExpression) || Fraction.TryParse(expressionToParse, out constantExpression))
+        if (_constantValues.TryGetValue(expressionToParse, out Fraction constantExpression) || FractionHelper.TryParseInvariant(expressionToParse, out constantExpression))
         {
             if (exponent.Numerator == exponent.Denominator)
             {
@@ -247,7 +247,7 @@ internal partial class ExpressionEvaluator // TODO make public (and move out in 
         return ScientificNotationRegex().Replace(expression, match =>
         {
             var tokens = match.Value.ToLower().Replace("d", "").Split('e');
-            if (tokens.Length != 2 || !Fraction.TryParse(tokens[0], out Fraction mantissa) || !int.TryParse(tokens[1], out var exponent))
+            if (tokens.Length != 2 || !FractionHelper.TryParseInvariant(tokens[0], out Fraction mantissa) || !int.TryParse(tokens[1], InvariantCulture, out var exponent))
             {
                 throw new FormatException($"The expression contains invalid tokens: {expression}");
             }
