@@ -175,7 +175,7 @@ namespace UnitsNet.Tests
             bool reduceConstants)
         {
             var customLengthInfo = Length.LengthInfo.CreateDefault(unitDefinitions =>
-                unitDefinitions.Configure(LengthUnit.Inch, definition => definition.WithConversionFromBase(18)));
+                unitDefinitions.Configure(LengthUnit.Inch, definition => definition.WithConversionFactorFromBase(18)));
 
             var unitParser = new UnitParser([customLengthInfo]);
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
@@ -219,7 +219,7 @@ namespace UnitsNet.Tests
         public void TryGetConversionFunction_WithCustomUnitConversion_ReturnsTrue(bool freeze, ConversionCachingMode cachingMode, bool reduceConstants)
         {
             var customLengthInfo = Length.LengthInfo.CreateDefault(unitDefinitions =>
-                unitDefinitions.Configure(LengthUnit.Inch, definition => definition.WithConversionFromBase(18)));
+                unitDefinitions.Configure(LengthUnit.Inch, definition => definition.WithConversionFactorFromBase(18)));
 
             var unitParser = new UnitParser([customLengthInfo]);
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);

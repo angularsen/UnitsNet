@@ -79,7 +79,7 @@ public static class QuantityInfoBuilderExtensions
     /// <param name="unitDefinition">The unit definition to which the conversion factor will be added.</param>
     /// <param name="conversionFromBase">The conversion factor from the base unit to the specified unit.</param>
     /// <returns>A new <see cref="UnitDefinition{TUnit}" /> instance with the specified conversion factor from the base unit.</returns>
-    public static UnitDefinition<TUnit> WithConversionFromBase<TUnit>(this IUnitDefinition<TUnit> unitDefinition, QuantityValue conversionFromBase)
+    public static UnitDefinition<TUnit> WithConversionFactorFromBase<TUnit>(this IUnitDefinition<TUnit> unitDefinition, QuantityValue conversionFromBase)
         where TUnit : struct, Enum
     {
         return new UnitDefinition<TUnit>(unitDefinition.Value, unitDefinition.Name, unitDefinition.PluralName, unitDefinition.BaseUnits, conversionFromBase);
@@ -92,7 +92,7 @@ public static class QuantityInfoBuilderExtensions
     /// <param name="unitDefinition">The unit definition to which the conversion factor will be added.</param>
     /// <param name="conversionToBase">The conversion factor to the base unit from the specified unit.</param>
     /// <returns>A new <see cref="UnitDefinition{TUnit}" /> instance with the specified conversion factor to the base unit.</returns>
-    public static UnitDefinition<TUnit> WithConversionToBase<TUnit>(this IUnitDefinition<TUnit> unitDefinition, QuantityValue conversionToBase)
+    public static UnitDefinition<TUnit> WithConversionFactorToBase<TUnit>(this IUnitDefinition<TUnit> unitDefinition, QuantityValue conversionToBase)
         where TUnit : struct, Enum
     {
         return new UnitDefinition<TUnit>(unitDefinition.Value, unitDefinition.Name, unitDefinition.PluralName, unitDefinition.BaseUnits,

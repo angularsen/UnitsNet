@@ -46,8 +46,8 @@ public class QuantityInfoBuilderExtensionsTest
     public void WithConversionFromBase_CreatesNewDefinition()
     {
         UnitDefinition<LengthUnit> oldDefinition = Length.LengthInfo.GetDefaultMappings().First();
-        
-        UnitDefinition<LengthUnit> newDefinition = oldDefinition.WithConversionFromBase(20);
+
+        UnitDefinition<LengthUnit> newDefinition = oldDefinition.WithConversionFactorFromBase(20);
 
         Assert.Equal(oldDefinition.Value, newDefinition.Value);
         Assert.Equal(oldDefinition.Name, newDefinition.Name);
@@ -62,7 +62,7 @@ public class QuantityInfoBuilderExtensionsTest
     {
         UnitInfo<Length, LengthUnit> oldDefinition = Length.Info.BaseUnitInfo;
 
-        UnitDefinition<LengthUnit> newDefinition = oldDefinition.WithConversionToBase(20);
+        UnitDefinition<LengthUnit> newDefinition = oldDefinition.WithConversionFactorToBase(20);
 
         Assert.Equal(oldDefinition.Value, newDefinition.Value);
         Assert.Equal(oldDefinition.Name, newDefinition.Name);
