@@ -14,7 +14,7 @@ internal static class ExpressionEvaluationHelpers
     private record struct Factor(BigInteger Number, int Power, BigInteger Value)
     {
         public static Factor FromNumber(BigInteger number) => new(number, 1, number);
-        
+
         private sealed class ValueRelationalComparer : IComparer<Factor>
         {
             public int Compare(Factor x, Factor y)
@@ -48,7 +48,7 @@ internal static class ExpressionEvaluationHelpers
                 {
                     return factors;
                 }
-                
+
                 if (number <= long.MaxValue)
                 {
                     factors.Add(Factor.FromNumber(number));
@@ -67,12 +67,12 @@ internal static class ExpressionEvaluationHelpers
 
             currentDivisor++;
         } while (number > long.MaxValue && number > currentDivisor);
-        
+
         if (!number.IsOne)
         {
             factors.Add(Factor.FromNumber(number));
         }
-        
+
         return factors;
     }
 
@@ -93,7 +93,7 @@ internal static class ExpressionEvaluationHelpers
                 factor = new Factor(divisor, power, BigInteger.Pow(divisor, power));
                 return power > 0;
             }
-        } 
+        }
     }
 
     private static SortedSet<Factor> MergeFactors(this IEnumerable<Factor> factorsToMerge)
@@ -115,7 +115,7 @@ internal static class ExpressionEvaluationHelpers
             factors.Remove(secondSmallestFactor);
             factors.Add(mergedFactor);
         }
-        
+
         return factors;
     }
 
@@ -134,7 +134,7 @@ internal static class ExpressionEvaluationHelpers
             return $"BigInteger.Pow({factor.Number}, {factor.Power})";
         }
     }
-    
+
     private static string GetConstantMultiplicationFormat(this IEnumerable<Factor> factors, bool negate = false)
     {
         var expression = string.Join(" * ", factors.Select(x => x.GetConstantFormat()));
@@ -157,7 +157,7 @@ internal static class ExpressionEvaluationHelpers
             ? coefficient.Numerator.ToString()
             : $"new QuantityValue({coefficient.Numerator}, {coefficient.Denominator})";
     }
-    
+
     private static string GetLongConstantFormat(this Fraction coefficient)
     {
         var numeratorExpression = coefficient.Numerator > long.MaxValue || coefficient.Numerator < long.MinValue
@@ -179,7 +179,7 @@ internal static class ExpressionEvaluationHelpers
             return coefficient.GetConstantFormat();
         }
 
-        // need to represent the fraction in terms of two terms: "a * b" 
+        // need to represent the fraction in terms of two terms: "a * b"
         return coefficient.GetLongConstantFormat();
     }
 
@@ -243,7 +243,7 @@ internal static class ExpressionEvaluationHelpers
         {
             return csharpParameter;
         }
-        
+
         // alternatively this could be an operator: e.g. $"({csharpParameter} ^ {exponent.ToInt32()})"
         return exponent.Denominator.IsOne
             ? $"QuantityValue.Pow({csharpParameter}, {exponent.ToInt32()})"
@@ -256,7 +256,7 @@ internal static class ExpressionEvaluationHelpers
         {
             return term.Coefficient.GetFractionalConstantFormat();
         }
-        
+
         if (term is { NestedFunction: not null, Exponent.IsZero: true })
         {
             return term.NestedFunction.GetConstantExpressionFormat();
@@ -284,7 +284,7 @@ internal static class ExpressionEvaluationHelpers
         string? exponentFormat = null;
         string? customConversionFunctionFormat = null;
         string? constantTermValue = null;
-        
+
         foreach (ExpressionTerm expressionTerm in expression.Terms)
         {
             if (expressionTerm.IsConstant)
@@ -301,7 +301,7 @@ internal static class ExpressionEvaluationHelpers
                 {
                     throw new InvalidOperationException("The ConversionExpression class does not support more than 2 terms");
                 }
-                
+
                 coefficientTermFormat = expressionTerm.Coefficient.GetFractionalConstantFormat();
 
                 if (expressionTerm.NestedFunction is not null)
@@ -330,25 +330,25 @@ internal static class ExpressionEvaluationHelpers
         }
 
         coefficientTermFormat ??= "1";
-        
+
         if (constantTermValue is not null && exponentFormat is null && customConversionFunctionFormat is null)
         {
-            return $"new ConversionExpression({coefficientTermFormat}, {constantTermValue})";
+            return $"new ConversionExpression(coefficient: {coefficientTermFormat}, constantTerm: {constantTermValue})";
         }
 
         if (customConversionFunctionFormat is not null)
         {
-            return $"new ConversionExpression({coefficientTermFormat}, {csharpParameter} => {customConversionFunctionFormat}, {exponentFormat ?? "1"}, {constantTermValue ?? "0"})";
+            return $"new ConversionExpression(coefficient: {coefficientTermFormat}, nestedFunction: {csharpParameter} => {customConversionFunctionFormat}, exponent: {exponentFormat ?? "1"}, constantTerm: {constantTermValue ?? "0"})";
         }
-        
+
         if (constantTermValue is not null)
         {
-            return $"new ConversionExpression({coefficientTermFormat}, null, {exponentFormat ?? "1"}, {constantTermValue})";
+            return $"new ConversionExpression(coefficient: {coefficientTermFormat}, exponent: {exponentFormat ?? "1"}, constantTerm: {constantTermValue})";
         }
-        
+
         if (exponentFormat is not null)
         {
-            return $"new ConversionExpression({coefficientTermFormat}, null, {exponentFormat})";
+            return $"new ConversionExpression(coefficient: {coefficientTermFormat}, exponent: {exponentFormat})";
         }
 
         // return $"new ConversionExpression({coefficientTermFormat})";
@@ -435,9 +435,9 @@ internal static class ExpressionEvaluationHelpers
             if (conversionFromBase.Terms.Count == 1 && conversionFromBase.Degree.Abs() == Fraction.One)
             {
                 // as long as there aren't any complex functions we can just invert the expression
-                conversionsToBase[unit] = conversionFromBase.SolveForY();  
+                conversionsToBase[unit] = conversionFromBase.SolveForY();
             }
-            else 
+            else
             {
                 // complex conversion functions require an explicit expression in both directions
                 conversionsToBase[unit] = ExpressionEvaluator.Evaluate(unit.FromUnitToBaseFunc, jsonParameter);
@@ -456,7 +456,7 @@ internal static class ExpressionEvaluationHelpers
 
             fromUnitConversion[baseUnit] = conversionsFromBase[fromUnit];
         }
-        
+
         return conversionsFrom;
     }
 }

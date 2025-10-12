@@ -123,63 +123,63 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData(0, 1, 0)]
-        [InlineData(1, 1, 0)] 
-        [InlineData(10, 1, 0)] 
+        [InlineData(1, 1, 0)]
+        [InlineData(10, 1, 0)]
         [InlineData(-1, 1, 0)]
         [InlineData(-10, 1, 0)]
         [InlineData(0, 1, 5)]
-        [InlineData(1, 1, 5)] 
-        [InlineData(10, 1, 5)] 
+        [InlineData(1, 1, 5)]
+        [InlineData(10, 1, 5)]
         [InlineData(-1, 1, 5)]
         [InlineData(-10, 1, 5)]
         [InlineData(0, 1, -5)]
-        [InlineData(1, 1, -5)] 
-        [InlineData(10, 1, -5)] 
+        [InlineData(1, 1, -5)]
+        [InlineData(10, 1, -5)]
         [InlineData(-10, 1, -5)]
         [InlineData(-1, 1, -5)]
         [InlineData(0, -1, 0)]
-        [InlineData(1, -1, 0)] 
-        [InlineData(10, -1, 0)] 
+        [InlineData(1, -1, 0)]
+        [InlineData(10, -1, 0)]
         [InlineData(-1, -1, 0)]
         [InlineData(-10, -1, 0)]
         [InlineData(0, -1, 5)]
-        [InlineData(1, -1, 5)] 
-        [InlineData(10, -1, 5)] 
+        [InlineData(1, -1, 5)]
+        [InlineData(10, -1, 5)]
         [InlineData(-10, -1, 5)]
         [InlineData(-1, -1, 5)]
         [InlineData(0, -1, -5)]
-        [InlineData(1, -1, -5)] 
-        [InlineData(10, -1, -5)] 
+        [InlineData(1, -1, -5)]
+        [InlineData(10, -1, -5)]
         [InlineData(-1, -1, -5)]
         [InlineData(-10, -1, -5)]
         [InlineData(0, 2, 0)]
-        [InlineData(1, 2, 0)] 
-        [InlineData(10, 2, 0)] 
+        [InlineData(1, 2, 0)]
+        [InlineData(10, 2, 0)]
         [InlineData(-10, 2, 0)]
         [InlineData(-1, 2, 0)]
         [InlineData(0, 2, 5)]
-        [InlineData(1, 2, 5)] 
-        [InlineData(10, 2, 5)] 
+        [InlineData(1, 2, 5)]
+        [InlineData(10, 2, 5)]
         [InlineData(-1, 2, 5)]
         [InlineData(-10, 2, 5)]
         [InlineData(0, 2, -5)]
-        [InlineData(1, 2, -5)] 
-        [InlineData(10, 2, -5)] 
+        [InlineData(1, 2, -5)]
+        [InlineData(10, 2, -5)]
         [InlineData(-1, 2, -5)]
         [InlineData(-10, 2, -5)]
         [InlineData(0, -2, 0)]
-        [InlineData(1, -2, 0)] 
-        [InlineData(10, -2, 0)] 
+        [InlineData(1, -2, 0)]
+        [InlineData(10, -2, 0)]
         [InlineData(-1, -2, 0)]
         [InlineData(-10, -2, 0)]
         [InlineData(0, -2, 5)]
-        [InlineData(1, -2, 5)] 
-        [InlineData(10, -2, 5)] 
+        [InlineData(1, -2, 5)]
+        [InlineData(10, -2, 5)]
         [InlineData(-1, -2, 5)]
         [InlineData(-10, -2, 5)]
         [InlineData(0, -2, -5)]
-        [InlineData(1, -2, -5)] 
-        [InlineData(10, -2, -5)] 
+        [InlineData(1, -2, -5)]
+        [InlineData(10, -2, -5)]
         [InlineData(-1, -2, -5)]
         [InlineData(-10, -2, -5)]
         public void ExpressionWithoutNestedFunction_ConvertsTo_ConvertValueDelegate(double coefficient, int exponent, double constantTerm)
@@ -195,63 +195,63 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData(0, 1, 0)]
-        [InlineData(1, 1, 0)] 
-        [InlineData(10, 1, 0)] 
+        [InlineData(1, 1, 0)]
+        [InlineData(10, 1, 0)]
         [InlineData(-1, 1, 0)]
         [InlineData(-10, 1, 0)]
         [InlineData(0, 1, 5)]
-        [InlineData(1, 1, 5)] 
-        [InlineData(10, 1, 5)] 
+        [InlineData(1, 1, 5)]
+        [InlineData(10, 1, 5)]
         [InlineData(-1, 1, 5)]
         [InlineData(-10, 1, 5)]
         [InlineData(0, 1, -5)]
-        [InlineData(1, 1, -5)] 
-        [InlineData(10, 1, -5)] 
+        [InlineData(1, 1, -5)]
+        [InlineData(10, 1, -5)]
         [InlineData(-10, 1, -5)]
         [InlineData(-1, 1, -5)]
         [InlineData(0, -1, 0)]
-        [InlineData(1, -1, 0)] 
-        [InlineData(10, -1, 0)] 
+        [InlineData(1, -1, 0)]
+        [InlineData(10, -1, 0)]
         [InlineData(-1, -1, 0)]
         [InlineData(-10, -1, 0)]
         [InlineData(0, -1, 5)]
-        [InlineData(1, -1, 5)] 
-        [InlineData(10, -1, 5)] 
+        [InlineData(1, -1, 5)]
+        [InlineData(10, -1, 5)]
         [InlineData(-10, -1, 5)]
         [InlineData(-1, -1, 5)]
         [InlineData(0, -1, -5)]
-        [InlineData(1, -1, -5)] 
-        [InlineData(10, -1, -5)] 
+        [InlineData(1, -1, -5)]
+        [InlineData(10, -1, -5)]
         [InlineData(-1, -1, -5)]
         [InlineData(-10, -1, -5)]
         [InlineData(0, 2, 0)]
-        [InlineData(1, 2, 0)] 
-        [InlineData(10, 2, 0)] 
+        [InlineData(1, 2, 0)]
+        [InlineData(10, 2, 0)]
         [InlineData(-10, 2, 0)]
         [InlineData(-1, 2, 0)]
         [InlineData(0, 2, 5)]
-        [InlineData(1, 2, 5)] 
-        [InlineData(10, 2, 5)] 
+        [InlineData(1, 2, 5)]
+        [InlineData(10, 2, 5)]
         [InlineData(-1, 2, 5)]
         [InlineData(-10, 2, 5)]
         [InlineData(0, 2, -5)]
-        [InlineData(1, 2, -5)] 
-        [InlineData(10, 2, -5)] 
+        [InlineData(1, 2, -5)]
+        [InlineData(10, 2, -5)]
         [InlineData(-1, 2, -5)]
         [InlineData(-10, 2, -5)]
         [InlineData(0, -2, 0)]
-        [InlineData(1, -2, 0)] 
-        [InlineData(10, -2, 0)] 
+        [InlineData(1, -2, 0)]
+        [InlineData(10, -2, 0)]
         [InlineData(-1, -2, 0)]
         [InlineData(-10, -2, 0)]
         [InlineData(0, -2, 5)]
-        [InlineData(1, -2, 5)] 
-        [InlineData(10, -2, 5)] 
+        [InlineData(1, -2, 5)]
+        [InlineData(10, -2, 5)]
         [InlineData(-1, -2, 5)]
         [InlineData(-10, -2, 5)]
         [InlineData(0, -2, -5)]
-        [InlineData(1, -2, -5)] 
-        [InlineData(10, -2, -5)] 
+        [InlineData(1, -2, -5)]
+        [InlineData(10, -2, -5)]
         [InlineData(-1, -2, -5)]
         [InlineData(-10, -2, -5)]
         public void ExpressionWithNestedFunction_ConvertsTo_ConvertValueDelegate(double coefficient, int exponent, double constantTerm)
@@ -405,7 +405,7 @@ namespace UnitsNet.Tests
             Assert.Equal(expression.Exponent, negatedExpression.Exponent);
             Assert.Equal(expectedConstantTerm, negatedExpression.ConstantTerm);
         }
-        
+
         [Theory]
         [InlineData(0, 1, 0, "0 * x")]
         [InlineData(1, 1, 2, "x + 2")]
@@ -420,26 +420,26 @@ namespace UnitsNet.Tests
             var result = expression.ToString();
             Assert.Equal(expected, result);
         }
-        
+
         [Fact]
         public void PrintMembers_ShouldReturnCorrectString()
         {
-            var conversionExpression = new ConversionExpression(1);
+            var conversionExpression = new ConversionExpression(coefficient: 1);
             var stringBuilder = new StringBuilder();
-            
+
             var success = conversionExpression.GetType().GetMethod("PrintMembers", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
                 .Invoke(conversionExpression, [stringBuilder]);
 
             Assert.Equal(true, success);
             Assert.Equal("Coefficient = 1, Exponent = 1, ConstantTerm = 0", stringBuilder.ToString());
         }
-        
+
         [Fact]
         public void PrintMembers_WithNestedFunction_ShouldReturnCorrectString()
         {
-            var conversionExpression = new ConversionExpression(1, QuantityValue.Inverse);
+            var conversionExpression = new ConversionExpression(coefficient: 1, QuantityValue.Inverse);
             var stringBuilder = new StringBuilder();
-            
+
             var success = conversionExpression.GetType().GetMethod("PrintMembers", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)!
                 .Invoke(conversionExpression, [stringBuilder]);
 

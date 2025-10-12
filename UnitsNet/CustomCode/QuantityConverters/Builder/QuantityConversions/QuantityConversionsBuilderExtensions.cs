@@ -195,7 +195,7 @@ internal static class QuantityConversionsBuilderExtensions
         {
             return conversions.GetConversionFunctions(defaultCachingMode, defaultConstantsReduction, customCachingOptions);
         }
-        
+
         return conversions.SelectMany(conversion => customUnitConversions.TryGetValue(conversion, out QuantityConversionMappingOptions? conversionMappingOptions)
             ? conversion.GetConversionFunctions(conversionMappingOptions, defaultCachingMode, defaultConstantsReduction, customCachingOptions)
             : conversion.GetConversionFunctions(defaultCachingMode, defaultConstantsReduction, customCachingOptions));
@@ -274,7 +274,7 @@ internal static class QuantityConversionsBuilderExtensions
         {
             return fromQuantity.GetConversionsWithAllUnits(toQuantity, unitMappings, conversionExpressions, reduceConstants);
         }
-        
+
         return cachingMode switch
         {
             ConversionCachingMode.None => fromQuantity.GetConversionsWithCustomUnits(toQuantity, unitMappings, reduceConstants),
@@ -283,7 +283,7 @@ internal static class QuantityConversionsBuilderExtensions
             _ => throw new ArgumentOutOfRangeException()
         };
     }
-    
+
     private static IEnumerable<ConversionEntry> GetConversionsWithBaseUnits(this QuantityConversion conversion)
     {
         (QuantityInfo leftQuantity, QuantityInfo rightQuantity) = conversion;
@@ -296,7 +296,7 @@ internal static class QuantityConversionsBuilderExtensions
     {
         return fromQuantity.GetConversionsWithBaseUnits(toQuantity, fromQuantity.BaseDimensions.GetConversionDelegate(toQuantity.BaseDimensions));
     }
-    
+
     private static IEnumerable<ConversionEntry> GetConversionsWithBaseUnits(this QuantityInfo fromQuantity, QuantityInfo toQuantity, ConvertValueDelegate conversionExpression)
     {
         foreach (UnitInfo fromUnit in fromQuantity.UnitInfos)
@@ -324,7 +324,7 @@ internal static class QuantityConversionsBuilderExtensions
     {
         return fromQuantity.GetConversionsWithAllUnits(toQuantity, fromQuantity.BaseDimensions.GetConversionExpression(toQuantity.BaseDimensions), reduceConstants);
     }
-    
+
     private static IEnumerable<ConversionEntry> GetConversionsWithAllUnits(this QuantityInfo fromQuantity, QuantityInfo toQuantity, ConversionExpression conversionExpression,
         bool reduceConstants = true)
     {
@@ -392,7 +392,7 @@ internal static class QuantityConversionsBuilderExtensions
             }
         }
     }
-    
+
     private static IEnumerable<ConversionEntry> GetConversionsWithAllUnits(this QuantityInfo fromQuantity, QuantityInfo toQuantity,
         Dictionary<UnitKey, CustomQuantityConversionUnitMapping> unitMappings,
         Dictionary<UnitKey, CustomQuantityConversionExpressionMapping> conversionExpressions,
@@ -470,7 +470,7 @@ internal static class QuantityConversionsBuilderExtensions
     {
         if (fromDimensions.IsInverseOf(toDimensions))
         {
-            return new ConversionExpression(1, null, -1);
+            return new ConversionExpression(coefficient: 1, exponent: -1);
         }
 
         if (fromDimensions == toDimensions)
@@ -481,12 +481,12 @@ internal static class QuantityConversionsBuilderExtensions
         // note: technically we could to attempt to work with the powers, but currently there aren't any such cases
         throw InvalidConversionException.CreateIncompatibleDimensionsException(fromDimensions, toDimensions);
     }
-    
+
     private static bool TryGetConversionExpression(this BaseDimensions fromDimensions, BaseDimensions toDimensions, out ConversionExpression conversionExpression)
     {
         if (fromDimensions.IsInverseOf(toDimensions))
         {
-            conversionExpression = new ConversionExpression(1, null, -1);
+            conversionExpression = new ConversionExpression(coefficient: 1, exponent: -1);
             return true;
         }
 
@@ -500,7 +500,7 @@ internal static class QuantityConversionsBuilderExtensions
         conversionExpression = default;
         return false;
     }
-    
+
     private static ConvertValueDelegate GetConversionDelegate(this BaseDimensions fromDimensions, BaseDimensions toDimensions)
     {
         if (fromDimensions.IsInverseOf(toDimensions))
@@ -538,7 +538,7 @@ internal static class QuantityConversionsBuilderExtensions
         {
             return conversionFunction;
         }
-        
+
         throw InvalidConversionException.CreateIncompatibleUnitsException(fromUnit, toQuantity);
     }
 
@@ -712,12 +712,12 @@ internal static class QuantityConversionsBuilderExtensions
             ConversionExpression fromUnitToTargetUnit = matchingUnit.GetUnitConversionExpressionTo(toUnitInfo, false).Evaluate(fromUnitToMatchingUnit, true);
             return fromUnitToTargetUnit;
         }
-        
+
         throw InvalidConversionException.CreateIncompatibleUnitsException(fromUnitInfo, toQuantityInfo);
     }
 
     /// <summary>
-    ///     Attempts to get the conversion expression to convert a quantity from the specified unit of the source quantity type 
+    ///     Attempts to get the conversion expression to convert a quantity from the specified unit of the source quantity type
     ///     to the specified unit of the target quantity type.
     /// </summary>
     /// <param name="fromUnitInfo">The unit information of the source quantity type.</param>
@@ -727,7 +727,7 @@ internal static class QuantityConversionsBuilderExtensions
     ///     Default is true.
     /// </param>
     /// <param name="conversionExpression">
-    ///     When this method returns, contains the conversion expression from the specified unit of the source quantity type 
+    ///     When this method returns, contains the conversion expression from the specified unit of the source quantity type
     ///     to the specified unit of the target quantity type, if the conversion is successful; otherwise, null.
     /// </param>
     /// <returns>
@@ -744,7 +744,7 @@ internal static class QuantityConversionsBuilderExtensions
             conversionExpression = null;
             return false;
         }
-        
+
         if (fromUnitInfo.BaseUnits != BaseUnits.Undefined && fromUnitInfo.BaseUnits == toUnitInfo.BaseUnits)
         {
             conversionExpression = quantityConversionExpression;

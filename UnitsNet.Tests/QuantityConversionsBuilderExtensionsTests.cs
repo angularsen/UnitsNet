@@ -61,7 +61,7 @@ public class QuantityConversionsBuilderExtensionsTests
     public void QuantityInfoLookup_GetQuantityConversionMappingOptions_WithCustomUnitMappingAndConversionFunction_ReturnsTheExpectedConversion()
     {
         var quantityInfoLookup = new QuantityInfoLookup([Mass.Info, Volume.Info]);
-        var conversionExpression = new ConversionExpression(1);
+        var conversionExpression = new ConversionExpression(coefficient: 1);
         QuantityConversionOptions conversionOptions = new QuantityConversionOptions()
             .SetCustomConversion<Mass, Volume>()
             .SetConversionUnits(MassUnit.Gram, VolumeUnit.Liter)
@@ -111,7 +111,7 @@ public class QuantityConversionsBuilderExtensionsTests
     {
         IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.Quantities;
-        
+
         QuantityConversion[] quantityConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
 
         Assert.Equal(conversionMappings.Count, quantityConversions.Length);
@@ -129,9 +129,9 @@ public class QuantityConversionsBuilderExtensionsTests
     public void NoCaching_ReturnsNoConversions(bool reduceConstants)
     {
         IEnumerable<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
-        
+
         IEnumerable<QuantityConversion> conversions = UnitsNetSetup.Default.Quantities.GetQuantityConversions(conversionMappings);
-        
+
         Assert.Empty(conversions.GetConversionFunctions(ConversionCachingMode.None, reduceConstants));
     }
 
@@ -143,7 +143,7 @@ public class QuantityConversionsBuilderExtensionsTests
         IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.Quantities;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
-        
+
         // there are currently 32 conversions here
         var conversionExpressions = defaultConversions.GetConversionFunctions(ConversionCachingMode.BaseOnly, reduceConstants)
             .ToDictionary(pair => pair.Key, pair => pair.Value);
@@ -238,7 +238,7 @@ public class QuantityConversionsBuilderExtensionsTests
         var expectedNumberOfConversions = defaultConversions
             .Sum(x => (x.LeftQuantity.QuantityType == customizedType ? 0 : x.LeftQuantity.UnitInfos.Count) + (x.RightQuantity.QuantityType == customizedType ? 0 : x.RightQuantity.UnitInfos.Count));
         var customCachingOptions = new Dictionary<Type, ConversionCacheOptions> { [customizedType] = new(ConversionCachingMode.None, customConstantsReduction) };
-        
+
         var conversionExpressions = defaultConversions.GetConversionFunctions(ConversionCachingMode.All, defaultConstantsReduction, customCachingOptions)
             .ToDictionary(pair => pair.Key, pair => pair.Value);
 
@@ -289,7 +289,7 @@ public class QuantityConversionsBuilderExtensionsTests
             [typeof(Density)] = new(ConversionCachingMode.None, densityConstantsReduction),
             [typeof(SpecificVolume)] = new(ConversionCachingMode.None, specificVolumeConstantsReduction)
         };
-        
+
         var conversionExpressions = defaultConversions.GetConversionFunctions(ConversionCachingMode.All, defaultConstantsReduction, customCachingOptions)
             .ToDictionary(pair => pair.Key, pair => pair.Value);
 
@@ -324,7 +324,7 @@ public class QuantityConversionsBuilderExtensionsTests
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.Quantities;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
         var customCachingOptions = new Dictionary<Type, ConversionCacheOptions> { [typeof(Density)] = new(ConversionCachingMode.BaseOnly, densityConstantsReduction) };
-        
+
         var conversionExpressions = defaultConversions.GetConversionFunctions(ConversionCachingMode.All, defaultConstantsReduction, customCachingOptions)
             .ToDictionary(pair => pair.Key, pair => pair.Value);
 
@@ -359,7 +359,7 @@ public class QuantityConversionsBuilderExtensionsTests
         // the only difference is in the constants reduction parameter (there should still be 156 conversions here)
         var expectedNumberOfConversions = defaultConversions.Sum(x => x.LeftQuantity.UnitInfos.Count + x.RightQuantity.UnitInfos.Count);
         var customCachingOptions = new Dictionary<Type, ConversionCacheOptions> { [typeof(Density)] = new(ConversionCachingMode.All, densityConstantsReduction) };
-        
+
         var conversionExpressions = defaultConversions.GetConversionFunctions(ConversionCachingMode.All, defaultConstantsReduction, customCachingOptions)
             .ToDictionary(pair => pair.Key, pair => pair.Value);
 
@@ -384,7 +384,7 @@ public class QuantityConversionsBuilderExtensionsTests
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.Quantities;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
         var customCachingOptions = new Dictionary<Type, ConversionCacheOptions> { [typeof(Density)] = new(ConversionCachingMode.None, densityConstantsReduction) };
-        
+
         var conversionExpressions = defaultConversions.GetConversionFunctions(ConversionCachingMode.BaseOnly, defaultConstantsReduction, customCachingOptions)
             .ToDictionary(pair => pair.Key, pair => pair.Value);
 
@@ -416,7 +416,7 @@ public class QuantityConversionsBuilderExtensionsTests
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.Quantities;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
         var customCachingOptions = new Dictionary<Type, ConversionCacheOptions> { [typeof(Density)] = new(ConversionCachingMode.BaseOnly, densityConstantsReduction) };
-        
+
         var conversionExpressions = defaultConversions.GetConversionFunctions(ConversionCachingMode.BaseOnly, defaultConstantsReduction, customCachingOptions)
             .ToDictionary(pair => pair.Key, pair => pair.Value);
 
@@ -440,7 +440,7 @@ public class QuantityConversionsBuilderExtensionsTests
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.Quantities;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
         var customCachingOptions = new Dictionary<Type, ConversionCacheOptions> { [typeof(Density)] = new(ConversionCachingMode.All, densityConstantsReduction) };
-        
+
         var conversionExpressions = defaultConversions.GetConversionFunctions(ConversionCachingMode.BaseOnly, defaultConstantsReduction, customCachingOptions)
             .ToDictionary(pair => pair.Key, pair => pair.Value);
 
@@ -475,7 +475,7 @@ public class QuantityConversionsBuilderExtensionsTests
         // 56 units of Density
         var expectedNumberOfConversions = Density.Info.UnitInfos.Count;
         var customCachingOptions = new Dictionary<Type, ConversionCacheOptions> { [typeof(Density)] = new(ConversionCachingMode.All, densityConstantsReduction) };
-        
+
         var conversionExpressions = defaultConversions.GetConversionFunctions(ConversionCachingMode.None, defaultConstantsReduction, customCachingOptions)
             .ToDictionary(pair => pair.Key, pair => pair.Value);
 
@@ -508,7 +508,7 @@ public class QuantityConversionsBuilderExtensionsTests
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.Quantities;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
         var customCachingOptions = new Dictionary<Type, ConversionCacheOptions> { [typeof(Density)] = new(ConversionCachingMode.BaseOnly, densityConstantsReduction) };
-        
+
         // there are currently only 3 conversions here (3 density units matching the 3 units of specific volume)
         var conversionExpressions = defaultConversions.GetConversionFunctions(ConversionCachingMode.None, defaultConstantsReduction, customCachingOptions)
             .ToDictionary(pair => pair.Key, pair => pair.Value);
@@ -541,7 +541,7 @@ public class QuantityConversionsBuilderExtensionsTests
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.Quantities;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings).ToArray();
         var customQuantityOptions = new Dictionary<Type, ConversionCacheOptions> { [typeof(Density)] = new(ConversionCachingMode.None, densityConstantsReduction) };
-        
+
         Assert.Empty(defaultConversions.GetConversionFunctions(ConversionCachingMode.None, defaultConstantsReduction, customQuantityOptions));
     }
 
@@ -565,11 +565,11 @@ public class QuantityConversionsBuilderExtensionsTests
         IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
         QuantityInfoLookup quantityInfoLookup = UnitsNetSetup.Default.Quantities;
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings);
-        
+
         // Act
         IEnumerable<ConvertValueDelegate> conversionExpressions = defaultConversions.GetConversionFunctions(cachingMode, reduceConstants)
             .Select(pair => pair.Value.Convert);
-        
+
         // Assert
         Assert.All(conversionExpressions, valueDelegate => Assert.True(IsReduced(valueDelegate(QuantityValue.One))));
     }
@@ -607,12 +607,12 @@ public class QuantityConversionsBuilderExtensionsTests
         var customConversionFromDensity = new CustomQuantityConversionExpressionMapping(
             Density.Info[DensityUnit.KilogramPerCubicMeter],
             SpecificVolume.Info[SpecificVolumeUnit.CubicMeterPerKilogram],
-            new ConversionExpression(2, null, -1));
+            new ConversionExpression(coefficient: 2, exponent: -1));
 
         var customConversionFromSpecificVolume = new CustomQuantityConversionExpressionMapping(
             SpecificVolume.Info[SpecificVolumeUnit.CubicMeterPerKilogram],
             Density.Info[DensityUnit.KilogramPerCubicMeter],
-            new ConversionExpression(new QuantityValue(1, 2), null, -1));
+            new ConversionExpression(coefficient: new QuantityValue(1, 2), exponent: -1));
 
         var conversionMappingOptions = new QuantityConversionMappingOptions
         {
@@ -634,7 +634,7 @@ public class QuantityConversionsBuilderExtensionsTests
         };
         var customCachingOptions = new Dictionary<Type, ConversionCacheOptions> { [typeof(Density)] = new(densityCachingMode, densityConstantsReduction) };
         IEnumerable<QuantityConversion> defaultConversions = UnitsNetSetup.Default.Quantities.GetQuantityConversions(Quantity.DefaultProvider.Conversions);
-        
+
         // Act
         var conversionExpressions = defaultConversions.GetConversionFunctions(conversionOptions, defaultCachingMode, defaultConstantsReduction, customCachingOptions)
             .ToDictionary(pair => pair.Key, pair => pair.Value);
@@ -704,7 +704,7 @@ public class QuantityConversionsBuilderExtensionsTests
             }
         );
     }
-    
+
     [Theory]
     [InlineData(ConversionCachingMode.None, true)]
     [InlineData(ConversionCachingMode.BaseOnly, true)]
@@ -755,11 +755,11 @@ public class QuantityConversionsBuilderExtensionsTests
         };
         IEnumerable<QuantityConversion> defaultConversions = UnitsNetSetup.Default.Quantities.GetQuantityConversions(Quantity.DefaultProvider.Conversions);
         var emptyCachingOptions = new Dictionary<Type, ConversionCacheOptions>();
-        
+
         // Act
         var conversionExpressions = defaultConversions.GetConversionFunctions(conversionOptions, conversionCachingMode, reduceConstants, emptyCachingOptions)
             .ToDictionary(pair => pair.Key, pair => pair.Value);
-        
+
         // Assert
         Assert.All(conversionMappingOptions.CustomUnitMappings, mapping =>
         {
@@ -772,13 +772,13 @@ public class QuantityConversionsBuilderExtensionsTests
             Assert.Equal(expectedValue, conversionExpressions[conversionKey].Convert(valueToConvert));
             Assert.Equal(toUnit.UnitKey, conversionExpressions[conversionKey].TargetUnit);
             // this maybe a bit redundant but that's the only covering line for the ResultType property (its only used for the default equality contract)
-            Assert.Equal(conversionKey.ResultType, conversionExpressions[conversionKey].TargetUnit.UnitEnumType); 
+            Assert.Equal(conversionKey.ResultType, conversionExpressions[conversionKey].TargetUnit.UnitEnumType);
             if (reduceConstants)
             {
                 Assert.True(IsReduced(conversionExpressions[conversionKey].Convert(1)));
             }
         });
-        
+
         if (conversionCachingMode == ConversionCachingMode.None)
         {
             Assert.Equal(conversionMappingOptions.CustomUnitMappings.Count, conversionExpressions.Count);
@@ -798,11 +798,11 @@ public class QuantityConversionsBuilderExtensionsTests
         var customConversionFromDensity = new CustomQuantityConversionExpressionMapping(
             Density.Info[DensityUnit.PoundPerCubicFoot],
             SpecificVolume.Info[SpecificVolumeUnit.CubicFootPerPound],
-            new ConversionExpression(2, null, -1));
+            new ConversionExpression(coefficient: 2, exponent: -1));
         var customConversionFromSpecificVolume = new CustomQuantityConversionExpressionMapping(
             SpecificVolume.Info[SpecificVolumeUnit.CubicFootPerPound],
             Density.Info[DensityUnit.PoundPerCubicFoot],
-            new ConversionExpression(new QuantityValue(1, 2), null, -1));
+            new ConversionExpression(coefficient: new QuantityValue(1, 2), exponent: -1));
         var conversionMappingOptions = new QuantityConversionMappingOptions
         {
             ConversionExpressions =
@@ -836,11 +836,11 @@ public class QuantityConversionsBuilderExtensionsTests
         };
         IEnumerable<QuantityConversion> defaultConversions = UnitsNetSetup.Default.Quantities.GetQuantityConversions(Quantity.DefaultProvider.Conversions);
         var emptyCachingOptions = new Dictionary<Type, ConversionCacheOptions>();
-        
+
         // Act
         var conversionExpressions = defaultConversions.GetConversionFunctions(conversionOptions, conversionCachingMode, reduceConstants, emptyCachingOptions)
             .ToDictionary(pair => pair.Key, pair => pair.Value);
-        
+
         // Assert
         Assert.Multiple(() =>
         {
@@ -869,7 +869,7 @@ public class QuantityConversionsBuilderExtensionsTests
                 }
             });
         });
-        
+
         if (conversionCachingMode == ConversionCachingMode.None)
         {
             Assert.Equal(Density.Units.Count + SpecificVolume.Units.Count,
@@ -914,7 +914,7 @@ public class QuantityConversionsBuilderExtensionsTests
         var densityInfo = Density.DensityInfo.CreateDefault(unitInfos =>
             unitInfos.Select(x => new UnitDefinition<DensityUnit>(x.Value, x.PluralName, BaseUnits.Undefined)));
         IEnumerable<QuantityConversion> defaultConversions = [new(densityInfo, SpecificVolume.Info)];
-        
+
         Assert.Empty(defaultConversions.GetConversionFunctions(ConversionCachingMode.BaseOnly, reduceConstants));
     }
 
@@ -958,9 +958,9 @@ public class QuantityConversionsBuilderExtensionsTests
     //     {
     //         { new QuantityConversion(Mass.Info, Volume.Info), conversionMappingOptions }
     //     };
-    //     
+    //
     //     var customCachingOptions = new Dictionary<Type, ConversionCacheOptions> { [typeof(Mass)] = new(massCachingMode, massConstantsReduction) };
-    //     
+    //
     //     Assert.Throws<InvalidConversionException>(() => defaultConversions.GetConversionFunctions(conversionOptions, cachingMode, defaultConstantsReduction, customCachingOptions).ToList());
     // }
 
@@ -978,7 +978,7 @@ public class QuantityConversionsBuilderExtensionsTests
     //     var densityInfo = Density.DensityInfo.CreateDefault(unitInfos =>
     //         unitInfos.Select(x => new UnitDefinition<DensityUnit>(x.Value, x.PluralName, BaseUnits.Undefined)));
     //     IEnumerable<QuantityConversion> defaultConversions = [new(densityInfo, SpecificVolume.Info)];
-    //     
+    //
     //     var conversionMappingOptions = new QuantityConversionMappingOptions
     //     {
     //         CustomUnitMappings =
@@ -992,12 +992,12 @@ public class QuantityConversionsBuilderExtensionsTests
     //     {
     //         { new QuantityConversion(densityInfo, SpecificVolume.Info), conversionMappingOptions }
     //     };
-    //     
+    //
     //     var customCachingOptions = new Dictionary<Type, ConversionCacheOptions>
     //     {
     //         [typeof(Mass)] = new(massCachingMode, massConstantsReduction)
     //     };
-    //     
+    //
     //     Assert.Throws<InvalidConversionException>(() => defaultConversions.GetConversionFunctions(conversionOptions, cachingMode, defaultConstantsReduction, customCachingOptions).ToList());
     // }
 
@@ -1025,7 +1025,7 @@ public class QuantityConversionsBuilderExtensionsTests
         var densityInfo = Density.DensityInfo.CreateDefault(unitInfos =>
             unitInfos.Select(x => new UnitDefinition<DensityUnit>(x.Value, x.PluralName, BaseUnits.Undefined)));
         IEnumerable<QuantityConversion> defaultConversions = [new(densityInfo, SpecificVolume.Info)];
-        
+
         var conversionMappingOptions = new QuantityConversionMappingOptions
         {
             CustomUnitMappings =
@@ -1042,16 +1042,16 @@ public class QuantityConversionsBuilderExtensionsTests
         {
             { new QuantityConversion(densityInfo, SpecificVolume.Info), conversionMappingOptions }
         };
-        
+
         var customCachingOptions = new Dictionary<Type, ConversionCacheOptions>
         {
             [typeof(Density)] = new(cachingMode, defaultConstantsReduction),
             [typeof(SpecificVolume)] = new(massCachingMode, massConstantsReduction)
         };
-        
+
         Assert.Throws<InvalidConversionException>(() => defaultConversions.GetConversionFunctions(conversionOptions, ConversionCachingMode.All, true, customCachingOptions).ToList());
     }
-    
+
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
@@ -1061,7 +1061,7 @@ public class QuantityConversionsBuilderExtensionsTests
         IReadOnlyCollection<QuantityConversionMapping> conversionMappings = Quantity.DefaultProvider.Conversions;
         const ConversionCachingMode invalidCachingMode = (ConversionCachingMode)(-1);
         IEnumerable<QuantityConversion> defaultConversions = quantityInfoLookup.GetQuantityConversions(conversionMappings);
-        
+
         Assert.Multiple(() =>
                 Assert.Throws<ArgumentOutOfRangeException>(() => defaultConversions.GetConversionFunctions(invalidCachingMode, reduceConstants)),
             () =>
@@ -1105,13 +1105,13 @@ public class QuantityConversionsBuilderExtensionsTests
                 {
                     { new QuantityConversion(Density.Info, SpecificVolume.Info), conversionMappingOptions }
                 };
-                
+
                 Assert.Throws<ArgumentOutOfRangeException>(() => defaultConversions.GetConversionFunctions(conversionOptions, default, reduceConstants, invalidOptions)
                     .ToList());
             });
     }
 
-    
+
     // [Theory]
     // [InlineData(true)]
     // [InlineData(false)]
@@ -1129,7 +1129,7 @@ public class QuantityConversionsBuilderExtensionsTests
     //
     //     var conversions = defaultConversions.GetConversionFunctions(ConversionCachingMode.All, reduceConstants, customCachingOptions)
     //         .ToDictionary(pair => pair.Key, pair => pair.Value);
-    //     
+    //
     //     Assert.NotEmpty(conversions);
     //     Assert.False(conversions.ContainsKey(new QuantityConversionKey(Mass.BaseUnit, typeof(Volume))));
     // }
@@ -1168,7 +1168,7 @@ public class QuantityConversionsBuilderExtensionsTests
     //         [typeof(Density)] = new(ConversionCachingMode.BaseOnly, reduceConstants),
     //         [typeof(SpecificVolume)] = new(ConversionCachingMode.BaseOnly, reduceConstants)
     //     };
-    //     
+    //
     //     Assert.Empty(defaultConversions.GetConversionFunctions(ConversionCachingMode.None, reduceConstants, customCachingOptions));
     // }
     //
@@ -1199,7 +1199,7 @@ public class QuantityConversionsBuilderExtensionsTests
     public void GetQuantityConversionFrom_QuantityWithInverseDimensions_ReturnsTheClosestMatchingUnit(AreaUnit fromUnit, ReciprocalAreaUnit expectedUnit, double expectedCoefficient)
     {
         QuantityConversionFunction conversionFunction = ReciprocalArea.Info.GetQuantityConversionFrom(Area.Info[fromUnit]);
-        
+
         Assert.Equal(expectedUnit, conversionFunction.TargetUnit.ToUnit<ReciprocalAreaUnit>());
         Assert.Equal(expectedCoefficient, conversionFunction.Convert(QuantityValue.One).ToDouble(), 14);
     }
@@ -1213,7 +1213,7 @@ public class QuantityConversionsBuilderExtensionsTests
     public void GetQuantityConversionFrom_QuantityWithSameDimensions_ReturnsTheClosestMatchingUnit(MassConcentrationUnit fromUnit, DensityUnit expectedUnit, double expectedCoefficient)
     {
         QuantityConversionFunction conversionFunction = Density.Info.GetQuantityConversionFrom(MassConcentration.Info[fromUnit]);
-        
+
         Assert.Equal(expectedUnit, conversionFunction.TargetUnit.ToUnit<DensityUnit>());
         Assert.Equal(expectedCoefficient, conversionFunction.Convert(QuantityValue.One));
     }
@@ -1227,7 +1227,7 @@ public class QuantityConversionsBuilderExtensionsTests
     public void GetQuantityConversionFrom_DimensionlessQuantity_ReturnsTheClosestMatchingUnit(MassFractionUnit fromUnit, RatioUnit expectedUnit, double expectedCoefficient)
     {
         QuantityConversionFunction conversionFunction = Ratio.Info.GetQuantityConversionFrom(MassFraction.Info[fromUnit]);
-        
+
         Assert.Equal(expectedUnit, conversionFunction.TargetUnit.ToUnit<RatioUnit>());
         Assert.Equal(expectedCoefficient, conversionFunction.Convert(QuantityValue.One));
     }
@@ -1245,7 +1245,7 @@ public class QuantityConversionsBuilderExtensionsTests
         // we simulate a target quantity without any base units
         var targetQuantityInfo = Density.DensityInfo.CreateDefault(unitInfos =>
             unitInfos.Select(x => new UnitDefinition<DensityUnit>(x.Value, x.PluralName, BaseUnits.Undefined)));
-        
+
         Assert.Throws<InvalidConversionException>(() => targetQuantityInfo.GetQuantityConversionFrom(sourceUnitInfo));
     }
 }

@@ -76,8 +76,8 @@ public class QuantityInfoBuilderExtensionsTest
     public void WithConversionExpression_CreatesNewDefinition()
     {
         UnitInfo<Length, LengthUnit> oldDefinition = Length.Info.BaseUnitInfo;
-        var conversionFromBase = new ConversionExpression(20);
-        var conversionToBase = new ConversionExpression(0.05);
+        var conversionFromBase = new ConversionExpression(coefficient: 20);
+        var conversionToBase = new ConversionExpression(coefficient: 0.05);
 
         UnitDefinition<LengthUnit> newDefinition = oldDefinition.WithConversionExpression(conversionFromBase, conversionToBase);
 

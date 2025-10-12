@@ -117,8 +117,8 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<PowerRatioUnit>> GetDefaultMappings()
             {
                 yield return new (PowerRatioUnit.DecibelMilliwatt, "DecibelMilliwatt", "DecibelMilliwatts", BaseUnits.Undefined,
-                     new ConversionExpression(1, 30),
-                     new ConversionExpression(1, -30)                
+                     new ConversionExpression(coefficient: 1, constantTerm: 30),
+                     new ConversionExpression(coefficient: 1, constantTerm: -30)                
                 );
                 yield return new (PowerRatioUnit.DecibelWatt, "DecibelWatt", "DecibelWatts", BaseUnits.Undefined);
             }

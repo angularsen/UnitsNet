@@ -121,8 +121,8 @@ namespace UnitsNet
             {
                 yield return new (FuelEfficiencyUnit.KilometerPerLiter, "KilometerPerLiter", "KilometersPerLiter", BaseUnits.Undefined);
                 yield return new (FuelEfficiencyUnit.LiterPer100Kilometers, "LiterPer100Kilometers", "LitersPer100Kilometers", BaseUnits.Undefined,
-                     new ConversionExpression(100, null, -1),
-                     new ConversionExpression(100, null, -1)                
+                     new ConversionExpression(coefficient: 100, exponent: -1),
+                     new ConversionExpression(coefficient: 100, exponent: -1)                
                 );
                 yield return new (FuelEfficiencyUnit.MilePerUkGallon, "MilePerUkGallon", "MilesPerUkGallon", BaseUnits.Undefined,
                      new QuantityValue(2273045, 804672)             

@@ -117,16 +117,16 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<AmplitudeRatioUnit>> GetDefaultMappings()
             {
                 yield return new (AmplitudeRatioUnit.DecibelMicrovolt, "DecibelMicrovolt", "DecibelMicrovolts", BaseUnits.Undefined,
-                     new ConversionExpression(1, 120),
-                     new ConversionExpression(1, -120)                
+                     new ConversionExpression(coefficient: 1, constantTerm: 120),
+                     new ConversionExpression(coefficient: 1, constantTerm: -120)                
                 );
                 yield return new (AmplitudeRatioUnit.DecibelMillivolt, "DecibelMillivolt", "DecibelMillivolts", BaseUnits.Undefined,
-                     new ConversionExpression(1, 60),
-                     new ConversionExpression(1, -60)                
+                     new ConversionExpression(coefficient: 1, constantTerm: 60),
+                     new ConversionExpression(coefficient: 1, constantTerm: -60)                
                 );
                 yield return new (AmplitudeRatioUnit.DecibelUnloaded, "DecibelUnloaded", "DecibelsUnloaded", BaseUnits.Undefined,
-                     new ConversionExpression(1, new QuantityValue(2218487499, 1000000000)),
-                     new ConversionExpression(1, new QuantityValue(-2218487499, 1000000000))                
+                     new ConversionExpression(coefficient: 1, constantTerm: new QuantityValue(2218487499, 1000000000)),
+                     new ConversionExpression(coefficient: 1, constantTerm: new QuantityValue(-2218487499, 1000000000))                
                 );
                 yield return new (AmplitudeRatioUnit.DecibelVolt, "DecibelVolt", "DecibelVolts", BaseUnits.Undefined);
             }
