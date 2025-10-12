@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using CodeGen.Helpers.ExpressionAnalyzer.Expressions;
 using CodeGen.Helpers.ExpressionAnalyzer.Functions;
 using CodeGen.Helpers.ExpressionAnalyzer.Functions.Math;
-using CodeGen.Helpers.ExpressionAnalyzer.Functions.Math.Trigonometry;
 using Fractions;
 
 namespace CodeGen.Helpers.ExpressionAnalyzer;
 
-internal class ExpressionEvaluator // TODO make public (and move out in a separate project)
+internal partial class ExpressionEvaluator // TODO make public (and move out in a separate project)
 {
     public static readonly Fraction Pi = FractionExtensions.FromDoubleRounded(Math.PI, 16);
     private readonly IReadOnlyDictionary<string, Fraction> _constantValues;
@@ -61,7 +61,7 @@ internal class ExpressionEvaluator // TODO make public (and move out in a separa
         {
             previousExpression = expressionToParse;
             // the regex captures the innermost occurrence of a function group: "Sin(x)", "Pow(x, y)", "(x + 1)" are all valid matches
-            expressionToParse = Regex.Replace(expressionToParse, @"(\w*)\(([^()]*)\)", match =>
+            expressionToParse = MathOperationRegex().Replace(expressionToParse, match =>
             {
                 var functionName = match.Groups[1].Value;
                 var functionBodyToParse = match.Groups[2].Value;
@@ -244,7 +244,7 @@ internal class ExpressionEvaluator // TODO make public (and move out in a separa
 
     public static string ReplaceDecimalNotations(string expression, Dictionary<string, Fraction> constantValues)
     {
-        return Regex.Replace(expression, @"\d*(\.\d*)?[eE][-\+]?\d*[dD]?", match =>
+        return ScientificNotationRegex().Replace(expression, match =>
         {
             var tokens = match.Value.ToLower().Replace("d", "").Split('e');
             if (tokens.Length != 2 || !Fraction.TryParse(tokens[0], out Fraction mantissa) || !int.TryParse(tokens[1], out var exponent))
@@ -260,7 +260,7 @@ internal class ExpressionEvaluator // TODO make public (and move out in a separa
 
     public static string ReplaceMathPi(string expression, Dictionary<string, Fraction> constantValues)
     {
-        return Regex.Replace(expression, @"Math\.PI", _ =>
+        return MathPiRegex().Replace(expression, _ =>
         {
             constantValues[nameof(Pi)] = Pi;
             return nameof(Pi);
@@ -293,4 +293,31 @@ internal class ExpressionEvaluator // TODO make public (and move out in a separa
         Multiplication,
         Division
     }
+
+    /// <summary>
+    /// Matches numbers in scientific notation, optionally with a trailing d or D.
+    /// </summary>
+    /// <example>
+    /// 1.23e4
+    /// 5.67E-8d
+    /// 0.00123e+3D
+    /// </example>
+    [GeneratedRegex(@"\d*(\.\d*)?[eE][-\+]?\d*[dD]?")]
+    private static partial Regex ScientificNotationRegex();
+
+    /// <summary>
+    /// Matches occurrences of "Math.PI".
+    /// </summary>
+    [GeneratedRegex(@"Math\.PI")]
+    private static partial Regex MathPiRegex();
+
+    /// <summary>
+    /// Matches the innermost function call or parenthesized group.
+    /// Group 1: optional function name (e.g. "Sin" or "Pow"); empty for plain parentheses.
+    /// Group 2: the contents of the parentheses (does not allow nested parentheses).
+    /// Examples: Sin(x) -> group1="Sin", group2="x"; Pow(x, y) -> group1="Pow", group2="x, y"; (x + 1) -> group1="", group2="x + 1".
+    /// Use iteratively to find and replace innermost groups first.
+    /// </summary>
+    [GeneratedRegex(@"(\w*)\(([^()]*)\)")]
+    private static partial Regex MathOperationRegex();
 }
