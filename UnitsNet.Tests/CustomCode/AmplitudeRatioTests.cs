@@ -64,7 +64,7 @@ namespace UnitsNet.Tests
         {
             // Voltage increases by powers of 10 for every 20 dBV increase in amplitude ratio.
             AmplitudeRatio ar = AmplitudeRatio.FromDecibelVolts(amplitudeRatio);
-            
+
             var actual = ar.ToElectricPotential().Volts;
             Assert.Equal(expected, actual);
         }
