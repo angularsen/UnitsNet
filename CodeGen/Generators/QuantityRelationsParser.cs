@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using CodeGen.Exceptions;
@@ -61,7 +62,7 @@ namespace CodeGen.Generators
                     RightUnit = r.LeftUnit,
                 })
                 .ToList());
-            
+
             // We can infer division relations from multiplication relations.
             relations.AddRange(relations
                 .Where(r => r is { Operator: "*", NoInferredDivision: false })
@@ -91,7 +92,7 @@ namespace CodeGen.Generators
                 var list = string.Join("\n  ", duplicates);
                 throw new UnitsNetCodeGenException($"Duplicate inferred relations:\n  {list}");
             }
-            
+
             var ambiguous = relations
                 .GroupBy(r => $"{r.LeftQuantity.Name} {r.Operator} {r.RightQuantity.Name}")
                 .Where(g => g.Count() > 1)
@@ -133,12 +134,14 @@ namespace CodeGen.Generators
             try
             {
                 var text = File.ReadAllText(relationsFileName);
-                var relationStrings = JsonConvert.DeserializeObject<SortedSet<string>>(text) ?? [];
 
-                var parsedRelations = relationStrings.Select(relationString => ParseRelation(relationString, quantities)).ToList();
+                // Explicitly sort to keep the file consistent.
+                var relationStringsOrdered = (JsonConvert.DeserializeObject<List<string>>(text) ?? []).ToImmutableSortedSet(StringComparer.OrdinalIgnoreCase);
+
+                var parsedRelations = relationStringsOrdered.Select(relationString => ParseRelation(relationString, quantities)).ToList();
 
                 // File parsed successfully, save it back to disk in the sorted state.
-                File.WriteAllText(relationsFileName, JsonConvert.SerializeObject(relationStrings, Formatting.Indented));
+                File.WriteAllText(relationsFileName, JsonConvert.SerializeObject(relationStringsOrdered, Formatting.Indented));
 
                 return parsedRelations;
             }
