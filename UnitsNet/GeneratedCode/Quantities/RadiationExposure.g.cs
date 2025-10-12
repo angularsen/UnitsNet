@@ -118,25 +118,25 @@ namespace UnitsNet
             {
                 yield return new (RadiationExposureUnit.CoulombPerKilogram, "CoulombPerKilogram", "CoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
                 yield return new (RadiationExposureUnit.MicrocoulombPerKilogram, "MicrocoulombPerKilogram", "MicrocoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere),
-                     1000000             
+                     1000000
                 );
                 yield return new (RadiationExposureUnit.Microroentgen, "Microroentgen", "Microroentgens", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere),
-                     new QuantityValue(500000000000, 129)             
+                     new QuantityValue(500000000000, 129)
                 );
                 yield return new (RadiationExposureUnit.MillicoulombPerKilogram, "MillicoulombPerKilogram", "MillicoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere),
-                     1000             
+                     1000
                 );
                 yield return new (RadiationExposureUnit.Milliroentgen, "Milliroentgen", "Milliroentgens", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere),
-                     new QuantityValue(500000000, 129)             
+                     new QuantityValue(500000000, 129)
                 );
                 yield return new (RadiationExposureUnit.NanocoulombPerKilogram, "NanocoulombPerKilogram", "NanocoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Nanoampere),
-                     1000000000             
+                     1000000000
                 );
                 yield return new (RadiationExposureUnit.PicocoulombPerKilogram, "PicocoulombPerKilogram", "PicocoulombsPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Picoampere),
-                     1000000000000             
+                     1000000000000
                 );
                 yield return new (RadiationExposureUnit.Roentgen, "Roentgen", "Roentgens", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(500000, 129)             
+                     new QuantityValue(500000, 129)
                 );
             }
         }
@@ -632,7 +632,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(RadiationExposure), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(RadiationExposure)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

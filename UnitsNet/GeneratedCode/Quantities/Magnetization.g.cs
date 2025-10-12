@@ -523,7 +523,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(Magnetization), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(Magnetization)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

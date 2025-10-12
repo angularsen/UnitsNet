@@ -122,32 +122,32 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<DynamicViscosityUnit>> GetDefaultMappings()
             {
                 yield return new (DynamicViscosityUnit.Centipoise, "Centipoise", "Centipoise", BaseUnits.Undefined,
-                     1000             
+                     1000
                 );
                 yield return new (DynamicViscosityUnit.MicropascalSecond, "MicropascalSecond", "MicropascalSeconds", BaseUnits.Undefined,
-                     1000000             
+                     1000000
                 );
                 yield return new (DynamicViscosityUnit.MillipascalSecond, "MillipascalSecond", "MillipascalSeconds", BaseUnits.Undefined,
-                     1000             
+                     1000
                 );
                 yield return new (DynamicViscosityUnit.NewtonSecondPerMeterSquared, "NewtonSecondPerMeterSquared", "NewtonSecondsPerMeterSquared", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
                 yield return new (DynamicViscosityUnit.PascalSecond, "PascalSecond", "PascalSeconds", BaseUnits.Undefined,
-                     1             
+                     1
                 );
                 yield return new (DynamicViscosityUnit.Poise, "Poise", "Poise", BaseUnits.Undefined,
-                     10             
+                     10
                 );
                 yield return new (DynamicViscosityUnit.PoundForceSecondPerSquareFoot, "PoundForceSecondPerSquareFoot", "PoundsForceSecondPerSquareFoot", BaseUnits.Undefined,
-                     new QuantityValue(185806080000, 8896443230521)             
+                     new QuantityValue(185806080000, 8896443230521)
                 );
                 yield return new (DynamicViscosityUnit.PoundForceSecondPerSquareInch, "PoundForceSecondPerSquareInch", "PoundsForceSecondPerSquareInch", BaseUnits.Undefined,
-                     new QuantityValue(1290320000, 8896443230521)             
+                     new QuantityValue(1290320000, 8896443230521)
                 );
                 yield return new (DynamicViscosityUnit.PoundPerFootSecond, "PoundPerFootSecond", "PoundsPerFootSecond", BaseUnits.Undefined,
-                     new QuantityValue(30480000, 45359237)             
+                     new QuantityValue(30480000, 45359237)
                 );
                 yield return new (DynamicViscosityUnit.Reyn, "Reyn", "Reyns", BaseUnits.Undefined,
-                     new QuantityValue(1290320000, 8896443230521)             
+                     new QuantityValue(1290320000, 8896443230521)
                 );
             }
         }
@@ -685,7 +685,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(DynamicViscosity), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(DynamicViscosity)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

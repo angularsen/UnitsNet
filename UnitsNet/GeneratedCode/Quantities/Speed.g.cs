@@ -125,101 +125,101 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<SpeedUnit>> GetDefaultMappings()
             {
                 yield return new (SpeedUnit.CentimeterPerHour, "CentimeterPerHour", "CentimetersPerHour", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Hour),
-                     360000             
+                     360000
                 );
                 yield return new (SpeedUnit.CentimeterPerMinute, "CentimeterPerMinute", "CentimetersPerMinute", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Minute),
-                     6000             
+                     6000
                 );
                 yield return new (SpeedUnit.CentimeterPerSecond, "CentimeterPerSecond", "CentimetersPerSecond", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second),
-                     100             
+                     100
                 );
                 yield return new (SpeedUnit.DecimeterPerMinute, "DecimeterPerMinute", "DecimetersPerMinute", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Minute),
-                     600             
+                     600
                 );
                 yield return new (SpeedUnit.DecimeterPerSecond, "DecimeterPerSecond", "DecimetersPerSecond", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Second),
-                     10             
+                     10
                 );
                 yield return new (SpeedUnit.FootPerHour, "FootPerHour", "FeetPerHour", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Hour),
-                     new QuantityValue(1500000, 127)             
+                     new QuantityValue(1500000, 127)
                 );
                 yield return new (SpeedUnit.FootPerMinute, "FootPerMinute", "FeetPerMinute", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Minute),
-                     new QuantityValue(25000, 127)             
+                     new QuantityValue(25000, 127)
                 );
                 yield return new (SpeedUnit.FootPerSecond, "FootPerSecond", "FeetPerSecond", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second),
-                     new QuantityValue(1250, 381)             
+                     new QuantityValue(1250, 381)
                 );
                 yield return new (SpeedUnit.InchPerHour, "InchPerHour", "InchesPerHour", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Hour),
-                     new QuantityValue(18000000, 127)             
+                     new QuantityValue(18000000, 127)
                 );
                 yield return new (SpeedUnit.InchPerMinute, "InchPerMinute", "InchesPerMinute", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Minute),
-                     new QuantityValue(300000, 127)             
+                     new QuantityValue(300000, 127)
                 );
                 yield return new (SpeedUnit.InchPerSecond, "InchPerSecond", "InchesPerSecond", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second),
-                     new QuantityValue(5000, 127)             
+                     new QuantityValue(5000, 127)
                 );
                 yield return new (SpeedUnit.KilometerPerHour, "KilometerPerHour", "KilometersPerHour", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Hour),
-                     new QuantityValue(18, 5)             
+                     new QuantityValue(18, 5)
                 );
                 yield return new (SpeedUnit.KilometerPerMinute, "KilometerPerMinute", "KilometersPerMinute", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Minute),
-                     new QuantityValue(3, 50)             
+                     new QuantityValue(3, 50)
                 );
                 yield return new (SpeedUnit.KilometerPerSecond, "KilometerPerSecond", "KilometersPerSecond", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (SpeedUnit.Knot, "Knot", "Knots", new BaseUnits(length: LengthUnit.NauticalMile, time: DurationUnit.Hour),
-                     new QuantityValue(900, 463)             
+                     new QuantityValue(900, 463)
                 );
                 yield return new (SpeedUnit.Mach, "Mach", "Mach", BaseUnits.Undefined,
-                     new QuantityValue(100, 34029)             
+                     new QuantityValue(100, 34029)
                 );
                 yield return new (SpeedUnit.MeterPerHour, "MeterPerHour", "MetersPerHour", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Hour),
-                     3600             
+                     3600
                 );
                 yield return new (SpeedUnit.MeterPerMinute, "MeterPerMinute", "MetersPerMinute", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Minute),
-                     60             
+                     60
                 );
                 yield return new (SpeedUnit.MeterPerSecond, "MeterPerSecond", "MetersPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
                 yield return new (SpeedUnit.MicrometerPerMinute, "MicrometerPerMinute", "MicrometersPerMinute", new BaseUnits(length: LengthUnit.Micrometer, time: DurationUnit.Minute),
-                     60000000             
+                     60000000
                 );
                 yield return new (SpeedUnit.MicrometerPerSecond, "MicrometerPerSecond", "MicrometersPerSecond", new BaseUnits(length: LengthUnit.Micrometer, time: DurationUnit.Second),
-                     1000000             
+                     1000000
                 );
                 yield return new (SpeedUnit.MilePerHour, "MilePerHour", "MilesPerHour", new BaseUnits(length: LengthUnit.Mile, time: DurationUnit.Hour),
-                     new QuantityValue(3125, 1397)             
+                     new QuantityValue(3125, 1397)
                 );
                 yield return new (SpeedUnit.MillimeterPerHour, "MillimeterPerHour", "MillimetersPerHour", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Hour),
-                     3600000             
+                     3600000
                 );
                 yield return new (SpeedUnit.MillimeterPerMinute, "MillimeterPerMinute", "MillimetersPerMinute", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Minute),
-                     60000             
+                     60000
                 );
                 yield return new (SpeedUnit.MillimeterPerSecond, "MillimeterPerSecond", "MillimetersPerSecond", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second),
-                     1000             
+                     1000
                 );
                 yield return new (SpeedUnit.NanometerPerMinute, "NanometerPerMinute", "NanometersPerMinute", new BaseUnits(length: LengthUnit.Nanometer, time: DurationUnit.Minute),
-                     60000000000             
+                     60000000000
                 );
                 yield return new (SpeedUnit.NanometerPerSecond, "NanometerPerSecond", "NanometersPerSecond", new BaseUnits(length: LengthUnit.Nanometer, time: DurationUnit.Second),
-                     1000000000             
+                     1000000000
                 );
                 yield return new (SpeedUnit.UsSurveyFootPerHour, "UsSurveyFootPerHour", "UsSurveyFeetPerHour", new BaseUnits(length: LengthUnit.UsSurveyFoot, time: DurationUnit.Hour),
-                     11811             
+                     11811
                 );
                 yield return new (SpeedUnit.UsSurveyFootPerMinute, "UsSurveyFootPerMinute", "UsSurveyFeetPerMinute", new BaseUnits(length: LengthUnit.UsSurveyFoot, time: DurationUnit.Minute),
-                     new QuantityValue(3937, 20)             
+                     new QuantityValue(3937, 20)
                 );
                 yield return new (SpeedUnit.UsSurveyFootPerSecond, "UsSurveyFootPerSecond", "UsSurveyFeetPerSecond", new BaseUnits(length: LengthUnit.UsSurveyFoot, time: DurationUnit.Second),
-                     new QuantityValue(3937, 1200)             
+                     new QuantityValue(3937, 1200)
                 );
                 yield return new (SpeedUnit.YardPerHour, "YardPerHour", "YardsPerHour", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Hour),
-                     new QuantityValue(500000, 127)             
+                     new QuantityValue(500000, 127)
                 );
                 yield return new (SpeedUnit.YardPerMinute, "YardPerMinute", "YardsPerMinute", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Minute),
-                     new QuantityValue(25000, 381)             
+                     new QuantityValue(25000, 381)
                 );
                 yield return new (SpeedUnit.YardPerSecond, "YardPerSecond", "YardsPerSecond", new BaseUnits(length: LengthUnit.Yard, time: DurationUnit.Second),
-                     new QuantityValue(1250, 1143)             
+                     new QuantityValue(1250, 1143)
                 );
             }
         }
@@ -1092,7 +1092,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(Speed), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(Speed)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

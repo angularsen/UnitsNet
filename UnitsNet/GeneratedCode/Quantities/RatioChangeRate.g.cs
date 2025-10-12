@@ -118,7 +118,7 @@ namespace UnitsNet
             {
                 yield return new (RatioChangeRateUnit.DecimalFractionPerSecond, "DecimalFractionPerSecond", "DecimalFractionsPerSecond", new BaseUnits(time: DurationUnit.Second));
                 yield return new (RatioChangeRateUnit.PercentPerSecond, "PercentPerSecond", "PercentsPerSecond", BaseUnits.Undefined,
-                     100             
+                     100
                 );
             }
         }
@@ -536,7 +536,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(RatioChangeRate), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(RatioChangeRate)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

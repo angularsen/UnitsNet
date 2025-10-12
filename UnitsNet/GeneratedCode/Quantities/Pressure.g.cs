@@ -127,146 +127,146 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<PressureUnit>> GetDefaultMappings()
             {
                 yield return new (PressureUnit.Atmosphere, "Atmosphere", "Atmospheres", BaseUnits.Undefined,
-                     new QuantityValue(1, 101325)             
+                     new QuantityValue(1, 101325)
                 );
                 yield return new (PressureUnit.Bar, "Bar", "Bars", BaseUnits.Undefined,
-                     new QuantityValue(1, 100000)             
+                     new QuantityValue(1, 100000)
                 );
                 yield return new (PressureUnit.Centibar, "Centibar", "Centibars", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (PressureUnit.CentimeterOfWaterColumn, "CentimeterOfWaterColumn", "CentimetersOfWaterColumn", BaseUnits.Undefined,
-                     new QuantityValue(2000, 196133)             
+                     new QuantityValue(2000, 196133)
                 );
                 yield return new (PressureUnit.Decapascal, "Decapascal", "Decapascals", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 10)             
+                     new QuantityValue(1, 10)
                 );
                 yield return new (PressureUnit.Decibar, "Decibar", "Decibars", BaseUnits.Undefined,
-                     new QuantityValue(1, 10000)             
+                     new QuantityValue(1, 10000)
                 );
                 yield return new (PressureUnit.DynePerSquareCentimeter, "DynePerSquareCentimeter", "DynesPerSquareCentimeter", BaseUnits.Undefined,
-                     10             
+                     10
                 );
                 yield return new (PressureUnit.FootOfHead, "FootOfHead", "FeetOfHead", BaseUnits.Undefined,
-                     new QuantityValue(156250000, 466922140449)             
+                     new QuantityValue(156250000, 466922140449)
                 );
                 yield return new (PressureUnit.Gigapascal, "Gigapascal", "Gigapascals", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000000)             
+                     new QuantityValue(1, 1000000000)
                 );
                 yield return new (PressureUnit.Hectopascal, "Hectopascal", "Hectopascals", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 100)             
+                     new QuantityValue(1, 100)
                 );
                 yield return new (PressureUnit.InchOfMercury, "InchOfMercury", "InchesOfMercury", BaseUnits.Undefined,
-                     new QuantityValue(1000000000, 3386388640341)             
+                     new QuantityValue(1000000000, 3386388640341)
                 );
                 yield return new (PressureUnit.InchOfWaterColumn, "InchOfWaterColumn", "InchesOfWaterColumn", BaseUnits.Undefined,
-                     new QuantityValue(100000, 24908891)             
+                     new QuantityValue(100000, 24908891)
                 );
                 yield return new (PressureUnit.Kilobar, "Kilobar", "Kilobars", BaseUnits.Undefined,
-                     new QuantityValue(1, 100000000)             
+                     new QuantityValue(1, 100000000)
                 );
                 yield return new (PressureUnit.KilogramForcePerSquareCentimeter, "KilogramForcePerSquareCentimeter", "KilogramsForcePerSquareCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(2, 196133)             
+                     new QuantityValue(2, 196133)
                 );
                 yield return new (PressureUnit.KilogramForcePerSquareMeter, "KilogramForcePerSquareMeter", "KilogramsForcePerSquareMeter", BaseUnits.Undefined,
-                     new QuantityValue(20000, 196133)             
+                     new QuantityValue(20000, 196133)
                 );
                 yield return new (PressureUnit.KilogramForcePerSquareMillimeter, "KilogramForcePerSquareMillimeter", "KilogramsForcePerSquareMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 9806650)             
+                     new QuantityValue(1, 9806650)
                 );
                 yield return new (PressureUnit.KilonewtonPerSquareCentimeter, "KilonewtonPerSquareCentimeter", "KilonewtonsPerSquareCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 10000000)             
+                     new QuantityValue(1, 10000000)
                 );
                 yield return new (PressureUnit.KilonewtonPerSquareMeter, "KilonewtonPerSquareMeter", "KilonewtonsPerSquareMeter", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (PressureUnit.KilonewtonPerSquareMillimeter, "KilonewtonPerSquareMillimeter", "KilonewtonsPerSquareMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000)             
+                     new QuantityValue(1, 1000000000)
                 );
                 yield return new (PressureUnit.Kilopascal, "Kilopascal", "Kilopascals", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (PressureUnit.KilopoundForcePerSquareFoot, "KilopoundForcePerSquareFoot", "KilopoundsForcePerSquareFoot", BaseUnits.Undefined,
-                     new QuantityValue(185806080, 8896443230521)             
+                     new QuantityValue(185806080, 8896443230521)
                 );
                 yield return new (PressureUnit.KilopoundForcePerSquareInch, "KilopoundForcePerSquareInch", "KilopoundsForcePerSquareInch", BaseUnits.Undefined,
-                     new QuantityValue(1290320, 8896443230521)             
+                     new QuantityValue(1290320, 8896443230521)
                 );
                 yield return new (PressureUnit.KilopoundForcePerSquareMil, "KilopoundForcePerSquareMil", "KilopoundsForcePerSquareMil", BaseUnits.Undefined,
-                     new QuantityValue(16129, 111205540381512500)             
+                     new QuantityValue(16129, 111205540381512500)
                 );
                 yield return new (PressureUnit.Megabar, "Megabar", "Megabars", BaseUnits.Undefined,
-                     new QuantityValue(1, 100000000000)             
+                     new QuantityValue(1, 100000000000)
                 );
                 yield return new (PressureUnit.MeganewtonPerSquareMeter, "MeganewtonPerSquareMeter", "MeganewtonsPerSquareMeter", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (PressureUnit.Megapascal, "Megapascal", "Megapascals", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (PressureUnit.MeterOfHead, "MeterOfHead", "MetersOfHead", BaseUnits.Undefined,
-                     new QuantityValue(125000, 1225517429)             
+                     new QuantityValue(125000, 1225517429)
                 );
                 yield return new (PressureUnit.MeterOfWaterColumn, "MeterOfWaterColumn", "MetersOfWaterColumn", BaseUnits.Undefined,
-                     new QuantityValue(20, 196133)             
+                     new QuantityValue(20, 196133)
                 );
                 yield return new (PressureUnit.Microbar, "Microbar", "Microbars", BaseUnits.Undefined,
-                     10             
+                     10
                 );
                 yield return new (PressureUnit.Micropascal, "Micropascal", "Micropascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second),
-                     1000000             
+                     1000000
                 );
                 yield return new (PressureUnit.Millibar, "Millibar", "Millibars", BaseUnits.Undefined,
-                     new QuantityValue(1, 100)             
+                     new QuantityValue(1, 100)
                 );
                 yield return new (PressureUnit.MillimeterOfMercury, "MillimeterOfMercury", "MillimetersOfMercury", BaseUnits.Undefined,
-                     new QuantityValue(200000000, 26664477483)             
+                     new QuantityValue(200000000, 26664477483)
                 );
                 yield return new (PressureUnit.MillimeterOfWaterColumn, "MillimeterOfWaterColumn", "MillimetersOfWaterColumn", BaseUnits.Undefined,
-                     new QuantityValue(20000, 196133)             
+                     new QuantityValue(20000, 196133)
                 );
                 yield return new (PressureUnit.Millipascal, "Millipascal", "Millipascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second),
-                     1000             
+                     1000
                 );
                 yield return new (PressureUnit.Millitorr, "Millitorr", "Millitorrs", BaseUnits.Undefined,
-                     new QuantityValue(30400, 4053)             
+                     new QuantityValue(30400, 4053)
                 );
                 yield return new (PressureUnit.NewtonPerSquareCentimeter, "NewtonPerSquareCentimeter", "NewtonsPerSquareCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 10000)             
+                     new QuantityValue(1, 10000)
                 );
                 yield return new (PressureUnit.NewtonPerSquareMeter, "NewtonPerSquareMeter", "NewtonsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     1             
+                     1
                 );
                 yield return new (PressureUnit.NewtonPerSquareMillimeter, "NewtonPerSquareMillimeter", "NewtonsPerSquareMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (PressureUnit.Pascal, "Pascal", "Pascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
                 yield return new (PressureUnit.PoundForcePerSquareFoot, "PoundForcePerSquareFoot", "PoundsForcePerSquareFoot", BaseUnits.Undefined,
-                     new QuantityValue(185806080000, 8896443230521)             
+                     new QuantityValue(185806080000, 8896443230521)
                 );
                 yield return new (PressureUnit.PoundForcePerSquareInch, "PoundForcePerSquareInch", "PoundsForcePerSquareInch", BaseUnits.Undefined,
-                     new QuantityValue(1290320000, 8896443230521)             
+                     new QuantityValue(1290320000, 8896443230521)
                 );
                 yield return new (PressureUnit.PoundForcePerSquareMil, "PoundForcePerSquareMil", "PoundsForcePerSquareMil", BaseUnits.Undefined,
-                     new QuantityValue(32258, 222411080763025)             
+                     new QuantityValue(32258, 222411080763025)
                 );
                 yield return new (PressureUnit.PoundPerInchSecondSquared, "PoundPerInchSecondSquared", "PoundsPerInchSecondSquared", BaseUnits.Undefined,
-                     new QuantityValue(498177842352, 8896443230521)             
+                     new QuantityValue(498177842352, 8896443230521)
                 );
                 yield return new (PressureUnit.TechnicalAtmosphere, "TechnicalAtmosphere", "TechnicalAtmospheres", BaseUnits.Undefined,
-                     new QuantityValue(2, 196133)             
+                     new QuantityValue(2, 196133)
                 );
                 yield return new (PressureUnit.TonneForcePerSquareCentimeter, "TonneForcePerSquareCentimeter", "TonnesForcePerSquareCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 98066500)             
+                     new QuantityValue(1, 98066500)
                 );
                 yield return new (PressureUnit.TonneForcePerSquareMeter, "TonneForcePerSquareMeter", "TonnesForcePerSquareMeter", BaseUnits.Undefined,
-                     new QuantityValue(20, 196133)             
+                     new QuantityValue(20, 196133)
                 );
                 yield return new (PressureUnit.TonneForcePerSquareMillimeter, "TonneForcePerSquareMillimeter", "TonnesForcePerSquareMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 9806650000)             
+                     new QuantityValue(1, 9806650000)
                 );
                 yield return new (PressureUnit.Torr, "Torr", "Torrs", BaseUnits.Undefined,
-                     new QuantityValue(152, 20265)             
+                     new QuantityValue(152, 20265)
                 );
             }
         }
@@ -1346,7 +1346,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(Pressure), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(Pressure)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

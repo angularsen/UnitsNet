@@ -118,20 +118,20 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<CoefficientOfThermalExpansionUnit>> GetDefaultMappings()
             {
                 yield return new (CoefficientOfThermalExpansionUnit.PerDegreeCelsius, "PerDegreeCelsius", "PerDegreeCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius),
-                     1             
+                     1
                 );
                 yield return new (CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, "PerDegreeFahrenheit", "PerDegreeFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit),
-                     new QuantityValue(5, 9)             
+                     new QuantityValue(5, 9)
                 );
                 yield return new (CoefficientOfThermalExpansionUnit.PerKelvin, "PerKelvin", "PerKelvin", new BaseUnits(temperature: TemperatureUnit.Kelvin));
                 yield return new (CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius, "PpmPerDegreeCelsius", "PpmPerDegreeCelsius", BaseUnits.Undefined,
-                     1000000             
+                     1000000
                 );
                 yield return new (CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit, "PpmPerDegreeFahrenheit", "PpmPerDegreeFahrenheit", BaseUnits.Undefined,
-                     new QuantityValue(5000000, 9)             
+                     new QuantityValue(5000000, 9)
                 );
                 yield return new (CoefficientOfThermalExpansionUnit.PpmPerKelvin, "PpmPerKelvin", "PpmPerKelvin", BaseUnits.Undefined,
-                     1000000             
+                     1000000
                 );
             }
         }
@@ -611,7 +611,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(CoefficientOfThermalExpansion), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(CoefficientOfThermalExpansion)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

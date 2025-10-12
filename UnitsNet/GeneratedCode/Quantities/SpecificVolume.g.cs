@@ -118,11 +118,11 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<SpecificVolumeUnit>> GetDefaultMappings()
             {
                 yield return new (SpecificVolumeUnit.CubicFootPerPound, "CubicFootPerPound", "CubicFeetPerPound", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound),
-                     new QuantityValue(28349523125, 1769802912)             
+                     new QuantityValue(28349523125, 1769802912)
                 );
                 yield return new (SpecificVolumeUnit.CubicMeterPerKilogram, "CubicMeterPerKilogram", "CubicMetersPerKilogram", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
                 yield return new (SpecificVolumeUnit.MillicubicMeterPerKilogram, "MillicubicMeterPerKilogram", "MillicubicMetersPerKilogram", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram),
-                     1000             
+                     1000
                 );
             }
         }
@@ -570,7 +570,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(SpecificVolume), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(SpecificVolume)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

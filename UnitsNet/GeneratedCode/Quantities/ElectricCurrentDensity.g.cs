@@ -120,10 +120,10 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<ElectricCurrentDensityUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricCurrentDensityUnit.AmperePerSquareFoot, "AmperePerSquareFoot", "AmperesPerSquareFoot", new BaseUnits(length: LengthUnit.Foot, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(145161, 1562500)             
+                     new QuantityValue(145161, 1562500)
                 );
                 yield return new (ElectricCurrentDensityUnit.AmperePerSquareInch, "AmperePerSquareInch", "AmperesPerSquareInch", new BaseUnits(length: LengthUnit.Inch, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(16129, 25000000)             
+                     new QuantityValue(16129, 25000000)
                 );
                 yield return new (ElectricCurrentDensityUnit.AmperePerSquareMeter, "AmperePerSquareMeter", "AmperesPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, current: ElectricCurrentUnit.Ampere));
             }
@@ -555,7 +555,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(ElectricCurrentDensity), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(ElectricCurrentDensity)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

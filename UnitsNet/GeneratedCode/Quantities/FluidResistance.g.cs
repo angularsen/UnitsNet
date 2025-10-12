@@ -120,59 +120,59 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<FluidResistanceUnit>> GetDefaultMappings()
             {
                 yield return new (FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth, "DyneSecondPerCentimeterToTheFifth", "DyneSecondsPerCentimeterToTheFifth", BaseUnits.Undefined,
-                     new QuantityValue(1, 100000)             
+                     new QuantityValue(1, 100000)
                 );
                 yield return new (FluidResistanceUnit.MegapascalSecondPerCubicMeter, "MegapascalSecondPerCubicMeter", "MegapascalSecondsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Microsecond),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter, "MillimeterMercuryMinutePerCubicCentimeter", "MillimeterMercuryMinutesPerCubicCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 7999342080)             
+                     new QuantityValue(1, 7999342080)
                 );
                 yield return new (FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter, "MillimeterMercuryMinutePerCubicMeter", "MillimeterMercuryMinutesPerCubicMeter", BaseUnits.Undefined,
-                     new QuantityValue(3125, 24997944)             
+                     new QuantityValue(3125, 24997944)
                 );
                 yield return new (FluidResistanceUnit.MillimeterMercuryMinutePerLiter, "MillimeterMercuryMinutePerLiter", "MillimeterMercuryMinutesPerLiter", BaseUnits.Undefined,
-                     new QuantityValue(25, 199983552)             
+                     new QuantityValue(25, 199983552)
                 );
                 yield return new (FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter, "MillimeterMercuryMinutePerMilliliter", "MillimeterMercuryMinutesPerMilliliter", BaseUnits.Undefined,
-                     new QuantityValue(1, 7999342080)             
+                     new QuantityValue(1, 7999342080)
                 );
                 yield return new (FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter, "MillimeterMercurySecondPerCubicCentimeter", "MillimeterMercurySecondsPerCubicCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 133322368)             
+                     new QuantityValue(1, 133322368)
                 );
                 yield return new (FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter, "MillimeterMercurySecondPerCubicMeter", "MillimeterMercurySecondsPerCubicMeter", BaseUnits.Undefined,
-                     new QuantityValue(15625, 2083162)             
+                     new QuantityValue(15625, 2083162)
                 );
                 yield return new (FluidResistanceUnit.MillimeterMercurySecondPerLiter, "MillimeterMercurySecondPerLiter", "MillimeterMercurySecondsPerLiter", BaseUnits.Undefined,
-                     new QuantityValue(125, 16665296)             
+                     new QuantityValue(125, 16665296)
                 );
                 yield return new (FluidResistanceUnit.MillimeterMercurySecondPerMilliliter, "MillimeterMercurySecondPerMilliliter", "MillimeterMercurySecondsPerMilliliter", BaseUnits.Undefined,
-                     new QuantityValue(1, 133322368)             
+                     new QuantityValue(1, 133322368)
                 );
                 yield return new (FluidResistanceUnit.PascalMinutePerCubicCentimeter, "PascalMinutePerCubicCentimeter", "PascalMinutesPerCubicCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 60000000)             
+                     new QuantityValue(1, 60000000)
                 );
                 yield return new (FluidResistanceUnit.PascalMinutePerCubicMeter, "PascalMinutePerCubicMeter", "PascalMinutesPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute),
-                     new QuantityValue(1, 60)             
+                     new QuantityValue(1, 60)
                 );
                 yield return new (FluidResistanceUnit.PascalMinutePerLiter, "PascalMinutePerLiter", "PascalMinutesPerLiter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Minute),
-                     new QuantityValue(1, 60000)             
+                     new QuantityValue(1, 60000)
                 );
                 yield return new (FluidResistanceUnit.PascalMinutePerMilliliter, "PascalMinutePerMilliliter", "PascalMinutesPerMilliliter", BaseUnits.Undefined,
-                     new QuantityValue(1, 60000000)             
+                     new QuantityValue(1, 60000000)
                 );
                 yield return new (FluidResistanceUnit.PascalSecondPerCubicCentimeter, "PascalSecondPerCubicCentimeter", "PascalSecondsPerCubicCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (FluidResistanceUnit.PascalSecondPerCubicMeter, "PascalSecondPerCubicMeter", "PascalSecondsPerCubicMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
                 yield return new (FluidResistanceUnit.PascalSecondPerLiter, "PascalSecondPerLiter", "PascalSecondsPerLiter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (FluidResistanceUnit.PascalSecondPerMilliliter, "PascalSecondPerMilliliter", "PascalSecondsPerMilliliter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (FluidResistanceUnit.WoodUnit, "WoodUnit", "WoodUnits", BaseUnits.Undefined,
-                     new QuantityValue(25, 199983552)             
+                     new QuantityValue(25, 199983552)
                 );
             }
         }
@@ -811,7 +811,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(FluidResistance), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(FluidResistance)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

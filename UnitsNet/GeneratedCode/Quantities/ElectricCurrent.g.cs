@@ -126,28 +126,28 @@ namespace UnitsNet
             {
                 yield return new (ElectricCurrentUnit.Ampere, "Ampere", "Amperes", new BaseUnits(current: ElectricCurrentUnit.Ampere));
                 yield return new (ElectricCurrentUnit.Centiampere, "Centiampere", "Centiamperes", new BaseUnits(current: ElectricCurrentUnit.Centiampere),
-                     100             
+                     100
                 );
                 yield return new (ElectricCurrentUnit.Femtoampere, "Femtoampere", "Femtoamperes", new BaseUnits(current: ElectricCurrentUnit.Femtoampere),
-                     1000000000000000             
+                     1000000000000000
                 );
                 yield return new (ElectricCurrentUnit.Kiloampere, "Kiloampere", "Kiloamperes", new BaseUnits(current: ElectricCurrentUnit.Kiloampere),
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (ElectricCurrentUnit.Megaampere, "Megaampere", "Megaamperes", new BaseUnits(current: ElectricCurrentUnit.Megaampere),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (ElectricCurrentUnit.Microampere, "Microampere", "Microamperes", new BaseUnits(current: ElectricCurrentUnit.Microampere),
-                     1000000             
+                     1000000
                 );
                 yield return new (ElectricCurrentUnit.Milliampere, "Milliampere", "Milliamperes", new BaseUnits(current: ElectricCurrentUnit.Milliampere),
-                     1000             
+                     1000
                 );
                 yield return new (ElectricCurrentUnit.Nanoampere, "Nanoampere", "Nanoamperes", new BaseUnits(current: ElectricCurrentUnit.Nanoampere),
-                     1000000000             
+                     1000000000
                 );
                 yield return new (ElectricCurrentUnit.Picoampere, "Picoampere", "Picoamperes", new BaseUnits(current: ElectricCurrentUnit.Picoampere),
-                     1000000000000             
+                     1000000000000
                 );
             }
         }
@@ -690,7 +690,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(ElectricCurrent), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(ElectricCurrent)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

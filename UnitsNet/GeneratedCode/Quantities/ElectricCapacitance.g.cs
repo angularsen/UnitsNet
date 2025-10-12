@@ -121,22 +121,22 @@ namespace UnitsNet
             {
                 yield return new (ElectricCapacitanceUnit.Farad, "Farad", "Farads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
                 yield return new (ElectricCapacitanceUnit.Kilofarad, "Kilofarad", "Kilofarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (ElectricCapacitanceUnit.Megafarad, "Megafarad", "Megafarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (ElectricCapacitanceUnit.Microfarad, "Microfarad", "Microfarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere),
-                     1000000             
+                     1000000
                 );
                 yield return new (ElectricCapacitanceUnit.Millifarad, "Millifarad", "Millifarads", BaseUnits.Undefined,
-                     1000             
+                     1000
                 );
                 yield return new (ElectricCapacitanceUnit.Nanofarad, "Nanofarad", "Nanofarads", BaseUnits.Undefined,
-                     1000000000             
+                     1000000000
                 );
                 yield return new (ElectricCapacitanceUnit.Picofarad, "Picofarad", "Picofarads", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Microampere),
-                     1000000000000             
+                     1000000000000
                 );
             }
         }
@@ -619,7 +619,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(ElectricCapacitance), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(ElectricCapacitance)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

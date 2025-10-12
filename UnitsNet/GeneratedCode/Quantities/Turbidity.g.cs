@@ -509,7 +509,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(Turbidity), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(Turbidity)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

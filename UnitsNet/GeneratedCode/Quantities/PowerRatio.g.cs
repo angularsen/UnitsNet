@@ -118,7 +118,7 @@ namespace UnitsNet
             {
                 yield return new (PowerRatioUnit.DecibelMilliwatt, "DecibelMilliwatt", "DecibelMilliwatts", BaseUnits.Undefined,
                      new ConversionExpression(coefficient: 1, constantTerm: 30),
-                     new ConversionExpression(coefficient: 1, constantTerm: -30)                
+                     new ConversionExpression(coefficient: 1, constantTerm: -30)
                 );
                 yield return new (PowerRatioUnit.DecibelWatt, "DecibelWatt", "DecibelWatts", BaseUnits.Undefined);
             }
@@ -546,7 +546,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(PowerRatio), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(PowerRatio)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

@@ -118,13 +118,13 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<TemperatureGradientUnit>> GetDefaultMappings()
             {
                 yield return new (TemperatureGradientUnit.DegreeCelsiusPerKilometer, "DegreeCelsiusPerKilometer", "DegreesCelsiusPerKilometer", new BaseUnits(length: LengthUnit.Kilometer, temperature: TemperatureUnit.DegreeCelsius),
-                     1000             
+                     1000
                 );
                 yield return new (TemperatureGradientUnit.DegreeCelsiusPerMeter, "DegreeCelsiusPerMeter", "DegreesCelsiusPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.DegreeCelsius),
-                     1             
+                     1
                 );
                 yield return new (TemperatureGradientUnit.DegreeFahrenheitPerFoot, "DegreeFahrenheitPerFoot", "DegreesFahrenheitPerFoot", new BaseUnits(length: LengthUnit.Foot, temperature: TemperatureUnit.DegreeFahrenheit),
-                     new QuantityValue(3429, 6250)             
+                     new QuantityValue(3429, 6250)
                 );
                 yield return new (TemperatureGradientUnit.KelvinPerMeter, "KelvinPerMeter", "KelvinsPerMeter", new BaseUnits(length: LengthUnit.Meter, temperature: TemperatureUnit.Kelvin));
             }
@@ -579,7 +579,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(TemperatureGradient), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(TemperatureGradient)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

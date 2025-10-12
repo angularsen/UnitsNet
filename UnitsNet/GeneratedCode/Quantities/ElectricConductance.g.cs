@@ -120,50 +120,50 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<ElectricConductanceUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricConductanceUnit.Gigamho, "Gigamho", "Gigamhos", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000)             
+                     new QuantityValue(1, 1000000000)
                 );
                 yield return new (ElectricConductanceUnit.Gigasiemens, "Gigasiemens", "Gigasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 1000000000)             
+                     new QuantityValue(1, 1000000000)
                 );
                 yield return new (ElectricConductanceUnit.Kilomho, "Kilomho", "Kilomhos", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (ElectricConductanceUnit.Kilosiemens, "Kilosiemens", "Kilosiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (ElectricConductanceUnit.Megamho, "Megamho", "Megamhos", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (ElectricConductanceUnit.Megasiemens, "Megasiemens", "Megasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (ElectricConductanceUnit.Mho, "Mho", "Mhos", BaseUnits.Undefined,
-                     1             
+                     1
                 );
                 yield return new (ElectricConductanceUnit.Micromho, "Micromho", "Micromhos", BaseUnits.Undefined,
-                     1000000             
+                     1000000
                 );
                 yield return new (ElectricConductanceUnit.Microsiemens, "Microsiemens", "Microsiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere),
-                     1000000             
+                     1000000
                 );
                 yield return new (ElectricConductanceUnit.Millimho, "Millimho", "Millimhos", BaseUnits.Undefined,
-                     1000             
+                     1000
                 );
                 yield return new (ElectricConductanceUnit.Millisiemens, "Millisiemens", "Millisiemens", BaseUnits.Undefined,
-                     1000             
+                     1000
                 );
                 yield return new (ElectricConductanceUnit.Nanomho, "Nanomho", "Nanomhos", BaseUnits.Undefined,
-                     1000000000             
+                     1000000000
                 );
                 yield return new (ElectricConductanceUnit.Nanosiemens, "Nanosiemens", "Nanosiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere),
-                     1000000000             
+                     1000000000
                 );
                 yield return new (ElectricConductanceUnit.Siemens, "Siemens", "Siemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
                 yield return new (ElectricConductanceUnit.Teramho, "Teramho", "Teramhos", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000000)             
+                     new QuantityValue(1, 1000000000000)
                 );
                 yield return new (ElectricConductanceUnit.Terasiemens, "Terasiemens", "Terasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 1000000000000)             
+                     new QuantityValue(1, 1000000000000)
                 );
             }
         }
@@ -763,7 +763,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(ElectricConductance), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(ElectricConductance)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

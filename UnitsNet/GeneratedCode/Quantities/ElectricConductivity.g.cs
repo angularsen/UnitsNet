@@ -120,19 +120,19 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<ElectricConductivityUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricConductivityUnit.MicrosiemensPerCentimeter, "MicrosiemensPerCentimeter", "MicrosiemensPerCentimeter", BaseUnits.Undefined,
-                     10000             
+                     10000
                 );
                 yield return new (ElectricConductivityUnit.MillisiemensPerCentimeter, "MillisiemensPerCentimeter", "MillisiemensPerCentimeter", BaseUnits.Undefined,
-                     10             
+                     10
                 );
                 yield return new (ElectricConductivityUnit.SiemensPerCentimeter, "SiemensPerCentimeter", "SiemensPerCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 100)             
+                     new QuantityValue(1, 100)
                 );
                 yield return new (ElectricConductivityUnit.SiemensPerFoot, "SiemensPerFoot", "SiemensPerFoot", BaseUnits.Undefined,
-                     new QuantityValue(381, 1250)             
+                     new QuantityValue(381, 1250)
                 );
                 yield return new (ElectricConductivityUnit.SiemensPerInch, "SiemensPerInch", "SiemensPerInch", BaseUnits.Undefined,
-                     new QuantityValue(127, 5000)             
+                     new QuantityValue(127, 5000)
                 );
                 yield return new (ElectricConductivityUnit.SiemensPerMeter, "SiemensPerMeter", "SiemensPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
             }
@@ -614,7 +614,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(ElectricConductivity), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(ElectricConductivity)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

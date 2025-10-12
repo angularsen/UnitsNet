@@ -121,29 +121,29 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<MolarFlowUnit>> GetDefaultMappings()
             {
                 yield return new (MolarFlowUnit.KilomolePerHour, "KilomolePerHour", "KilomolesPerHour", new BaseUnits(time: DurationUnit.Hour, amount: AmountOfSubstanceUnit.Kilomole),
-                     new QuantityValue(18, 5)             
+                     new QuantityValue(18, 5)
                 );
                 yield return new (MolarFlowUnit.KilomolePerMinute, "KilomolePerMinute", "KilomolesPerMinute", new BaseUnits(time: DurationUnit.Minute, amount: AmountOfSubstanceUnit.Kilomole),
-                     new QuantityValue(3, 50)             
+                     new QuantityValue(3, 50)
                 );
                 yield return new (MolarFlowUnit.KilomolePerSecond, "KilomolePerSecond", "KilomolesPerSecond", new BaseUnits(time: DurationUnit.Second, amount: AmountOfSubstanceUnit.Kilomole),
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (MolarFlowUnit.MolePerHour, "MolePerHour", "MolesPerHour", new BaseUnits(time: DurationUnit.Hour, amount: AmountOfSubstanceUnit.Mole),
-                     3600             
+                     3600
                 );
                 yield return new (MolarFlowUnit.MolePerMinute, "MolePerMinute", "MolesPerMinute", new BaseUnits(time: DurationUnit.Minute, amount: AmountOfSubstanceUnit.Mole),
-                     60             
+                     60
                 );
                 yield return new (MolarFlowUnit.MolePerSecond, "MolePerSecond", "MolesPerSecond", new BaseUnits(time: DurationUnit.Second, amount: AmountOfSubstanceUnit.Mole));
                 yield return new (MolarFlowUnit.PoundMolePerHour, "PoundMolePerHour", "PoundMolesPerHour", new BaseUnits(time: DurationUnit.Hour, amount: AmountOfSubstanceUnit.PoundMole),
-                     new QuantityValue(360000000, 45359237)             
+                     new QuantityValue(360000000, 45359237)
                 );
                 yield return new (MolarFlowUnit.PoundMolePerMinute, "PoundMolePerMinute", "PoundMolesPerMinute", new BaseUnits(time: DurationUnit.Minute, amount: AmountOfSubstanceUnit.PoundMole),
-                     new QuantityValue(6000000, 45359237)             
+                     new QuantityValue(6000000, 45359237)
                 );
                 yield return new (MolarFlowUnit.PoundMolePerSecond, "PoundMolePerSecond", "PoundMolesPerSecond", new BaseUnits(time: DurationUnit.Second, amount: AmountOfSubstanceUnit.PoundMole),
-                     new QuantityValue(100000, 45359237)             
+                     new QuantityValue(100000, 45359237)
                 );
             }
         }
@@ -680,7 +680,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(MolarFlow), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(MolarFlow)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

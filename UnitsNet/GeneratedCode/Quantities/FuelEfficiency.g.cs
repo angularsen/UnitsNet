@@ -122,13 +122,13 @@ namespace UnitsNet
                 yield return new (FuelEfficiencyUnit.KilometerPerLiter, "KilometerPerLiter", "KilometersPerLiter", BaseUnits.Undefined);
                 yield return new (FuelEfficiencyUnit.LiterPer100Kilometers, "LiterPer100Kilometers", "LitersPer100Kilometers", BaseUnits.Undefined,
                      new ConversionExpression(coefficient: 100, exponent: -1),
-                     new ConversionExpression(coefficient: 100, exponent: -1)                
+                     new ConversionExpression(coefficient: 100, exponent: -1)
                 );
                 yield return new (FuelEfficiencyUnit.MilePerUkGallon, "MilePerUkGallon", "MilesPerUkGallon", BaseUnits.Undefined,
-                     new QuantityValue(2273045, 804672)             
+                     new QuantityValue(2273045, 804672)
                 );
                 yield return new (FuelEfficiencyUnit.MilePerUsGallon, "MilePerUsGallon", "MilesPerUsGallon", BaseUnits.Undefined,
-                     new QuantityValue(112903, 48000)             
+                     new QuantityValue(112903, 48000)
                 );
             }
         }
@@ -572,7 +572,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(FuelEfficiency), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(FuelEfficiency)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

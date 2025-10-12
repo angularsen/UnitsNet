@@ -119,19 +119,19 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<RadiationEquivalentDoseUnit>> GetDefaultMappings()
             {
                 yield return new (RadiationEquivalentDoseUnit.Microsievert, "Microsievert", "Microsieverts", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second),
-                     1000000             
+                     1000000
                 );
                 yield return new (RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan, "MilliroentgenEquivalentMan", "MilliroentgensEquivalentMan", BaseUnits.Undefined,
-                     100000             
+                     100000
                 );
                 yield return new (RadiationEquivalentDoseUnit.Millisievert, "Millisievert", "Millisieverts", BaseUnits.Undefined,
-                     1000             
+                     1000
                 );
                 yield return new (RadiationEquivalentDoseUnit.Nanosievert, "Nanosievert", "Nanosieverts", BaseUnits.Undefined,
-                     1000000000             
+                     1000000000
                 );
                 yield return new (RadiationEquivalentDoseUnit.RoentgenEquivalentMan, "RoentgenEquivalentMan", "RoentgensEquivalentMan", BaseUnits.Undefined,
-                     100             
+                     100
                 );
                 yield return new (RadiationEquivalentDoseUnit.Sievert, "Sievert", "Sieverts", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
             }
@@ -618,7 +618,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(RadiationEquivalentDose), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(RadiationEquivalentDose)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

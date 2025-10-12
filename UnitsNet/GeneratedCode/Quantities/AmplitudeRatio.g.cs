@@ -118,15 +118,15 @@ namespace UnitsNet
             {
                 yield return new (AmplitudeRatioUnit.DecibelMicrovolt, "DecibelMicrovolt", "DecibelMicrovolts", BaseUnits.Undefined,
                      new ConversionExpression(coefficient: 1, constantTerm: 120),
-                     new ConversionExpression(coefficient: 1, constantTerm: -120)                
+                     new ConversionExpression(coefficient: 1, constantTerm: -120)
                 );
                 yield return new (AmplitudeRatioUnit.DecibelMillivolt, "DecibelMillivolt", "DecibelMillivolts", BaseUnits.Undefined,
                      new ConversionExpression(coefficient: 1, constantTerm: 60),
-                     new ConversionExpression(coefficient: 1, constantTerm: -60)                
+                     new ConversionExpression(coefficient: 1, constantTerm: -60)
                 );
                 yield return new (AmplitudeRatioUnit.DecibelUnloaded, "DecibelUnloaded", "DecibelsUnloaded", BaseUnits.Undefined,
                      new ConversionExpression(coefficient: 1, constantTerm: new QuantityValue(2218487499, 1000000000)),
-                     new ConversionExpression(coefficient: 1, constantTerm: new QuantityValue(-2218487499, 1000000000))                
+                     new ConversionExpression(coefficient: 1, constantTerm: new QuantityValue(-2218487499, 1000000000))
                 );
                 yield return new (AmplitudeRatioUnit.DecibelVolt, "DecibelVolt", "DecibelVolts", BaseUnits.Undefined);
             }
@@ -580,7 +580,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(AmplitudeRatio), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(AmplitudeRatio)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

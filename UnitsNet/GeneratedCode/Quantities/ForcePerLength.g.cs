@@ -126,116 +126,116 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<ForcePerLengthUnit>> GetDefaultMappings()
             {
                 yield return new (ForcePerLengthUnit.CentinewtonPerCentimeter, "CentinewtonPerCentimeter", "CentinewtonsPerCentimeter", BaseUnits.Undefined,
-                     1             
+                     1
                 );
                 yield return new (ForcePerLengthUnit.CentinewtonPerMeter, "CentinewtonPerMeter", "CentinewtonsPerMeter", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Second),
-                     100             
+                     100
                 );
                 yield return new (ForcePerLengthUnit.CentinewtonPerMillimeter, "CentinewtonPerMillimeter", "CentinewtonsPerMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 10)             
+                     new QuantityValue(1, 10)
                 );
                 yield return new (ForcePerLengthUnit.DecanewtonPerCentimeter, "DecanewtonPerCentimeter", "DecanewtonsPerCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (ForcePerLengthUnit.DecanewtonPerMeter, "DecanewtonPerMeter", "DecanewtonsPerMeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 10)             
+                     new QuantityValue(1, 10)
                 );
                 yield return new (ForcePerLengthUnit.DecanewtonPerMillimeter, "DecanewtonPerMillimeter", "DecanewtonsPerMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 10000)             
+                     new QuantityValue(1, 10000)
                 );
                 yield return new (ForcePerLengthUnit.DecinewtonPerCentimeter, "DecinewtonPerCentimeter", "DecinewtonsPerCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 10)             
+                     new QuantityValue(1, 10)
                 );
                 yield return new (ForcePerLengthUnit.DecinewtonPerMeter, "DecinewtonPerMeter", "DecinewtonsPerMeter", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Second),
-                     10             
+                     10
                 );
                 yield return new (ForcePerLengthUnit.DecinewtonPerMillimeter, "DecinewtonPerMillimeter", "DecinewtonsPerMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 100)             
+                     new QuantityValue(1, 100)
                 );
                 yield return new (ForcePerLengthUnit.KilogramForcePerCentimeter, "KilogramForcePerCentimeter", "KilogramsForcePerCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(200, 196133)             
+                     new QuantityValue(200, 196133)
                 );
                 yield return new (ForcePerLengthUnit.KilogramForcePerMeter, "KilogramForcePerMeter", "KilogramsForcePerMeter", BaseUnits.Undefined,
-                     new QuantityValue(20000, 196133)             
+                     new QuantityValue(20000, 196133)
                 );
                 yield return new (ForcePerLengthUnit.KilogramForcePerMillimeter, "KilogramForcePerMillimeter", "KilogramsForcePerMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(20, 196133)             
+                     new QuantityValue(20, 196133)
                 );
                 yield return new (ForcePerLengthUnit.KilonewtonPerCentimeter, "KilonewtonPerCentimeter", "KilonewtonsPerCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 100000)             
+                     new QuantityValue(1, 100000)
                 );
                 yield return new (ForcePerLengthUnit.KilonewtonPerMeter, "KilonewtonPerMeter", "KilonewtonsPerMeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (ForcePerLengthUnit.KilonewtonPerMillimeter, "KilonewtonPerMillimeter", "KilonewtonsPerMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (ForcePerLengthUnit.KilopoundForcePerFoot, "KilopoundForcePerFoot", "KilopoundsForcePerFoot", BaseUnits.Undefined,
-                     new QuantityValue(609600000, 8896443230521)             
+                     new QuantityValue(609600000, 8896443230521)
                 );
                 yield return new (ForcePerLengthUnit.KilopoundForcePerInch, "KilopoundForcePerInch", "KilopoundsForcePerInch", BaseUnits.Undefined,
-                     new QuantityValue(50800000, 8896443230521)             
+                     new QuantityValue(50800000, 8896443230521)
                 );
                 yield return new (ForcePerLengthUnit.MeganewtonPerCentimeter, "MeganewtonPerCentimeter", "MeganewtonsPerCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 100000000)             
+                     new QuantityValue(1, 100000000)
                 );
                 yield return new (ForcePerLengthUnit.MeganewtonPerMeter, "MeganewtonPerMeter", "MeganewtonsPerMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Millisecond),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (ForcePerLengthUnit.MeganewtonPerMillimeter, "MeganewtonPerMillimeter", "MeganewtonsPerMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000)             
+                     new QuantityValue(1, 1000000000)
                 );
                 yield return new (ForcePerLengthUnit.MicronewtonPerCentimeter, "MicronewtonPerCentimeter", "MicronewtonsPerCentimeter", BaseUnits.Undefined,
-                     10000             
+                     10000
                 );
                 yield return new (ForcePerLengthUnit.MicronewtonPerMeter, "MicronewtonPerMeter", "MicronewtonsPerMeter", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second),
-                     1000000             
+                     1000000
                 );
                 yield return new (ForcePerLengthUnit.MicronewtonPerMillimeter, "MicronewtonPerMillimeter", "MicronewtonsPerMillimeter", BaseUnits.Undefined,
-                     1000             
+                     1000
                 );
                 yield return new (ForcePerLengthUnit.MillinewtonPerCentimeter, "MillinewtonPerCentimeter", "MillinewtonsPerCentimeter", BaseUnits.Undefined,
-                     10             
+                     10
                 );
                 yield return new (ForcePerLengthUnit.MillinewtonPerMeter, "MillinewtonPerMeter", "MillinewtonsPerMeter", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second),
-                     1000             
+                     1000
                 );
                 yield return new (ForcePerLengthUnit.MillinewtonPerMillimeter, "MillinewtonPerMillimeter", "MillinewtonsPerMillimeter", BaseUnits.Undefined,
-                     1             
+                     1
                 );
                 yield return new (ForcePerLengthUnit.NanonewtonPerCentimeter, "NanonewtonPerCentimeter", "NanonewtonsPerCentimeter", BaseUnits.Undefined,
-                     10000000             
+                     10000000
                 );
                 yield return new (ForcePerLengthUnit.NanonewtonPerMeter, "NanonewtonPerMeter", "NanonewtonsPerMeter", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second),
-                     1000000000             
+                     1000000000
                 );
                 yield return new (ForcePerLengthUnit.NanonewtonPerMillimeter, "NanonewtonPerMillimeter", "NanonewtonsPerMillimeter", BaseUnits.Undefined,
-                     1000000             
+                     1000000
                 );
                 yield return new (ForcePerLengthUnit.NewtonPerCentimeter, "NewtonPerCentimeter", "NewtonsPerCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 100)             
+                     new QuantityValue(1, 100)
                 );
                 yield return new (ForcePerLengthUnit.NewtonPerMeter, "NewtonPerMeter", "NewtonsPerMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second));
                 yield return new (ForcePerLengthUnit.NewtonPerMillimeter, "NewtonPerMillimeter", "NewtonsPerMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (ForcePerLengthUnit.PoundForcePerFoot, "PoundForcePerFoot", "PoundsForcePerFoot", BaseUnits.Undefined,
-                     new QuantityValue(609600000000, 8896443230521)             
+                     new QuantityValue(609600000000, 8896443230521)
                 );
                 yield return new (ForcePerLengthUnit.PoundForcePerInch, "PoundForcePerInch", "PoundsForcePerInch", BaseUnits.Undefined,
-                     new QuantityValue(50800000000, 8896443230521)             
+                     new QuantityValue(50800000000, 8896443230521)
                 );
                 yield return new (ForcePerLengthUnit.PoundForcePerYard, "PoundForcePerYard", "PoundsForcePerYard", BaseUnits.Undefined,
-                     new QuantityValue(1828800000000, 8896443230521)             
+                     new QuantityValue(1828800000000, 8896443230521)
                 );
                 yield return new (ForcePerLengthUnit.TonneForcePerCentimeter, "TonneForcePerCentimeter", "TonnesForcePerCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 980665)             
+                     new QuantityValue(1, 980665)
                 );
                 yield return new (ForcePerLengthUnit.TonneForcePerMeter, "TonneForcePerMeter", "TonnesForcePerMeter", BaseUnits.Undefined,
-                     new QuantityValue(20, 196133)             
+                     new QuantityValue(20, 196133)
                 );
                 yield return new (ForcePerLengthUnit.TonneForcePerMillimeter, "TonneForcePerMillimeter", "TonnesForcePerMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 9806650)             
+                     new QuantityValue(1, 9806650)
                 );
             }
         }
@@ -1179,7 +1179,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(ForcePerLength), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(ForcePerLength)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

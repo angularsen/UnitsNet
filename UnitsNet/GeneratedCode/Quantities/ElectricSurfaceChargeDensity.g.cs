@@ -120,10 +120,10 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<ElectricSurfaceChargeDensityUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, "CoulombPerSquareCentimeter", "CoulombsPerSquareCentimeter", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 10000)             
+                     new QuantityValue(1, 10000)
                 );
                 yield return new (ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, "CoulombPerSquareInch", "CoulombsPerSquareInch", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(16129, 25000000)             
+                     new QuantityValue(16129, 25000000)
                 );
                 yield return new (ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, "CoulombPerSquareMeter", "CoulombsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
             }
@@ -555,7 +555,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(ElectricSurfaceChargeDensity), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(ElectricSurfaceChargeDensity)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

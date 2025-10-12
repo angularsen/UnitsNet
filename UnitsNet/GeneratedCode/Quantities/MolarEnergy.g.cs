@@ -119,10 +119,10 @@ namespace UnitsNet
             {
                 yield return new (MolarEnergyUnit.JoulePerMole, "JoulePerMole", "JoulesPerMole", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, amount: AmountOfSubstanceUnit.Mole));
                 yield return new (MolarEnergyUnit.KilojoulePerMole, "KilojoulePerMole", "KilojoulesPerMole", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, amount: AmountOfSubstanceUnit.Millimole),
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (MolarEnergyUnit.MegajoulePerMole, "MegajoulePerMole", "MegajoulesPerMole", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, amount: AmountOfSubstanceUnit.Micromole),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
             }
         }
@@ -563,7 +563,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(MolarEnergy), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(MolarEnergy)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

@@ -127,101 +127,101 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<MassFlowUnit>> GetDefaultMappings()
             {
                 yield return new (MassFlowUnit.CentigramPerDay, "CentigramPerDay", "CentigramsPerDay", new BaseUnits(mass: MassUnit.Centigram, time: DurationUnit.Day),
-                     8640000             
+                     8640000
                 );
                 yield return new (MassFlowUnit.CentigramPerSecond, "CentigramPerSecond", "CentigramsPerSecond", new BaseUnits(mass: MassUnit.Centigram, time: DurationUnit.Second),
-                     100             
+                     100
                 );
                 yield return new (MassFlowUnit.DecagramPerDay, "DecagramPerDay", "DecagramsPerDay", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Day),
-                     8640             
+                     8640
                 );
                 yield return new (MassFlowUnit.DecagramPerSecond, "DecagramPerSecond", "DecagramsPerSecond", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Second),
-                     new QuantityValue(1, 10)             
+                     new QuantityValue(1, 10)
                 );
                 yield return new (MassFlowUnit.DecigramPerDay, "DecigramPerDay", "DecigramsPerDay", new BaseUnits(mass: MassUnit.Decigram, time: DurationUnit.Day),
-                     864000             
+                     864000
                 );
                 yield return new (MassFlowUnit.DecigramPerSecond, "DecigramPerSecond", "DecigramsPerSecond", new BaseUnits(mass: MassUnit.Decigram, time: DurationUnit.Second),
-                     10             
+                     10
                 );
                 yield return new (MassFlowUnit.GramPerDay, "GramPerDay", "GramsPerDay", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Day),
-                     86400             
+                     86400
                 );
                 yield return new (MassFlowUnit.GramPerHour, "GramPerHour", "GramsPerHour", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Hour),
-                     3600             
+                     3600
                 );
                 yield return new (MassFlowUnit.GramPerSecond, "GramPerSecond", "GramsPerSecond", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second));
                 yield return new (MassFlowUnit.HectogramPerDay, "HectogramPerDay", "HectogramsPerDay", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Day),
-                     864             
+                     864
                 );
                 yield return new (MassFlowUnit.HectogramPerSecond, "HectogramPerSecond", "HectogramsPerSecond", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 100)             
+                     new QuantityValue(1, 100)
                 );
                 yield return new (MassFlowUnit.KilogramPerDay, "KilogramPerDay", "KilogramsPerDay", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Day),
-                     new QuantityValue(432, 5)             
+                     new QuantityValue(432, 5)
                 );
                 yield return new (MassFlowUnit.KilogramPerHour, "KilogramPerHour", "KilogramsPerHour", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Hour),
-                     new QuantityValue(18, 5)             
+                     new QuantityValue(18, 5)
                 );
                 yield return new (MassFlowUnit.KilogramPerMinute, "KilogramPerMinute", "KilogramsPerMinute", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Minute),
-                     new QuantityValue(3, 50)             
+                     new QuantityValue(3, 50)
                 );
                 yield return new (MassFlowUnit.KilogramPerSecond, "KilogramPerSecond", "KilogramsPerSecond", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (MassFlowUnit.MegagramPerDay, "MegagramPerDay", "MegagramsPerDay", BaseUnits.Undefined,
-                     new QuantityValue(54, 625)             
+                     new QuantityValue(54, 625)
                 );
                 yield return new (MassFlowUnit.MegapoundPerDay, "MegapoundPerDay", "MegapoundsPerDay", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Day),
-                     new QuantityValue(8640, 45359237)             
+                     new QuantityValue(8640, 45359237)
                 );
                 yield return new (MassFlowUnit.MegapoundPerHour, "MegapoundPerHour", "MegapoundsPerHour", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Hour),
-                     new QuantityValue(360, 45359237)             
+                     new QuantityValue(360, 45359237)
                 );
                 yield return new (MassFlowUnit.MegapoundPerMinute, "MegapoundPerMinute", "MegapoundsPerMinute", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Minute),
-                     new QuantityValue(6, 45359237)             
+                     new QuantityValue(6, 45359237)
                 );
                 yield return new (MassFlowUnit.MegapoundPerSecond, "MegapoundPerSecond", "MegapoundsPerSecond", new BaseUnits(mass: MassUnit.Megapound, time: DurationUnit.Second),
-                     new QuantityValue(1, 453592370)             
+                     new QuantityValue(1, 453592370)
                 );
                 yield return new (MassFlowUnit.MicrogramPerDay, "MicrogramPerDay", "MicrogramsPerDay", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Day),
-                     86400000000             
+                     86400000000
                 );
                 yield return new (MassFlowUnit.MicrogramPerSecond, "MicrogramPerSecond", "MicrogramsPerSecond", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second),
-                     1000000             
+                     1000000
                 );
                 yield return new (MassFlowUnit.MilligramPerDay, "MilligramPerDay", "MilligramsPerDay", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Day),
-                     86400000             
+                     86400000
                 );
                 yield return new (MassFlowUnit.MilligramPerSecond, "MilligramPerSecond", "MilligramsPerSecond", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second),
-                     1000             
+                     1000
                 );
                 yield return new (MassFlowUnit.NanogramPerDay, "NanogramPerDay", "NanogramsPerDay", new BaseUnits(mass: MassUnit.Nanogram, time: DurationUnit.Day),
-                     86400000000000             
+                     86400000000000
                 );
                 yield return new (MassFlowUnit.NanogramPerSecond, "NanogramPerSecond", "NanogramsPerSecond", new BaseUnits(mass: MassUnit.Nanogram, time: DurationUnit.Second),
-                     1000000000             
+                     1000000000
                 );
                 yield return new (MassFlowUnit.PoundPerDay, "PoundPerDay", "PoundsPerDay", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Day),
-                     new QuantityValue(8640000000, 45359237)             
+                     new QuantityValue(8640000000, 45359237)
                 );
                 yield return new (MassFlowUnit.PoundPerHour, "PoundPerHour", "PoundsPerHour", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Hour),
-                     new QuantityValue(360000000, 45359237)             
+                     new QuantityValue(360000000, 45359237)
                 );
                 yield return new (MassFlowUnit.PoundPerMinute, "PoundPerMinute", "PoundsPerMinute", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Minute),
-                     new QuantityValue(6000000, 45359237)             
+                     new QuantityValue(6000000, 45359237)
                 );
                 yield return new (MassFlowUnit.PoundPerSecond, "PoundPerSecond", "PoundsPerSecond", new BaseUnits(mass: MassUnit.Pound, time: DurationUnit.Second),
-                     new QuantityValue(100000, 45359237)             
+                     new QuantityValue(100000, 45359237)
                 );
                 yield return new (MassFlowUnit.ShortTonPerHour, "ShortTonPerHour", "ShortTonsPerHour", new BaseUnits(mass: MassUnit.ShortTon, time: DurationUnit.Hour),
-                     new QuantityValue(180000, 45359237)             
+                     new QuantityValue(180000, 45359237)
                 );
                 yield return new (MassFlowUnit.TonnePerDay, "TonnePerDay", "TonnesPerDay", new BaseUnits(mass: MassUnit.Tonne, time: DurationUnit.Day),
-                     new QuantityValue(54, 625)             
+                     new QuantityValue(54, 625)
                 );
                 yield return new (MassFlowUnit.TonnePerHour, "TonnePerHour", "TonnesPerHour", new BaseUnits(mass: MassUnit.Tonne, time: DurationUnit.Hour),
-                     new QuantityValue(9, 2500)             
+                     new QuantityValue(9, 2500)
                 );
             }
         }
@@ -1106,7 +1106,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(MassFlow), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(MassFlow)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

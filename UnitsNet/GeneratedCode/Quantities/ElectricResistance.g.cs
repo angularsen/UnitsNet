@@ -121,26 +121,26 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<ElectricResistanceUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricResistanceUnit.Gigaohm, "Gigaohm", "Gigaohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 1000000000)             
+                     new QuantityValue(1, 1000000000)
                 );
                 yield return new (ElectricResistanceUnit.Kiloohm, "Kiloohm", "Kiloohms", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (ElectricResistanceUnit.Megaohm, "Megaohm", "Megaohms", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (ElectricResistanceUnit.Microohm, "Microohm", "Microohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     1000000             
+                     1000000
                 );
                 yield return new (ElectricResistanceUnit.Milliohm, "Milliohm", "Milliohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     1000             
+                     1000
                 );
                 yield return new (ElectricResistanceUnit.Nanoohm, "Nanoohm", "Nanoohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     1000000000             
+                     1000000000
                 );
                 yield return new (ElectricResistanceUnit.Ohm, "Ohm", "Ohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
                 yield return new (ElectricResistanceUnit.Teraohm, "Teraohm", "Teraohms", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 1000000000000)             
+                     new QuantityValue(1, 1000000000000)
                 );
             }
         }
@@ -646,7 +646,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(ElectricResistance), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(ElectricResistance)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

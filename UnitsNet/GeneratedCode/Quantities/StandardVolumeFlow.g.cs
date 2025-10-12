@@ -117,29 +117,29 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<StandardVolumeFlowUnit>> GetDefaultMappings()
             {
                 yield return new (StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute, "StandardCubicCentimeterPerMinute", "StandardCubicCentimetersPerMinute", new BaseUnits(length: LengthUnit.Centimeter, time: DurationUnit.Minute),
-                     60000000             
+                     60000000
                 );
                 yield return new (StandardVolumeFlowUnit.StandardCubicFootPerHour, "StandardCubicFootPerHour", "StandardCubicFeetPerHour", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Hour),
-                     new QuantityValue(781250000000, 6145149)             
+                     new QuantityValue(781250000000, 6145149)
                 );
                 yield return new (StandardVolumeFlowUnit.StandardCubicFootPerMinute, "StandardCubicFootPerMinute", "StandardCubicFeetPerMinute", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Minute),
-                     new QuantityValue(39062500000, 18435447)             
+                     new QuantityValue(39062500000, 18435447)
                 );
                 yield return new (StandardVolumeFlowUnit.StandardCubicFootPerSecond, "StandardCubicFootPerSecond", "StandardCubicFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second),
-                     new QuantityValue(1953125000, 55306341)             
+                     new QuantityValue(1953125000, 55306341)
                 );
                 yield return new (StandardVolumeFlowUnit.StandardCubicMeterPerDay, "StandardCubicMeterPerDay", "StandardCubicMetersPerDay", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Day),
-                     86400             
+                     86400
                 );
                 yield return new (StandardVolumeFlowUnit.StandardCubicMeterPerHour, "StandardCubicMeterPerHour", "StandardCubicMetersPerHour", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Hour),
-                     3600             
+                     3600
                 );
                 yield return new (StandardVolumeFlowUnit.StandardCubicMeterPerMinute, "StandardCubicMeterPerMinute", "StandardCubicMetersPerMinute", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Minute),
-                     60             
+                     60
                 );
                 yield return new (StandardVolumeFlowUnit.StandardCubicMeterPerSecond, "StandardCubicMeterPerSecond", "StandardCubicMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
                 yield return new (StandardVolumeFlowUnit.StandardLiterPerMinute, "StandardLiterPerMinute", "StandardLitersPerMinute", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Minute),
-                     60000             
+                     60000
                 );
             }
         }
@@ -648,7 +648,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(StandardVolumeFlow), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(StandardVolumeFlow)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

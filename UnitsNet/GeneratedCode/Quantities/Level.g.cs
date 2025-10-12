@@ -118,7 +118,7 @@ namespace UnitsNet
             {
                 yield return new (LevelUnit.Decibel, "Decibel", "Decibels", BaseUnits.Undefined);
                 yield return new (LevelUnit.Neper, "Neper", "Nepers", BaseUnits.Undefined,
-                     new QuantityValue(57564627, 500000000)             
+                     new QuantityValue(57564627, 500000000)
                 );
             }
         }
@@ -545,7 +545,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(Level), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(Level)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

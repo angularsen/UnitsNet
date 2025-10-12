@@ -121,13 +121,13 @@ namespace UnitsNet
             {
                 yield return new (SpecificFuelConsumptionUnit.GramPerKilonewtonSecond, "GramPerKilonewtonSecond", "GramsPerKilonewtonSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
                 yield return new (SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour, "KilogramPerKilogramForceHour", "KilogramsPerKilogramForceHour", BaseUnits.Undefined,
-                     new QuantityValue(1765197, 50000000)             
+                     new QuantityValue(1765197, 50000000)
                 );
                 yield return new (SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond, "KilogramPerKilonewtonSecond", "KilogramsPerKilonewtonSecond", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, "PoundMassPerPoundForceHour", "PoundsMassPerPoundForceHour", BaseUnits.Undefined,
-                     new QuantityValue(1765197, 50000000)             
+                     new QuantityValue(1765197, 50000000)
                 );
             }
         }
@@ -571,7 +571,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(SpecificFuelConsumption), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(SpecificFuelConsumption)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

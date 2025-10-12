@@ -120,19 +120,19 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<MagneticFieldUnit>> GetDefaultMappings()
             {
                 yield return new (MagneticFieldUnit.Gauss, "Gauss", "Gausses", BaseUnits.Undefined,
-                     10000             
+                     10000
                 );
                 yield return new (MagneticFieldUnit.Microtesla, "Microtesla", "Microteslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, current: ElectricCurrentUnit.Ampere),
-                     1000000             
+                     1000000
                 );
                 yield return new (MagneticFieldUnit.Milligauss, "Milligauss", "Milligausses", BaseUnits.Undefined,
-                     10000000             
+                     10000000
                 );
                 yield return new (MagneticFieldUnit.Millitesla, "Millitesla", "Milliteslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, current: ElectricCurrentUnit.Ampere),
-                     1000             
+                     1000
                 );
                 yield return new (MagneticFieldUnit.Nanotesla, "Nanotesla", "Nanoteslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, current: ElectricCurrentUnit.Ampere),
-                     1000000000             
+                     1000000000
                 );
                 yield return new (MagneticFieldUnit.Tesla, "Tesla", "Teslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, current: ElectricCurrentUnit.Ampere));
             }
@@ -603,7 +603,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(MagneticField), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(MagneticField)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

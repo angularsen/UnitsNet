@@ -117,14 +117,14 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<RotationalAccelerationUnit>> GetDefaultMappings()
             {
                 yield return new (RotationalAccelerationUnit.DegreePerSecondSquared, "DegreePerSecondSquared", "DegreesPerSecondSquared", BaseUnits.Undefined,
-                     new QuantityValue(180000000000000000, 3141592653589793)             
+                     new QuantityValue(180000000000000000, 3141592653589793)
                 );
                 yield return new (RotationalAccelerationUnit.RadianPerSecondSquared, "RadianPerSecondSquared", "RadiansPerSecondSquared", new BaseUnits(time: DurationUnit.Second));
                 yield return new (RotationalAccelerationUnit.RevolutionPerMinutePerSecond, "RevolutionPerMinutePerSecond", "RevolutionsPerMinutePerSecond", BaseUnits.Undefined,
-                     new QuantityValue(30000000000000000, 3141592653589793)             
+                     new QuantityValue(30000000000000000, 3141592653589793)
                 );
                 yield return new (RotationalAccelerationUnit.RevolutionPerSecondSquared, "RevolutionPerSecondSquared", "RevolutionsPerSecondSquared", BaseUnits.Undefined,
-                     new QuantityValue(500000000000000, 3141592653589793)             
+                     new QuantityValue(500000000000000, 3141592653589793)
                 );
             }
         }
@@ -568,7 +568,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(RotationalAcceleration), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(RotationalAcceleration)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

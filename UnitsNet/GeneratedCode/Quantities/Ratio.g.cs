@@ -118,19 +118,19 @@ namespace UnitsNet
             {
                 yield return new (RatioUnit.DecimalFraction, "DecimalFraction", "DecimalFractions", BaseUnits.Undefined);
                 yield return new (RatioUnit.PartPerBillion, "PartPerBillion", "PartsPerBillion", BaseUnits.Undefined,
-                     1000000000             
+                     1000000000
                 );
                 yield return new (RatioUnit.PartPerMillion, "PartPerMillion", "PartsPerMillion", BaseUnits.Undefined,
-                     1000000             
+                     1000000
                 );
                 yield return new (RatioUnit.PartPerThousand, "PartPerThousand", "PartsPerThousand", BaseUnits.Undefined,
-                     1000             
+                     1000
                 );
                 yield return new (RatioUnit.PartPerTrillion, "PartPerTrillion", "PartsPerTrillion", BaseUnits.Undefined,
-                     1000000000000             
+                     1000000000000
                 );
                 yield return new (RatioUnit.Percent, "Percent", "Percent", BaseUnits.Undefined,
-                     100             
+                     100
                 );
             }
         }
@@ -586,7 +586,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(Ratio), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(Ratio)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

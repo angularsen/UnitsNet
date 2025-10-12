@@ -119,41 +119,41 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<RotationalSpeedUnit>> GetDefaultMappings()
             {
                 yield return new (RotationalSpeedUnit.CentiradianPerSecond, "CentiradianPerSecond", "CentiradiansPerSecond", BaseUnits.Undefined,
-                     100             
+                     100
                 );
                 yield return new (RotationalSpeedUnit.DeciradianPerSecond, "DeciradianPerSecond", "DeciradiansPerSecond", BaseUnits.Undefined,
-                     10             
+                     10
                 );
                 yield return new (RotationalSpeedUnit.DegreePerMinute, "DegreePerMinute", "DegreesPerMinute", BaseUnits.Undefined,
-                     new QuantityValue(new BigInteger(108) * QuantityValue.PowerOfTen(17), 3141592653589793)             
+                     new QuantityValue(new BigInteger(108) * QuantityValue.PowerOfTen(17), 3141592653589793)
                 );
                 yield return new (RotationalSpeedUnit.DegreePerSecond, "DegreePerSecond", "DegreesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(180000000000000000, 3141592653589793)             
+                     new QuantityValue(180000000000000000, 3141592653589793)
                 );
                 yield return new (RotationalSpeedUnit.MicrodegreePerSecond, "MicrodegreePerSecond", "MicrodegreesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(new BigInteger(18) * QuantityValue.PowerOfTen(22), 3141592653589793)             
+                     new QuantityValue(new BigInteger(18) * QuantityValue.PowerOfTen(22), 3141592653589793)
                 );
                 yield return new (RotationalSpeedUnit.MicroradianPerSecond, "MicroradianPerSecond", "MicroradiansPerSecond", BaseUnits.Undefined,
-                     1000000             
+                     1000000
                 );
                 yield return new (RotationalSpeedUnit.MillidegreePerSecond, "MillidegreePerSecond", "MillidegreesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(new BigInteger(18) * QuantityValue.PowerOfTen(19), 3141592653589793)             
+                     new QuantityValue(new BigInteger(18) * QuantityValue.PowerOfTen(19), 3141592653589793)
                 );
                 yield return new (RotationalSpeedUnit.MilliradianPerSecond, "MilliradianPerSecond", "MilliradiansPerSecond", BaseUnits.Undefined,
-                     1000             
+                     1000
                 );
                 yield return new (RotationalSpeedUnit.NanodegreePerSecond, "NanodegreePerSecond", "NanodegreesPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(new BigInteger(18) * QuantityValue.PowerOfTen(25), 3141592653589793)             
+                     new QuantityValue(new BigInteger(18) * QuantityValue.PowerOfTen(25), 3141592653589793)
                 );
                 yield return new (RotationalSpeedUnit.NanoradianPerSecond, "NanoradianPerSecond", "NanoradiansPerSecond", BaseUnits.Undefined,
-                     1000000000             
+                     1000000000
                 );
                 yield return new (RotationalSpeedUnit.RadianPerSecond, "RadianPerSecond", "RadiansPerSecond", new BaseUnits(time: DurationUnit.Second));
                 yield return new (RotationalSpeedUnit.RevolutionPerMinute, "RevolutionPerMinute", "RevolutionsPerMinute", BaseUnits.Undefined,
-                     new QuantityValue(30000000000000000, 3141592653589793)             
+                     new QuantityValue(30000000000000000, 3141592653589793)
                 );
                 yield return new (RotationalSpeedUnit.RevolutionPerSecond, "RevolutionPerSecond", "RevolutionsPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(500000000000000, 3141592653589793)             
+                     new QuantityValue(500000000000000, 3141592653589793)
                 );
             }
         }
@@ -730,7 +730,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(RotationalSpeed), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(RotationalSpeed)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

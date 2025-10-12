@@ -121,14 +121,14 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<IlluminanceUnit>> GetDefaultMappings()
             {
                 yield return new (IlluminanceUnit.Kilolux, "Kilolux", "Kilolux", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (IlluminanceUnit.Lux, "Lux", "Lux", new BaseUnits(length: LengthUnit.Meter, luminousIntensity: LuminousIntensityUnit.Candela));
                 yield return new (IlluminanceUnit.Megalux, "Megalux", "Megalux", new BaseUnits(length: LengthUnit.Millimeter, luminousIntensity: LuminousIntensityUnit.Candela),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (IlluminanceUnit.Millilux, "Millilux", "Millilux", BaseUnits.Undefined,
-                     1000             
+                     1000
                 );
             }
         }
@@ -582,7 +582,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(Illuminance), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(Illuminance)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

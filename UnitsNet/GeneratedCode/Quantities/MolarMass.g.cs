@@ -120,41 +120,41 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<MolarMassUnit>> GetDefaultMappings()
             {
                 yield return new (MolarMassUnit.CentigramPerMole, "CentigramPerMole", "CentigramsPerMole", new BaseUnits(mass: MassUnit.Centigram, amount: AmountOfSubstanceUnit.Mole),
-                     100000             
+                     100000
                 );
                 yield return new (MolarMassUnit.DecagramPerMole, "DecagramPerMole", "DecagramsPerMole", new BaseUnits(mass: MassUnit.Decagram, amount: AmountOfSubstanceUnit.Mole),
-                     100             
+                     100
                 );
                 yield return new (MolarMassUnit.DecigramPerMole, "DecigramPerMole", "DecigramsPerMole", new BaseUnits(mass: MassUnit.Decigram, amount: AmountOfSubstanceUnit.Mole),
-                     10000             
+                     10000
                 );
                 yield return new (MolarMassUnit.GramPerMole, "GramPerMole", "GramsPerMole", new BaseUnits(mass: MassUnit.Gram, amount: AmountOfSubstanceUnit.Mole),
-                     1000             
+                     1000
                 );
                 yield return new (MolarMassUnit.HectogramPerMole, "HectogramPerMole", "HectogramsPerMole", new BaseUnits(mass: MassUnit.Hectogram, amount: AmountOfSubstanceUnit.Mole),
-                     10             
+                     10
                 );
                 yield return new (MolarMassUnit.KilogramPerKilomole, "KilogramPerKilomole", "KilogramsPerKilomole", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Kilomole),
-                     1000             
+                     1000
                 );
                 yield return new (MolarMassUnit.KilogramPerMole, "KilogramPerMole", "KilogramsPerMole", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Mole));
                 yield return new (MolarMassUnit.KilopoundPerMole, "KilopoundPerMole", "KilopoundsPerMole", new BaseUnits(mass: MassUnit.Kilopound, amount: AmountOfSubstanceUnit.Mole),
-                     new QuantityValue(100000, 45359237)             
+                     new QuantityValue(100000, 45359237)
                 );
                 yield return new (MolarMassUnit.MegapoundPerMole, "MegapoundPerMole", "MegapoundsPerMole", new BaseUnits(mass: MassUnit.Megapound, amount: AmountOfSubstanceUnit.Mole),
-                     new QuantityValue(100, 45359237)             
+                     new QuantityValue(100, 45359237)
                 );
                 yield return new (MolarMassUnit.MicrogramPerMole, "MicrogramPerMole", "MicrogramsPerMole", new BaseUnits(mass: MassUnit.Microgram, amount: AmountOfSubstanceUnit.Mole),
-                     1000000000             
+                     1000000000
                 );
                 yield return new (MolarMassUnit.MilligramPerMole, "MilligramPerMole", "MilligramsPerMole", new BaseUnits(mass: MassUnit.Milligram, amount: AmountOfSubstanceUnit.Mole),
-                     1000000             
+                     1000000
                 );
                 yield return new (MolarMassUnit.NanogramPerMole, "NanogramPerMole", "NanogramsPerMole", new BaseUnits(mass: MassUnit.Nanogram, amount: AmountOfSubstanceUnit.Mole),
-                     1000000000000             
+                     1000000000000
                 );
                 yield return new (MolarMassUnit.PoundPerMole, "PoundPerMole", "PoundsPerMole", new BaseUnits(mass: MassUnit.Pound, amount: AmountOfSubstanceUnit.Mole),
-                     new QuantityValue(100000000, 45359237)             
+                     new QuantityValue(100000000, 45359237)
                 );
             }
         }
@@ -737,7 +737,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(MolarMass), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(MolarMass)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

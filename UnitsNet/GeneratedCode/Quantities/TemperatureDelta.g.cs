@@ -124,29 +124,29 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<TemperatureDeltaUnit>> GetDefaultMappings()
             {
                 yield return new (TemperatureDeltaUnit.DegreeCelsius, "DegreeCelsius", "DegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius),
-                     1             
+                     1
                 );
                 yield return new (TemperatureDeltaUnit.DegreeDelisle, "DegreeDelisle", "DegreesDelisle", new BaseUnits(temperature: TemperatureUnit.DegreeDelisle),
-                     new QuantityValue(-3, 2)             
+                     new QuantityValue(-3, 2)
                 );
                 yield return new (TemperatureDeltaUnit.DegreeFahrenheit, "DegreeFahrenheit", "DegreesFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit),
-                     new QuantityValue(9, 5)             
+                     new QuantityValue(9, 5)
                 );
                 yield return new (TemperatureDeltaUnit.DegreeNewton, "DegreeNewton", "DegreesNewton", new BaseUnits(temperature: TemperatureUnit.DegreeNewton),
-                     new QuantityValue(33, 100)             
+                     new QuantityValue(33, 100)
                 );
                 yield return new (TemperatureDeltaUnit.DegreeRankine, "DegreeRankine", "DegreesRankine", new BaseUnits(temperature: TemperatureUnit.DegreeRankine),
-                     new QuantityValue(9, 5)             
+                     new QuantityValue(9, 5)
                 );
                 yield return new (TemperatureDeltaUnit.DegreeReaumur, "DegreeReaumur", "DegreesReaumur", new BaseUnits(temperature: TemperatureUnit.DegreeReaumur),
-                     new QuantityValue(4, 5)             
+                     new QuantityValue(4, 5)
                 );
                 yield return new (TemperatureDeltaUnit.DegreeRoemer, "DegreeRoemer", "DegreesRoemer", new BaseUnits(temperature: TemperatureUnit.DegreeRoemer),
-                     new QuantityValue(21, 40)             
+                     new QuantityValue(21, 40)
                 );
                 yield return new (TemperatureDeltaUnit.Kelvin, "Kelvin", "Kelvins", new BaseUnits(temperature: TemperatureUnit.Kelvin));
                 yield return new (TemperatureDeltaUnit.MillidegreeCelsius, "MillidegreeCelsius", "MillidegreesCelsius", BaseUnits.Undefined,
-                     1000             
+                     1000
                 );
             }
         }
@@ -701,7 +701,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(TemperatureDelta), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(TemperatureDelta)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

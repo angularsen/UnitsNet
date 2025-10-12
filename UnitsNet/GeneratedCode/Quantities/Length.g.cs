@@ -135,128 +135,128 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<LengthUnit>> GetDefaultMappings()
             {
                 yield return new (LengthUnit.Angstrom, "Angstrom", "Angstroms", new BaseUnits(length: LengthUnit.Angstrom),
-                     10000000000             
+                     10000000000
                 );
                 yield return new (LengthUnit.AstronomicalUnit, "AstronomicalUnit", "AstronomicalUnits", new BaseUnits(length: LengthUnit.AstronomicalUnit),
-                     new QuantityValue(1, 149597870700)             
+                     new QuantityValue(1, 149597870700)
                 );
                 yield return new (LengthUnit.Centimeter, "Centimeter", "Centimeters", new BaseUnits(length: LengthUnit.Centimeter),
-                     100             
+                     100
                 );
                 yield return new (LengthUnit.Chain, "Chain", "Chains", new BaseUnits(length: LengthUnit.Chain),
-                     new QuantityValue(625, 12573)             
+                     new QuantityValue(625, 12573)
                 );
                 yield return new (LengthUnit.DataMile, "DataMile", "DataMiles", new BaseUnits(length: LengthUnit.DataMile),
-                     new QuantityValue(5, 9144)             
+                     new QuantityValue(5, 9144)
                 );
                 yield return new (LengthUnit.Decameter, "Decameter", "Decameters", new BaseUnits(length: LengthUnit.Decameter),
-                     new QuantityValue(1, 10)             
+                     new QuantityValue(1, 10)
                 );
                 yield return new (LengthUnit.Decimeter, "Decimeter", "Decimeters", new BaseUnits(length: LengthUnit.Decimeter),
-                     10             
+                     10
                 );
                 yield return new (LengthUnit.DtpPica, "DtpPica", "DtpPicas", new BaseUnits(length: LengthUnit.DtpPica),
-                     new QuantityValue(30000, 127)             
+                     new QuantityValue(30000, 127)
                 );
                 yield return new (LengthUnit.DtpPoint, "DtpPoint", "DtpPoints", new BaseUnits(length: LengthUnit.DtpPoint),
-                     new QuantityValue(360000, 127)             
+                     new QuantityValue(360000, 127)
                 );
                 yield return new (LengthUnit.Fathom, "Fathom", "Fathoms", new BaseUnits(length: LengthUnit.Fathom),
-                     new QuantityValue(625, 1143)             
+                     new QuantityValue(625, 1143)
                 );
                 yield return new (LengthUnit.Femtometer, "Femtometer", "Femtometers", new BaseUnits(length: LengthUnit.Femtometer),
-                     1000000000000000             
+                     1000000000000000
                 );
                 yield return new (LengthUnit.Foot, "Foot", "Feet", new BaseUnits(length: LengthUnit.Foot),
-                     new QuantityValue(1250, 381)             
+                     new QuantityValue(1250, 381)
                 );
                 yield return new (LengthUnit.Gigameter, "Gigameter", "Gigameters", new BaseUnits(length: LengthUnit.Gigameter),
-                     new QuantityValue(1, 1000000000)             
+                     new QuantityValue(1, 1000000000)
                 );
                 yield return new (LengthUnit.Hand, "Hand", "Hands", new BaseUnits(length: LengthUnit.Hand),
-                     new QuantityValue(1250, 127)             
+                     new QuantityValue(1250, 127)
                 );
                 yield return new (LengthUnit.Hectometer, "Hectometer", "Hectometers", new BaseUnits(length: LengthUnit.Hectometer),
-                     new QuantityValue(1, 100)             
+                     new QuantityValue(1, 100)
                 );
                 yield return new (LengthUnit.Inch, "Inch", "Inches", new BaseUnits(length: LengthUnit.Inch),
-                     new QuantityValue(5000, 127)             
+                     new QuantityValue(5000, 127)
                 );
                 yield return new (LengthUnit.Kilofoot, "Kilofoot", "Kilofeet", new BaseUnits(length: LengthUnit.Kilofoot),
-                     new QuantityValue(5, 1524)             
+                     new QuantityValue(5, 1524)
                 );
                 yield return new (LengthUnit.KilolightYear, "KilolightYear", "KilolightYears", new BaseUnits(length: LengthUnit.KilolightYear),
-                     new QuantityValue(1, QuantityValue.PowerOfTen(7) * new BigInteger(946073047258))             
+                     new QuantityValue(1, QuantityValue.PowerOfTen(7) * new BigInteger(946073047258))
                 );
                 yield return new (LengthUnit.Kilometer, "Kilometer", "Kilometers", new BaseUnits(length: LengthUnit.Kilometer),
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (LengthUnit.Kiloparsec, "Kiloparsec", "Kiloparsecs", new BaseUnits(length: LengthUnit.Kiloparsec),
-                     new QuantityValue(1, QuantityValue.PowerOfTen(8) * new BigInteger(308567758128))             
+                     new QuantityValue(1, QuantityValue.PowerOfTen(8) * new BigInteger(308567758128))
                 );
                 yield return new (LengthUnit.Kiloyard, "Kiloyard", "Kiloyards", new BaseUnits(length: LengthUnit.Kiloyard),
-                     new QuantityValue(5, 4572)             
+                     new QuantityValue(5, 4572)
                 );
                 yield return new (LengthUnit.LightYear, "LightYear", "LightYears", new BaseUnits(length: LengthUnit.LightYear),
-                     new QuantityValue(1, 9460730472580000)             
+                     new QuantityValue(1, 9460730472580000)
                 );
                 yield return new (LengthUnit.MegalightYear, "MegalightYear", "MegalightYears", new BaseUnits(length: LengthUnit.MegalightYear),
-                     new QuantityValue(1, QuantityValue.PowerOfTen(10) * new BigInteger(946073047258))             
+                     new QuantityValue(1, QuantityValue.PowerOfTen(10) * new BigInteger(946073047258))
                 );
                 yield return new (LengthUnit.Megameter, "Megameter", "Megameters", new BaseUnits(length: LengthUnit.Megameter),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (LengthUnit.Megaparsec, "Megaparsec", "Megaparsecs", new BaseUnits(length: LengthUnit.Megaparsec),
-                     new QuantityValue(1, QuantityValue.PowerOfTen(11) * new BigInteger(308567758128))             
+                     new QuantityValue(1, QuantityValue.PowerOfTen(11) * new BigInteger(308567758128))
                 );
                 yield return new (LengthUnit.Meter, "Meter", "Meters", new BaseUnits(length: LengthUnit.Meter));
                 yield return new (LengthUnit.Microinch, "Microinch", "Microinches", new BaseUnits(length: LengthUnit.Microinch),
-                     new QuantityValue(5000000000, 127)             
+                     new QuantityValue(5000000000, 127)
                 );
                 yield return new (LengthUnit.Micrometer, "Micrometer", "Micrometers", new BaseUnits(length: LengthUnit.Micrometer),
-                     1000000             
+                     1000000
                 );
                 yield return new (LengthUnit.Mil, "Mil", "Mils", new BaseUnits(length: LengthUnit.Mil),
-                     new QuantityValue(5000000, 127)             
+                     new QuantityValue(5000000, 127)
                 );
                 yield return new (LengthUnit.Mile, "Mile", "Miles", new BaseUnits(length: LengthUnit.Mile),
-                     new QuantityValue(125, 201168)             
+                     new QuantityValue(125, 201168)
                 );
                 yield return new (LengthUnit.Millimeter, "Millimeter", "Millimeters", new BaseUnits(length: LengthUnit.Millimeter),
-                     1000             
+                     1000
                 );
                 yield return new (LengthUnit.Nanometer, "Nanometer", "Nanometers", new BaseUnits(length: LengthUnit.Nanometer),
-                     1000000000             
+                     1000000000
                 );
                 yield return new (LengthUnit.NauticalMile, "NauticalMile", "NauticalMiles", new BaseUnits(length: LengthUnit.NauticalMile),
-                     new QuantityValue(1, 1852)             
+                     new QuantityValue(1, 1852)
                 );
                 yield return new (LengthUnit.Parsec, "Parsec", "Parsecs", new BaseUnits(length: LengthUnit.Parsec),
-                     new QuantityValue(1, 30856775812800000)             
+                     new QuantityValue(1, 30856775812800000)
                 );
                 yield return new (LengthUnit.Picometer, "Picometer", "Picometers", new BaseUnits(length: LengthUnit.Picometer),
-                     1000000000000             
+                     1000000000000
                 );
                 yield return new (LengthUnit.PrinterPica, "PrinterPica", "PrinterPicas", new BaseUnits(length: LengthUnit.PrinterPica),
-                     new QuantityValue(60225, 254)             
+                     new QuantityValue(60225, 254)
                 );
                 yield return new (LengthUnit.PrinterPoint, "PrinterPoint", "PrinterPoints", new BaseUnits(length: LengthUnit.PrinterPoint),
-                     new QuantityValue(361350, 127)             
+                     new QuantityValue(361350, 127)
                 );
                 yield return new (LengthUnit.Shackle, "Shackle", "Shackles", new BaseUnits(length: LengthUnit.Shackle),
-                     new QuantityValue(125, 3429)             
+                     new QuantityValue(125, 3429)
                 );
                 yield return new (LengthUnit.SolarRadius, "SolarRadius", "SolarRadiuses", new BaseUnits(length: LengthUnit.SolarRadius),
-                     new QuantityValue(1, 695700000)             
+                     new QuantityValue(1, 695700000)
                 );
                 yield return new (LengthUnit.Twip, "Twip", "Twips", new BaseUnits(length: LengthUnit.Twip),
-                     new QuantityValue(7200000, 127)             
+                     new QuantityValue(7200000, 127)
                 );
                 yield return new (LengthUnit.UsSurveyFoot, "UsSurveyFoot", "UsSurveyFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot),
-                     new QuantityValue(3937, 1200)             
+                     new QuantityValue(3937, 1200)
                 );
                 yield return new (LengthUnit.Yard, "Yard", "Yards", new BaseUnits(length: LengthUnit.Yard),
-                     new QuantityValue(1250, 1143)             
+                     new QuantityValue(1250, 1143)
                 );
             }
         }
@@ -1313,7 +1313,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(Length), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(Length)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

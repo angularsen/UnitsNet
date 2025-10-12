@@ -265,15 +265,15 @@ namespace UnitsNet
                     {
                         Writer.WL($@"
                 yield return new ({_unitEnumName}.{unit.SingularName}, ""{unit.SingularName}"", ""{unit.PluralName}"", {baseUnitsFormat},
-                     {expressionFromBaseToUnit.GetConversionExpressionFormat()}             
-                );");  
+                     {expressionFromBaseToUnit.GetConversionExpressionFormat()}
+                );");
                     }
                     else
                     {
                         Writer.WL($@"
                 yield return new ({_unitEnumName}.{unit.SingularName}, ""{unit.SingularName}"", ""{unit.PluralName}"", {baseUnitsFormat},
                      {expressionFromBaseToUnit.GetConversionExpressionFormat()},
-                     {unit.GetUnitToBaseConversionExpressionFormat()}                
+                     {unit.GetUnitToBaseConversionExpressionFormat()}
                 );");
                     }
                 }
@@ -842,7 +842,7 @@ namespace UnitsNet
                     var leftPart = $"{leftParameterName}.{leftConversionProperty}";
                     var rightPart = $"{rightParameterName}.{rightConversionProperty}";
 
-                    if (leftParameterName is "double") 
+                    if (leftParameterName is "double")
                     {
                         leftParameterType = "QuantityValue";
                         leftParameterName = leftPart = "value";
@@ -924,7 +924,7 @@ namespace UnitsNet
                     var leftPart = $"{leftParameterName}.{leftConversionProperty}";
                     var rightPart = $"{rightParameterName}.{rightConversionProperty}";
 
-                    if (leftParameterName is "double") 
+                    if (leftParameterName is "double")
                     {
                         leftParameterType = "QuantityValue";
                         leftParameterName = leftPart = "value";
@@ -1030,7 +1030,7 @@ namespace UnitsNet
         {{
             return Comparison.GetHashCode(typeof({_quantity.Name}), this.As(BaseUnit));
         }}
-        
+
         /// <inheritdoc  cref=""CompareTo({_quantity.Name})"" />
         /// <param name=""obj"">An object to compare with this instance.</param>
         /// <exception cref=""T:System.ArgumentException"">

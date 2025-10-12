@@ -121,32 +121,32 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<LuminanceUnit>> GetDefaultMappings()
             {
                 yield return new (LuminanceUnit.CandelaPerSquareFoot, "CandelaPerSquareFoot", "CandelasPerSquareFoot", BaseUnits.Undefined,
-                     new QuantityValue(145161, 1562500)             
+                     new QuantityValue(145161, 1562500)
                 );
                 yield return new (LuminanceUnit.CandelaPerSquareInch, "CandelaPerSquareInch", "CandelasPerSquareInch", BaseUnits.Undefined,
-                     new QuantityValue(16129, 25000000)             
+                     new QuantityValue(16129, 25000000)
                 );
                 yield return new (LuminanceUnit.CandelaPerSquareMeter, "CandelaPerSquareMeter", "CandelasPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, luminousIntensity: LuminousIntensityUnit.Candela));
                 yield return new (LuminanceUnit.CenticandelaPerSquareMeter, "CenticandelaPerSquareMeter", "CenticandelasPerSquareMeter", new BaseUnits(length: LengthUnit.Decameter, luminousIntensity: LuminousIntensityUnit.Candela),
-                     100             
+                     100
                 );
                 yield return new (LuminanceUnit.DecicandelaPerSquareMeter, "DecicandelaPerSquareMeter", "DecicandelasPerSquareMeter", BaseUnits.Undefined,
-                     10             
+                     10
                 );
                 yield return new (LuminanceUnit.KilocandelaPerSquareMeter, "KilocandelaPerSquareMeter", "KilocandelasPerSquareMeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (LuminanceUnit.MicrocandelaPerSquareMeter, "MicrocandelaPerSquareMeter", "MicrocandelasPerSquareMeter", new BaseUnits(length: LengthUnit.Kilometer, luminousIntensity: LuminousIntensityUnit.Candela),
-                     1000000             
+                     1000000
                 );
                 yield return new (LuminanceUnit.MillicandelaPerSquareMeter, "MillicandelaPerSquareMeter", "MillicandelasPerSquareMeter", BaseUnits.Undefined,
-                     1000             
+                     1000
                 );
                 yield return new (LuminanceUnit.NanocandelaPerSquareMeter, "NanocandelaPerSquareMeter", "NanocandelasPerSquareMeter", BaseUnits.Undefined,
-                     1000000000             
+                     1000000000
                 );
                 yield return new (LuminanceUnit.Nit, "Nit", "Nits", BaseUnits.Undefined,
-                     1             
+                     1
                 );
             }
         }
@@ -678,7 +678,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(Luminance), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(Luminance)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

@@ -120,53 +120,53 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<AbsorbedDoseOfIonizingRadiationUnit>> GetDefaultMappings()
             {
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Centigray, "Centigray", "Centigrays", new BaseUnits(length: LengthUnit.Decimeter, time: DurationUnit.Second),
-                     100             
+                     100
                 );
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Decigray, "Decigray", "Decigrays", BaseUnits.Undefined,
-                     10             
+                     10
                 );
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Femtogray, "Femtogray", "Femtograys", BaseUnits.Undefined,
-                     1000000000000000             
+                     1000000000000000
                 );
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Gigagray, "Gigagray", "Gigagrays", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000)             
+                     new QuantityValue(1, 1000000000)
                 );
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Gray, "Gray", "Grays", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Kilogray, "Kilogray", "Kilograys", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Kilorad, "Kilorad", "Kilorads", BaseUnits.Undefined,
-                     new QuantityValue(1, 10)             
+                     new QuantityValue(1, 10)
                 );
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Megagray, "Megagray", "Megagrays", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Megarad, "Megarad", "Megarads", BaseUnits.Undefined,
-                     new QuantityValue(1, 10000)             
+                     new QuantityValue(1, 10000)
                 );
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Microgray, "Microgray", "Micrograys", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second),
-                     1000000             
+                     1000000
                 );
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Milligray, "Milligray", "Milligrays", BaseUnits.Undefined,
-                     1000             
+                     1000
                 );
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Millirad, "Millirad", "Millirads", BaseUnits.Undefined,
-                     100000             
+                     100000
                 );
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Nanogray, "Nanogray", "Nanograys", BaseUnits.Undefined,
-                     1000000000             
+                     1000000000
                 );
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Petagray, "Petagray", "Petagrays", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000000000)             
+                     new QuantityValue(1, 1000000000000000)
                 );
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Picogray, "Picogray", "Picograys", new BaseUnits(length: LengthUnit.Micrometer, time: DurationUnit.Second),
-                     1000000000000             
+                     1000000000000
                 );
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Rad, "Rad", "Rads", BaseUnits.Undefined,
-                     100             
+                     100
                 );
                 yield return new (AbsorbedDoseOfIonizingRadiationUnit.Teragray, "Teragray", "Teragrays", new BaseUnits(length: LengthUnit.Megameter, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000000000)             
+                     new QuantityValue(1, 1000000000000)
                 );
             }
         }
@@ -779,7 +779,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(AbsorbedDoseOfIonizingRadiation), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(AbsorbedDoseOfIonizingRadiation)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

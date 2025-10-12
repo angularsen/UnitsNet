@@ -117,7 +117,7 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<ThermalResistanceUnit>> GetDefaultMappings()
             {
                 yield return new (ThermalResistanceUnit.DegreeCelsiusPerWatt, "DegreeCelsiusPerWatt", "DegreesCelsiusPerWatt", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius),
-                     1             
+                     1
                 );
                 yield return new (ThermalResistanceUnit.KelvinPerWatt, "KelvinPerWatt", "KelvinsPerWatt", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin));
             }
@@ -536,7 +536,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(ThermalResistance), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(ThermalResistance)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

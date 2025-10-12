@@ -117,38 +117,38 @@ namespace UnitsNet
             {
                 yield return new (TemperatureUnit.DegreeCelsius, "DegreeCelsius", "DegreesCelsius", new BaseUnits(temperature: TemperatureUnit.DegreeCelsius),
                      new ConversionExpression(coefficient: 1, constantTerm: new QuantityValue(-5463, 20)),
-                     new ConversionExpression(coefficient: 1, constantTerm: new QuantityValue(5463, 20))                
+                     new ConversionExpression(coefficient: 1, constantTerm: new QuantityValue(5463, 20))
                 );
                 yield return new (TemperatureUnit.DegreeDelisle, "DegreeDelisle", "DegreesDelisle", new BaseUnits(temperature: TemperatureUnit.DegreeDelisle),
                      new ConversionExpression(coefficient: new QuantityValue(-3, 2), constantTerm: new QuantityValue(22389, 40)),
-                     new ConversionExpression(coefficient: new QuantityValue(-2, 3), constantTerm: new QuantityValue(7463, 20))                
+                     new ConversionExpression(coefficient: new QuantityValue(-2, 3), constantTerm: new QuantityValue(7463, 20))
                 );
                 yield return new (TemperatureUnit.DegreeFahrenheit, "DegreeFahrenheit", "DegreesFahrenheit", new BaseUnits(temperature: TemperatureUnit.DegreeFahrenheit),
                      new ConversionExpression(coefficient: new QuantityValue(9, 5), constantTerm: new QuantityValue(-45967, 100)),
-                     new ConversionExpression(coefficient: new QuantityValue(5, 9), constantTerm: new QuantityValue(45967, 180))                
+                     new ConversionExpression(coefficient: new QuantityValue(5, 9), constantTerm: new QuantityValue(45967, 180))
                 );
                 yield return new (TemperatureUnit.DegreeNewton, "DegreeNewton", "DegreesNewton", new BaseUnits(temperature: TemperatureUnit.DegreeNewton),
                      new ConversionExpression(coefficient: new QuantityValue(33, 100), constantTerm: new QuantityValue(-180279, 2000)),
-                     new ConversionExpression(coefficient: new QuantityValue(100, 33), constantTerm: new QuantityValue(5463, 20))                
+                     new ConversionExpression(coefficient: new QuantityValue(100, 33), constantTerm: new QuantityValue(5463, 20))
                 );
                 yield return new (TemperatureUnit.DegreeRankine, "DegreeRankine", "DegreesRankine", new BaseUnits(temperature: TemperatureUnit.DegreeRankine),
-                     new QuantityValue(9, 5)             
+                     new QuantityValue(9, 5)
                 );
                 yield return new (TemperatureUnit.DegreeReaumur, "DegreeReaumur", "DegreesReaumur", new BaseUnits(temperature: TemperatureUnit.DegreeReaumur),
                      new ConversionExpression(coefficient: new QuantityValue(4, 5), constantTerm: new QuantityValue(-5463, 25)),
-                     new ConversionExpression(coefficient: new QuantityValue(5, 4), constantTerm: new QuantityValue(5463, 20))                
+                     new ConversionExpression(coefficient: new QuantityValue(5, 4), constantTerm: new QuantityValue(5463, 20))
                 );
                 yield return new (TemperatureUnit.DegreeRoemer, "DegreeRoemer", "DegreesRoemer", new BaseUnits(temperature: TemperatureUnit.DegreeRoemer),
                      new ConversionExpression(coefficient: new QuantityValue(21, 40), constantTerm: new QuantityValue(-108723, 800)),
-                     new ConversionExpression(coefficient: new QuantityValue(40, 21), constantTerm: new QuantityValue(36241, 140))                
+                     new ConversionExpression(coefficient: new QuantityValue(40, 21), constantTerm: new QuantityValue(36241, 140))
                 );
                 yield return new (TemperatureUnit.Kelvin, "Kelvin", "Kelvins", new BaseUnits(temperature: TemperatureUnit.Kelvin));
                 yield return new (TemperatureUnit.MillidegreeCelsius, "MillidegreeCelsius", "MillidegreesCelsius", new BaseUnits(temperature: TemperatureUnit.MillidegreeCelsius),
                      new ConversionExpression(coefficient: 1000, constantTerm: -273150),
-                     new ConversionExpression(coefficient: new QuantityValue(1, 1000), constantTerm: new QuantityValue(5463, 20))                
+                     new ConversionExpression(coefficient: new QuantityValue(1, 1000), constantTerm: new QuantityValue(5463, 20))
                 );
                 yield return new (TemperatureUnit.SolarTemperature, "SolarTemperature", "SolarTemperatures", new BaseUnits(temperature: TemperatureUnit.SolarTemperature),
-                     new QuantityValue(1, 5778)             
+                     new QuantityValue(1, 5778)
                 );
             }
         }
@@ -624,7 +624,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(Temperature), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(Temperature)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

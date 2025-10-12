@@ -119,11 +119,11 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<BrakeSpecificFuelConsumptionUnit>> GetDefaultMappings()
             {
                 yield return new (BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, "GramPerKiloWattHour", "GramsPerKiloWattHour", BaseUnits.Undefined,
-                     3600000000             
+                     3600000000
                 );
                 yield return new (BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, "KilogramPerJoule", "KilogramsPerJoule", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
                 yield return new (BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, "PoundPerMechanicalHorsepowerHour", "PoundsPerMechanicalHorsepowerHour", BaseUnits.Undefined,
-                     new QuantityValue(191751395532579, 32399455)             
+                     new QuantityValue(191751395532579, 32399455)
                 );
             }
         }
@@ -576,7 +576,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(BrakeSpecificFuelConsumption), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(BrakeSpecificFuelConsumption)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

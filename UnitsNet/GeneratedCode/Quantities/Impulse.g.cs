@@ -117,41 +117,41 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<ImpulseUnit>> GetDefaultMappings()
             {
                 yield return new (ImpulseUnit.CentinewtonSecond, "CentinewtonSecond", "CentinewtonSeconds", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     100             
+                     100
                 );
                 yield return new (ImpulseUnit.DecanewtonSecond, "DecanewtonSecond", "DecanewtonSeconds", new BaseUnits(length: LengthUnit.Decameter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 10)             
+                     new QuantityValue(1, 10)
                 );
                 yield return new (ImpulseUnit.DecinewtonSecond, "DecinewtonSecond", "DecinewtonSeconds", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     10             
+                     10
                 );
                 yield return new (ImpulseUnit.KilogramMeterPerSecond, "KilogramMeterPerSecond", "KilogramMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     1             
+                     1
                 );
                 yield return new (ImpulseUnit.KilonewtonSecond, "KilonewtonSecond", "KilonewtonSeconds", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (ImpulseUnit.MeganewtonSecond, "MeganewtonSecond", "MeganewtonSeconds", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (ImpulseUnit.MicronewtonSecond, "MicronewtonSecond", "MicronewtonSeconds", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     1000000             
+                     1000000
                 );
                 yield return new (ImpulseUnit.MillinewtonSecond, "MillinewtonSecond", "MillinewtonSeconds", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     1000             
+                     1000
                 );
                 yield return new (ImpulseUnit.NanonewtonSecond, "NanonewtonSecond", "NanonewtonSeconds", new BaseUnits(length: LengthUnit.Nanometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     1000000000             
+                     1000000000
                 );
                 yield return new (ImpulseUnit.NewtonSecond, "NewtonSecond", "NewtonSeconds", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
                 yield return new (ImpulseUnit.PoundFootPerSecond, "PoundFootPerSecond", "PoundFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound, time: DurationUnit.Second),
-                     new QuantityValue(125000000000, 17281869297)             
+                     new QuantityValue(125000000000, 17281869297)
                 );
                 yield return new (ImpulseUnit.PoundForceSecond, "PoundForceSecond", "PoundForceSeconds", BaseUnits.Undefined,
-                     new QuantityValue(2000000000000, 8896443230521)             
+                     new QuantityValue(2000000000000, 8896443230521)
                 );
                 yield return new (ImpulseUnit.SlugFootPerSecond, "SlugFootPerSecond", "SlugFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Slug, time: DurationUnit.Second),
-                     new QuantityValue(2000000000000, 8896443230521)             
+                     new QuantityValue(2000000000000, 8896443230521)
                 );
             }
         }
@@ -712,7 +712,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(Impulse), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(Impulse)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

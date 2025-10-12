@@ -120,10 +120,10 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<MolalityUnit>> GetDefaultMappings()
             {
                 yield return new (MolalityUnit.MillimolePerKilogram, "MillimolePerKilogram", "MillimolesPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Millimole),
-                     1000             
+                     1000
                 );
                 yield return new (MolalityUnit.MolePerGram, "MolePerGram", "MolesPerGram", new BaseUnits(mass: MassUnit.Gram, amount: AmountOfSubstanceUnit.Mole),
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (MolalityUnit.MolePerKilogram, "MolePerKilogram", "MolesPerKilogram", new BaseUnits(mass: MassUnit.Kilogram, amount: AmountOfSubstanceUnit.Mole));
             }
@@ -555,7 +555,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(Molality), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(Molality)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

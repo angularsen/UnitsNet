@@ -117,86 +117,86 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<MassMomentOfInertiaUnit>> GetDefaultMappings()
             {
                 yield return new (MassMomentOfInertiaUnit.GramSquareCentimeter, "GramSquareCentimeter", "GramSquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram),
-                     10000000             
+                     10000000
                 );
                 yield return new (MassMomentOfInertiaUnit.GramSquareDecimeter, "GramSquareDecimeter", "GramSquareDecimeters", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Gram),
-                     100000             
+                     100000
                 );
                 yield return new (MassMomentOfInertiaUnit.GramSquareMeter, "GramSquareMeter", "GramSquareMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram),
-                     1000             
+                     1000
                 );
                 yield return new (MassMomentOfInertiaUnit.GramSquareMillimeter, "GramSquareMillimeter", "GramSquareMillimeters", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Gram),
-                     1000000000             
+                     1000000000
                 );
                 yield return new (MassMomentOfInertiaUnit.KilogramSquareCentimeter, "KilogramSquareCentimeter", "KilogramSquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilogram),
-                     10000             
+                     10000
                 );
                 yield return new (MassMomentOfInertiaUnit.KilogramSquareDecimeter, "KilogramSquareDecimeter", "KilogramSquareDecimeters", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram),
-                     100             
+                     100
                 );
                 yield return new (MassMomentOfInertiaUnit.KilogramSquareMeter, "KilogramSquareMeter", "KilogramSquareMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
                 yield return new (MassMomentOfInertiaUnit.KilogramSquareMillimeter, "KilogramSquareMillimeter", "KilogramSquareMillimeters", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram),
-                     1000000             
+                     1000000
                 );
                 yield return new (MassMomentOfInertiaUnit.KilotonneSquareCentimeter, "KilotonneSquareCentimeter", "KilotonneSquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Kilotonne),
-                     new QuantityValue(1, 100)             
+                     new QuantityValue(1, 100)
                 );
                 yield return new (MassMomentOfInertiaUnit.KilotonneSquareDecimeter, "KilotonneSquareDecimeter", "KilotonneSquareDecimeters", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilotonne),
-                     new QuantityValue(1, 10000)             
+                     new QuantityValue(1, 10000)
                 );
                 yield return new (MassMomentOfInertiaUnit.KilotonneSquareMeter, "KilotonneSquareMeter", "KilotonneSquareMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilotonne),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (MassMomentOfInertiaUnit.KilotonneSquareMillimeter, "KilotonneSquareMillimeter", "KilotonneSquareMillimeters", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilotonne),
-                     1             
+                     1
                 );
                 yield return new (MassMomentOfInertiaUnit.MegatonneSquareCentimeter, "MegatonneSquareCentimeter", "MegatonneSquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Megatonne),
-                     new QuantityValue(1, 100000)             
+                     new QuantityValue(1, 100000)
                 );
                 yield return new (MassMomentOfInertiaUnit.MegatonneSquareDecimeter, "MegatonneSquareDecimeter", "MegatonneSquareDecimeters", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Megatonne),
-                     new QuantityValue(1, 10000000)             
+                     new QuantityValue(1, 10000000)
                 );
                 yield return new (MassMomentOfInertiaUnit.MegatonneSquareMeter, "MegatonneSquareMeter", "MegatonneSquareMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Megatonne),
-                     new QuantityValue(1, 1000000000)             
+                     new QuantityValue(1, 1000000000)
                 );
                 yield return new (MassMomentOfInertiaUnit.MegatonneSquareMillimeter, "MegatonneSquareMillimeter", "MegatonneSquareMillimeters", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Megatonne),
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (MassMomentOfInertiaUnit.MilligramSquareCentimeter, "MilligramSquareCentimeter", "MilligramSquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Milligram),
-                     10000000000             
+                     10000000000
                 );
                 yield return new (MassMomentOfInertiaUnit.MilligramSquareDecimeter, "MilligramSquareDecimeter", "MilligramSquareDecimeters", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Milligram),
-                     100000000             
+                     100000000
                 );
                 yield return new (MassMomentOfInertiaUnit.MilligramSquareMeter, "MilligramSquareMeter", "MilligramSquareMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram),
-                     1000000             
+                     1000000
                 );
                 yield return new (MassMomentOfInertiaUnit.MilligramSquareMillimeter, "MilligramSquareMillimeter", "MilligramSquareMillimeters", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Milligram),
-                     1000000000000             
+                     1000000000000
                 );
                 yield return new (MassMomentOfInertiaUnit.PoundSquareFoot, "PoundSquareFoot", "PoundSquareFeet", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound),
-                     new QuantityValue(156250000000000, 6584392202157)             
+                     new QuantityValue(156250000000000, 6584392202157)
                 );
                 yield return new (MassMomentOfInertiaUnit.PoundSquareInch, "PoundSquareInch", "PoundSquareInches", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Pound),
-                     new QuantityValue(2500000000000000, 731599133573)             
+                     new QuantityValue(2500000000000000, 731599133573)
                 );
                 yield return new (MassMomentOfInertiaUnit.SlugSquareFoot, "SlugSquareFoot", "SlugSquareFeet", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Slug),
-                     new QuantityValue(2500000000000000, 3389544870828501)             
+                     new QuantityValue(2500000000000000, 3389544870828501)
                 );
                 yield return new (MassMomentOfInertiaUnit.SlugSquareInch, "SlugSquareInch", "SlugSquareInches", new BaseUnits(length: LengthUnit.Inch, mass: MassUnit.Slug),
-                     new QuantityValue(120000000000000000, 1129848290276167)             
+                     new QuantityValue(120000000000000000, 1129848290276167)
                 );
                 yield return new (MassMomentOfInertiaUnit.TonneSquareCentimeter, "TonneSquareCentimeter", "TonneSquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Tonne),
-                     10             
+                     10
                 );
                 yield return new (MassMomentOfInertiaUnit.TonneSquareDecimeter, "TonneSquareDecimeter", "TonneSquareDecimeters", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Tonne),
-                     new QuantityValue(1, 10)             
+                     new QuantityValue(1, 10)
                 );
                 yield return new (MassMomentOfInertiaUnit.TonneSquareMeter, "TonneSquareMeter", "TonneSquareMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Tonne),
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (MassMomentOfInertiaUnit.TonneSquareMillimeter, "TonneSquareMillimeter", "TonneSquareMillimeters", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Tonne),
-                     1000             
+                     1000
                 );
             }
         }
@@ -952,7 +952,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(MassMomentOfInertia), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(MassMomentOfInertia)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

@@ -117,43 +117,43 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<IrradianceUnit>> GetDefaultMappings()
             {
                 yield return new (IrradianceUnit.KilowattPerSquareCentimeter, "KilowattPerSquareCentimeter", "KilowattsPerSquareCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 10000000)             
+                     new QuantityValue(1, 10000000)
                 );
                 yield return new (IrradianceUnit.KilowattPerSquareMeter, "KilowattPerSquareMeter", "KilowattsPerSquareMeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (IrradianceUnit.MegawattPerSquareCentimeter, "MegawattPerSquareCentimeter", "MegawattsPerSquareCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 10000000000)             
+                     new QuantityValue(1, 10000000000)
                 );
                 yield return new (IrradianceUnit.MegawattPerSquareMeter, "MegawattPerSquareMeter", "MegawattsPerSquareMeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (IrradianceUnit.MicrowattPerSquareCentimeter, "MicrowattPerSquareCentimeter", "MicrowattsPerSquareCentimeter", BaseUnits.Undefined,
-                     100             
+                     100
                 );
                 yield return new (IrradianceUnit.MicrowattPerSquareMeter, "MicrowattPerSquareMeter", "MicrowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second),
-                     1000000             
+                     1000000
                 );
                 yield return new (IrradianceUnit.MilliwattPerSquareCentimeter, "MilliwattPerSquareCentimeter", "MilliwattsPerSquareCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 10)             
+                     new QuantityValue(1, 10)
                 );
                 yield return new (IrradianceUnit.MilliwattPerSquareMeter, "MilliwattPerSquareMeter", "MilliwattsPerSquareMeter", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second),
-                     1000             
+                     1000
                 );
                 yield return new (IrradianceUnit.NanowattPerSquareCentimeter, "NanowattPerSquareCentimeter", "NanowattsPerSquareCentimeter", BaseUnits.Undefined,
-                     100000             
+                     100000
                 );
                 yield return new (IrradianceUnit.NanowattPerSquareMeter, "NanowattPerSquareMeter", "NanowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second),
-                     1000000000             
+                     1000000000
                 );
                 yield return new (IrradianceUnit.PicowattPerSquareCentimeter, "PicowattPerSquareCentimeter", "PicowattsPerSquareCentimeter", BaseUnits.Undefined,
-                     100000000             
+                     100000000
                 );
                 yield return new (IrradianceUnit.PicowattPerSquareMeter, "PicowattPerSquareMeter", "PicowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Nanogram, time: DurationUnit.Second),
-                     1000000000000             
+                     1000000000000
                 );
                 yield return new (IrradianceUnit.WattPerSquareCentimeter, "WattPerSquareCentimeter", "WattsPerSquareCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 10000)             
+                     new QuantityValue(1, 10000)
                 );
                 yield return new (IrradianceUnit.WattPerSquareMeter, "WattPerSquareMeter", "WattsPerSquareMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second));
             }
@@ -728,7 +728,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(Irradiance), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(Irradiance)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

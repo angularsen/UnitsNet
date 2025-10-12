@@ -132,41 +132,41 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<DurationUnit>> GetDefaultMappings()
             {
                 yield return new (DurationUnit.Day, "Day", "Days", new BaseUnits(time: DurationUnit.Day),
-                     new QuantityValue(1, 86400)             
+                     new QuantityValue(1, 86400)
                 );
                 yield return new (DurationUnit.Hour, "Hour", "Hours", new BaseUnits(time: DurationUnit.Hour),
-                     new QuantityValue(1, 3600)             
+                     new QuantityValue(1, 3600)
                 );
                 yield return new (DurationUnit.JulianYear, "JulianYear", "JulianYears", new BaseUnits(time: DurationUnit.JulianYear),
-                     new QuantityValue(1, 31557600)             
+                     new QuantityValue(1, 31557600)
                 );
                 yield return new (DurationUnit.Microsecond, "Microsecond", "Microseconds", new BaseUnits(time: DurationUnit.Microsecond),
-                     1000000             
+                     1000000
                 );
                 yield return new (DurationUnit.Millisecond, "Millisecond", "Milliseconds", new BaseUnits(time: DurationUnit.Millisecond),
-                     1000             
+                     1000
                 );
                 yield return new (DurationUnit.Minute, "Minute", "Minutes", new BaseUnits(time: DurationUnit.Minute),
-                     new QuantityValue(1, 60)             
+                     new QuantityValue(1, 60)
                 );
                 yield return new (DurationUnit.Month30, "Month30", "Months30", new BaseUnits(time: DurationUnit.Month30),
-                     new QuantityValue(1, 2592000)             
+                     new QuantityValue(1, 2592000)
                 );
                 yield return new (DurationUnit.Nanosecond, "Nanosecond", "Nanoseconds", new BaseUnits(time: DurationUnit.Nanosecond),
-                     1000000000             
+                     1000000000
                 );
                 yield return new (DurationUnit.Picosecond, "Picosecond", "Picoseconds", new BaseUnits(time: DurationUnit.Picosecond),
-                     1000000000000             
+                     1000000000000
                 );
                 yield return new (DurationUnit.Second, "Second", "Seconds", new BaseUnits(time: DurationUnit.Second));
                 yield return new (DurationUnit.Sol, "Sol", "Sols", new BaseUnits(time: DurationUnit.Sol),
-                     new QuantityValue(250, 22193811)             
+                     new QuantityValue(250, 22193811)
                 );
                 yield return new (DurationUnit.Week, "Week", "Weeks", new BaseUnits(time: DurationUnit.Week),
-                     new QuantityValue(1, 604800)             
+                     new QuantityValue(1, 604800)
                 );
                 yield return new (DurationUnit.Year365, "Year365", "Years365", new BaseUnits(time: DurationUnit.Year365),
-                     new QuantityValue(1, 31536000)             
+                     new QuantityValue(1, 31536000)
                 );
             }
         }
@@ -821,7 +821,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(Duration), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(Duration)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

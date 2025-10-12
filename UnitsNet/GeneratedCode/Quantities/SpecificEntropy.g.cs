@@ -119,29 +119,29 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<SpecificEntropyUnit>> GetDefaultMappings()
             {
                 yield return new (SpecificEntropyUnit.BtuPerPoundFahrenheit, "BtuPerPoundFahrenheit", "BtusPerPoundFahrenheit", BaseUnits.Undefined,
-                     new QuantityValue(5, 20934)             
+                     new QuantityValue(5, 20934)
                 );
                 yield return new (SpecificEntropyUnit.CaloriePerGramKelvin, "CaloriePerGramKelvin", "CaloriesPerGramKelvin", BaseUnits.Undefined,
-                     new QuantityValue(1, 4184)             
+                     new QuantityValue(1, 4184)
                 );
                 yield return new (SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, "JoulePerKilogramDegreeCelsius", "JoulesPerKilogramDegreeCelsius", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius),
-                     1             
+                     1
                 );
                 yield return new (SpecificEntropyUnit.JoulePerKilogramKelvin, "JoulePerKilogramKelvin", "JoulesPerKilogramKelvin", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin));
                 yield return new (SpecificEntropyUnit.KilocaloriePerGramKelvin, "KilocaloriePerGramKelvin", "KilocaloriesPerGramKelvin", BaseUnits.Undefined,
-                     new QuantityValue(1, 4184000)             
+                     new QuantityValue(1, 4184000)
                 );
                 yield return new (SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, "KilojoulePerKilogramDegreeCelsius", "KilojoulesPerKilogramDegreeCelsius", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (SpecificEntropyUnit.KilojoulePerKilogramKelvin, "KilojoulePerKilogramKelvin", "KilojoulesPerKilogramKelvin", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, "MegajoulePerKilogramDegreeCelsius", "MegajoulesPerKilogramDegreeCelsius", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (SpecificEntropyUnit.MegajoulePerKilogramKelvin, "MegajoulePerKilogramKelvin", "MegajoulesPerKilogramKelvin", new BaseUnits(length: LengthUnit.Kilometer, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
             }
         }
@@ -666,7 +666,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(SpecificEntropy), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(SpecificEntropy)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

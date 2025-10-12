@@ -523,7 +523,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(ElectricChargeDensity), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(ElectricChargeDensity)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

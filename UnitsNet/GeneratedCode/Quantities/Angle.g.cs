@@ -120,47 +120,47 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<AngleUnit>> GetDefaultMappings()
             {
                 yield return new (AngleUnit.Arcminute, "Arcminute", "Arcminutes", BaseUnits.Undefined,
-                     new QuantityValue(new BigInteger(108) * QuantityValue.PowerOfTen(17), 3141592653589793)             
+                     new QuantityValue(new BigInteger(108) * QuantityValue.PowerOfTen(17), 3141592653589793)
                 );
                 yield return new (AngleUnit.Arcsecond, "Arcsecond", "Arcseconds", BaseUnits.Undefined,
-                     new QuantityValue(new BigInteger(648) * QuantityValue.PowerOfTen(18), 3141592653589793)             
+                     new QuantityValue(new BigInteger(648) * QuantityValue.PowerOfTen(18), 3141592653589793)
                 );
                 yield return new (AngleUnit.Centiradian, "Centiradian", "Centiradians", BaseUnits.Undefined,
-                     100             
+                     100
                 );
                 yield return new (AngleUnit.Deciradian, "Deciradian", "Deciradians", BaseUnits.Undefined,
-                     10             
+                     10
                 );
                 yield return new (AngleUnit.Degree, "Degree", "Degrees", BaseUnits.Undefined,
-                     new QuantityValue(180000000000000000, 3141592653589793)             
+                     new QuantityValue(180000000000000000, 3141592653589793)
                 );
                 yield return new (AngleUnit.Gradian, "Gradian", "Gradians", BaseUnits.Undefined,
-                     new QuantityValue(200000000000000000, 3141592653589793)             
+                     new QuantityValue(200000000000000000, 3141592653589793)
                 );
                 yield return new (AngleUnit.Microdegree, "Microdegree", "Microdegrees", BaseUnits.Undefined,
-                     new QuantityValue(new BigInteger(18) * QuantityValue.PowerOfTen(22), 3141592653589793)             
+                     new QuantityValue(new BigInteger(18) * QuantityValue.PowerOfTen(22), 3141592653589793)
                 );
                 yield return new (AngleUnit.Microradian, "Microradian", "Microradians", BaseUnits.Undefined,
-                     1000000             
+                     1000000
                 );
                 yield return new (AngleUnit.Millidegree, "Millidegree", "Millidegrees", BaseUnits.Undefined,
-                     new QuantityValue(new BigInteger(18) * QuantityValue.PowerOfTen(19), 3141592653589793)             
+                     new QuantityValue(new BigInteger(18) * QuantityValue.PowerOfTen(19), 3141592653589793)
                 );
                 yield return new (AngleUnit.Milliradian, "Milliradian", "Milliradians", BaseUnits.Undefined,
-                     1000             
+                     1000
                 );
                 yield return new (AngleUnit.Nanodegree, "Nanodegree", "Nanodegrees", BaseUnits.Undefined,
-                     new QuantityValue(new BigInteger(18) * QuantityValue.PowerOfTen(25), 3141592653589793)             
+                     new QuantityValue(new BigInteger(18) * QuantityValue.PowerOfTen(25), 3141592653589793)
                 );
                 yield return new (AngleUnit.Nanoradian, "Nanoradian", "Nanoradians", BaseUnits.Undefined,
-                     1000000000             
+                     1000000000
                 );
                 yield return new (AngleUnit.NatoMil, "NatoMil", "NatoMils", BaseUnits.Undefined,
-                     new QuantityValue(3200000000000000000, 3141592653589793)             
+                     new QuantityValue(3200000000000000000, 3141592653589793)
                 );
                 yield return new (AngleUnit.Radian, "Radian", "Radians", BaseUnits.Undefined);
                 yield return new (AngleUnit.Revolution, "Revolution", "Revolutions", BaseUnits.Undefined,
-                     new QuantityValue(500000000000000, 3141592653589793)             
+                     new QuantityValue(500000000000000, 3141592653589793)
                 );
             }
         }
@@ -755,7 +755,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(Angle), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(Angle)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

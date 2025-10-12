@@ -121,16 +121,16 @@ namespace UnitsNet
             {
                 yield return new (ElectricInductanceUnit.Henry, "Henry", "Henries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
                 yield return new (ElectricInductanceUnit.Microhenry, "Microhenry", "Microhenries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     1000000             
+                     1000000
                 );
                 yield return new (ElectricInductanceUnit.Millihenry, "Millihenry", "Millihenries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     1000             
+                     1000
                 );
                 yield return new (ElectricInductanceUnit.Nanohenry, "Nanohenry", "Nanohenries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     1000000000             
+                     1000000000
                 );
                 yield return new (ElectricInductanceUnit.Picohenry, "Picohenry", "Picohenries", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     1000000000000             
+                     1000000000000
                 );
             }
         }
@@ -587,7 +587,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(ElectricInductance), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(ElectricInductance)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

@@ -120,16 +120,16 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<PorousMediumPermeabilityUnit>> GetDefaultMappings()
             {
                 yield return new (PorousMediumPermeabilityUnit.Darcy, "Darcy", "Darcys", BaseUnits.Undefined,
-                     new QuantityValue(QuantityValue.PowerOfTen(19), 9869233)             
+                     new QuantityValue(QuantityValue.PowerOfTen(19), 9869233)
                 );
                 yield return new (PorousMediumPermeabilityUnit.Microdarcy, "Microdarcy", "Microdarcys", BaseUnits.Undefined,
-                     new QuantityValue(QuantityValue.PowerOfTen(25), 9869233)             
+                     new QuantityValue(QuantityValue.PowerOfTen(25), 9869233)
                 );
                 yield return new (PorousMediumPermeabilityUnit.Millidarcy, "Millidarcy", "Millidarcys", BaseUnits.Undefined,
-                     new QuantityValue(QuantityValue.PowerOfTen(22), 9869233)             
+                     new QuantityValue(QuantityValue.PowerOfTen(22), 9869233)
                 );
                 yield return new (PorousMediumPermeabilityUnit.SquareCentimeter, "SquareCentimeter", "SquareCentimeters", new BaseUnits(length: LengthUnit.Centimeter),
-                     10000             
+                     10000
                 );
                 yield return new (PorousMediumPermeabilityUnit.SquareMeter, "SquareMeter", "SquareMeters", new BaseUnits(length: LengthUnit.Meter));
             }
@@ -587,7 +587,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(PorousMediumPermeability), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(PorousMediumPermeability)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

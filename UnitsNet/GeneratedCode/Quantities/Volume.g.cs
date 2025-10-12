@@ -130,167 +130,167 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<VolumeUnit>> GetDefaultMappings()
             {
                 yield return new (VolumeUnit.AcreFoot, "AcreFoot", "AcreFeet", BaseUnits.Undefined,
-                     new QuantityValue(48828125, 60228605349)             
+                     new QuantityValue(48828125, 60228605349)
                 );
                 yield return new (VolumeUnit.AuTablespoon, "AuTablespoon", "AuTablespoons", BaseUnits.Undefined,
-                     50000             
+                     50000
                 );
                 yield return new (VolumeUnit.BoardFoot, "BoardFoot", "BoardFeet", BaseUnits.Undefined,
-                     new QuantityValue(7812500000, 18435447)             
+                     new QuantityValue(7812500000, 18435447)
                 );
                 yield return new (VolumeUnit.Centiliter, "Centiliter", "Centiliters", BaseUnits.Undefined,
-                     100000             
+                     100000
                 );
                 yield return new (VolumeUnit.CubicCentimeter, "CubicCentimeter", "CubicCentimeters", new BaseUnits(length: LengthUnit.Centimeter),
-                     1000000             
+                     1000000
                 );
                 yield return new (VolumeUnit.CubicDecimeter, "CubicDecimeter", "CubicDecimeters", new BaseUnits(length: LengthUnit.Decimeter),
-                     1000             
+                     1000
                 );
                 yield return new (VolumeUnit.CubicFoot, "CubicFoot", "CubicFeet", new BaseUnits(length: LengthUnit.Foot),
-                     new QuantityValue(1953125000, 55306341)             
+                     new QuantityValue(1953125000, 55306341)
                 );
                 yield return new (VolumeUnit.CubicHectometer, "CubicHectometer", "CubicHectometers", new BaseUnits(length: LengthUnit.Hectometer),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (VolumeUnit.CubicInch, "CubicInch", "CubicInches", new BaseUnits(length: LengthUnit.Inch),
-                     new QuantityValue(125000000000, 2048383)             
+                     new QuantityValue(125000000000, 2048383)
                 );
                 yield return new (VolumeUnit.CubicKilometer, "CubicKilometer", "CubicKilometers", new BaseUnits(length: LengthUnit.Kilometer),
-                     new QuantityValue(1, 1000000000)             
+                     new QuantityValue(1, 1000000000)
                 );
                 yield return new (VolumeUnit.CubicMeter, "CubicMeter", "CubicMeters", new BaseUnits(length: LengthUnit.Meter));
                 yield return new (VolumeUnit.CubicMicrometer, "CubicMicrometer", "CubicMicrometers", new BaseUnits(length: LengthUnit.Micrometer),
-                     1000000000000000000             
+                     1000000000000000000
                 );
                 yield return new (VolumeUnit.CubicMile, "CubicMile", "CubicMiles", new BaseUnits(length: LengthUnit.Mile),
-                     new QuantityValue(1953125, 8140980127813632)             
+                     new QuantityValue(1953125, 8140980127813632)
                 );
                 yield return new (VolumeUnit.CubicMillimeter, "CubicMillimeter", "CubicMillimeters", new BaseUnits(length: LengthUnit.Millimeter),
-                     1000000000             
+                     1000000000
                 );
                 yield return new (VolumeUnit.CubicYard, "CubicYard", "CubicYards", new BaseUnits(length: LengthUnit.Yard),
-                     new QuantityValue(1953125000, 1493271207)             
+                     new QuantityValue(1953125000, 1493271207)
                 );
                 yield return new (VolumeUnit.Decaliter, "Decaliter", "Decaliters", BaseUnits.Undefined,
-                     100             
+                     100
                 );
                 yield return new (VolumeUnit.DecausGallon, "DecausGallon", "DecausGallons", BaseUnits.Undefined,
-                     new QuantityValue(12500000000, 473176473)             
+                     new QuantityValue(12500000000, 473176473)
                 );
                 yield return new (VolumeUnit.Deciliter, "Deciliter", "Deciliters", BaseUnits.Undefined,
-                     10000             
+                     10000
                 );
                 yield return new (VolumeUnit.DeciusGallon, "DeciusGallon", "DeciusGallons", BaseUnits.Undefined,
-                     new QuantityValue(1250000000000, 473176473)             
+                     new QuantityValue(1250000000000, 473176473)
                 );
                 yield return new (VolumeUnit.HectocubicFoot, "HectocubicFoot", "HectocubicFeet", BaseUnits.Undefined,
-                     new QuantityValue(19531250, 55306341)             
+                     new QuantityValue(19531250, 55306341)
                 );
                 yield return new (VolumeUnit.HectocubicMeter, "HectocubicMeter", "HectocubicMeters", BaseUnits.Undefined,
-                     new QuantityValue(1, 100)             
+                     new QuantityValue(1, 100)
                 );
                 yield return new (VolumeUnit.Hectoliter, "Hectoliter", "Hectoliters", BaseUnits.Undefined,
-                     10             
+                     10
                 );
                 yield return new (VolumeUnit.HectousGallon, "HectousGallon", "HectousGallons", BaseUnits.Undefined,
-                     new QuantityValue(1250000000, 473176473)             
+                     new QuantityValue(1250000000, 473176473)
                 );
                 yield return new (VolumeUnit.ImperialBeerBarrel, "ImperialBeerBarrel", "ImperialBeerBarrels", BaseUnits.Undefined,
-                     new QuantityValue(25000000, 4091481)             
+                     new QuantityValue(25000000, 4091481)
                 );
                 yield return new (VolumeUnit.ImperialGallon, "ImperialGallon", "ImperialGallons", BaseUnits.Undefined,
-                     new QuantityValue(100000000, 454609)             
+                     new QuantityValue(100000000, 454609)
                 );
                 yield return new (VolumeUnit.ImperialOunce, "ImperialOunce", "ImperialOunces", BaseUnits.Undefined,
-                     new QuantityValue(16000000000, 454609)             
+                     new QuantityValue(16000000000, 454609)
                 );
                 yield return new (VolumeUnit.ImperialPint, "ImperialPint", "ImperialPints", BaseUnits.Undefined,
-                     new QuantityValue(800000000, 454609)             
+                     new QuantityValue(800000000, 454609)
                 );
                 yield return new (VolumeUnit.ImperialQuart, "ImperialQuart", "ImperialQuarts", BaseUnits.Undefined,
-                     new QuantityValue(400000000, 454609)             
+                     new QuantityValue(400000000, 454609)
                 );
                 yield return new (VolumeUnit.KilocubicFoot, "KilocubicFoot", "KilocubicFeet", BaseUnits.Undefined,
-                     new QuantityValue(1953125, 55306341)             
+                     new QuantityValue(1953125, 55306341)
                 );
                 yield return new (VolumeUnit.KilocubicMeter, "KilocubicMeter", "KilocubicMeters", new BaseUnits(length: LengthUnit.Decameter),
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (VolumeUnit.KiloimperialGallon, "KiloimperialGallon", "KiloimperialGallons", BaseUnits.Undefined,
-                     new QuantityValue(100000, 454609)             
+                     new QuantityValue(100000, 454609)
                 );
                 yield return new (VolumeUnit.Kiloliter, "Kiloliter", "Kiloliters", new BaseUnits(length: LengthUnit.Meter),
-                     1             
+                     1
                 );
                 yield return new (VolumeUnit.KilousGallon, "KilousGallon", "KilousGallons", BaseUnits.Undefined,
-                     new QuantityValue(125000000, 473176473)             
+                     new QuantityValue(125000000, 473176473)
                 );
                 yield return new (VolumeUnit.Liter, "Liter", "Liters", new BaseUnits(length: LengthUnit.Decimeter),
-                     1000             
+                     1000
                 );
                 yield return new (VolumeUnit.MegacubicFoot, "MegacubicFoot", "MegacubicFeet", BaseUnits.Undefined,
-                     new QuantityValue(15625, 442450728)             
+                     new QuantityValue(15625, 442450728)
                 );
                 yield return new (VolumeUnit.MegaimperialGallon, "MegaimperialGallon", "MegaimperialGallons", BaseUnits.Undefined,
-                     new QuantityValue(100, 454609)             
+                     new QuantityValue(100, 454609)
                 );
                 yield return new (VolumeUnit.Megaliter, "Megaliter", "Megaliters", new BaseUnits(length: LengthUnit.Decameter),
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (VolumeUnit.MegausGallon, "MegausGallon", "MegausGallons", BaseUnits.Undefined,
-                     new QuantityValue(125000, 473176473)             
+                     new QuantityValue(125000, 473176473)
                 );
                 yield return new (VolumeUnit.MetricCup, "MetricCup", "MetricCups", BaseUnits.Undefined,
-                     4000             
+                     4000
                 );
                 yield return new (VolumeUnit.MetricTablespoon, "MetricTablespoon", "MetricTablespoons", BaseUnits.Undefined,
-                     new QuantityValue(200000, 3)             
+                     new QuantityValue(200000, 3)
                 );
                 yield return new (VolumeUnit.MetricTeaspoon, "MetricTeaspoon", "MetricTeaspoons", BaseUnits.Undefined,
-                     200000             
+                     200000
                 );
                 yield return new (VolumeUnit.Microliter, "Microliter", "Microliters", new BaseUnits(length: LengthUnit.Millimeter),
-                     1000000000             
+                     1000000000
                 );
                 yield return new (VolumeUnit.Milliliter, "Milliliter", "Milliliters", new BaseUnits(length: LengthUnit.Centimeter),
-                     1000000             
+                     1000000
                 );
                 yield return new (VolumeUnit.Nanoliter, "Nanoliter", "Nanoliters", BaseUnits.Undefined,
-                     1000000000000             
+                     1000000000000
                 );
                 yield return new (VolumeUnit.OilBarrel, "OilBarrel", "OilBarrels", BaseUnits.Undefined,
-                     new QuantityValue(62500000000, 9936705933)             
+                     new QuantityValue(62500000000, 9936705933)
                 );
                 yield return new (VolumeUnit.UkTablespoon, "UkTablespoon", "UkTablespoons", BaseUnits.Undefined,
-                     new QuantityValue(200000, 3)             
+                     new QuantityValue(200000, 3)
                 );
                 yield return new (VolumeUnit.UsBeerBarrel, "UsBeerBarrel", "UsBeerBarrels", BaseUnits.Undefined,
-                     new QuantityValue(125000000000, 14668470663)             
+                     new QuantityValue(125000000000, 14668470663)
                 );
                 yield return new (VolumeUnit.UsCustomaryCup, "UsCustomaryCup", "UsCustomaryCups", BaseUnits.Undefined,
-                     new QuantityValue(2000000000000, 473176473)             
+                     new QuantityValue(2000000000000, 473176473)
                 );
                 yield return new (VolumeUnit.UsGallon, "UsGallon", "UsGallons", BaseUnits.Undefined,
-                     new QuantityValue(125000000000, 473176473)             
+                     new QuantityValue(125000000000, 473176473)
                 );
                 yield return new (VolumeUnit.UsLegalCup, "UsLegalCup", "UsLegalCups", BaseUnits.Undefined,
-                     new QuantityValue(12500, 3)             
+                     new QuantityValue(12500, 3)
                 );
                 yield return new (VolumeUnit.UsOunce, "UsOunce", "UsOunces", BaseUnits.Undefined,
-                     new QuantityValue(16000000000000, 473176473)             
+                     new QuantityValue(16000000000000, 473176473)
                 );
                 yield return new (VolumeUnit.UsPint, "UsPint", "UsPints", BaseUnits.Undefined,
-                     new QuantityValue(1000000000000, 473176473)             
+                     new QuantityValue(1000000000000, 473176473)
                 );
                 yield return new (VolumeUnit.UsQuart, "UsQuart", "UsQuarts", BaseUnits.Undefined,
-                     new QuantityValue(500000000000, 473176473)             
+                     new QuantityValue(500000000000, 473176473)
                 );
                 yield return new (VolumeUnit.UsTablespoon, "UsTablespoon", "UsTablespoons", BaseUnits.Undefined,
-                     new QuantityValue(32000000000000, 473176473)             
+                     new QuantityValue(32000000000000, 473176473)
                 );
                 yield return new (VolumeUnit.UsTeaspoon, "UsTeaspoon", "UsTeaspoons", BaseUnits.Undefined,
-                     new QuantityValue(32000000000000, 157725491)             
+                     new QuantityValue(32000000000000, 157725491)
                 );
             }
         }
@@ -1479,7 +1479,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(Volume), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(Volume)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

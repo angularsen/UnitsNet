@@ -523,7 +523,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(Permittivity), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(Permittivity)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

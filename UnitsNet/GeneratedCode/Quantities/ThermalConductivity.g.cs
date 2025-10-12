@@ -120,7 +120,7 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<ThermalConductivityUnit>> GetDefaultMappings()
             {
                 yield return new (ThermalConductivityUnit.BtuPerHourFootFahrenheit, "BtuPerHourFootFahrenheit", "BtusPerHourFootFahrenheit", BaseUnits.Undefined,
-                     new QuantityValue(30480000000, 52752792631)             
+                     new QuantityValue(30480000000, 52752792631)
                 );
                 yield return new (ThermalConductivityUnit.WattPerMeterKelvin, "WattPerMeterKelvin", "WattsPerMeterKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin));
             }
@@ -539,7 +539,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(ThermalConductivity), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(ThermalConductivity)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

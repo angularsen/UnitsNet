@@ -117,7 +117,7 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<VolumeFlowPerAreaUnit>> GetDefaultMappings()
             {
                 yield return new (VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot, "CubicFootPerMinutePerSquareFoot", "CubicFeetPerMinutePerSquareFoot", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Minute),
-                     new QuantityValue(25000, 127)             
+                     new QuantityValue(25000, 127)
                 );
                 yield return new (VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter, "CubicMeterPerSecondPerSquareMeter", "CubicMetersPerSecondPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
             }
@@ -536,7 +536,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(VolumeFlowPerArea), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(VolumeFlowPerArea)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

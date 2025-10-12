@@ -124,29 +124,29 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<KinematicViscosityUnit>> GetDefaultMappings()
             {
                 yield return new (KinematicViscosityUnit.Centistokes, "Centistokes", "Centistokes", BaseUnits.Undefined,
-                     1000000             
+                     1000000
                 );
                 yield return new (KinematicViscosityUnit.Decistokes, "Decistokes", "Decistokes", BaseUnits.Undefined,
-                     100000             
+                     100000
                 );
                 yield return new (KinematicViscosityUnit.Kilostokes, "Kilostokes", "Kilostokes", BaseUnits.Undefined,
-                     10             
+                     10
                 );
                 yield return new (KinematicViscosityUnit.Microstokes, "Microstokes", "Microstokes", BaseUnits.Undefined,
-                     10000000000             
+                     10000000000
                 );
                 yield return new (KinematicViscosityUnit.Millistokes, "Millistokes", "Millistokes", BaseUnits.Undefined,
-                     10000000             
+                     10000000
                 );
                 yield return new (KinematicViscosityUnit.Nanostokes, "Nanostokes", "Nanostokes", BaseUnits.Undefined,
-                     10000000000000             
+                     10000000000000
                 );
                 yield return new (KinematicViscosityUnit.SquareFootPerSecond, "SquareFootPerSecond", "SquareFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second),
-                     new QuantityValue(1562500, 145161)             
+                     new QuantityValue(1562500, 145161)
                 );
                 yield return new (KinematicViscosityUnit.SquareMeterPerSecond, "SquareMeterPerSecond", "SquareMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
                 yield return new (KinematicViscosityUnit.Stokes, "Stokes", "Stokes", BaseUnits.Undefined,
-                     10000             
+                     10000
                 );
             }
         }
@@ -683,7 +683,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(KinematicViscosity), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(KinematicViscosity)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

@@ -118,17 +118,17 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<RotationalStiffnessPerLengthUnit>> GetDefaultMappings()
             {
                 yield return new (RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, "KilonewtonMeterPerRadianPerMeter", "KilonewtonMetersPerRadianPerMeter", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot, "KilopoundForceFootPerDegreesPerFoot", "KilopoundForceFeetPerDegreesPerFeet", BaseUnits.Undefined,
-                     new QuantityValue(3141592653589793, QuantityValue.PowerOfTen(7) * new BigInteger(80067989074689))             
+                     new QuantityValue(3141592653589793, QuantityValue.PowerOfTen(7) * new BigInteger(80067989074689))
                 );
                 yield return new (RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter, "MeganewtonMeterPerRadianPerMeter", "MeganewtonMetersPerRadianPerMeter", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, "NewtonMeterPerRadianPerMeter", "NewtonMetersPerRadianPerMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
                 yield return new (RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, "PoundForceFootPerDegreesPerFoot", "PoundForceFeetPerDegreesPerFeet", BaseUnits.Undefined,
-                     new QuantityValue(3141592653589793, 800679890746890000)             
+                     new QuantityValue(3141592653589793, 800679890746890000)
                 );
             }
         }
@@ -595,7 +595,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(RotationalStiffnessPerLength), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(RotationalStiffnessPerLength)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

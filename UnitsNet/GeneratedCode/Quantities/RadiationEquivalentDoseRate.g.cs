@@ -118,31 +118,31 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<RadiationEquivalentDoseRateUnit>> GetDefaultMappings()
             {
                 yield return new (RadiationEquivalentDoseRateUnit.MicrosievertPerHour, "MicrosievertPerHour", "MicrosievertsPerHour", BaseUnits.Undefined,
-                     3600000000             
+                     3600000000
                 );
                 yield return new (RadiationEquivalentDoseRateUnit.MicrosievertPerSecond, "MicrosievertPerSecond", "MicrosievertsPerSecond", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second),
-                     1000000             
+                     1000000
                 );
                 yield return new (RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour, "MilliroentgenEquivalentManPerHour", "MilliroentgensEquivalentManPerHour", BaseUnits.Undefined,
-                     360000000             
+                     360000000
                 );
                 yield return new (RadiationEquivalentDoseRateUnit.MillisievertPerHour, "MillisievertPerHour", "MillisievertsPerHour", BaseUnits.Undefined,
-                     3600000             
+                     3600000
                 );
                 yield return new (RadiationEquivalentDoseRateUnit.MillisievertPerSecond, "MillisievertPerSecond", "MillisievertsPerSecond", BaseUnits.Undefined,
-                     1000             
+                     1000
                 );
                 yield return new (RadiationEquivalentDoseRateUnit.NanosievertPerHour, "NanosievertPerHour", "NanosievertsPerHour", BaseUnits.Undefined,
-                     3600000000000             
+                     3600000000000
                 );
                 yield return new (RadiationEquivalentDoseRateUnit.NanosievertPerSecond, "NanosievertPerSecond", "NanosievertsPerSecond", BaseUnits.Undefined,
-                     1000000000             
+                     1000000000
                 );
                 yield return new (RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour, "RoentgenEquivalentManPerHour", "RoentgensEquivalentManPerHour", BaseUnits.Undefined,
-                     360000             
+                     360000
                 );
                 yield return new (RadiationEquivalentDoseRateUnit.SievertPerHour, "SievertPerHour", "SievertsPerHour", BaseUnits.Undefined,
-                     3600             
+                     3600
                 );
                 yield return new (RadiationEquivalentDoseRateUnit.SievertPerSecond, "SievertPerSecond", "SievertsPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
             }
@@ -675,7 +675,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(RadiationEquivalentDoseRate), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(RadiationEquivalentDoseRate)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

@@ -117,10 +117,10 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<ElectricApparentEnergyUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricApparentEnergyUnit.KilovoltampereHour, "KilovoltampereHour", "KilovoltampereHours", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (ElectricApparentEnergyUnit.MegavoltampereHour, "MegavoltampereHour", "MegavoltampereHours", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (ElectricApparentEnergyUnit.VoltampereHour, "VoltampereHour", "VoltampereHours", BaseUnits.Undefined);
             }
@@ -552,7 +552,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(ElectricApparentEnergy), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(ElectricApparentEnergy)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

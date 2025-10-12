@@ -127,32 +127,32 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<ReciprocalLengthUnit>> GetDefaultMappings()
             {
                 yield return new (ReciprocalLengthUnit.InverseCentimeter, "InverseCentimeter", "InverseCentimeters", new BaseUnits(length: LengthUnit.Centimeter),
-                     new QuantityValue(1, 100)             
+                     new QuantityValue(1, 100)
                 );
                 yield return new (ReciprocalLengthUnit.InverseFoot, "InverseFoot", "InverseFeet", new BaseUnits(length: LengthUnit.Foot),
-                     new QuantityValue(381, 1250)             
+                     new QuantityValue(381, 1250)
                 );
                 yield return new (ReciprocalLengthUnit.InverseInch, "InverseInch", "InverseInches", new BaseUnits(length: LengthUnit.Inch),
-                     new QuantityValue(127, 5000)             
+                     new QuantityValue(127, 5000)
                 );
                 yield return new (ReciprocalLengthUnit.InverseMeter, "InverseMeter", "InverseMeters", new BaseUnits(length: LengthUnit.Meter));
                 yield return new (ReciprocalLengthUnit.InverseMicroinch, "InverseMicroinch", "InverseMicroinches", new BaseUnits(length: LengthUnit.Microinch),
-                     new QuantityValue(127, 5000000000)             
+                     new QuantityValue(127, 5000000000)
                 );
                 yield return new (ReciprocalLengthUnit.InverseMil, "InverseMil", "InverseMils", new BaseUnits(length: LengthUnit.Mil),
-                     new QuantityValue(127, 5000000)             
+                     new QuantityValue(127, 5000000)
                 );
                 yield return new (ReciprocalLengthUnit.InverseMile, "InverseMile", "InverseMiles", new BaseUnits(length: LengthUnit.Mile),
-                     new QuantityValue(201168, 125)             
+                     new QuantityValue(201168, 125)
                 );
                 yield return new (ReciprocalLengthUnit.InverseMillimeter, "InverseMillimeter", "InverseMillimeters", new BaseUnits(length: LengthUnit.Millimeter),
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (ReciprocalLengthUnit.InverseUsSurveyFoot, "InverseUsSurveyFoot", "InverseUsSurveyFeet", new BaseUnits(length: LengthUnit.UsSurveyFoot),
-                     new QuantityValue(1200, 3937)             
+                     new QuantityValue(1200, 3937)
                 );
                 yield return new (ReciprocalLengthUnit.InverseYard, "InverseYard", "InverseYards", new BaseUnits(length: LengthUnit.Yard),
-                     new QuantityValue(1143, 1250)             
+                     new QuantityValue(1143, 1250)
                 );
             }
         }
@@ -727,7 +727,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(ReciprocalLength), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(ReciprocalLength)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

@@ -118,11 +118,11 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<AreaDensityUnit>> GetDefaultMappings()
             {
                 yield return new (AreaDensityUnit.GramPerSquareMeter, "GramPerSquareMeter", "GramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram),
-                     1000             
+                     1000
                 );
                 yield return new (AreaDensityUnit.KilogramPerSquareMeter, "KilogramPerSquareMeter", "KilogramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
                 yield return new (AreaDensityUnit.MilligramPerSquareMeter, "MilligramPerSquareMeter", "MilligramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram),
-                     1000000             
+                     1000000
                 );
             }
         }
@@ -563,7 +563,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(AreaDensity), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(AreaDensity)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

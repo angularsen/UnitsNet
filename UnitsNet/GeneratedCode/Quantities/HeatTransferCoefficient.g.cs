@@ -117,16 +117,16 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<HeatTransferCoefficientUnit>> GetDefaultMappings()
             {
                 yield return new (HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, "BtuPerHourSquareFootDegreeFahrenheit", "BtusPerHourSquareFootDegreeFahrenheit", BaseUnits.Undefined,
-                     new QuantityValue(9290304000, 52752792631)             
+                     new QuantityValue(9290304000, 52752792631)
                 );
                 yield return new (HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, "CaloriePerHourSquareMeterDegreeCelsius", "CaloriesPerHourSquareMeterDegreeCelsius", BaseUnits.Undefined,
-                     new QuantityValue(450000, 523)             
+                     new QuantityValue(450000, 523)
                 );
                 yield return new (HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, "KilocaloriePerHourSquareMeterDegreeCelsius", "KilocaloriesPerHourSquareMeterDegreeCelsius", BaseUnits.Undefined,
-                     new QuantityValue(450, 523)             
+                     new QuantityValue(450, 523)
                 );
                 yield return new (HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, "WattPerSquareMeterCelsius", "WattsPerSquareMeterCelsius", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius),
-                     1             
+                     1
                 );
                 yield return new (HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, "WattPerSquareMeterKelvin", "WattsPerSquareMeterKelvin", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin));
             }
@@ -584,7 +584,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(HeatTransferCoefficient), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(HeatTransferCoefficient)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

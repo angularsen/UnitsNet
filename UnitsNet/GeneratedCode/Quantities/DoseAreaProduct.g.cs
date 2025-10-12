@@ -120,77 +120,77 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<DoseAreaProductUnit>> GetDefaultMappings()
             {
                 yield return new (DoseAreaProductUnit.CentigraySquareCentimeter, "CentigraySquareCentimeter", "CentigraySquareCentimeters", BaseUnits.Undefined,
-                     1000000             
+                     1000000
                 );
                 yield return new (DoseAreaProductUnit.CentigraySquareDecimeter, "CentigraySquareDecimeter", "CentigraySquareDecimeters", BaseUnits.Undefined,
-                     10000             
+                     10000
                 );
                 yield return new (DoseAreaProductUnit.CentigraySquareMeter, "CentigraySquareMeter", "CentigraySquareMeters", BaseUnits.Undefined,
-                     100             
+                     100
                 );
                 yield return new (DoseAreaProductUnit.CentigraySquareMicrometer, "CentigraySquareMicrometer", "CentigraySquareMicrometers", BaseUnits.Undefined,
-                     100000000000000             
+                     100000000000000
                 );
                 yield return new (DoseAreaProductUnit.CentigraySquareMillimeter, "CentigraySquareMillimeter", "CentigraySquareMillimeters", BaseUnits.Undefined,
-                     100000000             
+                     100000000
                 );
                 yield return new (DoseAreaProductUnit.DecigraySquareCentimeter, "DecigraySquareCentimeter", "DecigraySquareCentimeters", BaseUnits.Undefined,
-                     100000             
+                     100000
                 );
                 yield return new (DoseAreaProductUnit.DecigraySquareDecimeter, "DecigraySquareDecimeter", "DecigraySquareDecimeters", BaseUnits.Undefined,
-                     1000             
+                     1000
                 );
                 yield return new (DoseAreaProductUnit.DecigraySquareMeter, "DecigraySquareMeter", "DecigraySquareMeters", BaseUnits.Undefined,
-                     10             
+                     10
                 );
                 yield return new (DoseAreaProductUnit.DecigraySquareMicrometer, "DecigraySquareMicrometer", "DecigraySquareMicrometers", BaseUnits.Undefined,
-                     10000000000000             
+                     10000000000000
                 );
                 yield return new (DoseAreaProductUnit.DecigraySquareMillimeter, "DecigraySquareMillimeter", "DecigraySquareMillimeters", BaseUnits.Undefined,
-                     10000000             
+                     10000000
                 );
                 yield return new (DoseAreaProductUnit.GraySquareCentimeter, "GraySquareCentimeter", "GraySquareCentimeters", BaseUnits.Undefined,
-                     10000             
+                     10000
                 );
                 yield return new (DoseAreaProductUnit.GraySquareDecimeter, "GraySquareDecimeter", "GraySquareDecimeters", BaseUnits.Undefined,
-                     100             
+                     100
                 );
                 yield return new (DoseAreaProductUnit.GraySquareMeter, "GraySquareMeter", "GraySquareMeters", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
                 yield return new (DoseAreaProductUnit.GraySquareMicrometer, "GraySquareMicrometer", "GraySquareMicrometers", BaseUnits.Undefined,
-                     1000000000000             
+                     1000000000000
                 );
                 yield return new (DoseAreaProductUnit.GraySquareMillimeter, "GraySquareMillimeter", "GraySquareMillimeters", BaseUnits.Undefined,
-                     1000000             
+                     1000000
                 );
                 yield return new (DoseAreaProductUnit.MicrograySquareCentimeter, "MicrograySquareCentimeter", "MicrograySquareCentimeters", BaseUnits.Undefined,
-                     10000000000             
+                     10000000000
                 );
                 yield return new (DoseAreaProductUnit.MicrograySquareDecimeter, "MicrograySquareDecimeter", "MicrograySquareDecimeters", BaseUnits.Undefined,
-                     100000000             
+                     100000000
                 );
                 yield return new (DoseAreaProductUnit.MicrograySquareMeter, "MicrograySquareMeter", "MicrograySquareMeters", BaseUnits.Undefined,
-                     1000000             
+                     1000000
                 );
                 yield return new (DoseAreaProductUnit.MicrograySquareMicrometer, "MicrograySquareMicrometer", "MicrograySquareMicrometers", BaseUnits.Undefined,
-                     1000000000000000000             
+                     1000000000000000000
                 );
                 yield return new (DoseAreaProductUnit.MicrograySquareMillimeter, "MicrograySquareMillimeter", "MicrograySquareMillimeters", BaseUnits.Undefined,
-                     1000000000000             
+                     1000000000000
                 );
                 yield return new (DoseAreaProductUnit.MilligraySquareCentimeter, "MilligraySquareCentimeter", "MilligraySquareCentimeters", BaseUnits.Undefined,
-                     10000000             
+                     10000000
                 );
                 yield return new (DoseAreaProductUnit.MilligraySquareDecimeter, "MilligraySquareDecimeter", "MilligraySquareDecimeters", BaseUnits.Undefined,
-                     100000             
+                     100000
                 );
                 yield return new (DoseAreaProductUnit.MilligraySquareMeter, "MilligraySquareMeter", "MilligraySquareMeters", BaseUnits.Undefined,
-                     1000             
+                     1000
                 );
                 yield return new (DoseAreaProductUnit.MilligraySquareMicrometer, "MilligraySquareMicrometer", "MilligraySquareMicrometers", BaseUnits.Undefined,
-                     1000000000000000             
+                     1000000000000000
                 );
                 yield return new (DoseAreaProductUnit.MilligraySquareMillimeter, "MilligraySquareMillimeter", "MilligraySquareMillimeters", BaseUnits.Undefined,
-                     1000000000             
+                     1000000000
                 );
             }
         }
@@ -907,7 +907,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(DoseAreaProduct), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(DoseAreaProduct)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

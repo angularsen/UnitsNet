@@ -120,13 +120,13 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<ElectricReactivePowerUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricReactivePowerUnit.GigavoltampereReactive, "GigavoltampereReactive", "GigavoltamperesReactive", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond),
-                     new QuantityValue(1, 1000000000)             
+                     new QuantityValue(1, 1000000000)
                 );
                 yield return new (ElectricReactivePowerUnit.KilovoltampereReactive, "KilovoltampereReactive", "KilovoltamperesReactive", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (ElectricReactivePowerUnit.MegavoltampereReactive, "MegavoltampereReactive", "MegavoltamperesReactive", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (ElectricReactivePowerUnit.VoltampereReactive, "VoltampereReactive", "VoltamperesReactive", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
             }
@@ -571,7 +571,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(ElectricReactivePower), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(ElectricReactivePower)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

@@ -120,50 +120,50 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<ElectricSusceptanceUnit>> GetDefaultMappings()
             {
                 yield return new (ElectricSusceptanceUnit.Gigamho, "Gigamho", "Gigamhos", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000)             
+                     new QuantityValue(1, 1000000000)
                 );
                 yield return new (ElectricSusceptanceUnit.Gigasiemens, "Gigasiemens", "Gigasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 1000000000)             
+                     new QuantityValue(1, 1000000000)
                 );
                 yield return new (ElectricSusceptanceUnit.Kilomho, "Kilomho", "Kilomhos", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (ElectricSusceptanceUnit.Kilosiemens, "Kilosiemens", "Kilosiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 1000)             
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (ElectricSusceptanceUnit.Megamho, "Megamho", "Megamhos", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (ElectricSusceptanceUnit.Megasiemens, "Megasiemens", "Megasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 1000000)             
+                     new QuantityValue(1, 1000000)
                 );
                 yield return new (ElectricSusceptanceUnit.Mho, "Mho", "Mhos", BaseUnits.Undefined,
-                     1             
+                     1
                 );
                 yield return new (ElectricSusceptanceUnit.Micromho, "Micromho", "Micromhos", BaseUnits.Undefined,
-                     1000000             
+                     1000000
                 );
                 yield return new (ElectricSusceptanceUnit.Microsiemens, "Microsiemens", "Microsiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere),
-                     1000000             
+                     1000000
                 );
                 yield return new (ElectricSusceptanceUnit.Millimho, "Millimho", "Millimhos", BaseUnits.Undefined,
-                     1000             
+                     1000
                 );
                 yield return new (ElectricSusceptanceUnit.Millisiemens, "Millisiemens", "Millisiemens", BaseUnits.Undefined,
-                     1000             
+                     1000
                 );
                 yield return new (ElectricSusceptanceUnit.Nanomho, "Nanomho", "Nanomhos", BaseUnits.Undefined,
-                     1000000000             
+                     1000000000
                 );
                 yield return new (ElectricSusceptanceUnit.Nanosiemens, "Nanosiemens", "Nanosiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere),
-                     1000000000             
+                     1000000000
                 );
                 yield return new (ElectricSusceptanceUnit.Siemens, "Siemens", "Siemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
                 yield return new (ElectricSusceptanceUnit.Teramho, "Teramho", "Teramhos", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000000000)             
+                     new QuantityValue(1, 1000000000000)
                 );
                 yield return new (ElectricSusceptanceUnit.Terasiemens, "Terasiemens", "Terasiemens", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 1000000000000)             
+                     new QuantityValue(1, 1000000000000)
                 );
             }
         }
@@ -763,7 +763,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(ElectricSusceptance), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(ElectricSusceptance)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

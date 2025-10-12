@@ -506,7 +506,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(Scalar), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(Scalar)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">

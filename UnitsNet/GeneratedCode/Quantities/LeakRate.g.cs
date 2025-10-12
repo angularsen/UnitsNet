@@ -120,14 +120,14 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<LeakRateUnit>> GetDefaultMappings()
             {
                 yield return new (LeakRateUnit.AtmCubicCentimeterPerSecond, "AtmCubicCentimeterPerSecond", "AtmCubicCentimetersPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(40000, 4053)             
+                     new QuantityValue(40000, 4053)
                 );
                 yield return new (LeakRateUnit.MillibarLiterPerSecond, "MillibarLiterPerSecond", "MillibarLitersPerSecond", BaseUnits.Undefined,
-                     10             
+                     10
                 );
                 yield return new (LeakRateUnit.PascalCubicMeterPerSecond, "PascalCubicMeterPerSecond", "PascalCubicMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
                 yield return new (LeakRateUnit.TorrLiterPerSecond, "TorrLiterPerSecond", "TorrLitersPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(15, 2)             
+                     new QuantityValue(15, 2)
                 );
             }
         }
@@ -571,7 +571,7 @@ namespace UnitsNet
         {
             return Comparison.GetHashCode(typeof(LeakRate), this.As(BaseUnit));
         }
-        
+
         /// <inheritdoc  cref="CompareTo(LeakRate)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
