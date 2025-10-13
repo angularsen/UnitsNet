@@ -26,6 +26,12 @@ namespace UnitsNet.Units
     public enum MassUnit
     {
         Centigram = 1,
+
+        /// <summary>
+        ///     The Dalton or unified atomic mass unit (abbreviation Da or u) is a unit of mass defined as 1/12 of the mass of an unbound neutral atom of carbon-12 in its nuclear and electronic ground state and at rest.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Dalton_(unit)</remarks>
+        Dalton = 37,
         Decagram = 2,
         Decigram = 3,
 
@@ -35,6 +41,7 @@ namespace UnitsNet.Units
         /// <remarks>https://en.wikipedia.org/wiki/Earth_mass</remarks>
         EarthMass = 4,
         Femtogram = 35,
+        Gigadalton = 33,
 
         /// <summary>
         ///     A grain is a unit of measurement of mass, and in the troy weight, avoirdupois, and Apothecaries' system, equal to exactly 64.79891 milligrams.
@@ -43,6 +50,7 @@ namespace UnitsNet.Units
         Grain = 5,
         Gram = 6,
         Hectogram = 7,
+        Kilodalton = 26,
         Kilogram = 8,
         Kilopound = 9,
         Kilotonne = 10,
@@ -58,6 +66,7 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>http://en.wikipedia.org/wiki/Long_ton</remarks>
         LongTon = 12,
+        Megadalton = 30,
         Megapound = 13,
         Megatonne = 14,
         Microgram = 15,

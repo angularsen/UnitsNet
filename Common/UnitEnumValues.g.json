@@ -836,7 +836,11 @@
     "Stone": 24,
     "Tonne": 25,
     "Femtogram": 35,
-    "Picogram": 29
+    "Picogram": 29,
+    "Dalton": 37,
+    "Gigadalton": 33,
+    "Kilodalton": 26,
+    "Megadalton": 30
   },
   "MassConcentration": {
     "CentigramPerDeciliter": 1,

@@ -29,6 +29,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Mass.FromCentigrams(2), 2.Centigrams());
 
         [Fact]
+        public void NumberToDaltonsTest() =>
+            Assert.Equal(Mass.FromDaltons(2), 2.Daltons());
+
+        [Fact]
         public void NumberToDecagramsTest() =>
             Assert.Equal(Mass.FromDecagrams(2), 2.Decagrams());
 
@@ -45,6 +49,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Mass.FromFemtograms(2), 2.Femtograms());
 
         [Fact]
+        public void NumberToGigadaltonsTest() =>
+            Assert.Equal(Mass.FromGigadaltons(2), 2.Gigadaltons());
+
+        [Fact]
         public void NumberToGrainsTest() =>
             Assert.Equal(Mass.FromGrains(2), 2.Grains());
 
@@ -55,6 +63,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToHectogramsTest() =>
             Assert.Equal(Mass.FromHectograms(2), 2.Hectograms());
+
+        [Fact]
+        public void NumberToKilodaltonsTest() =>
+            Assert.Equal(Mass.FromKilodaltons(2), 2.Kilodaltons());
 
         [Fact]
         public void NumberToKilogramsTest() =>
@@ -75,6 +87,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToLongTonsTest() =>
             Assert.Equal(Mass.FromLongTons(2), 2.LongTons());
+
+        [Fact]
+        public void NumberToMegadaltonsTest() =>
+            Assert.Equal(Mass.FromMegadaltons(2), 2.Megadaltons());
 
         [Fact]
         public void NumberToMegapoundsTest() =>
