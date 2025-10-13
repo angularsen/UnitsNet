@@ -44,6 +44,7 @@ namespace UnitsNet.Tests
         protected abstract double AuTablespoonsInOneCubicMeter { get; }
         protected abstract double BoardFeetInOneCubicMeter { get; }
         protected abstract double CentilitersInOneCubicMeter { get; }
+        protected abstract double CubicAngstromsInOneCubicMeter { get; }
         protected abstract double CubicCentimetersInOneCubicMeter { get; }
         protected abstract double CubicDecimetersInOneCubicMeter { get; }
         protected abstract double CubicFeetInOneCubicMeter { get; }
@@ -101,6 +102,7 @@ namespace UnitsNet.Tests
         protected virtual double AuTablespoonsTolerance { get { return 1e-5; } }
         protected virtual double BoardFeetTolerance { get { return 1e-5; } }
         protected virtual double CentilitersTolerance { get { return 1e-5; } }
+        protected virtual double CubicAngstromsTolerance { get { return 1e-5; } }
         protected virtual double CubicCentimetersTolerance { get { return 1e-5; } }
         protected virtual double CubicDecimetersTolerance { get { return 1e-5; } }
         protected virtual double CubicFeetTolerance { get { return 1e-5; } }
@@ -162,6 +164,7 @@ namespace UnitsNet.Tests
                 VolumeUnit.AuTablespoon => (AuTablespoonsInOneCubicMeter, AuTablespoonsTolerance),
                 VolumeUnit.BoardFoot => (BoardFeetInOneCubicMeter, BoardFeetTolerance),
                 VolumeUnit.Centiliter => (CentilitersInOneCubicMeter, CentilitersTolerance),
+                VolumeUnit.CubicAngstrom => (CubicAngstromsInOneCubicMeter, CubicAngstromsTolerance),
                 VolumeUnit.CubicCentimeter => (CubicCentimetersInOneCubicMeter, CubicCentimetersTolerance),
                 VolumeUnit.CubicDecimeter => (CubicDecimetersInOneCubicMeter, CubicDecimetersTolerance),
                 VolumeUnit.CubicFoot => (CubicFeetInOneCubicMeter, CubicFeetTolerance),
@@ -223,6 +226,7 @@ namespace UnitsNet.Tests
             new object[] { VolumeUnit.AuTablespoon },
             new object[] { VolumeUnit.BoardFoot },
             new object[] { VolumeUnit.Centiliter },
+            new object[] { VolumeUnit.CubicAngstrom },
             new object[] { VolumeUnit.CubicCentimeter },
             new object[] { VolumeUnit.CubicDecimeter },
             new object[] { VolumeUnit.CubicFoot },
@@ -349,6 +353,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(AuTablespoonsInOneCubicMeter, cubicmeter.AuTablespoons, AuTablespoonsTolerance);
             AssertEx.EqualTolerance(BoardFeetInOneCubicMeter, cubicmeter.BoardFeet, BoardFeetTolerance);
             AssertEx.EqualTolerance(CentilitersInOneCubicMeter, cubicmeter.Centiliters, CentilitersTolerance);
+            AssertEx.EqualTolerance(CubicAngstromsInOneCubicMeter, cubicmeter.CubicAngstroms, CubicAngstromsTolerance);
             AssertEx.EqualTolerance(CubicCentimetersInOneCubicMeter, cubicmeter.CubicCentimeters, CubicCentimetersTolerance);
             AssertEx.EqualTolerance(CubicDecimetersInOneCubicMeter, cubicmeter.CubicDecimeters, CubicDecimetersTolerance);
             AssertEx.EqualTolerance(CubicFeetInOneCubicMeter, cubicmeter.CubicFeet, CubicFeetTolerance);
@@ -439,6 +444,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(AuTablespoonsInOneCubicMeter, cubicmeter.As(VolumeUnit.AuTablespoon), AuTablespoonsTolerance);
             AssertEx.EqualTolerance(BoardFeetInOneCubicMeter, cubicmeter.As(VolumeUnit.BoardFoot), BoardFeetTolerance);
             AssertEx.EqualTolerance(CentilitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Centiliter), CentilitersTolerance);
+            AssertEx.EqualTolerance(CubicAngstromsInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicAngstrom), CubicAngstromsTolerance);
             AssertEx.EqualTolerance(CubicCentimetersInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicCentimeter), CubicCentimetersTolerance);
             AssertEx.EqualTolerance(CubicDecimetersInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicDecimeter), CubicDecimetersTolerance);
             AssertEx.EqualTolerance(CubicFeetInOneCubicMeter, cubicmeter.As(VolumeUnit.CubicFoot), CubicFeetTolerance);
@@ -564,6 +570,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 board foot", VolumeUnit.BoardFoot, 4.2)]
         [InlineData("en-US", "4.2 board feet", VolumeUnit.BoardFoot, 4.2)]
         [InlineData("en-US", "4.2 cl", VolumeUnit.Centiliter, 4.2)]
+        [InlineData("en-US", "4.2 Å³", VolumeUnit.CubicAngstrom, 4.2)]
         [InlineData("en-US", "4.2 cm³", VolumeUnit.CubicCentimeter, 4.2)]
         [InlineData("en-US", "4.2 dm³", VolumeUnit.CubicDecimeter, 4.2)]
         [InlineData("en-US", "4.2 ft³", VolumeUnit.CubicFoot, 4.2)]
@@ -689,6 +696,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 board foot", VolumeUnit.BoardFoot, 4.2)]
         [InlineData("en-US", "4.2 board feet", VolumeUnit.BoardFoot, 4.2)]
         [InlineData("en-US", "4.2 cl", VolumeUnit.Centiliter, 4.2)]
+        [InlineData("en-US", "4.2 Å³", VolumeUnit.CubicAngstrom, 4.2)]
         [InlineData("en-US", "4.2 cm³", VolumeUnit.CubicCentimeter, 4.2)]
         [InlineData("en-US", "4.2 dm³", VolumeUnit.CubicDecimeter, 4.2)]
         [InlineData("en-US", "4.2 ft³", VolumeUnit.CubicFoot, 4.2)]
@@ -814,6 +822,7 @@ namespace UnitsNet.Tests
         [InlineData("board foot", VolumeUnit.BoardFoot)]
         [InlineData("board feet", VolumeUnit.BoardFoot)]
         [InlineData("cl", VolumeUnit.Centiliter)]
+        [InlineData("Å³", VolumeUnit.CubicAngstrom)]
         [InlineData("cm³", VolumeUnit.CubicCentimeter)]
         [InlineData("dm³", VolumeUnit.CubicDecimeter)]
         [InlineData("ft³", VolumeUnit.CubicFoot)]
@@ -893,6 +902,7 @@ namespace UnitsNet.Tests
         [InlineData("board foot", VolumeUnit.BoardFoot)]
         [InlineData("board feet", VolumeUnit.BoardFoot)]
         [InlineData("cl", VolumeUnit.Centiliter)]
+        [InlineData("Å³", VolumeUnit.CubicAngstrom)]
         [InlineData("cm³", VolumeUnit.CubicCentimeter)]
         [InlineData("dm³", VolumeUnit.CubicDecimeter)]
         [InlineData("ft³", VolumeUnit.CubicFoot)]
@@ -972,6 +982,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "board foot", VolumeUnit.BoardFoot)]
         [InlineData("en-US", "board feet", VolumeUnit.BoardFoot)]
         [InlineData("en-US", "cl", VolumeUnit.Centiliter)]
+        [InlineData("en-US", "Å³", VolumeUnit.CubicAngstrom)]
         [InlineData("en-US", "cm³", VolumeUnit.CubicCentimeter)]
         [InlineData("en-US", "dm³", VolumeUnit.CubicDecimeter)]
         [InlineData("en-US", "ft³", VolumeUnit.CubicFoot)]
@@ -1086,6 +1097,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "board foot", VolumeUnit.BoardFoot)]
         [InlineData("en-US", "board feet", VolumeUnit.BoardFoot)]
         [InlineData("en-US", "cl", VolumeUnit.Centiliter)]
+        [InlineData("en-US", "Å³", VolumeUnit.CubicAngstrom)]
         [InlineData("en-US", "cm³", VolumeUnit.CubicCentimeter)]
         [InlineData("en-US", "dm³", VolumeUnit.CubicDecimeter)]
         [InlineData("en-US", "ft³", VolumeUnit.CubicFoot)]
@@ -1209,6 +1221,7 @@ namespace UnitsNet.Tests
         [InlineData("board foot", VolumeUnit.BoardFoot)]
         [InlineData("board feet", VolumeUnit.BoardFoot)]
         [InlineData("cl", VolumeUnit.Centiliter)]
+        [InlineData("Å³", VolumeUnit.CubicAngstrom)]
         [InlineData("cm³", VolumeUnit.CubicCentimeter)]
         [InlineData("dm³", VolumeUnit.CubicDecimeter)]
         [InlineData("ft³", VolumeUnit.CubicFoot)]
@@ -1288,6 +1301,7 @@ namespace UnitsNet.Tests
         [InlineData("board foot", VolumeUnit.BoardFoot)]
         [InlineData("board feet", VolumeUnit.BoardFoot)]
         [InlineData("cl", VolumeUnit.Centiliter)]
+        [InlineData("Å³", VolumeUnit.CubicAngstrom)]
         [InlineData("cm³", VolumeUnit.CubicCentimeter)]
         [InlineData("dm³", VolumeUnit.CubicDecimeter)]
         [InlineData("ft³", VolumeUnit.CubicFoot)]
@@ -1367,6 +1381,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "board foot", VolumeUnit.BoardFoot)]
         [InlineData("en-US", "board feet", VolumeUnit.BoardFoot)]
         [InlineData("en-US", "cl", VolumeUnit.Centiliter)]
+        [InlineData("en-US", "Å³", VolumeUnit.CubicAngstrom)]
         [InlineData("en-US", "cm³", VolumeUnit.CubicCentimeter)]
         [InlineData("en-US", "dm³", VolumeUnit.CubicDecimeter)]
         [InlineData("en-US", "ft³", VolumeUnit.CubicFoot)]
@@ -1481,6 +1496,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "board foot", VolumeUnit.BoardFoot)]
         [InlineData("en-US", "board feet", VolumeUnit.BoardFoot)]
         [InlineData("en-US", "cl", VolumeUnit.Centiliter)]
+        [InlineData("en-US", "Å³", VolumeUnit.CubicAngstrom)]
         [InlineData("en-US", "cm³", VolumeUnit.CubicCentimeter)]
         [InlineData("en-US", "dm³", VolumeUnit.CubicDecimeter)]
         [InlineData("en-US", "ft³", VolumeUnit.CubicFoot)]
@@ -1600,6 +1616,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", VolumeUnit.AuTablespoon, "tablespoon (A.U.)")]
         [InlineData("en-US", VolumeUnit.BoardFoot, "bf")]
         [InlineData("en-US", VolumeUnit.Centiliter, "cl")]
+        [InlineData("en-US", VolumeUnit.CubicAngstrom, "Å³")]
         [InlineData("en-US", VolumeUnit.CubicCentimeter, "cm³")]
         [InlineData("en-US", VolumeUnit.CubicDecimeter, "dm³")]
         [InlineData("en-US", VolumeUnit.CubicFoot, "ft³")]
@@ -1777,6 +1794,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Volume.FromAuTablespoons(cubicmeter.AuTablespoons).CubicMeters, AuTablespoonsTolerance);
             AssertEx.EqualTolerance(1, Volume.FromBoardFeet(cubicmeter.BoardFeet).CubicMeters, BoardFeetTolerance);
             AssertEx.EqualTolerance(1, Volume.FromCentiliters(cubicmeter.Centiliters).CubicMeters, CentilitersTolerance);
+            AssertEx.EqualTolerance(1, Volume.FromCubicAngstroms(cubicmeter.CubicAngstroms).CubicMeters, CubicAngstromsTolerance);
             AssertEx.EqualTolerance(1, Volume.FromCubicCentimeters(cubicmeter.CubicCentimeters).CubicMeters, CubicCentimetersTolerance);
             AssertEx.EqualTolerance(1, Volume.FromCubicDecimeters(cubicmeter.CubicDecimeters).CubicMeters, CubicDecimetersTolerance);
             AssertEx.EqualTolerance(1, Volume.FromCubicFeet(cubicmeter.CubicFeet).CubicMeters, CubicFeetTolerance);
@@ -1988,6 +2006,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 tablespoon (A.U.)", new Volume(1, VolumeUnit.AuTablespoon).ToString());
             Assert.Equal("1 bf", new Volume(1, VolumeUnit.BoardFoot).ToString());
             Assert.Equal("1 cl", new Volume(1, VolumeUnit.Centiliter).ToString());
+            Assert.Equal("1 Å³", new Volume(1, VolumeUnit.CubicAngstrom).ToString());
             Assert.Equal("1 cm³", new Volume(1, VolumeUnit.CubicCentimeter).ToString());
             Assert.Equal("1 dm³", new Volume(1, VolumeUnit.CubicDecimeter).ToString());
             Assert.Equal("1 ft³", new Volume(1, VolumeUnit.CubicFoot).ToString());
@@ -2051,6 +2070,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 tablespoon (A.U.)", new Volume(1, VolumeUnit.AuTablespoon).ToString(swedishCulture));
             Assert.Equal("1 bf", new Volume(1, VolumeUnit.BoardFoot).ToString(swedishCulture));
             Assert.Equal("1 cl", new Volume(1, VolumeUnit.Centiliter).ToString(swedishCulture));
+            Assert.Equal("1 Å³", new Volume(1, VolumeUnit.CubicAngstrom).ToString(swedishCulture));
             Assert.Equal("1 cm³", new Volume(1, VolumeUnit.CubicCentimeter).ToString(swedishCulture));
             Assert.Equal("1 dm³", new Volume(1, VolumeUnit.CubicDecimeter).ToString(swedishCulture));
             Assert.Equal("1 ft³", new Volume(1, VolumeUnit.CubicFoot).ToString(swedishCulture));

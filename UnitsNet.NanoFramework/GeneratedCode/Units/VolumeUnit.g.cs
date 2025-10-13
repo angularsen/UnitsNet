@@ -44,6 +44,7 @@ namespace UnitsNet.Units
         /// <remarks>https://en.wikipedia.org/wiki/Board_foot</remarks>
         BoardFoot = 3,
         Centiliter = 4,
+        CubicAngstrom = 65,
         CubicCentimeter = 5,
         CubicDecimeter = 6,
 

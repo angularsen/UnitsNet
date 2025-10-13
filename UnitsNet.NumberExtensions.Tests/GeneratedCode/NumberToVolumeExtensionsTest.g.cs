@@ -41,6 +41,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Volume.FromCentiliters(2), 2.Centiliters());
 
         [Fact]
+        public void NumberToCubicAngstromsTest() =>
+            Assert.Equal(Volume.FromCubicAngstroms(2), 2.CubicAngstroms());
+
+        [Fact]
         public void NumberToCubicCentimetersTest() =>
             Assert.Equal(Volume.FromCubicCentimeters(2), 2.CubicCentimeters());
 

@@ -246,6 +246,21 @@
       ]
     },
     {
+      "SingularName": "CubicAngstrom",
+      "PluralName": "CubicAngstroms",
+      "BaseUnits": {
+        "L": "Angstrom"
+      },
+      "FromUnitToBaseFunc": "{x} * 1E-30",
+      "FromBaseToUnitFunc": "{x} / 1E-30",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Å³" ]
+        }
+      ]
+    },
+    {
       "SingularName": "ImperialGallon",
       "PluralName": "ImperialGallons",
       "XmlDocSummary": "The British imperial gallon (frequently called simply \"gallon\") is defined as exactly 4.54609 litres.",

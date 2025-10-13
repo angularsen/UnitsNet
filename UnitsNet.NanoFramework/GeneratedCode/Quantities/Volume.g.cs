@@ -99,6 +99,11 @@ namespace UnitsNet
         public double Centiliters => As(VolumeUnit.Centiliter);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicAngstrom"/>
+        /// </summary>
+        public double CubicAngstroms => As(VolumeUnit.CubicAngstrom);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicCentimeter"/>
         /// </summary>
         public double CubicCentimeters => As(VolumeUnit.CubicCentimeter);
@@ -376,6 +381,11 @@ namespace UnitsNet
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Centiliter"/>.
         /// </summary>
         public static Volume FromCentiliters(double centiliters) => new Volume(centiliters, VolumeUnit.Centiliter);
+
+        /// <summary>
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicAngstrom"/>.
+        /// </summary>
+        public static Volume FromCubicAngstroms(double cubicangstroms) => new Volume(cubicangstroms, VolumeUnit.CubicAngstrom);
 
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicCentimeter"/>.
@@ -676,6 +686,7 @@ namespace UnitsNet
                         VolumeUnit.AuTablespoon => _value * 2e-5,
                         VolumeUnit.BoardFoot => _value * (0.028316846592 / 12),
                         VolumeUnit.Centiliter => (_value / 1e3) * 1e-2d,
+                        VolumeUnit.CubicAngstrom => _value * 1E-30,
                         VolumeUnit.CubicCentimeter => _value / 1e6,
                         VolumeUnit.CubicDecimeter => _value / 1e3,
                         VolumeUnit.CubicFoot => _value * 0.028316846592,
@@ -744,6 +755,7 @@ namespace UnitsNet
                         VolumeUnit.AuTablespoon => baseUnitValue / 2e-5,
                         VolumeUnit.BoardFoot => baseUnitValue / (0.028316846592 / 12),
                         VolumeUnit.Centiliter => (baseUnitValue * 1e3) / 1e-2d,
+                        VolumeUnit.CubicAngstrom => baseUnitValue / 1E-30,
                         VolumeUnit.CubicCentimeter => baseUnitValue * 1e6,
                         VolumeUnit.CubicDecimeter => baseUnitValue * 1e3,
                         VolumeUnit.CubicFoot => baseUnitValue / 0.028316846592,

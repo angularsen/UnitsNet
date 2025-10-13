@@ -74,6 +74,14 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
                 => Volume.FromCentiliters(value.ToDouble(null));
 #endif
 
+            /// <inheritdoc cref="Volume.FromCubicAngstroms(double)" />
+            public Volume CubicAngstroms
+#if NET7_0_OR_GREATER
+                => Volume.FromCubicAngstroms(double.CreateChecked(value));
+#else
+                => Volume.FromCubicAngstroms(value.ToDouble(null));
+#endif
+
             /// <inheritdoc cref="Volume.FromCubicCentimeters(double)" />
             public Volume CubicCentimeters
 #if NET7_0_OR_GREATER

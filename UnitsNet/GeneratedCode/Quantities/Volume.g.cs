@@ -134,6 +134,7 @@ namespace UnitsNet
                 yield return new (VolumeUnit.AuTablespoon, "AuTablespoon", "AuTablespoons", BaseUnits.Undefined);
                 yield return new (VolumeUnit.BoardFoot, "BoardFoot", "BoardFeet", BaseUnits.Undefined);
                 yield return new (VolumeUnit.Centiliter, "Centiliter", "Centiliters", BaseUnits.Undefined);
+                yield return new (VolumeUnit.CubicAngstrom, "CubicAngstrom", "CubicAngstroms", new BaseUnits(length: LengthUnit.Angstrom));
                 yield return new (VolumeUnit.CubicCentimeter, "CubicCentimeter", "CubicCentimeters", new BaseUnits(length: LengthUnit.Centimeter));
                 yield return new (VolumeUnit.CubicDecimeter, "CubicDecimeter", "CubicDecimeters", new BaseUnits(length: LengthUnit.Decimeter));
                 yield return new (VolumeUnit.CubicFoot, "CubicFoot", "CubicFeet", new BaseUnits(length: LengthUnit.Foot));
@@ -309,6 +310,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Centiliter"/>
         /// </summary>
         public double Centiliters => As(VolumeUnit.Centiliter);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicAngstrom"/>
+        /// </summary>
+        public double CubicAngstroms => As(VolumeUnit.CubicAngstrom);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicCentimeter"/>
@@ -580,6 +586,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.AuTablespoon, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.BoardFoot, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.Centiliter, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicAngstrom, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicCentimeter, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicDecimeter, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicFoot, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
@@ -639,6 +646,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.AuTablespoon, quantity => quantity.ToUnit(VolumeUnit.AuTablespoon));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.BoardFoot, quantity => quantity.ToUnit(VolumeUnit.BoardFoot));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Centiliter, quantity => quantity.ToUnit(VolumeUnit.Centiliter));
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicAngstrom, quantity => quantity.ToUnit(VolumeUnit.CubicAngstrom));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicCentimeter, quantity => quantity.ToUnit(VolumeUnit.CubicCentimeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicDecimeter, quantity => quantity.ToUnit(VolumeUnit.CubicDecimeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.CubicFoot, quantity => quantity.ToUnit(VolumeUnit.CubicFoot));
@@ -746,6 +754,14 @@ namespace UnitsNet
         public static Volume FromCentiliters(double value)
         {
             return new Volume(value, VolumeUnit.Centiliter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicAngstrom"/>.
+        /// </summary>
+        public static Volume FromCubicAngstroms(double value)
+        {
+            return new Volume(value, VolumeUnit.CubicAngstrom);
         }
 
         /// <summary>
@@ -1635,6 +1651,7 @@ namespace UnitsNet
                 (VolumeUnit.AuTablespoon, VolumeUnit.CubicMeter) => new Volume(_value * 2e-5, VolumeUnit.CubicMeter),
                 (VolumeUnit.BoardFoot, VolumeUnit.CubicMeter) => new Volume(_value * (0.028316846592 / 12), VolumeUnit.CubicMeter),
                 (VolumeUnit.Centiliter, VolumeUnit.CubicMeter) => new Volume((_value / 1e3) * 1e-2d, VolumeUnit.CubicMeter),
+                (VolumeUnit.CubicAngstrom, VolumeUnit.CubicMeter) => new Volume(_value * 1E-30, VolumeUnit.CubicMeter),
                 (VolumeUnit.CubicCentimeter, VolumeUnit.CubicMeter) => new Volume(_value / 1e6, VolumeUnit.CubicMeter),
                 (VolumeUnit.CubicDecimeter, VolumeUnit.CubicMeter) => new Volume(_value / 1e3, VolumeUnit.CubicMeter),
                 (VolumeUnit.CubicFoot, VolumeUnit.CubicMeter) => new Volume(_value * 0.028316846592, VolumeUnit.CubicMeter),
@@ -1691,6 +1708,7 @@ namespace UnitsNet
                 (VolumeUnit.CubicMeter, VolumeUnit.AuTablespoon) => new Volume(_value / 2e-5, VolumeUnit.AuTablespoon),
                 (VolumeUnit.CubicMeter, VolumeUnit.BoardFoot) => new Volume(_value / (0.028316846592 / 12), VolumeUnit.BoardFoot),
                 (VolumeUnit.CubicMeter, VolumeUnit.Centiliter) => new Volume((_value * 1e3) / 1e-2d, VolumeUnit.Centiliter),
+                (VolumeUnit.CubicMeter, VolumeUnit.CubicAngstrom) => new Volume(_value / 1E-30, VolumeUnit.CubicAngstrom),
                 (VolumeUnit.CubicMeter, VolumeUnit.CubicCentimeter) => new Volume(_value * 1e6, VolumeUnit.CubicCentimeter),
                 (VolumeUnit.CubicMeter, VolumeUnit.CubicDecimeter) => new Volume(_value * 1e3, VolumeUnit.CubicDecimeter),
                 (VolumeUnit.CubicMeter, VolumeUnit.CubicFoot) => new Volume(_value / 0.028316846592, VolumeUnit.CubicFoot),
