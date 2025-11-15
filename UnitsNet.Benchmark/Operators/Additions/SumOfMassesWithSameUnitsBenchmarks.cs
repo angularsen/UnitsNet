@@ -10,7 +10,8 @@ namespace UnitsNet.Benchmark.Operators.Additions;
 
 [MemoryDiagnoser]
 [SimpleJob(RuntimeMoniker.Net48)]
-[SimpleJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.Net90)]
+[SimpleJob(RuntimeMoniker.Net10_0)]
 public class SumOfMassesWithSameUnitsBenchmarks
 {
     private static readonly QuantityValue Value = 1.23;

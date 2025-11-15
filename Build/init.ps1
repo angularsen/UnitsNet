@@ -1,4 +1,4 @@
-# Don't allow using undeclared variables
+﻿# Don't allow using undeclared variables
 Set-Strictmode -version latest
 
 $root = (Resolve-Path "$PSScriptRoot\..").Path
@@ -80,7 +80,8 @@ if ($msbuildPath -and !(Test-Path "$msbuildPath/nanoFramework")) {
   Write-Output "Latest VS is: $VsInstance"
 
   # Get extension details according to VS version, starting from VS2022 down to VS2019
-  if($vsInstance.Contains('2022'))
+  # TODO check if the extension for VS2022 is compatible it VS2026
+  if($vsInstance.Contains('2026') -or $vsInstance.Contains('2022'))
   {
       $extensionUrl = "https://github.com/nanoframework/nf-Visual-Studio-extension/releases/download/$vs2022Tag/nanoFramework.Tools.VS2022.Extension.vsix"
       $vsixPath = Join-Path  $tempDir "nanoFramework.Tools.VS2022.Extension.zip"

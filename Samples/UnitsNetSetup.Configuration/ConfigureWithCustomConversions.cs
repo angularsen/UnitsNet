@@ -23,8 +23,8 @@ internal static class ConfigureWithCustomConversions
         {
             // since these conversions don't involve a constant term we can only specify the conversionFromBase (with the inverse conversion assumed to be the inverse: e.g. 1/999)
             PressureUnit.InchOfWaterColumn => new UnitDefinition<PressureUnit>(definition.Value, definition.Name, definition.BaseUnits, conversionFromBase: 999),
-            PressureUnit.MeterOfWaterColumn => definition.WithConversionFromBase(1234.5m),
-            PressureUnit.MillimeterOfWaterColumn => definition.WithConversionFromBase(1.2345),
+            PressureUnit.MeterOfWaterColumn => definition.WithConversionFactorFromBase(1234.5m),
+            PressureUnit.MillimeterOfWaterColumn => definition.WithConversionFactorFromBase(1.2345),
             PressureUnit.MillimeterOfMercury => new UnitDefinition<PressureUnit>(definition.Value, definition.Name, definition.BaseUnits, QuantityValue.FromTerms(1, 3)),
             PressureUnit.Decapascal => new UnitDefinition<PressureUnit>(definition.Value, definition.Name, definition.PluralName, definition.BaseUnits,
                 definition.ConversionFromBase.Coefficient * 1.2m,

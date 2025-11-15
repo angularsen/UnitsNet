@@ -2,7 +2,7 @@
   <!-- NuGet properties -->
   <PropertyGroup>
     <PackageId>UnitsNet.Serialization.SystemTextJson</PackageId>
-    <Version>6.0.0-pre019</Version>
+    <Version>6.0.0-pre100</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Title>Units.NET Serialization with System.Text.Json</Title>
     <Description>A helper library for serializing and deserializing types in Units.NET using System.Text.Json.</Description>
@@ -26,7 +26,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>UnitsNet.Serialization.SystemTextJson</RootNamespace>
-    <TargetFrameworks>netstandard2.0;net8.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net8.0;net9.0;net10.0</TargetFrameworks>
   </PropertyGroup>
 
   <!-- Strong name signing -->
