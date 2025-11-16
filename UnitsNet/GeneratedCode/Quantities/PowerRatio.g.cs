@@ -435,10 +435,7 @@ namespace UnitsNet
         /// </remarks>
         public static PowerRatio operator +(PowerRatio left, PowerRatio right)
         {
-            // Logarithmic addition
-            // Formula: 10 * log10(10^(x/10) + 10^(y/10))
-            var leftUnit = left.Unit;
-            return new PowerRatio(QuantityValueExtensions.AddWithLogScaling(left.Value, right.As(leftUnit), LogarithmicScalingFactor), leftUnit);
+            return new PowerRatio(QuantityValueExtensions.AddWithLogScaling(left.Value, right.As(left.Unit), LogarithmicScalingFactor), left.Unit);
         }
 
         /// <summary>Get <see cref="PowerRatio"/> from logarithmic subtraction of two <see cref="PowerRatio"/>.</summary>
@@ -447,37 +444,30 @@ namespace UnitsNet
         /// </remarks>
         public static PowerRatio operator -(PowerRatio left, PowerRatio right)
         {
-            // Logarithmic subtraction
-            // Formula: 10 * log10(10^(x/10) - 10^(y/10))
-            var leftUnit = left.Unit;
-            return new PowerRatio(QuantityValueExtensions.SubtractWithLogScaling(left.Value, right.As(leftUnit), LogarithmicScalingFactor), leftUnit);
+            return new PowerRatio(QuantityValueExtensions.SubtractWithLogScaling(left.Value, right.As(left.Unit), LogarithmicScalingFactor), left.Unit);
         }
 
         /// <summary>Get <see cref="PowerRatio"/> from logarithmic multiplication of value and <see cref="PowerRatio"/>.</summary>
         public static PowerRatio operator *(QuantityValue left, PowerRatio right)
         {
-            // Logarithmic multiplication = addition
             return new PowerRatio(left + right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="PowerRatio"/> from logarithmic multiplication of value and <see cref="PowerRatio"/>.</summary>
         public static PowerRatio operator *(PowerRatio left, QuantityValue right)
         {
-            // Logarithmic multiplication = addition
             return new PowerRatio(left.Value + right, left.Unit);
         }
 
         /// <summary>Get <see cref="PowerRatio"/> from logarithmic division of <see cref="PowerRatio"/> by value.</summary>
         public static PowerRatio operator /(PowerRatio left, QuantityValue right)
         {
-            // Logarithmic division = subtraction
             return new PowerRatio(left.Value - right, left.Unit);
         }
 
         /// <summary>Get ratio value from logarithmic division of <see cref="PowerRatio"/> by <see cref="PowerRatio"/>.</summary>
         public static QuantityValue operator /(PowerRatio left, PowerRatio right)
         {
-            // Logarithmic division = subtraction
             return left.Value - right.As(left.Unit);
         }
 
@@ -509,20 +499,43 @@ namespace UnitsNet
             return left.Value > right.As(left.Unit);
         }
 
-        /// <summary>Indicates strict equality of two <see cref="PowerRatio"/> quantities.</summary>
+        /// <summary>
+        ///     Determines whether two <see cref="PowerRatio"/> instances are equal.
+        /// </summary>
+        /// <remarks>
+        ///     Equality is evaluated in a unit-aware manner. The right-hand operand is converted to the unit of the left-hand
+        ///     operand and then the underlying numeric values are compared.
+        ///     This means two quantities with numerically equal values but different units will be considered equal.
+        ///     The operator delegates to <see cref="Equals(PowerRatio)"/>, which implements this conversion-and-compare logic.
+        /// </remarks>
         public static bool operator ==(PowerRatio left, PowerRatio right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="PowerRatio"/> quantities.</summary>
+        /// <summary>
+        ///     Determines whether two <see cref="PowerRatio"/> instances are not equal.
+        /// </summary>
+        /// <remarks>
+        ///     This operator is the logical negation of <see cref="operator ==(PowerRatio,PowerRatio)"/>.
+        ///     See that operator (and <see cref="Equals(PowerRatio)"/>) for details on how equality is evaluated
+        ///     (i.e., by converting one operand to the other's unit and comparing their numeric values).
+        /// </remarks>
         public static bool operator !=(PowerRatio left, PowerRatio right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="PowerRatio"/> quantities.</summary>
+        /// <summary>
+        ///     Determines whether the specified object is equal to the current <see cref="PowerRatio"/> instance.
+        /// </summary>
+        /// <remarks>
+        ///     Returns <c>false</c> if <paramref name="obj"/> is <c>null</c> or not a <see cref="PowerRatio"/>.
+        ///     When <paramref name="obj"/> is a <see cref="PowerRatio"/>, this method delegates to
+        ///     <see cref="Equals(PowerRatio)"/>, which performs a unit-aware comparison by converting the other
+        ///     instance to this instance's unit before comparing numeric values.
+        /// </remarks>
         public override bool Equals(object? obj)
         {
             if (obj is not PowerRatio otherQuantity)
@@ -532,7 +545,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="PowerRatio"/> quantities.</summary>
+        /// <summary>
+        ///     Determines whether the current instance is equal to another <see cref="PowerRatio"/> instance.
+        /// </summary>
+        /// <remarks>
+        ///     Comparison is performed by converting <paramref name="other"/> to this instance's unit and then comparing the underlying numeric values.
+        ///     This makes two quantities equal even when their units differ, provided the converted numeric values are equal.
+        /// </remarks>
         public bool Equals(PowerRatio other)
         {
             return _value.Equals(other.As(this.Unit));

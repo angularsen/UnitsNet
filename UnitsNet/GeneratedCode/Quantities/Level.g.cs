@@ -434,10 +434,7 @@ namespace UnitsNet
         /// </remarks>
         public static Level operator +(Level left, Level right)
         {
-            // Logarithmic addition
-            // Formula: 10 * log10(10^(x/10) + 10^(y/10))
-            var leftUnit = left.Unit;
-            return new Level(QuantityValueExtensions.AddWithLogScaling(left.Value, right.As(leftUnit), LogarithmicScalingFactor), leftUnit);
+            return new Level(QuantityValueExtensions.AddWithLogScaling(left.Value, right.As(left.Unit), LogarithmicScalingFactor), left.Unit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic subtraction of two <see cref="Level"/>.</summary>
@@ -446,37 +443,30 @@ namespace UnitsNet
         /// </remarks>
         public static Level operator -(Level left, Level right)
         {
-            // Logarithmic subtraction
-            // Formula: 10 * log10(10^(x/10) - 10^(y/10))
-            var leftUnit = left.Unit;
-            return new Level(QuantityValueExtensions.SubtractWithLogScaling(left.Value, right.As(leftUnit), LogarithmicScalingFactor), leftUnit);
+            return new Level(QuantityValueExtensions.SubtractWithLogScaling(left.Value, right.As(left.Unit), LogarithmicScalingFactor), left.Unit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic multiplication of value and <see cref="Level"/>.</summary>
         public static Level operator *(QuantityValue left, Level right)
         {
-            // Logarithmic multiplication = addition
             return new Level(left + right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic multiplication of value and <see cref="Level"/>.</summary>
         public static Level operator *(Level left, QuantityValue right)
         {
-            // Logarithmic multiplication = addition
             return new Level(left.Value + right, left.Unit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic division of <see cref="Level"/> by value.</summary>
         public static Level operator /(Level left, QuantityValue right)
         {
-            // Logarithmic division = subtraction
             return new Level(left.Value - right, left.Unit);
         }
 
         /// <summary>Get ratio value from logarithmic division of <see cref="Level"/> by <see cref="Level"/>.</summary>
         public static QuantityValue operator /(Level left, Level right)
         {
-            // Logarithmic division = subtraction
             return left.Value - right.As(left.Unit);
         }
 
@@ -508,20 +498,43 @@ namespace UnitsNet
             return left.Value > right.As(left.Unit);
         }
 
-        /// <summary>Indicates strict equality of two <see cref="Level"/> quantities.</summary>
+        /// <summary>
+        ///     Determines whether two <see cref="Level"/> instances are equal.
+        /// </summary>
+        /// <remarks>
+        ///     Equality is evaluated in a unit-aware manner. The right-hand operand is converted to the unit of the left-hand
+        ///     operand and then the underlying numeric values are compared.
+        ///     This means two quantities with numerically equal values but different units will be considered equal.
+        ///     The operator delegates to <see cref="Equals(Level)"/>, which implements this conversion-and-compare logic.
+        /// </remarks>
         public static bool operator ==(Level left, Level right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="Level"/> quantities.</summary>
+        /// <summary>
+        ///     Determines whether two <see cref="Level"/> instances are not equal.
+        /// </summary>
+        /// <remarks>
+        ///     This operator is the logical negation of <see cref="operator ==(Level,Level)"/>.
+        ///     See that operator (and <see cref="Equals(Level)"/>) for details on how equality is evaluated
+        ///     (i.e., by converting one operand to the other's unit and comparing their numeric values).
+        /// </remarks>
         public static bool operator !=(Level left, Level right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Level"/> quantities.</summary>
+        /// <summary>
+        ///     Determines whether the specified object is equal to the current <see cref="Level"/> instance.
+        /// </summary>
+        /// <remarks>
+        ///     Returns <c>false</c> if <paramref name="obj"/> is <c>null</c> or not a <see cref="Level"/>.
+        ///     When <paramref name="obj"/> is a <see cref="Level"/>, this method delegates to
+        ///     <see cref="Equals(Level)"/>, which performs a unit-aware comparison by converting the other
+        ///     instance to this instance's unit before comparing numeric values.
+        /// </remarks>
         public override bool Equals(object? obj)
         {
             if (obj is not Level otherQuantity)
@@ -531,7 +544,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Level"/> quantities.</summary>
+        /// <summary>
+        ///     Determines whether the current instance is equal to another <see cref="Level"/> instance.
+        /// </summary>
+        /// <remarks>
+        ///     Comparison is performed by converting <paramref name="other"/> to this instance's unit and then comparing the underlying numeric values.
+        ///     This makes two quantities equal even when their units differ, provided the converted numeric values are equal.
+        /// </remarks>
         public bool Equals(Level other)
         {
             return _value.Equals(other.As(this.Unit));

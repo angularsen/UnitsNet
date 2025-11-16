@@ -1426,20 +1426,43 @@ namespace UnitsNet
             return left.Value > right.As(left.Unit);
         }
 
-        /// <summary>Indicates strict equality of two <see cref="Density"/> quantities.</summary>
+        /// <summary>
+        ///     Determines whether two <see cref="Density"/> instances are equal.
+        /// </summary>
+        /// <remarks>
+        ///     Equality is evaluated in a unit-aware manner. The right-hand operand is converted to the unit of the left-hand
+        ///     operand and then the underlying numeric values are compared.
+        ///     This means two quantities with numerically equal values but different units will be considered equal.
+        ///     The operator delegates to <see cref="Equals(Density)"/>, which implements this conversion-and-compare logic.
+        /// </remarks>
         public static bool operator ==(Density left, Density right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="Density"/> quantities.</summary>
+        /// <summary>
+        ///     Determines whether two <see cref="Density"/> instances are not equal.
+        /// </summary>
+        /// <remarks>
+        ///     This operator is the logical negation of <see cref="operator ==(Density,Density)"/>.
+        ///     See that operator (and <see cref="Equals(Density)"/>) for details on how equality is evaluated
+        ///     (i.e., by converting one operand to the other's unit and comparing their numeric values).
+        /// </remarks>
         public static bool operator !=(Density left, Density right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Density"/> quantities.</summary>
+        /// <summary>
+        ///     Determines whether the specified object is equal to the current <see cref="Density"/> instance.
+        /// </summary>
+        /// <remarks>
+        ///     Returns <c>false</c> if <paramref name="obj"/> is <c>null</c> or not a <see cref="Density"/>.
+        ///     When <paramref name="obj"/> is a <see cref="Density"/>, this method delegates to
+        ///     <see cref="Equals(Density)"/>, which performs a unit-aware comparison by converting the other
+        ///     instance to this instance's unit before comparing numeric values.
+        /// </remarks>
         public override bool Equals(object? obj)
         {
             if (obj is not Density otherQuantity)
@@ -1449,7 +1472,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="Density"/> quantities.</summary>
+        /// <summary>
+        ///     Determines whether the current instance is equal to another <see cref="Density"/> instance.
+        /// </summary>
+        /// <remarks>
+        ///     Comparison is performed by converting <paramref name="other"/> to this instance's unit and then comparing the underlying numeric values.
+        ///     This makes two quantities equal even when their units differ, provided the converted numeric values are equal.
+        /// </remarks>
         public bool Equals(Density other)
         {
             return _value.Equals(other.As(this.Unit));

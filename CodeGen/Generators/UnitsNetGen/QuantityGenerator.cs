@@ -252,6 +252,10 @@ namespace UnitsNet
                         }.Where(str => str != null))})";
                 }
 
+                // the UnitInfo constructor has 3 overloads:
+                // - one for the base unit without conversion expressions
+                // - one for units with only FromBaseToUnit conversion expression (with the FromUnitToBase expression assumed to be the inverse)
+                // - one for units with both FromBaseToUnit and FromUnitToBase conversion expressions (required when the conversion is not a simple inverse, e.g. affine conversions)
                 if (unit.SingularName == _quantity.BaseUnit)
                 {
                     Writer.WL($@"
@@ -259,8 +263,8 @@ namespace UnitsNet
                 }
                 else
                 {
-                    // note: omitting the extra parameter (where possible) saves us 36 KB
                     CompositeExpression expressionFromBaseToUnit = ExpressionEvaluator.Evaluate(unit.FromBaseToUnitFunc, "{x}");
+                    // Check if FromUnitToBase is simply the inverse of FromBaseToUnit
                     if (expressionFromBaseToUnit.Terms.Count == 1 && expressionFromBaseToUnit.Degree == Fraction.One)
                     {
                         Writer.WL($@"
@@ -732,9 +736,7 @@ namespace UnitsNet
 
         private void GenerateLogarithmicArithmeticOperators()
         {
-            var scalingFactor = _quantity.LogarithmicScalingFactor;
             // Most logarithmic operators need a simple scaling factor of 10. However, certain units such as voltage ratio need to use 20 instead.
-            var x = (10 * scalingFactor).ToString();
             Writer.WL($@"
         #region Logarithmic Arithmetic Operators
 
@@ -750,10 +752,7 @@ namespace UnitsNet
         /// </remarks>
         public static {_quantity.Name} operator +({_quantity.Name} left, {_quantity.Name} right)
         {{
-            // Logarithmic addition
-            // Formula: {x} * log10(10^(x/{x}) + 10^(y/{x}))
-            var leftUnit = left.Unit;
-            return new {_quantity.Name}(QuantityValueExtensions.AddWithLogScaling(left.Value, right.As(leftUnit), LogarithmicScalingFactor), leftUnit);
+            return new {_quantity.Name}(QuantityValueExtensions.AddWithLogScaling(left.Value, right.As(left.Unit), LogarithmicScalingFactor), left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic subtraction of two <see cref=""{_quantity.Name}""/>.</summary>
@@ -762,37 +761,30 @@ namespace UnitsNet
         /// </remarks>
         public static {_quantity.Name} operator -({_quantity.Name} left, {_quantity.Name} right)
         {{
-            // Logarithmic subtraction
-            // Formula: {x} * log10(10^(x/{x}) - 10^(y/{x}))
-            var leftUnit = left.Unit;
-            return new {_quantity.Name}(QuantityValueExtensions.SubtractWithLogScaling(left.Value, right.As(leftUnit), LogarithmicScalingFactor), leftUnit);
+            return new {_quantity.Name}(QuantityValueExtensions.SubtractWithLogScaling(left.Value, right.As(left.Unit), LogarithmicScalingFactor), left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic multiplication of value and <see cref=""{_quantity.Name}""/>.</summary>
         public static {_quantity.Name} operator *(QuantityValue left, {_quantity.Name} right)
         {{
-            // Logarithmic multiplication = addition
             return new {_quantity.Name}(left + right.Value, right.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic multiplication of value and <see cref=""{_quantity.Name}""/>.</summary>
         public static {_quantity.Name} operator *({_quantity.Name} left, QuantityValue right)
         {{
-            // Logarithmic multiplication = addition
             return new {_quantity.Name}(left.Value + right, left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic division of <see cref=""{_quantity.Name}""/> by value.</summary>
         public static {_quantity.Name} operator /({_quantity.Name} left, QuantityValue right)
         {{
-            // Logarithmic division = subtraction
             return new {_quantity.Name}(left.Value - right, left.Unit);
         }}
 
         /// <summary>Get ratio value from logarithmic division of <see cref=""{_quantity.Name}""/> by <see cref=""{_quantity.Name}""/>.</summary>
         public static QuantityValue operator /({_quantity.Name} left, {_quantity.Name} right)
         {{
-            // Logarithmic division = subtraction
             return left.Value - right.As(left.Unit);
         }}
 
@@ -801,11 +793,16 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Generates operators that express relations between quantities as applied by <see cref="QuantityRelationsParser" />.
+        ///     Generates relational operators for quantities based on their defined relations.
         /// </summary>
-        private void GenerateRelationalOperators()
+        /// <param name="inverseWithFixedUnit">
+        ///     Specifies whether inverse relational operators should be generated as implicit conversions or simply using the unit specified in the UnitRelations.
+        ///     If <c>true</c>, the method generates inverse operators that convert to a fixed unit, as specified in the UnitRelations.
+        ///     If <c>false</c>, the method generates inverse operators as implicit conversions that utilize the UnitConverter for conversion.
+        /// </param>
+        private void GenerateRelationalOperators(bool inverseWithFixedUnit = false)
         {
-            if (!_quantity.Relations.Any()) return;
+            if (_quantity.Relations.Length == 0) return;
 
             Writer.WL($@"
         #region Relational Operators
@@ -815,89 +812,10 @@ namespace UnitsNet
             {
                 if (relation.Operator == "inverse")
                 {
-                    Writer.WL($@"
-        /// <summary>Calculates the inverse of this quantity.</summary>
-        /// <returns>The corresponding inverse quantity, <see cref=""{relation.RightQuantity.Name}""/>.</returns>
-        public {relation.RightQuantity.Name} Inverse()
-        {{
-            return UnitConverter.Default.ConvertTo(Value, Unit, {relation.RightQuantity.Name}.Info);
-        }}
-");
-                }
-                else
-                {
-                    var leftParameterType = relation.LeftQuantity.Name;
-                    var leftParameterName = leftParameterType.ToCamelCase();
-                    var leftConversionProperty = relation.LeftUnit.PluralName;
-                    var rightParameterType = relation.RightQuantity.Name;
-                    var rightParameterName = relation.RightQuantity.Name.ToCamelCase();
-                    var rightConversionProperty = relation.RightUnit.PluralName;
-
-                    if (leftParameterName == rightParameterName)
+                    if (inverseWithFixedUnit)
                     {
-                        leftParameterName = "left";
-                        rightParameterName = "right";
-                    }
-
-                    var leftPart = $"{leftParameterName}.{leftConversionProperty}";
-                    var rightPart = $"{rightParameterName}.{rightConversionProperty}";
-
-                    if (leftParameterName is "double")
-                    {
-                        leftParameterType = "QuantityValue";
-                        leftParameterName = leftPart = "value";
-                    }
-
-                    if (rightParameterName is "double")
-                    {
-                        rightParameterType = "QuantityValue";
-                        rightParameterName = rightPart = "value";
-                    }
-
-                    var expression = $"{leftPart} {relation.Operator} {rightPart}";
-
-                    var resultType = relation.ResultQuantity.Name;
-                    if (resultType is "double")
-                    {
-                        resultType = "QuantityValue";
-                    }
-                    else
-                    {
-                        expression = $"{resultType}.From{relation.ResultUnit.PluralName}({expression})";
-                    }
-
-                    Writer.WL($@"
-        /// <summary>Get <see cref=""{resultType}""/> from <see cref=""{leftParameterType}""/> {relation.Operator} <see cref=""{rightParameterType}""/>.</summary>
-        public static {resultType} operator {relation.Operator}({leftParameterType} {leftParameterName}, {rightParameterType} {rightParameterName})
-        {{
-            return {expression};
-        }}
-");
-                }
-            }
-
-            Writer.WL($@"
-
-        #endregion
-");
-        }
-
-        /// <summary>
-        ///     Generates operators that express relations between quantities as applied by <see cref="QuantityRelationsParser" />.
-        /// </summary>
-        private void GenerateRelationalOperatorsWithFixedUnits()
-        {
-            if (!_quantity.Relations.Any()) return;
-
-            Writer.WL($@"
-        #region Relational Operators
-");
-
-            foreach (QuantityRelation relation in _quantity.Relations)
-            {
-                if (relation.Operator == "inverse")
-                {
-                    Writer.WL($@"
+                        // this was the original behavior where the inverse always used the fixed unit from the relation
+                        Writer.WL($@"
         /// <summary>Calculates the inverse of this quantity.</summary>
         /// <returns>The corresponding inverse quantity, <see cref=""{relation.RightQuantity.Name}""/>.</returns>
         public {relation.RightQuantity.Name} Inverse()
@@ -905,6 +823,19 @@ namespace UnitsNet
             return {relation.RightQuantity.Name}.From{relation.RightUnit.PluralName}(QuantityValue.Inverse({relation.LeftUnit.PluralName}));
         }}
 ");
+                    }
+                    else
+                    {
+                        // this is the proposed improvement where the inverse is considered a type of implicit conversion
+                        Writer.WL($@"
+        /// <summary>Calculates the inverse of this quantity.</summary>
+        /// <returns>The corresponding inverse quantity, <see cref=""{relation.RightQuantity.Name}""/>.</returns>
+        public {relation.RightQuantity.Name} Inverse()
+        {{
+            return UnitConverter.Default.ConvertTo(Value, Unit, {relation.RightQuantity.Name}.Info);
+        }}
+");
+                    }
                 }
                 else
                 {
@@ -993,20 +924,43 @@ namespace UnitsNet
             return left.Value > right.As(left.Unit);
         }}
 
-        /// <summary>Indicates strict equality of two <see cref=""{_quantity.Name}""/> quantities.</summary>
+        /// <summary>
+        ///     Determines whether two <see cref=""{_quantity.Name}""/> instances are equal.
+        /// </summary>
+        /// <remarks>
+        ///     Equality is evaluated in a unit-aware manner. The right-hand operand is converted to the unit of the left-hand
+        ///     operand and then the underlying numeric values are compared.
+        ///     This means two quantities with numerically equal values but different units will be considered equal.
+        ///     The operator delegates to <see cref=""Equals({_quantity.Name})""/>, which implements this conversion-and-compare logic.
+        /// </remarks>
         public static bool operator ==({_quantity.Name} left, {_quantity.Name} right)
         {{
             return left.Equals(right);
         }}
 
-        /// <summary>Indicates strict inequality of two <see cref=""{_quantity.Name}""/> quantities.</summary>
+        /// <summary>
+        ///     Determines whether two <see cref=""{_quantity.Name}""/> instances are not equal.
+        /// </summary>
+        /// <remarks>
+        ///     This operator is the logical negation of <see cref=""operator ==({_quantity.Name},{_quantity.Name})""/>.
+        ///     See that operator (and <see cref=""Equals({_quantity.Name})""/>) for details on how equality is evaluated
+        ///     (i.e., by converting one operand to the other's unit and comparing their numeric values).
+        /// </remarks>
         public static bool operator !=({_quantity.Name} left, {_quantity.Name} right)
         {{
             return !(left == right);
         }}
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref=""{_quantity.Name}""/> quantities.</summary>
+        /// <summary>
+        ///     Determines whether the specified object is equal to the current <see cref=""{_quantity.Name}""/> instance.
+        /// </summary>
+        /// <remarks>
+        ///     Returns <c>false</c> if <paramref name=""obj""/> is <c>null</c> or not a <see cref=""{_quantity.Name}""/>.
+        ///     When <paramref name=""obj""/> is a <see cref=""{_quantity.Name}""/>, this method delegates to
+        ///     <see cref=""Equals({_quantity.Name})""/>, which performs a unit-aware comparison by converting the other
+        ///     instance to this instance's unit before comparing numeric values.
+        /// </remarks>
         public override bool Equals(object? obj)
         {{
             if (obj is not {_quantity.Name} otherQuantity)
@@ -1016,7 +970,13 @@ namespace UnitsNet
         }}
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref=""{_quantity.Name}""/> quantities.</summary>
+        /// <summary>
+        ///     Determines whether the current instance is equal to another <see cref=""{_quantity.Name}""/> instance.
+        /// </summary>
+        /// <remarks>
+        ///     Comparison is performed by converting <paramref name=""other""/> to this instance's unit and then comparing the underlying numeric values.
+        ///     This makes two quantities equal even when their units differ, provided the converted numeric values are equal.
+        /// </remarks>
         public bool Equals({_quantity.Name} other)
         {{
             return _value.Equals(other.As(this.Unit));

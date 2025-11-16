@@ -469,10 +469,7 @@ namespace UnitsNet
         /// </remarks>
         public static AmplitudeRatio operator +(AmplitudeRatio left, AmplitudeRatio right)
         {
-            // Logarithmic addition
-            // Formula: 20 * log10(10^(x/20) + 10^(y/20))
-            var leftUnit = left.Unit;
-            return new AmplitudeRatio(QuantityValueExtensions.AddWithLogScaling(left.Value, right.As(leftUnit), LogarithmicScalingFactor), leftUnit);
+            return new AmplitudeRatio(QuantityValueExtensions.AddWithLogScaling(left.Value, right.As(left.Unit), LogarithmicScalingFactor), left.Unit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic subtraction of two <see cref="AmplitudeRatio"/>.</summary>
@@ -481,37 +478,30 @@ namespace UnitsNet
         /// </remarks>
         public static AmplitudeRatio operator -(AmplitudeRatio left, AmplitudeRatio right)
         {
-            // Logarithmic subtraction
-            // Formula: 20 * log10(10^(x/20) - 10^(y/20))
-            var leftUnit = left.Unit;
-            return new AmplitudeRatio(QuantityValueExtensions.SubtractWithLogScaling(left.Value, right.As(leftUnit), LogarithmicScalingFactor), leftUnit);
+            return new AmplitudeRatio(QuantityValueExtensions.SubtractWithLogScaling(left.Value, right.As(left.Unit), LogarithmicScalingFactor), left.Unit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic multiplication of value and <see cref="AmplitudeRatio"/>.</summary>
         public static AmplitudeRatio operator *(QuantityValue left, AmplitudeRatio right)
         {
-            // Logarithmic multiplication = addition
             return new AmplitudeRatio(left + right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic multiplication of value and <see cref="AmplitudeRatio"/>.</summary>
         public static AmplitudeRatio operator *(AmplitudeRatio left, QuantityValue right)
         {
-            // Logarithmic multiplication = addition
             return new AmplitudeRatio(left.Value + right, left.Unit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic division of <see cref="AmplitudeRatio"/> by value.</summary>
         public static AmplitudeRatio operator /(AmplitudeRatio left, QuantityValue right)
         {
-            // Logarithmic division = subtraction
             return new AmplitudeRatio(left.Value - right, left.Unit);
         }
 
         /// <summary>Get ratio value from logarithmic division of <see cref="AmplitudeRatio"/> by <see cref="AmplitudeRatio"/>.</summary>
         public static QuantityValue operator /(AmplitudeRatio left, AmplitudeRatio right)
         {
-            // Logarithmic division = subtraction
             return left.Value - right.As(left.Unit);
         }
 
@@ -543,20 +533,43 @@ namespace UnitsNet
             return left.Value > right.As(left.Unit);
         }
 
-        /// <summary>Indicates strict equality of two <see cref="AmplitudeRatio"/> quantities.</summary>
+        /// <summary>
+        ///     Determines whether two <see cref="AmplitudeRatio"/> instances are equal.
+        /// </summary>
+        /// <remarks>
+        ///     Equality is evaluated in a unit-aware manner. The right-hand operand is converted to the unit of the left-hand
+        ///     operand and then the underlying numeric values are compared.
+        ///     This means two quantities with numerically equal values but different units will be considered equal.
+        ///     The operator delegates to <see cref="Equals(AmplitudeRatio)"/>, which implements this conversion-and-compare logic.
+        /// </remarks>
         public static bool operator ==(AmplitudeRatio left, AmplitudeRatio right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="AmplitudeRatio"/> quantities.</summary>
+        /// <summary>
+        ///     Determines whether two <see cref="AmplitudeRatio"/> instances are not equal.
+        /// </summary>
+        /// <remarks>
+        ///     This operator is the logical negation of <see cref="operator ==(AmplitudeRatio,AmplitudeRatio)"/>.
+        ///     See that operator (and <see cref="Equals(AmplitudeRatio)"/>) for details on how equality is evaluated
+        ///     (i.e., by converting one operand to the other's unit and comparing their numeric values).
+        /// </remarks>
         public static bool operator !=(AmplitudeRatio left, AmplitudeRatio right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="AmplitudeRatio"/> quantities.</summary>
+        /// <summary>
+        ///     Determines whether the specified object is equal to the current <see cref="AmplitudeRatio"/> instance.
+        /// </summary>
+        /// <remarks>
+        ///     Returns <c>false</c> if <paramref name="obj"/> is <c>null</c> or not a <see cref="AmplitudeRatio"/>.
+        ///     When <paramref name="obj"/> is a <see cref="AmplitudeRatio"/>, this method delegates to
+        ///     <see cref="Equals(AmplitudeRatio)"/>, which performs a unit-aware comparison by converting the other
+        ///     instance to this instance's unit before comparing numeric values.
+        /// </remarks>
         public override bool Equals(object? obj)
         {
             if (obj is not AmplitudeRatio otherQuantity)
@@ -566,7 +579,13 @@ namespace UnitsNet
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="AmplitudeRatio"/> quantities.</summary>
+        /// <summary>
+        ///     Determines whether the current instance is equal to another <see cref="AmplitudeRatio"/> instance.
+        /// </summary>
+        /// <remarks>
+        ///     Comparison is performed by converting <paramref name="other"/> to this instance's unit and then comparing the underlying numeric values.
+        ///     This makes two quantities equal even when their units differ, provided the converted numeric values are equal.
+        /// </remarks>
         public bool Equals(AmplitudeRatio other)
         {
             return _value.Equals(other.As(this.Unit));
