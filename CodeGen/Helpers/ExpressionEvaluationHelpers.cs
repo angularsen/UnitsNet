@@ -351,8 +351,8 @@ internal static class ExpressionEvaluationHelpers
             return $"new ConversionExpression(coefficient: {coefficientTermFormat}, exponent: {exponentFormat})";
         }
 
-        // return $"new ConversionExpression({coefficientTermFormat})";
-        return coefficientTermFormat; // using the implicit constructor from QuantityValue
+        // using the implicit constructor from QuantityValue, which is equivalent to "new ConversionExpression({coefficientTermFormat})"
+        return coefficientTermFormat; 
     }
 
     private static string GetConversionExpressionFormat(string expression, string csharpParameter = "value", string jsonParameter = "{x}")

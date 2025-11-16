@@ -6,8 +6,6 @@ using System.Collections.Frozen;
 #else
 using System.Linq;
 #endif
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 namespace UnitsNet;
 
@@ -64,7 +62,6 @@ internal sealed class FrozenQuantityConverter : UnitConverter
 
         if (TryGetUnitInfo(conversionKey.FromUnitKey, out UnitInfo? fromUnitInfo) &&
             TryGetUnitInfo(new UnitKey(conversionKey.FromUnitKey.UnitEnumType, conversionKey.ToUnitValue), out UnitInfo? toUnitInfo))
-            // TryGetUnitInfo(conversionKey.FromUnitKey with { UnitValue = conversionKey.ToUnitValue }, out UnitInfo? toUnitInfo))
         {
             convertedValue = toUnitInfo.GetValueFrom(value, fromUnitInfo);
             return true;
@@ -156,7 +153,6 @@ internal sealed class FrozenQuantityConverter : UnitConverter
 
         UnitInfo fromUnitInfo = GetUnitInfo(conversionKey.FromUnitKey);
         UnitInfo toUnitInfo = GetUnitInfo(new UnitKey(conversionKey.FromUnitKey.UnitEnumType, conversionKey.ToUnitValue));
-        // UnitInfo toUnitInfo = GetUnitInfo(conversionKey.FromUnitKey with { UnitValue = conversionKey.ToUnitValue });
         return toUnitInfo.GetValueFrom(value, fromUnitInfo);
     }
     

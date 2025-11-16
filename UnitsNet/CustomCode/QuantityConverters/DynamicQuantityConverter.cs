@@ -1,10 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 namespace UnitsNet;
 
@@ -55,7 +52,6 @@ internal sealed class DynamicQuantityConverter : UnitConverter
 
         if (TryGetUnitInfo(conversionKey.FromUnitKey, out UnitInfo? fromUnitInfo) &&
             TryGetUnitInfo(new UnitKey(conversionKey.FromUnitKey.UnitEnumType, conversionKey.ToUnitValue), out UnitInfo? toUnitInfo))
-            // TryGetUnitInfo(conversionKey.FromUnitKey with { UnitValue = conversionKey.ToUnitValue }, out UnitInfo? toUnitInfo))
         {
             cachedConversion = _unitConversions.GetOrAdd(conversionKey, fromUnitInfo.GetUnitConversionExpressionTo(toUnitInfo, _reduceConstants));
             convertedValue = cachedConversion(value);
@@ -344,7 +340,6 @@ internal sealed class DynamicQuantityConverter : UnitConverter
     {
         var conversionKey = QuantityConversionKey.Create<TSourceUnit, TTargetUnit>(fromUnit);
         QuantityConversionFunction conversionFunction = GetOrAdd(conversionKey, targetQuantityInfo);
-        // return targetQuantityInfo.Create(conversionFunction.Convert(value), conversionFunction.TargetUnit);
         return targetQuantityInfo.From(conversionFunction.Convert(value), conversionFunction.TargetUnit.ToUnit<TTargetUnit>());
     }
 
@@ -359,7 +354,6 @@ internal sealed class DynamicQuantityConverter : UnitConverter
     {
         UnitInfo fromUnitInfo = GetUnitInfo(conversionKey.FromUnitKey);
         UnitInfo toUnitInfo = GetUnitInfo(new UnitKey(conversionKey.FromUnitKey.UnitEnumType, conversionKey.ToUnitValue));
-        // UnitInfo toUnitInfo = GetUnitInfo(conversionKey.FromUnitKey with { UnitValue = conversionKey.ToUnitValue });
         return fromUnitInfo.GetUnitConversionExpressionTo(toUnitInfo, _reduceConstants);
     }
     
