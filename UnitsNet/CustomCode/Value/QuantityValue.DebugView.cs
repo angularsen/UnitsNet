@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Numerics;
+﻿using System.Globalization;
 
 namespace UnitsNet;
 
@@ -22,15 +21,21 @@ public partial struct QuantityValue
         [DebuggerDisplay("{ShortFormat}")]
         internal readonly struct StringFormatsView(QuantityValue value)
         {
-            public string GeneralFormat => value.ToString("G");
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            private readonly QuantityValue _value = value;
 
-            public string ShortFormat => value.ToString("S");
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            private readonly CultureInfo _currentCulture = CultureInfo.CurrentCulture;
+
+            public string GeneralFormat => _value.ToString("G", _currentCulture);
+
+            public string ShortFormat => _value.ToString("S", _currentCulture);
 
             public string SimplifiedFraction
             {
                 get
                 {
-                    var (numerator, denominator) = Reduce(value);
+                    (BigInteger numerator, BigInteger denominator) = Reduce(_value);
                     return $"{numerator}/{denominator}";
                 }
             }
@@ -39,10 +44,13 @@ public partial struct QuantityValue
         [DebuggerDisplay("{Double}")]
         internal readonly struct NumericFormatsView(QuantityValue value)
         {
-            public int Integer => (int)value;
-            public long Long => (long)value;
-            public decimal Decimal => value.ToDecimal();
-            public double Double => value.ToDouble();
+            [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+            private readonly QuantityValue _value = value;
+
+            public int Integer => (int)_value;
+            public long Long => (long)_value;
+            public decimal Decimal => _value.ToDecimal();
+            public double Double => _value.ToDouble();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Diagnostics;
 
 namespace UnitsNet.Debug;
 
@@ -11,8 +10,6 @@ namespace UnitsNet.Debug;
 ///     This struct is used to format and display quantities in various string representations,
 ///     leveraging the configuration provided by <see cref="UnitsNetSetup" />.
 /// </remarks>
-// [DebuggerDisplay("{GeneralFormat}")]
-// [DebuggerDisplay("{ShortFormat}")]
 [DebuggerDisplay("{ToString()}")]
 [EditorBrowsable(EditorBrowsableState.Never)]
 public readonly struct QuantityFormats
@@ -113,7 +110,7 @@ public readonly struct QuantityFormats
     ///     It is primarily used to provide a consistent and human-readable representation of quantities
     ///     when no specific format is explicitly provided.
     /// </remarks>
-    public static string GeneralFormatSpecifier = "G";
+    public static string GeneralFormatSpecifier { get; set; } = "G";
 
     /// <summary>
     ///     The default format specifier used for scientific formatting of quantities.
@@ -123,7 +120,7 @@ public readonly struct QuantityFormats
     ///     It is primarily used to display quantities in exponential notation, providing a concise representation
     ///     of very large or very small values.
     /// </remarks>
-    public static string ScientificFormatSpecifier = "E";
+    public static string ScientificFormatSpecifier { get; set; } = "E";
 
     /// <summary>
     ///     The default format specifier used for fixed-point formatting of quantities.
@@ -133,7 +130,7 @@ public readonly struct QuantityFormats
     ///     It is primarily used to display quantities with a fixed number of decimal places, ensuring precision
     ///     and consistency in numerical representation.
     /// </remarks>
-    public static string FixedPointFormatSpecifier = "F";
+    public static string FixedPointFormatSpecifier { get; set; } = "F";
 
     /// <summary>
     ///     The default format specifier used for fixed-point formatting of quantities.
@@ -151,7 +148,7 @@ public readonly struct QuantityFormats
     ///     It is used to display quantities with a standard numeric representation, including grouping
     ///     separators and a configurable number of decimal places.
     /// </remarks>
-    public static string NumberFormatSpecifier = "N";
+    public static string NumberFormatSpecifier { get; set; } = "N";
 
     /// <summary>
     ///     Specifies the format string used to represent a quantity in a short format.
@@ -160,5 +157,5 @@ public readonly struct QuantityFormats
     ///     The short format specifier is typically used to produce a concise representation
     ///     of a quantity, often including only the numerical value and a minimal unit abbreviation.
     /// </remarks>
-    public static string ShortFormatSpecifier = "S";
+    public static string ShortFormatSpecifier { get; set; } = "S";
 }

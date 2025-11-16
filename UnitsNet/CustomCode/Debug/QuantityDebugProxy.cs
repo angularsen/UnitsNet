@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Globalization;
+﻿using System.Globalization;
 
 namespace UnitsNet.Debug;
 
@@ -28,25 +26,12 @@ public readonly struct QuantityDebugProxy: IFormattable
     ///     Each component is represented by a nested struct, which can be expanded in the debugger to inspect its properties.
     /// </remarks>
     public QuantityDebugProxy(IQuantity quantity)
-        // we want to avoid initializing the default configuration from the debug proxy (e.g. when debugging the configuration initialization)
-        : this(quantity, GetConfiguration(quantity.QuantityInfo))
-    {
-    }
-
-    /// <summary>
-    ///     Initializes a new instance of the <see cref="QuantityDebugProxy" /> class with the specified quantity and
-    ///     configuration.
-    /// </summary>
-    /// <param name="quantity">The quantity to be displayed, providing value and unit information.</param>
-    /// <param name="configuration">The configuration settings for formatting and displaying the quantity.</param>
-    public QuantityDebugProxy(IQuantity quantity, UnitsNetSetup configuration)
     {
         _quantity = quantity;
-        Configuration = configuration;
     }
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    internal UnitsNetSetup Configuration { get; }
+    internal UnitsNetSetup Configuration => GetConfiguration(QuantityInfo);
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     internal QuantityInfo QuantityInfo
@@ -62,14 +47,14 @@ public readonly struct QuantityDebugProxy: IFormattable
 
     internal QuantityDebugProxy ConvertTo(UnitInfo unit)
     {
-        return new QuantityDebugProxy(ConvertToUnit(unit), Configuration);
+        return new QuantityDebugProxy(ConvertToUnit(unit));
     }
-
+    
     internal IQuantity ConvertToUnit(UnitInfo unit)
     {
         return Configuration.UnitConverter.ConvertTo(_quantity, unit.UnitKey);
     }
-
+    
     internal IQuantity ConvertToQuantity(QuantityInfo targetQuantity)
     {
         return Configuration.UnitConverter.ConvertTo(_quantity.Value, _quantity.UnitKey, targetQuantity);
@@ -87,7 +72,7 @@ public readonly struct QuantityDebugProxy: IFormattable
     {
         get => new(this);
     }
-
+    
     /// <summary>
     ///     Gets information about the unit associated with the quantity.
     /// </summary>
@@ -98,7 +83,7 @@ public readonly struct QuantityDebugProxy: IFormattable
     {
         get => new(this, _quantity.QuantityInfo[_quantity.UnitKey]);
     }
-
+    
     /// <summary>
     ///     Gets the display representation of the unit abbreviation for the quantity.
     /// </summary>
@@ -205,15 +190,16 @@ public readonly struct QuantityDebugProxy: IFormattable
     /// </remarks>
     public const string DisplayFormat = "{UnitsNet.Debug.QuantityDebugProxy.Format(this), nq}";
 
-    internal static UnitsNetSetup GetConfiguration(QuantityInfo quantityInfo)
+    private static UnitsNetSetup GetConfiguration(QuantityInfo quantityInfo)
     {
+        // we want to avoid initializing the default configuration from the debug proxy (e.g. when debugging the configuration initialization)
         if (UnitsNetSetup.DefaultConfiguration.IsValueCreated)
         {
             // we could check for UnitsNetSetup.Default.QuantityInfoLookup.ByName.ContainsKey(quantity.QuantityInfo.Name)
             // but that would cause the initialization of the lazy dictionary and would hide potential issues with quantities that are not part of the default configuration
             return UnitsNetSetup.Default;
         }
-
+        
         return UnitsNetSetup.Create(builder => builder.WithQuantities([quantityInfo]));
     }
 
@@ -224,7 +210,7 @@ public readonly struct QuantityDebugProxy: IFormattable
     ///     This format string is applied when no specific format is provided during the formatting
     ///     of a quantity for debugging purposes. The default value is "G", which represents the general format.
     /// </remarks>
-    public static string DefaultFormatSpecifier = "G";
+    public static string DefaultFormatSpecifier { get; set; } = "G";
 
     /// <summary>
     ///     Gets or sets the default format provider used for formatting quantities in debug scenarios.
@@ -233,7 +219,7 @@ public readonly struct QuantityDebugProxy: IFormattable
     ///     This field determines the culture-specific formatting rules applied when formatting quantities.
     ///     If set to <c>null</c>, the default culture of the current thread is used.
     /// </remarks>
-    public static CultureInfo? DefaultFormatProvider = null;
+    public static CultureInfo DefaultFormatProvider { get; set; } = CultureInfo.CurrentCulture;
 
     /// <summary>
     ///     Formats the specified quantity into its string representation using the provided format.
@@ -245,6 +231,7 @@ public readonly struct QuantityDebugProxy: IFormattable
     ///     A standard or custom format string that determines how the quantity is formatted.
     ///     If <c>null</c>, a default format is used.
     /// </param>
+    /// <param name="formatProvider">An optional format provider to use.</param>
     /// <returns>
     ///     A string representation of the quantity, formatted according to the specified format.
     /// </returns>
@@ -253,19 +240,27 @@ public readonly struct QuantityDebugProxy: IFormattable
     ///     and utilizes its <see cref="QuantityDebugProxy.ToString(string?, IFormatProvider?)" /> method
     ///     to generate the formatted string.
     /// </remarks>
-    public static string Format<TQuantity>(TQuantity quantity, string? format = null)
+    public static string Format<TQuantity>(TQuantity quantity, string? format = null, IFormatProvider? formatProvider = null)
         where TQuantity : IQuantity
     {
         try
         {
             UnitsNetSetup configuration = GetConfiguration(quantity.QuantityInfo);
-            return configuration.Formatter.Format(quantity, format ?? DefaultFormatSpecifier, DefaultFormatProvider);
+            return configuration.Formatter.Format(quantity, format ?? DefaultFormatSpecifier, formatProvider ?? DefaultFormatProvider);
         }
         catch (Exception)
         {
-            // the debugger's inline evaluator sometimes fails when working with Type objects (specifically on the first call)
+            // the debugger's inline evaluator that comes with the resharper extension fails to evaluate some expressions
             // see https://youtrack.jetbrains.com/issue/RSRP-499956/Local-Variable-Inline-Evaluation-Fails-for-System.Type
-            return $"{{{quantity.Value} {quantity.QuantityInfo[quantity.UnitKey].PluralName}}}";
+            // and https://youtrack.jetbrains.com/issue/RSRP-502262/Cannot-evaluate-expressions-with-DebuggerTypeProxy-and-DebuggerDisplay
+            try
+            {
+                return $"{{{quantity.Value} {quantity.QuantityInfo[quantity.UnitKey].PluralName}}}";
+            }
+            catch (Exception)
+            {
+                return $"{{{quantity.Value} {quantity.UnitKey}}}";
+            }
         }
     }
 }

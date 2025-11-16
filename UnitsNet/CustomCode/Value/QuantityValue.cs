@@ -28,7 +28,7 @@ namespace UnitsNet;
 [DataContract]
 [Serializable]
 [TypeConverter(typeof(QuantityValueTypeConverter))]
-[DebuggerDisplay("{ToString(), nq}")]
+[DebuggerDisplay("{ToString(System.Globalization.CultureInfo.CurrentCulture), nq}")]
 [DebuggerTypeProxy(typeof(QuantityValueDebugView))]
 public readonly partial struct QuantityValue :
 #if NET7_0_OR_GREATER
