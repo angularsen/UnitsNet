@@ -1300,7 +1300,8 @@
     "NewtonMillimeterPerDegree": 30,
     "NewtonMillimeterPerRadian": 31,
     "PoundForceFeetPerRadian": 32,
-    "PoundForceFootPerDegrees": 33
+    "PoundForceFootPerDegrees": 33,
+    "KilopoundForceFootPerRadian": 38
   },
   "RotationalStiffnessPerLength": {
     "KilonewtonMeterPerRadianPerMeter": 1,

@@ -54,6 +54,7 @@ namespace UnitsNet.Tests
         protected abstract double KilonewtonMillimetersPerDegreeInOneNewtonMeterPerRadian { get; }
         protected abstract double KilonewtonMillimetersPerRadianInOneNewtonMeterPerRadian { get; }
         protected abstract double KilopoundForceFeetPerDegreesInOneNewtonMeterPerRadian { get; }
+        protected abstract double KilopoundForceFeetPerRadianInOneNewtonMeterPerRadian { get; }
         protected abstract double MeganewtonMetersPerDegreeInOneNewtonMeterPerRadian { get; }
         protected abstract double MeganewtonMetersPerRadianInOneNewtonMeterPerRadian { get; }
         protected abstract double MeganewtonMillimetersPerDegreeInOneNewtonMeterPerRadian { get; }
@@ -89,6 +90,7 @@ namespace UnitsNet.Tests
         protected virtual double KilonewtonMillimetersPerDegreeTolerance { get { return 1e-5; } }
         protected virtual double KilonewtonMillimetersPerRadianTolerance { get { return 1e-5; } }
         protected virtual double KilopoundForceFeetPerDegreesTolerance { get { return 1e-5; } }
+        protected virtual double KilopoundForceFeetPerRadianTolerance { get { return 1e-5; } }
         protected virtual double MeganewtonMetersPerDegreeTolerance { get { return 1e-5; } }
         protected virtual double MeganewtonMetersPerRadianTolerance { get { return 1e-5; } }
         protected virtual double MeganewtonMillimetersPerDegreeTolerance { get { return 1e-5; } }
@@ -128,6 +130,7 @@ namespace UnitsNet.Tests
                 RotationalStiffnessUnit.KilonewtonMillimeterPerDegree => (KilonewtonMillimetersPerDegreeInOneNewtonMeterPerRadian, KilonewtonMillimetersPerDegreeTolerance),
                 RotationalStiffnessUnit.KilonewtonMillimeterPerRadian => (KilonewtonMillimetersPerRadianInOneNewtonMeterPerRadian, KilonewtonMillimetersPerRadianTolerance),
                 RotationalStiffnessUnit.KilopoundForceFootPerDegrees => (KilopoundForceFeetPerDegreesInOneNewtonMeterPerRadian, KilopoundForceFeetPerDegreesTolerance),
+                RotationalStiffnessUnit.KilopoundForceFootPerRadian => (KilopoundForceFeetPerRadianInOneNewtonMeterPerRadian, KilopoundForceFeetPerRadianTolerance),
                 RotationalStiffnessUnit.MeganewtonMeterPerDegree => (MeganewtonMetersPerDegreeInOneNewtonMeterPerRadian, MeganewtonMetersPerDegreeTolerance),
                 RotationalStiffnessUnit.MeganewtonMeterPerRadian => (MeganewtonMetersPerRadianInOneNewtonMeterPerRadian, MeganewtonMetersPerRadianTolerance),
                 RotationalStiffnessUnit.MeganewtonMillimeterPerDegree => (MeganewtonMillimetersPerDegreeInOneNewtonMeterPerRadian, MeganewtonMillimetersPerDegreeTolerance),
@@ -167,6 +170,7 @@ namespace UnitsNet.Tests
             new object[] { RotationalStiffnessUnit.KilonewtonMillimeterPerDegree },
             new object[] { RotationalStiffnessUnit.KilonewtonMillimeterPerRadian },
             new object[] { RotationalStiffnessUnit.KilopoundForceFootPerDegrees },
+            new object[] { RotationalStiffnessUnit.KilopoundForceFootPerRadian },
             new object[] { RotationalStiffnessUnit.MeganewtonMeterPerDegree },
             new object[] { RotationalStiffnessUnit.MeganewtonMeterPerRadian },
             new object[] { RotationalStiffnessUnit.MeganewtonMillimeterPerDegree },
@@ -271,6 +275,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(KilonewtonMillimetersPerDegreeInOneNewtonMeterPerRadian, newtonmeterperradian.KilonewtonMillimetersPerDegree, KilonewtonMillimetersPerDegreeTolerance);
             AssertEx.EqualTolerance(KilonewtonMillimetersPerRadianInOneNewtonMeterPerRadian, newtonmeterperradian.KilonewtonMillimetersPerRadian, KilonewtonMillimetersPerRadianTolerance);
             AssertEx.EqualTolerance(KilopoundForceFeetPerDegreesInOneNewtonMeterPerRadian, newtonmeterperradian.KilopoundForceFeetPerDegrees, KilopoundForceFeetPerDegreesTolerance);
+            AssertEx.EqualTolerance(KilopoundForceFeetPerRadianInOneNewtonMeterPerRadian, newtonmeterperradian.KilopoundForceFeetPerRadian, KilopoundForceFeetPerRadianTolerance);
             AssertEx.EqualTolerance(MeganewtonMetersPerDegreeInOneNewtonMeterPerRadian, newtonmeterperradian.MeganewtonMetersPerDegree, MeganewtonMetersPerDegreeTolerance);
             AssertEx.EqualTolerance(MeganewtonMetersPerRadianInOneNewtonMeterPerRadian, newtonmeterperradian.MeganewtonMetersPerRadian, MeganewtonMetersPerRadianTolerance);
             AssertEx.EqualTolerance(MeganewtonMillimetersPerDegreeInOneNewtonMeterPerRadian, newtonmeterperradian.MeganewtonMillimetersPerDegree, MeganewtonMillimetersPerDegreeTolerance);
@@ -339,6 +344,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(KilonewtonMillimetersPerDegreeInOneNewtonMeterPerRadian, newtonmeterperradian.As(RotationalStiffnessUnit.KilonewtonMillimeterPerDegree), KilonewtonMillimetersPerDegreeTolerance);
             AssertEx.EqualTolerance(KilonewtonMillimetersPerRadianInOneNewtonMeterPerRadian, newtonmeterperradian.As(RotationalStiffnessUnit.KilonewtonMillimeterPerRadian), KilonewtonMillimetersPerRadianTolerance);
             AssertEx.EqualTolerance(KilopoundForceFeetPerDegreesInOneNewtonMeterPerRadian, newtonmeterperradian.As(RotationalStiffnessUnit.KilopoundForceFootPerDegrees), KilopoundForceFeetPerDegreesTolerance);
+            AssertEx.EqualTolerance(KilopoundForceFeetPerRadianInOneNewtonMeterPerRadian, newtonmeterperradian.As(RotationalStiffnessUnit.KilopoundForceFootPerRadian), KilopoundForceFeetPerRadianTolerance);
             AssertEx.EqualTolerance(MeganewtonMetersPerDegreeInOneNewtonMeterPerRadian, newtonmeterperradian.As(RotationalStiffnessUnit.MeganewtonMeterPerDegree), MeganewtonMetersPerDegreeTolerance);
             AssertEx.EqualTolerance(MeganewtonMetersPerRadianInOneNewtonMeterPerRadian, newtonmeterperradian.As(RotationalStiffnessUnit.MeganewtonMeterPerRadian), MeganewtonMetersPerRadianTolerance);
             AssertEx.EqualTolerance(MeganewtonMillimetersPerDegreeInOneNewtonMeterPerRadian, newtonmeterperradian.As(RotationalStiffnessUnit.MeganewtonMillimeterPerDegree), MeganewtonMillimetersPerDegreeTolerance);
@@ -472,6 +478,9 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kipf·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees, 4.2)]
         [InlineData("en-US", "4.2 kip·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees, 4.2)]
         [InlineData("en-US", "4.2 k·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees, 4.2)]
+        [InlineData("en-US", "4.2 kipf·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian, 4.2)]
+        [InlineData("en-US", "4.2 kip·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian, 4.2)]
+        [InlineData("en-US", "4.2 k·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian, 4.2)]
         [InlineData("en-US", "4.2 MN·m/deg", RotationalStiffnessUnit.MeganewtonMeterPerDegree, 4.2)]
         [InlineData("en-US", "4.2 MNm/deg", RotationalStiffnessUnit.MeganewtonMeterPerDegree, 4.2)]
         [InlineData("en-US", "4.2 MN·m/°", RotationalStiffnessUnit.MeganewtonMeterPerDegree, 4.2)]
@@ -585,6 +594,9 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kipf·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees, 4.2)]
         [InlineData("en-US", "4.2 kip·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees, 4.2)]
         [InlineData("en-US", "4.2 k·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees, 4.2)]
+        [InlineData("en-US", "4.2 kipf·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian, 4.2)]
+        [InlineData("en-US", "4.2 kip·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian, 4.2)]
+        [InlineData("en-US", "4.2 k·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian, 4.2)]
         [InlineData("en-US", "4.2 MN·m/deg", RotationalStiffnessUnit.MeganewtonMeterPerDegree, 4.2)]
         [InlineData("en-US", "4.2 MNm/deg", RotationalStiffnessUnit.MeganewtonMeterPerDegree, 4.2)]
         [InlineData("en-US", "4.2 MN·m/°", RotationalStiffnessUnit.MeganewtonMeterPerDegree, 4.2)]
@@ -698,6 +710,9 @@ namespace UnitsNet.Tests
         [InlineData("kipf·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
         [InlineData("kip·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
         [InlineData("k·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
+        [InlineData("kipf·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
+        [InlineData("kip·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
+        [InlineData("k·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
         [InlineData("MN·m/deg", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
         [InlineData("MNm/deg", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
         [InlineData("MN·m/°", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
@@ -811,6 +826,9 @@ namespace UnitsNet.Tests
         [InlineData("kipf·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
         [InlineData("kip·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
         [InlineData("k·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
+        [InlineData("kipf·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
+        [InlineData("kip·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
+        [InlineData("k·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
         [InlineData("MN·m/deg", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
         [InlineData("MNm/deg", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
         [InlineData("MN·m/°", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
@@ -924,6 +942,9 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "kipf·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
         [InlineData("en-US", "kip·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
         [InlineData("en-US", "k·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
+        [InlineData("en-US", "kipf·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
+        [InlineData("en-US", "kip·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
+        [InlineData("en-US", "k·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
         [InlineData("en-US", "MN·m/deg", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
         [InlineData("en-US", "MNm/deg", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
         [InlineData("en-US", "MN·m/°", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
@@ -1036,6 +1057,9 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "kipf·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
         [InlineData("en-US", "kip·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
         [InlineData("en-US", "k·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
+        [InlineData("en-US", "kipf·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
+        [InlineData("en-US", "kip·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
+        [InlineData("en-US", "k·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
         [InlineData("en-US", "MN·m/deg", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
         [InlineData("en-US", "MNm/deg", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
         [InlineData("en-US", "MN·m/°", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
@@ -1147,6 +1171,9 @@ namespace UnitsNet.Tests
         [InlineData("kipf·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
         [InlineData("kip·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
         [InlineData("k·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
+        [InlineData("kipf·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
+        [InlineData("kip·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
+        [InlineData("k·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
         [InlineData("MN·m/deg", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
         [InlineData("MNm/deg", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
         [InlineData("MN·m/°", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
@@ -1260,6 +1287,9 @@ namespace UnitsNet.Tests
         [InlineData("kipf·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
         [InlineData("kip·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
         [InlineData("k·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
+        [InlineData("kipf·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
+        [InlineData("kip·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
+        [InlineData("k·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
         [InlineData("MN·m/deg", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
         [InlineData("MNm/deg", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
         [InlineData("MN·m/°", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
@@ -1373,6 +1403,9 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "kipf·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
         [InlineData("en-US", "kip·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
         [InlineData("en-US", "k·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
+        [InlineData("en-US", "kipf·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
+        [InlineData("en-US", "kip·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
+        [InlineData("en-US", "k·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
         [InlineData("en-US", "MN·m/deg", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
         [InlineData("en-US", "MNm/deg", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
         [InlineData("en-US", "MN·m/°", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
@@ -1485,6 +1518,9 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "kipf·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
         [InlineData("en-US", "kip·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
         [InlineData("en-US", "k·ft/deg", RotationalStiffnessUnit.KilopoundForceFootPerDegrees)]
+        [InlineData("en-US", "kipf·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
+        [InlineData("en-US", "kip·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
+        [InlineData("en-US", "k·ft/rad", RotationalStiffnessUnit.KilopoundForceFootPerRadian)]
         [InlineData("en-US", "MN·m/deg", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
         [InlineData("en-US", "MNm/deg", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
         [InlineData("en-US", "MN·m/°", RotationalStiffnessUnit.MeganewtonMeterPerDegree)]
@@ -1562,6 +1598,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", RotationalStiffnessUnit.KilonewtonMillimeterPerDegree, "kN·mm/deg")]
         [InlineData("en-US", RotationalStiffnessUnit.KilonewtonMillimeterPerRadian, "kN·mm/rad")]
         [InlineData("en-US", RotationalStiffnessUnit.KilopoundForceFootPerDegrees, "kipf·ft/°")]
+        [InlineData("en-US", RotationalStiffnessUnit.KilopoundForceFootPerRadian, "kipf·ft/rad")]
         [InlineData("en-US", RotationalStiffnessUnit.MeganewtonMeterPerDegree, "MN·m/deg")]
         [InlineData("en-US", RotationalStiffnessUnit.MeganewtonMeterPerRadian, "MN·m/rad")]
         [InlineData("en-US", RotationalStiffnessUnit.MeganewtonMillimeterPerDegree, "MN·mm/deg")]
@@ -1679,6 +1716,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, RotationalStiffness.FromKilonewtonMillimetersPerDegree(newtonmeterperradian.KilonewtonMillimetersPerDegree).NewtonMetersPerRadian, KilonewtonMillimetersPerDegreeTolerance);
             AssertEx.EqualTolerance(1, RotationalStiffness.FromKilonewtonMillimetersPerRadian(newtonmeterperradian.KilonewtonMillimetersPerRadian).NewtonMetersPerRadian, KilonewtonMillimetersPerRadianTolerance);
             AssertEx.EqualTolerance(1, RotationalStiffness.FromKilopoundForceFeetPerDegrees(newtonmeterperradian.KilopoundForceFeetPerDegrees).NewtonMetersPerRadian, KilopoundForceFeetPerDegreesTolerance);
+            AssertEx.EqualTolerance(1, RotationalStiffness.FromKilopoundForceFeetPerRadian(newtonmeterperradian.KilopoundForceFeetPerRadian).NewtonMetersPerRadian, KilopoundForceFeetPerRadianTolerance);
             AssertEx.EqualTolerance(1, RotationalStiffness.FromMeganewtonMetersPerDegree(newtonmeterperradian.MeganewtonMetersPerDegree).NewtonMetersPerRadian, MeganewtonMetersPerDegreeTolerance);
             AssertEx.EqualTolerance(1, RotationalStiffness.FromMeganewtonMetersPerRadian(newtonmeterperradian.MeganewtonMetersPerRadian).NewtonMetersPerRadian, MeganewtonMetersPerRadianTolerance);
             AssertEx.EqualTolerance(1, RotationalStiffness.FromMeganewtonMillimetersPerDegree(newtonmeterperradian.MeganewtonMillimetersPerDegree).NewtonMetersPerRadian, MeganewtonMillimetersPerDegreeTolerance);
@@ -1868,6 +1906,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 kN·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.KilonewtonMillimeterPerDegree).ToString());
             Assert.Equal("1 kN·mm/rad", new RotationalStiffness(1, RotationalStiffnessUnit.KilonewtonMillimeterPerRadian).ToString());
             Assert.Equal("1 kipf·ft/°", new RotationalStiffness(1, RotationalStiffnessUnit.KilopoundForceFootPerDegrees).ToString());
+            Assert.Equal("1 kipf·ft/rad", new RotationalStiffness(1, RotationalStiffnessUnit.KilopoundForceFootPerRadian).ToString());
             Assert.Equal("1 MN·m/deg", new RotationalStiffness(1, RotationalStiffnessUnit.MeganewtonMeterPerDegree).ToString());
             Assert.Equal("1 MN·m/rad", new RotationalStiffness(1, RotationalStiffnessUnit.MeganewtonMeterPerRadian).ToString());
             Assert.Equal("1 MN·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.MeganewtonMillimeterPerDegree).ToString());
@@ -1909,6 +1948,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 kN·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.KilonewtonMillimeterPerDegree).ToString(swedishCulture));
             Assert.Equal("1 kN·mm/rad", new RotationalStiffness(1, RotationalStiffnessUnit.KilonewtonMillimeterPerRadian).ToString(swedishCulture));
             Assert.Equal("1 kipf·ft/°", new RotationalStiffness(1, RotationalStiffnessUnit.KilopoundForceFootPerDegrees).ToString(swedishCulture));
+            Assert.Equal("1 kipf·ft/rad", new RotationalStiffness(1, RotationalStiffnessUnit.KilopoundForceFootPerRadian).ToString(swedishCulture));
             Assert.Equal("1 MN·m/deg", new RotationalStiffness(1, RotationalStiffnessUnit.MeganewtonMeterPerDegree).ToString(swedishCulture));
             Assert.Equal("1 MN·m/rad", new RotationalStiffness(1, RotationalStiffnessUnit.MeganewtonMeterPerRadian).ToString(swedishCulture));
             Assert.Equal("1 MN·mm/deg", new RotationalStiffness(1, RotationalStiffnessUnit.MeganewtonMillimeterPerDegree).ToString(swedishCulture));

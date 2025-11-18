@@ -149,6 +149,11 @@ namespace UnitsNet
         public double KilopoundForceFeetPerDegrees => As(RotationalStiffnessUnit.KilopoundForceFootPerDegrees);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalStiffnessUnit.KilopoundForceFootPerRadian"/>
+        /// </summary>
+        public double KilopoundForceFeetPerRadian => As(RotationalStiffnessUnit.KilopoundForceFootPerRadian);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalStiffnessUnit.MeganewtonMeterPerDegree"/>
         /// </summary>
         public double MeganewtonMetersPerDegree => As(RotationalStiffnessUnit.MeganewtonMeterPerDegree);
@@ -318,6 +323,11 @@ namespace UnitsNet
         public static RotationalStiffness FromKilopoundForceFeetPerDegrees(double kilopoundforcefeetperdegrees) => new RotationalStiffness(kilopoundforcefeetperdegrees, RotationalStiffnessUnit.KilopoundForceFootPerDegrees);
 
         /// <summary>
+        ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.KilopoundForceFootPerRadian"/>.
+        /// </summary>
+        public static RotationalStiffness FromKilopoundForceFeetPerRadian(double kilopoundforcefeetperradian) => new RotationalStiffness(kilopoundforcefeetperradian, RotationalStiffnessUnit.KilopoundForceFootPerRadian);
+
+        /// <summary>
         ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.MeganewtonMeterPerDegree"/>.
         /// </summary>
         public static RotationalStiffness FromMeganewtonMetersPerDegree(double meganewtonmetersperdegree) => new RotationalStiffness(meganewtonmetersperdegree, RotationalStiffnessUnit.MeganewtonMeterPerDegree);
@@ -466,6 +476,7 @@ namespace UnitsNet
                         RotationalStiffnessUnit.KilonewtonMillimeterPerDegree => (_value * 180 / 3.1415926535897931 * 0.001) * 1e3d,
                         RotationalStiffnessUnit.KilonewtonMillimeterPerRadian => (_value * 0.001) * 1e3d,
                         RotationalStiffnessUnit.KilopoundForceFootPerDegrees => _value * (4.4482216152605e3 * 0.3048 * 180 / 3.1415926535897931),
+                        RotationalStiffnessUnit.KilopoundForceFootPerRadian => _value * 4.4482216152605e3 * 0.3048,
                         RotationalStiffnessUnit.MeganewtonMeterPerDegree => (_value * (180 / 3.1415926535897931)) * 1e6d,
                         RotationalStiffnessUnit.MeganewtonMeterPerRadian => (_value) * 1e6d,
                         RotationalStiffnessUnit.MeganewtonMillimeterPerDegree => (_value * 180 / 3.1415926535897931 * 0.001) * 1e6d,
@@ -512,6 +523,7 @@ namespace UnitsNet
                         RotationalStiffnessUnit.KilonewtonMillimeterPerDegree => (baseUnitValue / 180 * 3.1415926535897931 * 1000) / 1e3d,
                         RotationalStiffnessUnit.KilonewtonMillimeterPerRadian => (baseUnitValue * 1000) / 1e3d,
                         RotationalStiffnessUnit.KilopoundForceFootPerDegrees => baseUnitValue / (4.4482216152605e3 * 0.3048 * 180 / 3.1415926535897931),
+                        RotationalStiffnessUnit.KilopoundForceFootPerRadian => baseUnitValue / (4.4482216152605e3 * 0.3048),
                         RotationalStiffnessUnit.MeganewtonMeterPerDegree => (baseUnitValue / (180 / 3.1415926535897931)) / 1e6d,
                         RotationalStiffnessUnit.MeganewtonMeterPerRadian => (baseUnitValue) / 1e6d,
                         RotationalStiffnessUnit.MeganewtonMillimeterPerDegree => (baseUnitValue / 180 * 3.1415926535897931 * 1000) / 1e6d,

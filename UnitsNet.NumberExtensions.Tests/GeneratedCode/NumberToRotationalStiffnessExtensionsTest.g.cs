@@ -81,6 +81,10 @@ namespace UnitsNet.Tests
             Assert.Equal(RotationalStiffness.FromKilopoundForceFeetPerDegrees(2), 2.KilopoundForceFeetPerDegrees());
 
         [Fact]
+        public void NumberToKilopoundForceFeetPerRadianTest() =>
+            Assert.Equal(RotationalStiffness.FromKilopoundForceFeetPerRadian(2), 2.KilopoundForceFeetPerRadian());
+
+        [Fact]
         public void NumberToMeganewtonMetersPerDegreeTest() =>
             Assert.Equal(RotationalStiffness.FromMeganewtonMetersPerDegree(2), 2.MeganewtonMetersPerDegree());
 
