@@ -66,6 +66,22 @@ namespace UnitsNet.NumberExtensions.NumberToAreaDensity
                 => AreaDensity.FromMilligramsPerSquareMeter(value.ToDouble(null));
 #endif
 
+            /// <inheritdoc cref="AreaDensity.FromPoundPerSquareFoot(double)" />
+            public AreaDensity PoundPerSquareFoot
+#if NET7_0_OR_GREATER
+                => AreaDensity.FromPoundPerSquareFoot(double.CreateChecked(value));
+#else
+                => AreaDensity.FromPoundPerSquareFoot(value.ToDouble(null));
+#endif
+
+            /// <inheritdoc cref="AreaDensity.FromPoundPerThousandSquareFeet(double)" />
+            public AreaDensity PoundPerThousandSquareFeet
+#if NET7_0_OR_GREATER
+                => AreaDensity.FromPoundPerThousandSquareFeet(double.CreateChecked(value));
+#else
+                => AreaDensity.FromPoundPerThousandSquareFeet(value.ToDouble(null));
+#endif
+
         }
     }
 }

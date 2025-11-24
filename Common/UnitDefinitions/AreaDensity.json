@@ -56,6 +56,38 @@
           "Abbreviations": [ "mg/m²" ]
         }
       ]
+    },
+    {
+      "SingularName": "PoundPerSquareFoot",
+      "PluralName": "PoundPerSquareFoot",
+      "BaseUnits": {
+        "L": "Foot",
+        "M": "Pound"
+      },
+      "FromUnitToBaseFunc": "{x} * 4.8824",
+      "FromBaseToUnitFunc": "{x} / 4.8824",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbs/ft²", "lbs/SF" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerThousandSquareFeet",
+      "PluralName": "PoundPerThousandSquareFeet",
+      "BaseUnits": {
+        "L": "Foot",
+        "M": "Pound"
+      },
+      "FromUnitToBaseFunc": "{x} * 4.8824 / 1000",
+      "FromBaseToUnitFunc": "{x} / 4.8824 * 1000",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbs/MSF" ]
+        }
+      ]
     }
   ]
 }
