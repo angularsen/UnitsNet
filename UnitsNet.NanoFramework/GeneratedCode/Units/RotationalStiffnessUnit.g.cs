@@ -39,6 +39,7 @@ namespace UnitsNet.Units
         KilonewtonMillimeterPerDegree = 12,
         KilonewtonMillimeterPerRadian = 13,
         KilopoundForceFootPerDegrees = 14,
+        KilopoundForceFootPerRadian = 38,
         MeganewtonMeterPerDegree = 15,
         MeganewtonMeterPerRadian = 16,
         MeganewtonMillimeterPerDegree = 17,

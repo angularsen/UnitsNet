@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>UnitsNet.nanoFramework.AbsorbedDoseOfIonizingRadiation</id>
-    <version>6.0.0-pre017</version>
+    <version>6.0.0-pre018</version>
     <title>Units.NET AbsorbedDoseOfIonizingRadiation - nanoFramework</title>
     <authors>Andreas Gullberg Larsen,nanoframework</authors>
     <owners>UnitsNet</owners>

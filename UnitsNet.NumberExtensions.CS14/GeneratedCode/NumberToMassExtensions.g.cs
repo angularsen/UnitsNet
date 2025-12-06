@@ -50,6 +50,14 @@ namespace UnitsNet.NumberExtensions.NumberToMass
                 => Mass.FromCentigrams(value.ToDouble(null));
 #endif
 
+            /// <inheritdoc cref="Mass.FromDaltons(double)" />
+            public Mass Daltons
+#if NET7_0_OR_GREATER
+                => Mass.FromDaltons(double.CreateChecked(value));
+#else
+                => Mass.FromDaltons(value.ToDouble(null));
+#endif
+
             /// <inheritdoc cref="Mass.FromDecagrams(double)" />
             public Mass Decagrams
 #if NET7_0_OR_GREATER
@@ -82,6 +90,14 @@ namespace UnitsNet.NumberExtensions.NumberToMass
                 => Mass.FromFemtograms(value.ToDouble(null));
 #endif
 
+            /// <inheritdoc cref="Mass.FromGigadaltons(double)" />
+            public Mass Gigadaltons
+#if NET7_0_OR_GREATER
+                => Mass.FromGigadaltons(double.CreateChecked(value));
+#else
+                => Mass.FromGigadaltons(value.ToDouble(null));
+#endif
+
             /// <inheritdoc cref="Mass.FromGrains(double)" />
             public Mass Grains
 #if NET7_0_OR_GREATER
@@ -104,6 +120,14 @@ namespace UnitsNet.NumberExtensions.NumberToMass
                 => Mass.FromHectograms(double.CreateChecked(value));
 #else
                 => Mass.FromHectograms(value.ToDouble(null));
+#endif
+
+            /// <inheritdoc cref="Mass.FromKilodaltons(double)" />
+            public Mass Kilodaltons
+#if NET7_0_OR_GREATER
+                => Mass.FromKilodaltons(double.CreateChecked(value));
+#else
+                => Mass.FromKilodaltons(value.ToDouble(null));
 #endif
 
             /// <inheritdoc cref="Mass.FromKilograms(double)" />
@@ -144,6 +168,14 @@ namespace UnitsNet.NumberExtensions.NumberToMass
                 => Mass.FromLongTons(double.CreateChecked(value));
 #else
                 => Mass.FromLongTons(value.ToDouble(null));
+#endif
+
+            /// <inheritdoc cref="Mass.FromMegadaltons(double)" />
+            public Mass Megadaltons
+#if NET7_0_OR_GREATER
+                => Mass.FromMegadaltons(double.CreateChecked(value));
+#else
+                => Mass.FromMegadaltons(value.ToDouble(null));
 #endif
 
             /// <inheritdoc cref="Mass.FromMegapounds(double)" />

@@ -43,6 +43,17 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             => Mass.FromCentigrams(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Mass.FromDaltons(double)" />
+        public static Mass Daltons<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Mass.FromDaltons(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Mass.FromDaltons(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Mass.FromDecagrams(double)" />
         public static Mass Decagrams<T>(this T value)
             where T : notnull
@@ -87,6 +98,17 @@ namespace UnitsNet.NumberExtensions.NumberToMass
             => Mass.FromFemtograms(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Mass.FromGigadaltons(double)" />
+        public static Mass Gigadaltons<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Mass.FromGigadaltons(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Mass.FromGigadaltons(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Mass.FromGrains(double)" />
         public static Mass Grains<T>(this T value)
             where T : notnull
@@ -118,6 +140,17 @@ namespace UnitsNet.NumberExtensions.NumberToMass
 #else
             , IConvertible
             => Mass.FromHectograms(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Mass.FromKilodaltons(double)" />
+        public static Mass Kilodaltons<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Mass.FromKilodaltons(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Mass.FromKilodaltons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromKilograms(double)" />
@@ -173,6 +206,17 @@ namespace UnitsNet.NumberExtensions.NumberToMass
 #else
             , IConvertible
             => Mass.FromLongTons(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Mass.FromMegadaltons(double)" />
+        public static Mass Megadaltons<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Mass.FromMegadaltons(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Mass.FromMegadaltons(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Mass.FromMegapounds(double)" />

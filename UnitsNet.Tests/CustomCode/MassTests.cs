@@ -64,7 +64,11 @@ namespace UnitsNet.Tests
         protected override double FemtogramsInOneKilogram => 1E18;
 
         protected override double PicogramsInOneKilogram => 1E15;
-        
+        protected override double DaltonsInOneKilogram => 6.022140762081123E+26;
+        protected override double KilodaltonsInOneKilogram => 6.022140762081123E+23;
+        protected override double MegadaltonsInOneKilogram => 6.022140762081123E+20; 
+        protected override double GigadaltonsInOneKilogram => 6.022140762081123E+17;
+
         [Fact]
         public void AllBaseQuantityUnitsAreBaseUnits()
         {

@@ -41,18 +41,22 @@ namespace UnitsNet.Tests
     public abstract partial class MassTestsBase : QuantityTestsBase
     {
         protected abstract double CentigramsInOneKilogram { get; }
+        protected abstract double DaltonsInOneKilogram { get; }
         protected abstract double DecagramsInOneKilogram { get; }
         protected abstract double DecigramsInOneKilogram { get; }
         protected abstract double EarthMassesInOneKilogram { get; }
         protected abstract double FemtogramsInOneKilogram { get; }
+        protected abstract double GigadaltonsInOneKilogram { get; }
         protected abstract double GrainsInOneKilogram { get; }
         protected abstract double GramsInOneKilogram { get; }
         protected abstract double HectogramsInOneKilogram { get; }
+        protected abstract double KilodaltonsInOneKilogram { get; }
         protected abstract double KilogramsInOneKilogram { get; }
         protected abstract double KilopoundsInOneKilogram { get; }
         protected abstract double KilotonnesInOneKilogram { get; }
         protected abstract double LongHundredweightInOneKilogram { get; }
         protected abstract double LongTonsInOneKilogram { get; }
+        protected abstract double MegadaltonsInOneKilogram { get; }
         protected abstract double MegapoundsInOneKilogram { get; }
         protected abstract double MegatonnesInOneKilogram { get; }
         protected abstract double MicrogramsInOneKilogram { get; }
@@ -70,18 +74,22 @@ namespace UnitsNet.Tests
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentigramsTolerance { get { return 1e-5; } }
+        protected virtual double DaltonsTolerance { get { return 1e-5; } }
         protected virtual double DecagramsTolerance { get { return 1e-5; } }
         protected virtual double DecigramsTolerance { get { return 1e-5; } }
         protected virtual double EarthMassesTolerance { get { return 1e-5; } }
         protected virtual double FemtogramsTolerance { get { return 1e-5; } }
+        protected virtual double GigadaltonsTolerance { get { return 1e-5; } }
         protected virtual double GrainsTolerance { get { return 1e-5; } }
         protected virtual double GramsTolerance { get { return 1e-5; } }
         protected virtual double HectogramsTolerance { get { return 1e-5; } }
+        protected virtual double KilodaltonsTolerance { get { return 1e-5; } }
         protected virtual double KilogramsTolerance { get { return 1e-5; } }
         protected virtual double KilopoundsTolerance { get { return 1e-5; } }
         protected virtual double KilotonnesTolerance { get { return 1e-5; } }
         protected virtual double LongHundredweightTolerance { get { return 1e-5; } }
         protected virtual double LongTonsTolerance { get { return 1e-5; } }
+        protected virtual double MegadaltonsTolerance { get { return 1e-5; } }
         protected virtual double MegapoundsTolerance { get { return 1e-5; } }
         protected virtual double MegatonnesTolerance { get { return 1e-5; } }
         protected virtual double MicrogramsTolerance { get { return 1e-5; } }
@@ -103,18 +111,22 @@ namespace UnitsNet.Tests
             return unit switch
             {
                 MassUnit.Centigram => (CentigramsInOneKilogram, CentigramsTolerance),
+                MassUnit.Dalton => (DaltonsInOneKilogram, DaltonsTolerance),
                 MassUnit.Decagram => (DecagramsInOneKilogram, DecagramsTolerance),
                 MassUnit.Decigram => (DecigramsInOneKilogram, DecigramsTolerance),
                 MassUnit.EarthMass => (EarthMassesInOneKilogram, EarthMassesTolerance),
                 MassUnit.Femtogram => (FemtogramsInOneKilogram, FemtogramsTolerance),
+                MassUnit.Gigadalton => (GigadaltonsInOneKilogram, GigadaltonsTolerance),
                 MassUnit.Grain => (GrainsInOneKilogram, GrainsTolerance),
                 MassUnit.Gram => (GramsInOneKilogram, GramsTolerance),
                 MassUnit.Hectogram => (HectogramsInOneKilogram, HectogramsTolerance),
+                MassUnit.Kilodalton => (KilodaltonsInOneKilogram, KilodaltonsTolerance),
                 MassUnit.Kilogram => (KilogramsInOneKilogram, KilogramsTolerance),
                 MassUnit.Kilopound => (KilopoundsInOneKilogram, KilopoundsTolerance),
                 MassUnit.Kilotonne => (KilotonnesInOneKilogram, KilotonnesTolerance),
                 MassUnit.LongHundredweight => (LongHundredweightInOneKilogram, LongHundredweightTolerance),
                 MassUnit.LongTon => (LongTonsInOneKilogram, LongTonsTolerance),
+                MassUnit.Megadalton => (MegadaltonsInOneKilogram, MegadaltonsTolerance),
                 MassUnit.Megapound => (MegapoundsInOneKilogram, MegapoundsTolerance),
                 MassUnit.Megatonne => (MegatonnesInOneKilogram, MegatonnesTolerance),
                 MassUnit.Microgram => (MicrogramsInOneKilogram, MicrogramsTolerance),
@@ -136,18 +148,22 @@ namespace UnitsNet.Tests
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { MassUnit.Centigram },
+            new object[] { MassUnit.Dalton },
             new object[] { MassUnit.Decagram },
             new object[] { MassUnit.Decigram },
             new object[] { MassUnit.EarthMass },
             new object[] { MassUnit.Femtogram },
+            new object[] { MassUnit.Gigadalton },
             new object[] { MassUnit.Grain },
             new object[] { MassUnit.Gram },
             new object[] { MassUnit.Hectogram },
+            new object[] { MassUnit.Kilodalton },
             new object[] { MassUnit.Kilogram },
             new object[] { MassUnit.Kilopound },
             new object[] { MassUnit.Kilotonne },
             new object[] { MassUnit.LongHundredweight },
             new object[] { MassUnit.LongTon },
+            new object[] { MassUnit.Megadalton },
             new object[] { MassUnit.Megapound },
             new object[] { MassUnit.Megatonne },
             new object[] { MassUnit.Microgram },
@@ -234,18 +250,22 @@ namespace UnitsNet.Tests
         {
             Mass kilogram = Mass.FromKilograms(1);
             AssertEx.EqualTolerance(CentigramsInOneKilogram, kilogram.Centigrams, CentigramsTolerance);
+            AssertEx.EqualTolerance(DaltonsInOneKilogram, kilogram.Daltons, DaltonsTolerance);
             AssertEx.EqualTolerance(DecagramsInOneKilogram, kilogram.Decagrams, DecagramsTolerance);
             AssertEx.EqualTolerance(DecigramsInOneKilogram, kilogram.Decigrams, DecigramsTolerance);
             AssertEx.EqualTolerance(EarthMassesInOneKilogram, kilogram.EarthMasses, EarthMassesTolerance);
             AssertEx.EqualTolerance(FemtogramsInOneKilogram, kilogram.Femtograms, FemtogramsTolerance);
+            AssertEx.EqualTolerance(GigadaltonsInOneKilogram, kilogram.Gigadaltons, GigadaltonsTolerance);
             AssertEx.EqualTolerance(GrainsInOneKilogram, kilogram.Grains, GrainsTolerance);
             AssertEx.EqualTolerance(GramsInOneKilogram, kilogram.Grams, GramsTolerance);
             AssertEx.EqualTolerance(HectogramsInOneKilogram, kilogram.Hectograms, HectogramsTolerance);
+            AssertEx.EqualTolerance(KilodaltonsInOneKilogram, kilogram.Kilodaltons, KilodaltonsTolerance);
             AssertEx.EqualTolerance(KilogramsInOneKilogram, kilogram.Kilograms, KilogramsTolerance);
             AssertEx.EqualTolerance(KilopoundsInOneKilogram, kilogram.Kilopounds, KilopoundsTolerance);
             AssertEx.EqualTolerance(KilotonnesInOneKilogram, kilogram.Kilotonnes, KilotonnesTolerance);
             AssertEx.EqualTolerance(LongHundredweightInOneKilogram, kilogram.LongHundredweight, LongHundredweightTolerance);
             AssertEx.EqualTolerance(LongTonsInOneKilogram, kilogram.LongTons, LongTonsTolerance);
+            AssertEx.EqualTolerance(MegadaltonsInOneKilogram, kilogram.Megadaltons, MegadaltonsTolerance);
             AssertEx.EqualTolerance(MegapoundsInOneKilogram, kilogram.Megapounds, MegapoundsTolerance);
             AssertEx.EqualTolerance(MegatonnesInOneKilogram, kilogram.Megatonnes, MegatonnesTolerance);
             AssertEx.EqualTolerance(MicrogramsInOneKilogram, kilogram.Micrograms, MicrogramsTolerance);
@@ -296,18 +316,22 @@ namespace UnitsNet.Tests
         {
             var kilogram = Mass.FromKilograms(1);
             AssertEx.EqualTolerance(CentigramsInOneKilogram, kilogram.As(MassUnit.Centigram), CentigramsTolerance);
+            AssertEx.EqualTolerance(DaltonsInOneKilogram, kilogram.As(MassUnit.Dalton), DaltonsTolerance);
             AssertEx.EqualTolerance(DecagramsInOneKilogram, kilogram.As(MassUnit.Decagram), DecagramsTolerance);
             AssertEx.EqualTolerance(DecigramsInOneKilogram, kilogram.As(MassUnit.Decigram), DecigramsTolerance);
             AssertEx.EqualTolerance(EarthMassesInOneKilogram, kilogram.As(MassUnit.EarthMass), EarthMassesTolerance);
             AssertEx.EqualTolerance(FemtogramsInOneKilogram, kilogram.As(MassUnit.Femtogram), FemtogramsTolerance);
+            AssertEx.EqualTolerance(GigadaltonsInOneKilogram, kilogram.As(MassUnit.Gigadalton), GigadaltonsTolerance);
             AssertEx.EqualTolerance(GrainsInOneKilogram, kilogram.As(MassUnit.Grain), GrainsTolerance);
             AssertEx.EqualTolerance(GramsInOneKilogram, kilogram.As(MassUnit.Gram), GramsTolerance);
             AssertEx.EqualTolerance(HectogramsInOneKilogram, kilogram.As(MassUnit.Hectogram), HectogramsTolerance);
+            AssertEx.EqualTolerance(KilodaltonsInOneKilogram, kilogram.As(MassUnit.Kilodalton), KilodaltonsTolerance);
             AssertEx.EqualTolerance(KilogramsInOneKilogram, kilogram.As(MassUnit.Kilogram), KilogramsTolerance);
             AssertEx.EqualTolerance(KilopoundsInOneKilogram, kilogram.As(MassUnit.Kilopound), KilopoundsTolerance);
             AssertEx.EqualTolerance(KilotonnesInOneKilogram, kilogram.As(MassUnit.Kilotonne), KilotonnesTolerance);
             AssertEx.EqualTolerance(LongHundredweightInOneKilogram, kilogram.As(MassUnit.LongHundredweight), LongHundredweightTolerance);
             AssertEx.EqualTolerance(LongTonsInOneKilogram, kilogram.As(MassUnit.LongTon), LongTonsTolerance);
+            AssertEx.EqualTolerance(MegadaltonsInOneKilogram, kilogram.As(MassUnit.Megadalton), MegadaltonsTolerance);
             AssertEx.EqualTolerance(MegapoundsInOneKilogram, kilogram.As(MassUnit.Megapound), MegapoundsTolerance);
             AssertEx.EqualTolerance(MegatonnesInOneKilogram, kilogram.As(MassUnit.Megatonne), MegatonnesTolerance);
             AssertEx.EqualTolerance(MicrogramsInOneKilogram, kilogram.As(MassUnit.Microgram), MicrogramsTolerance);
@@ -389,19 +413,27 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "4.2 cg", MassUnit.Centigram, 4.2)]
+        [InlineData("en-US", "4.2 Da", MassUnit.Dalton, 4.2)]
+        [InlineData("en-US", "4.2 u", MassUnit.Dalton, 4.2)]
         [InlineData("en-US", "4.2 dag", MassUnit.Decagram, 4.2)]
         [InlineData("en-US", "4.2 dg", MassUnit.Decigram, 4.2)]
         [InlineData("en-US", "4.2 em", MassUnit.EarthMass, 4.2)]
         [InlineData("en-US", "4.2 fg", MassUnit.Femtogram, 4.2)]
+        [InlineData("en-US", "4.2 GDa", MassUnit.Gigadalton, 4.2)]
+        [InlineData("en-US", "4.2 Gu", MassUnit.Gigadalton, 4.2)]
         [InlineData("en-US", "4.2 gr", MassUnit.Grain, 4.2)]
         [InlineData("en-US", "4.2 g", MassUnit.Gram, 4.2)]
         [InlineData("en-US", "4.2 hg", MassUnit.Hectogram, 4.2)]
+        [InlineData("en-US", "4.2 kDa", MassUnit.Kilodalton, 4.2)]
+        [InlineData("en-US", "4.2 ku", MassUnit.Kilodalton, 4.2)]
         [InlineData("en-US", "4.2 kg", MassUnit.Kilogram, 4.2)]
         [InlineData("en-US", "4.2 klb", MassUnit.Kilopound, 4.2)]
         [InlineData("en-US", "4.2 klbs", MassUnit.Kilopound, 4.2)]
         [InlineData("en-US", "4.2 klbm", MassUnit.Kilopound, 4.2)]
         [InlineData("en-US", "4.2 kt", MassUnit.Kilotonne, 4.2)]
         [InlineData("en-US", "4.2 long tn", MassUnit.LongTon, 4.2)]
+        [InlineData("en-US", "4.2 MDa", MassUnit.Megadalton, 4.2)]
+        [InlineData("en-US", "4.2 Mu", MassUnit.Megadalton, 4.2)]
         [InlineData("en-US", "4.2 Mlb", MassUnit.Megapound, 4.2)]
         [InlineData("en-US", "4.2 Mlbs", MassUnit.Megapound, 4.2)]
         [InlineData("en-US", "4.2 Mlbm", MassUnit.Megapound, 4.2)]
@@ -478,19 +510,27 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "4.2 cg", MassUnit.Centigram, 4.2)]
+        [InlineData("en-US", "4.2 Da", MassUnit.Dalton, 4.2)]
+        [InlineData("en-US", "4.2 u", MassUnit.Dalton, 4.2)]
         [InlineData("en-US", "4.2 dag", MassUnit.Decagram, 4.2)]
         [InlineData("en-US", "4.2 dg", MassUnit.Decigram, 4.2)]
         [InlineData("en-US", "4.2 em", MassUnit.EarthMass, 4.2)]
         [InlineData("en-US", "4.2 fg", MassUnit.Femtogram, 4.2)]
+        [InlineData("en-US", "4.2 GDa", MassUnit.Gigadalton, 4.2)]
+        [InlineData("en-US", "4.2 Gu", MassUnit.Gigadalton, 4.2)]
         [InlineData("en-US", "4.2 gr", MassUnit.Grain, 4.2)]
         [InlineData("en-US", "4.2 g", MassUnit.Gram, 4.2)]
         [InlineData("en-US", "4.2 hg", MassUnit.Hectogram, 4.2)]
+        [InlineData("en-US", "4.2 kDa", MassUnit.Kilodalton, 4.2)]
+        [InlineData("en-US", "4.2 ku", MassUnit.Kilodalton, 4.2)]
         [InlineData("en-US", "4.2 kg", MassUnit.Kilogram, 4.2)]
         [InlineData("en-US", "4.2 klb", MassUnit.Kilopound, 4.2)]
         [InlineData("en-US", "4.2 klbs", MassUnit.Kilopound, 4.2)]
         [InlineData("en-US", "4.2 klbm", MassUnit.Kilopound, 4.2)]
         [InlineData("en-US", "4.2 kt", MassUnit.Kilotonne, 4.2)]
         [InlineData("en-US", "4.2 long tn", MassUnit.LongTon, 4.2)]
+        [InlineData("en-US", "4.2 MDa", MassUnit.Megadalton, 4.2)]
+        [InlineData("en-US", "4.2 Mu", MassUnit.Megadalton, 4.2)]
         [InlineData("en-US", "4.2 Mlb", MassUnit.Megapound, 4.2)]
         [InlineData("en-US", "4.2 Mlbs", MassUnit.Megapound, 4.2)]
         [InlineData("en-US", "4.2 Mlbm", MassUnit.Megapound, 4.2)]
@@ -567,19 +607,27 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("cg", MassUnit.Centigram)]
+        [InlineData("Da", MassUnit.Dalton)]
+        [InlineData("u", MassUnit.Dalton)]
         [InlineData("dag", MassUnit.Decagram)]
         [InlineData("dg", MassUnit.Decigram)]
         [InlineData("em", MassUnit.EarthMass)]
         [InlineData("fg", MassUnit.Femtogram)]
+        [InlineData("GDa", MassUnit.Gigadalton)]
+        [InlineData("Gu", MassUnit.Gigadalton)]
         [InlineData("gr", MassUnit.Grain)]
         [InlineData("g", MassUnit.Gram)]
         [InlineData("hg", MassUnit.Hectogram)]
+        [InlineData("kDa", MassUnit.Kilodalton)]
+        [InlineData("ku", MassUnit.Kilodalton)]
         [InlineData("kg", MassUnit.Kilogram)]
         [InlineData("klb", MassUnit.Kilopound)]
         [InlineData("klbs", MassUnit.Kilopound)]
         [InlineData("klbm", MassUnit.Kilopound)]
         [InlineData("kt", MassUnit.Kilotonne)]
         [InlineData("long tn", MassUnit.LongTon)]
+        [InlineData("MDa", MassUnit.Megadalton)]
+        [InlineData("Mu", MassUnit.Megadalton)]
         [InlineData("Mlb", MassUnit.Megapound)]
         [InlineData("Mlbs", MassUnit.Megapound)]
         [InlineData("Mlbm", MassUnit.Megapound)]
@@ -610,19 +658,27 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("cg", MassUnit.Centigram)]
+        [InlineData("Da", MassUnit.Dalton)]
+        [InlineData("u", MassUnit.Dalton)]
         [InlineData("dag", MassUnit.Decagram)]
         [InlineData("dg", MassUnit.Decigram)]
         [InlineData("em", MassUnit.EarthMass)]
         [InlineData("fg", MassUnit.Femtogram)]
+        [InlineData("GDa", MassUnit.Gigadalton)]
+        [InlineData("Gu", MassUnit.Gigadalton)]
         [InlineData("gr", MassUnit.Grain)]
         [InlineData("g", MassUnit.Gram)]
         [InlineData("hg", MassUnit.Hectogram)]
+        [InlineData("kDa", MassUnit.Kilodalton)]
+        [InlineData("ku", MassUnit.Kilodalton)]
         [InlineData("kg", MassUnit.Kilogram)]
         [InlineData("klb", MassUnit.Kilopound)]
         [InlineData("klbs", MassUnit.Kilopound)]
         [InlineData("klbm", MassUnit.Kilopound)]
         [InlineData("kt", MassUnit.Kilotonne)]
         [InlineData("long tn", MassUnit.LongTon)]
+        [InlineData("MDa", MassUnit.Megadalton)]
+        [InlineData("Mu", MassUnit.Megadalton)]
         [InlineData("Mlb", MassUnit.Megapound)]
         [InlineData("Mlbs", MassUnit.Megapound)]
         [InlineData("Mlbm", MassUnit.Megapound)]
@@ -653,19 +709,27 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "cg", MassUnit.Centigram)]
+        [InlineData("en-US", "Da", MassUnit.Dalton)]
+        [InlineData("en-US", "u", MassUnit.Dalton)]
         [InlineData("en-US", "dag", MassUnit.Decagram)]
         [InlineData("en-US", "dg", MassUnit.Decigram)]
         [InlineData("en-US", "em", MassUnit.EarthMass)]
         [InlineData("en-US", "fg", MassUnit.Femtogram)]
+        [InlineData("en-US", "GDa", MassUnit.Gigadalton)]
+        [InlineData("en-US", "Gu", MassUnit.Gigadalton)]
         [InlineData("en-US", "gr", MassUnit.Grain)]
         [InlineData("en-US", "g", MassUnit.Gram)]
         [InlineData("en-US", "hg", MassUnit.Hectogram)]
+        [InlineData("en-US", "kDa", MassUnit.Kilodalton)]
+        [InlineData("en-US", "ku", MassUnit.Kilodalton)]
         [InlineData("en-US", "kg", MassUnit.Kilogram)]
         [InlineData("en-US", "klb", MassUnit.Kilopound)]
         [InlineData("en-US", "klbs", MassUnit.Kilopound)]
         [InlineData("en-US", "klbm", MassUnit.Kilopound)]
         [InlineData("en-US", "kt", MassUnit.Kilotonne)]
         [InlineData("en-US", "long tn", MassUnit.LongTon)]
+        [InlineData("en-US", "MDa", MassUnit.Megadalton)]
+        [InlineData("en-US", "Mu", MassUnit.Megadalton)]
         [InlineData("en-US", "Mlb", MassUnit.Megapound)]
         [InlineData("en-US", "Mlbs", MassUnit.Megapound)]
         [InlineData("en-US", "Mlbm", MassUnit.Megapound)]
@@ -734,19 +798,27 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "cg", MassUnit.Centigram)]
+        [InlineData("en-US", "Da", MassUnit.Dalton)]
+        [InlineData("en-US", "u", MassUnit.Dalton)]
         [InlineData("en-US", "dag", MassUnit.Decagram)]
         [InlineData("en-US", "dg", MassUnit.Decigram)]
         [InlineData("en-US", "em", MassUnit.EarthMass)]
         [InlineData("en-US", "fg", MassUnit.Femtogram)]
+        [InlineData("en-US", "GDa", MassUnit.Gigadalton)]
+        [InlineData("en-US", "Gu", MassUnit.Gigadalton)]
         [InlineData("en-US", "gr", MassUnit.Grain)]
         [InlineData("en-US", "g", MassUnit.Gram)]
         [InlineData("en-US", "hg", MassUnit.Hectogram)]
+        [InlineData("en-US", "kDa", MassUnit.Kilodalton)]
+        [InlineData("en-US", "ku", MassUnit.Kilodalton)]
         [InlineData("en-US", "kg", MassUnit.Kilogram)]
         [InlineData("en-US", "klb", MassUnit.Kilopound)]
         [InlineData("en-US", "klbs", MassUnit.Kilopound)]
         [InlineData("en-US", "klbm", MassUnit.Kilopound)]
         [InlineData("en-US", "kt", MassUnit.Kilotonne)]
         [InlineData("en-US", "long tn", MassUnit.LongTon)]
+        [InlineData("en-US", "MDa", MassUnit.Megadalton)]
+        [InlineData("en-US", "Mu", MassUnit.Megadalton)]
         [InlineData("en-US", "Mlb", MassUnit.Megapound)]
         [InlineData("en-US", "Mlbs", MassUnit.Megapound)]
         [InlineData("en-US", "Mlbm", MassUnit.Megapound)]
@@ -821,19 +893,27 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("cg", MassUnit.Centigram)]
+        [InlineData("Da", MassUnit.Dalton)]
+        [InlineData("u", MassUnit.Dalton)]
         [InlineData("dag", MassUnit.Decagram)]
         [InlineData("dg", MassUnit.Decigram)]
         [InlineData("em", MassUnit.EarthMass)]
         [InlineData("fg", MassUnit.Femtogram)]
+        [InlineData("GDa", MassUnit.Gigadalton)]
+        [InlineData("Gu", MassUnit.Gigadalton)]
         [InlineData("gr", MassUnit.Grain)]
         [InlineData("g", MassUnit.Gram)]
         [InlineData("hg", MassUnit.Hectogram)]
+        [InlineData("kDa", MassUnit.Kilodalton)]
+        [InlineData("ku", MassUnit.Kilodalton)]
         [InlineData("kg", MassUnit.Kilogram)]
         [InlineData("klb", MassUnit.Kilopound)]
         [InlineData("klbs", MassUnit.Kilopound)]
         [InlineData("klbm", MassUnit.Kilopound)]
         [InlineData("kt", MassUnit.Kilotonne)]
         [InlineData("long tn", MassUnit.LongTon)]
+        [InlineData("MDa", MassUnit.Megadalton)]
+        [InlineData("Mu", MassUnit.Megadalton)]
         [InlineData("Mlb", MassUnit.Megapound)]
         [InlineData("Mlbs", MassUnit.Megapound)]
         [InlineData("Mlbm", MassUnit.Megapound)]
@@ -864,19 +944,27 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("cg", MassUnit.Centigram)]
+        [InlineData("Da", MassUnit.Dalton)]
+        [InlineData("u", MassUnit.Dalton)]
         [InlineData("dag", MassUnit.Decagram)]
         [InlineData("dg", MassUnit.Decigram)]
         [InlineData("em", MassUnit.EarthMass)]
         [InlineData("fg", MassUnit.Femtogram)]
+        [InlineData("GDa", MassUnit.Gigadalton)]
+        [InlineData("Gu", MassUnit.Gigadalton)]
         [InlineData("gr", MassUnit.Grain)]
         [InlineData("g", MassUnit.Gram)]
         [InlineData("hg", MassUnit.Hectogram)]
+        [InlineData("kDa", MassUnit.Kilodalton)]
+        [InlineData("ku", MassUnit.Kilodalton)]
         [InlineData("kg", MassUnit.Kilogram)]
         [InlineData("klb", MassUnit.Kilopound)]
         [InlineData("klbs", MassUnit.Kilopound)]
         [InlineData("klbm", MassUnit.Kilopound)]
         [InlineData("kt", MassUnit.Kilotonne)]
         [InlineData("long tn", MassUnit.LongTon)]
+        [InlineData("MDa", MassUnit.Megadalton)]
+        [InlineData("Mu", MassUnit.Megadalton)]
         [InlineData("Mlb", MassUnit.Megapound)]
         [InlineData("Mlbs", MassUnit.Megapound)]
         [InlineData("Mlbm", MassUnit.Megapound)]
@@ -907,19 +995,27 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "cg", MassUnit.Centigram)]
+        [InlineData("en-US", "Da", MassUnit.Dalton)]
+        [InlineData("en-US", "u", MassUnit.Dalton)]
         [InlineData("en-US", "dag", MassUnit.Decagram)]
         [InlineData("en-US", "dg", MassUnit.Decigram)]
         [InlineData("en-US", "em", MassUnit.EarthMass)]
         [InlineData("en-US", "fg", MassUnit.Femtogram)]
+        [InlineData("en-US", "GDa", MassUnit.Gigadalton)]
+        [InlineData("en-US", "Gu", MassUnit.Gigadalton)]
         [InlineData("en-US", "gr", MassUnit.Grain)]
         [InlineData("en-US", "g", MassUnit.Gram)]
         [InlineData("en-US", "hg", MassUnit.Hectogram)]
+        [InlineData("en-US", "kDa", MassUnit.Kilodalton)]
+        [InlineData("en-US", "ku", MassUnit.Kilodalton)]
         [InlineData("en-US", "kg", MassUnit.Kilogram)]
         [InlineData("en-US", "klb", MassUnit.Kilopound)]
         [InlineData("en-US", "klbs", MassUnit.Kilopound)]
         [InlineData("en-US", "klbm", MassUnit.Kilopound)]
         [InlineData("en-US", "kt", MassUnit.Kilotonne)]
         [InlineData("en-US", "long tn", MassUnit.LongTon)]
+        [InlineData("en-US", "MDa", MassUnit.Megadalton)]
+        [InlineData("en-US", "Mu", MassUnit.Megadalton)]
         [InlineData("en-US", "Mlb", MassUnit.Megapound)]
         [InlineData("en-US", "Mlbs", MassUnit.Megapound)]
         [InlineData("en-US", "Mlbm", MassUnit.Megapound)]
@@ -988,19 +1084,27 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "cg", MassUnit.Centigram)]
+        [InlineData("en-US", "Da", MassUnit.Dalton)]
+        [InlineData("en-US", "u", MassUnit.Dalton)]
         [InlineData("en-US", "dag", MassUnit.Decagram)]
         [InlineData("en-US", "dg", MassUnit.Decigram)]
         [InlineData("en-US", "em", MassUnit.EarthMass)]
         [InlineData("en-US", "fg", MassUnit.Femtogram)]
+        [InlineData("en-US", "GDa", MassUnit.Gigadalton)]
+        [InlineData("en-US", "Gu", MassUnit.Gigadalton)]
         [InlineData("en-US", "gr", MassUnit.Grain)]
         [InlineData("en-US", "g", MassUnit.Gram)]
         [InlineData("en-US", "hg", MassUnit.Hectogram)]
+        [InlineData("en-US", "kDa", MassUnit.Kilodalton)]
+        [InlineData("en-US", "ku", MassUnit.Kilodalton)]
         [InlineData("en-US", "kg", MassUnit.Kilogram)]
         [InlineData("en-US", "klb", MassUnit.Kilopound)]
         [InlineData("en-US", "klbs", MassUnit.Kilopound)]
         [InlineData("en-US", "klbm", MassUnit.Kilopound)]
         [InlineData("en-US", "kt", MassUnit.Kilotonne)]
         [InlineData("en-US", "long tn", MassUnit.LongTon)]
+        [InlineData("en-US", "MDa", MassUnit.Megadalton)]
+        [InlineData("en-US", "Mu", MassUnit.Megadalton)]
         [InlineData("en-US", "Mlb", MassUnit.Megapound)]
         [InlineData("en-US", "Mlbs", MassUnit.Megapound)]
         [InlineData("en-US", "Mlbm", MassUnit.Megapound)]
@@ -1075,18 +1179,22 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", MassUnit.Centigram, "cg")]
+        [InlineData("en-US", MassUnit.Dalton, "Da")]
         [InlineData("en-US", MassUnit.Decagram, "dag")]
         [InlineData("en-US", MassUnit.Decigram, "dg")]
         [InlineData("en-US", MassUnit.EarthMass, "em")]
         [InlineData("en-US", MassUnit.Femtogram, "fg")]
+        [InlineData("en-US", MassUnit.Gigadalton, "GDa")]
         [InlineData("en-US", MassUnit.Grain, "gr")]
         [InlineData("en-US", MassUnit.Gram, "g")]
         [InlineData("en-US", MassUnit.Hectogram, "hg")]
+        [InlineData("en-US", MassUnit.Kilodalton, "kDa")]
         [InlineData("en-US", MassUnit.Kilogram, "kg")]
         [InlineData("en-US", MassUnit.Kilopound, "klb")]
         [InlineData("en-US", MassUnit.Kilotonne, "kt")]
         [InlineData("en-US", MassUnit.LongHundredweight, "cwt")]
         [InlineData("en-US", MassUnit.LongTon, "long tn")]
+        [InlineData("en-US", MassUnit.Megadalton, "MDa")]
         [InlineData("en-US", MassUnit.Megapound, "Mlb")]
         [InlineData("en-US", MassUnit.Megatonne, "Mt")]
         [InlineData("en-US", MassUnit.Microgram, "µg")]
@@ -1225,18 +1333,22 @@ namespace UnitsNet.Tests
         {
             Mass kilogram = Mass.FromKilograms(1);
             AssertEx.EqualTolerance(1, Mass.FromCentigrams(kilogram.Centigrams).Kilograms, CentigramsTolerance);
+            AssertEx.EqualTolerance(1, Mass.FromDaltons(kilogram.Daltons).Kilograms, DaltonsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromDecagrams(kilogram.Decagrams).Kilograms, DecagramsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromDecigrams(kilogram.Decigrams).Kilograms, DecigramsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromEarthMasses(kilogram.EarthMasses).Kilograms, EarthMassesTolerance);
             AssertEx.EqualTolerance(1, Mass.FromFemtograms(kilogram.Femtograms).Kilograms, FemtogramsTolerance);
+            AssertEx.EqualTolerance(1, Mass.FromGigadaltons(kilogram.Gigadaltons).Kilograms, GigadaltonsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromGrains(kilogram.Grains).Kilograms, GrainsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromGrams(kilogram.Grams).Kilograms, GramsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromHectograms(kilogram.Hectograms).Kilograms, HectogramsTolerance);
+            AssertEx.EqualTolerance(1, Mass.FromKilodaltons(kilogram.Kilodaltons).Kilograms, KilodaltonsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromKilograms(kilogram.Kilograms).Kilograms, KilogramsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromKilopounds(kilogram.Kilopounds).Kilograms, KilopoundsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromKilotonnes(kilogram.Kilotonnes).Kilograms, KilotonnesTolerance);
             AssertEx.EqualTolerance(1, Mass.FromLongHundredweight(kilogram.LongHundredweight).Kilograms, LongHundredweightTolerance);
             AssertEx.EqualTolerance(1, Mass.FromLongTons(kilogram.LongTons).Kilograms, LongTonsTolerance);
+            AssertEx.EqualTolerance(1, Mass.FromMegadaltons(kilogram.Megadaltons).Kilograms, MegadaltonsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromMegapounds(kilogram.Megapounds).Kilograms, MegapoundsTolerance);
             AssertEx.EqualTolerance(1, Mass.FromMegatonnes(kilogram.Megatonnes).Kilograms, MegatonnesTolerance);
             AssertEx.EqualTolerance(1, Mass.FromMicrograms(kilogram.Micrograms).Kilograms, MicrogramsTolerance);
@@ -1408,18 +1520,22 @@ namespace UnitsNet.Tests
         {
             using var _ = new CultureScope("en-US");
             Assert.Equal("1 cg", new Mass(1, MassUnit.Centigram).ToString());
+            Assert.Equal("1 Da", new Mass(1, MassUnit.Dalton).ToString());
             Assert.Equal("1 dag", new Mass(1, MassUnit.Decagram).ToString());
             Assert.Equal("1 dg", new Mass(1, MassUnit.Decigram).ToString());
             Assert.Equal("1 em", new Mass(1, MassUnit.EarthMass).ToString());
             Assert.Equal("1 fg", new Mass(1, MassUnit.Femtogram).ToString());
+            Assert.Equal("1 GDa", new Mass(1, MassUnit.Gigadalton).ToString());
             Assert.Equal("1 gr", new Mass(1, MassUnit.Grain).ToString());
             Assert.Equal("1 g", new Mass(1, MassUnit.Gram).ToString());
             Assert.Equal("1 hg", new Mass(1, MassUnit.Hectogram).ToString());
+            Assert.Equal("1 kDa", new Mass(1, MassUnit.Kilodalton).ToString());
             Assert.Equal("1 kg", new Mass(1, MassUnit.Kilogram).ToString());
             Assert.Equal("1 klb", new Mass(1, MassUnit.Kilopound).ToString());
             Assert.Equal("1 kt", new Mass(1, MassUnit.Kilotonne).ToString());
             Assert.Equal("1 cwt", new Mass(1, MassUnit.LongHundredweight).ToString());
             Assert.Equal("1 long tn", new Mass(1, MassUnit.LongTon).ToString());
+            Assert.Equal("1 MDa", new Mass(1, MassUnit.Megadalton).ToString());
             Assert.Equal("1 Mlb", new Mass(1, MassUnit.Megapound).ToString());
             Assert.Equal("1 Mt", new Mass(1, MassUnit.Megatonne).ToString());
             Assert.Equal("1 µg", new Mass(1, MassUnit.Microgram).ToString());
@@ -1443,18 +1559,22 @@ namespace UnitsNet.Tests
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
             Assert.Equal("1 cg", new Mass(1, MassUnit.Centigram).ToString(swedishCulture));
+            Assert.Equal("1 Da", new Mass(1, MassUnit.Dalton).ToString(swedishCulture));
             Assert.Equal("1 dag", new Mass(1, MassUnit.Decagram).ToString(swedishCulture));
             Assert.Equal("1 dg", new Mass(1, MassUnit.Decigram).ToString(swedishCulture));
             Assert.Equal("1 em", new Mass(1, MassUnit.EarthMass).ToString(swedishCulture));
             Assert.Equal("1 fg", new Mass(1, MassUnit.Femtogram).ToString(swedishCulture));
+            Assert.Equal("1 GDa", new Mass(1, MassUnit.Gigadalton).ToString(swedishCulture));
             Assert.Equal("1 gr", new Mass(1, MassUnit.Grain).ToString(swedishCulture));
             Assert.Equal("1 g", new Mass(1, MassUnit.Gram).ToString(swedishCulture));
             Assert.Equal("1 hg", new Mass(1, MassUnit.Hectogram).ToString(swedishCulture));
+            Assert.Equal("1 kDa", new Mass(1, MassUnit.Kilodalton).ToString(swedishCulture));
             Assert.Equal("1 kg", new Mass(1, MassUnit.Kilogram).ToString(swedishCulture));
             Assert.Equal("1 klb", new Mass(1, MassUnit.Kilopound).ToString(swedishCulture));
             Assert.Equal("1 kt", new Mass(1, MassUnit.Kilotonne).ToString(swedishCulture));
             Assert.Equal("1 cwt", new Mass(1, MassUnit.LongHundredweight).ToString(swedishCulture));
             Assert.Equal("1 long tn", new Mass(1, MassUnit.LongTon).ToString(swedishCulture));
+            Assert.Equal("1 MDa", new Mass(1, MassUnit.Megadalton).ToString(swedishCulture));
             Assert.Equal("1 Mlb", new Mass(1, MassUnit.Megapound).ToString(swedishCulture));
             Assert.Equal("1 Mt", new Mass(1, MassUnit.Megatonne).ToString(swedishCulture));
             Assert.Equal("1 µg", new Mass(1, MassUnit.Microgram).ToString(swedishCulture));

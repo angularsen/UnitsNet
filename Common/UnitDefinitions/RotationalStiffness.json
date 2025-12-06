@@ -100,6 +100,18 @@
           "Abbreviations": [ "lbf·ft/rad" ]
         }
       ]
+    },
+    {
+      "SingularName": "KilopoundForceFootPerRadian",
+      "PluralName": "KilopoundForceFeetPerRadian",
+      "FromUnitToBaseFunc": "{x} * 4.4482216152605e3 * 0.3048",
+      "FromBaseToUnitFunc": "{x} / (4.4482216152605e3 * 0.3048)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kipf·ft/rad", "kip·ft/rad", "k·ft/rad" ]
+        }
+      ]
     }
   ]
 }
