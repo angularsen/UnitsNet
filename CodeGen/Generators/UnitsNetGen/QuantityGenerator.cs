@@ -147,7 +147,7 @@ namespace UnitsNet
                             continue;
                     }
 
-                    Writer.WL($"<{relation.LeftQuantity.Name}, {relation.RightQuantity.Name}, {relation.ResultQuantity.Name.Replace("double", "QuantityValue")}>,");
+                    Writer.WL($"<{relation.LeftQuantity.Name}, {relation.RightQuantity.Name}, {relation.ResultQuantity.Name}>,");
                 }
             }
 
@@ -839,42 +839,30 @@ namespace UnitsNet
                 }
                 else
                 {
+                    const string valueType = "QuantityValue";
                     var leftParameterType = relation.LeftQuantity.Name;
-                    var leftParameterName = leftParameterType.ToCamelCase();
                     var leftConversionProperty = relation.LeftUnit.PluralName;
                     var rightParameterType = relation.RightQuantity.Name;
-                    var rightParameterName = relation.RightQuantity.Name.ToCamelCase();
                     var rightConversionProperty = relation.RightUnit.PluralName;
 
-                    if (leftParameterName == rightParameterName)
+                    string leftParameterName, rightParameterName;
+                    if (leftParameterType == rightParameterType)
                     {
                         leftParameterName = "left";
                         rightParameterName = "right";
                     }
-
-                    var leftPart = $"{leftParameterName}.{leftConversionProperty}";
-                    var rightPart = $"{rightParameterName}.{rightConversionProperty}";
-
-                    if (leftParameterName is "double")
+                    else
                     {
-                        leftParameterType = "QuantityValue";
-                        leftParameterName = leftPart = "value";
+                        leftParameterName = leftParameterType.ToCamelCase();
+                        rightParameterName = rightParameterType.ToCamelCase();
                     }
 
-                    if (rightParameterName is "double")
-                    {
-                        rightParameterType = "QuantityValue";
-                        rightParameterName = rightPart = "value";
-                    }
-
+                    var leftPart = leftParameterType is valueType ? "value" : $"{leftParameterName}.{leftConversionProperty}";
+                    var rightPart = rightParameterName is valueType ? "value" : $"{rightParameterName}.{rightConversionProperty}";
                     var expression = $"{leftPart} {relation.Operator} {rightPart}";
 
                     var resultType = relation.ResultQuantity.Name;
-                    if (resultType is "double")
-                    {
-                        resultType = "QuantityValue";
-                    }
-                    else
+                    if (resultType is not valueType)
                     {
                         expression = $"{resultType}.From{relation.ResultUnit.PluralName}({expression})";
                     }
