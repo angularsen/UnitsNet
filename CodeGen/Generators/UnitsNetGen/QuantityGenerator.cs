@@ -853,12 +853,12 @@ namespace UnitsNet
                     }
                     else
                     {
-                        leftParameterName = leftParameterType.ToCamelCase();
-                        rightParameterName = rightParameterType.ToCamelCase();
+                        leftParameterName = leftParameterType is valueType ? "value": leftParameterType.ToCamelCase();
+                        rightParameterName = rightParameterType is valueType ? "value": rightParameterType.ToCamelCase();
                     }
 
-                    var leftPart = leftParameterType is valueType ? "value" : $"{leftParameterName}.{leftConversionProperty}";
-                    var rightPart = rightParameterName is valueType ? "value" : $"{rightParameterName}.{rightConversionProperty}";
+                    var leftPart = leftParameterType is valueType ? leftParameterName : $"{leftParameterName}.{leftConversionProperty}";
+                    var rightPart = rightParameterName is valueType ? rightParameterName : $"{rightParameterName}.{rightConversionProperty}";
                     var expression = $"{leftPart} {relation.Operator} {rightPart}";
 
                     var resultType = relation.ResultQuantity.Name;

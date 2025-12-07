@@ -25,7 +25,7 @@ namespace CodeGen.Generators
         ///     Each defined relation can be applied multiple times to one or two quantities depending on the operator and the operands.
         ///
         ///     The format of a relation definition is "Quantity.Unit operator Quantity.Unit = Quantity.Unit" (See examples below).
-        ///     "double" can be used as a unitless operand.
+        ///     "QuantityValue" can be used as a unitless operand.
         ///     "1" can be used as the result operand to define inverse relations.
         ///
         ///     Division relations are inferred from multiplication relations,
@@ -44,9 +44,9 @@ namespace CodeGen.Generators
         {
             var quantityDictionary = quantities.ToDictionary(q => q.Name, q => q);
 
-            // Add double and 1 as pseudo-quantities to validate relations that use them.
+            // Add QuantityValue and 1 as pseudo-quantities to validate relations that use them.
             var pseudoQuantity = new Quantity { Name = null!, Units = [new Unit { SingularName = null! }] };
-            quantityDictionary["double"] = pseudoQuantity with { Name = "double" };
+            quantityDictionary["QuantityValue"] = pseudoQuantity with { Name = "QuantityValue" };
             quantityDictionary["1"] = pseudoQuantity with { Name = "1" };
 
             var relations = ParseRelations(rootDir, quantityDictionary);
@@ -116,9 +116,9 @@ namespace CodeGen.Generators
                         // The left operand of a relation is responsible for generating the operator.
                         quantityRelations.Add(relation);
                     }
-                    else if (relation.RightQuantity == quantity && relation.LeftQuantity.Name is "double")
+                    else if (relation.RightQuantity == quantity && relation.LeftQuantity.Name is "QuantityValue")
                     {
-                        // Because we cannot add operators to double we make the right operand responsible in this case.
+                        // Because we cannot add operators to QuantityValue we make the right operand responsible in this case.
                         quantityRelations.Add(relation);
                     }
                 }

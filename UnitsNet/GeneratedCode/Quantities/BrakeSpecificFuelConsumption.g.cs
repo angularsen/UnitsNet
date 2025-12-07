@@ -499,16 +499,16 @@ namespace UnitsNet
             return MassFlow.FromKilogramsPerSecond(brakeSpecificFuelConsumption.KilogramsPerJoule * power.Watts);
         }
 
-        /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="QuantityValue"/> / <see cref="BrakeSpecificFuelConsumption"/>.</summary>
-        public static SpecificEnergy operator /(QuantityValue value, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
-        {
-            return SpecificEnergy.FromJoulesPerKilogram(value / brakeSpecificFuelConsumption.KilogramsPerJoule);
-        }
-
         /// <summary>Get <see cref="QuantityValue"/> from <see cref="BrakeSpecificFuelConsumption"/> * <see cref="SpecificEnergy"/>.</summary>
         public static QuantityValue operator *(BrakeSpecificFuelConsumption brakeSpecificFuelConsumption, SpecificEnergy specificEnergy)
         {
             return brakeSpecificFuelConsumption.KilogramsPerJoule * specificEnergy.JoulesPerKilogram;
+        }
+
+        /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="QuantityValue"/> / <see cref="BrakeSpecificFuelConsumption"/>.</summary>
+        public static SpecificEnergy operator /(QuantityValue value, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
+        {
+            return SpecificEnergy.FromJoulesPerKilogram(value / brakeSpecificFuelConsumption.KilogramsPerJoule);
         }
 
         #endregion
