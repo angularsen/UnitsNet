@@ -3,8 +3,8 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="UnitsNet" Version="5.65.0" />
-    <PackageVersion Include="MahApps.Metro" Version="2.4.10" />
+    <PackageVersion Include="UnitsNet" Version="5.75.0" />
+    <PackageVersion Include="MahApps.Metro" Version="2.4.11" />
     <PackageVersion Include="Prism.Container.Abstractions" Version="9.0.106" />
     <PackageVersion Include="Prism.Unity" Version="9.0.537" />
     <PackageVersion Include="Prism.Wpf" Version="9.0.537" />
