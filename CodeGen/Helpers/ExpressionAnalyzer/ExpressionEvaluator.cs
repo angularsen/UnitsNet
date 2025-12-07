@@ -14,7 +14,7 @@ namespace CodeGen.Helpers.ExpressionAnalyzer;
 
 internal partial class ExpressionEvaluator // TODO make public (and move out in a separate project)
 {
-    public static readonly Fraction Pi = FractionExtensions.FromDoubleRounded(Math.PI, 16);
+    public static readonly Fraction Pi = Fraction.FromDoubleRounded(Math.PI, 16);
     private readonly IReadOnlyDictionary<string, Fraction> _constantValues;
     private readonly Dictionary<string, CompositeExpression> _expressionsEvaluated = [];
 
@@ -221,20 +221,7 @@ internal partial class ExpressionEvaluator // TODO make public (and move out in 
 
         if (_constantValues.TryGetValue(expressionToParse, out Fraction constantExpression) || FractionHelper.TryParseInvariant(expressionToParse, out constantExpression))
         {
-            if (exponent.Numerator == exponent.Denominator)
-            {
-                expressionTerm = ExpressionTerm.Constant(constantExpression);
-                return true;
-            }
-
-            if (exponent.Denominator.IsOne)
-            {
-                expressionTerm = ExpressionTerm.Constant(Fraction.Pow(constantExpression, (int)exponent.Numerator));
-                return true;
-            }
-
-            // constant expression using a non-integer power: there is currently no Fraction.Pow(Fraction, Fraction)
-            expressionTerm = ExpressionTerm.Constant(FractionExtensions.FromDoubleRounded(Math.Pow(constantExpression.ToDouble(), exponent.ToDouble())));
+            expressionTerm = ExpressionTerm.Constant(constantExpression.Pow(exponent));
             return true;
         }
 

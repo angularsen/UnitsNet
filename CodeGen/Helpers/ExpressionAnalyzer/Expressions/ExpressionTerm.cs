@@ -84,9 +84,7 @@ internal record ExpressionTerm(Fraction Coefficient, Fraction Exponent, CustomFu
             return this;
         }
 
-        return IsRational
-            ? Constant(Coefficient * Fraction.Pow(x, Exponent.ToInt32()))
-            : Constant(Coefficient * FractionExtensions.FromDoubleRounded(Math.Pow(x.ToDouble(), Exponent.ToDouble())));
+        return Constant(Coefficient * x.Pow(Exponent));
     }
 
     public ExpressionTerm Evaluate(ExpressionTerm term)

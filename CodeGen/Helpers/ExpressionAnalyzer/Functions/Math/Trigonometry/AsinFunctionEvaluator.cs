@@ -8,6 +8,6 @@ internal class AsinFunctionEvaluator : MathFunctionEvaluator
 
     public override Fraction Evaluate(Fraction value)
     {
-        return FractionExtensions.FromDoubleRounded(System.Math.Asin(value.ToDouble()));
+        return Fraction.FromDoubleRounded(System.Math.Asin(value.ToDouble()));
     }
 }
