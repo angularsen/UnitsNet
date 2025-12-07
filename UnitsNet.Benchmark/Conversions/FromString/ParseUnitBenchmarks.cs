@@ -6,27 +6,6 @@ using UnitsNet.Units;
 
 namespace UnitsNet.Benchmark.Conversions.FromString;
 
-// [MemoryDiagnoser]
-// [SimpleJob(RuntimeMoniker.Net48)]
-// [SimpleJob(RuntimeMoniker.Net80)]
-// public class IsTerminatingValueBenchmarks
-// {
-//     private QuantityValue Value = QuantityValue.FromTerms(1, 350);
-//     // private QuantityValue Value = QuantityValue.FromTerms(1, 350 * 12345);
-//     // private QuantityValue Value = QuantityValue.FromPowerOfTen(1, 350 * 12345, -20);
-//
-//     [Benchmark(Baseline = true)]
-//     public bool HasTerminatingDecimal()
-//     {
-//         return QuantityValue.HasFiniteDecimalExpansion(Value);
-//     }
-//     [Benchmark(Baseline = false)]
-//     public bool HasTerminatingDecimalBitwise()
-//     {
-//         return Value.ToString("G", CultureInfo.InvariantCulture).Length < 16;
-//     }
-// }
-
 [MemoryDiagnoser]
 [SimpleJob(RuntimeMoniker.Net48)]
 [SimpleJob(RuntimeMoniker.Net80)]
