@@ -161,6 +161,9 @@ namespace UnitsNet
                 yield return new (RotationalStiffnessUnit.KilopoundForceFootPerDegrees, "KilopoundForceFootPerDegrees", "KilopoundForceFeetPerDegrees", BaseUnits.Undefined,
                      new QuantityValue(3141592653589793, QuantityValue.PowerOfTen(3) * new BigInteger(244047230699652072))
                 );
+                yield return new (RotationalStiffnessUnit.KilopoundForceFootPerRadian, "KilopoundForceFootPerRadian", "KilopoundForceFeetPerRadian", BaseUnits.Undefined,
+                     new QuantityValue(2500000000000, 3389544870828501)
+                );
                 yield return new (RotationalStiffnessUnit.MeganewtonMeterPerDegree, "MeganewtonMeterPerDegree", "MeganewtonMetersPerDegree", BaseUnits.Undefined,
                      new QuantityValue(3141592653589793, new BigInteger(18) * QuantityValue.PowerOfTen(22))
                 );
@@ -387,6 +390,11 @@ namespace UnitsNet
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RotationalStiffnessUnit.KilopoundForceFootPerDegrees"/>
         /// </summary>
         public QuantityValue KilopoundForceFeetPerDegrees => this.As(RotationalStiffnessUnit.KilopoundForceFootPerDegrees);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RotationalStiffnessUnit.KilopoundForceFootPerRadian"/>
+        /// </summary>
+        public QuantityValue KilopoundForceFeetPerRadian => this.As(RotationalStiffnessUnit.KilopoundForceFootPerRadian);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RotationalStiffnessUnit.MeganewtonMeterPerDegree"/>
@@ -622,6 +630,14 @@ namespace UnitsNet
         public static RotationalStiffness FromKilopoundForceFeetPerDegrees(QuantityValue value)
         {
             return new RotationalStiffness(value, RotationalStiffnessUnit.KilopoundForceFootPerDegrees);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="RotationalStiffness"/> from <see cref="RotationalStiffnessUnit.KilopoundForceFootPerRadian"/>.
+        /// </summary>
+        public static RotationalStiffness FromKilopoundForceFeetPerRadian(QuantityValue value)
+        {
+            return new RotationalStiffness(value, RotationalStiffnessUnit.KilopoundForceFootPerRadian);
         }
 
         /// <summary>

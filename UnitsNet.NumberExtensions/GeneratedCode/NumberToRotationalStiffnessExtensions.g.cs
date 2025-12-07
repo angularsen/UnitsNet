@@ -186,6 +186,17 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
             => RotationalStiffness.FromKilopoundForceFeetPerDegrees(value.ToQuantityValue());
 #endif
 
+        /// <inheritdoc cref="RotationalStiffness.FromKilopoundForceFeetPerRadian(QuantityValue)" />
+        public static RotationalStiffness KilopoundForceFeetPerRadian<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => RotationalStiffness.FromKilopoundForceFeetPerRadian(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => RotationalStiffness.FromKilopoundForceFeetPerRadian(value.ToQuantityValue());
+#endif
+
         /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerDegree(QuantityValue)" />
         public static RotationalStiffness MeganewtonMetersPerDegree<T>(this T value)
             where T : notnull

@@ -271,6 +271,24 @@
           "Abbreviations": [ "em" ]
         }
       ]
-    }
+    },
+    {
+      "SingularName": "Dalton",
+      "PluralName": "Daltons",
+      "BaseUnits": {
+        "M": "Dalton"
+      },
+      "XmlDocSummary": "The Dalton or unified atomic mass unit (abbreviation Da or u) is a unit of mass defined as 1/12 of the mass of an unbound neutral atom of carbon-12 in its nuclear and electronic ground state and at rest.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Dalton_(unit)",
+      "FromUnitToBaseFunc": "{x} *  1.66053906660e-27",
+      "FromBaseToUnitFunc": "{x} /  1.66053906660e-27",      
+      "Prefixes": [ "Kilo", "Mega" , "Giga" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Da", "u" ]
+        }
+      ]
+    },
   ]
 }

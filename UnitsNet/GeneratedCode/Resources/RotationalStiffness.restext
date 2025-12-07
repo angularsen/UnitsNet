@@ -12,6 +12,7 @@ KilonewtonMetersPerRadian=kN·m/rad,kNm/rad
 KilonewtonMillimetersPerDegree=kN·mm/deg,kNmm/deg,kN·mm/°,kNmm/°
 KilonewtonMillimetersPerRadian=kN·mm/rad,kNmm/rad
 KilopoundForceFeetPerDegrees=kipf·ft/°,kip·ft/°g,k·ft/°,kipf·ft/deg,kip·ft/deg,k·ft/deg
+KilopoundForceFeetPerRadian=kipf·ft/rad,kip·ft/rad,k·ft/rad
 MeganewtonMetersPerDegree=MN·m/deg,MNm/deg,MN·m/°,MNm/°
 MeganewtonMetersPerRadian=MN·m/rad,MNm/rad
 MeganewtonMillimetersPerDegree=MN·mm/deg,MNmm/deg,MN·mm/°,MNmm/°

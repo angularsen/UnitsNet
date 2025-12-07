@@ -135,6 +135,9 @@ namespace UnitsNet
                 yield return new (MassUnit.Centigram, "Centigram", "Centigrams", new BaseUnits(mass: MassUnit.Centigram),
                      100000
                 );
+                yield return new (MassUnit.Dalton, "Dalton", "Daltons", new BaseUnits(mass: MassUnit.Dalton),
+                     new QuantityValue(new BigInteger(5) * QuantityValue.PowerOfTen(36), 8302695333)
+                );
                 yield return new (MassUnit.Decagram, "Decagram", "Decagrams", new BaseUnits(mass: MassUnit.Decagram),
                      100
                 );
@@ -147,6 +150,9 @@ namespace UnitsNet
                 yield return new (MassUnit.Femtogram, "Femtogram", "Femtograms", new BaseUnits(mass: MassUnit.Femtogram),
                      1000000000000000000
                 );
+                yield return new (MassUnit.Gigadalton, "Gigadalton", "Gigadaltons", new BaseUnits(mass: MassUnit.Gigadalton),
+                     new QuantityValue(new BigInteger(5) * QuantityValue.PowerOfTen(27), 8302695333)
+                );
                 yield return new (MassUnit.Grain, "Grain", "Grains", new BaseUnits(mass: MassUnit.Grain),
                      new QuantityValue(100000000000, 6479891)
                 );
@@ -155,6 +161,9 @@ namespace UnitsNet
                 );
                 yield return new (MassUnit.Hectogram, "Hectogram", "Hectograms", new BaseUnits(mass: MassUnit.Hectogram),
                      10
+                );
+                yield return new (MassUnit.Kilodalton, "Kilodalton", "Kilodaltons", new BaseUnits(mass: MassUnit.Kilodalton),
+                     new QuantityValue(new BigInteger(5) * QuantityValue.PowerOfTen(33), 8302695333)
                 );
                 yield return new (MassUnit.Kilogram, "Kilogram", "Kilograms", new BaseUnits(mass: MassUnit.Kilogram));
                 yield return new (MassUnit.Kilopound, "Kilopound", "Kilopounds", new BaseUnits(mass: MassUnit.Kilopound),
@@ -168,6 +177,9 @@ namespace UnitsNet
                 );
                 yield return new (MassUnit.LongTon, "LongTon", "LongTons", new BaseUnits(mass: MassUnit.LongTon),
                      new QuantityValue(312500, 317514659)
+                );
+                yield return new (MassUnit.Megadalton, "Megadalton", "Megadaltons", new BaseUnits(mass: MassUnit.Megadalton),
+                     new QuantityValue(new BigInteger(5) * QuantityValue.PowerOfTen(30), 8302695333)
                 );
                 yield return new (MassUnit.Megapound, "Megapound", "Megapounds", new BaseUnits(mass: MassUnit.Megapound),
                      new QuantityValue(100, 45359237)
@@ -319,6 +331,11 @@ namespace UnitsNet
         public QuantityValue Centigrams => this.As(MassUnit.Centigram);
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Dalton"/>
+        /// </summary>
+        public QuantityValue Daltons => this.As(MassUnit.Dalton);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Decagram"/>
         /// </summary>
         public QuantityValue Decagrams => this.As(MassUnit.Decagram);
@@ -339,6 +356,11 @@ namespace UnitsNet
         public QuantityValue Femtograms => this.As(MassUnit.Femtogram);
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Gigadalton"/>
+        /// </summary>
+        public QuantityValue Gigadaltons => this.As(MassUnit.Gigadalton);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Grain"/>
         /// </summary>
         public QuantityValue Grains => this.As(MassUnit.Grain);
@@ -352,6 +374,11 @@ namespace UnitsNet
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Hectogram"/>
         /// </summary>
         public QuantityValue Hectograms => this.As(MassUnit.Hectogram);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Kilodalton"/>
+        /// </summary>
+        public QuantityValue Kilodaltons => this.As(MassUnit.Kilodalton);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Kilogram"/>
@@ -377,6 +404,11 @@ namespace UnitsNet
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.LongTon"/>
         /// </summary>
         public QuantityValue LongTons => this.As(MassUnit.LongTon);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Megadalton"/>
+        /// </summary>
+        public QuantityValue Megadaltons => this.As(MassUnit.Megadalton);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Megapound"/>
@@ -486,6 +518,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Dalton"/>.
+        /// </summary>
+        public static Mass FromDaltons(QuantityValue value)
+        {
+            return new Mass(value, MassUnit.Dalton);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Decagram"/>.
         /// </summary>
         public static Mass FromDecagrams(QuantityValue value)
@@ -518,6 +558,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Gigadalton"/>.
+        /// </summary>
+        public static Mass FromGigadaltons(QuantityValue value)
+        {
+            return new Mass(value, MassUnit.Gigadalton);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Grain"/>.
         /// </summary>
         public static Mass FromGrains(QuantityValue value)
@@ -539,6 +587,14 @@ namespace UnitsNet
         public static Mass FromHectograms(QuantityValue value)
         {
             return new Mass(value, MassUnit.Hectogram);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Kilodalton"/>.
+        /// </summary>
+        public static Mass FromKilodaltons(QuantityValue value)
+        {
+            return new Mass(value, MassUnit.Kilodalton);
         }
 
         /// <summary>
@@ -579,6 +635,14 @@ namespace UnitsNet
         public static Mass FromLongTons(QuantityValue value)
         {
             return new Mass(value, MassUnit.LongTon);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Megadalton"/>.
+        /// </summary>
+        public static Mass FromMegadaltons(QuantityValue value)
+        {
+            return new Mass(value, MassUnit.Megadalton);
         }
 
         /// <summary>

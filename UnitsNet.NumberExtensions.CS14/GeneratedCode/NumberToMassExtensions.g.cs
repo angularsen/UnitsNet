@@ -50,6 +50,14 @@ namespace UnitsNet.NumberExtensions.NumberToMass
                 => Mass.FromCentigrams(value.ToQuantityValue());
 #endif
 
+            /// <inheritdoc cref="Mass.FromDaltons(QuantityValue)" />
+            public Mass Daltons
+#if NET7_0_OR_GREATER
+                => Mass.FromDaltons(QuantityValue.CreateChecked(value));
+#else
+                => Mass.FromDaltons(value.ToQuantityValue());
+#endif
+
             /// <inheritdoc cref="Mass.FromDecagrams(QuantityValue)" />
             public Mass Decagrams
 #if NET7_0_OR_GREATER
@@ -82,6 +90,14 @@ namespace UnitsNet.NumberExtensions.NumberToMass
                 => Mass.FromFemtograms(value.ToQuantityValue());
 #endif
 
+            /// <inheritdoc cref="Mass.FromGigadaltons(QuantityValue)" />
+            public Mass Gigadaltons
+#if NET7_0_OR_GREATER
+                => Mass.FromGigadaltons(QuantityValue.CreateChecked(value));
+#else
+                => Mass.FromGigadaltons(value.ToQuantityValue());
+#endif
+
             /// <inheritdoc cref="Mass.FromGrains(QuantityValue)" />
             public Mass Grains
 #if NET7_0_OR_GREATER
@@ -104,6 +120,14 @@ namespace UnitsNet.NumberExtensions.NumberToMass
                 => Mass.FromHectograms(QuantityValue.CreateChecked(value));
 #else
                 => Mass.FromHectograms(value.ToQuantityValue());
+#endif
+
+            /// <inheritdoc cref="Mass.FromKilodaltons(QuantityValue)" />
+            public Mass Kilodaltons
+#if NET7_0_OR_GREATER
+                => Mass.FromKilodaltons(QuantityValue.CreateChecked(value));
+#else
+                => Mass.FromKilodaltons(value.ToQuantityValue());
 #endif
 
             /// <inheritdoc cref="Mass.FromKilograms(QuantityValue)" />
@@ -144,6 +168,14 @@ namespace UnitsNet.NumberExtensions.NumberToMass
                 => Mass.FromLongTons(QuantityValue.CreateChecked(value));
 #else
                 => Mass.FromLongTons(value.ToQuantityValue());
+#endif
+
+            /// <inheritdoc cref="Mass.FromMegadaltons(QuantityValue)" />
+            public Mass Megadaltons
+#if NET7_0_OR_GREATER
+                => Mass.FromMegadaltons(QuantityValue.CreateChecked(value));
+#else
+                => Mass.FromMegadaltons(value.ToQuantityValue());
 #endif
 
             /// <inheritdoc cref="Mass.FromMegapounds(QuantityValue)" />
