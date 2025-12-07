@@ -1,6 +1,8 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using UnitsNet.Tests.CustomQuantities;
+
 namespace UnitsNet.Tests;
 
 public class LogarithmicQuantityExtensionsTest
@@ -48,7 +50,24 @@ public class LogarithmicQuantityExtensionsTest
     {
         var quantity = PowerRatio.FromDecibelWatts(1);
         var tolerance = PowerRatio.FromDecibelWatts(1);
-        Assert.False(quantity.Equals(null, tolerance));
+
+        // since 'other' is not a reference type, this ends up calling the IQuantity overload
+        var result = quantity.Equals(null, tolerance);
+        
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void Equals_TQuantity_WithNullOther_ReturnsFalse()
+    {
+        var quantity = new ClassOfLogarithmicQuantity(2, ClassOfLogarithmicQuantityUnit.ATon);
+        var tolerance = new ClassOfLogarithmicQuantity(0.1m, ClassOfLogarithmicQuantityUnit.Some);
+        ClassOfLogarithmicQuantity? nullOther = null;
+
+        // since 'other' is a reference type, this is calling the TQuantity overload
+        var result = quantity.Equals(nullOther, tolerance);
+
+        Assert.False(result);
     }
 
     [Fact]

@@ -92,6 +92,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(1, max.Value);
             Assert.Equal(LengthUnit.Meter, max.Unit);
+            Assert.Equal(max, UnitMath.Max(secondValue, firstValue));
         }
 
         [Fact]
@@ -104,6 +105,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal(50, min.Value);
             Assert.Equal(LengthUnit.Centimeter, min.Unit);
+            Assert.Equal(min, UnitMath.Min(secondValue, firstValue));
         }
 
         [Fact]

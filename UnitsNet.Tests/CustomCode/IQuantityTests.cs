@@ -1,12 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Numerics;
-using UnitsNet.Units;
-using Xunit;
 
 namespace UnitsNet.Tests
 {
@@ -22,22 +17,6 @@ namespace UnitsNet.Tests
             });
         }
 
-        // [Fact]
-        // public void As_GivenNullUnitSystem_ThrowsArgumentNullException()
-        // {
-        //     Assert.All(Quantity.Infos.Select(x => x.Zero), quantity =>
-        //     {
-        //         Assert.Throws<ArgumentNullException>(() => quantity.As((UnitSystem)null!));
-        //     });
-        // }
-
-        // [Fact]
-        // public void As_GivenSIUnitSystem_ReturnsSIValue()
-        // {
-        //     IQuantity inches = new Length(2.0, LengthUnit.Inch);
-        //     Assert.Equal(0.0508, inches.As(UnitSystem.SI));
-        // }
-
         [Fact]
         public void ToUnit_GivenWrongUnitType_ThrowsArgumentException()
         {
@@ -46,26 +25,6 @@ namespace UnitsNet.Tests
                 Assert.Throws<UnitNotFoundException>(() => quantity.ToUnit(ComparisonType.Absolute));
             });
         }
-
-        // [Fact]
-        // public void ToUnit_GivenNullUnitSystem_ThrowsArgumentNullException()
-        // {
-        //     Assert.All(Quantity.Infos.Select(x => x.Zero), quantity =>
-        //     {
-        //         Assert.Throws<ArgumentNullException>(() => quantity.ToUnit((UnitSystem)null!));
-        //     });
-        // }
-        //
-        // [Fact]
-        // public void ToUnit_GivenSIUnitSystem_ReturnsSIQuantity()
-        // {
-        //     IQuantity inches = new Length(2.0, LengthUnit.Inch);
-        //
-        //     IQuantity inSI = inches.ToUnit(UnitSystem.SI);
-        //
-        //     Assert.Equal(0.0508, inSI.Value);
-        //     Assert.Equal(LengthUnit.Meter, inSI.Unit);
-        // }
         
         #if NET
         

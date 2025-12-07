@@ -1,6 +1,8 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using UnitsNet.Tests.CustomQuantities;
+
 namespace UnitsNet.Tests;
 
 public class AffineQuantityExtensionsTest
@@ -88,10 +90,26 @@ public class AffineQuantityExtensionsTest
         var quantity = Temperature.FromDegreesCelsius(25.0);
         var tolerance = TemperatureDelta.FromDegreesCelsius(25.0);
 
+        // since 'other' is not a reference type, this ends up calling the IQuantity overload
         var result = quantity.Equals(null, tolerance);
 
         Assert.False(result);
     }
+
+#if NET
+    [Fact]
+    public void Equals_TQuantity_WithNullOther_ReturnsFalse()
+    {
+        var quantity = new ClassOfAffineQuantity(2, ClassOfAffineQuantityUnit.ATon);
+        var tolerance = new ClassOfLinearQuantity(0.1m, ClassOfLinearQuantityUnit.Some);
+        ClassOfAffineQuantity? nullOther = null;
+
+        // since 'other' is a reference type, this is calling the TQuantity overload
+        var result = quantity.Equals(nullOther, tolerance);
+
+        Assert.False(result);
+    }
+#endif
 
     [Fact]
     public void Equals_ThrowsArgumentOutOfRangeException_ForNegativeTolerance()
