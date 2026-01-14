@@ -575,147 +575,147 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(PressureUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(PressureUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this Pressure to another Pressure with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A Pressure with the specified unit.</returns>
-                public Pressure ToUnit(PressureUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new Pressure(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this Pressure to another Pressure with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Pressure with the specified unit.</returns>
+        public Pressure ToUnit(PressureUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new Pressure(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        PressureUnit.Atmosphere => _value * 1.01325 * 1e5,
-                        PressureUnit.Bar => _value * 1e5,
-                        PressureUnit.Centibar => (_value * 1e5) * 1e-2d,
-                        PressureUnit.CentimeterOfWaterColumn => (_value * 9.80665e3) * 1e-2d,
-                        PressureUnit.Decapascal => (_value) * 1e1d,
-                        PressureUnit.Decibar => (_value * 1e5) * 1e-1d,
-                        PressureUnit.DynePerSquareCentimeter => _value * 1.0e-1,
-                        PressureUnit.FootOfHead => _value * 9804.139432 * 0.3048,
-                        PressureUnit.Gigapascal => (_value) * 1e9d,
-                        PressureUnit.Hectopascal => (_value) * 1e2d,
-                        PressureUnit.InchOfMercury => _value * 2.54e1 * 133.322387415,
-                        PressureUnit.InchOfWaterColumn => _value * 2.54e-2 * 9.80665e3,
-                        PressureUnit.Kilobar => (_value * 1e5) * 1e3d,
-                        PressureUnit.KilogramForcePerSquareCentimeter => _value * 9.80665e4,
-                        PressureUnit.KilogramForcePerSquareMeter => _value * 9.80665,
-                        PressureUnit.KilogramForcePerSquareMillimeter => _value * 9.80665e6,
-                        PressureUnit.KilonewtonPerSquareCentimeter => (_value * 1e4) * 1e3d,
-                        PressureUnit.KilonewtonPerSquareMeter => (_value) * 1e3d,
-                        PressureUnit.KilonewtonPerSquareMillimeter => (_value * 1e6) * 1e3d,
-                        PressureUnit.Kilopascal => (_value) * 1e3d,
-                        PressureUnit.KilopoundForcePerSquareFoot => (_value * 4.4482216152605 / 9.290304e-2) * 1e3d,
-                        PressureUnit.KilopoundForcePerSquareInch => (_value * 4.4482216152605 / 0.00064516) * 1e3d,
-                        PressureUnit.KilopoundForcePerSquareMil => (_value * 4.4482216152605 / (2.54e-5 * 2.54e-5)) * 1e3d,
-                        PressureUnit.Megabar => (_value * 1e5) * 1e6d,
-                        PressureUnit.MeganewtonPerSquareMeter => (_value) * 1e6d,
-                        PressureUnit.Megapascal => (_value) * 1e6d,
-                        PressureUnit.MeterOfHead => _value * 9804.139432,
-                        PressureUnit.MeterOfWaterColumn => _value * 9.80665e3,
-                        PressureUnit.Microbar => (_value * 1e5) * 1e-6d,
-                        PressureUnit.Micropascal => (_value) * 1e-6d,
-                        PressureUnit.Millibar => (_value * 1e5) * 1e-3d,
-                        PressureUnit.MillimeterOfMercury => _value * 133.322387415,
-                        PressureUnit.MillimeterOfWaterColumn => (_value * 9.80665e3) * 1e-3d,
-                        PressureUnit.Millipascal => (_value) * 1e-3d,
-                        PressureUnit.Millitorr => (_value * 101325 / 760) * 1e-3d,
-                        PressureUnit.NewtonPerSquareCentimeter => _value * 1e4,
-                        PressureUnit.NewtonPerSquareMeter => _value,
-                        PressureUnit.NewtonPerSquareMillimeter => _value * 1e6,
-                        PressureUnit.Pascal => _value,
-                        PressureUnit.PoundForcePerSquareFoot => _value * 4.4482216152605 / 9.290304e-2,
-                        PressureUnit.PoundForcePerSquareInch => _value * 4.4482216152605 / 0.00064516,
-                        PressureUnit.PoundForcePerSquareMil => _value * 4.4482216152605 / (2.54e-5 * 2.54e-5),
-                        PressureUnit.PoundPerInchSecondSquared => _value * (4.4482216152605 / 0.00064516) / 386.0886,
-                        PressureUnit.TechnicalAtmosphere => _value * 9.80665e4,
-                        PressureUnit.TonneForcePerSquareCentimeter => _value * 9.80665e7,
-                        PressureUnit.TonneForcePerSquareMeter => _value * 9.80665e3,
-                        PressureUnit.TonneForcePerSquareMillimeter => _value * 9.80665e9,
-                        PressureUnit.Torr => _value * 101325 / 760,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                PressureUnit.Atmosphere => _value * 1.01325 * 1e5,
+                PressureUnit.Bar => _value * 1e5,
+                PressureUnit.Centibar => (_value * 1e5) * 1e-2d,
+                PressureUnit.CentimeterOfWaterColumn => (_value * 9.80665e3) * 1e-2d,
+                PressureUnit.Decapascal => (_value) * 1e1d,
+                PressureUnit.Decibar => (_value * 1e5) * 1e-1d,
+                PressureUnit.DynePerSquareCentimeter => _value * 1.0e-1,
+                PressureUnit.FootOfHead => _value * 9804.139432 * 0.3048,
+                PressureUnit.Gigapascal => (_value) * 1e9d,
+                PressureUnit.Hectopascal => (_value) * 1e2d,
+                PressureUnit.InchOfMercury => _value * 2.54e1 * 133.322387415,
+                PressureUnit.InchOfWaterColumn => _value * 2.54e-2 * 9.80665e3,
+                PressureUnit.Kilobar => (_value * 1e5) * 1e3d,
+                PressureUnit.KilogramForcePerSquareCentimeter => _value * 9.80665e4,
+                PressureUnit.KilogramForcePerSquareMeter => _value * 9.80665,
+                PressureUnit.KilogramForcePerSquareMillimeter => _value * 9.80665e6,
+                PressureUnit.KilonewtonPerSquareCentimeter => (_value * 1e4) * 1e3d,
+                PressureUnit.KilonewtonPerSquareMeter => (_value) * 1e3d,
+                PressureUnit.KilonewtonPerSquareMillimeter => (_value * 1e6) * 1e3d,
+                PressureUnit.Kilopascal => (_value) * 1e3d,
+                PressureUnit.KilopoundForcePerSquareFoot => (_value * 4.4482216152605 / 9.290304e-2) * 1e3d,
+                PressureUnit.KilopoundForcePerSquareInch => (_value * 4.4482216152605 / 0.00064516) * 1e3d,
+                PressureUnit.KilopoundForcePerSquareMil => (_value * 4.4482216152605 / (2.54e-5 * 2.54e-5)) * 1e3d,
+                PressureUnit.Megabar => (_value * 1e5) * 1e6d,
+                PressureUnit.MeganewtonPerSquareMeter => (_value) * 1e6d,
+                PressureUnit.Megapascal => (_value) * 1e6d,
+                PressureUnit.MeterOfHead => _value * 9804.139432,
+                PressureUnit.MeterOfWaterColumn => _value * 9.80665e3,
+                PressureUnit.Microbar => (_value * 1e5) * 1e-6d,
+                PressureUnit.Micropascal => (_value) * 1e-6d,
+                PressureUnit.Millibar => (_value * 1e5) * 1e-3d,
+                PressureUnit.MillimeterOfMercury => _value * 133.322387415,
+                PressureUnit.MillimeterOfWaterColumn => (_value * 9.80665e3) * 1e-3d,
+                PressureUnit.Millipascal => (_value) * 1e-3d,
+                PressureUnit.Millitorr => (_value * 101325 / 760) * 1e-3d,
+                PressureUnit.NewtonPerSquareCentimeter => _value * 1e4,
+                PressureUnit.NewtonPerSquareMeter => _value,
+                PressureUnit.NewtonPerSquareMillimeter => _value * 1e6,
+                PressureUnit.Pascal => _value,
+                PressureUnit.PoundForcePerSquareFoot => _value * 4.4482216152605 / 9.290304e-2,
+                PressureUnit.PoundForcePerSquareInch => _value * 4.4482216152605 / 0.00064516,
+                PressureUnit.PoundForcePerSquareMil => _value * 4.4482216152605 / (2.54e-5 * 2.54e-5),
+                PressureUnit.PoundPerInchSecondSquared => _value * (4.4482216152605 / 0.00064516) / 386.0886,
+                PressureUnit.TechnicalAtmosphere => _value * 9.80665e4,
+                PressureUnit.TonneForcePerSquareCentimeter => _value * 9.80665e7,
+                PressureUnit.TonneForcePerSquareMeter => _value * 9.80665e3,
+                PressureUnit.TonneForcePerSquareMillimeter => _value * 9.80665e9,
+                PressureUnit.Torr => _value * 101325 / 760,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(PressureUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(PressureUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        PressureUnit.Atmosphere => baseUnitValue / (1.01325 * 1e5),
-                        PressureUnit.Bar => baseUnitValue / 1e5,
-                        PressureUnit.Centibar => (baseUnitValue / 1e5) / 1e-2d,
-                        PressureUnit.CentimeterOfWaterColumn => (baseUnitValue / 9.80665e3) / 1e-2d,
-                        PressureUnit.Decapascal => (baseUnitValue) / 1e1d,
-                        PressureUnit.Decibar => (baseUnitValue / 1e5) / 1e-1d,
-                        PressureUnit.DynePerSquareCentimeter => baseUnitValue / 1.0e-1,
-                        PressureUnit.FootOfHead => baseUnitValue / (9804.139432 * 0.3048),
-                        PressureUnit.Gigapascal => (baseUnitValue) / 1e9d,
-                        PressureUnit.Hectopascal => (baseUnitValue) / 1e2d,
-                        PressureUnit.InchOfMercury => baseUnitValue / (2.54e1 * 133.322387415),
-                        PressureUnit.InchOfWaterColumn => baseUnitValue / (2.54e-2 * 9.80665e3),
-                        PressureUnit.Kilobar => (baseUnitValue / 1e5) / 1e3d,
-                        PressureUnit.KilogramForcePerSquareCentimeter => baseUnitValue / 9.80665e4,
-                        PressureUnit.KilogramForcePerSquareMeter => baseUnitValue / 9.80665,
-                        PressureUnit.KilogramForcePerSquareMillimeter => baseUnitValue / 9.80665e6,
-                        PressureUnit.KilonewtonPerSquareCentimeter => (baseUnitValue / 1e4) / 1e3d,
-                        PressureUnit.KilonewtonPerSquareMeter => (baseUnitValue) / 1e3d,
-                        PressureUnit.KilonewtonPerSquareMillimeter => (baseUnitValue / 1e6) / 1e3d,
-                        PressureUnit.Kilopascal => (baseUnitValue) / 1e3d,
-                        PressureUnit.KilopoundForcePerSquareFoot => (baseUnitValue * 9.290304e-2 / 4.4482216152605) / 1e3d,
-                        PressureUnit.KilopoundForcePerSquareInch => (baseUnitValue * 0.00064516 / 4.4482216152605) / 1e3d,
-                        PressureUnit.KilopoundForcePerSquareMil => (baseUnitValue * (2.54e-5 * 2.54e-5) / 4.4482216152605) / 1e3d,
-                        PressureUnit.Megabar => (baseUnitValue / 1e5) / 1e6d,
-                        PressureUnit.MeganewtonPerSquareMeter => (baseUnitValue) / 1e6d,
-                        PressureUnit.Megapascal => (baseUnitValue) / 1e6d,
-                        PressureUnit.MeterOfHead => baseUnitValue / 9804.139432,
-                        PressureUnit.MeterOfWaterColumn => baseUnitValue / 9.80665e3,
-                        PressureUnit.Microbar => (baseUnitValue / 1e5) / 1e-6d,
-                        PressureUnit.Micropascal => (baseUnitValue) / 1e-6d,
-                        PressureUnit.Millibar => (baseUnitValue / 1e5) / 1e-3d,
-                        PressureUnit.MillimeterOfMercury => baseUnitValue / 133.322387415,
-                        PressureUnit.MillimeterOfWaterColumn => (baseUnitValue / 9.80665e3) / 1e-3d,
-                        PressureUnit.Millipascal => (baseUnitValue) / 1e-3d,
-                        PressureUnit.Millitorr => (baseUnitValue * 760 / 101325) / 1e-3d,
-                        PressureUnit.NewtonPerSquareCentimeter => baseUnitValue / 1e4,
-                        PressureUnit.NewtonPerSquareMeter => baseUnitValue,
-                        PressureUnit.NewtonPerSquareMillimeter => baseUnitValue / 1e6,
-                        PressureUnit.Pascal => baseUnitValue,
-                        PressureUnit.PoundForcePerSquareFoot => baseUnitValue * 9.290304e-2 / 4.4482216152605,
-                        PressureUnit.PoundForcePerSquareInch => baseUnitValue * 0.00064516 / 4.4482216152605,
-                        PressureUnit.PoundForcePerSquareMil => baseUnitValue * (2.54e-5 * 2.54e-5) / 4.4482216152605,
-                        PressureUnit.PoundPerInchSecondSquared => baseUnitValue * 386.0886 / (4.4482216152605 / 0.00064516),
-                        PressureUnit.TechnicalAtmosphere => baseUnitValue / 9.80665e4,
-                        PressureUnit.TonneForcePerSquareCentimeter => baseUnitValue / 9.80665e7,
-                        PressureUnit.TonneForcePerSquareMeter => baseUnitValue / 9.80665e3,
-                        PressureUnit.TonneForcePerSquareMillimeter => baseUnitValue / 9.80665e9,
-                        PressureUnit.Torr => baseUnitValue * 760 / 101325,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                PressureUnit.Atmosphere => baseUnitValue / (1.01325 * 1e5),
+                PressureUnit.Bar => baseUnitValue / 1e5,
+                PressureUnit.Centibar => (baseUnitValue / 1e5) / 1e-2d,
+                PressureUnit.CentimeterOfWaterColumn => (baseUnitValue / 9.80665e3) / 1e-2d,
+                PressureUnit.Decapascal => (baseUnitValue) / 1e1d,
+                PressureUnit.Decibar => (baseUnitValue / 1e5) / 1e-1d,
+                PressureUnit.DynePerSquareCentimeter => baseUnitValue / 1.0e-1,
+                PressureUnit.FootOfHead => baseUnitValue / (9804.139432 * 0.3048),
+                PressureUnit.Gigapascal => (baseUnitValue) / 1e9d,
+                PressureUnit.Hectopascal => (baseUnitValue) / 1e2d,
+                PressureUnit.InchOfMercury => baseUnitValue / (2.54e1 * 133.322387415),
+                PressureUnit.InchOfWaterColumn => baseUnitValue / (2.54e-2 * 9.80665e3),
+                PressureUnit.Kilobar => (baseUnitValue / 1e5) / 1e3d,
+                PressureUnit.KilogramForcePerSquareCentimeter => baseUnitValue / 9.80665e4,
+                PressureUnit.KilogramForcePerSquareMeter => baseUnitValue / 9.80665,
+                PressureUnit.KilogramForcePerSquareMillimeter => baseUnitValue / 9.80665e6,
+                PressureUnit.KilonewtonPerSquareCentimeter => (baseUnitValue / 1e4) / 1e3d,
+                PressureUnit.KilonewtonPerSquareMeter => (baseUnitValue) / 1e3d,
+                PressureUnit.KilonewtonPerSquareMillimeter => (baseUnitValue / 1e6) / 1e3d,
+                PressureUnit.Kilopascal => (baseUnitValue) / 1e3d,
+                PressureUnit.KilopoundForcePerSquareFoot => (baseUnitValue * 9.290304e-2 / 4.4482216152605) / 1e3d,
+                PressureUnit.KilopoundForcePerSquareInch => (baseUnitValue * 0.00064516 / 4.4482216152605) / 1e3d,
+                PressureUnit.KilopoundForcePerSquareMil => (baseUnitValue * (2.54e-5 * 2.54e-5) / 4.4482216152605) / 1e3d,
+                PressureUnit.Megabar => (baseUnitValue / 1e5) / 1e6d,
+                PressureUnit.MeganewtonPerSquareMeter => (baseUnitValue) / 1e6d,
+                PressureUnit.Megapascal => (baseUnitValue) / 1e6d,
+                PressureUnit.MeterOfHead => baseUnitValue / 9804.139432,
+                PressureUnit.MeterOfWaterColumn => baseUnitValue / 9.80665e3,
+                PressureUnit.Microbar => (baseUnitValue / 1e5) / 1e-6d,
+                PressureUnit.Micropascal => (baseUnitValue) / 1e-6d,
+                PressureUnit.Millibar => (baseUnitValue / 1e5) / 1e-3d,
+                PressureUnit.MillimeterOfMercury => baseUnitValue / 133.322387415,
+                PressureUnit.MillimeterOfWaterColumn => (baseUnitValue / 9.80665e3) / 1e-3d,
+                PressureUnit.Millipascal => (baseUnitValue) / 1e-3d,
+                PressureUnit.Millitorr => (baseUnitValue * 760 / 101325) / 1e-3d,
+                PressureUnit.NewtonPerSquareCentimeter => baseUnitValue / 1e4,
+                PressureUnit.NewtonPerSquareMeter => baseUnitValue,
+                PressureUnit.NewtonPerSquareMillimeter => baseUnitValue / 1e6,
+                PressureUnit.Pascal => baseUnitValue,
+                PressureUnit.PoundForcePerSquareFoot => baseUnitValue * 9.290304e-2 / 4.4482216152605,
+                PressureUnit.PoundForcePerSquareInch => baseUnitValue * 0.00064516 / 4.4482216152605,
+                PressureUnit.PoundForcePerSquareMil => baseUnitValue * (2.54e-5 * 2.54e-5) / 4.4482216152605,
+                PressureUnit.PoundPerInchSecondSquared => baseUnitValue * 386.0886 / (4.4482216152605 / 0.00064516),
+                PressureUnit.TechnicalAtmosphere => baseUnitValue / 9.80665e4,
+                PressureUnit.TonneForcePerSquareCentimeter => baseUnitValue / 9.80665e7,
+                PressureUnit.TonneForcePerSquareMeter => baseUnitValue / 9.80665e3,
+                PressureUnit.TonneForcePerSquareMillimeter => baseUnitValue / 9.80665e9,
+                PressureUnit.Torr => baseUnitValue * 760 / 101325,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

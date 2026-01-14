@@ -225,77 +225,77 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(ImpulseUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(ImpulseUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this Impulse to another Impulse with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A Impulse with the specified unit.</returns>
-                public Impulse ToUnit(ImpulseUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new Impulse(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this Impulse to another Impulse with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Impulse with the specified unit.</returns>
+        public Impulse ToUnit(ImpulseUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new Impulse(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        ImpulseUnit.CentinewtonSecond => (_value) * 1e-2d,
-                        ImpulseUnit.DecanewtonSecond => (_value) * 1e1d,
-                        ImpulseUnit.DecinewtonSecond => (_value) * 1e-1d,
-                        ImpulseUnit.KilogramMeterPerSecond => _value,
-                        ImpulseUnit.KilonewtonSecond => (_value) * 1e3d,
-                        ImpulseUnit.MeganewtonSecond => (_value) * 1e6d,
-                        ImpulseUnit.MicronewtonSecond => (_value) * 1e-6d,
-                        ImpulseUnit.MillinewtonSecond => (_value) * 1e-3d,
-                        ImpulseUnit.NanonewtonSecond => (_value) * 1e-9d,
-                        ImpulseUnit.NewtonSecond => _value,
-                        ImpulseUnit.PoundFootPerSecond => _value * (0.45359237 * 0.3048),
-                        ImpulseUnit.PoundForceSecond => _value * 0.45359237 * 9.80665,
-                        ImpulseUnit.SlugFootPerSecond => _value * (0.45359237 * 9.80665),
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                ImpulseUnit.CentinewtonSecond => (_value) * 1e-2d,
+                ImpulseUnit.DecanewtonSecond => (_value) * 1e1d,
+                ImpulseUnit.DecinewtonSecond => (_value) * 1e-1d,
+                ImpulseUnit.KilogramMeterPerSecond => _value,
+                ImpulseUnit.KilonewtonSecond => (_value) * 1e3d,
+                ImpulseUnit.MeganewtonSecond => (_value) * 1e6d,
+                ImpulseUnit.MicronewtonSecond => (_value) * 1e-6d,
+                ImpulseUnit.MillinewtonSecond => (_value) * 1e-3d,
+                ImpulseUnit.NanonewtonSecond => (_value) * 1e-9d,
+                ImpulseUnit.NewtonSecond => _value,
+                ImpulseUnit.PoundFootPerSecond => _value * (0.45359237 * 0.3048),
+                ImpulseUnit.PoundForceSecond => _value * 0.45359237 * 9.80665,
+                ImpulseUnit.SlugFootPerSecond => _value * (0.45359237 * 9.80665),
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(ImpulseUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(ImpulseUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        ImpulseUnit.CentinewtonSecond => (baseUnitValue) / 1e-2d,
-                        ImpulseUnit.DecanewtonSecond => (baseUnitValue) / 1e1d,
-                        ImpulseUnit.DecinewtonSecond => (baseUnitValue) / 1e-1d,
-                        ImpulseUnit.KilogramMeterPerSecond => baseUnitValue,
-                        ImpulseUnit.KilonewtonSecond => (baseUnitValue) / 1e3d,
-                        ImpulseUnit.MeganewtonSecond => (baseUnitValue) / 1e6d,
-                        ImpulseUnit.MicronewtonSecond => (baseUnitValue) / 1e-6d,
-                        ImpulseUnit.MillinewtonSecond => (baseUnitValue) / 1e-3d,
-                        ImpulseUnit.NanonewtonSecond => (baseUnitValue) / 1e-9d,
-                        ImpulseUnit.NewtonSecond => baseUnitValue,
-                        ImpulseUnit.PoundFootPerSecond => baseUnitValue / (0.45359237 * 0.3048),
-                        ImpulseUnit.PoundForceSecond => baseUnitValue / (0.45359237 * 9.80665),
-                        ImpulseUnit.SlugFootPerSecond => baseUnitValue / (0.45359237 * 9.80665),
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                ImpulseUnit.CentinewtonSecond => (baseUnitValue) / 1e-2d,
+                ImpulseUnit.DecanewtonSecond => (baseUnitValue) / 1e1d,
+                ImpulseUnit.DecinewtonSecond => (baseUnitValue) / 1e-1d,
+                ImpulseUnit.KilogramMeterPerSecond => baseUnitValue,
+                ImpulseUnit.KilonewtonSecond => (baseUnitValue) / 1e3d,
+                ImpulseUnit.MeganewtonSecond => (baseUnitValue) / 1e6d,
+                ImpulseUnit.MicronewtonSecond => (baseUnitValue) / 1e-6d,
+                ImpulseUnit.MillinewtonSecond => (baseUnitValue) / 1e-3d,
+                ImpulseUnit.NanonewtonSecond => (baseUnitValue) / 1e-9d,
+                ImpulseUnit.NewtonSecond => baseUnitValue,
+                ImpulseUnit.PoundFootPerSecond => baseUnitValue / (0.45359237 * 0.3048),
+                ImpulseUnit.PoundForceSecond => baseUnitValue / (0.45359237 * 9.80665),
+                ImpulseUnit.SlugFootPerSecond => baseUnitValue / (0.45359237 * 9.80665),
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

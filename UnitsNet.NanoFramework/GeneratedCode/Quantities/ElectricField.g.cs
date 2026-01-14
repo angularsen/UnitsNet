@@ -108,53 +108,53 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(ElectricFieldUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(ElectricFieldUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this ElectricField to another ElectricField with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A ElectricField with the specified unit.</returns>
-                public ElectricField ToUnit(ElectricFieldUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new ElectricField(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this ElectricField to another ElectricField with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ElectricField with the specified unit.</returns>
+        public ElectricField ToUnit(ElectricFieldUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new ElectricField(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        ElectricFieldUnit.VoltPerMeter => _value,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                ElectricFieldUnit.VoltPerMeter => _value,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(ElectricFieldUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(ElectricFieldUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        ElectricFieldUnit.VoltPerMeter => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                ElectricFieldUnit.VoltPerMeter => baseUnitValue,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

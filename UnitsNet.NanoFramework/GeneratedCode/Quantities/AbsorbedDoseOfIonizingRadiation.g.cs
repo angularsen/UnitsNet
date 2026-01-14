@@ -268,85 +268,85 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(AbsorbedDoseOfIonizingRadiationUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(AbsorbedDoseOfIonizingRadiationUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this AbsorbedDoseOfIonizingRadiation to another AbsorbedDoseOfIonizingRadiation with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A AbsorbedDoseOfIonizingRadiation with the specified unit.</returns>
-                public AbsorbedDoseOfIonizingRadiation ToUnit(AbsorbedDoseOfIonizingRadiationUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new AbsorbedDoseOfIonizingRadiation(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this AbsorbedDoseOfIonizingRadiation to another AbsorbedDoseOfIonizingRadiation with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A AbsorbedDoseOfIonizingRadiation with the specified unit.</returns>
+        public AbsorbedDoseOfIonizingRadiation ToUnit(AbsorbedDoseOfIonizingRadiationUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new AbsorbedDoseOfIonizingRadiation(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        AbsorbedDoseOfIonizingRadiationUnit.Centigray => (_value) * 1e-2d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Decigray => (_value) * 1e-1d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Femtogray => (_value) * 1e-15d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Gigagray => (_value) * 1e9d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Gray => _value,
-                        AbsorbedDoseOfIonizingRadiationUnit.Kilogray => (_value) * 1e3d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Kilorad => (_value / 100) * 1e3d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Megagray => (_value) * 1e6d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Megarad => (_value / 100) * 1e6d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Microgray => (_value) * 1e-6d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Milligray => (_value) * 1e-3d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Millirad => (_value / 100) * 1e-3d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Nanogray => (_value) * 1e-9d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Petagray => (_value) * 1e15d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Picogray => (_value) * 1e-12d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Rad => _value / 100,
-                        AbsorbedDoseOfIonizingRadiationUnit.Teragray => (_value) * 1e12d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                AbsorbedDoseOfIonizingRadiationUnit.Centigray => (_value) * 1e-2d,
+                AbsorbedDoseOfIonizingRadiationUnit.Decigray => (_value) * 1e-1d,
+                AbsorbedDoseOfIonizingRadiationUnit.Femtogray => (_value) * 1e-15d,
+                AbsorbedDoseOfIonizingRadiationUnit.Gigagray => (_value) * 1e9d,
+                AbsorbedDoseOfIonizingRadiationUnit.Gray => _value,
+                AbsorbedDoseOfIonizingRadiationUnit.Kilogray => (_value) * 1e3d,
+                AbsorbedDoseOfIonizingRadiationUnit.Kilorad => (_value / 100) * 1e3d,
+                AbsorbedDoseOfIonizingRadiationUnit.Megagray => (_value) * 1e6d,
+                AbsorbedDoseOfIonizingRadiationUnit.Megarad => (_value / 100) * 1e6d,
+                AbsorbedDoseOfIonizingRadiationUnit.Microgray => (_value) * 1e-6d,
+                AbsorbedDoseOfIonizingRadiationUnit.Milligray => (_value) * 1e-3d,
+                AbsorbedDoseOfIonizingRadiationUnit.Millirad => (_value / 100) * 1e-3d,
+                AbsorbedDoseOfIonizingRadiationUnit.Nanogray => (_value) * 1e-9d,
+                AbsorbedDoseOfIonizingRadiationUnit.Petagray => (_value) * 1e15d,
+                AbsorbedDoseOfIonizingRadiationUnit.Picogray => (_value) * 1e-12d,
+                AbsorbedDoseOfIonizingRadiationUnit.Rad => _value / 100,
+                AbsorbedDoseOfIonizingRadiationUnit.Teragray => (_value) * 1e12d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(AbsorbedDoseOfIonizingRadiationUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(AbsorbedDoseOfIonizingRadiationUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        AbsorbedDoseOfIonizingRadiationUnit.Centigray => (baseUnitValue) / 1e-2d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Decigray => (baseUnitValue) / 1e-1d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Femtogray => (baseUnitValue) / 1e-15d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Gigagray => (baseUnitValue) / 1e9d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Gray => baseUnitValue,
-                        AbsorbedDoseOfIonizingRadiationUnit.Kilogray => (baseUnitValue) / 1e3d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Kilorad => (baseUnitValue * 100) / 1e3d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Megagray => (baseUnitValue) / 1e6d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Megarad => (baseUnitValue * 100) / 1e6d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Microgray => (baseUnitValue) / 1e-6d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Milligray => (baseUnitValue) / 1e-3d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Millirad => (baseUnitValue * 100) / 1e-3d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Nanogray => (baseUnitValue) / 1e-9d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Petagray => (baseUnitValue) / 1e15d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Picogray => (baseUnitValue) / 1e-12d,
-                        AbsorbedDoseOfIonizingRadiationUnit.Rad => baseUnitValue * 100,
-                        AbsorbedDoseOfIonizingRadiationUnit.Teragray => (baseUnitValue) / 1e12d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                AbsorbedDoseOfIonizingRadiationUnit.Centigray => (baseUnitValue) / 1e-2d,
+                AbsorbedDoseOfIonizingRadiationUnit.Decigray => (baseUnitValue) / 1e-1d,
+                AbsorbedDoseOfIonizingRadiationUnit.Femtogray => (baseUnitValue) / 1e-15d,
+                AbsorbedDoseOfIonizingRadiationUnit.Gigagray => (baseUnitValue) / 1e9d,
+                AbsorbedDoseOfIonizingRadiationUnit.Gray => baseUnitValue,
+                AbsorbedDoseOfIonizingRadiationUnit.Kilogray => (baseUnitValue) / 1e3d,
+                AbsorbedDoseOfIonizingRadiationUnit.Kilorad => (baseUnitValue * 100) / 1e3d,
+                AbsorbedDoseOfIonizingRadiationUnit.Megagray => (baseUnitValue) / 1e6d,
+                AbsorbedDoseOfIonizingRadiationUnit.Megarad => (baseUnitValue * 100) / 1e6d,
+                AbsorbedDoseOfIonizingRadiationUnit.Microgray => (baseUnitValue) / 1e-6d,
+                AbsorbedDoseOfIonizingRadiationUnit.Milligray => (baseUnitValue) / 1e-3d,
+                AbsorbedDoseOfIonizingRadiationUnit.Millirad => (baseUnitValue * 100) / 1e-3d,
+                AbsorbedDoseOfIonizingRadiationUnit.Nanogray => (baseUnitValue) / 1e-9d,
+                AbsorbedDoseOfIonizingRadiationUnit.Petagray => (baseUnitValue) / 1e15d,
+                AbsorbedDoseOfIonizingRadiationUnit.Picogray => (baseUnitValue) / 1e-12d,
+                AbsorbedDoseOfIonizingRadiationUnit.Rad => baseUnitValue * 100,
+                AbsorbedDoseOfIonizingRadiationUnit.Teragray => (baseUnitValue) / 1e12d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

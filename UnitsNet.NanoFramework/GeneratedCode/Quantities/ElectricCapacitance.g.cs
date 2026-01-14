@@ -168,65 +168,65 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(ElectricCapacitanceUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(ElectricCapacitanceUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this ElectricCapacitance to another ElectricCapacitance with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A ElectricCapacitance with the specified unit.</returns>
-                public ElectricCapacitance ToUnit(ElectricCapacitanceUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new ElectricCapacitance(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this ElectricCapacitance to another ElectricCapacitance with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ElectricCapacitance with the specified unit.</returns>
+        public ElectricCapacitance ToUnit(ElectricCapacitanceUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new ElectricCapacitance(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        ElectricCapacitanceUnit.Farad => _value,
-                        ElectricCapacitanceUnit.Kilofarad => (_value) * 1e3d,
-                        ElectricCapacitanceUnit.Megafarad => (_value) * 1e6d,
-                        ElectricCapacitanceUnit.Microfarad => (_value) * 1e-6d,
-                        ElectricCapacitanceUnit.Millifarad => (_value) * 1e-3d,
-                        ElectricCapacitanceUnit.Nanofarad => (_value) * 1e-9d,
-                        ElectricCapacitanceUnit.Picofarad => (_value) * 1e-12d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                ElectricCapacitanceUnit.Farad => _value,
+                ElectricCapacitanceUnit.Kilofarad => (_value) * 1e3d,
+                ElectricCapacitanceUnit.Megafarad => (_value) * 1e6d,
+                ElectricCapacitanceUnit.Microfarad => (_value) * 1e-6d,
+                ElectricCapacitanceUnit.Millifarad => (_value) * 1e-3d,
+                ElectricCapacitanceUnit.Nanofarad => (_value) * 1e-9d,
+                ElectricCapacitanceUnit.Picofarad => (_value) * 1e-12d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(ElectricCapacitanceUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(ElectricCapacitanceUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        ElectricCapacitanceUnit.Farad => baseUnitValue,
-                        ElectricCapacitanceUnit.Kilofarad => (baseUnitValue) / 1e3d,
-                        ElectricCapacitanceUnit.Megafarad => (baseUnitValue) / 1e6d,
-                        ElectricCapacitanceUnit.Microfarad => (baseUnitValue) / 1e-6d,
-                        ElectricCapacitanceUnit.Millifarad => (baseUnitValue) / 1e-3d,
-                        ElectricCapacitanceUnit.Nanofarad => (baseUnitValue) / 1e-9d,
-                        ElectricCapacitanceUnit.Picofarad => (baseUnitValue) / 1e-12d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                ElectricCapacitanceUnit.Farad => baseUnitValue,
+                ElectricCapacitanceUnit.Kilofarad => (baseUnitValue) / 1e3d,
+                ElectricCapacitanceUnit.Megafarad => (baseUnitValue) / 1e6d,
+                ElectricCapacitanceUnit.Microfarad => (baseUnitValue) / 1e-6d,
+                ElectricCapacitanceUnit.Millifarad => (baseUnitValue) / 1e-3d,
+                ElectricCapacitanceUnit.Nanofarad => (baseUnitValue) / 1e-9d,
+                ElectricCapacitanceUnit.Picofarad => (baseUnitValue) / 1e-12d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

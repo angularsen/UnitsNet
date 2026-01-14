@@ -155,63 +155,63 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(CoefficientOfThermalExpansionUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(CoefficientOfThermalExpansionUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this CoefficientOfThermalExpansion to another CoefficientOfThermalExpansion with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A CoefficientOfThermalExpansion with the specified unit.</returns>
-                public CoefficientOfThermalExpansion ToUnit(CoefficientOfThermalExpansionUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new CoefficientOfThermalExpansion(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this CoefficientOfThermalExpansion to another CoefficientOfThermalExpansion with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A CoefficientOfThermalExpansion with the specified unit.</returns>
+        public CoefficientOfThermalExpansion ToUnit(CoefficientOfThermalExpansionUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new CoefficientOfThermalExpansion(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        CoefficientOfThermalExpansionUnit.PerDegreeCelsius => _value,
-                        CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit => _value * 9 / 5,
-                        CoefficientOfThermalExpansionUnit.PerKelvin => _value,
-                        CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius => _value / 1e6,
-                        CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit => _value * 9 / 5e6,
-                        CoefficientOfThermalExpansionUnit.PpmPerKelvin => _value / 1e6,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                CoefficientOfThermalExpansionUnit.PerDegreeCelsius => _value,
+                CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit => _value * 9 / 5,
+                CoefficientOfThermalExpansionUnit.PerKelvin => _value,
+                CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius => _value / 1e6,
+                CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit => _value * 9 / 5e6,
+                CoefficientOfThermalExpansionUnit.PpmPerKelvin => _value / 1e6,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(CoefficientOfThermalExpansionUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(CoefficientOfThermalExpansionUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        CoefficientOfThermalExpansionUnit.PerDegreeCelsius => baseUnitValue,
-                        CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit => baseUnitValue * 5 / 9,
-                        CoefficientOfThermalExpansionUnit.PerKelvin => baseUnitValue,
-                        CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius => baseUnitValue * 1e6,
-                        CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit => baseUnitValue * 5e6 / 9,
-                        CoefficientOfThermalExpansionUnit.PpmPerKelvin => baseUnitValue * 1e6,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                CoefficientOfThermalExpansionUnit.PerDegreeCelsius => baseUnitValue,
+                CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit => baseUnitValue * 5 / 9,
+                CoefficientOfThermalExpansionUnit.PerKelvin => baseUnitValue,
+                CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius => baseUnitValue * 1e6,
+                CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit => baseUnitValue * 5e6 / 9,
+                CoefficientOfThermalExpansionUnit.PpmPerKelvin => baseUnitValue * 1e6,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

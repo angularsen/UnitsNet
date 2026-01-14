@@ -348,101 +348,101 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(DoseAreaProductUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(DoseAreaProductUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this DoseAreaProduct to another DoseAreaProduct with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A DoseAreaProduct with the specified unit.</returns>
-                public DoseAreaProduct ToUnit(DoseAreaProductUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new DoseAreaProduct(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this DoseAreaProduct to another DoseAreaProduct with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A DoseAreaProduct with the specified unit.</returns>
+        public DoseAreaProduct ToUnit(DoseAreaProductUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new DoseAreaProduct(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        DoseAreaProductUnit.CentigraySquareCentimeter => (_value / 10000) * 1e-2d,
-                        DoseAreaProductUnit.CentigraySquareDecimeter => (_value / 100) * 1e-2d,
-                        DoseAreaProductUnit.CentigraySquareMeter => (_value) * 1e-2d,
-                        DoseAreaProductUnit.CentigraySquareMicrometer => (_value / 1000000000000) * 1e-2d,
-                        DoseAreaProductUnit.CentigraySquareMillimeter => (_value / 1000000) * 1e-2d,
-                        DoseAreaProductUnit.DecigraySquareCentimeter => (_value / 10000) * 1e-1d,
-                        DoseAreaProductUnit.DecigraySquareDecimeter => (_value / 100) * 1e-1d,
-                        DoseAreaProductUnit.DecigraySquareMeter => (_value) * 1e-1d,
-                        DoseAreaProductUnit.DecigraySquareMicrometer => (_value / 1000000000000) * 1e-1d,
-                        DoseAreaProductUnit.DecigraySquareMillimeter => (_value / 1000000) * 1e-1d,
-                        DoseAreaProductUnit.GraySquareCentimeter => _value / 10000,
-                        DoseAreaProductUnit.GraySquareDecimeter => _value / 100,
-                        DoseAreaProductUnit.GraySquareMeter => _value,
-                        DoseAreaProductUnit.GraySquareMicrometer => _value / 1000000000000,
-                        DoseAreaProductUnit.GraySquareMillimeter => _value / 1000000,
-                        DoseAreaProductUnit.MicrograySquareCentimeter => (_value / 10000) * 1e-6d,
-                        DoseAreaProductUnit.MicrograySquareDecimeter => (_value / 100) * 1e-6d,
-                        DoseAreaProductUnit.MicrograySquareMeter => (_value) * 1e-6d,
-                        DoseAreaProductUnit.MicrograySquareMicrometer => (_value / 1000000000000) * 1e-6d,
-                        DoseAreaProductUnit.MicrograySquareMillimeter => (_value / 1000000) * 1e-6d,
-                        DoseAreaProductUnit.MilligraySquareCentimeter => (_value / 10000) * 1e-3d,
-                        DoseAreaProductUnit.MilligraySquareDecimeter => (_value / 100) * 1e-3d,
-                        DoseAreaProductUnit.MilligraySquareMeter => (_value) * 1e-3d,
-                        DoseAreaProductUnit.MilligraySquareMicrometer => (_value / 1000000000000) * 1e-3d,
-                        DoseAreaProductUnit.MilligraySquareMillimeter => (_value / 1000000) * 1e-3d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                DoseAreaProductUnit.CentigraySquareCentimeter => (_value / 10000) * 1e-2d,
+                DoseAreaProductUnit.CentigraySquareDecimeter => (_value / 100) * 1e-2d,
+                DoseAreaProductUnit.CentigraySquareMeter => (_value) * 1e-2d,
+                DoseAreaProductUnit.CentigraySquareMicrometer => (_value / 1000000000000) * 1e-2d,
+                DoseAreaProductUnit.CentigraySquareMillimeter => (_value / 1000000) * 1e-2d,
+                DoseAreaProductUnit.DecigraySquareCentimeter => (_value / 10000) * 1e-1d,
+                DoseAreaProductUnit.DecigraySquareDecimeter => (_value / 100) * 1e-1d,
+                DoseAreaProductUnit.DecigraySquareMeter => (_value) * 1e-1d,
+                DoseAreaProductUnit.DecigraySquareMicrometer => (_value / 1000000000000) * 1e-1d,
+                DoseAreaProductUnit.DecigraySquareMillimeter => (_value / 1000000) * 1e-1d,
+                DoseAreaProductUnit.GraySquareCentimeter => _value / 10000,
+                DoseAreaProductUnit.GraySquareDecimeter => _value / 100,
+                DoseAreaProductUnit.GraySquareMeter => _value,
+                DoseAreaProductUnit.GraySquareMicrometer => _value / 1000000000000,
+                DoseAreaProductUnit.GraySquareMillimeter => _value / 1000000,
+                DoseAreaProductUnit.MicrograySquareCentimeter => (_value / 10000) * 1e-6d,
+                DoseAreaProductUnit.MicrograySquareDecimeter => (_value / 100) * 1e-6d,
+                DoseAreaProductUnit.MicrograySquareMeter => (_value) * 1e-6d,
+                DoseAreaProductUnit.MicrograySquareMicrometer => (_value / 1000000000000) * 1e-6d,
+                DoseAreaProductUnit.MicrograySquareMillimeter => (_value / 1000000) * 1e-6d,
+                DoseAreaProductUnit.MilligraySquareCentimeter => (_value / 10000) * 1e-3d,
+                DoseAreaProductUnit.MilligraySquareDecimeter => (_value / 100) * 1e-3d,
+                DoseAreaProductUnit.MilligraySquareMeter => (_value) * 1e-3d,
+                DoseAreaProductUnit.MilligraySquareMicrometer => (_value / 1000000000000) * 1e-3d,
+                DoseAreaProductUnit.MilligraySquareMillimeter => (_value / 1000000) * 1e-3d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(DoseAreaProductUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(DoseAreaProductUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        DoseAreaProductUnit.CentigraySquareCentimeter => (baseUnitValue * 10000) / 1e-2d,
-                        DoseAreaProductUnit.CentigraySquareDecimeter => (baseUnitValue * 100) / 1e-2d,
-                        DoseAreaProductUnit.CentigraySquareMeter => (baseUnitValue) / 1e-2d,
-                        DoseAreaProductUnit.CentigraySquareMicrometer => (baseUnitValue * 1000000000000) / 1e-2d,
-                        DoseAreaProductUnit.CentigraySquareMillimeter => (baseUnitValue * 1000000) / 1e-2d,
-                        DoseAreaProductUnit.DecigraySquareCentimeter => (baseUnitValue * 10000) / 1e-1d,
-                        DoseAreaProductUnit.DecigraySquareDecimeter => (baseUnitValue * 100) / 1e-1d,
-                        DoseAreaProductUnit.DecigraySquareMeter => (baseUnitValue) / 1e-1d,
-                        DoseAreaProductUnit.DecigraySquareMicrometer => (baseUnitValue * 1000000000000) / 1e-1d,
-                        DoseAreaProductUnit.DecigraySquareMillimeter => (baseUnitValue * 1000000) / 1e-1d,
-                        DoseAreaProductUnit.GraySquareCentimeter => baseUnitValue * 10000,
-                        DoseAreaProductUnit.GraySquareDecimeter => baseUnitValue * 100,
-                        DoseAreaProductUnit.GraySquareMeter => baseUnitValue,
-                        DoseAreaProductUnit.GraySquareMicrometer => baseUnitValue * 1000000000000,
-                        DoseAreaProductUnit.GraySquareMillimeter => baseUnitValue * 1000000,
-                        DoseAreaProductUnit.MicrograySquareCentimeter => (baseUnitValue * 10000) / 1e-6d,
-                        DoseAreaProductUnit.MicrograySquareDecimeter => (baseUnitValue * 100) / 1e-6d,
-                        DoseAreaProductUnit.MicrograySquareMeter => (baseUnitValue) / 1e-6d,
-                        DoseAreaProductUnit.MicrograySquareMicrometer => (baseUnitValue * 1000000000000) / 1e-6d,
-                        DoseAreaProductUnit.MicrograySquareMillimeter => (baseUnitValue * 1000000) / 1e-6d,
-                        DoseAreaProductUnit.MilligraySquareCentimeter => (baseUnitValue * 10000) / 1e-3d,
-                        DoseAreaProductUnit.MilligraySquareDecimeter => (baseUnitValue * 100) / 1e-3d,
-                        DoseAreaProductUnit.MilligraySquareMeter => (baseUnitValue) / 1e-3d,
-                        DoseAreaProductUnit.MilligraySquareMicrometer => (baseUnitValue * 1000000000000) / 1e-3d,
-                        DoseAreaProductUnit.MilligraySquareMillimeter => (baseUnitValue * 1000000) / 1e-3d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                DoseAreaProductUnit.CentigraySquareCentimeter => (baseUnitValue * 10000) / 1e-2d,
+                DoseAreaProductUnit.CentigraySquareDecimeter => (baseUnitValue * 100) / 1e-2d,
+                DoseAreaProductUnit.CentigraySquareMeter => (baseUnitValue) / 1e-2d,
+                DoseAreaProductUnit.CentigraySquareMicrometer => (baseUnitValue * 1000000000000) / 1e-2d,
+                DoseAreaProductUnit.CentigraySquareMillimeter => (baseUnitValue * 1000000) / 1e-2d,
+                DoseAreaProductUnit.DecigraySquareCentimeter => (baseUnitValue * 10000) / 1e-1d,
+                DoseAreaProductUnit.DecigraySquareDecimeter => (baseUnitValue * 100) / 1e-1d,
+                DoseAreaProductUnit.DecigraySquareMeter => (baseUnitValue) / 1e-1d,
+                DoseAreaProductUnit.DecigraySquareMicrometer => (baseUnitValue * 1000000000000) / 1e-1d,
+                DoseAreaProductUnit.DecigraySquareMillimeter => (baseUnitValue * 1000000) / 1e-1d,
+                DoseAreaProductUnit.GraySquareCentimeter => baseUnitValue * 10000,
+                DoseAreaProductUnit.GraySquareDecimeter => baseUnitValue * 100,
+                DoseAreaProductUnit.GraySquareMeter => baseUnitValue,
+                DoseAreaProductUnit.GraySquareMicrometer => baseUnitValue * 1000000000000,
+                DoseAreaProductUnit.GraySquareMillimeter => baseUnitValue * 1000000,
+                DoseAreaProductUnit.MicrograySquareCentimeter => (baseUnitValue * 10000) / 1e-6d,
+                DoseAreaProductUnit.MicrograySquareDecimeter => (baseUnitValue * 100) / 1e-6d,
+                DoseAreaProductUnit.MicrograySquareMeter => (baseUnitValue) / 1e-6d,
+                DoseAreaProductUnit.MicrograySquareMicrometer => (baseUnitValue * 1000000000000) / 1e-6d,
+                DoseAreaProductUnit.MicrograySquareMillimeter => (baseUnitValue * 1000000) / 1e-6d,
+                DoseAreaProductUnit.MilligraySquareCentimeter => (baseUnitValue * 10000) / 1e-3d,
+                DoseAreaProductUnit.MilligraySquareDecimeter => (baseUnitValue * 100) / 1e-3d,
+                DoseAreaProductUnit.MilligraySquareMeter => (baseUnitValue) / 1e-3d,
+                DoseAreaProductUnit.MilligraySquareMicrometer => (baseUnitValue * 1000000000000) / 1e-3d,
+                DoseAreaProductUnit.MilligraySquareMillimeter => (baseUnitValue * 1000000) / 1e-3d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

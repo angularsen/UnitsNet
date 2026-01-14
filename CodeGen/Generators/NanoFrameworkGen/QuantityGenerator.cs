@@ -167,67 +167,67 @@ namespace UnitsNet
         private void GenerateConversionMethods()
         {
             Writer.WL($@"
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name=""unit"" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As({_unitEnumName} unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name=""unit"" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As({_unitEnumName} unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this {_quantity.Name} to another {_quantity.Name} with the unit representation <paramref name=""unit"" />.
-                /// </summary>
-                /// <returns>A {_quantity.Name} with the specified unit.</returns>
-                public {_quantity.Name} ToUnit({_unitEnumName} unit)
-                {{
-                    var convertedValue = GetValueAs(unit);
-                    return new {_quantity.Name}(convertedValue, unit);
-                }}
+        /// <summary>
+        ///     Converts this {_quantity.Name} to another {_quantity.Name} with the unit representation <paramref name=""unit"" />.
+        /// </summary>
+        /// <returns>A {_quantity.Name} with the specified unit.</returns>
+        public {_quantity.Name} ToUnit({_unitEnumName} unit)
+        {{
+            var convertedValue = GetValueAs(unit);
+            return new {_quantity.Name}(convertedValue, unit);
+        }}
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {{
-                    return Unit switch
-                    {{");
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {{
+            return Unit switch
+            {{");
             foreach (Unit unit in _quantity.Units)
             {
                 var func = unit.FromUnitToBaseFunc.Replace("{x}", "_value");
                 Writer.WL($@"
-                        {_unitEnumName}.{unit.SingularName} => {func},");
+                {_unitEnumName}.{unit.SingularName} => {func},");
             }
 
             Writer.WL($@"
-                        _ => throw new NotImplementedException($""Can't convert {{Unit}} to base units."")
-                    }};
-                    }}
+                _ => throw new NotImplementedException($""Can't convert {{Unit}} to base units."")
+            }};
+        }}
 
-                private double GetValueAs({_unitEnumName} unit)
-                {{
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs({_unitEnumName} unit)
+        {{
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {{");
+            return unit switch
+            {{");
             foreach (Unit unit in _quantity.Units)
             {
                 var func = unit.FromBaseToUnitFunc.Replace("{x}", "baseUnitValue");
                 Writer.WL($@"
-                        {_unitEnumName}.{unit.SingularName} => {func},");
+                {_unitEnumName}.{unit.SingularName} => {func},");
             }
 
             Writer.WL(@"
-                        _ => throw new NotImplementedException($""Can't convert {Unit} to {unit}."")
-                    };
-                    }
+                _ => throw new NotImplementedException($""Can't convert {Unit} to {unit}."")
+            };
+        }
 
-                #endregion");
+        #endregion");
         }
 
         /// <inheritdoc cref="GetObsoleteAttributeOrNull(string)"/>

@@ -245,81 +245,81 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(AngleUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(AngleUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this Angle to another Angle with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A Angle with the specified unit.</returns>
-                public Angle ToUnit(AngleUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new Angle(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this Angle to another Angle with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Angle with the specified unit.</returns>
+        public Angle ToUnit(AngleUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new Angle(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        AngleUnit.Arcminute => _value * 3.1415926535897931 / (60 * 180),
-                        AngleUnit.Arcsecond => _value * 3.1415926535897931 / (3600 * 180),
-                        AngleUnit.Centiradian => (_value) * 1e-2d,
-                        AngleUnit.Deciradian => (_value) * 1e-1d,
-                        AngleUnit.Degree => _value * 3.1415926535897931 / 180,
-                        AngleUnit.Gradian => _value * 3.1415926535897931 / 200,
-                        AngleUnit.Microdegree => (_value * 3.1415926535897931 / 180) * 1e-6d,
-                        AngleUnit.Microradian => (_value) * 1e-6d,
-                        AngleUnit.Millidegree => (_value * 3.1415926535897931 / 180) * 1e-3d,
-                        AngleUnit.Milliradian => (_value) * 1e-3d,
-                        AngleUnit.Nanodegree => (_value * 3.1415926535897931 / 180) * 1e-9d,
-                        AngleUnit.Nanoradian => (_value) * 1e-9d,
-                        AngleUnit.NatoMil => _value * 3.1415926535897931 / 3200,
-                        AngleUnit.Radian => _value,
-                        AngleUnit.Revolution => _value * 2 * 3.1415926535897931,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                AngleUnit.Arcminute => _value * 3.1415926535897931 / (60 * 180),
+                AngleUnit.Arcsecond => _value * 3.1415926535897931 / (3600 * 180),
+                AngleUnit.Centiradian => (_value) * 1e-2d,
+                AngleUnit.Deciradian => (_value) * 1e-1d,
+                AngleUnit.Degree => _value * 3.1415926535897931 / 180,
+                AngleUnit.Gradian => _value * 3.1415926535897931 / 200,
+                AngleUnit.Microdegree => (_value * 3.1415926535897931 / 180) * 1e-6d,
+                AngleUnit.Microradian => (_value) * 1e-6d,
+                AngleUnit.Millidegree => (_value * 3.1415926535897931 / 180) * 1e-3d,
+                AngleUnit.Milliradian => (_value) * 1e-3d,
+                AngleUnit.Nanodegree => (_value * 3.1415926535897931 / 180) * 1e-9d,
+                AngleUnit.Nanoradian => (_value) * 1e-9d,
+                AngleUnit.NatoMil => _value * 3.1415926535897931 / 3200,
+                AngleUnit.Radian => _value,
+                AngleUnit.Revolution => _value * 2 * 3.1415926535897931,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(AngleUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(AngleUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        AngleUnit.Arcminute => baseUnitValue * 60 * 180 / 3.1415926535897931,
-                        AngleUnit.Arcsecond => baseUnitValue * 3600 * 180 / 3.1415926535897931,
-                        AngleUnit.Centiradian => (baseUnitValue) / 1e-2d,
-                        AngleUnit.Deciradian => (baseUnitValue) / 1e-1d,
-                        AngleUnit.Degree => baseUnitValue * 180 / 3.1415926535897931,
-                        AngleUnit.Gradian => baseUnitValue * 200 / 3.1415926535897931,
-                        AngleUnit.Microdegree => (baseUnitValue * 180 / 3.1415926535897931) / 1e-6d,
-                        AngleUnit.Microradian => (baseUnitValue) / 1e-6d,
-                        AngleUnit.Millidegree => (baseUnitValue * 180 / 3.1415926535897931) / 1e-3d,
-                        AngleUnit.Milliradian => (baseUnitValue) / 1e-3d,
-                        AngleUnit.Nanodegree => (baseUnitValue * 180 / 3.1415926535897931) / 1e-9d,
-                        AngleUnit.Nanoradian => (baseUnitValue) / 1e-9d,
-                        AngleUnit.NatoMil => baseUnitValue * 3200 / 3.1415926535897931,
-                        AngleUnit.Radian => baseUnitValue,
-                        AngleUnit.Revolution => baseUnitValue / (2 * 3.1415926535897931),
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                AngleUnit.Arcminute => baseUnitValue * 60 * 180 / 3.1415926535897931,
+                AngleUnit.Arcsecond => baseUnitValue * 3600 * 180 / 3.1415926535897931,
+                AngleUnit.Centiradian => (baseUnitValue) / 1e-2d,
+                AngleUnit.Deciradian => (baseUnitValue) / 1e-1d,
+                AngleUnit.Degree => baseUnitValue * 180 / 3.1415926535897931,
+                AngleUnit.Gradian => baseUnitValue * 200 / 3.1415926535897931,
+                AngleUnit.Microdegree => (baseUnitValue * 180 / 3.1415926535897931) / 1e-6d,
+                AngleUnit.Microradian => (baseUnitValue) / 1e-6d,
+                AngleUnit.Millidegree => (baseUnitValue * 180 / 3.1415926535897931) / 1e-3d,
+                AngleUnit.Milliradian => (baseUnitValue) / 1e-3d,
+                AngleUnit.Nanodegree => (baseUnitValue * 180 / 3.1415926535897931) / 1e-9d,
+                AngleUnit.Nanoradian => (baseUnitValue) / 1e-9d,
+                AngleUnit.NatoMil => baseUnitValue * 3200 / 3.1415926535897931,
+                AngleUnit.Radian => baseUnitValue,
+                AngleUnit.Revolution => baseUnitValue / (2 * 3.1415926535897931),
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

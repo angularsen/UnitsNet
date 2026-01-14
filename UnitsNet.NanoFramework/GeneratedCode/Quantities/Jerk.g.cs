@@ -205,73 +205,73 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(JerkUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(JerkUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this Jerk to another Jerk with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A Jerk with the specified unit.</returns>
-                public Jerk ToUnit(JerkUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new Jerk(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this Jerk to another Jerk with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Jerk with the specified unit.</returns>
+        public Jerk ToUnit(JerkUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new Jerk(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        JerkUnit.CentimeterPerSecondCubed => (_value) * 1e-2d,
-                        JerkUnit.DecimeterPerSecondCubed => (_value) * 1e-1d,
-                        JerkUnit.FootPerSecondCubed => _value * 0.304800,
-                        JerkUnit.InchPerSecondCubed => _value * 0.0254,
-                        JerkUnit.KilometerPerSecondCubed => (_value) * 1e3d,
-                        JerkUnit.MeterPerSecondCubed => _value,
-                        JerkUnit.MicrometerPerSecondCubed => (_value) * 1e-6d,
-                        JerkUnit.MillimeterPerSecondCubed => (_value) * 1e-3d,
-                        JerkUnit.MillistandardGravitiesPerSecond => (_value * 9.80665) * 1e-3d,
-                        JerkUnit.NanometerPerSecondCubed => (_value) * 1e-9d,
-                        JerkUnit.StandardGravitiesPerSecond => _value * 9.80665,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                JerkUnit.CentimeterPerSecondCubed => (_value) * 1e-2d,
+                JerkUnit.DecimeterPerSecondCubed => (_value) * 1e-1d,
+                JerkUnit.FootPerSecondCubed => _value * 0.304800,
+                JerkUnit.InchPerSecondCubed => _value * 0.0254,
+                JerkUnit.KilometerPerSecondCubed => (_value) * 1e3d,
+                JerkUnit.MeterPerSecondCubed => _value,
+                JerkUnit.MicrometerPerSecondCubed => (_value) * 1e-6d,
+                JerkUnit.MillimeterPerSecondCubed => (_value) * 1e-3d,
+                JerkUnit.MillistandardGravitiesPerSecond => (_value * 9.80665) * 1e-3d,
+                JerkUnit.NanometerPerSecondCubed => (_value) * 1e-9d,
+                JerkUnit.StandardGravitiesPerSecond => _value * 9.80665,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(JerkUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(JerkUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        JerkUnit.CentimeterPerSecondCubed => (baseUnitValue) / 1e-2d,
-                        JerkUnit.DecimeterPerSecondCubed => (baseUnitValue) / 1e-1d,
-                        JerkUnit.FootPerSecondCubed => baseUnitValue / 0.304800,
-                        JerkUnit.InchPerSecondCubed => baseUnitValue / 0.0254,
-                        JerkUnit.KilometerPerSecondCubed => (baseUnitValue) / 1e3d,
-                        JerkUnit.MeterPerSecondCubed => baseUnitValue,
-                        JerkUnit.MicrometerPerSecondCubed => (baseUnitValue) / 1e-6d,
-                        JerkUnit.MillimeterPerSecondCubed => (baseUnitValue) / 1e-3d,
-                        JerkUnit.MillistandardGravitiesPerSecond => (baseUnitValue / 9.80665) / 1e-3d,
-                        JerkUnit.NanometerPerSecondCubed => (baseUnitValue) / 1e-9d,
-                        JerkUnit.StandardGravitiesPerSecond => baseUnitValue / 9.80665,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                JerkUnit.CentimeterPerSecondCubed => (baseUnitValue) / 1e-2d,
+                JerkUnit.DecimeterPerSecondCubed => (baseUnitValue) / 1e-1d,
+                JerkUnit.FootPerSecondCubed => baseUnitValue / 0.304800,
+                JerkUnit.InchPerSecondCubed => baseUnitValue / 0.0254,
+                JerkUnit.KilometerPerSecondCubed => (baseUnitValue) / 1e3d,
+                JerkUnit.MeterPerSecondCubed => baseUnitValue,
+                JerkUnit.MicrometerPerSecondCubed => (baseUnitValue) / 1e-6d,
+                JerkUnit.MillimeterPerSecondCubed => (baseUnitValue) / 1e-3d,
+                JerkUnit.MillistandardGravitiesPerSecond => (baseUnitValue / 9.80665) / 1e-3d,
+                JerkUnit.NanometerPerSecondCubed => (baseUnitValue) / 1e-9d,
+                JerkUnit.StandardGravitiesPerSecond => baseUnitValue / 9.80665,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

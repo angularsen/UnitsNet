@@ -138,59 +138,59 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(SpecificFuelConsumptionUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(SpecificFuelConsumptionUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this SpecificFuelConsumption to another SpecificFuelConsumption with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A SpecificFuelConsumption with the specified unit.</returns>
-                public SpecificFuelConsumption ToUnit(SpecificFuelConsumptionUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new SpecificFuelConsumption(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this SpecificFuelConsumption to another SpecificFuelConsumption with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A SpecificFuelConsumption with the specified unit.</returns>
+        public SpecificFuelConsumption ToUnit(SpecificFuelConsumptionUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new SpecificFuelConsumption(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        SpecificFuelConsumptionUnit.GramPerKilonewtonSecond => _value,
-                        SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour => _value * 1000 / (9.80665e-3 * 3600),
-                        SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond => (_value) * 1e3d,
-                        SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour => _value * 1000 / (9.80665e-3 * 3600),
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                SpecificFuelConsumptionUnit.GramPerKilonewtonSecond => _value,
+                SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour => _value * 1000 / (9.80665e-3 * 3600),
+                SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond => (_value) * 1e3d,
+                SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour => _value * 1000 / (9.80665e-3 * 3600),
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(SpecificFuelConsumptionUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(SpecificFuelConsumptionUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        SpecificFuelConsumptionUnit.GramPerKilonewtonSecond => baseUnitValue,
-                        SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour => baseUnitValue * 9.80665e-3 * 3600 / 1000,
-                        SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond => (baseUnitValue) / 1e3d,
-                        SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour => baseUnitValue * 9.80665e-3 * 3600 / 1000,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                SpecificFuelConsumptionUnit.GramPerKilonewtonSecond => baseUnitValue,
+                SpecificFuelConsumptionUnit.KilogramPerKilogramForceHour => baseUnitValue * 9.80665e-3 * 3600 / 1000,
+                SpecificFuelConsumptionUnit.KilogramPerKilonewtonSecond => (baseUnitValue) / 1e3d,
+                SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour => baseUnitValue * 9.80665e-3 * 3600 / 1000,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

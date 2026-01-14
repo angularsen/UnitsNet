@@ -208,73 +208,73 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(ElectricChargeUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(ElectricChargeUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this ElectricCharge to another ElectricCharge with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A ElectricCharge with the specified unit.</returns>
-                public ElectricCharge ToUnit(ElectricChargeUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new ElectricCharge(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this ElectricCharge to another ElectricCharge with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ElectricCharge with the specified unit.</returns>
+        public ElectricCharge ToUnit(ElectricChargeUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new ElectricCharge(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        ElectricChargeUnit.AmpereHour => _value * 3600,
-                        ElectricChargeUnit.Coulomb => _value,
-                        ElectricChargeUnit.KiloampereHour => (_value * 3600) * 1e3d,
-                        ElectricChargeUnit.Kilocoulomb => (_value) * 1e3d,
-                        ElectricChargeUnit.MegaampereHour => (_value * 3600) * 1e6d,
-                        ElectricChargeUnit.Megacoulomb => (_value) * 1e6d,
-                        ElectricChargeUnit.Microcoulomb => (_value) * 1e-6d,
-                        ElectricChargeUnit.MilliampereHour => (_value * 3600) * 1e-3d,
-                        ElectricChargeUnit.Millicoulomb => (_value) * 1e-3d,
-                        ElectricChargeUnit.Nanocoulomb => (_value) * 1e-9d,
-                        ElectricChargeUnit.Picocoulomb => (_value) * 1e-12d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                ElectricChargeUnit.AmpereHour => _value * 3600,
+                ElectricChargeUnit.Coulomb => _value,
+                ElectricChargeUnit.KiloampereHour => (_value * 3600) * 1e3d,
+                ElectricChargeUnit.Kilocoulomb => (_value) * 1e3d,
+                ElectricChargeUnit.MegaampereHour => (_value * 3600) * 1e6d,
+                ElectricChargeUnit.Megacoulomb => (_value) * 1e6d,
+                ElectricChargeUnit.Microcoulomb => (_value) * 1e-6d,
+                ElectricChargeUnit.MilliampereHour => (_value * 3600) * 1e-3d,
+                ElectricChargeUnit.Millicoulomb => (_value) * 1e-3d,
+                ElectricChargeUnit.Nanocoulomb => (_value) * 1e-9d,
+                ElectricChargeUnit.Picocoulomb => (_value) * 1e-12d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(ElectricChargeUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(ElectricChargeUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        ElectricChargeUnit.AmpereHour => baseUnitValue / 3600,
-                        ElectricChargeUnit.Coulomb => baseUnitValue,
-                        ElectricChargeUnit.KiloampereHour => (baseUnitValue / 3600) / 1e3d,
-                        ElectricChargeUnit.Kilocoulomb => (baseUnitValue) / 1e3d,
-                        ElectricChargeUnit.MegaampereHour => (baseUnitValue / 3600) / 1e6d,
-                        ElectricChargeUnit.Megacoulomb => (baseUnitValue) / 1e6d,
-                        ElectricChargeUnit.Microcoulomb => (baseUnitValue) / 1e-6d,
-                        ElectricChargeUnit.MilliampereHour => (baseUnitValue / 3600) / 1e-3d,
-                        ElectricChargeUnit.Millicoulomb => (baseUnitValue) / 1e-3d,
-                        ElectricChargeUnit.Nanocoulomb => (baseUnitValue) / 1e-9d,
-                        ElectricChargeUnit.Picocoulomb => (baseUnitValue) / 1e-12d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                ElectricChargeUnit.AmpereHour => baseUnitValue / 3600,
+                ElectricChargeUnit.Coulomb => baseUnitValue,
+                ElectricChargeUnit.KiloampereHour => (baseUnitValue / 3600) / 1e3d,
+                ElectricChargeUnit.Kilocoulomb => (baseUnitValue) / 1e3d,
+                ElectricChargeUnit.MegaampereHour => (baseUnitValue / 3600) / 1e6d,
+                ElectricChargeUnit.Megacoulomb => (baseUnitValue) / 1e6d,
+                ElectricChargeUnit.Microcoulomb => (baseUnitValue) / 1e-6d,
+                ElectricChargeUnit.MilliampereHour => (baseUnitValue / 3600) / 1e-3d,
+                ElectricChargeUnit.Millicoulomb => (baseUnitValue) / 1e-3d,
+                ElectricChargeUnit.Nanocoulomb => (baseUnitValue) / 1e-9d,
+                ElectricChargeUnit.Picocoulomb => (baseUnitValue) / 1e-12d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

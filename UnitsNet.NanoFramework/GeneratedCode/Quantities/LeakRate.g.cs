@@ -138,59 +138,59 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(LeakRateUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(LeakRateUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this LeakRate to another LeakRate with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A LeakRate with the specified unit.</returns>
-                public LeakRate ToUnit(LeakRateUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new LeakRate(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this LeakRate to another LeakRate with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A LeakRate with the specified unit.</returns>
+        public LeakRate ToUnit(LeakRateUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new LeakRate(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        LeakRateUnit.AtmCubicCentimeterPerSecond => _value / (1e6 / 101325),
-                        LeakRateUnit.MillibarLiterPerSecond => _value / 10,
-                        LeakRateUnit.PascalCubicMeterPerSecond => _value,
-                        LeakRateUnit.TorrLiterPerSecond => _value / 7.5,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                LeakRateUnit.AtmCubicCentimeterPerSecond => _value / (1e6 / 101325),
+                LeakRateUnit.MillibarLiterPerSecond => _value / 10,
+                LeakRateUnit.PascalCubicMeterPerSecond => _value,
+                LeakRateUnit.TorrLiterPerSecond => _value / 7.5,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(LeakRateUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(LeakRateUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        LeakRateUnit.AtmCubicCentimeterPerSecond => baseUnitValue * (1e6 / 101325),
-                        LeakRateUnit.MillibarLiterPerSecond => baseUnitValue * 10,
-                        LeakRateUnit.PascalCubicMeterPerSecond => baseUnitValue,
-                        LeakRateUnit.TorrLiterPerSecond => baseUnitValue * 7.5,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                LeakRateUnit.AtmCubicCentimeterPerSecond => baseUnitValue * (1e6 / 101325),
+                LeakRateUnit.MillibarLiterPerSecond => baseUnitValue * 10,
+                LeakRateUnit.PascalCubicMeterPerSecond => baseUnitValue,
+                LeakRateUnit.TorrLiterPerSecond => baseUnitValue * 7.5,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

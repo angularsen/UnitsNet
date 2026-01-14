@@ -178,67 +178,67 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(ElectricReactanceUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(ElectricReactanceUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this ElectricReactance to another ElectricReactance with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A ElectricReactance with the specified unit.</returns>
-                public ElectricReactance ToUnit(ElectricReactanceUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new ElectricReactance(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this ElectricReactance to another ElectricReactance with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ElectricReactance with the specified unit.</returns>
+        public ElectricReactance ToUnit(ElectricReactanceUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new ElectricReactance(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        ElectricReactanceUnit.Gigaohm => (_value) * 1e9d,
-                        ElectricReactanceUnit.Kiloohm => (_value) * 1e3d,
-                        ElectricReactanceUnit.Megaohm => (_value) * 1e6d,
-                        ElectricReactanceUnit.Microohm => (_value) * 1e-6d,
-                        ElectricReactanceUnit.Milliohm => (_value) * 1e-3d,
-                        ElectricReactanceUnit.Nanoohm => (_value) * 1e-9d,
-                        ElectricReactanceUnit.Ohm => _value,
-                        ElectricReactanceUnit.Teraohm => (_value) * 1e12d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                ElectricReactanceUnit.Gigaohm => (_value) * 1e9d,
+                ElectricReactanceUnit.Kiloohm => (_value) * 1e3d,
+                ElectricReactanceUnit.Megaohm => (_value) * 1e6d,
+                ElectricReactanceUnit.Microohm => (_value) * 1e-6d,
+                ElectricReactanceUnit.Milliohm => (_value) * 1e-3d,
+                ElectricReactanceUnit.Nanoohm => (_value) * 1e-9d,
+                ElectricReactanceUnit.Ohm => _value,
+                ElectricReactanceUnit.Teraohm => (_value) * 1e12d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(ElectricReactanceUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(ElectricReactanceUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        ElectricReactanceUnit.Gigaohm => (baseUnitValue) / 1e9d,
-                        ElectricReactanceUnit.Kiloohm => (baseUnitValue) / 1e3d,
-                        ElectricReactanceUnit.Megaohm => (baseUnitValue) / 1e6d,
-                        ElectricReactanceUnit.Microohm => (baseUnitValue) / 1e-6d,
-                        ElectricReactanceUnit.Milliohm => (baseUnitValue) / 1e-3d,
-                        ElectricReactanceUnit.Nanoohm => (baseUnitValue) / 1e-9d,
-                        ElectricReactanceUnit.Ohm => baseUnitValue,
-                        ElectricReactanceUnit.Teraohm => (baseUnitValue) / 1e12d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                ElectricReactanceUnit.Gigaohm => (baseUnitValue) / 1e9d,
+                ElectricReactanceUnit.Kiloohm => (baseUnitValue) / 1e3d,
+                ElectricReactanceUnit.Megaohm => (baseUnitValue) / 1e6d,
+                ElectricReactanceUnit.Microohm => (baseUnitValue) / 1e-6d,
+                ElectricReactanceUnit.Milliohm => (baseUnitValue) / 1e-3d,
+                ElectricReactanceUnit.Nanoohm => (baseUnitValue) / 1e-9d,
+                ElectricReactanceUnit.Ohm => baseUnitValue,
+                ElectricReactanceUnit.Teraohm => (baseUnitValue) / 1e12d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 
