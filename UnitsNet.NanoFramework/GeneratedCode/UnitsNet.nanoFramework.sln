@@ -164,6 +164,8 @@ Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Molarity", "Molarity\Molari
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "MolarMass", "MolarMass\MolarMass.nfproj", "{fe51bbda-2039-23fd-f29a-39c14adcb1f6}"
 EndProject
+Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "NominalPower", "NominalPower\NominalPower.nfproj", "{6f14ad52-dce6-4e54-fd46-6ebbe10ac874}"
+EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Permeability", "Permeability\Permeability.nfproj", "{34a31e0b-15ec-829c-6f0b-74f5acfd97e2}"
 EndProject
 Project("{d608a2b1-6ead-4383-a205-ad1ce69d9ef7}") = "Permittivity", "Permittivity\Permittivity.nfproj", "{9b381685-8129-acba-66f0-7068fe43a6c3}"
@@ -750,6 +752,12 @@ Global
 {fe51bbda-2039-23fd-f29a-39c14adcb1f6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {fe51bbda-2039-23fd-f29a-39c14adcb1f6}.Release|Any CPU.Build.0 = Release|Any CPU
 {fe51bbda-2039-23fd-f29a-39c14adcb1f6}.Release|Any CPU.Deploy.0 = Release|Any CPU
+{6f14ad52-dce6-4e54-fd46-6ebbe10ac874}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{6f14ad52-dce6-4e54-fd46-6ebbe10ac874}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{6f14ad52-dce6-4e54-fd46-6ebbe10ac874}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+{6f14ad52-dce6-4e54-fd46-6ebbe10ac874}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{6f14ad52-dce6-4e54-fd46-6ebbe10ac874}.Release|Any CPU.Build.0 = Release|Any CPU
+{6f14ad52-dce6-4e54-fd46-6ebbe10ac874}.Release|Any CPU.Deploy.0 = Release|Any CPU
 {34a31e0b-15ec-829c-6f0b-74f5acfd97e2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {34a31e0b-15ec-829c-6f0b-74f5acfd97e2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {34a31e0b-15ec-829c-6f0b-74f5acfd97e2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
