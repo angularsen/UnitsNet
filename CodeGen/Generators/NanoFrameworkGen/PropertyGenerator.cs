@@ -45,10 +45,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion(""{_version}"")]
 [assembly: AssemblyFileVersion(""{_version}"")]
 
-//////////////////////////////////////////////////
-// This assembly doens't require native support //
-[assembly: AssemblyNativeVersion(""0.0.0.0"")]
-//////////////////////////////////////////////////
 ");
             return Writer.ToString();
         }

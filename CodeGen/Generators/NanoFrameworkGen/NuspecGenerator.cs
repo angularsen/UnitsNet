@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using CodeGen.JsonTypes;
 
 namespace CodeGen.Generators.NanoFrameworkGen
@@ -52,7 +52,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
     </dependencies>
   </metadata>
   <files>
-    <file src=""..\..\..\Artifacts\UnitsNet.NanoFramework\{_quantity.Name}\UnitsNet.*"" target=""lib"" />
+    <file src=""..\..\..\Artifacts\UnitsNet.NanoFramework\{_quantity.Name}\UnitsNet.*"" target=""lib\netnano1.0"" />
   </files>
 </package>");
 

@@ -108,9 +108,11 @@ namespace CodeGen.Generators
         /// </summary>
         /// <param name="rootDir">The root directory</param>
         /// <param name="quantities">The quantities to update nuspec files</param>
+        /// <param name="usePreview">Use nanoFramework preview builds? Defaults to false.</param>
         public static bool UpdateNanoFrameworkDependencies(
             string rootDir,
-            Quantity[] quantities)
+            Quantity[] quantities,
+            bool usePreview)
         {
             // working path
             var path = Path.Combine(rootDir, "UnitsNet.NanoFramework\\GeneratedCode");
@@ -175,7 +177,7 @@ namespace CodeGen.Generators
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = Path.Combine(rootDir, ".tools/NuGet.exe"),
-                    Arguments = $"update {path}\\UnitsNet.nanoFramework.sln -PreRelease",
+                    Arguments = $"update {path}\\UnitsNet.nanoFramework.sln {(usePreview ? "-PreRelease" : "")}",
                     UseShellExecute = false,
                     CreateNoWindow = true,
                     RedirectStandardError = true
@@ -266,9 +268,9 @@ namespace CodeGen.Generators
                 new Regex(@"<Reference Include=""mscorlib,\s*Version=(?<version>[\d\.]+),.*"">", RegexOptions.IgnoreCase),
                 "mscorlib assembly version");
 
-            // <HintPath>..\packages\nanoFramework.CoreLibrary.1.10.5-preview.18\lib\mscorlib.dll</HintPath>
+            // <HintPath>..\packages\nanoFramework.CoreLibrary.1.10.5-preview.18\lib\netnano1.0\mscorlib.dll</HintPath>
             var mscorlibNuGetVersion = ParseVersion(projectFileContent,
-                new Regex(@"<HintPath>.*[\\\/]nanoFramework\.CoreLibrary\.(?<version>.*?)[\\\/]lib[\\\/]mscorlib.dll<", RegexOptions.IgnoreCase),
+                new Regex(@"<HintPath>.*[\\\/]nanoFramework\.CoreLibrary\.(?<version>.*?)[\\\/]lib[\\\/](?:netnano[\d\.]+[\\\/])?mscorlib\.dll<", RegexOptions.IgnoreCase),
                 "nanoFramework.CoreLibrary nuget version");
 
             // <Reference Include="System.Math, Version=1.4.1.0, Culture=neutral, PublicKeyToken=c07d481e9758c731">
@@ -276,9 +278,9 @@ namespace CodeGen.Generators
                 new Regex(@"<Reference Include=""System.Math,\s*Version=(?<version>[\d\.]+),.*"">", RegexOptions.IgnoreCase),
                 "System.Math assembly version");
 
-            //   <HintPath>..\packages\nanoFramework.System.Math.1.4.1-preview.7\lib\System.Math.dll</HintPath>
+            //   <HintPath>..\packages\nanoFramework.System.Math.1.4.1-preview.7\lib\netnano1.0\System.Math.dll</HintPath>
             var mathNuGetVersion = ParseVersion(projectFileContent,
-                new Regex(@"<HintPath>.*[\\\/]nanoFramework\.System\.Math\.(?<version>.*?)[\\\/]lib[\\\/]System.Math.dll<", RegexOptions.IgnoreCase),
+                new Regex(@"<HintPath>.*[\\\/]nanoFramework\.System\.Math\.(?<version>.*?)[\\\/]lib[\\\/](?:netnano[\d\.]+[\\\/])?System\.Math\.dll<", RegexOptions.IgnoreCase),
                 "nanoFramework.System.Math nuget version");
 
             return new NanoFrameworkVersions(mscorlibVersion, mscorlibNuGetVersion, mathVersion, mathNuGetVersion);

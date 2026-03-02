@@ -46,7 +46,6 @@ namespace CodeGen.Generators.NanoFrameworkGen
     <Reference Include=""mscorlib, Version={_versions.MscorlibVersion}, Culture=neutral, PublicKeyToken=c07d481e9758c731"">
       <HintPath>..\packages\nanoFramework.CoreLibrary.{_versions.MscorlibNugetVersion}\lib\mscorlib.dll</HintPath>
       <Private>True</Private>
-      <SpecificVersion>True</SpecificVersion>
     </Reference>");
 
     if (NanoFrameworkGenerator.ProjectsRequiringMath.Contains(_quantity.Name))
@@ -55,7 +54,6 @@ namespace CodeGen.Generators.NanoFrameworkGen
     <Reference Include=""System.Math, Version={_versions.MathVersion}, Culture=neutral, PublicKeyToken=c07d481e9758c731"">
       <HintPath>..\packages\nanoFramework.System.Math.{_versions.MathNugetVersion}\lib\System.Math.dll</HintPath>
       <Private>True</Private>
-      <SpecificVersion>True</SpecificVersion>
     </Reference>");
     }
 

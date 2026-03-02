@@ -45,7 +45,8 @@ namespace CodeGen
         /// <param name="repositoryRoot">The repository root directory, defaults to searching parent directories for UnitsNet.sln.</param>
         /// <param name="skipNanoFramework">Skip generate nanoFramework Units? Defaults to false</param>
         /// <param name="updateNanoFrameworkDependencies">Update nanoFramework nuget dependencies? Defaults to false.</param>
-        public static int Main(bool verbose = false, DirectoryInfo? repositoryRoot = null, bool skipNanoFramework = false, bool updateNanoFrameworkDependencies = false)
+        /// <param name="useNanoPreview">Use nanoFramework preview builds? Defaults to false.</param>
+        public static int Main(bool verbose = false, DirectoryInfo? repositoryRoot = null, bool skipNanoFramework = false, bool updateNanoFrameworkDependencies = false, bool useNanoPreview = false)
         {
             Log.Logger = new LoggerConfiguration()
                 .WriteTo
@@ -77,7 +78,8 @@ namespace CodeGen
                 {
                     if (!NanoFrameworkGenerator.UpdateNanoFrameworkDependencies(
                         rootDir,
-                        quantities))
+                        quantities, 
+                        useNanoPreview))
                     {
                         return 1;
                     }

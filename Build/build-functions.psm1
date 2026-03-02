@@ -51,19 +51,6 @@ function Start-Build {
 function Start-BuildNanoFramework {
   write-host -foreground blue "Start-BuildNanoFramework (MSBuild)...`n---"
 
-  # Check prerequisites
-  if (-not $msbuildx64 -or -not (Test-Path $msbuildx64)) {
-    write-host -foreground red "ERROR: Cannot build .NET nanoFramework - MSBuild not found."
-    write-host -foreground yellow "Install Visual Studio with .NET desktop development workload to build NanoFramework projects."
-    exit 1
-  }
-
-  if (-not (Test-Path $nuget)) {
-    write-host -foreground red "ERROR: NuGet.exe not found at $nuget"
-    write-host -foreground yellow "Run init.ps1 to download required tools."
-    exit 1
-  }
-
   write-host -foreground green "Building .NET nanoFramework projects..."
   $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$logsDir\UnitsNet.NanoFramework.msbuild.log"
 
