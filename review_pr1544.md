@@ -164,8 +164,8 @@ Per lipchev's benchmarks: Parse/TryParse ~60% faster, ToString ~75% faster, ToUn
 Given we want to merge and defer minor things:
 
 ### Must-fix (high impact):
-1. **`EmitDefaultValue = false` decision** — Decide whether to keep or revert this for DataContract serialization. @angularsen explicitly objected.
-2. **Clean remaining commented code** — The ~7 medium-priority items from the commented-code review. Quick cleanup.
+1. **`EmitDefaultValue = false` decision** — ✅ **DECISION: Revert to `EmitDefaultValue = true`** (remove the parameter). Safer, backward-compatible, explicit serialization output. Payload size savings are negligible.
+2. **Clean remaining commented code** — ✅ **DECISION: Ask lipchev to clean all ~8 instances before merge.** Straightforward deletions, git history preserves everything. No shipping dead code in v6.
 3. **DataContract backward compat story** — Document clearly that DataContract serialization is a breaking change with no automatic migration. Or provide a `QuantityValueSurrogate` approach that works for both XML and JSON.
 
 ### Should-discuss (architectural decision):
