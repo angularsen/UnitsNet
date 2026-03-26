@@ -15,8 +15,8 @@ public partial struct QuantityValue
     private static readonly BigInteger MaxDouble = new(double.MaxValue);
     private static readonly BigInteger MinDouble = -MaxDouble;
 
-    /// <summary>Explicit cast from <see cref="QuantityValue" /> to <see cref="double" />.</summary>
-    public static explicit operator double(QuantityValue value)
+    /// <summary>Implicit cast from <see cref="QuantityValue" /> to <see cref="double" />.</summary>
+    public static implicit operator double(QuantityValue value)
     {
         return value.ToDouble();
     }

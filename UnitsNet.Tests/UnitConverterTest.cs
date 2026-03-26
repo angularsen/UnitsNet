@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -394,7 +394,7 @@ namespace UnitsNet.Tests
                 ConvertValueDelegate conversionFunction = unitConverter.GetConversionFunction(fromUnit, toUnit);
                 QuantityValue converted = conversionFunction(fromValue);
 
-                Assert.Equal(expectedValue, converted);
+                Assert.Equal(expectedValue, (double)converted);
             });
         }
         
@@ -420,7 +420,7 @@ namespace UnitsNet.Tests
                 var success = unitConverter.TryGetConversionFunction(fromUnit, toUnit, out ConvertValueDelegate? conversionFunction);
                 
                 Assert.True(success);
-                Assert.Equal(expectedValue, conversionFunction!(fromValue));
+                Assert.Equal(expectedValue, (double)conversionFunction!(fromValue));
             });
         }
         
@@ -455,7 +455,7 @@ namespace UnitsNet.Tests
                 ConvertValueDelegate conversionFunction = unitConverter.GetConversionFunction(fromUnit, toUnit);
                 QuantityValue converted = conversionFunction(fromValue);
 
-                Assert.Equal(expectedValue, converted);
+                Assert.Equal(expectedValue, (double)converted);
             });
         }
 
@@ -481,13 +481,13 @@ namespace UnitsNet.Tests
                     {
                         ConvertValueDelegate conversionFunction = unitConverter.GetConversionFunction(fromUnit, toUnit);
                         QuantityValue converted = conversionFunction(fromValue);
-                        Assert.Equal(expectedValue, converted);
+                        Assert.Equal(expectedValue, (double)converted);
                     },
                     () =>
                     {
                         ConvertValueDelegate conversionFunction = unitConverter.GetConversionFunction(toUnit, fromUnit);
                         QuantityValue converted = conversionFunction(expectedValue);
-                        Assert.Equal(fromValue, converted);
+                        Assert.Equal(fromValue, (double)converted);
                     });
             });
         }
@@ -514,13 +514,13 @@ namespace UnitsNet.Tests
                     {
                         var success = unitConverter.TryGetConversionFunction(fromUnit, toUnit, out ConvertValueDelegate? conversionFunction);
                         Assert.True(success);
-                        Assert.Equal(expectedValue, conversionFunction!(fromValue));
+                        Assert.Equal(expectedValue, (double)conversionFunction!(fromValue));
                     },
                     () =>
                     {
                         var success = unitConverter.TryGetConversionFunction(toUnit, fromUnit, out ConvertValueDelegate? conversionFunction);
                         Assert.True(success);
-                        Assert.Equal(fromValue, conversionFunction!(expectedValue));
+                        Assert.Equal(fromValue, (double)conversionFunction!(expectedValue));
                     });
             });
         }
@@ -548,13 +548,13 @@ namespace UnitsNet.Tests
                     {
                         ConvertValueDelegate conversionFunction = unitConverter.GetConversionFunction(fromUnit, toUnit);
                         QuantityValue converted = conversionFunction(fromValue);
-                        Assert.Equal(expectedValue, converted);
+                        Assert.Equal(expectedValue, (double)converted);
                     },
                     () =>
                     {
                         ConvertValueDelegate conversionFunction = unitConverter.GetConversionFunction(toUnit, fromUnit);
                         QuantityValue converted = conversionFunction(expectedValue);
-                        Assert.Equal(fromValue, converted);
+                        Assert.Equal(fromValue, (double)converted);
                     });
             });
         }
@@ -582,13 +582,13 @@ namespace UnitsNet.Tests
                     {
                         var success = unitConverter.TryGetConversionFunction(fromUnit, toUnit, out ConvertValueDelegate? conversionFunction);
                         Assert.True(success);
-                        Assert.Equal(expectedValue, conversionFunction!(fromValue));
+                        Assert.Equal(expectedValue, (double)conversionFunction!(fromValue));
                     },
                     () =>
                     {
                         var success = unitConverter.TryGetConversionFunction(toUnit, fromUnit, out ConvertValueDelegate? conversionFunction);
                         Assert.True(success);
-                        Assert.Equal(fromValue, conversionFunction!(expectedValue));
+                        Assert.Equal(fromValue, (double)conversionFunction!(expectedValue));
                     });
             });
         }
@@ -614,13 +614,13 @@ namespace UnitsNet.Tests
                     {
                         ConvertValueDelegate conversionFunction = unitConverter.GetConversionFunction(fromUnit, toUnit);
                         QuantityValue converted = conversionFunction(fromValue);
-                        Assert.Equal(expectedValue, converted);
+                        Assert.Equal(expectedValue, (double)converted);
                     },
                     () =>
                     {
                         ConvertValueDelegate conversionFunction = unitConverter.GetConversionFunction(toUnit, fromUnit);
                         QuantityValue converted = conversionFunction(expectedValue);
-                        Assert.Equal(fromValue, converted);
+                        Assert.Equal(fromValue, (double)converted);
                     });
             });
         }
@@ -646,13 +646,13 @@ namespace UnitsNet.Tests
                     {
                         var success = unitConverter.TryGetConversionFunction(fromUnit, toUnit, out ConvertValueDelegate? conversionFunction);
                         Assert.True(success);
-                        Assert.Equal(expectedValue, conversionFunction!(fromValue));
+                        Assert.Equal(expectedValue, (double)conversionFunction!(fromValue));
                     },
                     () =>
                     {
                         var success = unitConverter.TryGetConversionFunction(toUnit, fromUnit, out ConvertValueDelegate? conversionFunction);
                         Assert.True(success);
-                        Assert.Equal(fromValue, conversionFunction!(expectedValue));
+                        Assert.Equal(fromValue, (double)conversionFunction!(expectedValue));
                     });
             });
         }
@@ -665,7 +665,7 @@ namespace UnitsNet.Tests
         [InlineData(1000, 1, "ElectricCurrent", "Kiloampere", "Ampere")]
         public void ConvertByName_ConvertsTheValueToGivenUnit(double expectedValue, double inputValue, string quantityTypeName, string fromUnit, string toUnit)
         {
-            Assert.Equal(expectedValue, UnitConverter.ConvertByName(inputValue, quantityTypeName, fromUnit, toUnit));
+            Assert.Equal(expectedValue, (double)UnitConverter.ConvertByName(inputValue, quantityTypeName, fromUnit, toUnit));
         }
 
         [Fact]
@@ -713,7 +713,7 @@ namespace UnitsNet.Tests
             string toUnit)
         {
             Assert.True(UnitConverter.TryConvertByName(inputValue, quantityTypeName, fromUnit, toUnit, out QuantityValue result));
-            Assert.Equal(expectedValue, result);
+            Assert.Equal(expectedValue, (double)result);
         }
 
         [Theory]
@@ -731,14 +731,14 @@ namespace UnitsNet.Tests
                 var converter = new UnitConverter(UnitParser.Default);
 
                 Assert.True(converter.TryConvertValueByName(inputValue, quantityTypeName, fromUnit, toUnit, out QuantityValue result));
-                Assert.Equal(expectedValue, result);
+                Assert.Equal(expectedValue, (double)result);
             }, () =>
             {
                 var converter = UnitConverter.Create(UnitParser.Default,
                     new QuantityConverterBuildOptions(defaultCachingMode: ConversionCachingMode.None, freeze: false));
 
                 Assert.True(converter.TryConvertValueByName(inputValue, quantityTypeName, fromUnit, toUnit, out QuantityValue result));
-                Assert.Equal(expectedValue, result);
+                Assert.Equal(expectedValue, (double)result);
             }, () =>
             {
                 var converter = UnitConverter.Create(UnitParser.Default,
@@ -746,7 +746,7 @@ namespace UnitsNet.Tests
                         .WithCustomCachingOptions<Length>(new ConversionCacheOptions()));
 
                 Assert.True(converter.TryConvertValueByName(inputValue, quantityTypeName, fromUnit, toUnit, out QuantityValue result));
-                Assert.Equal(expectedValue, result);
+                Assert.Equal(expectedValue, (double)result);
             });
         }
 
@@ -759,9 +759,9 @@ namespace UnitsNet.Tests
         public void ConvertByAbbreviation_ConvertsTheValueToGivenUnit(double expectedValue, double inputValue, string quantityTypeName, string fromUnit,
             string toUnit)
         {
-            Assert.Equal(expectedValue, UnitConverter.ConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit));
-            Assert.Equal(expectedValue, UnitConverter.ConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, CultureInfo.InvariantCulture));
-            Assert.Equal(expectedValue, UnitConverter.ConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, "en-US"));
+            Assert.Equal(expectedValue, (double)UnitConverter.ConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit));
+            Assert.Equal(expectedValue, (double)UnitConverter.ConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, CultureInfo.InvariantCulture));
+            Assert.Equal(expectedValue, (double)UnitConverter.ConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, "en-US"));
         }
 
         [Theory]
@@ -809,12 +809,12 @@ namespace UnitsNet.Tests
             () =>
             {
                 Assert.True(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, CultureInfo.GetCultureInfo(culture), out QuantityValue result), "TryConvertByAbbreviation() return value.");
-                Assert.Equal(expectedValue, result);
+                Assert.Equal(expectedValue, (double)result);
             },
             () =>
             {
                 Assert.True(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out QuantityValue result, culture), "TryConvertByAbbreviation() return value.");
-                Assert.Equal(expectedValue, result); 
+                Assert.Equal(expectedValue, (double)result);
             });
         }
 
@@ -829,7 +829,7 @@ namespace UnitsNet.Tests
             string fromUnit, string toUnit)
         {
             Assert.True(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out QuantityValue result));
-            Assert.Equal(expectedValue, result);
+            Assert.Equal(expectedValue, (double)result);
         }
 
         [Theory] 
@@ -848,20 +848,20 @@ namespace UnitsNet.Tests
                 var converter = new UnitConverter(unitParser);
 
                 Assert.True(converter.TryConvertValueByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out QuantityValue result));
-                Assert.Equal(expectedValue, result);
+                Assert.Equal(expectedValue, (double)result);
             }, () =>
             {
                 var converter = UnitConverter.Create(unitParser, new QuantityConverterBuildOptions(defaultCachingMode: ConversionCachingMode.None, freeze: false));
 
                 Assert.True(converter.TryConvertValueByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out QuantityValue result));
-                Assert.Equal(expectedValue, result);
+                Assert.Equal(expectedValue, (double)result);
             }, () =>
             {
                 var converter = UnitConverter.Create(unitParser, new QuantityConverterBuildOptions(defaultCachingMode: ConversionCachingMode.None, freeze: true)
                     .WithCustomCachingOptions<Length>(new ConversionCacheOptions(cachingMode: ConversionCachingMode.All)));
 
                 Assert.True(converter.TryConvertValueByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out QuantityValue result));
-                Assert.Equal(expectedValue, result);
+                Assert.Equal(expectedValue, (double)result);
             });
         }
 
@@ -876,7 +876,7 @@ namespace UnitsNet.Tests
         public void Convert_ReturnsTrueOnSuccessAndOutputsResult(double expectedValue, double inputValue, Enum fromUnit, Enum toUnit)
         {
             QuantityValue convertedValue = UnitConverter.Convert(inputValue, fromUnit, toUnit);
-            Assert.Equal(expectedValue, convertedValue);
+            Assert.Equal(expectedValue, (double)convertedValue);
         }
         
         [Theory]
@@ -890,7 +890,7 @@ namespace UnitsNet.Tests
         public void TryConvert_ReturnsTrueOnSuccessAndOutputsResult(double expectedValue, double inputValue, Enum fromUnit, Enum toUnit)
         {
             Assert.True(UnitConverter.TryConvert(inputValue, fromUnit, toUnit, out QuantityValue result));
-            Assert.Equal(expectedValue, result);
+            Assert.Equal(expectedValue, (double)result);
         }
         
         [Theory]

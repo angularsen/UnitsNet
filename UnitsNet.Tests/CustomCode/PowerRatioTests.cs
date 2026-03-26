@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -41,7 +41,7 @@ namespace UnitsNet.Tests
         {
             Power p = Power.FromWatts(power);
             var actual = PowerRatio.FromPower(p).DecibelWatts;
-            Assert.Equal(expected, actual);
+            Assert.Equal(expected, (double)actual);
         }
 
         [Theory]
@@ -54,7 +54,7 @@ namespace UnitsNet.Tests
         {
             PowerRatio pr = PowerRatio.FromDecibelWatts(powerRatio);
             var actual = pr.ToPower().Watts;
-            Assert.Equal(expected, actual);
+            Assert.Equal(expected, (double)actual);
         }
 
         // http://www.maximintegrated.com/en/app-notes/index.mvp/id/808

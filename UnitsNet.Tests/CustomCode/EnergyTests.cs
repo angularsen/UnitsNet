@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -100,7 +100,7 @@ namespace UnitsNet.Tests
         public void As_GivenSIUnitSystem_ReturnsSIValue()
         {
             var btus = new Energy(2.0, EnergyUnit.BritishThermalUnit);
-            Assert.Equal(2110.11170524, btus.As(UnitSystem.SI));
+            Assert.Equal(2110.11170524, (double)btus.As(UnitSystem.SI));
         }
 
         [Fact]
@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
 
             var inSI = btus.ToUnit(UnitSystem.SI);
 
-            Assert.Equal(2110.11170524, inSI.Value);
+            Assert.Equal(2110.11170524, (double)inSI.Value);
             Assert.Equal(EnergyUnit.Joule, inSI.Unit);
         }
 

@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -186,7 +186,7 @@ namespace UnitsNet.Tests
             var feetInches = negativeLength.FeetInches;
 
             Assert.Equal(0, feetInches.Feet);
-            Assert.Equal(-1.0, feetInches.Inches);
+            Assert.Equal(-1.0, (double)feetInches.Inches);
 
             negativeLength = Length.FromInches(-25.0);
             feetInches = negativeLength.FeetInches;
@@ -212,7 +212,7 @@ namespace UnitsNet.Tests
         public void As_GivenSIUnitSystem_ReturnsSIValue()
         {
             var inches = new Length(2.0, LengthUnit.Inch);
-            Assert.Equal(0.0508, inches.As(UnitSystem.SI));
+            Assert.Equal(0.0508, (double)inches.As(UnitSystem.SI));
         }
 
         [Fact]
@@ -222,7 +222,7 @@ namespace UnitsNet.Tests
 
             var inSI = inches.ToUnit(UnitSystem.SI);
 
-            Assert.Equal(0.0508, inSI.Value);
+            Assert.Equal(0.0508, (double)inSI.Value);
             Assert.Equal(LengthUnit.Meter, inSI.Unit);
         }
 
@@ -237,7 +237,7 @@ namespace UnitsNet.Tests
             var length = new Length(value, LengthUnit.Meter);
             var inverseLength = length.Inverse();
 
-            Assert.Equal(expected, inverseLength.InverseMeters);
+            Assert.Equal(expected, (double)inverseLength.InverseMeters);
         }
 
         [Theory]

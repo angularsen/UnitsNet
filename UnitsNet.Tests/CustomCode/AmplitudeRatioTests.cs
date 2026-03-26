@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -51,7 +51,7 @@ namespace UnitsNet.Tests
             ElectricPotential v = ElectricPotential.FromVolts(voltage);
 
             var actual = AmplitudeRatio.FromElectricPotential(v).DecibelVolts;
-            Assert.Equal(expected, actual);
+            Assert.Equal(expected, (double)actual);
         }
 
         [Theory]
@@ -66,7 +66,7 @@ namespace UnitsNet.Tests
             AmplitudeRatio ar = AmplitudeRatio.FromDecibelVolts(amplitudeRatio);
 
             var actual = ar.ToElectricPotential().Volts;
-            Assert.Equal(expected, actual);
+            Assert.Equal(expected, (double)actual);
         }
 
         // http://www.maximintegrated.com/en/app-notes/index.mvp/id/808

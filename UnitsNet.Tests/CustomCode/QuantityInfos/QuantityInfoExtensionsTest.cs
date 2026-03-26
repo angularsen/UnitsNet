@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using UnitsNet.Tests.CustomQuantities;
@@ -261,7 +261,7 @@ public class QuantityInfoExtensionsTest
         var success = Mass.Info.TryConvertFrom(valueToConvert, fromUnitInfo, out Mass result);
 
         Assert.True(success);
-        Assert.Equal(expectedValue, result.Value);
+        Assert.Equal(expectedValue, (double)result.Value);
         Assert.Equal(expectedUnit, result.Unit);
     }
 
@@ -276,7 +276,7 @@ public class QuantityInfoExtensionsTest
         var success = HowMuch.Info.TryConvertFrom(valueToConvert, fromUnitInfo, out IQuantity? result);
 
         Assert.True(success);
-        Assert.Equal(expectedValue, result!.Value);
+        Assert.Equal(expectedValue, (double)result!.Value);
         Assert.Equal(expectedUnit, result.Unit);
     }
 
@@ -296,7 +296,7 @@ public class QuantityInfoExtensionsTest
         var success = customQuantityInfo.TryConvertFrom(valueToConvert, fromUnitInfo, out TemperatureChangeRate result);
 
         Assert.True(success);
-        Assert.Equal(expectedValue, result.Value);
+        Assert.Equal(expectedValue, (double)result.Value);
         Assert.Equal(expectedUnit, result.Unit);
     }
 
@@ -316,7 +316,7 @@ public class QuantityInfoExtensionsTest
         var success = customQuantityInfo.TryConvertFrom(valueToConvert, fromUnitInfo, out IQuantity? result);
 
         Assert.True(success);
-        Assert.Equal(expectedValue, result!.Value);
+        Assert.Equal(expectedValue, (double)result!.Value);
         Assert.Equal(expectedUnit, result.Unit);
     }
 

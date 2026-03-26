@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using UnitsNet.Tests.CustomQuantities;
@@ -131,7 +131,7 @@ public class AffineQuantityExtensionsTest
 
         Temperature result = temperatures.Average();
         
-        Assert.Equal(expectedAverage, result.Value);
+        Assert.Equal(expectedAverage, (double)result.Value);
         Assert.Equal(TemperatureUnit.DegreeCelsius, result.Unit);
     }
 
@@ -176,7 +176,7 @@ public class AffineQuantityExtensionsTest
 
         Temperature result = temperatures.Average(unit);
 
-        Assert.Equal(expectedAverage, result.Value);
+        Assert.Equal(expectedAverage, (double)result.Value);
         Assert.Equal(unit, result.Unit);
     }
     

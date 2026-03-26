@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.Diagnostics.CodeAnalysis;
@@ -552,7 +552,7 @@ public class QuantityInfoTest
 
             Mass quantity = quantityInfo.From(value, unit);
 
-            Assert.Equal(value, quantity.Value);
+            Assert.Equal(value, (double)quantity.Value);
             Assert.Equal(unit, quantity.Unit);
         }, () =>
         {
@@ -560,7 +560,7 @@ public class QuantityInfoTest
 
             IQuantity<MassUnit> quantity = quantityInfo.From(value, unit);
 
-            Assert.Equal(value, quantity.Value);
+            Assert.Equal(value, (double)quantity.Value);
             Assert.Equal(unit, quantity.Unit);
         }, () =>
         {
@@ -568,7 +568,7 @@ public class QuantityInfoTest
 
             IQuantity quantity = quantityInfo.From(value, unit);
 
-            Assert.Equal(value, quantity.Value);
+            Assert.Equal(value, (double)quantity.Value);
             Assert.Equal(unit, quantity.Unit);
         });
     }
@@ -582,7 +582,7 @@ public class QuantityInfoTest
 
         Mass quantity = quantityInfo.Create(value, UnitKey.ForUnit(unit));
 
-        Assert.Equal(value, quantity.Value);
+        Assert.Equal(value, (double)quantity.Value);
         Assert.Equal(unit, quantity.Unit);
     }
 
@@ -595,7 +595,7 @@ public class QuantityInfoTest
 
         IQuantity quantity = quantityInfo.From(value, unit);
 
-        Assert.Equal(value, quantity.Value);
+        Assert.Equal(value, (double)quantity.Value);
         Assert.Equal(unit, quantity.Unit);
     }
 

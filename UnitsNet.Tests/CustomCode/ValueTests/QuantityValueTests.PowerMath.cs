@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Numerics;
 
 namespace UnitsNet.Tests;
@@ -69,7 +69,7 @@ public partial class QuantityValueTests
 #if NET
             Assert.Equal(double.Pow(number, power), result.ToDouble());
 #endif
-            Assert.Equal(expectedResult, result);
+            Assert.Equal(expectedResult, (double)result);
         }
 
         [Theory]
@@ -115,7 +115,7 @@ public partial class QuantityValueTests
 #if NET
             Assert.Equal(double.Pow(number, power), result.ToDouble());
 #endif
-            Assert.Equal(expectedResult, result);
+            Assert.Equal(expectedResult, (double)result);
         }
 
         [Fact]
@@ -137,7 +137,7 @@ public partial class QuantityValueTests
 
             var actual = QuantityValue.Sqrt(doubleValue);
 
-            Assert.Equal(expected, actual);
+            Assert.Equal(expected, (double)actual);
         }
 
         [Theory]
@@ -418,7 +418,7 @@ public partial class QuantityValueTests
 #if NET
             Assert.Equal(double.RootN(number, root), result.ToDouble());
 #endif
-            Assert.Equal(expectedResult, result);
+            Assert.Equal(expectedResult, (double)result);
         }
 
         [Fact]

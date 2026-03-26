@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.Text;
@@ -105,7 +105,7 @@ namespace UnitsNet.Tests
         {
             var expression = new ConversionExpression(coefficient, null, exponent, constantTerm);
             QuantityValue result = expression.Evaluate(value);
-            Assert.Equal(expected, result);
+            Assert.Equal(expected, (double)result);
         }
 
         [Theory]
@@ -118,7 +118,7 @@ namespace UnitsNet.Tests
         {
             var expression = new ConversionExpression(coefficient, quantityValue => -quantityValue / 2, exponent, constantTerm);
             QuantityValue result = expression.Evaluate(value);
-            Assert.Equal(expected, result);
+            Assert.Equal(expected, (double)result);
         }
 
         [Theory]

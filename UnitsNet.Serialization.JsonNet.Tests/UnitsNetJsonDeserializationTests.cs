@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using Newtonsoft.Json;
@@ -296,7 +296,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 """;
 
             Length deserialized = DeserializeObject<Length>(json);
-            Assert.Equal(10.5, deserialized.Value);
+            Assert.Equal(10.5, (double)deserialized.Value);
             Assert.Equal(LengthUnit.Centimeter, deserialized.Unit);
         }
 
@@ -324,7 +324,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 """;
 
             Information deserialized = DeserializeObject<Information>(json);
-            Assert.Equal(10.5, deserialized.Value);
+            Assert.Equal(10.5, (double)deserialized.Value);
             Assert.Equal(InformationUnit.Kilobyte, deserialized.Unit);
         }
 

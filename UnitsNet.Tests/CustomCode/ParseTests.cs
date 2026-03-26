@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -28,7 +28,7 @@ namespace UnitsNet.Tests
         {
             CultureInfo usEnglish = CultureInfo.GetCultureInfo("en-US");
             QuantityValue actual = Length.Parse(s, usEnglish).Meters;
-            Assert.Equal(expected, actual);
+            Assert.Equal(expected, (double)actual);
         }
 
         [Theory]
@@ -58,7 +58,7 @@ namespace UnitsNet.Tests
             numberFormat.CurrencyDecimalSeparator = ".";
 
             QuantityValue actual = Length.Parse(s, numberFormat).Meters;
-            Assert.Equal(expected, actual);
+            Assert.Equal(expected, (double)actual);
         }
 
         [Theory]
@@ -89,7 +89,7 @@ namespace UnitsNet.Tests
             numberFormat.CurrencyDecimalSeparator = ",";
 
             QuantityValue actual = Length.Parse(s, numberFormat).Meters;
-            Assert.Equal(expected, actual);
+            Assert.Equal(expected, (double)actual);
         }
 
         [Fact]
@@ -155,7 +155,7 @@ namespace UnitsNet.Tests
             var actual = Mass.Parse(str, CultureInfo.GetCultureInfo(cultureName));
 
             Assert.Equal(expectedUnit, actual.Unit);
-            Assert.Equal(expectedValue, actual.Value);
+            Assert.Equal(expectedValue, (double)actual.Value);
         }
 
         [Theory]
@@ -170,7 +170,7 @@ namespace UnitsNet.Tests
             var actual = Length.Parse(str, CultureInfo.GetCultureInfo(cultureName));
 
             Assert.Equal(expectedUnit, actual.Unit);
-            Assert.Equal(expectedValue, actual.Value);
+            Assert.Equal(expectedValue, (double)actual.Value);
         }
 
         [Theory]
@@ -185,7 +185,7 @@ namespace UnitsNet.Tests
             var actual = Force.Parse(str, CultureInfo.GetCultureInfo(cultureName));
 
             Assert.Equal(expectedUnit, actual.Unit);
-            Assert.Equal(expectedValue, actual.Value);
+            Assert.Equal(expectedValue, (double)actual.Value);
         }
 
         [Theory]
@@ -206,7 +206,7 @@ namespace UnitsNet.Tests
             var actual = Information.Parse(str, CultureInfo.GetCultureInfo(cultureName));
 
             Assert.Equal(expectedUnit, actual.Unit);
-            Assert.Equal(expectedValue, actual.Value);
+            Assert.Equal(expectedValue, (double)actual.Value);
         }
     }
 }

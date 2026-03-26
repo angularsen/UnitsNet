@@ -1,4 +1,4 @@
-﻿using System.Runtime.Serialization;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using UnitsNet.Units;
 
@@ -64,7 +64,7 @@ namespace UnitsNet.Tests.Serialization.Json
 
             var quantity = DeserializeObject<Mass>(json);
 
-            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(1.2, (double)quantity.Value);
             Assert.Equal(expectedUnit, quantity.Unit);
         }
 
@@ -101,7 +101,7 @@ namespace UnitsNet.Tests.Serialization.Json
 
             var quantity = DeserializeObject<Mass>(json);
 
-            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(1.2, (double)quantity.Value);
             Assert.Equal(Mass.BaseUnit, quantity.Unit);
         }
 

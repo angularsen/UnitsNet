@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using UnitsNet.Units;
@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
         public void As_GivenSIUnitSystem_ReturnsSIValue()
         {
             var squareInches = new Area(2.0, AreaUnit.SquareInch);
-            Assert.Equal(0.00129032, squareInches.As(UnitSystem.SI));
+            Assert.Equal(0.00129032, (double)squareInches.As(UnitSystem.SI));
         }
 
         [Fact]
@@ -120,7 +120,7 @@ namespace UnitsNet.Tests
 
             var inSI = squareInches.ToUnit(UnitSystem.SI);
 
-            Assert.Equal(0.00129032, inSI.Value);
+            Assert.Equal(0.00129032, (double)inSI.Value);
             Assert.Equal(AreaUnit.SquareMeter, inSI.Unit);
         }
 
@@ -134,14 +134,14 @@ namespace UnitsNet.Tests
         {
             var area = new Area(value, AreaUnit.SquareMeter);
             var inverseArea = area.Inverse();
-            Assert.Equal(expected, inverseArea.InverseSquareMeters);
+            Assert.Equal(expected, (double)inverseArea.InverseSquareMeters);
         }
 
         [Fact]
         public void AreaTimesReciprocalAreaEqualsRatio()
         {
             Ratio ratio = Area.FromSquareMeters(0.5) * ReciprocalArea.FromInverseSquareMeters(10);
-            Assert.Equal(5.0, ratio.Value);
+            Assert.Equal(5.0, (double)ratio.Value);
         }
 
         [Fact]

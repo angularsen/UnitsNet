@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.ComponentModel;
@@ -78,7 +78,7 @@ namespace UnitsNet.Tests
 
             var convertedValue = (Length)converter.ConvertFrom(context, Culture, str)!;
 
-            Assert.Equal(expectedValue, convertedValue.Value);
+            Assert.Equal(expectedValue, (double)convertedValue.Value);
             Assert.Equal(expectedUnit, convertedValue.Unit);
         }
 
@@ -97,7 +97,7 @@ namespace UnitsNet.Tests
 
             var convertedValue = (Length)converter.ConvertFrom(context, Culture, str)!;
 
-            Assert.Equal(expectedValue, convertedValue.Value);
+            Assert.Equal(expectedValue, (double)convertedValue.Value);
             Assert.Equal(expectedUnit, convertedValue.Unit);
         }
 
@@ -117,7 +117,7 @@ namespace UnitsNet.Tests
 
             var convertedValue = (Length)converter.ConvertFrom(context, Culture, str)!;
 
-            Assert.Equal(expectedValue, convertedValue.Value);
+            Assert.Equal(expectedValue, (double)convertedValue.Value);
             Assert.Equal(expectedUnit, convertedValue.Unit);
         }
 
@@ -134,7 +134,7 @@ namespace UnitsNet.Tests
 
             var convertedValue = (Length)converter.ConvertFrom(null, null, str)!;
 
-            Assert.Equal(expectedValue, convertedValue.Value);
+            Assert.Equal(expectedValue, (double)convertedValue.Value);
             Assert.Equal(LengthUnit.Millimeter, convertedValue.Unit);
         }
 

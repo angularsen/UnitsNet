@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.Runtime.Serialization;
@@ -89,7 +89,7 @@ internal class DefaultDataContractJsonSerializerWithSurrogateProviderTests : Ser
 
         var quantity = DeserializeObject<Mass>(json);
 
-        Assert.Equal(1.2, quantity.Value);
+        Assert.Equal(1.2, (double)quantity.Value);
         Assert.Equal(expectedUnit, quantity.Unit);
     }
 
@@ -126,7 +126,7 @@ internal class DefaultDataContractJsonSerializerWithSurrogateProviderTests : Ser
 
         var quantity = DeserializeObject<Mass>(json);
 
-        Assert.Equal(1.2, quantity.Value);
+        Assert.Equal(1.2, (double)quantity.Value);
         Assert.Equal(Mass.BaseUnit, quantity.Unit);
     }
 
