@@ -1,22 +1,156 @@
 # PR #1544 Review: QuantityValue as Fractional Number
 
-**Review date**: 2026-03-09 | **Branch**: `fractional-quantity-value`
+**Review date**: 2026-03-09, updated 2026-03-26 | **Branch**: `fractional-quantity-value`
 
 ---
 
-## Changes Required Before Merge
+## P0 — Reducing the breaking change impact of `QuantityValue`
 
-### P0 — Must do
+The PR replaces `double` with `QuantityValue` (BigInteger-backed rational) across the entire public API. Without mitigation, ~60-70% of consumer code breaks on upgrade. We propose two alternative solutions.
 
-1. **Add implicit conversion `QuantityValue` → `double`**
-   Most consumers just want a `double`. Without this, ~60-70% of consumer code breaks on upgrade. With implicit conversion, that drops to ~20-30%. Those who want exact precision can still use `QuantityValue` directly.
+### Summary
 
-2. **Revert `EmitDefaultValue = false` on DataMember**
+| | Option A: Add implicit cast | Option B: Keep `double` public |
+|---|---|---|
+| **Approach** | Add `implicit operator double(QuantityValue)` | Revert public API to `double`, use `QuantityValue` internally for conversions |
+| **Rework effort** | Minimal — one operator addition | Significant — revert generated types, adjust CodeGen templates |
+| **PR value preserved** | 100% | ~90% |
+| **Consumer breaking changes** | Eliminated for ~60-70% of code | Eliminated for ~60-70% of code |
+| **Precision model** | Consumers store and pass `QuantityValue` (full precision until they convert to `double`) | Consumers always work with `double`; precision only during conversion pipeline |
+| **Risk** | Bidirectional implicit conversion is unusual in C#; may surface edge cases we haven't identified | More conservative; well-understood behavior |
+| **`var x = len.Meters`** | `x` is `QuantityValue` (but implicitly converts to `double` wherever needed) | `x` is `double` |
+| **Future flexibility** | Consumers who want exact precision can use `QuantityValue` directly today | Would require a later API change to expose `QuantityValue` to consumers |
+
+**Our recommendation: Option A.** It's simpler, preserves the full PR, and our analysis found no concrete compilation failures. Option B is a solid fallback if unforeseen issues arise.
+
+---
+
+## Option A: Add implicit conversion `QuantityValue → double`
+
+### What changes
+
+One line added to `QuantityValue.ConvertToNumber.cs`:
+
+```csharp
+public static implicit operator double(QuantityValue value) => value.ToDouble();
+```
+
+The existing `explicit` keyword changes to `implicit`. Everything else in the PR stays as-is.
+
+### Why it works
+
+The PR is clean — **no generated operator takes `double`**. Every operator uses `QuantityValue`:
+
+```csharp
+// Generated operators (e.g. Length.g.cs):
+Length operator *(QuantityValue left, Length right)
+Length operator *(Length left, QuantityValue right)
+Length operator /(Length left, QuantityValue right)
+QuantityValue operator /(Length left, Length right)
+```
+
+`QuantityValue` arithmetic operators are all `(QuantityValue, QuantityValue)` — no mixed-type overloads.
+
+With bidirectional implicit conversions (`double ↔ QuantityValue`), C# overload resolution prefers user-defined operators over built-in ones when both require one conversion. So `QV + double` resolves to user-defined `QV + QV` (promoting `double`), not built-in `double + double` (demoting `QV`).
+
+### Scenario analysis
+
+| Scenario | Works? | Explanation |
+|----------|--------|-------------|
+| `double meters = length.Meters` | Yes | `QuantityValue` implicitly converts to `double` |
+| `double ratio = len1 / len2` | Yes | Operator returns `QV`, implicit converts to `double` |
+| `Math.Round(length.Meters, 2)` | Yes | Resolves to `Math.Round(double, int)` via implicit |
+| `SomeDoubleApi(length.Meters)` | Yes | Implicit conversion handles the call |
+| `Length * double` | Yes | `double` promotes to `QV`, uses `Length * QV` operator |
+| `QV + double` | Yes | C# prefers user-defined `QV+QV` over built-in `double+double` |
+| `double x = double + QV` | Yes | Operator returns `QV`, implicit converts for assignment |
+| `var x = length.Meters` | `x` is `QV` | Not a problem — `QV` implicitly converts wherever `double` is expected |
+| `QV == double` | Yes | User-defined `QV==QV` is preferred by C# overload resolution |
+
+### Pros
+
+- **Minimal rework** — one operator change, rest of PR untouched
+- **Preserves 100% of PR value** — all architecture, all new features
+- **Future-proof** — consumers who want exact precision can use `QuantityValue` directly; those who don't never notice the difference
+- **Gradual adoption** — consumers can migrate to `QuantityValue` at their own pace
+
+### Cons
+
+- **Bidirectional implicit conversion is unusual** — while our analysis found no issues, there may be edge cases in consumer code we can't predict (e.g. complex overload resolution scenarios)
+- **`var` infers `QuantityValue`** — not a functional problem (implicit conversion kicks in), but consumers see `QuantityValue` in IDE tooltips, debugger, etc.
+- **Silent precision loss** — converting `QuantityValue` to `double` is lossy, and implicit makes it invisible. This is the *desired* trade-off for most consumers, but purists may object.
+- **lipchev has stated this is a "no-go"** — may need to be verified empirically by building locally with the change
+
+### Verification step
+
+Build the solution locally after changing `explicit` to `implicit` in `QuantityValue.ConvertToNumber.cs`. If it compiles and tests pass, the analysis is confirmed and this is the path forward.
+
+---
+
+## Option B: Keep `double` public, use `QuantityValue` internally
+
+### What changes
+
+- `IQuantity.Value` reverts to `double`
+- Generated quantity unit properties (`.Meters`, `.Centimeters`, etc.) revert to `double`
+- Generated quantity `_value` field reverts to `double`
+- Scalar operators revert to `double` (`Length * double`, `Length / Length → double`)
+- `From()` factory methods accept `double`
+- `QuantityValue` remains as an internal type used by the conversion pipeline
+- `ConversionExpression`, `UnitConverter`, `UnitsNetSetup` builder — all unchanged
+
+### How the conversion pipeline works
+
+```
+double input → QuantityValue(input) × exact_rational_coefficient → .ToDouble() → double output
+```
+
+The precision benefit is preserved: conversion factors like `1250/381` (feet-to-meters) are exact rationals. The stored value is `double`, and the conversion pipeline temporarily promotes to `QuantityValue` for exact arithmetic, then converts back.
+
+### What's preserved from the PR (~90%)
+
+| Component | Status |
+|-----------|--------|
+| `QuantityValue` type (BigInteger rational) | Preserved for internal use |
+| `ConversionExpression` model with exact rational coefficients | Fully preserved |
+| `UnitConverter` / `FrozenQuantityConverter` / `DynamicQuantityConverter` | Fully preserved |
+| `UnitInfo.ConversionFromBase` / `ConversionToBase` | Fully preserved |
+| `UnitsNetSetup` builder pattern | Fully preserved |
+| CodeGen rational coefficient generation | Fully preserved |
+| `UnitsNet.Serialization.SystemTextJson` package | Preserved |
+
+### What's lost (~10%)
+
+- Consumers cannot work with `QuantityValue` directly — no exact precision in user-facing code
+- Intermediate arithmetic between quantities uses `double`, not rationals (precision only in conversion factors)
+- Would require a later API change to expose `QuantityValue` to consumers who want it
+
+### Pros
+
+- **Zero risk** — `double` public API is well-understood, no edge cases
+- **No consumer breaking changes from the type change** — all `double`-based code works as before
+- **Familiar to consumers** — no new type to learn about
+- **Smaller memory footprint** — `double` is 8 bytes vs `QuantityValue` (16+ bytes for two BigInteger fields)
+
+### Cons
+
+- **Significant rework** — CodeGen templates, generated types, interface definitions all need adjustment
+- **Loses future flexibility** — consumers can't access `QuantityValue` precision without a later API change
+- **Precision only in conversion pipeline** — consumer arithmetic (`length1 + length2`) uses `double`, not rationals
+- **~10% of PR value lost** — the `QuantityValue`-as-public-type feature and its test coverage
+
+---
+
+## Other Changes Required Before Merge
+
+### P1 — Must do
+
+1. **Revert `EmitDefaultValue = false` on DataMember**
    Remove the `EmitDefaultValue = false` parameter from `[DataMember]` on `_value` and `_unit` fields in generated quantities. `Length.Zero` should always serialize with both Value and Unit present.
 
-### P1 — Should do
+### P2 — Should do
 
-3. **Document DataContract serialization as a breaking change**
+2. **Document DataContract serialization as a breaking change**
    State in v6 release notes that DataContract serialization format changed (XML and JSON). XML surrogate exists and works. DataContractJsonSerializer surrogate is blocked by a .NET runtime bug — recommend migrating to JsonNet or System.Text.Json packages.
 
 ---
@@ -25,33 +159,33 @@
 
 ### Before stable release
 
-4. **Create migration guide** for breaking changes in this PR. Will need re-evaluation for full v6 migration guide later.
-5. **Add test coverage for `InterfaceQuantityWithUnitTypeConverter`** — currently appears unused/untested.
+3. **Create migration guide** for breaking changes in this PR. Will need re-evaluation for full v6 migration guide later.
+4. **Add test coverage for `InterfaceQuantityWithUnitTypeConverter`** — currently appears unused/untested.
 
 ### Low priority
 
-6. **QuantityGenerator.cs** — Add example code comments in generated code sections for readability.
-7. **QuantityValueFormatOptions.cs** — Align serialization/deserialization enum names (`DecimalPrecision` vs `ExactNumber` should use consistent naming).
-8. **QuantityInfoBuilderExtensions** — `Configure` extension on `UnitDefinition[]` is awkward API; consider wrapper type or static method.
+5. **QuantityGenerator.cs** — Add example code comments in generated code sections for readability.
+6. **QuantityValueFormatOptions.cs** — Align serialization/deserialization enum names (`DecimalPrecision` vs `ExactNumber` should use consistent naming).
+7. **QuantityInfoBuilderExtensions** — `Configure` extension on `UnitDefinition[]` is awkward API; consider wrapper type or static method.
 
 ### Won't do
 
 - Roslyn analyzer for migration assistance.
+- Commented code cleanup (already mostly done, 6 lines remain in CodeGen internal code).
 
 ---
 
-## Reference: Breaking Changes Summary
+## Reference: Remaining Breaking Changes
+
+These apply regardless of which option is chosen for `QuantityValue`:
 
 | Change | Before (v5) | After (v6) |
 |--------|-------------|------------|
-| `IQuantity.Value` | `double` | `QuantityValue` |
-| Unit properties (e.g. `.Meters`) | `double` | `QuantityValue` |
-| `Length / Length` | `double` | `QuantityValue` |
 | `As()`, `ToUnit()` | Interface methods | Extension methods (some `[Obsolete]`) |
 | `UnitConverter()` constructor | Public, parameterless | Removed; use `UnitConverter.Create(...)` |
 | `SetConversionFunction` / `GetConversionFunction` | Available | Removed |
 | `UnitsNetSetup` constructor | Public | Private; use builder pattern |
-| DataContract serialization | `double` field | `QuantityValue` struct (numerator/denominator) |
+| DataContract serialization | `double` field | Changed format |
 | `AbbreviatedUnitsConverter` (JsonNet) | `IReadOnlyDictionary` constructor | `UnitParser` + `QuantityValueFormatOptions` |
 | Default JSON precision | ~17 significant digits | Up to 29 significant digits |
 | `MissingMemberHandling.Error` | Silently skipped unknowns | Now correctly throws (bug fix) |
