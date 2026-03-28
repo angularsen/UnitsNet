@@ -147,18 +147,29 @@ The precision benefit is preserved: conversion factors like `1250/381` (feet-to-
 - **Precision only in conversion pipeline** — consumer arithmetic (`length1 + length2`) uses `double`, not rationals
 - **~10% of PR value lost** — the `QuantityValue`-as-public-type feature and its test coverage
 
-### Implementation scope (assessed, not implemented)
+### Verified empirically
 
-Option B was scoped but not implemented due to the scale of changes required:
+Option B was fully implemented on branch `option-b-double-public` (608 files changed).
 
-- **~10 manual source files**: `IQuantity.cs`, `IArithmeticQuantity.cs`, `ILogarithmicQuantity.cs`, `QuantityExtensions.cs`, `QuantityParser.cs`, `Quantity.cs`, `UnitConverter.cs` (public signatures), `Comparison.cs`, plus custom quantity extras
-- **CodeGen templates**: ~15 locations in `QuantityGenerator.cs`, plus `NumberExtensionsGenerator.cs`, `NumberExtensionsCS14Generator.cs`, `QuantityRelationsParser.cs`
-- **Data files**: `UnitRelations.json` type reference
-- **Regeneration**: All 131 quantity files + number extensions + test base classes
-- **Serialization layer rework**: Serializers currently read/write `QuantityValue` from `IQuantity.Value` — changing to `double` fundamentally changes the wire format
-- **Estimated effort**: Multi-day, with significant risk of cascading issues in serialization
+**Changes made:**
+- ~10 manual source files: `IQuantity.cs`, `IArithmeticQuantity.cs`, `ILogarithmicQuantity.cs`, `QuantityExtensions.cs`, `QuantityParser.cs`, `Quantity.cs`, `UnitConverter.cs`, `Comparison.cs`, `QuantityInfo.cs`, plus 10 custom quantity extra files
+- CodeGen templates: `QuantityGenerator.cs` (~15 locations), `UnitTestBaseClassGenerator.cs`, `NumberExtensionsGenerator.cs`, `NumberExtensionsCS14Generator.cs`, `QuantityRelationsParser.cs`
+- `UnitRelations.json` type reference
+- All 131 generated quantity files + test base classes regenerated
+- Serialization adapters updated
+- Benchmark and test code updated (decimal literals → double, QuantityValue references → double)
 
-Given that Option A achieves the same consumer-facing goal with 1 line of library code changed, Option B is not recommended unless Option A proves unworkable in practice.
+**Build: 0 library errors, 0 warnings.** All 4 library projects compile cleanly.
+
+**Tests: 2,509 failures out of 51,899.** The failures are NOT test bugs — they reveal a fundamental trade-off:
+- **1,215 `ToUnit_FromNonBaseUnit` failures**: Converting a quantity to another unit and back loses precision because `double` storage introduces floating-point rounding at each step. With `QuantityValue`, this roundtrip was lossless.
+- **491 `ToUnit_FromIQuantity` failures**: Same root cause.
+- **256 `ToString` failures**: Precision-sensitive formatting.
+- **68 `ConversionRoundTrip` failures**: Direct roundtrip precision tests.
+
+**Key finding**: Option B fundamentally degrades conversion precision. The exact rational conversion pipeline (`QuantityValue × rational_coefficient`) helps, but the `double` input/output introduces rounding that compounds across multi-step conversions. This defeats a core value proposition of the PR.
+
+Given that Option A achieves the same consumer-facing goal with 1 line of library code, 0 new test failures, and preserves full precision, **Option B is not recommended.**
 
 ---
 
