@@ -49,7 +49,7 @@ public class MassSerializationBenchmarks
 
     private static Mass[] TestMasses =
     [
-        Mass.Zero, new Mass(0, MassUnit.Gram), new Mass(42, MassUnit.Gram), new Mass(42, MassUnit.Kilogram), new Mass(123.45m, MassUnit.Milligram)
+        Mass.Zero, new Mass(0, MassUnit.Gram), new Mass(42, MassUnit.Gram), new Mass(42, MassUnit.Kilogram), new Mass(123.45, MassUnit.Milligram)
     ];
     // private static Volume[] TestVolumes =
     // [
@@ -225,7 +225,7 @@ public class InterfaceQuantitySerializationBenchmarks
 
     private static IQuantity[] TestMasses =
     [
-        Mass.Zero, new Mass(0, MassUnit.Gram), new Mass(42, MassUnit.Gram), new Mass(42, MassUnit.Kilogram), new Mass(123.45m, MassUnit.Milligram)
+        Mass.Zero, new Mass(0, MassUnit.Gram), new Mass(42, MassUnit.Gram), new Mass(42, MassUnit.Kilogram), new Mass(123.45, MassUnit.Milligram)
     ];
 
     [Benchmark(Baseline = false)]

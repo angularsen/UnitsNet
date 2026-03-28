@@ -423,7 +423,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 V/μs", ElectricPotentialChangeRateUnit.VoltPerMicrosecond, 4.2)]
         [InlineData("en-US", "4.2 V/min", ElectricPotentialChangeRateUnit.VoltPerMinute, 4.2)]
         [InlineData("en-US", "4.2 V/s", ElectricPotentialChangeRateUnit.VoltPerSecond, 4.2)]
-        public void Parse(string culture, string quantityString, ElectricPotentialChangeRateUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, ElectricPotentialChangeRateUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ElectricPotentialChangeRate.Parse(quantityString);
@@ -452,7 +452,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 V/μs", ElectricPotentialChangeRateUnit.VoltPerMicrosecond, 4.2)]
         [InlineData("en-US", "4.2 V/min", ElectricPotentialChangeRateUnit.VoltPerMinute, 4.2)]
         [InlineData("en-US", "4.2 V/s", ElectricPotentialChangeRateUnit.VoltPerSecond, 4.2)]
-        public void TryParse(string culture, string quantityString, ElectricPotentialChangeRateUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, ElectricPotentialChangeRateUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ElectricPotentialChangeRate.TryParse(quantityString, out ElectricPotentialChangeRate parsed));
@@ -931,8 +931,8 @@ namespace UnitsNet.Tests
             var quantity = ElectricPotentialChangeRate.FromVoltsPerSecond(firstValue);
             var otherQuantity = ElectricPotentialChangeRate.FromVoltsPerSecond(secondValue);
             ElectricPotentialChangeRate maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, ElectricPotentialChangeRate.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

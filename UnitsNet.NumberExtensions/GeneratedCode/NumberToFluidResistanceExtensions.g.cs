@@ -32,213 +32,213 @@ namespace UnitsNet.NumberExtensions.NumberToFluidResistance
     /// </summary>
     public static class NumberToFluidResistanceExtensions
     {
-        /// <inheritdoc cref="FluidResistance.FromDyneSecondsPerCentimeterToTheFifth(QuantityValue)" />
+        /// <inheritdoc cref="FluidResistance.FromDyneSecondsPerCentimeterToTheFifth(double)" />
         public static FluidResistance DyneSecondsPerCentimeterToTheFifth<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => FluidResistance.FromDyneSecondsPerCentimeterToTheFifth(QuantityValue.CreateChecked(value));
+            => FluidResistance.FromDyneSecondsPerCentimeterToTheFifth(double.CreateChecked(value));
 #else
             , IConvertible
-            => FluidResistance.FromDyneSecondsPerCentimeterToTheFifth(value.ToQuantityValue());
+            => FluidResistance.FromDyneSecondsPerCentimeterToTheFifth(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="FluidResistance.FromMegapascalSecondsPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="FluidResistance.FromMegapascalSecondsPerCubicMeter(double)" />
         public static FluidResistance MegapascalSecondsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => FluidResistance.FromMegapascalSecondsPerCubicMeter(QuantityValue.CreateChecked(value));
+            => FluidResistance.FromMegapascalSecondsPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => FluidResistance.FromMegapascalSecondsPerCubicMeter(value.ToQuantityValue());
+            => FluidResistance.FromMegapascalSecondsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="FluidResistance.FromMillimeterMercuryMinutesPerCubicCentimeter(QuantityValue)" />
+        /// <inheritdoc cref="FluidResistance.FromMillimeterMercuryMinutesPerCubicCentimeter(double)" />
         public static FluidResistance MillimeterMercuryMinutesPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => FluidResistance.FromMillimeterMercuryMinutesPerCubicCentimeter(QuantityValue.CreateChecked(value));
+            => FluidResistance.FromMillimeterMercuryMinutesPerCubicCentimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => FluidResistance.FromMillimeterMercuryMinutesPerCubicCentimeter(value.ToQuantityValue());
+            => FluidResistance.FromMillimeterMercuryMinutesPerCubicCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="FluidResistance.FromMillimeterMercuryMinutesPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="FluidResistance.FromMillimeterMercuryMinutesPerCubicMeter(double)" />
         public static FluidResistance MillimeterMercuryMinutesPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => FluidResistance.FromMillimeterMercuryMinutesPerCubicMeter(QuantityValue.CreateChecked(value));
+            => FluidResistance.FromMillimeterMercuryMinutesPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => FluidResistance.FromMillimeterMercuryMinutesPerCubicMeter(value.ToQuantityValue());
+            => FluidResistance.FromMillimeterMercuryMinutesPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="FluidResistance.FromMillimeterMercuryMinutesPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="FluidResistance.FromMillimeterMercuryMinutesPerLiter(double)" />
         public static FluidResistance MillimeterMercuryMinutesPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => FluidResistance.FromMillimeterMercuryMinutesPerLiter(QuantityValue.CreateChecked(value));
+            => FluidResistance.FromMillimeterMercuryMinutesPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => FluidResistance.FromMillimeterMercuryMinutesPerLiter(value.ToQuantityValue());
+            => FluidResistance.FromMillimeterMercuryMinutesPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="FluidResistance.FromMillimeterMercuryMinutesPerMilliliter(QuantityValue)" />
+        /// <inheritdoc cref="FluidResistance.FromMillimeterMercuryMinutesPerMilliliter(double)" />
         public static FluidResistance MillimeterMercuryMinutesPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => FluidResistance.FromMillimeterMercuryMinutesPerMilliliter(QuantityValue.CreateChecked(value));
+            => FluidResistance.FromMillimeterMercuryMinutesPerMilliliter(double.CreateChecked(value));
 #else
             , IConvertible
-            => FluidResistance.FromMillimeterMercuryMinutesPerMilliliter(value.ToQuantityValue());
+            => FluidResistance.FromMillimeterMercuryMinutesPerMilliliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="FluidResistance.FromMillimeterMercurySecondsPerCubicCentimeter(QuantityValue)" />
+        /// <inheritdoc cref="FluidResistance.FromMillimeterMercurySecondsPerCubicCentimeter(double)" />
         public static FluidResistance MillimeterMercurySecondsPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => FluidResistance.FromMillimeterMercurySecondsPerCubicCentimeter(QuantityValue.CreateChecked(value));
+            => FluidResistance.FromMillimeterMercurySecondsPerCubicCentimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => FluidResistance.FromMillimeterMercurySecondsPerCubicCentimeter(value.ToQuantityValue());
+            => FluidResistance.FromMillimeterMercurySecondsPerCubicCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="FluidResistance.FromMillimeterMercurySecondsPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="FluidResistance.FromMillimeterMercurySecondsPerCubicMeter(double)" />
         public static FluidResistance MillimeterMercurySecondsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => FluidResistance.FromMillimeterMercurySecondsPerCubicMeter(QuantityValue.CreateChecked(value));
+            => FluidResistance.FromMillimeterMercurySecondsPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => FluidResistance.FromMillimeterMercurySecondsPerCubicMeter(value.ToQuantityValue());
+            => FluidResistance.FromMillimeterMercurySecondsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="FluidResistance.FromMillimeterMercurySecondsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="FluidResistance.FromMillimeterMercurySecondsPerLiter(double)" />
         public static FluidResistance MillimeterMercurySecondsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => FluidResistance.FromMillimeterMercurySecondsPerLiter(QuantityValue.CreateChecked(value));
+            => FluidResistance.FromMillimeterMercurySecondsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => FluidResistance.FromMillimeterMercurySecondsPerLiter(value.ToQuantityValue());
+            => FluidResistance.FromMillimeterMercurySecondsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="FluidResistance.FromMillimeterMercurySecondsPerMilliliter(QuantityValue)" />
+        /// <inheritdoc cref="FluidResistance.FromMillimeterMercurySecondsPerMilliliter(double)" />
         public static FluidResistance MillimeterMercurySecondsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => FluidResistance.FromMillimeterMercurySecondsPerMilliliter(QuantityValue.CreateChecked(value));
+            => FluidResistance.FromMillimeterMercurySecondsPerMilliliter(double.CreateChecked(value));
 #else
             , IConvertible
-            => FluidResistance.FromMillimeterMercurySecondsPerMilliliter(value.ToQuantityValue());
+            => FluidResistance.FromMillimeterMercurySecondsPerMilliliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="FluidResistance.FromPascalMinutesPerCubicCentimeter(QuantityValue)" />
+        /// <inheritdoc cref="FluidResistance.FromPascalMinutesPerCubicCentimeter(double)" />
         public static FluidResistance PascalMinutesPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => FluidResistance.FromPascalMinutesPerCubicCentimeter(QuantityValue.CreateChecked(value));
+            => FluidResistance.FromPascalMinutesPerCubicCentimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => FluidResistance.FromPascalMinutesPerCubicCentimeter(value.ToQuantityValue());
+            => FluidResistance.FromPascalMinutesPerCubicCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="FluidResistance.FromPascalMinutesPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="FluidResistance.FromPascalMinutesPerCubicMeter(double)" />
         public static FluidResistance PascalMinutesPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => FluidResistance.FromPascalMinutesPerCubicMeter(QuantityValue.CreateChecked(value));
+            => FluidResistance.FromPascalMinutesPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => FluidResistance.FromPascalMinutesPerCubicMeter(value.ToQuantityValue());
+            => FluidResistance.FromPascalMinutesPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="FluidResistance.FromPascalMinutesPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="FluidResistance.FromPascalMinutesPerLiter(double)" />
         public static FluidResistance PascalMinutesPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => FluidResistance.FromPascalMinutesPerLiter(QuantityValue.CreateChecked(value));
+            => FluidResistance.FromPascalMinutesPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => FluidResistance.FromPascalMinutesPerLiter(value.ToQuantityValue());
+            => FluidResistance.FromPascalMinutesPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="FluidResistance.FromPascalMinutesPerMilliliter(QuantityValue)" />
+        /// <inheritdoc cref="FluidResistance.FromPascalMinutesPerMilliliter(double)" />
         public static FluidResistance PascalMinutesPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => FluidResistance.FromPascalMinutesPerMilliliter(QuantityValue.CreateChecked(value));
+            => FluidResistance.FromPascalMinutesPerMilliliter(double.CreateChecked(value));
 #else
             , IConvertible
-            => FluidResistance.FromPascalMinutesPerMilliliter(value.ToQuantityValue());
+            => FluidResistance.FromPascalMinutesPerMilliliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="FluidResistance.FromPascalSecondsPerCubicCentimeter(QuantityValue)" />
+        /// <inheritdoc cref="FluidResistance.FromPascalSecondsPerCubicCentimeter(double)" />
         public static FluidResistance PascalSecondsPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => FluidResistance.FromPascalSecondsPerCubicCentimeter(QuantityValue.CreateChecked(value));
+            => FluidResistance.FromPascalSecondsPerCubicCentimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => FluidResistance.FromPascalSecondsPerCubicCentimeter(value.ToQuantityValue());
+            => FluidResistance.FromPascalSecondsPerCubicCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="FluidResistance.FromPascalSecondsPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="FluidResistance.FromPascalSecondsPerCubicMeter(double)" />
         public static FluidResistance PascalSecondsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => FluidResistance.FromPascalSecondsPerCubicMeter(QuantityValue.CreateChecked(value));
+            => FluidResistance.FromPascalSecondsPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => FluidResistance.FromPascalSecondsPerCubicMeter(value.ToQuantityValue());
+            => FluidResistance.FromPascalSecondsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="FluidResistance.FromPascalSecondsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="FluidResistance.FromPascalSecondsPerLiter(double)" />
         public static FluidResistance PascalSecondsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => FluidResistance.FromPascalSecondsPerLiter(QuantityValue.CreateChecked(value));
+            => FluidResistance.FromPascalSecondsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => FluidResistance.FromPascalSecondsPerLiter(value.ToQuantityValue());
+            => FluidResistance.FromPascalSecondsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="FluidResistance.FromPascalSecondsPerMilliliter(QuantityValue)" />
+        /// <inheritdoc cref="FluidResistance.FromPascalSecondsPerMilliliter(double)" />
         public static FluidResistance PascalSecondsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => FluidResistance.FromPascalSecondsPerMilliliter(QuantityValue.CreateChecked(value));
+            => FluidResistance.FromPascalSecondsPerMilliliter(double.CreateChecked(value));
 #else
             , IConvertible
-            => FluidResistance.FromPascalSecondsPerMilliliter(value.ToQuantityValue());
+            => FluidResistance.FromPascalSecondsPerMilliliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="FluidResistance.FromWoodUnits(QuantityValue)" />
+        /// <inheritdoc cref="FluidResistance.FromWoodUnits(double)" />
         public static FluidResistance WoodUnits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => FluidResistance.FromWoodUnits(QuantityValue.CreateChecked(value));
+            => FluidResistance.FromWoodUnits(double.CreateChecked(value));
 #else
             , IConvertible
-            => FluidResistance.FromWoodUnits(value.ToQuantityValue());
+            => FluidResistance.FromWoodUnits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

@@ -42,20 +42,20 @@ namespace UnitsNet.NumberExtensions.NumberToLevel
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Level.FromDecibels(QuantityValue)" />
+            /// <inheritdoc cref="Level.FromDecibels(double)" />
             public Level Decibels
 #if NET7_0_OR_GREATER
-                => Level.FromDecibels(QuantityValue.CreateChecked(value));
+                => Level.FromDecibels(double.CreateChecked(value));
 #else
-                => Level.FromDecibels(value.ToQuantityValue());
+                => Level.FromDecibels(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Level.FromNepers(QuantityValue)" />
+            /// <inheritdoc cref="Level.FromNepers(double)" />
             public Level Nepers
 #if NET7_0_OR_GREATER
-                => Level.FromNepers(QuantityValue.CreateChecked(value));
+                => Level.FromNepers(double.CreateChecked(value));
 #else
-                => Level.FromNepers(value.ToQuantityValue());
+                => Level.FromNepers(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

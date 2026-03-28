@@ -332,7 +332,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 A/s", ElectricCurrentGradientUnit.AmperePerSecond, 4.2)]
         [InlineData("en-US", "4.2 mA/min", ElectricCurrentGradientUnit.MilliamperePerMinute, 4.2)]
         [InlineData("en-US", "4.2 mA/s", ElectricCurrentGradientUnit.MilliamperePerSecond, 4.2)]
-        public void Parse(string culture, string quantityString, ElectricCurrentGradientUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, ElectricCurrentGradientUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ElectricCurrentGradient.Parse(quantityString);
@@ -348,7 +348,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 A/s", ElectricCurrentGradientUnit.AmperePerSecond, 4.2)]
         [InlineData("en-US", "4.2 mA/min", ElectricCurrentGradientUnit.MilliamperePerMinute, 4.2)]
         [InlineData("en-US", "4.2 mA/s", ElectricCurrentGradientUnit.MilliamperePerSecond, 4.2)]
-        public void TryParse(string culture, string quantityString, ElectricCurrentGradientUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, ElectricCurrentGradientUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ElectricCurrentGradient.TryParse(quantityString, out ElectricCurrentGradient parsed));
@@ -697,8 +697,8 @@ namespace UnitsNet.Tests
             var quantity = ElectricCurrentGradient.FromAmperesPerSecond(firstValue);
             var otherQuantity = ElectricCurrentGradient.FromAmperesPerSecond(secondValue);
             ElectricCurrentGradient maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, ElectricCurrentGradient.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

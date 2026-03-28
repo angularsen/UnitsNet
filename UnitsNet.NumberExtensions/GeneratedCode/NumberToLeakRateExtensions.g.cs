@@ -32,48 +32,48 @@ namespace UnitsNet.NumberExtensions.NumberToLeakRate
     /// </summary>
     public static class NumberToLeakRateExtensions
     {
-        /// <inheritdoc cref="LeakRate.FromAtmCubicCentimetersPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="LeakRate.FromAtmCubicCentimetersPerSecond(double)" />
         public static LeakRate AtmCubicCentimetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LeakRate.FromAtmCubicCentimetersPerSecond(QuantityValue.CreateChecked(value));
+            => LeakRate.FromAtmCubicCentimetersPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => LeakRate.FromAtmCubicCentimetersPerSecond(value.ToQuantityValue());
+            => LeakRate.FromAtmCubicCentimetersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="LeakRate.FromMillibarLitersPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="LeakRate.FromMillibarLitersPerSecond(double)" />
         public static LeakRate MillibarLitersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LeakRate.FromMillibarLitersPerSecond(QuantityValue.CreateChecked(value));
+            => LeakRate.FromMillibarLitersPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => LeakRate.FromMillibarLitersPerSecond(value.ToQuantityValue());
+            => LeakRate.FromMillibarLitersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="LeakRate.FromPascalCubicMetersPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="LeakRate.FromPascalCubicMetersPerSecond(double)" />
         public static LeakRate PascalCubicMetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LeakRate.FromPascalCubicMetersPerSecond(QuantityValue.CreateChecked(value));
+            => LeakRate.FromPascalCubicMetersPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => LeakRate.FromPascalCubicMetersPerSecond(value.ToQuantityValue());
+            => LeakRate.FromPascalCubicMetersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="LeakRate.FromTorrLitersPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="LeakRate.FromTorrLitersPerSecond(double)" />
         public static LeakRate TorrLitersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LeakRate.FromTorrLitersPerSecond(QuantityValue.CreateChecked(value));
+            => LeakRate.FromTorrLitersPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => LeakRate.FromTorrLitersPerSecond(value.ToQuantityValue());
+            => LeakRate.FromTorrLitersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

@@ -32,488 +32,488 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
     /// </summary>
     public static class NumberToPowerDensityExtensions
     {
-        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicFoot(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicFoot(double)" />
         public static PowerDensity DecawattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromDecawattsPerCubicFoot(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromDecawattsPerCubicFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromDecawattsPerCubicFoot(value.ToQuantityValue());
+            => PowerDensity.FromDecawattsPerCubicFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicInch(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicInch(double)" />
         public static PowerDensity DecawattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromDecawattsPerCubicInch(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromDecawattsPerCubicInch(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromDecawattsPerCubicInch(value.ToQuantityValue());
+            => PowerDensity.FromDecawattsPerCubicInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicMeter(double)" />
         public static PowerDensity DecawattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromDecawattsPerCubicMeter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromDecawattsPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromDecawattsPerCubicMeter(value.ToQuantityValue());
+            => PowerDensity.FromDecawattsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromDecawattsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDecawattsPerLiter(double)" />
         public static PowerDensity DecawattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromDecawattsPerLiter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromDecawattsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromDecawattsPerLiter(value.ToQuantityValue());
+            => PowerDensity.FromDecawattsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicFoot(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicFoot(double)" />
         public static PowerDensity DeciwattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromDeciwattsPerCubicFoot(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromDeciwattsPerCubicFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromDeciwattsPerCubicFoot(value.ToQuantityValue());
+            => PowerDensity.FromDeciwattsPerCubicFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicInch(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicInch(double)" />
         public static PowerDensity DeciwattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromDeciwattsPerCubicInch(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromDeciwattsPerCubicInch(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromDeciwattsPerCubicInch(value.ToQuantityValue());
+            => PowerDensity.FromDeciwattsPerCubicInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicMeter(double)" />
         public static PowerDensity DeciwattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromDeciwattsPerCubicMeter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromDeciwattsPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromDeciwattsPerCubicMeter(value.ToQuantityValue());
+            => PowerDensity.FromDeciwattsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromDeciwattsPerLiter(double)" />
         public static PowerDensity DeciwattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromDeciwattsPerLiter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromDeciwattsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromDeciwattsPerLiter(value.ToQuantityValue());
+            => PowerDensity.FromDeciwattsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicFoot(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicFoot(double)" />
         public static PowerDensity GigawattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromGigawattsPerCubicFoot(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromGigawattsPerCubicFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromGigawattsPerCubicFoot(value.ToQuantityValue());
+            => PowerDensity.FromGigawattsPerCubicFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicInch(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicInch(double)" />
         public static PowerDensity GigawattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromGigawattsPerCubicInch(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromGigawattsPerCubicInch(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromGigawattsPerCubicInch(value.ToQuantityValue());
+            => PowerDensity.FromGigawattsPerCubicInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicMeter(double)" />
         public static PowerDensity GigawattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromGigawattsPerCubicMeter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromGigawattsPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromGigawattsPerCubicMeter(value.ToQuantityValue());
+            => PowerDensity.FromGigawattsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromGigawattsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromGigawattsPerLiter(double)" />
         public static PowerDensity GigawattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromGigawattsPerLiter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromGigawattsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromGigawattsPerLiter(value.ToQuantityValue());
+            => PowerDensity.FromGigawattsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicFoot(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicFoot(double)" />
         public static PowerDensity KilowattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromKilowattsPerCubicFoot(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromKilowattsPerCubicFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromKilowattsPerCubicFoot(value.ToQuantityValue());
+            => PowerDensity.FromKilowattsPerCubicFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicInch(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicInch(double)" />
         public static PowerDensity KilowattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromKilowattsPerCubicInch(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromKilowattsPerCubicInch(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromKilowattsPerCubicInch(value.ToQuantityValue());
+            => PowerDensity.FromKilowattsPerCubicInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicMeter(double)" />
         public static PowerDensity KilowattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromKilowattsPerCubicMeter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromKilowattsPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromKilowattsPerCubicMeter(value.ToQuantityValue());
+            => PowerDensity.FromKilowattsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromKilowattsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromKilowattsPerLiter(double)" />
         public static PowerDensity KilowattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromKilowattsPerLiter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromKilowattsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromKilowattsPerLiter(value.ToQuantityValue());
+            => PowerDensity.FromKilowattsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicFoot(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicFoot(double)" />
         public static PowerDensity MegawattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMegawattsPerCubicFoot(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromMegawattsPerCubicFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMegawattsPerCubicFoot(value.ToQuantityValue());
+            => PowerDensity.FromMegawattsPerCubicFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicInch(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicInch(double)" />
         public static PowerDensity MegawattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMegawattsPerCubicInch(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromMegawattsPerCubicInch(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMegawattsPerCubicInch(value.ToQuantityValue());
+            => PowerDensity.FromMegawattsPerCubicInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicMeter(double)" />
         public static PowerDensity MegawattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMegawattsPerCubicMeter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromMegawattsPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMegawattsPerCubicMeter(value.ToQuantityValue());
+            => PowerDensity.FromMegawattsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMegawattsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMegawattsPerLiter(double)" />
         public static PowerDensity MegawattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMegawattsPerLiter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromMegawattsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMegawattsPerLiter(value.ToQuantityValue());
+            => PowerDensity.FromMegawattsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicFoot(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicFoot(double)" />
         public static PowerDensity MicrowattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMicrowattsPerCubicFoot(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromMicrowattsPerCubicFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMicrowattsPerCubicFoot(value.ToQuantityValue());
+            => PowerDensity.FromMicrowattsPerCubicFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicInch(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicInch(double)" />
         public static PowerDensity MicrowattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMicrowattsPerCubicInch(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromMicrowattsPerCubicInch(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMicrowattsPerCubicInch(value.ToQuantityValue());
+            => PowerDensity.FromMicrowattsPerCubicInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicMeter(double)" />
         public static PowerDensity MicrowattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMicrowattsPerCubicMeter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromMicrowattsPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMicrowattsPerCubicMeter(value.ToQuantityValue());
+            => PowerDensity.FromMicrowattsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMicrowattsPerLiter(double)" />
         public static PowerDensity MicrowattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMicrowattsPerLiter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromMicrowattsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMicrowattsPerLiter(value.ToQuantityValue());
+            => PowerDensity.FromMicrowattsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicFoot(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicFoot(double)" />
         public static PowerDensity MilliwattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMilliwattsPerCubicFoot(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromMilliwattsPerCubicFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMilliwattsPerCubicFoot(value.ToQuantityValue());
+            => PowerDensity.FromMilliwattsPerCubicFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicInch(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicInch(double)" />
         public static PowerDensity MilliwattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMilliwattsPerCubicInch(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromMilliwattsPerCubicInch(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMilliwattsPerCubicInch(value.ToQuantityValue());
+            => PowerDensity.FromMilliwattsPerCubicInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicMeter(double)" />
         public static PowerDensity MilliwattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMilliwattsPerCubicMeter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromMilliwattsPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMilliwattsPerCubicMeter(value.ToQuantityValue());
+            => PowerDensity.FromMilliwattsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromMilliwattsPerLiter(double)" />
         public static PowerDensity MilliwattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromMilliwattsPerLiter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromMilliwattsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromMilliwattsPerLiter(value.ToQuantityValue());
+            => PowerDensity.FromMilliwattsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicFoot(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicFoot(double)" />
         public static PowerDensity NanowattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromNanowattsPerCubicFoot(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromNanowattsPerCubicFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromNanowattsPerCubicFoot(value.ToQuantityValue());
+            => PowerDensity.FromNanowattsPerCubicFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicInch(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicInch(double)" />
         public static PowerDensity NanowattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromNanowattsPerCubicInch(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromNanowattsPerCubicInch(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromNanowattsPerCubicInch(value.ToQuantityValue());
+            => PowerDensity.FromNanowattsPerCubicInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicMeter(double)" />
         public static PowerDensity NanowattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromNanowattsPerCubicMeter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromNanowattsPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromNanowattsPerCubicMeter(value.ToQuantityValue());
+            => PowerDensity.FromNanowattsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromNanowattsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromNanowattsPerLiter(double)" />
         public static PowerDensity NanowattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromNanowattsPerLiter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromNanowattsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromNanowattsPerLiter(value.ToQuantityValue());
+            => PowerDensity.FromNanowattsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicFoot(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicFoot(double)" />
         public static PowerDensity PicowattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromPicowattsPerCubicFoot(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromPicowattsPerCubicFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromPicowattsPerCubicFoot(value.ToQuantityValue());
+            => PowerDensity.FromPicowattsPerCubicFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicInch(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicInch(double)" />
         public static PowerDensity PicowattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromPicowattsPerCubicInch(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromPicowattsPerCubicInch(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromPicowattsPerCubicInch(value.ToQuantityValue());
+            => PowerDensity.FromPicowattsPerCubicInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicMeter(double)" />
         public static PowerDensity PicowattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromPicowattsPerCubicMeter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromPicowattsPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromPicowattsPerCubicMeter(value.ToQuantityValue());
+            => PowerDensity.FromPicowattsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromPicowattsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromPicowattsPerLiter(double)" />
         public static PowerDensity PicowattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromPicowattsPerLiter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromPicowattsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromPicowattsPerLiter(value.ToQuantityValue());
+            => PowerDensity.FromPicowattsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicFoot(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicFoot(double)" />
         public static PowerDensity TerawattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromTerawattsPerCubicFoot(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromTerawattsPerCubicFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromTerawattsPerCubicFoot(value.ToQuantityValue());
+            => PowerDensity.FromTerawattsPerCubicFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicInch(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicInch(double)" />
         public static PowerDensity TerawattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromTerawattsPerCubicInch(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromTerawattsPerCubicInch(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromTerawattsPerCubicInch(value.ToQuantityValue());
+            => PowerDensity.FromTerawattsPerCubicInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicMeter(double)" />
         public static PowerDensity TerawattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromTerawattsPerCubicMeter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromTerawattsPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromTerawattsPerCubicMeter(value.ToQuantityValue());
+            => PowerDensity.FromTerawattsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromTerawattsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromTerawattsPerLiter(double)" />
         public static PowerDensity TerawattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromTerawattsPerLiter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromTerawattsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromTerawattsPerLiter(value.ToQuantityValue());
+            => PowerDensity.FromTerawattsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicFoot(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicFoot(double)" />
         public static PowerDensity WattsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromWattsPerCubicFoot(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromWattsPerCubicFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromWattsPerCubicFoot(value.ToQuantityValue());
+            => PowerDensity.FromWattsPerCubicFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicInch(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicInch(double)" />
         public static PowerDensity WattsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromWattsPerCubicInch(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromWattsPerCubicInch(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromWattsPerCubicInch(value.ToQuantityValue());
+            => PowerDensity.FromWattsPerCubicInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromWattsPerCubicMeter(double)" />
         public static PowerDensity WattsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromWattsPerCubicMeter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromWattsPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromWattsPerCubicMeter(value.ToQuantityValue());
+            => PowerDensity.FromWattsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="PowerDensity.FromWattsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="PowerDensity.FromWattsPerLiter(double)" />
         public static PowerDensity WattsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => PowerDensity.FromWattsPerLiter(QuantityValue.CreateChecked(value));
+            => PowerDensity.FromWattsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => PowerDensity.FromWattsPerLiter(value.ToQuantityValue());
+            => PowerDensity.FromWattsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

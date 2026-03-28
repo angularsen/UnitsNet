@@ -42,308 +42,308 @@ namespace UnitsNet.NumberExtensions.NumberToForcePerLength
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerCentimeter(double)" />
             public ForcePerLength CentinewtonsPerCentimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromCentinewtonsPerCentimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromCentinewtonsPerCentimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromCentinewtonsPerCentimeter(value.ToQuantityValue());
+                => ForcePerLength.FromCentinewtonsPerCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(double)" />
             public ForcePerLength CentinewtonsPerMeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromCentinewtonsPerMeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromCentinewtonsPerMeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromCentinewtonsPerMeter(value.ToQuantityValue());
+                => ForcePerLength.FromCentinewtonsPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMillimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMillimeter(double)" />
             public ForcePerLength CentinewtonsPerMillimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromCentinewtonsPerMillimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromCentinewtonsPerMillimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromCentinewtonsPerMillimeter(value.ToQuantityValue());
+                => ForcePerLength.FromCentinewtonsPerMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromDecanewtonsPerCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromDecanewtonsPerCentimeter(double)" />
             public ForcePerLength DecanewtonsPerCentimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromDecanewtonsPerCentimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromDecanewtonsPerCentimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromDecanewtonsPerCentimeter(value.ToQuantityValue());
+                => ForcePerLength.FromDecanewtonsPerCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromDecanewtonsPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromDecanewtonsPerMeter(double)" />
             public ForcePerLength DecanewtonsPerMeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromDecanewtonsPerMeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromDecanewtonsPerMeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromDecanewtonsPerMeter(value.ToQuantityValue());
+                => ForcePerLength.FromDecanewtonsPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromDecanewtonsPerMillimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromDecanewtonsPerMillimeter(double)" />
             public ForcePerLength DecanewtonsPerMillimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromDecanewtonsPerMillimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromDecanewtonsPerMillimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromDecanewtonsPerMillimeter(value.ToQuantityValue());
+                => ForcePerLength.FromDecanewtonsPerMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerCentimeter(double)" />
             public ForcePerLength DecinewtonsPerCentimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromDecinewtonsPerCentimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromDecinewtonsPerCentimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromDecinewtonsPerCentimeter(value.ToQuantityValue());
+                => ForcePerLength.FromDecinewtonsPerCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(double)" />
             public ForcePerLength DecinewtonsPerMeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromDecinewtonsPerMeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromDecinewtonsPerMeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromDecinewtonsPerMeter(value.ToQuantityValue());
+                => ForcePerLength.FromDecinewtonsPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMillimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMillimeter(double)" />
             public ForcePerLength DecinewtonsPerMillimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromDecinewtonsPerMillimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromDecinewtonsPerMillimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromDecinewtonsPerMillimeter(value.ToQuantityValue());
+                => ForcePerLength.FromDecinewtonsPerMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerCentimeter(double)" />
             public ForcePerLength KilogramsForcePerCentimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromKilogramsForcePerCentimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromKilogramsForcePerCentimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromKilogramsForcePerCentimeter(value.ToQuantityValue());
+                => ForcePerLength.FromKilogramsForcePerCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(double)" />
             public ForcePerLength KilogramsForcePerMeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromKilogramsForcePerMeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromKilogramsForcePerMeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromKilogramsForcePerMeter(value.ToQuantityValue());
+                => ForcePerLength.FromKilogramsForcePerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMillimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMillimeter(double)" />
             public ForcePerLength KilogramsForcePerMillimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromKilogramsForcePerMillimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromKilogramsForcePerMillimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromKilogramsForcePerMillimeter(value.ToQuantityValue());
+                => ForcePerLength.FromKilogramsForcePerMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerCentimeter(double)" />
             public ForcePerLength KilonewtonsPerCentimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromKilonewtonsPerCentimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromKilonewtonsPerCentimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromKilonewtonsPerCentimeter(value.ToQuantityValue());
+                => ForcePerLength.FromKilonewtonsPerCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(double)" />
             public ForcePerLength KilonewtonsPerMeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromKilonewtonsPerMeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromKilonewtonsPerMeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromKilonewtonsPerMeter(value.ToQuantityValue());
+                => ForcePerLength.FromKilonewtonsPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMillimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMillimeter(double)" />
             public ForcePerLength KilonewtonsPerMillimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromKilonewtonsPerMillimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromKilonewtonsPerMillimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromKilonewtonsPerMillimeter(value.ToQuantityValue());
+                => ForcePerLength.FromKilonewtonsPerMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromKilopoundsForcePerFoot(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromKilopoundsForcePerFoot(double)" />
             public ForcePerLength KilopoundsForcePerFoot
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromKilopoundsForcePerFoot(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromKilopoundsForcePerFoot(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromKilopoundsForcePerFoot(value.ToQuantityValue());
+                => ForcePerLength.FromKilopoundsForcePerFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromKilopoundsForcePerInch(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromKilopoundsForcePerInch(double)" />
             public ForcePerLength KilopoundsForcePerInch
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromKilopoundsForcePerInch(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromKilopoundsForcePerInch(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromKilopoundsForcePerInch(value.ToQuantityValue());
+                => ForcePerLength.FromKilopoundsForcePerInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerCentimeter(double)" />
             public ForcePerLength MeganewtonsPerCentimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromMeganewtonsPerCentimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromMeganewtonsPerCentimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromMeganewtonsPerCentimeter(value.ToQuantityValue());
+                => ForcePerLength.FromMeganewtonsPerCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double)" />
             public ForcePerLength MeganewtonsPerMeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromMeganewtonsPerMeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromMeganewtonsPerMeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromMeganewtonsPerMeter(value.ToQuantityValue());
+                => ForcePerLength.FromMeganewtonsPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMillimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMillimeter(double)" />
             public ForcePerLength MeganewtonsPerMillimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromMeganewtonsPerMillimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromMeganewtonsPerMillimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromMeganewtonsPerMillimeter(value.ToQuantityValue());
+                => ForcePerLength.FromMeganewtonsPerMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerCentimeter(double)" />
             public ForcePerLength MicronewtonsPerCentimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromMicronewtonsPerCentimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromMicronewtonsPerCentimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromMicronewtonsPerCentimeter(value.ToQuantityValue());
+                => ForcePerLength.FromMicronewtonsPerCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(double)" />
             public ForcePerLength MicronewtonsPerMeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromMicronewtonsPerMeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromMicronewtonsPerMeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromMicronewtonsPerMeter(value.ToQuantityValue());
+                => ForcePerLength.FromMicronewtonsPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMillimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMillimeter(double)" />
             public ForcePerLength MicronewtonsPerMillimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromMicronewtonsPerMillimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromMicronewtonsPerMillimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromMicronewtonsPerMillimeter(value.ToQuantityValue());
+                => ForcePerLength.FromMicronewtonsPerMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerCentimeter(double)" />
             public ForcePerLength MillinewtonsPerCentimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromMillinewtonsPerCentimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromMillinewtonsPerCentimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromMillinewtonsPerCentimeter(value.ToQuantityValue());
+                => ForcePerLength.FromMillinewtonsPerCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(double)" />
             public ForcePerLength MillinewtonsPerMeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromMillinewtonsPerMeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromMillinewtonsPerMeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromMillinewtonsPerMeter(value.ToQuantityValue());
+                => ForcePerLength.FromMillinewtonsPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMillimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMillimeter(double)" />
             public ForcePerLength MillinewtonsPerMillimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromMillinewtonsPerMillimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromMillinewtonsPerMillimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromMillinewtonsPerMillimeter(value.ToQuantityValue());
+                => ForcePerLength.FromMillinewtonsPerMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerCentimeter(double)" />
             public ForcePerLength NanonewtonsPerCentimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromNanonewtonsPerCentimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromNanonewtonsPerCentimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromNanonewtonsPerCentimeter(value.ToQuantityValue());
+                => ForcePerLength.FromNanonewtonsPerCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(double)" />
             public ForcePerLength NanonewtonsPerMeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromNanonewtonsPerMeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromNanonewtonsPerMeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromNanonewtonsPerMeter(value.ToQuantityValue());
+                => ForcePerLength.FromNanonewtonsPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMillimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMillimeter(double)" />
             public ForcePerLength NanonewtonsPerMillimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromNanonewtonsPerMillimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromNanonewtonsPerMillimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromNanonewtonsPerMillimeter(value.ToQuantityValue());
+                => ForcePerLength.FromNanonewtonsPerMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromNewtonsPerCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromNewtonsPerCentimeter(double)" />
             public ForcePerLength NewtonsPerCentimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromNewtonsPerCentimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromNewtonsPerCentimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromNewtonsPerCentimeter(value.ToQuantityValue());
+                => ForcePerLength.FromNewtonsPerCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(double)" />
             public ForcePerLength NewtonsPerMeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromNewtonsPerMeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromNewtonsPerMeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromNewtonsPerMeter(value.ToQuantityValue());
+                => ForcePerLength.FromNewtonsPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMillimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMillimeter(double)" />
             public ForcePerLength NewtonsPerMillimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromNewtonsPerMillimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromNewtonsPerMillimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromNewtonsPerMillimeter(value.ToQuantityValue());
+                => ForcePerLength.FromNewtonsPerMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromPoundsForcePerFoot(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromPoundsForcePerFoot(double)" />
             public ForcePerLength PoundsForcePerFoot
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromPoundsForcePerFoot(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromPoundsForcePerFoot(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromPoundsForcePerFoot(value.ToQuantityValue());
+                => ForcePerLength.FromPoundsForcePerFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromPoundsForcePerInch(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromPoundsForcePerInch(double)" />
             public ForcePerLength PoundsForcePerInch
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromPoundsForcePerInch(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromPoundsForcePerInch(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromPoundsForcePerInch(value.ToQuantityValue());
+                => ForcePerLength.FromPoundsForcePerInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromPoundsForcePerYard(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromPoundsForcePerYard(double)" />
             public ForcePerLength PoundsForcePerYard
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromPoundsForcePerYard(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromPoundsForcePerYard(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromPoundsForcePerYard(value.ToQuantityValue());
+                => ForcePerLength.FromPoundsForcePerYard(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromTonnesForcePerCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromTonnesForcePerCentimeter(double)" />
             public ForcePerLength TonnesForcePerCentimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromTonnesForcePerCentimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromTonnesForcePerCentimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromTonnesForcePerCentimeter(value.ToQuantityValue());
+                => ForcePerLength.FromTonnesForcePerCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromTonnesForcePerMeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromTonnesForcePerMeter(double)" />
             public ForcePerLength TonnesForcePerMeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromTonnesForcePerMeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromTonnesForcePerMeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromTonnesForcePerMeter(value.ToQuantityValue());
+                => ForcePerLength.FromTonnesForcePerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ForcePerLength.FromTonnesForcePerMillimeter(QuantityValue)" />
+            /// <inheritdoc cref="ForcePerLength.FromTonnesForcePerMillimeter(double)" />
             public ForcePerLength TonnesForcePerMillimeter
 #if NET7_0_OR_GREATER
-                => ForcePerLength.FromTonnesForcePerMillimeter(QuantityValue.CreateChecked(value));
+                => ForcePerLength.FromTonnesForcePerMillimeter(double.CreateChecked(value));
 #else
-                => ForcePerLength.FromTonnesForcePerMillimeter(value.ToQuantityValue());
+                => ForcePerLength.FromTonnesForcePerMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

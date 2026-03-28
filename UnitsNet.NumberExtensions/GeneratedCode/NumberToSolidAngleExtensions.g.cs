@@ -32,15 +32,15 @@ namespace UnitsNet.NumberExtensions.NumberToSolidAngle
     /// </summary>
     public static class NumberToSolidAngleExtensions
     {
-        /// <inheritdoc cref="SolidAngle.FromSteradians(QuantityValue)" />
+        /// <inheritdoc cref="SolidAngle.FromSteradians(double)" />
         public static SolidAngle Steradians<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => SolidAngle.FromSteradians(QuantityValue.CreateChecked(value));
+            => SolidAngle.FromSteradians(double.CreateChecked(value));
 #else
             , IConvertible
-            => SolidAngle.FromSteradians(value.ToQuantityValue());
+            => SolidAngle.FromSteradians(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

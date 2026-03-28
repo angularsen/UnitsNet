@@ -42,124 +42,124 @@ namespace UnitsNet.NumberExtensions.NumberToForce
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Force.FromDecanewtons(QuantityValue)" />
+            /// <inheritdoc cref="Force.FromDecanewtons(double)" />
             public Force Decanewtons
 #if NET7_0_OR_GREATER
-                => Force.FromDecanewtons(QuantityValue.CreateChecked(value));
+                => Force.FromDecanewtons(double.CreateChecked(value));
 #else
-                => Force.FromDecanewtons(value.ToQuantityValue());
+                => Force.FromDecanewtons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Force.FromDyne(QuantityValue)" />
+            /// <inheritdoc cref="Force.FromDyne(double)" />
             public Force Dyne
 #if NET7_0_OR_GREATER
-                => Force.FromDyne(QuantityValue.CreateChecked(value));
+                => Force.FromDyne(double.CreateChecked(value));
 #else
-                => Force.FromDyne(value.ToQuantityValue());
+                => Force.FromDyne(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Force.FromKilogramsForce(QuantityValue)" />
+            /// <inheritdoc cref="Force.FromKilogramsForce(double)" />
             public Force KilogramsForce
 #if NET7_0_OR_GREATER
-                => Force.FromKilogramsForce(QuantityValue.CreateChecked(value));
+                => Force.FromKilogramsForce(double.CreateChecked(value));
 #else
-                => Force.FromKilogramsForce(value.ToQuantityValue());
+                => Force.FromKilogramsForce(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Force.FromKilonewtons(QuantityValue)" />
+            /// <inheritdoc cref="Force.FromKilonewtons(double)" />
             public Force Kilonewtons
 #if NET7_0_OR_GREATER
-                => Force.FromKilonewtons(QuantityValue.CreateChecked(value));
+                => Force.FromKilonewtons(double.CreateChecked(value));
 #else
-                => Force.FromKilonewtons(value.ToQuantityValue());
+                => Force.FromKilonewtons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Force.FromKiloponds(QuantityValue)" />
+            /// <inheritdoc cref="Force.FromKiloponds(double)" />
             public Force Kiloponds
 #if NET7_0_OR_GREATER
-                => Force.FromKiloponds(QuantityValue.CreateChecked(value));
+                => Force.FromKiloponds(double.CreateChecked(value));
 #else
-                => Force.FromKiloponds(value.ToQuantityValue());
+                => Force.FromKiloponds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Force.FromKilopoundsForce(QuantityValue)" />
+            /// <inheritdoc cref="Force.FromKilopoundsForce(double)" />
             public Force KilopoundsForce
 #if NET7_0_OR_GREATER
-                => Force.FromKilopoundsForce(QuantityValue.CreateChecked(value));
+                => Force.FromKilopoundsForce(double.CreateChecked(value));
 #else
-                => Force.FromKilopoundsForce(value.ToQuantityValue());
+                => Force.FromKilopoundsForce(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Force.FromMeganewtons(QuantityValue)" />
+            /// <inheritdoc cref="Force.FromMeganewtons(double)" />
             public Force Meganewtons
 #if NET7_0_OR_GREATER
-                => Force.FromMeganewtons(QuantityValue.CreateChecked(value));
+                => Force.FromMeganewtons(double.CreateChecked(value));
 #else
-                => Force.FromMeganewtons(value.ToQuantityValue());
+                => Force.FromMeganewtons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Force.FromMicronewtons(QuantityValue)" />
+            /// <inheritdoc cref="Force.FromMicronewtons(double)" />
             public Force Micronewtons
 #if NET7_0_OR_GREATER
-                => Force.FromMicronewtons(QuantityValue.CreateChecked(value));
+                => Force.FromMicronewtons(double.CreateChecked(value));
 #else
-                => Force.FromMicronewtons(value.ToQuantityValue());
+                => Force.FromMicronewtons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Force.FromMillinewtons(QuantityValue)" />
+            /// <inheritdoc cref="Force.FromMillinewtons(double)" />
             public Force Millinewtons
 #if NET7_0_OR_GREATER
-                => Force.FromMillinewtons(QuantityValue.CreateChecked(value));
+                => Force.FromMillinewtons(double.CreateChecked(value));
 #else
-                => Force.FromMillinewtons(value.ToQuantityValue());
+                => Force.FromMillinewtons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Force.FromNewtons(QuantityValue)" />
+            /// <inheritdoc cref="Force.FromNewtons(double)" />
             public Force Newtons
 #if NET7_0_OR_GREATER
-                => Force.FromNewtons(QuantityValue.CreateChecked(value));
+                => Force.FromNewtons(double.CreateChecked(value));
 #else
-                => Force.FromNewtons(value.ToQuantityValue());
+                => Force.FromNewtons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Force.FromOunceForce(QuantityValue)" />
+            /// <inheritdoc cref="Force.FromOunceForce(double)" />
             public Force OunceForce
 #if NET7_0_OR_GREATER
-                => Force.FromOunceForce(QuantityValue.CreateChecked(value));
+                => Force.FromOunceForce(double.CreateChecked(value));
 #else
-                => Force.FromOunceForce(value.ToQuantityValue());
+                => Force.FromOunceForce(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Force.FromPoundals(QuantityValue)" />
+            /// <inheritdoc cref="Force.FromPoundals(double)" />
             public Force Poundals
 #if NET7_0_OR_GREATER
-                => Force.FromPoundals(QuantityValue.CreateChecked(value));
+                => Force.FromPoundals(double.CreateChecked(value));
 #else
-                => Force.FromPoundals(value.ToQuantityValue());
+                => Force.FromPoundals(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Force.FromPoundsForce(QuantityValue)" />
+            /// <inheritdoc cref="Force.FromPoundsForce(double)" />
             public Force PoundsForce
 #if NET7_0_OR_GREATER
-                => Force.FromPoundsForce(QuantityValue.CreateChecked(value));
+                => Force.FromPoundsForce(double.CreateChecked(value));
 #else
-                => Force.FromPoundsForce(value.ToQuantityValue());
+                => Force.FromPoundsForce(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Force.FromShortTonsForce(QuantityValue)" />
+            /// <inheritdoc cref="Force.FromShortTonsForce(double)" />
             public Force ShortTonsForce
 #if NET7_0_OR_GREATER
-                => Force.FromShortTonsForce(QuantityValue.CreateChecked(value));
+                => Force.FromShortTonsForce(double.CreateChecked(value));
 #else
-                => Force.FromShortTonsForce(value.ToQuantityValue());
+                => Force.FromShortTonsForce(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Force.FromTonnesForce(QuantityValue)" />
+            /// <inheritdoc cref="Force.FromTonnesForce(double)" />
             public Force TonnesForce
 #if NET7_0_OR_GREATER
-                => Force.FromTonnesForce(QuantityValue.CreateChecked(value));
+                => Force.FromTonnesForce(double.CreateChecked(value));
 #else
-                => Force.FromTonnesForce(value.ToQuantityValue());
+                => Force.FromTonnesForce(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

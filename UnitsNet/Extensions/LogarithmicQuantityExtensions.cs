@@ -71,7 +71,7 @@ public static class LogarithmicQuantityExtensions
 #else
         QuantityValue scalingFactor = quantity.LogarithmicScalingFactor;
 #endif
-        var valueInLinearSpace = quantity.Value.ToLinearSpace(scalingFactor);
+        var valueInLinearSpace = ((QuantityValue)quantity.Value).ToLinearSpace(scalingFactor);
         var otherValueInLinearSpace = other.GetValue(quantityUnit).ToLinearSpace(scalingFactor);
         var toleranceInLinearSpace = Math.Abs(tolerance.GetValue(quantityUnit).ToLinearSpace(scalingFactor));
         return Math.Abs(valueInLinearSpace - otherValueInLinearSpace) <= toleranceInLinearSpace;
@@ -110,7 +110,7 @@ public static class LogarithmicQuantityExtensions
         QuantityValue logarithmicScalingFactor = firstQuantity.LogarithmicScalingFactor;
 #endif
         UnitKey resultUnit = firstQuantity.UnitKey;
-        var resultValue = firstQuantity.Value.ToLinearSpace(logarithmicScalingFactor);
+        var resultValue = ((QuantityValue)firstQuantity.Value).ToLinearSpace(logarithmicScalingFactor);
         while (enumerator.MoveNext())
         {
             resultValue += enumerator.Current!.GetValue(resultUnit).ToLinearSpace(logarithmicScalingFactor);
@@ -249,7 +249,7 @@ public static class LogarithmicQuantityExtensions
         QuantityValue logarithmicScalingFactor = firstQuantity.LogarithmicScalingFactor;
 #endif
         UnitKey resultUnit = firstQuantity.UnitKey;
-        var sumInLinearSpace = firstQuantity.Value.ToLinearSpace(logarithmicScalingFactor);
+        var sumInLinearSpace = ((QuantityValue)firstQuantity.Value).ToLinearSpace(logarithmicScalingFactor);
         var nbQuantities = 1;
         while (enumerator.MoveNext())
         {

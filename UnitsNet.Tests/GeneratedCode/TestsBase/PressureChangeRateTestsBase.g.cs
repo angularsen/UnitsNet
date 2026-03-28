@@ -439,7 +439,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 lb/in²/мин", PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, 4.2)]
         [InlineData("ru-RU", "4,2 psi/с", PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 lb/in²/с", PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, 4.2)]
-        public void Parse(string culture, string quantityString, PressureChangeRateUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, PressureChangeRateUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = PressureChangeRate.Parse(quantityString);
@@ -496,7 +496,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 lb/in²/мин", PressureChangeRateUnit.PoundForcePerSquareInchPerMinute, 4.2)]
         [InlineData("ru-RU", "4,2 psi/с", PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 lb/in²/с", PressureChangeRateUnit.PoundForcePerSquareInchPerSecond, 4.2)]
-        public void TryParse(string culture, string quantityString, PressureChangeRateUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, PressureChangeRateUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(PressureChangeRate.TryParse(quantityString, out PressureChangeRate parsed));
@@ -1117,8 +1117,8 @@ namespace UnitsNet.Tests
             var quantity = PressureChangeRate.FromPascalsPerSecond(firstValue);
             var otherQuantity = PressureChangeRate.FromPascalsPerSecond(secondValue);
             PressureChangeRate maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, PressureChangeRate.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

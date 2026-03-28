@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct Jerk :
         IArithmeticQuantity<Jerk, JerkUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Jerk, Jerk, QuantityValue>,
+        IDivisionOperators<Jerk, Jerk, double>,
         IMultiplyOperators<Jerk, Duration, Acceleration>,
         IComparisonOperators<Jerk, Jerk, bool>,
         IParsable<Jerk>,
@@ -52,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -161,7 +161,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Jerk(QuantityValue value, JerkUnit unit)
+        public Jerk(double value, JerkUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -175,7 +175,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Jerk(QuantityValue value, UnitSystem unitSystem)
+        public Jerk(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -217,7 +217,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public JerkUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -251,59 +251,59 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="JerkUnit.CentimeterPerSecondCubed"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.CentimeterPerSecondCubed"/>
         /// </summary>
-        public QuantityValue CentimetersPerSecondCubed => this.As(JerkUnit.CentimeterPerSecondCubed);
+        public double CentimetersPerSecondCubed => this.As(JerkUnit.CentimeterPerSecondCubed);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="JerkUnit.DecimeterPerSecondCubed"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.DecimeterPerSecondCubed"/>
         /// </summary>
-        public QuantityValue DecimetersPerSecondCubed => this.As(JerkUnit.DecimeterPerSecondCubed);
+        public double DecimetersPerSecondCubed => this.As(JerkUnit.DecimeterPerSecondCubed);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="JerkUnit.FootPerSecondCubed"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.FootPerSecondCubed"/>
         /// </summary>
-        public QuantityValue FeetPerSecondCubed => this.As(JerkUnit.FootPerSecondCubed);
+        public double FeetPerSecondCubed => this.As(JerkUnit.FootPerSecondCubed);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="JerkUnit.InchPerSecondCubed"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.InchPerSecondCubed"/>
         /// </summary>
-        public QuantityValue InchesPerSecondCubed => this.As(JerkUnit.InchPerSecondCubed);
+        public double InchesPerSecondCubed => this.As(JerkUnit.InchPerSecondCubed);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="JerkUnit.KilometerPerSecondCubed"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.KilometerPerSecondCubed"/>
         /// </summary>
-        public QuantityValue KilometersPerSecondCubed => this.As(JerkUnit.KilometerPerSecondCubed);
+        public double KilometersPerSecondCubed => this.As(JerkUnit.KilometerPerSecondCubed);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="JerkUnit.MeterPerSecondCubed"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.MeterPerSecondCubed"/>
         /// </summary>
-        public QuantityValue MetersPerSecondCubed => this.As(JerkUnit.MeterPerSecondCubed);
+        public double MetersPerSecondCubed => this.As(JerkUnit.MeterPerSecondCubed);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="JerkUnit.MicrometerPerSecondCubed"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.MicrometerPerSecondCubed"/>
         /// </summary>
-        public QuantityValue MicrometersPerSecondCubed => this.As(JerkUnit.MicrometerPerSecondCubed);
+        public double MicrometersPerSecondCubed => this.As(JerkUnit.MicrometerPerSecondCubed);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="JerkUnit.MillimeterPerSecondCubed"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.MillimeterPerSecondCubed"/>
         /// </summary>
-        public QuantityValue MillimetersPerSecondCubed => this.As(JerkUnit.MillimeterPerSecondCubed);
+        public double MillimetersPerSecondCubed => this.As(JerkUnit.MillimeterPerSecondCubed);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="JerkUnit.MillistandardGravitiesPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.MillistandardGravitiesPerSecond"/>
         /// </summary>
-        public QuantityValue MillistandardGravitiesPerSecond => this.As(JerkUnit.MillistandardGravitiesPerSecond);
+        public double MillistandardGravitiesPerSecond => this.As(JerkUnit.MillistandardGravitiesPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="JerkUnit.NanometerPerSecondCubed"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.NanometerPerSecondCubed"/>
         /// </summary>
-        public QuantityValue NanometersPerSecondCubed => this.As(JerkUnit.NanometerPerSecondCubed);
+        public double NanometersPerSecondCubed => this.As(JerkUnit.NanometerPerSecondCubed);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="JerkUnit.StandardGravitiesPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="JerkUnit.StandardGravitiesPerSecond"/>
         /// </summary>
-        public QuantityValue StandardGravitiesPerSecond => this.As(JerkUnit.StandardGravitiesPerSecond);
+        public double StandardGravitiesPerSecond => this.As(JerkUnit.StandardGravitiesPerSecond);
 
         #endregion
 
@@ -337,7 +337,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Jerk"/> from <see cref="JerkUnit.CentimeterPerSecondCubed"/>.
         /// </summary>
-        public static Jerk FromCentimetersPerSecondCubed(QuantityValue value)
+        public static Jerk FromCentimetersPerSecondCubed(double value)
         {
             return new Jerk(value, JerkUnit.CentimeterPerSecondCubed);
         }
@@ -345,7 +345,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Jerk"/> from <see cref="JerkUnit.DecimeterPerSecondCubed"/>.
         /// </summary>
-        public static Jerk FromDecimetersPerSecondCubed(QuantityValue value)
+        public static Jerk FromDecimetersPerSecondCubed(double value)
         {
             return new Jerk(value, JerkUnit.DecimeterPerSecondCubed);
         }
@@ -353,7 +353,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Jerk"/> from <see cref="JerkUnit.FootPerSecondCubed"/>.
         /// </summary>
-        public static Jerk FromFeetPerSecondCubed(QuantityValue value)
+        public static Jerk FromFeetPerSecondCubed(double value)
         {
             return new Jerk(value, JerkUnit.FootPerSecondCubed);
         }
@@ -361,7 +361,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Jerk"/> from <see cref="JerkUnit.InchPerSecondCubed"/>.
         /// </summary>
-        public static Jerk FromInchesPerSecondCubed(QuantityValue value)
+        public static Jerk FromInchesPerSecondCubed(double value)
         {
             return new Jerk(value, JerkUnit.InchPerSecondCubed);
         }
@@ -369,7 +369,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Jerk"/> from <see cref="JerkUnit.KilometerPerSecondCubed"/>.
         /// </summary>
-        public static Jerk FromKilometersPerSecondCubed(QuantityValue value)
+        public static Jerk FromKilometersPerSecondCubed(double value)
         {
             return new Jerk(value, JerkUnit.KilometerPerSecondCubed);
         }
@@ -377,7 +377,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Jerk"/> from <see cref="JerkUnit.MeterPerSecondCubed"/>.
         /// </summary>
-        public static Jerk FromMetersPerSecondCubed(QuantityValue value)
+        public static Jerk FromMetersPerSecondCubed(double value)
         {
             return new Jerk(value, JerkUnit.MeterPerSecondCubed);
         }
@@ -385,7 +385,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Jerk"/> from <see cref="JerkUnit.MicrometerPerSecondCubed"/>.
         /// </summary>
-        public static Jerk FromMicrometersPerSecondCubed(QuantityValue value)
+        public static Jerk FromMicrometersPerSecondCubed(double value)
         {
             return new Jerk(value, JerkUnit.MicrometerPerSecondCubed);
         }
@@ -393,7 +393,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Jerk"/> from <see cref="JerkUnit.MillimeterPerSecondCubed"/>.
         /// </summary>
-        public static Jerk FromMillimetersPerSecondCubed(QuantityValue value)
+        public static Jerk FromMillimetersPerSecondCubed(double value)
         {
             return new Jerk(value, JerkUnit.MillimeterPerSecondCubed);
         }
@@ -401,7 +401,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Jerk"/> from <see cref="JerkUnit.MillistandardGravitiesPerSecond"/>.
         /// </summary>
-        public static Jerk FromMillistandardGravitiesPerSecond(QuantityValue value)
+        public static Jerk FromMillistandardGravitiesPerSecond(double value)
         {
             return new Jerk(value, JerkUnit.MillistandardGravitiesPerSecond);
         }
@@ -409,7 +409,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Jerk"/> from <see cref="JerkUnit.NanometerPerSecondCubed"/>.
         /// </summary>
-        public static Jerk FromNanometersPerSecondCubed(QuantityValue value)
+        public static Jerk FromNanometersPerSecondCubed(double value)
         {
             return new Jerk(value, JerkUnit.NanometerPerSecondCubed);
         }
@@ -417,7 +417,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Jerk"/> from <see cref="JerkUnit.StandardGravitiesPerSecond"/>.
         /// </summary>
-        public static Jerk FromStandardGravitiesPerSecond(QuantityValue value)
+        public static Jerk FromStandardGravitiesPerSecond(double value)
         {
             return new Jerk(value, JerkUnit.StandardGravitiesPerSecond);
         }
@@ -428,7 +428,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Jerk unit value.</returns>
-        public static Jerk From(QuantityValue value, JerkUnit fromUnit)
+        public static Jerk From(double value, JerkUnit fromUnit)
         {
             return new Jerk(value, fromUnit);
         }
@@ -593,25 +593,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Jerk"/> from multiplying value and <see cref="Jerk"/>.</summary>
-        public static Jerk operator *(QuantityValue left, Jerk right)
+        public static Jerk operator *(double left, Jerk right)
         {
             return new Jerk(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Jerk"/> from multiplying value and <see cref="Jerk"/>.</summary>
-        public static Jerk operator *(Jerk left, QuantityValue right)
+        public static Jerk operator *(Jerk left, double right)
         {
             return new Jerk(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Jerk"/> from dividing <see cref="Jerk"/> by value.</summary>
-        public static Jerk operator /(Jerk left, QuantityValue right)
+        public static Jerk operator /(Jerk left, double right)
         {
             return new Jerk(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Jerk"/> by <see cref="Jerk"/>.</summary>
-        public static QuantityValue operator /(Jerk left, Jerk right)
+        public static double operator /(Jerk left, Jerk right)
         {
             return left.MetersPerSecondCubed / right.MetersPerSecondCubed;
         }

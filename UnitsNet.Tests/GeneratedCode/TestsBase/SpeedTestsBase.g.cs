@@ -544,7 +544,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 мм/с", SpeedUnit.MillimeterPerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 нм/мин", SpeedUnit.NanometerPerMinute, 4.2)]
         [InlineData("ru-RU", "4,2 нм/с", SpeedUnit.NanometerPerSecond, 4.2)]
-        public void Parse(string culture, string quantityString, SpeedUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, SpeedUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Speed.Parse(quantityString);
@@ -616,7 +616,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 мм/с", SpeedUnit.MillimeterPerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 нм/мин", SpeedUnit.NanometerPerMinute, 4.2)]
         [InlineData("ru-RU", "4,2 нм/с", SpeedUnit.NanometerPerSecond, 4.2)]
-        public void TryParse(string culture, string quantityString, SpeedUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, SpeedUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Speed.TryParse(quantityString, out Speed parsed));
@@ -1393,8 +1393,8 @@ namespace UnitsNet.Tests
             var quantity = Speed.FromMetersPerSecond(firstValue);
             var otherQuantity = Speed.FromMetersPerSecond(secondValue);
             Speed maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Speed.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

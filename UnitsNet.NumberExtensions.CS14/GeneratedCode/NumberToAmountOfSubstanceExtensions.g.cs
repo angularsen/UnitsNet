@@ -42,140 +42,140 @@ namespace UnitsNet.NumberExtensions.NumberToAmountOfSubstance
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="AmountOfSubstance.FromCentimoles(QuantityValue)" />
+            /// <inheritdoc cref="AmountOfSubstance.FromCentimoles(double)" />
             public AmountOfSubstance Centimoles
 #if NET7_0_OR_GREATER
-                => AmountOfSubstance.FromCentimoles(QuantityValue.CreateChecked(value));
+                => AmountOfSubstance.FromCentimoles(double.CreateChecked(value));
 #else
-                => AmountOfSubstance.FromCentimoles(value.ToQuantityValue());
+                => AmountOfSubstance.FromCentimoles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="AmountOfSubstance.FromCentipoundMoles(QuantityValue)" />
+            /// <inheritdoc cref="AmountOfSubstance.FromCentipoundMoles(double)" />
             public AmountOfSubstance CentipoundMoles
 #if NET7_0_OR_GREATER
-                => AmountOfSubstance.FromCentipoundMoles(QuantityValue.CreateChecked(value));
+                => AmountOfSubstance.FromCentipoundMoles(double.CreateChecked(value));
 #else
-                => AmountOfSubstance.FromCentipoundMoles(value.ToQuantityValue());
+                => AmountOfSubstance.FromCentipoundMoles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="AmountOfSubstance.FromDecimoles(QuantityValue)" />
+            /// <inheritdoc cref="AmountOfSubstance.FromDecimoles(double)" />
             public AmountOfSubstance Decimoles
 #if NET7_0_OR_GREATER
-                => AmountOfSubstance.FromDecimoles(QuantityValue.CreateChecked(value));
+                => AmountOfSubstance.FromDecimoles(double.CreateChecked(value));
 #else
-                => AmountOfSubstance.FromDecimoles(value.ToQuantityValue());
+                => AmountOfSubstance.FromDecimoles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="AmountOfSubstance.FromDecipoundMoles(QuantityValue)" />
+            /// <inheritdoc cref="AmountOfSubstance.FromDecipoundMoles(double)" />
             public AmountOfSubstance DecipoundMoles
 #if NET7_0_OR_GREATER
-                => AmountOfSubstance.FromDecipoundMoles(QuantityValue.CreateChecked(value));
+                => AmountOfSubstance.FromDecipoundMoles(double.CreateChecked(value));
 #else
-                => AmountOfSubstance.FromDecipoundMoles(value.ToQuantityValue());
+                => AmountOfSubstance.FromDecipoundMoles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="AmountOfSubstance.FromFemtomoles(QuantityValue)" />
+            /// <inheritdoc cref="AmountOfSubstance.FromFemtomoles(double)" />
             public AmountOfSubstance Femtomoles
 #if NET7_0_OR_GREATER
-                => AmountOfSubstance.FromFemtomoles(QuantityValue.CreateChecked(value));
+                => AmountOfSubstance.FromFemtomoles(double.CreateChecked(value));
 #else
-                => AmountOfSubstance.FromFemtomoles(value.ToQuantityValue());
+                => AmountOfSubstance.FromFemtomoles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="AmountOfSubstance.FromKilomoles(QuantityValue)" />
+            /// <inheritdoc cref="AmountOfSubstance.FromKilomoles(double)" />
             public AmountOfSubstance Kilomoles
 #if NET7_0_OR_GREATER
-                => AmountOfSubstance.FromKilomoles(QuantityValue.CreateChecked(value));
+                => AmountOfSubstance.FromKilomoles(double.CreateChecked(value));
 #else
-                => AmountOfSubstance.FromKilomoles(value.ToQuantityValue());
+                => AmountOfSubstance.FromKilomoles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="AmountOfSubstance.FromKilopoundMoles(QuantityValue)" />
+            /// <inheritdoc cref="AmountOfSubstance.FromKilopoundMoles(double)" />
             public AmountOfSubstance KilopoundMoles
 #if NET7_0_OR_GREATER
-                => AmountOfSubstance.FromKilopoundMoles(QuantityValue.CreateChecked(value));
+                => AmountOfSubstance.FromKilopoundMoles(double.CreateChecked(value));
 #else
-                => AmountOfSubstance.FromKilopoundMoles(value.ToQuantityValue());
+                => AmountOfSubstance.FromKilopoundMoles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="AmountOfSubstance.FromMegamoles(QuantityValue)" />
+            /// <inheritdoc cref="AmountOfSubstance.FromMegamoles(double)" />
             public AmountOfSubstance Megamoles
 #if NET7_0_OR_GREATER
-                => AmountOfSubstance.FromMegamoles(QuantityValue.CreateChecked(value));
+                => AmountOfSubstance.FromMegamoles(double.CreateChecked(value));
 #else
-                => AmountOfSubstance.FromMegamoles(value.ToQuantityValue());
+                => AmountOfSubstance.FromMegamoles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="AmountOfSubstance.FromMicromoles(QuantityValue)" />
+            /// <inheritdoc cref="AmountOfSubstance.FromMicromoles(double)" />
             public AmountOfSubstance Micromoles
 #if NET7_0_OR_GREATER
-                => AmountOfSubstance.FromMicromoles(QuantityValue.CreateChecked(value));
+                => AmountOfSubstance.FromMicromoles(double.CreateChecked(value));
 #else
-                => AmountOfSubstance.FromMicromoles(value.ToQuantityValue());
+                => AmountOfSubstance.FromMicromoles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="AmountOfSubstance.FromMicropoundMoles(QuantityValue)" />
+            /// <inheritdoc cref="AmountOfSubstance.FromMicropoundMoles(double)" />
             public AmountOfSubstance MicropoundMoles
 #if NET7_0_OR_GREATER
-                => AmountOfSubstance.FromMicropoundMoles(QuantityValue.CreateChecked(value));
+                => AmountOfSubstance.FromMicropoundMoles(double.CreateChecked(value));
 #else
-                => AmountOfSubstance.FromMicropoundMoles(value.ToQuantityValue());
+                => AmountOfSubstance.FromMicropoundMoles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="AmountOfSubstance.FromMillimoles(QuantityValue)" />
+            /// <inheritdoc cref="AmountOfSubstance.FromMillimoles(double)" />
             public AmountOfSubstance Millimoles
 #if NET7_0_OR_GREATER
-                => AmountOfSubstance.FromMillimoles(QuantityValue.CreateChecked(value));
+                => AmountOfSubstance.FromMillimoles(double.CreateChecked(value));
 #else
-                => AmountOfSubstance.FromMillimoles(value.ToQuantityValue());
+                => AmountOfSubstance.FromMillimoles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="AmountOfSubstance.FromMillipoundMoles(QuantityValue)" />
+            /// <inheritdoc cref="AmountOfSubstance.FromMillipoundMoles(double)" />
             public AmountOfSubstance MillipoundMoles
 #if NET7_0_OR_GREATER
-                => AmountOfSubstance.FromMillipoundMoles(QuantityValue.CreateChecked(value));
+                => AmountOfSubstance.FromMillipoundMoles(double.CreateChecked(value));
 #else
-                => AmountOfSubstance.FromMillipoundMoles(value.ToQuantityValue());
+                => AmountOfSubstance.FromMillipoundMoles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="AmountOfSubstance.FromMoles(QuantityValue)" />
+            /// <inheritdoc cref="AmountOfSubstance.FromMoles(double)" />
             public AmountOfSubstance Moles
 #if NET7_0_OR_GREATER
-                => AmountOfSubstance.FromMoles(QuantityValue.CreateChecked(value));
+                => AmountOfSubstance.FromMoles(double.CreateChecked(value));
 #else
-                => AmountOfSubstance.FromMoles(value.ToQuantityValue());
+                => AmountOfSubstance.FromMoles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="AmountOfSubstance.FromNanomoles(QuantityValue)" />
+            /// <inheritdoc cref="AmountOfSubstance.FromNanomoles(double)" />
             public AmountOfSubstance Nanomoles
 #if NET7_0_OR_GREATER
-                => AmountOfSubstance.FromNanomoles(QuantityValue.CreateChecked(value));
+                => AmountOfSubstance.FromNanomoles(double.CreateChecked(value));
 #else
-                => AmountOfSubstance.FromNanomoles(value.ToQuantityValue());
+                => AmountOfSubstance.FromNanomoles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="AmountOfSubstance.FromNanopoundMoles(QuantityValue)" />
+            /// <inheritdoc cref="AmountOfSubstance.FromNanopoundMoles(double)" />
             public AmountOfSubstance NanopoundMoles
 #if NET7_0_OR_GREATER
-                => AmountOfSubstance.FromNanopoundMoles(QuantityValue.CreateChecked(value));
+                => AmountOfSubstance.FromNanopoundMoles(double.CreateChecked(value));
 #else
-                => AmountOfSubstance.FromNanopoundMoles(value.ToQuantityValue());
+                => AmountOfSubstance.FromNanopoundMoles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="AmountOfSubstance.FromPicomoles(QuantityValue)" />
+            /// <inheritdoc cref="AmountOfSubstance.FromPicomoles(double)" />
             public AmountOfSubstance Picomoles
 #if NET7_0_OR_GREATER
-                => AmountOfSubstance.FromPicomoles(QuantityValue.CreateChecked(value));
+                => AmountOfSubstance.FromPicomoles(double.CreateChecked(value));
 #else
-                => AmountOfSubstance.FromPicomoles(value.ToQuantityValue());
+                => AmountOfSubstance.FromPicomoles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="AmountOfSubstance.FromPoundMoles(QuantityValue)" />
+            /// <inheritdoc cref="AmountOfSubstance.FromPoundMoles(double)" />
             public AmountOfSubstance PoundMoles
 #if NET7_0_OR_GREATER
-                => AmountOfSubstance.FromPoundMoles(QuantityValue.CreateChecked(value));
+                => AmountOfSubstance.FromPoundMoles(double.CreateChecked(value));
 #else
-                => AmountOfSubstance.FromPoundMoles(value.ToQuantityValue());
+                => AmountOfSubstance.FromPoundMoles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

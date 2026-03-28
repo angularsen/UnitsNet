@@ -42,52 +42,52 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotential
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ElectricPotential.FromKilovolts(QuantityValue)" />
+            /// <inheritdoc cref="ElectricPotential.FromKilovolts(double)" />
             public ElectricPotential Kilovolts
 #if NET7_0_OR_GREATER
-                => ElectricPotential.FromKilovolts(QuantityValue.CreateChecked(value));
+                => ElectricPotential.FromKilovolts(double.CreateChecked(value));
 #else
-                => ElectricPotential.FromKilovolts(value.ToQuantityValue());
+                => ElectricPotential.FromKilovolts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricPotential.FromMegavolts(QuantityValue)" />
+            /// <inheritdoc cref="ElectricPotential.FromMegavolts(double)" />
             public ElectricPotential Megavolts
 #if NET7_0_OR_GREATER
-                => ElectricPotential.FromMegavolts(QuantityValue.CreateChecked(value));
+                => ElectricPotential.FromMegavolts(double.CreateChecked(value));
 #else
-                => ElectricPotential.FromMegavolts(value.ToQuantityValue());
+                => ElectricPotential.FromMegavolts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricPotential.FromMicrovolts(QuantityValue)" />
+            /// <inheritdoc cref="ElectricPotential.FromMicrovolts(double)" />
             public ElectricPotential Microvolts
 #if NET7_0_OR_GREATER
-                => ElectricPotential.FromMicrovolts(QuantityValue.CreateChecked(value));
+                => ElectricPotential.FromMicrovolts(double.CreateChecked(value));
 #else
-                => ElectricPotential.FromMicrovolts(value.ToQuantityValue());
+                => ElectricPotential.FromMicrovolts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricPotential.FromMillivolts(QuantityValue)" />
+            /// <inheritdoc cref="ElectricPotential.FromMillivolts(double)" />
             public ElectricPotential Millivolts
 #if NET7_0_OR_GREATER
-                => ElectricPotential.FromMillivolts(QuantityValue.CreateChecked(value));
+                => ElectricPotential.FromMillivolts(double.CreateChecked(value));
 #else
-                => ElectricPotential.FromMillivolts(value.ToQuantityValue());
+                => ElectricPotential.FromMillivolts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricPotential.FromNanovolts(QuantityValue)" />
+            /// <inheritdoc cref="ElectricPotential.FromNanovolts(double)" />
             public ElectricPotential Nanovolts
 #if NET7_0_OR_GREATER
-                => ElectricPotential.FromNanovolts(QuantityValue.CreateChecked(value));
+                => ElectricPotential.FromNanovolts(double.CreateChecked(value));
 #else
-                => ElectricPotential.FromNanovolts(value.ToQuantityValue());
+                => ElectricPotential.FromNanovolts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricPotential.FromVolts(QuantityValue)" />
+            /// <inheritdoc cref="ElectricPotential.FromVolts(double)" />
             public ElectricPotential Volts
 #if NET7_0_OR_GREATER
-                => ElectricPotential.FromVolts(QuantityValue.CreateChecked(value));
+                => ElectricPotential.FromVolts(double.CreateChecked(value));
 #else
-                => ElectricPotential.FromVolts(value.ToQuantityValue());
+                => ElectricPotential.FromVolts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

@@ -16,7 +16,7 @@ public class QuantityConverterOptionsTest
     {
         // Arrange
         var json = """{"Value":4.2,"Unit":"MassUnit.Gram"}""";
-        var expected = new Mass(4.2m, MassUnit.Gram);
+        var expected = new Mass(4.2, MassUnit.Gram);
 
         var options = new JsonSerializerOptions();
         options.Converters.Add(new QuantityValueDecimalNotationConverter());
@@ -37,7 +37,7 @@ public class QuantityConverterOptionsTest
     {
         // Arrange
         var json = """{"Value":{"N":42,"D":10},"Unit":"Gram"}""";
-        var expected = new Mass(4.2m, MassUnit.Gram);
+        var expected = new Mass(4.2, MassUnit.Gram);
 
         var options = new JsonSerializerOptions();
         options.Converters.Add(new QuantityValueFractionalNotationConverter(false));
@@ -58,7 +58,7 @@ public class QuantityConverterOptionsTest
     {
         // Arrange
         var json = """{"Value":{"N":1}}""";
-        var expected = new Mass(QuantityValue.One, MassUnit.Kilogram);
+        var expected = new Mass(1, MassUnit.Kilogram);
         var options = new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault };
         options.Converters.Add(QuantityValueFractionalNotationConverter.Default);
         options.Converters.Add(new JsonQuantityConverter());
@@ -77,7 +77,7 @@ public class QuantityConverterOptionsTest
     {
         // Arrange
         var json = """[{"Value":{"N":42,"D":10},"Unit":6},{"Value":{"N":1}},{}]""";
-        Mass[] masses = [new(4.2m, MassUnit.Gram), new(1, MassUnit.Kilogram), Mass.Zero];
+        Mass[] masses = [new(4.2, MassUnit.Gram), new(1, MassUnit.Kilogram), Mass.Zero];
         var options = new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault };
         options.Converters.Add(QuantityValueFractionalNotationConverter.Default);
         options.Converters.Add(new JsonQuantityConverter());
@@ -97,7 +97,7 @@ public class QuantityConverterOptionsTest
     {
         // Arrange
         var json = """{"Value":{"N":42,"D":10},"Unit":"g"}""";
-        var expected = new Mass(4.2m, MassUnit.Gram);
+        var expected = new Mass(4.2, MassUnit.Gram);
 
         var options = new JsonSerializerOptions();
         options.Converters.Add(QuantityValueFractionalNotationConverter.Default);
@@ -118,7 +118,7 @@ public class QuantityConverterOptionsTest
     {
         // Arrange
         var json = """[{"Value":{"N":42,"D":10},"Unit":6},{"Value":{"N":1,"D":1},"Unit":8},{"Value":{"N":0,"D":1},"Unit":8}]""";
-        Mass[] masses = [new(4.2m, MassUnit.Gram), new(1, MassUnit.Kilogram), Mass.Zero];
+        Mass[] masses = [new(4.2, MassUnit.Gram), new(1, MassUnit.Kilogram), Mass.Zero];
         var options = new JsonSerializerOptions();
         options.Converters.Add(QuantityValueFractionalNotationConverter.Default);
         options.Converters.Add(new JsonQuantityConverter());
@@ -137,7 +137,7 @@ public class QuantityConverterOptionsTest
     {
         // Arrange
         var json = """{"Value":4.2,"Unit":"g","Type":"Mass"}""";
-        var expected = new Mass(4.2m, MassUnit.Gram);
+        var expected = new Mass(4.2, MassUnit.Gram);
         IQuantity interfaceQuantity = expected;
 
         var options = new JsonSerializerOptions();

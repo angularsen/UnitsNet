@@ -368,7 +368,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 pmol/l", MolarityUnit.PicomolePerLiter, 4.2)]
         [InlineData("en-US", "4.2 pM", MolarityUnit.PicomolePerLiter, 4.2)]
         [InlineData("en-US", "4.2 lbmol/ft³", MolarityUnit.PoundMolePerCubicFoot, 4.2)]
-        public void Parse(string culture, string quantityString, MolarityUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, MolarityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Molarity.Parse(quantityString);
@@ -396,7 +396,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 pmol/l", MolarityUnit.PicomolePerLiter, 4.2)]
         [InlineData("en-US", "4.2 pM", MolarityUnit.PicomolePerLiter, 4.2)]
         [InlineData("en-US", "4.2 lbmol/ft³", MolarityUnit.PoundMolePerCubicFoot, 4.2)]
-        public void TryParse(string culture, string quantityString, MolarityUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, MolarityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Molarity.TryParse(quantityString, out Molarity parsed));
@@ -849,8 +849,8 @@ namespace UnitsNet.Tests
             var quantity = Molarity.FromMolesPerCubicMeter(firstValue);
             var otherQuantity = Molarity.FromMolesPerCubicMeter(secondValue);
             Molarity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Molarity.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

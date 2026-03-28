@@ -46,7 +46,7 @@ public class QuantityFromUnitNameBenchmarks
         IQuantity quantity = null;
         foreach (var unitName in _unitNames)
         {
-            quantity = Quantity.From(QuantityValue.One, nameof(Mass), unitName);
+            quantity = Quantity.From(1.0, nameof(Mass), unitName);
         }
 
         return quantity;
@@ -58,7 +58,7 @@ public class QuantityFromUnitNameBenchmarks
         IQuantity quantity = null;
         foreach (var unitName in _unitNames)
         {
-            quantity = Quantity.From(QuantityValue.One, nameof(Volume), unitName);
+            quantity = Quantity.From(1.0, nameof(Volume), unitName);
         }
 
         return quantity;
@@ -70,7 +70,7 @@ public class QuantityFromUnitNameBenchmarks
         IQuantity quantity = null;
         foreach (var unitName in _unitNames)
         {
-            quantity = Quantity.From(QuantityValue.One, nameof(Pressure), unitName);
+            quantity = Quantity.From(1.0, nameof(Pressure), unitName);
         }
 
         return quantity;
@@ -82,7 +82,7 @@ public class QuantityFromUnitNameBenchmarks
         IQuantity quantity = null;
         foreach (var unitName in _unitNames)
         {
-            quantity = Quantity.From(QuantityValue.One, nameof(VolumeFlow), unitName);
+            quantity = Quantity.From(1.0, nameof(VolumeFlow), unitName);
         }
 
         return quantity;

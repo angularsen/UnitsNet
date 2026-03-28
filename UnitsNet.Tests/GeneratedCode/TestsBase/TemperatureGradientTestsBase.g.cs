@@ -311,7 +311,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 ∆°C/m", TemperatureGradientUnit.DegreeCelsiusPerMeter, 4.2)]
         [InlineData("en-US", "4.2 ∆°F/ft", TemperatureGradientUnit.DegreeFahrenheitPerFoot, 4.2)]
         [InlineData("en-US", "4.2 ∆°K/m", TemperatureGradientUnit.KelvinPerMeter, 4.2)]
-        public void Parse(string culture, string quantityString, TemperatureGradientUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, TemperatureGradientUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = TemperatureGradient.Parse(quantityString);
@@ -324,7 +324,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 ∆°C/m", TemperatureGradientUnit.DegreeCelsiusPerMeter, 4.2)]
         [InlineData("en-US", "4.2 ∆°F/ft", TemperatureGradientUnit.DegreeFahrenheitPerFoot, 4.2)]
         [InlineData("en-US", "4.2 ∆°K/m", TemperatureGradientUnit.KelvinPerMeter, 4.2)]
-        public void TryParse(string culture, string quantityString, TemperatureGradientUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, TemperatureGradientUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(TemperatureGradient.TryParse(quantityString, out TemperatureGradient parsed));
@@ -643,8 +643,8 @@ namespace UnitsNet.Tests
             var quantity = TemperatureGradient.FromKelvinsPerMeter(firstValue);
             var otherQuantity = TemperatureGradient.FromKelvinsPerMeter(secondValue);
             TemperatureGradient maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, TemperatureGradient.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

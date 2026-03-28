@@ -42,116 +42,116 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Acceleration.FromCentimetersPerSecondSquared(QuantityValue)" />
+            /// <inheritdoc cref="Acceleration.FromCentimetersPerSecondSquared(double)" />
             public Acceleration CentimetersPerSecondSquared
 #if NET7_0_OR_GREATER
-                => Acceleration.FromCentimetersPerSecondSquared(QuantityValue.CreateChecked(value));
+                => Acceleration.FromCentimetersPerSecondSquared(double.CreateChecked(value));
 #else
-                => Acceleration.FromCentimetersPerSecondSquared(value.ToQuantityValue());
+                => Acceleration.FromCentimetersPerSecondSquared(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(QuantityValue)" />
+            /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(double)" />
             public Acceleration DecimetersPerSecondSquared
 #if NET7_0_OR_GREATER
-                => Acceleration.FromDecimetersPerSecondSquared(QuantityValue.CreateChecked(value));
+                => Acceleration.FromDecimetersPerSecondSquared(double.CreateChecked(value));
 #else
-                => Acceleration.FromDecimetersPerSecondSquared(value.ToQuantityValue());
+                => Acceleration.FromDecimetersPerSecondSquared(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Acceleration.FromFeetPerSecondSquared(QuantityValue)" />
+            /// <inheritdoc cref="Acceleration.FromFeetPerSecondSquared(double)" />
             public Acceleration FeetPerSecondSquared
 #if NET7_0_OR_GREATER
-                => Acceleration.FromFeetPerSecondSquared(QuantityValue.CreateChecked(value));
+                => Acceleration.FromFeetPerSecondSquared(double.CreateChecked(value));
 #else
-                => Acceleration.FromFeetPerSecondSquared(value.ToQuantityValue());
+                => Acceleration.FromFeetPerSecondSquared(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Acceleration.FromInchesPerSecondSquared(QuantityValue)" />
+            /// <inheritdoc cref="Acceleration.FromInchesPerSecondSquared(double)" />
             public Acceleration InchesPerSecondSquared
 #if NET7_0_OR_GREATER
-                => Acceleration.FromInchesPerSecondSquared(QuantityValue.CreateChecked(value));
+                => Acceleration.FromInchesPerSecondSquared(double.CreateChecked(value));
 #else
-                => Acceleration.FromInchesPerSecondSquared(value.ToQuantityValue());
+                => Acceleration.FromInchesPerSecondSquared(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(QuantityValue)" />
+            /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(double)" />
             public Acceleration KilometersPerSecondSquared
 #if NET7_0_OR_GREATER
-                => Acceleration.FromKilometersPerSecondSquared(QuantityValue.CreateChecked(value));
+                => Acceleration.FromKilometersPerSecondSquared(double.CreateChecked(value));
 #else
-                => Acceleration.FromKilometersPerSecondSquared(value.ToQuantityValue());
+                => Acceleration.FromKilometersPerSecondSquared(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Acceleration.FromKnotsPerHour(QuantityValue)" />
+            /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double)" />
             public Acceleration KnotsPerHour
 #if NET7_0_OR_GREATER
-                => Acceleration.FromKnotsPerHour(QuantityValue.CreateChecked(value));
+                => Acceleration.FromKnotsPerHour(double.CreateChecked(value));
 #else
-                => Acceleration.FromKnotsPerHour(value.ToQuantityValue());
+                => Acceleration.FromKnotsPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Acceleration.FromKnotsPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="Acceleration.FromKnotsPerMinute(double)" />
             public Acceleration KnotsPerMinute
 #if NET7_0_OR_GREATER
-                => Acceleration.FromKnotsPerMinute(QuantityValue.CreateChecked(value));
+                => Acceleration.FromKnotsPerMinute(double.CreateChecked(value));
 #else
-                => Acceleration.FromKnotsPerMinute(value.ToQuantityValue());
+                => Acceleration.FromKnotsPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Acceleration.FromKnotsPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="Acceleration.FromKnotsPerSecond(double)" />
             public Acceleration KnotsPerSecond
 #if NET7_0_OR_GREATER
-                => Acceleration.FromKnotsPerSecond(QuantityValue.CreateChecked(value));
+                => Acceleration.FromKnotsPerSecond(double.CreateChecked(value));
 #else
-                => Acceleration.FromKnotsPerSecond(value.ToQuantityValue());
+                => Acceleration.FromKnotsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(QuantityValue)" />
+            /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(double)" />
             public Acceleration MetersPerSecondSquared
 #if NET7_0_OR_GREATER
-                => Acceleration.FromMetersPerSecondSquared(QuantityValue.CreateChecked(value));
+                => Acceleration.FromMetersPerSecondSquared(double.CreateChecked(value));
 #else
-                => Acceleration.FromMetersPerSecondSquared(value.ToQuantityValue());
+                => Acceleration.FromMetersPerSecondSquared(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(QuantityValue)" />
+            /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(double)" />
             public Acceleration MicrometersPerSecondSquared
 #if NET7_0_OR_GREATER
-                => Acceleration.FromMicrometersPerSecondSquared(QuantityValue.CreateChecked(value));
+                => Acceleration.FromMicrometersPerSecondSquared(double.CreateChecked(value));
 #else
-                => Acceleration.FromMicrometersPerSecondSquared(value.ToQuantityValue());
+                => Acceleration.FromMicrometersPerSecondSquared(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(QuantityValue)" />
+            /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(double)" />
             public Acceleration MillimetersPerSecondSquared
 #if NET7_0_OR_GREATER
-                => Acceleration.FromMillimetersPerSecondSquared(QuantityValue.CreateChecked(value));
+                => Acceleration.FromMillimetersPerSecondSquared(double.CreateChecked(value));
 #else
-                => Acceleration.FromMillimetersPerSecondSquared(value.ToQuantityValue());
+                => Acceleration.FromMillimetersPerSecondSquared(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Acceleration.FromMillistandardGravity(QuantityValue)" />
+            /// <inheritdoc cref="Acceleration.FromMillistandardGravity(double)" />
             public Acceleration MillistandardGravity
 #if NET7_0_OR_GREATER
-                => Acceleration.FromMillistandardGravity(QuantityValue.CreateChecked(value));
+                => Acceleration.FromMillistandardGravity(double.CreateChecked(value));
 #else
-                => Acceleration.FromMillistandardGravity(value.ToQuantityValue());
+                => Acceleration.FromMillistandardGravity(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(QuantityValue)" />
+            /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(double)" />
             public Acceleration NanometersPerSecondSquared
 #if NET7_0_OR_GREATER
-                => Acceleration.FromNanometersPerSecondSquared(QuantityValue.CreateChecked(value));
+                => Acceleration.FromNanometersPerSecondSquared(double.CreateChecked(value));
 #else
-                => Acceleration.FromNanometersPerSecondSquared(value.ToQuantityValue());
+                => Acceleration.FromNanometersPerSecondSquared(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Acceleration.FromStandardGravity(QuantityValue)" />
+            /// <inheritdoc cref="Acceleration.FromStandardGravity(double)" />
             public Acceleration StandardGravity
 #if NET7_0_OR_GREATER
-                => Acceleration.FromStandardGravity(QuantityValue.CreateChecked(value));
+                => Acceleration.FromStandardGravity(double.CreateChecked(value));
 #else
-                => Acceleration.FromStandardGravity(value.ToQuantityValue());
+                => Acceleration.FromStandardGravity(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

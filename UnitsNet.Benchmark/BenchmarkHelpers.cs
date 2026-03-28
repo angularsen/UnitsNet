@@ -28,7 +28,7 @@ public static class BenchmarkHelpers
         return GetRandomConversions<TQuantity, TUnit>(random, value, options.ToArray(), nbConversions);
     }
     
-    public static (TQuantity Quantity, TUnit Unit)[] GetRandomConversions<TQuantity, TUnit>(this Random random, QuantityValue value, TUnit[] options,
+    public static (TQuantity Quantity, TUnit Unit)[] GetRandomConversions<TQuantity, TUnit>(this Random random, double value, TUnit[] options,
         int nbConversions)
         where TQuantity : IQuantity<TUnit>
         where TUnit : struct, Enum
@@ -38,7 +38,7 @@ public static class BenchmarkHelpers
         return quantities.Zip(units, (quantity, unit) => (quantity, unit)).ToArray();
     }
     
-    public static IEnumerable<TQuantity> GetRandomQuantities<TQuantity, TUnit>(this Random random, QuantityValue value, TUnit[] units, int nbQuantities)
+    public static IEnumerable<TQuantity> GetRandomQuantities<TQuantity, TUnit>(this Random random, double value, TUnit[] units, int nbQuantities)
         where TQuantity : IQuantity<TUnit>
         where TUnit : struct, Enum
     {

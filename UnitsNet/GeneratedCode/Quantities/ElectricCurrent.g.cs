@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct ElectricCurrent :
         IArithmeticQuantity<ElectricCurrent, ElectricCurrentUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricCurrent, ElectricCurrent, QuantityValue>,
+        IDivisionOperators<ElectricCurrent, ElectricCurrent, double>,
         IDivisionOperators<ElectricCurrent, ElectricCurrentGradient, Duration>,
         IMultiplyOperators<ElectricCurrent, Duration, ElectricCharge>,
         IDivisionOperators<ElectricCurrent, Duration, ElectricCurrentGradient>,
@@ -59,7 +59,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -162,7 +162,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricCurrent(QuantityValue value, ElectricCurrentUnit unit)
+        public ElectricCurrent(double value, ElectricCurrentUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -176,7 +176,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricCurrent(QuantityValue value, UnitSystem unitSystem)
+        public ElectricCurrent(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -218,7 +218,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public ElectricCurrentUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -252,49 +252,49 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Ampere"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Ampere"/>
         /// </summary>
-        public QuantityValue Amperes => this.As(ElectricCurrentUnit.Ampere);
+        public double Amperes => this.As(ElectricCurrentUnit.Ampere);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Centiampere"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Centiampere"/>
         /// </summary>
-        public QuantityValue Centiamperes => this.As(ElectricCurrentUnit.Centiampere);
+        public double Centiamperes => this.As(ElectricCurrentUnit.Centiampere);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Femtoampere"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Femtoampere"/>
         /// </summary>
-        public QuantityValue Femtoamperes => this.As(ElectricCurrentUnit.Femtoampere);
+        public double Femtoamperes => this.As(ElectricCurrentUnit.Femtoampere);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Kiloampere"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Kiloampere"/>
         /// </summary>
-        public QuantityValue Kiloamperes => this.As(ElectricCurrentUnit.Kiloampere);
+        public double Kiloamperes => this.As(ElectricCurrentUnit.Kiloampere);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Megaampere"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Megaampere"/>
         /// </summary>
-        public QuantityValue Megaamperes => this.As(ElectricCurrentUnit.Megaampere);
+        public double Megaamperes => this.As(ElectricCurrentUnit.Megaampere);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Microampere"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Microampere"/>
         /// </summary>
-        public QuantityValue Microamperes => this.As(ElectricCurrentUnit.Microampere);
+        public double Microamperes => this.As(ElectricCurrentUnit.Microampere);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Milliampere"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Milliampere"/>
         /// </summary>
-        public QuantityValue Milliamperes => this.As(ElectricCurrentUnit.Milliampere);
+        public double Milliamperes => this.As(ElectricCurrentUnit.Milliampere);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Nanoampere"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Nanoampere"/>
         /// </summary>
-        public QuantityValue Nanoamperes => this.As(ElectricCurrentUnit.Nanoampere);
+        public double Nanoamperes => this.As(ElectricCurrentUnit.Nanoampere);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Picoampere"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentUnit.Picoampere"/>
         /// </summary>
-        public QuantityValue Picoamperes => this.As(ElectricCurrentUnit.Picoampere);
+        public double Picoamperes => this.As(ElectricCurrentUnit.Picoampere);
 
         #endregion
 
@@ -328,7 +328,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Ampere"/>.
         /// </summary>
-        public static ElectricCurrent FromAmperes(QuantityValue value)
+        public static ElectricCurrent FromAmperes(double value)
         {
             return new ElectricCurrent(value, ElectricCurrentUnit.Ampere);
         }
@@ -336,7 +336,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Centiampere"/>.
         /// </summary>
-        public static ElectricCurrent FromCentiamperes(QuantityValue value)
+        public static ElectricCurrent FromCentiamperes(double value)
         {
             return new ElectricCurrent(value, ElectricCurrentUnit.Centiampere);
         }
@@ -344,7 +344,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Femtoampere"/>.
         /// </summary>
-        public static ElectricCurrent FromFemtoamperes(QuantityValue value)
+        public static ElectricCurrent FromFemtoamperes(double value)
         {
             return new ElectricCurrent(value, ElectricCurrentUnit.Femtoampere);
         }
@@ -352,7 +352,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Kiloampere"/>.
         /// </summary>
-        public static ElectricCurrent FromKiloamperes(QuantityValue value)
+        public static ElectricCurrent FromKiloamperes(double value)
         {
             return new ElectricCurrent(value, ElectricCurrentUnit.Kiloampere);
         }
@@ -360,7 +360,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Megaampere"/>.
         /// </summary>
-        public static ElectricCurrent FromMegaamperes(QuantityValue value)
+        public static ElectricCurrent FromMegaamperes(double value)
         {
             return new ElectricCurrent(value, ElectricCurrentUnit.Megaampere);
         }
@@ -368,7 +368,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Microampere"/>.
         /// </summary>
-        public static ElectricCurrent FromMicroamperes(QuantityValue value)
+        public static ElectricCurrent FromMicroamperes(double value)
         {
             return new ElectricCurrent(value, ElectricCurrentUnit.Microampere);
         }
@@ -376,7 +376,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Milliampere"/>.
         /// </summary>
-        public static ElectricCurrent FromMilliamperes(QuantityValue value)
+        public static ElectricCurrent FromMilliamperes(double value)
         {
             return new ElectricCurrent(value, ElectricCurrentUnit.Milliampere);
         }
@@ -384,7 +384,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Nanoampere"/>.
         /// </summary>
-        public static ElectricCurrent FromNanoamperes(QuantityValue value)
+        public static ElectricCurrent FromNanoamperes(double value)
         {
             return new ElectricCurrent(value, ElectricCurrentUnit.Nanoampere);
         }
@@ -392,7 +392,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentUnit.Picoampere"/>.
         /// </summary>
-        public static ElectricCurrent FromPicoamperes(QuantityValue value)
+        public static ElectricCurrent FromPicoamperes(double value)
         {
             return new ElectricCurrent(value, ElectricCurrentUnit.Picoampere);
         }
@@ -403,7 +403,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricCurrent unit value.</returns>
-        public static ElectricCurrent From(QuantityValue value, ElectricCurrentUnit fromUnit)
+        public static ElectricCurrent From(double value, ElectricCurrentUnit fromUnit)
         {
             return new ElectricCurrent(value, fromUnit);
         }
@@ -568,25 +568,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricCurrent"/> from multiplying value and <see cref="ElectricCurrent"/>.</summary>
-        public static ElectricCurrent operator *(QuantityValue left, ElectricCurrent right)
+        public static ElectricCurrent operator *(double left, ElectricCurrent right)
         {
             return new ElectricCurrent(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCurrent"/> from multiplying value and <see cref="ElectricCurrent"/>.</summary>
-        public static ElectricCurrent operator *(ElectricCurrent left, QuantityValue right)
+        public static ElectricCurrent operator *(ElectricCurrent left, double right)
         {
             return new ElectricCurrent(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCurrent"/> from dividing <see cref="ElectricCurrent"/> by value.</summary>
-        public static ElectricCurrent operator /(ElectricCurrent left, QuantityValue right)
+        public static ElectricCurrent operator /(ElectricCurrent left, double right)
         {
             return new ElectricCurrent(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricCurrent"/> by <see cref="ElectricCurrent"/>.</summary>
-        public static QuantityValue operator /(ElectricCurrent left, ElectricCurrent right)
+        public static double operator /(ElectricCurrent left, ElectricCurrent right)
         {
             return left.Amperes / right.Amperes;
         }

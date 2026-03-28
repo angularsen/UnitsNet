@@ -903,7 +903,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 нл/ч", VolumeFlowUnit.NanoliterPerHour, 4.2)]
         [InlineData("ru-RU", "4,2 нл/мин", VolumeFlowUnit.NanoliterPerMinute, 4.2)]
         [InlineData("ru-RU", "4,2 нл/c", VolumeFlowUnit.NanoliterPerSecond, 4.2)]
-        public void Parse(string culture, string quantityString, VolumeFlowUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, VolumeFlowUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = VolumeFlow.Parse(quantityString);
@@ -1082,7 +1082,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 нл/ч", VolumeFlowUnit.NanoliterPerHour, 4.2)]
         [InlineData("ru-RU", "4,2 нл/мин", VolumeFlowUnit.NanoliterPerMinute, 4.2)]
         [InlineData("ru-RU", "4,2 нл/c", VolumeFlowUnit.NanoliterPerSecond, 4.2)]
-        public void TryParse(string culture, string quantityString, VolumeFlowUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, VolumeFlowUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(VolumeFlow.TryParse(quantityString, out VolumeFlow parsed));
@@ -2763,8 +2763,8 @@ namespace UnitsNet.Tests
             var quantity = VolumeFlow.FromCubicMetersPerSecond(firstValue);
             var otherQuantity = VolumeFlow.FromCubicMetersPerSecond(secondValue);
             VolumeFlow maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, VolumeFlow.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

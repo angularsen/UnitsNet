@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct Length :
         IArithmeticQuantity<Length, LengthUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Length, Length, QuantityValue>,
+        IDivisionOperators<Length, Length, double>,
         IMultiplyOperators<Length, Length, Area>,
         IDivisionOperators<Length, ReciprocalLength, Area>,
         IMultiplyOperators<Length, Volume, AreaMomentOfInertia>,
@@ -69,7 +69,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -271,7 +271,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Length(QuantityValue value, LengthUnit unit)
+        public Length(double value, LengthUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -285,7 +285,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Length(QuantityValue value, UnitSystem unitSystem)
+        public Length(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -327,7 +327,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public LengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -361,214 +361,214 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Angstrom"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Angstrom"/>
         /// </summary>
-        public QuantityValue Angstroms => this.As(LengthUnit.Angstrom);
+        public double Angstroms => this.As(LengthUnit.Angstrom);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.AstronomicalUnit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.AstronomicalUnit"/>
         /// </summary>
-        public QuantityValue AstronomicalUnits => this.As(LengthUnit.AstronomicalUnit);
+        public double AstronomicalUnits => this.As(LengthUnit.AstronomicalUnit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Centimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Centimeter"/>
         /// </summary>
-        public QuantityValue Centimeters => this.As(LengthUnit.Centimeter);
+        public double Centimeters => this.As(LengthUnit.Centimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Chain"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Chain"/>
         /// </summary>
-        public QuantityValue Chains => this.As(LengthUnit.Chain);
+        public double Chains => this.As(LengthUnit.Chain);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.DataMile"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.DataMile"/>
         /// </summary>
-        public QuantityValue DataMiles => this.As(LengthUnit.DataMile);
+        public double DataMiles => this.As(LengthUnit.DataMile);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Decameter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Decameter"/>
         /// </summary>
-        public QuantityValue Decameters => this.As(LengthUnit.Decameter);
+        public double Decameters => this.As(LengthUnit.Decameter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Decimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Decimeter"/>
         /// </summary>
-        public QuantityValue Decimeters => this.As(LengthUnit.Decimeter);
+        public double Decimeters => this.As(LengthUnit.Decimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.DtpPica"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.DtpPica"/>
         /// </summary>
-        public QuantityValue DtpPicas => this.As(LengthUnit.DtpPica);
+        public double DtpPicas => this.As(LengthUnit.DtpPica);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.DtpPoint"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.DtpPoint"/>
         /// </summary>
-        public QuantityValue DtpPoints => this.As(LengthUnit.DtpPoint);
+        public double DtpPoints => this.As(LengthUnit.DtpPoint);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Fathom"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Fathom"/>
         /// </summary>
-        public QuantityValue Fathoms => this.As(LengthUnit.Fathom);
+        public double Fathoms => this.As(LengthUnit.Fathom);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Femtometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Femtometer"/>
         /// </summary>
-        public QuantityValue Femtometers => this.As(LengthUnit.Femtometer);
+        public double Femtometers => this.As(LengthUnit.Femtometer);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Foot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Foot"/>
         /// </summary>
-        public QuantityValue Feet => this.As(LengthUnit.Foot);
+        public double Feet => this.As(LengthUnit.Foot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Gigameter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Gigameter"/>
         /// </summary>
-        public QuantityValue Gigameters => this.As(LengthUnit.Gigameter);
+        public double Gigameters => this.As(LengthUnit.Gigameter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Hand"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Hand"/>
         /// </summary>
-        public QuantityValue Hands => this.As(LengthUnit.Hand);
+        public double Hands => this.As(LengthUnit.Hand);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Hectometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Hectometer"/>
         /// </summary>
-        public QuantityValue Hectometers => this.As(LengthUnit.Hectometer);
+        public double Hectometers => this.As(LengthUnit.Hectometer);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Inch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Inch"/>
         /// </summary>
-        public QuantityValue Inches => this.As(LengthUnit.Inch);
+        public double Inches => this.As(LengthUnit.Inch);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Kilofoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Kilofoot"/>
         /// </summary>
-        public QuantityValue Kilofeet => this.As(LengthUnit.Kilofoot);
+        public double Kilofeet => this.As(LengthUnit.Kilofoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.KilolightYear"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.KilolightYear"/>
         /// </summary>
-        public QuantityValue KilolightYears => this.As(LengthUnit.KilolightYear);
+        public double KilolightYears => this.As(LengthUnit.KilolightYear);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Kilometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Kilometer"/>
         /// </summary>
-        public QuantityValue Kilometers => this.As(LengthUnit.Kilometer);
+        public double Kilometers => this.As(LengthUnit.Kilometer);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Kiloparsec"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Kiloparsec"/>
         /// </summary>
-        public QuantityValue Kiloparsecs => this.As(LengthUnit.Kiloparsec);
+        public double Kiloparsecs => this.As(LengthUnit.Kiloparsec);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Kiloyard"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Kiloyard"/>
         /// </summary>
-        public QuantityValue Kiloyards => this.As(LengthUnit.Kiloyard);
+        public double Kiloyards => this.As(LengthUnit.Kiloyard);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.LightYear"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.LightYear"/>
         /// </summary>
-        public QuantityValue LightYears => this.As(LengthUnit.LightYear);
+        public double LightYears => this.As(LengthUnit.LightYear);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.MegalightYear"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.MegalightYear"/>
         /// </summary>
-        public QuantityValue MegalightYears => this.As(LengthUnit.MegalightYear);
+        public double MegalightYears => this.As(LengthUnit.MegalightYear);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Megameter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Megameter"/>
         /// </summary>
-        public QuantityValue Megameters => this.As(LengthUnit.Megameter);
+        public double Megameters => this.As(LengthUnit.Megameter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Megaparsec"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Megaparsec"/>
         /// </summary>
-        public QuantityValue Megaparsecs => this.As(LengthUnit.Megaparsec);
+        public double Megaparsecs => this.As(LengthUnit.Megaparsec);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Meter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Meter"/>
         /// </summary>
-        public QuantityValue Meters => this.As(LengthUnit.Meter);
+        public double Meters => this.As(LengthUnit.Meter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Microinch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Microinch"/>
         /// </summary>
-        public QuantityValue Microinches => this.As(LengthUnit.Microinch);
+        public double Microinches => this.As(LengthUnit.Microinch);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Micrometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Micrometer"/>
         /// </summary>
-        public QuantityValue Micrometers => this.As(LengthUnit.Micrometer);
+        public double Micrometers => this.As(LengthUnit.Micrometer);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Mil"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Mil"/>
         /// </summary>
-        public QuantityValue Mils => this.As(LengthUnit.Mil);
+        public double Mils => this.As(LengthUnit.Mil);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Mile"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Mile"/>
         /// </summary>
-        public QuantityValue Miles => this.As(LengthUnit.Mile);
+        public double Miles => this.As(LengthUnit.Mile);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Millimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Millimeter"/>
         /// </summary>
-        public QuantityValue Millimeters => this.As(LengthUnit.Millimeter);
+        public double Millimeters => this.As(LengthUnit.Millimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Nanometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Nanometer"/>
         /// </summary>
-        public QuantityValue Nanometers => this.As(LengthUnit.Nanometer);
+        public double Nanometers => this.As(LengthUnit.Nanometer);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.NauticalMile"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.NauticalMile"/>
         /// </summary>
-        public QuantityValue NauticalMiles => this.As(LengthUnit.NauticalMile);
+        public double NauticalMiles => this.As(LengthUnit.NauticalMile);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Parsec"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Parsec"/>
         /// </summary>
-        public QuantityValue Parsecs => this.As(LengthUnit.Parsec);
+        public double Parsecs => this.As(LengthUnit.Parsec);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Picometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Picometer"/>
         /// </summary>
-        public QuantityValue Picometers => this.As(LengthUnit.Picometer);
+        public double Picometers => this.As(LengthUnit.Picometer);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.PrinterPica"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.PrinterPica"/>
         /// </summary>
-        public QuantityValue PrinterPicas => this.As(LengthUnit.PrinterPica);
+        public double PrinterPicas => this.As(LengthUnit.PrinterPica);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.PrinterPoint"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.PrinterPoint"/>
         /// </summary>
-        public QuantityValue PrinterPoints => this.As(LengthUnit.PrinterPoint);
+        public double PrinterPoints => this.As(LengthUnit.PrinterPoint);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Shackle"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Shackle"/>
         /// </summary>
-        public QuantityValue Shackles => this.As(LengthUnit.Shackle);
+        public double Shackles => this.As(LengthUnit.Shackle);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.SolarRadius"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.SolarRadius"/>
         /// </summary>
-        public QuantityValue SolarRadiuses => this.As(LengthUnit.SolarRadius);
+        public double SolarRadiuses => this.As(LengthUnit.SolarRadius);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Twip"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Twip"/>
         /// </summary>
-        public QuantityValue Twips => this.As(LengthUnit.Twip);
+        public double Twips => this.As(LengthUnit.Twip);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.UsSurveyFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.UsSurveyFoot"/>
         /// </summary>
-        public QuantityValue UsSurveyFeet => this.As(LengthUnit.UsSurveyFoot);
+        public double UsSurveyFeet => this.As(LengthUnit.UsSurveyFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LengthUnit.Yard"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LengthUnit.Yard"/>
         /// </summary>
-        public QuantityValue Yards => this.As(LengthUnit.Yard);
+        public double Yards => this.As(LengthUnit.Yard);
 
         #endregion
 
@@ -602,7 +602,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Angstrom"/>.
         /// </summary>
-        public static Length FromAngstroms(QuantityValue value)
+        public static Length FromAngstroms(double value)
         {
             return new Length(value, LengthUnit.Angstrom);
         }
@@ -610,7 +610,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.AstronomicalUnit"/>.
         /// </summary>
-        public static Length FromAstronomicalUnits(QuantityValue value)
+        public static Length FromAstronomicalUnits(double value)
         {
             return new Length(value, LengthUnit.AstronomicalUnit);
         }
@@ -618,7 +618,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Centimeter"/>.
         /// </summary>
-        public static Length FromCentimeters(QuantityValue value)
+        public static Length FromCentimeters(double value)
         {
             return new Length(value, LengthUnit.Centimeter);
         }
@@ -626,7 +626,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Chain"/>.
         /// </summary>
-        public static Length FromChains(QuantityValue value)
+        public static Length FromChains(double value)
         {
             return new Length(value, LengthUnit.Chain);
         }
@@ -634,7 +634,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.DataMile"/>.
         /// </summary>
-        public static Length FromDataMiles(QuantityValue value)
+        public static Length FromDataMiles(double value)
         {
             return new Length(value, LengthUnit.DataMile);
         }
@@ -642,7 +642,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Decameter"/>.
         /// </summary>
-        public static Length FromDecameters(QuantityValue value)
+        public static Length FromDecameters(double value)
         {
             return new Length(value, LengthUnit.Decameter);
         }
@@ -650,7 +650,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Decimeter"/>.
         /// </summary>
-        public static Length FromDecimeters(QuantityValue value)
+        public static Length FromDecimeters(double value)
         {
             return new Length(value, LengthUnit.Decimeter);
         }
@@ -658,7 +658,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.DtpPica"/>.
         /// </summary>
-        public static Length FromDtpPicas(QuantityValue value)
+        public static Length FromDtpPicas(double value)
         {
             return new Length(value, LengthUnit.DtpPica);
         }
@@ -666,7 +666,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.DtpPoint"/>.
         /// </summary>
-        public static Length FromDtpPoints(QuantityValue value)
+        public static Length FromDtpPoints(double value)
         {
             return new Length(value, LengthUnit.DtpPoint);
         }
@@ -674,7 +674,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Fathom"/>.
         /// </summary>
-        public static Length FromFathoms(QuantityValue value)
+        public static Length FromFathoms(double value)
         {
             return new Length(value, LengthUnit.Fathom);
         }
@@ -682,7 +682,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Femtometer"/>.
         /// </summary>
-        public static Length FromFemtometers(QuantityValue value)
+        public static Length FromFemtometers(double value)
         {
             return new Length(value, LengthUnit.Femtometer);
         }
@@ -690,7 +690,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Foot"/>.
         /// </summary>
-        public static Length FromFeet(QuantityValue value)
+        public static Length FromFeet(double value)
         {
             return new Length(value, LengthUnit.Foot);
         }
@@ -698,7 +698,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Gigameter"/>.
         /// </summary>
-        public static Length FromGigameters(QuantityValue value)
+        public static Length FromGigameters(double value)
         {
             return new Length(value, LengthUnit.Gigameter);
         }
@@ -706,7 +706,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Hand"/>.
         /// </summary>
-        public static Length FromHands(QuantityValue value)
+        public static Length FromHands(double value)
         {
             return new Length(value, LengthUnit.Hand);
         }
@@ -714,7 +714,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Hectometer"/>.
         /// </summary>
-        public static Length FromHectometers(QuantityValue value)
+        public static Length FromHectometers(double value)
         {
             return new Length(value, LengthUnit.Hectometer);
         }
@@ -722,7 +722,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Inch"/>.
         /// </summary>
-        public static Length FromInches(QuantityValue value)
+        public static Length FromInches(double value)
         {
             return new Length(value, LengthUnit.Inch);
         }
@@ -730,7 +730,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kilofoot"/>.
         /// </summary>
-        public static Length FromKilofeet(QuantityValue value)
+        public static Length FromKilofeet(double value)
         {
             return new Length(value, LengthUnit.Kilofoot);
         }
@@ -738,7 +738,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.KilolightYear"/>.
         /// </summary>
-        public static Length FromKilolightYears(QuantityValue value)
+        public static Length FromKilolightYears(double value)
         {
             return new Length(value, LengthUnit.KilolightYear);
         }
@@ -746,7 +746,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kilometer"/>.
         /// </summary>
-        public static Length FromKilometers(QuantityValue value)
+        public static Length FromKilometers(double value)
         {
             return new Length(value, LengthUnit.Kilometer);
         }
@@ -754,7 +754,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kiloparsec"/>.
         /// </summary>
-        public static Length FromKiloparsecs(QuantityValue value)
+        public static Length FromKiloparsecs(double value)
         {
             return new Length(value, LengthUnit.Kiloparsec);
         }
@@ -762,7 +762,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Kiloyard"/>.
         /// </summary>
-        public static Length FromKiloyards(QuantityValue value)
+        public static Length FromKiloyards(double value)
         {
             return new Length(value, LengthUnit.Kiloyard);
         }
@@ -770,7 +770,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.LightYear"/>.
         /// </summary>
-        public static Length FromLightYears(QuantityValue value)
+        public static Length FromLightYears(double value)
         {
             return new Length(value, LengthUnit.LightYear);
         }
@@ -778,7 +778,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.MegalightYear"/>.
         /// </summary>
-        public static Length FromMegalightYears(QuantityValue value)
+        public static Length FromMegalightYears(double value)
         {
             return new Length(value, LengthUnit.MegalightYear);
         }
@@ -786,7 +786,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Megameter"/>.
         /// </summary>
-        public static Length FromMegameters(QuantityValue value)
+        public static Length FromMegameters(double value)
         {
             return new Length(value, LengthUnit.Megameter);
         }
@@ -794,7 +794,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Megaparsec"/>.
         /// </summary>
-        public static Length FromMegaparsecs(QuantityValue value)
+        public static Length FromMegaparsecs(double value)
         {
             return new Length(value, LengthUnit.Megaparsec);
         }
@@ -802,7 +802,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Meter"/>.
         /// </summary>
-        public static Length FromMeters(QuantityValue value)
+        public static Length FromMeters(double value)
         {
             return new Length(value, LengthUnit.Meter);
         }
@@ -810,7 +810,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Microinch"/>.
         /// </summary>
-        public static Length FromMicroinches(QuantityValue value)
+        public static Length FromMicroinches(double value)
         {
             return new Length(value, LengthUnit.Microinch);
         }
@@ -818,7 +818,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Micrometer"/>.
         /// </summary>
-        public static Length FromMicrometers(QuantityValue value)
+        public static Length FromMicrometers(double value)
         {
             return new Length(value, LengthUnit.Micrometer);
         }
@@ -826,7 +826,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Mil"/>.
         /// </summary>
-        public static Length FromMils(QuantityValue value)
+        public static Length FromMils(double value)
         {
             return new Length(value, LengthUnit.Mil);
         }
@@ -834,7 +834,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Mile"/>.
         /// </summary>
-        public static Length FromMiles(QuantityValue value)
+        public static Length FromMiles(double value)
         {
             return new Length(value, LengthUnit.Mile);
         }
@@ -842,7 +842,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Millimeter"/>.
         /// </summary>
-        public static Length FromMillimeters(QuantityValue value)
+        public static Length FromMillimeters(double value)
         {
             return new Length(value, LengthUnit.Millimeter);
         }
@@ -850,7 +850,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Nanometer"/>.
         /// </summary>
-        public static Length FromNanometers(QuantityValue value)
+        public static Length FromNanometers(double value)
         {
             return new Length(value, LengthUnit.Nanometer);
         }
@@ -858,7 +858,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.NauticalMile"/>.
         /// </summary>
-        public static Length FromNauticalMiles(QuantityValue value)
+        public static Length FromNauticalMiles(double value)
         {
             return new Length(value, LengthUnit.NauticalMile);
         }
@@ -866,7 +866,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Parsec"/>.
         /// </summary>
-        public static Length FromParsecs(QuantityValue value)
+        public static Length FromParsecs(double value)
         {
             return new Length(value, LengthUnit.Parsec);
         }
@@ -874,7 +874,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Picometer"/>.
         /// </summary>
-        public static Length FromPicometers(QuantityValue value)
+        public static Length FromPicometers(double value)
         {
             return new Length(value, LengthUnit.Picometer);
         }
@@ -882,7 +882,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.PrinterPica"/>.
         /// </summary>
-        public static Length FromPrinterPicas(QuantityValue value)
+        public static Length FromPrinterPicas(double value)
         {
             return new Length(value, LengthUnit.PrinterPica);
         }
@@ -890,7 +890,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.PrinterPoint"/>.
         /// </summary>
-        public static Length FromPrinterPoints(QuantityValue value)
+        public static Length FromPrinterPoints(double value)
         {
             return new Length(value, LengthUnit.PrinterPoint);
         }
@@ -898,7 +898,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Shackle"/>.
         /// </summary>
-        public static Length FromShackles(QuantityValue value)
+        public static Length FromShackles(double value)
         {
             return new Length(value, LengthUnit.Shackle);
         }
@@ -906,7 +906,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.SolarRadius"/>.
         /// </summary>
-        public static Length FromSolarRadiuses(QuantityValue value)
+        public static Length FromSolarRadiuses(double value)
         {
             return new Length(value, LengthUnit.SolarRadius);
         }
@@ -914,7 +914,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Twip"/>.
         /// </summary>
-        public static Length FromTwips(QuantityValue value)
+        public static Length FromTwips(double value)
         {
             return new Length(value, LengthUnit.Twip);
         }
@@ -922,7 +922,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.UsSurveyFoot"/>.
         /// </summary>
-        public static Length FromUsSurveyFeet(QuantityValue value)
+        public static Length FromUsSurveyFeet(double value)
         {
             return new Length(value, LengthUnit.UsSurveyFoot);
         }
@@ -930,7 +930,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Length"/> from <see cref="LengthUnit.Yard"/>.
         /// </summary>
-        public static Length FromYards(QuantityValue value)
+        public static Length FromYards(double value)
         {
             return new Length(value, LengthUnit.Yard);
         }
@@ -941,7 +941,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Length unit value.</returns>
-        public static Length From(QuantityValue value, LengthUnit fromUnit)
+        public static Length From(double value, LengthUnit fromUnit)
         {
             return new Length(value, fromUnit);
         }
@@ -1106,25 +1106,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Length"/> from multiplying value and <see cref="Length"/>.</summary>
-        public static Length operator *(QuantityValue left, Length right)
+        public static Length operator *(double left, Length right)
         {
             return new Length(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Length"/> from multiplying value and <see cref="Length"/>.</summary>
-        public static Length operator *(Length left, QuantityValue right)
+        public static Length operator *(Length left, double right)
         {
             return new Length(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Length"/> from dividing <see cref="Length"/> by value.</summary>
-        public static Length operator /(Length left, QuantityValue right)
+        public static Length operator /(Length left, double right)
         {
             return new Length(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Length"/> by <see cref="Length"/>.</summary>
-        public static QuantityValue operator /(Length left, Length right)
+        public static double operator /(Length left, Length right)
         {
             return left.Meters / right.Meters;
         }

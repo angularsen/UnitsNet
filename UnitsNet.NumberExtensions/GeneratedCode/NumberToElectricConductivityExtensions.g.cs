@@ -32,70 +32,70 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductivity
     /// </summary>
     public static class NumberToElectricConductivityExtensions
     {
-        /// <inheritdoc cref="ElectricConductivity.FromMicrosiemensPerCentimeter(QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductivity.FromMicrosiemensPerCentimeter(double)" />
         public static ElectricConductivity MicrosiemensPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricConductivity.FromMicrosiemensPerCentimeter(QuantityValue.CreateChecked(value));
+            => ElectricConductivity.FromMicrosiemensPerCentimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricConductivity.FromMicrosiemensPerCentimeter(value.ToQuantityValue());
+            => ElectricConductivity.FromMicrosiemensPerCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricConductivity.FromMillisiemensPerCentimeter(QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductivity.FromMillisiemensPerCentimeter(double)" />
         public static ElectricConductivity MillisiemensPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricConductivity.FromMillisiemensPerCentimeter(QuantityValue.CreateChecked(value));
+            => ElectricConductivity.FromMillisiemensPerCentimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricConductivity.FromMillisiemensPerCentimeter(value.ToQuantityValue());
+            => ElectricConductivity.FromMillisiemensPerCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerCentimeter(QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerCentimeter(double)" />
         public static ElectricConductivity SiemensPerCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricConductivity.FromSiemensPerCentimeter(QuantityValue.CreateChecked(value));
+            => ElectricConductivity.FromSiemensPerCentimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricConductivity.FromSiemensPerCentimeter(value.ToQuantityValue());
+            => ElectricConductivity.FromSiemensPerCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerFoot(QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerFoot(double)" />
         public static ElectricConductivity SiemensPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricConductivity.FromSiemensPerFoot(QuantityValue.CreateChecked(value));
+            => ElectricConductivity.FromSiemensPerFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricConductivity.FromSiemensPerFoot(value.ToQuantityValue());
+            => ElectricConductivity.FromSiemensPerFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerInch(QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerInch(double)" />
         public static ElectricConductivity SiemensPerInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricConductivity.FromSiemensPerInch(QuantityValue.CreateChecked(value));
+            => ElectricConductivity.FromSiemensPerInch(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricConductivity.FromSiemensPerInch(value.ToQuantityValue());
+            => ElectricConductivity.FromSiemensPerInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(QuantityValue)" />
+        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(double)" />
         public static ElectricConductivity SiemensPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricConductivity.FromSiemensPerMeter(QuantityValue.CreateChecked(value));
+            => ElectricConductivity.FromSiemensPerMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricConductivity.FromSiemensPerMeter(value.ToQuantityValue());
+            => ElectricConductivity.FromSiemensPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

@@ -42,116 +42,116 @@ namespace UnitsNet.NumberExtensions.NumberToLuminosity
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Luminosity.FromDecawatts(QuantityValue)" />
+            /// <inheritdoc cref="Luminosity.FromDecawatts(double)" />
             public Luminosity Decawatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromDecawatts(QuantityValue.CreateChecked(value));
+                => Luminosity.FromDecawatts(double.CreateChecked(value));
 #else
-                => Luminosity.FromDecawatts(value.ToQuantityValue());
+                => Luminosity.FromDecawatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromDeciwatts(QuantityValue)" />
+            /// <inheritdoc cref="Luminosity.FromDeciwatts(double)" />
             public Luminosity Deciwatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromDeciwatts(QuantityValue.CreateChecked(value));
+                => Luminosity.FromDeciwatts(double.CreateChecked(value));
 #else
-                => Luminosity.FromDeciwatts(value.ToQuantityValue());
+                => Luminosity.FromDeciwatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromFemtowatts(QuantityValue)" />
+            /// <inheritdoc cref="Luminosity.FromFemtowatts(double)" />
             public Luminosity Femtowatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromFemtowatts(QuantityValue.CreateChecked(value));
+                => Luminosity.FromFemtowatts(double.CreateChecked(value));
 #else
-                => Luminosity.FromFemtowatts(value.ToQuantityValue());
+                => Luminosity.FromFemtowatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromGigawatts(QuantityValue)" />
+            /// <inheritdoc cref="Luminosity.FromGigawatts(double)" />
             public Luminosity Gigawatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromGigawatts(QuantityValue.CreateChecked(value));
+                => Luminosity.FromGigawatts(double.CreateChecked(value));
 #else
-                => Luminosity.FromGigawatts(value.ToQuantityValue());
+                => Luminosity.FromGigawatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromKilowatts(QuantityValue)" />
+            /// <inheritdoc cref="Luminosity.FromKilowatts(double)" />
             public Luminosity Kilowatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromKilowatts(QuantityValue.CreateChecked(value));
+                => Luminosity.FromKilowatts(double.CreateChecked(value));
 #else
-                => Luminosity.FromKilowatts(value.ToQuantityValue());
+                => Luminosity.FromKilowatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromMegawatts(QuantityValue)" />
+            /// <inheritdoc cref="Luminosity.FromMegawatts(double)" />
             public Luminosity Megawatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromMegawatts(QuantityValue.CreateChecked(value));
+                => Luminosity.FromMegawatts(double.CreateChecked(value));
 #else
-                => Luminosity.FromMegawatts(value.ToQuantityValue());
+                => Luminosity.FromMegawatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromMicrowatts(QuantityValue)" />
+            /// <inheritdoc cref="Luminosity.FromMicrowatts(double)" />
             public Luminosity Microwatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromMicrowatts(QuantityValue.CreateChecked(value));
+                => Luminosity.FromMicrowatts(double.CreateChecked(value));
 #else
-                => Luminosity.FromMicrowatts(value.ToQuantityValue());
+                => Luminosity.FromMicrowatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromMilliwatts(QuantityValue)" />
+            /// <inheritdoc cref="Luminosity.FromMilliwatts(double)" />
             public Luminosity Milliwatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromMilliwatts(QuantityValue.CreateChecked(value));
+                => Luminosity.FromMilliwatts(double.CreateChecked(value));
 #else
-                => Luminosity.FromMilliwatts(value.ToQuantityValue());
+                => Luminosity.FromMilliwatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromNanowatts(QuantityValue)" />
+            /// <inheritdoc cref="Luminosity.FromNanowatts(double)" />
             public Luminosity Nanowatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromNanowatts(QuantityValue.CreateChecked(value));
+                => Luminosity.FromNanowatts(double.CreateChecked(value));
 #else
-                => Luminosity.FromNanowatts(value.ToQuantityValue());
+                => Luminosity.FromNanowatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromPetawatts(QuantityValue)" />
+            /// <inheritdoc cref="Luminosity.FromPetawatts(double)" />
             public Luminosity Petawatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromPetawatts(QuantityValue.CreateChecked(value));
+                => Luminosity.FromPetawatts(double.CreateChecked(value));
 #else
-                => Luminosity.FromPetawatts(value.ToQuantityValue());
+                => Luminosity.FromPetawatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromPicowatts(QuantityValue)" />
+            /// <inheritdoc cref="Luminosity.FromPicowatts(double)" />
             public Luminosity Picowatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromPicowatts(QuantityValue.CreateChecked(value));
+                => Luminosity.FromPicowatts(double.CreateChecked(value));
 #else
-                => Luminosity.FromPicowatts(value.ToQuantityValue());
+                => Luminosity.FromPicowatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromSolarLuminosities(QuantityValue)" />
+            /// <inheritdoc cref="Luminosity.FromSolarLuminosities(double)" />
             public Luminosity SolarLuminosities
 #if NET7_0_OR_GREATER
-                => Luminosity.FromSolarLuminosities(QuantityValue.CreateChecked(value));
+                => Luminosity.FromSolarLuminosities(double.CreateChecked(value));
 #else
-                => Luminosity.FromSolarLuminosities(value.ToQuantityValue());
+                => Luminosity.FromSolarLuminosities(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromTerawatts(QuantityValue)" />
+            /// <inheritdoc cref="Luminosity.FromTerawatts(double)" />
             public Luminosity Terawatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromTerawatts(QuantityValue.CreateChecked(value));
+                => Luminosity.FromTerawatts(double.CreateChecked(value));
 #else
-                => Luminosity.FromTerawatts(value.ToQuantityValue());
+                => Luminosity.FromTerawatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromWatts(QuantityValue)" />
+            /// <inheritdoc cref="Luminosity.FromWatts(double)" />
             public Luminosity Watts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromWatts(QuantityValue.CreateChecked(value));
+                => Luminosity.FromWatts(double.CreateChecked(value));
 #else
-                => Luminosity.FromWatts(value.ToQuantityValue());
+                => Luminosity.FromWatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

@@ -339,7 +339,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 nC/kg", RadiationExposureUnit.NanocoulombPerKilogram, 4.2)]
         [InlineData("en-US", "4.2 pC/kg", RadiationExposureUnit.PicocoulombPerKilogram, 4.2)]
         [InlineData("en-US", "4.2 R", RadiationExposureUnit.Roentgen, 4.2)]
-        public void Parse(string culture, string quantityString, RadiationExposureUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, RadiationExposureUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = RadiationExposure.Parse(quantityString);
@@ -356,7 +356,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 nC/kg", RadiationExposureUnit.NanocoulombPerKilogram, 4.2)]
         [InlineData("en-US", "4.2 pC/kg", RadiationExposureUnit.PicocoulombPerKilogram, 4.2)]
         [InlineData("en-US", "4.2 R", RadiationExposureUnit.Roentgen, 4.2)]
-        public void TryParse(string culture, string quantityString, RadiationExposureUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, RadiationExposureUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(RadiationExposure.TryParse(quantityString, out RadiationExposure parsed));
@@ -715,8 +715,8 @@ namespace UnitsNet.Tests
             var quantity = RadiationExposure.FromCoulombsPerKilogram(firstValue);
             var otherQuantity = RadiationExposure.FromCoulombsPerKilogram(secondValue);
             RadiationExposure maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, RadiationExposure.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

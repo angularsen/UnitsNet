@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct AmountOfSubstance :
         IArithmeticQuantity<AmountOfSubstance, AmountOfSubstanceUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<AmountOfSubstance, AmountOfSubstance, QuantityValue>,
+        IDivisionOperators<AmountOfSubstance, AmountOfSubstance, double>,
         IDivisionOperators<AmountOfSubstance, MolarFlow, Duration>,
         IMultiplyOperators<AmountOfSubstance, MolarEnergy, Energy>,
         IMultiplyOperators<AmountOfSubstance, MolarMass, Mass>,
@@ -57,7 +57,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -184,7 +184,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public AmountOfSubstance(QuantityValue value, AmountOfSubstanceUnit unit)
+        public AmountOfSubstance(double value, AmountOfSubstanceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -198,7 +198,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public AmountOfSubstance(QuantityValue value, UnitSystem unitSystem)
+        public AmountOfSubstance(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -240,7 +240,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public AmountOfSubstanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -274,89 +274,89 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Centimole"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Centimole"/>
         /// </summary>
-        public QuantityValue Centimoles => this.As(AmountOfSubstanceUnit.Centimole);
+        public double Centimoles => this.As(AmountOfSubstanceUnit.Centimole);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.CentipoundMole"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.CentipoundMole"/>
         /// </summary>
-        public QuantityValue CentipoundMoles => this.As(AmountOfSubstanceUnit.CentipoundMole);
+        public double CentipoundMoles => this.As(AmountOfSubstanceUnit.CentipoundMole);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Decimole"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Decimole"/>
         /// </summary>
-        public QuantityValue Decimoles => this.As(AmountOfSubstanceUnit.Decimole);
+        public double Decimoles => this.As(AmountOfSubstanceUnit.Decimole);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.DecipoundMole"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.DecipoundMole"/>
         /// </summary>
-        public QuantityValue DecipoundMoles => this.As(AmountOfSubstanceUnit.DecipoundMole);
+        public double DecipoundMoles => this.As(AmountOfSubstanceUnit.DecipoundMole);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Femtomole"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Femtomole"/>
         /// </summary>
-        public QuantityValue Femtomoles => this.As(AmountOfSubstanceUnit.Femtomole);
+        public double Femtomoles => this.As(AmountOfSubstanceUnit.Femtomole);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Kilomole"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Kilomole"/>
         /// </summary>
-        public QuantityValue Kilomoles => this.As(AmountOfSubstanceUnit.Kilomole);
+        public double Kilomoles => this.As(AmountOfSubstanceUnit.Kilomole);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.KilopoundMole"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.KilopoundMole"/>
         /// </summary>
-        public QuantityValue KilopoundMoles => this.As(AmountOfSubstanceUnit.KilopoundMole);
+        public double KilopoundMoles => this.As(AmountOfSubstanceUnit.KilopoundMole);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Megamole"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Megamole"/>
         /// </summary>
-        public QuantityValue Megamoles => this.As(AmountOfSubstanceUnit.Megamole);
+        public double Megamoles => this.As(AmountOfSubstanceUnit.Megamole);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Micromole"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Micromole"/>
         /// </summary>
-        public QuantityValue Micromoles => this.As(AmountOfSubstanceUnit.Micromole);
+        public double Micromoles => this.As(AmountOfSubstanceUnit.Micromole);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.MicropoundMole"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.MicropoundMole"/>
         /// </summary>
-        public QuantityValue MicropoundMoles => this.As(AmountOfSubstanceUnit.MicropoundMole);
+        public double MicropoundMoles => this.As(AmountOfSubstanceUnit.MicropoundMole);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Millimole"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Millimole"/>
         /// </summary>
-        public QuantityValue Millimoles => this.As(AmountOfSubstanceUnit.Millimole);
+        public double Millimoles => this.As(AmountOfSubstanceUnit.Millimole);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.MillipoundMole"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.MillipoundMole"/>
         /// </summary>
-        public QuantityValue MillipoundMoles => this.As(AmountOfSubstanceUnit.MillipoundMole);
+        public double MillipoundMoles => this.As(AmountOfSubstanceUnit.MillipoundMole);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Mole"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Mole"/>
         /// </summary>
-        public QuantityValue Moles => this.As(AmountOfSubstanceUnit.Mole);
+        public double Moles => this.As(AmountOfSubstanceUnit.Mole);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Nanomole"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Nanomole"/>
         /// </summary>
-        public QuantityValue Nanomoles => this.As(AmountOfSubstanceUnit.Nanomole);
+        public double Nanomoles => this.As(AmountOfSubstanceUnit.Nanomole);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.NanopoundMole"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.NanopoundMole"/>
         /// </summary>
-        public QuantityValue NanopoundMoles => this.As(AmountOfSubstanceUnit.NanopoundMole);
+        public double NanopoundMoles => this.As(AmountOfSubstanceUnit.NanopoundMole);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Picomole"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.Picomole"/>
         /// </summary>
-        public QuantityValue Picomoles => this.As(AmountOfSubstanceUnit.Picomole);
+        public double Picomoles => this.As(AmountOfSubstanceUnit.Picomole);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.PoundMole"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmountOfSubstanceUnit.PoundMole"/>
         /// </summary>
-        public QuantityValue PoundMoles => this.As(AmountOfSubstanceUnit.PoundMole);
+        public double PoundMoles => this.As(AmountOfSubstanceUnit.PoundMole);
 
         #endregion
 
@@ -390,7 +390,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Centimole"/>.
         /// </summary>
-        public static AmountOfSubstance FromCentimoles(QuantityValue value)
+        public static AmountOfSubstance FromCentimoles(double value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Centimole);
         }
@@ -398,7 +398,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.CentipoundMole"/>.
         /// </summary>
-        public static AmountOfSubstance FromCentipoundMoles(QuantityValue value)
+        public static AmountOfSubstance FromCentipoundMoles(double value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.CentipoundMole);
         }
@@ -406,7 +406,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Decimole"/>.
         /// </summary>
-        public static AmountOfSubstance FromDecimoles(QuantityValue value)
+        public static AmountOfSubstance FromDecimoles(double value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Decimole);
         }
@@ -414,7 +414,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.DecipoundMole"/>.
         /// </summary>
-        public static AmountOfSubstance FromDecipoundMoles(QuantityValue value)
+        public static AmountOfSubstance FromDecipoundMoles(double value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.DecipoundMole);
         }
@@ -422,7 +422,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Femtomole"/>.
         /// </summary>
-        public static AmountOfSubstance FromFemtomoles(QuantityValue value)
+        public static AmountOfSubstance FromFemtomoles(double value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Femtomole);
         }
@@ -430,7 +430,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Kilomole"/>.
         /// </summary>
-        public static AmountOfSubstance FromKilomoles(QuantityValue value)
+        public static AmountOfSubstance FromKilomoles(double value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Kilomole);
         }
@@ -438,7 +438,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.KilopoundMole"/>.
         /// </summary>
-        public static AmountOfSubstance FromKilopoundMoles(QuantityValue value)
+        public static AmountOfSubstance FromKilopoundMoles(double value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.KilopoundMole);
         }
@@ -446,7 +446,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Megamole"/>.
         /// </summary>
-        public static AmountOfSubstance FromMegamoles(QuantityValue value)
+        public static AmountOfSubstance FromMegamoles(double value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Megamole);
         }
@@ -454,7 +454,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Micromole"/>.
         /// </summary>
-        public static AmountOfSubstance FromMicromoles(QuantityValue value)
+        public static AmountOfSubstance FromMicromoles(double value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Micromole);
         }
@@ -462,7 +462,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.MicropoundMole"/>.
         /// </summary>
-        public static AmountOfSubstance FromMicropoundMoles(QuantityValue value)
+        public static AmountOfSubstance FromMicropoundMoles(double value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.MicropoundMole);
         }
@@ -470,7 +470,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Millimole"/>.
         /// </summary>
-        public static AmountOfSubstance FromMillimoles(QuantityValue value)
+        public static AmountOfSubstance FromMillimoles(double value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Millimole);
         }
@@ -478,7 +478,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.MillipoundMole"/>.
         /// </summary>
-        public static AmountOfSubstance FromMillipoundMoles(QuantityValue value)
+        public static AmountOfSubstance FromMillipoundMoles(double value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.MillipoundMole);
         }
@@ -486,7 +486,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Mole"/>.
         /// </summary>
-        public static AmountOfSubstance FromMoles(QuantityValue value)
+        public static AmountOfSubstance FromMoles(double value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Mole);
         }
@@ -494,7 +494,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Nanomole"/>.
         /// </summary>
-        public static AmountOfSubstance FromNanomoles(QuantityValue value)
+        public static AmountOfSubstance FromNanomoles(double value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Nanomole);
         }
@@ -502,7 +502,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.NanopoundMole"/>.
         /// </summary>
-        public static AmountOfSubstance FromNanopoundMoles(QuantityValue value)
+        public static AmountOfSubstance FromNanopoundMoles(double value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.NanopoundMole);
         }
@@ -510,7 +510,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.Picomole"/>.
         /// </summary>
-        public static AmountOfSubstance FromPicomoles(QuantityValue value)
+        public static AmountOfSubstance FromPicomoles(double value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.Picomole);
         }
@@ -518,7 +518,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmountOfSubstance"/> from <see cref="AmountOfSubstanceUnit.PoundMole"/>.
         /// </summary>
-        public static AmountOfSubstance FromPoundMoles(QuantityValue value)
+        public static AmountOfSubstance FromPoundMoles(double value)
         {
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.PoundMole);
         }
@@ -529,7 +529,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AmountOfSubstance unit value.</returns>
-        public static AmountOfSubstance From(QuantityValue value, AmountOfSubstanceUnit fromUnit)
+        public static AmountOfSubstance From(double value, AmountOfSubstanceUnit fromUnit)
         {
             return new AmountOfSubstance(value, fromUnit);
         }
@@ -694,25 +694,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="AmountOfSubstance"/> from multiplying value and <see cref="AmountOfSubstance"/>.</summary>
-        public static AmountOfSubstance operator *(QuantityValue left, AmountOfSubstance right)
+        public static AmountOfSubstance operator *(double left, AmountOfSubstance right)
         {
             return new AmountOfSubstance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="AmountOfSubstance"/> from multiplying value and <see cref="AmountOfSubstance"/>.</summary>
-        public static AmountOfSubstance operator *(AmountOfSubstance left, QuantityValue right)
+        public static AmountOfSubstance operator *(AmountOfSubstance left, double right)
         {
             return new AmountOfSubstance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="AmountOfSubstance"/> from dividing <see cref="AmountOfSubstance"/> by value.</summary>
-        public static AmountOfSubstance operator /(AmountOfSubstance left, QuantityValue right)
+        public static AmountOfSubstance operator /(AmountOfSubstance left, double right)
         {
             return new AmountOfSubstance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="AmountOfSubstance"/> by <see cref="AmountOfSubstance"/>.</summary>
-        public static QuantityValue operator /(AmountOfSubstance left, AmountOfSubstance right)
+        public static double operator /(AmountOfSubstance left, AmountOfSubstance right)
         {
             return left.Moles / right.Moles;
         }

@@ -32,114 +32,114 @@ namespace UnitsNet.NumberExtensions.NumberToLuminance
     /// </summary>
     public static class NumberToLuminanceExtensions
     {
-        /// <inheritdoc cref="Luminance.FromCandelasPerSquareFoot(QuantityValue)" />
+        /// <inheritdoc cref="Luminance.FromCandelasPerSquareFoot(double)" />
         public static Luminance CandelasPerSquareFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminance.FromCandelasPerSquareFoot(QuantityValue.CreateChecked(value));
+            => Luminance.FromCandelasPerSquareFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminance.FromCandelasPerSquareFoot(value.ToQuantityValue());
+            => Luminance.FromCandelasPerSquareFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminance.FromCandelasPerSquareInch(QuantityValue)" />
+        /// <inheritdoc cref="Luminance.FromCandelasPerSquareInch(double)" />
         public static Luminance CandelasPerSquareInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminance.FromCandelasPerSquareInch(QuantityValue.CreateChecked(value));
+            => Luminance.FromCandelasPerSquareInch(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminance.FromCandelasPerSquareInch(value.ToQuantityValue());
+            => Luminance.FromCandelasPerSquareInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminance.FromCandelasPerSquareMeter(QuantityValue)" />
+        /// <inheritdoc cref="Luminance.FromCandelasPerSquareMeter(double)" />
         public static Luminance CandelasPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminance.FromCandelasPerSquareMeter(QuantityValue.CreateChecked(value));
+            => Luminance.FromCandelasPerSquareMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminance.FromCandelasPerSquareMeter(value.ToQuantityValue());
+            => Luminance.FromCandelasPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminance.FromCenticandelasPerSquareMeter(QuantityValue)" />
+        /// <inheritdoc cref="Luminance.FromCenticandelasPerSquareMeter(double)" />
         public static Luminance CenticandelasPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminance.FromCenticandelasPerSquareMeter(QuantityValue.CreateChecked(value));
+            => Luminance.FromCenticandelasPerSquareMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminance.FromCenticandelasPerSquareMeter(value.ToQuantityValue());
+            => Luminance.FromCenticandelasPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminance.FromDecicandelasPerSquareMeter(QuantityValue)" />
+        /// <inheritdoc cref="Luminance.FromDecicandelasPerSquareMeter(double)" />
         public static Luminance DecicandelasPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminance.FromDecicandelasPerSquareMeter(QuantityValue.CreateChecked(value));
+            => Luminance.FromDecicandelasPerSquareMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminance.FromDecicandelasPerSquareMeter(value.ToQuantityValue());
+            => Luminance.FromDecicandelasPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminance.FromKilocandelasPerSquareMeter(QuantityValue)" />
+        /// <inheritdoc cref="Luminance.FromKilocandelasPerSquareMeter(double)" />
         public static Luminance KilocandelasPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminance.FromKilocandelasPerSquareMeter(QuantityValue.CreateChecked(value));
+            => Luminance.FromKilocandelasPerSquareMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminance.FromKilocandelasPerSquareMeter(value.ToQuantityValue());
+            => Luminance.FromKilocandelasPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminance.FromMicrocandelasPerSquareMeter(QuantityValue)" />
+        /// <inheritdoc cref="Luminance.FromMicrocandelasPerSquareMeter(double)" />
         public static Luminance MicrocandelasPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminance.FromMicrocandelasPerSquareMeter(QuantityValue.CreateChecked(value));
+            => Luminance.FromMicrocandelasPerSquareMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminance.FromMicrocandelasPerSquareMeter(value.ToQuantityValue());
+            => Luminance.FromMicrocandelasPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminance.FromMillicandelasPerSquareMeter(QuantityValue)" />
+        /// <inheritdoc cref="Luminance.FromMillicandelasPerSquareMeter(double)" />
         public static Luminance MillicandelasPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminance.FromMillicandelasPerSquareMeter(QuantityValue.CreateChecked(value));
+            => Luminance.FromMillicandelasPerSquareMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminance.FromMillicandelasPerSquareMeter(value.ToQuantityValue());
+            => Luminance.FromMillicandelasPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminance.FromNanocandelasPerSquareMeter(QuantityValue)" />
+        /// <inheritdoc cref="Luminance.FromNanocandelasPerSquareMeter(double)" />
         public static Luminance NanocandelasPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminance.FromNanocandelasPerSquareMeter(QuantityValue.CreateChecked(value));
+            => Luminance.FromNanocandelasPerSquareMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminance.FromNanocandelasPerSquareMeter(value.ToQuantityValue());
+            => Luminance.FromNanocandelasPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminance.FromNits(QuantityValue)" />
+        /// <inheritdoc cref="Luminance.FromNits(double)" />
         public static Luminance Nits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminance.FromNits(QuantityValue.CreateChecked(value));
+            => Luminance.FromNits(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminance.FromNits(value.ToQuantityValue());
+            => Luminance.FromNits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

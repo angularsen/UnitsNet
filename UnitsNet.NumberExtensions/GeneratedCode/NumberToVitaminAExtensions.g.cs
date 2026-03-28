@@ -32,15 +32,15 @@ namespace UnitsNet.NumberExtensions.NumberToVitaminA
     /// </summary>
     public static class NumberToVitaminAExtensions
     {
-        /// <inheritdoc cref="VitaminA.FromInternationalUnits(QuantityValue)" />
+        /// <inheritdoc cref="VitaminA.FromInternationalUnits(double)" />
         public static VitaminA InternationalUnits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VitaminA.FromInternationalUnits(QuantityValue.CreateChecked(value));
+            => VitaminA.FromInternationalUnits(double.CreateChecked(value));
 #else
             , IConvertible
-            => VitaminA.FromInternationalUnits(value.ToQuantityValue());
+            => VitaminA.FromInternationalUnits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

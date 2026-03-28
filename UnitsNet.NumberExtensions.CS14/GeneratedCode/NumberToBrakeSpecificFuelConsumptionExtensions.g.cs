@@ -42,28 +42,28 @@ namespace UnitsNet.NumberExtensions.NumberToBrakeSpecificFuelConsumption
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(QuantityValue)" />
+            /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(double)" />
             public BrakeSpecificFuelConsumption GramsPerKiloWattHour
 #if NET7_0_OR_GREATER
-                => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(QuantityValue.CreateChecked(value));
+                => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(double.CreateChecked(value));
 #else
-                => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(value.ToQuantityValue());
+                => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromKilogramsPerJoule(QuantityValue)" />
+            /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromKilogramsPerJoule(double)" />
             public BrakeSpecificFuelConsumption KilogramsPerJoule
 #if NET7_0_OR_GREATER
-                => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(QuantityValue.CreateChecked(value));
+                => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(double.CreateChecked(value));
 #else
-                => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value.ToQuantityValue());
+                => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(QuantityValue)" />
+            /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(double)" />
             public BrakeSpecificFuelConsumption PoundsPerMechanicalHorsepowerHour
 #if NET7_0_OR_GREATER
-                => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(QuantityValue.CreateChecked(value));
+                => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(double.CreateChecked(value));
 #else
-                => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(value.ToQuantityValue());
+                => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

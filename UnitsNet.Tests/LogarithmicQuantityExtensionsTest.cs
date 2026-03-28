@@ -16,8 +16,8 @@ public class LogarithmicQuantityExtensionsTest
         var quantity = PowerRatio.FromDecibelWatts(firstValue);
         var otherQuantity = PowerRatio.FromDecibelWatts(secondValue);
         PowerRatio maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-        PowerRatio largerTolerance = maxTolerance * 1.1m;
-        PowerRatio smallerTolerance = maxTolerance / 1.1m;
+        PowerRatio largerTolerance = maxTolerance * 1.1;
+        PowerRatio smallerTolerance = maxTolerance / 1.1;
         Assert.True(quantity.Equals(quantity, PowerRatio.Zero));
         Assert.True(quantity.Equals(quantity, maxTolerance));
         Assert.True(quantity.Equals(otherQuantity, largerTolerance));
@@ -35,8 +35,8 @@ public class LogarithmicQuantityExtensionsTest
         var quantity = PowerRatio.FromDecibelWatts(firstValue);
         var otherQuantity = PowerRatio.FromDecibelWatts(secondValue);
         PowerRatio maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-        PowerRatio largerTolerance = maxTolerance * 1.1m;
-        PowerRatio smallerTolerance = maxTolerance / 1.1m;
+        PowerRatio largerTolerance = maxTolerance * 1.1;
+        PowerRatio smallerTolerance = maxTolerance / 1.1;
         Assert.True(quantity.Equals((IQuantity)quantity, PowerRatio.Zero));
         Assert.True(quantity.Equals((IQuantity)quantity, maxTolerance));
         Assert.True(quantity.Equals((IQuantity)otherQuantity, largerTolerance));
@@ -61,7 +61,7 @@ public class LogarithmicQuantityExtensionsTest
     public void Equals_TQuantity_WithNullOther_ReturnsFalse()
     {
         var quantity = new ClassOfLogarithmicQuantity(2, ClassOfLogarithmicQuantityUnit.ATon);
-        var tolerance = new ClassOfLogarithmicQuantity(0.1m, ClassOfLogarithmicQuantityUnit.Some);
+        var tolerance = new ClassOfLogarithmicQuantity(0.1, ClassOfLogarithmicQuantityUnit.Some);
         ClassOfLogarithmicQuantity? nullOther = null;
 
         // since 'other' is a reference type, this is calling the TQuantity overload
@@ -378,7 +378,7 @@ public class LogarithmicQuantityExtensionsTest
         IEnumerable<PowerRatio> quantities = new List<PowerRatio> { quantity1, quantity2 };
         QuantityValue scalingFactor = PowerRatio.LogarithmicScalingFactor;
         QuantityValue expectedValue =
-            ((quantity1.Value.ToLinearSpace(scalingFactor) + quantity2.As(unit1).ToLinearSpace(scalingFactor)) / 2).ToLogSpace(scalingFactor);
+            ((((QuantityValue)quantity1.Value).ToLinearSpace(scalingFactor) + ((QuantityValue)quantity2.As(unit1)).ToLinearSpace(scalingFactor)) / 2).ToLogSpace(scalingFactor);
 
         PowerRatio result = quantities.ArithmeticMean(15);
 
@@ -408,7 +408,7 @@ public class LogarithmicQuantityExtensionsTest
         IEnumerable<PowerRatio> quantities = new List<PowerRatio> { quantity1, quantity2 };
         QuantityValue scalingFactor = PowerRatio.LogarithmicScalingFactor;
         QuantityValue expectedValue =
-            ((quantity1.Value.ToLinearSpace(scalingFactor) + quantity2.As(unit1).ToLinearSpace(scalingFactor)) / 2).ToLogSpace(scalingFactor);
+            ((((QuantityValue)quantity1.Value).ToLinearSpace(scalingFactor) + ((QuantityValue)quantity2.As(unit1)).ToLinearSpace(scalingFactor)) / 2).ToLogSpace(scalingFactor);
 
         PowerRatio result = quantities.ArithmeticMean(x => x);
 
@@ -438,7 +438,7 @@ public class LogarithmicQuantityExtensionsTest
         IEnumerable<PowerRatio> quantities = new List<PowerRatio> { quantity1, quantity2 };
         QuantityValue scalingFactor = PowerRatio.LogarithmicScalingFactor;
         QuantityValue expectedValue =
-            ((quantity1.Value.ToLinearSpace(scalingFactor) + quantity2.As(unit1).ToLinearSpace(scalingFactor)) / 2).ToLogSpace(scalingFactor);
+            ((((QuantityValue)quantity1.Value).ToLinearSpace(scalingFactor) + ((QuantityValue)quantity2.As(unit1)).ToLinearSpace(scalingFactor)) / 2).ToLogSpace(scalingFactor);
 
         PowerRatio result = quantities.ArithmeticMean(x => x, unit1);
 

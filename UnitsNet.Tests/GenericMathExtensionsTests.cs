@@ -1,7 +1,10 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-#if NET7_0_OR_GREATER
+// Tests disabled: Length no longer implements IAdditionOperators, IAdditiveIdentity, or
+// IDivisionOperators<Length, QuantityValue, Length> after the double-public change.
+// The GenericMathExtensions class is [Obsolete] and replaced by LinearQuantityExtensions.
+#if false
 using System;
 using System.Collections.Generic;
 using UnitsNet.GenericMath;
@@ -67,5 +70,4 @@ public class GenericMathExtensionsTests
         Assert.Equal(Length.FromCentimeters(150), averageOfQuantities);
     }
 }
-
 #endif

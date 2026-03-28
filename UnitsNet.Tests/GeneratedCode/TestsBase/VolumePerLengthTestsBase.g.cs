@@ -346,7 +346,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 l/mm", VolumePerLengthUnit.LiterPerMillimeter, 4.2)]
         [InlineData("en-US", "4.2 bbl/ft", VolumePerLengthUnit.OilBarrelPerFoot, 4.2)]
         [InlineData("en-US", "4.2 gal (U.S.)/mi", VolumePerLengthUnit.UsGallonPerMile, 4.2)]
-        public void Parse(string culture, string quantityString, VolumePerLengthUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, VolumePerLengthUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = VolumePerLength.Parse(quantityString);
@@ -364,7 +364,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 l/mm", VolumePerLengthUnit.LiterPerMillimeter, 4.2)]
         [InlineData("en-US", "4.2 bbl/ft", VolumePerLengthUnit.OilBarrelPerFoot, 4.2)]
         [InlineData("en-US", "4.2 gal (U.S.)/mi", VolumePerLengthUnit.UsGallonPerMile, 4.2)]
-        public void TryParse(string culture, string quantityString, VolumePerLengthUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, VolumePerLengthUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(VolumePerLength.TryParse(quantityString, out VolumePerLength parsed));
@@ -733,8 +733,8 @@ namespace UnitsNet.Tests
             var quantity = VolumePerLength.FromCubicMetersPerMeter(firstValue);
             var otherQuantity = VolumePerLength.FromCubicMetersPerMeter(secondValue);
             VolumePerLength maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, VolumePerLength.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct Area :
         IArithmeticQuantity<Area, AreaUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Area, Area, QuantityValue>,
+        IDivisionOperators<Area, Area, double>,
         IMultiplyOperators<Area, Pressure, Force>,
         IMultiplyOperators<Area, SpecificWeight, ForcePerLength>,
         IMultiplyOperators<Area, ReciprocalLength, Length>,
@@ -67,7 +67,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -185,7 +185,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Area(QuantityValue value, AreaUnit unit)
+        public Area(double value, AreaUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -199,7 +199,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Area(QuantityValue value, UnitSystem unitSystem)
+        public Area(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -241,7 +241,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public AreaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -275,74 +275,74 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaUnit.Acre"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.Acre"/>
         /// </summary>
-        public QuantityValue Acres => this.As(AreaUnit.Acre);
+        public double Acres => this.As(AreaUnit.Acre);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaUnit.Hectare"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.Hectare"/>
         /// </summary>
-        public QuantityValue Hectares => this.As(AreaUnit.Hectare);
+        public double Hectares => this.As(AreaUnit.Hectare);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaUnit.SquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareCentimeter"/>
         /// </summary>
-        public QuantityValue SquareCentimeters => this.As(AreaUnit.SquareCentimeter);
+        public double SquareCentimeters => this.As(AreaUnit.SquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaUnit.SquareDecimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareDecimeter"/>
         /// </summary>
-        public QuantityValue SquareDecimeters => this.As(AreaUnit.SquareDecimeter);
+        public double SquareDecimeters => this.As(AreaUnit.SquareDecimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaUnit.SquareFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareFoot"/>
         /// </summary>
-        public QuantityValue SquareFeet => this.As(AreaUnit.SquareFoot);
+        public double SquareFeet => this.As(AreaUnit.SquareFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaUnit.SquareInch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareInch"/>
         /// </summary>
-        public QuantityValue SquareInches => this.As(AreaUnit.SquareInch);
+        public double SquareInches => this.As(AreaUnit.SquareInch);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaUnit.SquareKilometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareKilometer"/>
         /// </summary>
-        public QuantityValue SquareKilometers => this.As(AreaUnit.SquareKilometer);
+        public double SquareKilometers => this.As(AreaUnit.SquareKilometer);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaUnit.SquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareMeter"/>
         /// </summary>
-        public QuantityValue SquareMeters => this.As(AreaUnit.SquareMeter);
+        public double SquareMeters => this.As(AreaUnit.SquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaUnit.SquareMicrometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareMicrometer"/>
         /// </summary>
-        public QuantityValue SquareMicrometers => this.As(AreaUnit.SquareMicrometer);
+        public double SquareMicrometers => this.As(AreaUnit.SquareMicrometer);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaUnit.SquareMile"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareMile"/>
         /// </summary>
-        public QuantityValue SquareMiles => this.As(AreaUnit.SquareMile);
+        public double SquareMiles => this.As(AreaUnit.SquareMile);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaUnit.SquareMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareMillimeter"/>
         /// </summary>
-        public QuantityValue SquareMillimeters => this.As(AreaUnit.SquareMillimeter);
+        public double SquareMillimeters => this.As(AreaUnit.SquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaUnit.SquareNauticalMile"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareNauticalMile"/>
         /// </summary>
-        public QuantityValue SquareNauticalMiles => this.As(AreaUnit.SquareNauticalMile);
+        public double SquareNauticalMiles => this.As(AreaUnit.SquareNauticalMile);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaUnit.SquareYard"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.SquareYard"/>
         /// </summary>
-        public QuantityValue SquareYards => this.As(AreaUnit.SquareYard);
+        public double SquareYards => this.As(AreaUnit.SquareYard);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaUnit.UsSurveySquareFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaUnit.UsSurveySquareFoot"/>
         /// </summary>
-        public QuantityValue UsSurveySquareFeet => this.As(AreaUnit.UsSurveySquareFoot);
+        public double UsSurveySquareFeet => this.As(AreaUnit.UsSurveySquareFoot);
 
         #endregion
 
@@ -376,7 +376,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.Acre"/>.
         /// </summary>
-        public static Area FromAcres(QuantityValue value)
+        public static Area FromAcres(double value)
         {
             return new Area(value, AreaUnit.Acre);
         }
@@ -384,7 +384,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.Hectare"/>.
         /// </summary>
-        public static Area FromHectares(QuantityValue value)
+        public static Area FromHectares(double value)
         {
             return new Area(value, AreaUnit.Hectare);
         }
@@ -392,7 +392,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareCentimeter"/>.
         /// </summary>
-        public static Area FromSquareCentimeters(QuantityValue value)
+        public static Area FromSquareCentimeters(double value)
         {
             return new Area(value, AreaUnit.SquareCentimeter);
         }
@@ -400,7 +400,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareDecimeter"/>.
         /// </summary>
-        public static Area FromSquareDecimeters(QuantityValue value)
+        public static Area FromSquareDecimeters(double value)
         {
             return new Area(value, AreaUnit.SquareDecimeter);
         }
@@ -408,7 +408,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareFoot"/>.
         /// </summary>
-        public static Area FromSquareFeet(QuantityValue value)
+        public static Area FromSquareFeet(double value)
         {
             return new Area(value, AreaUnit.SquareFoot);
         }
@@ -416,7 +416,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareInch"/>.
         /// </summary>
-        public static Area FromSquareInches(QuantityValue value)
+        public static Area FromSquareInches(double value)
         {
             return new Area(value, AreaUnit.SquareInch);
         }
@@ -424,7 +424,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareKilometer"/>.
         /// </summary>
-        public static Area FromSquareKilometers(QuantityValue value)
+        public static Area FromSquareKilometers(double value)
         {
             return new Area(value, AreaUnit.SquareKilometer);
         }
@@ -432,7 +432,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMeter"/>.
         /// </summary>
-        public static Area FromSquareMeters(QuantityValue value)
+        public static Area FromSquareMeters(double value)
         {
             return new Area(value, AreaUnit.SquareMeter);
         }
@@ -440,7 +440,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMicrometer"/>.
         /// </summary>
-        public static Area FromSquareMicrometers(QuantityValue value)
+        public static Area FromSquareMicrometers(double value)
         {
             return new Area(value, AreaUnit.SquareMicrometer);
         }
@@ -448,7 +448,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMile"/>.
         /// </summary>
-        public static Area FromSquareMiles(QuantityValue value)
+        public static Area FromSquareMiles(double value)
         {
             return new Area(value, AreaUnit.SquareMile);
         }
@@ -456,7 +456,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareMillimeter"/>.
         /// </summary>
-        public static Area FromSquareMillimeters(QuantityValue value)
+        public static Area FromSquareMillimeters(double value)
         {
             return new Area(value, AreaUnit.SquareMillimeter);
         }
@@ -464,7 +464,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareNauticalMile"/>.
         /// </summary>
-        public static Area FromSquareNauticalMiles(QuantityValue value)
+        public static Area FromSquareNauticalMiles(double value)
         {
             return new Area(value, AreaUnit.SquareNauticalMile);
         }
@@ -472,7 +472,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.SquareYard"/>.
         /// </summary>
-        public static Area FromSquareYards(QuantityValue value)
+        public static Area FromSquareYards(double value)
         {
             return new Area(value, AreaUnit.SquareYard);
         }
@@ -480,7 +480,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Area"/> from <see cref="AreaUnit.UsSurveySquareFoot"/>.
         /// </summary>
-        public static Area FromUsSurveySquareFeet(QuantityValue value)
+        public static Area FromUsSurveySquareFeet(double value)
         {
             return new Area(value, AreaUnit.UsSurveySquareFoot);
         }
@@ -491,7 +491,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Area unit value.</returns>
-        public static Area From(QuantityValue value, AreaUnit fromUnit)
+        public static Area From(double value, AreaUnit fromUnit)
         {
             return new Area(value, fromUnit);
         }
@@ -656,25 +656,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Area"/> from multiplying value and <see cref="Area"/>.</summary>
-        public static Area operator *(QuantityValue left, Area right)
+        public static Area operator *(double left, Area right)
         {
             return new Area(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Area"/> from multiplying value and <see cref="Area"/>.</summary>
-        public static Area operator *(Area left, QuantityValue right)
+        public static Area operator *(Area left, double right)
         {
             return new Area(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Area"/> from dividing <see cref="Area"/> by value.</summary>
-        public static Area operator /(Area left, QuantityValue right)
+        public static Area operator /(Area left, double right)
         {
             return new Area(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Area"/> by <see cref="Area"/>.</summary>
-        public static QuantityValue operator /(Area left, Area right)
+        public static double operator /(Area left, Area right)
         {
             return left.SquareMeters / right.SquareMeters;
         }

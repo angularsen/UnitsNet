@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct ThermalResistance :
         IArithmeticQuantity<ThermalResistance, ThermalResistanceUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ThermalResistance, ThermalResistance, QuantityValue>,
+        IDivisionOperators<ThermalResistance, ThermalResistance, double>,
         IComparisonOperators<ThermalResistance, ThermalResistance, bool>,
         IParsable<ThermalResistance>,
 #endif
@@ -51,7 +51,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -133,7 +133,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ThermalResistance(QuantityValue value, ThermalResistanceUnit unit)
+        public ThermalResistance(double value, ThermalResistanceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -147,7 +147,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ThermalResistance(QuantityValue value, UnitSystem unitSystem)
+        public ThermalResistance(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -189,7 +189,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public ThermalResistanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -223,14 +223,14 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ThermalResistanceUnit.DegreeCelsiusPerWatt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalResistanceUnit.DegreeCelsiusPerWatt"/>
         /// </summary>
-        public QuantityValue DegreesCelsiusPerWatt => this.As(ThermalResistanceUnit.DegreeCelsiusPerWatt);
+        public double DegreesCelsiusPerWatt => this.As(ThermalResistanceUnit.DegreeCelsiusPerWatt);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ThermalResistanceUnit.KelvinPerWatt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalResistanceUnit.KelvinPerWatt"/>
         /// </summary>
-        public QuantityValue KelvinsPerWatt => this.As(ThermalResistanceUnit.KelvinPerWatt);
+        public double KelvinsPerWatt => this.As(ThermalResistanceUnit.KelvinPerWatt);
 
         #endregion
 
@@ -264,7 +264,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.DegreeCelsiusPerWatt"/>.
         /// </summary>
-        public static ThermalResistance FromDegreesCelsiusPerWatt(QuantityValue value)
+        public static ThermalResistance FromDegreesCelsiusPerWatt(double value)
         {
             return new ThermalResistance(value, ThermalResistanceUnit.DegreeCelsiusPerWatt);
         }
@@ -272,7 +272,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ThermalResistance"/> from <see cref="ThermalResistanceUnit.KelvinPerWatt"/>.
         /// </summary>
-        public static ThermalResistance FromKelvinsPerWatt(QuantityValue value)
+        public static ThermalResistance FromKelvinsPerWatt(double value)
         {
             return new ThermalResistance(value, ThermalResistanceUnit.KelvinPerWatt);
         }
@@ -283,7 +283,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ThermalResistance unit value.</returns>
-        public static ThermalResistance From(QuantityValue value, ThermalResistanceUnit fromUnit)
+        public static ThermalResistance From(double value, ThermalResistanceUnit fromUnit)
         {
             return new ThermalResistance(value, fromUnit);
         }
@@ -448,25 +448,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ThermalResistance"/> from multiplying value and <see cref="ThermalResistance"/>.</summary>
-        public static ThermalResistance operator *(QuantityValue left, ThermalResistance right)
+        public static ThermalResistance operator *(double left, ThermalResistance right)
         {
             return new ThermalResistance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ThermalResistance"/> from multiplying value and <see cref="ThermalResistance"/>.</summary>
-        public static ThermalResistance operator *(ThermalResistance left, QuantityValue right)
+        public static ThermalResistance operator *(ThermalResistance left, double right)
         {
             return new ThermalResistance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ThermalResistance"/> from dividing <see cref="ThermalResistance"/> by value.</summary>
-        public static ThermalResistance operator /(ThermalResistance left, QuantityValue right)
+        public static ThermalResistance operator /(ThermalResistance left, double right)
         {
             return new ThermalResistance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ThermalResistance"/> by <see cref="ThermalResistance"/>.</summary>
-        public static QuantityValue operator /(ThermalResistance left, ThermalResistance right)
+        public static double operator /(ThermalResistance left, ThermalResistance right)
         {
             return left.KelvinsPerWatt / right.KelvinsPerWatt;
         }

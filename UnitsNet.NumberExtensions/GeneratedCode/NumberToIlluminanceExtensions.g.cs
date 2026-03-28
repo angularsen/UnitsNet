@@ -32,48 +32,48 @@ namespace UnitsNet.NumberExtensions.NumberToIlluminance
     /// </summary>
     public static class NumberToIlluminanceExtensions
     {
-        /// <inheritdoc cref="Illuminance.FromKilolux(QuantityValue)" />
+        /// <inheritdoc cref="Illuminance.FromKilolux(double)" />
         public static Illuminance Kilolux<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Illuminance.FromKilolux(QuantityValue.CreateChecked(value));
+            => Illuminance.FromKilolux(double.CreateChecked(value));
 #else
             , IConvertible
-            => Illuminance.FromKilolux(value.ToQuantityValue());
+            => Illuminance.FromKilolux(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Illuminance.FromLux(QuantityValue)" />
+        /// <inheritdoc cref="Illuminance.FromLux(double)" />
         public static Illuminance Lux<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Illuminance.FromLux(QuantityValue.CreateChecked(value));
+            => Illuminance.FromLux(double.CreateChecked(value));
 #else
             , IConvertible
-            => Illuminance.FromLux(value.ToQuantityValue());
+            => Illuminance.FromLux(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Illuminance.FromMegalux(QuantityValue)" />
+        /// <inheritdoc cref="Illuminance.FromMegalux(double)" />
         public static Illuminance Megalux<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Illuminance.FromMegalux(QuantityValue.CreateChecked(value));
+            => Illuminance.FromMegalux(double.CreateChecked(value));
 #else
             , IConvertible
-            => Illuminance.FromMegalux(value.ToQuantityValue());
+            => Illuminance.FromMegalux(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Illuminance.FromMillilux(QuantityValue)" />
+        /// <inheritdoc cref="Illuminance.FromMillilux(double)" />
         public static Illuminance Millilux<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Illuminance.FromMillilux(QuantityValue.CreateChecked(value));
+            => Illuminance.FromMillilux(double.CreateChecked(value));
 #else
             , IConvertible
-            => Illuminance.FromMillilux(value.ToQuantityValue());
+            => Illuminance.FromMillilux(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

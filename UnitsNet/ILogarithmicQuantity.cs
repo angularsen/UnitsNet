@@ -28,7 +28,7 @@ public interface ILogarithmicQuantity<TSelf> : IQuantityOfType<TSelf>
     /// <value>
     ///     The logarithmic scaling factor.
     /// </value>
-    static abstract QuantityValue LogarithmicScalingFactor { get; }
+    static abstract double LogarithmicScalingFactor { get; }
 
     /// <summary>
     ///     The zero value of this quantity.
@@ -44,7 +44,7 @@ public interface ILogarithmicQuantity<TSelf> : IQuantityOfType<TSelf>
     /// <value>
     ///     The logarithmic scaling factor.
     /// </value>
-    QuantityValue LogarithmicScalingFactor { get; }
+    double LogarithmicScalingFactor { get; }
 #endif
 }
 
@@ -55,8 +55,8 @@ public interface ILogarithmicQuantity<TSelf, TUnitType> : IQuantity<TSelf, TUnit
 #if NET7_0_OR_GREATER
     , IAdditionOperators<TSelf, TSelf, TSelf>
     , ISubtractionOperators<TSelf, TSelf, TSelf>
-    , IMultiplyOperators<TSelf, QuantityValue, TSelf>
-    , IDivisionOperators<TSelf, QuantityValue, TSelf>
+    , IMultiplyOperators<TSelf, double, TSelf>
+    , IDivisionOperators<TSelf, double, TSelf>
     , IUnaryNegationOperators<TSelf, TSelf>
 #endif
     where TSelf : ILogarithmicQuantity<TSelf, TUnitType>

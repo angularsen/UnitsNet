@@ -13,8 +13,8 @@ namespace UnitsNet.Benchmark.Operators.Multiplications;
 [SimpleJob(RuntimeMoniker.Net90)]
 public class VolumeTimesDensityWithRandomUnitsBenchmarks
 {
-    private static readonly QuantityValue DensityValue = 1.23;
-    private static readonly QuantityValue VolumeValue = 9.42;
+    private static readonly double DensityValue = 1.23;
+    private static readonly double VolumeValue = 9.42;
 
     private readonly Random _random = new Random(42);
     private (Volume volume, Density density)[] _operands;

@@ -14,7 +14,7 @@ namespace UnitsNet.Benchmark.Operators.Additions;
 [SimpleJob(RuntimeMoniker.Net90)]
 public class SumOfVolumesWithRandomUnitsBenchmarks
 {
-    private static readonly QuantityValue Value = 1.23;
+    private static readonly double Value = 1.23;
 
     private readonly Random _random = new(42);
     private Volume[] _quantities;

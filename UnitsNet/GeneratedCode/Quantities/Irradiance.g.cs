@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct Irradiance :
         IArithmeticQuantity<Irradiance, IrradianceUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Irradiance, Irradiance, QuantityValue>,
+        IDivisionOperators<Irradiance, Irradiance, double>,
         IComparisonOperators<Irradiance, Irradiance, bool>,
         IParsable<Irradiance>,
 #endif
@@ -51,7 +51,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -169,7 +169,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Irradiance(QuantityValue value, IrradianceUnit unit)
+        public Irradiance(double value, IrradianceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -183,7 +183,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Irradiance(QuantityValue value, UnitSystem unitSystem)
+        public Irradiance(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -225,7 +225,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public IrradianceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -259,74 +259,74 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradianceUnit.KilowattPerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.KilowattPerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue KilowattsPerSquareCentimeter => this.As(IrradianceUnit.KilowattPerSquareCentimeter);
+        public double KilowattsPerSquareCentimeter => this.As(IrradianceUnit.KilowattPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradianceUnit.KilowattPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.KilowattPerSquareMeter"/>
         /// </summary>
-        public QuantityValue KilowattsPerSquareMeter => this.As(IrradianceUnit.KilowattPerSquareMeter);
+        public double KilowattsPerSquareMeter => this.As(IrradianceUnit.KilowattPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradianceUnit.MegawattPerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.MegawattPerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue MegawattsPerSquareCentimeter => this.As(IrradianceUnit.MegawattPerSquareCentimeter);
+        public double MegawattsPerSquareCentimeter => this.As(IrradianceUnit.MegawattPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradianceUnit.MegawattPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.MegawattPerSquareMeter"/>
         /// </summary>
-        public QuantityValue MegawattsPerSquareMeter => this.As(IrradianceUnit.MegawattPerSquareMeter);
+        public double MegawattsPerSquareMeter => this.As(IrradianceUnit.MegawattPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradianceUnit.MicrowattPerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.MicrowattPerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue MicrowattsPerSquareCentimeter => this.As(IrradianceUnit.MicrowattPerSquareCentimeter);
+        public double MicrowattsPerSquareCentimeter => this.As(IrradianceUnit.MicrowattPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradianceUnit.MicrowattPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.MicrowattPerSquareMeter"/>
         /// </summary>
-        public QuantityValue MicrowattsPerSquareMeter => this.As(IrradianceUnit.MicrowattPerSquareMeter);
+        public double MicrowattsPerSquareMeter => this.As(IrradianceUnit.MicrowattPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradianceUnit.MilliwattPerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.MilliwattPerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue MilliwattsPerSquareCentimeter => this.As(IrradianceUnit.MilliwattPerSquareCentimeter);
+        public double MilliwattsPerSquareCentimeter => this.As(IrradianceUnit.MilliwattPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradianceUnit.MilliwattPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.MilliwattPerSquareMeter"/>
         /// </summary>
-        public QuantityValue MilliwattsPerSquareMeter => this.As(IrradianceUnit.MilliwattPerSquareMeter);
+        public double MilliwattsPerSquareMeter => this.As(IrradianceUnit.MilliwattPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradianceUnit.NanowattPerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.NanowattPerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue NanowattsPerSquareCentimeter => this.As(IrradianceUnit.NanowattPerSquareCentimeter);
+        public double NanowattsPerSquareCentimeter => this.As(IrradianceUnit.NanowattPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradianceUnit.NanowattPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.NanowattPerSquareMeter"/>
         /// </summary>
-        public QuantityValue NanowattsPerSquareMeter => this.As(IrradianceUnit.NanowattPerSquareMeter);
+        public double NanowattsPerSquareMeter => this.As(IrradianceUnit.NanowattPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradianceUnit.PicowattPerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.PicowattPerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue PicowattsPerSquareCentimeter => this.As(IrradianceUnit.PicowattPerSquareCentimeter);
+        public double PicowattsPerSquareCentimeter => this.As(IrradianceUnit.PicowattPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradianceUnit.PicowattPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.PicowattPerSquareMeter"/>
         /// </summary>
-        public QuantityValue PicowattsPerSquareMeter => this.As(IrradianceUnit.PicowattPerSquareMeter);
+        public double PicowattsPerSquareMeter => this.As(IrradianceUnit.PicowattPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradianceUnit.WattPerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.WattPerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue WattsPerSquareCentimeter => this.As(IrradianceUnit.WattPerSquareCentimeter);
+        public double WattsPerSquareCentimeter => this.As(IrradianceUnit.WattPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradianceUnit.WattPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradianceUnit.WattPerSquareMeter"/>
         /// </summary>
-        public QuantityValue WattsPerSquareMeter => this.As(IrradianceUnit.WattPerSquareMeter);
+        public double WattsPerSquareMeter => this.As(IrradianceUnit.WattPerSquareMeter);
 
         #endregion
 
@@ -360,7 +360,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.KilowattPerSquareCentimeter"/>.
         /// </summary>
-        public static Irradiance FromKilowattsPerSquareCentimeter(QuantityValue value)
+        public static Irradiance FromKilowattsPerSquareCentimeter(double value)
         {
             return new Irradiance(value, IrradianceUnit.KilowattPerSquareCentimeter);
         }
@@ -368,7 +368,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.KilowattPerSquareMeter"/>.
         /// </summary>
-        public static Irradiance FromKilowattsPerSquareMeter(QuantityValue value)
+        public static Irradiance FromKilowattsPerSquareMeter(double value)
         {
             return new Irradiance(value, IrradianceUnit.KilowattPerSquareMeter);
         }
@@ -376,7 +376,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.MegawattPerSquareCentimeter"/>.
         /// </summary>
-        public static Irradiance FromMegawattsPerSquareCentimeter(QuantityValue value)
+        public static Irradiance FromMegawattsPerSquareCentimeter(double value)
         {
             return new Irradiance(value, IrradianceUnit.MegawattPerSquareCentimeter);
         }
@@ -384,7 +384,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.MegawattPerSquareMeter"/>.
         /// </summary>
-        public static Irradiance FromMegawattsPerSquareMeter(QuantityValue value)
+        public static Irradiance FromMegawattsPerSquareMeter(double value)
         {
             return new Irradiance(value, IrradianceUnit.MegawattPerSquareMeter);
         }
@@ -392,7 +392,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.MicrowattPerSquareCentimeter"/>.
         /// </summary>
-        public static Irradiance FromMicrowattsPerSquareCentimeter(QuantityValue value)
+        public static Irradiance FromMicrowattsPerSquareCentimeter(double value)
         {
             return new Irradiance(value, IrradianceUnit.MicrowattPerSquareCentimeter);
         }
@@ -400,7 +400,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.MicrowattPerSquareMeter"/>.
         /// </summary>
-        public static Irradiance FromMicrowattsPerSquareMeter(QuantityValue value)
+        public static Irradiance FromMicrowattsPerSquareMeter(double value)
         {
             return new Irradiance(value, IrradianceUnit.MicrowattPerSquareMeter);
         }
@@ -408,7 +408,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.MilliwattPerSquareCentimeter"/>.
         /// </summary>
-        public static Irradiance FromMilliwattsPerSquareCentimeter(QuantityValue value)
+        public static Irradiance FromMilliwattsPerSquareCentimeter(double value)
         {
             return new Irradiance(value, IrradianceUnit.MilliwattPerSquareCentimeter);
         }
@@ -416,7 +416,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.MilliwattPerSquareMeter"/>.
         /// </summary>
-        public static Irradiance FromMilliwattsPerSquareMeter(QuantityValue value)
+        public static Irradiance FromMilliwattsPerSquareMeter(double value)
         {
             return new Irradiance(value, IrradianceUnit.MilliwattPerSquareMeter);
         }
@@ -424,7 +424,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.NanowattPerSquareCentimeter"/>.
         /// </summary>
-        public static Irradiance FromNanowattsPerSquareCentimeter(QuantityValue value)
+        public static Irradiance FromNanowattsPerSquareCentimeter(double value)
         {
             return new Irradiance(value, IrradianceUnit.NanowattPerSquareCentimeter);
         }
@@ -432,7 +432,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.NanowattPerSquareMeter"/>.
         /// </summary>
-        public static Irradiance FromNanowattsPerSquareMeter(QuantityValue value)
+        public static Irradiance FromNanowattsPerSquareMeter(double value)
         {
             return new Irradiance(value, IrradianceUnit.NanowattPerSquareMeter);
         }
@@ -440,7 +440,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.PicowattPerSquareCentimeter"/>.
         /// </summary>
-        public static Irradiance FromPicowattsPerSquareCentimeter(QuantityValue value)
+        public static Irradiance FromPicowattsPerSquareCentimeter(double value)
         {
             return new Irradiance(value, IrradianceUnit.PicowattPerSquareCentimeter);
         }
@@ -448,7 +448,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.PicowattPerSquareMeter"/>.
         /// </summary>
-        public static Irradiance FromPicowattsPerSquareMeter(QuantityValue value)
+        public static Irradiance FromPicowattsPerSquareMeter(double value)
         {
             return new Irradiance(value, IrradianceUnit.PicowattPerSquareMeter);
         }
@@ -456,7 +456,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.WattPerSquareCentimeter"/>.
         /// </summary>
-        public static Irradiance FromWattsPerSquareCentimeter(QuantityValue value)
+        public static Irradiance FromWattsPerSquareCentimeter(double value)
         {
             return new Irradiance(value, IrradianceUnit.WattPerSquareCentimeter);
         }
@@ -464,7 +464,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiance"/> from <see cref="IrradianceUnit.WattPerSquareMeter"/>.
         /// </summary>
-        public static Irradiance FromWattsPerSquareMeter(QuantityValue value)
+        public static Irradiance FromWattsPerSquareMeter(double value)
         {
             return new Irradiance(value, IrradianceUnit.WattPerSquareMeter);
         }
@@ -475,7 +475,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Irradiance unit value.</returns>
-        public static Irradiance From(QuantityValue value, IrradianceUnit fromUnit)
+        public static Irradiance From(double value, IrradianceUnit fromUnit)
         {
             return new Irradiance(value, fromUnit);
         }
@@ -640,25 +640,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Irradiance"/> from multiplying value and <see cref="Irradiance"/>.</summary>
-        public static Irradiance operator *(QuantityValue left, Irradiance right)
+        public static Irradiance operator *(double left, Irradiance right)
         {
             return new Irradiance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Irradiance"/> from multiplying value and <see cref="Irradiance"/>.</summary>
-        public static Irradiance operator *(Irradiance left, QuantityValue right)
+        public static Irradiance operator *(Irradiance left, double right)
         {
             return new Irradiance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Irradiance"/> from dividing <see cref="Irradiance"/> by value.</summary>
-        public static Irradiance operator /(Irradiance left, QuantityValue right)
+        public static Irradiance operator /(Irradiance left, double right)
         {
             return new Irradiance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Irradiance"/> by <see cref="Irradiance"/>.</summary>
-        public static QuantityValue operator /(Irradiance left, Irradiance right)
+        public static double operator /(Irradiance left, Irradiance right)
         {
             return left.WattsPerSquareMeter / right.WattsPerSquareMeter;
         }

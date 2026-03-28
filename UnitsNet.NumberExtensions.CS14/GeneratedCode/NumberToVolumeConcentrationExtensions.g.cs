@@ -42,164 +42,164 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeConcentration
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="VolumeConcentration.FromCentilitersPerLiter(QuantityValue)" />
+            /// <inheritdoc cref="VolumeConcentration.FromCentilitersPerLiter(double)" />
             public VolumeConcentration CentilitersPerLiter
 #if NET7_0_OR_GREATER
-                => VolumeConcentration.FromCentilitersPerLiter(QuantityValue.CreateChecked(value));
+                => VolumeConcentration.FromCentilitersPerLiter(double.CreateChecked(value));
 #else
-                => VolumeConcentration.FromCentilitersPerLiter(value.ToQuantityValue());
+                => VolumeConcentration.FromCentilitersPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeConcentration.FromCentilitersPerMilliliter(QuantityValue)" />
+            /// <inheritdoc cref="VolumeConcentration.FromCentilitersPerMilliliter(double)" />
             public VolumeConcentration CentilitersPerMilliliter
 #if NET7_0_OR_GREATER
-                => VolumeConcentration.FromCentilitersPerMilliliter(QuantityValue.CreateChecked(value));
+                => VolumeConcentration.FromCentilitersPerMilliliter(double.CreateChecked(value));
 #else
-                => VolumeConcentration.FromCentilitersPerMilliliter(value.ToQuantityValue());
+                => VolumeConcentration.FromCentilitersPerMilliliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeConcentration.FromDecilitersPerLiter(QuantityValue)" />
+            /// <inheritdoc cref="VolumeConcentration.FromDecilitersPerLiter(double)" />
             public VolumeConcentration DecilitersPerLiter
 #if NET7_0_OR_GREATER
-                => VolumeConcentration.FromDecilitersPerLiter(QuantityValue.CreateChecked(value));
+                => VolumeConcentration.FromDecilitersPerLiter(double.CreateChecked(value));
 #else
-                => VolumeConcentration.FromDecilitersPerLiter(value.ToQuantityValue());
+                => VolumeConcentration.FromDecilitersPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeConcentration.FromDecilitersPerMilliliter(QuantityValue)" />
+            /// <inheritdoc cref="VolumeConcentration.FromDecilitersPerMilliliter(double)" />
             public VolumeConcentration DecilitersPerMilliliter
 #if NET7_0_OR_GREATER
-                => VolumeConcentration.FromDecilitersPerMilliliter(QuantityValue.CreateChecked(value));
+                => VolumeConcentration.FromDecilitersPerMilliliter(double.CreateChecked(value));
 #else
-                => VolumeConcentration.FromDecilitersPerMilliliter(value.ToQuantityValue());
+                => VolumeConcentration.FromDecilitersPerMilliliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeConcentration.FromDecimalFractions(QuantityValue)" />
+            /// <inheritdoc cref="VolumeConcentration.FromDecimalFractions(double)" />
             public VolumeConcentration DecimalFractions
 #if NET7_0_OR_GREATER
-                => VolumeConcentration.FromDecimalFractions(QuantityValue.CreateChecked(value));
+                => VolumeConcentration.FromDecimalFractions(double.CreateChecked(value));
 #else
-                => VolumeConcentration.FromDecimalFractions(value.ToQuantityValue());
+                => VolumeConcentration.FromDecimalFractions(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeConcentration.FromLitersPerLiter(QuantityValue)" />
+            /// <inheritdoc cref="VolumeConcentration.FromLitersPerLiter(double)" />
             public VolumeConcentration LitersPerLiter
 #if NET7_0_OR_GREATER
-                => VolumeConcentration.FromLitersPerLiter(QuantityValue.CreateChecked(value));
+                => VolumeConcentration.FromLitersPerLiter(double.CreateChecked(value));
 #else
-                => VolumeConcentration.FromLitersPerLiter(value.ToQuantityValue());
+                => VolumeConcentration.FromLitersPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeConcentration.FromLitersPerMilliliter(QuantityValue)" />
+            /// <inheritdoc cref="VolumeConcentration.FromLitersPerMilliliter(double)" />
             public VolumeConcentration LitersPerMilliliter
 #if NET7_0_OR_GREATER
-                => VolumeConcentration.FromLitersPerMilliliter(QuantityValue.CreateChecked(value));
+                => VolumeConcentration.FromLitersPerMilliliter(double.CreateChecked(value));
 #else
-                => VolumeConcentration.FromLitersPerMilliliter(value.ToQuantityValue());
+                => VolumeConcentration.FromLitersPerMilliliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeConcentration.FromMicrolitersPerLiter(QuantityValue)" />
+            /// <inheritdoc cref="VolumeConcentration.FromMicrolitersPerLiter(double)" />
             public VolumeConcentration MicrolitersPerLiter
 #if NET7_0_OR_GREATER
-                => VolumeConcentration.FromMicrolitersPerLiter(QuantityValue.CreateChecked(value));
+                => VolumeConcentration.FromMicrolitersPerLiter(double.CreateChecked(value));
 #else
-                => VolumeConcentration.FromMicrolitersPerLiter(value.ToQuantityValue());
+                => VolumeConcentration.FromMicrolitersPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeConcentration.FromMicrolitersPerMilliliter(QuantityValue)" />
+            /// <inheritdoc cref="VolumeConcentration.FromMicrolitersPerMilliliter(double)" />
             public VolumeConcentration MicrolitersPerMilliliter
 #if NET7_0_OR_GREATER
-                => VolumeConcentration.FromMicrolitersPerMilliliter(QuantityValue.CreateChecked(value));
+                => VolumeConcentration.FromMicrolitersPerMilliliter(double.CreateChecked(value));
 #else
-                => VolumeConcentration.FromMicrolitersPerMilliliter(value.ToQuantityValue());
+                => VolumeConcentration.FromMicrolitersPerMilliliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeConcentration.FromMillilitersPerLiter(QuantityValue)" />
+            /// <inheritdoc cref="VolumeConcentration.FromMillilitersPerLiter(double)" />
             public VolumeConcentration MillilitersPerLiter
 #if NET7_0_OR_GREATER
-                => VolumeConcentration.FromMillilitersPerLiter(QuantityValue.CreateChecked(value));
+                => VolumeConcentration.FromMillilitersPerLiter(double.CreateChecked(value));
 #else
-                => VolumeConcentration.FromMillilitersPerLiter(value.ToQuantityValue());
+                => VolumeConcentration.FromMillilitersPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeConcentration.FromMillilitersPerMilliliter(QuantityValue)" />
+            /// <inheritdoc cref="VolumeConcentration.FromMillilitersPerMilliliter(double)" />
             public VolumeConcentration MillilitersPerMilliliter
 #if NET7_0_OR_GREATER
-                => VolumeConcentration.FromMillilitersPerMilliliter(QuantityValue.CreateChecked(value));
+                => VolumeConcentration.FromMillilitersPerMilliliter(double.CreateChecked(value));
 #else
-                => VolumeConcentration.FromMillilitersPerMilliliter(value.ToQuantityValue());
+                => VolumeConcentration.FromMillilitersPerMilliliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeConcentration.FromNanolitersPerLiter(QuantityValue)" />
+            /// <inheritdoc cref="VolumeConcentration.FromNanolitersPerLiter(double)" />
             public VolumeConcentration NanolitersPerLiter
 #if NET7_0_OR_GREATER
-                => VolumeConcentration.FromNanolitersPerLiter(QuantityValue.CreateChecked(value));
+                => VolumeConcentration.FromNanolitersPerLiter(double.CreateChecked(value));
 #else
-                => VolumeConcentration.FromNanolitersPerLiter(value.ToQuantityValue());
+                => VolumeConcentration.FromNanolitersPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeConcentration.FromNanolitersPerMilliliter(QuantityValue)" />
+            /// <inheritdoc cref="VolumeConcentration.FromNanolitersPerMilliliter(double)" />
             public VolumeConcentration NanolitersPerMilliliter
 #if NET7_0_OR_GREATER
-                => VolumeConcentration.FromNanolitersPerMilliliter(QuantityValue.CreateChecked(value));
+                => VolumeConcentration.FromNanolitersPerMilliliter(double.CreateChecked(value));
 #else
-                => VolumeConcentration.FromNanolitersPerMilliliter(value.ToQuantityValue());
+                => VolumeConcentration.FromNanolitersPerMilliliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeConcentration.FromPartsPerBillion(QuantityValue)" />
+            /// <inheritdoc cref="VolumeConcentration.FromPartsPerBillion(double)" />
             public VolumeConcentration PartsPerBillion
 #if NET7_0_OR_GREATER
-                => VolumeConcentration.FromPartsPerBillion(QuantityValue.CreateChecked(value));
+                => VolumeConcentration.FromPartsPerBillion(double.CreateChecked(value));
 #else
-                => VolumeConcentration.FromPartsPerBillion(value.ToQuantityValue());
+                => VolumeConcentration.FromPartsPerBillion(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeConcentration.FromPartsPerMillion(QuantityValue)" />
+            /// <inheritdoc cref="VolumeConcentration.FromPartsPerMillion(double)" />
             public VolumeConcentration PartsPerMillion
 #if NET7_0_OR_GREATER
-                => VolumeConcentration.FromPartsPerMillion(QuantityValue.CreateChecked(value));
+                => VolumeConcentration.FromPartsPerMillion(double.CreateChecked(value));
 #else
-                => VolumeConcentration.FromPartsPerMillion(value.ToQuantityValue());
+                => VolumeConcentration.FromPartsPerMillion(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeConcentration.FromPartsPerThousand(QuantityValue)" />
+            /// <inheritdoc cref="VolumeConcentration.FromPartsPerThousand(double)" />
             public VolumeConcentration PartsPerThousand
 #if NET7_0_OR_GREATER
-                => VolumeConcentration.FromPartsPerThousand(QuantityValue.CreateChecked(value));
+                => VolumeConcentration.FromPartsPerThousand(double.CreateChecked(value));
 #else
-                => VolumeConcentration.FromPartsPerThousand(value.ToQuantityValue());
+                => VolumeConcentration.FromPartsPerThousand(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeConcentration.FromPartsPerTrillion(QuantityValue)" />
+            /// <inheritdoc cref="VolumeConcentration.FromPartsPerTrillion(double)" />
             public VolumeConcentration PartsPerTrillion
 #if NET7_0_OR_GREATER
-                => VolumeConcentration.FromPartsPerTrillion(QuantityValue.CreateChecked(value));
+                => VolumeConcentration.FromPartsPerTrillion(double.CreateChecked(value));
 #else
-                => VolumeConcentration.FromPartsPerTrillion(value.ToQuantityValue());
+                => VolumeConcentration.FromPartsPerTrillion(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeConcentration.FromPercent(QuantityValue)" />
+            /// <inheritdoc cref="VolumeConcentration.FromPercent(double)" />
             public VolumeConcentration Percent
 #if NET7_0_OR_GREATER
-                => VolumeConcentration.FromPercent(QuantityValue.CreateChecked(value));
+                => VolumeConcentration.FromPercent(double.CreateChecked(value));
 #else
-                => VolumeConcentration.FromPercent(value.ToQuantityValue());
+                => VolumeConcentration.FromPercent(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeConcentration.FromPicolitersPerLiter(QuantityValue)" />
+            /// <inheritdoc cref="VolumeConcentration.FromPicolitersPerLiter(double)" />
             public VolumeConcentration PicolitersPerLiter
 #if NET7_0_OR_GREATER
-                => VolumeConcentration.FromPicolitersPerLiter(QuantityValue.CreateChecked(value));
+                => VolumeConcentration.FromPicolitersPerLiter(double.CreateChecked(value));
 #else
-                => VolumeConcentration.FromPicolitersPerLiter(value.ToQuantityValue());
+                => VolumeConcentration.FromPicolitersPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeConcentration.FromPicolitersPerMilliliter(QuantityValue)" />
+            /// <inheritdoc cref="VolumeConcentration.FromPicolitersPerMilliliter(double)" />
             public VolumeConcentration PicolitersPerMilliliter
 #if NET7_0_OR_GREATER
-                => VolumeConcentration.FromPicolitersPerMilliliter(QuantityValue.CreateChecked(value));
+                => VolumeConcentration.FromPicolitersPerMilliliter(double.CreateChecked(value));
 #else
-                => VolumeConcentration.FromPicolitersPerMilliliter(value.ToQuantityValue());
+                => VolumeConcentration.FromPicolitersPerMilliliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

@@ -395,7 +395,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 S", ElectricSusceptanceUnit.Siemens, 4.2)]
         [InlineData("en-US", "4.2 T℧", ElectricSusceptanceUnit.Teramho, 4.2)]
         [InlineData("en-US", "4.2 TS", ElectricSusceptanceUnit.Terasiemens, 4.2)]
-        public void Parse(string culture, string quantityString, ElectricSusceptanceUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, ElectricSusceptanceUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ElectricSusceptance.Parse(quantityString);
@@ -420,7 +420,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 S", ElectricSusceptanceUnit.Siemens, 4.2)]
         [InlineData("en-US", "4.2 T℧", ElectricSusceptanceUnit.Teramho, 4.2)]
         [InlineData("en-US", "4.2 TS", ElectricSusceptanceUnit.Terasiemens, 4.2)]
-        public void TryParse(string culture, string quantityString, ElectricSusceptanceUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, ElectricSusceptanceUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ElectricSusceptance.TryParse(quantityString, out ElectricSusceptance parsed));
@@ -859,8 +859,8 @@ namespace UnitsNet.Tests
             var quantity = ElectricSusceptance.FromSiemens(firstValue);
             var otherQuantity = ElectricSusceptance.FromSiemens(secondValue);
             ElectricSusceptance maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, ElectricSusceptance.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

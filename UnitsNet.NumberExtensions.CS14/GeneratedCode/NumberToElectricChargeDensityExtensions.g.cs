@@ -42,12 +42,12 @@ namespace UnitsNet.NumberExtensions.NumberToElectricChargeDensity
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(QuantityValue)" />
+            /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(double)" />
             public ElectricChargeDensity CoulombsPerCubicMeter
 #if NET7_0_OR_GREATER
-                => ElectricChargeDensity.FromCoulombsPerCubicMeter(QuantityValue.CreateChecked(value));
+                => ElectricChargeDensity.FromCoulombsPerCubicMeter(double.CreateChecked(value));
 #else
-                => ElectricChargeDensity.FromCoulombsPerCubicMeter(value.ToQuantityValue());
+                => ElectricChargeDensity.FromCoulombsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

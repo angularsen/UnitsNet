@@ -32,158 +32,158 @@ namespace UnitsNet.NumberExtensions.NumberToElectricResistivity
     /// </summary>
     public static class NumberToElectricResistivityExtensions
     {
-        /// <inheritdoc cref="ElectricResistivity.FromKiloohmsCentimeter(QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromKiloohmsCentimeter(double)" />
         public static ElectricResistivity KiloohmsCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricResistivity.FromKiloohmsCentimeter(QuantityValue.CreateChecked(value));
+            => ElectricResistivity.FromKiloohmsCentimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricResistivity.FromKiloohmsCentimeter(value.ToQuantityValue());
+            => ElectricResistivity.FromKiloohmsCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricResistivity.FromKiloohmMeters(QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromKiloohmMeters(double)" />
         public static ElectricResistivity KiloohmMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricResistivity.FromKiloohmMeters(QuantityValue.CreateChecked(value));
+            => ElectricResistivity.FromKiloohmMeters(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricResistivity.FromKiloohmMeters(value.ToQuantityValue());
+            => ElectricResistivity.FromKiloohmMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricResistivity.FromMegaohmsCentimeter(QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromMegaohmsCentimeter(double)" />
         public static ElectricResistivity MegaohmsCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricResistivity.FromMegaohmsCentimeter(QuantityValue.CreateChecked(value));
+            => ElectricResistivity.FromMegaohmsCentimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricResistivity.FromMegaohmsCentimeter(value.ToQuantityValue());
+            => ElectricResistivity.FromMegaohmsCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricResistivity.FromMegaohmMeters(QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromMegaohmMeters(double)" />
         public static ElectricResistivity MegaohmMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricResistivity.FromMegaohmMeters(QuantityValue.CreateChecked(value));
+            => ElectricResistivity.FromMegaohmMeters(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricResistivity.FromMegaohmMeters(value.ToQuantityValue());
+            => ElectricResistivity.FromMegaohmMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricResistivity.FromMicroohmsCentimeter(QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromMicroohmsCentimeter(double)" />
         public static ElectricResistivity MicroohmsCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricResistivity.FromMicroohmsCentimeter(QuantityValue.CreateChecked(value));
+            => ElectricResistivity.FromMicroohmsCentimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricResistivity.FromMicroohmsCentimeter(value.ToQuantityValue());
+            => ElectricResistivity.FromMicroohmsCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(double)" />
         public static ElectricResistivity MicroohmMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricResistivity.FromMicroohmMeters(QuantityValue.CreateChecked(value));
+            => ElectricResistivity.FromMicroohmMeters(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricResistivity.FromMicroohmMeters(value.ToQuantityValue());
+            => ElectricResistivity.FromMicroohmMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricResistivity.FromMilliohmsCentimeter(QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromMilliohmsCentimeter(double)" />
         public static ElectricResistivity MilliohmsCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricResistivity.FromMilliohmsCentimeter(QuantityValue.CreateChecked(value));
+            => ElectricResistivity.FromMilliohmsCentimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricResistivity.FromMilliohmsCentimeter(value.ToQuantityValue());
+            => ElectricResistivity.FromMilliohmsCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(double)" />
         public static ElectricResistivity MilliohmMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricResistivity.FromMilliohmMeters(QuantityValue.CreateChecked(value));
+            => ElectricResistivity.FromMilliohmMeters(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricResistivity.FromMilliohmMeters(value.ToQuantityValue());
+            => ElectricResistivity.FromMilliohmMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricResistivity.FromNanoohmsCentimeter(QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromNanoohmsCentimeter(double)" />
         public static ElectricResistivity NanoohmsCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricResistivity.FromNanoohmsCentimeter(QuantityValue.CreateChecked(value));
+            => ElectricResistivity.FromNanoohmsCentimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricResistivity.FromNanoohmsCentimeter(value.ToQuantityValue());
+            => ElectricResistivity.FromNanoohmsCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(double)" />
         public static ElectricResistivity NanoohmMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricResistivity.FromNanoohmMeters(QuantityValue.CreateChecked(value));
+            => ElectricResistivity.FromNanoohmMeters(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricResistivity.FromNanoohmMeters(value.ToQuantityValue());
+            => ElectricResistivity.FromNanoohmMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricResistivity.FromOhmsCentimeter(QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromOhmsCentimeter(double)" />
         public static ElectricResistivity OhmsCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricResistivity.FromOhmsCentimeter(QuantityValue.CreateChecked(value));
+            => ElectricResistivity.FromOhmsCentimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricResistivity.FromOhmsCentimeter(value.ToQuantityValue());
+            => ElectricResistivity.FromOhmsCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(double)" />
         public static ElectricResistivity OhmMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricResistivity.FromOhmMeters(QuantityValue.CreateChecked(value));
+            => ElectricResistivity.FromOhmMeters(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricResistivity.FromOhmMeters(value.ToQuantityValue());
+            => ElectricResistivity.FromOhmMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricResistivity.FromPicoohmsCentimeter(QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromPicoohmsCentimeter(double)" />
         public static ElectricResistivity PicoohmsCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricResistivity.FromPicoohmsCentimeter(QuantityValue.CreateChecked(value));
+            => ElectricResistivity.FromPicoohmsCentimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricResistivity.FromPicoohmsCentimeter(value.ToQuantityValue());
+            => ElectricResistivity.FromPicoohmsCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricResistivity.FromPicoohmMeters(QuantityValue)" />
+        /// <inheritdoc cref="ElectricResistivity.FromPicoohmMeters(double)" />
         public static ElectricResistivity PicoohmMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricResistivity.FromPicoohmMeters(QuantityValue.CreateChecked(value));
+            => ElectricResistivity.FromPicoohmMeters(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricResistivity.FromPicoohmMeters(value.ToQuantityValue());
+            => ElectricResistivity.FromPicoohmMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

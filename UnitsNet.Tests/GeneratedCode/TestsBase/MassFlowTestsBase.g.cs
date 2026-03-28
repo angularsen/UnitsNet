@@ -525,7 +525,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 t/h", MassFlowUnit.TonnePerHour, 4.2)]
         [InlineData("ru-RU", "4,2 кг/ч", MassFlowUnit.KilogramPerHour, 4.2)]
         [InlineData("ru-RU", "4,2 кг/мин", MassFlowUnit.KilogramPerMinute, 4.2)]
-        public void Parse(string culture, string quantityString, MassFlowUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, MassFlowUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = MassFlow.Parse(quantityString);
@@ -578,7 +578,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 t/h", MassFlowUnit.TonnePerHour, 4.2)]
         [InlineData("ru-RU", "4,2 кг/ч", MassFlowUnit.KilogramPerHour, 4.2)]
         [InlineData("ru-RU", "4,2 кг/мин", MassFlowUnit.KilogramPerMinute, 4.2)]
-        public void TryParse(string culture, string quantityString, MassFlowUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, MassFlowUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(MassFlow.TryParse(quantityString, out MassFlow parsed));
@@ -1269,8 +1269,8 @@ namespace UnitsNet.Tests
             var quantity = MassFlow.FromGramsPerSecond(firstValue);
             var otherQuantity = MassFlow.FromGramsPerSecond(secondValue);
             MassFlow maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, MassFlow.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

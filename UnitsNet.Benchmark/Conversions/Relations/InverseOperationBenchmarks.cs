@@ -14,7 +14,7 @@ namespace UnitsNet.Benchmark.Conversions.Relations;
 // [ShortRunJob]
 public class InverseOperationBenchmarks
 {
-    private static readonly QuantityValue Value = 123.456;
+    private static readonly double Value = 123.456;
 
     
     // new (typeof(Area), typeof(ReciprocalArea)),

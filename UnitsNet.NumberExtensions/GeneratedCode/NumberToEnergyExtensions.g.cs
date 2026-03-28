@@ -32,444 +32,444 @@ namespace UnitsNet.NumberExtensions.NumberToEnergy
     /// </summary>
     public static class NumberToEnergyExtensions
     {
-        /// <inheritdoc cref="Energy.FromBritishThermalUnits(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromBritishThermalUnits(double)" />
         public static Energy BritishThermalUnits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromBritishThermalUnits(QuantityValue.CreateChecked(value));
+            => Energy.FromBritishThermalUnits(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromBritishThermalUnits(value.ToQuantityValue());
+            => Energy.FromBritishThermalUnits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromCalories(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromCalories(double)" />
         public static Energy Calories<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromCalories(QuantityValue.CreateChecked(value));
+            => Energy.FromCalories(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromCalories(value.ToQuantityValue());
+            => Energy.FromCalories(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromDecathermsEc(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromDecathermsEc(double)" />
         public static Energy DecathermsEc<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromDecathermsEc(QuantityValue.CreateChecked(value));
+            => Energy.FromDecathermsEc(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromDecathermsEc(value.ToQuantityValue());
+            => Energy.FromDecathermsEc(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromDecathermsImperial(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromDecathermsImperial(double)" />
         public static Energy DecathermsImperial<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromDecathermsImperial(QuantityValue.CreateChecked(value));
+            => Energy.FromDecathermsImperial(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromDecathermsImperial(value.ToQuantityValue());
+            => Energy.FromDecathermsImperial(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromDecathermsUs(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromDecathermsUs(double)" />
         public static Energy DecathermsUs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromDecathermsUs(QuantityValue.CreateChecked(value));
+            => Energy.FromDecathermsUs(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromDecathermsUs(value.ToQuantityValue());
+            => Energy.FromDecathermsUs(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromElectronVolts(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromElectronVolts(double)" />
         public static Energy ElectronVolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromElectronVolts(QuantityValue.CreateChecked(value));
+            => Energy.FromElectronVolts(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromElectronVolts(value.ToQuantityValue());
+            => Energy.FromElectronVolts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromErgs(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromErgs(double)" />
         public static Energy Ergs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromErgs(QuantityValue.CreateChecked(value));
+            => Energy.FromErgs(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromErgs(value.ToQuantityValue());
+            => Energy.FromErgs(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromFootPounds(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromFootPounds(double)" />
         public static Energy FootPounds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromFootPounds(QuantityValue.CreateChecked(value));
+            => Energy.FromFootPounds(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromFootPounds(value.ToQuantityValue());
+            => Energy.FromFootPounds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(double)" />
         public static Energy GigabritishThermalUnits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromGigabritishThermalUnits(QuantityValue.CreateChecked(value));
+            => Energy.FromGigabritishThermalUnits(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromGigabritishThermalUnits(value.ToQuantityValue());
+            => Energy.FromGigabritishThermalUnits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromGigaelectronVolts(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromGigaelectronVolts(double)" />
         public static Energy GigaelectronVolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromGigaelectronVolts(QuantityValue.CreateChecked(value));
+            => Energy.FromGigaelectronVolts(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromGigaelectronVolts(value.ToQuantityValue());
+            => Energy.FromGigaelectronVolts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromGigajoules(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromGigajoules(double)" />
         public static Energy Gigajoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromGigajoules(QuantityValue.CreateChecked(value));
+            => Energy.FromGigajoules(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromGigajoules(value.ToQuantityValue());
+            => Energy.FromGigajoules(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromGigawattDays(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromGigawattDays(double)" />
         public static Energy GigawattDays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromGigawattDays(QuantityValue.CreateChecked(value));
+            => Energy.FromGigawattDays(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromGigawattDays(value.ToQuantityValue());
+            => Energy.FromGigawattDays(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromGigawattHours(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromGigawattHours(double)" />
         public static Energy GigawattHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromGigawattHours(QuantityValue.CreateChecked(value));
+            => Energy.FromGigawattHours(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromGigawattHours(value.ToQuantityValue());
+            => Energy.FromGigawattHours(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromHorsepowerHours(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromHorsepowerHours(double)" />
         public static Energy HorsepowerHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromHorsepowerHours(QuantityValue.CreateChecked(value));
+            => Energy.FromHorsepowerHours(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromHorsepowerHours(value.ToQuantityValue());
+            => Energy.FromHorsepowerHours(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromJoules(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromJoules(double)" />
         public static Energy Joules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromJoules(QuantityValue.CreateChecked(value));
+            => Energy.FromJoules(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromJoules(value.ToQuantityValue());
+            => Energy.FromJoules(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromKilobritishThermalUnits(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromKilobritishThermalUnits(double)" />
         public static Energy KilobritishThermalUnits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromKilobritishThermalUnits(QuantityValue.CreateChecked(value));
+            => Energy.FromKilobritishThermalUnits(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromKilobritishThermalUnits(value.ToQuantityValue());
+            => Energy.FromKilobritishThermalUnits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromKilocalories(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromKilocalories(double)" />
         public static Energy Kilocalories<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromKilocalories(QuantityValue.CreateChecked(value));
+            => Energy.FromKilocalories(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromKilocalories(value.ToQuantityValue());
+            => Energy.FromKilocalories(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromKiloelectronVolts(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromKiloelectronVolts(double)" />
         public static Energy KiloelectronVolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromKiloelectronVolts(QuantityValue.CreateChecked(value));
+            => Energy.FromKiloelectronVolts(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromKiloelectronVolts(value.ToQuantityValue());
+            => Energy.FromKiloelectronVolts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromKilojoules(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromKilojoules(double)" />
         public static Energy Kilojoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromKilojoules(QuantityValue.CreateChecked(value));
+            => Energy.FromKilojoules(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromKilojoules(value.ToQuantityValue());
+            => Energy.FromKilojoules(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromKilowattDays(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromKilowattDays(double)" />
         public static Energy KilowattDays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromKilowattDays(QuantityValue.CreateChecked(value));
+            => Energy.FromKilowattDays(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromKilowattDays(value.ToQuantityValue());
+            => Energy.FromKilowattDays(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromKilowattHours(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromKilowattHours(double)" />
         public static Energy KilowattHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromKilowattHours(QuantityValue.CreateChecked(value));
+            => Energy.FromKilowattHours(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromKilowattHours(value.ToQuantityValue());
+            => Energy.FromKilowattHours(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromMegabritishThermalUnits(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromMegabritishThermalUnits(double)" />
         public static Energy MegabritishThermalUnits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromMegabritishThermalUnits(QuantityValue.CreateChecked(value));
+            => Energy.FromMegabritishThermalUnits(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromMegabritishThermalUnits(value.ToQuantityValue());
+            => Energy.FromMegabritishThermalUnits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromMegacalories(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromMegacalories(double)" />
         public static Energy Megacalories<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromMegacalories(QuantityValue.CreateChecked(value));
+            => Energy.FromMegacalories(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromMegacalories(value.ToQuantityValue());
+            => Energy.FromMegacalories(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromMegaelectronVolts(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromMegaelectronVolts(double)" />
         public static Energy MegaelectronVolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromMegaelectronVolts(QuantityValue.CreateChecked(value));
+            => Energy.FromMegaelectronVolts(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromMegaelectronVolts(value.ToQuantityValue());
+            => Energy.FromMegaelectronVolts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromMegajoules(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromMegajoules(double)" />
         public static Energy Megajoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromMegajoules(QuantityValue.CreateChecked(value));
+            => Energy.FromMegajoules(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromMegajoules(value.ToQuantityValue());
+            => Energy.FromMegajoules(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromMegawattDays(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromMegawattDays(double)" />
         public static Energy MegawattDays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromMegawattDays(QuantityValue.CreateChecked(value));
+            => Energy.FromMegawattDays(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromMegawattDays(value.ToQuantityValue());
+            => Energy.FromMegawattDays(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromMegawattHours(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromMegawattHours(double)" />
         public static Energy MegawattHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromMegawattHours(QuantityValue.CreateChecked(value));
+            => Energy.FromMegawattHours(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromMegawattHours(value.ToQuantityValue());
+            => Energy.FromMegawattHours(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromMicrojoules(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromMicrojoules(double)" />
         public static Energy Microjoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromMicrojoules(QuantityValue.CreateChecked(value));
+            => Energy.FromMicrojoules(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromMicrojoules(value.ToQuantityValue());
+            => Energy.FromMicrojoules(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromMillijoules(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromMillijoules(double)" />
         public static Energy Millijoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromMillijoules(QuantityValue.CreateChecked(value));
+            => Energy.FromMillijoules(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromMillijoules(value.ToQuantityValue());
+            => Energy.FromMillijoules(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromNanojoules(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromNanojoules(double)" />
         public static Energy Nanojoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromNanojoules(QuantityValue.CreateChecked(value));
+            => Energy.FromNanojoules(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromNanojoules(value.ToQuantityValue());
+            => Energy.FromNanojoules(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromPetajoules(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromPetajoules(double)" />
         public static Energy Petajoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromPetajoules(QuantityValue.CreateChecked(value));
+            => Energy.FromPetajoules(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromPetajoules(value.ToQuantityValue());
+            => Energy.FromPetajoules(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromTeraelectronVolts(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromTeraelectronVolts(double)" />
         public static Energy TeraelectronVolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromTeraelectronVolts(QuantityValue.CreateChecked(value));
+            => Energy.FromTeraelectronVolts(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromTeraelectronVolts(value.ToQuantityValue());
+            => Energy.FromTeraelectronVolts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromTerajoules(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromTerajoules(double)" />
         public static Energy Terajoules<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromTerajoules(QuantityValue.CreateChecked(value));
+            => Energy.FromTerajoules(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromTerajoules(value.ToQuantityValue());
+            => Energy.FromTerajoules(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromTerawattDays(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromTerawattDays(double)" />
         public static Energy TerawattDays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromTerawattDays(QuantityValue.CreateChecked(value));
+            => Energy.FromTerawattDays(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromTerawattDays(value.ToQuantityValue());
+            => Energy.FromTerawattDays(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromTerawattHours(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromTerawattHours(double)" />
         public static Energy TerawattHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromTerawattHours(QuantityValue.CreateChecked(value));
+            => Energy.FromTerawattHours(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromTerawattHours(value.ToQuantityValue());
+            => Energy.FromTerawattHours(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromThermsEc(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromThermsEc(double)" />
         public static Energy ThermsEc<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromThermsEc(QuantityValue.CreateChecked(value));
+            => Energy.FromThermsEc(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromThermsEc(value.ToQuantityValue());
+            => Energy.FromThermsEc(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromThermsImperial(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromThermsImperial(double)" />
         public static Energy ThermsImperial<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromThermsImperial(QuantityValue.CreateChecked(value));
+            => Energy.FromThermsImperial(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromThermsImperial(value.ToQuantityValue());
+            => Energy.FromThermsImperial(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromThermsUs(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromThermsUs(double)" />
         public static Energy ThermsUs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromThermsUs(QuantityValue.CreateChecked(value));
+            => Energy.FromThermsUs(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromThermsUs(value.ToQuantityValue());
+            => Energy.FromThermsUs(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromWattDays(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromWattDays(double)" />
         public static Energy WattDays<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromWattDays(QuantityValue.CreateChecked(value));
+            => Energy.FromWattDays(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromWattDays(value.ToQuantityValue());
+            => Energy.FromWattDays(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Energy.FromWattHours(QuantityValue)" />
+        /// <inheritdoc cref="Energy.FromWattHours(double)" />
         public static Energy WattHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Energy.FromWattHours(QuantityValue.CreateChecked(value));
+            => Energy.FromWattHours(double.CreateChecked(value));
 #else
             , IConvertible
-            => Energy.FromWattHours(value.ToQuantityValue());
+            => Energy.FromWattHours(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

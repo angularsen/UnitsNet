@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct LeakRate :
         IArithmeticQuantity<LeakRate, LeakRateUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<LeakRate, LeakRate, QuantityValue>,
+        IDivisionOperators<LeakRate, LeakRate, double>,
         IComparisonOperators<LeakRate, LeakRate, bool>,
         IParsable<LeakRate>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -142,7 +142,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public LeakRate(QuantityValue value, LeakRateUnit unit)
+        public LeakRate(double value, LeakRateUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -156,7 +156,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public LeakRate(QuantityValue value, UnitSystem unitSystem)
+        public LeakRate(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -198,7 +198,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public LeakRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -232,24 +232,24 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LeakRateUnit.AtmCubicCentimeterPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LeakRateUnit.AtmCubicCentimeterPerSecond"/>
         /// </summary>
-        public QuantityValue AtmCubicCentimetersPerSecond => this.As(LeakRateUnit.AtmCubicCentimeterPerSecond);
+        public double AtmCubicCentimetersPerSecond => this.As(LeakRateUnit.AtmCubicCentimeterPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LeakRateUnit.MillibarLiterPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LeakRateUnit.MillibarLiterPerSecond"/>
         /// </summary>
-        public QuantityValue MillibarLitersPerSecond => this.As(LeakRateUnit.MillibarLiterPerSecond);
+        public double MillibarLitersPerSecond => this.As(LeakRateUnit.MillibarLiterPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LeakRateUnit.PascalCubicMeterPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LeakRateUnit.PascalCubicMeterPerSecond"/>
         /// </summary>
-        public QuantityValue PascalCubicMetersPerSecond => this.As(LeakRateUnit.PascalCubicMeterPerSecond);
+        public double PascalCubicMetersPerSecond => this.As(LeakRateUnit.PascalCubicMeterPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LeakRateUnit.TorrLiterPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LeakRateUnit.TorrLiterPerSecond"/>
         /// </summary>
-        public QuantityValue TorrLitersPerSecond => this.As(LeakRateUnit.TorrLiterPerSecond);
+        public double TorrLitersPerSecond => this.As(LeakRateUnit.TorrLiterPerSecond);
 
         #endregion
 
@@ -283,7 +283,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.AtmCubicCentimeterPerSecond"/>.
         /// </summary>
-        public static LeakRate FromAtmCubicCentimetersPerSecond(QuantityValue value)
+        public static LeakRate FromAtmCubicCentimetersPerSecond(double value)
         {
             return new LeakRate(value, LeakRateUnit.AtmCubicCentimeterPerSecond);
         }
@@ -291,7 +291,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.MillibarLiterPerSecond"/>.
         /// </summary>
-        public static LeakRate FromMillibarLitersPerSecond(QuantityValue value)
+        public static LeakRate FromMillibarLitersPerSecond(double value)
         {
             return new LeakRate(value, LeakRateUnit.MillibarLiterPerSecond);
         }
@@ -299,7 +299,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.PascalCubicMeterPerSecond"/>.
         /// </summary>
-        public static LeakRate FromPascalCubicMetersPerSecond(QuantityValue value)
+        public static LeakRate FromPascalCubicMetersPerSecond(double value)
         {
             return new LeakRate(value, LeakRateUnit.PascalCubicMeterPerSecond);
         }
@@ -307,7 +307,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="LeakRate"/> from <see cref="LeakRateUnit.TorrLiterPerSecond"/>.
         /// </summary>
-        public static LeakRate FromTorrLitersPerSecond(QuantityValue value)
+        public static LeakRate FromTorrLitersPerSecond(double value)
         {
             return new LeakRate(value, LeakRateUnit.TorrLiterPerSecond);
         }
@@ -318,7 +318,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>LeakRate unit value.</returns>
-        public static LeakRate From(QuantityValue value, LeakRateUnit fromUnit)
+        public static LeakRate From(double value, LeakRateUnit fromUnit)
         {
             return new LeakRate(value, fromUnit);
         }
@@ -483,25 +483,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="LeakRate"/> from multiplying value and <see cref="LeakRate"/>.</summary>
-        public static LeakRate operator *(QuantityValue left, LeakRate right)
+        public static LeakRate operator *(double left, LeakRate right)
         {
             return new LeakRate(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="LeakRate"/> from multiplying value and <see cref="LeakRate"/>.</summary>
-        public static LeakRate operator *(LeakRate left, QuantityValue right)
+        public static LeakRate operator *(LeakRate left, double right)
         {
             return new LeakRate(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="LeakRate"/> from dividing <see cref="LeakRate"/> by value.</summary>
-        public static LeakRate operator /(LeakRate left, QuantityValue right)
+        public static LeakRate operator /(LeakRate left, double right)
         {
             return new LeakRate(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="LeakRate"/> by <see cref="LeakRate"/>.</summary>
-        public static QuantityValue operator /(LeakRate left, LeakRate right)
+        public static double operator /(LeakRate left, LeakRate right)
         {
             return left.PascalCubicMetersPerSecond / right.PascalCubicMetersPerSecond;
         }

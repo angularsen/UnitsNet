@@ -32,70 +32,70 @@ namespace UnitsNet.NumberExtensions.NumberToWarpingMomentOfInertia
     /// </summary>
     public static class NumberToWarpingMomentOfInertiaExtensions
     {
-        /// <inheritdoc cref="WarpingMomentOfInertia.FromCentimetersToTheSixth(QuantityValue)" />
+        /// <inheritdoc cref="WarpingMomentOfInertia.FromCentimetersToTheSixth(double)" />
         public static WarpingMomentOfInertia CentimetersToTheSixth<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => WarpingMomentOfInertia.FromCentimetersToTheSixth(QuantityValue.CreateChecked(value));
+            => WarpingMomentOfInertia.FromCentimetersToTheSixth(double.CreateChecked(value));
 #else
             , IConvertible
-            => WarpingMomentOfInertia.FromCentimetersToTheSixth(value.ToQuantityValue());
+            => WarpingMomentOfInertia.FromCentimetersToTheSixth(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="WarpingMomentOfInertia.FromDecimetersToTheSixth(QuantityValue)" />
+        /// <inheritdoc cref="WarpingMomentOfInertia.FromDecimetersToTheSixth(double)" />
         public static WarpingMomentOfInertia DecimetersToTheSixth<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => WarpingMomentOfInertia.FromDecimetersToTheSixth(QuantityValue.CreateChecked(value));
+            => WarpingMomentOfInertia.FromDecimetersToTheSixth(double.CreateChecked(value));
 #else
             , IConvertible
-            => WarpingMomentOfInertia.FromDecimetersToTheSixth(value.ToQuantityValue());
+            => WarpingMomentOfInertia.FromDecimetersToTheSixth(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="WarpingMomentOfInertia.FromFeetToTheSixth(QuantityValue)" />
+        /// <inheritdoc cref="WarpingMomentOfInertia.FromFeetToTheSixth(double)" />
         public static WarpingMomentOfInertia FeetToTheSixth<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => WarpingMomentOfInertia.FromFeetToTheSixth(QuantityValue.CreateChecked(value));
+            => WarpingMomentOfInertia.FromFeetToTheSixth(double.CreateChecked(value));
 #else
             , IConvertible
-            => WarpingMomentOfInertia.FromFeetToTheSixth(value.ToQuantityValue());
+            => WarpingMomentOfInertia.FromFeetToTheSixth(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="WarpingMomentOfInertia.FromInchesToTheSixth(QuantityValue)" />
+        /// <inheritdoc cref="WarpingMomentOfInertia.FromInchesToTheSixth(double)" />
         public static WarpingMomentOfInertia InchesToTheSixth<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => WarpingMomentOfInertia.FromInchesToTheSixth(QuantityValue.CreateChecked(value));
+            => WarpingMomentOfInertia.FromInchesToTheSixth(double.CreateChecked(value));
 #else
             , IConvertible
-            => WarpingMomentOfInertia.FromInchesToTheSixth(value.ToQuantityValue());
+            => WarpingMomentOfInertia.FromInchesToTheSixth(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="WarpingMomentOfInertia.FromMetersToTheSixth(QuantityValue)" />
+        /// <inheritdoc cref="WarpingMomentOfInertia.FromMetersToTheSixth(double)" />
         public static WarpingMomentOfInertia MetersToTheSixth<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => WarpingMomentOfInertia.FromMetersToTheSixth(QuantityValue.CreateChecked(value));
+            => WarpingMomentOfInertia.FromMetersToTheSixth(double.CreateChecked(value));
 #else
             , IConvertible
-            => WarpingMomentOfInertia.FromMetersToTheSixth(value.ToQuantityValue());
+            => WarpingMomentOfInertia.FromMetersToTheSixth(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="WarpingMomentOfInertia.FromMillimetersToTheSixth(QuantityValue)" />
+        /// <inheritdoc cref="WarpingMomentOfInertia.FromMillimetersToTheSixth(double)" />
         public static WarpingMomentOfInertia MillimetersToTheSixth<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => WarpingMomentOfInertia.FromMillimetersToTheSixth(QuantityValue.CreateChecked(value));
+            => WarpingMomentOfInertia.FromMillimetersToTheSixth(double.CreateChecked(value));
 #else
             , IConvertible
-            => WarpingMomentOfInertia.FromMillimetersToTheSixth(value.ToQuantityValue());
+            => WarpingMomentOfInertia.FromMillimetersToTheSixth(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

@@ -1097,51 +1097,59 @@ public class UnitConverter
     #region Static methods
     
     /// <inheritdoc cref="ConvertValue"/>
-    public static QuantityValue Convert(QuantityValue value, UnitKey fromUnitKey, UnitKey toUnitKey)
+    public static double Convert(double value, UnitKey fromUnitKey, UnitKey toUnitKey)
     {
-        return Default.ConvertValue(value, fromUnitKey, toUnitKey);
+        return (double)Default.ConvertValue((QuantityValue)value, fromUnitKey, toUnitKey);
     }
 
     /// <inheritdoc cref="TryConvertValue"/>
-    public static bool TryConvert(QuantityValue value, UnitKey fromUnitKey, UnitKey toUnitKey, out QuantityValue result)
+    public static bool TryConvert(double value, UnitKey fromUnitKey, UnitKey toUnitKey, out double result)
     {
-        return Default.TryConvertValue(value, fromUnitKey, toUnitKey, out result);
+        bool success = Default.TryConvertValue((QuantityValue)value, fromUnitKey, toUnitKey, out QuantityValue qvResult);
+        result = (double)qvResult;
+        return success;
     }
 
     /// <inheritdoc cref="ConvertValueByName"/>
-    public static QuantityValue ConvertByName(QuantityValue inputValue, string quantityName, string fromUnitName, string toUnitName)
+    public static double ConvertByName(double inputValue, string quantityName, string fromUnitName, string toUnitName)
     {
-        return Default.ConvertValueByName(inputValue, quantityName, fromUnitName, toUnitName);
+        return (double)Default.ConvertValueByName((QuantityValue)inputValue, quantityName, fromUnitName, toUnitName);
     }
 
     /// <inheritdoc cref="TryConvertByName"/>
-    public static bool TryConvertByName(QuantityValue inputValue, string quantityName, string fromUnitName, string toUnitName, out QuantityValue result)
+    public static bool TryConvertByName(double inputValue, string quantityName, string fromUnitName, string toUnitName, out double result)
     {
-        return Default.TryConvertValueByName(inputValue, quantityName, fromUnitName, toUnitName, out result);
+        bool success = Default.TryConvertValueByName((QuantityValue)inputValue, quantityName, fromUnitName, toUnitName, out QuantityValue qvResult);
+        result = (double)qvResult;
+        return success;
     }
 
     /// <inheritdoc cref="ConvertValueByAbbreviation(UnitsNet.QuantityValue,string,string,string)"/>
-    public static QuantityValue ConvertByAbbreviation(QuantityValue inputValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev)
+    public static double ConvertByAbbreviation(double inputValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev)
     {
-        return Default.ConvertValueByAbbreviation(inputValue, quantityName, fromUnitAbbrev, toUnitAbbrev);
+        return (double)Default.ConvertValueByAbbreviation((QuantityValue)inputValue, quantityName, fromUnitAbbrev, toUnitAbbrev);
     }
 
     /// <inheritdoc cref="TryConvertValueByAbbreviation(UnitsNet.QuantityValue,string,string,string,out UnitsNet.QuantityValue)"/>
-    public static bool TryConvertByAbbreviation(QuantityValue inputValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out QuantityValue result)
+    public static bool TryConvertByAbbreviation(double inputValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out double result)
     {
-        return Default.TryConvertValueByAbbreviation(inputValue, quantityName, fromUnitAbbrev, toUnitAbbrev, out result);
+        bool success = Default.TryConvertValueByAbbreviation((QuantityValue)inputValue, quantityName, fromUnitAbbrev, toUnitAbbrev, out QuantityValue qvResult);
+        result = (double)qvResult;
+        return success;
     }
 
     /// <inheritdoc cref="ConvertValueByAbbreviation(UnitsNet.QuantityValue,string,string,string,CultureInfo?)"/>
-    public static QuantityValue ConvertByAbbreviation(QuantityValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, CultureInfo? culture)
+    public static double ConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, CultureInfo? culture)
     {
-        return Default.ConvertValueByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, culture);
+        return (double)Default.ConvertValueByAbbreviation((QuantityValue)fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, culture);
     }
 
     /// <inheritdoc cref="TryConvertValueByAbbreviation(UnitsNet.QuantityValue,string,string,string,CultureInfo?,out UnitsNet.QuantityValue)"/>
-    public static bool TryConvertByAbbreviation(QuantityValue inputValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, CultureInfo? culture, out QuantityValue result) 
+    public static bool TryConvertByAbbreviation(double inputValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, CultureInfo? culture, out double result)
     {
-        return Default.TryConvertValueByAbbreviation(inputValue, quantityName, fromUnitAbbrev, toUnitAbbrev, culture, out result);
+        bool success = Default.TryConvertValueByAbbreviation((QuantityValue)inputValue, quantityName, fromUnitAbbrev, toUnitAbbrev, culture, out QuantityValue qvResult);
+        result = (double)qvResult;
+        return success;
     }
 
     /// <summary>
@@ -1168,9 +1176,9 @@ public class UnitConverter
     /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
     /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
     [Obsolete("Methods accepting a culture name are deprecated in favor of using an instance of CultureInfo.")]
-    public static QuantityValue ConvertByAbbreviation(QuantityValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, string? culture)
+    public static double ConvertByAbbreviation(double fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, string? culture)
     {
-        return Default.ConvertValueByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, CultureHelper.GetCultureOrInvariant(culture));
+        return (double)Default.ConvertValueByAbbreviation((QuantityValue)fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, CultureHelper.GetCultureOrInvariant(culture));
     }
     
     /// <summary>
@@ -1193,9 +1201,11 @@ public class UnitConverter
     /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
     /// <returns>True if conversion was successful.</returns>
     [Obsolete("Methods accepting a culture name are deprecated in favor of using an instance of CultureInfo.")]
-    public static bool TryConvertByAbbreviation(QuantityValue inputValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out QuantityValue result, string? culture) 
+    public static bool TryConvertByAbbreviation(double inputValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out double result, string? culture)
     {
-        return Default.TryConvertValueByAbbreviation(inputValue, quantityName, fromUnitAbbrev, toUnitAbbrev, CultureHelper.GetCultureOrInvariant(culture), out result);
+        bool success = Default.TryConvertValueByAbbreviation((QuantityValue)inputValue, quantityName, fromUnitAbbrev, toUnitAbbrev, CultureHelper.GetCultureOrInvariant(culture), out QuantityValue qvResult);
+        result = (double)qvResult;
+        return success;
     }
 
     #endregion

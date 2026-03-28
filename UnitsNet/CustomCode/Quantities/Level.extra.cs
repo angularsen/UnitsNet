@@ -33,7 +33,7 @@ namespace UnitsNet
                 throw new ArgumentOutOfRangeException(nameof(reference), errorMessage);
             }
 
-            _value = QuantityValue.FromDoubleRounded(10 * Math.Log10(quantity / reference), significantDigits);
+            _value = (double)QuantityValue.FromDoubleRounded(10 * Math.Log10(quantity / reference), significantDigits);
             _unit = LevelUnit.Decibel;
         }
     }

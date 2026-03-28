@@ -42,44 +42,44 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffnessPerLength
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="RotationalStiffnessPerLength.FromKilonewtonMetersPerRadianPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffnessPerLength.FromKilonewtonMetersPerRadianPerMeter(double)" />
             public RotationalStiffnessPerLength KilonewtonMetersPerRadianPerMeter
 #if NET7_0_OR_GREATER
-                => RotationalStiffnessPerLength.FromKilonewtonMetersPerRadianPerMeter(QuantityValue.CreateChecked(value));
+                => RotationalStiffnessPerLength.FromKilonewtonMetersPerRadianPerMeter(double.CreateChecked(value));
 #else
-                => RotationalStiffnessPerLength.FromKilonewtonMetersPerRadianPerMeter(value.ToQuantityValue());
+                => RotationalStiffnessPerLength.FromKilonewtonMetersPerRadianPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffnessPerLength.FromKilopoundForceFeetPerDegreesPerFeet(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffnessPerLength.FromKilopoundForceFeetPerDegreesPerFeet(double)" />
             public RotationalStiffnessPerLength KilopoundForceFeetPerDegreesPerFeet
 #if NET7_0_OR_GREATER
-                => RotationalStiffnessPerLength.FromKilopoundForceFeetPerDegreesPerFeet(QuantityValue.CreateChecked(value));
+                => RotationalStiffnessPerLength.FromKilopoundForceFeetPerDegreesPerFeet(double.CreateChecked(value));
 #else
-                => RotationalStiffnessPerLength.FromKilopoundForceFeetPerDegreesPerFeet(value.ToQuantityValue());
+                => RotationalStiffnessPerLength.FromKilopoundForceFeetPerDegreesPerFeet(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffnessPerLength.FromMeganewtonMetersPerRadianPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffnessPerLength.FromMeganewtonMetersPerRadianPerMeter(double)" />
             public RotationalStiffnessPerLength MeganewtonMetersPerRadianPerMeter
 #if NET7_0_OR_GREATER
-                => RotationalStiffnessPerLength.FromMeganewtonMetersPerRadianPerMeter(QuantityValue.CreateChecked(value));
+                => RotationalStiffnessPerLength.FromMeganewtonMetersPerRadianPerMeter(double.CreateChecked(value));
 #else
-                => RotationalStiffnessPerLength.FromMeganewtonMetersPerRadianPerMeter(value.ToQuantityValue());
+                => RotationalStiffnessPerLength.FromMeganewtonMetersPerRadianPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(double)" />
             public RotationalStiffnessPerLength NewtonMetersPerRadianPerMeter
 #if NET7_0_OR_GREATER
-                => RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(QuantityValue.CreateChecked(value));
+                => RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(double.CreateChecked(value));
 #else
-                => RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(value.ToQuantityValue());
+                => RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffnessPerLength.FromPoundForceFeetPerDegreesPerFeet(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffnessPerLength.FromPoundForceFeetPerDegreesPerFeet(double)" />
             public RotationalStiffnessPerLength PoundForceFeetPerDegreesPerFeet
 #if NET7_0_OR_GREATER
-                => RotationalStiffnessPerLength.FromPoundForceFeetPerDegreesPerFeet(QuantityValue.CreateChecked(value));
+                => RotationalStiffnessPerLength.FromPoundForceFeetPerDegreesPerFeet(double.CreateChecked(value));
 #else
-                => RotationalStiffnessPerLength.FromPoundForceFeetPerDegreesPerFeet(value.ToQuantityValue());
+                => RotationalStiffnessPerLength.FromPoundForceFeetPerDegreesPerFeet(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

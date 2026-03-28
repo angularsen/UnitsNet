@@ -38,9 +38,9 @@ namespace UnitsNet
     public readonly partial struct BrakeSpecificFuelConsumption :
         IArithmeticQuantity<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumptionUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumption, QuantityValue>,
+        IDivisionOperators<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumption, double>,
         IMultiplyOperators<BrakeSpecificFuelConsumption, Power, MassFlow>,
-        IMultiplyOperators<BrakeSpecificFuelConsumption, SpecificEnergy, QuantityValue>,
+        IMultiplyOperators<BrakeSpecificFuelConsumption, SpecificEnergy, double>,
         IComparisonOperators<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumption, bool>,
         IParsable<BrakeSpecificFuelConsumption>,
 #endif
@@ -53,7 +53,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -138,7 +138,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public BrakeSpecificFuelConsumption(QuantityValue value, BrakeSpecificFuelConsumptionUnit unit)
+        public BrakeSpecificFuelConsumption(double value, BrakeSpecificFuelConsumptionUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -152,7 +152,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public BrakeSpecificFuelConsumption(QuantityValue value, UnitSystem unitSystem)
+        public BrakeSpecificFuelConsumption(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -194,7 +194,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public BrakeSpecificFuelConsumptionUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -228,19 +228,19 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour"/>
         /// </summary>
-        public QuantityValue GramsPerKiloWattHour => this.As(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour);
+        public double GramsPerKiloWattHour => this.As(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BrakeSpecificFuelConsumptionUnit.KilogramPerJoule"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BrakeSpecificFuelConsumptionUnit.KilogramPerJoule"/>
         /// </summary>
-        public QuantityValue KilogramsPerJoule => this.As(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule);
+        public double KilogramsPerJoule => this.As(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour"/>
         /// </summary>
-        public QuantityValue PoundsPerMechanicalHorsepowerHour => this.As(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour);
+        public double PoundsPerMechanicalHorsepowerHour => this.As(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour);
 
         #endregion
 
@@ -274,7 +274,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BrakeSpecificFuelConsumption"/> from <see cref="BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour"/>.
         /// </summary>
-        public static BrakeSpecificFuelConsumption FromGramsPerKiloWattHour(QuantityValue value)
+        public static BrakeSpecificFuelConsumption FromGramsPerKiloWattHour(double value)
         {
             return new BrakeSpecificFuelConsumption(value, BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour);
         }
@@ -282,7 +282,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BrakeSpecificFuelConsumption"/> from <see cref="BrakeSpecificFuelConsumptionUnit.KilogramPerJoule"/>.
         /// </summary>
-        public static BrakeSpecificFuelConsumption FromKilogramsPerJoule(QuantityValue value)
+        public static BrakeSpecificFuelConsumption FromKilogramsPerJoule(double value)
         {
             return new BrakeSpecificFuelConsumption(value, BrakeSpecificFuelConsumptionUnit.KilogramPerJoule);
         }
@@ -290,7 +290,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="BrakeSpecificFuelConsumption"/> from <see cref="BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour"/>.
         /// </summary>
-        public static BrakeSpecificFuelConsumption FromPoundsPerMechanicalHorsepowerHour(QuantityValue value)
+        public static BrakeSpecificFuelConsumption FromPoundsPerMechanicalHorsepowerHour(double value)
         {
             return new BrakeSpecificFuelConsumption(value, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour);
         }
@@ -301,7 +301,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>BrakeSpecificFuelConsumption unit value.</returns>
-        public static BrakeSpecificFuelConsumption From(QuantityValue value, BrakeSpecificFuelConsumptionUnit fromUnit)
+        public static BrakeSpecificFuelConsumption From(double value, BrakeSpecificFuelConsumptionUnit fromUnit)
         {
             return new BrakeSpecificFuelConsumption(value, fromUnit);
         }
@@ -466,25 +466,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="BrakeSpecificFuelConsumption"/> from multiplying value and <see cref="BrakeSpecificFuelConsumption"/>.</summary>
-        public static BrakeSpecificFuelConsumption operator *(QuantityValue left, BrakeSpecificFuelConsumption right)
+        public static BrakeSpecificFuelConsumption operator *(double left, BrakeSpecificFuelConsumption right)
         {
             return new BrakeSpecificFuelConsumption(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="BrakeSpecificFuelConsumption"/> from multiplying value and <see cref="BrakeSpecificFuelConsumption"/>.</summary>
-        public static BrakeSpecificFuelConsumption operator *(BrakeSpecificFuelConsumption left, QuantityValue right)
+        public static BrakeSpecificFuelConsumption operator *(BrakeSpecificFuelConsumption left, double right)
         {
             return new BrakeSpecificFuelConsumption(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="BrakeSpecificFuelConsumption"/> from dividing <see cref="BrakeSpecificFuelConsumption"/> by value.</summary>
-        public static BrakeSpecificFuelConsumption operator /(BrakeSpecificFuelConsumption left, QuantityValue right)
+        public static BrakeSpecificFuelConsumption operator /(BrakeSpecificFuelConsumption left, double right)
         {
             return new BrakeSpecificFuelConsumption(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="BrakeSpecificFuelConsumption"/> by <see cref="BrakeSpecificFuelConsumption"/>.</summary>
-        public static QuantityValue operator /(BrakeSpecificFuelConsumption left, BrakeSpecificFuelConsumption right)
+        public static double operator /(BrakeSpecificFuelConsumption left, BrakeSpecificFuelConsumption right)
         {
             return left.KilogramsPerJoule / right.KilogramsPerJoule;
         }
@@ -499,16 +499,16 @@ namespace UnitsNet
             return MassFlow.FromKilogramsPerSecond(brakeSpecificFuelConsumption.KilogramsPerJoule * power.Watts);
         }
 
-        /// <summary>Get <see cref="QuantityValue"/> from <see cref="BrakeSpecificFuelConsumption"/> * <see cref="SpecificEnergy"/>.</summary>
-        public static QuantityValue operator *(BrakeSpecificFuelConsumption brakeSpecificFuelConsumption, SpecificEnergy specificEnergy)
-        {
-            return brakeSpecificFuelConsumption.KilogramsPerJoule * specificEnergy.JoulesPerKilogram;
-        }
-
-        /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="QuantityValue"/> / <see cref="BrakeSpecificFuelConsumption"/>.</summary>
-        public static SpecificEnergy operator /(QuantityValue value, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
+        /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="double"/> / <see cref="BrakeSpecificFuelConsumption"/>.</summary>
+        public static SpecificEnergy operator /(double value, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
         {
             return SpecificEnergy.FromJoulesPerKilogram(value / brakeSpecificFuelConsumption.KilogramsPerJoule);
+        }
+
+        /// <summary>Get <see cref="double"/> from <see cref="BrakeSpecificFuelConsumption"/> * <see cref="SpecificEnergy"/>.</summary>
+        public static double operator *(BrakeSpecificFuelConsumption brakeSpecificFuelConsumption, SpecificEnergy specificEnergy)
+        {
+            return brakeSpecificFuelConsumption.KilogramsPerJoule * specificEnergy.JoulesPerKilogram;
         }
 
         #endregion

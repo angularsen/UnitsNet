@@ -311,7 +311,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 lx", IlluminanceUnit.Lux, 4.2)]
         [InlineData("en-US", "4.2 Mlx", IlluminanceUnit.Megalux, 4.2)]
         [InlineData("en-US", "4.2 mlx", IlluminanceUnit.Millilux, 4.2)]
-        public void Parse(string culture, string quantityString, IlluminanceUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, IlluminanceUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Illuminance.Parse(quantityString);
@@ -324,7 +324,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 lx", IlluminanceUnit.Lux, 4.2)]
         [InlineData("en-US", "4.2 Mlx", IlluminanceUnit.Megalux, 4.2)]
         [InlineData("en-US", "4.2 mlx", IlluminanceUnit.Millilux, 4.2)]
-        public void TryParse(string culture, string quantityString, IlluminanceUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, IlluminanceUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Illuminance.TryParse(quantityString, out Illuminance parsed));
@@ -643,8 +643,8 @@ namespace UnitsNet.Tests
             var quantity = Illuminance.FromLux(firstValue);
             var otherQuantity = Illuminance.FromLux(secondValue);
             Illuminance maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Illuminance.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

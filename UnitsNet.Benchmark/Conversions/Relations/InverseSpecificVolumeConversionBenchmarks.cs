@@ -7,7 +7,7 @@ namespace UnitsNet.Benchmark.Conversions.Relations;
 [ShortRunJob]
 public class InverseSpecificVolumeConversionBenchmarks
 {
-    private static readonly QuantityValue Value = 123.456;
+    private static readonly double Value = 123.456;
 
     [Params(ConversionCachingMode.All)]
     public ConversionCachingMode CachingMode { get; set; }

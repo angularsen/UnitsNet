@@ -367,7 +367,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 TJ/m³", EnergyDensityUnit.TerajoulePerCubicMeter, 4.2)]
         [InlineData("en-US", "4.2 TWh/m³", EnergyDensityUnit.TerawattHourPerCubicMeter, 4.2)]
         [InlineData("en-US", "4.2 Wh/m³", EnergyDensityUnit.WattHourPerCubicMeter, 4.2)]
-        public void Parse(string culture, string quantityString, EnergyDensityUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, EnergyDensityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = EnergyDensity.Parse(quantityString);
@@ -388,7 +388,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 TJ/m³", EnergyDensityUnit.TerajoulePerCubicMeter, 4.2)]
         [InlineData("en-US", "4.2 TWh/m³", EnergyDensityUnit.TerawattHourPerCubicMeter, 4.2)]
         [InlineData("en-US", "4.2 Wh/m³", EnergyDensityUnit.WattHourPerCubicMeter, 4.2)]
-        public void TryParse(string culture, string quantityString, EnergyDensityUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, EnergyDensityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(EnergyDensity.TryParse(quantityString, out EnergyDensity parsed));
@@ -787,8 +787,8 @@ namespace UnitsNet.Tests
             var quantity = EnergyDensity.FromJoulesPerCubicMeter(firstValue);
             var otherQuantity = EnergyDensity.FromJoulesPerCubicMeter(secondValue);
             EnergyDensity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, EnergyDensity.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

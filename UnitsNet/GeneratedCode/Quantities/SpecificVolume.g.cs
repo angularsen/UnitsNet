@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct SpecificVolume :
         IArithmeticQuantity<SpecificVolume, SpecificVolumeUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<SpecificVolume, SpecificVolume, QuantityValue>,
+        IDivisionOperators<SpecificVolume, SpecificVolume, double>,
         IMultiplyOperators<SpecificVolume, Mass, Volume>,
         IComparisonOperators<SpecificVolume, SpecificVolume, bool>,
         IParsable<SpecificVolume>,
@@ -52,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -137,7 +137,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public SpecificVolume(QuantityValue value, SpecificVolumeUnit unit)
+        public SpecificVolume(double value, SpecificVolumeUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public SpecificVolume(QuantityValue value, UnitSystem unitSystem)
+        public SpecificVolume(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -193,7 +193,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public SpecificVolumeUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -227,19 +227,19 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificVolumeUnit.CubicFootPerPound"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificVolumeUnit.CubicFootPerPound"/>
         /// </summary>
-        public QuantityValue CubicFeetPerPound => this.As(SpecificVolumeUnit.CubicFootPerPound);
+        public double CubicFeetPerPound => this.As(SpecificVolumeUnit.CubicFootPerPound);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificVolumeUnit.CubicMeterPerKilogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificVolumeUnit.CubicMeterPerKilogram"/>
         /// </summary>
-        public QuantityValue CubicMetersPerKilogram => this.As(SpecificVolumeUnit.CubicMeterPerKilogram);
+        public double CubicMetersPerKilogram => this.As(SpecificVolumeUnit.CubicMeterPerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>
         /// </summary>
-        public QuantityValue MillicubicMetersPerKilogram => this.As(SpecificVolumeUnit.MillicubicMeterPerKilogram);
+        public double MillicubicMetersPerKilogram => this.As(SpecificVolumeUnit.MillicubicMeterPerKilogram);
 
         #endregion
 
@@ -273,7 +273,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.CubicFootPerPound"/>.
         /// </summary>
-        public static SpecificVolume FromCubicFeetPerPound(QuantityValue value)
+        public static SpecificVolume FromCubicFeetPerPound(double value)
         {
             return new SpecificVolume(value, SpecificVolumeUnit.CubicFootPerPound);
         }
@@ -281,7 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.CubicMeterPerKilogram"/>.
         /// </summary>
-        public static SpecificVolume FromCubicMetersPerKilogram(QuantityValue value)
+        public static SpecificVolume FromCubicMetersPerKilogram(double value)
         {
             return new SpecificVolume(value, SpecificVolumeUnit.CubicMeterPerKilogram);
         }
@@ -289,7 +289,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>.
         /// </summary>
-        public static SpecificVolume FromMillicubicMetersPerKilogram(QuantityValue value)
+        public static SpecificVolume FromMillicubicMetersPerKilogram(double value)
         {
             return new SpecificVolume(value, SpecificVolumeUnit.MillicubicMeterPerKilogram);
         }
@@ -300,7 +300,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SpecificVolume unit value.</returns>
-        public static SpecificVolume From(QuantityValue value, SpecificVolumeUnit fromUnit)
+        public static SpecificVolume From(double value, SpecificVolumeUnit fromUnit)
         {
             return new SpecificVolume(value, fromUnit);
         }
@@ -465,25 +465,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="SpecificVolume"/> from multiplying value and <see cref="SpecificVolume"/>.</summary>
-        public static SpecificVolume operator *(QuantityValue left, SpecificVolume right)
+        public static SpecificVolume operator *(double left, SpecificVolume right)
         {
             return new SpecificVolume(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="SpecificVolume"/> from multiplying value and <see cref="SpecificVolume"/>.</summary>
-        public static SpecificVolume operator *(SpecificVolume left, QuantityValue right)
+        public static SpecificVolume operator *(SpecificVolume left, double right)
         {
             return new SpecificVolume(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="SpecificVolume"/> from dividing <see cref="SpecificVolume"/> by value.</summary>
-        public static SpecificVolume operator /(SpecificVolume left, QuantityValue right)
+        public static SpecificVolume operator /(SpecificVolume left, double right)
         {
             return new SpecificVolume(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="SpecificVolume"/> by <see cref="SpecificVolume"/>.</summary>
-        public static QuantityValue operator /(SpecificVolume left, SpecificVolume right)
+        public static double operator /(SpecificVolume left, SpecificVolume right)
         {
             return left.CubicMetersPerKilogram / right.CubicMetersPerKilogram;
         }

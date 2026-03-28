@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct EnergyDensity :
         IArithmeticQuantity<EnergyDensity, EnergyDensityUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<EnergyDensity, EnergyDensity, QuantityValue>,
+        IDivisionOperators<EnergyDensity, EnergyDensity, double>,
         IMultiplyOperators<EnergyDensity, Volume, Energy>,
         IComparisonOperators<EnergyDensity, EnergyDensity, bool>,
         IParsable<EnergyDensity>,
@@ -52,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -164,7 +164,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public EnergyDensity(QuantityValue value, EnergyDensityUnit unit)
+        public EnergyDensity(double value, EnergyDensityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -178,7 +178,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public EnergyDensity(QuantityValue value, UnitSystem unitSystem)
+        public EnergyDensity(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -220,7 +220,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public EnergyDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -254,64 +254,64 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyDensityUnit.GigajoulePerCubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyDensityUnit.GigajoulePerCubicMeter"/>
         /// </summary>
-        public QuantityValue GigajoulesPerCubicMeter => this.As(EnergyDensityUnit.GigajoulePerCubicMeter);
+        public double GigajoulesPerCubicMeter => this.As(EnergyDensityUnit.GigajoulePerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyDensityUnit.GigawattHourPerCubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyDensityUnit.GigawattHourPerCubicMeter"/>
         /// </summary>
-        public QuantityValue GigawattHoursPerCubicMeter => this.As(EnergyDensityUnit.GigawattHourPerCubicMeter);
+        public double GigawattHoursPerCubicMeter => this.As(EnergyDensityUnit.GigawattHourPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyDensityUnit.JoulePerCubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyDensityUnit.JoulePerCubicMeter"/>
         /// </summary>
-        public QuantityValue JoulesPerCubicMeter => this.As(EnergyDensityUnit.JoulePerCubicMeter);
+        public double JoulesPerCubicMeter => this.As(EnergyDensityUnit.JoulePerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyDensityUnit.KilojoulePerCubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyDensityUnit.KilojoulePerCubicMeter"/>
         /// </summary>
-        public QuantityValue KilojoulesPerCubicMeter => this.As(EnergyDensityUnit.KilojoulePerCubicMeter);
+        public double KilojoulesPerCubicMeter => this.As(EnergyDensityUnit.KilojoulePerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyDensityUnit.KilowattHourPerCubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyDensityUnit.KilowattHourPerCubicMeter"/>
         /// </summary>
-        public QuantityValue KilowattHoursPerCubicMeter => this.As(EnergyDensityUnit.KilowattHourPerCubicMeter);
+        public double KilowattHoursPerCubicMeter => this.As(EnergyDensityUnit.KilowattHourPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyDensityUnit.MegajoulePerCubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyDensityUnit.MegajoulePerCubicMeter"/>
         /// </summary>
-        public QuantityValue MegajoulesPerCubicMeter => this.As(EnergyDensityUnit.MegajoulePerCubicMeter);
+        public double MegajoulesPerCubicMeter => this.As(EnergyDensityUnit.MegajoulePerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyDensityUnit.MegawattHourPerCubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyDensityUnit.MegawattHourPerCubicMeter"/>
         /// </summary>
-        public QuantityValue MegawattHoursPerCubicMeter => this.As(EnergyDensityUnit.MegawattHourPerCubicMeter);
+        public double MegawattHoursPerCubicMeter => this.As(EnergyDensityUnit.MegawattHourPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyDensityUnit.PetajoulePerCubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyDensityUnit.PetajoulePerCubicMeter"/>
         /// </summary>
-        public QuantityValue PetajoulesPerCubicMeter => this.As(EnergyDensityUnit.PetajoulePerCubicMeter);
+        public double PetajoulesPerCubicMeter => this.As(EnergyDensityUnit.PetajoulePerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyDensityUnit.PetawattHourPerCubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyDensityUnit.PetawattHourPerCubicMeter"/>
         /// </summary>
-        public QuantityValue PetawattHoursPerCubicMeter => this.As(EnergyDensityUnit.PetawattHourPerCubicMeter);
+        public double PetawattHoursPerCubicMeter => this.As(EnergyDensityUnit.PetawattHourPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyDensityUnit.TerajoulePerCubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyDensityUnit.TerajoulePerCubicMeter"/>
         /// </summary>
-        public QuantityValue TerajoulesPerCubicMeter => this.As(EnergyDensityUnit.TerajoulePerCubicMeter);
+        public double TerajoulesPerCubicMeter => this.As(EnergyDensityUnit.TerajoulePerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyDensityUnit.TerawattHourPerCubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyDensityUnit.TerawattHourPerCubicMeter"/>
         /// </summary>
-        public QuantityValue TerawattHoursPerCubicMeter => this.As(EnergyDensityUnit.TerawattHourPerCubicMeter);
+        public double TerawattHoursPerCubicMeter => this.As(EnergyDensityUnit.TerawattHourPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyDensityUnit.WattHourPerCubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyDensityUnit.WattHourPerCubicMeter"/>
         /// </summary>
-        public QuantityValue WattHoursPerCubicMeter => this.As(EnergyDensityUnit.WattHourPerCubicMeter);
+        public double WattHoursPerCubicMeter => this.As(EnergyDensityUnit.WattHourPerCubicMeter);
 
         #endregion
 
@@ -345,7 +345,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.GigajoulePerCubicMeter"/>.
         /// </summary>
-        public static EnergyDensity FromGigajoulesPerCubicMeter(QuantityValue value)
+        public static EnergyDensity FromGigajoulesPerCubicMeter(double value)
         {
             return new EnergyDensity(value, EnergyDensityUnit.GigajoulePerCubicMeter);
         }
@@ -353,7 +353,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.GigawattHourPerCubicMeter"/>.
         /// </summary>
-        public static EnergyDensity FromGigawattHoursPerCubicMeter(QuantityValue value)
+        public static EnergyDensity FromGigawattHoursPerCubicMeter(double value)
         {
             return new EnergyDensity(value, EnergyDensityUnit.GigawattHourPerCubicMeter);
         }
@@ -361,7 +361,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.JoulePerCubicMeter"/>.
         /// </summary>
-        public static EnergyDensity FromJoulesPerCubicMeter(QuantityValue value)
+        public static EnergyDensity FromJoulesPerCubicMeter(double value)
         {
             return new EnergyDensity(value, EnergyDensityUnit.JoulePerCubicMeter);
         }
@@ -369,7 +369,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.KilojoulePerCubicMeter"/>.
         /// </summary>
-        public static EnergyDensity FromKilojoulesPerCubicMeter(QuantityValue value)
+        public static EnergyDensity FromKilojoulesPerCubicMeter(double value)
         {
             return new EnergyDensity(value, EnergyDensityUnit.KilojoulePerCubicMeter);
         }
@@ -377,7 +377,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.KilowattHourPerCubicMeter"/>.
         /// </summary>
-        public static EnergyDensity FromKilowattHoursPerCubicMeter(QuantityValue value)
+        public static EnergyDensity FromKilowattHoursPerCubicMeter(double value)
         {
             return new EnergyDensity(value, EnergyDensityUnit.KilowattHourPerCubicMeter);
         }
@@ -385,7 +385,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.MegajoulePerCubicMeter"/>.
         /// </summary>
-        public static EnergyDensity FromMegajoulesPerCubicMeter(QuantityValue value)
+        public static EnergyDensity FromMegajoulesPerCubicMeter(double value)
         {
             return new EnergyDensity(value, EnergyDensityUnit.MegajoulePerCubicMeter);
         }
@@ -393,7 +393,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.MegawattHourPerCubicMeter"/>.
         /// </summary>
-        public static EnergyDensity FromMegawattHoursPerCubicMeter(QuantityValue value)
+        public static EnergyDensity FromMegawattHoursPerCubicMeter(double value)
         {
             return new EnergyDensity(value, EnergyDensityUnit.MegawattHourPerCubicMeter);
         }
@@ -401,7 +401,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.PetajoulePerCubicMeter"/>.
         /// </summary>
-        public static EnergyDensity FromPetajoulesPerCubicMeter(QuantityValue value)
+        public static EnergyDensity FromPetajoulesPerCubicMeter(double value)
         {
             return new EnergyDensity(value, EnergyDensityUnit.PetajoulePerCubicMeter);
         }
@@ -409,7 +409,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.PetawattHourPerCubicMeter"/>.
         /// </summary>
-        public static EnergyDensity FromPetawattHoursPerCubicMeter(QuantityValue value)
+        public static EnergyDensity FromPetawattHoursPerCubicMeter(double value)
         {
             return new EnergyDensity(value, EnergyDensityUnit.PetawattHourPerCubicMeter);
         }
@@ -417,7 +417,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.TerajoulePerCubicMeter"/>.
         /// </summary>
-        public static EnergyDensity FromTerajoulesPerCubicMeter(QuantityValue value)
+        public static EnergyDensity FromTerajoulesPerCubicMeter(double value)
         {
             return new EnergyDensity(value, EnergyDensityUnit.TerajoulePerCubicMeter);
         }
@@ -425,7 +425,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.TerawattHourPerCubicMeter"/>.
         /// </summary>
-        public static EnergyDensity FromTerawattHoursPerCubicMeter(QuantityValue value)
+        public static EnergyDensity FromTerawattHoursPerCubicMeter(double value)
         {
             return new EnergyDensity(value, EnergyDensityUnit.TerawattHourPerCubicMeter);
         }
@@ -433,7 +433,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="EnergyDensity"/> from <see cref="EnergyDensityUnit.WattHourPerCubicMeter"/>.
         /// </summary>
-        public static EnergyDensity FromWattHoursPerCubicMeter(QuantityValue value)
+        public static EnergyDensity FromWattHoursPerCubicMeter(double value)
         {
             return new EnergyDensity(value, EnergyDensityUnit.WattHourPerCubicMeter);
         }
@@ -444,7 +444,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>EnergyDensity unit value.</returns>
-        public static EnergyDensity From(QuantityValue value, EnergyDensityUnit fromUnit)
+        public static EnergyDensity From(double value, EnergyDensityUnit fromUnit)
         {
             return new EnergyDensity(value, fromUnit);
         }
@@ -609,25 +609,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="EnergyDensity"/> from multiplying value and <see cref="EnergyDensity"/>.</summary>
-        public static EnergyDensity operator *(QuantityValue left, EnergyDensity right)
+        public static EnergyDensity operator *(double left, EnergyDensity right)
         {
             return new EnergyDensity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="EnergyDensity"/> from multiplying value and <see cref="EnergyDensity"/>.</summary>
-        public static EnergyDensity operator *(EnergyDensity left, QuantityValue right)
+        public static EnergyDensity operator *(EnergyDensity left, double right)
         {
             return new EnergyDensity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="EnergyDensity"/> from dividing <see cref="EnergyDensity"/> by value.</summary>
-        public static EnergyDensity operator /(EnergyDensity left, QuantityValue right)
+        public static EnergyDensity operator /(EnergyDensity left, double right)
         {
             return new EnergyDensity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="EnergyDensity"/> by <see cref="EnergyDensity"/>.</summary>
-        public static QuantityValue operator /(EnergyDensity left, EnergyDensity right)
+        public static double operator /(EnergyDensity left, EnergyDensity right)
         {
             return left.JoulesPerCubicMeter / right.JoulesPerCubicMeter;
         }

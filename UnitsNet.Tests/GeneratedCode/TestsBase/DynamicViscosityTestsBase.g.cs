@@ -356,7 +356,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 lbf·s/in²", DynamicViscosityUnit.PoundForceSecondPerSquareInch, 4.2)]
         [InlineData("en-US", "4.2 lb/(ft·s)", DynamicViscosityUnit.PoundPerFootSecond, 4.2)]
         [InlineData("en-US", "4.2 reyn", DynamicViscosityUnit.Reyn, 4.2)]
-        public void Parse(string culture, string quantityString, DynamicViscosityUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, DynamicViscosityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = DynamicViscosity.Parse(quantityString);
@@ -378,7 +378,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 lbf·s/in²", DynamicViscosityUnit.PoundForceSecondPerSquareInch, 4.2)]
         [InlineData("en-US", "4.2 lb/(ft·s)", DynamicViscosityUnit.PoundPerFootSecond, 4.2)]
         [InlineData("en-US", "4.2 reyn", DynamicViscosityUnit.Reyn, 4.2)]
-        public void TryParse(string culture, string quantityString, DynamicViscosityUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, DynamicViscosityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(DynamicViscosity.TryParse(quantityString, out DynamicViscosity parsed));
@@ -781,8 +781,8 @@ namespace UnitsNet.Tests
             var quantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(firstValue);
             var otherQuantity = DynamicViscosity.FromNewtonSecondsPerMeterSquared(secondValue);
             DynamicViscosity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, DynamicViscosity.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

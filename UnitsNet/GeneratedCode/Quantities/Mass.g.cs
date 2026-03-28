@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct Mass :
         IArithmeticQuantity<Mass, MassUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Mass, Mass, QuantityValue>,
+        IDivisionOperators<Mass, Mass, double>,
         IDivisionOperators<Mass, MolarMass, AmountOfSubstance>,
         IDivisionOperators<Mass, AreaDensity, Area>,
         IDivisionOperators<Mass, Area, AreaDensity>,
@@ -67,7 +67,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -236,7 +236,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Mass(QuantityValue value, MassUnit unit)
+        public Mass(double value, MassUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -250,7 +250,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Mass(QuantityValue value, UnitSystem unitSystem)
+        public Mass(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -292,7 +292,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public MassUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -326,159 +326,159 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Centigram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Centigram"/>
         /// </summary>
-        public QuantityValue Centigrams => this.As(MassUnit.Centigram);
+        public double Centigrams => this.As(MassUnit.Centigram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Dalton"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Dalton"/>
         /// </summary>
-        public QuantityValue Daltons => this.As(MassUnit.Dalton);
+        public double Daltons => this.As(MassUnit.Dalton);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Decagram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Decagram"/>
         /// </summary>
-        public QuantityValue Decagrams => this.As(MassUnit.Decagram);
+        public double Decagrams => this.As(MassUnit.Decagram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Decigram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Decigram"/>
         /// </summary>
-        public QuantityValue Decigrams => this.As(MassUnit.Decigram);
+        public double Decigrams => this.As(MassUnit.Decigram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.EarthMass"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.EarthMass"/>
         /// </summary>
-        public QuantityValue EarthMasses => this.As(MassUnit.EarthMass);
+        public double EarthMasses => this.As(MassUnit.EarthMass);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Femtogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Femtogram"/>
         /// </summary>
-        public QuantityValue Femtograms => this.As(MassUnit.Femtogram);
+        public double Femtograms => this.As(MassUnit.Femtogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Gigadalton"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Gigadalton"/>
         /// </summary>
-        public QuantityValue Gigadaltons => this.As(MassUnit.Gigadalton);
+        public double Gigadaltons => this.As(MassUnit.Gigadalton);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Grain"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Grain"/>
         /// </summary>
-        public QuantityValue Grains => this.As(MassUnit.Grain);
+        public double Grains => this.As(MassUnit.Grain);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Gram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Gram"/>
         /// </summary>
-        public QuantityValue Grams => this.As(MassUnit.Gram);
+        public double Grams => this.As(MassUnit.Gram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Hectogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Hectogram"/>
         /// </summary>
-        public QuantityValue Hectograms => this.As(MassUnit.Hectogram);
+        public double Hectograms => this.As(MassUnit.Hectogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Kilodalton"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Kilodalton"/>
         /// </summary>
-        public QuantityValue Kilodaltons => this.As(MassUnit.Kilodalton);
+        public double Kilodaltons => this.As(MassUnit.Kilodalton);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Kilogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Kilogram"/>
         /// </summary>
-        public QuantityValue Kilograms => this.As(MassUnit.Kilogram);
+        public double Kilograms => this.As(MassUnit.Kilogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Kilopound"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Kilopound"/>
         /// </summary>
-        public QuantityValue Kilopounds => this.As(MassUnit.Kilopound);
+        public double Kilopounds => this.As(MassUnit.Kilopound);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Kilotonne"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Kilotonne"/>
         /// </summary>
-        public QuantityValue Kilotonnes => this.As(MassUnit.Kilotonne);
+        public double Kilotonnes => this.As(MassUnit.Kilotonne);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.LongHundredweight"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.LongHundredweight"/>
         /// </summary>
-        public QuantityValue LongHundredweight => this.As(MassUnit.LongHundredweight);
+        public double LongHundredweight => this.As(MassUnit.LongHundredweight);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.LongTon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.LongTon"/>
         /// </summary>
-        public QuantityValue LongTons => this.As(MassUnit.LongTon);
+        public double LongTons => this.As(MassUnit.LongTon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Megadalton"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Megadalton"/>
         /// </summary>
-        public QuantityValue Megadaltons => this.As(MassUnit.Megadalton);
+        public double Megadaltons => this.As(MassUnit.Megadalton);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Megapound"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Megapound"/>
         /// </summary>
-        public QuantityValue Megapounds => this.As(MassUnit.Megapound);
+        public double Megapounds => this.As(MassUnit.Megapound);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Megatonne"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Megatonne"/>
         /// </summary>
-        public QuantityValue Megatonnes => this.As(MassUnit.Megatonne);
+        public double Megatonnes => this.As(MassUnit.Megatonne);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Microgram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Microgram"/>
         /// </summary>
-        public QuantityValue Micrograms => this.As(MassUnit.Microgram);
+        public double Micrograms => this.As(MassUnit.Microgram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Milligram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Milligram"/>
         /// </summary>
-        public QuantityValue Milligrams => this.As(MassUnit.Milligram);
+        public double Milligrams => this.As(MassUnit.Milligram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Nanogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Nanogram"/>
         /// </summary>
-        public QuantityValue Nanograms => this.As(MassUnit.Nanogram);
+        public double Nanograms => this.As(MassUnit.Nanogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Ounce"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Ounce"/>
         /// </summary>
-        public QuantityValue Ounces => this.As(MassUnit.Ounce);
+        public double Ounces => this.As(MassUnit.Ounce);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Picogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Picogram"/>
         /// </summary>
-        public QuantityValue Picograms => this.As(MassUnit.Picogram);
+        public double Picograms => this.As(MassUnit.Picogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Pound"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Pound"/>
         /// </summary>
-        public QuantityValue Pounds => this.As(MassUnit.Pound);
+        public double Pounds => this.As(MassUnit.Pound);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.ShortHundredweight"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.ShortHundredweight"/>
         /// </summary>
-        public QuantityValue ShortHundredweight => this.As(MassUnit.ShortHundredweight);
+        public double ShortHundredweight => this.As(MassUnit.ShortHundredweight);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.ShortTon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.ShortTon"/>
         /// </summary>
-        public QuantityValue ShortTons => this.As(MassUnit.ShortTon);
+        public double ShortTons => this.As(MassUnit.ShortTon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Slug"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Slug"/>
         /// </summary>
-        public QuantityValue Slugs => this.As(MassUnit.Slug);
+        public double Slugs => this.As(MassUnit.Slug);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.SolarMass"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.SolarMass"/>
         /// </summary>
-        public QuantityValue SolarMasses => this.As(MassUnit.SolarMass);
+        public double SolarMasses => this.As(MassUnit.SolarMass);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Stone"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Stone"/>
         /// </summary>
-        public QuantityValue Stone => this.As(MassUnit.Stone);
+        public double Stone => this.As(MassUnit.Stone);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassUnit.Tonne"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Tonne"/>
         /// </summary>
-        public QuantityValue Tonnes => this.As(MassUnit.Tonne);
+        public double Tonnes => this.As(MassUnit.Tonne);
 
         #endregion
 
@@ -512,7 +512,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Centigram"/>.
         /// </summary>
-        public static Mass FromCentigrams(QuantityValue value)
+        public static Mass FromCentigrams(double value)
         {
             return new Mass(value, MassUnit.Centigram);
         }
@@ -520,7 +520,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Dalton"/>.
         /// </summary>
-        public static Mass FromDaltons(QuantityValue value)
+        public static Mass FromDaltons(double value)
         {
             return new Mass(value, MassUnit.Dalton);
         }
@@ -528,7 +528,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Decagram"/>.
         /// </summary>
-        public static Mass FromDecagrams(QuantityValue value)
+        public static Mass FromDecagrams(double value)
         {
             return new Mass(value, MassUnit.Decagram);
         }
@@ -536,7 +536,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Decigram"/>.
         /// </summary>
-        public static Mass FromDecigrams(QuantityValue value)
+        public static Mass FromDecigrams(double value)
         {
             return new Mass(value, MassUnit.Decigram);
         }
@@ -544,7 +544,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.EarthMass"/>.
         /// </summary>
-        public static Mass FromEarthMasses(QuantityValue value)
+        public static Mass FromEarthMasses(double value)
         {
             return new Mass(value, MassUnit.EarthMass);
         }
@@ -552,7 +552,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Femtogram"/>.
         /// </summary>
-        public static Mass FromFemtograms(QuantityValue value)
+        public static Mass FromFemtograms(double value)
         {
             return new Mass(value, MassUnit.Femtogram);
         }
@@ -560,7 +560,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Gigadalton"/>.
         /// </summary>
-        public static Mass FromGigadaltons(QuantityValue value)
+        public static Mass FromGigadaltons(double value)
         {
             return new Mass(value, MassUnit.Gigadalton);
         }
@@ -568,7 +568,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Grain"/>.
         /// </summary>
-        public static Mass FromGrains(QuantityValue value)
+        public static Mass FromGrains(double value)
         {
             return new Mass(value, MassUnit.Grain);
         }
@@ -576,7 +576,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Gram"/>.
         /// </summary>
-        public static Mass FromGrams(QuantityValue value)
+        public static Mass FromGrams(double value)
         {
             return new Mass(value, MassUnit.Gram);
         }
@@ -584,7 +584,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Hectogram"/>.
         /// </summary>
-        public static Mass FromHectograms(QuantityValue value)
+        public static Mass FromHectograms(double value)
         {
             return new Mass(value, MassUnit.Hectogram);
         }
@@ -592,7 +592,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Kilodalton"/>.
         /// </summary>
-        public static Mass FromKilodaltons(QuantityValue value)
+        public static Mass FromKilodaltons(double value)
         {
             return new Mass(value, MassUnit.Kilodalton);
         }
@@ -600,7 +600,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Kilogram"/>.
         /// </summary>
-        public static Mass FromKilograms(QuantityValue value)
+        public static Mass FromKilograms(double value)
         {
             return new Mass(value, MassUnit.Kilogram);
         }
@@ -608,7 +608,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Kilopound"/>.
         /// </summary>
-        public static Mass FromKilopounds(QuantityValue value)
+        public static Mass FromKilopounds(double value)
         {
             return new Mass(value, MassUnit.Kilopound);
         }
@@ -616,7 +616,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Kilotonne"/>.
         /// </summary>
-        public static Mass FromKilotonnes(QuantityValue value)
+        public static Mass FromKilotonnes(double value)
         {
             return new Mass(value, MassUnit.Kilotonne);
         }
@@ -624,7 +624,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.LongHundredweight"/>.
         /// </summary>
-        public static Mass FromLongHundredweight(QuantityValue value)
+        public static Mass FromLongHundredweight(double value)
         {
             return new Mass(value, MassUnit.LongHundredweight);
         }
@@ -632,7 +632,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.LongTon"/>.
         /// </summary>
-        public static Mass FromLongTons(QuantityValue value)
+        public static Mass FromLongTons(double value)
         {
             return new Mass(value, MassUnit.LongTon);
         }
@@ -640,7 +640,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Megadalton"/>.
         /// </summary>
-        public static Mass FromMegadaltons(QuantityValue value)
+        public static Mass FromMegadaltons(double value)
         {
             return new Mass(value, MassUnit.Megadalton);
         }
@@ -648,7 +648,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Megapound"/>.
         /// </summary>
-        public static Mass FromMegapounds(QuantityValue value)
+        public static Mass FromMegapounds(double value)
         {
             return new Mass(value, MassUnit.Megapound);
         }
@@ -656,7 +656,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Megatonne"/>.
         /// </summary>
-        public static Mass FromMegatonnes(QuantityValue value)
+        public static Mass FromMegatonnes(double value)
         {
             return new Mass(value, MassUnit.Megatonne);
         }
@@ -664,7 +664,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Microgram"/>.
         /// </summary>
-        public static Mass FromMicrograms(QuantityValue value)
+        public static Mass FromMicrograms(double value)
         {
             return new Mass(value, MassUnit.Microgram);
         }
@@ -672,7 +672,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Milligram"/>.
         /// </summary>
-        public static Mass FromMilligrams(QuantityValue value)
+        public static Mass FromMilligrams(double value)
         {
             return new Mass(value, MassUnit.Milligram);
         }
@@ -680,7 +680,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Nanogram"/>.
         /// </summary>
-        public static Mass FromNanograms(QuantityValue value)
+        public static Mass FromNanograms(double value)
         {
             return new Mass(value, MassUnit.Nanogram);
         }
@@ -688,7 +688,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Ounce"/>.
         /// </summary>
-        public static Mass FromOunces(QuantityValue value)
+        public static Mass FromOunces(double value)
         {
             return new Mass(value, MassUnit.Ounce);
         }
@@ -696,7 +696,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Picogram"/>.
         /// </summary>
-        public static Mass FromPicograms(QuantityValue value)
+        public static Mass FromPicograms(double value)
         {
             return new Mass(value, MassUnit.Picogram);
         }
@@ -704,7 +704,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Pound"/>.
         /// </summary>
-        public static Mass FromPounds(QuantityValue value)
+        public static Mass FromPounds(double value)
         {
             return new Mass(value, MassUnit.Pound);
         }
@@ -712,7 +712,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.ShortHundredweight"/>.
         /// </summary>
-        public static Mass FromShortHundredweight(QuantityValue value)
+        public static Mass FromShortHundredweight(double value)
         {
             return new Mass(value, MassUnit.ShortHundredweight);
         }
@@ -720,7 +720,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.ShortTon"/>.
         /// </summary>
-        public static Mass FromShortTons(QuantityValue value)
+        public static Mass FromShortTons(double value)
         {
             return new Mass(value, MassUnit.ShortTon);
         }
@@ -728,7 +728,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Slug"/>.
         /// </summary>
-        public static Mass FromSlugs(QuantityValue value)
+        public static Mass FromSlugs(double value)
         {
             return new Mass(value, MassUnit.Slug);
         }
@@ -736,7 +736,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.SolarMass"/>.
         /// </summary>
-        public static Mass FromSolarMasses(QuantityValue value)
+        public static Mass FromSolarMasses(double value)
         {
             return new Mass(value, MassUnit.SolarMass);
         }
@@ -744,7 +744,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Stone"/>.
         /// </summary>
-        public static Mass FromStone(QuantityValue value)
+        public static Mass FromStone(double value)
         {
             return new Mass(value, MassUnit.Stone);
         }
@@ -752,7 +752,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Tonne"/>.
         /// </summary>
-        public static Mass FromTonnes(QuantityValue value)
+        public static Mass FromTonnes(double value)
         {
             return new Mass(value, MassUnit.Tonne);
         }
@@ -763,7 +763,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Mass unit value.</returns>
-        public static Mass From(QuantityValue value, MassUnit fromUnit)
+        public static Mass From(double value, MassUnit fromUnit)
         {
             return new Mass(value, fromUnit);
         }
@@ -928,25 +928,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Mass"/> from multiplying value and <see cref="Mass"/>.</summary>
-        public static Mass operator *(QuantityValue left, Mass right)
+        public static Mass operator *(double left, Mass right)
         {
             return new Mass(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Mass"/> from multiplying value and <see cref="Mass"/>.</summary>
-        public static Mass operator *(Mass left, QuantityValue right)
+        public static Mass operator *(Mass left, double right)
         {
             return new Mass(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Mass"/> from dividing <see cref="Mass"/> by value.</summary>
-        public static Mass operator /(Mass left, QuantityValue right)
+        public static Mass operator /(Mass left, double right)
         {
             return new Mass(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Mass"/> by <see cref="Mass"/>.</summary>
-        public static QuantityValue operator /(Mass left, Mass right)
+        public static double operator /(Mass left, Mass right)
         {
             return left.Kilograms / right.Kilograms;
         }

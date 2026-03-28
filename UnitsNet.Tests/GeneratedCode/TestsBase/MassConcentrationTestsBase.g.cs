@@ -630,7 +630,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 кг/м³", MassConcentrationUnit.KilogramPerCubicMeter, 4.2)]
         [InlineData("ru-RU", "4,2 мкг/м³", MassConcentrationUnit.MicrogramPerCubicMeter, 4.2)]
         [InlineData("ru-RU", "4,2 мг/м³", MassConcentrationUnit.MilligramPerCubicMeter, 4.2)]
-        public void Parse(string culture, string quantityString, MassConcentrationUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, MassConcentrationUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = MassConcentration.Parse(quantityString);
@@ -692,7 +692,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 кг/м³", MassConcentrationUnit.KilogramPerCubicMeter, 4.2)]
         [InlineData("ru-RU", "4,2 мкг/м³", MassConcentrationUnit.MicrogramPerCubicMeter, 4.2)]
         [InlineData("ru-RU", "4,2 мг/м³", MassConcentrationUnit.MilligramPerCubicMeter, 4.2)]
-        public void TryParse(string culture, string quantityString, MassConcentrationUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, MassConcentrationUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(MassConcentration.TryParse(quantityString, out MassConcentration parsed));
@@ -1481,8 +1481,8 @@ namespace UnitsNet.Tests
             var quantity = MassConcentration.FromKilogramsPerCubicMeter(firstValue);
             var otherQuantity = MassConcentration.FromKilogramsPerCubicMeter(secondValue);
             MassConcentration maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, MassConcentration.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

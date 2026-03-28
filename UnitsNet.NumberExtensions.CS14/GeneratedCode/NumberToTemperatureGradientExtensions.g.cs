@@ -42,36 +42,36 @@ namespace UnitsNet.NumberExtensions.NumberToTemperatureGradient
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="TemperatureGradient.FromDegreesCelsiusPerKilometer(QuantityValue)" />
+            /// <inheritdoc cref="TemperatureGradient.FromDegreesCelsiusPerKilometer(double)" />
             public TemperatureGradient DegreesCelsiusPerKilometer
 #if NET7_0_OR_GREATER
-                => TemperatureGradient.FromDegreesCelsiusPerKilometer(QuantityValue.CreateChecked(value));
+                => TemperatureGradient.FromDegreesCelsiusPerKilometer(double.CreateChecked(value));
 #else
-                => TemperatureGradient.FromDegreesCelsiusPerKilometer(value.ToQuantityValue());
+                => TemperatureGradient.FromDegreesCelsiusPerKilometer(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="TemperatureGradient.FromDegreesCelsiusPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="TemperatureGradient.FromDegreesCelsiusPerMeter(double)" />
             public TemperatureGradient DegreesCelsiusPerMeter
 #if NET7_0_OR_GREATER
-                => TemperatureGradient.FromDegreesCelsiusPerMeter(QuantityValue.CreateChecked(value));
+                => TemperatureGradient.FromDegreesCelsiusPerMeter(double.CreateChecked(value));
 #else
-                => TemperatureGradient.FromDegreesCelsiusPerMeter(value.ToQuantityValue());
+                => TemperatureGradient.FromDegreesCelsiusPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="TemperatureGradient.FromDegreesFahrenheitPerFoot(QuantityValue)" />
+            /// <inheritdoc cref="TemperatureGradient.FromDegreesFahrenheitPerFoot(double)" />
             public TemperatureGradient DegreesFahrenheitPerFoot
 #if NET7_0_OR_GREATER
-                => TemperatureGradient.FromDegreesFahrenheitPerFoot(QuantityValue.CreateChecked(value));
+                => TemperatureGradient.FromDegreesFahrenheitPerFoot(double.CreateChecked(value));
 #else
-                => TemperatureGradient.FromDegreesFahrenheitPerFoot(value.ToQuantityValue());
+                => TemperatureGradient.FromDegreesFahrenheitPerFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="TemperatureGradient.FromKelvinsPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="TemperatureGradient.FromKelvinsPerMeter(double)" />
             public TemperatureGradient KelvinsPerMeter
 #if NET7_0_OR_GREATER
-                => TemperatureGradient.FromKelvinsPerMeter(QuantityValue.CreateChecked(value));
+                => TemperatureGradient.FromKelvinsPerMeter(double.CreateChecked(value));
 #else
-                => TemperatureGradient.FromKelvinsPerMeter(value.ToQuantityValue());
+                => TemperatureGradient.FromKelvinsPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

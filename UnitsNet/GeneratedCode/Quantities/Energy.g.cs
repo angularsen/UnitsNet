@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct Energy :
         IArithmeticQuantity<Energy, EnergyUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Energy, Energy, QuantityValue>,
+        IDivisionOperators<Energy, Energy, double>,
         IDivisionOperators<Energy, MolarEnergy, AmountOfSubstance>,
         IDivisionOperators<Energy, Power, Duration>,
         IDivisionOperators<Energy, ElectricPotential, ElectricCharge>,
@@ -64,7 +64,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -260,7 +260,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Energy(QuantityValue value, EnergyUnit unit)
+        public Energy(double value, EnergyUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -274,7 +274,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Energy(QuantityValue value, UnitSystem unitSystem)
+        public Energy(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -316,7 +316,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public EnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -350,204 +350,204 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.BritishThermalUnit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.BritishThermalUnit"/>
         /// </summary>
-        public QuantityValue BritishThermalUnits => this.As(EnergyUnit.BritishThermalUnit);
+        public double BritishThermalUnits => this.As(EnergyUnit.BritishThermalUnit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.Calorie"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Calorie"/>
         /// </summary>
-        public QuantityValue Calories => this.As(EnergyUnit.Calorie);
+        public double Calories => this.As(EnergyUnit.Calorie);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.DecathermEc"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.DecathermEc"/>
         /// </summary>
-        public QuantityValue DecathermsEc => this.As(EnergyUnit.DecathermEc);
+        public double DecathermsEc => this.As(EnergyUnit.DecathermEc);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.DecathermImperial"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.DecathermImperial"/>
         /// </summary>
-        public QuantityValue DecathermsImperial => this.As(EnergyUnit.DecathermImperial);
+        public double DecathermsImperial => this.As(EnergyUnit.DecathermImperial);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.DecathermUs"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.DecathermUs"/>
         /// </summary>
-        public QuantityValue DecathermsUs => this.As(EnergyUnit.DecathermUs);
+        public double DecathermsUs => this.As(EnergyUnit.DecathermUs);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.ElectronVolt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.ElectronVolt"/>
         /// </summary>
-        public QuantityValue ElectronVolts => this.As(EnergyUnit.ElectronVolt);
+        public double ElectronVolts => this.As(EnergyUnit.ElectronVolt);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.Erg"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Erg"/>
         /// </summary>
-        public QuantityValue Ergs => this.As(EnergyUnit.Erg);
+        public double Ergs => this.As(EnergyUnit.Erg);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.FootPound"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.FootPound"/>
         /// </summary>
-        public QuantityValue FootPounds => this.As(EnergyUnit.FootPound);
+        public double FootPounds => this.As(EnergyUnit.FootPound);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.GigabritishThermalUnit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.GigabritishThermalUnit"/>
         /// </summary>
-        public QuantityValue GigabritishThermalUnits => this.As(EnergyUnit.GigabritishThermalUnit);
+        public double GigabritishThermalUnits => this.As(EnergyUnit.GigabritishThermalUnit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.GigaelectronVolt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.GigaelectronVolt"/>
         /// </summary>
-        public QuantityValue GigaelectronVolts => this.As(EnergyUnit.GigaelectronVolt);
+        public double GigaelectronVolts => this.As(EnergyUnit.GigaelectronVolt);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.Gigajoule"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Gigajoule"/>
         /// </summary>
-        public QuantityValue Gigajoules => this.As(EnergyUnit.Gigajoule);
+        public double Gigajoules => this.As(EnergyUnit.Gigajoule);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.GigawattDay"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.GigawattDay"/>
         /// </summary>
-        public QuantityValue GigawattDays => this.As(EnergyUnit.GigawattDay);
+        public double GigawattDays => this.As(EnergyUnit.GigawattDay);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.GigawattHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.GigawattHour"/>
         /// </summary>
-        public QuantityValue GigawattHours => this.As(EnergyUnit.GigawattHour);
+        public double GigawattHours => this.As(EnergyUnit.GigawattHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.HorsepowerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.HorsepowerHour"/>
         /// </summary>
-        public QuantityValue HorsepowerHours => this.As(EnergyUnit.HorsepowerHour);
+        public double HorsepowerHours => this.As(EnergyUnit.HorsepowerHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.Joule"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Joule"/>
         /// </summary>
-        public QuantityValue Joules => this.As(EnergyUnit.Joule);
+        public double Joules => this.As(EnergyUnit.Joule);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.KilobritishThermalUnit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.KilobritishThermalUnit"/>
         /// </summary>
-        public QuantityValue KilobritishThermalUnits => this.As(EnergyUnit.KilobritishThermalUnit);
+        public double KilobritishThermalUnits => this.As(EnergyUnit.KilobritishThermalUnit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.Kilocalorie"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Kilocalorie"/>
         /// </summary>
-        public QuantityValue Kilocalories => this.As(EnergyUnit.Kilocalorie);
+        public double Kilocalories => this.As(EnergyUnit.Kilocalorie);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.KiloelectronVolt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.KiloelectronVolt"/>
         /// </summary>
-        public QuantityValue KiloelectronVolts => this.As(EnergyUnit.KiloelectronVolt);
+        public double KiloelectronVolts => this.As(EnergyUnit.KiloelectronVolt);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.Kilojoule"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Kilojoule"/>
         /// </summary>
-        public QuantityValue Kilojoules => this.As(EnergyUnit.Kilojoule);
+        public double Kilojoules => this.As(EnergyUnit.Kilojoule);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.KilowattDay"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.KilowattDay"/>
         /// </summary>
-        public QuantityValue KilowattDays => this.As(EnergyUnit.KilowattDay);
+        public double KilowattDays => this.As(EnergyUnit.KilowattDay);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.KilowattHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.KilowattHour"/>
         /// </summary>
-        public QuantityValue KilowattHours => this.As(EnergyUnit.KilowattHour);
+        public double KilowattHours => this.As(EnergyUnit.KilowattHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.MegabritishThermalUnit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.MegabritishThermalUnit"/>
         /// </summary>
-        public QuantityValue MegabritishThermalUnits => this.As(EnergyUnit.MegabritishThermalUnit);
+        public double MegabritishThermalUnits => this.As(EnergyUnit.MegabritishThermalUnit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.Megacalorie"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Megacalorie"/>
         /// </summary>
-        public QuantityValue Megacalories => this.As(EnergyUnit.Megacalorie);
+        public double Megacalories => this.As(EnergyUnit.Megacalorie);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.MegaelectronVolt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.MegaelectronVolt"/>
         /// </summary>
-        public QuantityValue MegaelectronVolts => this.As(EnergyUnit.MegaelectronVolt);
+        public double MegaelectronVolts => this.As(EnergyUnit.MegaelectronVolt);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.Megajoule"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Megajoule"/>
         /// </summary>
-        public QuantityValue Megajoules => this.As(EnergyUnit.Megajoule);
+        public double Megajoules => this.As(EnergyUnit.Megajoule);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.MegawattDay"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.MegawattDay"/>
         /// </summary>
-        public QuantityValue MegawattDays => this.As(EnergyUnit.MegawattDay);
+        public double MegawattDays => this.As(EnergyUnit.MegawattDay);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.MegawattHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.MegawattHour"/>
         /// </summary>
-        public QuantityValue MegawattHours => this.As(EnergyUnit.MegawattHour);
+        public double MegawattHours => this.As(EnergyUnit.MegawattHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.Microjoule"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Microjoule"/>
         /// </summary>
-        public QuantityValue Microjoules => this.As(EnergyUnit.Microjoule);
+        public double Microjoules => this.As(EnergyUnit.Microjoule);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.Millijoule"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Millijoule"/>
         /// </summary>
-        public QuantityValue Millijoules => this.As(EnergyUnit.Millijoule);
+        public double Millijoules => this.As(EnergyUnit.Millijoule);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.Nanojoule"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Nanojoule"/>
         /// </summary>
-        public QuantityValue Nanojoules => this.As(EnergyUnit.Nanojoule);
+        public double Nanojoules => this.As(EnergyUnit.Nanojoule);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.Petajoule"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Petajoule"/>
         /// </summary>
-        public QuantityValue Petajoules => this.As(EnergyUnit.Petajoule);
+        public double Petajoules => this.As(EnergyUnit.Petajoule);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.TeraelectronVolt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.TeraelectronVolt"/>
         /// </summary>
-        public QuantityValue TeraelectronVolts => this.As(EnergyUnit.TeraelectronVolt);
+        public double TeraelectronVolts => this.As(EnergyUnit.TeraelectronVolt);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.Terajoule"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.Terajoule"/>
         /// </summary>
-        public QuantityValue Terajoules => this.As(EnergyUnit.Terajoule);
+        public double Terajoules => this.As(EnergyUnit.Terajoule);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.TerawattDay"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.TerawattDay"/>
         /// </summary>
-        public QuantityValue TerawattDays => this.As(EnergyUnit.TerawattDay);
+        public double TerawattDays => this.As(EnergyUnit.TerawattDay);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.TerawattHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.TerawattHour"/>
         /// </summary>
-        public QuantityValue TerawattHours => this.As(EnergyUnit.TerawattHour);
+        public double TerawattHours => this.As(EnergyUnit.TerawattHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.ThermEc"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.ThermEc"/>
         /// </summary>
-        public QuantityValue ThermsEc => this.As(EnergyUnit.ThermEc);
+        public double ThermsEc => this.As(EnergyUnit.ThermEc);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.ThermImperial"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.ThermImperial"/>
         /// </summary>
-        public QuantityValue ThermsImperial => this.As(EnergyUnit.ThermImperial);
+        public double ThermsImperial => this.As(EnergyUnit.ThermImperial);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.ThermUs"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.ThermUs"/>
         /// </summary>
-        public QuantityValue ThermsUs => this.As(EnergyUnit.ThermUs);
+        public double ThermsUs => this.As(EnergyUnit.ThermUs);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.WattDay"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.WattDay"/>
         /// </summary>
-        public QuantityValue WattDays => this.As(EnergyUnit.WattDay);
+        public double WattDays => this.As(EnergyUnit.WattDay);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EnergyUnit.WattHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EnergyUnit.WattHour"/>
         /// </summary>
-        public QuantityValue WattHours => this.As(EnergyUnit.WattHour);
+        public double WattHours => this.As(EnergyUnit.WattHour);
 
         #endregion
 
@@ -581,7 +581,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.BritishThermalUnit"/>.
         /// </summary>
-        public static Energy FromBritishThermalUnits(QuantityValue value)
+        public static Energy FromBritishThermalUnits(double value)
         {
             return new Energy(value, EnergyUnit.BritishThermalUnit);
         }
@@ -589,7 +589,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Calorie"/>.
         /// </summary>
-        public static Energy FromCalories(QuantityValue value)
+        public static Energy FromCalories(double value)
         {
             return new Energy(value, EnergyUnit.Calorie);
         }
@@ -597,7 +597,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.DecathermEc"/>.
         /// </summary>
-        public static Energy FromDecathermsEc(QuantityValue value)
+        public static Energy FromDecathermsEc(double value)
         {
             return new Energy(value, EnergyUnit.DecathermEc);
         }
@@ -605,7 +605,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.DecathermImperial"/>.
         /// </summary>
-        public static Energy FromDecathermsImperial(QuantityValue value)
+        public static Energy FromDecathermsImperial(double value)
         {
             return new Energy(value, EnergyUnit.DecathermImperial);
         }
@@ -613,7 +613,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.DecathermUs"/>.
         /// </summary>
-        public static Energy FromDecathermsUs(QuantityValue value)
+        public static Energy FromDecathermsUs(double value)
         {
             return new Energy(value, EnergyUnit.DecathermUs);
         }
@@ -621,7 +621,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.ElectronVolt"/>.
         /// </summary>
-        public static Energy FromElectronVolts(QuantityValue value)
+        public static Energy FromElectronVolts(double value)
         {
             return new Energy(value, EnergyUnit.ElectronVolt);
         }
@@ -629,7 +629,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Erg"/>.
         /// </summary>
-        public static Energy FromErgs(QuantityValue value)
+        public static Energy FromErgs(double value)
         {
             return new Energy(value, EnergyUnit.Erg);
         }
@@ -637,7 +637,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.FootPound"/>.
         /// </summary>
-        public static Energy FromFootPounds(QuantityValue value)
+        public static Energy FromFootPounds(double value)
         {
             return new Energy(value, EnergyUnit.FootPound);
         }
@@ -645,7 +645,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.GigabritishThermalUnit"/>.
         /// </summary>
-        public static Energy FromGigabritishThermalUnits(QuantityValue value)
+        public static Energy FromGigabritishThermalUnits(double value)
         {
             return new Energy(value, EnergyUnit.GigabritishThermalUnit);
         }
@@ -653,7 +653,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.GigaelectronVolt"/>.
         /// </summary>
-        public static Energy FromGigaelectronVolts(QuantityValue value)
+        public static Energy FromGigaelectronVolts(double value)
         {
             return new Energy(value, EnergyUnit.GigaelectronVolt);
         }
@@ -661,7 +661,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Gigajoule"/>.
         /// </summary>
-        public static Energy FromGigajoules(QuantityValue value)
+        public static Energy FromGigajoules(double value)
         {
             return new Energy(value, EnergyUnit.Gigajoule);
         }
@@ -669,7 +669,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.GigawattDay"/>.
         /// </summary>
-        public static Energy FromGigawattDays(QuantityValue value)
+        public static Energy FromGigawattDays(double value)
         {
             return new Energy(value, EnergyUnit.GigawattDay);
         }
@@ -677,7 +677,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.GigawattHour"/>.
         /// </summary>
-        public static Energy FromGigawattHours(QuantityValue value)
+        public static Energy FromGigawattHours(double value)
         {
             return new Energy(value, EnergyUnit.GigawattHour);
         }
@@ -685,7 +685,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.HorsepowerHour"/>.
         /// </summary>
-        public static Energy FromHorsepowerHours(QuantityValue value)
+        public static Energy FromHorsepowerHours(double value)
         {
             return new Energy(value, EnergyUnit.HorsepowerHour);
         }
@@ -693,7 +693,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Joule"/>.
         /// </summary>
-        public static Energy FromJoules(QuantityValue value)
+        public static Energy FromJoules(double value)
         {
             return new Energy(value, EnergyUnit.Joule);
         }
@@ -701,7 +701,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.KilobritishThermalUnit"/>.
         /// </summary>
-        public static Energy FromKilobritishThermalUnits(QuantityValue value)
+        public static Energy FromKilobritishThermalUnits(double value)
         {
             return new Energy(value, EnergyUnit.KilobritishThermalUnit);
         }
@@ -709,7 +709,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Kilocalorie"/>.
         /// </summary>
-        public static Energy FromKilocalories(QuantityValue value)
+        public static Energy FromKilocalories(double value)
         {
             return new Energy(value, EnergyUnit.Kilocalorie);
         }
@@ -717,7 +717,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.KiloelectronVolt"/>.
         /// </summary>
-        public static Energy FromKiloelectronVolts(QuantityValue value)
+        public static Energy FromKiloelectronVolts(double value)
         {
             return new Energy(value, EnergyUnit.KiloelectronVolt);
         }
@@ -725,7 +725,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Kilojoule"/>.
         /// </summary>
-        public static Energy FromKilojoules(QuantityValue value)
+        public static Energy FromKilojoules(double value)
         {
             return new Energy(value, EnergyUnit.Kilojoule);
         }
@@ -733,7 +733,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.KilowattDay"/>.
         /// </summary>
-        public static Energy FromKilowattDays(QuantityValue value)
+        public static Energy FromKilowattDays(double value)
         {
             return new Energy(value, EnergyUnit.KilowattDay);
         }
@@ -741,7 +741,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.KilowattHour"/>.
         /// </summary>
-        public static Energy FromKilowattHours(QuantityValue value)
+        public static Energy FromKilowattHours(double value)
         {
             return new Energy(value, EnergyUnit.KilowattHour);
         }
@@ -749,7 +749,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.MegabritishThermalUnit"/>.
         /// </summary>
-        public static Energy FromMegabritishThermalUnits(QuantityValue value)
+        public static Energy FromMegabritishThermalUnits(double value)
         {
             return new Energy(value, EnergyUnit.MegabritishThermalUnit);
         }
@@ -757,7 +757,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Megacalorie"/>.
         /// </summary>
-        public static Energy FromMegacalories(QuantityValue value)
+        public static Energy FromMegacalories(double value)
         {
             return new Energy(value, EnergyUnit.Megacalorie);
         }
@@ -765,7 +765,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.MegaelectronVolt"/>.
         /// </summary>
-        public static Energy FromMegaelectronVolts(QuantityValue value)
+        public static Energy FromMegaelectronVolts(double value)
         {
             return new Energy(value, EnergyUnit.MegaelectronVolt);
         }
@@ -773,7 +773,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Megajoule"/>.
         /// </summary>
-        public static Energy FromMegajoules(QuantityValue value)
+        public static Energy FromMegajoules(double value)
         {
             return new Energy(value, EnergyUnit.Megajoule);
         }
@@ -781,7 +781,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.MegawattDay"/>.
         /// </summary>
-        public static Energy FromMegawattDays(QuantityValue value)
+        public static Energy FromMegawattDays(double value)
         {
             return new Energy(value, EnergyUnit.MegawattDay);
         }
@@ -789,7 +789,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.MegawattHour"/>.
         /// </summary>
-        public static Energy FromMegawattHours(QuantityValue value)
+        public static Energy FromMegawattHours(double value)
         {
             return new Energy(value, EnergyUnit.MegawattHour);
         }
@@ -797,7 +797,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Microjoule"/>.
         /// </summary>
-        public static Energy FromMicrojoules(QuantityValue value)
+        public static Energy FromMicrojoules(double value)
         {
             return new Energy(value, EnergyUnit.Microjoule);
         }
@@ -805,7 +805,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Millijoule"/>.
         /// </summary>
-        public static Energy FromMillijoules(QuantityValue value)
+        public static Energy FromMillijoules(double value)
         {
             return new Energy(value, EnergyUnit.Millijoule);
         }
@@ -813,7 +813,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Nanojoule"/>.
         /// </summary>
-        public static Energy FromNanojoules(QuantityValue value)
+        public static Energy FromNanojoules(double value)
         {
             return new Energy(value, EnergyUnit.Nanojoule);
         }
@@ -821,7 +821,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Petajoule"/>.
         /// </summary>
-        public static Energy FromPetajoules(QuantityValue value)
+        public static Energy FromPetajoules(double value)
         {
             return new Energy(value, EnergyUnit.Petajoule);
         }
@@ -829,7 +829,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.TeraelectronVolt"/>.
         /// </summary>
-        public static Energy FromTeraelectronVolts(QuantityValue value)
+        public static Energy FromTeraelectronVolts(double value)
         {
             return new Energy(value, EnergyUnit.TeraelectronVolt);
         }
@@ -837,7 +837,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.Terajoule"/>.
         /// </summary>
-        public static Energy FromTerajoules(QuantityValue value)
+        public static Energy FromTerajoules(double value)
         {
             return new Energy(value, EnergyUnit.Terajoule);
         }
@@ -845,7 +845,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.TerawattDay"/>.
         /// </summary>
-        public static Energy FromTerawattDays(QuantityValue value)
+        public static Energy FromTerawattDays(double value)
         {
             return new Energy(value, EnergyUnit.TerawattDay);
         }
@@ -853,7 +853,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.TerawattHour"/>.
         /// </summary>
-        public static Energy FromTerawattHours(QuantityValue value)
+        public static Energy FromTerawattHours(double value)
         {
             return new Energy(value, EnergyUnit.TerawattHour);
         }
@@ -861,7 +861,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.ThermEc"/>.
         /// </summary>
-        public static Energy FromThermsEc(QuantityValue value)
+        public static Energy FromThermsEc(double value)
         {
             return new Energy(value, EnergyUnit.ThermEc);
         }
@@ -869,7 +869,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.ThermImperial"/>.
         /// </summary>
-        public static Energy FromThermsImperial(QuantityValue value)
+        public static Energy FromThermsImperial(double value)
         {
             return new Energy(value, EnergyUnit.ThermImperial);
         }
@@ -877,7 +877,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.ThermUs"/>.
         /// </summary>
-        public static Energy FromThermsUs(QuantityValue value)
+        public static Energy FromThermsUs(double value)
         {
             return new Energy(value, EnergyUnit.ThermUs);
         }
@@ -885,7 +885,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.WattDay"/>.
         /// </summary>
-        public static Energy FromWattDays(QuantityValue value)
+        public static Energy FromWattDays(double value)
         {
             return new Energy(value, EnergyUnit.WattDay);
         }
@@ -893,7 +893,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Energy"/> from <see cref="EnergyUnit.WattHour"/>.
         /// </summary>
-        public static Energy FromWattHours(QuantityValue value)
+        public static Energy FromWattHours(double value)
         {
             return new Energy(value, EnergyUnit.WattHour);
         }
@@ -904,7 +904,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Energy unit value.</returns>
-        public static Energy From(QuantityValue value, EnergyUnit fromUnit)
+        public static Energy From(double value, EnergyUnit fromUnit)
         {
             return new Energy(value, fromUnit);
         }
@@ -1069,25 +1069,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Energy"/> from multiplying value and <see cref="Energy"/>.</summary>
-        public static Energy operator *(QuantityValue left, Energy right)
+        public static Energy operator *(double left, Energy right)
         {
             return new Energy(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Energy"/> from multiplying value and <see cref="Energy"/>.</summary>
-        public static Energy operator *(Energy left, QuantityValue right)
+        public static Energy operator *(Energy left, double right)
         {
             return new Energy(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Energy"/> from dividing <see cref="Energy"/> by value.</summary>
-        public static Energy operator /(Energy left, QuantityValue right)
+        public static Energy operator /(Energy left, double right)
         {
             return new Energy(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Energy"/> by <see cref="Energy"/>.</summary>
-        public static QuantityValue operator /(Energy left, Energy right)
+        public static double operator /(Energy left, Energy right)
         {
             return left.Joules / right.Joules;
         }

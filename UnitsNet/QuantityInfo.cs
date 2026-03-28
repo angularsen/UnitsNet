@@ -305,7 +305,7 @@ public abstract class QuantityInfoBase<TQuantity, TUnit, TUnitInfo> : QuantityIn
     /// <returns>An instance of <typeparamref name="TQuantity" /> representing the specified value and unit.</returns>
     public new TQuantity From(QuantityValue value, TUnit unit)
     {
-        return FromDelegate(value, unit);
+        return FromDelegate((double)value, unit);
     }
 
     /// <inheritdoc />
@@ -400,7 +400,7 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
     /// </exception>
     public QuantityInfo(string name, TUnit baseUnit, IEnumerable<IUnitDefinition<TUnit>> unitMappings, BaseDimensions baseDimensions,
         ResourceManager? unitAbbreviations = null)
-        : this(name, baseUnit, unitMappings, TQuantity.From(QuantityValue.Zero, baseUnit), baseDimensions, TQuantity.From, unitAbbreviations)
+        : this(name, baseUnit, unitMappings, TQuantity.From(0d, baseUnit), baseDimensions, TQuantity.From, unitAbbreviations)
     {
     }
 
@@ -444,7 +444,7 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
     /// </exception>
     public QuantityInfo(string name, TUnit baseUnit, IEnumerable<IUnitDefinition<TUnit>> unitMappings, BaseDimensions baseDimensions,
         QuantityFromDelegate<TQuantity, TUnit> fromDelegate, ResourceManager? unitAbbreviations = null)
-        : this(name, baseUnit, unitMappings, fromDelegate(QuantityValue.Zero, baseUnit), baseDimensions, fromDelegate, unitAbbreviations)
+        : this(name, baseUnit, unitMappings, fromDelegate(0d, baseUnit), baseDimensions, fromDelegate, unitAbbreviations)
     {
     }
 

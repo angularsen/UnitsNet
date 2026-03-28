@@ -25,7 +25,7 @@ public class AbbreviatedInterfaceQuantityConverterWithValueConverterTest
     [InlineData("""{"Value":5,"Type":"Mass"}""", typeof(Mass), 5, MassUnit.Kilogram)]
     [InlineData("""{"Value":5,"Unit":"kg"}""", typeof(Mass), 5, MassUnit.Kilogram)]
     [InlineData("""{"Value":0,"Unit":"s","Type":"Duration"}""", typeof(Duration), 0, DurationUnit.Second)]
-    public void Deserializing_WithDecimalNotation_ReturnsCorrectQuantity(string json, Type expectedType, decimal expectedValue, Enum expectedUnit)
+    public void Deserializing_WithDecimalNotation_ReturnsCorrectQuantity(string json, Type expectedType, double expectedValue, Enum expectedUnit)
     {
         // Arrange
         var options = new JsonSerializerOptions();
@@ -44,7 +44,7 @@ public class AbbreviatedInterfaceQuantityConverterWithValueConverterTest
     [InlineData("""{"value":10,"unit":"m","type":"Length"}""", typeof(Length), 10, LengthUnit.Meter)]
     [InlineData("""{"value":5,"unit":"g","type":"Mass"}""", typeof(Mass), 5, MassUnit.Gram)]
     [InlineData("""{"value":0,"unit":"s","type":"Duration"}""", typeof(Duration), 0, DurationUnit.Second)]
-    public void Deserializing_WithDecimalNotation_And_CamelCasePropertyNamingPolicy_ReturnsCorrectQuantity(string json, Type expectedType, decimal expectedValue, Enum expectedUnit)
+    public void Deserializing_WithDecimalNotation_And_CamelCasePropertyNamingPolicy_ReturnsCorrectQuantity(string json, Type expectedType, double expectedValue, Enum expectedUnit)
     {
         // Arrange
         var options = new JsonSerializerOptions {PropertyNamingPolicy = JsonNamingPolicy.CamelCase};
@@ -64,7 +64,7 @@ public class AbbreviatedInterfaceQuantityConverterWithValueConverterTest
     [InlineData("""{"Value":10,"Unit":"m","Type":"Length"}""", typeof(Length), 10, LengthUnit.Meter)]
     [InlineData("""{"value":5,"unit":"g","type":"Mass"}""", typeof(Mass), 5, MassUnit.Gram)]
     [InlineData("""{"VALUE":0,"uniT":"s","tYPe":"Duration"}""", typeof(Duration), 0, DurationUnit.Second)]
-    public void Deserializing_WithDecimalNotation_IgnoringCase_ReturnsCorrectQuantity(string json, Type expectedType, decimal expectedValue, Enum expectedUnit)
+    public void Deserializing_WithDecimalNotation_IgnoringCase_ReturnsCorrectQuantity(string json, Type expectedType, double expectedValue, Enum expectedUnit)
     {
         // Arrange
         var options = new JsonSerializerOptions {PropertyNameCaseInsensitive = true};

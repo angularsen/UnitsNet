@@ -32,48 +32,48 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactivePower
     /// </summary>
     public static class NumberToElectricReactivePowerExtensions
     {
-        /// <inheritdoc cref="ElectricReactivePower.FromGigavoltamperesReactive(QuantityValue)" />
+        /// <inheritdoc cref="ElectricReactivePower.FromGigavoltamperesReactive(double)" />
         public static ElectricReactivePower GigavoltamperesReactive<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricReactivePower.FromGigavoltamperesReactive(QuantityValue.CreateChecked(value));
+            => ElectricReactivePower.FromGigavoltamperesReactive(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricReactivePower.FromGigavoltamperesReactive(value.ToQuantityValue());
+            => ElectricReactivePower.FromGigavoltamperesReactive(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricReactivePower.FromKilovoltamperesReactive(QuantityValue)" />
+        /// <inheritdoc cref="ElectricReactivePower.FromKilovoltamperesReactive(double)" />
         public static ElectricReactivePower KilovoltamperesReactive<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricReactivePower.FromKilovoltamperesReactive(QuantityValue.CreateChecked(value));
+            => ElectricReactivePower.FromKilovoltamperesReactive(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricReactivePower.FromKilovoltamperesReactive(value.ToQuantityValue());
+            => ElectricReactivePower.FromKilovoltamperesReactive(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricReactivePower.FromMegavoltamperesReactive(QuantityValue)" />
+        /// <inheritdoc cref="ElectricReactivePower.FromMegavoltamperesReactive(double)" />
         public static ElectricReactivePower MegavoltamperesReactive<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricReactivePower.FromMegavoltamperesReactive(QuantityValue.CreateChecked(value));
+            => ElectricReactivePower.FromMegavoltamperesReactive(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricReactivePower.FromMegavoltamperesReactive(value.ToQuantityValue());
+            => ElectricReactivePower.FromMegavoltamperesReactive(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricReactivePower.FromVoltamperesReactive(QuantityValue)" />
+        /// <inheritdoc cref="ElectricReactivePower.FromVoltamperesReactive(double)" />
         public static ElectricReactivePower VoltamperesReactive<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricReactivePower.FromVoltamperesReactive(QuantityValue.CreateChecked(value));
+            => ElectricReactivePower.FromVoltamperesReactive(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricReactivePower.FromVoltamperesReactive(value.ToQuantityValue());
+            => ElectricReactivePower.FromVoltamperesReactive(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

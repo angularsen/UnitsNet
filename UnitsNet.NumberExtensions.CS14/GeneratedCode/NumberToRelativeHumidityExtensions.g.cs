@@ -42,12 +42,12 @@ namespace UnitsNet.NumberExtensions.NumberToRelativeHumidity
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="RelativeHumidity.FromPercent(QuantityValue)" />
+            /// <inheritdoc cref="RelativeHumidity.FromPercent(double)" />
             public RelativeHumidity Percent
 #if NET7_0_OR_GREATER
-                => RelativeHumidity.FromPercent(QuantityValue.CreateChecked(value));
+                => RelativeHumidity.FromPercent(double.CreateChecked(value));
 #else
-                => RelativeHumidity.FromPercent(value.ToQuantityValue());
+                => RelativeHumidity.FromPercent(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

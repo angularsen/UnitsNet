@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct Force :
         IArithmeticQuantity<Force, ForceUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Force, Force, QuantityValue>,
+        IDivisionOperators<Force, Force, double>,
         IDivisionOperators<Force, Mass, Acceleration>,
         IDivisionOperators<Force, Pressure, Area>,
         IDivisionOperators<Force, ForceChangeRate, Duration>,
@@ -63,7 +63,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -184,7 +184,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Force(QuantityValue value, ForceUnit unit)
+        public Force(double value, ForceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -198,7 +198,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Force(QuantityValue value, UnitSystem unitSystem)
+        public Force(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -240,7 +240,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public ForceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -274,79 +274,79 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ForceUnit.Decanewton"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Decanewton"/>
         /// </summary>
-        public QuantityValue Decanewtons => this.As(ForceUnit.Decanewton);
+        public double Decanewtons => this.As(ForceUnit.Decanewton);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ForceUnit.Dyn"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Dyn"/>
         /// </summary>
-        public QuantityValue Dyne => this.As(ForceUnit.Dyn);
+        public double Dyne => this.As(ForceUnit.Dyn);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ForceUnit.KilogramForce"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.KilogramForce"/>
         /// </summary>
-        public QuantityValue KilogramsForce => this.As(ForceUnit.KilogramForce);
+        public double KilogramsForce => this.As(ForceUnit.KilogramForce);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ForceUnit.Kilonewton"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Kilonewton"/>
         /// </summary>
-        public QuantityValue Kilonewtons => this.As(ForceUnit.Kilonewton);
+        public double Kilonewtons => this.As(ForceUnit.Kilonewton);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ForceUnit.Kilopond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Kilopond"/>
         /// </summary>
-        public QuantityValue Kiloponds => this.As(ForceUnit.Kilopond);
+        public double Kiloponds => this.As(ForceUnit.Kilopond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ForceUnit.KilopoundForce"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.KilopoundForce"/>
         /// </summary>
-        public QuantityValue KilopoundsForce => this.As(ForceUnit.KilopoundForce);
+        public double KilopoundsForce => this.As(ForceUnit.KilopoundForce);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ForceUnit.Meganewton"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Meganewton"/>
         /// </summary>
-        public QuantityValue Meganewtons => this.As(ForceUnit.Meganewton);
+        public double Meganewtons => this.As(ForceUnit.Meganewton);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ForceUnit.Micronewton"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Micronewton"/>
         /// </summary>
-        public QuantityValue Micronewtons => this.As(ForceUnit.Micronewton);
+        public double Micronewtons => this.As(ForceUnit.Micronewton);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ForceUnit.Millinewton"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Millinewton"/>
         /// </summary>
-        public QuantityValue Millinewtons => this.As(ForceUnit.Millinewton);
+        public double Millinewtons => this.As(ForceUnit.Millinewton);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ForceUnit.Newton"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Newton"/>
         /// </summary>
-        public QuantityValue Newtons => this.As(ForceUnit.Newton);
+        public double Newtons => this.As(ForceUnit.Newton);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ForceUnit.OunceForce"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.OunceForce"/>
         /// </summary>
-        public QuantityValue OunceForce => this.As(ForceUnit.OunceForce);
+        public double OunceForce => this.As(ForceUnit.OunceForce);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ForceUnit.Poundal"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.Poundal"/>
         /// </summary>
-        public QuantityValue Poundals => this.As(ForceUnit.Poundal);
+        public double Poundals => this.As(ForceUnit.Poundal);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ForceUnit.PoundForce"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.PoundForce"/>
         /// </summary>
-        public QuantityValue PoundsForce => this.As(ForceUnit.PoundForce);
+        public double PoundsForce => this.As(ForceUnit.PoundForce);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ForceUnit.ShortTonForce"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.ShortTonForce"/>
         /// </summary>
-        public QuantityValue ShortTonsForce => this.As(ForceUnit.ShortTonForce);
+        public double ShortTonsForce => this.As(ForceUnit.ShortTonForce);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ForceUnit.TonneForce"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.TonneForce"/>
         /// </summary>
-        public QuantityValue TonnesForce => this.As(ForceUnit.TonneForce);
+        public double TonnesForce => this.As(ForceUnit.TonneForce);
 
         #endregion
 
@@ -380,7 +380,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Decanewton"/>.
         /// </summary>
-        public static Force FromDecanewtons(QuantityValue value)
+        public static Force FromDecanewtons(double value)
         {
             return new Force(value, ForceUnit.Decanewton);
         }
@@ -388,7 +388,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Dyn"/>.
         /// </summary>
-        public static Force FromDyne(QuantityValue value)
+        public static Force FromDyne(double value)
         {
             return new Force(value, ForceUnit.Dyn);
         }
@@ -396,7 +396,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KilogramForce"/>.
         /// </summary>
-        public static Force FromKilogramsForce(QuantityValue value)
+        public static Force FromKilogramsForce(double value)
         {
             return new Force(value, ForceUnit.KilogramForce);
         }
@@ -404,7 +404,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Kilonewton"/>.
         /// </summary>
-        public static Force FromKilonewtons(QuantityValue value)
+        public static Force FromKilonewtons(double value)
         {
             return new Force(value, ForceUnit.Kilonewton);
         }
@@ -412,7 +412,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Kilopond"/>.
         /// </summary>
-        public static Force FromKiloponds(QuantityValue value)
+        public static Force FromKiloponds(double value)
         {
             return new Force(value, ForceUnit.Kilopond);
         }
@@ -420,7 +420,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KilopoundForce"/>.
         /// </summary>
-        public static Force FromKilopoundsForce(QuantityValue value)
+        public static Force FromKilopoundsForce(double value)
         {
             return new Force(value, ForceUnit.KilopoundForce);
         }
@@ -428,7 +428,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Meganewton"/>.
         /// </summary>
-        public static Force FromMeganewtons(QuantityValue value)
+        public static Force FromMeganewtons(double value)
         {
             return new Force(value, ForceUnit.Meganewton);
         }
@@ -436,7 +436,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Micronewton"/>.
         /// </summary>
-        public static Force FromMicronewtons(QuantityValue value)
+        public static Force FromMicronewtons(double value)
         {
             return new Force(value, ForceUnit.Micronewton);
         }
@@ -444,7 +444,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Millinewton"/>.
         /// </summary>
-        public static Force FromMillinewtons(QuantityValue value)
+        public static Force FromMillinewtons(double value)
         {
             return new Force(value, ForceUnit.Millinewton);
         }
@@ -452,7 +452,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Newton"/>.
         /// </summary>
-        public static Force FromNewtons(QuantityValue value)
+        public static Force FromNewtons(double value)
         {
             return new Force(value, ForceUnit.Newton);
         }
@@ -460,7 +460,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.OunceForce"/>.
         /// </summary>
-        public static Force FromOunceForce(QuantityValue value)
+        public static Force FromOunceForce(double value)
         {
             return new Force(value, ForceUnit.OunceForce);
         }
@@ -468,7 +468,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Poundal"/>.
         /// </summary>
-        public static Force FromPoundals(QuantityValue value)
+        public static Force FromPoundals(double value)
         {
             return new Force(value, ForceUnit.Poundal);
         }
@@ -476,7 +476,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.PoundForce"/>.
         /// </summary>
-        public static Force FromPoundsForce(QuantityValue value)
+        public static Force FromPoundsForce(double value)
         {
             return new Force(value, ForceUnit.PoundForce);
         }
@@ -484,7 +484,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.ShortTonForce"/>.
         /// </summary>
-        public static Force FromShortTonsForce(QuantityValue value)
+        public static Force FromShortTonsForce(double value)
         {
             return new Force(value, ForceUnit.ShortTonForce);
         }
@@ -492,7 +492,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.TonneForce"/>.
         /// </summary>
-        public static Force FromTonnesForce(QuantityValue value)
+        public static Force FromTonnesForce(double value)
         {
             return new Force(value, ForceUnit.TonneForce);
         }
@@ -503,7 +503,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Force unit value.</returns>
-        public static Force From(QuantityValue value, ForceUnit fromUnit)
+        public static Force From(double value, ForceUnit fromUnit)
         {
             return new Force(value, fromUnit);
         }
@@ -668,25 +668,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Force"/> from multiplying value and <see cref="Force"/>.</summary>
-        public static Force operator *(QuantityValue left, Force right)
+        public static Force operator *(double left, Force right)
         {
             return new Force(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Force"/> from multiplying value and <see cref="Force"/>.</summary>
-        public static Force operator *(Force left, QuantityValue right)
+        public static Force operator *(Force left, double right)
         {
             return new Force(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Force"/> from dividing <see cref="Force"/> by value.</summary>
-        public static Force operator /(Force left, QuantityValue right)
+        public static Force operator /(Force left, double right)
         {
             return new Force(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Force"/> by <see cref="Force"/>.</summary>
-        public static QuantityValue operator /(Force left, Force right)
+        public static double operator /(Force left, Force right)
         {
             return left.Newtons / right.Newtons;
         }

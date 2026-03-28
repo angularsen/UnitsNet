@@ -32,147 +32,147 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
     /// </summary>
     public static class NumberToImpulseExtensions
     {
-        /// <inheritdoc cref="Impulse.FromCentinewtonSeconds(QuantityValue)" />
+        /// <inheritdoc cref="Impulse.FromCentinewtonSeconds(double)" />
         public static Impulse CentinewtonSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Impulse.FromCentinewtonSeconds(QuantityValue.CreateChecked(value));
+            => Impulse.FromCentinewtonSeconds(double.CreateChecked(value));
 #else
             , IConvertible
-            => Impulse.FromCentinewtonSeconds(value.ToQuantityValue());
+            => Impulse.FromCentinewtonSeconds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Impulse.FromDecanewtonSeconds(QuantityValue)" />
+        /// <inheritdoc cref="Impulse.FromDecanewtonSeconds(double)" />
         public static Impulse DecanewtonSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Impulse.FromDecanewtonSeconds(QuantityValue.CreateChecked(value));
+            => Impulse.FromDecanewtonSeconds(double.CreateChecked(value));
 #else
             , IConvertible
-            => Impulse.FromDecanewtonSeconds(value.ToQuantityValue());
+            => Impulse.FromDecanewtonSeconds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Impulse.FromDecinewtonSeconds(QuantityValue)" />
+        /// <inheritdoc cref="Impulse.FromDecinewtonSeconds(double)" />
         public static Impulse DecinewtonSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Impulse.FromDecinewtonSeconds(QuantityValue.CreateChecked(value));
+            => Impulse.FromDecinewtonSeconds(double.CreateChecked(value));
 #else
             , IConvertible
-            => Impulse.FromDecinewtonSeconds(value.ToQuantityValue());
+            => Impulse.FromDecinewtonSeconds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Impulse.FromKilogramMetersPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="Impulse.FromKilogramMetersPerSecond(double)" />
         public static Impulse KilogramMetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Impulse.FromKilogramMetersPerSecond(QuantityValue.CreateChecked(value));
+            => Impulse.FromKilogramMetersPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => Impulse.FromKilogramMetersPerSecond(value.ToQuantityValue());
+            => Impulse.FromKilogramMetersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Impulse.FromKilonewtonSeconds(QuantityValue)" />
+        /// <inheritdoc cref="Impulse.FromKilonewtonSeconds(double)" />
         public static Impulse KilonewtonSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Impulse.FromKilonewtonSeconds(QuantityValue.CreateChecked(value));
+            => Impulse.FromKilonewtonSeconds(double.CreateChecked(value));
 #else
             , IConvertible
-            => Impulse.FromKilonewtonSeconds(value.ToQuantityValue());
+            => Impulse.FromKilonewtonSeconds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Impulse.FromMeganewtonSeconds(QuantityValue)" />
+        /// <inheritdoc cref="Impulse.FromMeganewtonSeconds(double)" />
         public static Impulse MeganewtonSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Impulse.FromMeganewtonSeconds(QuantityValue.CreateChecked(value));
+            => Impulse.FromMeganewtonSeconds(double.CreateChecked(value));
 #else
             , IConvertible
-            => Impulse.FromMeganewtonSeconds(value.ToQuantityValue());
+            => Impulse.FromMeganewtonSeconds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Impulse.FromMicronewtonSeconds(QuantityValue)" />
+        /// <inheritdoc cref="Impulse.FromMicronewtonSeconds(double)" />
         public static Impulse MicronewtonSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Impulse.FromMicronewtonSeconds(QuantityValue.CreateChecked(value));
+            => Impulse.FromMicronewtonSeconds(double.CreateChecked(value));
 #else
             , IConvertible
-            => Impulse.FromMicronewtonSeconds(value.ToQuantityValue());
+            => Impulse.FromMicronewtonSeconds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Impulse.FromMillinewtonSeconds(QuantityValue)" />
+        /// <inheritdoc cref="Impulse.FromMillinewtonSeconds(double)" />
         public static Impulse MillinewtonSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Impulse.FromMillinewtonSeconds(QuantityValue.CreateChecked(value));
+            => Impulse.FromMillinewtonSeconds(double.CreateChecked(value));
 #else
             , IConvertible
-            => Impulse.FromMillinewtonSeconds(value.ToQuantityValue());
+            => Impulse.FromMillinewtonSeconds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Impulse.FromNanonewtonSeconds(QuantityValue)" />
+        /// <inheritdoc cref="Impulse.FromNanonewtonSeconds(double)" />
         public static Impulse NanonewtonSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Impulse.FromNanonewtonSeconds(QuantityValue.CreateChecked(value));
+            => Impulse.FromNanonewtonSeconds(double.CreateChecked(value));
 #else
             , IConvertible
-            => Impulse.FromNanonewtonSeconds(value.ToQuantityValue());
+            => Impulse.FromNanonewtonSeconds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Impulse.FromNewtonSeconds(QuantityValue)" />
+        /// <inheritdoc cref="Impulse.FromNewtonSeconds(double)" />
         public static Impulse NewtonSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Impulse.FromNewtonSeconds(QuantityValue.CreateChecked(value));
+            => Impulse.FromNewtonSeconds(double.CreateChecked(value));
 #else
             , IConvertible
-            => Impulse.FromNewtonSeconds(value.ToQuantityValue());
+            => Impulse.FromNewtonSeconds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Impulse.FromPoundFeetPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="Impulse.FromPoundFeetPerSecond(double)" />
         public static Impulse PoundFeetPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Impulse.FromPoundFeetPerSecond(QuantityValue.CreateChecked(value));
+            => Impulse.FromPoundFeetPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => Impulse.FromPoundFeetPerSecond(value.ToQuantityValue());
+            => Impulse.FromPoundFeetPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Impulse.FromPoundForceSeconds(QuantityValue)" />
+        /// <inheritdoc cref="Impulse.FromPoundForceSeconds(double)" />
         public static Impulse PoundForceSeconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Impulse.FromPoundForceSeconds(QuantityValue.CreateChecked(value));
+            => Impulse.FromPoundForceSeconds(double.CreateChecked(value));
 #else
             , IConvertible
-            => Impulse.FromPoundForceSeconds(value.ToQuantityValue());
+            => Impulse.FromPoundForceSeconds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Impulse.FromSlugFeetPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="Impulse.FromSlugFeetPerSecond(double)" />
         public static Impulse SlugFeetPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Impulse.FromSlugFeetPerSecond(QuantityValue.CreateChecked(value));
+            => Impulse.FromSlugFeetPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => Impulse.FromSlugFeetPerSecond(value.ToQuantityValue());
+            => Impulse.FromSlugFeetPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

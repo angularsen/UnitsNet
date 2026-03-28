@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct AbsorbedDoseOfIonizingRadiation :
         IArithmeticQuantity<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiationUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiation, QuantityValue>,
+        IDivisionOperators<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiation, double>,
         IComparisonOperators<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiation, bool>,
         IParsable<AbsorbedDoseOfIonizingRadiation>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -181,7 +181,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public AbsorbedDoseOfIonizingRadiation(QuantityValue value, AbsorbedDoseOfIonizingRadiationUnit unit)
+        public AbsorbedDoseOfIonizingRadiation(double value, AbsorbedDoseOfIonizingRadiationUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -195,7 +195,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public AbsorbedDoseOfIonizingRadiation(QuantityValue value, UnitSystem unitSystem)
+        public AbsorbedDoseOfIonizingRadiation(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -237,7 +237,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public AbsorbedDoseOfIonizingRadiationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -271,89 +271,89 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Centigray"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Centigray"/>
         /// </summary>
-        public QuantityValue Centigrays => this.As(AbsorbedDoseOfIonizingRadiationUnit.Centigray);
+        public double Centigrays => this.As(AbsorbedDoseOfIonizingRadiationUnit.Centigray);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Decigray"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Decigray"/>
         /// </summary>
-        public QuantityValue Decigrays => this.As(AbsorbedDoseOfIonizingRadiationUnit.Decigray);
+        public double Decigrays => this.As(AbsorbedDoseOfIonizingRadiationUnit.Decigray);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Femtogray"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Femtogray"/>
         /// </summary>
-        public QuantityValue Femtograys => this.As(AbsorbedDoseOfIonizingRadiationUnit.Femtogray);
+        public double Femtograys => this.As(AbsorbedDoseOfIonizingRadiationUnit.Femtogray);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Gigagray"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Gigagray"/>
         /// </summary>
-        public QuantityValue Gigagrays => this.As(AbsorbedDoseOfIonizingRadiationUnit.Gigagray);
+        public double Gigagrays => this.As(AbsorbedDoseOfIonizingRadiationUnit.Gigagray);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Gray"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Gray"/>
         /// </summary>
-        public QuantityValue Grays => this.As(AbsorbedDoseOfIonizingRadiationUnit.Gray);
+        public double Grays => this.As(AbsorbedDoseOfIonizingRadiationUnit.Gray);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Kilogray"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Kilogray"/>
         /// </summary>
-        public QuantityValue Kilograys => this.As(AbsorbedDoseOfIonizingRadiationUnit.Kilogray);
+        public double Kilograys => this.As(AbsorbedDoseOfIonizingRadiationUnit.Kilogray);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Kilorad"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Kilorad"/>
         /// </summary>
-        public QuantityValue Kilorads => this.As(AbsorbedDoseOfIonizingRadiationUnit.Kilorad);
+        public double Kilorads => this.As(AbsorbedDoseOfIonizingRadiationUnit.Kilorad);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Megagray"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Megagray"/>
         /// </summary>
-        public QuantityValue Megagrays => this.As(AbsorbedDoseOfIonizingRadiationUnit.Megagray);
+        public double Megagrays => this.As(AbsorbedDoseOfIonizingRadiationUnit.Megagray);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Megarad"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Megarad"/>
         /// </summary>
-        public QuantityValue Megarads => this.As(AbsorbedDoseOfIonizingRadiationUnit.Megarad);
+        public double Megarads => this.As(AbsorbedDoseOfIonizingRadiationUnit.Megarad);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Microgray"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Microgray"/>
         /// </summary>
-        public QuantityValue Micrograys => this.As(AbsorbedDoseOfIonizingRadiationUnit.Microgray);
+        public double Micrograys => this.As(AbsorbedDoseOfIonizingRadiationUnit.Microgray);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Milligray"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Milligray"/>
         /// </summary>
-        public QuantityValue Milligrays => this.As(AbsorbedDoseOfIonizingRadiationUnit.Milligray);
+        public double Milligrays => this.As(AbsorbedDoseOfIonizingRadiationUnit.Milligray);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Millirad"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Millirad"/>
         /// </summary>
-        public QuantityValue Millirads => this.As(AbsorbedDoseOfIonizingRadiationUnit.Millirad);
+        public double Millirads => this.As(AbsorbedDoseOfIonizingRadiationUnit.Millirad);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Nanogray"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Nanogray"/>
         /// </summary>
-        public QuantityValue Nanograys => this.As(AbsorbedDoseOfIonizingRadiationUnit.Nanogray);
+        public double Nanograys => this.As(AbsorbedDoseOfIonizingRadiationUnit.Nanogray);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Petagray"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Petagray"/>
         /// </summary>
-        public QuantityValue Petagrays => this.As(AbsorbedDoseOfIonizingRadiationUnit.Petagray);
+        public double Petagrays => this.As(AbsorbedDoseOfIonizingRadiationUnit.Petagray);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Picogray"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Picogray"/>
         /// </summary>
-        public QuantityValue Picograys => this.As(AbsorbedDoseOfIonizingRadiationUnit.Picogray);
+        public double Picograys => this.As(AbsorbedDoseOfIonizingRadiationUnit.Picogray);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Rad"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Rad"/>
         /// </summary>
-        public QuantityValue Rads => this.As(AbsorbedDoseOfIonizingRadiationUnit.Rad);
+        public double Rads => this.As(AbsorbedDoseOfIonizingRadiationUnit.Rad);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Teragray"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AbsorbedDoseOfIonizingRadiationUnit.Teragray"/>
         /// </summary>
-        public QuantityValue Teragrays => this.As(AbsorbedDoseOfIonizingRadiationUnit.Teragray);
+        public double Teragrays => this.As(AbsorbedDoseOfIonizingRadiationUnit.Teragray);
 
         #endregion
 
@@ -387,7 +387,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Centigray"/>.
         /// </summary>
-        public static AbsorbedDoseOfIonizingRadiation FromCentigrays(QuantityValue value)
+        public static AbsorbedDoseOfIonizingRadiation FromCentigrays(double value)
         {
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Centigray);
         }
@@ -395,7 +395,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Decigray"/>.
         /// </summary>
-        public static AbsorbedDoseOfIonizingRadiation FromDecigrays(QuantityValue value)
+        public static AbsorbedDoseOfIonizingRadiation FromDecigrays(double value)
         {
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Decigray);
         }
@@ -403,7 +403,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Femtogray"/>.
         /// </summary>
-        public static AbsorbedDoseOfIonizingRadiation FromFemtograys(QuantityValue value)
+        public static AbsorbedDoseOfIonizingRadiation FromFemtograys(double value)
         {
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Femtogray);
         }
@@ -411,7 +411,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Gigagray"/>.
         /// </summary>
-        public static AbsorbedDoseOfIonizingRadiation FromGigagrays(QuantityValue value)
+        public static AbsorbedDoseOfIonizingRadiation FromGigagrays(double value)
         {
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Gigagray);
         }
@@ -419,7 +419,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Gray"/>.
         /// </summary>
-        public static AbsorbedDoseOfIonizingRadiation FromGrays(QuantityValue value)
+        public static AbsorbedDoseOfIonizingRadiation FromGrays(double value)
         {
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Gray);
         }
@@ -427,7 +427,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Kilogray"/>.
         /// </summary>
-        public static AbsorbedDoseOfIonizingRadiation FromKilograys(QuantityValue value)
+        public static AbsorbedDoseOfIonizingRadiation FromKilograys(double value)
         {
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Kilogray);
         }
@@ -435,7 +435,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Kilorad"/>.
         /// </summary>
-        public static AbsorbedDoseOfIonizingRadiation FromKilorads(QuantityValue value)
+        public static AbsorbedDoseOfIonizingRadiation FromKilorads(double value)
         {
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Kilorad);
         }
@@ -443,7 +443,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Megagray"/>.
         /// </summary>
-        public static AbsorbedDoseOfIonizingRadiation FromMegagrays(QuantityValue value)
+        public static AbsorbedDoseOfIonizingRadiation FromMegagrays(double value)
         {
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Megagray);
         }
@@ -451,7 +451,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Megarad"/>.
         /// </summary>
-        public static AbsorbedDoseOfIonizingRadiation FromMegarads(QuantityValue value)
+        public static AbsorbedDoseOfIonizingRadiation FromMegarads(double value)
         {
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Megarad);
         }
@@ -459,7 +459,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Microgray"/>.
         /// </summary>
-        public static AbsorbedDoseOfIonizingRadiation FromMicrograys(QuantityValue value)
+        public static AbsorbedDoseOfIonizingRadiation FromMicrograys(double value)
         {
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Microgray);
         }
@@ -467,7 +467,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Milligray"/>.
         /// </summary>
-        public static AbsorbedDoseOfIonizingRadiation FromMilligrays(QuantityValue value)
+        public static AbsorbedDoseOfIonizingRadiation FromMilligrays(double value)
         {
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Milligray);
         }
@@ -475,7 +475,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Millirad"/>.
         /// </summary>
-        public static AbsorbedDoseOfIonizingRadiation FromMillirads(QuantityValue value)
+        public static AbsorbedDoseOfIonizingRadiation FromMillirads(double value)
         {
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Millirad);
         }
@@ -483,7 +483,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Nanogray"/>.
         /// </summary>
-        public static AbsorbedDoseOfIonizingRadiation FromNanograys(QuantityValue value)
+        public static AbsorbedDoseOfIonizingRadiation FromNanograys(double value)
         {
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Nanogray);
         }
@@ -491,7 +491,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Petagray"/>.
         /// </summary>
-        public static AbsorbedDoseOfIonizingRadiation FromPetagrays(QuantityValue value)
+        public static AbsorbedDoseOfIonizingRadiation FromPetagrays(double value)
         {
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Petagray);
         }
@@ -499,7 +499,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Picogray"/>.
         /// </summary>
-        public static AbsorbedDoseOfIonizingRadiation FromPicograys(QuantityValue value)
+        public static AbsorbedDoseOfIonizingRadiation FromPicograys(double value)
         {
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Picogray);
         }
@@ -507,7 +507,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Rad"/>.
         /// </summary>
-        public static AbsorbedDoseOfIonizingRadiation FromRads(QuantityValue value)
+        public static AbsorbedDoseOfIonizingRadiation FromRads(double value)
         {
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Rad);
         }
@@ -515,7 +515,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="AbsorbedDoseOfIonizingRadiationUnit.Teragray"/>.
         /// </summary>
-        public static AbsorbedDoseOfIonizingRadiation FromTeragrays(QuantityValue value)
+        public static AbsorbedDoseOfIonizingRadiation FromTeragrays(double value)
         {
             return new AbsorbedDoseOfIonizingRadiation(value, AbsorbedDoseOfIonizingRadiationUnit.Teragray);
         }
@@ -526,7 +526,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AbsorbedDoseOfIonizingRadiation unit value.</returns>
-        public static AbsorbedDoseOfIonizingRadiation From(QuantityValue value, AbsorbedDoseOfIonizingRadiationUnit fromUnit)
+        public static AbsorbedDoseOfIonizingRadiation From(double value, AbsorbedDoseOfIonizingRadiationUnit fromUnit)
         {
             return new AbsorbedDoseOfIonizingRadiation(value, fromUnit);
         }
@@ -691,25 +691,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="AbsorbedDoseOfIonizingRadiation"/> from multiplying value and <see cref="AbsorbedDoseOfIonizingRadiation"/>.</summary>
-        public static AbsorbedDoseOfIonizingRadiation operator *(QuantityValue left, AbsorbedDoseOfIonizingRadiation right)
+        public static AbsorbedDoseOfIonizingRadiation operator *(double left, AbsorbedDoseOfIonizingRadiation right)
         {
             return new AbsorbedDoseOfIonizingRadiation(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="AbsorbedDoseOfIonizingRadiation"/> from multiplying value and <see cref="AbsorbedDoseOfIonizingRadiation"/>.</summary>
-        public static AbsorbedDoseOfIonizingRadiation operator *(AbsorbedDoseOfIonizingRadiation left, QuantityValue right)
+        public static AbsorbedDoseOfIonizingRadiation operator *(AbsorbedDoseOfIonizingRadiation left, double right)
         {
             return new AbsorbedDoseOfIonizingRadiation(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="AbsorbedDoseOfIonizingRadiation"/> from dividing <see cref="AbsorbedDoseOfIonizingRadiation"/> by value.</summary>
-        public static AbsorbedDoseOfIonizingRadiation operator /(AbsorbedDoseOfIonizingRadiation left, QuantityValue right)
+        public static AbsorbedDoseOfIonizingRadiation operator /(AbsorbedDoseOfIonizingRadiation left, double right)
         {
             return new AbsorbedDoseOfIonizingRadiation(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="AbsorbedDoseOfIonizingRadiation"/> by <see cref="AbsorbedDoseOfIonizingRadiation"/>.</summary>
-        public static QuantityValue operator /(AbsorbedDoseOfIonizingRadiation left, AbsorbedDoseOfIonizingRadiation right)
+        public static double operator /(AbsorbedDoseOfIonizingRadiation left, AbsorbedDoseOfIonizingRadiation right)
         {
             return left.Grays / right.Grays;
         }

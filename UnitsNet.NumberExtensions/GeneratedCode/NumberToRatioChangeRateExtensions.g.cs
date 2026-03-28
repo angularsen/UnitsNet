@@ -32,26 +32,26 @@ namespace UnitsNet.NumberExtensions.NumberToRatioChangeRate
     /// </summary>
     public static class NumberToRatioChangeRateExtensions
     {
-        /// <inheritdoc cref="RatioChangeRate.FromDecimalFractionsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="RatioChangeRate.FromDecimalFractionsPerSecond(double)" />
         public static RatioChangeRate DecimalFractionsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RatioChangeRate.FromDecimalFractionsPerSecond(QuantityValue.CreateChecked(value));
+            => RatioChangeRate.FromDecimalFractionsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => RatioChangeRate.FromDecimalFractionsPerSecond(value.ToQuantityValue());
+            => RatioChangeRate.FromDecimalFractionsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RatioChangeRate.FromPercentsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="RatioChangeRate.FromPercentsPerSecond(double)" />
         public static RatioChangeRate PercentsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RatioChangeRate.FromPercentsPerSecond(QuantityValue.CreateChecked(value));
+            => RatioChangeRate.FromPercentsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => RatioChangeRate.FromPercentsPerSecond(value.ToQuantityValue());
+            => RatioChangeRate.FromPercentsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

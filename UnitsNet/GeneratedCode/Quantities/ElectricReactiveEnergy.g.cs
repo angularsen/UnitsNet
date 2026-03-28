@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct ElectricReactiveEnergy :
         IArithmeticQuantity<ElectricReactiveEnergy, ElectricReactiveEnergyUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricReactiveEnergy, ElectricReactiveEnergy, QuantityValue>,
+        IDivisionOperators<ElectricReactiveEnergy, ElectricReactiveEnergy, double>,
         IComparisonOperators<ElectricReactiveEnergy, ElectricReactiveEnergy, bool>,
         IParsable<ElectricReactiveEnergy>,
 #endif
@@ -51,7 +51,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -136,7 +136,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricReactiveEnergy(QuantityValue value, ElectricReactiveEnergyUnit unit)
+        public ElectricReactiveEnergy(double value, ElectricReactiveEnergyUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -150,7 +150,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricReactiveEnergy(QuantityValue value, UnitSystem unitSystem)
+        public ElectricReactiveEnergy(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -192,7 +192,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public ElectricReactiveEnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -226,19 +226,19 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricReactiveEnergyUnit.KilovoltampereReactiveHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricReactiveEnergyUnit.KilovoltampereReactiveHour"/>
         /// </summary>
-        public QuantityValue KilovoltampereReactiveHours => this.As(ElectricReactiveEnergyUnit.KilovoltampereReactiveHour);
+        public double KilovoltampereReactiveHours => this.As(ElectricReactiveEnergyUnit.KilovoltampereReactiveHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricReactiveEnergyUnit.MegavoltampereReactiveHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricReactiveEnergyUnit.MegavoltampereReactiveHour"/>
         /// </summary>
-        public QuantityValue MegavoltampereReactiveHours => this.As(ElectricReactiveEnergyUnit.MegavoltampereReactiveHour);
+        public double MegavoltampereReactiveHours => this.As(ElectricReactiveEnergyUnit.MegavoltampereReactiveHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricReactiveEnergyUnit.VoltampereReactiveHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricReactiveEnergyUnit.VoltampereReactiveHour"/>
         /// </summary>
-        public QuantityValue VoltampereReactiveHours => this.As(ElectricReactiveEnergyUnit.VoltampereReactiveHour);
+        public double VoltampereReactiveHours => this.As(ElectricReactiveEnergyUnit.VoltampereReactiveHour);
 
         #endregion
 
@@ -272,7 +272,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricReactiveEnergy"/> from <see cref="ElectricReactiveEnergyUnit.KilovoltampereReactiveHour"/>.
         /// </summary>
-        public static ElectricReactiveEnergy FromKilovoltampereReactiveHours(QuantityValue value)
+        public static ElectricReactiveEnergy FromKilovoltampereReactiveHours(double value)
         {
             return new ElectricReactiveEnergy(value, ElectricReactiveEnergyUnit.KilovoltampereReactiveHour);
         }
@@ -280,7 +280,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricReactiveEnergy"/> from <see cref="ElectricReactiveEnergyUnit.MegavoltampereReactiveHour"/>.
         /// </summary>
-        public static ElectricReactiveEnergy FromMegavoltampereReactiveHours(QuantityValue value)
+        public static ElectricReactiveEnergy FromMegavoltampereReactiveHours(double value)
         {
             return new ElectricReactiveEnergy(value, ElectricReactiveEnergyUnit.MegavoltampereReactiveHour);
         }
@@ -288,7 +288,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricReactiveEnergy"/> from <see cref="ElectricReactiveEnergyUnit.VoltampereReactiveHour"/>.
         /// </summary>
-        public static ElectricReactiveEnergy FromVoltampereReactiveHours(QuantityValue value)
+        public static ElectricReactiveEnergy FromVoltampereReactiveHours(double value)
         {
             return new ElectricReactiveEnergy(value, ElectricReactiveEnergyUnit.VoltampereReactiveHour);
         }
@@ -299,7 +299,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricReactiveEnergy unit value.</returns>
-        public static ElectricReactiveEnergy From(QuantityValue value, ElectricReactiveEnergyUnit fromUnit)
+        public static ElectricReactiveEnergy From(double value, ElectricReactiveEnergyUnit fromUnit)
         {
             return new ElectricReactiveEnergy(value, fromUnit);
         }
@@ -464,25 +464,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricReactiveEnergy"/> from multiplying value and <see cref="ElectricReactiveEnergy"/>.</summary>
-        public static ElectricReactiveEnergy operator *(QuantityValue left, ElectricReactiveEnergy right)
+        public static ElectricReactiveEnergy operator *(double left, ElectricReactiveEnergy right)
         {
             return new ElectricReactiveEnergy(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricReactiveEnergy"/> from multiplying value and <see cref="ElectricReactiveEnergy"/>.</summary>
-        public static ElectricReactiveEnergy operator *(ElectricReactiveEnergy left, QuantityValue right)
+        public static ElectricReactiveEnergy operator *(ElectricReactiveEnergy left, double right)
         {
             return new ElectricReactiveEnergy(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricReactiveEnergy"/> from dividing <see cref="ElectricReactiveEnergy"/> by value.</summary>
-        public static ElectricReactiveEnergy operator /(ElectricReactiveEnergy left, QuantityValue right)
+        public static ElectricReactiveEnergy operator /(ElectricReactiveEnergy left, double right)
         {
             return new ElectricReactiveEnergy(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricReactiveEnergy"/> by <see cref="ElectricReactiveEnergy"/>.</summary>
-        public static QuantityValue operator /(ElectricReactiveEnergy left, ElectricReactiveEnergy right)
+        public static double operator /(ElectricReactiveEnergy left, ElectricReactiveEnergy right)
         {
             return left.VoltampereReactiveHours / right.VoltampereReactiveHours;
         }

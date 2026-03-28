@@ -31,15 +31,15 @@ public class ComparisonBenchmarks
     public MassUnit RightUnit { get; set; }
 
     [ParamsSource(nameof(LeftValues))]
-    public QuantityValue LeftValue { get; set; }
+    public double LeftValue { get; set; }
 
-    public QuantityValue[] LeftValues => [95];
-    
-    
+    public double[] LeftValues => [95];
+
+
     [ParamsSource(nameof(RightValues))]
-    public QuantityValue RightValue { get; set; }
+    public double RightValue { get; set; }
 
-    public QuantityValue[] RightValues => [95];
+    public double[] RightValues => [95];
     
     private Mass _leftQuantity, _rightQuantity;
     
@@ -51,7 +51,7 @@ public class ComparisonBenchmarks
             .WithQuantities([Mass.Info])
             .WithConverterOptions(new QuantityConverterBuildOptions(Frozen, CachingMode)));
         Console.Out.WriteLine("Default configuration set.");
-        Quantity.From(QuantityValue.Zero, MassUnit.Kilogram);
+        Quantity.From(0, MassUnit.Kilogram);
         
         _leftQuantity = new Mass(LeftValue, LeftUnit);
         _rightQuantity = new Mass(RightValue, RightUnit);

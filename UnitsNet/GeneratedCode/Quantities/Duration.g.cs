@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct Duration :
         IArithmeticQuantity<Duration, DurationUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Duration, Duration, QuantityValue>,
+        IDivisionOperators<Duration, Duration, double>,
         IMultiplyOperators<Duration, Jerk, Acceleration>,
         IMultiplyOperators<Duration, MolarFlow, AmountOfSubstance>,
         IMultiplyOperators<Duration, RotationalSpeed, Angle>,
@@ -66,7 +66,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -181,7 +181,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Duration(QuantityValue value, DurationUnit unit)
+        public Duration(double value, DurationUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -195,7 +195,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Duration(QuantityValue value, UnitSystem unitSystem)
+        public Duration(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -237,7 +237,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public DurationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -271,69 +271,69 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Day"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Day"/>
         /// </summary>
-        public QuantityValue Days => this.As(DurationUnit.Day);
+        public double Days => this.As(DurationUnit.Day);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Hour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Hour"/>
         /// </summary>
-        public QuantityValue Hours => this.As(DurationUnit.Hour);
+        public double Hours => this.As(DurationUnit.Hour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.JulianYear"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.JulianYear"/>
         /// </summary>
-        public QuantityValue JulianYears => this.As(DurationUnit.JulianYear);
+        public double JulianYears => this.As(DurationUnit.JulianYear);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Microsecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Microsecond"/>
         /// </summary>
-        public QuantityValue Microseconds => this.As(DurationUnit.Microsecond);
+        public double Microseconds => this.As(DurationUnit.Microsecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Millisecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Millisecond"/>
         /// </summary>
-        public QuantityValue Milliseconds => this.As(DurationUnit.Millisecond);
+        public double Milliseconds => this.As(DurationUnit.Millisecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Minute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Minute"/>
         /// </summary>
-        public QuantityValue Minutes => this.As(DurationUnit.Minute);
+        public double Minutes => this.As(DurationUnit.Minute);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Month30"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Month30"/>
         /// </summary>
-        public QuantityValue Months30 => this.As(DurationUnit.Month30);
+        public double Months30 => this.As(DurationUnit.Month30);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Nanosecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Nanosecond"/>
         /// </summary>
-        public QuantityValue Nanoseconds => this.As(DurationUnit.Nanosecond);
+        public double Nanoseconds => this.As(DurationUnit.Nanosecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Picosecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Picosecond"/>
         /// </summary>
-        public QuantityValue Picoseconds => this.As(DurationUnit.Picosecond);
+        public double Picoseconds => this.As(DurationUnit.Picosecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Second"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Second"/>
         /// </summary>
-        public QuantityValue Seconds => this.As(DurationUnit.Second);
+        public double Seconds => this.As(DurationUnit.Second);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Sol"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Sol"/>
         /// </summary>
-        public QuantityValue Sols => this.As(DurationUnit.Sol);
+        public double Sols => this.As(DurationUnit.Sol);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Week"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Week"/>
         /// </summary>
-        public QuantityValue Weeks => this.As(DurationUnit.Week);
+        public double Weeks => this.As(DurationUnit.Week);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DurationUnit.Year365"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DurationUnit.Year365"/>
         /// </summary>
-        public QuantityValue Years365 => this.As(DurationUnit.Year365);
+        public double Years365 => this.As(DurationUnit.Year365);
 
         #endregion
 
@@ -367,7 +367,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Day"/>.
         /// </summary>
-        public static Duration FromDays(QuantityValue value)
+        public static Duration FromDays(double value)
         {
             return new Duration(value, DurationUnit.Day);
         }
@@ -375,7 +375,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Hour"/>.
         /// </summary>
-        public static Duration FromHours(QuantityValue value)
+        public static Duration FromHours(double value)
         {
             return new Duration(value, DurationUnit.Hour);
         }
@@ -383,7 +383,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.JulianYear"/>.
         /// </summary>
-        public static Duration FromJulianYears(QuantityValue value)
+        public static Duration FromJulianYears(double value)
         {
             return new Duration(value, DurationUnit.JulianYear);
         }
@@ -391,7 +391,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Microsecond"/>.
         /// </summary>
-        public static Duration FromMicroseconds(QuantityValue value)
+        public static Duration FromMicroseconds(double value)
         {
             return new Duration(value, DurationUnit.Microsecond);
         }
@@ -399,7 +399,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Millisecond"/>.
         /// </summary>
-        public static Duration FromMilliseconds(QuantityValue value)
+        public static Duration FromMilliseconds(double value)
         {
             return new Duration(value, DurationUnit.Millisecond);
         }
@@ -407,7 +407,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Minute"/>.
         /// </summary>
-        public static Duration FromMinutes(QuantityValue value)
+        public static Duration FromMinutes(double value)
         {
             return new Duration(value, DurationUnit.Minute);
         }
@@ -415,7 +415,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Month30"/>.
         /// </summary>
-        public static Duration FromMonths30(QuantityValue value)
+        public static Duration FromMonths30(double value)
         {
             return new Duration(value, DurationUnit.Month30);
         }
@@ -423,7 +423,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Nanosecond"/>.
         /// </summary>
-        public static Duration FromNanoseconds(QuantityValue value)
+        public static Duration FromNanoseconds(double value)
         {
             return new Duration(value, DurationUnit.Nanosecond);
         }
@@ -431,7 +431,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Picosecond"/>.
         /// </summary>
-        public static Duration FromPicoseconds(QuantityValue value)
+        public static Duration FromPicoseconds(double value)
         {
             return new Duration(value, DurationUnit.Picosecond);
         }
@@ -439,7 +439,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Second"/>.
         /// </summary>
-        public static Duration FromSeconds(QuantityValue value)
+        public static Duration FromSeconds(double value)
         {
             return new Duration(value, DurationUnit.Second);
         }
@@ -447,7 +447,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Sol"/>.
         /// </summary>
-        public static Duration FromSols(QuantityValue value)
+        public static Duration FromSols(double value)
         {
             return new Duration(value, DurationUnit.Sol);
         }
@@ -455,7 +455,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Week"/>.
         /// </summary>
-        public static Duration FromWeeks(QuantityValue value)
+        public static Duration FromWeeks(double value)
         {
             return new Duration(value, DurationUnit.Week);
         }
@@ -463,7 +463,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Duration"/> from <see cref="DurationUnit.Year365"/>.
         /// </summary>
-        public static Duration FromYears365(QuantityValue value)
+        public static Duration FromYears365(double value)
         {
             return new Duration(value, DurationUnit.Year365);
         }
@@ -474,7 +474,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Duration unit value.</returns>
-        public static Duration From(QuantityValue value, DurationUnit fromUnit)
+        public static Duration From(double value, DurationUnit fromUnit)
         {
             return new Duration(value, fromUnit);
         }
@@ -639,25 +639,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Duration"/> from multiplying value and <see cref="Duration"/>.</summary>
-        public static Duration operator *(QuantityValue left, Duration right)
+        public static Duration operator *(double left, Duration right)
         {
             return new Duration(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Duration"/> from multiplying value and <see cref="Duration"/>.</summary>
-        public static Duration operator *(Duration left, QuantityValue right)
+        public static Duration operator *(Duration left, double right)
         {
             return new Duration(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Duration"/> from dividing <see cref="Duration"/> by value.</summary>
-        public static Duration operator /(Duration left, QuantityValue right)
+        public static Duration operator /(Duration left, double right)
         {
             return new Duration(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Duration"/> by <see cref="Duration"/>.</summary>
-        public static QuantityValue operator /(Duration left, Duration right)
+        public static double operator /(Duration left, Duration right)
         {
             return left.Seconds / right.Seconds;
         }

@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct Magnetization :
         IArithmeticQuantity<Magnetization, MagnetizationUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Magnetization, Magnetization, QuantityValue>,
+        IDivisionOperators<Magnetization, Magnetization, double>,
         IComparisonOperators<Magnetization, Magnetization, bool>,
         IParsable<Magnetization>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -133,7 +133,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Magnetization(QuantityValue value, MagnetizationUnit unit)
+        public Magnetization(double value, MagnetizationUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -147,7 +147,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Magnetization(QuantityValue value, UnitSystem unitSystem)
+        public Magnetization(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -189,7 +189,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public MagnetizationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -223,9 +223,9 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MagnetizationUnit.AmperePerMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MagnetizationUnit.AmperePerMeter"/>
         /// </summary>
-        public QuantityValue AmperesPerMeter => this.As(MagnetizationUnit.AmperePerMeter);
+        public double AmperesPerMeter => this.As(MagnetizationUnit.AmperePerMeter);
 
         #endregion
 
@@ -259,7 +259,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Magnetization"/> from <see cref="MagnetizationUnit.AmperePerMeter"/>.
         /// </summary>
-        public static Magnetization FromAmperesPerMeter(QuantityValue value)
+        public static Magnetization FromAmperesPerMeter(double value)
         {
             return new Magnetization(value, MagnetizationUnit.AmperePerMeter);
         }
@@ -270,7 +270,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Magnetization unit value.</returns>
-        public static Magnetization From(QuantityValue value, MagnetizationUnit fromUnit)
+        public static Magnetization From(double value, MagnetizationUnit fromUnit)
         {
             return new Magnetization(value, fromUnit);
         }
@@ -435,25 +435,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Magnetization"/> from multiplying value and <see cref="Magnetization"/>.</summary>
-        public static Magnetization operator *(QuantityValue left, Magnetization right)
+        public static Magnetization operator *(double left, Magnetization right)
         {
             return new Magnetization(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Magnetization"/> from multiplying value and <see cref="Magnetization"/>.</summary>
-        public static Magnetization operator *(Magnetization left, QuantityValue right)
+        public static Magnetization operator *(Magnetization left, double right)
         {
             return new Magnetization(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Magnetization"/> from dividing <see cref="Magnetization"/> by value.</summary>
-        public static Magnetization operator /(Magnetization left, QuantityValue right)
+        public static Magnetization operator /(Magnetization left, double right)
         {
             return new Magnetization(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Magnetization"/> by <see cref="Magnetization"/>.</summary>
-        public static QuantityValue operator /(Magnetization left, Magnetization right)
+        public static double operator /(Magnetization left, Magnetization right)
         {
             return left.AmperesPerMeter / right.AmperesPerMeter;
         }

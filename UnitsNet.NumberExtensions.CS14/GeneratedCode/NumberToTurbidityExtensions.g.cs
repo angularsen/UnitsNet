@@ -42,12 +42,12 @@ namespace UnitsNet.NumberExtensions.NumberToTurbidity
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Turbidity.FromNTU(QuantityValue)" />
+            /// <inheritdoc cref="Turbidity.FromNTU(double)" />
             public Turbidity NTU
 #if NET7_0_OR_GREATER
-                => Turbidity.FromNTU(QuantityValue.CreateChecked(value));
+                => Turbidity.FromNTU(double.CreateChecked(value));
 #else
-                => Turbidity.FromNTU(value.ToQuantityValue());
+                => Turbidity.FromNTU(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

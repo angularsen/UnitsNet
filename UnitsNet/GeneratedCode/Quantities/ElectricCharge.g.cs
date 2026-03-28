@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct ElectricCharge :
         IArithmeticQuantity<ElectricCharge, ElectricChargeUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricCharge, ElectricCharge, QuantityValue>,
+        IDivisionOperators<ElectricCharge, ElectricCharge, double>,
         IDivisionOperators<ElectricCharge, ElectricCurrent, Duration>,
         IDivisionOperators<ElectricCharge, Duration, ElectricCurrent>,
         IMultiplyOperators<ElectricCharge, ElectricPotential, Energy>,
@@ -57,7 +57,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -166,7 +166,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricCharge(QuantityValue value, ElectricChargeUnit unit)
+        public ElectricCharge(double value, ElectricChargeUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -180,7 +180,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricCharge(QuantityValue value, UnitSystem unitSystem)
+        public ElectricCharge(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -222,7 +222,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public ElectricChargeUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -256,59 +256,59 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricChargeUnit.AmpereHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.AmpereHour"/>
         /// </summary>
-        public QuantityValue AmpereHours => this.As(ElectricChargeUnit.AmpereHour);
+        public double AmpereHours => this.As(ElectricChargeUnit.AmpereHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricChargeUnit.Coulomb"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.Coulomb"/>
         /// </summary>
-        public QuantityValue Coulombs => this.As(ElectricChargeUnit.Coulomb);
+        public double Coulombs => this.As(ElectricChargeUnit.Coulomb);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricChargeUnit.KiloampereHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.KiloampereHour"/>
         /// </summary>
-        public QuantityValue KiloampereHours => this.As(ElectricChargeUnit.KiloampereHour);
+        public double KiloampereHours => this.As(ElectricChargeUnit.KiloampereHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricChargeUnit.Kilocoulomb"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.Kilocoulomb"/>
         /// </summary>
-        public QuantityValue Kilocoulombs => this.As(ElectricChargeUnit.Kilocoulomb);
+        public double Kilocoulombs => this.As(ElectricChargeUnit.Kilocoulomb);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricChargeUnit.MegaampereHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.MegaampereHour"/>
         /// </summary>
-        public QuantityValue MegaampereHours => this.As(ElectricChargeUnit.MegaampereHour);
+        public double MegaampereHours => this.As(ElectricChargeUnit.MegaampereHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricChargeUnit.Megacoulomb"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.Megacoulomb"/>
         /// </summary>
-        public QuantityValue Megacoulombs => this.As(ElectricChargeUnit.Megacoulomb);
+        public double Megacoulombs => this.As(ElectricChargeUnit.Megacoulomb);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricChargeUnit.Microcoulomb"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.Microcoulomb"/>
         /// </summary>
-        public QuantityValue Microcoulombs => this.As(ElectricChargeUnit.Microcoulomb);
+        public double Microcoulombs => this.As(ElectricChargeUnit.Microcoulomb);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricChargeUnit.MilliampereHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.MilliampereHour"/>
         /// </summary>
-        public QuantityValue MilliampereHours => this.As(ElectricChargeUnit.MilliampereHour);
+        public double MilliampereHours => this.As(ElectricChargeUnit.MilliampereHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricChargeUnit.Millicoulomb"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.Millicoulomb"/>
         /// </summary>
-        public QuantityValue Millicoulombs => this.As(ElectricChargeUnit.Millicoulomb);
+        public double Millicoulombs => this.As(ElectricChargeUnit.Millicoulomb);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricChargeUnit.Nanocoulomb"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.Nanocoulomb"/>
         /// </summary>
-        public QuantityValue Nanocoulombs => this.As(ElectricChargeUnit.Nanocoulomb);
+        public double Nanocoulombs => this.As(ElectricChargeUnit.Nanocoulomb);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricChargeUnit.Picocoulomb"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricChargeUnit.Picocoulomb"/>
         /// </summary>
-        public QuantityValue Picocoulombs => this.As(ElectricChargeUnit.Picocoulomb);
+        public double Picocoulombs => this.As(ElectricChargeUnit.Picocoulomb);
 
         #endregion
 
@@ -342,7 +342,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.AmpereHour"/>.
         /// </summary>
-        public static ElectricCharge FromAmpereHours(QuantityValue value)
+        public static ElectricCharge FromAmpereHours(double value)
         {
             return new ElectricCharge(value, ElectricChargeUnit.AmpereHour);
         }
@@ -350,7 +350,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.Coulomb"/>.
         /// </summary>
-        public static ElectricCharge FromCoulombs(QuantityValue value)
+        public static ElectricCharge FromCoulombs(double value)
         {
             return new ElectricCharge(value, ElectricChargeUnit.Coulomb);
         }
@@ -358,7 +358,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.KiloampereHour"/>.
         /// </summary>
-        public static ElectricCharge FromKiloampereHours(QuantityValue value)
+        public static ElectricCharge FromKiloampereHours(double value)
         {
             return new ElectricCharge(value, ElectricChargeUnit.KiloampereHour);
         }
@@ -366,7 +366,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.Kilocoulomb"/>.
         /// </summary>
-        public static ElectricCharge FromKilocoulombs(QuantityValue value)
+        public static ElectricCharge FromKilocoulombs(double value)
         {
             return new ElectricCharge(value, ElectricChargeUnit.Kilocoulomb);
         }
@@ -374,7 +374,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.MegaampereHour"/>.
         /// </summary>
-        public static ElectricCharge FromMegaampereHours(QuantityValue value)
+        public static ElectricCharge FromMegaampereHours(double value)
         {
             return new ElectricCharge(value, ElectricChargeUnit.MegaampereHour);
         }
@@ -382,7 +382,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.Megacoulomb"/>.
         /// </summary>
-        public static ElectricCharge FromMegacoulombs(QuantityValue value)
+        public static ElectricCharge FromMegacoulombs(double value)
         {
             return new ElectricCharge(value, ElectricChargeUnit.Megacoulomb);
         }
@@ -390,7 +390,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.Microcoulomb"/>.
         /// </summary>
-        public static ElectricCharge FromMicrocoulombs(QuantityValue value)
+        public static ElectricCharge FromMicrocoulombs(double value)
         {
             return new ElectricCharge(value, ElectricChargeUnit.Microcoulomb);
         }
@@ -398,7 +398,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.MilliampereHour"/>.
         /// </summary>
-        public static ElectricCharge FromMilliampereHours(QuantityValue value)
+        public static ElectricCharge FromMilliampereHours(double value)
         {
             return new ElectricCharge(value, ElectricChargeUnit.MilliampereHour);
         }
@@ -406,7 +406,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.Millicoulomb"/>.
         /// </summary>
-        public static ElectricCharge FromMillicoulombs(QuantityValue value)
+        public static ElectricCharge FromMillicoulombs(double value)
         {
             return new ElectricCharge(value, ElectricChargeUnit.Millicoulomb);
         }
@@ -414,7 +414,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.Nanocoulomb"/>.
         /// </summary>
-        public static ElectricCharge FromNanocoulombs(QuantityValue value)
+        public static ElectricCharge FromNanocoulombs(double value)
         {
             return new ElectricCharge(value, ElectricChargeUnit.Nanocoulomb);
         }
@@ -422,7 +422,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCharge"/> from <see cref="ElectricChargeUnit.Picocoulomb"/>.
         /// </summary>
-        public static ElectricCharge FromPicocoulombs(QuantityValue value)
+        public static ElectricCharge FromPicocoulombs(double value)
         {
             return new ElectricCharge(value, ElectricChargeUnit.Picocoulomb);
         }
@@ -433,7 +433,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricCharge unit value.</returns>
-        public static ElectricCharge From(QuantityValue value, ElectricChargeUnit fromUnit)
+        public static ElectricCharge From(double value, ElectricChargeUnit fromUnit)
         {
             return new ElectricCharge(value, fromUnit);
         }
@@ -598,25 +598,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricCharge"/> from multiplying value and <see cref="ElectricCharge"/>.</summary>
-        public static ElectricCharge operator *(QuantityValue left, ElectricCharge right)
+        public static ElectricCharge operator *(double left, ElectricCharge right)
         {
             return new ElectricCharge(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCharge"/> from multiplying value and <see cref="ElectricCharge"/>.</summary>
-        public static ElectricCharge operator *(ElectricCharge left, QuantityValue right)
+        public static ElectricCharge operator *(ElectricCharge left, double right)
         {
             return new ElectricCharge(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCharge"/> from dividing <see cref="ElectricCharge"/> by value.</summary>
-        public static ElectricCharge operator /(ElectricCharge left, QuantityValue right)
+        public static ElectricCharge operator /(ElectricCharge left, double right)
         {
             return new ElectricCharge(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricCharge"/> by <see cref="ElectricCharge"/>.</summary>
-        public static QuantityValue operator /(ElectricCharge left, ElectricCharge right)
+        public static double operator /(ElectricCharge left, ElectricCharge right)
         {
             return left.Coulombs / right.Coulombs;
         }

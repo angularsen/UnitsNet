@@ -410,7 +410,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 W/ft²", HeatFluxUnit.WattPerSquareFoot, 4.2)]
         [InlineData("en-US", "4.2 W/in²", HeatFluxUnit.WattPerSquareInch, 4.2)]
         [InlineData("en-US", "4.2 W/m²", HeatFluxUnit.WattPerSquareMeter, 4.2)]
-        public void Parse(string culture, string quantityString, HeatFluxUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, HeatFluxUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = HeatFlux.Parse(quantityString);
@@ -438,7 +438,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 W/ft²", HeatFluxUnit.WattPerSquareFoot, 4.2)]
         [InlineData("en-US", "4.2 W/in²", HeatFluxUnit.WattPerSquareInch, 4.2)]
         [InlineData("en-US", "4.2 W/m²", HeatFluxUnit.WattPerSquareMeter, 4.2)]
-        public void TryParse(string culture, string quantityString, HeatFluxUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, HeatFluxUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(HeatFlux.TryParse(quantityString, out HeatFlux parsed));
@@ -905,8 +905,8 @@ namespace UnitsNet.Tests
             var quantity = HeatFlux.FromWattsPerSquareMeter(firstValue);
             var otherQuantity = HeatFlux.FromWattsPerSquareMeter(secondValue);
             HeatFlux maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, HeatFlux.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

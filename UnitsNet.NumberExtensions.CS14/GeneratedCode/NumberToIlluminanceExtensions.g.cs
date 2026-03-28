@@ -42,36 +42,36 @@ namespace UnitsNet.NumberExtensions.NumberToIlluminance
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Illuminance.FromKilolux(QuantityValue)" />
+            /// <inheritdoc cref="Illuminance.FromKilolux(double)" />
             public Illuminance Kilolux
 #if NET7_0_OR_GREATER
-                => Illuminance.FromKilolux(QuantityValue.CreateChecked(value));
+                => Illuminance.FromKilolux(double.CreateChecked(value));
 #else
-                => Illuminance.FromKilolux(value.ToQuantityValue());
+                => Illuminance.FromKilolux(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Illuminance.FromLux(QuantityValue)" />
+            /// <inheritdoc cref="Illuminance.FromLux(double)" />
             public Illuminance Lux
 #if NET7_0_OR_GREATER
-                => Illuminance.FromLux(QuantityValue.CreateChecked(value));
+                => Illuminance.FromLux(double.CreateChecked(value));
 #else
-                => Illuminance.FromLux(value.ToQuantityValue());
+                => Illuminance.FromLux(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Illuminance.FromMegalux(QuantityValue)" />
+            /// <inheritdoc cref="Illuminance.FromMegalux(double)" />
             public Illuminance Megalux
 #if NET7_0_OR_GREATER
-                => Illuminance.FromMegalux(QuantityValue.CreateChecked(value));
+                => Illuminance.FromMegalux(double.CreateChecked(value));
 #else
-                => Illuminance.FromMegalux(value.ToQuantityValue());
+                => Illuminance.FromMegalux(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Illuminance.FromMillilux(QuantityValue)" />
+            /// <inheritdoc cref="Illuminance.FromMillilux(double)" />
             public Illuminance Millilux
 #if NET7_0_OR_GREATER
-                => Illuminance.FromMillilux(QuantityValue.CreateChecked(value));
+                => Illuminance.FromMillilux(double.CreateChecked(value));
 #else
-                => Illuminance.FromMillilux(value.ToQuantityValue());
+                => Illuminance.FromMillilux(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

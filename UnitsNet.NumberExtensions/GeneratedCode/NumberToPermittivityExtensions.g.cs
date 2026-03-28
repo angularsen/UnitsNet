@@ -32,15 +32,15 @@ namespace UnitsNet.NumberExtensions.NumberToPermittivity
     /// </summary>
     public static class NumberToPermittivityExtensions
     {
-        /// <inheritdoc cref="Permittivity.FromFaradsPerMeter(QuantityValue)" />
+        /// <inheritdoc cref="Permittivity.FromFaradsPerMeter(double)" />
         public static Permittivity FaradsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Permittivity.FromFaradsPerMeter(QuantityValue.CreateChecked(value));
+            => Permittivity.FromFaradsPerMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Permittivity.FromFaradsPerMeter(value.ToQuantityValue());
+            => Permittivity.FromFaradsPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

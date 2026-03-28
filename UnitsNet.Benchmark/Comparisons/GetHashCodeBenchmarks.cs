@@ -1,6 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -47,22 +48,22 @@ public class GetHashCodeBenchmarks
         // decimal value 
         yield return Mass.FromGrams(42.1);
         // huge values in numerator
-        yield return Mass.FromGrams(BigInteger.Pow(-10, 37));
+        yield return Mass.FromGrams((double)BigInteger.Pow(-10, 37));
         // huge values in denominator
-        yield return Mass.FromGrams(QuantityValue.FromTerms(1, BigInteger.Pow(10, 12)));
+        yield return Mass.FromGrams(1.0 / (double)BigInteger.Pow(10, 12));
         // Math.PI in base unit
-        yield return Mass.From(QuantityValue.PI, Mass.BaseUnit);
+        yield return Mass.From(Math.PI, Mass.BaseUnit);
         // Math.PI, different units
-        yield return Mass.FromGrams(QuantityValue.PI);
+        yield return Mass.FromGrams(Math.PI);
         // very precise decimal
-        yield return Mass.FromGrams(12.3456789987654321m);
+        yield return Mass.FromGrams(12.3456789987654321);
     }
 
     public IEnumerable<Mass> Operands()
     {
         if (ReduceQuantityValues)
         {
-            return GetQuantities().Select(x => new Mass(QuantityValue.Reduce(x.Value), x.Unit));
+            return GetQuantities().Select(x => new Mass(x.Value, x.Unit));
         }
         
         return GetQuantities();

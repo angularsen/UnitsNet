@@ -32,81 +32,81 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCapacitance
     /// </summary>
     public static class NumberToElectricCapacitanceExtensions
     {
-        /// <inheritdoc cref="ElectricCapacitance.FromFarads(QuantityValue)" />
+        /// <inheritdoc cref="ElectricCapacitance.FromFarads(double)" />
         public static ElectricCapacitance Farads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCapacitance.FromFarads(QuantityValue.CreateChecked(value));
+            => ElectricCapacitance.FromFarads(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCapacitance.FromFarads(value.ToQuantityValue());
+            => ElectricCapacitance.FromFarads(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricCapacitance.FromKilofarads(QuantityValue)" />
+        /// <inheritdoc cref="ElectricCapacitance.FromKilofarads(double)" />
         public static ElectricCapacitance Kilofarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCapacitance.FromKilofarads(QuantityValue.CreateChecked(value));
+            => ElectricCapacitance.FromKilofarads(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCapacitance.FromKilofarads(value.ToQuantityValue());
+            => ElectricCapacitance.FromKilofarads(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricCapacitance.FromMegafarads(QuantityValue)" />
+        /// <inheritdoc cref="ElectricCapacitance.FromMegafarads(double)" />
         public static ElectricCapacitance Megafarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCapacitance.FromMegafarads(QuantityValue.CreateChecked(value));
+            => ElectricCapacitance.FromMegafarads(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCapacitance.FromMegafarads(value.ToQuantityValue());
+            => ElectricCapacitance.FromMegafarads(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricCapacitance.FromMicrofarads(QuantityValue)" />
+        /// <inheritdoc cref="ElectricCapacitance.FromMicrofarads(double)" />
         public static ElectricCapacitance Microfarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCapacitance.FromMicrofarads(QuantityValue.CreateChecked(value));
+            => ElectricCapacitance.FromMicrofarads(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCapacitance.FromMicrofarads(value.ToQuantityValue());
+            => ElectricCapacitance.FromMicrofarads(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricCapacitance.FromMillifarads(QuantityValue)" />
+        /// <inheritdoc cref="ElectricCapacitance.FromMillifarads(double)" />
         public static ElectricCapacitance Millifarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCapacitance.FromMillifarads(QuantityValue.CreateChecked(value));
+            => ElectricCapacitance.FromMillifarads(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCapacitance.FromMillifarads(value.ToQuantityValue());
+            => ElectricCapacitance.FromMillifarads(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricCapacitance.FromNanofarads(QuantityValue)" />
+        /// <inheritdoc cref="ElectricCapacitance.FromNanofarads(double)" />
         public static ElectricCapacitance Nanofarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCapacitance.FromNanofarads(QuantityValue.CreateChecked(value));
+            => ElectricCapacitance.FromNanofarads(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCapacitance.FromNanofarads(value.ToQuantityValue());
+            => ElectricCapacitance.FromNanofarads(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricCapacitance.FromPicofarads(QuantityValue)" />
+        /// <inheritdoc cref="ElectricCapacitance.FromPicofarads(double)" />
         public static ElectricCapacitance Picofarads<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCapacitance.FromPicofarads(QuantityValue.CreateChecked(value));
+            => ElectricCapacitance.FromPicofarads(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCapacitance.FromPicofarads(value.ToQuantityValue());
+            => ElectricCapacitance.FromPicofarads(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

@@ -32,15 +32,15 @@ namespace UnitsNet.NumberExtensions.NumberToElectricField
     /// </summary>
     public static class NumberToElectricFieldExtensions
     {
-        /// <inheritdoc cref="ElectricField.FromVoltsPerMeter(QuantityValue)" />
+        /// <inheritdoc cref="ElectricField.FromVoltsPerMeter(double)" />
         public static ElectricField VoltsPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricField.FromVoltsPerMeter(QuantityValue.CreateChecked(value));
+            => ElectricField.FromVoltsPerMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricField.FromVoltsPerMeter(value.ToQuantityValue());
+            => ElectricField.FromVoltsPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

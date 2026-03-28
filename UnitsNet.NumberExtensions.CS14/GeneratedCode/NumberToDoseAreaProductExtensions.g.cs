@@ -42,204 +42,204 @@ namespace UnitsNet.NumberExtensions.NumberToDoseAreaProduct
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareCentimeters(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareCentimeters(double)" />
             public DoseAreaProduct CentigraySquareCentimeters
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromCentigraySquareCentimeters(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromCentigraySquareCentimeters(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromCentigraySquareCentimeters(value.ToQuantityValue());
+                => DoseAreaProduct.FromCentigraySquareCentimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareDecimeters(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareDecimeters(double)" />
             public DoseAreaProduct CentigraySquareDecimeters
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromCentigraySquareDecimeters(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromCentigraySquareDecimeters(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromCentigraySquareDecimeters(value.ToQuantityValue());
+                => DoseAreaProduct.FromCentigraySquareDecimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareMeters(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareMeters(double)" />
             public DoseAreaProduct CentigraySquareMeters
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromCentigraySquareMeters(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromCentigraySquareMeters(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromCentigraySquareMeters(value.ToQuantityValue());
+                => DoseAreaProduct.FromCentigraySquareMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareMicrometers(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareMicrometers(double)" />
             public DoseAreaProduct CentigraySquareMicrometers
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromCentigraySquareMicrometers(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromCentigraySquareMicrometers(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromCentigraySquareMicrometers(value.ToQuantityValue());
+                => DoseAreaProduct.FromCentigraySquareMicrometers(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareMillimeters(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareMillimeters(double)" />
             public DoseAreaProduct CentigraySquareMillimeters
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromCentigraySquareMillimeters(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromCentigraySquareMillimeters(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromCentigraySquareMillimeters(value.ToQuantityValue());
+                => DoseAreaProduct.FromCentigraySquareMillimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareCentimeters(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareCentimeters(double)" />
             public DoseAreaProduct DecigraySquareCentimeters
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromDecigraySquareCentimeters(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromDecigraySquareCentimeters(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromDecigraySquareCentimeters(value.ToQuantityValue());
+                => DoseAreaProduct.FromDecigraySquareCentimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareDecimeters(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareDecimeters(double)" />
             public DoseAreaProduct DecigraySquareDecimeters
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromDecigraySquareDecimeters(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromDecigraySquareDecimeters(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromDecigraySquareDecimeters(value.ToQuantityValue());
+                => DoseAreaProduct.FromDecigraySquareDecimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareMeters(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareMeters(double)" />
             public DoseAreaProduct DecigraySquareMeters
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromDecigraySquareMeters(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromDecigraySquareMeters(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromDecigraySquareMeters(value.ToQuantityValue());
+                => DoseAreaProduct.FromDecigraySquareMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareMicrometers(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareMicrometers(double)" />
             public DoseAreaProduct DecigraySquareMicrometers
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromDecigraySquareMicrometers(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromDecigraySquareMicrometers(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromDecigraySquareMicrometers(value.ToQuantityValue());
+                => DoseAreaProduct.FromDecigraySquareMicrometers(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareMillimeters(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareMillimeters(double)" />
             public DoseAreaProduct DecigraySquareMillimeters
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromDecigraySquareMillimeters(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromDecigraySquareMillimeters(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromDecigraySquareMillimeters(value.ToQuantityValue());
+                => DoseAreaProduct.FromDecigraySquareMillimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromGraySquareCentimeters(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromGraySquareCentimeters(double)" />
             public DoseAreaProduct GraySquareCentimeters
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromGraySquareCentimeters(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromGraySquareCentimeters(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromGraySquareCentimeters(value.ToQuantityValue());
+                => DoseAreaProduct.FromGraySquareCentimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromGraySquareDecimeters(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromGraySquareDecimeters(double)" />
             public DoseAreaProduct GraySquareDecimeters
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromGraySquareDecimeters(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromGraySquareDecimeters(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromGraySquareDecimeters(value.ToQuantityValue());
+                => DoseAreaProduct.FromGraySquareDecimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromGraySquareMeters(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromGraySquareMeters(double)" />
             public DoseAreaProduct GraySquareMeters
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromGraySquareMeters(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromGraySquareMeters(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromGraySquareMeters(value.ToQuantityValue());
+                => DoseAreaProduct.FromGraySquareMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromGraySquareMicrometers(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromGraySquareMicrometers(double)" />
             public DoseAreaProduct GraySquareMicrometers
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromGraySquareMicrometers(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromGraySquareMicrometers(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromGraySquareMicrometers(value.ToQuantityValue());
+                => DoseAreaProduct.FromGraySquareMicrometers(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromGraySquareMillimeters(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromGraySquareMillimeters(double)" />
             public DoseAreaProduct GraySquareMillimeters
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromGraySquareMillimeters(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromGraySquareMillimeters(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromGraySquareMillimeters(value.ToQuantityValue());
+                => DoseAreaProduct.FromGraySquareMillimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareCentimeters(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareCentimeters(double)" />
             public DoseAreaProduct MicrograySquareCentimeters
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromMicrograySquareCentimeters(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromMicrograySquareCentimeters(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromMicrograySquareCentimeters(value.ToQuantityValue());
+                => DoseAreaProduct.FromMicrograySquareCentimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareDecimeters(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareDecimeters(double)" />
             public DoseAreaProduct MicrograySquareDecimeters
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromMicrograySquareDecimeters(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromMicrograySquareDecimeters(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromMicrograySquareDecimeters(value.ToQuantityValue());
+                => DoseAreaProduct.FromMicrograySquareDecimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareMeters(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareMeters(double)" />
             public DoseAreaProduct MicrograySquareMeters
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromMicrograySquareMeters(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromMicrograySquareMeters(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromMicrograySquareMeters(value.ToQuantityValue());
+                => DoseAreaProduct.FromMicrograySquareMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareMicrometers(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareMicrometers(double)" />
             public DoseAreaProduct MicrograySquareMicrometers
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromMicrograySquareMicrometers(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromMicrograySquareMicrometers(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromMicrograySquareMicrometers(value.ToQuantityValue());
+                => DoseAreaProduct.FromMicrograySquareMicrometers(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareMillimeters(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareMillimeters(double)" />
             public DoseAreaProduct MicrograySquareMillimeters
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromMicrograySquareMillimeters(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromMicrograySquareMillimeters(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromMicrograySquareMillimeters(value.ToQuantityValue());
+                => DoseAreaProduct.FromMicrograySquareMillimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareCentimeters(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareCentimeters(double)" />
             public DoseAreaProduct MilligraySquareCentimeters
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromMilligraySquareCentimeters(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromMilligraySquareCentimeters(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromMilligraySquareCentimeters(value.ToQuantityValue());
+                => DoseAreaProduct.FromMilligraySquareCentimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareDecimeters(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareDecimeters(double)" />
             public DoseAreaProduct MilligraySquareDecimeters
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromMilligraySquareDecimeters(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromMilligraySquareDecimeters(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromMilligraySquareDecimeters(value.ToQuantityValue());
+                => DoseAreaProduct.FromMilligraySquareDecimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareMeters(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareMeters(double)" />
             public DoseAreaProduct MilligraySquareMeters
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromMilligraySquareMeters(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromMilligraySquareMeters(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromMilligraySquareMeters(value.ToQuantityValue());
+                => DoseAreaProduct.FromMilligraySquareMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareMicrometers(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareMicrometers(double)" />
             public DoseAreaProduct MilligraySquareMicrometers
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromMilligraySquareMicrometers(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromMilligraySquareMicrometers(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromMilligraySquareMicrometers(value.ToQuantityValue());
+                => DoseAreaProduct.FromMilligraySquareMicrometers(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareMillimeters(QuantityValue)" />
+            /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareMillimeters(double)" />
             public DoseAreaProduct MilligraySquareMillimeters
 #if NET7_0_OR_GREATER
-                => DoseAreaProduct.FromMilligraySquareMillimeters(QuantityValue.CreateChecked(value));
+                => DoseAreaProduct.FromMilligraySquareMillimeters(double.CreateChecked(value));
 #else
-                => DoseAreaProduct.FromMilligraySquareMillimeters(value.ToQuantityValue());
+                => DoseAreaProduct.FromMilligraySquareMillimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

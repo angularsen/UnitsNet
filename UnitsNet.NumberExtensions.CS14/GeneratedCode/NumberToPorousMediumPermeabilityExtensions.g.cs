@@ -42,44 +42,44 @@ namespace UnitsNet.NumberExtensions.NumberToPorousMediumPermeability
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="PorousMediumPermeability.FromDarcys(QuantityValue)" />
+            /// <inheritdoc cref="PorousMediumPermeability.FromDarcys(double)" />
             public PorousMediumPermeability Darcys
 #if NET7_0_OR_GREATER
-                => PorousMediumPermeability.FromDarcys(QuantityValue.CreateChecked(value));
+                => PorousMediumPermeability.FromDarcys(double.CreateChecked(value));
 #else
-                => PorousMediumPermeability.FromDarcys(value.ToQuantityValue());
+                => PorousMediumPermeability.FromDarcys(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="PorousMediumPermeability.FromMicrodarcys(QuantityValue)" />
+            /// <inheritdoc cref="PorousMediumPermeability.FromMicrodarcys(double)" />
             public PorousMediumPermeability Microdarcys
 #if NET7_0_OR_GREATER
-                => PorousMediumPermeability.FromMicrodarcys(QuantityValue.CreateChecked(value));
+                => PorousMediumPermeability.FromMicrodarcys(double.CreateChecked(value));
 #else
-                => PorousMediumPermeability.FromMicrodarcys(value.ToQuantityValue());
+                => PorousMediumPermeability.FromMicrodarcys(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="PorousMediumPermeability.FromMillidarcys(QuantityValue)" />
+            /// <inheritdoc cref="PorousMediumPermeability.FromMillidarcys(double)" />
             public PorousMediumPermeability Millidarcys
 #if NET7_0_OR_GREATER
-                => PorousMediumPermeability.FromMillidarcys(QuantityValue.CreateChecked(value));
+                => PorousMediumPermeability.FromMillidarcys(double.CreateChecked(value));
 #else
-                => PorousMediumPermeability.FromMillidarcys(value.ToQuantityValue());
+                => PorousMediumPermeability.FromMillidarcys(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="PorousMediumPermeability.FromSquareCentimeters(QuantityValue)" />
+            /// <inheritdoc cref="PorousMediumPermeability.FromSquareCentimeters(double)" />
             public PorousMediumPermeability SquareCentimeters
 #if NET7_0_OR_GREATER
-                => PorousMediumPermeability.FromSquareCentimeters(QuantityValue.CreateChecked(value));
+                => PorousMediumPermeability.FromSquareCentimeters(double.CreateChecked(value));
 #else
-                => PorousMediumPermeability.FromSquareCentimeters(value.ToQuantityValue());
+                => PorousMediumPermeability.FromSquareCentimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="PorousMediumPermeability.FromSquareMeters(QuantityValue)" />
+            /// <inheritdoc cref="PorousMediumPermeability.FromSquareMeters(double)" />
             public PorousMediumPermeability SquareMeters
 #if NET7_0_OR_GREATER
-                => PorousMediumPermeability.FromSquareMeters(QuantityValue.CreateChecked(value));
+                => PorousMediumPermeability.FromSquareMeters(double.CreateChecked(value));
 #else
-                => PorousMediumPermeability.FromSquareMeters(value.ToQuantityValue());
+                => PorousMediumPermeability.FromSquareMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

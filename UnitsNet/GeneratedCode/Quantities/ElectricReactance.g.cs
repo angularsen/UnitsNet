@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct ElectricReactance :
         IArithmeticQuantity<ElectricReactance, ElectricReactanceUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricReactance, ElectricReactance, QuantityValue>,
+        IDivisionOperators<ElectricReactance, ElectricReactance, double>,
         IComparisonOperators<ElectricReactance, ElectricReactance, bool>,
         IParsable<ElectricReactance>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -154,7 +154,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricReactance(QuantityValue value, ElectricReactanceUnit unit)
+        public ElectricReactance(double value, ElectricReactanceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -168,7 +168,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricReactance(QuantityValue value, UnitSystem unitSystem)
+        public ElectricReactance(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -210,7 +210,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public ElectricReactanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -244,44 +244,44 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricReactanceUnit.Gigaohm"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricReactanceUnit.Gigaohm"/>
         /// </summary>
-        public QuantityValue Gigaohms => this.As(ElectricReactanceUnit.Gigaohm);
+        public double Gigaohms => this.As(ElectricReactanceUnit.Gigaohm);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricReactanceUnit.Kiloohm"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricReactanceUnit.Kiloohm"/>
         /// </summary>
-        public QuantityValue Kiloohms => this.As(ElectricReactanceUnit.Kiloohm);
+        public double Kiloohms => this.As(ElectricReactanceUnit.Kiloohm);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricReactanceUnit.Megaohm"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricReactanceUnit.Megaohm"/>
         /// </summary>
-        public QuantityValue Megaohms => this.As(ElectricReactanceUnit.Megaohm);
+        public double Megaohms => this.As(ElectricReactanceUnit.Megaohm);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricReactanceUnit.Microohm"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricReactanceUnit.Microohm"/>
         /// </summary>
-        public QuantityValue Microohms => this.As(ElectricReactanceUnit.Microohm);
+        public double Microohms => this.As(ElectricReactanceUnit.Microohm);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricReactanceUnit.Milliohm"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricReactanceUnit.Milliohm"/>
         /// </summary>
-        public QuantityValue Milliohms => this.As(ElectricReactanceUnit.Milliohm);
+        public double Milliohms => this.As(ElectricReactanceUnit.Milliohm);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricReactanceUnit.Nanoohm"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricReactanceUnit.Nanoohm"/>
         /// </summary>
-        public QuantityValue Nanoohms => this.As(ElectricReactanceUnit.Nanoohm);
+        public double Nanoohms => this.As(ElectricReactanceUnit.Nanoohm);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricReactanceUnit.Ohm"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricReactanceUnit.Ohm"/>
         /// </summary>
-        public QuantityValue Ohms => this.As(ElectricReactanceUnit.Ohm);
+        public double Ohms => this.As(ElectricReactanceUnit.Ohm);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricReactanceUnit.Teraohm"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricReactanceUnit.Teraohm"/>
         /// </summary>
-        public QuantityValue Teraohms => this.As(ElectricReactanceUnit.Teraohm);
+        public double Teraohms => this.As(ElectricReactanceUnit.Teraohm);
 
         #endregion
 
@@ -315,7 +315,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricReactance"/> from <see cref="ElectricReactanceUnit.Gigaohm"/>.
         /// </summary>
-        public static ElectricReactance FromGigaohms(QuantityValue value)
+        public static ElectricReactance FromGigaohms(double value)
         {
             return new ElectricReactance(value, ElectricReactanceUnit.Gigaohm);
         }
@@ -323,7 +323,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricReactance"/> from <see cref="ElectricReactanceUnit.Kiloohm"/>.
         /// </summary>
-        public static ElectricReactance FromKiloohms(QuantityValue value)
+        public static ElectricReactance FromKiloohms(double value)
         {
             return new ElectricReactance(value, ElectricReactanceUnit.Kiloohm);
         }
@@ -331,7 +331,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricReactance"/> from <see cref="ElectricReactanceUnit.Megaohm"/>.
         /// </summary>
-        public static ElectricReactance FromMegaohms(QuantityValue value)
+        public static ElectricReactance FromMegaohms(double value)
         {
             return new ElectricReactance(value, ElectricReactanceUnit.Megaohm);
         }
@@ -339,7 +339,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricReactance"/> from <see cref="ElectricReactanceUnit.Microohm"/>.
         /// </summary>
-        public static ElectricReactance FromMicroohms(QuantityValue value)
+        public static ElectricReactance FromMicroohms(double value)
         {
             return new ElectricReactance(value, ElectricReactanceUnit.Microohm);
         }
@@ -347,7 +347,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricReactance"/> from <see cref="ElectricReactanceUnit.Milliohm"/>.
         /// </summary>
-        public static ElectricReactance FromMilliohms(QuantityValue value)
+        public static ElectricReactance FromMilliohms(double value)
         {
             return new ElectricReactance(value, ElectricReactanceUnit.Milliohm);
         }
@@ -355,7 +355,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricReactance"/> from <see cref="ElectricReactanceUnit.Nanoohm"/>.
         /// </summary>
-        public static ElectricReactance FromNanoohms(QuantityValue value)
+        public static ElectricReactance FromNanoohms(double value)
         {
             return new ElectricReactance(value, ElectricReactanceUnit.Nanoohm);
         }
@@ -363,7 +363,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricReactance"/> from <see cref="ElectricReactanceUnit.Ohm"/>.
         /// </summary>
-        public static ElectricReactance FromOhms(QuantityValue value)
+        public static ElectricReactance FromOhms(double value)
         {
             return new ElectricReactance(value, ElectricReactanceUnit.Ohm);
         }
@@ -371,7 +371,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricReactance"/> from <see cref="ElectricReactanceUnit.Teraohm"/>.
         /// </summary>
-        public static ElectricReactance FromTeraohms(QuantityValue value)
+        public static ElectricReactance FromTeraohms(double value)
         {
             return new ElectricReactance(value, ElectricReactanceUnit.Teraohm);
         }
@@ -382,7 +382,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricReactance unit value.</returns>
-        public static ElectricReactance From(QuantityValue value, ElectricReactanceUnit fromUnit)
+        public static ElectricReactance From(double value, ElectricReactanceUnit fromUnit)
         {
             return new ElectricReactance(value, fromUnit);
         }
@@ -547,25 +547,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricReactance"/> from multiplying value and <see cref="ElectricReactance"/>.</summary>
-        public static ElectricReactance operator *(QuantityValue left, ElectricReactance right)
+        public static ElectricReactance operator *(double left, ElectricReactance right)
         {
             return new ElectricReactance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricReactance"/> from multiplying value and <see cref="ElectricReactance"/>.</summary>
-        public static ElectricReactance operator *(ElectricReactance left, QuantityValue right)
+        public static ElectricReactance operator *(ElectricReactance left, double right)
         {
             return new ElectricReactance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricReactance"/> from dividing <see cref="ElectricReactance"/> by value.</summary>
-        public static ElectricReactance operator /(ElectricReactance left, QuantityValue right)
+        public static ElectricReactance operator /(ElectricReactance left, double right)
         {
             return new ElectricReactance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricReactance"/> by <see cref="ElectricReactance"/>.</summary>
-        public static QuantityValue operator /(ElectricReactance left, ElectricReactance right)
+        public static double operator /(ElectricReactance left, ElectricReactance right)
         {
             return left.Ohms / right.Ohms;
         }

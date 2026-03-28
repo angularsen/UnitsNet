@@ -42,28 +42,28 @@ namespace UnitsNet.NumberExtensions.NumberToMolality
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Molality.FromMillimolesPerKilogram(QuantityValue)" />
+            /// <inheritdoc cref="Molality.FromMillimolesPerKilogram(double)" />
             public Molality MillimolesPerKilogram
 #if NET7_0_OR_GREATER
-                => Molality.FromMillimolesPerKilogram(QuantityValue.CreateChecked(value));
+                => Molality.FromMillimolesPerKilogram(double.CreateChecked(value));
 #else
-                => Molality.FromMillimolesPerKilogram(value.ToQuantityValue());
+                => Molality.FromMillimolesPerKilogram(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Molality.FromMolesPerGram(QuantityValue)" />
+            /// <inheritdoc cref="Molality.FromMolesPerGram(double)" />
             public Molality MolesPerGram
 #if NET7_0_OR_GREATER
-                => Molality.FromMolesPerGram(QuantityValue.CreateChecked(value));
+                => Molality.FromMolesPerGram(double.CreateChecked(value));
 #else
-                => Molality.FromMolesPerGram(value.ToQuantityValue());
+                => Molality.FromMolesPerGram(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Molality.FromMolesPerKilogram(QuantityValue)" />
+            /// <inheritdoc cref="Molality.FromMolesPerKilogram(double)" />
             public Molality MolesPerKilogram
 #if NET7_0_OR_GREATER
-                => Molality.FromMolesPerKilogram(QuantityValue.CreateChecked(value));
+                => Molality.FromMolesPerKilogram(double.CreateChecked(value));
 #else
-                => Molality.FromMolesPerKilogram(value.ToQuantityValue());
+                => Molality.FromMolesPerKilogram(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

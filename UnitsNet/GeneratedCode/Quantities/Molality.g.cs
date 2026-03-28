@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct Molality :
         IArithmeticQuantity<Molality, MolalityUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Molality, Molality, QuantityValue>,
+        IDivisionOperators<Molality, Molality, double>,
         IComparisonOperators<Molality, Molality, bool>,
         IParsable<Molality>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Molality(QuantityValue value, MolalityUnit unit)
+        public Molality(double value, MolalityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -153,7 +153,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Molality(QuantityValue value, UnitSystem unitSystem)
+        public Molality(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -195,7 +195,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public MolalityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -229,19 +229,19 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolalityUnit.MillimolePerKilogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolalityUnit.MillimolePerKilogram"/>
         /// </summary>
-        public QuantityValue MillimolesPerKilogram => this.As(MolalityUnit.MillimolePerKilogram);
+        public double MillimolesPerKilogram => this.As(MolalityUnit.MillimolePerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolalityUnit.MolePerGram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolalityUnit.MolePerGram"/>
         /// </summary>
-        public QuantityValue MolesPerGram => this.As(MolalityUnit.MolePerGram);
+        public double MolesPerGram => this.As(MolalityUnit.MolePerGram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolalityUnit.MolePerKilogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolalityUnit.MolePerKilogram"/>
         /// </summary>
-        public QuantityValue MolesPerKilogram => this.As(MolalityUnit.MolePerKilogram);
+        public double MolesPerKilogram => this.As(MolalityUnit.MolePerKilogram);
 
         #endregion
 
@@ -275,7 +275,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molality"/> from <see cref="MolalityUnit.MillimolePerKilogram"/>.
         /// </summary>
-        public static Molality FromMillimolesPerKilogram(QuantityValue value)
+        public static Molality FromMillimolesPerKilogram(double value)
         {
             return new Molality(value, MolalityUnit.MillimolePerKilogram);
         }
@@ -283,7 +283,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molality"/> from <see cref="MolalityUnit.MolePerGram"/>.
         /// </summary>
-        public static Molality FromMolesPerGram(QuantityValue value)
+        public static Molality FromMolesPerGram(double value)
         {
             return new Molality(value, MolalityUnit.MolePerGram);
         }
@@ -291,7 +291,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Molality"/> from <see cref="MolalityUnit.MolePerKilogram"/>.
         /// </summary>
-        public static Molality FromMolesPerKilogram(QuantityValue value)
+        public static Molality FromMolesPerKilogram(double value)
         {
             return new Molality(value, MolalityUnit.MolePerKilogram);
         }
@@ -302,7 +302,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Molality unit value.</returns>
-        public static Molality From(QuantityValue value, MolalityUnit fromUnit)
+        public static Molality From(double value, MolalityUnit fromUnit)
         {
             return new Molality(value, fromUnit);
         }
@@ -467,25 +467,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Molality"/> from multiplying value and <see cref="Molality"/>.</summary>
-        public static Molality operator *(QuantityValue left, Molality right)
+        public static Molality operator *(double left, Molality right)
         {
             return new Molality(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Molality"/> from multiplying value and <see cref="Molality"/>.</summary>
-        public static Molality operator *(Molality left, QuantityValue right)
+        public static Molality operator *(Molality left, double right)
         {
             return new Molality(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Molality"/> from dividing <see cref="Molality"/> by value.</summary>
-        public static Molality operator /(Molality left, QuantityValue right)
+        public static Molality operator /(Molality left, double right)
         {
             return new Molality(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Molality"/> by <see cref="Molality"/>.</summary>
-        public static QuantityValue operator /(Molality left, Molality right)
+        public static double operator /(Molality left, Molality right)
         {
             return left.MolesPerKilogram / right.MolesPerKilogram;
         }

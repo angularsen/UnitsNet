@@ -22,7 +22,7 @@ namespace UnitsNet
         public AmplitudeRatio(ElectricPotential voltage, byte significantDigits = 15)
             : this()
         {
-            if (!QuantityValue.IsPositive(voltage.Value))
+            if (voltage.Value <= 0)
             {
                 throw new ArgumentOutOfRangeException(
                     nameof(voltage),
@@ -30,7 +30,7 @@ namespace UnitsNet
             }
 
             // E(dBV) = 20*log10(value(V)/reference(V))
-            _value = voltage.Volts.ToLogSpace(LogarithmicScalingFactor, significantDigits);
+            _value = (double)((QuantityValue)voltage.Volts).ToLogSpace(LogarithmicScalingFactor, significantDigits);
             _unit = AmplitudeRatioUnit.DecibelVolt;
         }
 
@@ -50,7 +50,7 @@ namespace UnitsNet
         public ElectricPotential ToElectricPotential(byte significantDigits = 15)
         {
             // E(V) = 1V * 10^(E(dBV)/20)
-            return ElectricPotential.FromVolts(DecibelVolts.ToLinearSpace(LogarithmicScalingFactor, significantDigits));
+            return ElectricPotential.FromVolts((double)((QuantityValue)DecibelVolts).ToLinearSpace(LogarithmicScalingFactor, significantDigits));
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace UnitsNet
         public PowerRatio ToPowerRatio(ElectricResistance impedance, byte significantDigits = 15)
         {
             // P(dBW) = E(dBV) - 10*log10(Z(Ω)/1)
-            return PowerRatio.FromDecibelWatts(DecibelVolts - impedance.Ohms.ToLogSpace(LogarithmicScalingFactor / 2, significantDigits));
+            return PowerRatio.FromDecibelWatts(DecibelVolts - (double)((QuantityValue)impedance.Ohms).ToLogSpace(LogarithmicScalingFactor / 2, significantDigits));
         }
 
         #region Static Methods

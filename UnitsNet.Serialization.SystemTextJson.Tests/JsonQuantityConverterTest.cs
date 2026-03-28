@@ -23,7 +23,7 @@ public class JsonQuantityConverterTest
     {
         // Arrange
         var json = """{"Value":4.2,"Unit":"g"}""";
-        var expected = new Mass(4.2m, MassUnit.Gram);
+        var expected = new Mass(4.2, MassUnit.Gram);
 
         var options = new JsonSerializerOptions();
         options.Converters.Add(new QuantityValueDecimalNotationConverter());
@@ -44,7 +44,7 @@ public class JsonQuantityConverterTest
     {
         // Arrange
         var json = """{"value":4.2,"unit":"g"}""";
-        var expected = new Mass(4.2m, MassUnit.Gram);
+        var expected = new Mass(4.2, MassUnit.Gram);
 
         var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
         options.Converters.Add(new QuantityValueDecimalNotationConverter());
@@ -65,7 +65,7 @@ public class JsonQuantityConverterTest
     {
         // Arrange
         var json = """{"Value":{"N":1}}""";
-        var expected = new Mass(QuantityValue.One, MassUnit.Kilogram);
+        var expected = new Mass(1, MassUnit.Kilogram);
         var options = new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault };
         options.Converters.Add(QuantityValueFractionalNotationConverter.Default);
         options.Converters.Add(new JsonQuantityConverter<Mass, MassUnit>(Mass.Info));
@@ -84,7 +84,7 @@ public class JsonQuantityConverterTest
     {
         // Arrange
         var json = """{"Unit":6}""";
-        var expected = new Mass(QuantityValue.Zero, MassUnit.Gram);
+        var expected = new Mass(0, MassUnit.Gram);
         var options = new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault };
         options.Converters.Add(new JsonQuantityConverter<Mass, MassUnit>(Mass.Info));
 
@@ -196,7 +196,7 @@ public class JsonQuantityConverterTest
     {
         // Arrange
         var json = """{"VALUE":4.2,"uNit":"G"}""";
-        var expected = new Mass(4.2m, MassUnit.Gram);
+        var expected = new Mass(4.2, MassUnit.Gram);
 
         var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true};
         options.Converters.Add(new QuantityValueDecimalNotationConverter());
@@ -217,7 +217,7 @@ public class JsonQuantityConverterTest
     {
         // Arrange
         var json = """{"Value":4.2,"Unit":"g", "Something":"else"}""";
-        var expected = new Mass(4.2m, MassUnit.Gram);
+        var expected = new Mass(4.2, MassUnit.Gram);
 
         var options = new JsonSerializerOptions {PropertyNameCaseInsensitive = caseInsensitive};
         options.Converters.Add(new QuantityValueDecimalNotationConverter());

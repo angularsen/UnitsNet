@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct VolumePerLength :
         IArithmeticQuantity<VolumePerLength, VolumePerLengthUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<VolumePerLength, VolumePerLength, QuantityValue>,
+        IDivisionOperators<VolumePerLength, VolumePerLength, double>,
         IComparisonOperators<VolumePerLength, VolumePerLength, bool>,
         IParsable<VolumePerLength>,
 #endif
@@ -51,7 +51,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -154,7 +154,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public VolumePerLength(QuantityValue value, VolumePerLengthUnit unit)
+        public VolumePerLength(double value, VolumePerLengthUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -168,7 +168,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public VolumePerLength(QuantityValue value, UnitSystem unitSystem)
+        public VolumePerLength(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -210,7 +210,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public VolumePerLengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -244,49 +244,49 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumePerLengthUnit.CubicMeterPerMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumePerLengthUnit.CubicMeterPerMeter"/>
         /// </summary>
-        public QuantityValue CubicMetersPerMeter => this.As(VolumePerLengthUnit.CubicMeterPerMeter);
+        public double CubicMetersPerMeter => this.As(VolumePerLengthUnit.CubicMeterPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumePerLengthUnit.CubicYardPerFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumePerLengthUnit.CubicYardPerFoot"/>
         /// </summary>
-        public QuantityValue CubicYardsPerFoot => this.As(VolumePerLengthUnit.CubicYardPerFoot);
+        public double CubicYardsPerFoot => this.As(VolumePerLengthUnit.CubicYardPerFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumePerLengthUnit.CubicYardPerUsSurveyFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumePerLengthUnit.CubicYardPerUsSurveyFoot"/>
         /// </summary>
-        public QuantityValue CubicYardsPerUsSurveyFoot => this.As(VolumePerLengthUnit.CubicYardPerUsSurveyFoot);
+        public double CubicYardsPerUsSurveyFoot => this.As(VolumePerLengthUnit.CubicYardPerUsSurveyFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumePerLengthUnit.ImperialGallonPerMile"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumePerLengthUnit.ImperialGallonPerMile"/>
         /// </summary>
-        public QuantityValue ImperialGallonsPerMile => this.As(VolumePerLengthUnit.ImperialGallonPerMile);
+        public double ImperialGallonsPerMile => this.As(VolumePerLengthUnit.ImperialGallonPerMile);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumePerLengthUnit.LiterPerKilometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumePerLengthUnit.LiterPerKilometer"/>
         /// </summary>
-        public QuantityValue LitersPerKilometer => this.As(VolumePerLengthUnit.LiterPerKilometer);
+        public double LitersPerKilometer => this.As(VolumePerLengthUnit.LiterPerKilometer);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumePerLengthUnit.LiterPerMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumePerLengthUnit.LiterPerMeter"/>
         /// </summary>
-        public QuantityValue LitersPerMeter => this.As(VolumePerLengthUnit.LiterPerMeter);
+        public double LitersPerMeter => this.As(VolumePerLengthUnit.LiterPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumePerLengthUnit.LiterPerMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumePerLengthUnit.LiterPerMillimeter"/>
         /// </summary>
-        public QuantityValue LitersPerMillimeter => this.As(VolumePerLengthUnit.LiterPerMillimeter);
+        public double LitersPerMillimeter => this.As(VolumePerLengthUnit.LiterPerMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumePerLengthUnit.OilBarrelPerFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumePerLengthUnit.OilBarrelPerFoot"/>
         /// </summary>
-        public QuantityValue OilBarrelsPerFoot => this.As(VolumePerLengthUnit.OilBarrelPerFoot);
+        public double OilBarrelsPerFoot => this.As(VolumePerLengthUnit.OilBarrelPerFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumePerLengthUnit.UsGallonPerMile"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumePerLengthUnit.UsGallonPerMile"/>
         /// </summary>
-        public QuantityValue UsGallonsPerMile => this.As(VolumePerLengthUnit.UsGallonPerMile);
+        public double UsGallonsPerMile => this.As(VolumePerLengthUnit.UsGallonPerMile);
 
         #endregion
 
@@ -320,7 +320,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.CubicMeterPerMeter"/>.
         /// </summary>
-        public static VolumePerLength FromCubicMetersPerMeter(QuantityValue value)
+        public static VolumePerLength FromCubicMetersPerMeter(double value)
         {
             return new VolumePerLength(value, VolumePerLengthUnit.CubicMeterPerMeter);
         }
@@ -328,7 +328,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.CubicYardPerFoot"/>.
         /// </summary>
-        public static VolumePerLength FromCubicYardsPerFoot(QuantityValue value)
+        public static VolumePerLength FromCubicYardsPerFoot(double value)
         {
             return new VolumePerLength(value, VolumePerLengthUnit.CubicYardPerFoot);
         }
@@ -336,7 +336,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.CubicYardPerUsSurveyFoot"/>.
         /// </summary>
-        public static VolumePerLength FromCubicYardsPerUsSurveyFoot(QuantityValue value)
+        public static VolumePerLength FromCubicYardsPerUsSurveyFoot(double value)
         {
             return new VolumePerLength(value, VolumePerLengthUnit.CubicYardPerUsSurveyFoot);
         }
@@ -344,7 +344,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.ImperialGallonPerMile"/>.
         /// </summary>
-        public static VolumePerLength FromImperialGallonsPerMile(QuantityValue value)
+        public static VolumePerLength FromImperialGallonsPerMile(double value)
         {
             return new VolumePerLength(value, VolumePerLengthUnit.ImperialGallonPerMile);
         }
@@ -352,7 +352,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.LiterPerKilometer"/>.
         /// </summary>
-        public static VolumePerLength FromLitersPerKilometer(QuantityValue value)
+        public static VolumePerLength FromLitersPerKilometer(double value)
         {
             return new VolumePerLength(value, VolumePerLengthUnit.LiterPerKilometer);
         }
@@ -360,7 +360,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.LiterPerMeter"/>.
         /// </summary>
-        public static VolumePerLength FromLitersPerMeter(QuantityValue value)
+        public static VolumePerLength FromLitersPerMeter(double value)
         {
             return new VolumePerLength(value, VolumePerLengthUnit.LiterPerMeter);
         }
@@ -368,7 +368,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.LiterPerMillimeter"/>.
         /// </summary>
-        public static VolumePerLength FromLitersPerMillimeter(QuantityValue value)
+        public static VolumePerLength FromLitersPerMillimeter(double value)
         {
             return new VolumePerLength(value, VolumePerLengthUnit.LiterPerMillimeter);
         }
@@ -376,7 +376,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.OilBarrelPerFoot"/>.
         /// </summary>
-        public static VolumePerLength FromOilBarrelsPerFoot(QuantityValue value)
+        public static VolumePerLength FromOilBarrelsPerFoot(double value)
         {
             return new VolumePerLength(value, VolumePerLengthUnit.OilBarrelPerFoot);
         }
@@ -384,7 +384,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumePerLength"/> from <see cref="VolumePerLengthUnit.UsGallonPerMile"/>.
         /// </summary>
-        public static VolumePerLength FromUsGallonsPerMile(QuantityValue value)
+        public static VolumePerLength FromUsGallonsPerMile(double value)
         {
             return new VolumePerLength(value, VolumePerLengthUnit.UsGallonPerMile);
         }
@@ -395,7 +395,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>VolumePerLength unit value.</returns>
-        public static VolumePerLength From(QuantityValue value, VolumePerLengthUnit fromUnit)
+        public static VolumePerLength From(double value, VolumePerLengthUnit fromUnit)
         {
             return new VolumePerLength(value, fromUnit);
         }
@@ -560,25 +560,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="VolumePerLength"/> from multiplying value and <see cref="VolumePerLength"/>.</summary>
-        public static VolumePerLength operator *(QuantityValue left, VolumePerLength right)
+        public static VolumePerLength operator *(double left, VolumePerLength right)
         {
             return new VolumePerLength(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="VolumePerLength"/> from multiplying value and <see cref="VolumePerLength"/>.</summary>
-        public static VolumePerLength operator *(VolumePerLength left, QuantityValue right)
+        public static VolumePerLength operator *(VolumePerLength left, double right)
         {
             return new VolumePerLength(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="VolumePerLength"/> from dividing <see cref="VolumePerLength"/> by value.</summary>
-        public static VolumePerLength operator /(VolumePerLength left, QuantityValue right)
+        public static VolumePerLength operator /(VolumePerLength left, double right)
         {
             return new VolumePerLength(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="VolumePerLength"/> by <see cref="VolumePerLength"/>.</summary>
-        public static QuantityValue operator /(VolumePerLength left, VolumePerLength right)
+        public static double operator /(VolumePerLength left, VolumePerLength right)
         {
             return left.CubicMetersPerMeter / right.CubicMetersPerMeter;
         }

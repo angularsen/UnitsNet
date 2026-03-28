@@ -32,609 +32,609 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
     /// </summary>
     public static class NumberToVolumeExtensions
     {
-        /// <inheritdoc cref="Volume.FromAcreFeet(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromAcreFeet(double)" />
         public static Volume AcreFeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromAcreFeet(QuantityValue.CreateChecked(value));
+            => Volume.FromAcreFeet(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromAcreFeet(value.ToQuantityValue());
+            => Volume.FromAcreFeet(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromAuTablespoons(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromAuTablespoons(double)" />
         public static Volume AuTablespoons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromAuTablespoons(QuantityValue.CreateChecked(value));
+            => Volume.FromAuTablespoons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromAuTablespoons(value.ToQuantityValue());
+            => Volume.FromAuTablespoons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromBoardFeet(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromBoardFeet(double)" />
         public static Volume BoardFeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromBoardFeet(QuantityValue.CreateChecked(value));
+            => Volume.FromBoardFeet(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromBoardFeet(value.ToQuantityValue());
+            => Volume.FromBoardFeet(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromCentiliters(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromCentiliters(double)" />
         public static Volume Centiliters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromCentiliters(QuantityValue.CreateChecked(value));
+            => Volume.FromCentiliters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromCentiliters(value.ToQuantityValue());
+            => Volume.FromCentiliters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromCubicCentimeters(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromCubicCentimeters(double)" />
         public static Volume CubicCentimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromCubicCentimeters(QuantityValue.CreateChecked(value));
+            => Volume.FromCubicCentimeters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromCubicCentimeters(value.ToQuantityValue());
+            => Volume.FromCubicCentimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromCubicDecimeters(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromCubicDecimeters(double)" />
         public static Volume CubicDecimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromCubicDecimeters(QuantityValue.CreateChecked(value));
+            => Volume.FromCubicDecimeters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromCubicDecimeters(value.ToQuantityValue());
+            => Volume.FromCubicDecimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromCubicFeet(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromCubicFeet(double)" />
         public static Volume CubicFeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromCubicFeet(QuantityValue.CreateChecked(value));
+            => Volume.FromCubicFeet(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromCubicFeet(value.ToQuantityValue());
+            => Volume.FromCubicFeet(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromCubicHectometers(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromCubicHectometers(double)" />
         public static Volume CubicHectometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromCubicHectometers(QuantityValue.CreateChecked(value));
+            => Volume.FromCubicHectometers(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromCubicHectometers(value.ToQuantityValue());
+            => Volume.FromCubicHectometers(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromCubicInches(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromCubicInches(double)" />
         public static Volume CubicInches<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromCubicInches(QuantityValue.CreateChecked(value));
+            => Volume.FromCubicInches(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromCubicInches(value.ToQuantityValue());
+            => Volume.FromCubicInches(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromCubicKilometers(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromCubicKilometers(double)" />
         public static Volume CubicKilometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromCubicKilometers(QuantityValue.CreateChecked(value));
+            => Volume.FromCubicKilometers(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromCubicKilometers(value.ToQuantityValue());
+            => Volume.FromCubicKilometers(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromCubicMeters(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromCubicMeters(double)" />
         public static Volume CubicMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromCubicMeters(QuantityValue.CreateChecked(value));
+            => Volume.FromCubicMeters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromCubicMeters(value.ToQuantityValue());
+            => Volume.FromCubicMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromCubicMicrometers(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromCubicMicrometers(double)" />
         public static Volume CubicMicrometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromCubicMicrometers(QuantityValue.CreateChecked(value));
+            => Volume.FromCubicMicrometers(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromCubicMicrometers(value.ToQuantityValue());
+            => Volume.FromCubicMicrometers(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromCubicMiles(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromCubicMiles(double)" />
         public static Volume CubicMiles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromCubicMiles(QuantityValue.CreateChecked(value));
+            => Volume.FromCubicMiles(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromCubicMiles(value.ToQuantityValue());
+            => Volume.FromCubicMiles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromCubicMillimeters(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromCubicMillimeters(double)" />
         public static Volume CubicMillimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromCubicMillimeters(QuantityValue.CreateChecked(value));
+            => Volume.FromCubicMillimeters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromCubicMillimeters(value.ToQuantityValue());
+            => Volume.FromCubicMillimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromCubicYards(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromCubicYards(double)" />
         public static Volume CubicYards<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromCubicYards(QuantityValue.CreateChecked(value));
+            => Volume.FromCubicYards(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromCubicYards(value.ToQuantityValue());
+            => Volume.FromCubicYards(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromDecaliters(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromDecaliters(double)" />
         public static Volume Decaliters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromDecaliters(QuantityValue.CreateChecked(value));
+            => Volume.FromDecaliters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromDecaliters(value.ToQuantityValue());
+            => Volume.FromDecaliters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromDecausGallons(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromDecausGallons(double)" />
         public static Volume DecausGallons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromDecausGallons(QuantityValue.CreateChecked(value));
+            => Volume.FromDecausGallons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromDecausGallons(value.ToQuantityValue());
+            => Volume.FromDecausGallons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromDeciliters(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromDeciliters(double)" />
         public static Volume Deciliters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromDeciliters(QuantityValue.CreateChecked(value));
+            => Volume.FromDeciliters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromDeciliters(value.ToQuantityValue());
+            => Volume.FromDeciliters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromDeciusGallons(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromDeciusGallons(double)" />
         public static Volume DeciusGallons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromDeciusGallons(QuantityValue.CreateChecked(value));
+            => Volume.FromDeciusGallons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromDeciusGallons(value.ToQuantityValue());
+            => Volume.FromDeciusGallons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromHectocubicFeet(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromHectocubicFeet(double)" />
         public static Volume HectocubicFeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromHectocubicFeet(QuantityValue.CreateChecked(value));
+            => Volume.FromHectocubicFeet(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromHectocubicFeet(value.ToQuantityValue());
+            => Volume.FromHectocubicFeet(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromHectocubicMeters(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromHectocubicMeters(double)" />
         public static Volume HectocubicMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromHectocubicMeters(QuantityValue.CreateChecked(value));
+            => Volume.FromHectocubicMeters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromHectocubicMeters(value.ToQuantityValue());
+            => Volume.FromHectocubicMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromHectoliters(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromHectoliters(double)" />
         public static Volume Hectoliters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromHectoliters(QuantityValue.CreateChecked(value));
+            => Volume.FromHectoliters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromHectoliters(value.ToQuantityValue());
+            => Volume.FromHectoliters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromHectousGallons(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromHectousGallons(double)" />
         public static Volume HectousGallons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromHectousGallons(QuantityValue.CreateChecked(value));
+            => Volume.FromHectousGallons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromHectousGallons(value.ToQuantityValue());
+            => Volume.FromHectousGallons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double)" />
         public static Volume ImperialBeerBarrels<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromImperialBeerBarrels(QuantityValue.CreateChecked(value));
+            => Volume.FromImperialBeerBarrels(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromImperialBeerBarrels(value.ToQuantityValue());
+            => Volume.FromImperialBeerBarrels(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromImperialGallons(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromImperialGallons(double)" />
         public static Volume ImperialGallons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromImperialGallons(QuantityValue.CreateChecked(value));
+            => Volume.FromImperialGallons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromImperialGallons(value.ToQuantityValue());
+            => Volume.FromImperialGallons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromImperialOunces(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromImperialOunces(double)" />
         public static Volume ImperialOunces<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromImperialOunces(QuantityValue.CreateChecked(value));
+            => Volume.FromImperialOunces(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromImperialOunces(value.ToQuantityValue());
+            => Volume.FromImperialOunces(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromImperialPints(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromImperialPints(double)" />
         public static Volume ImperialPints<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromImperialPints(QuantityValue.CreateChecked(value));
+            => Volume.FromImperialPints(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromImperialPints(value.ToQuantityValue());
+            => Volume.FromImperialPints(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromImperialQuarts(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromImperialQuarts(double)" />
         public static Volume ImperialQuarts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromImperialQuarts(QuantityValue.CreateChecked(value));
+            => Volume.FromImperialQuarts(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromImperialQuarts(value.ToQuantityValue());
+            => Volume.FromImperialQuarts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromKilocubicFeet(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromKilocubicFeet(double)" />
         public static Volume KilocubicFeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromKilocubicFeet(QuantityValue.CreateChecked(value));
+            => Volume.FromKilocubicFeet(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromKilocubicFeet(value.ToQuantityValue());
+            => Volume.FromKilocubicFeet(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromKilocubicMeters(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromKilocubicMeters(double)" />
         public static Volume KilocubicMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromKilocubicMeters(QuantityValue.CreateChecked(value));
+            => Volume.FromKilocubicMeters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromKilocubicMeters(value.ToQuantityValue());
+            => Volume.FromKilocubicMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromKiloimperialGallons(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromKiloimperialGallons(double)" />
         public static Volume KiloimperialGallons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromKiloimperialGallons(QuantityValue.CreateChecked(value));
+            => Volume.FromKiloimperialGallons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromKiloimperialGallons(value.ToQuantityValue());
+            => Volume.FromKiloimperialGallons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromKiloliters(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromKiloliters(double)" />
         public static Volume Kiloliters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromKiloliters(QuantityValue.CreateChecked(value));
+            => Volume.FromKiloliters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromKiloliters(value.ToQuantityValue());
+            => Volume.FromKiloliters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromKilousGallons(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromKilousGallons(double)" />
         public static Volume KilousGallons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromKilousGallons(QuantityValue.CreateChecked(value));
+            => Volume.FromKilousGallons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromKilousGallons(value.ToQuantityValue());
+            => Volume.FromKilousGallons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromLiters(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromLiters(double)" />
         public static Volume Liters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromLiters(QuantityValue.CreateChecked(value));
+            => Volume.FromLiters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromLiters(value.ToQuantityValue());
+            => Volume.FromLiters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromMegacubicFeet(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromMegacubicFeet(double)" />
         public static Volume MegacubicFeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromMegacubicFeet(QuantityValue.CreateChecked(value));
+            => Volume.FromMegacubicFeet(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromMegacubicFeet(value.ToQuantityValue());
+            => Volume.FromMegacubicFeet(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromMegaimperialGallons(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromMegaimperialGallons(double)" />
         public static Volume MegaimperialGallons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromMegaimperialGallons(QuantityValue.CreateChecked(value));
+            => Volume.FromMegaimperialGallons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromMegaimperialGallons(value.ToQuantityValue());
+            => Volume.FromMegaimperialGallons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromMegaliters(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromMegaliters(double)" />
         public static Volume Megaliters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromMegaliters(QuantityValue.CreateChecked(value));
+            => Volume.FromMegaliters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromMegaliters(value.ToQuantityValue());
+            => Volume.FromMegaliters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromMegausGallons(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromMegausGallons(double)" />
         public static Volume MegausGallons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromMegausGallons(QuantityValue.CreateChecked(value));
+            => Volume.FromMegausGallons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromMegausGallons(value.ToQuantityValue());
+            => Volume.FromMegausGallons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromMetricCups(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromMetricCups(double)" />
         public static Volume MetricCups<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromMetricCups(QuantityValue.CreateChecked(value));
+            => Volume.FromMetricCups(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromMetricCups(value.ToQuantityValue());
+            => Volume.FromMetricCups(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromMetricTablespoons(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromMetricTablespoons(double)" />
         public static Volume MetricTablespoons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromMetricTablespoons(QuantityValue.CreateChecked(value));
+            => Volume.FromMetricTablespoons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromMetricTablespoons(value.ToQuantityValue());
+            => Volume.FromMetricTablespoons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromMetricTeaspoons(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromMetricTeaspoons(double)" />
         public static Volume MetricTeaspoons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromMetricTeaspoons(QuantityValue.CreateChecked(value));
+            => Volume.FromMetricTeaspoons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromMetricTeaspoons(value.ToQuantityValue());
+            => Volume.FromMetricTeaspoons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromMicroliters(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromMicroliters(double)" />
         public static Volume Microliters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromMicroliters(QuantityValue.CreateChecked(value));
+            => Volume.FromMicroliters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromMicroliters(value.ToQuantityValue());
+            => Volume.FromMicroliters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromMilliliters(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromMilliliters(double)" />
         public static Volume Milliliters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromMilliliters(QuantityValue.CreateChecked(value));
+            => Volume.FromMilliliters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromMilliliters(value.ToQuantityValue());
+            => Volume.FromMilliliters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromNanoliters(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromNanoliters(double)" />
         public static Volume Nanoliters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromNanoliters(QuantityValue.CreateChecked(value));
+            => Volume.FromNanoliters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromNanoliters(value.ToQuantityValue());
+            => Volume.FromNanoliters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromOilBarrels(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromOilBarrels(double)" />
         public static Volume OilBarrels<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromOilBarrels(QuantityValue.CreateChecked(value));
+            => Volume.FromOilBarrels(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromOilBarrels(value.ToQuantityValue());
+            => Volume.FromOilBarrels(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromUkTablespoons(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromUkTablespoons(double)" />
         public static Volume UkTablespoons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromUkTablespoons(QuantityValue.CreateChecked(value));
+            => Volume.FromUkTablespoons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromUkTablespoons(value.ToQuantityValue());
+            => Volume.FromUkTablespoons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromUsBeerBarrels(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromUsBeerBarrels(double)" />
         public static Volume UsBeerBarrels<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromUsBeerBarrels(QuantityValue.CreateChecked(value));
+            => Volume.FromUsBeerBarrels(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromUsBeerBarrels(value.ToQuantityValue());
+            => Volume.FromUsBeerBarrels(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromUsCustomaryCups(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromUsCustomaryCups(double)" />
         public static Volume UsCustomaryCups<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromUsCustomaryCups(QuantityValue.CreateChecked(value));
+            => Volume.FromUsCustomaryCups(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromUsCustomaryCups(value.ToQuantityValue());
+            => Volume.FromUsCustomaryCups(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromUsGallons(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromUsGallons(double)" />
         public static Volume UsGallons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromUsGallons(QuantityValue.CreateChecked(value));
+            => Volume.FromUsGallons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromUsGallons(value.ToQuantityValue());
+            => Volume.FromUsGallons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromUsLegalCups(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromUsLegalCups(double)" />
         public static Volume UsLegalCups<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromUsLegalCups(QuantityValue.CreateChecked(value));
+            => Volume.FromUsLegalCups(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromUsLegalCups(value.ToQuantityValue());
+            => Volume.FromUsLegalCups(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromUsOunces(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromUsOunces(double)" />
         public static Volume UsOunces<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromUsOunces(QuantityValue.CreateChecked(value));
+            => Volume.FromUsOunces(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromUsOunces(value.ToQuantityValue());
+            => Volume.FromUsOunces(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromUsPints(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromUsPints(double)" />
         public static Volume UsPints<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromUsPints(QuantityValue.CreateChecked(value));
+            => Volume.FromUsPints(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromUsPints(value.ToQuantityValue());
+            => Volume.FromUsPints(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromUsQuarts(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromUsQuarts(double)" />
         public static Volume UsQuarts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromUsQuarts(QuantityValue.CreateChecked(value));
+            => Volume.FromUsQuarts(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromUsQuarts(value.ToQuantityValue());
+            => Volume.FromUsQuarts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromUsTablespoons(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromUsTablespoons(double)" />
         public static Volume UsTablespoons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromUsTablespoons(QuantityValue.CreateChecked(value));
+            => Volume.FromUsTablespoons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromUsTablespoons(value.ToQuantityValue());
+            => Volume.FromUsTablespoons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Volume.FromUsTeaspoons(QuantityValue)" />
+        /// <inheritdoc cref="Volume.FromUsTeaspoons(double)" />
         public static Volume UsTeaspoons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Volume.FromUsTeaspoons(QuantityValue.CreateChecked(value));
+            => Volume.FromUsTeaspoons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Volume.FromUsTeaspoons(value.ToQuantityValue());
+            => Volume.FromUsTeaspoons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

@@ -91,7 +91,7 @@ public class AbbreviatedQuantityConverter<TQuantity, TUnit> : JsonQuantityConver
     public AbbreviatedQuantityConverter(JsonConverter<QuantityValue> valueConverter)
         // : this((QuantityInfo<TQuantity, TUnit>)UnitsNetSetup.Default.QuantityInfoLookup.GetQuantityInfo(typeof(TQuantity)), valueConverter)
         // TODO see if we want to expose the QuantityInfo (a.k.a. the static "Info" property) on the IQuantity<TQuantity, TUnit> interface
-        : this(TQuantity.From(QuantityValue.Zero, default).QuantityInfo, valueConverter)
+        : this(TQuantity.From(0d, default).QuantityInfo, valueConverter)
     {
     }
 #else

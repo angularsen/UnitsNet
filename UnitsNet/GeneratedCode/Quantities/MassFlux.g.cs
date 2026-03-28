@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct MassFlux :
         IArithmeticQuantity<MassFlux, MassFluxUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<MassFlux, MassFlux, QuantityValue>,
+        IDivisionOperators<MassFlux, MassFlux, double>,
         IDivisionOperators<MassFlux, Speed, Density>,
         IMultiplyOperators<MassFlux, Area, MassFlow>,
         IDivisionOperators<MassFlux, Density, Speed>,
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -166,7 +166,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public MassFlux(QuantityValue value, MassFluxUnit unit)
+        public MassFlux(double value, MassFluxUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -180,7 +180,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public MassFlux(QuantityValue value, UnitSystem unitSystem)
+        public MassFlux(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -222,7 +222,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public MassFluxUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -256,64 +256,64 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerHourPerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerHourPerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue GramsPerHourPerSquareCentimeter => this.As(MassFluxUnit.GramPerHourPerSquareCentimeter);
+        public double GramsPerHourPerSquareCentimeter => this.As(MassFluxUnit.GramPerHourPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerHourPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerHourPerSquareMeter"/>
         /// </summary>
-        public QuantityValue GramsPerHourPerSquareMeter => this.As(MassFluxUnit.GramPerHourPerSquareMeter);
+        public double GramsPerHourPerSquareMeter => this.As(MassFluxUnit.GramPerHourPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerHourPerSquareMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerHourPerSquareMillimeter"/>
         /// </summary>
-        public QuantityValue GramsPerHourPerSquareMillimeter => this.As(MassFluxUnit.GramPerHourPerSquareMillimeter);
+        public double GramsPerHourPerSquareMillimeter => this.As(MassFluxUnit.GramPerHourPerSquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerSecondPerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerSecondPerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue GramsPerSecondPerSquareCentimeter => this.As(MassFluxUnit.GramPerSecondPerSquareCentimeter);
+        public double GramsPerSecondPerSquareCentimeter => this.As(MassFluxUnit.GramPerSecondPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerSecondPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerSecondPerSquareMeter"/>
         /// </summary>
-        public QuantityValue GramsPerSecondPerSquareMeter => this.As(MassFluxUnit.GramPerSecondPerSquareMeter);
+        public double GramsPerSecondPerSquareMeter => this.As(MassFluxUnit.GramPerSecondPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerSecondPerSquareMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.GramPerSecondPerSquareMillimeter"/>
         /// </summary>
-        public QuantityValue GramsPerSecondPerSquareMillimeter => this.As(MassFluxUnit.GramPerSecondPerSquareMillimeter);
+        public double GramsPerSecondPerSquareMillimeter => this.As(MassFluxUnit.GramPerSecondPerSquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue KilogramsPerHourPerSquareCentimeter => this.As(MassFluxUnit.KilogramPerHourPerSquareCentimeter);
+        public double KilogramsPerHourPerSquareCentimeter => this.As(MassFluxUnit.KilogramPerHourPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareMeter"/>
         /// </summary>
-        public QuantityValue KilogramsPerHourPerSquareMeter => this.As(MassFluxUnit.KilogramPerHourPerSquareMeter);
+        public double KilogramsPerHourPerSquareMeter => this.As(MassFluxUnit.KilogramPerHourPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerHourPerSquareMillimeter"/>
         /// </summary>
-        public QuantityValue KilogramsPerHourPerSquareMillimeter => this.As(MassFluxUnit.KilogramPerHourPerSquareMillimeter);
+        public double KilogramsPerHourPerSquareMillimeter => this.As(MassFluxUnit.KilogramPerHourPerSquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue KilogramsPerSecondPerSquareCentimeter => this.As(MassFluxUnit.KilogramPerSecondPerSquareCentimeter);
+        public double KilogramsPerSecondPerSquareCentimeter => this.As(MassFluxUnit.KilogramPerSecondPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareMeter"/>
         /// </summary>
-        public QuantityValue KilogramsPerSecondPerSquareMeter => this.As(MassFluxUnit.KilogramPerSecondPerSquareMeter);
+        public double KilogramsPerSecondPerSquareMeter => this.As(MassFluxUnit.KilogramPerSecondPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassFluxUnit.KilogramPerSecondPerSquareMillimeter"/>
         /// </summary>
-        public QuantityValue KilogramsPerSecondPerSquareMillimeter => this.As(MassFluxUnit.KilogramPerSecondPerSquareMillimeter);
+        public double KilogramsPerSecondPerSquareMillimeter => this.As(MassFluxUnit.KilogramPerSecondPerSquareMillimeter);
 
         #endregion
 
@@ -347,7 +347,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerHourPerSquareCentimeter"/>.
         /// </summary>
-        public static MassFlux FromGramsPerHourPerSquareCentimeter(QuantityValue value)
+        public static MassFlux FromGramsPerHourPerSquareCentimeter(double value)
         {
             return new MassFlux(value, MassFluxUnit.GramPerHourPerSquareCentimeter);
         }
@@ -355,7 +355,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerHourPerSquareMeter"/>.
         /// </summary>
-        public static MassFlux FromGramsPerHourPerSquareMeter(QuantityValue value)
+        public static MassFlux FromGramsPerHourPerSquareMeter(double value)
         {
             return new MassFlux(value, MassFluxUnit.GramPerHourPerSquareMeter);
         }
@@ -363,7 +363,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerHourPerSquareMillimeter"/>.
         /// </summary>
-        public static MassFlux FromGramsPerHourPerSquareMillimeter(QuantityValue value)
+        public static MassFlux FromGramsPerHourPerSquareMillimeter(double value)
         {
             return new MassFlux(value, MassFluxUnit.GramPerHourPerSquareMillimeter);
         }
@@ -371,7 +371,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerSecondPerSquareCentimeter"/>.
         /// </summary>
-        public static MassFlux FromGramsPerSecondPerSquareCentimeter(QuantityValue value)
+        public static MassFlux FromGramsPerSecondPerSquareCentimeter(double value)
         {
             return new MassFlux(value, MassFluxUnit.GramPerSecondPerSquareCentimeter);
         }
@@ -379,7 +379,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerSecondPerSquareMeter"/>.
         /// </summary>
-        public static MassFlux FromGramsPerSecondPerSquareMeter(QuantityValue value)
+        public static MassFlux FromGramsPerSecondPerSquareMeter(double value)
         {
             return new MassFlux(value, MassFluxUnit.GramPerSecondPerSquareMeter);
         }
@@ -387,7 +387,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.GramPerSecondPerSquareMillimeter"/>.
         /// </summary>
-        public static MassFlux FromGramsPerSecondPerSquareMillimeter(QuantityValue value)
+        public static MassFlux FromGramsPerSecondPerSquareMillimeter(double value)
         {
             return new MassFlux(value, MassFluxUnit.GramPerSecondPerSquareMillimeter);
         }
@@ -395,7 +395,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerHourPerSquareCentimeter"/>.
         /// </summary>
-        public static MassFlux FromKilogramsPerHourPerSquareCentimeter(QuantityValue value)
+        public static MassFlux FromKilogramsPerHourPerSquareCentimeter(double value)
         {
             return new MassFlux(value, MassFluxUnit.KilogramPerHourPerSquareCentimeter);
         }
@@ -403,7 +403,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerHourPerSquareMeter"/>.
         /// </summary>
-        public static MassFlux FromKilogramsPerHourPerSquareMeter(QuantityValue value)
+        public static MassFlux FromKilogramsPerHourPerSquareMeter(double value)
         {
             return new MassFlux(value, MassFluxUnit.KilogramPerHourPerSquareMeter);
         }
@@ -411,7 +411,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerHourPerSquareMillimeter"/>.
         /// </summary>
-        public static MassFlux FromKilogramsPerHourPerSquareMillimeter(QuantityValue value)
+        public static MassFlux FromKilogramsPerHourPerSquareMillimeter(double value)
         {
             return new MassFlux(value, MassFluxUnit.KilogramPerHourPerSquareMillimeter);
         }
@@ -419,7 +419,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerSecondPerSquareCentimeter"/>.
         /// </summary>
-        public static MassFlux FromKilogramsPerSecondPerSquareCentimeter(QuantityValue value)
+        public static MassFlux FromKilogramsPerSecondPerSquareCentimeter(double value)
         {
             return new MassFlux(value, MassFluxUnit.KilogramPerSecondPerSquareCentimeter);
         }
@@ -427,7 +427,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerSecondPerSquareMeter"/>.
         /// </summary>
-        public static MassFlux FromKilogramsPerSecondPerSquareMeter(QuantityValue value)
+        public static MassFlux FromKilogramsPerSecondPerSquareMeter(double value)
         {
             return new MassFlux(value, MassFluxUnit.KilogramPerSecondPerSquareMeter);
         }
@@ -435,7 +435,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassFlux"/> from <see cref="MassFluxUnit.KilogramPerSecondPerSquareMillimeter"/>.
         /// </summary>
-        public static MassFlux FromKilogramsPerSecondPerSquareMillimeter(QuantityValue value)
+        public static MassFlux FromKilogramsPerSecondPerSquareMillimeter(double value)
         {
             return new MassFlux(value, MassFluxUnit.KilogramPerSecondPerSquareMillimeter);
         }
@@ -446,7 +446,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MassFlux unit value.</returns>
-        public static MassFlux From(QuantityValue value, MassFluxUnit fromUnit)
+        public static MassFlux From(double value, MassFluxUnit fromUnit)
         {
             return new MassFlux(value, fromUnit);
         }
@@ -611,25 +611,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="MassFlux"/> from multiplying value and <see cref="MassFlux"/>.</summary>
-        public static MassFlux operator *(QuantityValue left, MassFlux right)
+        public static MassFlux operator *(double left, MassFlux right)
         {
             return new MassFlux(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="MassFlux"/> from multiplying value and <see cref="MassFlux"/>.</summary>
-        public static MassFlux operator *(MassFlux left, QuantityValue right)
+        public static MassFlux operator *(MassFlux left, double right)
         {
             return new MassFlux(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="MassFlux"/> from dividing <see cref="MassFlux"/> by value.</summary>
-        public static MassFlux operator /(MassFlux left, QuantityValue right)
+        public static MassFlux operator /(MassFlux left, double right)
         {
             return new MassFlux(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="MassFlux"/> by <see cref="MassFlux"/>.</summary>
-        public static QuantityValue operator /(MassFlux left, MassFlux right)
+        public static double operator /(MassFlux left, MassFlux right)
         {
             return left.KilogramsPerSecondPerSquareMeter / right.KilogramsPerSecondPerSquareMeter;
         }

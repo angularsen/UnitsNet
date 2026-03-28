@@ -32,125 +32,125 @@ namespace UnitsNet.NumberExtensions.NumberToJerk
     /// </summary>
     public static class NumberToJerkExtensions
     {
-        /// <inheritdoc cref="Jerk.FromCentimetersPerSecondCubed(QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromCentimetersPerSecondCubed(double)" />
         public static Jerk CentimetersPerSecondCubed<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Jerk.FromCentimetersPerSecondCubed(QuantityValue.CreateChecked(value));
+            => Jerk.FromCentimetersPerSecondCubed(double.CreateChecked(value));
 #else
             , IConvertible
-            => Jerk.FromCentimetersPerSecondCubed(value.ToQuantityValue());
+            => Jerk.FromCentimetersPerSecondCubed(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Jerk.FromDecimetersPerSecondCubed(QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromDecimetersPerSecondCubed(double)" />
         public static Jerk DecimetersPerSecondCubed<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Jerk.FromDecimetersPerSecondCubed(QuantityValue.CreateChecked(value));
+            => Jerk.FromDecimetersPerSecondCubed(double.CreateChecked(value));
 #else
             , IConvertible
-            => Jerk.FromDecimetersPerSecondCubed(value.ToQuantityValue());
+            => Jerk.FromDecimetersPerSecondCubed(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Jerk.FromFeetPerSecondCubed(QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromFeetPerSecondCubed(double)" />
         public static Jerk FeetPerSecondCubed<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Jerk.FromFeetPerSecondCubed(QuantityValue.CreateChecked(value));
+            => Jerk.FromFeetPerSecondCubed(double.CreateChecked(value));
 #else
             , IConvertible
-            => Jerk.FromFeetPerSecondCubed(value.ToQuantityValue());
+            => Jerk.FromFeetPerSecondCubed(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Jerk.FromInchesPerSecondCubed(QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromInchesPerSecondCubed(double)" />
         public static Jerk InchesPerSecondCubed<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Jerk.FromInchesPerSecondCubed(QuantityValue.CreateChecked(value));
+            => Jerk.FromInchesPerSecondCubed(double.CreateChecked(value));
 #else
             , IConvertible
-            => Jerk.FromInchesPerSecondCubed(value.ToQuantityValue());
+            => Jerk.FromInchesPerSecondCubed(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Jerk.FromKilometersPerSecondCubed(QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromKilometersPerSecondCubed(double)" />
         public static Jerk KilometersPerSecondCubed<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Jerk.FromKilometersPerSecondCubed(QuantityValue.CreateChecked(value));
+            => Jerk.FromKilometersPerSecondCubed(double.CreateChecked(value));
 #else
             , IConvertible
-            => Jerk.FromKilometersPerSecondCubed(value.ToQuantityValue());
+            => Jerk.FromKilometersPerSecondCubed(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Jerk.FromMetersPerSecondCubed(QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromMetersPerSecondCubed(double)" />
         public static Jerk MetersPerSecondCubed<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Jerk.FromMetersPerSecondCubed(QuantityValue.CreateChecked(value));
+            => Jerk.FromMetersPerSecondCubed(double.CreateChecked(value));
 #else
             , IConvertible
-            => Jerk.FromMetersPerSecondCubed(value.ToQuantityValue());
+            => Jerk.FromMetersPerSecondCubed(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Jerk.FromMicrometersPerSecondCubed(QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromMicrometersPerSecondCubed(double)" />
         public static Jerk MicrometersPerSecondCubed<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Jerk.FromMicrometersPerSecondCubed(QuantityValue.CreateChecked(value));
+            => Jerk.FromMicrometersPerSecondCubed(double.CreateChecked(value));
 #else
             , IConvertible
-            => Jerk.FromMicrometersPerSecondCubed(value.ToQuantityValue());
+            => Jerk.FromMicrometersPerSecondCubed(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Jerk.FromMillimetersPerSecondCubed(QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromMillimetersPerSecondCubed(double)" />
         public static Jerk MillimetersPerSecondCubed<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Jerk.FromMillimetersPerSecondCubed(QuantityValue.CreateChecked(value));
+            => Jerk.FromMillimetersPerSecondCubed(double.CreateChecked(value));
 #else
             , IConvertible
-            => Jerk.FromMillimetersPerSecondCubed(value.ToQuantityValue());
+            => Jerk.FromMillimetersPerSecondCubed(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Jerk.FromMillistandardGravitiesPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromMillistandardGravitiesPerSecond(double)" />
         public static Jerk MillistandardGravitiesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Jerk.FromMillistandardGravitiesPerSecond(QuantityValue.CreateChecked(value));
+            => Jerk.FromMillistandardGravitiesPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => Jerk.FromMillistandardGravitiesPerSecond(value.ToQuantityValue());
+            => Jerk.FromMillistandardGravitiesPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Jerk.FromNanometersPerSecondCubed(QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromNanometersPerSecondCubed(double)" />
         public static Jerk NanometersPerSecondCubed<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Jerk.FromNanometersPerSecondCubed(QuantityValue.CreateChecked(value));
+            => Jerk.FromNanometersPerSecondCubed(double.CreateChecked(value));
 #else
             , IConvertible
-            => Jerk.FromNanometersPerSecondCubed(value.ToQuantityValue());
+            => Jerk.FromNanometersPerSecondCubed(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Jerk.FromStandardGravitiesPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="Jerk.FromStandardGravitiesPerSecond(double)" />
         public static Jerk StandardGravitiesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Jerk.FromStandardGravitiesPerSecond(QuantityValue.CreateChecked(value));
+            => Jerk.FromStandardGravitiesPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => Jerk.FromStandardGravitiesPerSecond(value.ToQuantityValue());
+            => Jerk.FromStandardGravitiesPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

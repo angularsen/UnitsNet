@@ -42,132 +42,132 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSusceptance
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ElectricSusceptance.FromGigamhos(QuantityValue)" />
+            /// <inheritdoc cref="ElectricSusceptance.FromGigamhos(double)" />
             public ElectricSusceptance Gigamhos
 #if NET7_0_OR_GREATER
-                => ElectricSusceptance.FromGigamhos(QuantityValue.CreateChecked(value));
+                => ElectricSusceptance.FromGigamhos(double.CreateChecked(value));
 #else
-                => ElectricSusceptance.FromGigamhos(value.ToQuantityValue());
+                => ElectricSusceptance.FromGigamhos(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricSusceptance.FromGigasiemens(QuantityValue)" />
+            /// <inheritdoc cref="ElectricSusceptance.FromGigasiemens(double)" />
             public ElectricSusceptance Gigasiemens
 #if NET7_0_OR_GREATER
-                => ElectricSusceptance.FromGigasiemens(QuantityValue.CreateChecked(value));
+                => ElectricSusceptance.FromGigasiemens(double.CreateChecked(value));
 #else
-                => ElectricSusceptance.FromGigasiemens(value.ToQuantityValue());
+                => ElectricSusceptance.FromGigasiemens(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricSusceptance.FromKilomhos(QuantityValue)" />
+            /// <inheritdoc cref="ElectricSusceptance.FromKilomhos(double)" />
             public ElectricSusceptance Kilomhos
 #if NET7_0_OR_GREATER
-                => ElectricSusceptance.FromKilomhos(QuantityValue.CreateChecked(value));
+                => ElectricSusceptance.FromKilomhos(double.CreateChecked(value));
 #else
-                => ElectricSusceptance.FromKilomhos(value.ToQuantityValue());
+                => ElectricSusceptance.FromKilomhos(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricSusceptance.FromKilosiemens(QuantityValue)" />
+            /// <inheritdoc cref="ElectricSusceptance.FromKilosiemens(double)" />
             public ElectricSusceptance Kilosiemens
 #if NET7_0_OR_GREATER
-                => ElectricSusceptance.FromKilosiemens(QuantityValue.CreateChecked(value));
+                => ElectricSusceptance.FromKilosiemens(double.CreateChecked(value));
 #else
-                => ElectricSusceptance.FromKilosiemens(value.ToQuantityValue());
+                => ElectricSusceptance.FromKilosiemens(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricSusceptance.FromMegamhos(QuantityValue)" />
+            /// <inheritdoc cref="ElectricSusceptance.FromMegamhos(double)" />
             public ElectricSusceptance Megamhos
 #if NET7_0_OR_GREATER
-                => ElectricSusceptance.FromMegamhos(QuantityValue.CreateChecked(value));
+                => ElectricSusceptance.FromMegamhos(double.CreateChecked(value));
 #else
-                => ElectricSusceptance.FromMegamhos(value.ToQuantityValue());
+                => ElectricSusceptance.FromMegamhos(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricSusceptance.FromMegasiemens(QuantityValue)" />
+            /// <inheritdoc cref="ElectricSusceptance.FromMegasiemens(double)" />
             public ElectricSusceptance Megasiemens
 #if NET7_0_OR_GREATER
-                => ElectricSusceptance.FromMegasiemens(QuantityValue.CreateChecked(value));
+                => ElectricSusceptance.FromMegasiemens(double.CreateChecked(value));
 #else
-                => ElectricSusceptance.FromMegasiemens(value.ToQuantityValue());
+                => ElectricSusceptance.FromMegasiemens(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricSusceptance.FromMhos(QuantityValue)" />
+            /// <inheritdoc cref="ElectricSusceptance.FromMhos(double)" />
             public ElectricSusceptance Mhos
 #if NET7_0_OR_GREATER
-                => ElectricSusceptance.FromMhos(QuantityValue.CreateChecked(value));
+                => ElectricSusceptance.FromMhos(double.CreateChecked(value));
 #else
-                => ElectricSusceptance.FromMhos(value.ToQuantityValue());
+                => ElectricSusceptance.FromMhos(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricSusceptance.FromMicromhos(QuantityValue)" />
+            /// <inheritdoc cref="ElectricSusceptance.FromMicromhos(double)" />
             public ElectricSusceptance Micromhos
 #if NET7_0_OR_GREATER
-                => ElectricSusceptance.FromMicromhos(QuantityValue.CreateChecked(value));
+                => ElectricSusceptance.FromMicromhos(double.CreateChecked(value));
 #else
-                => ElectricSusceptance.FromMicromhos(value.ToQuantityValue());
+                => ElectricSusceptance.FromMicromhos(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricSusceptance.FromMicrosiemens(QuantityValue)" />
+            /// <inheritdoc cref="ElectricSusceptance.FromMicrosiemens(double)" />
             public ElectricSusceptance Microsiemens
 #if NET7_0_OR_GREATER
-                => ElectricSusceptance.FromMicrosiemens(QuantityValue.CreateChecked(value));
+                => ElectricSusceptance.FromMicrosiemens(double.CreateChecked(value));
 #else
-                => ElectricSusceptance.FromMicrosiemens(value.ToQuantityValue());
+                => ElectricSusceptance.FromMicrosiemens(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricSusceptance.FromMillimhos(QuantityValue)" />
+            /// <inheritdoc cref="ElectricSusceptance.FromMillimhos(double)" />
             public ElectricSusceptance Millimhos
 #if NET7_0_OR_GREATER
-                => ElectricSusceptance.FromMillimhos(QuantityValue.CreateChecked(value));
+                => ElectricSusceptance.FromMillimhos(double.CreateChecked(value));
 #else
-                => ElectricSusceptance.FromMillimhos(value.ToQuantityValue());
+                => ElectricSusceptance.FromMillimhos(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricSusceptance.FromMillisiemens(QuantityValue)" />
+            /// <inheritdoc cref="ElectricSusceptance.FromMillisiemens(double)" />
             public ElectricSusceptance Millisiemens
 #if NET7_0_OR_GREATER
-                => ElectricSusceptance.FromMillisiemens(QuantityValue.CreateChecked(value));
+                => ElectricSusceptance.FromMillisiemens(double.CreateChecked(value));
 #else
-                => ElectricSusceptance.FromMillisiemens(value.ToQuantityValue());
+                => ElectricSusceptance.FromMillisiemens(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricSusceptance.FromNanomhos(QuantityValue)" />
+            /// <inheritdoc cref="ElectricSusceptance.FromNanomhos(double)" />
             public ElectricSusceptance Nanomhos
 #if NET7_0_OR_GREATER
-                => ElectricSusceptance.FromNanomhos(QuantityValue.CreateChecked(value));
+                => ElectricSusceptance.FromNanomhos(double.CreateChecked(value));
 #else
-                => ElectricSusceptance.FromNanomhos(value.ToQuantityValue());
+                => ElectricSusceptance.FromNanomhos(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricSusceptance.FromNanosiemens(QuantityValue)" />
+            /// <inheritdoc cref="ElectricSusceptance.FromNanosiemens(double)" />
             public ElectricSusceptance Nanosiemens
 #if NET7_0_OR_GREATER
-                => ElectricSusceptance.FromNanosiemens(QuantityValue.CreateChecked(value));
+                => ElectricSusceptance.FromNanosiemens(double.CreateChecked(value));
 #else
-                => ElectricSusceptance.FromNanosiemens(value.ToQuantityValue());
+                => ElectricSusceptance.FromNanosiemens(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricSusceptance.FromSiemens(QuantityValue)" />
+            /// <inheritdoc cref="ElectricSusceptance.FromSiemens(double)" />
             public ElectricSusceptance Siemens
 #if NET7_0_OR_GREATER
-                => ElectricSusceptance.FromSiemens(QuantityValue.CreateChecked(value));
+                => ElectricSusceptance.FromSiemens(double.CreateChecked(value));
 #else
-                => ElectricSusceptance.FromSiemens(value.ToQuantityValue());
+                => ElectricSusceptance.FromSiemens(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricSusceptance.FromTeramhos(QuantityValue)" />
+            /// <inheritdoc cref="ElectricSusceptance.FromTeramhos(double)" />
             public ElectricSusceptance Teramhos
 #if NET7_0_OR_GREATER
-                => ElectricSusceptance.FromTeramhos(QuantityValue.CreateChecked(value));
+                => ElectricSusceptance.FromTeramhos(double.CreateChecked(value));
 #else
-                => ElectricSusceptance.FromTeramhos(value.ToQuantityValue());
+                => ElectricSusceptance.FromTeramhos(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricSusceptance.FromTerasiemens(QuantityValue)" />
+            /// <inheritdoc cref="ElectricSusceptance.FromTerasiemens(double)" />
             public ElectricSusceptance Terasiemens
 #if NET7_0_OR_GREATER
-                => ElectricSusceptance.FromTerasiemens(QuantityValue.CreateChecked(value));
+                => ElectricSusceptance.FromTerasiemens(double.CreateChecked(value));
 #else
-                => ElectricSusceptance.FromTerasiemens(value.ToQuantityValue());
+                => ElectricSusceptance.FromTerasiemens(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

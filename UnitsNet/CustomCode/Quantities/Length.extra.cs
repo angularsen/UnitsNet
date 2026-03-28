@@ -12,7 +12,7 @@ namespace UnitsNet
 {
     public partial struct Length
     {
-        private static readonly QuantityValue InchesInOneFoot = 12;
+        private const double InchesInOneFoot = 12;
 
         /// <summary>
         ///     Converts the length to a customary feet/inches combination.
@@ -21,15 +21,15 @@ namespace UnitsNet
         {
             get
             {
-                QuantityValue totalInches = Inches;
-                return new FeetInches((BigInteger) (totalInches / InchesInOneFoot), totalInches % InchesInOneFoot);
+                double totalInches = Inches;
+                return new FeetInches((BigInteger)(totalInches / 12), totalInches % 12);
             }
         }
 
         /// <summary>
         ///     Get length from combination of feet and inches.
         /// </summary>
-        public static Length FromFeetInches(QuantityValue feet, QuantityValue inches)
+        public static Length FromFeetInches(double feet, double inches)
         {
             return FromInches(InchesInOneFoot*feet + inches);
         }
@@ -120,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Construct from feet and inches.
         /// </summary>
-        public FeetInches(BigInteger feet, QuantityValue inches)
+        public FeetInches(BigInteger feet, double inches)
         {
             Feet = feet;
             Inches = inches;
@@ -134,7 +134,7 @@ namespace UnitsNet
         /// <summary>
         ///     The inches value it was constructed with.
         /// </summary>
-        public QuantityValue Inches { get; }
+        public double Inches { get; }
 
         /// <inheritdoc cref="ToString(IFormatProvider)"/>
         public override string ToString()
@@ -162,7 +162,7 @@ namespace UnitsNet
 
             // Note that it isn't customary to use fractions - one wouldn't say "I am 5 feet and 4.5 inches".
             // So inches are rounded when converting from base units to feet/inches.
-            return string.Format(cultureInfo, "{0:n0} {1} {2:n0} {3}", Feet, footUnit, Math.Round(Inches.ToDouble()), inchUnit);
+            return string.Format(cultureInfo, "{0:n0} {1} {2:n0} {3}", Feet, footUnit, Math.Round(Inches), inchUnit);
         }
 
         /// <summary>
@@ -192,8 +192,8 @@ namespace UnitsNet
             }
             
             // TODO this could probably be done better with the fractions
-            var inchTrunc = (int)Math.Truncate(Inches.ToDouble());
-            var numerator = (int)Math.Round((Inches - inchTrunc).ToDouble() * fractionDenominator); 
+            var inchTrunc = (int)Math.Truncate(Inches);
+            var numerator = (int)Math.Round((Inches - inchTrunc) * fractionDenominator);
 
             if (numerator == fractionDenominator)
             {

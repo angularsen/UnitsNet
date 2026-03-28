@@ -32,37 +32,37 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentDensity
     /// </summary>
     public static class NumberToElectricCurrentDensityExtensions
     {
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareFoot(QuantityValue)" />
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareFoot(double)" />
         public static ElectricCurrentDensity AmperesPerSquareFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrentDensity.FromAmperesPerSquareFoot(QuantityValue.CreateChecked(value));
+            => ElectricCurrentDensity.FromAmperesPerSquareFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrentDensity.FromAmperesPerSquareFoot(value.ToQuantityValue());
+            => ElectricCurrentDensity.FromAmperesPerSquareFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareInch(QuantityValue)" />
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareInch(double)" />
         public static ElectricCurrentDensity AmperesPerSquareInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrentDensity.FromAmperesPerSquareInch(QuantityValue.CreateChecked(value));
+            => ElectricCurrentDensity.FromAmperesPerSquareInch(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrentDensity.FromAmperesPerSquareInch(value.ToQuantityValue());
+            => ElectricCurrentDensity.FromAmperesPerSquareInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(QuantityValue)" />
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(double)" />
         public static ElectricCurrentDensity AmperesPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrentDensity.FromAmperesPerSquareMeter(QuantityValue.CreateChecked(value));
+            => ElectricCurrentDensity.FromAmperesPerSquareMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrentDensity.FromAmperesPerSquareMeter(value.ToQuantityValue());
+            => ElectricCurrentDensity.FromAmperesPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

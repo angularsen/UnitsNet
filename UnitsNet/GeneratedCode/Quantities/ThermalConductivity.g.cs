@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct ThermalConductivity :
         IArithmeticQuantity<ThermalConductivity, ThermalConductivityUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ThermalConductivity, ThermalConductivity, QuantityValue>,
+        IDivisionOperators<ThermalConductivity, ThermalConductivity, double>,
         IComparisonOperators<ThermalConductivity, ThermalConductivity, bool>,
         IParsable<ThermalConductivity>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -136,7 +136,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ThermalConductivity(QuantityValue value, ThermalConductivityUnit unit)
+        public ThermalConductivity(double value, ThermalConductivityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -150,7 +150,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ThermalConductivity(QuantityValue value, UnitSystem unitSystem)
+        public ThermalConductivity(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -192,7 +192,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public ThermalConductivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -226,14 +226,14 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ThermalConductivityUnit.BtuPerHourFootFahrenheit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalConductivityUnit.BtuPerHourFootFahrenheit"/>
         /// </summary>
-        public QuantityValue BtusPerHourFootFahrenheit => this.As(ThermalConductivityUnit.BtuPerHourFootFahrenheit);
+        public double BtusPerHourFootFahrenheit => this.As(ThermalConductivityUnit.BtuPerHourFootFahrenheit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ThermalConductivityUnit.WattPerMeterKelvin"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalConductivityUnit.WattPerMeterKelvin"/>
         /// </summary>
-        public QuantityValue WattsPerMeterKelvin => this.As(ThermalConductivityUnit.WattPerMeterKelvin);
+        public double WattsPerMeterKelvin => this.As(ThermalConductivityUnit.WattPerMeterKelvin);
 
         #endregion
 
@@ -267,7 +267,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ThermalConductivity"/> from <see cref="ThermalConductivityUnit.BtuPerHourFootFahrenheit"/>.
         /// </summary>
-        public static ThermalConductivity FromBtusPerHourFootFahrenheit(QuantityValue value)
+        public static ThermalConductivity FromBtusPerHourFootFahrenheit(double value)
         {
             return new ThermalConductivity(value, ThermalConductivityUnit.BtuPerHourFootFahrenheit);
         }
@@ -275,7 +275,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ThermalConductivity"/> from <see cref="ThermalConductivityUnit.WattPerMeterKelvin"/>.
         /// </summary>
-        public static ThermalConductivity FromWattsPerMeterKelvin(QuantityValue value)
+        public static ThermalConductivity FromWattsPerMeterKelvin(double value)
         {
             return new ThermalConductivity(value, ThermalConductivityUnit.WattPerMeterKelvin);
         }
@@ -286,7 +286,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ThermalConductivity unit value.</returns>
-        public static ThermalConductivity From(QuantityValue value, ThermalConductivityUnit fromUnit)
+        public static ThermalConductivity From(double value, ThermalConductivityUnit fromUnit)
         {
             return new ThermalConductivity(value, fromUnit);
         }
@@ -451,25 +451,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ThermalConductivity"/> from multiplying value and <see cref="ThermalConductivity"/>.</summary>
-        public static ThermalConductivity operator *(QuantityValue left, ThermalConductivity right)
+        public static ThermalConductivity operator *(double left, ThermalConductivity right)
         {
             return new ThermalConductivity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ThermalConductivity"/> from multiplying value and <see cref="ThermalConductivity"/>.</summary>
-        public static ThermalConductivity operator *(ThermalConductivity left, QuantityValue right)
+        public static ThermalConductivity operator *(ThermalConductivity left, double right)
         {
             return new ThermalConductivity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ThermalConductivity"/> from dividing <see cref="ThermalConductivity"/> by value.</summary>
-        public static ThermalConductivity operator /(ThermalConductivity left, QuantityValue right)
+        public static ThermalConductivity operator /(ThermalConductivity left, double right)
         {
             return new ThermalConductivity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ThermalConductivity"/> by <see cref="ThermalConductivity"/>.</summary>
-        public static QuantityValue operator /(ThermalConductivity left, ThermalConductivity right)
+        public static double operator /(ThermalConductivity left, ThermalConductivity right)
         {
             return left.WattsPerMeterKelvin / right.WattsPerMeterKelvin;
         }

@@ -32,345 +32,345 @@ namespace UnitsNet.NumberExtensions.NumberToMass
     /// </summary>
     public static class NumberToMassExtensions
     {
-        /// <inheritdoc cref="Mass.FromCentigrams(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromCentigrams(double)" />
         public static Mass Centigrams<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromCentigrams(QuantityValue.CreateChecked(value));
+            => Mass.FromCentigrams(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromCentigrams(value.ToQuantityValue());
+            => Mass.FromCentigrams(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromDaltons(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromDaltons(double)" />
         public static Mass Daltons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromDaltons(QuantityValue.CreateChecked(value));
+            => Mass.FromDaltons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromDaltons(value.ToQuantityValue());
+            => Mass.FromDaltons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromDecagrams(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromDecagrams(double)" />
         public static Mass Decagrams<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromDecagrams(QuantityValue.CreateChecked(value));
+            => Mass.FromDecagrams(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromDecagrams(value.ToQuantityValue());
+            => Mass.FromDecagrams(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromDecigrams(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromDecigrams(double)" />
         public static Mass Decigrams<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromDecigrams(QuantityValue.CreateChecked(value));
+            => Mass.FromDecigrams(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromDecigrams(value.ToQuantityValue());
+            => Mass.FromDecigrams(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromEarthMasses(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromEarthMasses(double)" />
         public static Mass EarthMasses<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromEarthMasses(QuantityValue.CreateChecked(value));
+            => Mass.FromEarthMasses(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromEarthMasses(value.ToQuantityValue());
+            => Mass.FromEarthMasses(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromFemtograms(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromFemtograms(double)" />
         public static Mass Femtograms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromFemtograms(QuantityValue.CreateChecked(value));
+            => Mass.FromFemtograms(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromFemtograms(value.ToQuantityValue());
+            => Mass.FromFemtograms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromGigadaltons(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromGigadaltons(double)" />
         public static Mass Gigadaltons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromGigadaltons(QuantityValue.CreateChecked(value));
+            => Mass.FromGigadaltons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromGigadaltons(value.ToQuantityValue());
+            => Mass.FromGigadaltons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromGrains(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromGrains(double)" />
         public static Mass Grains<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromGrains(QuantityValue.CreateChecked(value));
+            => Mass.FromGrains(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromGrains(value.ToQuantityValue());
+            => Mass.FromGrains(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromGrams(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromGrams(double)" />
         public static Mass Grams<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromGrams(QuantityValue.CreateChecked(value));
+            => Mass.FromGrams(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromGrams(value.ToQuantityValue());
+            => Mass.FromGrams(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromHectograms(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromHectograms(double)" />
         public static Mass Hectograms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromHectograms(QuantityValue.CreateChecked(value));
+            => Mass.FromHectograms(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromHectograms(value.ToQuantityValue());
+            => Mass.FromHectograms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromKilodaltons(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromKilodaltons(double)" />
         public static Mass Kilodaltons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromKilodaltons(QuantityValue.CreateChecked(value));
+            => Mass.FromKilodaltons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromKilodaltons(value.ToQuantityValue());
+            => Mass.FromKilodaltons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromKilograms(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromKilograms(double)" />
         public static Mass Kilograms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromKilograms(QuantityValue.CreateChecked(value));
+            => Mass.FromKilograms(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromKilograms(value.ToQuantityValue());
+            => Mass.FromKilograms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromKilopounds(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromKilopounds(double)" />
         public static Mass Kilopounds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromKilopounds(QuantityValue.CreateChecked(value));
+            => Mass.FromKilopounds(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromKilopounds(value.ToQuantityValue());
+            => Mass.FromKilopounds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromKilotonnes(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromKilotonnes(double)" />
         public static Mass Kilotonnes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromKilotonnes(QuantityValue.CreateChecked(value));
+            => Mass.FromKilotonnes(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromKilotonnes(value.ToQuantityValue());
+            => Mass.FromKilotonnes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromLongHundredweight(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromLongHundredweight(double)" />
         public static Mass LongHundredweight<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromLongHundredweight(QuantityValue.CreateChecked(value));
+            => Mass.FromLongHundredweight(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromLongHundredweight(value.ToQuantityValue());
+            => Mass.FromLongHundredweight(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromLongTons(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromLongTons(double)" />
         public static Mass LongTons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromLongTons(QuantityValue.CreateChecked(value));
+            => Mass.FromLongTons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromLongTons(value.ToQuantityValue());
+            => Mass.FromLongTons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromMegadaltons(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromMegadaltons(double)" />
         public static Mass Megadaltons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromMegadaltons(QuantityValue.CreateChecked(value));
+            => Mass.FromMegadaltons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromMegadaltons(value.ToQuantityValue());
+            => Mass.FromMegadaltons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromMegapounds(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromMegapounds(double)" />
         public static Mass Megapounds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromMegapounds(QuantityValue.CreateChecked(value));
+            => Mass.FromMegapounds(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromMegapounds(value.ToQuantityValue());
+            => Mass.FromMegapounds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromMegatonnes(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromMegatonnes(double)" />
         public static Mass Megatonnes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromMegatonnes(QuantityValue.CreateChecked(value));
+            => Mass.FromMegatonnes(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromMegatonnes(value.ToQuantityValue());
+            => Mass.FromMegatonnes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromMicrograms(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromMicrograms(double)" />
         public static Mass Micrograms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromMicrograms(QuantityValue.CreateChecked(value));
+            => Mass.FromMicrograms(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromMicrograms(value.ToQuantityValue());
+            => Mass.FromMicrograms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromMilligrams(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromMilligrams(double)" />
         public static Mass Milligrams<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromMilligrams(QuantityValue.CreateChecked(value));
+            => Mass.FromMilligrams(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromMilligrams(value.ToQuantityValue());
+            => Mass.FromMilligrams(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromNanograms(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromNanograms(double)" />
         public static Mass Nanograms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromNanograms(QuantityValue.CreateChecked(value));
+            => Mass.FromNanograms(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromNanograms(value.ToQuantityValue());
+            => Mass.FromNanograms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromOunces(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromOunces(double)" />
         public static Mass Ounces<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromOunces(QuantityValue.CreateChecked(value));
+            => Mass.FromOunces(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromOunces(value.ToQuantityValue());
+            => Mass.FromOunces(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromPicograms(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromPicograms(double)" />
         public static Mass Picograms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromPicograms(QuantityValue.CreateChecked(value));
+            => Mass.FromPicograms(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromPicograms(value.ToQuantityValue());
+            => Mass.FromPicograms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromPounds(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromPounds(double)" />
         public static Mass Pounds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromPounds(QuantityValue.CreateChecked(value));
+            => Mass.FromPounds(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromPounds(value.ToQuantityValue());
+            => Mass.FromPounds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromShortHundredweight(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromShortHundredweight(double)" />
         public static Mass ShortHundredweight<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromShortHundredweight(QuantityValue.CreateChecked(value));
+            => Mass.FromShortHundredweight(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromShortHundredweight(value.ToQuantityValue());
+            => Mass.FromShortHundredweight(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromShortTons(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromShortTons(double)" />
         public static Mass ShortTons<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromShortTons(QuantityValue.CreateChecked(value));
+            => Mass.FromShortTons(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromShortTons(value.ToQuantityValue());
+            => Mass.FromShortTons(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromSlugs(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromSlugs(double)" />
         public static Mass Slugs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromSlugs(QuantityValue.CreateChecked(value));
+            => Mass.FromSlugs(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromSlugs(value.ToQuantityValue());
+            => Mass.FromSlugs(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromSolarMasses(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromSolarMasses(double)" />
         public static Mass SolarMasses<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromSolarMasses(QuantityValue.CreateChecked(value));
+            => Mass.FromSolarMasses(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromSolarMasses(value.ToQuantityValue());
+            => Mass.FromSolarMasses(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromStone(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromStone(double)" />
         public static Mass Stone<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromStone(QuantityValue.CreateChecked(value));
+            => Mass.FromStone(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromStone(value.ToQuantityValue());
+            => Mass.FromStone(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Mass.FromTonnes(QuantityValue)" />
+        /// <inheritdoc cref="Mass.FromTonnes(double)" />
         public static Mass Tonnes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Mass.FromTonnes(QuantityValue.CreateChecked(value));
+            => Mass.FromTonnes(double.CreateChecked(value));
 #else
             , IConvertible
-            => Mass.FromTonnes(value.ToQuantityValue());
+            => Mass.FromTonnes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

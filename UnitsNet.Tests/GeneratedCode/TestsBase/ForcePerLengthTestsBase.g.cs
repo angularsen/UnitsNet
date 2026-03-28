@@ -559,7 +559,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 тс/см", ForcePerLengthUnit.TonneForcePerCentimeter, 4.2)]
         [InlineData("ru-RU", "4,2 тс/м", ForcePerLengthUnit.TonneForcePerMeter, 4.2)]
         [InlineData("ru-RU", "4,2 тс/мм", ForcePerLengthUnit.TonneForcePerMillimeter, 4.2)]
-        public void Parse(string culture, string quantityString, ForcePerLengthUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, ForcePerLengthUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ForcePerLength.Parse(quantityString);
@@ -616,7 +616,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 тс/см", ForcePerLengthUnit.TonneForcePerCentimeter, 4.2)]
         [InlineData("ru-RU", "4,2 тс/м", ForcePerLengthUnit.TonneForcePerMeter, 4.2)]
         [InlineData("ru-RU", "4,2 тс/мм", ForcePerLengthUnit.TonneForcePerMillimeter, 4.2)]
-        public void TryParse(string culture, string quantityString, ForcePerLengthUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, ForcePerLengthUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ForcePerLength.TryParse(quantityString, out ForcePerLength parsed));
@@ -1337,8 +1337,8 @@ namespace UnitsNet.Tests
             var quantity = ForcePerLength.FromNewtonsPerMeter(firstValue);
             var otherQuantity = ForcePerLength.FromNewtonsPerMeter(secondValue);
             ForcePerLength maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, ForcePerLength.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

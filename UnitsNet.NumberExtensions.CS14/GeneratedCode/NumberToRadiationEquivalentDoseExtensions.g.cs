@@ -42,52 +42,52 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDose
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="RadiationEquivalentDose.FromMicrosieverts(QuantityValue)" />
+            /// <inheritdoc cref="RadiationEquivalentDose.FromMicrosieverts(double)" />
             public RadiationEquivalentDose Microsieverts
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDose.FromMicrosieverts(QuantityValue.CreateChecked(value));
+                => RadiationEquivalentDose.FromMicrosieverts(double.CreateChecked(value));
 #else
-                => RadiationEquivalentDose.FromMicrosieverts(value.ToQuantityValue());
+                => RadiationEquivalentDose.FromMicrosieverts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RadiationEquivalentDose.FromMilliroentgensEquivalentMan(QuantityValue)" />
+            /// <inheritdoc cref="RadiationEquivalentDose.FromMilliroentgensEquivalentMan(double)" />
             public RadiationEquivalentDose MilliroentgensEquivalentMan
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDose.FromMilliroentgensEquivalentMan(QuantityValue.CreateChecked(value));
+                => RadiationEquivalentDose.FromMilliroentgensEquivalentMan(double.CreateChecked(value));
 #else
-                => RadiationEquivalentDose.FromMilliroentgensEquivalentMan(value.ToQuantityValue());
+                => RadiationEquivalentDose.FromMilliroentgensEquivalentMan(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RadiationEquivalentDose.FromMillisieverts(QuantityValue)" />
+            /// <inheritdoc cref="RadiationEquivalentDose.FromMillisieverts(double)" />
             public RadiationEquivalentDose Millisieverts
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDose.FromMillisieverts(QuantityValue.CreateChecked(value));
+                => RadiationEquivalentDose.FromMillisieverts(double.CreateChecked(value));
 #else
-                => RadiationEquivalentDose.FromMillisieverts(value.ToQuantityValue());
+                => RadiationEquivalentDose.FromMillisieverts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RadiationEquivalentDose.FromNanosieverts(QuantityValue)" />
+            /// <inheritdoc cref="RadiationEquivalentDose.FromNanosieverts(double)" />
             public RadiationEquivalentDose Nanosieverts
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDose.FromNanosieverts(QuantityValue.CreateChecked(value));
+                => RadiationEquivalentDose.FromNanosieverts(double.CreateChecked(value));
 #else
-                => RadiationEquivalentDose.FromNanosieverts(value.ToQuantityValue());
+                => RadiationEquivalentDose.FromNanosieverts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RadiationEquivalentDose.FromRoentgensEquivalentMan(QuantityValue)" />
+            /// <inheritdoc cref="RadiationEquivalentDose.FromRoentgensEquivalentMan(double)" />
             public RadiationEquivalentDose RoentgensEquivalentMan
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDose.FromRoentgensEquivalentMan(QuantityValue.CreateChecked(value));
+                => RadiationEquivalentDose.FromRoentgensEquivalentMan(double.CreateChecked(value));
 #else
-                => RadiationEquivalentDose.FromRoentgensEquivalentMan(value.ToQuantityValue());
+                => RadiationEquivalentDose.FromRoentgensEquivalentMan(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RadiationEquivalentDose.FromSieverts(QuantityValue)" />
+            /// <inheritdoc cref="RadiationEquivalentDose.FromSieverts(double)" />
             public RadiationEquivalentDose Sieverts
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDose.FromSieverts(QuantityValue.CreateChecked(value));
+                => RadiationEquivalentDose.FromSieverts(double.CreateChecked(value));
 #else
-                => RadiationEquivalentDose.FromSieverts(value.ToQuantityValue());
+                => RadiationEquivalentDose.FromSieverts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

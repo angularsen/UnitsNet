@@ -32,169 +32,169 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
     /// </summary>
     public static class NumberToAngleExtensions
     {
-        /// <inheritdoc cref="Angle.FromArcminutes(QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromArcminutes(double)" />
         public static Angle Arcminutes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Angle.FromArcminutes(QuantityValue.CreateChecked(value));
+            => Angle.FromArcminutes(double.CreateChecked(value));
 #else
             , IConvertible
-            => Angle.FromArcminutes(value.ToQuantityValue());
+            => Angle.FromArcminutes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Angle.FromArcseconds(QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromArcseconds(double)" />
         public static Angle Arcseconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Angle.FromArcseconds(QuantityValue.CreateChecked(value));
+            => Angle.FromArcseconds(double.CreateChecked(value));
 #else
             , IConvertible
-            => Angle.FromArcseconds(value.ToQuantityValue());
+            => Angle.FromArcseconds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Angle.FromCentiradians(QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromCentiradians(double)" />
         public static Angle Centiradians<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Angle.FromCentiradians(QuantityValue.CreateChecked(value));
+            => Angle.FromCentiradians(double.CreateChecked(value));
 #else
             , IConvertible
-            => Angle.FromCentiradians(value.ToQuantityValue());
+            => Angle.FromCentiradians(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Angle.FromDeciradians(QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromDeciradians(double)" />
         public static Angle Deciradians<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Angle.FromDeciradians(QuantityValue.CreateChecked(value));
+            => Angle.FromDeciradians(double.CreateChecked(value));
 #else
             , IConvertible
-            => Angle.FromDeciradians(value.ToQuantityValue());
+            => Angle.FromDeciradians(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Angle.FromDegrees(QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromDegrees(double)" />
         public static Angle Degrees<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Angle.FromDegrees(QuantityValue.CreateChecked(value));
+            => Angle.FromDegrees(double.CreateChecked(value));
 #else
             , IConvertible
-            => Angle.FromDegrees(value.ToQuantityValue());
+            => Angle.FromDegrees(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Angle.FromGradians(QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromGradians(double)" />
         public static Angle Gradians<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Angle.FromGradians(QuantityValue.CreateChecked(value));
+            => Angle.FromGradians(double.CreateChecked(value));
 #else
             , IConvertible
-            => Angle.FromGradians(value.ToQuantityValue());
+            => Angle.FromGradians(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Angle.FromMicrodegrees(QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromMicrodegrees(double)" />
         public static Angle Microdegrees<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Angle.FromMicrodegrees(QuantityValue.CreateChecked(value));
+            => Angle.FromMicrodegrees(double.CreateChecked(value));
 #else
             , IConvertible
-            => Angle.FromMicrodegrees(value.ToQuantityValue());
+            => Angle.FromMicrodegrees(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Angle.FromMicroradians(QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromMicroradians(double)" />
         public static Angle Microradians<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Angle.FromMicroradians(QuantityValue.CreateChecked(value));
+            => Angle.FromMicroradians(double.CreateChecked(value));
 #else
             , IConvertible
-            => Angle.FromMicroradians(value.ToQuantityValue());
+            => Angle.FromMicroradians(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Angle.FromMillidegrees(QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromMillidegrees(double)" />
         public static Angle Millidegrees<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Angle.FromMillidegrees(QuantityValue.CreateChecked(value));
+            => Angle.FromMillidegrees(double.CreateChecked(value));
 #else
             , IConvertible
-            => Angle.FromMillidegrees(value.ToQuantityValue());
+            => Angle.FromMillidegrees(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Angle.FromMilliradians(QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromMilliradians(double)" />
         public static Angle Milliradians<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Angle.FromMilliradians(QuantityValue.CreateChecked(value));
+            => Angle.FromMilliradians(double.CreateChecked(value));
 #else
             , IConvertible
-            => Angle.FromMilliradians(value.ToQuantityValue());
+            => Angle.FromMilliradians(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Angle.FromNanodegrees(QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromNanodegrees(double)" />
         public static Angle Nanodegrees<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Angle.FromNanodegrees(QuantityValue.CreateChecked(value));
+            => Angle.FromNanodegrees(double.CreateChecked(value));
 #else
             , IConvertible
-            => Angle.FromNanodegrees(value.ToQuantityValue());
+            => Angle.FromNanodegrees(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Angle.FromNanoradians(QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromNanoradians(double)" />
         public static Angle Nanoradians<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Angle.FromNanoradians(QuantityValue.CreateChecked(value));
+            => Angle.FromNanoradians(double.CreateChecked(value));
 #else
             , IConvertible
-            => Angle.FromNanoradians(value.ToQuantityValue());
+            => Angle.FromNanoradians(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Angle.FromNatoMils(QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromNatoMils(double)" />
         public static Angle NatoMils<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Angle.FromNatoMils(QuantityValue.CreateChecked(value));
+            => Angle.FromNatoMils(double.CreateChecked(value));
 #else
             , IConvertible
-            => Angle.FromNatoMils(value.ToQuantityValue());
+            => Angle.FromNatoMils(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Angle.FromRadians(QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromRadians(double)" />
         public static Angle Radians<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Angle.FromRadians(QuantityValue.CreateChecked(value));
+            => Angle.FromRadians(double.CreateChecked(value));
 #else
             , IConvertible
-            => Angle.FromRadians(value.ToQuantityValue());
+            => Angle.FromRadians(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Angle.FromRevolutions(QuantityValue)" />
+        /// <inheritdoc cref="Angle.FromRevolutions(double)" />
         public static Angle Revolutions<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Angle.FromRevolutions(QuantityValue.CreateChecked(value));
+            => Angle.FromRevolutions(double.CreateChecked(value));
 #else
             , IConvertible
-            => Angle.FromRevolutions(value.ToQuantityValue());
+            => Angle.FromRevolutions(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

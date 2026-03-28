@@ -297,7 +297,7 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("en-US", "4.2 /s", RatioChangeRateUnit.DecimalFractionPerSecond, 4.2)]
         [InlineData("en-US", "4.2 %/s", RatioChangeRateUnit.PercentPerSecond, 4.2)]
-        public void Parse(string culture, string quantityString, RatioChangeRateUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, RatioChangeRateUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = RatioChangeRate.Parse(quantityString);
@@ -308,7 +308,7 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("en-US", "4.2 /s", RatioChangeRateUnit.DecimalFractionPerSecond, 4.2)]
         [InlineData("en-US", "4.2 %/s", RatioChangeRateUnit.PercentPerSecond, 4.2)]
-        public void TryParse(string culture, string quantityString, RatioChangeRateUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, RatioChangeRateUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(RatioChangeRate.TryParse(quantityString, out RatioChangeRate parsed));
@@ -607,8 +607,8 @@ namespace UnitsNet.Tests
             var quantity = RatioChangeRate.FromDecimalFractionsPerSecond(firstValue);
             var otherQuantity = RatioChangeRate.FromDecimalFractionsPerSecond(secondValue);
             RatioChangeRate maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, RatioChangeRate.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

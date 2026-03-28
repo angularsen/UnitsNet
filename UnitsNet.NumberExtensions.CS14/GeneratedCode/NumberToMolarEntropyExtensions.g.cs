@@ -42,28 +42,28 @@ namespace UnitsNet.NumberExtensions.NumberToMolarEntropy
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="MolarEntropy.FromJoulesPerMoleKelvin(QuantityValue)" />
+            /// <inheritdoc cref="MolarEntropy.FromJoulesPerMoleKelvin(double)" />
             public MolarEntropy JoulesPerMoleKelvin
 #if NET7_0_OR_GREATER
-                => MolarEntropy.FromJoulesPerMoleKelvin(QuantityValue.CreateChecked(value));
+                => MolarEntropy.FromJoulesPerMoleKelvin(double.CreateChecked(value));
 #else
-                => MolarEntropy.FromJoulesPerMoleKelvin(value.ToQuantityValue());
+                => MolarEntropy.FromJoulesPerMoleKelvin(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MolarEntropy.FromKilojoulesPerMoleKelvin(QuantityValue)" />
+            /// <inheritdoc cref="MolarEntropy.FromKilojoulesPerMoleKelvin(double)" />
             public MolarEntropy KilojoulesPerMoleKelvin
 #if NET7_0_OR_GREATER
-                => MolarEntropy.FromKilojoulesPerMoleKelvin(QuantityValue.CreateChecked(value));
+                => MolarEntropy.FromKilojoulesPerMoleKelvin(double.CreateChecked(value));
 #else
-                => MolarEntropy.FromKilojoulesPerMoleKelvin(value.ToQuantityValue());
+                => MolarEntropy.FromKilojoulesPerMoleKelvin(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MolarEntropy.FromMegajoulesPerMoleKelvin(QuantityValue)" />
+            /// <inheritdoc cref="MolarEntropy.FromMegajoulesPerMoleKelvin(double)" />
             public MolarEntropy MegajoulesPerMoleKelvin
 #if NET7_0_OR_GREATER
-                => MolarEntropy.FromMegajoulesPerMoleKelvin(QuantityValue.CreateChecked(value));
+                => MolarEntropy.FromMegajoulesPerMoleKelvin(double.CreateChecked(value));
 #else
-                => MolarEntropy.FromMegajoulesPerMoleKelvin(value.ToQuantityValue());
+                => MolarEntropy.FromMegajoulesPerMoleKelvin(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

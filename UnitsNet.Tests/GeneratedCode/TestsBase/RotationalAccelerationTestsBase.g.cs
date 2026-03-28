@@ -312,7 +312,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 rad/s²", RotationalAccelerationUnit.RadianPerSecondSquared, 4.2)]
         [InlineData("en-US", "4.2 rpm/s", RotationalAccelerationUnit.RevolutionPerMinutePerSecond, 4.2)]
         [InlineData("en-US", "4.2 r/s²", RotationalAccelerationUnit.RevolutionPerSecondSquared, 4.2)]
-        public void Parse(string culture, string quantityString, RotationalAccelerationUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, RotationalAccelerationUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = RotationalAcceleration.Parse(quantityString);
@@ -326,7 +326,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 rad/s²", RotationalAccelerationUnit.RadianPerSecondSquared, 4.2)]
         [InlineData("en-US", "4.2 rpm/s", RotationalAccelerationUnit.RevolutionPerMinutePerSecond, 4.2)]
         [InlineData("en-US", "4.2 r/s²", RotationalAccelerationUnit.RevolutionPerSecondSquared, 4.2)]
-        public void TryParse(string culture, string quantityString, RotationalAccelerationUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, RotationalAccelerationUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(RotationalAcceleration.TryParse(quantityString, out RotationalAcceleration parsed));
@@ -653,8 +653,8 @@ namespace UnitsNet.Tests
             var quantity = RotationalAcceleration.FromRadiansPerSecondSquared(firstValue);
             var otherQuantity = RotationalAcceleration.FromRadiansPerSecondSquared(secondValue);
             RotationalAcceleration maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, RotationalAcceleration.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

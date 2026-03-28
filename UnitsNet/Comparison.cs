@@ -50,7 +50,7 @@ public static class Comparison
     /// <param name="comparisonType">Whether the tolerance is absolute or relative.</param>
     /// <returns>True if the two values are equal within the given tolerance, otherwise false.</returns>
     /// <exception cref="ArgumentOutOfRangeException"> Thrown when the <paramref name="tolerance"/> is negative.</exception>
-    public static bool Equals(QuantityValue referenceValue, QuantityValue otherValue, QuantityValue tolerance, ComparisonType comparisonType)
+    public static bool Equals(double referenceValue, double otherValue, double tolerance, ComparisonType comparisonType)
     {
         return comparisonType switch
         {
@@ -82,15 +82,15 @@ public static class Comparison
     /// <param name="tolerance">The relative tolerance. Must be greater than or equal to 0.</param>
     /// <returns>True if the two values are equal within the given relative tolerance, otherwise false.</returns>
     /// <exception cref="ArgumentOutOfRangeException"> Thrown when the <paramref name="tolerance"/> is negative.</exception>
-    public static bool EqualsRelative(QuantityValue referenceValue, QuantityValue otherValue, QuantityValue tolerance)
+    public static bool EqualsRelative(double referenceValue, double otherValue, double tolerance)
     {
-        if (QuantityValue.IsNegative(tolerance))
+        if (tolerance < 0)
         {
             throw ExceptionHelper.CreateArgumentOutOfRangeExceptionForNegativeTolerance(nameof(tolerance));
         }
-        
-        var maxVariation = QuantityValue.Abs(referenceValue) * tolerance;
-        return QuantityValue.Abs(referenceValue - otherValue) <= maxVariation;
+
+        var maxVariation = Math.Abs(referenceValue) * tolerance;
+        return Math.Abs(referenceValue - otherValue) <= maxVariation;
     }
 
     /// <summary>
@@ -113,14 +113,14 @@ public static class Comparison
     /// <param name="tolerance">The absolute tolerance. Must be greater than or equal to 0.</param>
     /// <returns>True if the two values are equal within the given absolute tolerance, otherwise false.</returns>
     /// <exception cref="ArgumentOutOfRangeException"> Thrown when the <paramref name="tolerance"/> is negative.</exception>
-    public static bool EqualsAbsolute(QuantityValue value1, QuantityValue value2, QuantityValue tolerance)
+    public static bool EqualsAbsolute(double value1, double value2, double tolerance)
     {
-        if (QuantityValue.IsNegative(tolerance))
+        if (tolerance < 0)
         {
             throw ExceptionHelper.CreateArgumentOutOfRangeExceptionForNegativeTolerance(nameof(tolerance));
         }
 
-        return QuantityValue.Abs(value1 - value2) <= tolerance;
+        return Math.Abs(value1 - value2) <= tolerance;
     }
 
     internal static int GetHashCode(Type type, QuantityValue value)

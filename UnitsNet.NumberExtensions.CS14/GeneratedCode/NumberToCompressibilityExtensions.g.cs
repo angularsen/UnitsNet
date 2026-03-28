@@ -42,60 +42,60 @@ namespace UnitsNet.NumberExtensions.NumberToCompressibility
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Compressibility.FromInverseAtmospheres(QuantityValue)" />
+            /// <inheritdoc cref="Compressibility.FromInverseAtmospheres(double)" />
             public Compressibility InverseAtmospheres
 #if NET7_0_OR_GREATER
-                => Compressibility.FromInverseAtmospheres(QuantityValue.CreateChecked(value));
+                => Compressibility.FromInverseAtmospheres(double.CreateChecked(value));
 #else
-                => Compressibility.FromInverseAtmospheres(value.ToQuantityValue());
+                => Compressibility.FromInverseAtmospheres(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Compressibility.FromInverseBars(QuantityValue)" />
+            /// <inheritdoc cref="Compressibility.FromInverseBars(double)" />
             public Compressibility InverseBars
 #if NET7_0_OR_GREATER
-                => Compressibility.FromInverseBars(QuantityValue.CreateChecked(value));
+                => Compressibility.FromInverseBars(double.CreateChecked(value));
 #else
-                => Compressibility.FromInverseBars(value.ToQuantityValue());
+                => Compressibility.FromInverseBars(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Compressibility.FromInverseKilopascals(QuantityValue)" />
+            /// <inheritdoc cref="Compressibility.FromInverseKilopascals(double)" />
             public Compressibility InverseKilopascals
 #if NET7_0_OR_GREATER
-                => Compressibility.FromInverseKilopascals(QuantityValue.CreateChecked(value));
+                => Compressibility.FromInverseKilopascals(double.CreateChecked(value));
 #else
-                => Compressibility.FromInverseKilopascals(value.ToQuantityValue());
+                => Compressibility.FromInverseKilopascals(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Compressibility.FromInverseMegapascals(QuantityValue)" />
+            /// <inheritdoc cref="Compressibility.FromInverseMegapascals(double)" />
             public Compressibility InverseMegapascals
 #if NET7_0_OR_GREATER
-                => Compressibility.FromInverseMegapascals(QuantityValue.CreateChecked(value));
+                => Compressibility.FromInverseMegapascals(double.CreateChecked(value));
 #else
-                => Compressibility.FromInverseMegapascals(value.ToQuantityValue());
+                => Compressibility.FromInverseMegapascals(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Compressibility.FromInverseMillibars(QuantityValue)" />
+            /// <inheritdoc cref="Compressibility.FromInverseMillibars(double)" />
             public Compressibility InverseMillibars
 #if NET7_0_OR_GREATER
-                => Compressibility.FromInverseMillibars(QuantityValue.CreateChecked(value));
+                => Compressibility.FromInverseMillibars(double.CreateChecked(value));
 #else
-                => Compressibility.FromInverseMillibars(value.ToQuantityValue());
+                => Compressibility.FromInverseMillibars(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Compressibility.FromInversePascals(QuantityValue)" />
+            /// <inheritdoc cref="Compressibility.FromInversePascals(double)" />
             public Compressibility InversePascals
 #if NET7_0_OR_GREATER
-                => Compressibility.FromInversePascals(QuantityValue.CreateChecked(value));
+                => Compressibility.FromInversePascals(double.CreateChecked(value));
 #else
-                => Compressibility.FromInversePascals(value.ToQuantityValue());
+                => Compressibility.FromInversePascals(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Compressibility.FromInversePoundsForcePerSquareInch(QuantityValue)" />
+            /// <inheritdoc cref="Compressibility.FromInversePoundsForcePerSquareInch(double)" />
             public Compressibility InversePoundsForcePerSquareInch
 #if NET7_0_OR_GREATER
-                => Compressibility.FromInversePoundsForcePerSquareInch(QuantityValue.CreateChecked(value));
+                => Compressibility.FromInversePoundsForcePerSquareInch(double.CreateChecked(value));
 #else
-                => Compressibility.FromInversePoundsForcePerSquareInch(value.ToQuantityValue());
+                => Compressibility.FromInversePoundsForcePerSquareInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct ReciprocalArea :
         IArithmeticQuantity<ReciprocalArea, ReciprocalAreaUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ReciprocalArea, ReciprocalArea, QuantityValue>,
+        IDivisionOperators<ReciprocalArea, ReciprocalArea, double>,
         IMultiplyOperators<ReciprocalArea, Volume, Length>,
         IMultiplyOperators<ReciprocalArea, Force, Pressure>,
         IMultiplyOperators<ReciprocalArea, Area, Ratio>,
@@ -59,7 +59,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -168,7 +168,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ReciprocalArea(QuantityValue value, ReciprocalAreaUnit unit)
+        public ReciprocalArea(double value, ReciprocalAreaUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -182,7 +182,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ReciprocalArea(QuantityValue value, UnitSystem unitSystem)
+        public ReciprocalArea(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -224,7 +224,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public ReciprocalAreaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -258,59 +258,59 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareCentimeter"/>
         /// </summary>
-        public QuantityValue InverseSquareCentimeters => this.As(ReciprocalAreaUnit.InverseSquareCentimeter);
+        public double InverseSquareCentimeters => this.As(ReciprocalAreaUnit.InverseSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareDecimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareDecimeter"/>
         /// </summary>
-        public QuantityValue InverseSquareDecimeters => this.As(ReciprocalAreaUnit.InverseSquareDecimeter);
+        public double InverseSquareDecimeters => this.As(ReciprocalAreaUnit.InverseSquareDecimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareFoot"/>
         /// </summary>
-        public QuantityValue InverseSquareFeet => this.As(ReciprocalAreaUnit.InverseSquareFoot);
+        public double InverseSquareFeet => this.As(ReciprocalAreaUnit.InverseSquareFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareInch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareInch"/>
         /// </summary>
-        public QuantityValue InverseSquareInches => this.As(ReciprocalAreaUnit.InverseSquareInch);
+        public double InverseSquareInches => this.As(ReciprocalAreaUnit.InverseSquareInch);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareKilometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareKilometer"/>
         /// </summary>
-        public QuantityValue InverseSquareKilometers => this.As(ReciprocalAreaUnit.InverseSquareKilometer);
+        public double InverseSquareKilometers => this.As(ReciprocalAreaUnit.InverseSquareKilometer);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareMeter"/>
         /// </summary>
-        public QuantityValue InverseSquareMeters => this.As(ReciprocalAreaUnit.InverseSquareMeter);
+        public double InverseSquareMeters => this.As(ReciprocalAreaUnit.InverseSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareMicrometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareMicrometer"/>
         /// </summary>
-        public QuantityValue InverseSquareMicrometers => this.As(ReciprocalAreaUnit.InverseSquareMicrometer);
+        public double InverseSquareMicrometers => this.As(ReciprocalAreaUnit.InverseSquareMicrometer);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareMile"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareMile"/>
         /// </summary>
-        public QuantityValue InverseSquareMiles => this.As(ReciprocalAreaUnit.InverseSquareMile);
+        public double InverseSquareMiles => this.As(ReciprocalAreaUnit.InverseSquareMile);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareMillimeter"/>
         /// </summary>
-        public QuantityValue InverseSquareMillimeters => this.As(ReciprocalAreaUnit.InverseSquareMillimeter);
+        public double InverseSquareMillimeters => this.As(ReciprocalAreaUnit.InverseSquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareYard"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseSquareYard"/>
         /// </summary>
-        public QuantityValue InverseSquareYards => this.As(ReciprocalAreaUnit.InverseSquareYard);
+        public double InverseSquareYards => this.As(ReciprocalAreaUnit.InverseSquareYard);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseUsSurveySquareFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ReciprocalAreaUnit.InverseUsSurveySquareFoot"/>
         /// </summary>
-        public QuantityValue InverseUsSurveySquareFeet => this.As(ReciprocalAreaUnit.InverseUsSurveySquareFoot);
+        public double InverseUsSurveySquareFeet => this.As(ReciprocalAreaUnit.InverseUsSurveySquareFoot);
 
         #endregion
 
@@ -344,7 +344,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareCentimeter"/>.
         /// </summary>
-        public static ReciprocalArea FromInverseSquareCentimeters(QuantityValue value)
+        public static ReciprocalArea FromInverseSquareCentimeters(double value)
         {
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareCentimeter);
         }
@@ -352,7 +352,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareDecimeter"/>.
         /// </summary>
-        public static ReciprocalArea FromInverseSquareDecimeters(QuantityValue value)
+        public static ReciprocalArea FromInverseSquareDecimeters(double value)
         {
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareDecimeter);
         }
@@ -360,7 +360,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareFoot"/>.
         /// </summary>
-        public static ReciprocalArea FromInverseSquareFeet(QuantityValue value)
+        public static ReciprocalArea FromInverseSquareFeet(double value)
         {
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareFoot);
         }
@@ -368,7 +368,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareInch"/>.
         /// </summary>
-        public static ReciprocalArea FromInverseSquareInches(QuantityValue value)
+        public static ReciprocalArea FromInverseSquareInches(double value)
         {
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareInch);
         }
@@ -376,7 +376,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareKilometer"/>.
         /// </summary>
-        public static ReciprocalArea FromInverseSquareKilometers(QuantityValue value)
+        public static ReciprocalArea FromInverseSquareKilometers(double value)
         {
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareKilometer);
         }
@@ -384,7 +384,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareMeter"/>.
         /// </summary>
-        public static ReciprocalArea FromInverseSquareMeters(QuantityValue value)
+        public static ReciprocalArea FromInverseSquareMeters(double value)
         {
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMeter);
         }
@@ -392,7 +392,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareMicrometer"/>.
         /// </summary>
-        public static ReciprocalArea FromInverseSquareMicrometers(QuantityValue value)
+        public static ReciprocalArea FromInverseSquareMicrometers(double value)
         {
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMicrometer);
         }
@@ -400,7 +400,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareMile"/>.
         /// </summary>
-        public static ReciprocalArea FromInverseSquareMiles(QuantityValue value)
+        public static ReciprocalArea FromInverseSquareMiles(double value)
         {
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMile);
         }
@@ -408,7 +408,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareMillimeter"/>.
         /// </summary>
-        public static ReciprocalArea FromInverseSquareMillimeters(QuantityValue value)
+        public static ReciprocalArea FromInverseSquareMillimeters(double value)
         {
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMillimeter);
         }
@@ -416,7 +416,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseSquareYard"/>.
         /// </summary>
-        public static ReciprocalArea FromInverseSquareYards(QuantityValue value)
+        public static ReciprocalArea FromInverseSquareYards(double value)
         {
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareYard);
         }
@@ -424,7 +424,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ReciprocalArea"/> from <see cref="ReciprocalAreaUnit.InverseUsSurveySquareFoot"/>.
         /// </summary>
-        public static ReciprocalArea FromInverseUsSurveySquareFeet(QuantityValue value)
+        public static ReciprocalArea FromInverseUsSurveySquareFeet(double value)
         {
             return new ReciprocalArea(value, ReciprocalAreaUnit.InverseUsSurveySquareFoot);
         }
@@ -435,7 +435,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ReciprocalArea unit value.</returns>
-        public static ReciprocalArea From(QuantityValue value, ReciprocalAreaUnit fromUnit)
+        public static ReciprocalArea From(double value, ReciprocalAreaUnit fromUnit)
         {
             return new ReciprocalArea(value, fromUnit);
         }
@@ -600,25 +600,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ReciprocalArea"/> from multiplying value and <see cref="ReciprocalArea"/>.</summary>
-        public static ReciprocalArea operator *(QuantityValue left, ReciprocalArea right)
+        public static ReciprocalArea operator *(double left, ReciprocalArea right)
         {
             return new ReciprocalArea(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ReciprocalArea"/> from multiplying value and <see cref="ReciprocalArea"/>.</summary>
-        public static ReciprocalArea operator *(ReciprocalArea left, QuantityValue right)
+        public static ReciprocalArea operator *(ReciprocalArea left, double right)
         {
             return new ReciprocalArea(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ReciprocalArea"/> from dividing <see cref="ReciprocalArea"/> by value.</summary>
-        public static ReciprocalArea operator /(ReciprocalArea left, QuantityValue right)
+        public static ReciprocalArea operator /(ReciprocalArea left, double right)
         {
             return new ReciprocalArea(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ReciprocalArea"/> by <see cref="ReciprocalArea"/>.</summary>
-        public static QuantityValue operator /(ReciprocalArea left, ReciprocalArea right)
+        public static double operator /(ReciprocalArea left, ReciprocalArea right)
         {
             return left.InverseSquareMeters / right.InverseSquareMeters;
         }

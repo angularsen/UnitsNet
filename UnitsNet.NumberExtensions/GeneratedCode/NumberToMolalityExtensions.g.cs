@@ -32,37 +32,37 @@ namespace UnitsNet.NumberExtensions.NumberToMolality
     /// </summary>
     public static class NumberToMolalityExtensions
     {
-        /// <inheritdoc cref="Molality.FromMillimolesPerKilogram(QuantityValue)" />
+        /// <inheritdoc cref="Molality.FromMillimolesPerKilogram(double)" />
         public static Molality MillimolesPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Molality.FromMillimolesPerKilogram(QuantityValue.CreateChecked(value));
+            => Molality.FromMillimolesPerKilogram(double.CreateChecked(value));
 #else
             , IConvertible
-            => Molality.FromMillimolesPerKilogram(value.ToQuantityValue());
+            => Molality.FromMillimolesPerKilogram(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Molality.FromMolesPerGram(QuantityValue)" />
+        /// <inheritdoc cref="Molality.FromMolesPerGram(double)" />
         public static Molality MolesPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Molality.FromMolesPerGram(QuantityValue.CreateChecked(value));
+            => Molality.FromMolesPerGram(double.CreateChecked(value));
 #else
             , IConvertible
-            => Molality.FromMolesPerGram(value.ToQuantityValue());
+            => Molality.FromMolesPerGram(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Molality.FromMolesPerKilogram(QuantityValue)" />
+        /// <inheritdoc cref="Molality.FromMolesPerKilogram(double)" />
         public static Molality MolesPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Molality.FromMolesPerKilogram(QuantityValue.CreateChecked(value));
+            => Molality.FromMolesPerKilogram(double.CreateChecked(value));
 #else
             , IConvertible
-            => Molality.FromMolesPerKilogram(value.ToQuantityValue());
+            => Molality.FromMolesPerKilogram(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

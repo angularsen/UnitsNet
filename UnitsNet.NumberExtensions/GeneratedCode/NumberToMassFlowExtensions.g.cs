@@ -32,367 +32,367 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlow
     /// </summary>
     public static class NumberToMassFlowExtensions
     {
-        /// <inheritdoc cref="MassFlow.FromCentigramsPerDay(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromCentigramsPerDay(double)" />
         public static MassFlow CentigramsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromCentigramsPerDay(QuantityValue.CreateChecked(value));
+            => MassFlow.FromCentigramsPerDay(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromCentigramsPerDay(value.ToQuantityValue());
+            => MassFlow.FromCentigramsPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromCentigramsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromCentigramsPerSecond(double)" />
         public static MassFlow CentigramsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromCentigramsPerSecond(QuantityValue.CreateChecked(value));
+            => MassFlow.FromCentigramsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromCentigramsPerSecond(value.ToQuantityValue());
+            => MassFlow.FromCentigramsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromDecagramsPerDay(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromDecagramsPerDay(double)" />
         public static MassFlow DecagramsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromDecagramsPerDay(QuantityValue.CreateChecked(value));
+            => MassFlow.FromDecagramsPerDay(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromDecagramsPerDay(value.ToQuantityValue());
+            => MassFlow.FromDecagramsPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromDecagramsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromDecagramsPerSecond(double)" />
         public static MassFlow DecagramsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromDecagramsPerSecond(QuantityValue.CreateChecked(value));
+            => MassFlow.FromDecagramsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromDecagramsPerSecond(value.ToQuantityValue());
+            => MassFlow.FromDecagramsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromDecigramsPerDay(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromDecigramsPerDay(double)" />
         public static MassFlow DecigramsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromDecigramsPerDay(QuantityValue.CreateChecked(value));
+            => MassFlow.FromDecigramsPerDay(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromDecigramsPerDay(value.ToQuantityValue());
+            => MassFlow.FromDecigramsPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromDecigramsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromDecigramsPerSecond(double)" />
         public static MassFlow DecigramsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromDecigramsPerSecond(QuantityValue.CreateChecked(value));
+            => MassFlow.FromDecigramsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromDecigramsPerSecond(value.ToQuantityValue());
+            => MassFlow.FromDecigramsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromGramsPerDay(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromGramsPerDay(double)" />
         public static MassFlow GramsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromGramsPerDay(QuantityValue.CreateChecked(value));
+            => MassFlow.FromGramsPerDay(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromGramsPerDay(value.ToQuantityValue());
+            => MassFlow.FromGramsPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromGramsPerHour(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromGramsPerHour(double)" />
         public static MassFlow GramsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromGramsPerHour(QuantityValue.CreateChecked(value));
+            => MassFlow.FromGramsPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromGramsPerHour(value.ToQuantityValue());
+            => MassFlow.FromGramsPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromGramsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromGramsPerSecond(double)" />
         public static MassFlow GramsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromGramsPerSecond(QuantityValue.CreateChecked(value));
+            => MassFlow.FromGramsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromGramsPerSecond(value.ToQuantityValue());
+            => MassFlow.FromGramsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromHectogramsPerDay(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromHectogramsPerDay(double)" />
         public static MassFlow HectogramsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromHectogramsPerDay(QuantityValue.CreateChecked(value));
+            => MassFlow.FromHectogramsPerDay(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromHectogramsPerDay(value.ToQuantityValue());
+            => MassFlow.FromHectogramsPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromHectogramsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromHectogramsPerSecond(double)" />
         public static MassFlow HectogramsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromHectogramsPerSecond(QuantityValue.CreateChecked(value));
+            => MassFlow.FromHectogramsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromHectogramsPerSecond(value.ToQuantityValue());
+            => MassFlow.FromHectogramsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerDay(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerDay(double)" />
         public static MassFlow KilogramsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromKilogramsPerDay(QuantityValue.CreateChecked(value));
+            => MassFlow.FromKilogramsPerDay(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromKilogramsPerDay(value.ToQuantityValue());
+            => MassFlow.FromKilogramsPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerHour(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerHour(double)" />
         public static MassFlow KilogramsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromKilogramsPerHour(QuantityValue.CreateChecked(value));
+            => MassFlow.FromKilogramsPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromKilogramsPerHour(value.ToQuantityValue());
+            => MassFlow.FromKilogramsPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerMinute(double)" />
         public static MassFlow KilogramsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromKilogramsPerMinute(QuantityValue.CreateChecked(value));
+            => MassFlow.FromKilogramsPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromKilogramsPerMinute(value.ToQuantityValue());
+            => MassFlow.FromKilogramsPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerSecond(double)" />
         public static MassFlow KilogramsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromKilogramsPerSecond(QuantityValue.CreateChecked(value));
+            => MassFlow.FromKilogramsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromKilogramsPerSecond(value.ToQuantityValue());
+            => MassFlow.FromKilogramsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromMegagramsPerDay(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromMegagramsPerDay(double)" />
         public static MassFlow MegagramsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromMegagramsPerDay(QuantityValue.CreateChecked(value));
+            => MassFlow.FromMegagramsPerDay(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromMegagramsPerDay(value.ToQuantityValue());
+            => MassFlow.FromMegagramsPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerDay(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerDay(double)" />
         public static MassFlow MegapoundsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromMegapoundsPerDay(QuantityValue.CreateChecked(value));
+            => MassFlow.FromMegapoundsPerDay(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromMegapoundsPerDay(value.ToQuantityValue());
+            => MassFlow.FromMegapoundsPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(double)" />
         public static MassFlow MegapoundsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromMegapoundsPerHour(QuantityValue.CreateChecked(value));
+            => MassFlow.FromMegapoundsPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromMegapoundsPerHour(value.ToQuantityValue());
+            => MassFlow.FromMegapoundsPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(double)" />
         public static MassFlow MegapoundsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromMegapoundsPerMinute(QuantityValue.CreateChecked(value));
+            => MassFlow.FromMegapoundsPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromMegapoundsPerMinute(value.ToQuantityValue());
+            => MassFlow.FromMegapoundsPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerSecond(double)" />
         public static MassFlow MegapoundsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromMegapoundsPerSecond(QuantityValue.CreateChecked(value));
+            => MassFlow.FromMegapoundsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromMegapoundsPerSecond(value.ToQuantityValue());
+            => MassFlow.FromMegapoundsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromMicrogramsPerDay(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromMicrogramsPerDay(double)" />
         public static MassFlow MicrogramsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromMicrogramsPerDay(QuantityValue.CreateChecked(value));
+            => MassFlow.FromMicrogramsPerDay(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromMicrogramsPerDay(value.ToQuantityValue());
+            => MassFlow.FromMicrogramsPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromMicrogramsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromMicrogramsPerSecond(double)" />
         public static MassFlow MicrogramsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromMicrogramsPerSecond(QuantityValue.CreateChecked(value));
+            => MassFlow.FromMicrogramsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromMicrogramsPerSecond(value.ToQuantityValue());
+            => MassFlow.FromMicrogramsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromMilligramsPerDay(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromMilligramsPerDay(double)" />
         public static MassFlow MilligramsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromMilligramsPerDay(QuantityValue.CreateChecked(value));
+            => MassFlow.FromMilligramsPerDay(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromMilligramsPerDay(value.ToQuantityValue());
+            => MassFlow.FromMilligramsPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromMilligramsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromMilligramsPerSecond(double)" />
         public static MassFlow MilligramsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromMilligramsPerSecond(QuantityValue.CreateChecked(value));
+            => MassFlow.FromMilligramsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromMilligramsPerSecond(value.ToQuantityValue());
+            => MassFlow.FromMilligramsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromNanogramsPerDay(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromNanogramsPerDay(double)" />
         public static MassFlow NanogramsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromNanogramsPerDay(QuantityValue.CreateChecked(value));
+            => MassFlow.FromNanogramsPerDay(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromNanogramsPerDay(value.ToQuantityValue());
+            => MassFlow.FromNanogramsPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromNanogramsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromNanogramsPerSecond(double)" />
         public static MassFlow NanogramsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromNanogramsPerSecond(QuantityValue.CreateChecked(value));
+            => MassFlow.FromNanogramsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromNanogramsPerSecond(value.ToQuantityValue());
+            => MassFlow.FromNanogramsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromPoundsPerDay(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromPoundsPerDay(double)" />
         public static MassFlow PoundsPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromPoundsPerDay(QuantityValue.CreateChecked(value));
+            => MassFlow.FromPoundsPerDay(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromPoundsPerDay(value.ToQuantityValue());
+            => MassFlow.FromPoundsPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(double)" />
         public static MassFlow PoundsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromPoundsPerHour(QuantityValue.CreateChecked(value));
+            => MassFlow.FromPoundsPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromPoundsPerHour(value.ToQuantityValue());
+            => MassFlow.FromPoundsPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(double)" />
         public static MassFlow PoundsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromPoundsPerMinute(QuantityValue.CreateChecked(value));
+            => MassFlow.FromPoundsPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromPoundsPerMinute(value.ToQuantityValue());
+            => MassFlow.FromPoundsPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromPoundsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromPoundsPerSecond(double)" />
         public static MassFlow PoundsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromPoundsPerSecond(QuantityValue.CreateChecked(value));
+            => MassFlow.FromPoundsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromPoundsPerSecond(value.ToQuantityValue());
+            => MassFlow.FromPoundsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(double)" />
         public static MassFlow ShortTonsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromShortTonsPerHour(QuantityValue.CreateChecked(value));
+            => MassFlow.FromShortTonsPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromShortTonsPerHour(value.ToQuantityValue());
+            => MassFlow.FromShortTonsPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromTonnesPerDay(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromTonnesPerDay(double)" />
         public static MassFlow TonnesPerDay<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromTonnesPerDay(QuantityValue.CreateChecked(value));
+            => MassFlow.FromTonnesPerDay(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromTonnesPerDay(value.ToQuantityValue());
+            => MassFlow.FromTonnesPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(QuantityValue)" />
+        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(double)" />
         public static MassFlow TonnesPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MassFlow.FromTonnesPerHour(QuantityValue.CreateChecked(value));
+            => MassFlow.FromTonnesPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => MassFlow.FromTonnesPerHour(value.ToQuantityValue());
+            => MassFlow.FromTonnesPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

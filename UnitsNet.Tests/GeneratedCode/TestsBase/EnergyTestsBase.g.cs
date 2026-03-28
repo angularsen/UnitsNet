@@ -584,7 +584,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 Американский терм", EnergyUnit.ThermUs, 4.2)]
         [InlineData("ru-RU", "4,2 Вт/д", EnergyUnit.WattDay, 4.2)]
         [InlineData("ru-RU", "4,2 Вт/ч", EnergyUnit.WattHour, 4.2)]
-        public void Parse(string culture, string quantityString, EnergyUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, EnergyUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Energy.Parse(quantityString);
@@ -654,7 +654,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 Американский терм", EnergyUnit.ThermUs, 4.2)]
         [InlineData("ru-RU", "4,2 Вт/д", EnergyUnit.WattDay, 4.2)]
         [InlineData("ru-RU", "4,2 Вт/ч", EnergyUnit.WattHour, 4.2)]
-        public void TryParse(string culture, string quantityString, EnergyUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, EnergyUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Energy.TryParse(quantityString, out Energy parsed));
@@ -1438,8 +1438,8 @@ namespace UnitsNet.Tests
             var quantity = Energy.FromJoules(firstValue);
             var otherQuantity = Energy.FromJoules(secondValue);
             Energy maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Energy.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

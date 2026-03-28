@@ -42,28 +42,28 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificVolume
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(QuantityValue)" />
+            /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(double)" />
             public SpecificVolume CubicFeetPerPound
 #if NET7_0_OR_GREATER
-                => SpecificVolume.FromCubicFeetPerPound(QuantityValue.CreateChecked(value));
+                => SpecificVolume.FromCubicFeetPerPound(double.CreateChecked(value));
 #else
-                => SpecificVolume.FromCubicFeetPerPound(value.ToQuantityValue());
+                => SpecificVolume.FromCubicFeetPerPound(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(QuantityValue)" />
+            /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(double)" />
             public SpecificVolume CubicMetersPerKilogram
 #if NET7_0_OR_GREATER
-                => SpecificVolume.FromCubicMetersPerKilogram(QuantityValue.CreateChecked(value));
+                => SpecificVolume.FromCubicMetersPerKilogram(double.CreateChecked(value));
 #else
-                => SpecificVolume.FromCubicMetersPerKilogram(value.ToQuantityValue());
+                => SpecificVolume.FromCubicMetersPerKilogram(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(QuantityValue)" />
+            /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(double)" />
             public SpecificVolume MillicubicMetersPerKilogram
 #if NET7_0_OR_GREATER
-                => SpecificVolume.FromMillicubicMetersPerKilogram(QuantityValue.CreateChecked(value));
+                => SpecificVolume.FromMillicubicMetersPerKilogram(double.CreateChecked(value));
 #else
-                => SpecificVolume.FromMillicubicMetersPerKilogram(value.ToQuantityValue());
+                => SpecificVolume.FromMillicubicMetersPerKilogram(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

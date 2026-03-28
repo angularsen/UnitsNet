@@ -32,466 +32,466 @@ namespace UnitsNet.NumberExtensions.NumberToLength
     /// </summary>
     public static class NumberToLengthExtensions
     {
-        /// <inheritdoc cref="Length.FromAngstroms(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromAngstroms(double)" />
         public static Length Angstroms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromAngstroms(QuantityValue.CreateChecked(value));
+            => Length.FromAngstroms(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromAngstroms(value.ToQuantityValue());
+            => Length.FromAngstroms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromAstronomicalUnits(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromAstronomicalUnits(double)" />
         public static Length AstronomicalUnits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromAstronomicalUnits(QuantityValue.CreateChecked(value));
+            => Length.FromAstronomicalUnits(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromAstronomicalUnits(value.ToQuantityValue());
+            => Length.FromAstronomicalUnits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromCentimeters(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromCentimeters(double)" />
         public static Length Centimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromCentimeters(QuantityValue.CreateChecked(value));
+            => Length.FromCentimeters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromCentimeters(value.ToQuantityValue());
+            => Length.FromCentimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromChains(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromChains(double)" />
         public static Length Chains<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromChains(QuantityValue.CreateChecked(value));
+            => Length.FromChains(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromChains(value.ToQuantityValue());
+            => Length.FromChains(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromDataMiles(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromDataMiles(double)" />
         public static Length DataMiles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromDataMiles(QuantityValue.CreateChecked(value));
+            => Length.FromDataMiles(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromDataMiles(value.ToQuantityValue());
+            => Length.FromDataMiles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromDecameters(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromDecameters(double)" />
         public static Length Decameters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromDecameters(QuantityValue.CreateChecked(value));
+            => Length.FromDecameters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromDecameters(value.ToQuantityValue());
+            => Length.FromDecameters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromDecimeters(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromDecimeters(double)" />
         public static Length Decimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromDecimeters(QuantityValue.CreateChecked(value));
+            => Length.FromDecimeters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromDecimeters(value.ToQuantityValue());
+            => Length.FromDecimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromDtpPicas(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromDtpPicas(double)" />
         public static Length DtpPicas<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromDtpPicas(QuantityValue.CreateChecked(value));
+            => Length.FromDtpPicas(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromDtpPicas(value.ToQuantityValue());
+            => Length.FromDtpPicas(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromDtpPoints(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromDtpPoints(double)" />
         public static Length DtpPoints<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromDtpPoints(QuantityValue.CreateChecked(value));
+            => Length.FromDtpPoints(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromDtpPoints(value.ToQuantityValue());
+            => Length.FromDtpPoints(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromFathoms(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromFathoms(double)" />
         public static Length Fathoms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromFathoms(QuantityValue.CreateChecked(value));
+            => Length.FromFathoms(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromFathoms(value.ToQuantityValue());
+            => Length.FromFathoms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromFemtometers(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromFemtometers(double)" />
         public static Length Femtometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromFemtometers(QuantityValue.CreateChecked(value));
+            => Length.FromFemtometers(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromFemtometers(value.ToQuantityValue());
+            => Length.FromFemtometers(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromFeet(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromFeet(double)" />
         public static Length Feet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromFeet(QuantityValue.CreateChecked(value));
+            => Length.FromFeet(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromFeet(value.ToQuantityValue());
+            => Length.FromFeet(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromGigameters(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromGigameters(double)" />
         public static Length Gigameters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromGigameters(QuantityValue.CreateChecked(value));
+            => Length.FromGigameters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromGigameters(value.ToQuantityValue());
+            => Length.FromGigameters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromHands(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromHands(double)" />
         public static Length Hands<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromHands(QuantityValue.CreateChecked(value));
+            => Length.FromHands(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromHands(value.ToQuantityValue());
+            => Length.FromHands(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromHectometers(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromHectometers(double)" />
         public static Length Hectometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromHectometers(QuantityValue.CreateChecked(value));
+            => Length.FromHectometers(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromHectometers(value.ToQuantityValue());
+            => Length.FromHectometers(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromInches(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromInches(double)" />
         public static Length Inches<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromInches(QuantityValue.CreateChecked(value));
+            => Length.FromInches(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromInches(value.ToQuantityValue());
+            => Length.FromInches(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromKilofeet(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromKilofeet(double)" />
         public static Length Kilofeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromKilofeet(QuantityValue.CreateChecked(value));
+            => Length.FromKilofeet(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromKilofeet(value.ToQuantityValue());
+            => Length.FromKilofeet(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromKilolightYears(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromKilolightYears(double)" />
         public static Length KilolightYears<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromKilolightYears(QuantityValue.CreateChecked(value));
+            => Length.FromKilolightYears(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromKilolightYears(value.ToQuantityValue());
+            => Length.FromKilolightYears(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromKilometers(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromKilometers(double)" />
         public static Length Kilometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromKilometers(QuantityValue.CreateChecked(value));
+            => Length.FromKilometers(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromKilometers(value.ToQuantityValue());
+            => Length.FromKilometers(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromKiloparsecs(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromKiloparsecs(double)" />
         public static Length Kiloparsecs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromKiloparsecs(QuantityValue.CreateChecked(value));
+            => Length.FromKiloparsecs(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromKiloparsecs(value.ToQuantityValue());
+            => Length.FromKiloparsecs(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromKiloyards(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromKiloyards(double)" />
         public static Length Kiloyards<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromKiloyards(QuantityValue.CreateChecked(value));
+            => Length.FromKiloyards(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromKiloyards(value.ToQuantityValue());
+            => Length.FromKiloyards(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromLightYears(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromLightYears(double)" />
         public static Length LightYears<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromLightYears(QuantityValue.CreateChecked(value));
+            => Length.FromLightYears(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromLightYears(value.ToQuantityValue());
+            => Length.FromLightYears(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromMegalightYears(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromMegalightYears(double)" />
         public static Length MegalightYears<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromMegalightYears(QuantityValue.CreateChecked(value));
+            => Length.FromMegalightYears(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromMegalightYears(value.ToQuantityValue());
+            => Length.FromMegalightYears(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromMegameters(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromMegameters(double)" />
         public static Length Megameters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromMegameters(QuantityValue.CreateChecked(value));
+            => Length.FromMegameters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromMegameters(value.ToQuantityValue());
+            => Length.FromMegameters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromMegaparsecs(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromMegaparsecs(double)" />
         public static Length Megaparsecs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromMegaparsecs(QuantityValue.CreateChecked(value));
+            => Length.FromMegaparsecs(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromMegaparsecs(value.ToQuantityValue());
+            => Length.FromMegaparsecs(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromMeters(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromMeters(double)" />
         public static Length Meters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromMeters(QuantityValue.CreateChecked(value));
+            => Length.FromMeters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromMeters(value.ToQuantityValue());
+            => Length.FromMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromMicroinches(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromMicroinches(double)" />
         public static Length Microinches<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromMicroinches(QuantityValue.CreateChecked(value));
+            => Length.FromMicroinches(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromMicroinches(value.ToQuantityValue());
+            => Length.FromMicroinches(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromMicrometers(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromMicrometers(double)" />
         public static Length Micrometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromMicrometers(QuantityValue.CreateChecked(value));
+            => Length.FromMicrometers(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromMicrometers(value.ToQuantityValue());
+            => Length.FromMicrometers(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromMils(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromMils(double)" />
         public static Length Mils<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromMils(QuantityValue.CreateChecked(value));
+            => Length.FromMils(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromMils(value.ToQuantityValue());
+            => Length.FromMils(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromMiles(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromMiles(double)" />
         public static Length Miles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromMiles(QuantityValue.CreateChecked(value));
+            => Length.FromMiles(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromMiles(value.ToQuantityValue());
+            => Length.FromMiles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromMillimeters(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromMillimeters(double)" />
         public static Length Millimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromMillimeters(QuantityValue.CreateChecked(value));
+            => Length.FromMillimeters(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromMillimeters(value.ToQuantityValue());
+            => Length.FromMillimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromNanometers(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromNanometers(double)" />
         public static Length Nanometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromNanometers(QuantityValue.CreateChecked(value));
+            => Length.FromNanometers(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromNanometers(value.ToQuantityValue());
+            => Length.FromNanometers(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromNauticalMiles(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromNauticalMiles(double)" />
         public static Length NauticalMiles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromNauticalMiles(QuantityValue.CreateChecked(value));
+            => Length.FromNauticalMiles(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromNauticalMiles(value.ToQuantityValue());
+            => Length.FromNauticalMiles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromParsecs(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromParsecs(double)" />
         public static Length Parsecs<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromParsecs(QuantityValue.CreateChecked(value));
+            => Length.FromParsecs(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromParsecs(value.ToQuantityValue());
+            => Length.FromParsecs(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromPicometers(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromPicometers(double)" />
         public static Length Picometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromPicometers(QuantityValue.CreateChecked(value));
+            => Length.FromPicometers(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromPicometers(value.ToQuantityValue());
+            => Length.FromPicometers(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromPrinterPicas(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromPrinterPicas(double)" />
         public static Length PrinterPicas<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromPrinterPicas(QuantityValue.CreateChecked(value));
+            => Length.FromPrinterPicas(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromPrinterPicas(value.ToQuantityValue());
+            => Length.FromPrinterPicas(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromPrinterPoints(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromPrinterPoints(double)" />
         public static Length PrinterPoints<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromPrinterPoints(QuantityValue.CreateChecked(value));
+            => Length.FromPrinterPoints(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromPrinterPoints(value.ToQuantityValue());
+            => Length.FromPrinterPoints(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromShackles(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromShackles(double)" />
         public static Length Shackles<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromShackles(QuantityValue.CreateChecked(value));
+            => Length.FromShackles(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromShackles(value.ToQuantityValue());
+            => Length.FromShackles(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromSolarRadiuses(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromSolarRadiuses(double)" />
         public static Length SolarRadiuses<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromSolarRadiuses(QuantityValue.CreateChecked(value));
+            => Length.FromSolarRadiuses(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromSolarRadiuses(value.ToQuantityValue());
+            => Length.FromSolarRadiuses(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromTwips(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromTwips(double)" />
         public static Length Twips<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromTwips(QuantityValue.CreateChecked(value));
+            => Length.FromTwips(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromTwips(value.ToQuantityValue());
+            => Length.FromTwips(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromUsSurveyFeet(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromUsSurveyFeet(double)" />
         public static Length UsSurveyFeet<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromUsSurveyFeet(QuantityValue.CreateChecked(value));
+            => Length.FromUsSurveyFeet(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromUsSurveyFeet(value.ToQuantityValue());
+            => Length.FromUsSurveyFeet(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Length.FromYards(QuantityValue)" />
+        /// <inheritdoc cref="Length.FromYards(double)" />
         public static Length Yards<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Length.FromYards(QuantityValue.CreateChecked(value));
+            => Length.FromYards(double.CreateChecked(value));
 #else
             , IConvertible
-            => Length.FromYards(value.ToQuantityValue());
+            => Length.FromYards(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

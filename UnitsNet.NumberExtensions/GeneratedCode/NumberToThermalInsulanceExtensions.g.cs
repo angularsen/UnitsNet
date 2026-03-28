@@ -32,81 +32,81 @@ namespace UnitsNet.NumberExtensions.NumberToThermalInsulance
     /// </summary>
     public static class NumberToThermalInsulanceExtensions
     {
-        /// <inheritdoc cref="ThermalInsulance.FromHourSquareFeetDegreesFahrenheitPerBtu(QuantityValue)" />
+        /// <inheritdoc cref="ThermalInsulance.FromHourSquareFeetDegreesFahrenheitPerBtu(double)" />
         public static ThermalInsulance HourSquareFeetDegreesFahrenheitPerBtu<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ThermalInsulance.FromHourSquareFeetDegreesFahrenheitPerBtu(QuantityValue.CreateChecked(value));
+            => ThermalInsulance.FromHourSquareFeetDegreesFahrenheitPerBtu(double.CreateChecked(value));
 #else
             , IConvertible
-            => ThermalInsulance.FromHourSquareFeetDegreesFahrenheitPerBtu(value.ToQuantityValue());
+            => ThermalInsulance.FromHourSquareFeetDegreesFahrenheitPerBtu(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ThermalInsulance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(QuantityValue)" />
+        /// <inheritdoc cref="ThermalInsulance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(double)" />
         public static ThermalInsulance SquareCentimeterHourDegreesCelsiusPerKilocalorie<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ThermalInsulance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(QuantityValue.CreateChecked(value));
+            => ThermalInsulance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(double.CreateChecked(value));
 #else
             , IConvertible
-            => ThermalInsulance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(value.ToQuantityValue());
+            => ThermalInsulance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ThermalInsulance.FromSquareCentimeterKelvinsPerWatt(QuantityValue)" />
+        /// <inheritdoc cref="ThermalInsulance.FromSquareCentimeterKelvinsPerWatt(double)" />
         public static ThermalInsulance SquareCentimeterKelvinsPerWatt<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ThermalInsulance.FromSquareCentimeterKelvinsPerWatt(QuantityValue.CreateChecked(value));
+            => ThermalInsulance.FromSquareCentimeterKelvinsPerWatt(double.CreateChecked(value));
 #else
             , IConvertible
-            => ThermalInsulance.FromSquareCentimeterKelvinsPerWatt(value.ToQuantityValue());
+            => ThermalInsulance.FromSquareCentimeterKelvinsPerWatt(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ThermalInsulance.FromSquareMeterDegreesCelsiusPerWatt(QuantityValue)" />
+        /// <inheritdoc cref="ThermalInsulance.FromSquareMeterDegreesCelsiusPerWatt(double)" />
         public static ThermalInsulance SquareMeterDegreesCelsiusPerWatt<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ThermalInsulance.FromSquareMeterDegreesCelsiusPerWatt(QuantityValue.CreateChecked(value));
+            => ThermalInsulance.FromSquareMeterDegreesCelsiusPerWatt(double.CreateChecked(value));
 #else
             , IConvertible
-            => ThermalInsulance.FromSquareMeterDegreesCelsiusPerWatt(value.ToQuantityValue());
+            => ThermalInsulance.FromSquareMeterDegreesCelsiusPerWatt(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(QuantityValue)" />
+        /// <inheritdoc cref="ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(double)" />
         public static ThermalInsulance SquareMeterKelvinsPerKilowatt<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(QuantityValue.CreateChecked(value));
+            => ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(double.CreateChecked(value));
 #else
             , IConvertible
-            => ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(value.ToQuantityValue());
+            => ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ThermalInsulance.FromSquareMeterKelvinsPerWatt(QuantityValue)" />
+        /// <inheritdoc cref="ThermalInsulance.FromSquareMeterKelvinsPerWatt(double)" />
         public static ThermalInsulance SquareMeterKelvinsPerWatt<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ThermalInsulance.FromSquareMeterKelvinsPerWatt(QuantityValue.CreateChecked(value));
+            => ThermalInsulance.FromSquareMeterKelvinsPerWatt(double.CreateChecked(value));
 #else
             , IConvertible
-            => ThermalInsulance.FromSquareMeterKelvinsPerWatt(value.ToQuantityValue());
+            => ThermalInsulance.FromSquareMeterKelvinsPerWatt(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ThermalInsulance.FromSquareMillimeterKelvinsPerWatt(QuantityValue)" />
+        /// <inheritdoc cref="ThermalInsulance.FromSquareMillimeterKelvinsPerWatt(double)" />
         public static ThermalInsulance SquareMillimeterKelvinsPerWatt<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ThermalInsulance.FromSquareMillimeterKelvinsPerWatt(QuantityValue.CreateChecked(value));
+            => ThermalInsulance.FromSquareMillimeterKelvinsPerWatt(double.CreateChecked(value));
 #else
             , IConvertible
-            => ThermalInsulance.FromSquareMillimeterKelvinsPerWatt(value.ToQuantityValue());
+            => ThermalInsulance.FromSquareMillimeterKelvinsPerWatt(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct PorousMediumPermeability :
         IArithmeticQuantity<PorousMediumPermeability, PorousMediumPermeabilityUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<PorousMediumPermeability, PorousMediumPermeability, QuantityValue>,
+        IDivisionOperators<PorousMediumPermeability, PorousMediumPermeability, double>,
         IComparisonOperators<PorousMediumPermeability, PorousMediumPermeability, bool>,
         IParsable<PorousMediumPermeability>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -145,7 +145,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public PorousMediumPermeability(QuantityValue value, PorousMediumPermeabilityUnit unit)
+        public PorousMediumPermeability(double value, PorousMediumPermeabilityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public PorousMediumPermeability(QuantityValue value, UnitSystem unitSystem)
+        public PorousMediumPermeability(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -201,7 +201,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public PorousMediumPermeabilityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -235,29 +235,29 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PorousMediumPermeabilityUnit.Darcy"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PorousMediumPermeabilityUnit.Darcy"/>
         /// </summary>
-        public QuantityValue Darcys => this.As(PorousMediumPermeabilityUnit.Darcy);
+        public double Darcys => this.As(PorousMediumPermeabilityUnit.Darcy);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PorousMediumPermeabilityUnit.Microdarcy"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PorousMediumPermeabilityUnit.Microdarcy"/>
         /// </summary>
-        public QuantityValue Microdarcys => this.As(PorousMediumPermeabilityUnit.Microdarcy);
+        public double Microdarcys => this.As(PorousMediumPermeabilityUnit.Microdarcy);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PorousMediumPermeabilityUnit.Millidarcy"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PorousMediumPermeabilityUnit.Millidarcy"/>
         /// </summary>
-        public QuantityValue Millidarcys => this.As(PorousMediumPermeabilityUnit.Millidarcy);
+        public double Millidarcys => this.As(PorousMediumPermeabilityUnit.Millidarcy);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PorousMediumPermeabilityUnit.SquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PorousMediumPermeabilityUnit.SquareCentimeter"/>
         /// </summary>
-        public QuantityValue SquareCentimeters => this.As(PorousMediumPermeabilityUnit.SquareCentimeter);
+        public double SquareCentimeters => this.As(PorousMediumPermeabilityUnit.SquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PorousMediumPermeabilityUnit.SquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PorousMediumPermeabilityUnit.SquareMeter"/>
         /// </summary>
-        public QuantityValue SquareMeters => this.As(PorousMediumPermeabilityUnit.SquareMeter);
+        public double SquareMeters => this.As(PorousMediumPermeabilityUnit.SquareMeter);
 
         #endregion
 
@@ -291,7 +291,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.Darcy"/>.
         /// </summary>
-        public static PorousMediumPermeability FromDarcys(QuantityValue value)
+        public static PorousMediumPermeability FromDarcys(double value)
         {
             return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.Darcy);
         }
@@ -299,7 +299,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.Microdarcy"/>.
         /// </summary>
-        public static PorousMediumPermeability FromMicrodarcys(QuantityValue value)
+        public static PorousMediumPermeability FromMicrodarcys(double value)
         {
             return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.Microdarcy);
         }
@@ -307,7 +307,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.Millidarcy"/>.
         /// </summary>
-        public static PorousMediumPermeability FromMillidarcys(QuantityValue value)
+        public static PorousMediumPermeability FromMillidarcys(double value)
         {
             return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.Millidarcy);
         }
@@ -315,7 +315,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.SquareCentimeter"/>.
         /// </summary>
-        public static PorousMediumPermeability FromSquareCentimeters(QuantityValue value)
+        public static PorousMediumPermeability FromSquareCentimeters(double value)
         {
             return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.SquareCentimeter);
         }
@@ -323,7 +323,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PorousMediumPermeability"/> from <see cref="PorousMediumPermeabilityUnit.SquareMeter"/>.
         /// </summary>
-        public static PorousMediumPermeability FromSquareMeters(QuantityValue value)
+        public static PorousMediumPermeability FromSquareMeters(double value)
         {
             return new PorousMediumPermeability(value, PorousMediumPermeabilityUnit.SquareMeter);
         }
@@ -334,7 +334,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>PorousMediumPermeability unit value.</returns>
-        public static PorousMediumPermeability From(QuantityValue value, PorousMediumPermeabilityUnit fromUnit)
+        public static PorousMediumPermeability From(double value, PorousMediumPermeabilityUnit fromUnit)
         {
             return new PorousMediumPermeability(value, fromUnit);
         }
@@ -499,25 +499,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="PorousMediumPermeability"/> from multiplying value and <see cref="PorousMediumPermeability"/>.</summary>
-        public static PorousMediumPermeability operator *(QuantityValue left, PorousMediumPermeability right)
+        public static PorousMediumPermeability operator *(double left, PorousMediumPermeability right)
         {
             return new PorousMediumPermeability(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="PorousMediumPermeability"/> from multiplying value and <see cref="PorousMediumPermeability"/>.</summary>
-        public static PorousMediumPermeability operator *(PorousMediumPermeability left, QuantityValue right)
+        public static PorousMediumPermeability operator *(PorousMediumPermeability left, double right)
         {
             return new PorousMediumPermeability(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="PorousMediumPermeability"/> from dividing <see cref="PorousMediumPermeability"/> by value.</summary>
-        public static PorousMediumPermeability operator /(PorousMediumPermeability left, QuantityValue right)
+        public static PorousMediumPermeability operator /(PorousMediumPermeability left, double right)
         {
             return new PorousMediumPermeability(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="PorousMediumPermeability"/> by <see cref="PorousMediumPermeability"/>.</summary>
-        public static QuantityValue operator /(PorousMediumPermeability left, PorousMediumPermeability right)
+        public static double operator /(PorousMediumPermeability left, PorousMediumPermeability right)
         {
             return left.SquareMeters / right.SquareMeters;
         }

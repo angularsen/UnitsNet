@@ -32,147 +32,147 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
     /// </summary>
     public static class NumberToRotationalSpeedExtensions
     {
-        /// <inheritdoc cref="RotationalSpeed.FromCentiradiansPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromCentiradiansPerSecond(double)" />
         public static RotationalSpeed CentiradiansPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RotationalSpeed.FromCentiradiansPerSecond(QuantityValue.CreateChecked(value));
+            => RotationalSpeed.FromCentiradiansPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => RotationalSpeed.FromCentiradiansPerSecond(value.ToQuantityValue());
+            => RotationalSpeed.FromCentiradiansPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RotationalSpeed.FromDeciradiansPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromDeciradiansPerSecond(double)" />
         public static RotationalSpeed DeciradiansPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RotationalSpeed.FromDeciradiansPerSecond(QuantityValue.CreateChecked(value));
+            => RotationalSpeed.FromDeciradiansPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => RotationalSpeed.FromDeciradiansPerSecond(value.ToQuantityValue());
+            => RotationalSpeed.FromDeciradiansPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RotationalSpeed.FromDegreesPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromDegreesPerMinute(double)" />
         public static RotationalSpeed DegreesPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RotationalSpeed.FromDegreesPerMinute(QuantityValue.CreateChecked(value));
+            => RotationalSpeed.FromDegreesPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => RotationalSpeed.FromDegreesPerMinute(value.ToQuantityValue());
+            => RotationalSpeed.FromDegreesPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RotationalSpeed.FromDegreesPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromDegreesPerSecond(double)" />
         public static RotationalSpeed DegreesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RotationalSpeed.FromDegreesPerSecond(QuantityValue.CreateChecked(value));
+            => RotationalSpeed.FromDegreesPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => RotationalSpeed.FromDegreesPerSecond(value.ToQuantityValue());
+            => RotationalSpeed.FromDegreesPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RotationalSpeed.FromMicrodegreesPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromMicrodegreesPerSecond(double)" />
         public static RotationalSpeed MicrodegreesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RotationalSpeed.FromMicrodegreesPerSecond(QuantityValue.CreateChecked(value));
+            => RotationalSpeed.FromMicrodegreesPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => RotationalSpeed.FromMicrodegreesPerSecond(value.ToQuantityValue());
+            => RotationalSpeed.FromMicrodegreesPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RotationalSpeed.FromMicroradiansPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromMicroradiansPerSecond(double)" />
         public static RotationalSpeed MicroradiansPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RotationalSpeed.FromMicroradiansPerSecond(QuantityValue.CreateChecked(value));
+            => RotationalSpeed.FromMicroradiansPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => RotationalSpeed.FromMicroradiansPerSecond(value.ToQuantityValue());
+            => RotationalSpeed.FromMicroradiansPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RotationalSpeed.FromMillidegreesPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromMillidegreesPerSecond(double)" />
         public static RotationalSpeed MillidegreesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RotationalSpeed.FromMillidegreesPerSecond(QuantityValue.CreateChecked(value));
+            => RotationalSpeed.FromMillidegreesPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => RotationalSpeed.FromMillidegreesPerSecond(value.ToQuantityValue());
+            => RotationalSpeed.FromMillidegreesPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RotationalSpeed.FromMilliradiansPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromMilliradiansPerSecond(double)" />
         public static RotationalSpeed MilliradiansPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RotationalSpeed.FromMilliradiansPerSecond(QuantityValue.CreateChecked(value));
+            => RotationalSpeed.FromMilliradiansPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => RotationalSpeed.FromMilliradiansPerSecond(value.ToQuantityValue());
+            => RotationalSpeed.FromMilliradiansPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RotationalSpeed.FromNanodegreesPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromNanodegreesPerSecond(double)" />
         public static RotationalSpeed NanodegreesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RotationalSpeed.FromNanodegreesPerSecond(QuantityValue.CreateChecked(value));
+            => RotationalSpeed.FromNanodegreesPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => RotationalSpeed.FromNanodegreesPerSecond(value.ToQuantityValue());
+            => RotationalSpeed.FromNanodegreesPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RotationalSpeed.FromNanoradiansPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromNanoradiansPerSecond(double)" />
         public static RotationalSpeed NanoradiansPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RotationalSpeed.FromNanoradiansPerSecond(QuantityValue.CreateChecked(value));
+            => RotationalSpeed.FromNanoradiansPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => RotationalSpeed.FromNanoradiansPerSecond(value.ToQuantityValue());
+            => RotationalSpeed.FromNanoradiansPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RotationalSpeed.FromRadiansPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromRadiansPerSecond(double)" />
         public static RotationalSpeed RadiansPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RotationalSpeed.FromRadiansPerSecond(QuantityValue.CreateChecked(value));
+            => RotationalSpeed.FromRadiansPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => RotationalSpeed.FromRadiansPerSecond(value.ToQuantityValue());
+            => RotationalSpeed.FromRadiansPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RotationalSpeed.FromRevolutionsPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromRevolutionsPerMinute(double)" />
         public static RotationalSpeed RevolutionsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RotationalSpeed.FromRevolutionsPerMinute(QuantityValue.CreateChecked(value));
+            => RotationalSpeed.FromRevolutionsPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => RotationalSpeed.FromRevolutionsPerMinute(value.ToQuantityValue());
+            => RotationalSpeed.FromRevolutionsPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RotationalSpeed.FromRevolutionsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="RotationalSpeed.FromRevolutionsPerSecond(double)" />
         public static RotationalSpeed RevolutionsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RotationalSpeed.FromRevolutionsPerSecond(QuantityValue.CreateChecked(value));
+            => RotationalSpeed.FromRevolutionsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => RotationalSpeed.FromRevolutionsPerSecond(value.ToQuantityValue());
+            => RotationalSpeed.FromRevolutionsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

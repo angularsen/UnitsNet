@@ -332,7 +332,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kJ/°C", EntropyUnit.KilojoulePerDegreeCelsius, 4.2)]
         [InlineData("en-US", "4.2 kJ/K", EntropyUnit.KilojoulePerKelvin, 4.2)]
         [InlineData("en-US", "4.2 MJ/K", EntropyUnit.MegajoulePerKelvin, 4.2)]
-        public void Parse(string culture, string quantityString, EntropyUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, EntropyUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Entropy.Parse(quantityString);
@@ -348,7 +348,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kJ/°C", EntropyUnit.KilojoulePerDegreeCelsius, 4.2)]
         [InlineData("en-US", "4.2 kJ/K", EntropyUnit.KilojoulePerKelvin, 4.2)]
         [InlineData("en-US", "4.2 MJ/K", EntropyUnit.MegajoulePerKelvin, 4.2)]
-        public void TryParse(string culture, string quantityString, EntropyUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, EntropyUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Entropy.TryParse(quantityString, out Entropy parsed));
@@ -697,8 +697,8 @@ namespace UnitsNet.Tests
             var quantity = Entropy.FromJoulesPerKelvin(firstValue);
             var otherQuantity = Entropy.FromJoulesPerKelvin(secondValue);
             Entropy maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Entropy.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

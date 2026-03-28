@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct RelativeHumidity :
         IArithmeticQuantity<RelativeHumidity, RelativeHumidityUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<RelativeHumidity, RelativeHumidity, QuantityValue>,
+        IDivisionOperators<RelativeHumidity, RelativeHumidity, double>,
         IComparisonOperators<RelativeHumidity, RelativeHumidity, bool>,
         IParsable<RelativeHumidity>,
 #endif
@@ -51,7 +51,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -130,7 +130,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public RelativeHumidity(QuantityValue value, RelativeHumidityUnit unit)
+        public RelativeHumidity(double value, RelativeHumidityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -172,7 +172,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public RelativeHumidityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -206,9 +206,9 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RelativeHumidityUnit.Percent"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RelativeHumidityUnit.Percent"/>
         /// </summary>
-        public QuantityValue Percent => this.As(RelativeHumidityUnit.Percent);
+        public double Percent => this.As(RelativeHumidityUnit.Percent);
 
         #endregion
 
@@ -242,7 +242,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RelativeHumidity"/> from <see cref="RelativeHumidityUnit.Percent"/>.
         /// </summary>
-        public static RelativeHumidity FromPercent(QuantityValue value)
+        public static RelativeHumidity FromPercent(double value)
         {
             return new RelativeHumidity(value, RelativeHumidityUnit.Percent);
         }
@@ -253,7 +253,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>RelativeHumidity unit value.</returns>
-        public static RelativeHumidity From(QuantityValue value, RelativeHumidityUnit fromUnit)
+        public static RelativeHumidity From(double value, RelativeHumidityUnit fromUnit)
         {
             return new RelativeHumidity(value, fromUnit);
         }
@@ -418,25 +418,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="RelativeHumidity"/> from multiplying value and <see cref="RelativeHumidity"/>.</summary>
-        public static RelativeHumidity operator *(QuantityValue left, RelativeHumidity right)
+        public static RelativeHumidity operator *(double left, RelativeHumidity right)
         {
             return new RelativeHumidity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="RelativeHumidity"/> from multiplying value and <see cref="RelativeHumidity"/>.</summary>
-        public static RelativeHumidity operator *(RelativeHumidity left, QuantityValue right)
+        public static RelativeHumidity operator *(RelativeHumidity left, double right)
         {
             return new RelativeHumidity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="RelativeHumidity"/> from dividing <see cref="RelativeHumidity"/> by value.</summary>
-        public static RelativeHumidity operator /(RelativeHumidity left, QuantityValue right)
+        public static RelativeHumidity operator /(RelativeHumidity left, double right)
         {
             return new RelativeHumidity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="RelativeHumidity"/> by <see cref="RelativeHumidity"/>.</summary>
-        public static QuantityValue operator /(RelativeHumidity left, RelativeHumidity right)
+        public static double operator /(RelativeHumidity left, RelativeHumidity right)
         {
             return left.Percent / right.Percent;
         }

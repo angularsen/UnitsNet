@@ -11,7 +11,7 @@ namespace UnitsNet.Benchmark.Conversions.ToValue;
 [ShortRunJob(RuntimeMoniker.Net80)]
 public class ConvertValueToBaseBenchmarks
 {
-    private static readonly QuantityValue Value = 123.456;
+    private static readonly double Value = 123.456;
     
     #region Benchmarks
 

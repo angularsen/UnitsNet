@@ -42,52 +42,52 @@ namespace UnitsNet.NumberExtensions.NumberToMagneticField
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="MagneticField.FromGausses(QuantityValue)" />
+            /// <inheritdoc cref="MagneticField.FromGausses(double)" />
             public MagneticField Gausses
 #if NET7_0_OR_GREATER
-                => MagneticField.FromGausses(QuantityValue.CreateChecked(value));
+                => MagneticField.FromGausses(double.CreateChecked(value));
 #else
-                => MagneticField.FromGausses(value.ToQuantityValue());
+                => MagneticField.FromGausses(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MagneticField.FromMicroteslas(QuantityValue)" />
+            /// <inheritdoc cref="MagneticField.FromMicroteslas(double)" />
             public MagneticField Microteslas
 #if NET7_0_OR_GREATER
-                => MagneticField.FromMicroteslas(QuantityValue.CreateChecked(value));
+                => MagneticField.FromMicroteslas(double.CreateChecked(value));
 #else
-                => MagneticField.FromMicroteslas(value.ToQuantityValue());
+                => MagneticField.FromMicroteslas(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MagneticField.FromMilligausses(QuantityValue)" />
+            /// <inheritdoc cref="MagneticField.FromMilligausses(double)" />
             public MagneticField Milligausses
 #if NET7_0_OR_GREATER
-                => MagneticField.FromMilligausses(QuantityValue.CreateChecked(value));
+                => MagneticField.FromMilligausses(double.CreateChecked(value));
 #else
-                => MagneticField.FromMilligausses(value.ToQuantityValue());
+                => MagneticField.FromMilligausses(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MagneticField.FromMilliteslas(QuantityValue)" />
+            /// <inheritdoc cref="MagneticField.FromMilliteslas(double)" />
             public MagneticField Milliteslas
 #if NET7_0_OR_GREATER
-                => MagneticField.FromMilliteslas(QuantityValue.CreateChecked(value));
+                => MagneticField.FromMilliteslas(double.CreateChecked(value));
 #else
-                => MagneticField.FromMilliteslas(value.ToQuantityValue());
+                => MagneticField.FromMilliteslas(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MagneticField.FromNanoteslas(QuantityValue)" />
+            /// <inheritdoc cref="MagneticField.FromNanoteslas(double)" />
             public MagneticField Nanoteslas
 #if NET7_0_OR_GREATER
-                => MagneticField.FromNanoteslas(QuantityValue.CreateChecked(value));
+                => MagneticField.FromNanoteslas(double.CreateChecked(value));
 #else
-                => MagneticField.FromNanoteslas(value.ToQuantityValue());
+                => MagneticField.FromNanoteslas(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MagneticField.FromTeslas(QuantityValue)" />
+            /// <inheritdoc cref="MagneticField.FromTeslas(double)" />
             public MagneticField Teslas
 #if NET7_0_OR_GREATER
-                => MagneticField.FromTeslas(QuantityValue.CreateChecked(value));
+                => MagneticField.FromTeslas(double.CreateChecked(value));
 #else
-                => MagneticField.FromTeslas(value.ToQuantityValue());
+                => MagneticField.FromTeslas(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

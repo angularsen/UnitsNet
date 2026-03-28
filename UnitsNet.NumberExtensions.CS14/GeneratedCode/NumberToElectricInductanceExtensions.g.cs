@@ -42,44 +42,44 @@ namespace UnitsNet.NumberExtensions.NumberToElectricInductance
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ElectricInductance.FromHenries(QuantityValue)" />
+            /// <inheritdoc cref="ElectricInductance.FromHenries(double)" />
             public ElectricInductance Henries
 #if NET7_0_OR_GREATER
-                => ElectricInductance.FromHenries(QuantityValue.CreateChecked(value));
+                => ElectricInductance.FromHenries(double.CreateChecked(value));
 #else
-                => ElectricInductance.FromHenries(value.ToQuantityValue());
+                => ElectricInductance.FromHenries(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricInductance.FromMicrohenries(QuantityValue)" />
+            /// <inheritdoc cref="ElectricInductance.FromMicrohenries(double)" />
             public ElectricInductance Microhenries
 #if NET7_0_OR_GREATER
-                => ElectricInductance.FromMicrohenries(QuantityValue.CreateChecked(value));
+                => ElectricInductance.FromMicrohenries(double.CreateChecked(value));
 #else
-                => ElectricInductance.FromMicrohenries(value.ToQuantityValue());
+                => ElectricInductance.FromMicrohenries(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricInductance.FromMillihenries(QuantityValue)" />
+            /// <inheritdoc cref="ElectricInductance.FromMillihenries(double)" />
             public ElectricInductance Millihenries
 #if NET7_0_OR_GREATER
-                => ElectricInductance.FromMillihenries(QuantityValue.CreateChecked(value));
+                => ElectricInductance.FromMillihenries(double.CreateChecked(value));
 #else
-                => ElectricInductance.FromMillihenries(value.ToQuantityValue());
+                => ElectricInductance.FromMillihenries(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricInductance.FromNanohenries(QuantityValue)" />
+            /// <inheritdoc cref="ElectricInductance.FromNanohenries(double)" />
             public ElectricInductance Nanohenries
 #if NET7_0_OR_GREATER
-                => ElectricInductance.FromNanohenries(QuantityValue.CreateChecked(value));
+                => ElectricInductance.FromNanohenries(double.CreateChecked(value));
 #else
-                => ElectricInductance.FromNanohenries(value.ToQuantityValue());
+                => ElectricInductance.FromNanohenries(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricInductance.FromPicohenries(QuantityValue)" />
+            /// <inheritdoc cref="ElectricInductance.FromPicohenries(double)" />
             public ElectricInductance Picohenries
 #if NET7_0_OR_GREATER
-                => ElectricInductance.FromPicohenries(QuantityValue.CreateChecked(value));
+                => ElectricInductance.FromPicohenries(double.CreateChecked(value));
 #else
-                => ElectricInductance.FromPicohenries(value.ToQuantityValue());
+                => ElectricInductance.FromPicohenries(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

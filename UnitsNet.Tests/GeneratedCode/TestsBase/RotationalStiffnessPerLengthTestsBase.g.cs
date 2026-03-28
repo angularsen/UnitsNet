@@ -326,7 +326,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 N·m/rad/m", RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, 4.2)]
         [InlineData("en-US", "4.2 Nm/rad/m", RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, 4.2)]
         [InlineData("en-US", "4.2 lbf·ft/deg/ft", RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, 4.2)]
-        public void Parse(string culture, string quantityString, RotationalStiffnessPerLengthUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, RotationalStiffnessPerLengthUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = RotationalStiffnessPerLength.Parse(quantityString);
@@ -348,7 +348,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 N·m/rad/m", RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, 4.2)]
         [InlineData("en-US", "4.2 Nm/rad/m", RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, 4.2)]
         [InlineData("en-US", "4.2 lbf·ft/deg/ft", RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot, 4.2)]
-        public void TryParse(string culture, string quantityString, RotationalStiffnessPerLengthUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, RotationalStiffnessPerLengthUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(RotationalStiffnessPerLength.TryParse(quantityString, out RotationalStiffnessPerLength parsed));
@@ -741,8 +741,8 @@ namespace UnitsNet.Tests
             var quantity = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(firstValue);
             var otherQuantity = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(secondValue);
             RotationalStiffnessPerLength maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, RotationalStiffnessPerLength.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

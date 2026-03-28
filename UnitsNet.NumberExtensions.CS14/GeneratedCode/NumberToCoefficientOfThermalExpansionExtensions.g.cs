@@ -42,52 +42,52 @@ namespace UnitsNet.NumberExtensions.NumberToCoefficientOfThermalExpansion
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="CoefficientOfThermalExpansion.FromPerDegreeCelsius(QuantityValue)" />
+            /// <inheritdoc cref="CoefficientOfThermalExpansion.FromPerDegreeCelsius(double)" />
             public CoefficientOfThermalExpansion PerDegreeCelsius
 #if NET7_0_OR_GREATER
-                => CoefficientOfThermalExpansion.FromPerDegreeCelsius(QuantityValue.CreateChecked(value));
+                => CoefficientOfThermalExpansion.FromPerDegreeCelsius(double.CreateChecked(value));
 #else
-                => CoefficientOfThermalExpansion.FromPerDegreeCelsius(value.ToQuantityValue());
+                => CoefficientOfThermalExpansion.FromPerDegreeCelsius(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="CoefficientOfThermalExpansion.FromPerDegreeFahrenheit(QuantityValue)" />
+            /// <inheritdoc cref="CoefficientOfThermalExpansion.FromPerDegreeFahrenheit(double)" />
             public CoefficientOfThermalExpansion PerDegreeFahrenheit
 #if NET7_0_OR_GREATER
-                => CoefficientOfThermalExpansion.FromPerDegreeFahrenheit(QuantityValue.CreateChecked(value));
+                => CoefficientOfThermalExpansion.FromPerDegreeFahrenheit(double.CreateChecked(value));
 #else
-                => CoefficientOfThermalExpansion.FromPerDegreeFahrenheit(value.ToQuantityValue());
+                => CoefficientOfThermalExpansion.FromPerDegreeFahrenheit(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="CoefficientOfThermalExpansion.FromPerKelvin(QuantityValue)" />
+            /// <inheritdoc cref="CoefficientOfThermalExpansion.FromPerKelvin(double)" />
             public CoefficientOfThermalExpansion PerKelvin
 #if NET7_0_OR_GREATER
-                => CoefficientOfThermalExpansion.FromPerKelvin(QuantityValue.CreateChecked(value));
+                => CoefficientOfThermalExpansion.FromPerKelvin(double.CreateChecked(value));
 #else
-                => CoefficientOfThermalExpansion.FromPerKelvin(value.ToQuantityValue());
+                => CoefficientOfThermalExpansion.FromPerKelvin(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="CoefficientOfThermalExpansion.FromPpmPerDegreeCelsius(QuantityValue)" />
+            /// <inheritdoc cref="CoefficientOfThermalExpansion.FromPpmPerDegreeCelsius(double)" />
             public CoefficientOfThermalExpansion PpmPerDegreeCelsius
 #if NET7_0_OR_GREATER
-                => CoefficientOfThermalExpansion.FromPpmPerDegreeCelsius(QuantityValue.CreateChecked(value));
+                => CoefficientOfThermalExpansion.FromPpmPerDegreeCelsius(double.CreateChecked(value));
 #else
-                => CoefficientOfThermalExpansion.FromPpmPerDegreeCelsius(value.ToQuantityValue());
+                => CoefficientOfThermalExpansion.FromPpmPerDegreeCelsius(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="CoefficientOfThermalExpansion.FromPpmPerDegreeFahrenheit(QuantityValue)" />
+            /// <inheritdoc cref="CoefficientOfThermalExpansion.FromPpmPerDegreeFahrenheit(double)" />
             public CoefficientOfThermalExpansion PpmPerDegreeFahrenheit
 #if NET7_0_OR_GREATER
-                => CoefficientOfThermalExpansion.FromPpmPerDegreeFahrenheit(QuantityValue.CreateChecked(value));
+                => CoefficientOfThermalExpansion.FromPpmPerDegreeFahrenheit(double.CreateChecked(value));
 #else
-                => CoefficientOfThermalExpansion.FromPpmPerDegreeFahrenheit(value.ToQuantityValue());
+                => CoefficientOfThermalExpansion.FromPpmPerDegreeFahrenheit(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="CoefficientOfThermalExpansion.FromPpmPerKelvin(QuantityValue)" />
+            /// <inheritdoc cref="CoefficientOfThermalExpansion.FromPpmPerKelvin(double)" />
             public CoefficientOfThermalExpansion PpmPerKelvin
 #if NET7_0_OR_GREATER
-                => CoefficientOfThermalExpansion.FromPpmPerKelvin(QuantityValue.CreateChecked(value));
+                => CoefficientOfThermalExpansion.FromPpmPerKelvin(double.CreateChecked(value));
 #else
-                => CoefficientOfThermalExpansion.FromPpmPerKelvin(value.ToQuantityValue());
+                => CoefficientOfThermalExpansion.FromPpmPerKelvin(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

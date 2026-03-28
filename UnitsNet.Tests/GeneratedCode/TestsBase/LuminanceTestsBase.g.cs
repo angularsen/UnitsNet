@@ -353,7 +353,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 mCd/m²", LuminanceUnit.MillicandelaPerSquareMeter, 4.2)]
         [InlineData("en-US", "4.2 nCd/m²", LuminanceUnit.NanocandelaPerSquareMeter, 4.2)]
         [InlineData("en-US", "4.2 nt", LuminanceUnit.Nit, 4.2)]
-        public void Parse(string culture, string quantityString, LuminanceUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, LuminanceUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Luminance.Parse(quantityString);
@@ -372,7 +372,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 mCd/m²", LuminanceUnit.MillicandelaPerSquareMeter, 4.2)]
         [InlineData("en-US", "4.2 nCd/m²", LuminanceUnit.NanocandelaPerSquareMeter, 4.2)]
         [InlineData("en-US", "4.2 nt", LuminanceUnit.Nit, 4.2)]
-        public void TryParse(string culture, string quantityString, LuminanceUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, LuminanceUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Luminance.TryParse(quantityString, out Luminance parsed));
@@ -751,8 +751,8 @@ namespace UnitsNet.Tests
             var quantity = Luminance.FromCandelasPerSquareMeter(firstValue);
             var otherQuantity = Luminance.FromCandelasPerSquareMeter(secondValue);
             Luminance maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Luminance.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

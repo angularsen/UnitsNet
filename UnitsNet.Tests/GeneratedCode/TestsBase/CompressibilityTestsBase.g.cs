@@ -339,7 +339,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 1/Pa", CompressibilityUnit.InversePascal, 4.2)]
         [InlineData("en-US", "4.2 psi⁻¹", CompressibilityUnit.InversePoundForcePerSquareInch, 4.2)]
         [InlineData("en-US", "4.2 1/psi", CompressibilityUnit.InversePoundForcePerSquareInch, 4.2)]
-        public void Parse(string culture, string quantityString, CompressibilityUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, CompressibilityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Compressibility.Parse(quantityString);
@@ -362,7 +362,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 1/Pa", CompressibilityUnit.InversePascal, 4.2)]
         [InlineData("en-US", "4.2 psi⁻¹", CompressibilityUnit.InversePoundForcePerSquareInch, 4.2)]
         [InlineData("en-US", "4.2 1/psi", CompressibilityUnit.InversePoundForcePerSquareInch, 4.2)]
-        public void TryParse(string culture, string quantityString, CompressibilityUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, CompressibilityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Compressibility.TryParse(quantityString, out Compressibility parsed));
@@ -767,8 +767,8 @@ namespace UnitsNet.Tests
             var quantity = Compressibility.FromInversePascals(firstValue);
             var otherQuantity = Compressibility.FromInversePascals(secondValue);
             Compressibility maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Compressibility.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

@@ -42,84 +42,84 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDoseRate
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMicrosievertsPerHour(QuantityValue)" />
+            /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMicrosievertsPerHour(double)" />
             public RadiationEquivalentDoseRate MicrosievertsPerHour
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDoseRate.FromMicrosievertsPerHour(QuantityValue.CreateChecked(value));
+                => RadiationEquivalentDoseRate.FromMicrosievertsPerHour(double.CreateChecked(value));
 #else
-                => RadiationEquivalentDoseRate.FromMicrosievertsPerHour(value.ToQuantityValue());
+                => RadiationEquivalentDoseRate.FromMicrosievertsPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMicrosievertsPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMicrosievertsPerSecond(double)" />
             public RadiationEquivalentDoseRate MicrosievertsPerSecond
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDoseRate.FromMicrosievertsPerSecond(QuantityValue.CreateChecked(value));
+                => RadiationEquivalentDoseRate.FromMicrosievertsPerSecond(double.CreateChecked(value));
 #else
-                => RadiationEquivalentDoseRate.FromMicrosievertsPerSecond(value.ToQuantityValue());
+                => RadiationEquivalentDoseRate.FromMicrosievertsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMilliroentgensEquivalentManPerHour(QuantityValue)" />
+            /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMilliroentgensEquivalentManPerHour(double)" />
             public RadiationEquivalentDoseRate MilliroentgensEquivalentManPerHour
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDoseRate.FromMilliroentgensEquivalentManPerHour(QuantityValue.CreateChecked(value));
+                => RadiationEquivalentDoseRate.FromMilliroentgensEquivalentManPerHour(double.CreateChecked(value));
 #else
-                => RadiationEquivalentDoseRate.FromMilliroentgensEquivalentManPerHour(value.ToQuantityValue());
+                => RadiationEquivalentDoseRate.FromMilliroentgensEquivalentManPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMillisievertsPerHour(QuantityValue)" />
+            /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMillisievertsPerHour(double)" />
             public RadiationEquivalentDoseRate MillisievertsPerHour
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDoseRate.FromMillisievertsPerHour(QuantityValue.CreateChecked(value));
+                => RadiationEquivalentDoseRate.FromMillisievertsPerHour(double.CreateChecked(value));
 #else
-                => RadiationEquivalentDoseRate.FromMillisievertsPerHour(value.ToQuantityValue());
+                => RadiationEquivalentDoseRate.FromMillisievertsPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMillisievertsPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMillisievertsPerSecond(double)" />
             public RadiationEquivalentDoseRate MillisievertsPerSecond
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDoseRate.FromMillisievertsPerSecond(QuantityValue.CreateChecked(value));
+                => RadiationEquivalentDoseRate.FromMillisievertsPerSecond(double.CreateChecked(value));
 #else
-                => RadiationEquivalentDoseRate.FromMillisievertsPerSecond(value.ToQuantityValue());
+                => RadiationEquivalentDoseRate.FromMillisievertsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RadiationEquivalentDoseRate.FromNanosievertsPerHour(QuantityValue)" />
+            /// <inheritdoc cref="RadiationEquivalentDoseRate.FromNanosievertsPerHour(double)" />
             public RadiationEquivalentDoseRate NanosievertsPerHour
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDoseRate.FromNanosievertsPerHour(QuantityValue.CreateChecked(value));
+                => RadiationEquivalentDoseRate.FromNanosievertsPerHour(double.CreateChecked(value));
 #else
-                => RadiationEquivalentDoseRate.FromNanosievertsPerHour(value.ToQuantityValue());
+                => RadiationEquivalentDoseRate.FromNanosievertsPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RadiationEquivalentDoseRate.FromNanosievertsPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="RadiationEquivalentDoseRate.FromNanosievertsPerSecond(double)" />
             public RadiationEquivalentDoseRate NanosievertsPerSecond
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDoseRate.FromNanosievertsPerSecond(QuantityValue.CreateChecked(value));
+                => RadiationEquivalentDoseRate.FromNanosievertsPerSecond(double.CreateChecked(value));
 #else
-                => RadiationEquivalentDoseRate.FromNanosievertsPerSecond(value.ToQuantityValue());
+                => RadiationEquivalentDoseRate.FromNanosievertsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RadiationEquivalentDoseRate.FromRoentgensEquivalentManPerHour(QuantityValue)" />
+            /// <inheritdoc cref="RadiationEquivalentDoseRate.FromRoentgensEquivalentManPerHour(double)" />
             public RadiationEquivalentDoseRate RoentgensEquivalentManPerHour
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDoseRate.FromRoentgensEquivalentManPerHour(QuantityValue.CreateChecked(value));
+                => RadiationEquivalentDoseRate.FromRoentgensEquivalentManPerHour(double.CreateChecked(value));
 #else
-                => RadiationEquivalentDoseRate.FromRoentgensEquivalentManPerHour(value.ToQuantityValue());
+                => RadiationEquivalentDoseRate.FromRoentgensEquivalentManPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RadiationEquivalentDoseRate.FromSievertsPerHour(QuantityValue)" />
+            /// <inheritdoc cref="RadiationEquivalentDoseRate.FromSievertsPerHour(double)" />
             public RadiationEquivalentDoseRate SievertsPerHour
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDoseRate.FromSievertsPerHour(QuantityValue.CreateChecked(value));
+                => RadiationEquivalentDoseRate.FromSievertsPerHour(double.CreateChecked(value));
 #else
-                => RadiationEquivalentDoseRate.FromSievertsPerHour(value.ToQuantityValue());
+                => RadiationEquivalentDoseRate.FromSievertsPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RadiationEquivalentDoseRate.FromSievertsPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="RadiationEquivalentDoseRate.FromSievertsPerSecond(double)" />
             public RadiationEquivalentDoseRate SievertsPerSecond
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDoseRate.FromSievertsPerSecond(QuantityValue.CreateChecked(value));
+                => RadiationEquivalentDoseRate.FromSievertsPerSecond(double.CreateChecked(value));
 #else
-                => RadiationEquivalentDoseRate.FromSievertsPerSecond(value.ToQuantityValue());
+                => RadiationEquivalentDoseRate.FromSievertsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct MolarEntropy :
         IArithmeticQuantity<MolarEntropy, MolarEntropyUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<MolarEntropy, MolarEntropy, QuantityValue>,
+        IDivisionOperators<MolarEntropy, MolarEntropy, double>,
         IComparisonOperators<MolarEntropy, MolarEntropy, bool>,
         IParsable<MolarEntropy>,
 #endif
@@ -51,7 +51,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -136,7 +136,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public MolarEntropy(QuantityValue value, MolarEntropyUnit unit)
+        public MolarEntropy(double value, MolarEntropyUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -150,7 +150,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public MolarEntropy(QuantityValue value, UnitSystem unitSystem)
+        public MolarEntropy(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -192,7 +192,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public MolarEntropyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -226,19 +226,19 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarEntropyUnit.JoulePerMoleKelvin"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEntropyUnit.JoulePerMoleKelvin"/>
         /// </summary>
-        public QuantityValue JoulesPerMoleKelvin => this.As(MolarEntropyUnit.JoulePerMoleKelvin);
+        public double JoulesPerMoleKelvin => this.As(MolarEntropyUnit.JoulePerMoleKelvin);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarEntropyUnit.KilojoulePerMoleKelvin"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEntropyUnit.KilojoulePerMoleKelvin"/>
         /// </summary>
-        public QuantityValue KilojoulesPerMoleKelvin => this.As(MolarEntropyUnit.KilojoulePerMoleKelvin);
+        public double KilojoulesPerMoleKelvin => this.As(MolarEntropyUnit.KilojoulePerMoleKelvin);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarEntropyUnit.MegajoulePerMoleKelvin"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEntropyUnit.MegajoulePerMoleKelvin"/>
         /// </summary>
-        public QuantityValue MegajoulesPerMoleKelvin => this.As(MolarEntropyUnit.MegajoulePerMoleKelvin);
+        public double MegajoulesPerMoleKelvin => this.As(MolarEntropyUnit.MegajoulePerMoleKelvin);
 
         #endregion
 
@@ -272,7 +272,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarEntropy"/> from <see cref="MolarEntropyUnit.JoulePerMoleKelvin"/>.
         /// </summary>
-        public static MolarEntropy FromJoulesPerMoleKelvin(QuantityValue value)
+        public static MolarEntropy FromJoulesPerMoleKelvin(double value)
         {
             return new MolarEntropy(value, MolarEntropyUnit.JoulePerMoleKelvin);
         }
@@ -280,7 +280,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarEntropy"/> from <see cref="MolarEntropyUnit.KilojoulePerMoleKelvin"/>.
         /// </summary>
-        public static MolarEntropy FromKilojoulesPerMoleKelvin(QuantityValue value)
+        public static MolarEntropy FromKilojoulesPerMoleKelvin(double value)
         {
             return new MolarEntropy(value, MolarEntropyUnit.KilojoulePerMoleKelvin);
         }
@@ -288,7 +288,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarEntropy"/> from <see cref="MolarEntropyUnit.MegajoulePerMoleKelvin"/>.
         /// </summary>
-        public static MolarEntropy FromMegajoulesPerMoleKelvin(QuantityValue value)
+        public static MolarEntropy FromMegajoulesPerMoleKelvin(double value)
         {
             return new MolarEntropy(value, MolarEntropyUnit.MegajoulePerMoleKelvin);
         }
@@ -299,7 +299,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MolarEntropy unit value.</returns>
-        public static MolarEntropy From(QuantityValue value, MolarEntropyUnit fromUnit)
+        public static MolarEntropy From(double value, MolarEntropyUnit fromUnit)
         {
             return new MolarEntropy(value, fromUnit);
         }
@@ -464,25 +464,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="MolarEntropy"/> from multiplying value and <see cref="MolarEntropy"/>.</summary>
-        public static MolarEntropy operator *(QuantityValue left, MolarEntropy right)
+        public static MolarEntropy operator *(double left, MolarEntropy right)
         {
             return new MolarEntropy(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="MolarEntropy"/> from multiplying value and <see cref="MolarEntropy"/>.</summary>
-        public static MolarEntropy operator *(MolarEntropy left, QuantityValue right)
+        public static MolarEntropy operator *(MolarEntropy left, double right)
         {
             return new MolarEntropy(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="MolarEntropy"/> from dividing <see cref="MolarEntropy"/> by value.</summary>
-        public static MolarEntropy operator /(MolarEntropy left, QuantityValue right)
+        public static MolarEntropy operator /(MolarEntropy left, double right)
         {
             return new MolarEntropy(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="MolarEntropy"/> by <see cref="MolarEntropy"/>.</summary>
-        public static QuantityValue operator /(MolarEntropy left, MolarEntropy right)
+        public static double operator /(MolarEntropy left, MolarEntropy right)
         {
             return left.JoulesPerMoleKelvin / right.JoulesPerMoleKelvin;
         }

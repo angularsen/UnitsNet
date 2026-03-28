@@ -22,7 +22,7 @@ public enum ClassOfLogarithmicQuantityUnit
 /// </summary>
 [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
 [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
-public class ClassOfLogarithmicQuantity(QuantityValue value, ClassOfLogarithmicQuantityUnit unit) : ILogarithmicQuantity<ClassOfLogarithmicQuantity, ClassOfLogarithmicQuantityUnit>
+public class ClassOfLogarithmicQuantity(double value, ClassOfLogarithmicQuantityUnit unit) : ILogarithmicQuantity<ClassOfLogarithmicQuantity, ClassOfLogarithmicQuantityUnit>
 {
     public static readonly QuantityInfo<ClassOfLogarithmicQuantity, ClassOfLogarithmicQuantityUnit> Info = new(
         ClassOfLogarithmicQuantityUnit.Some,
@@ -37,35 +37,35 @@ public class ClassOfLogarithmicQuantity(QuantityValue value, ClassOfLogarithmicQ
 
     public ClassOfLogarithmicQuantityUnit Unit { get; } = unit;
 
-    public QuantityValue Value { get; } = value;
+    public double Value { get; } = value;
 
-    public static ClassOfLogarithmicQuantity From(QuantityValue value, ClassOfLogarithmicQuantityUnit unit)
+    public static ClassOfLogarithmicQuantity From(double value, ClassOfLogarithmicQuantityUnit unit)
     {
         return new ClassOfLogarithmicQuantity(value, unit);
     }
 
-    public static QuantityValue LogarithmicScalingFactor { get => 10; }
+    public static double LogarithmicScalingFactor { get => 10; }
     
     public static ClassOfLogarithmicQuantity Zero { get; } = new(0, ClassOfLogarithmicQuantityUnit.Some);
 
     public static ClassOfLogarithmicQuantity operator +(ClassOfLogarithmicQuantity left, ClassOfLogarithmicQuantity right)
     {
         // note: the AddWithLogScaling function isn't public
-        return new ClassOfLogarithmicQuantity(QuantityValueExtensions.AddWithLogScaling(left.Value, right.As(left.Unit), LogarithmicScalingFactor), left.Unit);
+        return new ClassOfLogarithmicQuantity((double)QuantityValueExtensions.AddWithLogScaling((QuantityValue)left.Value, (QuantityValue)right.As(left.Unit), (QuantityValue)LogarithmicScalingFactor), left.Unit);
     }
 
     public static ClassOfLogarithmicQuantity operator -(ClassOfLogarithmicQuantity left, ClassOfLogarithmicQuantity right)
     {
         // note: the SubtractWithLogScaling function isn't public
-        return new ClassOfLogarithmicQuantity(QuantityValueExtensions.SubtractWithLogScaling(left.Value, right.As(left.Unit), LogarithmicScalingFactor), left.Unit);
+        return new ClassOfLogarithmicQuantity((double)QuantityValueExtensions.SubtractWithLogScaling((QuantityValue)left.Value, (QuantityValue)right.As(left.Unit), (QuantityValue)LogarithmicScalingFactor), left.Unit);
     }
 
-    public static ClassOfLogarithmicQuantity operator *(ClassOfLogarithmicQuantity left, QuantityValue right)
+    public static ClassOfLogarithmicQuantity operator *(ClassOfLogarithmicQuantity left, double right)
     {
         return new ClassOfLogarithmicQuantity(left.Value + right, left.Unit);
     }
 
-    public static ClassOfLogarithmicQuantity operator /(ClassOfLogarithmicQuantity left, QuantityValue right)
+    public static ClassOfLogarithmicQuantity operator /(ClassOfLogarithmicQuantity left, double right)
     {
         return new ClassOfLogarithmicQuantity(left.Value - right, left.Unit);
     }
@@ -99,7 +99,7 @@ public class ClassOfLogarithmicQuantity(QuantityValue value, ClassOfLogarithmicQ
     
 #if !NET
 
-    QuantityValue ILogarithmicQuantity<ClassOfLogarithmicQuantity>.LogarithmicScalingFactor
+    double ILogarithmicQuantity<ClassOfLogarithmicQuantity>.LogarithmicScalingFactor
     {
         get => LogarithmicScalingFactor;
     }

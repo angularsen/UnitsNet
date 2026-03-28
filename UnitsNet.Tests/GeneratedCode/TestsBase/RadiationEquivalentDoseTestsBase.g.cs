@@ -329,7 +329,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 мЗв", RadiationEquivalentDoseUnit.Millisievert, 4.2)]
         [InlineData("ru-RU", "4,2 нЗв", RadiationEquivalentDoseUnit.Nanosievert, 4.2)]
         [InlineData("ru-RU", "4,2 Зв", RadiationEquivalentDoseUnit.Sievert, 4.2)]
-        public void Parse(string culture, string quantityString, RadiationEquivalentDoseUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, RadiationEquivalentDoseUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = RadiationEquivalentDose.Parse(quantityString);
@@ -348,7 +348,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 мЗв", RadiationEquivalentDoseUnit.Millisievert, 4.2)]
         [InlineData("ru-RU", "4,2 нЗв", RadiationEquivalentDoseUnit.Nanosievert, 4.2)]
         [InlineData("ru-RU", "4,2 Зв", RadiationEquivalentDoseUnit.Sievert, 4.2)]
-        public void TryParse(string culture, string quantityString, RadiationEquivalentDoseUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, RadiationEquivalentDoseUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(RadiationEquivalentDose.TryParse(quantityString, out RadiationEquivalentDose parsed));
@@ -707,8 +707,8 @@ namespace UnitsNet.Tests
             var quantity = RadiationEquivalentDose.FromSieverts(firstValue);
             var otherQuantity = RadiationEquivalentDose.FromSieverts(secondValue);
             RadiationEquivalentDose maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, RadiationEquivalentDose.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

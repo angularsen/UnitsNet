@@ -13,7 +13,7 @@ namespace UnitsNet.Benchmark.Operators.Additions;
 [SimpleJob(RuntimeMoniker.Net80)]
 public class SumOfVolumesWithSameUnitsBenchmarks
 {
-    private static readonly QuantityValue Value = 1.23;
+    private static readonly double Value = 1.23;
     
     private Volume[] _quantities;
 

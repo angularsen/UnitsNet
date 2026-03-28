@@ -406,7 +406,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 паундаль", ForceUnit.Poundal, 4.2)]
         [InlineData("ru-RU", "4,2 фунт-сила", ForceUnit.PoundForce, 4.2)]
         [InlineData("ru-RU", "4,2 тс", ForceUnit.TonneForce, 4.2)]
-        public void Parse(string culture, string quantityString, ForceUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, ForceUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Force.Parse(quantityString);
@@ -455,7 +455,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 паундаль", ForceUnit.Poundal, 4.2)]
         [InlineData("ru-RU", "4,2 фунт-сила", ForceUnit.PoundForce, 4.2)]
         [InlineData("ru-RU", "4,2 тс", ForceUnit.TonneForce, 4.2)]
-        public void TryParse(string culture, string quantityString, ForceUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, ForceUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Force.TryParse(quantityString, out Force parsed));
@@ -1010,8 +1010,8 @@ namespace UnitsNet.Tests
             var quantity = Force.FromNewtons(firstValue);
             var otherQuantity = Force.FromNewtons(secondValue);
             Force maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Force.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

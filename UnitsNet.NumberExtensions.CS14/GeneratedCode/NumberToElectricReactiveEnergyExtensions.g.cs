@@ -42,28 +42,28 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactiveEnergy
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ElectricReactiveEnergy.FromKilovoltampereReactiveHours(QuantityValue)" />
+            /// <inheritdoc cref="ElectricReactiveEnergy.FromKilovoltampereReactiveHours(double)" />
             public ElectricReactiveEnergy KilovoltampereReactiveHours
 #if NET7_0_OR_GREATER
-                => ElectricReactiveEnergy.FromKilovoltampereReactiveHours(QuantityValue.CreateChecked(value));
+                => ElectricReactiveEnergy.FromKilovoltampereReactiveHours(double.CreateChecked(value));
 #else
-                => ElectricReactiveEnergy.FromKilovoltampereReactiveHours(value.ToQuantityValue());
+                => ElectricReactiveEnergy.FromKilovoltampereReactiveHours(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricReactiveEnergy.FromMegavoltampereReactiveHours(QuantityValue)" />
+            /// <inheritdoc cref="ElectricReactiveEnergy.FromMegavoltampereReactiveHours(double)" />
             public ElectricReactiveEnergy MegavoltampereReactiveHours
 #if NET7_0_OR_GREATER
-                => ElectricReactiveEnergy.FromMegavoltampereReactiveHours(QuantityValue.CreateChecked(value));
+                => ElectricReactiveEnergy.FromMegavoltampereReactiveHours(double.CreateChecked(value));
 #else
-                => ElectricReactiveEnergy.FromMegavoltampereReactiveHours(value.ToQuantityValue());
+                => ElectricReactiveEnergy.FromMegavoltampereReactiveHours(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricReactiveEnergy.FromVoltampereReactiveHours(QuantityValue)" />
+            /// <inheritdoc cref="ElectricReactiveEnergy.FromVoltampereReactiveHours(double)" />
             public ElectricReactiveEnergy VoltampereReactiveHours
 #if NET7_0_OR_GREATER
-                => ElectricReactiveEnergy.FromVoltampereReactiveHours(QuantityValue.CreateChecked(value));
+                => ElectricReactiveEnergy.FromVoltampereReactiveHours(double.CreateChecked(value));
 #else
-                => ElectricReactiveEnergy.FromVoltampereReactiveHours(value.ToQuantityValue());
+                => ElectricReactiveEnergy.FromVoltampereReactiveHours(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

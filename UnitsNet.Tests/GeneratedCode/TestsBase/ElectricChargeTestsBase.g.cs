@@ -364,7 +364,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 mC", ElectricChargeUnit.Millicoulomb, 4.2)]
         [InlineData("en-US", "4.2 nC", ElectricChargeUnit.Nanocoulomb, 4.2)]
         [InlineData("en-US", "4.2 pC", ElectricChargeUnit.Picocoulomb, 4.2)]
-        public void Parse(string culture, string quantityString, ElectricChargeUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, ElectricChargeUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ElectricCharge.Parse(quantityString);
@@ -388,7 +388,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 mC", ElectricChargeUnit.Millicoulomb, 4.2)]
         [InlineData("en-US", "4.2 nC", ElectricChargeUnit.Nanocoulomb, 4.2)]
         [InlineData("en-US", "4.2 pC", ElectricChargeUnit.Picocoulomb, 4.2)]
-        public void TryParse(string culture, string quantityString, ElectricChargeUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, ElectricChargeUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ElectricCharge.TryParse(quantityString, out ElectricCharge parsed));
@@ -809,8 +809,8 @@ namespace UnitsNet.Tests
             var quantity = ElectricCharge.FromCoulombs(firstValue);
             var otherQuantity = ElectricCharge.FromCoulombs(secondValue);
             ElectricCharge maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, ElectricCharge.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

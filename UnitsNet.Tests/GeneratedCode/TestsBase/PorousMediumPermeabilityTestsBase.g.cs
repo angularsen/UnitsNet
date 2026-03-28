@@ -318,7 +318,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 mD", PorousMediumPermeabilityUnit.Millidarcy, 4.2)]
         [InlineData("en-US", "4.2 cm²", PorousMediumPermeabilityUnit.SquareCentimeter, 4.2)]
         [InlineData("en-US", "4.2 m²", PorousMediumPermeabilityUnit.SquareMeter, 4.2)]
-        public void Parse(string culture, string quantityString, PorousMediumPermeabilityUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, PorousMediumPermeabilityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = PorousMediumPermeability.Parse(quantityString);
@@ -332,7 +332,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 mD", PorousMediumPermeabilityUnit.Millidarcy, 4.2)]
         [InlineData("en-US", "4.2 cm²", PorousMediumPermeabilityUnit.SquareCentimeter, 4.2)]
         [InlineData("en-US", "4.2 m²", PorousMediumPermeabilityUnit.SquareMeter, 4.2)]
-        public void TryParse(string culture, string quantityString, PorousMediumPermeabilityUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, PorousMediumPermeabilityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(PorousMediumPermeability.TryParse(quantityString, out PorousMediumPermeability parsed));
@@ -661,8 +661,8 @@ namespace UnitsNet.Tests
             var quantity = PorousMediumPermeability.FromSquareMeters(firstValue);
             var otherQuantity = PorousMediumPermeability.FromSquareMeters(secondValue);
             PorousMediumPermeability maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, PorousMediumPermeability.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

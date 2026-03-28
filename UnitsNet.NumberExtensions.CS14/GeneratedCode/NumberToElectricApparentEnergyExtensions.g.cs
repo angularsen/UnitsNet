@@ -42,28 +42,28 @@ namespace UnitsNet.NumberExtensions.NumberToElectricApparentEnergy
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ElectricApparentEnergy.FromKilovoltampereHours(QuantityValue)" />
+            /// <inheritdoc cref="ElectricApparentEnergy.FromKilovoltampereHours(double)" />
             public ElectricApparentEnergy KilovoltampereHours
 #if NET7_0_OR_GREATER
-                => ElectricApparentEnergy.FromKilovoltampereHours(QuantityValue.CreateChecked(value));
+                => ElectricApparentEnergy.FromKilovoltampereHours(double.CreateChecked(value));
 #else
-                => ElectricApparentEnergy.FromKilovoltampereHours(value.ToQuantityValue());
+                => ElectricApparentEnergy.FromKilovoltampereHours(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricApparentEnergy.FromMegavoltampereHours(QuantityValue)" />
+            /// <inheritdoc cref="ElectricApparentEnergy.FromMegavoltampereHours(double)" />
             public ElectricApparentEnergy MegavoltampereHours
 #if NET7_0_OR_GREATER
-                => ElectricApparentEnergy.FromMegavoltampereHours(QuantityValue.CreateChecked(value));
+                => ElectricApparentEnergy.FromMegavoltampereHours(double.CreateChecked(value));
 #else
-                => ElectricApparentEnergy.FromMegavoltampereHours(value.ToQuantityValue());
+                => ElectricApparentEnergy.FromMegavoltampereHours(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricApparentEnergy.FromVoltampereHours(QuantityValue)" />
+            /// <inheritdoc cref="ElectricApparentEnergy.FromVoltampereHours(double)" />
             public ElectricApparentEnergy VoltampereHours
 #if NET7_0_OR_GREATER
-                => ElectricApparentEnergy.FromVoltampereHours(QuantityValue.CreateChecked(value));
+                => ElectricApparentEnergy.FromVoltampereHours(double.CreateChecked(value));
 #else
-                => ElectricApparentEnergy.FromVoltampereHours(value.ToQuantityValue());
+                => ElectricApparentEnergy.FromVoltampereHours(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

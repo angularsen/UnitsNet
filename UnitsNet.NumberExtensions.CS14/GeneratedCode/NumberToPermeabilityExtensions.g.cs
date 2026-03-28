@@ -42,12 +42,12 @@ namespace UnitsNet.NumberExtensions.NumberToPermeability
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Permeability.FromHenriesPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="Permeability.FromHenriesPerMeter(double)" />
             public Permeability HenriesPerMeter
 #if NET7_0_OR_GREATER
-                => Permeability.FromHenriesPerMeter(QuantityValue.CreateChecked(value));
+                => Permeability.FromHenriesPerMeter(double.CreateChecked(value));
 #else
-                => Permeability.FromHenriesPerMeter(value.ToQuantityValue());
+                => Permeability.FromHenriesPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

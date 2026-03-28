@@ -483,7 +483,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 мГр·м²", DoseAreaProductUnit.MilligraySquareMeter, 4.2)]
         [InlineData("ru-RU", "4,2 мГр·мкм²", DoseAreaProductUnit.MilligraySquareMicrometer, 4.2)]
         [InlineData("ru-RU", "4,2 мГр·мм²", DoseAreaProductUnit.MilligraySquareMillimeter, 4.2)]
-        public void Parse(string culture, string quantityString, DoseAreaProductUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, DoseAreaProductUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = DoseAreaProduct.Parse(quantityString);
@@ -542,7 +542,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 мГр·м²", DoseAreaProductUnit.MilligraySquareMeter, 4.2)]
         [InlineData("ru-RU", "4,2 мГр·мкм²", DoseAreaProductUnit.MilligraySquareMicrometer, 4.2)]
         [InlineData("ru-RU", "4,2 мГр·мм²", DoseAreaProductUnit.MilligraySquareMillimeter, 4.2)]
-        public void TryParse(string culture, string quantityString, DoseAreaProductUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, DoseAreaProductUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(DoseAreaProduct.TryParse(quantityString, out DoseAreaProduct parsed));
@@ -1196,8 +1196,8 @@ namespace UnitsNet.Tests
             var quantity = DoseAreaProduct.FromGraySquareMeters(firstValue);
             var otherQuantity = DoseAreaProduct.FromGraySquareMeters(secondValue);
             DoseAreaProduct maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, DoseAreaProduct.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

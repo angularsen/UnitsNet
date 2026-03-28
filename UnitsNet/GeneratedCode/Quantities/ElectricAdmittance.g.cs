@@ -42,7 +42,7 @@ namespace UnitsNet
     public readonly partial struct ElectricAdmittance :
         IArithmeticQuantity<ElectricAdmittance, ElectricAdmittanceUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricAdmittance, ElectricAdmittance, QuantityValue>,
+        IDivisionOperators<ElectricAdmittance, ElectricAdmittance, double>,
         IComparisonOperators<ElectricAdmittance, ElectricAdmittance, bool>,
         IParsable<ElectricAdmittance>,
 #endif
@@ -55,7 +55,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -179,7 +179,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricAdmittance(QuantityValue value, ElectricAdmittanceUnit unit)
+        public ElectricAdmittance(double value, ElectricAdmittanceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -193,7 +193,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricAdmittance(QuantityValue value, UnitSystem unitSystem)
+        public ElectricAdmittance(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -235,7 +235,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public ElectricAdmittanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -269,84 +269,84 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Gigamho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Gigamho"/>
         /// </summary>
-        public QuantityValue Gigamhos => this.As(ElectricAdmittanceUnit.Gigamho);
+        public double Gigamhos => this.As(ElectricAdmittanceUnit.Gigamho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Gigasiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Gigasiemens"/>
         /// </summary>
-        public QuantityValue Gigasiemens => this.As(ElectricAdmittanceUnit.Gigasiemens);
+        public double Gigasiemens => this.As(ElectricAdmittanceUnit.Gigasiemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Kilomho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Kilomho"/>
         /// </summary>
-        public QuantityValue Kilomhos => this.As(ElectricAdmittanceUnit.Kilomho);
+        public double Kilomhos => this.As(ElectricAdmittanceUnit.Kilomho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Kilosiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Kilosiemens"/>
         /// </summary>
-        public QuantityValue Kilosiemens => this.As(ElectricAdmittanceUnit.Kilosiemens);
+        public double Kilosiemens => this.As(ElectricAdmittanceUnit.Kilosiemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Megamho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Megamho"/>
         /// </summary>
-        public QuantityValue Megamhos => this.As(ElectricAdmittanceUnit.Megamho);
+        public double Megamhos => this.As(ElectricAdmittanceUnit.Megamho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Megasiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Megasiemens"/>
         /// </summary>
-        public QuantityValue Megasiemens => this.As(ElectricAdmittanceUnit.Megasiemens);
+        public double Megasiemens => this.As(ElectricAdmittanceUnit.Megasiemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Mho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Mho"/>
         /// </summary>
-        public QuantityValue Mhos => this.As(ElectricAdmittanceUnit.Mho);
+        public double Mhos => this.As(ElectricAdmittanceUnit.Mho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Micromho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Micromho"/>
         /// </summary>
-        public QuantityValue Micromhos => this.As(ElectricAdmittanceUnit.Micromho);
+        public double Micromhos => this.As(ElectricAdmittanceUnit.Micromho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Microsiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Microsiemens"/>
         /// </summary>
-        public QuantityValue Microsiemens => this.As(ElectricAdmittanceUnit.Microsiemens);
+        public double Microsiemens => this.As(ElectricAdmittanceUnit.Microsiemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Millimho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Millimho"/>
         /// </summary>
-        public QuantityValue Millimhos => this.As(ElectricAdmittanceUnit.Millimho);
+        public double Millimhos => this.As(ElectricAdmittanceUnit.Millimho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Millisiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Millisiemens"/>
         /// </summary>
-        public QuantityValue Millisiemens => this.As(ElectricAdmittanceUnit.Millisiemens);
+        public double Millisiemens => this.As(ElectricAdmittanceUnit.Millisiemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Nanomho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Nanomho"/>
         /// </summary>
-        public QuantityValue Nanomhos => this.As(ElectricAdmittanceUnit.Nanomho);
+        public double Nanomhos => this.As(ElectricAdmittanceUnit.Nanomho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Nanosiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Nanosiemens"/>
         /// </summary>
-        public QuantityValue Nanosiemens => this.As(ElectricAdmittanceUnit.Nanosiemens);
+        public double Nanosiemens => this.As(ElectricAdmittanceUnit.Nanosiemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Siemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Siemens"/>
         /// </summary>
-        public QuantityValue Siemens => this.As(ElectricAdmittanceUnit.Siemens);
+        public double Siemens => this.As(ElectricAdmittanceUnit.Siemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Teramho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Teramho"/>
         /// </summary>
-        public QuantityValue Teramhos => this.As(ElectricAdmittanceUnit.Teramho);
+        public double Teramhos => this.As(ElectricAdmittanceUnit.Teramho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Terasiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricAdmittanceUnit.Terasiemens"/>
         /// </summary>
-        public QuantityValue Terasiemens => this.As(ElectricAdmittanceUnit.Terasiemens);
+        public double Terasiemens => this.As(ElectricAdmittanceUnit.Terasiemens);
 
         #endregion
 
@@ -380,7 +380,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Gigamho"/>.
         /// </summary>
-        public static ElectricAdmittance FromGigamhos(QuantityValue value)
+        public static ElectricAdmittance FromGigamhos(double value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Gigamho);
         }
@@ -388,7 +388,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Gigasiemens"/>.
         /// </summary>
-        public static ElectricAdmittance FromGigasiemens(QuantityValue value)
+        public static ElectricAdmittance FromGigasiemens(double value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Gigasiemens);
         }
@@ -396,7 +396,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Kilomho"/>.
         /// </summary>
-        public static ElectricAdmittance FromKilomhos(QuantityValue value)
+        public static ElectricAdmittance FromKilomhos(double value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Kilomho);
         }
@@ -404,7 +404,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Kilosiemens"/>.
         /// </summary>
-        public static ElectricAdmittance FromKilosiemens(QuantityValue value)
+        public static ElectricAdmittance FromKilosiemens(double value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Kilosiemens);
         }
@@ -412,7 +412,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Megamho"/>.
         /// </summary>
-        public static ElectricAdmittance FromMegamhos(QuantityValue value)
+        public static ElectricAdmittance FromMegamhos(double value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Megamho);
         }
@@ -420,7 +420,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Megasiemens"/>.
         /// </summary>
-        public static ElectricAdmittance FromMegasiemens(QuantityValue value)
+        public static ElectricAdmittance FromMegasiemens(double value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Megasiemens);
         }
@@ -428,7 +428,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Mho"/>.
         /// </summary>
-        public static ElectricAdmittance FromMhos(QuantityValue value)
+        public static ElectricAdmittance FromMhos(double value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Mho);
         }
@@ -436,7 +436,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Micromho"/>.
         /// </summary>
-        public static ElectricAdmittance FromMicromhos(QuantityValue value)
+        public static ElectricAdmittance FromMicromhos(double value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Micromho);
         }
@@ -444,7 +444,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Microsiemens"/>.
         /// </summary>
-        public static ElectricAdmittance FromMicrosiemens(QuantityValue value)
+        public static ElectricAdmittance FromMicrosiemens(double value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Microsiemens);
         }
@@ -452,7 +452,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Millimho"/>.
         /// </summary>
-        public static ElectricAdmittance FromMillimhos(QuantityValue value)
+        public static ElectricAdmittance FromMillimhos(double value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Millimho);
         }
@@ -460,7 +460,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Millisiemens"/>.
         /// </summary>
-        public static ElectricAdmittance FromMillisiemens(QuantityValue value)
+        public static ElectricAdmittance FromMillisiemens(double value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Millisiemens);
         }
@@ -468,7 +468,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Nanomho"/>.
         /// </summary>
-        public static ElectricAdmittance FromNanomhos(QuantityValue value)
+        public static ElectricAdmittance FromNanomhos(double value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Nanomho);
         }
@@ -476,7 +476,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Nanosiemens"/>.
         /// </summary>
-        public static ElectricAdmittance FromNanosiemens(QuantityValue value)
+        public static ElectricAdmittance FromNanosiemens(double value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Nanosiemens);
         }
@@ -484,7 +484,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Siemens"/>.
         /// </summary>
-        public static ElectricAdmittance FromSiemens(QuantityValue value)
+        public static ElectricAdmittance FromSiemens(double value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Siemens);
         }
@@ -492,7 +492,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Teramho"/>.
         /// </summary>
-        public static ElectricAdmittance FromTeramhos(QuantityValue value)
+        public static ElectricAdmittance FromTeramhos(double value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Teramho);
         }
@@ -500,7 +500,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricAdmittance"/> from <see cref="ElectricAdmittanceUnit.Terasiemens"/>.
         /// </summary>
-        public static ElectricAdmittance FromTerasiemens(QuantityValue value)
+        public static ElectricAdmittance FromTerasiemens(double value)
         {
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Terasiemens);
         }
@@ -511,7 +511,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricAdmittance unit value.</returns>
-        public static ElectricAdmittance From(QuantityValue value, ElectricAdmittanceUnit fromUnit)
+        public static ElectricAdmittance From(double value, ElectricAdmittanceUnit fromUnit)
         {
             return new ElectricAdmittance(value, fromUnit);
         }
@@ -676,25 +676,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricAdmittance"/> from multiplying value and <see cref="ElectricAdmittance"/>.</summary>
-        public static ElectricAdmittance operator *(QuantityValue left, ElectricAdmittance right)
+        public static ElectricAdmittance operator *(double left, ElectricAdmittance right)
         {
             return new ElectricAdmittance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricAdmittance"/> from multiplying value and <see cref="ElectricAdmittance"/>.</summary>
-        public static ElectricAdmittance operator *(ElectricAdmittance left, QuantityValue right)
+        public static ElectricAdmittance operator *(ElectricAdmittance left, double right)
         {
             return new ElectricAdmittance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricAdmittance"/> from dividing <see cref="ElectricAdmittance"/> by value.</summary>
-        public static ElectricAdmittance operator /(ElectricAdmittance left, QuantityValue right)
+        public static ElectricAdmittance operator /(ElectricAdmittance left, double right)
         {
             return new ElectricAdmittance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricAdmittance"/> by <see cref="ElectricAdmittance"/>.</summary>
-        public static QuantityValue operator /(ElectricAdmittance left, ElectricAdmittance right)
+        public static double operator /(ElectricAdmittance left, ElectricAdmittance right)
         {
             return left.Siemens / right.Siemens;
         }

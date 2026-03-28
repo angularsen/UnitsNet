@@ -42,28 +42,28 @@ namespace UnitsNet.NumberExtensions.NumberToMolarEnergy
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(QuantityValue)" />
+            /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(double)" />
             public MolarEnergy JoulesPerMole
 #if NET7_0_OR_GREATER
-                => MolarEnergy.FromJoulesPerMole(QuantityValue.CreateChecked(value));
+                => MolarEnergy.FromJoulesPerMole(double.CreateChecked(value));
 #else
-                => MolarEnergy.FromJoulesPerMole(value.ToQuantityValue());
+                => MolarEnergy.FromJoulesPerMole(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(QuantityValue)" />
+            /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(double)" />
             public MolarEnergy KilojoulesPerMole
 #if NET7_0_OR_GREATER
-                => MolarEnergy.FromKilojoulesPerMole(QuantityValue.CreateChecked(value));
+                => MolarEnergy.FromKilojoulesPerMole(double.CreateChecked(value));
 #else
-                => MolarEnergy.FromKilojoulesPerMole(value.ToQuantityValue());
+                => MolarEnergy.FromKilojoulesPerMole(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(QuantityValue)" />
+            /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(double)" />
             public MolarEnergy MegajoulesPerMole
 #if NET7_0_OR_GREATER
-                => MolarEnergy.FromMegajoulesPerMole(QuantityValue.CreateChecked(value));
+                => MolarEnergy.FromMegajoulesPerMole(double.CreateChecked(value));
 #else
-                => MolarEnergy.FromMegajoulesPerMole(value.ToQuantityValue());
+                => MolarEnergy.FromMegajoulesPerMole(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

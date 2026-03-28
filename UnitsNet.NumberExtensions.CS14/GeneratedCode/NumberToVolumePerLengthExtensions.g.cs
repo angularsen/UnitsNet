@@ -42,76 +42,76 @@ namespace UnitsNet.NumberExtensions.NumberToVolumePerLength
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="VolumePerLength.FromCubicMetersPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="VolumePerLength.FromCubicMetersPerMeter(double)" />
             public VolumePerLength CubicMetersPerMeter
 #if NET7_0_OR_GREATER
-                => VolumePerLength.FromCubicMetersPerMeter(QuantityValue.CreateChecked(value));
+                => VolumePerLength.FromCubicMetersPerMeter(double.CreateChecked(value));
 #else
-                => VolumePerLength.FromCubicMetersPerMeter(value.ToQuantityValue());
+                => VolumePerLength.FromCubicMetersPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumePerLength.FromCubicYardsPerFoot(QuantityValue)" />
+            /// <inheritdoc cref="VolumePerLength.FromCubicYardsPerFoot(double)" />
             public VolumePerLength CubicYardsPerFoot
 #if NET7_0_OR_GREATER
-                => VolumePerLength.FromCubicYardsPerFoot(QuantityValue.CreateChecked(value));
+                => VolumePerLength.FromCubicYardsPerFoot(double.CreateChecked(value));
 #else
-                => VolumePerLength.FromCubicYardsPerFoot(value.ToQuantityValue());
+                => VolumePerLength.FromCubicYardsPerFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumePerLength.FromCubicYardsPerUsSurveyFoot(QuantityValue)" />
+            /// <inheritdoc cref="VolumePerLength.FromCubicYardsPerUsSurveyFoot(double)" />
             public VolumePerLength CubicYardsPerUsSurveyFoot
 #if NET7_0_OR_GREATER
-                => VolumePerLength.FromCubicYardsPerUsSurveyFoot(QuantityValue.CreateChecked(value));
+                => VolumePerLength.FromCubicYardsPerUsSurveyFoot(double.CreateChecked(value));
 #else
-                => VolumePerLength.FromCubicYardsPerUsSurveyFoot(value.ToQuantityValue());
+                => VolumePerLength.FromCubicYardsPerUsSurveyFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumePerLength.FromImperialGallonsPerMile(QuantityValue)" />
+            /// <inheritdoc cref="VolumePerLength.FromImperialGallonsPerMile(double)" />
             public VolumePerLength ImperialGallonsPerMile
 #if NET7_0_OR_GREATER
-                => VolumePerLength.FromImperialGallonsPerMile(QuantityValue.CreateChecked(value));
+                => VolumePerLength.FromImperialGallonsPerMile(double.CreateChecked(value));
 #else
-                => VolumePerLength.FromImperialGallonsPerMile(value.ToQuantityValue());
+                => VolumePerLength.FromImperialGallonsPerMile(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumePerLength.FromLitersPerKilometer(QuantityValue)" />
+            /// <inheritdoc cref="VolumePerLength.FromLitersPerKilometer(double)" />
             public VolumePerLength LitersPerKilometer
 #if NET7_0_OR_GREATER
-                => VolumePerLength.FromLitersPerKilometer(QuantityValue.CreateChecked(value));
+                => VolumePerLength.FromLitersPerKilometer(double.CreateChecked(value));
 #else
-                => VolumePerLength.FromLitersPerKilometer(value.ToQuantityValue());
+                => VolumePerLength.FromLitersPerKilometer(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumePerLength.FromLitersPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="VolumePerLength.FromLitersPerMeter(double)" />
             public VolumePerLength LitersPerMeter
 #if NET7_0_OR_GREATER
-                => VolumePerLength.FromLitersPerMeter(QuantityValue.CreateChecked(value));
+                => VolumePerLength.FromLitersPerMeter(double.CreateChecked(value));
 #else
-                => VolumePerLength.FromLitersPerMeter(value.ToQuantityValue());
+                => VolumePerLength.FromLitersPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumePerLength.FromLitersPerMillimeter(QuantityValue)" />
+            /// <inheritdoc cref="VolumePerLength.FromLitersPerMillimeter(double)" />
             public VolumePerLength LitersPerMillimeter
 #if NET7_0_OR_GREATER
-                => VolumePerLength.FromLitersPerMillimeter(QuantityValue.CreateChecked(value));
+                => VolumePerLength.FromLitersPerMillimeter(double.CreateChecked(value));
 #else
-                => VolumePerLength.FromLitersPerMillimeter(value.ToQuantityValue());
+                => VolumePerLength.FromLitersPerMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumePerLength.FromOilBarrelsPerFoot(QuantityValue)" />
+            /// <inheritdoc cref="VolumePerLength.FromOilBarrelsPerFoot(double)" />
             public VolumePerLength OilBarrelsPerFoot
 #if NET7_0_OR_GREATER
-                => VolumePerLength.FromOilBarrelsPerFoot(QuantityValue.CreateChecked(value));
+                => VolumePerLength.FromOilBarrelsPerFoot(double.CreateChecked(value));
 #else
-                => VolumePerLength.FromOilBarrelsPerFoot(value.ToQuantityValue());
+                => VolumePerLength.FromOilBarrelsPerFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumePerLength.FromUsGallonsPerMile(QuantityValue)" />
+            /// <inheritdoc cref="VolumePerLength.FromUsGallonsPerMile(double)" />
             public VolumePerLength UsGallonsPerMile
 #if NET7_0_OR_GREATER
-                => VolumePerLength.FromUsGallonsPerMile(QuantityValue.CreateChecked(value));
+                => VolumePerLength.FromUsGallonsPerMile(double.CreateChecked(value));
 #else
-                => VolumePerLength.FromUsGallonsPerMile(value.ToQuantityValue());
+                => VolumePerLength.FromUsGallonsPerMile(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

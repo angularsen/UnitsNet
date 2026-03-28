@@ -42,12 +42,12 @@ namespace UnitsNet.NumberExtensions.NumberToScalar
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Scalar.FromAmount(QuantityValue)" />
+            /// <inheritdoc cref="Scalar.FromAmount(double)" />
             public Scalar Amount
 #if NET7_0_OR_GREATER
-                => Scalar.FromAmount(QuantityValue.CreateChecked(value));
+                => Scalar.FromAmount(double.CreateChecked(value));
 #else
-                => Scalar.FromAmount(value.ToQuantityValue());
+                => Scalar.FromAmount(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

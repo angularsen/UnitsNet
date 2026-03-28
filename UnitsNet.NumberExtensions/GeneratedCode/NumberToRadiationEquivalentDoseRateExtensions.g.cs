@@ -32,114 +32,114 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDoseRate
     /// </summary>
     public static class NumberToRadiationEquivalentDoseRateExtensions
     {
-        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMicrosievertsPerHour(QuantityValue)" />
+        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMicrosievertsPerHour(double)" />
         public static RadiationEquivalentDoseRate MicrosievertsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RadiationEquivalentDoseRate.FromMicrosievertsPerHour(QuantityValue.CreateChecked(value));
+            => RadiationEquivalentDoseRate.FromMicrosievertsPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => RadiationEquivalentDoseRate.FromMicrosievertsPerHour(value.ToQuantityValue());
+            => RadiationEquivalentDoseRate.FromMicrosievertsPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMicrosievertsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMicrosievertsPerSecond(double)" />
         public static RadiationEquivalentDoseRate MicrosievertsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RadiationEquivalentDoseRate.FromMicrosievertsPerSecond(QuantityValue.CreateChecked(value));
+            => RadiationEquivalentDoseRate.FromMicrosievertsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => RadiationEquivalentDoseRate.FromMicrosievertsPerSecond(value.ToQuantityValue());
+            => RadiationEquivalentDoseRate.FromMicrosievertsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMilliroentgensEquivalentManPerHour(QuantityValue)" />
+        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMilliroentgensEquivalentManPerHour(double)" />
         public static RadiationEquivalentDoseRate MilliroentgensEquivalentManPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RadiationEquivalentDoseRate.FromMilliroentgensEquivalentManPerHour(QuantityValue.CreateChecked(value));
+            => RadiationEquivalentDoseRate.FromMilliroentgensEquivalentManPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => RadiationEquivalentDoseRate.FromMilliroentgensEquivalentManPerHour(value.ToQuantityValue());
+            => RadiationEquivalentDoseRate.FromMilliroentgensEquivalentManPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMillisievertsPerHour(QuantityValue)" />
+        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMillisievertsPerHour(double)" />
         public static RadiationEquivalentDoseRate MillisievertsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RadiationEquivalentDoseRate.FromMillisievertsPerHour(QuantityValue.CreateChecked(value));
+            => RadiationEquivalentDoseRate.FromMillisievertsPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => RadiationEquivalentDoseRate.FromMillisievertsPerHour(value.ToQuantityValue());
+            => RadiationEquivalentDoseRate.FromMillisievertsPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMillisievertsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromMillisievertsPerSecond(double)" />
         public static RadiationEquivalentDoseRate MillisievertsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RadiationEquivalentDoseRate.FromMillisievertsPerSecond(QuantityValue.CreateChecked(value));
+            => RadiationEquivalentDoseRate.FromMillisievertsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => RadiationEquivalentDoseRate.FromMillisievertsPerSecond(value.ToQuantityValue());
+            => RadiationEquivalentDoseRate.FromMillisievertsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromNanosievertsPerHour(QuantityValue)" />
+        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromNanosievertsPerHour(double)" />
         public static RadiationEquivalentDoseRate NanosievertsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RadiationEquivalentDoseRate.FromNanosievertsPerHour(QuantityValue.CreateChecked(value));
+            => RadiationEquivalentDoseRate.FromNanosievertsPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => RadiationEquivalentDoseRate.FromNanosievertsPerHour(value.ToQuantityValue());
+            => RadiationEquivalentDoseRate.FromNanosievertsPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromNanosievertsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromNanosievertsPerSecond(double)" />
         public static RadiationEquivalentDoseRate NanosievertsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RadiationEquivalentDoseRate.FromNanosievertsPerSecond(QuantityValue.CreateChecked(value));
+            => RadiationEquivalentDoseRate.FromNanosievertsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => RadiationEquivalentDoseRate.FromNanosievertsPerSecond(value.ToQuantityValue());
+            => RadiationEquivalentDoseRate.FromNanosievertsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromRoentgensEquivalentManPerHour(QuantityValue)" />
+        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromRoentgensEquivalentManPerHour(double)" />
         public static RadiationEquivalentDoseRate RoentgensEquivalentManPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RadiationEquivalentDoseRate.FromRoentgensEquivalentManPerHour(QuantityValue.CreateChecked(value));
+            => RadiationEquivalentDoseRate.FromRoentgensEquivalentManPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => RadiationEquivalentDoseRate.FromRoentgensEquivalentManPerHour(value.ToQuantityValue());
+            => RadiationEquivalentDoseRate.FromRoentgensEquivalentManPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromSievertsPerHour(QuantityValue)" />
+        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromSievertsPerHour(double)" />
         public static RadiationEquivalentDoseRate SievertsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RadiationEquivalentDoseRate.FromSievertsPerHour(QuantityValue.CreateChecked(value));
+            => RadiationEquivalentDoseRate.FromSievertsPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => RadiationEquivalentDoseRate.FromSievertsPerHour(value.ToQuantityValue());
+            => RadiationEquivalentDoseRate.FromSievertsPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromSievertsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="RadiationEquivalentDoseRate.FromSievertsPerSecond(double)" />
         public static RadiationEquivalentDoseRate SievertsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RadiationEquivalentDoseRate.FromSievertsPerSecond(QuantityValue.CreateChecked(value));
+            => RadiationEquivalentDoseRate.FromSievertsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => RadiationEquivalentDoseRate.FromSievertsPerSecond(value.ToQuantityValue());
+            => RadiationEquivalentDoseRate.FromSievertsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

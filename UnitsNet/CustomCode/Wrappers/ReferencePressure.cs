@@ -121,7 +121,7 @@ namespace UnitsNet.Wrappers
         {
             var converted = AsBaseNumericType(reference);
 
-            return new Pressure(converted, Pressure.Unit);
+            return new Pressure((double)converted, Pressure.Unit);
         }
 
         /// <summary>

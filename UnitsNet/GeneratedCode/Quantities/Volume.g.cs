@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct Volume :
         IArithmeticQuantity<Volume, VolumeUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Volume, Volume, QuantityValue>,
+        IDivisionOperators<Volume, Volume, double>,
         IMultiplyOperators<Volume, Molarity, AmountOfSubstance>,
         IMultiplyOperators<Volume, ReciprocalLength, Area>,
         IDivisionOperators<Volume, Length, Area>,
@@ -64,7 +64,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -305,7 +305,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Volume(QuantityValue value, VolumeUnit unit)
+        public Volume(double value, VolumeUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -319,7 +319,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Volume(QuantityValue value, UnitSystem unitSystem)
+        public Volume(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -361,7 +361,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public VolumeUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -395,279 +395,279 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.AcreFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.AcreFoot"/>
         /// </summary>
-        public QuantityValue AcreFeet => this.As(VolumeUnit.AcreFoot);
+        public double AcreFeet => this.As(VolumeUnit.AcreFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.AuTablespoon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.AuTablespoon"/>
         /// </summary>
-        public QuantityValue AuTablespoons => this.As(VolumeUnit.AuTablespoon);
+        public double AuTablespoons => this.As(VolumeUnit.AuTablespoon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.BoardFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.BoardFoot"/>
         /// </summary>
-        public QuantityValue BoardFeet => this.As(VolumeUnit.BoardFoot);
+        public double BoardFeet => this.As(VolumeUnit.BoardFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.Centiliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Centiliter"/>
         /// </summary>
-        public QuantityValue Centiliters => this.As(VolumeUnit.Centiliter);
+        public double Centiliters => this.As(VolumeUnit.Centiliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.CubicCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicCentimeter"/>
         /// </summary>
-        public QuantityValue CubicCentimeters => this.As(VolumeUnit.CubicCentimeter);
+        public double CubicCentimeters => this.As(VolumeUnit.CubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.CubicDecimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicDecimeter"/>
         /// </summary>
-        public QuantityValue CubicDecimeters => this.As(VolumeUnit.CubicDecimeter);
+        public double CubicDecimeters => this.As(VolumeUnit.CubicDecimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.CubicFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicFoot"/>
         /// </summary>
-        public QuantityValue CubicFeet => this.As(VolumeUnit.CubicFoot);
+        public double CubicFeet => this.As(VolumeUnit.CubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.CubicHectometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicHectometer"/>
         /// </summary>
-        public QuantityValue CubicHectometers => this.As(VolumeUnit.CubicHectometer);
+        public double CubicHectometers => this.As(VolumeUnit.CubicHectometer);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.CubicInch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicInch"/>
         /// </summary>
-        public QuantityValue CubicInches => this.As(VolumeUnit.CubicInch);
+        public double CubicInches => this.As(VolumeUnit.CubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.CubicKilometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicKilometer"/>
         /// </summary>
-        public QuantityValue CubicKilometers => this.As(VolumeUnit.CubicKilometer);
+        public double CubicKilometers => this.As(VolumeUnit.CubicKilometer);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.CubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicMeter"/>
         /// </summary>
-        public QuantityValue CubicMeters => this.As(VolumeUnit.CubicMeter);
+        public double CubicMeters => this.As(VolumeUnit.CubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.CubicMicrometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicMicrometer"/>
         /// </summary>
-        public QuantityValue CubicMicrometers => this.As(VolumeUnit.CubicMicrometer);
+        public double CubicMicrometers => this.As(VolumeUnit.CubicMicrometer);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.CubicMile"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicMile"/>
         /// </summary>
-        public QuantityValue CubicMiles => this.As(VolumeUnit.CubicMile);
+        public double CubicMiles => this.As(VolumeUnit.CubicMile);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.CubicMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicMillimeter"/>
         /// </summary>
-        public QuantityValue CubicMillimeters => this.As(VolumeUnit.CubicMillimeter);
+        public double CubicMillimeters => this.As(VolumeUnit.CubicMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.CubicYard"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.CubicYard"/>
         /// </summary>
-        public QuantityValue CubicYards => this.As(VolumeUnit.CubicYard);
+        public double CubicYards => this.As(VolumeUnit.CubicYard);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.Decaliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Decaliter"/>
         /// </summary>
-        public QuantityValue Decaliters => this.As(VolumeUnit.Decaliter);
+        public double Decaliters => this.As(VolumeUnit.Decaliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.DecausGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.DecausGallon"/>
         /// </summary>
-        public QuantityValue DecausGallons => this.As(VolumeUnit.DecausGallon);
+        public double DecausGallons => this.As(VolumeUnit.DecausGallon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.Deciliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Deciliter"/>
         /// </summary>
-        public QuantityValue Deciliters => this.As(VolumeUnit.Deciliter);
+        public double Deciliters => this.As(VolumeUnit.Deciliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.DeciusGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.DeciusGallon"/>
         /// </summary>
-        public QuantityValue DeciusGallons => this.As(VolumeUnit.DeciusGallon);
+        public double DeciusGallons => this.As(VolumeUnit.DeciusGallon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.HectocubicFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.HectocubicFoot"/>
         /// </summary>
-        public QuantityValue HectocubicFeet => this.As(VolumeUnit.HectocubicFoot);
+        public double HectocubicFeet => this.As(VolumeUnit.HectocubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.HectocubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.HectocubicMeter"/>
         /// </summary>
-        public QuantityValue HectocubicMeters => this.As(VolumeUnit.HectocubicMeter);
+        public double HectocubicMeters => this.As(VolumeUnit.HectocubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.Hectoliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Hectoliter"/>
         /// </summary>
-        public QuantityValue Hectoliters => this.As(VolumeUnit.Hectoliter);
+        public double Hectoliters => this.As(VolumeUnit.Hectoliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.HectousGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.HectousGallon"/>
         /// </summary>
-        public QuantityValue HectousGallons => this.As(VolumeUnit.HectousGallon);
+        public double HectousGallons => this.As(VolumeUnit.HectousGallon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.ImperialBeerBarrel"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialBeerBarrel"/>
         /// </summary>
-        public QuantityValue ImperialBeerBarrels => this.As(VolumeUnit.ImperialBeerBarrel);
+        public double ImperialBeerBarrels => this.As(VolumeUnit.ImperialBeerBarrel);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.ImperialGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialGallon"/>
         /// </summary>
-        public QuantityValue ImperialGallons => this.As(VolumeUnit.ImperialGallon);
+        public double ImperialGallons => this.As(VolumeUnit.ImperialGallon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.ImperialOunce"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialOunce"/>
         /// </summary>
-        public QuantityValue ImperialOunces => this.As(VolumeUnit.ImperialOunce);
+        public double ImperialOunces => this.As(VolumeUnit.ImperialOunce);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.ImperialPint"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialPint"/>
         /// </summary>
-        public QuantityValue ImperialPints => this.As(VolumeUnit.ImperialPint);
+        public double ImperialPints => this.As(VolumeUnit.ImperialPint);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.ImperialQuart"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialQuart"/>
         /// </summary>
-        public QuantityValue ImperialQuarts => this.As(VolumeUnit.ImperialQuart);
+        public double ImperialQuarts => this.As(VolumeUnit.ImperialQuart);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.KilocubicFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.KilocubicFoot"/>
         /// </summary>
-        public QuantityValue KilocubicFeet => this.As(VolumeUnit.KilocubicFoot);
+        public double KilocubicFeet => this.As(VolumeUnit.KilocubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.KilocubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.KilocubicMeter"/>
         /// </summary>
-        public QuantityValue KilocubicMeters => this.As(VolumeUnit.KilocubicMeter);
+        public double KilocubicMeters => this.As(VolumeUnit.KilocubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.KiloimperialGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.KiloimperialGallon"/>
         /// </summary>
-        public QuantityValue KiloimperialGallons => this.As(VolumeUnit.KiloimperialGallon);
+        public double KiloimperialGallons => this.As(VolumeUnit.KiloimperialGallon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.Kiloliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Kiloliter"/>
         /// </summary>
-        public QuantityValue Kiloliters => this.As(VolumeUnit.Kiloliter);
+        public double Kiloliters => this.As(VolumeUnit.Kiloliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.KilousGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.KilousGallon"/>
         /// </summary>
-        public QuantityValue KilousGallons => this.As(VolumeUnit.KilousGallon);
+        public double KilousGallons => this.As(VolumeUnit.KilousGallon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.Liter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Liter"/>
         /// </summary>
-        public QuantityValue Liters => this.As(VolumeUnit.Liter);
+        public double Liters => this.As(VolumeUnit.Liter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.MegacubicFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MegacubicFoot"/>
         /// </summary>
-        public QuantityValue MegacubicFeet => this.As(VolumeUnit.MegacubicFoot);
+        public double MegacubicFeet => this.As(VolumeUnit.MegacubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.MegaimperialGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MegaimperialGallon"/>
         /// </summary>
-        public QuantityValue MegaimperialGallons => this.As(VolumeUnit.MegaimperialGallon);
+        public double MegaimperialGallons => this.As(VolumeUnit.MegaimperialGallon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.Megaliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Megaliter"/>
         /// </summary>
-        public QuantityValue Megaliters => this.As(VolumeUnit.Megaliter);
+        public double Megaliters => this.As(VolumeUnit.Megaliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.MegausGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MegausGallon"/>
         /// </summary>
-        public QuantityValue MegausGallons => this.As(VolumeUnit.MegausGallon);
+        public double MegausGallons => this.As(VolumeUnit.MegausGallon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.MetricCup"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MetricCup"/>
         /// </summary>
-        public QuantityValue MetricCups => this.As(VolumeUnit.MetricCup);
+        public double MetricCups => this.As(VolumeUnit.MetricCup);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.MetricTablespoon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MetricTablespoon"/>
         /// </summary>
-        public QuantityValue MetricTablespoons => this.As(VolumeUnit.MetricTablespoon);
+        public double MetricTablespoons => this.As(VolumeUnit.MetricTablespoon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.MetricTeaspoon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.MetricTeaspoon"/>
         /// </summary>
-        public QuantityValue MetricTeaspoons => this.As(VolumeUnit.MetricTeaspoon);
+        public double MetricTeaspoons => this.As(VolumeUnit.MetricTeaspoon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.Microliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Microliter"/>
         /// </summary>
-        public QuantityValue Microliters => this.As(VolumeUnit.Microliter);
+        public double Microliters => this.As(VolumeUnit.Microliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.Milliliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Milliliter"/>
         /// </summary>
-        public QuantityValue Milliliters => this.As(VolumeUnit.Milliliter);
+        public double Milliliters => this.As(VolumeUnit.Milliliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.Nanoliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.Nanoliter"/>
         /// </summary>
-        public QuantityValue Nanoliters => this.As(VolumeUnit.Nanoliter);
+        public double Nanoliters => this.As(VolumeUnit.Nanoliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.OilBarrel"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.OilBarrel"/>
         /// </summary>
-        public QuantityValue OilBarrels => this.As(VolumeUnit.OilBarrel);
+        public double OilBarrels => this.As(VolumeUnit.OilBarrel);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.UkTablespoon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UkTablespoon"/>
         /// </summary>
-        public QuantityValue UkTablespoons => this.As(VolumeUnit.UkTablespoon);
+        public double UkTablespoons => this.As(VolumeUnit.UkTablespoon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.UsBeerBarrel"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsBeerBarrel"/>
         /// </summary>
-        public QuantityValue UsBeerBarrels => this.As(VolumeUnit.UsBeerBarrel);
+        public double UsBeerBarrels => this.As(VolumeUnit.UsBeerBarrel);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.UsCustomaryCup"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsCustomaryCup"/>
         /// </summary>
-        public QuantityValue UsCustomaryCups => this.As(VolumeUnit.UsCustomaryCup);
+        public double UsCustomaryCups => this.As(VolumeUnit.UsCustomaryCup);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.UsGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsGallon"/>
         /// </summary>
-        public QuantityValue UsGallons => this.As(VolumeUnit.UsGallon);
+        public double UsGallons => this.As(VolumeUnit.UsGallon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.UsLegalCup"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsLegalCup"/>
         /// </summary>
-        public QuantityValue UsLegalCups => this.As(VolumeUnit.UsLegalCup);
+        public double UsLegalCups => this.As(VolumeUnit.UsLegalCup);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.UsOunce"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsOunce"/>
         /// </summary>
-        public QuantityValue UsOunces => this.As(VolumeUnit.UsOunce);
+        public double UsOunces => this.As(VolumeUnit.UsOunce);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.UsPint"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsPint"/>
         /// </summary>
-        public QuantityValue UsPints => this.As(VolumeUnit.UsPint);
+        public double UsPints => this.As(VolumeUnit.UsPint);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.UsQuart"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsQuart"/>
         /// </summary>
-        public QuantityValue UsQuarts => this.As(VolumeUnit.UsQuart);
+        public double UsQuarts => this.As(VolumeUnit.UsQuart);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.UsTablespoon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsTablespoon"/>
         /// </summary>
-        public QuantityValue UsTablespoons => this.As(VolumeUnit.UsTablespoon);
+        public double UsTablespoons => this.As(VolumeUnit.UsTablespoon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.UsTeaspoon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.UsTeaspoon"/>
         /// </summary>
-        public QuantityValue UsTeaspoons => this.As(VolumeUnit.UsTeaspoon);
+        public double UsTeaspoons => this.As(VolumeUnit.UsTeaspoon);
 
         #endregion
 
@@ -701,7 +701,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.AcreFoot"/>.
         /// </summary>
-        public static Volume FromAcreFeet(QuantityValue value)
+        public static Volume FromAcreFeet(double value)
         {
             return new Volume(value, VolumeUnit.AcreFoot);
         }
@@ -709,7 +709,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.AuTablespoon"/>.
         /// </summary>
-        public static Volume FromAuTablespoons(QuantityValue value)
+        public static Volume FromAuTablespoons(double value)
         {
             return new Volume(value, VolumeUnit.AuTablespoon);
         }
@@ -717,7 +717,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.BoardFoot"/>.
         /// </summary>
-        public static Volume FromBoardFeet(QuantityValue value)
+        public static Volume FromBoardFeet(double value)
         {
             return new Volume(value, VolumeUnit.BoardFoot);
         }
@@ -725,7 +725,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Centiliter"/>.
         /// </summary>
-        public static Volume FromCentiliters(QuantityValue value)
+        public static Volume FromCentiliters(double value)
         {
             return new Volume(value, VolumeUnit.Centiliter);
         }
@@ -733,7 +733,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicCentimeter"/>.
         /// </summary>
-        public static Volume FromCubicCentimeters(QuantityValue value)
+        public static Volume FromCubicCentimeters(double value)
         {
             return new Volume(value, VolumeUnit.CubicCentimeter);
         }
@@ -741,7 +741,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicDecimeter"/>.
         /// </summary>
-        public static Volume FromCubicDecimeters(QuantityValue value)
+        public static Volume FromCubicDecimeters(double value)
         {
             return new Volume(value, VolumeUnit.CubicDecimeter);
         }
@@ -749,7 +749,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicFoot"/>.
         /// </summary>
-        public static Volume FromCubicFeet(QuantityValue value)
+        public static Volume FromCubicFeet(double value)
         {
             return new Volume(value, VolumeUnit.CubicFoot);
         }
@@ -757,7 +757,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicHectometer"/>.
         /// </summary>
-        public static Volume FromCubicHectometers(QuantityValue value)
+        public static Volume FromCubicHectometers(double value)
         {
             return new Volume(value, VolumeUnit.CubicHectometer);
         }
@@ -765,7 +765,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicInch"/>.
         /// </summary>
-        public static Volume FromCubicInches(QuantityValue value)
+        public static Volume FromCubicInches(double value)
         {
             return new Volume(value, VolumeUnit.CubicInch);
         }
@@ -773,7 +773,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicKilometer"/>.
         /// </summary>
-        public static Volume FromCubicKilometers(QuantityValue value)
+        public static Volume FromCubicKilometers(double value)
         {
             return new Volume(value, VolumeUnit.CubicKilometer);
         }
@@ -781,7 +781,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicMeter"/>.
         /// </summary>
-        public static Volume FromCubicMeters(QuantityValue value)
+        public static Volume FromCubicMeters(double value)
         {
             return new Volume(value, VolumeUnit.CubicMeter);
         }
@@ -789,7 +789,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicMicrometer"/>.
         /// </summary>
-        public static Volume FromCubicMicrometers(QuantityValue value)
+        public static Volume FromCubicMicrometers(double value)
         {
             return new Volume(value, VolumeUnit.CubicMicrometer);
         }
@@ -797,7 +797,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicMile"/>.
         /// </summary>
-        public static Volume FromCubicMiles(QuantityValue value)
+        public static Volume FromCubicMiles(double value)
         {
             return new Volume(value, VolumeUnit.CubicMile);
         }
@@ -805,7 +805,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicMillimeter"/>.
         /// </summary>
-        public static Volume FromCubicMillimeters(QuantityValue value)
+        public static Volume FromCubicMillimeters(double value)
         {
             return new Volume(value, VolumeUnit.CubicMillimeter);
         }
@@ -813,7 +813,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.CubicYard"/>.
         /// </summary>
-        public static Volume FromCubicYards(QuantityValue value)
+        public static Volume FromCubicYards(double value)
         {
             return new Volume(value, VolumeUnit.CubicYard);
         }
@@ -821,7 +821,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Decaliter"/>.
         /// </summary>
-        public static Volume FromDecaliters(QuantityValue value)
+        public static Volume FromDecaliters(double value)
         {
             return new Volume(value, VolumeUnit.Decaliter);
         }
@@ -829,7 +829,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.DecausGallon"/>.
         /// </summary>
-        public static Volume FromDecausGallons(QuantityValue value)
+        public static Volume FromDecausGallons(double value)
         {
             return new Volume(value, VolumeUnit.DecausGallon);
         }
@@ -837,7 +837,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Deciliter"/>.
         /// </summary>
-        public static Volume FromDeciliters(QuantityValue value)
+        public static Volume FromDeciliters(double value)
         {
             return new Volume(value, VolumeUnit.Deciliter);
         }
@@ -845,7 +845,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.DeciusGallon"/>.
         /// </summary>
-        public static Volume FromDeciusGallons(QuantityValue value)
+        public static Volume FromDeciusGallons(double value)
         {
             return new Volume(value, VolumeUnit.DeciusGallon);
         }
@@ -853,7 +853,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.HectocubicFoot"/>.
         /// </summary>
-        public static Volume FromHectocubicFeet(QuantityValue value)
+        public static Volume FromHectocubicFeet(double value)
         {
             return new Volume(value, VolumeUnit.HectocubicFoot);
         }
@@ -861,7 +861,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.HectocubicMeter"/>.
         /// </summary>
-        public static Volume FromHectocubicMeters(QuantityValue value)
+        public static Volume FromHectocubicMeters(double value)
         {
             return new Volume(value, VolumeUnit.HectocubicMeter);
         }
@@ -869,7 +869,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Hectoliter"/>.
         /// </summary>
-        public static Volume FromHectoliters(QuantityValue value)
+        public static Volume FromHectoliters(double value)
         {
             return new Volume(value, VolumeUnit.Hectoliter);
         }
@@ -877,7 +877,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.HectousGallon"/>.
         /// </summary>
-        public static Volume FromHectousGallons(QuantityValue value)
+        public static Volume FromHectousGallons(double value)
         {
             return new Volume(value, VolumeUnit.HectousGallon);
         }
@@ -885,7 +885,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialBeerBarrel"/>.
         /// </summary>
-        public static Volume FromImperialBeerBarrels(QuantityValue value)
+        public static Volume FromImperialBeerBarrels(double value)
         {
             return new Volume(value, VolumeUnit.ImperialBeerBarrel);
         }
@@ -893,7 +893,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialGallon"/>.
         /// </summary>
-        public static Volume FromImperialGallons(QuantityValue value)
+        public static Volume FromImperialGallons(double value)
         {
             return new Volume(value, VolumeUnit.ImperialGallon);
         }
@@ -901,7 +901,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialOunce"/>.
         /// </summary>
-        public static Volume FromImperialOunces(QuantityValue value)
+        public static Volume FromImperialOunces(double value)
         {
             return new Volume(value, VolumeUnit.ImperialOunce);
         }
@@ -909,7 +909,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialPint"/>.
         /// </summary>
-        public static Volume FromImperialPints(QuantityValue value)
+        public static Volume FromImperialPints(double value)
         {
             return new Volume(value, VolumeUnit.ImperialPint);
         }
@@ -917,7 +917,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ImperialQuart"/>.
         /// </summary>
-        public static Volume FromImperialQuarts(QuantityValue value)
+        public static Volume FromImperialQuarts(double value)
         {
             return new Volume(value, VolumeUnit.ImperialQuart);
         }
@@ -925,7 +925,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KilocubicFoot"/>.
         /// </summary>
-        public static Volume FromKilocubicFeet(QuantityValue value)
+        public static Volume FromKilocubicFeet(double value)
         {
             return new Volume(value, VolumeUnit.KilocubicFoot);
         }
@@ -933,7 +933,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KilocubicMeter"/>.
         /// </summary>
-        public static Volume FromKilocubicMeters(QuantityValue value)
+        public static Volume FromKilocubicMeters(double value)
         {
             return new Volume(value, VolumeUnit.KilocubicMeter);
         }
@@ -941,7 +941,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KiloimperialGallon"/>.
         /// </summary>
-        public static Volume FromKiloimperialGallons(QuantityValue value)
+        public static Volume FromKiloimperialGallons(double value)
         {
             return new Volume(value, VolumeUnit.KiloimperialGallon);
         }
@@ -949,7 +949,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Kiloliter"/>.
         /// </summary>
-        public static Volume FromKiloliters(QuantityValue value)
+        public static Volume FromKiloliters(double value)
         {
             return new Volume(value, VolumeUnit.Kiloliter);
         }
@@ -957,7 +957,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KilousGallon"/>.
         /// </summary>
-        public static Volume FromKilousGallons(QuantityValue value)
+        public static Volume FromKilousGallons(double value)
         {
             return new Volume(value, VolumeUnit.KilousGallon);
         }
@@ -965,7 +965,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Liter"/>.
         /// </summary>
-        public static Volume FromLiters(QuantityValue value)
+        public static Volume FromLiters(double value)
         {
             return new Volume(value, VolumeUnit.Liter);
         }
@@ -973,7 +973,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MegacubicFoot"/>.
         /// </summary>
-        public static Volume FromMegacubicFeet(QuantityValue value)
+        public static Volume FromMegacubicFeet(double value)
         {
             return new Volume(value, VolumeUnit.MegacubicFoot);
         }
@@ -981,7 +981,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MegaimperialGallon"/>.
         /// </summary>
-        public static Volume FromMegaimperialGallons(QuantityValue value)
+        public static Volume FromMegaimperialGallons(double value)
         {
             return new Volume(value, VolumeUnit.MegaimperialGallon);
         }
@@ -989,7 +989,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Megaliter"/>.
         /// </summary>
-        public static Volume FromMegaliters(QuantityValue value)
+        public static Volume FromMegaliters(double value)
         {
             return new Volume(value, VolumeUnit.Megaliter);
         }
@@ -997,7 +997,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MegausGallon"/>.
         /// </summary>
-        public static Volume FromMegausGallons(QuantityValue value)
+        public static Volume FromMegausGallons(double value)
         {
             return new Volume(value, VolumeUnit.MegausGallon);
         }
@@ -1005,7 +1005,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MetricCup"/>.
         /// </summary>
-        public static Volume FromMetricCups(QuantityValue value)
+        public static Volume FromMetricCups(double value)
         {
             return new Volume(value, VolumeUnit.MetricCup);
         }
@@ -1013,7 +1013,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MetricTablespoon"/>.
         /// </summary>
-        public static Volume FromMetricTablespoons(QuantityValue value)
+        public static Volume FromMetricTablespoons(double value)
         {
             return new Volume(value, VolumeUnit.MetricTablespoon);
         }
@@ -1021,7 +1021,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MetricTeaspoon"/>.
         /// </summary>
-        public static Volume FromMetricTeaspoons(QuantityValue value)
+        public static Volume FromMetricTeaspoons(double value)
         {
             return new Volume(value, VolumeUnit.MetricTeaspoon);
         }
@@ -1029,7 +1029,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Microliter"/>.
         /// </summary>
-        public static Volume FromMicroliters(QuantityValue value)
+        public static Volume FromMicroliters(double value)
         {
             return new Volume(value, VolumeUnit.Microliter);
         }
@@ -1037,7 +1037,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Milliliter"/>.
         /// </summary>
-        public static Volume FromMilliliters(QuantityValue value)
+        public static Volume FromMilliliters(double value)
         {
             return new Volume(value, VolumeUnit.Milliliter);
         }
@@ -1045,7 +1045,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Nanoliter"/>.
         /// </summary>
-        public static Volume FromNanoliters(QuantityValue value)
+        public static Volume FromNanoliters(double value)
         {
             return new Volume(value, VolumeUnit.Nanoliter);
         }
@@ -1053,7 +1053,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.OilBarrel"/>.
         /// </summary>
-        public static Volume FromOilBarrels(QuantityValue value)
+        public static Volume FromOilBarrels(double value)
         {
             return new Volume(value, VolumeUnit.OilBarrel);
         }
@@ -1061,7 +1061,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UkTablespoon"/>.
         /// </summary>
-        public static Volume FromUkTablespoons(QuantityValue value)
+        public static Volume FromUkTablespoons(double value)
         {
             return new Volume(value, VolumeUnit.UkTablespoon);
         }
@@ -1069,7 +1069,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsBeerBarrel"/>.
         /// </summary>
-        public static Volume FromUsBeerBarrels(QuantityValue value)
+        public static Volume FromUsBeerBarrels(double value)
         {
             return new Volume(value, VolumeUnit.UsBeerBarrel);
         }
@@ -1077,7 +1077,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsCustomaryCup"/>.
         /// </summary>
-        public static Volume FromUsCustomaryCups(QuantityValue value)
+        public static Volume FromUsCustomaryCups(double value)
         {
             return new Volume(value, VolumeUnit.UsCustomaryCup);
         }
@@ -1085,7 +1085,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsGallon"/>.
         /// </summary>
-        public static Volume FromUsGallons(QuantityValue value)
+        public static Volume FromUsGallons(double value)
         {
             return new Volume(value, VolumeUnit.UsGallon);
         }
@@ -1093,7 +1093,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsLegalCup"/>.
         /// </summary>
-        public static Volume FromUsLegalCups(QuantityValue value)
+        public static Volume FromUsLegalCups(double value)
         {
             return new Volume(value, VolumeUnit.UsLegalCup);
         }
@@ -1101,7 +1101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsOunce"/>.
         /// </summary>
-        public static Volume FromUsOunces(QuantityValue value)
+        public static Volume FromUsOunces(double value)
         {
             return new Volume(value, VolumeUnit.UsOunce);
         }
@@ -1109,7 +1109,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsPint"/>.
         /// </summary>
-        public static Volume FromUsPints(QuantityValue value)
+        public static Volume FromUsPints(double value)
         {
             return new Volume(value, VolumeUnit.UsPint);
         }
@@ -1117,7 +1117,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsQuart"/>.
         /// </summary>
-        public static Volume FromUsQuarts(QuantityValue value)
+        public static Volume FromUsQuarts(double value)
         {
             return new Volume(value, VolumeUnit.UsQuart);
         }
@@ -1125,7 +1125,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsTablespoon"/>.
         /// </summary>
-        public static Volume FromUsTablespoons(QuantityValue value)
+        public static Volume FromUsTablespoons(double value)
         {
             return new Volume(value, VolumeUnit.UsTablespoon);
         }
@@ -1133,7 +1133,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.UsTeaspoon"/>.
         /// </summary>
-        public static Volume FromUsTeaspoons(QuantityValue value)
+        public static Volume FromUsTeaspoons(double value)
         {
             return new Volume(value, VolumeUnit.UsTeaspoon);
         }
@@ -1144,7 +1144,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Volume unit value.</returns>
-        public static Volume From(QuantityValue value, VolumeUnit fromUnit)
+        public static Volume From(double value, VolumeUnit fromUnit)
         {
             return new Volume(value, fromUnit);
         }
@@ -1309,25 +1309,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Volume"/> from multiplying value and <see cref="Volume"/>.</summary>
-        public static Volume operator *(QuantityValue left, Volume right)
+        public static Volume operator *(double left, Volume right)
         {
             return new Volume(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Volume"/> from multiplying value and <see cref="Volume"/>.</summary>
-        public static Volume operator *(Volume left, QuantityValue right)
+        public static Volume operator *(Volume left, double right)
         {
             return new Volume(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Volume"/> from dividing <see cref="Volume"/> by value.</summary>
-        public static Volume operator /(Volume left, QuantityValue right)
+        public static Volume operator /(Volume left, double right)
         {
             return new Volume(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Volume"/> by <see cref="Volume"/>.</summary>
-        public static QuantityValue operator /(Volume left, Volume right)
+        public static double operator /(Volume left, Volume right)
         {
             return left.CubicMeters / right.CubicMeters;
         }

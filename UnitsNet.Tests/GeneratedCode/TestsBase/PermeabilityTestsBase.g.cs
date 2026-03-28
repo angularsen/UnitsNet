@@ -290,7 +290,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "4.2 H/m", PermeabilityUnit.HenryPerMeter, 4.2)]
-        public void Parse(string culture, string quantityString, PermeabilityUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, PermeabilityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Permeability.Parse(quantityString);
@@ -300,7 +300,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "4.2 H/m", PermeabilityUnit.HenryPerMeter, 4.2)]
-        public void TryParse(string culture, string quantityString, PermeabilityUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, PermeabilityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Permeability.TryParse(quantityString, out Permeability parsed));
@@ -589,8 +589,8 @@ namespace UnitsNet.Tests
             var quantity = Permeability.FromHenriesPerMeter(firstValue);
             var otherQuantity = Permeability.FromHenriesPerMeter(secondValue);
             Permeability maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Permeability.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

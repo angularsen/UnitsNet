@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct VitaminA :
         IArithmeticQuantity<VitaminA, VitaminAUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<VitaminA, VitaminA, QuantityValue>,
+        IDivisionOperators<VitaminA, VitaminA, double>,
         IComparisonOperators<VitaminA, VitaminA, bool>,
         IParsable<VitaminA>,
 #endif
@@ -51,7 +51,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -130,7 +130,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public VitaminA(QuantityValue value, VitaminAUnit unit)
+        public VitaminA(double value, VitaminAUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -172,7 +172,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public VitaminAUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -206,9 +206,9 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VitaminAUnit.InternationalUnit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VitaminAUnit.InternationalUnit"/>
         /// </summary>
-        public QuantityValue InternationalUnits => this.As(VitaminAUnit.InternationalUnit);
+        public double InternationalUnits => this.As(VitaminAUnit.InternationalUnit);
 
         #endregion
 
@@ -242,7 +242,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VitaminA"/> from <see cref="VitaminAUnit.InternationalUnit"/>.
         /// </summary>
-        public static VitaminA FromInternationalUnits(QuantityValue value)
+        public static VitaminA FromInternationalUnits(double value)
         {
             return new VitaminA(value, VitaminAUnit.InternationalUnit);
         }
@@ -253,7 +253,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>VitaminA unit value.</returns>
-        public static VitaminA From(QuantityValue value, VitaminAUnit fromUnit)
+        public static VitaminA From(double value, VitaminAUnit fromUnit)
         {
             return new VitaminA(value, fromUnit);
         }
@@ -418,25 +418,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="VitaminA"/> from multiplying value and <see cref="VitaminA"/>.</summary>
-        public static VitaminA operator *(QuantityValue left, VitaminA right)
+        public static VitaminA operator *(double left, VitaminA right)
         {
             return new VitaminA(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="VitaminA"/> from multiplying value and <see cref="VitaminA"/>.</summary>
-        public static VitaminA operator *(VitaminA left, QuantityValue right)
+        public static VitaminA operator *(VitaminA left, double right)
         {
             return new VitaminA(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="VitaminA"/> from dividing <see cref="VitaminA"/> by value.</summary>
-        public static VitaminA operator /(VitaminA left, QuantityValue right)
+        public static VitaminA operator /(VitaminA left, double right)
         {
             return new VitaminA(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="VitaminA"/> by <see cref="VitaminA"/>.</summary>
-        public static QuantityValue operator /(VitaminA left, VitaminA right)
+        public static double operator /(VitaminA left, VitaminA right)
         {
             return left.InternationalUnits / right.InternationalUnits;
         }

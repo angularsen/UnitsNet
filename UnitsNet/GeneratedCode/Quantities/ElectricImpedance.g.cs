@@ -42,7 +42,7 @@ namespace UnitsNet
     public readonly partial struct ElectricImpedance :
         IArithmeticQuantity<ElectricImpedance, ElectricImpedanceUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricImpedance, ElectricImpedance, QuantityValue>,
+        IDivisionOperators<ElectricImpedance, ElectricImpedance, double>,
         IComparisonOperators<ElectricImpedance, ElectricImpedance, bool>,
         IParsable<ElectricImpedance>,
 #endif
@@ -55,7 +55,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -155,7 +155,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricImpedance(QuantityValue value, ElectricImpedanceUnit unit)
+        public ElectricImpedance(double value, ElectricImpedanceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -169,7 +169,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricImpedance(QuantityValue value, UnitSystem unitSystem)
+        public ElectricImpedance(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -211,7 +211,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public ElectricImpedanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -245,44 +245,44 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Gigaohm"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Gigaohm"/>
         /// </summary>
-        public QuantityValue Gigaohms => this.As(ElectricImpedanceUnit.Gigaohm);
+        public double Gigaohms => this.As(ElectricImpedanceUnit.Gigaohm);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Kiloohm"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Kiloohm"/>
         /// </summary>
-        public QuantityValue Kiloohms => this.As(ElectricImpedanceUnit.Kiloohm);
+        public double Kiloohms => this.As(ElectricImpedanceUnit.Kiloohm);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Megaohm"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Megaohm"/>
         /// </summary>
-        public QuantityValue Megaohms => this.As(ElectricImpedanceUnit.Megaohm);
+        public double Megaohms => this.As(ElectricImpedanceUnit.Megaohm);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Microohm"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Microohm"/>
         /// </summary>
-        public QuantityValue Microohms => this.As(ElectricImpedanceUnit.Microohm);
+        public double Microohms => this.As(ElectricImpedanceUnit.Microohm);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Milliohm"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Milliohm"/>
         /// </summary>
-        public QuantityValue Milliohms => this.As(ElectricImpedanceUnit.Milliohm);
+        public double Milliohms => this.As(ElectricImpedanceUnit.Milliohm);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Nanoohm"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Nanoohm"/>
         /// </summary>
-        public QuantityValue Nanoohms => this.As(ElectricImpedanceUnit.Nanoohm);
+        public double Nanoohms => this.As(ElectricImpedanceUnit.Nanoohm);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Ohm"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Ohm"/>
         /// </summary>
-        public QuantityValue Ohms => this.As(ElectricImpedanceUnit.Ohm);
+        public double Ohms => this.As(ElectricImpedanceUnit.Ohm);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Teraohm"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricImpedanceUnit.Teraohm"/>
         /// </summary>
-        public QuantityValue Teraohms => this.As(ElectricImpedanceUnit.Teraohm);
+        public double Teraohms => this.As(ElectricImpedanceUnit.Teraohm);
 
         #endregion
 
@@ -316,7 +316,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricImpedance"/> from <see cref="ElectricImpedanceUnit.Gigaohm"/>.
         /// </summary>
-        public static ElectricImpedance FromGigaohms(QuantityValue value)
+        public static ElectricImpedance FromGigaohms(double value)
         {
             return new ElectricImpedance(value, ElectricImpedanceUnit.Gigaohm);
         }
@@ -324,7 +324,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricImpedance"/> from <see cref="ElectricImpedanceUnit.Kiloohm"/>.
         /// </summary>
-        public static ElectricImpedance FromKiloohms(QuantityValue value)
+        public static ElectricImpedance FromKiloohms(double value)
         {
             return new ElectricImpedance(value, ElectricImpedanceUnit.Kiloohm);
         }
@@ -332,7 +332,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricImpedance"/> from <see cref="ElectricImpedanceUnit.Megaohm"/>.
         /// </summary>
-        public static ElectricImpedance FromMegaohms(QuantityValue value)
+        public static ElectricImpedance FromMegaohms(double value)
         {
             return new ElectricImpedance(value, ElectricImpedanceUnit.Megaohm);
         }
@@ -340,7 +340,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricImpedance"/> from <see cref="ElectricImpedanceUnit.Microohm"/>.
         /// </summary>
-        public static ElectricImpedance FromMicroohms(QuantityValue value)
+        public static ElectricImpedance FromMicroohms(double value)
         {
             return new ElectricImpedance(value, ElectricImpedanceUnit.Microohm);
         }
@@ -348,7 +348,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricImpedance"/> from <see cref="ElectricImpedanceUnit.Milliohm"/>.
         /// </summary>
-        public static ElectricImpedance FromMilliohms(QuantityValue value)
+        public static ElectricImpedance FromMilliohms(double value)
         {
             return new ElectricImpedance(value, ElectricImpedanceUnit.Milliohm);
         }
@@ -356,7 +356,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricImpedance"/> from <see cref="ElectricImpedanceUnit.Nanoohm"/>.
         /// </summary>
-        public static ElectricImpedance FromNanoohms(QuantityValue value)
+        public static ElectricImpedance FromNanoohms(double value)
         {
             return new ElectricImpedance(value, ElectricImpedanceUnit.Nanoohm);
         }
@@ -364,7 +364,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricImpedance"/> from <see cref="ElectricImpedanceUnit.Ohm"/>.
         /// </summary>
-        public static ElectricImpedance FromOhms(QuantityValue value)
+        public static ElectricImpedance FromOhms(double value)
         {
             return new ElectricImpedance(value, ElectricImpedanceUnit.Ohm);
         }
@@ -372,7 +372,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricImpedance"/> from <see cref="ElectricImpedanceUnit.Teraohm"/>.
         /// </summary>
-        public static ElectricImpedance FromTeraohms(QuantityValue value)
+        public static ElectricImpedance FromTeraohms(double value)
         {
             return new ElectricImpedance(value, ElectricImpedanceUnit.Teraohm);
         }
@@ -383,7 +383,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricImpedance unit value.</returns>
-        public static ElectricImpedance From(QuantityValue value, ElectricImpedanceUnit fromUnit)
+        public static ElectricImpedance From(double value, ElectricImpedanceUnit fromUnit)
         {
             return new ElectricImpedance(value, fromUnit);
         }
@@ -548,25 +548,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricImpedance"/> from multiplying value and <see cref="ElectricImpedance"/>.</summary>
-        public static ElectricImpedance operator *(QuantityValue left, ElectricImpedance right)
+        public static ElectricImpedance operator *(double left, ElectricImpedance right)
         {
             return new ElectricImpedance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricImpedance"/> from multiplying value and <see cref="ElectricImpedance"/>.</summary>
-        public static ElectricImpedance operator *(ElectricImpedance left, QuantityValue right)
+        public static ElectricImpedance operator *(ElectricImpedance left, double right)
         {
             return new ElectricImpedance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricImpedance"/> from dividing <see cref="ElectricImpedance"/> by value.</summary>
-        public static ElectricImpedance operator /(ElectricImpedance left, QuantityValue right)
+        public static ElectricImpedance operator /(ElectricImpedance left, double right)
         {
             return new ElectricImpedance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricImpedance"/> by <see cref="ElectricImpedance"/>.</summary>
-        public static QuantityValue operator /(ElectricImpedance left, ElectricImpedance right)
+        public static double operator /(ElectricImpedance left, ElectricImpedance right)
         {
             return left.Ohms / right.Ohms;
         }

@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct MagneticFlux :
         IArithmeticQuantity<MagneticFlux, MagneticFluxUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<MagneticFlux, MagneticFlux, QuantityValue>,
+        IDivisionOperators<MagneticFlux, MagneticFlux, double>,
         IComparisonOperators<MagneticFlux, MagneticFlux, bool>,
         IParsable<MagneticFlux>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -133,7 +133,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public MagneticFlux(QuantityValue value, MagneticFluxUnit unit)
+        public MagneticFlux(double value, MagneticFluxUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -147,7 +147,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public MagneticFlux(QuantityValue value, UnitSystem unitSystem)
+        public MagneticFlux(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -189,7 +189,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public MagneticFluxUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -223,9 +223,9 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MagneticFluxUnit.Weber"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MagneticFluxUnit.Weber"/>
         /// </summary>
-        public QuantityValue Webers => this.As(MagneticFluxUnit.Weber);
+        public double Webers => this.As(MagneticFluxUnit.Weber);
 
         #endregion
 
@@ -259,7 +259,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MagneticFlux"/> from <see cref="MagneticFluxUnit.Weber"/>.
         /// </summary>
-        public static MagneticFlux FromWebers(QuantityValue value)
+        public static MagneticFlux FromWebers(double value)
         {
             return new MagneticFlux(value, MagneticFluxUnit.Weber);
         }
@@ -270,7 +270,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MagneticFlux unit value.</returns>
-        public static MagneticFlux From(QuantityValue value, MagneticFluxUnit fromUnit)
+        public static MagneticFlux From(double value, MagneticFluxUnit fromUnit)
         {
             return new MagneticFlux(value, fromUnit);
         }
@@ -435,25 +435,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="MagneticFlux"/> from multiplying value and <see cref="MagneticFlux"/>.</summary>
-        public static MagneticFlux operator *(QuantityValue left, MagneticFlux right)
+        public static MagneticFlux operator *(double left, MagneticFlux right)
         {
             return new MagneticFlux(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="MagneticFlux"/> from multiplying value and <see cref="MagneticFlux"/>.</summary>
-        public static MagneticFlux operator *(MagneticFlux left, QuantityValue right)
+        public static MagneticFlux operator *(MagneticFlux left, double right)
         {
             return new MagneticFlux(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="MagneticFlux"/> from dividing <see cref="MagneticFlux"/> by value.</summary>
-        public static MagneticFlux operator /(MagneticFlux left, QuantityValue right)
+        public static MagneticFlux operator /(MagneticFlux left, double right)
         {
             return new MagneticFlux(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="MagneticFlux"/> by <see cref="MagneticFlux"/>.</summary>
-        public static QuantityValue operator /(MagneticFlux left, MagneticFlux right)
+        public static double operator /(MagneticFlux left, MagneticFlux right)
         {
             return left.Webers / right.Webers;
         }

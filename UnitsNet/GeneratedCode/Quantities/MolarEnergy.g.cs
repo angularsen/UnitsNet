@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct MolarEnergy :
         IArithmeticQuantity<MolarEnergy, MolarEnergyUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<MolarEnergy, MolarEnergy, QuantityValue>,
+        IDivisionOperators<MolarEnergy, MolarEnergy, double>,
         IMultiplyOperators<MolarEnergy, AmountOfSubstance, Energy>,
         IComparisonOperators<MolarEnergy, MolarEnergy, bool>,
         IParsable<MolarEnergy>,
@@ -52,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -137,7 +137,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public MolarEnergy(QuantityValue value, MolarEnergyUnit unit)
+        public MolarEnergy(double value, MolarEnergyUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public MolarEnergy(QuantityValue value, UnitSystem unitSystem)
+        public MolarEnergy(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -193,7 +193,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public MolarEnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -227,19 +227,19 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarEnergyUnit.JoulePerMole"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEnergyUnit.JoulePerMole"/>
         /// </summary>
-        public QuantityValue JoulesPerMole => this.As(MolarEnergyUnit.JoulePerMole);
+        public double JoulesPerMole => this.As(MolarEnergyUnit.JoulePerMole);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarEnergyUnit.KilojoulePerMole"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEnergyUnit.KilojoulePerMole"/>
         /// </summary>
-        public QuantityValue KilojoulesPerMole => this.As(MolarEnergyUnit.KilojoulePerMole);
+        public double KilojoulesPerMole => this.As(MolarEnergyUnit.KilojoulePerMole);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarEnergyUnit.MegajoulePerMole"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarEnergyUnit.MegajoulePerMole"/>
         /// </summary>
-        public QuantityValue MegajoulesPerMole => this.As(MolarEnergyUnit.MegajoulePerMole);
+        public double MegajoulesPerMole => this.As(MolarEnergyUnit.MegajoulePerMole);
 
         #endregion
 
@@ -273,7 +273,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarEnergy"/> from <see cref="MolarEnergyUnit.JoulePerMole"/>.
         /// </summary>
-        public static MolarEnergy FromJoulesPerMole(QuantityValue value)
+        public static MolarEnergy FromJoulesPerMole(double value)
         {
             return new MolarEnergy(value, MolarEnergyUnit.JoulePerMole);
         }
@@ -281,7 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarEnergy"/> from <see cref="MolarEnergyUnit.KilojoulePerMole"/>.
         /// </summary>
-        public static MolarEnergy FromKilojoulesPerMole(QuantityValue value)
+        public static MolarEnergy FromKilojoulesPerMole(double value)
         {
             return new MolarEnergy(value, MolarEnergyUnit.KilojoulePerMole);
         }
@@ -289,7 +289,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MolarEnergy"/> from <see cref="MolarEnergyUnit.MegajoulePerMole"/>.
         /// </summary>
-        public static MolarEnergy FromMegajoulesPerMole(QuantityValue value)
+        public static MolarEnergy FromMegajoulesPerMole(double value)
         {
             return new MolarEnergy(value, MolarEnergyUnit.MegajoulePerMole);
         }
@@ -300,7 +300,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MolarEnergy unit value.</returns>
-        public static MolarEnergy From(QuantityValue value, MolarEnergyUnit fromUnit)
+        public static MolarEnergy From(double value, MolarEnergyUnit fromUnit)
         {
             return new MolarEnergy(value, fromUnit);
         }
@@ -465,25 +465,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="MolarEnergy"/> from multiplying value and <see cref="MolarEnergy"/>.</summary>
-        public static MolarEnergy operator *(QuantityValue left, MolarEnergy right)
+        public static MolarEnergy operator *(double left, MolarEnergy right)
         {
             return new MolarEnergy(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="MolarEnergy"/> from multiplying value and <see cref="MolarEnergy"/>.</summary>
-        public static MolarEnergy operator *(MolarEnergy left, QuantityValue right)
+        public static MolarEnergy operator *(MolarEnergy left, double right)
         {
             return new MolarEnergy(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="MolarEnergy"/> from dividing <see cref="MolarEnergy"/> by value.</summary>
-        public static MolarEnergy operator /(MolarEnergy left, QuantityValue right)
+        public static MolarEnergy operator /(MolarEnergy left, double right)
         {
             return new MolarEnergy(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="MolarEnergy"/> by <see cref="MolarEnergy"/>.</summary>
-        public static QuantityValue operator /(MolarEnergy left, MolarEnergy right)
+        public static double operator /(MolarEnergy left, MolarEnergy right)
         {
             return left.JoulesPerMole / right.JoulesPerMole;
         }

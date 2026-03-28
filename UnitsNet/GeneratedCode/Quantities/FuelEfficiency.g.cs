@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct FuelEfficiency :
         IArithmeticQuantity<FuelEfficiency, FuelEfficiencyUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<FuelEfficiency, FuelEfficiency, QuantityValue>,
+        IDivisionOperators<FuelEfficiency, FuelEfficiency, double>,
         IComparisonOperators<FuelEfficiency, FuelEfficiency, bool>,
         IParsable<FuelEfficiency>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -143,7 +143,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public FuelEfficiency(QuantityValue value, FuelEfficiencyUnit unit)
+        public FuelEfficiency(double value, FuelEfficiencyUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -157,7 +157,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public FuelEfficiency(QuantityValue value, UnitSystem unitSystem)
+        public FuelEfficiency(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -199,7 +199,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public FuelEfficiencyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -233,24 +233,24 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.KilometerPerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.KilometerPerLiter"/>
         /// </summary>
-        public QuantityValue KilometersPerLiter => this.As(FuelEfficiencyUnit.KilometerPerLiter);
+        public double KilometersPerLiter => this.As(FuelEfficiencyUnit.KilometerPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.LiterPer100Kilometers"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.LiterPer100Kilometers"/>
         /// </summary>
-        public QuantityValue LitersPer100Kilometers => this.As(FuelEfficiencyUnit.LiterPer100Kilometers);
+        public double LitersPer100Kilometers => this.As(FuelEfficiencyUnit.LiterPer100Kilometers);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.MilePerUkGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.MilePerUkGallon"/>
         /// </summary>
-        public QuantityValue MilesPerUkGallon => this.As(FuelEfficiencyUnit.MilePerUkGallon);
+        public double MilesPerUkGallon => this.As(FuelEfficiencyUnit.MilePerUkGallon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.MilePerUsGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="FuelEfficiencyUnit.MilePerUsGallon"/>
         /// </summary>
-        public QuantityValue MilesPerUsGallon => this.As(FuelEfficiencyUnit.MilePerUsGallon);
+        public double MilesPerUsGallon => this.As(FuelEfficiencyUnit.MilePerUsGallon);
 
         #endregion
 
@@ -284,7 +284,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.KilometerPerLiter"/>.
         /// </summary>
-        public static FuelEfficiency FromKilometersPerLiter(QuantityValue value)
+        public static FuelEfficiency FromKilometersPerLiter(double value)
         {
             return new FuelEfficiency(value, FuelEfficiencyUnit.KilometerPerLiter);
         }
@@ -292,7 +292,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.LiterPer100Kilometers"/>.
         /// </summary>
-        public static FuelEfficiency FromLitersPer100Kilometers(QuantityValue value)
+        public static FuelEfficiency FromLitersPer100Kilometers(double value)
         {
             return new FuelEfficiency(value, FuelEfficiencyUnit.LiterPer100Kilometers);
         }
@@ -300,7 +300,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.MilePerUkGallon"/>.
         /// </summary>
-        public static FuelEfficiency FromMilesPerUkGallon(QuantityValue value)
+        public static FuelEfficiency FromMilesPerUkGallon(double value)
         {
             return new FuelEfficiency(value, FuelEfficiencyUnit.MilePerUkGallon);
         }
@@ -308,7 +308,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="FuelEfficiency"/> from <see cref="FuelEfficiencyUnit.MilePerUsGallon"/>.
         /// </summary>
-        public static FuelEfficiency FromMilesPerUsGallon(QuantityValue value)
+        public static FuelEfficiency FromMilesPerUsGallon(double value)
         {
             return new FuelEfficiency(value, FuelEfficiencyUnit.MilePerUsGallon);
         }
@@ -319,7 +319,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>FuelEfficiency unit value.</returns>
-        public static FuelEfficiency From(QuantityValue value, FuelEfficiencyUnit fromUnit)
+        public static FuelEfficiency From(double value, FuelEfficiencyUnit fromUnit)
         {
             return new FuelEfficiency(value, fromUnit);
         }
@@ -484,25 +484,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="FuelEfficiency"/> from multiplying value and <see cref="FuelEfficiency"/>.</summary>
-        public static FuelEfficiency operator *(QuantityValue left, FuelEfficiency right)
+        public static FuelEfficiency operator *(double left, FuelEfficiency right)
         {
             return new FuelEfficiency(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="FuelEfficiency"/> from multiplying value and <see cref="FuelEfficiency"/>.</summary>
-        public static FuelEfficiency operator *(FuelEfficiency left, QuantityValue right)
+        public static FuelEfficiency operator *(FuelEfficiency left, double right)
         {
             return new FuelEfficiency(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="FuelEfficiency"/> from dividing <see cref="FuelEfficiency"/> by value.</summary>
-        public static FuelEfficiency operator /(FuelEfficiency left, QuantityValue right)
+        public static FuelEfficiency operator /(FuelEfficiency left, double right)
         {
             return new FuelEfficiency(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="FuelEfficiency"/> by <see cref="FuelEfficiency"/>.</summary>
-        public static QuantityValue operator /(FuelEfficiency left, FuelEfficiency right)
+        public static double operator /(FuelEfficiency left, FuelEfficiency right)
         {
             return left.KilometersPerLiter / right.KilometersPerLiter;
         }

@@ -346,7 +346,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kWh/m²", IrradiationUnit.KilowattHourPerSquareMeter, 4.2)]
         [InlineData("en-US", "4.2 mJ/cm²", IrradiationUnit.MillijoulePerSquareCentimeter, 4.2)]
         [InlineData("en-US", "4.2 Wh/m²", IrradiationUnit.WattHourPerSquareMeter, 4.2)]
-        public void Parse(string culture, string quantityString, IrradiationUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, IrradiationUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Irradiation.Parse(quantityString);
@@ -364,7 +364,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kWh/m²", IrradiationUnit.KilowattHourPerSquareMeter, 4.2)]
         [InlineData("en-US", "4.2 mJ/cm²", IrradiationUnit.MillijoulePerSquareCentimeter, 4.2)]
         [InlineData("en-US", "4.2 Wh/m²", IrradiationUnit.WattHourPerSquareMeter, 4.2)]
-        public void TryParse(string culture, string quantityString, IrradiationUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, IrradiationUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Irradiation.TryParse(quantityString, out Irradiation parsed));
@@ -733,8 +733,8 @@ namespace UnitsNet.Tests
             var quantity = Irradiation.FromJoulesPerSquareMeter(firstValue);
             var otherQuantity = Irradiation.FromJoulesPerSquareMeter(secondValue);
             Irradiation maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Irradiation.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

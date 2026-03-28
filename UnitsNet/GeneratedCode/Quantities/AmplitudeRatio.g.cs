@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct AmplitudeRatio :
         ILogarithmicQuantity<AmplitudeRatio, AmplitudeRatioUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<AmplitudeRatio, AmplitudeRatio, QuantityValue>,
+        IDivisionOperators<AmplitudeRatio, AmplitudeRatio, double>,
         IComparisonOperators<AmplitudeRatio, AmplitudeRatio, bool>,
         IParsable<AmplitudeRatio>,
 #endif
@@ -51,7 +51,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -142,7 +142,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public AmplitudeRatio(QuantityValue value, AmplitudeRatioUnit unit)
+        public AmplitudeRatio(double value, AmplitudeRatioUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -180,14 +180,14 @@ namespace UnitsNet
         public static AmplitudeRatio Zero => Info.Zero;
 
         /// <inheritdoc />
-        public static QuantityValue LogarithmicScalingFactor {get;} = 20;
+        public static double LogarithmicScalingFactor {get;} = 20;
 
         #endregion
 
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public AmplitudeRatioUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -215,7 +215,7 @@ namespace UnitsNet
 #endif
 
 #if NETSTANDARD2_0
-        QuantityValue ILogarithmicQuantity<AmplitudeRatio>.LogarithmicScalingFactor => LogarithmicScalingFactor;
+        double ILogarithmicQuantity<AmplitudeRatio>.LogarithmicScalingFactor => LogarithmicScalingFactor;
 #endif
 
         #endregion
@@ -225,24 +225,24 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelMicrovolt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelMicrovolt"/>
         /// </summary>
-        public QuantityValue DecibelMicrovolts => this.As(AmplitudeRatioUnit.DecibelMicrovolt);
+        public double DecibelMicrovolts => this.As(AmplitudeRatioUnit.DecibelMicrovolt);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelMillivolt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelMillivolt"/>
         /// </summary>
-        public QuantityValue DecibelMillivolts => this.As(AmplitudeRatioUnit.DecibelMillivolt);
+        public double DecibelMillivolts => this.As(AmplitudeRatioUnit.DecibelMillivolt);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelUnloaded"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelUnloaded"/>
         /// </summary>
-        public QuantityValue DecibelsUnloaded => this.As(AmplitudeRatioUnit.DecibelUnloaded);
+        public double DecibelsUnloaded => this.As(AmplitudeRatioUnit.DecibelUnloaded);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelVolt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AmplitudeRatioUnit.DecibelVolt"/>
         /// </summary>
-        public QuantityValue DecibelVolts => this.As(AmplitudeRatioUnit.DecibelVolt);
+        public double DecibelVolts => this.As(AmplitudeRatioUnit.DecibelVolt);
 
         #endregion
 
@@ -276,7 +276,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelMicrovolt"/>.
         /// </summary>
-        public static AmplitudeRatio FromDecibelMicrovolts(QuantityValue value)
+        public static AmplitudeRatio FromDecibelMicrovolts(double value)
         {
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelMicrovolt);
         }
@@ -284,7 +284,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelMillivolt"/>.
         /// </summary>
-        public static AmplitudeRatio FromDecibelMillivolts(QuantityValue value)
+        public static AmplitudeRatio FromDecibelMillivolts(double value)
         {
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelMillivolt);
         }
@@ -292,7 +292,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelUnloaded"/>.
         /// </summary>
-        public static AmplitudeRatio FromDecibelsUnloaded(QuantityValue value)
+        public static AmplitudeRatio FromDecibelsUnloaded(double value)
         {
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelUnloaded);
         }
@@ -300,7 +300,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AmplitudeRatio"/> from <see cref="AmplitudeRatioUnit.DecibelVolt"/>.
         /// </summary>
-        public static AmplitudeRatio FromDecibelVolts(QuantityValue value)
+        public static AmplitudeRatio FromDecibelVolts(double value)
         {
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelVolt);
         }
@@ -311,7 +311,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AmplitudeRatio unit value.</returns>
-        public static AmplitudeRatio From(QuantityValue value, AmplitudeRatioUnit fromUnit)
+        public static AmplitudeRatio From(double value, AmplitudeRatioUnit fromUnit)
         {
             return new AmplitudeRatio(value, fromUnit);
         }
@@ -469,7 +469,7 @@ namespace UnitsNet
         /// </remarks>
         public static AmplitudeRatio operator +(AmplitudeRatio left, AmplitudeRatio right)
         {
-            return new AmplitudeRatio(QuantityValueExtensions.AddWithLogScaling(left.Value, right.As(left.Unit), LogarithmicScalingFactor), left.Unit);
+            return new AmplitudeRatio((double)QuantityValueExtensions.AddWithLogScaling((QuantityValue)left.Value, (QuantityValue)right.As(left.Unit), (QuantityValue)LogarithmicScalingFactor), left.Unit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic subtraction of two <see cref="AmplitudeRatio"/>.</summary>
@@ -478,29 +478,29 @@ namespace UnitsNet
         /// </remarks>
         public static AmplitudeRatio operator -(AmplitudeRatio left, AmplitudeRatio right)
         {
-            return new AmplitudeRatio(QuantityValueExtensions.SubtractWithLogScaling(left.Value, right.As(left.Unit), LogarithmicScalingFactor), left.Unit);
+            return new AmplitudeRatio((double)QuantityValueExtensions.SubtractWithLogScaling((QuantityValue)left.Value, (QuantityValue)right.As(left.Unit), (QuantityValue)LogarithmicScalingFactor), left.Unit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic multiplication of value and <see cref="AmplitudeRatio"/>.</summary>
-        public static AmplitudeRatio operator *(QuantityValue left, AmplitudeRatio right)
+        public static AmplitudeRatio operator *(double left, AmplitudeRatio right)
         {
             return new AmplitudeRatio(left + right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic multiplication of value and <see cref="AmplitudeRatio"/>.</summary>
-        public static AmplitudeRatio operator *(AmplitudeRatio left, QuantityValue right)
+        public static AmplitudeRatio operator *(AmplitudeRatio left, double right)
         {
             return new AmplitudeRatio(left.Value + right, left.Unit);
         }
 
         /// <summary>Get <see cref="AmplitudeRatio"/> from logarithmic division of <see cref="AmplitudeRatio"/> by value.</summary>
-        public static AmplitudeRatio operator /(AmplitudeRatio left, QuantityValue right)
+        public static AmplitudeRatio operator /(AmplitudeRatio left, double right)
         {
             return new AmplitudeRatio(left.Value - right, left.Unit);
         }
 
         /// <summary>Get ratio value from logarithmic division of <see cref="AmplitudeRatio"/> by <see cref="AmplitudeRatio"/>.</summary>
-        public static QuantityValue operator /(AmplitudeRatio left, AmplitudeRatio right)
+        public static double operator /(AmplitudeRatio left, AmplitudeRatio right)
         {
             return left.Value - right.As(left.Unit);
         }

@@ -42,12 +42,12 @@ namespace UnitsNet.NumberExtensions.NumberToMagnetization
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Magnetization.FromAmperesPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="Magnetization.FromAmperesPerMeter(double)" />
             public Magnetization AmperesPerMeter
 #if NET7_0_OR_GREATER
-                => Magnetization.FromAmperesPerMeter(QuantityValue.CreateChecked(value));
+                => Magnetization.FromAmperesPerMeter(double.CreateChecked(value));
 #else
-                => Magnetization.FromAmperesPerMeter(value.ToQuantityValue());
+                => Magnetization.FromAmperesPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

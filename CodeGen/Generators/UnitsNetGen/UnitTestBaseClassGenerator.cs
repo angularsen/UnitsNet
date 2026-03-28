@@ -599,7 +599,7 @@ namespace UnitsNet.Tests
             }
 
             Writer.WL($@"
-        public void Parse(string culture, string quantityString, {_unitEnumName} expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, {_unitEnumName} expectedUnit, double expectedValue)
         {{
             using var _ = new CultureScope(culture);
             var parsed = {_quantity.Name}.Parse(quantityString);
@@ -644,7 +644,7 @@ namespace UnitsNet.Tests
             }
 
             Writer.WL($@"
-        public void TryParse(string culture, string quantityString, {_unitEnumName} expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, {_unitEnumName} expectedUnit, double expectedValue)
         {{
             using var _ = new CultureScope(culture);
             Assert.True({_quantity.Name}.TryParse(quantityString, out {_quantity.Name} parsed));
@@ -1129,8 +1129,8 @@ namespace UnitsNet.Tests
             var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(firstValue);
             var otherQuantity = {_quantity.Name}.From{_baseUnit.PluralName}(secondValue);
             {differenceResultType} maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, {differenceResultType}.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, largerTolerance));
@@ -1162,8 +1162,8 @@ namespace UnitsNet.Tests
             var quantity = {_quantity.Name}.From{_baseUnit.PluralName}(firstValue);
             var otherQuantity = {_quantity.Name}.From{_baseUnit.PluralName}(secondValue);
             {differenceResultType} maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, {differenceResultType}.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

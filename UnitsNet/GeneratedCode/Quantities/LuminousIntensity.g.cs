@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct LuminousIntensity :
         IArithmeticQuantity<LuminousIntensity, LuminousIntensityUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<LuminousIntensity, LuminousIntensity, QuantityValue>,
+        IDivisionOperators<LuminousIntensity, LuminousIntensity, double>,
         IDivisionOperators<LuminousIntensity, Luminance, Area>,
         IDivisionOperators<LuminousIntensity, Area, Luminance>,
         IComparisonOperators<LuminousIntensity, LuminousIntensity, bool>,
@@ -56,7 +56,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -135,7 +135,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public LuminousIntensity(QuantityValue value, LuminousIntensityUnit unit)
+        public LuminousIntensity(double value, LuminousIntensityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -149,7 +149,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public LuminousIntensity(QuantityValue value, UnitSystem unitSystem)
+        public LuminousIntensity(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -191,7 +191,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public LuminousIntensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -225,9 +225,9 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LuminousIntensityUnit.Candela"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminousIntensityUnit.Candela"/>
         /// </summary>
-        public QuantityValue Candela => this.As(LuminousIntensityUnit.Candela);
+        public double Candela => this.As(LuminousIntensityUnit.Candela);
 
         #endregion
 
@@ -261,7 +261,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="LuminousIntensity"/> from <see cref="LuminousIntensityUnit.Candela"/>.
         /// </summary>
-        public static LuminousIntensity FromCandela(QuantityValue value)
+        public static LuminousIntensity FromCandela(double value)
         {
             return new LuminousIntensity(value, LuminousIntensityUnit.Candela);
         }
@@ -272,7 +272,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>LuminousIntensity unit value.</returns>
-        public static LuminousIntensity From(QuantityValue value, LuminousIntensityUnit fromUnit)
+        public static LuminousIntensity From(double value, LuminousIntensityUnit fromUnit)
         {
             return new LuminousIntensity(value, fromUnit);
         }
@@ -437,25 +437,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="LuminousIntensity"/> from multiplying value and <see cref="LuminousIntensity"/>.</summary>
-        public static LuminousIntensity operator *(QuantityValue left, LuminousIntensity right)
+        public static LuminousIntensity operator *(double left, LuminousIntensity right)
         {
             return new LuminousIntensity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="LuminousIntensity"/> from multiplying value and <see cref="LuminousIntensity"/>.</summary>
-        public static LuminousIntensity operator *(LuminousIntensity left, QuantityValue right)
+        public static LuminousIntensity operator *(LuminousIntensity left, double right)
         {
             return new LuminousIntensity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="LuminousIntensity"/> from dividing <see cref="LuminousIntensity"/> by value.</summary>
-        public static LuminousIntensity operator /(LuminousIntensity left, QuantityValue right)
+        public static LuminousIntensity operator /(LuminousIntensity left, double right)
         {
             return new LuminousIntensity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="LuminousIntensity"/> by <see cref="LuminousIntensity"/>.</summary>
-        public static QuantityValue operator /(LuminousIntensity left, LuminousIntensity right)
+        public static double operator /(LuminousIntensity left, LuminousIntensity right)
         {
             return left.Candela / right.Candela;
         }

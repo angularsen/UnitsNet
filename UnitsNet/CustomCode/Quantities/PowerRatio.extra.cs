@@ -19,14 +19,14 @@ namespace UnitsNet
         public PowerRatio(Power power, byte significantDigits = 15)
             : this()
         {
-            if (!QuantityValue.IsPositive(power.Value))
+            if (power.Value <= 0)
             {
                 throw new ArgumentOutOfRangeException(
                     nameof(power), "The base-10 logarithm of a number ≤ 0 is undefined. Power must be greater than 0 W.");
             }
 
             // P(dBW) = 10*log10(value(W)/reference(W))
-            _value = power.Watts.ToLogSpace(LogarithmicScalingFactor, significantDigits);
+            _value = (double)((QuantityValue)power.Watts).ToLogSpace(LogarithmicScalingFactor, significantDigits);
             _unit = PowerRatioUnit.DecibelWatt;
         }
 
@@ -42,7 +42,7 @@ namespace UnitsNet
         public Power ToPower(byte significantDigits = 15)
         {
             // P(W) = 1W * 10^(P(dBW)/10)
-            return Power.FromWatts(DecibelWatts.ToLinearSpace(LogarithmicScalingFactor, significantDigits));
+            return Power.FromWatts((double)((QuantityValue)DecibelWatts).ToLinearSpace(LogarithmicScalingFactor, significantDigits));
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace UnitsNet
         public AmplitudeRatio ToAmplitudeRatio(ElectricResistance impedance, byte significantDigits = 15)
         {
             // E(dBV) = 10*log10(Z(Ω)/1) + P(dBW)
-            return AmplitudeRatio.FromDecibelVolts(impedance.Ohms.ToLogSpace(LogarithmicScalingFactor, significantDigits) + DecibelWatts);
+            return AmplitudeRatio.FromDecibelVolts((double)((QuantityValue)impedance.Ohms).ToLogSpace(LogarithmicScalingFactor, significantDigits) + DecibelWatts);
         }
 
         #region Static Methods

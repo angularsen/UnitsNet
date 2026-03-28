@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct RatioChangeRate :
         IArithmeticQuantity<RatioChangeRate, RatioChangeRateUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<RatioChangeRate, RatioChangeRate, QuantityValue>,
+        IDivisionOperators<RatioChangeRate, RatioChangeRate, double>,
         IComparisonOperators<RatioChangeRate, RatioChangeRate, bool>,
         IParsable<RatioChangeRate>,
 #endif
@@ -51,7 +51,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -133,7 +133,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public RatioChangeRate(QuantityValue value, RatioChangeRateUnit unit)
+        public RatioChangeRate(double value, RatioChangeRateUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -147,7 +147,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public RatioChangeRate(QuantityValue value, UnitSystem unitSystem)
+        public RatioChangeRate(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -189,7 +189,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public RatioChangeRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -223,14 +223,14 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RatioChangeRateUnit.DecimalFractionPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioChangeRateUnit.DecimalFractionPerSecond"/>
         /// </summary>
-        public QuantityValue DecimalFractionsPerSecond => this.As(RatioChangeRateUnit.DecimalFractionPerSecond);
+        public double DecimalFractionsPerSecond => this.As(RatioChangeRateUnit.DecimalFractionPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RatioChangeRateUnit.PercentPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioChangeRateUnit.PercentPerSecond"/>
         /// </summary>
-        public QuantityValue PercentsPerSecond => this.As(RatioChangeRateUnit.PercentPerSecond);
+        public double PercentsPerSecond => this.As(RatioChangeRateUnit.PercentPerSecond);
 
         #endregion
 
@@ -264,7 +264,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RatioChangeRate"/> from <see cref="RatioChangeRateUnit.DecimalFractionPerSecond"/>.
         /// </summary>
-        public static RatioChangeRate FromDecimalFractionsPerSecond(QuantityValue value)
+        public static RatioChangeRate FromDecimalFractionsPerSecond(double value)
         {
             return new RatioChangeRate(value, RatioChangeRateUnit.DecimalFractionPerSecond);
         }
@@ -272,7 +272,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RatioChangeRate"/> from <see cref="RatioChangeRateUnit.PercentPerSecond"/>.
         /// </summary>
-        public static RatioChangeRate FromPercentsPerSecond(QuantityValue value)
+        public static RatioChangeRate FromPercentsPerSecond(double value)
         {
             return new RatioChangeRate(value, RatioChangeRateUnit.PercentPerSecond);
         }
@@ -283,7 +283,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>RatioChangeRate unit value.</returns>
-        public static RatioChangeRate From(QuantityValue value, RatioChangeRateUnit fromUnit)
+        public static RatioChangeRate From(double value, RatioChangeRateUnit fromUnit)
         {
             return new RatioChangeRate(value, fromUnit);
         }
@@ -448,25 +448,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="RatioChangeRate"/> from multiplying value and <see cref="RatioChangeRate"/>.</summary>
-        public static RatioChangeRate operator *(QuantityValue left, RatioChangeRate right)
+        public static RatioChangeRate operator *(double left, RatioChangeRate right)
         {
             return new RatioChangeRate(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="RatioChangeRate"/> from multiplying value and <see cref="RatioChangeRate"/>.</summary>
-        public static RatioChangeRate operator *(RatioChangeRate left, QuantityValue right)
+        public static RatioChangeRate operator *(RatioChangeRate left, double right)
         {
             return new RatioChangeRate(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="RatioChangeRate"/> from dividing <see cref="RatioChangeRate"/> by value.</summary>
-        public static RatioChangeRate operator /(RatioChangeRate left, QuantityValue right)
+        public static RatioChangeRate operator /(RatioChangeRate left, double right)
         {
             return new RatioChangeRate(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="RatioChangeRate"/> by <see cref="RatioChangeRate"/>.</summary>
-        public static QuantityValue operator /(RatioChangeRate left, RatioChangeRate right)
+        public static double operator /(RatioChangeRate left, RatioChangeRate right)
         {
             return left.DecimalFractionsPerSecond / right.DecimalFractionsPerSecond;
         }

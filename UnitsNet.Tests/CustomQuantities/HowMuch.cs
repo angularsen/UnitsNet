@@ -6,20 +6,20 @@
 /// </summary>
 public readonly struct HowMuch : IQuantity<HowMuch, HowMuchUnit>
 {
-    public HowMuch(QuantityValue value, HowMuchUnit unit)
+    public HowMuch(double value, HowMuchUnit unit)
     {
         Unit = unit;
         Value = value;
     }
 
-    public static HowMuch From(QuantityValue value, HowMuchUnit unit)
+    public static HowMuch From(double value, HowMuchUnit unit)
     {
         return new HowMuch(value, unit);
     }
 
     public HowMuchUnit Unit { get; }
 
-    public QuantityValue Value { get; }
+    public double Value { get; }
     
     public static readonly QuantityInfo<HowMuch, HowMuchUnit> Info = new(
         nameof(HowMuch),

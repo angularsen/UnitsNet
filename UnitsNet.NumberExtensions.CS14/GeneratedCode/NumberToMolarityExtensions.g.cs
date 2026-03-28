@@ -42,92 +42,92 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(QuantityValue)" />
+            /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(double)" />
             public Molarity CentimolesPerLiter
 #if NET7_0_OR_GREATER
-                => Molarity.FromCentimolesPerLiter(QuantityValue.CreateChecked(value));
+                => Molarity.FromCentimolesPerLiter(double.CreateChecked(value));
 #else
-                => Molarity.FromCentimolesPerLiter(value.ToQuantityValue());
+                => Molarity.FromCentimolesPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(QuantityValue)" />
+            /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(double)" />
             public Molarity DecimolesPerLiter
 #if NET7_0_OR_GREATER
-                => Molarity.FromDecimolesPerLiter(QuantityValue.CreateChecked(value));
+                => Molarity.FromDecimolesPerLiter(double.CreateChecked(value));
 #else
-                => Molarity.FromDecimolesPerLiter(value.ToQuantityValue());
+                => Molarity.FromDecimolesPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Molarity.FromFemtomolesPerLiter(QuantityValue)" />
+            /// <inheritdoc cref="Molarity.FromFemtomolesPerLiter(double)" />
             public Molarity FemtomolesPerLiter
 #if NET7_0_OR_GREATER
-                => Molarity.FromFemtomolesPerLiter(QuantityValue.CreateChecked(value));
+                => Molarity.FromFemtomolesPerLiter(double.CreateChecked(value));
 #else
-                => Molarity.FromFemtomolesPerLiter(value.ToQuantityValue());
+                => Molarity.FromFemtomolesPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Molarity.FromKilomolesPerCubicMeter(QuantityValue)" />
+            /// <inheritdoc cref="Molarity.FromKilomolesPerCubicMeter(double)" />
             public Molarity KilomolesPerCubicMeter
 #if NET7_0_OR_GREATER
-                => Molarity.FromKilomolesPerCubicMeter(QuantityValue.CreateChecked(value));
+                => Molarity.FromKilomolesPerCubicMeter(double.CreateChecked(value));
 #else
-                => Molarity.FromKilomolesPerCubicMeter(value.ToQuantityValue());
+                => Molarity.FromKilomolesPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(QuantityValue)" />
+            /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(double)" />
             public Molarity MicromolesPerLiter
 #if NET7_0_OR_GREATER
-                => Molarity.FromMicromolesPerLiter(QuantityValue.CreateChecked(value));
+                => Molarity.FromMicromolesPerLiter(double.CreateChecked(value));
 #else
-                => Molarity.FromMicromolesPerLiter(value.ToQuantityValue());
+                => Molarity.FromMicromolesPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(QuantityValue)" />
+            /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(double)" />
             public Molarity MillimolesPerLiter
 #if NET7_0_OR_GREATER
-                => Molarity.FromMillimolesPerLiter(QuantityValue.CreateChecked(value));
+                => Molarity.FromMillimolesPerLiter(double.CreateChecked(value));
 #else
-                => Molarity.FromMillimolesPerLiter(value.ToQuantityValue());
+                => Molarity.FromMillimolesPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(QuantityValue)" />
+            /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(double)" />
             public Molarity MolesPerCubicMeter
 #if NET7_0_OR_GREATER
-                => Molarity.FromMolesPerCubicMeter(QuantityValue.CreateChecked(value));
+                => Molarity.FromMolesPerCubicMeter(double.CreateChecked(value));
 #else
-                => Molarity.FromMolesPerCubicMeter(value.ToQuantityValue());
+                => Molarity.FromMolesPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Molarity.FromMolesPerLiter(QuantityValue)" />
+            /// <inheritdoc cref="Molarity.FromMolesPerLiter(double)" />
             public Molarity MolesPerLiter
 #if NET7_0_OR_GREATER
-                => Molarity.FromMolesPerLiter(QuantityValue.CreateChecked(value));
+                => Molarity.FromMolesPerLiter(double.CreateChecked(value));
 #else
-                => Molarity.FromMolesPerLiter(value.ToQuantityValue());
+                => Molarity.FromMolesPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(QuantityValue)" />
+            /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(double)" />
             public Molarity NanomolesPerLiter
 #if NET7_0_OR_GREATER
-                => Molarity.FromNanomolesPerLiter(QuantityValue.CreateChecked(value));
+                => Molarity.FromNanomolesPerLiter(double.CreateChecked(value));
 #else
-                => Molarity.FromNanomolesPerLiter(value.ToQuantityValue());
+                => Molarity.FromNanomolesPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(QuantityValue)" />
+            /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(double)" />
             public Molarity PicomolesPerLiter
 #if NET7_0_OR_GREATER
-                => Molarity.FromPicomolesPerLiter(QuantityValue.CreateChecked(value));
+                => Molarity.FromPicomolesPerLiter(double.CreateChecked(value));
 #else
-                => Molarity.FromPicomolesPerLiter(value.ToQuantityValue());
+                => Molarity.FromPicomolesPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Molarity.FromPoundMolesPerCubicFoot(QuantityValue)" />
+            /// <inheritdoc cref="Molarity.FromPoundMolesPerCubicFoot(double)" />
             public Molarity PoundMolesPerCubicFoot
 #if NET7_0_OR_GREATER
-                => Molarity.FromPoundMolesPerCubicFoot(QuantityValue.CreateChecked(value));
+                => Molarity.FromPoundMolesPerCubicFoot(double.CreateChecked(value));
 #else
-                => Molarity.FromPoundMolesPerCubicFoot(value.ToQuantityValue());
+                => Molarity.FromPoundMolesPerCubicFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

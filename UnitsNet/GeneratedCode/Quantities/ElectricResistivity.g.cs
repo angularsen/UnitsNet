@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct ElectricResistivity :
         IArithmeticQuantity<ElectricResistivity, ElectricResistivityUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricResistivity, ElectricResistivity, QuantityValue>,
+        IDivisionOperators<ElectricResistivity, ElectricResistivity, double>,
         IComparisonOperators<ElectricResistivity, ElectricResistivity, bool>,
         IParsable<ElectricResistivity>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -172,7 +172,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricResistivity(QuantityValue value, ElectricResistivityUnit unit)
+        public ElectricResistivity(double value, ElectricResistivityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -186,7 +186,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricResistivity(QuantityValue value, UnitSystem unitSystem)
+        public ElectricResistivity(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -228,7 +228,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public ElectricResistivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -262,74 +262,74 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricResistivityUnit.KiloohmCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.KiloohmCentimeter"/>
         /// </summary>
-        public QuantityValue KiloohmsCentimeter => this.As(ElectricResistivityUnit.KiloohmCentimeter);
+        public double KiloohmsCentimeter => this.As(ElectricResistivityUnit.KiloohmCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricResistivityUnit.KiloohmMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.KiloohmMeter"/>
         /// </summary>
-        public QuantityValue KiloohmMeters => this.As(ElectricResistivityUnit.KiloohmMeter);
+        public double KiloohmMeters => this.As(ElectricResistivityUnit.KiloohmMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MegaohmCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MegaohmCentimeter"/>
         /// </summary>
-        public QuantityValue MegaohmsCentimeter => this.As(ElectricResistivityUnit.MegaohmCentimeter);
+        public double MegaohmsCentimeter => this.As(ElectricResistivityUnit.MegaohmCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MegaohmMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MegaohmMeter"/>
         /// </summary>
-        public QuantityValue MegaohmMeters => this.As(ElectricResistivityUnit.MegaohmMeter);
+        public double MegaohmMeters => this.As(ElectricResistivityUnit.MegaohmMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MicroohmCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MicroohmCentimeter"/>
         /// </summary>
-        public QuantityValue MicroohmsCentimeter => this.As(ElectricResistivityUnit.MicroohmCentimeter);
+        public double MicroohmsCentimeter => this.As(ElectricResistivityUnit.MicroohmCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MicroohmMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MicroohmMeter"/>
         /// </summary>
-        public QuantityValue MicroohmMeters => this.As(ElectricResistivityUnit.MicroohmMeter);
+        public double MicroohmMeters => this.As(ElectricResistivityUnit.MicroohmMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MilliohmCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MilliohmCentimeter"/>
         /// </summary>
-        public QuantityValue MilliohmsCentimeter => this.As(ElectricResistivityUnit.MilliohmCentimeter);
+        public double MilliohmsCentimeter => this.As(ElectricResistivityUnit.MilliohmCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MilliohmMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.MilliohmMeter"/>
         /// </summary>
-        public QuantityValue MilliohmMeters => this.As(ElectricResistivityUnit.MilliohmMeter);
+        public double MilliohmMeters => this.As(ElectricResistivityUnit.MilliohmMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricResistivityUnit.NanoohmCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.NanoohmCentimeter"/>
         /// </summary>
-        public QuantityValue NanoohmsCentimeter => this.As(ElectricResistivityUnit.NanoohmCentimeter);
+        public double NanoohmsCentimeter => this.As(ElectricResistivityUnit.NanoohmCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricResistivityUnit.NanoohmMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.NanoohmMeter"/>
         /// </summary>
-        public QuantityValue NanoohmMeters => this.As(ElectricResistivityUnit.NanoohmMeter);
+        public double NanoohmMeters => this.As(ElectricResistivityUnit.NanoohmMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricResistivityUnit.OhmCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.OhmCentimeter"/>
         /// </summary>
-        public QuantityValue OhmsCentimeter => this.As(ElectricResistivityUnit.OhmCentimeter);
+        public double OhmsCentimeter => this.As(ElectricResistivityUnit.OhmCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricResistivityUnit.OhmMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.OhmMeter"/>
         /// </summary>
-        public QuantityValue OhmMeters => this.As(ElectricResistivityUnit.OhmMeter);
+        public double OhmMeters => this.As(ElectricResistivityUnit.OhmMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricResistivityUnit.PicoohmCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.PicoohmCentimeter"/>
         /// </summary>
-        public QuantityValue PicoohmsCentimeter => this.As(ElectricResistivityUnit.PicoohmCentimeter);
+        public double PicoohmsCentimeter => this.As(ElectricResistivityUnit.PicoohmCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricResistivityUnit.PicoohmMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricResistivityUnit.PicoohmMeter"/>
         /// </summary>
-        public QuantityValue PicoohmMeters => this.As(ElectricResistivityUnit.PicoohmMeter);
+        public double PicoohmMeters => this.As(ElectricResistivityUnit.PicoohmMeter);
 
         #endregion
 
@@ -363,7 +363,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.KiloohmCentimeter"/>.
         /// </summary>
-        public static ElectricResistivity FromKiloohmsCentimeter(QuantityValue value)
+        public static ElectricResistivity FromKiloohmsCentimeter(double value)
         {
             return new ElectricResistivity(value, ElectricResistivityUnit.KiloohmCentimeter);
         }
@@ -371,7 +371,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.KiloohmMeter"/>.
         /// </summary>
-        public static ElectricResistivity FromKiloohmMeters(QuantityValue value)
+        public static ElectricResistivity FromKiloohmMeters(double value)
         {
             return new ElectricResistivity(value, ElectricResistivityUnit.KiloohmMeter);
         }
@@ -379,7 +379,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.MegaohmCentimeter"/>.
         /// </summary>
-        public static ElectricResistivity FromMegaohmsCentimeter(QuantityValue value)
+        public static ElectricResistivity FromMegaohmsCentimeter(double value)
         {
             return new ElectricResistivity(value, ElectricResistivityUnit.MegaohmCentimeter);
         }
@@ -387,7 +387,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.MegaohmMeter"/>.
         /// </summary>
-        public static ElectricResistivity FromMegaohmMeters(QuantityValue value)
+        public static ElectricResistivity FromMegaohmMeters(double value)
         {
             return new ElectricResistivity(value, ElectricResistivityUnit.MegaohmMeter);
         }
@@ -395,7 +395,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.MicroohmCentimeter"/>.
         /// </summary>
-        public static ElectricResistivity FromMicroohmsCentimeter(QuantityValue value)
+        public static ElectricResistivity FromMicroohmsCentimeter(double value)
         {
             return new ElectricResistivity(value, ElectricResistivityUnit.MicroohmCentimeter);
         }
@@ -403,7 +403,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.MicroohmMeter"/>.
         /// </summary>
-        public static ElectricResistivity FromMicroohmMeters(QuantityValue value)
+        public static ElectricResistivity FromMicroohmMeters(double value)
         {
             return new ElectricResistivity(value, ElectricResistivityUnit.MicroohmMeter);
         }
@@ -411,7 +411,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.MilliohmCentimeter"/>.
         /// </summary>
-        public static ElectricResistivity FromMilliohmsCentimeter(QuantityValue value)
+        public static ElectricResistivity FromMilliohmsCentimeter(double value)
         {
             return new ElectricResistivity(value, ElectricResistivityUnit.MilliohmCentimeter);
         }
@@ -419,7 +419,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.MilliohmMeter"/>.
         /// </summary>
-        public static ElectricResistivity FromMilliohmMeters(QuantityValue value)
+        public static ElectricResistivity FromMilliohmMeters(double value)
         {
             return new ElectricResistivity(value, ElectricResistivityUnit.MilliohmMeter);
         }
@@ -427,7 +427,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.NanoohmCentimeter"/>.
         /// </summary>
-        public static ElectricResistivity FromNanoohmsCentimeter(QuantityValue value)
+        public static ElectricResistivity FromNanoohmsCentimeter(double value)
         {
             return new ElectricResistivity(value, ElectricResistivityUnit.NanoohmCentimeter);
         }
@@ -435,7 +435,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.NanoohmMeter"/>.
         /// </summary>
-        public static ElectricResistivity FromNanoohmMeters(QuantityValue value)
+        public static ElectricResistivity FromNanoohmMeters(double value)
         {
             return new ElectricResistivity(value, ElectricResistivityUnit.NanoohmMeter);
         }
@@ -443,7 +443,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.OhmCentimeter"/>.
         /// </summary>
-        public static ElectricResistivity FromOhmsCentimeter(QuantityValue value)
+        public static ElectricResistivity FromOhmsCentimeter(double value)
         {
             return new ElectricResistivity(value, ElectricResistivityUnit.OhmCentimeter);
         }
@@ -451,7 +451,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.OhmMeter"/>.
         /// </summary>
-        public static ElectricResistivity FromOhmMeters(QuantityValue value)
+        public static ElectricResistivity FromOhmMeters(double value)
         {
             return new ElectricResistivity(value, ElectricResistivityUnit.OhmMeter);
         }
@@ -459,7 +459,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.PicoohmCentimeter"/>.
         /// </summary>
-        public static ElectricResistivity FromPicoohmsCentimeter(QuantityValue value)
+        public static ElectricResistivity FromPicoohmsCentimeter(double value)
         {
             return new ElectricResistivity(value, ElectricResistivityUnit.PicoohmCentimeter);
         }
@@ -467,7 +467,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricResistivity"/> from <see cref="ElectricResistivityUnit.PicoohmMeter"/>.
         /// </summary>
-        public static ElectricResistivity FromPicoohmMeters(QuantityValue value)
+        public static ElectricResistivity FromPicoohmMeters(double value)
         {
             return new ElectricResistivity(value, ElectricResistivityUnit.PicoohmMeter);
         }
@@ -478,7 +478,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricResistivity unit value.</returns>
-        public static ElectricResistivity From(QuantityValue value, ElectricResistivityUnit fromUnit)
+        public static ElectricResistivity From(double value, ElectricResistivityUnit fromUnit)
         {
             return new ElectricResistivity(value, fromUnit);
         }
@@ -643,25 +643,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricResistivity"/> from multiplying value and <see cref="ElectricResistivity"/>.</summary>
-        public static ElectricResistivity operator *(QuantityValue left, ElectricResistivity right)
+        public static ElectricResistivity operator *(double left, ElectricResistivity right)
         {
             return new ElectricResistivity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricResistivity"/> from multiplying value and <see cref="ElectricResistivity"/>.</summary>
-        public static ElectricResistivity operator *(ElectricResistivity left, QuantityValue right)
+        public static ElectricResistivity operator *(ElectricResistivity left, double right)
         {
             return new ElectricResistivity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricResistivity"/> from dividing <see cref="ElectricResistivity"/> by value.</summary>
-        public static ElectricResistivity operator /(ElectricResistivity left, QuantityValue right)
+        public static ElectricResistivity operator /(ElectricResistivity left, double right)
         {
             return new ElectricResistivity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricResistivity"/> by <see cref="ElectricResistivity"/>.</summary>
-        public static QuantityValue operator /(ElectricResistivity left, ElectricResistivity right)
+        public static double operator /(ElectricResistivity left, ElectricResistivity right)
         {
             return left.OhmMeters / right.OhmMeters;
         }

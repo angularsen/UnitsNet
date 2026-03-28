@@ -458,7 +458,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 W/in", LinearPowerDensityUnit.WattPerInch, 4.2)]
         [InlineData("en-US", "4.2 W/m", LinearPowerDensityUnit.WattPerMeter, 4.2)]
         [InlineData("en-US", "4.2 W/mm", LinearPowerDensityUnit.WattPerMillimeter, 4.2)]
-        public void Parse(string culture, string quantityString, LinearPowerDensityUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, LinearPowerDensityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = LinearPowerDensity.Parse(quantityString);
@@ -492,7 +492,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 W/in", LinearPowerDensityUnit.WattPerInch, 4.2)]
         [InlineData("en-US", "4.2 W/m", LinearPowerDensityUnit.WattPerMeter, 4.2)]
         [InlineData("en-US", "4.2 W/mm", LinearPowerDensityUnit.WattPerMillimeter, 4.2)]
-        public void TryParse(string culture, string quantityString, LinearPowerDensityUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, LinearPowerDensityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(LinearPowerDensity.TryParse(quantityString, out LinearPowerDensity parsed));
@@ -1021,8 +1021,8 @@ namespace UnitsNet.Tests
             var quantity = LinearPowerDensity.FromWattsPerMeter(firstValue);
             var otherQuantity = LinearPowerDensity.FromWattsPerMeter(secondValue);
             LinearPowerDensity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, LinearPowerDensity.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

@@ -230,7 +230,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "4.2 ", ScalarUnit.Amount, 4.2)]
-        public void Parse(string culture, string quantityString, ScalarUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, ScalarUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Scalar.Parse(quantityString);
@@ -240,7 +240,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "4.2 ", ScalarUnit.Amount, 4.2)]
-        public void TryParse(string culture, string quantityString, ScalarUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, ScalarUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Scalar.TryParse(quantityString, out Scalar parsed));
@@ -529,8 +529,8 @@ namespace UnitsNet.Tests
             var quantity = Scalar.FromAmount(firstValue);
             var otherQuantity = Scalar.FromAmount(secondValue);
             Scalar maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Scalar.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

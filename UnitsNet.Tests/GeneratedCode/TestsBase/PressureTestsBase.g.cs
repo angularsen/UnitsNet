@@ -668,7 +668,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 lb/in²", PressureUnit.PoundForcePerSquareInch, 4.2)]
         [InlineData("ru-RU", "4,2 ат", PressureUnit.TechnicalAtmosphere, 4.2)]
         [InlineData("ru-RU", "4,2 торр", PressureUnit.Torr, 4.2)]
-        public void Parse(string culture, string quantityString, PressureUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, PressureUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Pressure.Parse(quantityString);
@@ -774,7 +774,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 lb/in²", PressureUnit.PoundForcePerSquareInch, 4.2)]
         [InlineData("ru-RU", "4,2 ат", PressureUnit.TechnicalAtmosphere, 4.2)]
         [InlineData("ru-RU", "4,2 торр", PressureUnit.Torr, 4.2)]
-        public void TryParse(string culture, string quantityString, PressureUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, PressureUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Pressure.TryParse(quantityString, out Pressure parsed));
@@ -1821,8 +1821,8 @@ namespace UnitsNet.Tests
             var quantity = Pressure.FromPascals(firstValue);
             var otherQuantity = Pressure.FromPascals(secondValue);
             Pressure maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Pressure.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

@@ -479,7 +479,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 t·dm²", MassMomentOfInertiaUnit.TonneSquareDecimeter, 4.2)]
         [InlineData("en-US", "4.2 t·m²", MassMomentOfInertiaUnit.TonneSquareMeter, 4.2)]
         [InlineData("en-US", "4.2 t·mm²", MassMomentOfInertiaUnit.TonneSquareMillimeter, 4.2)]
-        public void Parse(string culture, string quantityString, MassMomentOfInertiaUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, MassMomentOfInertiaUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = MassMomentOfInertia.Parse(quantityString);
@@ -516,7 +516,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 t·dm²", MassMomentOfInertiaUnit.TonneSquareDecimeter, 4.2)]
         [InlineData("en-US", "4.2 t·m²", MassMomentOfInertiaUnit.TonneSquareMeter, 4.2)]
         [InlineData("en-US", "4.2 t·mm²", MassMomentOfInertiaUnit.TonneSquareMillimeter, 4.2)]
-        public void TryParse(string culture, string quantityString, MassMomentOfInertiaUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, MassMomentOfInertiaUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(MassMomentOfInertia.TryParse(quantityString, out MassMomentOfInertia parsed));
@@ -1075,8 +1075,8 @@ namespace UnitsNet.Tests
             var quantity = MassMomentOfInertia.FromKilogramSquareMeters(firstValue);
             var otherQuantity = MassMomentOfInertia.FromKilogramSquareMeters(secondValue);
             MassMomentOfInertia maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, MassMomentOfInertia.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

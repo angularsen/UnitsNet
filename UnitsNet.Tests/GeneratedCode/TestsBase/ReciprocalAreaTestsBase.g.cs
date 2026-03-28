@@ -360,7 +360,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 mm⁻²", ReciprocalAreaUnit.InverseSquareMillimeter, 4.2)]
         [InlineData("en-US", "4.2 yd⁻²", ReciprocalAreaUnit.InverseSquareYard, 4.2)]
         [InlineData("en-US", "4.2 ft⁻² (US)", ReciprocalAreaUnit.InverseUsSurveySquareFoot, 4.2)]
-        public void Parse(string culture, string quantityString, ReciprocalAreaUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, ReciprocalAreaUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ReciprocalArea.Parse(quantityString);
@@ -380,7 +380,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 mm⁻²", ReciprocalAreaUnit.InverseSquareMillimeter, 4.2)]
         [InlineData("en-US", "4.2 yd⁻²", ReciprocalAreaUnit.InverseSquareYard, 4.2)]
         [InlineData("en-US", "4.2 ft⁻² (US)", ReciprocalAreaUnit.InverseUsSurveySquareFoot, 4.2)]
-        public void TryParse(string culture, string quantityString, ReciprocalAreaUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, ReciprocalAreaUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ReciprocalArea.TryParse(quantityString, out ReciprocalArea parsed));
@@ -769,8 +769,8 @@ namespace UnitsNet.Tests
             var quantity = ReciprocalArea.FromInverseSquareMeters(firstValue);
             var otherQuantity = ReciprocalArea.FromInverseSquareMeters(secondValue);
             ReciprocalArea maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, ReciprocalArea.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

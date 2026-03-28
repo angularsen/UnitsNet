@@ -623,7 +623,7 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", "4.2 毫米", LengthUnit.Millimeter, 4.2)]
         [InlineData("zh-CN", "4.2 皮米", LengthUnit.Picometer, 4.2)]
         [InlineData("zh-CN", "4.2 码", LengthUnit.Yard, 4.2)]
-        public void Parse(string culture, string quantityString, LengthUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, LengthUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Length.Parse(quantityString);
@@ -730,7 +730,7 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", "4.2 毫米", LengthUnit.Millimeter, 4.2)]
         [InlineData("zh-CN", "4.2 皮米", LengthUnit.Picometer, 4.2)]
         [InlineData("zh-CN", "4.2 码", LengthUnit.Yard, 4.2)]
-        public void TryParse(string culture, string quantityString, LengthUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, LengthUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Length.TryParse(quantityString, out Length parsed));
@@ -1711,8 +1711,8 @@ namespace UnitsNet.Tests
             var quantity = Length.FromMeters(firstValue);
             var otherQuantity = Length.FromMeters(secondValue);
             Length maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Length.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

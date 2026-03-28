@@ -32,367 +32,367 @@ namespace UnitsNet.NumberExtensions.NumberToSpeed
     /// </summary>
     public static class NumberToSpeedExtensions
     {
-        /// <inheritdoc cref="Speed.FromCentimetersPerHour(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromCentimetersPerHour(double)" />
         public static Speed CentimetersPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromCentimetersPerHour(QuantityValue.CreateChecked(value));
+            => Speed.FromCentimetersPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromCentimetersPerHour(value.ToQuantityValue());
+            => Speed.FromCentimetersPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromCentimetersPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromCentimetersPerMinute(double)" />
         public static Speed CentimetersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromCentimetersPerMinute(QuantityValue.CreateChecked(value));
+            => Speed.FromCentimetersPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromCentimetersPerMinute(value.ToQuantityValue());
+            => Speed.FromCentimetersPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromCentimetersPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromCentimetersPerSecond(double)" />
         public static Speed CentimetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromCentimetersPerSecond(QuantityValue.CreateChecked(value));
+            => Speed.FromCentimetersPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromCentimetersPerSecond(value.ToQuantityValue());
+            => Speed.FromCentimetersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromDecimetersPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromDecimetersPerMinute(double)" />
         public static Speed DecimetersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromDecimetersPerMinute(QuantityValue.CreateChecked(value));
+            => Speed.FromDecimetersPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromDecimetersPerMinute(value.ToQuantityValue());
+            => Speed.FromDecimetersPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromDecimetersPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromDecimetersPerSecond(double)" />
         public static Speed DecimetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromDecimetersPerSecond(QuantityValue.CreateChecked(value));
+            => Speed.FromDecimetersPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromDecimetersPerSecond(value.ToQuantityValue());
+            => Speed.FromDecimetersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromFeetPerHour(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromFeetPerHour(double)" />
         public static Speed FeetPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromFeetPerHour(QuantityValue.CreateChecked(value));
+            => Speed.FromFeetPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromFeetPerHour(value.ToQuantityValue());
+            => Speed.FromFeetPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromFeetPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromFeetPerMinute(double)" />
         public static Speed FeetPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromFeetPerMinute(QuantityValue.CreateChecked(value));
+            => Speed.FromFeetPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromFeetPerMinute(value.ToQuantityValue());
+            => Speed.FromFeetPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromFeetPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromFeetPerSecond(double)" />
         public static Speed FeetPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromFeetPerSecond(QuantityValue.CreateChecked(value));
+            => Speed.FromFeetPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromFeetPerSecond(value.ToQuantityValue());
+            => Speed.FromFeetPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromInchesPerHour(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromInchesPerHour(double)" />
         public static Speed InchesPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromInchesPerHour(QuantityValue.CreateChecked(value));
+            => Speed.FromInchesPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromInchesPerHour(value.ToQuantityValue());
+            => Speed.FromInchesPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromInchesPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromInchesPerMinute(double)" />
         public static Speed InchesPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromInchesPerMinute(QuantityValue.CreateChecked(value));
+            => Speed.FromInchesPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromInchesPerMinute(value.ToQuantityValue());
+            => Speed.FromInchesPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromInchesPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromInchesPerSecond(double)" />
         public static Speed InchesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromInchesPerSecond(QuantityValue.CreateChecked(value));
+            => Speed.FromInchesPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromInchesPerSecond(value.ToQuantityValue());
+            => Speed.FromInchesPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromKilometersPerHour(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromKilometersPerHour(double)" />
         public static Speed KilometersPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromKilometersPerHour(QuantityValue.CreateChecked(value));
+            => Speed.FromKilometersPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromKilometersPerHour(value.ToQuantityValue());
+            => Speed.FromKilometersPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromKilometersPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromKilometersPerMinute(double)" />
         public static Speed KilometersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromKilometersPerMinute(QuantityValue.CreateChecked(value));
+            => Speed.FromKilometersPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromKilometersPerMinute(value.ToQuantityValue());
+            => Speed.FromKilometersPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromKilometersPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromKilometersPerSecond(double)" />
         public static Speed KilometersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromKilometersPerSecond(QuantityValue.CreateChecked(value));
+            => Speed.FromKilometersPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromKilometersPerSecond(value.ToQuantityValue());
+            => Speed.FromKilometersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromKnots(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromKnots(double)" />
         public static Speed Knots<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromKnots(QuantityValue.CreateChecked(value));
+            => Speed.FromKnots(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromKnots(value.ToQuantityValue());
+            => Speed.FromKnots(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromMach(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromMach(double)" />
         public static Speed Mach<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromMach(QuantityValue.CreateChecked(value));
+            => Speed.FromMach(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromMach(value.ToQuantityValue());
+            => Speed.FromMach(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromMetersPerHour(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromMetersPerHour(double)" />
         public static Speed MetersPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromMetersPerHour(QuantityValue.CreateChecked(value));
+            => Speed.FromMetersPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromMetersPerHour(value.ToQuantityValue());
+            => Speed.FromMetersPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromMetersPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromMetersPerMinute(double)" />
         public static Speed MetersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromMetersPerMinute(QuantityValue.CreateChecked(value));
+            => Speed.FromMetersPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromMetersPerMinute(value.ToQuantityValue());
+            => Speed.FromMetersPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromMetersPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromMetersPerSecond(double)" />
         public static Speed MetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromMetersPerSecond(QuantityValue.CreateChecked(value));
+            => Speed.FromMetersPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromMetersPerSecond(value.ToQuantityValue());
+            => Speed.FromMetersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromMicrometersPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromMicrometersPerMinute(double)" />
         public static Speed MicrometersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromMicrometersPerMinute(QuantityValue.CreateChecked(value));
+            => Speed.FromMicrometersPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromMicrometersPerMinute(value.ToQuantityValue());
+            => Speed.FromMicrometersPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromMicrometersPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromMicrometersPerSecond(double)" />
         public static Speed MicrometersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromMicrometersPerSecond(QuantityValue.CreateChecked(value));
+            => Speed.FromMicrometersPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromMicrometersPerSecond(value.ToQuantityValue());
+            => Speed.FromMicrometersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromMilesPerHour(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromMilesPerHour(double)" />
         public static Speed MilesPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromMilesPerHour(QuantityValue.CreateChecked(value));
+            => Speed.FromMilesPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromMilesPerHour(value.ToQuantityValue());
+            => Speed.FromMilesPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromMillimetersPerHour(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromMillimetersPerHour(double)" />
         public static Speed MillimetersPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromMillimetersPerHour(QuantityValue.CreateChecked(value));
+            => Speed.FromMillimetersPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromMillimetersPerHour(value.ToQuantityValue());
+            => Speed.FromMillimetersPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromMillimetersPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromMillimetersPerMinute(double)" />
         public static Speed MillimetersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromMillimetersPerMinute(QuantityValue.CreateChecked(value));
+            => Speed.FromMillimetersPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromMillimetersPerMinute(value.ToQuantityValue());
+            => Speed.FromMillimetersPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromMillimetersPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromMillimetersPerSecond(double)" />
         public static Speed MillimetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromMillimetersPerSecond(QuantityValue.CreateChecked(value));
+            => Speed.FromMillimetersPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromMillimetersPerSecond(value.ToQuantityValue());
+            => Speed.FromMillimetersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromNanometersPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromNanometersPerMinute(double)" />
         public static Speed NanometersPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromNanometersPerMinute(QuantityValue.CreateChecked(value));
+            => Speed.FromNanometersPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromNanometersPerMinute(value.ToQuantityValue());
+            => Speed.FromNanometersPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromNanometersPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromNanometersPerSecond(double)" />
         public static Speed NanometersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromNanometersPerSecond(QuantityValue.CreateChecked(value));
+            => Speed.FromNanometersPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromNanometersPerSecond(value.ToQuantityValue());
+            => Speed.FromNanometersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerHour(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerHour(double)" />
         public static Speed UsSurveyFeetPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromUsSurveyFeetPerHour(QuantityValue.CreateChecked(value));
+            => Speed.FromUsSurveyFeetPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromUsSurveyFeetPerHour(value.ToQuantityValue());
+            => Speed.FromUsSurveyFeetPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerMinute(double)" />
         public static Speed UsSurveyFeetPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromUsSurveyFeetPerMinute(QuantityValue.CreateChecked(value));
+            => Speed.FromUsSurveyFeetPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromUsSurveyFeetPerMinute(value.ToQuantityValue());
+            => Speed.FromUsSurveyFeetPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerSecond(double)" />
         public static Speed UsSurveyFeetPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromUsSurveyFeetPerSecond(QuantityValue.CreateChecked(value));
+            => Speed.FromUsSurveyFeetPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromUsSurveyFeetPerSecond(value.ToQuantityValue());
+            => Speed.FromUsSurveyFeetPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromYardsPerHour(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromYardsPerHour(double)" />
         public static Speed YardsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromYardsPerHour(QuantityValue.CreateChecked(value));
+            => Speed.FromYardsPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromYardsPerHour(value.ToQuantityValue());
+            => Speed.FromYardsPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromYardsPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromYardsPerMinute(double)" />
         public static Speed YardsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromYardsPerMinute(QuantityValue.CreateChecked(value));
+            => Speed.FromYardsPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromYardsPerMinute(value.ToQuantityValue());
+            => Speed.FromYardsPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Speed.FromYardsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="Speed.FromYardsPerSecond(double)" />
         public static Speed YardsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Speed.FromYardsPerSecond(QuantityValue.CreateChecked(value));
+            => Speed.FromYardsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => Speed.FromYardsPerSecond(value.ToQuantityValue());
+            => Speed.FromYardsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

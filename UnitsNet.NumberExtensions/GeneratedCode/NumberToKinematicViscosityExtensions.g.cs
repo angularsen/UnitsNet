@@ -32,103 +32,103 @@ namespace UnitsNet.NumberExtensions.NumberToKinematicViscosity
     /// </summary>
     public static class NumberToKinematicViscosityExtensions
     {
-        /// <inheritdoc cref="KinematicViscosity.FromCentistokes(QuantityValue)" />
+        /// <inheritdoc cref="KinematicViscosity.FromCentistokes(double)" />
         public static KinematicViscosity Centistokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => KinematicViscosity.FromCentistokes(QuantityValue.CreateChecked(value));
+            => KinematicViscosity.FromCentistokes(double.CreateChecked(value));
 #else
             , IConvertible
-            => KinematicViscosity.FromCentistokes(value.ToQuantityValue());
+            => KinematicViscosity.FromCentistokes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="KinematicViscosity.FromDecistokes(QuantityValue)" />
+        /// <inheritdoc cref="KinematicViscosity.FromDecistokes(double)" />
         public static KinematicViscosity Decistokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => KinematicViscosity.FromDecistokes(QuantityValue.CreateChecked(value));
+            => KinematicViscosity.FromDecistokes(double.CreateChecked(value));
 #else
             , IConvertible
-            => KinematicViscosity.FromDecistokes(value.ToQuantityValue());
+            => KinematicViscosity.FromDecistokes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="KinematicViscosity.FromKilostokes(QuantityValue)" />
+        /// <inheritdoc cref="KinematicViscosity.FromKilostokes(double)" />
         public static KinematicViscosity Kilostokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => KinematicViscosity.FromKilostokes(QuantityValue.CreateChecked(value));
+            => KinematicViscosity.FromKilostokes(double.CreateChecked(value));
 #else
             , IConvertible
-            => KinematicViscosity.FromKilostokes(value.ToQuantityValue());
+            => KinematicViscosity.FromKilostokes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="KinematicViscosity.FromMicrostokes(QuantityValue)" />
+        /// <inheritdoc cref="KinematicViscosity.FromMicrostokes(double)" />
         public static KinematicViscosity Microstokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => KinematicViscosity.FromMicrostokes(QuantityValue.CreateChecked(value));
+            => KinematicViscosity.FromMicrostokes(double.CreateChecked(value));
 #else
             , IConvertible
-            => KinematicViscosity.FromMicrostokes(value.ToQuantityValue());
+            => KinematicViscosity.FromMicrostokes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="KinematicViscosity.FromMillistokes(QuantityValue)" />
+        /// <inheritdoc cref="KinematicViscosity.FromMillistokes(double)" />
         public static KinematicViscosity Millistokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => KinematicViscosity.FromMillistokes(QuantityValue.CreateChecked(value));
+            => KinematicViscosity.FromMillistokes(double.CreateChecked(value));
 #else
             , IConvertible
-            => KinematicViscosity.FromMillistokes(value.ToQuantityValue());
+            => KinematicViscosity.FromMillistokes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="KinematicViscosity.FromNanostokes(QuantityValue)" />
+        /// <inheritdoc cref="KinematicViscosity.FromNanostokes(double)" />
         public static KinematicViscosity Nanostokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => KinematicViscosity.FromNanostokes(QuantityValue.CreateChecked(value));
+            => KinematicViscosity.FromNanostokes(double.CreateChecked(value));
 #else
             , IConvertible
-            => KinematicViscosity.FromNanostokes(value.ToQuantityValue());
+            => KinematicViscosity.FromNanostokes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="KinematicViscosity.FromSquareFeetPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="KinematicViscosity.FromSquareFeetPerSecond(double)" />
         public static KinematicViscosity SquareFeetPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => KinematicViscosity.FromSquareFeetPerSecond(QuantityValue.CreateChecked(value));
+            => KinematicViscosity.FromSquareFeetPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => KinematicViscosity.FromSquareFeetPerSecond(value.ToQuantityValue());
+            => KinematicViscosity.FromSquareFeetPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="KinematicViscosity.FromSquareMetersPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="KinematicViscosity.FromSquareMetersPerSecond(double)" />
         public static KinematicViscosity SquareMetersPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => KinematicViscosity.FromSquareMetersPerSecond(QuantityValue.CreateChecked(value));
+            => KinematicViscosity.FromSquareMetersPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => KinematicViscosity.FromSquareMetersPerSecond(value.ToQuantityValue());
+            => KinematicViscosity.FromSquareMetersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="KinematicViscosity.FromStokes(QuantityValue)" />
+        /// <inheritdoc cref="KinematicViscosity.FromStokes(double)" />
         public static KinematicViscosity Stokes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => KinematicViscosity.FromStokes(QuantityValue.CreateChecked(value));
+            => KinematicViscosity.FromStokes(double.CreateChecked(value));
 #else
             , IConvertible
-            => KinematicViscosity.FromStokes(value.ToQuantityValue());
+            => KinematicViscosity.FromStokes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

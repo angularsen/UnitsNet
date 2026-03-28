@@ -347,7 +347,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kJ/kg·K", SpecificEntropyUnit.KilojoulePerKilogramKelvin, 4.2)]
         [InlineData("en-US", "4.2 MJ/kg·°C", SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, 4.2)]
         [InlineData("en-US", "4.2 MJ/kg·K", SpecificEntropyUnit.MegajoulePerKilogramKelvin, 4.2)]
-        public void Parse(string culture, string quantityString, SpecificEntropyUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, SpecificEntropyUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = SpecificEntropy.Parse(quantityString);
@@ -366,7 +366,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kJ/kg·K", SpecificEntropyUnit.KilojoulePerKilogramKelvin, 4.2)]
         [InlineData("en-US", "4.2 MJ/kg·°C", SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, 4.2)]
         [InlineData("en-US", "4.2 MJ/kg·K", SpecificEntropyUnit.MegajoulePerKilogramKelvin, 4.2)]
-        public void TryParse(string culture, string quantityString, SpecificEntropyUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, SpecificEntropyUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(SpecificEntropy.TryParse(quantityString, out SpecificEntropy parsed));
@@ -743,8 +743,8 @@ namespace UnitsNet.Tests
             var quantity = SpecificEntropy.FromJoulesPerKilogramKelvin(firstValue);
             var otherQuantity = SpecificEntropy.FromJoulesPerKilogramKelvin(secondValue);
             SpecificEntropy maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, SpecificEntropy.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

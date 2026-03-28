@@ -42,68 +42,68 @@ namespace UnitsNet.NumberExtensions.NumberToElectricResistance
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ElectricResistance.FromGigaohms(QuantityValue)" />
+            /// <inheritdoc cref="ElectricResistance.FromGigaohms(double)" />
             public ElectricResistance Gigaohms
 #if NET7_0_OR_GREATER
-                => ElectricResistance.FromGigaohms(QuantityValue.CreateChecked(value));
+                => ElectricResistance.FromGigaohms(double.CreateChecked(value));
 #else
-                => ElectricResistance.FromGigaohms(value.ToQuantityValue());
+                => ElectricResistance.FromGigaohms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricResistance.FromKiloohms(QuantityValue)" />
+            /// <inheritdoc cref="ElectricResistance.FromKiloohms(double)" />
             public ElectricResistance Kiloohms
 #if NET7_0_OR_GREATER
-                => ElectricResistance.FromKiloohms(QuantityValue.CreateChecked(value));
+                => ElectricResistance.FromKiloohms(double.CreateChecked(value));
 #else
-                => ElectricResistance.FromKiloohms(value.ToQuantityValue());
+                => ElectricResistance.FromKiloohms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricResistance.FromMegaohms(QuantityValue)" />
+            /// <inheritdoc cref="ElectricResistance.FromMegaohms(double)" />
             public ElectricResistance Megaohms
 #if NET7_0_OR_GREATER
-                => ElectricResistance.FromMegaohms(QuantityValue.CreateChecked(value));
+                => ElectricResistance.FromMegaohms(double.CreateChecked(value));
 #else
-                => ElectricResistance.FromMegaohms(value.ToQuantityValue());
+                => ElectricResistance.FromMegaohms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricResistance.FromMicroohms(QuantityValue)" />
+            /// <inheritdoc cref="ElectricResistance.FromMicroohms(double)" />
             public ElectricResistance Microohms
 #if NET7_0_OR_GREATER
-                => ElectricResistance.FromMicroohms(QuantityValue.CreateChecked(value));
+                => ElectricResistance.FromMicroohms(double.CreateChecked(value));
 #else
-                => ElectricResistance.FromMicroohms(value.ToQuantityValue());
+                => ElectricResistance.FromMicroohms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricResistance.FromMilliohms(QuantityValue)" />
+            /// <inheritdoc cref="ElectricResistance.FromMilliohms(double)" />
             public ElectricResistance Milliohms
 #if NET7_0_OR_GREATER
-                => ElectricResistance.FromMilliohms(QuantityValue.CreateChecked(value));
+                => ElectricResistance.FromMilliohms(double.CreateChecked(value));
 #else
-                => ElectricResistance.FromMilliohms(value.ToQuantityValue());
+                => ElectricResistance.FromMilliohms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricResistance.FromNanoohms(QuantityValue)" />
+            /// <inheritdoc cref="ElectricResistance.FromNanoohms(double)" />
             public ElectricResistance Nanoohms
 #if NET7_0_OR_GREATER
-                => ElectricResistance.FromNanoohms(QuantityValue.CreateChecked(value));
+                => ElectricResistance.FromNanoohms(double.CreateChecked(value));
 #else
-                => ElectricResistance.FromNanoohms(value.ToQuantityValue());
+                => ElectricResistance.FromNanoohms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricResistance.FromOhms(QuantityValue)" />
+            /// <inheritdoc cref="ElectricResistance.FromOhms(double)" />
             public ElectricResistance Ohms
 #if NET7_0_OR_GREATER
-                => ElectricResistance.FromOhms(QuantityValue.CreateChecked(value));
+                => ElectricResistance.FromOhms(double.CreateChecked(value));
 #else
-                => ElectricResistance.FromOhms(value.ToQuantityValue());
+                => ElectricResistance.FromOhms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricResistance.FromTeraohms(QuantityValue)" />
+            /// <inheritdoc cref="ElectricResistance.FromTeraohms(double)" />
             public ElectricResistance Teraohms
 #if NET7_0_OR_GREATER
-                => ElectricResistance.FromTeraohms(QuantityValue.CreateChecked(value));
+                => ElectricResistance.FromTeraohms(double.CreateChecked(value));
 #else
-                => ElectricResistance.FromTeraohms(value.ToQuantityValue());
+                => ElectricResistance.FromTeraohms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

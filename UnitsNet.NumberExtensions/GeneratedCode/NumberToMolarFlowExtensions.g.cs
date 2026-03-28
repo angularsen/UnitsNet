@@ -32,103 +32,103 @@ namespace UnitsNet.NumberExtensions.NumberToMolarFlow
     /// </summary>
     public static class NumberToMolarFlowExtensions
     {
-        /// <inheritdoc cref="MolarFlow.FromKilomolesPerHour(QuantityValue)" />
+        /// <inheritdoc cref="MolarFlow.FromKilomolesPerHour(double)" />
         public static MolarFlow KilomolesPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MolarFlow.FromKilomolesPerHour(QuantityValue.CreateChecked(value));
+            => MolarFlow.FromKilomolesPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => MolarFlow.FromKilomolesPerHour(value.ToQuantityValue());
+            => MolarFlow.FromKilomolesPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MolarFlow.FromKilomolesPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="MolarFlow.FromKilomolesPerMinute(double)" />
         public static MolarFlow KilomolesPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MolarFlow.FromKilomolesPerMinute(QuantityValue.CreateChecked(value));
+            => MolarFlow.FromKilomolesPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => MolarFlow.FromKilomolesPerMinute(value.ToQuantityValue());
+            => MolarFlow.FromKilomolesPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MolarFlow.FromKilomolesPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="MolarFlow.FromKilomolesPerSecond(double)" />
         public static MolarFlow KilomolesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MolarFlow.FromKilomolesPerSecond(QuantityValue.CreateChecked(value));
+            => MolarFlow.FromKilomolesPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => MolarFlow.FromKilomolesPerSecond(value.ToQuantityValue());
+            => MolarFlow.FromKilomolesPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MolarFlow.FromMolesPerHour(QuantityValue)" />
+        /// <inheritdoc cref="MolarFlow.FromMolesPerHour(double)" />
         public static MolarFlow MolesPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MolarFlow.FromMolesPerHour(QuantityValue.CreateChecked(value));
+            => MolarFlow.FromMolesPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => MolarFlow.FromMolesPerHour(value.ToQuantityValue());
+            => MolarFlow.FromMolesPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MolarFlow.FromMolesPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="MolarFlow.FromMolesPerMinute(double)" />
         public static MolarFlow MolesPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MolarFlow.FromMolesPerMinute(QuantityValue.CreateChecked(value));
+            => MolarFlow.FromMolesPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => MolarFlow.FromMolesPerMinute(value.ToQuantityValue());
+            => MolarFlow.FromMolesPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MolarFlow.FromMolesPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="MolarFlow.FromMolesPerSecond(double)" />
         public static MolarFlow MolesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MolarFlow.FromMolesPerSecond(QuantityValue.CreateChecked(value));
+            => MolarFlow.FromMolesPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => MolarFlow.FromMolesPerSecond(value.ToQuantityValue());
+            => MolarFlow.FromMolesPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MolarFlow.FromPoundMolesPerHour(QuantityValue)" />
+        /// <inheritdoc cref="MolarFlow.FromPoundMolesPerHour(double)" />
         public static MolarFlow PoundMolesPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MolarFlow.FromPoundMolesPerHour(QuantityValue.CreateChecked(value));
+            => MolarFlow.FromPoundMolesPerHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => MolarFlow.FromPoundMolesPerHour(value.ToQuantityValue());
+            => MolarFlow.FromPoundMolesPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MolarFlow.FromPoundMolesPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="MolarFlow.FromPoundMolesPerMinute(double)" />
         public static MolarFlow PoundMolesPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MolarFlow.FromPoundMolesPerMinute(QuantityValue.CreateChecked(value));
+            => MolarFlow.FromPoundMolesPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => MolarFlow.FromPoundMolesPerMinute(value.ToQuantityValue());
+            => MolarFlow.FromPoundMolesPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MolarFlow.FromPoundMolesPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="MolarFlow.FromPoundMolesPerSecond(double)" />
         public static MolarFlow PoundMolesPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MolarFlow.FromPoundMolesPerSecond(QuantityValue.CreateChecked(value));
+            => MolarFlow.FromPoundMolesPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => MolarFlow.FromPoundMolesPerSecond(value.ToQuantityValue());
+            => MolarFlow.FromPoundMolesPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

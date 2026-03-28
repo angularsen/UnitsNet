@@ -42,92 +42,92 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCharge
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ElectricCharge.FromAmpereHours(QuantityValue)" />
+            /// <inheritdoc cref="ElectricCharge.FromAmpereHours(double)" />
             public ElectricCharge AmpereHours
 #if NET7_0_OR_GREATER
-                => ElectricCharge.FromAmpereHours(QuantityValue.CreateChecked(value));
+                => ElectricCharge.FromAmpereHours(double.CreateChecked(value));
 #else
-                => ElectricCharge.FromAmpereHours(value.ToQuantityValue());
+                => ElectricCharge.FromAmpereHours(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricCharge.FromCoulombs(QuantityValue)" />
+            /// <inheritdoc cref="ElectricCharge.FromCoulombs(double)" />
             public ElectricCharge Coulombs
 #if NET7_0_OR_GREATER
-                => ElectricCharge.FromCoulombs(QuantityValue.CreateChecked(value));
+                => ElectricCharge.FromCoulombs(double.CreateChecked(value));
 #else
-                => ElectricCharge.FromCoulombs(value.ToQuantityValue());
+                => ElectricCharge.FromCoulombs(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricCharge.FromKiloampereHours(QuantityValue)" />
+            /// <inheritdoc cref="ElectricCharge.FromKiloampereHours(double)" />
             public ElectricCharge KiloampereHours
 #if NET7_0_OR_GREATER
-                => ElectricCharge.FromKiloampereHours(QuantityValue.CreateChecked(value));
+                => ElectricCharge.FromKiloampereHours(double.CreateChecked(value));
 #else
-                => ElectricCharge.FromKiloampereHours(value.ToQuantityValue());
+                => ElectricCharge.FromKiloampereHours(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricCharge.FromKilocoulombs(QuantityValue)" />
+            /// <inheritdoc cref="ElectricCharge.FromKilocoulombs(double)" />
             public ElectricCharge Kilocoulombs
 #if NET7_0_OR_GREATER
-                => ElectricCharge.FromKilocoulombs(QuantityValue.CreateChecked(value));
+                => ElectricCharge.FromKilocoulombs(double.CreateChecked(value));
 #else
-                => ElectricCharge.FromKilocoulombs(value.ToQuantityValue());
+                => ElectricCharge.FromKilocoulombs(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricCharge.FromMegaampereHours(QuantityValue)" />
+            /// <inheritdoc cref="ElectricCharge.FromMegaampereHours(double)" />
             public ElectricCharge MegaampereHours
 #if NET7_0_OR_GREATER
-                => ElectricCharge.FromMegaampereHours(QuantityValue.CreateChecked(value));
+                => ElectricCharge.FromMegaampereHours(double.CreateChecked(value));
 #else
-                => ElectricCharge.FromMegaampereHours(value.ToQuantityValue());
+                => ElectricCharge.FromMegaampereHours(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricCharge.FromMegacoulombs(QuantityValue)" />
+            /// <inheritdoc cref="ElectricCharge.FromMegacoulombs(double)" />
             public ElectricCharge Megacoulombs
 #if NET7_0_OR_GREATER
-                => ElectricCharge.FromMegacoulombs(QuantityValue.CreateChecked(value));
+                => ElectricCharge.FromMegacoulombs(double.CreateChecked(value));
 #else
-                => ElectricCharge.FromMegacoulombs(value.ToQuantityValue());
+                => ElectricCharge.FromMegacoulombs(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricCharge.FromMicrocoulombs(QuantityValue)" />
+            /// <inheritdoc cref="ElectricCharge.FromMicrocoulombs(double)" />
             public ElectricCharge Microcoulombs
 #if NET7_0_OR_GREATER
-                => ElectricCharge.FromMicrocoulombs(QuantityValue.CreateChecked(value));
+                => ElectricCharge.FromMicrocoulombs(double.CreateChecked(value));
 #else
-                => ElectricCharge.FromMicrocoulombs(value.ToQuantityValue());
+                => ElectricCharge.FromMicrocoulombs(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricCharge.FromMilliampereHours(QuantityValue)" />
+            /// <inheritdoc cref="ElectricCharge.FromMilliampereHours(double)" />
             public ElectricCharge MilliampereHours
 #if NET7_0_OR_GREATER
-                => ElectricCharge.FromMilliampereHours(QuantityValue.CreateChecked(value));
+                => ElectricCharge.FromMilliampereHours(double.CreateChecked(value));
 #else
-                => ElectricCharge.FromMilliampereHours(value.ToQuantityValue());
+                => ElectricCharge.FromMilliampereHours(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricCharge.FromMillicoulombs(QuantityValue)" />
+            /// <inheritdoc cref="ElectricCharge.FromMillicoulombs(double)" />
             public ElectricCharge Millicoulombs
 #if NET7_0_OR_GREATER
-                => ElectricCharge.FromMillicoulombs(QuantityValue.CreateChecked(value));
+                => ElectricCharge.FromMillicoulombs(double.CreateChecked(value));
 #else
-                => ElectricCharge.FromMillicoulombs(value.ToQuantityValue());
+                => ElectricCharge.FromMillicoulombs(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricCharge.FromNanocoulombs(QuantityValue)" />
+            /// <inheritdoc cref="ElectricCharge.FromNanocoulombs(double)" />
             public ElectricCharge Nanocoulombs
 #if NET7_0_OR_GREATER
-                => ElectricCharge.FromNanocoulombs(QuantityValue.CreateChecked(value));
+                => ElectricCharge.FromNanocoulombs(double.CreateChecked(value));
 #else
-                => ElectricCharge.FromNanocoulombs(value.ToQuantityValue());
+                => ElectricCharge.FromNanocoulombs(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricCharge.FromPicocoulombs(QuantityValue)" />
+            /// <inheritdoc cref="ElectricCharge.FromPicocoulombs(double)" />
             public ElectricCharge Picocoulombs
 #if NET7_0_OR_GREATER
-                => ElectricCharge.FromPicocoulombs(QuantityValue.CreateChecked(value));
+                => ElectricCharge.FromPicocoulombs(double.CreateChecked(value));
 #else
-                => ElectricCharge.FromPicocoulombs(value.ToQuantityValue());
+                => ElectricCharge.FromPicocoulombs(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

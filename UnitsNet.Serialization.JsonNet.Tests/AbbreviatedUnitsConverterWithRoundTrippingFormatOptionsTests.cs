@@ -23,7 +23,7 @@ public class AbbreviatedUnitsConverterWithRoundTrippingFormatOptionsTests : Json
     public void Serializing_Quantity_WithDecimalNotationAndAbbreviatedUnit()
     {
         // Arrange
-        var value = Mass.FromMilligrams(4.25m);
+        var value = Mass.FromMilligrams(4.25);
         const string expectedJson = """{"Value":4.25,"Unit":"mg","Type":"Mass"}""";
 
         // Act
@@ -37,7 +37,7 @@ public class AbbreviatedUnitsConverterWithRoundTrippingFormatOptionsTests : Json
     public void Serializing_LargeQuantity_WithHighPrecisionAndAbbreviatedUnit()
     {
         // Arrange
-        var value = Mass.FromMilligrams(QuantityValue.Parse("12345678901234567890.1234567890123456789", CultureInfo.InvariantCulture));
+        var value = Mass.FromMilligrams((double)QuantityValue.Parse("12345678901234567890.1234567890123456789", CultureInfo.InvariantCulture));
         const string expectedJson = """{"Value":12345678901234567890.1234567890123456789,"Unit":"mg","Type":"Mass"}""";
 
         // Act
@@ -51,7 +51,7 @@ public class AbbreviatedUnitsConverterWithRoundTrippingFormatOptionsTests : Json
     public void Serializing_Quantity_WithFractionalFormatAndAbbreviatedUnit()
     {
         // Arrange
-        var value = Mass.FromMilligrams(QuantityValue.FromTerms(1, 3));
+        var value = Mass.FromMilligrams((double)QuantityValue.FromTerms(1, 3));
         const string expectedJson = """{"Value":"1/3","Unit":"mg","Type":"Mass"}""";
 
         // Act
@@ -68,7 +68,7 @@ public class AbbreviatedUnitsConverterWithRoundTrippingFormatOptionsTests : Json
     {
         // Arrange: 10000[...]4.2 (written as a decimal, with all its zeros)
         var valueString = $"1{new string(Enumerable.Repeat('0', nbZeros).ToArray())}4.2";
-        var value = Mass.FromMilligrams(QuantityValue.FromTerms(42 + BigInteger.Pow(10, nbZeros + 2), 10));
+        var value = Mass.FromMilligrams((double)QuantityValue.FromTerms(42 + BigInteger.Pow(10, nbZeros + 2), 10));
         var expectedJson = $$"""{"Value":{{valueString}},"Unit":"mg","Type":"Mass"}""";
 
         // Act
@@ -84,7 +84,7 @@ public class AbbreviatedUnitsConverterWithRoundTrippingFormatOptionsTests : Json
         // Arrange: 4.2e-255 (written as a decimal, with all its zeros)
         var valueString = "0." + new string(Enumerable.Repeat('0', 512).ToArray()) + "42";
         var expectedJson = $$"""{"Value":{{valueString}},"Unit":"mg","Type":"Mass"}""";
-        var value = Mass.FromMilligrams(QuantityValue.FromPowerOfTen(42, -514));
+        var value = Mass.FromMilligrams((double)QuantityValue.FromPowerOfTen(42, -514));
 
         // Act
         var result = SerializeObject(value);
@@ -99,7 +99,7 @@ public class AbbreviatedUnitsConverterWithRoundTrippingFormatOptionsTests : Json
         // Arrange: (1/3)e256 (written as a fraction, with all its zeros)
         var numeratorString = new string(Enumerable.Repeat('0', 255).Prepend('1').ToArray());
         var expectedJson = $$"""{"Value":"{{numeratorString}}/3","Unit":"mg","Type":"Mass"}""";
-        var value = Mass.FromMilligrams(QuantityValue.FromPowerOfTen(1, 3, 255));
+        var value = Mass.FromMilligrams((double)QuantityValue.FromPowerOfTen(1, 3, 255));
 
         // Act
         var result = SerializeObject(value);
@@ -112,7 +112,7 @@ public class AbbreviatedUnitsConverterWithRoundTrippingFormatOptionsTests : Json
     public void Serializing_NaN_WithSymbolAndAbbreviatedUnit()
     {
         // Arrange
-        var value = Mass.FromMilligrams(QuantityValue.NaN);
+        var value = Mass.FromMilligrams(double.NaN);
         const string expectedJson = """{"Value":"NaN","Unit":"mg","Type":"Mass"}""";
 
         // Act
@@ -126,7 +126,7 @@ public class AbbreviatedUnitsConverterWithRoundTrippingFormatOptionsTests : Json
     public void Serializing_PositiveInfinity_WithSymbolAndAbbreviatedUnit()
     {
         // Arrange
-        var value = Mass.FromMilligrams(QuantityValue.PositiveInfinity);
+        var value = Mass.FromMilligrams(double.PositiveInfinity);
         const string expectedJson = """{"Value":"Infinity","Unit":"mg","Type":"Mass"}""";
 
         // Act
@@ -140,7 +140,7 @@ public class AbbreviatedUnitsConverterWithRoundTrippingFormatOptionsTests : Json
     public void Serializing_NegativeInfinity_WithSymbolAndAbbreviatedUnit()
     {
         // Arrange
-        var value = Mass.FromMilligrams(QuantityValue.NegativeInfinity);
+        var value = Mass.FromMilligrams(double.NegativeInfinity);
         const string expectedJson = """{"Value":"-Infinity","Unit":"mg","Type":"Mass"}""";
 
         // Act

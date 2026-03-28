@@ -42,116 +42,116 @@ namespace UnitsNet.NumberExtensions.NumberToIrradiance
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareCentimeter(double)" />
             public Irradiance KilowattsPerSquareCentimeter
 #if NET7_0_OR_GREATER
-                => Irradiance.FromKilowattsPerSquareCentimeter(QuantityValue.CreateChecked(value));
+                => Irradiance.FromKilowattsPerSquareCentimeter(double.CreateChecked(value));
 #else
-                => Irradiance.FromKilowattsPerSquareCentimeter(value.ToQuantityValue());
+                => Irradiance.FromKilowattsPerSquareCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(QuantityValue)" />
+            /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(double)" />
             public Irradiance KilowattsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => Irradiance.FromKilowattsPerSquareMeter(QuantityValue.CreateChecked(value));
+                => Irradiance.FromKilowattsPerSquareMeter(double.CreateChecked(value));
 #else
-                => Irradiance.FromKilowattsPerSquareMeter(value.ToQuantityValue());
+                => Irradiance.FromKilowattsPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Irradiance.FromMegawattsPerSquareCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="Irradiance.FromMegawattsPerSquareCentimeter(double)" />
             public Irradiance MegawattsPerSquareCentimeter
 #if NET7_0_OR_GREATER
-                => Irradiance.FromMegawattsPerSquareCentimeter(QuantityValue.CreateChecked(value));
+                => Irradiance.FromMegawattsPerSquareCentimeter(double.CreateChecked(value));
 #else
-                => Irradiance.FromMegawattsPerSquareCentimeter(value.ToQuantityValue());
+                => Irradiance.FromMegawattsPerSquareCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Irradiance.FromMegawattsPerSquareMeter(QuantityValue)" />
+            /// <inheritdoc cref="Irradiance.FromMegawattsPerSquareMeter(double)" />
             public Irradiance MegawattsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => Irradiance.FromMegawattsPerSquareMeter(QuantityValue.CreateChecked(value));
+                => Irradiance.FromMegawattsPerSquareMeter(double.CreateChecked(value));
 #else
-                => Irradiance.FromMegawattsPerSquareMeter(value.ToQuantityValue());
+                => Irradiance.FromMegawattsPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Irradiance.FromMicrowattsPerSquareCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="Irradiance.FromMicrowattsPerSquareCentimeter(double)" />
             public Irradiance MicrowattsPerSquareCentimeter
 #if NET7_0_OR_GREATER
-                => Irradiance.FromMicrowattsPerSquareCentimeter(QuantityValue.CreateChecked(value));
+                => Irradiance.FromMicrowattsPerSquareCentimeter(double.CreateChecked(value));
 #else
-                => Irradiance.FromMicrowattsPerSquareCentimeter(value.ToQuantityValue());
+                => Irradiance.FromMicrowattsPerSquareCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Irradiance.FromMicrowattsPerSquareMeter(QuantityValue)" />
+            /// <inheritdoc cref="Irradiance.FromMicrowattsPerSquareMeter(double)" />
             public Irradiance MicrowattsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => Irradiance.FromMicrowattsPerSquareMeter(QuantityValue.CreateChecked(value));
+                => Irradiance.FromMicrowattsPerSquareMeter(double.CreateChecked(value));
 #else
-                => Irradiance.FromMicrowattsPerSquareMeter(value.ToQuantityValue());
+                => Irradiance.FromMicrowattsPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Irradiance.FromMilliwattsPerSquareCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="Irradiance.FromMilliwattsPerSquareCentimeter(double)" />
             public Irradiance MilliwattsPerSquareCentimeter
 #if NET7_0_OR_GREATER
-                => Irradiance.FromMilliwattsPerSquareCentimeter(QuantityValue.CreateChecked(value));
+                => Irradiance.FromMilliwattsPerSquareCentimeter(double.CreateChecked(value));
 #else
-                => Irradiance.FromMilliwattsPerSquareCentimeter(value.ToQuantityValue());
+                => Irradiance.FromMilliwattsPerSquareCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Irradiance.FromMilliwattsPerSquareMeter(QuantityValue)" />
+            /// <inheritdoc cref="Irradiance.FromMilliwattsPerSquareMeter(double)" />
             public Irradiance MilliwattsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => Irradiance.FromMilliwattsPerSquareMeter(QuantityValue.CreateChecked(value));
+                => Irradiance.FromMilliwattsPerSquareMeter(double.CreateChecked(value));
 #else
-                => Irradiance.FromMilliwattsPerSquareMeter(value.ToQuantityValue());
+                => Irradiance.FromMilliwattsPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Irradiance.FromNanowattsPerSquareCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="Irradiance.FromNanowattsPerSquareCentimeter(double)" />
             public Irradiance NanowattsPerSquareCentimeter
 #if NET7_0_OR_GREATER
-                => Irradiance.FromNanowattsPerSquareCentimeter(QuantityValue.CreateChecked(value));
+                => Irradiance.FromNanowattsPerSquareCentimeter(double.CreateChecked(value));
 #else
-                => Irradiance.FromNanowattsPerSquareCentimeter(value.ToQuantityValue());
+                => Irradiance.FromNanowattsPerSquareCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Irradiance.FromNanowattsPerSquareMeter(QuantityValue)" />
+            /// <inheritdoc cref="Irradiance.FromNanowattsPerSquareMeter(double)" />
             public Irradiance NanowattsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => Irradiance.FromNanowattsPerSquareMeter(QuantityValue.CreateChecked(value));
+                => Irradiance.FromNanowattsPerSquareMeter(double.CreateChecked(value));
 #else
-                => Irradiance.FromNanowattsPerSquareMeter(value.ToQuantityValue());
+                => Irradiance.FromNanowattsPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Irradiance.FromPicowattsPerSquareCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="Irradiance.FromPicowattsPerSquareCentimeter(double)" />
             public Irradiance PicowattsPerSquareCentimeter
 #if NET7_0_OR_GREATER
-                => Irradiance.FromPicowattsPerSquareCentimeter(QuantityValue.CreateChecked(value));
+                => Irradiance.FromPicowattsPerSquareCentimeter(double.CreateChecked(value));
 #else
-                => Irradiance.FromPicowattsPerSquareCentimeter(value.ToQuantityValue());
+                => Irradiance.FromPicowattsPerSquareCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Irradiance.FromPicowattsPerSquareMeter(QuantityValue)" />
+            /// <inheritdoc cref="Irradiance.FromPicowattsPerSquareMeter(double)" />
             public Irradiance PicowattsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => Irradiance.FromPicowattsPerSquareMeter(QuantityValue.CreateChecked(value));
+                => Irradiance.FromPicowattsPerSquareMeter(double.CreateChecked(value));
 #else
-                => Irradiance.FromPicowattsPerSquareMeter(value.ToQuantityValue());
+                => Irradiance.FromPicowattsPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Irradiance.FromWattsPerSquareCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="Irradiance.FromWattsPerSquareCentimeter(double)" />
             public Irradiance WattsPerSquareCentimeter
 #if NET7_0_OR_GREATER
-                => Irradiance.FromWattsPerSquareCentimeter(QuantityValue.CreateChecked(value));
+                => Irradiance.FromWattsPerSquareCentimeter(double.CreateChecked(value));
 #else
-                => Irradiance.FromWattsPerSquareCentimeter(value.ToQuantityValue());
+                => Irradiance.FromWattsPerSquareCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(QuantityValue)" />
+            /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(double)" />
             public Irradiance WattsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => Irradiance.FromWattsPerSquareMeter(QuantityValue.CreateChecked(value));
+                => Irradiance.FromWattsPerSquareMeter(double.CreateChecked(value));
 #else
-                => Irradiance.FromWattsPerSquareMeter(value.ToQuantityValue());
+                => Irradiance.FromWattsPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

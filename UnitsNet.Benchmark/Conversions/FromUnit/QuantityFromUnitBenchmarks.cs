@@ -25,7 +25,7 @@ public class QuantityFromUnitBenchmarks
     {
         foreach (Enum baseUnit in BaseUnits)
         {
-            IQuantity quantity = Quantity.From(QuantityValue.One, baseUnit);
+            IQuantity quantity = Quantity.From(1.0, baseUnit);
         }
     }
 
@@ -34,7 +34,7 @@ public class QuantityFromUnitBenchmarks
     {
         foreach (UnitKey baseUnit in BaseUnitKeys)
         {
-            IQuantity quantity = Quantity.From(QuantityValue.One, baseUnit);
+            IQuantity quantity = Quantity.From(1.0, baseUnit);
         }
     }
 
@@ -43,7 +43,7 @@ public class QuantityFromUnitBenchmarks
     {
         foreach (Enum baseUnit in BaseUnits)
         {
-            var success = Quantity.TryFrom(QuantityValue.One, baseUnit, out _);
+            var success = Quantity.TryFrom(1.0, baseUnit, out _);
         }
     }
 }

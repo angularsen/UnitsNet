@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct ElectricConductance :
         IArithmeticQuantity<ElectricConductance, ElectricConductanceUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricConductance, ElectricConductance, QuantityValue>,
+        IDivisionOperators<ElectricConductance, ElectricConductance, double>,
         IComparisonOperators<ElectricConductance, ElectricConductance, bool>,
         IParsable<ElectricConductance>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -178,7 +178,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricConductance(QuantityValue value, ElectricConductanceUnit unit)
+        public ElectricConductance(double value, ElectricConductanceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -192,7 +192,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricConductance(QuantityValue value, UnitSystem unitSystem)
+        public ElectricConductance(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -234,7 +234,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public ElectricConductanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -268,84 +268,84 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Gigamho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Gigamho"/>
         /// </summary>
-        public QuantityValue Gigamhos => this.As(ElectricConductanceUnit.Gigamho);
+        public double Gigamhos => this.As(ElectricConductanceUnit.Gigamho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Gigasiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Gigasiemens"/>
         /// </summary>
-        public QuantityValue Gigasiemens => this.As(ElectricConductanceUnit.Gigasiemens);
+        public double Gigasiemens => this.As(ElectricConductanceUnit.Gigasiemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Kilomho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Kilomho"/>
         /// </summary>
-        public QuantityValue Kilomhos => this.As(ElectricConductanceUnit.Kilomho);
+        public double Kilomhos => this.As(ElectricConductanceUnit.Kilomho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Kilosiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Kilosiemens"/>
         /// </summary>
-        public QuantityValue Kilosiemens => this.As(ElectricConductanceUnit.Kilosiemens);
+        public double Kilosiemens => this.As(ElectricConductanceUnit.Kilosiemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Megamho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Megamho"/>
         /// </summary>
-        public QuantityValue Megamhos => this.As(ElectricConductanceUnit.Megamho);
+        public double Megamhos => this.As(ElectricConductanceUnit.Megamho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Megasiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Megasiemens"/>
         /// </summary>
-        public QuantityValue Megasiemens => this.As(ElectricConductanceUnit.Megasiemens);
+        public double Megasiemens => this.As(ElectricConductanceUnit.Megasiemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Mho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Mho"/>
         /// </summary>
-        public QuantityValue Mhos => this.As(ElectricConductanceUnit.Mho);
+        public double Mhos => this.As(ElectricConductanceUnit.Mho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Micromho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Micromho"/>
         /// </summary>
-        public QuantityValue Micromhos => this.As(ElectricConductanceUnit.Micromho);
+        public double Micromhos => this.As(ElectricConductanceUnit.Micromho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Microsiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Microsiemens"/>
         /// </summary>
-        public QuantityValue Microsiemens => this.As(ElectricConductanceUnit.Microsiemens);
+        public double Microsiemens => this.As(ElectricConductanceUnit.Microsiemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Millimho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Millimho"/>
         /// </summary>
-        public QuantityValue Millimhos => this.As(ElectricConductanceUnit.Millimho);
+        public double Millimhos => this.As(ElectricConductanceUnit.Millimho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Millisiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Millisiemens"/>
         /// </summary>
-        public QuantityValue Millisiemens => this.As(ElectricConductanceUnit.Millisiemens);
+        public double Millisiemens => this.As(ElectricConductanceUnit.Millisiemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Nanomho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Nanomho"/>
         /// </summary>
-        public QuantityValue Nanomhos => this.As(ElectricConductanceUnit.Nanomho);
+        public double Nanomhos => this.As(ElectricConductanceUnit.Nanomho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Nanosiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Nanosiemens"/>
         /// </summary>
-        public QuantityValue Nanosiemens => this.As(ElectricConductanceUnit.Nanosiemens);
+        public double Nanosiemens => this.As(ElectricConductanceUnit.Nanosiemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Siemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Siemens"/>
         /// </summary>
-        public QuantityValue Siemens => this.As(ElectricConductanceUnit.Siemens);
+        public double Siemens => this.As(ElectricConductanceUnit.Siemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Teramho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Teramho"/>
         /// </summary>
-        public QuantityValue Teramhos => this.As(ElectricConductanceUnit.Teramho);
+        public double Teramhos => this.As(ElectricConductanceUnit.Teramho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Terasiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductanceUnit.Terasiemens"/>
         /// </summary>
-        public QuantityValue Terasiemens => this.As(ElectricConductanceUnit.Terasiemens);
+        public double Terasiemens => this.As(ElectricConductanceUnit.Terasiemens);
 
         #endregion
 
@@ -379,7 +379,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Gigamho"/>.
         /// </summary>
-        public static ElectricConductance FromGigamhos(QuantityValue value)
+        public static ElectricConductance FromGigamhos(double value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Gigamho);
         }
@@ -387,7 +387,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Gigasiemens"/>.
         /// </summary>
-        public static ElectricConductance FromGigasiemens(QuantityValue value)
+        public static ElectricConductance FromGigasiemens(double value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Gigasiemens);
         }
@@ -395,7 +395,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Kilomho"/>.
         /// </summary>
-        public static ElectricConductance FromKilomhos(QuantityValue value)
+        public static ElectricConductance FromKilomhos(double value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Kilomho);
         }
@@ -403,7 +403,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Kilosiemens"/>.
         /// </summary>
-        public static ElectricConductance FromKilosiemens(QuantityValue value)
+        public static ElectricConductance FromKilosiemens(double value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Kilosiemens);
         }
@@ -411,7 +411,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Megamho"/>.
         /// </summary>
-        public static ElectricConductance FromMegamhos(QuantityValue value)
+        public static ElectricConductance FromMegamhos(double value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Megamho);
         }
@@ -419,7 +419,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Megasiemens"/>.
         /// </summary>
-        public static ElectricConductance FromMegasiemens(QuantityValue value)
+        public static ElectricConductance FromMegasiemens(double value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Megasiemens);
         }
@@ -427,7 +427,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Mho"/>.
         /// </summary>
-        public static ElectricConductance FromMhos(QuantityValue value)
+        public static ElectricConductance FromMhos(double value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Mho);
         }
@@ -435,7 +435,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Micromho"/>.
         /// </summary>
-        public static ElectricConductance FromMicromhos(QuantityValue value)
+        public static ElectricConductance FromMicromhos(double value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Micromho);
         }
@@ -443,7 +443,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Microsiemens"/>.
         /// </summary>
-        public static ElectricConductance FromMicrosiemens(QuantityValue value)
+        public static ElectricConductance FromMicrosiemens(double value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Microsiemens);
         }
@@ -451,7 +451,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Millimho"/>.
         /// </summary>
-        public static ElectricConductance FromMillimhos(QuantityValue value)
+        public static ElectricConductance FromMillimhos(double value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Millimho);
         }
@@ -459,7 +459,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Millisiemens"/>.
         /// </summary>
-        public static ElectricConductance FromMillisiemens(QuantityValue value)
+        public static ElectricConductance FromMillisiemens(double value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Millisiemens);
         }
@@ -467,7 +467,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Nanomho"/>.
         /// </summary>
-        public static ElectricConductance FromNanomhos(QuantityValue value)
+        public static ElectricConductance FromNanomhos(double value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Nanomho);
         }
@@ -475,7 +475,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Nanosiemens"/>.
         /// </summary>
-        public static ElectricConductance FromNanosiemens(QuantityValue value)
+        public static ElectricConductance FromNanosiemens(double value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Nanosiemens);
         }
@@ -483,7 +483,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Siemens"/>.
         /// </summary>
-        public static ElectricConductance FromSiemens(QuantityValue value)
+        public static ElectricConductance FromSiemens(double value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Siemens);
         }
@@ -491,7 +491,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Teramho"/>.
         /// </summary>
-        public static ElectricConductance FromTeramhos(QuantityValue value)
+        public static ElectricConductance FromTeramhos(double value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Teramho);
         }
@@ -499,7 +499,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductance"/> from <see cref="ElectricConductanceUnit.Terasiemens"/>.
         /// </summary>
-        public static ElectricConductance FromTerasiemens(QuantityValue value)
+        public static ElectricConductance FromTerasiemens(double value)
         {
             return new ElectricConductance(value, ElectricConductanceUnit.Terasiemens);
         }
@@ -510,7 +510,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricConductance unit value.</returns>
-        public static ElectricConductance From(QuantityValue value, ElectricConductanceUnit fromUnit)
+        public static ElectricConductance From(double value, ElectricConductanceUnit fromUnit)
         {
             return new ElectricConductance(value, fromUnit);
         }
@@ -675,25 +675,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricConductance"/> from multiplying value and <see cref="ElectricConductance"/>.</summary>
-        public static ElectricConductance operator *(QuantityValue left, ElectricConductance right)
+        public static ElectricConductance operator *(double left, ElectricConductance right)
         {
             return new ElectricConductance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricConductance"/> from multiplying value and <see cref="ElectricConductance"/>.</summary>
-        public static ElectricConductance operator *(ElectricConductance left, QuantityValue right)
+        public static ElectricConductance operator *(ElectricConductance left, double right)
         {
             return new ElectricConductance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricConductance"/> from dividing <see cref="ElectricConductance"/> by value.</summary>
-        public static ElectricConductance operator /(ElectricConductance left, QuantityValue right)
+        public static ElectricConductance operator /(ElectricConductance left, double right)
         {
             return new ElectricConductance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricConductance"/> by <see cref="ElectricConductance"/>.</summary>
-        public static QuantityValue operator /(ElectricConductance left, ElectricConductance right)
+        public static double operator /(ElectricConductance left, ElectricConductance right)
         {
             return left.Siemens / right.Siemens;
         }

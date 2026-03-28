@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct ElectricField :
         IArithmeticQuantity<ElectricField, ElectricFieldUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricField, ElectricField, QuantityValue>,
+        IDivisionOperators<ElectricField, ElectricField, double>,
         IComparisonOperators<ElectricField, ElectricField, bool>,
         IParsable<ElectricField>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -133,7 +133,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricField(QuantityValue value, ElectricFieldUnit unit)
+        public ElectricField(double value, ElectricFieldUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -147,7 +147,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricField(QuantityValue value, UnitSystem unitSystem)
+        public ElectricField(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -189,7 +189,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public ElectricFieldUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -223,9 +223,9 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricFieldUnit.VoltPerMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricFieldUnit.VoltPerMeter"/>
         /// </summary>
-        public QuantityValue VoltsPerMeter => this.As(ElectricFieldUnit.VoltPerMeter);
+        public double VoltsPerMeter => this.As(ElectricFieldUnit.VoltPerMeter);
 
         #endregion
 
@@ -259,7 +259,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricField"/> from <see cref="ElectricFieldUnit.VoltPerMeter"/>.
         /// </summary>
-        public static ElectricField FromVoltsPerMeter(QuantityValue value)
+        public static ElectricField FromVoltsPerMeter(double value)
         {
             return new ElectricField(value, ElectricFieldUnit.VoltPerMeter);
         }
@@ -270,7 +270,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricField unit value.</returns>
-        public static ElectricField From(QuantityValue value, ElectricFieldUnit fromUnit)
+        public static ElectricField From(double value, ElectricFieldUnit fromUnit)
         {
             return new ElectricField(value, fromUnit);
         }
@@ -435,25 +435,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricField"/> from multiplying value and <see cref="ElectricField"/>.</summary>
-        public static ElectricField operator *(QuantityValue left, ElectricField right)
+        public static ElectricField operator *(double left, ElectricField right)
         {
             return new ElectricField(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricField"/> from multiplying value and <see cref="ElectricField"/>.</summary>
-        public static ElectricField operator *(ElectricField left, QuantityValue right)
+        public static ElectricField operator *(ElectricField left, double right)
         {
             return new ElectricField(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricField"/> from dividing <see cref="ElectricField"/> by value.</summary>
-        public static ElectricField operator /(ElectricField left, QuantityValue right)
+        public static ElectricField operator /(ElectricField left, double right)
         {
             return new ElectricField(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricField"/> by <see cref="ElectricField"/>.</summary>
-        public static QuantityValue operator /(ElectricField left, ElectricField right)
+        public static double operator /(ElectricField left, ElectricField right)
         {
             return left.VoltsPerMeter / right.VoltsPerMeter;
         }

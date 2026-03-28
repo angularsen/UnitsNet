@@ -22,7 +22,7 @@ public enum ClassOfLinearQuantityUnit
 /// </summary>
 [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
 [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
-public class ClassOfLinearQuantity(QuantityValue value, ClassOfLinearQuantityUnit unit) : IArithmeticQuantity<ClassOfLinearQuantity, ClassOfLinearQuantityUnit>
+public class ClassOfLinearQuantity(double value, ClassOfLinearQuantityUnit unit) : IArithmeticQuantity<ClassOfLinearQuantity, ClassOfLinearQuantityUnit>
 {
     public static readonly QuantityInfo<ClassOfLinearQuantity, ClassOfLinearQuantityUnit> Info = new(
         ClassOfLinearQuantityUnit.Some,
@@ -37,9 +37,9 @@ public class ClassOfLinearQuantity(QuantityValue value, ClassOfLinearQuantityUni
 
     public ClassOfLinearQuantityUnit Unit { get; } = unit;
 
-    public QuantityValue Value { get; } = value;
+    public double Value { get; } = value;
 
-    public static ClassOfLinearQuantity From(QuantityValue value, ClassOfLinearQuantityUnit unit)
+    public static ClassOfLinearQuantity From(double value, ClassOfLinearQuantityUnit unit)
     {
         return new ClassOfLinearQuantity(value, unit);
     }
@@ -56,12 +56,12 @@ public class ClassOfLinearQuantity(QuantityValue value, ClassOfLinearQuantityUni
         return new ClassOfLinearQuantity(left.Value - right.As(left.Unit), left.Unit);
     }
 
-    public static ClassOfLinearQuantity operator *(ClassOfLinearQuantity left, QuantityValue right)
+    public static ClassOfLinearQuantity operator *(ClassOfLinearQuantity left, double right)
     {
         return new ClassOfLinearQuantity(left.Value * right, left.Unit);
     }
 
-    public static ClassOfLinearQuantity operator /(ClassOfLinearQuantity left, QuantityValue right)
+    public static ClassOfLinearQuantity operator /(ClassOfLinearQuantity left, double right)
     {
         return new ClassOfLinearQuantity(left.Value / right, left.Unit);
     }

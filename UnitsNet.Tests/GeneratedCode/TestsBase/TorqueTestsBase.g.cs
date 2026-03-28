@@ -461,7 +461,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 кН·м", TorqueUnit.KilonewtonMeter, 4.2)]
         [InlineData("ru-RU", "4,2 МН·м", TorqueUnit.MeganewtonMeter, 4.2)]
         [InlineData("ru-RU", "4,2 Н·м", TorqueUnit.NewtonMeter, 4.2)]
-        public void Parse(string culture, string quantityString, TorqueUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, TorqueUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Torque.Parse(quantityString);
@@ -498,7 +498,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 кН·м", TorqueUnit.KilonewtonMeter, 4.2)]
         [InlineData("ru-RU", "4,2 МН·м", TorqueUnit.MeganewtonMeter, 4.2)]
         [InlineData("ru-RU", "4,2 Н·м", TorqueUnit.NewtonMeter, 4.2)]
-        public void TryParse(string culture, string quantityString, TorqueUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, TorqueUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Torque.TryParse(quantityString, out Torque parsed));
@@ -1042,8 +1042,8 @@ namespace UnitsNet.Tests
             var quantity = Torque.FromNewtonMeters(firstValue);
             var otherQuantity = Torque.FromNewtonMeters(secondValue);
             Torque maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Torque.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

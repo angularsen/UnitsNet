@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct Acceleration :
         IArithmeticQuantity<Acceleration, AccelerationUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Acceleration, Acceleration, QuantityValue>,
+        IDivisionOperators<Acceleration, Acceleration, double>,
         IDivisionOperators<Acceleration, Jerk, Duration>,
         IMultiplyOperators<Acceleration, Mass, Force>,
         IDivisionOperators<Acceleration, Duration, Jerk>,
@@ -56,7 +56,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -174,7 +174,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Acceleration(QuantityValue value, AccelerationUnit unit)
+        public Acceleration(double value, AccelerationUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -188,7 +188,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Acceleration(QuantityValue value, UnitSystem unitSystem)
+        public Acceleration(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -230,7 +230,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public AccelerationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -264,74 +264,74 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AccelerationUnit.CentimeterPerSecondSquared"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.CentimeterPerSecondSquared"/>
         /// </summary>
-        public QuantityValue CentimetersPerSecondSquared => this.As(AccelerationUnit.CentimeterPerSecondSquared);
+        public double CentimetersPerSecondSquared => this.As(AccelerationUnit.CentimeterPerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AccelerationUnit.DecimeterPerSecondSquared"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.DecimeterPerSecondSquared"/>
         /// </summary>
-        public QuantityValue DecimetersPerSecondSquared => this.As(AccelerationUnit.DecimeterPerSecondSquared);
+        public double DecimetersPerSecondSquared => this.As(AccelerationUnit.DecimeterPerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AccelerationUnit.FootPerSecondSquared"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.FootPerSecondSquared"/>
         /// </summary>
-        public QuantityValue FeetPerSecondSquared => this.As(AccelerationUnit.FootPerSecondSquared);
+        public double FeetPerSecondSquared => this.As(AccelerationUnit.FootPerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AccelerationUnit.InchPerSecondSquared"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.InchPerSecondSquared"/>
         /// </summary>
-        public QuantityValue InchesPerSecondSquared => this.As(AccelerationUnit.InchPerSecondSquared);
+        public double InchesPerSecondSquared => this.As(AccelerationUnit.InchPerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AccelerationUnit.KilometerPerSecondSquared"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.KilometerPerSecondSquared"/>
         /// </summary>
-        public QuantityValue KilometersPerSecondSquared => this.As(AccelerationUnit.KilometerPerSecondSquared);
+        public double KilometersPerSecondSquared => this.As(AccelerationUnit.KilometerPerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AccelerationUnit.KnotPerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.KnotPerHour"/>
         /// </summary>
-        public QuantityValue KnotsPerHour => this.As(AccelerationUnit.KnotPerHour);
+        public double KnotsPerHour => this.As(AccelerationUnit.KnotPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AccelerationUnit.KnotPerMinute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.KnotPerMinute"/>
         /// </summary>
-        public QuantityValue KnotsPerMinute => this.As(AccelerationUnit.KnotPerMinute);
+        public double KnotsPerMinute => this.As(AccelerationUnit.KnotPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AccelerationUnit.KnotPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.KnotPerSecond"/>
         /// </summary>
-        public QuantityValue KnotsPerSecond => this.As(AccelerationUnit.KnotPerSecond);
+        public double KnotsPerSecond => this.As(AccelerationUnit.KnotPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AccelerationUnit.MeterPerSecondSquared"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.MeterPerSecondSquared"/>
         /// </summary>
-        public QuantityValue MetersPerSecondSquared => this.As(AccelerationUnit.MeterPerSecondSquared);
+        public double MetersPerSecondSquared => this.As(AccelerationUnit.MeterPerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AccelerationUnit.MicrometerPerSecondSquared"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.MicrometerPerSecondSquared"/>
         /// </summary>
-        public QuantityValue MicrometersPerSecondSquared => this.As(AccelerationUnit.MicrometerPerSecondSquared);
+        public double MicrometersPerSecondSquared => this.As(AccelerationUnit.MicrometerPerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AccelerationUnit.MillimeterPerSecondSquared"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.MillimeterPerSecondSquared"/>
         /// </summary>
-        public QuantityValue MillimetersPerSecondSquared => this.As(AccelerationUnit.MillimeterPerSecondSquared);
+        public double MillimetersPerSecondSquared => this.As(AccelerationUnit.MillimeterPerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AccelerationUnit.MillistandardGravity"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.MillistandardGravity"/>
         /// </summary>
-        public QuantityValue MillistandardGravity => this.As(AccelerationUnit.MillistandardGravity);
+        public double MillistandardGravity => this.As(AccelerationUnit.MillistandardGravity);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AccelerationUnit.NanometerPerSecondSquared"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.NanometerPerSecondSquared"/>
         /// </summary>
-        public QuantityValue NanometersPerSecondSquared => this.As(AccelerationUnit.NanometerPerSecondSquared);
+        public double NanometersPerSecondSquared => this.As(AccelerationUnit.NanometerPerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AccelerationUnit.StandardGravity"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AccelerationUnit.StandardGravity"/>
         /// </summary>
-        public QuantityValue StandardGravity => this.As(AccelerationUnit.StandardGravity);
+        public double StandardGravity => this.As(AccelerationUnit.StandardGravity);
 
         #endregion
 
@@ -365,7 +365,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.CentimeterPerSecondSquared"/>.
         /// </summary>
-        public static Acceleration FromCentimetersPerSecondSquared(QuantityValue value)
+        public static Acceleration FromCentimetersPerSecondSquared(double value)
         {
             return new Acceleration(value, AccelerationUnit.CentimeterPerSecondSquared);
         }
@@ -373,7 +373,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.DecimeterPerSecondSquared"/>.
         /// </summary>
-        public static Acceleration FromDecimetersPerSecondSquared(QuantityValue value)
+        public static Acceleration FromDecimetersPerSecondSquared(double value)
         {
             return new Acceleration(value, AccelerationUnit.DecimeterPerSecondSquared);
         }
@@ -381,7 +381,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.FootPerSecondSquared"/>.
         /// </summary>
-        public static Acceleration FromFeetPerSecondSquared(QuantityValue value)
+        public static Acceleration FromFeetPerSecondSquared(double value)
         {
             return new Acceleration(value, AccelerationUnit.FootPerSecondSquared);
         }
@@ -389,7 +389,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.InchPerSecondSquared"/>.
         /// </summary>
-        public static Acceleration FromInchesPerSecondSquared(QuantityValue value)
+        public static Acceleration FromInchesPerSecondSquared(double value)
         {
             return new Acceleration(value, AccelerationUnit.InchPerSecondSquared);
         }
@@ -397,7 +397,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.KilometerPerSecondSquared"/>.
         /// </summary>
-        public static Acceleration FromKilometersPerSecondSquared(QuantityValue value)
+        public static Acceleration FromKilometersPerSecondSquared(double value)
         {
             return new Acceleration(value, AccelerationUnit.KilometerPerSecondSquared);
         }
@@ -405,7 +405,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.KnotPerHour"/>.
         /// </summary>
-        public static Acceleration FromKnotsPerHour(QuantityValue value)
+        public static Acceleration FromKnotsPerHour(double value)
         {
             return new Acceleration(value, AccelerationUnit.KnotPerHour);
         }
@@ -413,7 +413,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.KnotPerMinute"/>.
         /// </summary>
-        public static Acceleration FromKnotsPerMinute(QuantityValue value)
+        public static Acceleration FromKnotsPerMinute(double value)
         {
             return new Acceleration(value, AccelerationUnit.KnotPerMinute);
         }
@@ -421,7 +421,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.KnotPerSecond"/>.
         /// </summary>
-        public static Acceleration FromKnotsPerSecond(QuantityValue value)
+        public static Acceleration FromKnotsPerSecond(double value)
         {
             return new Acceleration(value, AccelerationUnit.KnotPerSecond);
         }
@@ -429,7 +429,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.MeterPerSecondSquared"/>.
         /// </summary>
-        public static Acceleration FromMetersPerSecondSquared(QuantityValue value)
+        public static Acceleration FromMetersPerSecondSquared(double value)
         {
             return new Acceleration(value, AccelerationUnit.MeterPerSecondSquared);
         }
@@ -437,7 +437,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.MicrometerPerSecondSquared"/>.
         /// </summary>
-        public static Acceleration FromMicrometersPerSecondSquared(QuantityValue value)
+        public static Acceleration FromMicrometersPerSecondSquared(double value)
         {
             return new Acceleration(value, AccelerationUnit.MicrometerPerSecondSquared);
         }
@@ -445,7 +445,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.MillimeterPerSecondSquared"/>.
         /// </summary>
-        public static Acceleration FromMillimetersPerSecondSquared(QuantityValue value)
+        public static Acceleration FromMillimetersPerSecondSquared(double value)
         {
             return new Acceleration(value, AccelerationUnit.MillimeterPerSecondSquared);
         }
@@ -453,7 +453,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.MillistandardGravity"/>.
         /// </summary>
-        public static Acceleration FromMillistandardGravity(QuantityValue value)
+        public static Acceleration FromMillistandardGravity(double value)
         {
             return new Acceleration(value, AccelerationUnit.MillistandardGravity);
         }
@@ -461,7 +461,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.NanometerPerSecondSquared"/>.
         /// </summary>
-        public static Acceleration FromNanometersPerSecondSquared(QuantityValue value)
+        public static Acceleration FromNanometersPerSecondSquared(double value)
         {
             return new Acceleration(value, AccelerationUnit.NanometerPerSecondSquared);
         }
@@ -469,7 +469,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Acceleration"/> from <see cref="AccelerationUnit.StandardGravity"/>.
         /// </summary>
-        public static Acceleration FromStandardGravity(QuantityValue value)
+        public static Acceleration FromStandardGravity(double value)
         {
             return new Acceleration(value, AccelerationUnit.StandardGravity);
         }
@@ -480,7 +480,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Acceleration unit value.</returns>
-        public static Acceleration From(QuantityValue value, AccelerationUnit fromUnit)
+        public static Acceleration From(double value, AccelerationUnit fromUnit)
         {
             return new Acceleration(value, fromUnit);
         }
@@ -645,25 +645,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Acceleration"/> from multiplying value and <see cref="Acceleration"/>.</summary>
-        public static Acceleration operator *(QuantityValue left, Acceleration right)
+        public static Acceleration operator *(double left, Acceleration right)
         {
             return new Acceleration(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Acceleration"/> from multiplying value and <see cref="Acceleration"/>.</summary>
-        public static Acceleration operator *(Acceleration left, QuantityValue right)
+        public static Acceleration operator *(Acceleration left, double right)
         {
             return new Acceleration(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Acceleration"/> from dividing <see cref="Acceleration"/> by value.</summary>
-        public static Acceleration operator /(Acceleration left, QuantityValue right)
+        public static Acceleration operator /(Acceleration left, double right)
         {
             return new Acceleration(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Acceleration"/> by <see cref="Acceleration"/>.</summary>
-        public static QuantityValue operator /(Acceleration left, Acceleration right)
+        public static double operator /(Acceleration left, Acceleration right)
         {
             return left.MetersPerSecondSquared / right.MetersPerSecondSquared;
         }

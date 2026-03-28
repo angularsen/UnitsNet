@@ -230,7 +230,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "4.2 NTU", TurbidityUnit.NTU, 4.2)]
-        public void Parse(string culture, string quantityString, TurbidityUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, TurbidityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Turbidity.Parse(quantityString);
@@ -240,7 +240,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "4.2 NTU", TurbidityUnit.NTU, 4.2)]
-        public void TryParse(string culture, string quantityString, TurbidityUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, TurbidityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Turbidity.TryParse(quantityString, out Turbidity parsed));
@@ -529,8 +529,8 @@ namespace UnitsNet.Tests
             var quantity = Turbidity.FromNTU(firstValue);
             var otherQuantity = Turbidity.FromNTU(secondValue);
             Turbidity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Turbidity.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

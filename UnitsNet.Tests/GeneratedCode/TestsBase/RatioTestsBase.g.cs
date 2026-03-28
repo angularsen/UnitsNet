@@ -265,7 +265,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 ‰", RatioUnit.PartPerThousand, 4.2)]
         [InlineData("en-US", "4.2 ppt", RatioUnit.PartPerTrillion, 4.2)]
         [InlineData("en-US", "4.2 %", RatioUnit.Percent, 4.2)]
-        public void Parse(string culture, string quantityString, RatioUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, RatioUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Ratio.Parse(quantityString);
@@ -280,7 +280,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 ‰", RatioUnit.PartPerThousand, 4.2)]
         [InlineData("en-US", "4.2 ppt", RatioUnit.PartPerTrillion, 4.2)]
         [InlineData("en-US", "4.2 %", RatioUnit.Percent, 4.2)]
-        public void TryParse(string culture, string quantityString, RatioUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, RatioUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Ratio.TryParse(quantityString, out Ratio parsed));
@@ -619,8 +619,8 @@ namespace UnitsNet.Tests
             var quantity = Ratio.FromDecimalFractions(firstValue);
             var otherQuantity = Ratio.FromDecimalFractions(secondValue);
             Ratio maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Ratio.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

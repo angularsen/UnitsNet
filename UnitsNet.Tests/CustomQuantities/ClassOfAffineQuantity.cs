@@ -22,7 +22,7 @@ public enum ClassOfAffineQuantityUnit
 /// </summary>
 [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
 [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
-public class ClassOfAffineQuantity(QuantityValue value, ClassOfAffineQuantityUnit unit) : IAffineQuantity<ClassOfAffineQuantity, ClassOfAffineQuantityUnit, ClassOfLinearQuantity>
+public class ClassOfAffineQuantity(double value, ClassOfAffineQuantityUnit unit) : IAffineQuantity<ClassOfAffineQuantity, ClassOfAffineQuantityUnit, ClassOfLinearQuantity>
 {
     public static readonly QuantityInfo<ClassOfAffineQuantity, ClassOfAffineQuantityUnit> Info = new(
         ClassOfAffineQuantityUnit.Some,
@@ -37,9 +37,9 @@ public class ClassOfAffineQuantity(QuantityValue value, ClassOfAffineQuantityUni
 
     public ClassOfAffineQuantityUnit Unit { get; } = unit;
 
-    public QuantityValue Value { get; } = value;
+    public double Value { get; } = value;
 
-    public static ClassOfAffineQuantity From(QuantityValue value, ClassOfAffineQuantityUnit unit)
+    public static ClassOfAffineQuantity From(double value, ClassOfAffineQuantityUnit unit)
     {
         return new ClassOfAffineQuantity(value, unit);
     }

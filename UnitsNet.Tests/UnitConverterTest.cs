@@ -712,7 +712,7 @@ namespace UnitsNet.Tests
         public void TryConvertByName_ReturnsTrueOnSuccessAndOutputsResult(double expectedValue, double inputValue, string quantityTypeName, string fromUnit,
             string toUnit)
         {
-            Assert.True(UnitConverter.TryConvertByName(inputValue, quantityTypeName, fromUnit, toUnit, out QuantityValue result));
+            Assert.True(UnitConverter.TryConvertByName(inputValue, quantityTypeName, fromUnit, toUnit, out double result));
             Assert.Equal(expectedValue, result);
         }
 
@@ -808,12 +808,12 @@ namespace UnitsNet.Tests
             Assert.Multiple(
             () =>
             {
-                Assert.True(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, CultureInfo.GetCultureInfo(culture), out QuantityValue result), "TryConvertByAbbreviation() return value.");
+                Assert.True(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, CultureInfo.GetCultureInfo(culture), out double result), "TryConvertByAbbreviation() return value.");
                 Assert.Equal(expectedValue, result);
             },
             () =>
             {
-                Assert.True(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out QuantityValue result, culture), "TryConvertByAbbreviation() return value.");
+                Assert.True(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out double result, culture), "TryConvertByAbbreviation() return value.");
                 Assert.Equal(expectedValue, result); 
             });
         }
@@ -828,7 +828,7 @@ namespace UnitsNet.Tests
         public void TryConvertByAbbreviation_WithDefaultCulture_ReturnsTrueOnSuccessAndOutputsResult(double expectedValue, double inputValue, string quantityTypeName,
             string fromUnit, string toUnit)
         {
-            Assert.True(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out QuantityValue result));
+            Assert.True(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out double result));
             Assert.Equal(expectedValue, result);
         }
 
@@ -889,7 +889,7 @@ namespace UnitsNet.Tests
         [InlineData(0.1, 10, AreaUnit.SquareCentimeter, ReciprocalAreaUnit.InverseSquareCentimeter)] // inverse relationship
         public void TryConvert_ReturnsTrueOnSuccessAndOutputsResult(double expectedValue, double inputValue, Enum fromUnit, Enum toUnit)
         {
-            Assert.True(UnitConverter.TryConvert(inputValue, fromUnit, toUnit, out QuantityValue result));
+            Assert.True(UnitConverter.TryConvert(inputValue, fromUnit, toUnit, out double result));
             Assert.Equal(expectedValue, result);
         }
         
@@ -900,7 +900,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(UnitParser.Default, convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.All(Quantity.Infos, quantityInfo =>
             {
                 Assert.All(quantityInfo.UnitInfos, fromUnitInfo =>
@@ -926,7 +926,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(UnitParser.Default, convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.All(Quantity.Infos, quantityInfo =>
             {
                 Assert.All(quantityInfo.UnitInfos, fromUnitInfo =>
@@ -953,7 +953,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(UnitParser.Default, convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             QuantityInfo<Mass, MassUnit> quantityInfo = Mass.Info;
             Assert.All(quantityInfo.UnitInfos, fromUnitInfo =>
             {
@@ -977,7 +977,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(UnitParser.Default, convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             QuantityInfo<Mass, MassUnit> quantityInfo = Mass.Info;
             Assert.All(quantityInfo.UnitInfos, fromUnitInfo =>
             {
@@ -1002,7 +1002,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(UnitParser.Default, convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.All(Quantity.Infos, quantityInfo =>
             {
                 Assert.All(quantityInfo.UnitInfos, fromUnitInfo =>
@@ -1030,7 +1030,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(UnitParser.Default, convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.All(Quantity.Infos, quantityInfo =>
             {
                 Assert.All(quantityInfo.UnitInfos, fromUnitInfo =>
@@ -1059,7 +1059,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(UnitParser.Default, convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             QuantityInfo<Temperature, TemperatureUnit> quantityInfo = Temperature.Info;
             Assert.All(quantityInfo.UnitInfos, fromUnitInfo =>
             {
@@ -1084,7 +1084,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(UnitParser.Default, convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             QuantityInfo<Temperature, TemperatureUnit> quantityInfo = Temperature.Info;
             Assert.All(quantityInfo.UnitInfos, fromUnitInfo =>
             {
@@ -1110,7 +1110,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(UnitParser.Default, convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             QuantityInfo<Temperature, TemperatureUnit> quantityInfo = Temperature.Info;
             Assert.All(quantityInfo.UnitInfos, fromUnitInfo =>
             {
@@ -1135,7 +1135,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(new UnitParser([Length.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     Assert.Throws<UnitNotFoundException>(() => converter.ConvertValue(valueToConvert, MassUnit.Gram, MassUnit.Milligram));
@@ -1158,7 +1158,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(new UnitParser([Length.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     Assert.False(converter.TryConvertValue(valueToConvert, MassUnit.Gram, MassUnit.Milligram, out _));
@@ -1373,7 +1373,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(new UnitParser([Mass.Info, HowMuch.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     QuantityInfo<Mass, MassUnit> quantityInfo = Mass.Info;
@@ -1418,7 +1418,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(new UnitParser([Mass.Info, HowMuch.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     QuantityInfo<Mass, MassUnit> quantityInfo = Mass.Info;
@@ -1464,7 +1464,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(new UnitParser([Mass.Info, HowMuch.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     QuantityInfo<Mass, MassUnit> quantityInfo = Mass.Info;
@@ -1511,7 +1511,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(new UnitParser([Mass.Info, HowMuch.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     QuantityInfo<Mass, MassUnit> quantityInfo = Mass.Info;
@@ -1560,7 +1560,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(new UnitParser([Mass.Info, HowMuch.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             QuantityInfo<Mass, MassUnit> quantityInfo = Mass.Info;
             Assert.All(quantityInfo.UnitInfos, fromUnitInfo =>
             {
@@ -1584,7 +1584,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(new UnitParser([Mass.Info, HowMuch.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             QuantityInfo<Mass, MassUnit> quantityInfo = Mass.Info;
             Assert.All(quantityInfo.UnitInfos, fromUnitInfo =>
             {
@@ -1609,7 +1609,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(new UnitParser([Density.Info, SpecificVolume.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     Assert.All(Density.Info.UnitInfos, fromUnitInfo =>
@@ -1655,7 +1655,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(new UnitParser([Density.Info, SpecificVolume.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     Assert.All(Density.Info.UnitInfos, fromUnitInfo =>
@@ -1707,7 +1707,7 @@ namespace UnitsNet.Tests
                     options.SetCustomConversion<Mass, HowMuch>());
             var converter = UnitConverter.Create(new UnitParser([Mass.Info, HowMuch.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     Assert.All(Mass.Info.UnitInfos, fromUnitInfo =>
@@ -1757,7 +1757,7 @@ namespace UnitsNet.Tests
                     options.SetCustomConversion<Mass, HowMuch>());
             var converter = UnitConverter.Create(new UnitParser([Mass.Info, HowMuch.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     Assert.All(Mass.Info.UnitInfos, fromUnitInfo =>
@@ -1809,7 +1809,7 @@ namespace UnitsNet.Tests
                     options.SetCustomConversion<Mass, HowMuch>());
             var converter = UnitConverter.Create(new UnitParser([Mass.Info, HowMuch.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     Assert.All(Mass.Info.UnitInfos, fromUnitInfo =>
@@ -1861,7 +1861,7 @@ namespace UnitsNet.Tests
                     options.SetCustomConversion<Mass, HowMuch>());
             var converter = UnitConverter.Create(new UnitParser([Mass.Info, HowMuch.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     Assert.All(Mass.Info.UnitInfos, fromUnitInfo =>
@@ -1917,7 +1917,7 @@ namespace UnitsNet.Tests
                     options.SetCustomConversion<Density, MassConcentration>());
             var converter = UnitConverter.Create(new UnitParser([Density.Info, MassConcentration.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     Assert.All(Density.Info.UnitInfos, fromUnitInfo =>
@@ -1969,7 +1969,7 @@ namespace UnitsNet.Tests
                     options.SetCustomConversion<Density, MassConcentration>());
             var converter = UnitConverter.Create(new UnitParser([Density.Info, MassConcentration.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     Assert.All(Density.Info.UnitInfos, fromUnitInfo =>
@@ -2020,7 +2020,7 @@ namespace UnitsNet.Tests
                     options.SetCustomConversion<MassFraction, Ratio>());
             var converter = UnitConverter.Create(new UnitParser([MassFraction.Info, Ratio.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     Assert.All(MassFraction.Info.UnitInfos, fromUnitInfo =>
@@ -2069,7 +2069,7 @@ namespace UnitsNet.Tests
                     options.SetCustomConversion<MassFraction, Ratio>());
             var converter = UnitConverter.Create(new UnitParser([MassFraction.Info, Ratio.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     Assert.All(MassFraction.Info.UnitInfos, fromUnitInfo =>
@@ -2120,7 +2120,7 @@ namespace UnitsNet.Tests
                     .SetCustomConversion<Volume, HowMuch>()
                     .SetCustomConversion(VolumeUnit.Liter, HowMuchUnit.Some, QuantityValue.One, true));
             var converter = UnitConverter.Create(new UnitParser([Volume.Info, HowMuch.Info]), convertOptions);
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     Assert.All(Volume.Info.UnitInfos, fromUnitInfo =>
@@ -2167,7 +2167,7 @@ namespace UnitsNet.Tests
                     .SetCustomConversion<Volume, HowMuch>()
                     .SetCustomConversion(VolumeUnit.Liter, HowMuchUnit.Some, QuantityValue.One, true));
             var converter = UnitConverter.Create(new UnitParser([Volume.Info, HowMuch.Info]), convertOptions);
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     Assert.All(Volume.Info.UnitInfos, fromUnitInfo =>
@@ -2213,7 +2213,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(new UnitParser([Density.Info, SpecificVolume.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     Assert.All(Density.Info.UnitInfos, fromUnitInfo =>
@@ -2261,7 +2261,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(new UnitParser([Density.Info, SpecificVolume.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     Assert.All(Density.Info.UnitInfos, fromUnitInfo =>
@@ -2319,7 +2319,7 @@ namespace UnitsNet.Tests
 
             UnitInfo<Density, DensityUnit> customDensityInfo = Density.Info[DensityUnit.MicrogramPerLiter];
             UnitInfo<SpecificVolume, SpecificVolumeUnit> customSpecificVolumeInfo = SpecificVolume.Info[SpecificVolumeUnit.CubicFootPerPound];
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     // when the left unit is the customDensityInfo
@@ -2403,7 +2403,7 @@ namespace UnitsNet.Tests
 
             UnitInfo<Density, DensityUnit> customDensityInfo = Density.Info[DensityUnit.MicrogramPerLiter];
             UnitInfo<SpecificVolume, SpecificVolumeUnit> customSpecificVolumeInfo = SpecificVolume.Info[SpecificVolumeUnit.CubicFootPerPound];
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     // when the left unit is the customDensityInfo
@@ -2486,7 +2486,7 @@ namespace UnitsNet.Tests
 
             UnitInfo<Density, DensityUnit> customDensityInfo = Density.Info[DensityUnit.MicrogramPerLiter];
             UnitInfo<SpecificVolume, SpecificVolumeUnit> customSpecificVolumeInfo = SpecificVolume.Info[SpecificVolumeUnit.CubicFootPerPound];
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     // when the left unit is the customDensityInfo
@@ -2573,7 +2573,7 @@ namespace UnitsNet.Tests
 
             UnitInfo<Density, DensityUnit> customDensityInfo = Density.Info[DensityUnit.MicrogramPerLiter];
             UnitInfo<SpecificVolume, SpecificVolumeUnit> customSpecificVolumeInfo = SpecificVolume.Info[SpecificVolumeUnit.CubicFootPerPound];
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     // when the left unit is the customDensityInfo
@@ -2666,7 +2666,7 @@ namespace UnitsNet.Tests
 
             UnitInfo<Density, DensityUnit> customDensityInfo = Density.Info[DensityUnit.MicrogramPerLiter];
             UnitInfo<SpecificVolume, SpecificVolumeUnit> customSpecificVolumeInfo = SpecificVolume.Info[SpecificVolumeUnit.CubicFootPerPound];
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     // when the left unit is the customDensityInfo
@@ -2752,7 +2752,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(new UnitParser([Density.Info, SpecificVolume.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     Assert.All(Density.Info.UnitInfos, fromUnitInfo =>
@@ -2786,7 +2786,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(new UnitParser([Density.Info, SpecificVolume.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     Assert.All(Density.Info.UnitInfos, fromUnitInfo =>
@@ -3054,7 +3054,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(new UnitParser([Density.Info, SpecificVolume.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     Assert.All(Density.Info.UnitInfos, fromUnitInfo =>
@@ -3090,7 +3090,7 @@ namespace UnitsNet.Tests
             var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
             var converter = UnitConverter.Create(new UnitParser([Density.Info, SpecificVolume.Info]), convertOptions);
 
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     Assert.All(Density.Info.UnitInfos, fromUnitInfo =>
@@ -3142,7 +3142,7 @@ namespace UnitsNet.Tests
 
             UnitInfo<Density, DensityUnit> customDensityInfo = Density.Info[customDensityUnit];
             UnitInfo<SpecificVolume, SpecificVolumeUnit> customSpecificVolumeInfo = SpecificVolume.Info[customSpecificVolumeUnit];
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     // when the left unit is the customDensityInfo
@@ -3213,7 +3213,7 @@ namespace UnitsNet.Tests
 
             UnitInfo<Density, DensityUnit> customDensityInfo = Density.Info[customDensityUnit];
             UnitInfo<SpecificVolume, SpecificVolumeUnit> customSpecificVolumeInfo = SpecificVolume.Info[customSpecificVolumeUnit];
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     // when the left unit is the customDensityInfo
@@ -3292,7 +3292,7 @@ namespace UnitsNet.Tests
 
             UnitInfo<Density, DensityUnit> customDensityInfo = Density.Info[customDensityUnit];
             UnitInfo<SpecificVolume, SpecificVolumeUnit> customSpecificVolumeInfo = SpecificVolume.Info[customSpecificVolumeUnit];
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     // when the left unit is the customDensityInfo
@@ -3367,7 +3367,7 @@ namespace UnitsNet.Tests
 
             UnitInfo<Density, DensityUnit> customDensityInfo = Density.Info[customDensityUnit];
             UnitInfo<SpecificVolume, SpecificVolumeUnit> customSpecificVolumeInfo = SpecificVolume.Info[customSpecificVolumeUnit];
-            QuantityValue valueToConvert = 123.45m;
+            double valueToConvert = 123.45;
             Assert.Multiple(() =>
                 {
                     // when the left unit is the customDensityInfo

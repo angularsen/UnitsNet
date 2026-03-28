@@ -104,7 +104,7 @@ public class QuantityInfoExtensionsTest
     [InlineData(AreaUnit.Acre, ReciprocalAreaUnit.InverseSquareMeter)]
     public void TryToConvertFrom_QuantityWithInverseDimensions_ToQuantity(AreaUnit fromUnit, ReciprocalAreaUnit expectedUnit)
     {
-        QuantityValue valueToConvert = 100;
+        double valueToConvert = 100;
         UnitInfo fromUnitInfo = Area.Info[fromUnit];
         ReciprocalArea expectedResult = Area.From(valueToConvert, fromUnit).Inverse();
 
@@ -122,7 +122,7 @@ public class QuantityInfoExtensionsTest
     [InlineData(AreaUnit.Acre, ReciprocalAreaUnit.InverseSquareMeter)]
     public void TryToConvertFrom_QuantityWithInverseDimensions_ToIQuantity(AreaUnit fromUnit, ReciprocalAreaUnit expectedUnit)
     {
-        QuantityValue valueToConvert = 100;
+        double valueToConvert = 100;
         UnitInfo fromUnitInfo = Area.Info[fromUnit];
         QuantityInfo targetQuantityInfo = ReciprocalArea.Info;
 
@@ -142,7 +142,7 @@ public class QuantityInfoExtensionsTest
     [InlineData(AreaUnit.Acre, ReciprocalAreaUnit.InverseSquareMeter)]
     public void ConvertFrom_QuantityWithInverseDimensions_ToQuantity(AreaUnit fromUnit, ReciprocalAreaUnit expectedUnit)
     {
-        QuantityValue valueToConvert = 100;
+        double valueToConvert = 100;
         UnitInfo fromUnitInfo = Area.Info[fromUnit];
 
         ReciprocalArea expectedResult = Area.From(valueToConvert, fromUnit).Inverse();
@@ -160,7 +160,7 @@ public class QuantityInfoExtensionsTest
     [InlineData(AreaUnit.Acre, ReciprocalAreaUnit.InverseSquareMeter)]
     public void ConvertFrom_QuantityWithInverseDimensions_ToIQuantity(AreaUnit fromUnit, ReciprocalAreaUnit expectedUnit)
     {
-        QuantityValue valueToConvert = 100;
+        double valueToConvert = 100;
         UnitInfo fromUnitInfo = Area.Info[fromUnit];
         QuantityInfo targetQuantityInfo = ReciprocalArea.Info;
 
@@ -180,7 +180,7 @@ public class QuantityInfoExtensionsTest
     [InlineData(MassConcentrationUnit.PoundPerUSGallon, DensityUnit.KilogramPerCubicMeter)]
     public void TryToConvertFrom_QuantityWithSameDimensions_ToQuantity(MassConcentrationUnit fromUnit, DensityUnit expectedUnit)
     {
-        QuantityValue valueToConvert = 100;
+        double valueToConvert = 100;
         UnitInfo fromUnitInfo = MassConcentration.Info[fromUnit];
 
         var expectedResult = Density.From(MassConcentration.From(valueToConvert, fromUnit).KilogramsPerCubicMeter, DensityUnit.KilogramPerCubicMeter);
@@ -200,7 +200,7 @@ public class QuantityInfoExtensionsTest
     [InlineData(MassConcentrationUnit.PoundPerUSGallon, DensityUnit.KilogramPerCubicMeter)]
     public void TryToConvertFrom_QuantityWithSameDimensions_ToIQuantity(MassConcentrationUnit fromUnit, DensityUnit expectedUnit)
     {
-        QuantityValue valueToConvert = 100;
+        double valueToConvert = 100;
         UnitInfo fromUnitInfo = MassConcentration.Info[fromUnit];
         QuantityInfo targetQuantityInfo = Density.Info;
 
@@ -219,7 +219,7 @@ public class QuantityInfoExtensionsTest
     [InlineData(MassFractionUnit.GramPerKilogram, RatioUnit.DecimalFraction)]
     public void TryToConvertFrom_DimensionlessQuantity_ToQuantity(MassFractionUnit fromUnit, RatioUnit expectedUnit)
     {
-        QuantityValue valueToConvert = 100;
+        double valueToConvert = 100;
         UnitInfo fromUnitInfo = MassFraction.Info[fromUnit];
 
         var expectedResult = Ratio.From(MassFraction.From(valueToConvert, fromUnit).DecimalFractions, RatioUnit.DecimalFraction);
@@ -237,7 +237,7 @@ public class QuantityInfoExtensionsTest
     [InlineData(MassFractionUnit.GramPerKilogram, RatioUnit.DecimalFraction)]
     public void TryToConvertFrom_DimensionlessQuantity_ToIQuantity(MassFractionUnit fromUnit, RatioUnit expectedUnit)
     {
-        QuantityValue valueToConvert = 100;
+        double valueToConvert = 100;
         UnitInfo fromUnitInfo = MassFraction.Info[fromUnit];
 
         var expectedResult = Ratio.From(MassFraction.From(valueToConvert, fromUnit).DecimalFractions, RatioUnit.DecimalFraction);
@@ -255,7 +255,7 @@ public class QuantityInfoExtensionsTest
     [InlineData(HowMuchUnit.AShitTon, MassUnit.Tonne, 10)]
     public void TryToConvertFrom_QuantityWithoutSIBase_ToQuantity(HowMuchUnit fromUnit, MassUnit expectedUnit, double expectedValue)
     {
-        QuantityValue valueToConvert = QuantityValue.One;
+        double valueToConvert = 1;
         UnitInfo fromUnitInfo = HowMuch.Info[fromUnit];
 
         var success = Mass.Info.TryConvertFrom(valueToConvert, fromUnitInfo, out Mass result);
@@ -271,7 +271,7 @@ public class QuantityInfoExtensionsTest
     [InlineData(MassUnit.Gram, HowMuchUnit.ATon, 0.000001)]
     public void TryToConvertFrom_QuantityWithoutMatchingSIBase_ToIQuantity(MassUnit fromUnit, HowMuchUnit expectedUnit, double expectedValue)
     {
-        QuantityValue valueToConvert = QuantityValue.One;
+        double valueToConvert = 1;
         UnitInfo fromUnitInfo = Mass.Info[fromUnit];
         var success = HowMuch.Info.TryConvertFrom(valueToConvert, fromUnitInfo, out IQuantity? result);
 
@@ -287,7 +287,7 @@ public class QuantityInfoExtensionsTest
     public void TryToConvertFrom_QuantityBaseDifferentFromSI_ToQuantity(TemperatureChangeRateUnit fromUnit, TemperatureChangeRateUnit expectedUnit,
         double expectedValue)
     {
-        QuantityValue valueToConvert = QuantityValue.One;
+        double valueToConvert = 1;
         UnitInfo fromUnitInfo = TemperatureChangeRate.Info[fromUnit];
         // we simulate a different quantity type, having a non-standard base unit (note: the "official" TemperatureChangeRate is currently using DegreeCelsiusPerSecond)
         var customQuantityInfo = new TemperatureChangeRate.TemperatureChangeRateInfo("TestTemperature", TemperatureChangeRateUnit.DegreeKelvinPerSecond,
@@ -307,7 +307,7 @@ public class QuantityInfoExtensionsTest
     public void TryToConvertFrom_QuantityBaseDifferentFromSI_ToIQuantity(TemperatureChangeRateUnit fromUnit, TemperatureChangeRateUnit expectedUnit,
         double expectedValue)
     {
-        QuantityValue valueToConvert = QuantityValue.One;
+        double valueToConvert = 1;
         UnitInfo fromUnitInfo = TemperatureChangeRate.Info[fromUnit];
         // we simulate a different quantity type, having a non-standard base unit (note: the "official" TemperatureChangeRate is currently using DegreeCelsiusPerSecond)
         QuantityInfo customQuantityInfo = new TemperatureChangeRate.TemperatureChangeRateInfo("TestTemperature", TemperatureChangeRateUnit.DegreeKelvinPerSecond,
@@ -328,7 +328,7 @@ public class QuantityInfoExtensionsTest
     [InlineData(MassConcentrationUnit.PoundPerUSGallon, DensityUnit.KilogramPerCubicMeter)]
     public void ConvertFrom_QuantityWithSameDimensions_ToQuantity(MassConcentrationUnit fromUnit, DensityUnit expectedUnit)
     {
-        QuantityValue valueToConvert = 100;
+        double valueToConvert = 100;
         UnitInfo fromUnitInfo = MassConcentration.Info[fromUnit];
 
         var expectedResult = Density.From(MassConcentration.From(valueToConvert, fromUnit).KilogramsPerCubicMeter, DensityUnit.KilogramPerCubicMeter);
@@ -347,7 +347,7 @@ public class QuantityInfoExtensionsTest
     [InlineData(MassConcentrationUnit.PoundPerUSGallon, DensityUnit.KilogramPerCubicMeter)]
     public void ConvertFrom_QuantityWithSameDimensions_ToIQuantity(MassConcentrationUnit fromUnit, DensityUnit expectedUnit)
     {
-        QuantityValue valueToConvert = 100;
+        double valueToConvert = 100;
         UnitInfo fromUnitInfo = MassConcentration.Info[fromUnit];
         QuantityInfo targetQuantityInfo = Density.Info;
 

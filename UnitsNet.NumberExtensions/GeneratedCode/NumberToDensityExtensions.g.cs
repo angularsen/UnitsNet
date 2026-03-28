@@ -32,620 +32,620 @@ namespace UnitsNet.NumberExtensions.NumberToDensity
     /// </summary>
     public static class NumberToDensityExtensions
     {
-        /// <inheritdoc cref="Density.FromCentigramsPerDeciliter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromCentigramsPerDeciliter(double)" />
         public static Density CentigramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromCentigramsPerDeciliter(QuantityValue.CreateChecked(value));
+            => Density.FromCentigramsPerDeciliter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromCentigramsPerDeciliter(value.ToQuantityValue());
+            => Density.FromCentigramsPerDeciliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromCentigramsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromCentigramsPerLiter(double)" />
         public static Density CentigramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromCentigramsPerLiter(QuantityValue.CreateChecked(value));
+            => Density.FromCentigramsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromCentigramsPerLiter(value.ToQuantityValue());
+            => Density.FromCentigramsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(double)" />
         public static Density CentigramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromCentigramsPerMilliliter(QuantityValue.CreateChecked(value));
+            => Density.FromCentigramsPerMilliliter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromCentigramsPerMilliliter(value.ToQuantityValue());
+            => Density.FromCentigramsPerMilliliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromDecigramsPerDeciliter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromDecigramsPerDeciliter(double)" />
         public static Density DecigramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromDecigramsPerDeciliter(QuantityValue.CreateChecked(value));
+            => Density.FromDecigramsPerDeciliter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromDecigramsPerDeciliter(value.ToQuantityValue());
+            => Density.FromDecigramsPerDeciliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromDecigramsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromDecigramsPerLiter(double)" />
         public static Density DecigramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromDecigramsPerLiter(QuantityValue.CreateChecked(value));
+            => Density.FromDecigramsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromDecigramsPerLiter(value.ToQuantityValue());
+            => Density.FromDecigramsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(double)" />
         public static Density DecigramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromDecigramsPerMilliliter(QuantityValue.CreateChecked(value));
+            => Density.FromDecigramsPerMilliliter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromDecigramsPerMilliliter(value.ToQuantityValue());
+            => Density.FromDecigramsPerMilliliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromFemtogramsPerDeciliter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromFemtogramsPerDeciliter(double)" />
         public static Density FemtogramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromFemtogramsPerDeciliter(QuantityValue.CreateChecked(value));
+            => Density.FromFemtogramsPerDeciliter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromFemtogramsPerDeciliter(value.ToQuantityValue());
+            => Density.FromFemtogramsPerDeciliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromFemtogramsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromFemtogramsPerLiter(double)" />
         public static Density FemtogramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromFemtogramsPerLiter(QuantityValue.CreateChecked(value));
+            => Density.FromFemtogramsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromFemtogramsPerLiter(value.ToQuantityValue());
+            => Density.FromFemtogramsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromFemtogramsPerMilliliter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromFemtogramsPerMilliliter(double)" />
         public static Density FemtogramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromFemtogramsPerMilliliter(QuantityValue.CreateChecked(value));
+            => Density.FromFemtogramsPerMilliliter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromFemtogramsPerMilliliter(value.ToQuantityValue());
+            => Density.FromFemtogramsPerMilliliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(double)" />
         public static Density GramsPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromGramsPerCubicCentimeter(QuantityValue.CreateChecked(value));
+            => Density.FromGramsPerCubicCentimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromGramsPerCubicCentimeter(value.ToQuantityValue());
+            => Density.FromGramsPerCubicCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromGramsPerCubicFoot(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromGramsPerCubicFoot(double)" />
         public static Density GramsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromGramsPerCubicFoot(QuantityValue.CreateChecked(value));
+            => Density.FromGramsPerCubicFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromGramsPerCubicFoot(value.ToQuantityValue());
+            => Density.FromGramsPerCubicFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromGramsPerCubicInch(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromGramsPerCubicInch(double)" />
         public static Density GramsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromGramsPerCubicInch(QuantityValue.CreateChecked(value));
+            => Density.FromGramsPerCubicInch(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromGramsPerCubicInch(value.ToQuantityValue());
+            => Density.FromGramsPerCubicInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(double)" />
         public static Density GramsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromGramsPerCubicMeter(QuantityValue.CreateChecked(value));
+            => Density.FromGramsPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromGramsPerCubicMeter(value.ToQuantityValue());
+            => Density.FromGramsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(double)" />
         public static Density GramsPerCubicMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromGramsPerCubicMillimeter(QuantityValue.CreateChecked(value));
+            => Density.FromGramsPerCubicMillimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromGramsPerCubicMillimeter(value.ToQuantityValue());
+            => Density.FromGramsPerCubicMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromGramsPerDeciliter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromGramsPerDeciliter(double)" />
         public static Density GramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromGramsPerDeciliter(QuantityValue.CreateChecked(value));
+            => Density.FromGramsPerDeciliter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromGramsPerDeciliter(value.ToQuantityValue());
+            => Density.FromGramsPerDeciliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromGramsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromGramsPerLiter(double)" />
         public static Density GramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromGramsPerLiter(QuantityValue.CreateChecked(value));
+            => Density.FromGramsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromGramsPerLiter(value.ToQuantityValue());
+            => Density.FromGramsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromGramsPerMilliliter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromGramsPerMilliliter(double)" />
         public static Density GramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromGramsPerMilliliter(QuantityValue.CreateChecked(value));
+            => Density.FromGramsPerMilliliter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromGramsPerMilliliter(value.ToQuantityValue());
+            => Density.FromGramsPerMilliliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicCentimeter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromKilogramsPerCubicCentimeter(double)" />
         public static Density KilogramsPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromKilogramsPerCubicCentimeter(QuantityValue.CreateChecked(value));
+            => Density.FromKilogramsPerCubicCentimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromKilogramsPerCubicCentimeter(value.ToQuantityValue());
+            => Density.FromKilogramsPerCubicCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromKilogramsPerCubicMeter(double)" />
         public static Density KilogramsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromKilogramsPerCubicMeter(QuantityValue.CreateChecked(value));
+            => Density.FromKilogramsPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromKilogramsPerCubicMeter(value.ToQuantityValue());
+            => Density.FromKilogramsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicMillimeter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromKilogramsPerCubicMillimeter(double)" />
         public static Density KilogramsPerCubicMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromKilogramsPerCubicMillimeter(QuantityValue.CreateChecked(value));
+            => Density.FromKilogramsPerCubicMillimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromKilogramsPerCubicMillimeter(value.ToQuantityValue());
+            => Density.FromKilogramsPerCubicMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromKilogramsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromKilogramsPerLiter(double)" />
         public static Density KilogramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromKilogramsPerLiter(QuantityValue.CreateChecked(value));
+            => Density.FromKilogramsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromKilogramsPerLiter(value.ToQuantityValue());
+            => Density.FromKilogramsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicFoot(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromKilopoundsPerCubicFoot(double)" />
         public static Density KilopoundsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromKilopoundsPerCubicFoot(QuantityValue.CreateChecked(value));
+            => Density.FromKilopoundsPerCubicFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromKilopoundsPerCubicFoot(value.ToQuantityValue());
+            => Density.FromKilopoundsPerCubicFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicInch(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromKilopoundsPerCubicInch(double)" />
         public static Density KilopoundsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromKilopoundsPerCubicInch(QuantityValue.CreateChecked(value));
+            => Density.FromKilopoundsPerCubicInch(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromKilopoundsPerCubicInch(value.ToQuantityValue());
+            => Density.FromKilopoundsPerCubicInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicYard(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromKilopoundsPerCubicYard(double)" />
         public static Density KilopoundsPerCubicYard<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromKilopoundsPerCubicYard(QuantityValue.CreateChecked(value));
+            => Density.FromKilopoundsPerCubicYard(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromKilopoundsPerCubicYard(value.ToQuantityValue());
+            => Density.FromKilopoundsPerCubicYard(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromMicrogramsPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromMicrogramsPerCubicMeter(double)" />
         public static Density MicrogramsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromMicrogramsPerCubicMeter(QuantityValue.CreateChecked(value));
+            => Density.FromMicrogramsPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromMicrogramsPerCubicMeter(value.ToQuantityValue());
+            => Density.FromMicrogramsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromMicrogramsPerDeciliter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromMicrogramsPerDeciliter(double)" />
         public static Density MicrogramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromMicrogramsPerDeciliter(QuantityValue.CreateChecked(value));
+            => Density.FromMicrogramsPerDeciliter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromMicrogramsPerDeciliter(value.ToQuantityValue());
+            => Density.FromMicrogramsPerDeciliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(double)" />
         public static Density MicrogramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromMicrogramsPerLiter(QuantityValue.CreateChecked(value));
+            => Density.FromMicrogramsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromMicrogramsPerLiter(value.ToQuantityValue());
+            => Density.FromMicrogramsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(double)" />
         public static Density MicrogramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromMicrogramsPerMilliliter(QuantityValue.CreateChecked(value));
+            => Density.FromMicrogramsPerMilliliter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromMicrogramsPerMilliliter(value.ToQuantityValue());
+            => Density.FromMicrogramsPerMilliliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(double)" />
         public static Density MilligramsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromMilligramsPerCubicMeter(QuantityValue.CreateChecked(value));
+            => Density.FromMilligramsPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromMilligramsPerCubicMeter(value.ToQuantityValue());
+            => Density.FromMilligramsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromMilligramsPerDeciliter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromMilligramsPerDeciliter(double)" />
         public static Density MilligramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromMilligramsPerDeciliter(QuantityValue.CreateChecked(value));
+            => Density.FromMilligramsPerDeciliter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromMilligramsPerDeciliter(value.ToQuantityValue());
+            => Density.FromMilligramsPerDeciliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromMilligramsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromMilligramsPerLiter(double)" />
         public static Density MilligramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromMilligramsPerLiter(QuantityValue.CreateChecked(value));
+            => Density.FromMilligramsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromMilligramsPerLiter(value.ToQuantityValue());
+            => Density.FromMilligramsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(double)" />
         public static Density MilligramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromMilligramsPerMilliliter(QuantityValue.CreateChecked(value));
+            => Density.FromMilligramsPerMilliliter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromMilligramsPerMilliliter(value.ToQuantityValue());
+            => Density.FromMilligramsPerMilliliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromNanogramsPerDeciliter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromNanogramsPerDeciliter(double)" />
         public static Density NanogramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromNanogramsPerDeciliter(QuantityValue.CreateChecked(value));
+            => Density.FromNanogramsPerDeciliter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromNanogramsPerDeciliter(value.ToQuantityValue());
+            => Density.FromNanogramsPerDeciliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromNanogramsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromNanogramsPerLiter(double)" />
         public static Density NanogramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromNanogramsPerLiter(QuantityValue.CreateChecked(value));
+            => Density.FromNanogramsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromNanogramsPerLiter(value.ToQuantityValue());
+            => Density.FromNanogramsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(double)" />
         public static Density NanogramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromNanogramsPerMilliliter(QuantityValue.CreateChecked(value));
+            => Density.FromNanogramsPerMilliliter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromNanogramsPerMilliliter(value.ToQuantityValue());
+            => Density.FromNanogramsPerMilliliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromPicogramsPerDeciliter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromPicogramsPerDeciliter(double)" />
         public static Density PicogramsPerDeciliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromPicogramsPerDeciliter(QuantityValue.CreateChecked(value));
+            => Density.FromPicogramsPerDeciliter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromPicogramsPerDeciliter(value.ToQuantityValue());
+            => Density.FromPicogramsPerDeciliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromPicogramsPerLiter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromPicogramsPerLiter(double)" />
         public static Density PicogramsPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromPicogramsPerLiter(QuantityValue.CreateChecked(value));
+            => Density.FromPicogramsPerLiter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromPicogramsPerLiter(value.ToQuantityValue());
+            => Density.FromPicogramsPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(double)" />
         public static Density PicogramsPerMilliliter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromPicogramsPerMilliliter(QuantityValue.CreateChecked(value));
+            => Density.FromPicogramsPerMilliliter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromPicogramsPerMilliliter(value.ToQuantityValue());
+            => Density.FromPicogramsPerMilliliter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromPoundsPerCubicCentimeter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromPoundsPerCubicCentimeter(double)" />
         public static Density PoundsPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromPoundsPerCubicCentimeter(QuantityValue.CreateChecked(value));
+            => Density.FromPoundsPerCubicCentimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromPoundsPerCubicCentimeter(value.ToQuantityValue());
+            => Density.FromPoundsPerCubicCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromPoundsPerCubicFoot(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromPoundsPerCubicFoot(double)" />
         public static Density PoundsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromPoundsPerCubicFoot(QuantityValue.CreateChecked(value));
+            => Density.FromPoundsPerCubicFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromPoundsPerCubicFoot(value.ToQuantityValue());
+            => Density.FromPoundsPerCubicFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromPoundsPerCubicInch(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromPoundsPerCubicInch(double)" />
         public static Density PoundsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromPoundsPerCubicInch(QuantityValue.CreateChecked(value));
+            => Density.FromPoundsPerCubicInch(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromPoundsPerCubicInch(value.ToQuantityValue());
+            => Density.FromPoundsPerCubicInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromPoundsPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromPoundsPerCubicMeter(double)" />
         public static Density PoundsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromPoundsPerCubicMeter(QuantityValue.CreateChecked(value));
+            => Density.FromPoundsPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromPoundsPerCubicMeter(value.ToQuantityValue());
+            => Density.FromPoundsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromPoundsPerCubicMillimeter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromPoundsPerCubicMillimeter(double)" />
         public static Density PoundsPerCubicMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromPoundsPerCubicMillimeter(QuantityValue.CreateChecked(value));
+            => Density.FromPoundsPerCubicMillimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromPoundsPerCubicMillimeter(value.ToQuantityValue());
+            => Density.FromPoundsPerCubicMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromPoundsPerCubicYard(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromPoundsPerCubicYard(double)" />
         public static Density PoundsPerCubicYard<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromPoundsPerCubicYard(QuantityValue.CreateChecked(value));
+            => Density.FromPoundsPerCubicYard(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromPoundsPerCubicYard(value.ToQuantityValue());
+            => Density.FromPoundsPerCubicYard(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double)" />
         public static Density PoundsPerImperialGallon<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromPoundsPerImperialGallon(QuantityValue.CreateChecked(value));
+            => Density.FromPoundsPerImperialGallon(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromPoundsPerImperialGallon(value.ToQuantityValue());
+            => Density.FromPoundsPerImperialGallon(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double)" />
         public static Density PoundsPerUSGallon<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromPoundsPerUSGallon(QuantityValue.CreateChecked(value));
+            => Density.FromPoundsPerUSGallon(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromPoundsPerUSGallon(value.ToQuantityValue());
+            => Density.FromPoundsPerUSGallon(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromSlugsPerCubicCentimeter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromSlugsPerCubicCentimeter(double)" />
         public static Density SlugsPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromSlugsPerCubicCentimeter(QuantityValue.CreateChecked(value));
+            => Density.FromSlugsPerCubicCentimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromSlugsPerCubicCentimeter(value.ToQuantityValue());
+            => Density.FromSlugsPerCubicCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(double)" />
         public static Density SlugsPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromSlugsPerCubicFoot(QuantityValue.CreateChecked(value));
+            => Density.FromSlugsPerCubicFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromSlugsPerCubicFoot(value.ToQuantityValue());
+            => Density.FromSlugsPerCubicFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromSlugsPerCubicInch(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromSlugsPerCubicInch(double)" />
         public static Density SlugsPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromSlugsPerCubicInch(QuantityValue.CreateChecked(value));
+            => Density.FromSlugsPerCubicInch(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromSlugsPerCubicInch(value.ToQuantityValue());
+            => Density.FromSlugsPerCubicInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromSlugsPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromSlugsPerCubicMeter(double)" />
         public static Density SlugsPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromSlugsPerCubicMeter(QuantityValue.CreateChecked(value));
+            => Density.FromSlugsPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromSlugsPerCubicMeter(value.ToQuantityValue());
+            => Density.FromSlugsPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromSlugsPerCubicMillimeter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromSlugsPerCubicMillimeter(double)" />
         public static Density SlugsPerCubicMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromSlugsPerCubicMillimeter(QuantityValue.CreateChecked(value));
+            => Density.FromSlugsPerCubicMillimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromSlugsPerCubicMillimeter(value.ToQuantityValue());
+            => Density.FromSlugsPerCubicMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromTonnesPerCubicCentimeter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromTonnesPerCubicCentimeter(double)" />
         public static Density TonnesPerCubicCentimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromTonnesPerCubicCentimeter(QuantityValue.CreateChecked(value));
+            => Density.FromTonnesPerCubicCentimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromTonnesPerCubicCentimeter(value.ToQuantityValue());
+            => Density.FromTonnesPerCubicCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromTonnesPerCubicFoot(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromTonnesPerCubicFoot(double)" />
         public static Density TonnesPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromTonnesPerCubicFoot(QuantityValue.CreateChecked(value));
+            => Density.FromTonnesPerCubicFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromTonnesPerCubicFoot(value.ToQuantityValue());
+            => Density.FromTonnesPerCubicFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromTonnesPerCubicInch(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromTonnesPerCubicInch(double)" />
         public static Density TonnesPerCubicInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromTonnesPerCubicInch(QuantityValue.CreateChecked(value));
+            => Density.FromTonnesPerCubicInch(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromTonnesPerCubicInch(value.ToQuantityValue());
+            => Density.FromTonnesPerCubicInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromTonnesPerCubicMeter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromTonnesPerCubicMeter(double)" />
         public static Density TonnesPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromTonnesPerCubicMeter(QuantityValue.CreateChecked(value));
+            => Density.FromTonnesPerCubicMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromTonnesPerCubicMeter(value.ToQuantityValue());
+            => Density.FromTonnesPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Density.FromTonnesPerCubicMillimeter(QuantityValue)" />
+        /// <inheritdoc cref="Density.FromTonnesPerCubicMillimeter(double)" />
         public static Density TonnesPerCubicMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Density.FromTonnesPerCubicMillimeter(QuantityValue.CreateChecked(value));
+            => Density.FromTonnesPerCubicMillimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => Density.FromTonnesPerCubicMillimeter(value.ToQuantityValue());
+            => Density.FromTonnesPerCubicMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

@@ -392,7 +392,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 ppt", MassFractionUnit.PartPerTrillion, 4.2)]
         [InlineData("en-US", "4.2 %", MassFractionUnit.Percent, 4.2)]
         [InlineData("en-US", "4.2 % (w/w)", MassFractionUnit.Percent, 4.2)]
-        public void Parse(string culture, string quantityString, MassFractionUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, MassFractionUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = MassFraction.Parse(quantityString);
@@ -426,7 +426,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 ppt", MassFractionUnit.PartPerTrillion, 4.2)]
         [InlineData("en-US", "4.2 %", MassFractionUnit.Percent, 4.2)]
         [InlineData("en-US", "4.2 % (w/w)", MassFractionUnit.Percent, 4.2)]
-        public void TryParse(string culture, string quantityString, MassFractionUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, MassFractionUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(MassFraction.TryParse(quantityString, out MassFraction parsed));
@@ -953,8 +953,8 @@ namespace UnitsNet.Tests
             var quantity = MassFraction.FromDecimalFractions(firstValue);
             var otherQuantity = MassFraction.FromDecimalFractions(secondValue);
             MassFraction maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, MassFraction.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

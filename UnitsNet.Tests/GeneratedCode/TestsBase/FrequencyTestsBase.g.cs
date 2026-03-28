@@ -376,7 +376,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 с⁻¹", FrequencyUnit.PerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 рад/с", FrequencyUnit.RadianPerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 ТГц", FrequencyUnit.Terahertz, 4.2)]
-        public void Parse(string culture, string quantityString, FrequencyUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, FrequencyUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Frequency.Parse(quantityString);
@@ -406,7 +406,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 с⁻¹", FrequencyUnit.PerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 рад/с", FrequencyUnit.RadianPerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 ТГц", FrequencyUnit.Terahertz, 4.2)]
-        public void TryParse(string culture, string quantityString, FrequencyUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, FrequencyUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Frequency.TryParse(quantityString, out Frequency parsed));
@@ -850,8 +850,8 @@ namespace UnitsNet.Tests
             var quantity = Frequency.FromHertz(firstValue);
             var otherQuantity = Frequency.FromHertz(secondValue);
             Frequency maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Frequency.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

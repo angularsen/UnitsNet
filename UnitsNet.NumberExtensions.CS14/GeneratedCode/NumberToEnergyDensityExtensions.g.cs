@@ -42,100 +42,100 @@ namespace UnitsNet.NumberExtensions.NumberToEnergyDensity
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="EnergyDensity.FromGigajoulesPerCubicMeter(QuantityValue)" />
+            /// <inheritdoc cref="EnergyDensity.FromGigajoulesPerCubicMeter(double)" />
             public EnergyDensity GigajoulesPerCubicMeter
 #if NET7_0_OR_GREATER
-                => EnergyDensity.FromGigajoulesPerCubicMeter(QuantityValue.CreateChecked(value));
+                => EnergyDensity.FromGigajoulesPerCubicMeter(double.CreateChecked(value));
 #else
-                => EnergyDensity.FromGigajoulesPerCubicMeter(value.ToQuantityValue());
+                => EnergyDensity.FromGigajoulesPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="EnergyDensity.FromGigawattHoursPerCubicMeter(QuantityValue)" />
+            /// <inheritdoc cref="EnergyDensity.FromGigawattHoursPerCubicMeter(double)" />
             public EnergyDensity GigawattHoursPerCubicMeter
 #if NET7_0_OR_GREATER
-                => EnergyDensity.FromGigawattHoursPerCubicMeter(QuantityValue.CreateChecked(value));
+                => EnergyDensity.FromGigawattHoursPerCubicMeter(double.CreateChecked(value));
 #else
-                => EnergyDensity.FromGigawattHoursPerCubicMeter(value.ToQuantityValue());
+                => EnergyDensity.FromGigawattHoursPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="EnergyDensity.FromJoulesPerCubicMeter(QuantityValue)" />
+            /// <inheritdoc cref="EnergyDensity.FromJoulesPerCubicMeter(double)" />
             public EnergyDensity JoulesPerCubicMeter
 #if NET7_0_OR_GREATER
-                => EnergyDensity.FromJoulesPerCubicMeter(QuantityValue.CreateChecked(value));
+                => EnergyDensity.FromJoulesPerCubicMeter(double.CreateChecked(value));
 #else
-                => EnergyDensity.FromJoulesPerCubicMeter(value.ToQuantityValue());
+                => EnergyDensity.FromJoulesPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="EnergyDensity.FromKilojoulesPerCubicMeter(QuantityValue)" />
+            /// <inheritdoc cref="EnergyDensity.FromKilojoulesPerCubicMeter(double)" />
             public EnergyDensity KilojoulesPerCubicMeter
 #if NET7_0_OR_GREATER
-                => EnergyDensity.FromKilojoulesPerCubicMeter(QuantityValue.CreateChecked(value));
+                => EnergyDensity.FromKilojoulesPerCubicMeter(double.CreateChecked(value));
 #else
-                => EnergyDensity.FromKilojoulesPerCubicMeter(value.ToQuantityValue());
+                => EnergyDensity.FromKilojoulesPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="EnergyDensity.FromKilowattHoursPerCubicMeter(QuantityValue)" />
+            /// <inheritdoc cref="EnergyDensity.FromKilowattHoursPerCubicMeter(double)" />
             public EnergyDensity KilowattHoursPerCubicMeter
 #if NET7_0_OR_GREATER
-                => EnergyDensity.FromKilowattHoursPerCubicMeter(QuantityValue.CreateChecked(value));
+                => EnergyDensity.FromKilowattHoursPerCubicMeter(double.CreateChecked(value));
 #else
-                => EnergyDensity.FromKilowattHoursPerCubicMeter(value.ToQuantityValue());
+                => EnergyDensity.FromKilowattHoursPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="EnergyDensity.FromMegajoulesPerCubicMeter(QuantityValue)" />
+            /// <inheritdoc cref="EnergyDensity.FromMegajoulesPerCubicMeter(double)" />
             public EnergyDensity MegajoulesPerCubicMeter
 #if NET7_0_OR_GREATER
-                => EnergyDensity.FromMegajoulesPerCubicMeter(QuantityValue.CreateChecked(value));
+                => EnergyDensity.FromMegajoulesPerCubicMeter(double.CreateChecked(value));
 #else
-                => EnergyDensity.FromMegajoulesPerCubicMeter(value.ToQuantityValue());
+                => EnergyDensity.FromMegajoulesPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="EnergyDensity.FromMegawattHoursPerCubicMeter(QuantityValue)" />
+            /// <inheritdoc cref="EnergyDensity.FromMegawattHoursPerCubicMeter(double)" />
             public EnergyDensity MegawattHoursPerCubicMeter
 #if NET7_0_OR_GREATER
-                => EnergyDensity.FromMegawattHoursPerCubicMeter(QuantityValue.CreateChecked(value));
+                => EnergyDensity.FromMegawattHoursPerCubicMeter(double.CreateChecked(value));
 #else
-                => EnergyDensity.FromMegawattHoursPerCubicMeter(value.ToQuantityValue());
+                => EnergyDensity.FromMegawattHoursPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="EnergyDensity.FromPetajoulesPerCubicMeter(QuantityValue)" />
+            /// <inheritdoc cref="EnergyDensity.FromPetajoulesPerCubicMeter(double)" />
             public EnergyDensity PetajoulesPerCubicMeter
 #if NET7_0_OR_GREATER
-                => EnergyDensity.FromPetajoulesPerCubicMeter(QuantityValue.CreateChecked(value));
+                => EnergyDensity.FromPetajoulesPerCubicMeter(double.CreateChecked(value));
 #else
-                => EnergyDensity.FromPetajoulesPerCubicMeter(value.ToQuantityValue());
+                => EnergyDensity.FromPetajoulesPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="EnergyDensity.FromPetawattHoursPerCubicMeter(QuantityValue)" />
+            /// <inheritdoc cref="EnergyDensity.FromPetawattHoursPerCubicMeter(double)" />
             public EnergyDensity PetawattHoursPerCubicMeter
 #if NET7_0_OR_GREATER
-                => EnergyDensity.FromPetawattHoursPerCubicMeter(QuantityValue.CreateChecked(value));
+                => EnergyDensity.FromPetawattHoursPerCubicMeter(double.CreateChecked(value));
 #else
-                => EnergyDensity.FromPetawattHoursPerCubicMeter(value.ToQuantityValue());
+                => EnergyDensity.FromPetawattHoursPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="EnergyDensity.FromTerajoulesPerCubicMeter(QuantityValue)" />
+            /// <inheritdoc cref="EnergyDensity.FromTerajoulesPerCubicMeter(double)" />
             public EnergyDensity TerajoulesPerCubicMeter
 #if NET7_0_OR_GREATER
-                => EnergyDensity.FromTerajoulesPerCubicMeter(QuantityValue.CreateChecked(value));
+                => EnergyDensity.FromTerajoulesPerCubicMeter(double.CreateChecked(value));
 #else
-                => EnergyDensity.FromTerajoulesPerCubicMeter(value.ToQuantityValue());
+                => EnergyDensity.FromTerajoulesPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="EnergyDensity.FromTerawattHoursPerCubicMeter(QuantityValue)" />
+            /// <inheritdoc cref="EnergyDensity.FromTerawattHoursPerCubicMeter(double)" />
             public EnergyDensity TerawattHoursPerCubicMeter
 #if NET7_0_OR_GREATER
-                => EnergyDensity.FromTerawattHoursPerCubicMeter(QuantityValue.CreateChecked(value));
+                => EnergyDensity.FromTerawattHoursPerCubicMeter(double.CreateChecked(value));
 #else
-                => EnergyDensity.FromTerawattHoursPerCubicMeter(value.ToQuantityValue());
+                => EnergyDensity.FromTerawattHoursPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="EnergyDensity.FromWattHoursPerCubicMeter(QuantityValue)" />
+            /// <inheritdoc cref="EnergyDensity.FromWattHoursPerCubicMeter(double)" />
             public EnergyDensity WattHoursPerCubicMeter
 #if NET7_0_OR_GREATER
-                => EnergyDensity.FromWattHoursPerCubicMeter(QuantityValue.CreateChecked(value));
+                => EnergyDensity.FromWattHoursPerCubicMeter(double.CreateChecked(value));
 #else
-                => EnergyDensity.FromWattHoursPerCubicMeter(value.ToQuantityValue());
+                => EnergyDensity.FromWattHoursPerCubicMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

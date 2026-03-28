@@ -238,7 +238,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 dBmW", PowerRatioUnit.DecibelMilliwatt, 4.2)]
         [InlineData("en-US", "4.2 dBm", PowerRatioUnit.DecibelMilliwatt, 4.2)]
         [InlineData("en-US", "4.2 dBW", PowerRatioUnit.DecibelWatt, 4.2)]
-        public void Parse(string culture, string quantityString, PowerRatioUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, PowerRatioUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = PowerRatio.Parse(quantityString);
@@ -250,7 +250,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 dBmW", PowerRatioUnit.DecibelMilliwatt, 4.2)]
         [InlineData("en-US", "4.2 dBm", PowerRatioUnit.DecibelMilliwatt, 4.2)]
         [InlineData("en-US", "4.2 dBW", PowerRatioUnit.DecibelWatt, 4.2)]
-        public void TryParse(string culture, string quantityString, PowerRatioUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, PowerRatioUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(PowerRatio.TryParse(quantityString, out PowerRatio parsed));
@@ -561,8 +561,8 @@ namespace UnitsNet.Tests
             var quantity = PowerRatio.FromDecibelWatts(firstValue);
             var otherQuantity = PowerRatio.FromDecibelWatts(secondValue);
             PowerRatio maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, PowerRatio.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, largerTolerance));

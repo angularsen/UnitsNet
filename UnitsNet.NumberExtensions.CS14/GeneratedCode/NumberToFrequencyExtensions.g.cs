@@ -42,100 +42,100 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Frequency.FromBeatsPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="Frequency.FromBeatsPerMinute(double)" />
             public Frequency BeatsPerMinute
 #if NET7_0_OR_GREATER
-                => Frequency.FromBeatsPerMinute(QuantityValue.CreateChecked(value));
+                => Frequency.FromBeatsPerMinute(double.CreateChecked(value));
 #else
-                => Frequency.FromBeatsPerMinute(value.ToQuantityValue());
+                => Frequency.FromBeatsPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Frequency.FromCyclesPerHour(QuantityValue)" />
+            /// <inheritdoc cref="Frequency.FromCyclesPerHour(double)" />
             public Frequency CyclesPerHour
 #if NET7_0_OR_GREATER
-                => Frequency.FromCyclesPerHour(QuantityValue.CreateChecked(value));
+                => Frequency.FromCyclesPerHour(double.CreateChecked(value));
 #else
-                => Frequency.FromCyclesPerHour(value.ToQuantityValue());
+                => Frequency.FromCyclesPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Frequency.FromCyclesPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="Frequency.FromCyclesPerMinute(double)" />
             public Frequency CyclesPerMinute
 #if NET7_0_OR_GREATER
-                => Frequency.FromCyclesPerMinute(QuantityValue.CreateChecked(value));
+                => Frequency.FromCyclesPerMinute(double.CreateChecked(value));
 #else
-                => Frequency.FromCyclesPerMinute(value.ToQuantityValue());
+                => Frequency.FromCyclesPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Frequency.FromGigahertz(QuantityValue)" />
+            /// <inheritdoc cref="Frequency.FromGigahertz(double)" />
             public Frequency Gigahertz
 #if NET7_0_OR_GREATER
-                => Frequency.FromGigahertz(QuantityValue.CreateChecked(value));
+                => Frequency.FromGigahertz(double.CreateChecked(value));
 #else
-                => Frequency.FromGigahertz(value.ToQuantityValue());
+                => Frequency.FromGigahertz(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Frequency.FromHertz(QuantityValue)" />
+            /// <inheritdoc cref="Frequency.FromHertz(double)" />
             public Frequency Hertz
 #if NET7_0_OR_GREATER
-                => Frequency.FromHertz(QuantityValue.CreateChecked(value));
+                => Frequency.FromHertz(double.CreateChecked(value));
 #else
-                => Frequency.FromHertz(value.ToQuantityValue());
+                => Frequency.FromHertz(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Frequency.FromKilohertz(QuantityValue)" />
+            /// <inheritdoc cref="Frequency.FromKilohertz(double)" />
             public Frequency Kilohertz
 #if NET7_0_OR_GREATER
-                => Frequency.FromKilohertz(QuantityValue.CreateChecked(value));
+                => Frequency.FromKilohertz(double.CreateChecked(value));
 #else
-                => Frequency.FromKilohertz(value.ToQuantityValue());
+                => Frequency.FromKilohertz(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Frequency.FromMegahertz(QuantityValue)" />
+            /// <inheritdoc cref="Frequency.FromMegahertz(double)" />
             public Frequency Megahertz
 #if NET7_0_OR_GREATER
-                => Frequency.FromMegahertz(QuantityValue.CreateChecked(value));
+                => Frequency.FromMegahertz(double.CreateChecked(value));
 #else
-                => Frequency.FromMegahertz(value.ToQuantityValue());
+                => Frequency.FromMegahertz(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Frequency.FromMicrohertz(QuantityValue)" />
+            /// <inheritdoc cref="Frequency.FromMicrohertz(double)" />
             public Frequency Microhertz
 #if NET7_0_OR_GREATER
-                => Frequency.FromMicrohertz(QuantityValue.CreateChecked(value));
+                => Frequency.FromMicrohertz(double.CreateChecked(value));
 #else
-                => Frequency.FromMicrohertz(value.ToQuantityValue());
+                => Frequency.FromMicrohertz(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Frequency.FromMillihertz(QuantityValue)" />
+            /// <inheritdoc cref="Frequency.FromMillihertz(double)" />
             public Frequency Millihertz
 #if NET7_0_OR_GREATER
-                => Frequency.FromMillihertz(QuantityValue.CreateChecked(value));
+                => Frequency.FromMillihertz(double.CreateChecked(value));
 #else
-                => Frequency.FromMillihertz(value.ToQuantityValue());
+                => Frequency.FromMillihertz(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Frequency.FromPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="Frequency.FromPerSecond(double)" />
             public Frequency PerSecond
 #if NET7_0_OR_GREATER
-                => Frequency.FromPerSecond(QuantityValue.CreateChecked(value));
+                => Frequency.FromPerSecond(double.CreateChecked(value));
 #else
-                => Frequency.FromPerSecond(value.ToQuantityValue());
+                => Frequency.FromPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Frequency.FromRadiansPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="Frequency.FromRadiansPerSecond(double)" />
             public Frequency RadiansPerSecond
 #if NET7_0_OR_GREATER
-                => Frequency.FromRadiansPerSecond(QuantityValue.CreateChecked(value));
+                => Frequency.FromRadiansPerSecond(double.CreateChecked(value));
 #else
-                => Frequency.FromRadiansPerSecond(value.ToQuantityValue());
+                => Frequency.FromRadiansPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Frequency.FromTerahertz(QuantityValue)" />
+            /// <inheritdoc cref="Frequency.FromTerahertz(double)" />
             public Frequency Terahertz
 #if NET7_0_OR_GREATER
-                => Frequency.FromTerahertz(QuantityValue.CreateChecked(value));
+                => Frequency.FromTerahertz(double.CreateChecked(value));
 #else
-                => Frequency.FromTerahertz(value.ToQuantityValue());
+                => Frequency.FromTerahertz(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

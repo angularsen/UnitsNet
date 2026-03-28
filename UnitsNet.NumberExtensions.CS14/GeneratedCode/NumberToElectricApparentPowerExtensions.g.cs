@@ -42,52 +42,52 @@ namespace UnitsNet.NumberExtensions.NumberToElectricApparentPower
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ElectricApparentPower.FromGigavoltamperes(QuantityValue)" />
+            /// <inheritdoc cref="ElectricApparentPower.FromGigavoltamperes(double)" />
             public ElectricApparentPower Gigavoltamperes
 #if NET7_0_OR_GREATER
-                => ElectricApparentPower.FromGigavoltamperes(QuantityValue.CreateChecked(value));
+                => ElectricApparentPower.FromGigavoltamperes(double.CreateChecked(value));
 #else
-                => ElectricApparentPower.FromGigavoltamperes(value.ToQuantityValue());
+                => ElectricApparentPower.FromGigavoltamperes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricApparentPower.FromKilovoltamperes(QuantityValue)" />
+            /// <inheritdoc cref="ElectricApparentPower.FromKilovoltamperes(double)" />
             public ElectricApparentPower Kilovoltamperes
 #if NET7_0_OR_GREATER
-                => ElectricApparentPower.FromKilovoltamperes(QuantityValue.CreateChecked(value));
+                => ElectricApparentPower.FromKilovoltamperes(double.CreateChecked(value));
 #else
-                => ElectricApparentPower.FromKilovoltamperes(value.ToQuantityValue());
+                => ElectricApparentPower.FromKilovoltamperes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricApparentPower.FromMegavoltamperes(QuantityValue)" />
+            /// <inheritdoc cref="ElectricApparentPower.FromMegavoltamperes(double)" />
             public ElectricApparentPower Megavoltamperes
 #if NET7_0_OR_GREATER
-                => ElectricApparentPower.FromMegavoltamperes(QuantityValue.CreateChecked(value));
+                => ElectricApparentPower.FromMegavoltamperes(double.CreateChecked(value));
 #else
-                => ElectricApparentPower.FromMegavoltamperes(value.ToQuantityValue());
+                => ElectricApparentPower.FromMegavoltamperes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricApparentPower.FromMicrovoltamperes(QuantityValue)" />
+            /// <inheritdoc cref="ElectricApparentPower.FromMicrovoltamperes(double)" />
             public ElectricApparentPower Microvoltamperes
 #if NET7_0_OR_GREATER
-                => ElectricApparentPower.FromMicrovoltamperes(QuantityValue.CreateChecked(value));
+                => ElectricApparentPower.FromMicrovoltamperes(double.CreateChecked(value));
 #else
-                => ElectricApparentPower.FromMicrovoltamperes(value.ToQuantityValue());
+                => ElectricApparentPower.FromMicrovoltamperes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricApparentPower.FromMillivoltamperes(QuantityValue)" />
+            /// <inheritdoc cref="ElectricApparentPower.FromMillivoltamperes(double)" />
             public ElectricApparentPower Millivoltamperes
 #if NET7_0_OR_GREATER
-                => ElectricApparentPower.FromMillivoltamperes(QuantityValue.CreateChecked(value));
+                => ElectricApparentPower.FromMillivoltamperes(double.CreateChecked(value));
 #else
-                => ElectricApparentPower.FromMillivoltamperes(value.ToQuantityValue());
+                => ElectricApparentPower.FromMillivoltamperes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricApparentPower.FromVoltamperes(QuantityValue)" />
+            /// <inheritdoc cref="ElectricApparentPower.FromVoltamperes(double)" />
             public ElectricApparentPower Voltamperes
 #if NET7_0_OR_GREATER
-                => ElectricApparentPower.FromVoltamperes(QuantityValue.CreateChecked(value));
+                => ElectricApparentPower.FromVoltamperes(double.CreateChecked(value));
 #else
-                => ElectricApparentPower.FromVoltamperes(value.ToQuantityValue());
+                => ElectricApparentPower.FromVoltamperes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

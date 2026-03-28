@@ -304,7 +304,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kVAh", ElectricApparentEnergyUnit.KilovoltampereHour, 4.2)]
         [InlineData("en-US", "4.2 MVAh", ElectricApparentEnergyUnit.MegavoltampereHour, 4.2)]
         [InlineData("en-US", "4.2 VAh", ElectricApparentEnergyUnit.VoltampereHour, 4.2)]
-        public void Parse(string culture, string quantityString, ElectricApparentEnergyUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, ElectricApparentEnergyUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ElectricApparentEnergy.Parse(quantityString);
@@ -316,7 +316,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kVAh", ElectricApparentEnergyUnit.KilovoltampereHour, 4.2)]
         [InlineData("en-US", "4.2 MVAh", ElectricApparentEnergyUnit.MegavoltampereHour, 4.2)]
         [InlineData("en-US", "4.2 VAh", ElectricApparentEnergyUnit.VoltampereHour, 4.2)]
-        public void TryParse(string culture, string quantityString, ElectricApparentEnergyUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, ElectricApparentEnergyUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ElectricApparentEnergy.TryParse(quantityString, out ElectricApparentEnergy parsed));
@@ -625,8 +625,8 @@ namespace UnitsNet.Tests
             var quantity = ElectricApparentEnergy.FromVoltampereHours(firstValue);
             var otherQuantity = ElectricApparentEnergy.FromVoltampereHours(secondValue);
             ElectricApparentEnergy maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, ElectricApparentEnergy.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

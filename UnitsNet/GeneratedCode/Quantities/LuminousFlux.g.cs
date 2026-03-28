@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct LuminousFlux :
         IArithmeticQuantity<LuminousFlux, LuminousFluxUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<LuminousFlux, LuminousFlux, QuantityValue>,
+        IDivisionOperators<LuminousFlux, LuminousFlux, double>,
         IDivisionOperators<LuminousFlux, Illuminance, Area>,
         IDivisionOperators<LuminousFlux, Area, Illuminance>,
         IComparisonOperators<LuminousFlux, LuminousFlux, bool>,
@@ -56,7 +56,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -135,7 +135,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public LuminousFlux(QuantityValue value, LuminousFluxUnit unit)
+        public LuminousFlux(double value, LuminousFluxUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -149,7 +149,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public LuminousFlux(QuantityValue value, UnitSystem unitSystem)
+        public LuminousFlux(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -191,7 +191,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public LuminousFluxUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -225,9 +225,9 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LuminousFluxUnit.Lumen"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LuminousFluxUnit.Lumen"/>
         /// </summary>
-        public QuantityValue Lumens => this.As(LuminousFluxUnit.Lumen);
+        public double Lumens => this.As(LuminousFluxUnit.Lumen);
 
         #endregion
 
@@ -261,7 +261,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="LuminousFlux"/> from <see cref="LuminousFluxUnit.Lumen"/>.
         /// </summary>
-        public static LuminousFlux FromLumens(QuantityValue value)
+        public static LuminousFlux FromLumens(double value)
         {
             return new LuminousFlux(value, LuminousFluxUnit.Lumen);
         }
@@ -272,7 +272,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>LuminousFlux unit value.</returns>
-        public static LuminousFlux From(QuantityValue value, LuminousFluxUnit fromUnit)
+        public static LuminousFlux From(double value, LuminousFluxUnit fromUnit)
         {
             return new LuminousFlux(value, fromUnit);
         }
@@ -437,25 +437,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="LuminousFlux"/> from multiplying value and <see cref="LuminousFlux"/>.</summary>
-        public static LuminousFlux operator *(QuantityValue left, LuminousFlux right)
+        public static LuminousFlux operator *(double left, LuminousFlux right)
         {
             return new LuminousFlux(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="LuminousFlux"/> from multiplying value and <see cref="LuminousFlux"/>.</summary>
-        public static LuminousFlux operator *(LuminousFlux left, QuantityValue right)
+        public static LuminousFlux operator *(LuminousFlux left, double right)
         {
             return new LuminousFlux(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="LuminousFlux"/> from dividing <see cref="LuminousFlux"/> by value.</summary>
-        public static LuminousFlux operator /(LuminousFlux left, QuantityValue right)
+        public static LuminousFlux operator /(LuminousFlux left, double right)
         {
             return new LuminousFlux(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="LuminousFlux"/> by <see cref="LuminousFlux"/>.</summary>
-        public static QuantityValue operator /(LuminousFlux left, LuminousFlux right)
+        public static double operator /(LuminousFlux left, LuminousFlux right)
         {
             return left.Lumens / right.Lumens;
         }

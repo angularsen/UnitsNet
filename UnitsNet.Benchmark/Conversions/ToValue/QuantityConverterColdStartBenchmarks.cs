@@ -15,7 +15,7 @@ namespace UnitsNet.Benchmark.Conversions.ToValue;
 [SimpleJob(RunStrategy.ColdStart, launchCount:10)]
 public class QuantityConverterColdStartBenchmarks
 {
-    private static readonly QuantityValue Value = 123.456;
+    private static readonly double Value = 123.456;
 
     [Params(typeof(Volume), typeof(Mass), typeof(Density), typeof(Pressure))]
     public Type TypesToTest { get; set; }

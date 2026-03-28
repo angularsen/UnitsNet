@@ -32,37 +32,37 @@ namespace UnitsNet.NumberExtensions.NumberToElectricApparentEnergy
     /// </summary>
     public static class NumberToElectricApparentEnergyExtensions
     {
-        /// <inheritdoc cref="ElectricApparentEnergy.FromKilovoltampereHours(QuantityValue)" />
+        /// <inheritdoc cref="ElectricApparentEnergy.FromKilovoltampereHours(double)" />
         public static ElectricApparentEnergy KilovoltampereHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricApparentEnergy.FromKilovoltampereHours(QuantityValue.CreateChecked(value));
+            => ElectricApparentEnergy.FromKilovoltampereHours(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricApparentEnergy.FromKilovoltampereHours(value.ToQuantityValue());
+            => ElectricApparentEnergy.FromKilovoltampereHours(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricApparentEnergy.FromMegavoltampereHours(QuantityValue)" />
+        /// <inheritdoc cref="ElectricApparentEnergy.FromMegavoltampereHours(double)" />
         public static ElectricApparentEnergy MegavoltampereHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricApparentEnergy.FromMegavoltampereHours(QuantityValue.CreateChecked(value));
+            => ElectricApparentEnergy.FromMegavoltampereHours(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricApparentEnergy.FromMegavoltampereHours(value.ToQuantityValue());
+            => ElectricApparentEnergy.FromMegavoltampereHours(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricApparentEnergy.FromVoltampereHours(QuantityValue)" />
+        /// <inheritdoc cref="ElectricApparentEnergy.FromVoltampereHours(double)" />
         public static ElectricApparentEnergy VoltampereHours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricApparentEnergy.FromVoltampereHours(QuantityValue.CreateChecked(value));
+            => ElectricApparentEnergy.FromVoltampereHours(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricApparentEnergy.FromVoltampereHours(value.ToQuantityValue());
+            => ElectricApparentEnergy.FromVoltampereHours(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

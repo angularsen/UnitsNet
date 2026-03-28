@@ -569,7 +569,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 Tbps", BitRateUnit.TerabitPerSecond, 4.2)]
         [InlineData("en-US", "4.2 TB/s", BitRateUnit.TerabytePerSecond, 4.2)]
         [InlineData("en-US", "4.2 To/s", BitRateUnit.TeraoctetPerSecond, 4.2)]
-        public void Parse(string culture, string quantityString, BitRateUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, BitRateUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = BitRate.Parse(quantityString);
@@ -630,7 +630,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 Tbps", BitRateUnit.TerabitPerSecond, 4.2)]
         [InlineData("en-US", "4.2 TB/s", BitRateUnit.TerabytePerSecond, 4.2)]
         [InlineData("en-US", "4.2 To/s", BitRateUnit.TeraoctetPerSecond, 4.2)]
-        public void TryParse(string culture, string quantityString, BitRateUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, BitRateUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(BitRate.TryParse(quantityString, out BitRate parsed));
@@ -1403,8 +1403,8 @@ namespace UnitsNet.Tests
             var quantity = BitRate.FromBitsPerSecond(firstValue);
             var otherQuantity = BitRate.FromBitsPerSecond(secondValue);
             BitRate maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, BitRate.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

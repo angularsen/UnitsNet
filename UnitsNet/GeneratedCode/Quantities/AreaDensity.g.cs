@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct AreaDensity :
         IArithmeticQuantity<AreaDensity, AreaDensityUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<AreaDensity, AreaDensity, QuantityValue>,
+        IDivisionOperators<AreaDensity, AreaDensity, double>,
         IMultiplyOperators<AreaDensity, Area, Mass>,
         IComparisonOperators<AreaDensity, AreaDensity, bool>,
         IParsable<AreaDensity>,
@@ -52,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -137,7 +137,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public AreaDensity(QuantityValue value, AreaDensityUnit unit)
+        public AreaDensity(double value, AreaDensityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public AreaDensity(QuantityValue value, UnitSystem unitSystem)
+        public AreaDensity(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -193,7 +193,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public AreaDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -227,19 +227,19 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaDensityUnit.GramPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.GramPerSquareMeter"/>
         /// </summary>
-        public QuantityValue GramsPerSquareMeter => this.As(AreaDensityUnit.GramPerSquareMeter);
+        public double GramsPerSquareMeter => this.As(AreaDensityUnit.GramPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>
         /// </summary>
-        public QuantityValue KilogramsPerSquareMeter => this.As(AreaDensityUnit.KilogramPerSquareMeter);
+        public double KilogramsPerSquareMeter => this.As(AreaDensityUnit.KilogramPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaDensityUnit.MilligramPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.MilligramPerSquareMeter"/>
         /// </summary>
-        public QuantityValue MilligramsPerSquareMeter => this.As(AreaDensityUnit.MilligramPerSquareMeter);
+        public double MilligramsPerSquareMeter => this.As(AreaDensityUnit.MilligramPerSquareMeter);
 
         #endregion
 
@@ -273,7 +273,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.GramPerSquareMeter"/>.
         /// </summary>
-        public static AreaDensity FromGramsPerSquareMeter(QuantityValue value)
+        public static AreaDensity FromGramsPerSquareMeter(double value)
         {
             return new AreaDensity(value, AreaDensityUnit.GramPerSquareMeter);
         }
@@ -281,7 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.KilogramPerSquareMeter"/>.
         /// </summary>
-        public static AreaDensity FromKilogramsPerSquareMeter(QuantityValue value)
+        public static AreaDensity FromKilogramsPerSquareMeter(double value)
         {
             return new AreaDensity(value, AreaDensityUnit.KilogramPerSquareMeter);
         }
@@ -289,7 +289,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.MilligramPerSquareMeter"/>.
         /// </summary>
-        public static AreaDensity FromMilligramsPerSquareMeter(QuantityValue value)
+        public static AreaDensity FromMilligramsPerSquareMeter(double value)
         {
             return new AreaDensity(value, AreaDensityUnit.MilligramPerSquareMeter);
         }
@@ -300,7 +300,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AreaDensity unit value.</returns>
-        public static AreaDensity From(QuantityValue value, AreaDensityUnit fromUnit)
+        public static AreaDensity From(double value, AreaDensityUnit fromUnit)
         {
             return new AreaDensity(value, fromUnit);
         }
@@ -465,25 +465,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="AreaDensity"/> from multiplying value and <see cref="AreaDensity"/>.</summary>
-        public static AreaDensity operator *(QuantityValue left, AreaDensity right)
+        public static AreaDensity operator *(double left, AreaDensity right)
         {
             return new AreaDensity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="AreaDensity"/> from multiplying value and <see cref="AreaDensity"/>.</summary>
-        public static AreaDensity operator *(AreaDensity left, QuantityValue right)
+        public static AreaDensity operator *(AreaDensity left, double right)
         {
             return new AreaDensity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="AreaDensity"/> from dividing <see cref="AreaDensity"/> by value.</summary>
-        public static AreaDensity operator /(AreaDensity left, QuantityValue right)
+        public static AreaDensity operator /(AreaDensity left, double right)
         {
             return new AreaDensity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="AreaDensity"/> by <see cref="AreaDensity"/>.</summary>
-        public static QuantityValue operator /(AreaDensity left, AreaDensity right)
+        public static double operator /(AreaDensity left, AreaDensity right)
         {
             return left.KilogramsPerSquareMeter / right.KilogramsPerSquareMeter;
         }

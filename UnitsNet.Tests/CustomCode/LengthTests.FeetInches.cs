@@ -16,7 +16,7 @@ public class FeetInchesTests
     public void FeetInchesFrom()
     {
         var meter = Length.FromFeetInches(2, 3);
-        Assert.Equal(0.6858m, meter.Meters);
+        Assert.Equal(0.6858, meter.Meters);
     }
 
     [Fact]

@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct TemperatureDelta :
         IArithmeticQuantity<TemperatureDelta, TemperatureDeltaUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<TemperatureDelta, TemperatureDelta, QuantityValue>,
+        IDivisionOperators<TemperatureDelta, TemperatureDelta, double>,
         IDivisionOperators<TemperatureDelta, TemperatureChangeRate, Duration>,
         IMultiplyOperators<TemperatureDelta, Entropy, Energy>,
         IDivisionOperators<TemperatureDelta, TemperatureGradient, Length>,
@@ -58,7 +58,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -161,7 +161,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public TemperatureDelta(QuantityValue value, TemperatureDeltaUnit unit)
+        public TemperatureDelta(double value, TemperatureDeltaUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -175,7 +175,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public TemperatureDelta(QuantityValue value, UnitSystem unitSystem)
+        public TemperatureDelta(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -217,7 +217,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public TemperatureDeltaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -251,49 +251,49 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeCelsius"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeCelsius"/>
         /// </summary>
-        public QuantityValue DegreesCelsius => this.As(TemperatureDeltaUnit.DegreeCelsius);
+        public double DegreesCelsius => this.As(TemperatureDeltaUnit.DegreeCelsius);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeDelisle"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeDelisle"/>
         /// </summary>
-        public QuantityValue DegreesDelisle => this.As(TemperatureDeltaUnit.DegreeDelisle);
+        public double DegreesDelisle => this.As(TemperatureDeltaUnit.DegreeDelisle);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeFahrenheit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeFahrenheit"/>
         /// </summary>
-        public QuantityValue DegreesFahrenheit => this.As(TemperatureDeltaUnit.DegreeFahrenheit);
+        public double DegreesFahrenheit => this.As(TemperatureDeltaUnit.DegreeFahrenheit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeNewton"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeNewton"/>
         /// </summary>
-        public QuantityValue DegreesNewton => this.As(TemperatureDeltaUnit.DegreeNewton);
+        public double DegreesNewton => this.As(TemperatureDeltaUnit.DegreeNewton);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeRankine"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeRankine"/>
         /// </summary>
-        public QuantityValue DegreesRankine => this.As(TemperatureDeltaUnit.DegreeRankine);
+        public double DegreesRankine => this.As(TemperatureDeltaUnit.DegreeRankine);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeReaumur"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeReaumur"/>
         /// </summary>
-        public QuantityValue DegreesReaumur => this.As(TemperatureDeltaUnit.DegreeReaumur);
+        public double DegreesReaumur => this.As(TemperatureDeltaUnit.DegreeReaumur);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeRoemer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.DegreeRoemer"/>
         /// </summary>
-        public QuantityValue DegreesRoemer => this.As(TemperatureDeltaUnit.DegreeRoemer);
+        public double DegreesRoemer => this.As(TemperatureDeltaUnit.DegreeRoemer);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.Kelvin"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.Kelvin"/>
         /// </summary>
-        public QuantityValue Kelvins => this.As(TemperatureDeltaUnit.Kelvin);
+        public double Kelvins => this.As(TemperatureDeltaUnit.Kelvin);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.MillidegreeCelsius"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureDeltaUnit.MillidegreeCelsius"/>
         /// </summary>
-        public QuantityValue MillidegreesCelsius => this.As(TemperatureDeltaUnit.MillidegreeCelsius);
+        public double MillidegreesCelsius => this.As(TemperatureDeltaUnit.MillidegreeCelsius);
 
         #endregion
 
@@ -327,7 +327,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeCelsius"/>.
         /// </summary>
-        public static TemperatureDelta FromDegreesCelsius(QuantityValue value)
+        public static TemperatureDelta FromDegreesCelsius(double value)
         {
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeCelsius);
         }
@@ -335,7 +335,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeDelisle"/>.
         /// </summary>
-        public static TemperatureDelta FromDegreesDelisle(QuantityValue value)
+        public static TemperatureDelta FromDegreesDelisle(double value)
         {
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeDelisle);
         }
@@ -343,7 +343,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeFahrenheit"/>.
         /// </summary>
-        public static TemperatureDelta FromDegreesFahrenheit(QuantityValue value)
+        public static TemperatureDelta FromDegreesFahrenheit(double value)
         {
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeFahrenheit);
         }
@@ -351,7 +351,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeNewton"/>.
         /// </summary>
-        public static TemperatureDelta FromDegreesNewton(QuantityValue value)
+        public static TemperatureDelta FromDegreesNewton(double value)
         {
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeNewton);
         }
@@ -359,7 +359,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeRankine"/>.
         /// </summary>
-        public static TemperatureDelta FromDegreesRankine(QuantityValue value)
+        public static TemperatureDelta FromDegreesRankine(double value)
         {
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeRankine);
         }
@@ -367,7 +367,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeReaumur"/>.
         /// </summary>
-        public static TemperatureDelta FromDegreesReaumur(QuantityValue value)
+        public static TemperatureDelta FromDegreesReaumur(double value)
         {
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeReaumur);
         }
@@ -375,7 +375,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.DegreeRoemer"/>.
         /// </summary>
-        public static TemperatureDelta FromDegreesRoemer(QuantityValue value)
+        public static TemperatureDelta FromDegreesRoemer(double value)
         {
             return new TemperatureDelta(value, TemperatureDeltaUnit.DegreeRoemer);
         }
@@ -383,7 +383,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.Kelvin"/>.
         /// </summary>
-        public static TemperatureDelta FromKelvins(QuantityValue value)
+        public static TemperatureDelta FromKelvins(double value)
         {
             return new TemperatureDelta(value, TemperatureDeltaUnit.Kelvin);
         }
@@ -391,7 +391,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureDelta"/> from <see cref="TemperatureDeltaUnit.MillidegreeCelsius"/>.
         /// </summary>
-        public static TemperatureDelta FromMillidegreesCelsius(QuantityValue value)
+        public static TemperatureDelta FromMillidegreesCelsius(double value)
         {
             return new TemperatureDelta(value, TemperatureDeltaUnit.MillidegreeCelsius);
         }
@@ -402,7 +402,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>TemperatureDelta unit value.</returns>
-        public static TemperatureDelta From(QuantityValue value, TemperatureDeltaUnit fromUnit)
+        public static TemperatureDelta From(double value, TemperatureDeltaUnit fromUnit)
         {
             return new TemperatureDelta(value, fromUnit);
         }
@@ -567,25 +567,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="TemperatureDelta"/> from multiplying value and <see cref="TemperatureDelta"/>.</summary>
-        public static TemperatureDelta operator *(QuantityValue left, TemperatureDelta right)
+        public static TemperatureDelta operator *(double left, TemperatureDelta right)
         {
             return new TemperatureDelta(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="TemperatureDelta"/> from multiplying value and <see cref="TemperatureDelta"/>.</summary>
-        public static TemperatureDelta operator *(TemperatureDelta left, QuantityValue right)
+        public static TemperatureDelta operator *(TemperatureDelta left, double right)
         {
             return new TemperatureDelta(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="TemperatureDelta"/> from dividing <see cref="TemperatureDelta"/> by value.</summary>
-        public static TemperatureDelta operator /(TemperatureDelta left, QuantityValue right)
+        public static TemperatureDelta operator /(TemperatureDelta left, double right)
         {
             return new TemperatureDelta(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="TemperatureDelta"/> by <see cref="TemperatureDelta"/>.</summary>
-        public static QuantityValue operator /(TemperatureDelta left, TemperatureDelta right)
+        public static double operator /(TemperatureDelta left, TemperatureDelta right)
         {
             return left.Kelvins / right.Kelvins;
         }

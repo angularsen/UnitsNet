@@ -32,92 +32,92 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactance
     /// </summary>
     public static class NumberToElectricReactanceExtensions
     {
-        /// <inheritdoc cref="ElectricReactance.FromGigaohms(QuantityValue)" />
+        /// <inheritdoc cref="ElectricReactance.FromGigaohms(double)" />
         public static ElectricReactance Gigaohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricReactance.FromGigaohms(QuantityValue.CreateChecked(value));
+            => ElectricReactance.FromGigaohms(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricReactance.FromGigaohms(value.ToQuantityValue());
+            => ElectricReactance.FromGigaohms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricReactance.FromKiloohms(QuantityValue)" />
+        /// <inheritdoc cref="ElectricReactance.FromKiloohms(double)" />
         public static ElectricReactance Kiloohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricReactance.FromKiloohms(QuantityValue.CreateChecked(value));
+            => ElectricReactance.FromKiloohms(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricReactance.FromKiloohms(value.ToQuantityValue());
+            => ElectricReactance.FromKiloohms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricReactance.FromMegaohms(QuantityValue)" />
+        /// <inheritdoc cref="ElectricReactance.FromMegaohms(double)" />
         public static ElectricReactance Megaohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricReactance.FromMegaohms(QuantityValue.CreateChecked(value));
+            => ElectricReactance.FromMegaohms(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricReactance.FromMegaohms(value.ToQuantityValue());
+            => ElectricReactance.FromMegaohms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricReactance.FromMicroohms(QuantityValue)" />
+        /// <inheritdoc cref="ElectricReactance.FromMicroohms(double)" />
         public static ElectricReactance Microohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricReactance.FromMicroohms(QuantityValue.CreateChecked(value));
+            => ElectricReactance.FromMicroohms(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricReactance.FromMicroohms(value.ToQuantityValue());
+            => ElectricReactance.FromMicroohms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricReactance.FromMilliohms(QuantityValue)" />
+        /// <inheritdoc cref="ElectricReactance.FromMilliohms(double)" />
         public static ElectricReactance Milliohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricReactance.FromMilliohms(QuantityValue.CreateChecked(value));
+            => ElectricReactance.FromMilliohms(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricReactance.FromMilliohms(value.ToQuantityValue());
+            => ElectricReactance.FromMilliohms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricReactance.FromNanoohms(QuantityValue)" />
+        /// <inheritdoc cref="ElectricReactance.FromNanoohms(double)" />
         public static ElectricReactance Nanoohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricReactance.FromNanoohms(QuantityValue.CreateChecked(value));
+            => ElectricReactance.FromNanoohms(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricReactance.FromNanoohms(value.ToQuantityValue());
+            => ElectricReactance.FromNanoohms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricReactance.FromOhms(QuantityValue)" />
+        /// <inheritdoc cref="ElectricReactance.FromOhms(double)" />
         public static ElectricReactance Ohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricReactance.FromOhms(QuantityValue.CreateChecked(value));
+            => ElectricReactance.FromOhms(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricReactance.FromOhms(value.ToQuantityValue());
+            => ElectricReactance.FromOhms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ElectricReactance.FromTeraohms(QuantityValue)" />
+        /// <inheritdoc cref="ElectricReactance.FromTeraohms(double)" />
         public static ElectricReactance Teraohms<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricReactance.FromTeraohms(QuantityValue.CreateChecked(value));
+            => ElectricReactance.FromTeraohms(double.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricReactance.FromTeraohms(value.ToQuantityValue());
+            => ElectricReactance.FromTeraohms(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

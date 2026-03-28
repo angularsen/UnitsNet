@@ -20,7 +20,7 @@ public partial struct Pressure
     public static Pressure FromElevation(Length elevation, byte significantDigits = 13)
     {
         // Millibars = 1013.25 * (1 - (Length (Feet) / 145366.45)) ^ (1 / 0.190284)
-        return new Pressure(QuantityValue.FromDoubleRounded(1013.25 * Math.Pow(1 - elevation.Feet.ToDouble() / 145366.45, 1 / 0.190284), significantDigits),
+        return new Pressure(1013.25 * Math.Pow(1 - elevation.Feet / 145366.45, 1 / 0.190284),
             PressureUnit.Millibar);
     }
 
@@ -39,7 +39,7 @@ public partial struct Pressure
     public Length ToElevation(byte significantDigits = 15)
     {
         // Length (Feet) = 145366.45 * (1 - (Millibars / 1013.25) ^ 0.190284)
-        return new Length(QuantityValue.FromDoubleRounded(145366.45 * (1 - Math.Pow(Millibars.ToDouble() / 1013.25, 0.190284)), significantDigits),
+        return new Length(145366.45 * (1 - Math.Pow(Millibars / 1013.25, 0.190284)),
             LengthUnit.Foot);
     }
 }

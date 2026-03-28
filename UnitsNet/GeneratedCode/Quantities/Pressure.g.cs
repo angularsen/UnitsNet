@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct Pressure :
         IArithmeticQuantity<Pressure, PressureUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Pressure, Pressure, QuantityValue>,
+        IDivisionOperators<Pressure, Pressure, double>,
         IDivisionOperators<Pressure, PressureChangeRate, Duration>,
         IDivisionOperators<Pressure, ReciprocalArea, Force>,
         IMultiplyOperators<Pressure, Area, Force>,
@@ -61,7 +61,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -281,7 +281,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Pressure(QuantityValue value, PressureUnit unit)
+        public Pressure(double value, PressureUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -295,7 +295,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Pressure(QuantityValue value, UnitSystem unitSystem)
+        public Pressure(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -337,7 +337,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public PressureUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -371,244 +371,244 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Atmosphere"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Atmosphere"/>
         /// </summary>
-        public QuantityValue Atmospheres => this.As(PressureUnit.Atmosphere);
+        public double Atmospheres => this.As(PressureUnit.Atmosphere);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Bar"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Bar"/>
         /// </summary>
-        public QuantityValue Bars => this.As(PressureUnit.Bar);
+        public double Bars => this.As(PressureUnit.Bar);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Centibar"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Centibar"/>
         /// </summary>
-        public QuantityValue Centibars => this.As(PressureUnit.Centibar);
+        public double Centibars => this.As(PressureUnit.Centibar);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.CentimeterOfWaterColumn"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.CentimeterOfWaterColumn"/>
         /// </summary>
-        public QuantityValue CentimetersOfWaterColumn => this.As(PressureUnit.CentimeterOfWaterColumn);
+        public double CentimetersOfWaterColumn => this.As(PressureUnit.CentimeterOfWaterColumn);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Decapascal"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Decapascal"/>
         /// </summary>
-        public QuantityValue Decapascals => this.As(PressureUnit.Decapascal);
+        public double Decapascals => this.As(PressureUnit.Decapascal);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Decibar"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Decibar"/>
         /// </summary>
-        public QuantityValue Decibars => this.As(PressureUnit.Decibar);
+        public double Decibars => this.As(PressureUnit.Decibar);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.DynePerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.DynePerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue DynesPerSquareCentimeter => this.As(PressureUnit.DynePerSquareCentimeter);
+        public double DynesPerSquareCentimeter => this.As(PressureUnit.DynePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.FootOfHead"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.FootOfHead"/>
         /// </summary>
-        public QuantityValue FeetOfHead => this.As(PressureUnit.FootOfHead);
+        public double FeetOfHead => this.As(PressureUnit.FootOfHead);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Gigapascal"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Gigapascal"/>
         /// </summary>
-        public QuantityValue Gigapascals => this.As(PressureUnit.Gigapascal);
+        public double Gigapascals => this.As(PressureUnit.Gigapascal);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Hectopascal"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Hectopascal"/>
         /// </summary>
-        public QuantityValue Hectopascals => this.As(PressureUnit.Hectopascal);
+        public double Hectopascals => this.As(PressureUnit.Hectopascal);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.InchOfMercury"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.InchOfMercury"/>
         /// </summary>
-        public QuantityValue InchesOfMercury => this.As(PressureUnit.InchOfMercury);
+        public double InchesOfMercury => this.As(PressureUnit.InchOfMercury);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.InchOfWaterColumn"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.InchOfWaterColumn"/>
         /// </summary>
-        public QuantityValue InchesOfWaterColumn => this.As(PressureUnit.InchOfWaterColumn);
+        public double InchesOfWaterColumn => this.As(PressureUnit.InchOfWaterColumn);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Kilobar"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Kilobar"/>
         /// </summary>
-        public QuantityValue Kilobars => this.As(PressureUnit.Kilobar);
+        public double Kilobars => this.As(PressureUnit.Kilobar);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.KilogramForcePerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.KilogramForcePerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue KilogramsForcePerSquareCentimeter => this.As(PressureUnit.KilogramForcePerSquareCentimeter);
+        public double KilogramsForcePerSquareCentimeter => this.As(PressureUnit.KilogramForcePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.KilogramForcePerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.KilogramForcePerSquareMeter"/>
         /// </summary>
-        public QuantityValue KilogramsForcePerSquareMeter => this.As(PressureUnit.KilogramForcePerSquareMeter);
+        public double KilogramsForcePerSquareMeter => this.As(PressureUnit.KilogramForcePerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.KilogramForcePerSquareMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.KilogramForcePerSquareMillimeter"/>
         /// </summary>
-        public QuantityValue KilogramsForcePerSquareMillimeter => this.As(PressureUnit.KilogramForcePerSquareMillimeter);
+        public double KilogramsForcePerSquareMillimeter => this.As(PressureUnit.KilogramForcePerSquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.KilonewtonPerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.KilonewtonPerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue KilonewtonsPerSquareCentimeter => this.As(PressureUnit.KilonewtonPerSquareCentimeter);
+        public double KilonewtonsPerSquareCentimeter => this.As(PressureUnit.KilonewtonPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.KilonewtonPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.KilonewtonPerSquareMeter"/>
         /// </summary>
-        public QuantityValue KilonewtonsPerSquareMeter => this.As(PressureUnit.KilonewtonPerSquareMeter);
+        public double KilonewtonsPerSquareMeter => this.As(PressureUnit.KilonewtonPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.KilonewtonPerSquareMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.KilonewtonPerSquareMillimeter"/>
         /// </summary>
-        public QuantityValue KilonewtonsPerSquareMillimeter => this.As(PressureUnit.KilonewtonPerSquareMillimeter);
+        public double KilonewtonsPerSquareMillimeter => this.As(PressureUnit.KilonewtonPerSquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Kilopascal"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Kilopascal"/>
         /// </summary>
-        public QuantityValue Kilopascals => this.As(PressureUnit.Kilopascal);
+        public double Kilopascals => this.As(PressureUnit.Kilopascal);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.KilopoundForcePerSquareFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.KilopoundForcePerSquareFoot"/>
         /// </summary>
-        public QuantityValue KilopoundsForcePerSquareFoot => this.As(PressureUnit.KilopoundForcePerSquareFoot);
+        public double KilopoundsForcePerSquareFoot => this.As(PressureUnit.KilopoundForcePerSquareFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.KilopoundForcePerSquareInch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.KilopoundForcePerSquareInch"/>
         /// </summary>
-        public QuantityValue KilopoundsForcePerSquareInch => this.As(PressureUnit.KilopoundForcePerSquareInch);
+        public double KilopoundsForcePerSquareInch => this.As(PressureUnit.KilopoundForcePerSquareInch);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.KilopoundForcePerSquareMil"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.KilopoundForcePerSquareMil"/>
         /// </summary>
-        public QuantityValue KilopoundsForcePerSquareMil => this.As(PressureUnit.KilopoundForcePerSquareMil);
+        public double KilopoundsForcePerSquareMil => this.As(PressureUnit.KilopoundForcePerSquareMil);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Megabar"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Megabar"/>
         /// </summary>
-        public QuantityValue Megabars => this.As(PressureUnit.Megabar);
+        public double Megabars => this.As(PressureUnit.Megabar);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.MeganewtonPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.MeganewtonPerSquareMeter"/>
         /// </summary>
-        public QuantityValue MeganewtonsPerSquareMeter => this.As(PressureUnit.MeganewtonPerSquareMeter);
+        public double MeganewtonsPerSquareMeter => this.As(PressureUnit.MeganewtonPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Megapascal"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Megapascal"/>
         /// </summary>
-        public QuantityValue Megapascals => this.As(PressureUnit.Megapascal);
+        public double Megapascals => this.As(PressureUnit.Megapascal);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.MeterOfHead"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.MeterOfHead"/>
         /// </summary>
-        public QuantityValue MetersOfHead => this.As(PressureUnit.MeterOfHead);
+        public double MetersOfHead => this.As(PressureUnit.MeterOfHead);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.MeterOfWaterColumn"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.MeterOfWaterColumn"/>
         /// </summary>
-        public QuantityValue MetersOfWaterColumn => this.As(PressureUnit.MeterOfWaterColumn);
+        public double MetersOfWaterColumn => this.As(PressureUnit.MeterOfWaterColumn);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Microbar"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Microbar"/>
         /// </summary>
-        public QuantityValue Microbars => this.As(PressureUnit.Microbar);
+        public double Microbars => this.As(PressureUnit.Microbar);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Micropascal"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Micropascal"/>
         /// </summary>
-        public QuantityValue Micropascals => this.As(PressureUnit.Micropascal);
+        public double Micropascals => this.As(PressureUnit.Micropascal);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Millibar"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Millibar"/>
         /// </summary>
-        public QuantityValue Millibars => this.As(PressureUnit.Millibar);
+        public double Millibars => this.As(PressureUnit.Millibar);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.MillimeterOfMercury"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.MillimeterOfMercury"/>
         /// </summary>
-        public QuantityValue MillimetersOfMercury => this.As(PressureUnit.MillimeterOfMercury);
+        public double MillimetersOfMercury => this.As(PressureUnit.MillimeterOfMercury);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.MillimeterOfWaterColumn"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.MillimeterOfWaterColumn"/>
         /// </summary>
-        public QuantityValue MillimetersOfWaterColumn => this.As(PressureUnit.MillimeterOfWaterColumn);
+        public double MillimetersOfWaterColumn => this.As(PressureUnit.MillimeterOfWaterColumn);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Millipascal"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Millipascal"/>
         /// </summary>
-        public QuantityValue Millipascals => this.As(PressureUnit.Millipascal);
+        public double Millipascals => this.As(PressureUnit.Millipascal);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Millitorr"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Millitorr"/>
         /// </summary>
-        public QuantityValue Millitorrs => this.As(PressureUnit.Millitorr);
+        public double Millitorrs => this.As(PressureUnit.Millitorr);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.NewtonPerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.NewtonPerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue NewtonsPerSquareCentimeter => this.As(PressureUnit.NewtonPerSquareCentimeter);
+        public double NewtonsPerSquareCentimeter => this.As(PressureUnit.NewtonPerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.NewtonPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.NewtonPerSquareMeter"/>
         /// </summary>
-        public QuantityValue NewtonsPerSquareMeter => this.As(PressureUnit.NewtonPerSquareMeter);
+        public double NewtonsPerSquareMeter => this.As(PressureUnit.NewtonPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.NewtonPerSquareMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.NewtonPerSquareMillimeter"/>
         /// </summary>
-        public QuantityValue NewtonsPerSquareMillimeter => this.As(PressureUnit.NewtonPerSquareMillimeter);
+        public double NewtonsPerSquareMillimeter => this.As(PressureUnit.NewtonPerSquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Pascal"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Pascal"/>
         /// </summary>
-        public QuantityValue Pascals => this.As(PressureUnit.Pascal);
+        public double Pascals => this.As(PressureUnit.Pascal);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.PoundForcePerSquareFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.PoundForcePerSquareFoot"/>
         /// </summary>
-        public QuantityValue PoundsForcePerSquareFoot => this.As(PressureUnit.PoundForcePerSquareFoot);
+        public double PoundsForcePerSquareFoot => this.As(PressureUnit.PoundForcePerSquareFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.PoundForcePerSquareInch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.PoundForcePerSquareInch"/>
         /// </summary>
-        public QuantityValue PoundsForcePerSquareInch => this.As(PressureUnit.PoundForcePerSquareInch);
+        public double PoundsForcePerSquareInch => this.As(PressureUnit.PoundForcePerSquareInch);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.PoundForcePerSquareMil"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.PoundForcePerSquareMil"/>
         /// </summary>
-        public QuantityValue PoundsForcePerSquareMil => this.As(PressureUnit.PoundForcePerSquareMil);
+        public double PoundsForcePerSquareMil => this.As(PressureUnit.PoundForcePerSquareMil);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.PoundPerInchSecondSquared"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.PoundPerInchSecondSquared"/>
         /// </summary>
-        public QuantityValue PoundsPerInchSecondSquared => this.As(PressureUnit.PoundPerInchSecondSquared);
+        public double PoundsPerInchSecondSquared => this.As(PressureUnit.PoundPerInchSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.TechnicalAtmosphere"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.TechnicalAtmosphere"/>
         /// </summary>
-        public QuantityValue TechnicalAtmospheres => this.As(PressureUnit.TechnicalAtmosphere);
+        public double TechnicalAtmospheres => this.As(PressureUnit.TechnicalAtmosphere);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.TonneForcePerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.TonneForcePerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue TonnesForcePerSquareCentimeter => this.As(PressureUnit.TonneForcePerSquareCentimeter);
+        public double TonnesForcePerSquareCentimeter => this.As(PressureUnit.TonneForcePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.TonneForcePerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.TonneForcePerSquareMeter"/>
         /// </summary>
-        public QuantityValue TonnesForcePerSquareMeter => this.As(PressureUnit.TonneForcePerSquareMeter);
+        public double TonnesForcePerSquareMeter => this.As(PressureUnit.TonneForcePerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.TonneForcePerSquareMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.TonneForcePerSquareMillimeter"/>
         /// </summary>
-        public QuantityValue TonnesForcePerSquareMillimeter => this.As(PressureUnit.TonneForcePerSquareMillimeter);
+        public double TonnesForcePerSquareMillimeter => this.As(PressureUnit.TonneForcePerSquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Torr"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.Torr"/>
         /// </summary>
-        public QuantityValue Torrs => this.As(PressureUnit.Torr);
+        public double Torrs => this.As(PressureUnit.Torr);
 
         #endregion
 
@@ -642,7 +642,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Atmosphere"/>.
         /// </summary>
-        public static Pressure FromAtmospheres(QuantityValue value)
+        public static Pressure FromAtmospheres(double value)
         {
             return new Pressure(value, PressureUnit.Atmosphere);
         }
@@ -650,7 +650,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Bar"/>.
         /// </summary>
-        public static Pressure FromBars(QuantityValue value)
+        public static Pressure FromBars(double value)
         {
             return new Pressure(value, PressureUnit.Bar);
         }
@@ -658,7 +658,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Centibar"/>.
         /// </summary>
-        public static Pressure FromCentibars(QuantityValue value)
+        public static Pressure FromCentibars(double value)
         {
             return new Pressure(value, PressureUnit.Centibar);
         }
@@ -666,7 +666,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.CentimeterOfWaterColumn"/>.
         /// </summary>
-        public static Pressure FromCentimetersOfWaterColumn(QuantityValue value)
+        public static Pressure FromCentimetersOfWaterColumn(double value)
         {
             return new Pressure(value, PressureUnit.CentimeterOfWaterColumn);
         }
@@ -674,7 +674,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Decapascal"/>.
         /// </summary>
-        public static Pressure FromDecapascals(QuantityValue value)
+        public static Pressure FromDecapascals(double value)
         {
             return new Pressure(value, PressureUnit.Decapascal);
         }
@@ -682,7 +682,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Decibar"/>.
         /// </summary>
-        public static Pressure FromDecibars(QuantityValue value)
+        public static Pressure FromDecibars(double value)
         {
             return new Pressure(value, PressureUnit.Decibar);
         }
@@ -690,7 +690,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.DynePerSquareCentimeter"/>.
         /// </summary>
-        public static Pressure FromDynesPerSquareCentimeter(QuantityValue value)
+        public static Pressure FromDynesPerSquareCentimeter(double value)
         {
             return new Pressure(value, PressureUnit.DynePerSquareCentimeter);
         }
@@ -698,7 +698,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.FootOfHead"/>.
         /// </summary>
-        public static Pressure FromFeetOfHead(QuantityValue value)
+        public static Pressure FromFeetOfHead(double value)
         {
             return new Pressure(value, PressureUnit.FootOfHead);
         }
@@ -706,7 +706,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Gigapascal"/>.
         /// </summary>
-        public static Pressure FromGigapascals(QuantityValue value)
+        public static Pressure FromGigapascals(double value)
         {
             return new Pressure(value, PressureUnit.Gigapascal);
         }
@@ -714,7 +714,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Hectopascal"/>.
         /// </summary>
-        public static Pressure FromHectopascals(QuantityValue value)
+        public static Pressure FromHectopascals(double value)
         {
             return new Pressure(value, PressureUnit.Hectopascal);
         }
@@ -722,7 +722,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.InchOfMercury"/>.
         /// </summary>
-        public static Pressure FromInchesOfMercury(QuantityValue value)
+        public static Pressure FromInchesOfMercury(double value)
         {
             return new Pressure(value, PressureUnit.InchOfMercury);
         }
@@ -730,7 +730,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.InchOfWaterColumn"/>.
         /// </summary>
-        public static Pressure FromInchesOfWaterColumn(QuantityValue value)
+        public static Pressure FromInchesOfWaterColumn(double value)
         {
             return new Pressure(value, PressureUnit.InchOfWaterColumn);
         }
@@ -738,7 +738,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Kilobar"/>.
         /// </summary>
-        public static Pressure FromKilobars(QuantityValue value)
+        public static Pressure FromKilobars(double value)
         {
             return new Pressure(value, PressureUnit.Kilobar);
         }
@@ -746,7 +746,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilogramForcePerSquareCentimeter"/>.
         /// </summary>
-        public static Pressure FromKilogramsForcePerSquareCentimeter(QuantityValue value)
+        public static Pressure FromKilogramsForcePerSquareCentimeter(double value)
         {
             return new Pressure(value, PressureUnit.KilogramForcePerSquareCentimeter);
         }
@@ -754,7 +754,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilogramForcePerSquareMeter"/>.
         /// </summary>
-        public static Pressure FromKilogramsForcePerSquareMeter(QuantityValue value)
+        public static Pressure FromKilogramsForcePerSquareMeter(double value)
         {
             return new Pressure(value, PressureUnit.KilogramForcePerSquareMeter);
         }
@@ -762,7 +762,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilogramForcePerSquareMillimeter"/>.
         /// </summary>
-        public static Pressure FromKilogramsForcePerSquareMillimeter(QuantityValue value)
+        public static Pressure FromKilogramsForcePerSquareMillimeter(double value)
         {
             return new Pressure(value, PressureUnit.KilogramForcePerSquareMillimeter);
         }
@@ -770,7 +770,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilonewtonPerSquareCentimeter"/>.
         /// </summary>
-        public static Pressure FromKilonewtonsPerSquareCentimeter(QuantityValue value)
+        public static Pressure FromKilonewtonsPerSquareCentimeter(double value)
         {
             return new Pressure(value, PressureUnit.KilonewtonPerSquareCentimeter);
         }
@@ -778,7 +778,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilonewtonPerSquareMeter"/>.
         /// </summary>
-        public static Pressure FromKilonewtonsPerSquareMeter(QuantityValue value)
+        public static Pressure FromKilonewtonsPerSquareMeter(double value)
         {
             return new Pressure(value, PressureUnit.KilonewtonPerSquareMeter);
         }
@@ -786,7 +786,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilonewtonPerSquareMillimeter"/>.
         /// </summary>
-        public static Pressure FromKilonewtonsPerSquareMillimeter(QuantityValue value)
+        public static Pressure FromKilonewtonsPerSquareMillimeter(double value)
         {
             return new Pressure(value, PressureUnit.KilonewtonPerSquareMillimeter);
         }
@@ -794,7 +794,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Kilopascal"/>.
         /// </summary>
-        public static Pressure FromKilopascals(QuantityValue value)
+        public static Pressure FromKilopascals(double value)
         {
             return new Pressure(value, PressureUnit.Kilopascal);
         }
@@ -802,7 +802,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilopoundForcePerSquareFoot"/>.
         /// </summary>
-        public static Pressure FromKilopoundsForcePerSquareFoot(QuantityValue value)
+        public static Pressure FromKilopoundsForcePerSquareFoot(double value)
         {
             return new Pressure(value, PressureUnit.KilopoundForcePerSquareFoot);
         }
@@ -810,7 +810,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilopoundForcePerSquareInch"/>.
         /// </summary>
-        public static Pressure FromKilopoundsForcePerSquareInch(QuantityValue value)
+        public static Pressure FromKilopoundsForcePerSquareInch(double value)
         {
             return new Pressure(value, PressureUnit.KilopoundForcePerSquareInch);
         }
@@ -818,7 +818,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.KilopoundForcePerSquareMil"/>.
         /// </summary>
-        public static Pressure FromKilopoundsForcePerSquareMil(QuantityValue value)
+        public static Pressure FromKilopoundsForcePerSquareMil(double value)
         {
             return new Pressure(value, PressureUnit.KilopoundForcePerSquareMil);
         }
@@ -826,7 +826,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Megabar"/>.
         /// </summary>
-        public static Pressure FromMegabars(QuantityValue value)
+        public static Pressure FromMegabars(double value)
         {
             return new Pressure(value, PressureUnit.Megabar);
         }
@@ -834,7 +834,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MeganewtonPerSquareMeter"/>.
         /// </summary>
-        public static Pressure FromMeganewtonsPerSquareMeter(QuantityValue value)
+        public static Pressure FromMeganewtonsPerSquareMeter(double value)
         {
             return new Pressure(value, PressureUnit.MeganewtonPerSquareMeter);
         }
@@ -842,7 +842,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Megapascal"/>.
         /// </summary>
-        public static Pressure FromMegapascals(QuantityValue value)
+        public static Pressure FromMegapascals(double value)
         {
             return new Pressure(value, PressureUnit.Megapascal);
         }
@@ -850,7 +850,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MeterOfHead"/>.
         /// </summary>
-        public static Pressure FromMetersOfHead(QuantityValue value)
+        public static Pressure FromMetersOfHead(double value)
         {
             return new Pressure(value, PressureUnit.MeterOfHead);
         }
@@ -858,7 +858,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MeterOfWaterColumn"/>.
         /// </summary>
-        public static Pressure FromMetersOfWaterColumn(QuantityValue value)
+        public static Pressure FromMetersOfWaterColumn(double value)
         {
             return new Pressure(value, PressureUnit.MeterOfWaterColumn);
         }
@@ -866,7 +866,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Microbar"/>.
         /// </summary>
-        public static Pressure FromMicrobars(QuantityValue value)
+        public static Pressure FromMicrobars(double value)
         {
             return new Pressure(value, PressureUnit.Microbar);
         }
@@ -874,7 +874,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Micropascal"/>.
         /// </summary>
-        public static Pressure FromMicropascals(QuantityValue value)
+        public static Pressure FromMicropascals(double value)
         {
             return new Pressure(value, PressureUnit.Micropascal);
         }
@@ -882,7 +882,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Millibar"/>.
         /// </summary>
-        public static Pressure FromMillibars(QuantityValue value)
+        public static Pressure FromMillibars(double value)
         {
             return new Pressure(value, PressureUnit.Millibar);
         }
@@ -890,7 +890,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MillimeterOfMercury"/>.
         /// </summary>
-        public static Pressure FromMillimetersOfMercury(QuantityValue value)
+        public static Pressure FromMillimetersOfMercury(double value)
         {
             return new Pressure(value, PressureUnit.MillimeterOfMercury);
         }
@@ -898,7 +898,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MillimeterOfWaterColumn"/>.
         /// </summary>
-        public static Pressure FromMillimetersOfWaterColumn(QuantityValue value)
+        public static Pressure FromMillimetersOfWaterColumn(double value)
         {
             return new Pressure(value, PressureUnit.MillimeterOfWaterColumn);
         }
@@ -906,7 +906,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Millipascal"/>.
         /// </summary>
-        public static Pressure FromMillipascals(QuantityValue value)
+        public static Pressure FromMillipascals(double value)
         {
             return new Pressure(value, PressureUnit.Millipascal);
         }
@@ -914,7 +914,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Millitorr"/>.
         /// </summary>
-        public static Pressure FromMillitorrs(QuantityValue value)
+        public static Pressure FromMillitorrs(double value)
         {
             return new Pressure(value, PressureUnit.Millitorr);
         }
@@ -922,7 +922,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.NewtonPerSquareCentimeter"/>.
         /// </summary>
-        public static Pressure FromNewtonsPerSquareCentimeter(QuantityValue value)
+        public static Pressure FromNewtonsPerSquareCentimeter(double value)
         {
             return new Pressure(value, PressureUnit.NewtonPerSquareCentimeter);
         }
@@ -930,7 +930,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.NewtonPerSquareMeter"/>.
         /// </summary>
-        public static Pressure FromNewtonsPerSquareMeter(QuantityValue value)
+        public static Pressure FromNewtonsPerSquareMeter(double value)
         {
             return new Pressure(value, PressureUnit.NewtonPerSquareMeter);
         }
@@ -938,7 +938,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.NewtonPerSquareMillimeter"/>.
         /// </summary>
-        public static Pressure FromNewtonsPerSquareMillimeter(QuantityValue value)
+        public static Pressure FromNewtonsPerSquareMillimeter(double value)
         {
             return new Pressure(value, PressureUnit.NewtonPerSquareMillimeter);
         }
@@ -946,7 +946,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Pascal"/>.
         /// </summary>
-        public static Pressure FromPascals(QuantityValue value)
+        public static Pressure FromPascals(double value)
         {
             return new Pressure(value, PressureUnit.Pascal);
         }
@@ -954,7 +954,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.PoundForcePerSquareFoot"/>.
         /// </summary>
-        public static Pressure FromPoundsForcePerSquareFoot(QuantityValue value)
+        public static Pressure FromPoundsForcePerSquareFoot(double value)
         {
             return new Pressure(value, PressureUnit.PoundForcePerSquareFoot);
         }
@@ -962,7 +962,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.PoundForcePerSquareInch"/>.
         /// </summary>
-        public static Pressure FromPoundsForcePerSquareInch(QuantityValue value)
+        public static Pressure FromPoundsForcePerSquareInch(double value)
         {
             return new Pressure(value, PressureUnit.PoundForcePerSquareInch);
         }
@@ -970,7 +970,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.PoundForcePerSquareMil"/>.
         /// </summary>
-        public static Pressure FromPoundsForcePerSquareMil(QuantityValue value)
+        public static Pressure FromPoundsForcePerSquareMil(double value)
         {
             return new Pressure(value, PressureUnit.PoundForcePerSquareMil);
         }
@@ -978,7 +978,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.PoundPerInchSecondSquared"/>.
         /// </summary>
-        public static Pressure FromPoundsPerInchSecondSquared(QuantityValue value)
+        public static Pressure FromPoundsPerInchSecondSquared(double value)
         {
             return new Pressure(value, PressureUnit.PoundPerInchSecondSquared);
         }
@@ -986,7 +986,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.TechnicalAtmosphere"/>.
         /// </summary>
-        public static Pressure FromTechnicalAtmospheres(QuantityValue value)
+        public static Pressure FromTechnicalAtmospheres(double value)
         {
             return new Pressure(value, PressureUnit.TechnicalAtmosphere);
         }
@@ -994,7 +994,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.TonneForcePerSquareCentimeter"/>.
         /// </summary>
-        public static Pressure FromTonnesForcePerSquareCentimeter(QuantityValue value)
+        public static Pressure FromTonnesForcePerSquareCentimeter(double value)
         {
             return new Pressure(value, PressureUnit.TonneForcePerSquareCentimeter);
         }
@@ -1002,7 +1002,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.TonneForcePerSquareMeter"/>.
         /// </summary>
-        public static Pressure FromTonnesForcePerSquareMeter(QuantityValue value)
+        public static Pressure FromTonnesForcePerSquareMeter(double value)
         {
             return new Pressure(value, PressureUnit.TonneForcePerSquareMeter);
         }
@@ -1010,7 +1010,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.TonneForcePerSquareMillimeter"/>.
         /// </summary>
-        public static Pressure FromTonnesForcePerSquareMillimeter(QuantityValue value)
+        public static Pressure FromTonnesForcePerSquareMillimeter(double value)
         {
             return new Pressure(value, PressureUnit.TonneForcePerSquareMillimeter);
         }
@@ -1018,7 +1018,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.Torr"/>.
         /// </summary>
-        public static Pressure FromTorrs(QuantityValue value)
+        public static Pressure FromTorrs(double value)
         {
             return new Pressure(value, PressureUnit.Torr);
         }
@@ -1029,7 +1029,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Pressure unit value.</returns>
-        public static Pressure From(QuantityValue value, PressureUnit fromUnit)
+        public static Pressure From(double value, PressureUnit fromUnit)
         {
             return new Pressure(value, fromUnit);
         }
@@ -1194,25 +1194,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Pressure"/> from multiplying value and <see cref="Pressure"/>.</summary>
-        public static Pressure operator *(QuantityValue left, Pressure right)
+        public static Pressure operator *(double left, Pressure right)
         {
             return new Pressure(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Pressure"/> from multiplying value and <see cref="Pressure"/>.</summary>
-        public static Pressure operator *(Pressure left, QuantityValue right)
+        public static Pressure operator *(Pressure left, double right)
         {
             return new Pressure(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Pressure"/> from dividing <see cref="Pressure"/> by value.</summary>
-        public static Pressure operator /(Pressure left, QuantityValue right)
+        public static Pressure operator /(Pressure left, double right)
         {
             return new Pressure(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Pressure"/> by <see cref="Pressure"/>.</summary>
-        public static QuantityValue operator /(Pressure left, Pressure right)
+        public static double operator /(Pressure left, Pressure right)
         {
             return left.Pascals / right.Pascals;
         }

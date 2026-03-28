@@ -32,169 +32,169 @@ namespace UnitsNet.NumberExtensions.NumberToForceChangeRate
     /// </summary>
     public static class NumberToForceChangeRateExtensions
     {
-        /// <inheritdoc cref="ForceChangeRate.FromCentinewtonsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="ForceChangeRate.FromCentinewtonsPerSecond(double)" />
         public static ForceChangeRate CentinewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ForceChangeRate.FromCentinewtonsPerSecond(QuantityValue.CreateChecked(value));
+            => ForceChangeRate.FromCentinewtonsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => ForceChangeRate.FromCentinewtonsPerSecond(value.ToQuantityValue());
+            => ForceChangeRate.FromCentinewtonsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerMinute(double)" />
         public static ForceChangeRate DecanewtonsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ForceChangeRate.FromDecanewtonsPerMinute(QuantityValue.CreateChecked(value));
+            => ForceChangeRate.FromDecanewtonsPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => ForceChangeRate.FromDecanewtonsPerMinute(value.ToQuantityValue());
+            => ForceChangeRate.FromDecanewtonsPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(double)" />
         public static ForceChangeRate DecanewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ForceChangeRate.FromDecanewtonsPerSecond(QuantityValue.CreateChecked(value));
+            => ForceChangeRate.FromDecanewtonsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => ForceChangeRate.FromDecanewtonsPerSecond(value.ToQuantityValue());
+            => ForceChangeRate.FromDecanewtonsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(double)" />
         public static ForceChangeRate DecinewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ForceChangeRate.FromDecinewtonsPerSecond(QuantityValue.CreateChecked(value));
+            => ForceChangeRate.FromDecinewtonsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => ForceChangeRate.FromDecinewtonsPerSecond(value.ToQuantityValue());
+            => ForceChangeRate.FromDecinewtonsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerMinute(double)" />
         public static ForceChangeRate KilonewtonsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ForceChangeRate.FromKilonewtonsPerMinute(QuantityValue.CreateChecked(value));
+            => ForceChangeRate.FromKilonewtonsPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => ForceChangeRate.FromKilonewtonsPerMinute(value.ToQuantityValue());
+            => ForceChangeRate.FromKilonewtonsPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerSecond(double)" />
         public static ForceChangeRate KilonewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ForceChangeRate.FromKilonewtonsPerSecond(QuantityValue.CreateChecked(value));
+            => ForceChangeRate.FromKilonewtonsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => ForceChangeRate.FromKilonewtonsPerSecond(value.ToQuantityValue());
+            => ForceChangeRate.FromKilonewtonsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ForceChangeRate.FromKilopoundsForcePerMinute(QuantityValue)" />
+        /// <inheritdoc cref="ForceChangeRate.FromKilopoundsForcePerMinute(double)" />
         public static ForceChangeRate KilopoundsForcePerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ForceChangeRate.FromKilopoundsForcePerMinute(QuantityValue.CreateChecked(value));
+            => ForceChangeRate.FromKilopoundsForcePerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => ForceChangeRate.FromKilopoundsForcePerMinute(value.ToQuantityValue());
+            => ForceChangeRate.FromKilopoundsForcePerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ForceChangeRate.FromKilopoundsForcePerSecond(QuantityValue)" />
+        /// <inheritdoc cref="ForceChangeRate.FromKilopoundsForcePerSecond(double)" />
         public static ForceChangeRate KilopoundsForcePerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ForceChangeRate.FromKilopoundsForcePerSecond(QuantityValue.CreateChecked(value));
+            => ForceChangeRate.FromKilopoundsForcePerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => ForceChangeRate.FromKilopoundsForcePerSecond(value.ToQuantityValue());
+            => ForceChangeRate.FromKilopoundsForcePerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ForceChangeRate.FromMicronewtonsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="ForceChangeRate.FromMicronewtonsPerSecond(double)" />
         public static ForceChangeRate MicronewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ForceChangeRate.FromMicronewtonsPerSecond(QuantityValue.CreateChecked(value));
+            => ForceChangeRate.FromMicronewtonsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => ForceChangeRate.FromMicronewtonsPerSecond(value.ToQuantityValue());
+            => ForceChangeRate.FromMicronewtonsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ForceChangeRate.FromMillinewtonsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="ForceChangeRate.FromMillinewtonsPerSecond(double)" />
         public static ForceChangeRate MillinewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ForceChangeRate.FromMillinewtonsPerSecond(QuantityValue.CreateChecked(value));
+            => ForceChangeRate.FromMillinewtonsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => ForceChangeRate.FromMillinewtonsPerSecond(value.ToQuantityValue());
+            => ForceChangeRate.FromMillinewtonsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ForceChangeRate.FromNanonewtonsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="ForceChangeRate.FromNanonewtonsPerSecond(double)" />
         public static ForceChangeRate NanonewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ForceChangeRate.FromNanonewtonsPerSecond(QuantityValue.CreateChecked(value));
+            => ForceChangeRate.FromNanonewtonsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => ForceChangeRate.FromNanonewtonsPerSecond(value.ToQuantityValue());
+            => ForceChangeRate.FromNanonewtonsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerMinute(QuantityValue)" />
+        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerMinute(double)" />
         public static ForceChangeRate NewtonsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ForceChangeRate.FromNewtonsPerMinute(QuantityValue.CreateChecked(value));
+            => ForceChangeRate.FromNewtonsPerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => ForceChangeRate.FromNewtonsPerMinute(value.ToQuantityValue());
+            => ForceChangeRate.FromNewtonsPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerSecond(QuantityValue)" />
+        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerSecond(double)" />
         public static ForceChangeRate NewtonsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ForceChangeRate.FromNewtonsPerSecond(QuantityValue.CreateChecked(value));
+            => ForceChangeRate.FromNewtonsPerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => ForceChangeRate.FromNewtonsPerSecond(value.ToQuantityValue());
+            => ForceChangeRate.FromNewtonsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ForceChangeRate.FromPoundsForcePerMinute(QuantityValue)" />
+        /// <inheritdoc cref="ForceChangeRate.FromPoundsForcePerMinute(double)" />
         public static ForceChangeRate PoundsForcePerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ForceChangeRate.FromPoundsForcePerMinute(QuantityValue.CreateChecked(value));
+            => ForceChangeRate.FromPoundsForcePerMinute(double.CreateChecked(value));
 #else
             , IConvertible
-            => ForceChangeRate.FromPoundsForcePerMinute(value.ToQuantityValue());
+            => ForceChangeRate.FromPoundsForcePerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ForceChangeRate.FromPoundsForcePerSecond(QuantityValue)" />
+        /// <inheritdoc cref="ForceChangeRate.FromPoundsForcePerSecond(double)" />
         public static ForceChangeRate PoundsForcePerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ForceChangeRate.FromPoundsForcePerSecond(QuantityValue.CreateChecked(value));
+            => ForceChangeRate.FromPoundsForcePerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => ForceChangeRate.FromPoundsForcePerSecond(value.ToQuantityValue());
+            => ForceChangeRate.FromPoundsForcePerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

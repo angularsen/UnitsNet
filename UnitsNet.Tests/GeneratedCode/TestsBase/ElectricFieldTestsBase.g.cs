@@ -290,7 +290,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "4.2 V/m", ElectricFieldUnit.VoltPerMeter, 4.2)]
-        public void Parse(string culture, string quantityString, ElectricFieldUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, ElectricFieldUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ElectricField.Parse(quantityString);
@@ -300,7 +300,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "4.2 V/m", ElectricFieldUnit.VoltPerMeter, 4.2)]
-        public void TryParse(string culture, string quantityString, ElectricFieldUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, ElectricFieldUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ElectricField.TryParse(quantityString, out ElectricField parsed));
@@ -589,8 +589,8 @@ namespace UnitsNet.Tests
             var quantity = ElectricField.FromVoltsPerMeter(firstValue);
             var otherQuantity = ElectricField.FromVoltsPerMeter(secondValue);
             ElectricField maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, ElectricField.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

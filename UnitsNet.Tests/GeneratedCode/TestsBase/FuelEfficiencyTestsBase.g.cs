@@ -311,7 +311,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 l/100km", FuelEfficiencyUnit.LiterPer100Kilometers, 4.2)]
         [InlineData("en-US", "4.2 mpg (imp.)", FuelEfficiencyUnit.MilePerUkGallon, 4.2)]
         [InlineData("en-US", "4.2 mpg (U.S.)", FuelEfficiencyUnit.MilePerUsGallon, 4.2)]
-        public void Parse(string culture, string quantityString, FuelEfficiencyUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, FuelEfficiencyUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = FuelEfficiency.Parse(quantityString);
@@ -324,7 +324,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 l/100km", FuelEfficiencyUnit.LiterPer100Kilometers, 4.2)]
         [InlineData("en-US", "4.2 mpg (imp.)", FuelEfficiencyUnit.MilePerUkGallon, 4.2)]
         [InlineData("en-US", "4.2 mpg (U.S.)", FuelEfficiencyUnit.MilePerUsGallon, 4.2)]
-        public void TryParse(string culture, string quantityString, FuelEfficiencyUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, FuelEfficiencyUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(FuelEfficiency.TryParse(quantityString, out FuelEfficiency parsed));
@@ -643,8 +643,8 @@ namespace UnitsNet.Tests
             var quantity = FuelEfficiency.FromKilometersPerLiter(firstValue);
             var otherQuantity = FuelEfficiency.FromKilometersPerLiter(secondValue);
             FuelEfficiency maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, FuelEfficiency.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

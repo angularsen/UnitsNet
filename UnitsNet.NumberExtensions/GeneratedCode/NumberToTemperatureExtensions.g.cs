@@ -32,114 +32,114 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
     /// </summary>
     public static class NumberToTemperatureExtensions
     {
-        /// <inheritdoc cref="Temperature.FromDegreesCelsius(QuantityValue)" />
+        /// <inheritdoc cref="Temperature.FromDegreesCelsius(double)" />
         public static Temperature DegreesCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Temperature.FromDegreesCelsius(QuantityValue.CreateChecked(value));
+            => Temperature.FromDegreesCelsius(double.CreateChecked(value));
 #else
             , IConvertible
-            => Temperature.FromDegreesCelsius(value.ToQuantityValue());
+            => Temperature.FromDegreesCelsius(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Temperature.FromDegreesDelisle(QuantityValue)" />
+        /// <inheritdoc cref="Temperature.FromDegreesDelisle(double)" />
         public static Temperature DegreesDelisle<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Temperature.FromDegreesDelisle(QuantityValue.CreateChecked(value));
+            => Temperature.FromDegreesDelisle(double.CreateChecked(value));
 #else
             , IConvertible
-            => Temperature.FromDegreesDelisle(value.ToQuantityValue());
+            => Temperature.FromDegreesDelisle(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Temperature.FromDegreesFahrenheit(QuantityValue)" />
+        /// <inheritdoc cref="Temperature.FromDegreesFahrenheit(double)" />
         public static Temperature DegreesFahrenheit<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Temperature.FromDegreesFahrenheit(QuantityValue.CreateChecked(value));
+            => Temperature.FromDegreesFahrenheit(double.CreateChecked(value));
 #else
             , IConvertible
-            => Temperature.FromDegreesFahrenheit(value.ToQuantityValue());
+            => Temperature.FromDegreesFahrenheit(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Temperature.FromDegreesNewton(QuantityValue)" />
+        /// <inheritdoc cref="Temperature.FromDegreesNewton(double)" />
         public static Temperature DegreesNewton<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Temperature.FromDegreesNewton(QuantityValue.CreateChecked(value));
+            => Temperature.FromDegreesNewton(double.CreateChecked(value));
 #else
             , IConvertible
-            => Temperature.FromDegreesNewton(value.ToQuantityValue());
+            => Temperature.FromDegreesNewton(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Temperature.FromDegreesRankine(QuantityValue)" />
+        /// <inheritdoc cref="Temperature.FromDegreesRankine(double)" />
         public static Temperature DegreesRankine<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Temperature.FromDegreesRankine(QuantityValue.CreateChecked(value));
+            => Temperature.FromDegreesRankine(double.CreateChecked(value));
 #else
             , IConvertible
-            => Temperature.FromDegreesRankine(value.ToQuantityValue());
+            => Temperature.FromDegreesRankine(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Temperature.FromDegreesReaumur(QuantityValue)" />
+        /// <inheritdoc cref="Temperature.FromDegreesReaumur(double)" />
         public static Temperature DegreesReaumur<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Temperature.FromDegreesReaumur(QuantityValue.CreateChecked(value));
+            => Temperature.FromDegreesReaumur(double.CreateChecked(value));
 #else
             , IConvertible
-            => Temperature.FromDegreesReaumur(value.ToQuantityValue());
+            => Temperature.FromDegreesReaumur(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Temperature.FromDegreesRoemer(QuantityValue)" />
+        /// <inheritdoc cref="Temperature.FromDegreesRoemer(double)" />
         public static Temperature DegreesRoemer<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Temperature.FromDegreesRoemer(QuantityValue.CreateChecked(value));
+            => Temperature.FromDegreesRoemer(double.CreateChecked(value));
 #else
             , IConvertible
-            => Temperature.FromDegreesRoemer(value.ToQuantityValue());
+            => Temperature.FromDegreesRoemer(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Temperature.FromKelvins(QuantityValue)" />
+        /// <inheritdoc cref="Temperature.FromKelvins(double)" />
         public static Temperature Kelvins<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Temperature.FromKelvins(QuantityValue.CreateChecked(value));
+            => Temperature.FromKelvins(double.CreateChecked(value));
 #else
             , IConvertible
-            => Temperature.FromKelvins(value.ToQuantityValue());
+            => Temperature.FromKelvins(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Temperature.FromMillidegreesCelsius(QuantityValue)" />
+        /// <inheritdoc cref="Temperature.FromMillidegreesCelsius(double)" />
         public static Temperature MillidegreesCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Temperature.FromMillidegreesCelsius(QuantityValue.CreateChecked(value));
+            => Temperature.FromMillidegreesCelsius(double.CreateChecked(value));
 #else
             , IConvertible
-            => Temperature.FromMillidegreesCelsius(value.ToQuantityValue());
+            => Temperature.FromMillidegreesCelsius(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Temperature.FromSolarTemperatures(QuantityValue)" />
+        /// <inheritdoc cref="Temperature.FromSolarTemperatures(double)" />
         public static Temperature SolarTemperatures<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Temperature.FromSolarTemperatures(QuantityValue.CreateChecked(value));
+            => Temperature.FromSolarTemperatures(double.CreateChecked(value));
 #else
             , IConvertible
-            => Temperature.FromSolarTemperatures(value.ToQuantityValue());
+            => Temperature.FromSolarTemperatures(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

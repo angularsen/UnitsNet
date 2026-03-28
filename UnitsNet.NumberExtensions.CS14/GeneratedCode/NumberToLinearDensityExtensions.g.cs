@@ -42,148 +42,148 @@ namespace UnitsNet.NumberExtensions.NumberToLinearDensity
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="LinearDensity.FromGramsPerCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="LinearDensity.FromGramsPerCentimeter(double)" />
             public LinearDensity GramsPerCentimeter
 #if NET7_0_OR_GREATER
-                => LinearDensity.FromGramsPerCentimeter(QuantityValue.CreateChecked(value));
+                => LinearDensity.FromGramsPerCentimeter(double.CreateChecked(value));
 #else
-                => LinearDensity.FromGramsPerCentimeter(value.ToQuantityValue());
+                => LinearDensity.FromGramsPerCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="LinearDensity.FromGramsPerFoot(QuantityValue)" />
+            /// <inheritdoc cref="LinearDensity.FromGramsPerFoot(double)" />
             public LinearDensity GramsPerFoot
 #if NET7_0_OR_GREATER
-                => LinearDensity.FromGramsPerFoot(QuantityValue.CreateChecked(value));
+                => LinearDensity.FromGramsPerFoot(double.CreateChecked(value));
 #else
-                => LinearDensity.FromGramsPerFoot(value.ToQuantityValue());
+                => LinearDensity.FromGramsPerFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="LinearDensity.FromGramsPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="LinearDensity.FromGramsPerMeter(double)" />
             public LinearDensity GramsPerMeter
 #if NET7_0_OR_GREATER
-                => LinearDensity.FromGramsPerMeter(QuantityValue.CreateChecked(value));
+                => LinearDensity.FromGramsPerMeter(double.CreateChecked(value));
 #else
-                => LinearDensity.FromGramsPerMeter(value.ToQuantityValue());
+                => LinearDensity.FromGramsPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="LinearDensity.FromGramsPerMillimeter(QuantityValue)" />
+            /// <inheritdoc cref="LinearDensity.FromGramsPerMillimeter(double)" />
             public LinearDensity GramsPerMillimeter
 #if NET7_0_OR_GREATER
-                => LinearDensity.FromGramsPerMillimeter(QuantityValue.CreateChecked(value));
+                => LinearDensity.FromGramsPerMillimeter(double.CreateChecked(value));
 #else
-                => LinearDensity.FromGramsPerMillimeter(value.ToQuantityValue());
+                => LinearDensity.FromGramsPerMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="LinearDensity.FromKilogramsPerCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="LinearDensity.FromKilogramsPerCentimeter(double)" />
             public LinearDensity KilogramsPerCentimeter
 #if NET7_0_OR_GREATER
-                => LinearDensity.FromKilogramsPerCentimeter(QuantityValue.CreateChecked(value));
+                => LinearDensity.FromKilogramsPerCentimeter(double.CreateChecked(value));
 #else
-                => LinearDensity.FromKilogramsPerCentimeter(value.ToQuantityValue());
+                => LinearDensity.FromKilogramsPerCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="LinearDensity.FromKilogramsPerFoot(QuantityValue)" />
+            /// <inheritdoc cref="LinearDensity.FromKilogramsPerFoot(double)" />
             public LinearDensity KilogramsPerFoot
 #if NET7_0_OR_GREATER
-                => LinearDensity.FromKilogramsPerFoot(QuantityValue.CreateChecked(value));
+                => LinearDensity.FromKilogramsPerFoot(double.CreateChecked(value));
 #else
-                => LinearDensity.FromKilogramsPerFoot(value.ToQuantityValue());
+                => LinearDensity.FromKilogramsPerFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="LinearDensity.FromKilogramsPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="LinearDensity.FromKilogramsPerMeter(double)" />
             public LinearDensity KilogramsPerMeter
 #if NET7_0_OR_GREATER
-                => LinearDensity.FromKilogramsPerMeter(QuantityValue.CreateChecked(value));
+                => LinearDensity.FromKilogramsPerMeter(double.CreateChecked(value));
 #else
-                => LinearDensity.FromKilogramsPerMeter(value.ToQuantityValue());
+                => LinearDensity.FromKilogramsPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="LinearDensity.FromKilogramsPerMillimeter(QuantityValue)" />
+            /// <inheritdoc cref="LinearDensity.FromKilogramsPerMillimeter(double)" />
             public LinearDensity KilogramsPerMillimeter
 #if NET7_0_OR_GREATER
-                => LinearDensity.FromKilogramsPerMillimeter(QuantityValue.CreateChecked(value));
+                => LinearDensity.FromKilogramsPerMillimeter(double.CreateChecked(value));
 #else
-                => LinearDensity.FromKilogramsPerMillimeter(value.ToQuantityValue());
+                => LinearDensity.FromKilogramsPerMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="LinearDensity.FromMicrogramsPerCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="LinearDensity.FromMicrogramsPerCentimeter(double)" />
             public LinearDensity MicrogramsPerCentimeter
 #if NET7_0_OR_GREATER
-                => LinearDensity.FromMicrogramsPerCentimeter(QuantityValue.CreateChecked(value));
+                => LinearDensity.FromMicrogramsPerCentimeter(double.CreateChecked(value));
 #else
-                => LinearDensity.FromMicrogramsPerCentimeter(value.ToQuantityValue());
+                => LinearDensity.FromMicrogramsPerCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="LinearDensity.FromMicrogramsPerFoot(QuantityValue)" />
+            /// <inheritdoc cref="LinearDensity.FromMicrogramsPerFoot(double)" />
             public LinearDensity MicrogramsPerFoot
 #if NET7_0_OR_GREATER
-                => LinearDensity.FromMicrogramsPerFoot(QuantityValue.CreateChecked(value));
+                => LinearDensity.FromMicrogramsPerFoot(double.CreateChecked(value));
 #else
-                => LinearDensity.FromMicrogramsPerFoot(value.ToQuantityValue());
+                => LinearDensity.FromMicrogramsPerFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="LinearDensity.FromMicrogramsPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="LinearDensity.FromMicrogramsPerMeter(double)" />
             public LinearDensity MicrogramsPerMeter
 #if NET7_0_OR_GREATER
-                => LinearDensity.FromMicrogramsPerMeter(QuantityValue.CreateChecked(value));
+                => LinearDensity.FromMicrogramsPerMeter(double.CreateChecked(value));
 #else
-                => LinearDensity.FromMicrogramsPerMeter(value.ToQuantityValue());
+                => LinearDensity.FromMicrogramsPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="LinearDensity.FromMicrogramsPerMillimeter(QuantityValue)" />
+            /// <inheritdoc cref="LinearDensity.FromMicrogramsPerMillimeter(double)" />
             public LinearDensity MicrogramsPerMillimeter
 #if NET7_0_OR_GREATER
-                => LinearDensity.FromMicrogramsPerMillimeter(QuantityValue.CreateChecked(value));
+                => LinearDensity.FromMicrogramsPerMillimeter(double.CreateChecked(value));
 #else
-                => LinearDensity.FromMicrogramsPerMillimeter(value.ToQuantityValue());
+                => LinearDensity.FromMicrogramsPerMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="LinearDensity.FromMilligramsPerCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="LinearDensity.FromMilligramsPerCentimeter(double)" />
             public LinearDensity MilligramsPerCentimeter
 #if NET7_0_OR_GREATER
-                => LinearDensity.FromMilligramsPerCentimeter(QuantityValue.CreateChecked(value));
+                => LinearDensity.FromMilligramsPerCentimeter(double.CreateChecked(value));
 #else
-                => LinearDensity.FromMilligramsPerCentimeter(value.ToQuantityValue());
+                => LinearDensity.FromMilligramsPerCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="LinearDensity.FromMilligramsPerFoot(QuantityValue)" />
+            /// <inheritdoc cref="LinearDensity.FromMilligramsPerFoot(double)" />
             public LinearDensity MilligramsPerFoot
 #if NET7_0_OR_GREATER
-                => LinearDensity.FromMilligramsPerFoot(QuantityValue.CreateChecked(value));
+                => LinearDensity.FromMilligramsPerFoot(double.CreateChecked(value));
 #else
-                => LinearDensity.FromMilligramsPerFoot(value.ToQuantityValue());
+                => LinearDensity.FromMilligramsPerFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="LinearDensity.FromMilligramsPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="LinearDensity.FromMilligramsPerMeter(double)" />
             public LinearDensity MilligramsPerMeter
 #if NET7_0_OR_GREATER
-                => LinearDensity.FromMilligramsPerMeter(QuantityValue.CreateChecked(value));
+                => LinearDensity.FromMilligramsPerMeter(double.CreateChecked(value));
 #else
-                => LinearDensity.FromMilligramsPerMeter(value.ToQuantityValue());
+                => LinearDensity.FromMilligramsPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="LinearDensity.FromMilligramsPerMillimeter(QuantityValue)" />
+            /// <inheritdoc cref="LinearDensity.FromMilligramsPerMillimeter(double)" />
             public LinearDensity MilligramsPerMillimeter
 #if NET7_0_OR_GREATER
-                => LinearDensity.FromMilligramsPerMillimeter(QuantityValue.CreateChecked(value));
+                => LinearDensity.FromMilligramsPerMillimeter(double.CreateChecked(value));
 #else
-                => LinearDensity.FromMilligramsPerMillimeter(value.ToQuantityValue());
+                => LinearDensity.FromMilligramsPerMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="LinearDensity.FromPoundsPerFoot(QuantityValue)" />
+            /// <inheritdoc cref="LinearDensity.FromPoundsPerFoot(double)" />
             public LinearDensity PoundsPerFoot
 #if NET7_0_OR_GREATER
-                => LinearDensity.FromPoundsPerFoot(QuantityValue.CreateChecked(value));
+                => LinearDensity.FromPoundsPerFoot(double.CreateChecked(value));
 #else
-                => LinearDensity.FromPoundsPerFoot(value.ToQuantityValue());
+                => LinearDensity.FromPoundsPerFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="LinearDensity.FromPoundsPerInch(QuantityValue)" />
+            /// <inheritdoc cref="LinearDensity.FromPoundsPerInch(double)" />
             public LinearDensity PoundsPerInch
 #if NET7_0_OR_GREATER
-                => LinearDensity.FromPoundsPerInch(QuantityValue.CreateChecked(value));
+                => LinearDensity.FromPoundsPerInch(double.CreateChecked(value));
 #else
-                => LinearDensity.FromPoundsPerInch(value.ToQuantityValue());
+                => LinearDensity.FromPoundsPerInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

@@ -381,7 +381,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 Ω·m", ElectricResistivityUnit.OhmMeter, 4.2)]
         [InlineData("en-US", "4.2 pΩ·cm", ElectricResistivityUnit.PicoohmCentimeter, 4.2)]
         [InlineData("en-US", "4.2 pΩ·m", ElectricResistivityUnit.PicoohmMeter, 4.2)]
-        public void Parse(string culture, string quantityString, ElectricResistivityUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, ElectricResistivityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ElectricResistivity.Parse(quantityString);
@@ -404,7 +404,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 Ω·m", ElectricResistivityUnit.OhmMeter, 4.2)]
         [InlineData("en-US", "4.2 pΩ·cm", ElectricResistivityUnit.PicoohmCentimeter, 4.2)]
         [InlineData("en-US", "4.2 pΩ·m", ElectricResistivityUnit.PicoohmMeter, 4.2)]
-        public void TryParse(string culture, string quantityString, ElectricResistivityUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, ElectricResistivityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ElectricResistivity.TryParse(quantityString, out ElectricResistivity parsed));
@@ -823,8 +823,8 @@ namespace UnitsNet.Tests
             var quantity = ElectricResistivity.FromOhmMeters(firstValue);
             var otherQuantity = ElectricResistivity.FromOhmMeters(secondValue);
             ElectricResistivity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, ElectricResistivity.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

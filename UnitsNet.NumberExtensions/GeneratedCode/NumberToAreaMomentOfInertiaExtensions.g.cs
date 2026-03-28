@@ -32,70 +32,70 @@ namespace UnitsNet.NumberExtensions.NumberToAreaMomentOfInertia
     /// </summary>
     public static class NumberToAreaMomentOfInertiaExtensions
     {
-        /// <inheritdoc cref="AreaMomentOfInertia.FromCentimetersToTheFourth(QuantityValue)" />
+        /// <inheritdoc cref="AreaMomentOfInertia.FromCentimetersToTheFourth(double)" />
         public static AreaMomentOfInertia CentimetersToTheFourth<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => AreaMomentOfInertia.FromCentimetersToTheFourth(QuantityValue.CreateChecked(value));
+            => AreaMomentOfInertia.FromCentimetersToTheFourth(double.CreateChecked(value));
 #else
             , IConvertible
-            => AreaMomentOfInertia.FromCentimetersToTheFourth(value.ToQuantityValue());
+            => AreaMomentOfInertia.FromCentimetersToTheFourth(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="AreaMomentOfInertia.FromDecimetersToTheFourth(QuantityValue)" />
+        /// <inheritdoc cref="AreaMomentOfInertia.FromDecimetersToTheFourth(double)" />
         public static AreaMomentOfInertia DecimetersToTheFourth<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => AreaMomentOfInertia.FromDecimetersToTheFourth(QuantityValue.CreateChecked(value));
+            => AreaMomentOfInertia.FromDecimetersToTheFourth(double.CreateChecked(value));
 #else
             , IConvertible
-            => AreaMomentOfInertia.FromDecimetersToTheFourth(value.ToQuantityValue());
+            => AreaMomentOfInertia.FromDecimetersToTheFourth(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="AreaMomentOfInertia.FromFeetToTheFourth(QuantityValue)" />
+        /// <inheritdoc cref="AreaMomentOfInertia.FromFeetToTheFourth(double)" />
         public static AreaMomentOfInertia FeetToTheFourth<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => AreaMomentOfInertia.FromFeetToTheFourth(QuantityValue.CreateChecked(value));
+            => AreaMomentOfInertia.FromFeetToTheFourth(double.CreateChecked(value));
 #else
             , IConvertible
-            => AreaMomentOfInertia.FromFeetToTheFourth(value.ToQuantityValue());
+            => AreaMomentOfInertia.FromFeetToTheFourth(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="AreaMomentOfInertia.FromInchesToTheFourth(QuantityValue)" />
+        /// <inheritdoc cref="AreaMomentOfInertia.FromInchesToTheFourth(double)" />
         public static AreaMomentOfInertia InchesToTheFourth<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => AreaMomentOfInertia.FromInchesToTheFourth(QuantityValue.CreateChecked(value));
+            => AreaMomentOfInertia.FromInchesToTheFourth(double.CreateChecked(value));
 #else
             , IConvertible
-            => AreaMomentOfInertia.FromInchesToTheFourth(value.ToQuantityValue());
+            => AreaMomentOfInertia.FromInchesToTheFourth(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMetersToTheFourth(QuantityValue)" />
+        /// <inheritdoc cref="AreaMomentOfInertia.FromMetersToTheFourth(double)" />
         public static AreaMomentOfInertia MetersToTheFourth<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => AreaMomentOfInertia.FromMetersToTheFourth(QuantityValue.CreateChecked(value));
+            => AreaMomentOfInertia.FromMetersToTheFourth(double.CreateChecked(value));
 #else
             , IConvertible
-            => AreaMomentOfInertia.FromMetersToTheFourth(value.ToQuantityValue());
+            => AreaMomentOfInertia.FromMetersToTheFourth(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMillimetersToTheFourth(QuantityValue)" />
+        /// <inheritdoc cref="AreaMomentOfInertia.FromMillimetersToTheFourth(double)" />
         public static AreaMomentOfInertia MillimetersToTheFourth<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => AreaMomentOfInertia.FromMillimetersToTheFourth(QuantityValue.CreateChecked(value));
+            => AreaMomentOfInertia.FromMillimetersToTheFourth(double.CreateChecked(value));
 #else
             , IConvertible
-            => AreaMomentOfInertia.FromMillimetersToTheFourth(value.ToQuantityValue());
+            => AreaMomentOfInertia.FromMillimetersToTheFourth(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

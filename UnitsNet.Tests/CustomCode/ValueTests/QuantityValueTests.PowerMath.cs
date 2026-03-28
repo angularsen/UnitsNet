@@ -189,7 +189,7 @@ public partial class QuantityValueTests
             Assert.All(Enumerable.Range(1, 100), digits =>
             {
                 var result = QuantityValue.Sqrt(2, digits);
-                AssertEx.EqualTolerance(expected, result, new QuantityValue(1, BigInteger.Pow(10, digits)));
+                AssertEx.EqualTolerance((double)expected, (double)result, (double)new QuantityValue(1, BigInteger.Pow(10, digits)));
             });
         }
 
@@ -202,7 +202,7 @@ public partial class QuantityValueTests
             {
                 var result = QuantityValue.Sqrt(2, digits);
                 var (numerator, _) = result;
-                AssertEx.EqualTolerance(digits + 1, numerator.ToString().Length, tolerance);
+                AssertEx.EqualTolerance(digits + 1, numerator.ToString().Length, (double)tolerance);
             });
         }
 
@@ -218,7 +218,7 @@ public partial class QuantityValueTests
             // Act
             var result = QuantityValue.Sqrt(quantityValue, 5);
             // Assert
-            AssertEx.EqualTolerance(result, 0.56m, 0.1);
+            AssertEx.EqualTolerance((double)result, 0.56, 0.1);
 #if NET
             Assert.Equal(573312, result.Numerator);
             Assert.Equal(1019740, result.Denominator);
@@ -283,7 +283,7 @@ public partial class QuantityValueTests
                     break; // the extra digits happened to be correct (compounding probability)
                 }
 
-                AssertEx.EqualTolerance(expectedValue, result, new QuantityValue(1, BigInteger.Pow(10, digits)));
+                AssertEx.EqualTolerance((double)(QuantityValue)expectedValue, (double)result, (double)new QuantityValue(1, BigInteger.Pow(10, digits)));
             }
 
             Assert.Equal(expectedValue, QuantityValue.Sqrt(squaredValue, maxDigits));
@@ -312,7 +312,7 @@ public partial class QuantityValueTests
                     break; // the extra digits happened to be correct (compounding probability)
                 }
 
-                AssertEx.EqualTolerance(expectedValue, result, new QuantityValue(1, BigInteger.Pow(10, digits)));
+                AssertEx.EqualTolerance((double)(QuantityValue)expectedValue, (double)result, (double)new QuantityValue(1, BigInteger.Pow(10, digits)));
             }
 
             Assert.Equal(expectedValue, QuantityValue.Sqrt(squaredValue, maxDigits));

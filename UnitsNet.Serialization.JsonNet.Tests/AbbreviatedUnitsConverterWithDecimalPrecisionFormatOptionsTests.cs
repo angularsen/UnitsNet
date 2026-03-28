@@ -26,7 +26,7 @@ public class AbbreviatedUnitsConverterWithDecimalPrecisionFormatOptionsTests : J
     public void LargeQuantity_SerializedWithHighPrecisionAndAbbreviatedUnit()
     {
         // Arrange
-        var value = Mass.FromMilligrams(QuantityValue.Parse("12345678901234567890.1234567890123456789", CultureInfo.InvariantCulture));
+        var value = Mass.FromMilligrams((double)QuantityValue.Parse("12345678901234567890.1234567890123456789", CultureInfo.InvariantCulture));
         const string expectedJson = """{"Value":12345678901234567890.123456789,"Unit":"mg","Type":"Mass"}""";
 
         // Act

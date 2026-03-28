@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct MagneticField :
         IArithmeticQuantity<MagneticField, MagneticFieldUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<MagneticField, MagneticField, QuantityValue>,
+        IDivisionOperators<MagneticField, MagneticField, double>,
         IComparisonOperators<MagneticField, MagneticField, bool>,
         IParsable<MagneticField>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -148,7 +148,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public MagneticField(QuantityValue value, MagneticFieldUnit unit)
+        public MagneticField(double value, MagneticFieldUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -162,7 +162,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public MagneticField(QuantityValue value, UnitSystem unitSystem)
+        public MagneticField(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -204,7 +204,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public MagneticFieldUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -238,34 +238,34 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MagneticFieldUnit.Gauss"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MagneticFieldUnit.Gauss"/>
         /// </summary>
-        public QuantityValue Gausses => this.As(MagneticFieldUnit.Gauss);
+        public double Gausses => this.As(MagneticFieldUnit.Gauss);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MagneticFieldUnit.Microtesla"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MagneticFieldUnit.Microtesla"/>
         /// </summary>
-        public QuantityValue Microteslas => this.As(MagneticFieldUnit.Microtesla);
+        public double Microteslas => this.As(MagneticFieldUnit.Microtesla);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MagneticFieldUnit.Milligauss"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MagneticFieldUnit.Milligauss"/>
         /// </summary>
-        public QuantityValue Milligausses => this.As(MagneticFieldUnit.Milligauss);
+        public double Milligausses => this.As(MagneticFieldUnit.Milligauss);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MagneticFieldUnit.Millitesla"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MagneticFieldUnit.Millitesla"/>
         /// </summary>
-        public QuantityValue Milliteslas => this.As(MagneticFieldUnit.Millitesla);
+        public double Milliteslas => this.As(MagneticFieldUnit.Millitesla);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MagneticFieldUnit.Nanotesla"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MagneticFieldUnit.Nanotesla"/>
         /// </summary>
-        public QuantityValue Nanoteslas => this.As(MagneticFieldUnit.Nanotesla);
+        public double Nanoteslas => this.As(MagneticFieldUnit.Nanotesla);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MagneticFieldUnit.Tesla"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MagneticFieldUnit.Tesla"/>
         /// </summary>
-        public QuantityValue Teslas => this.As(MagneticFieldUnit.Tesla);
+        public double Teslas => this.As(MagneticFieldUnit.Tesla);
 
         #endregion
 
@@ -299,7 +299,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Gauss"/>.
         /// </summary>
-        public static MagneticField FromGausses(QuantityValue value)
+        public static MagneticField FromGausses(double value)
         {
             return new MagneticField(value, MagneticFieldUnit.Gauss);
         }
@@ -307,7 +307,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Microtesla"/>.
         /// </summary>
-        public static MagneticField FromMicroteslas(QuantityValue value)
+        public static MagneticField FromMicroteslas(double value)
         {
             return new MagneticField(value, MagneticFieldUnit.Microtesla);
         }
@@ -315,7 +315,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Milligauss"/>.
         /// </summary>
-        public static MagneticField FromMilligausses(QuantityValue value)
+        public static MagneticField FromMilligausses(double value)
         {
             return new MagneticField(value, MagneticFieldUnit.Milligauss);
         }
@@ -323,7 +323,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Millitesla"/>.
         /// </summary>
-        public static MagneticField FromMilliteslas(QuantityValue value)
+        public static MagneticField FromMilliteslas(double value)
         {
             return new MagneticField(value, MagneticFieldUnit.Millitesla);
         }
@@ -331,7 +331,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Nanotesla"/>.
         /// </summary>
-        public static MagneticField FromNanoteslas(QuantityValue value)
+        public static MagneticField FromNanoteslas(double value)
         {
             return new MagneticField(value, MagneticFieldUnit.Nanotesla);
         }
@@ -339,7 +339,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MagneticField"/> from <see cref="MagneticFieldUnit.Tesla"/>.
         /// </summary>
-        public static MagneticField FromTeslas(QuantityValue value)
+        public static MagneticField FromTeslas(double value)
         {
             return new MagneticField(value, MagneticFieldUnit.Tesla);
         }
@@ -350,7 +350,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MagneticField unit value.</returns>
-        public static MagneticField From(QuantityValue value, MagneticFieldUnit fromUnit)
+        public static MagneticField From(double value, MagneticFieldUnit fromUnit)
         {
             return new MagneticField(value, fromUnit);
         }
@@ -515,25 +515,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="MagneticField"/> from multiplying value and <see cref="MagneticField"/>.</summary>
-        public static MagneticField operator *(QuantityValue left, MagneticField right)
+        public static MagneticField operator *(double left, MagneticField right)
         {
             return new MagneticField(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="MagneticField"/> from multiplying value and <see cref="MagneticField"/>.</summary>
-        public static MagneticField operator *(MagneticField left, QuantityValue right)
+        public static MagneticField operator *(MagneticField left, double right)
         {
             return new MagneticField(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="MagneticField"/> from dividing <see cref="MagneticField"/> by value.</summary>
-        public static MagneticField operator /(MagneticField left, QuantityValue right)
+        public static MagneticField operator /(MagneticField left, double right)
         {
             return new MagneticField(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="MagneticField"/> by <see cref="MagneticField"/>.</summary>
-        public static QuantityValue operator /(MagneticField left, MagneticField right)
+        public static double operator /(MagneticField left, MagneticField right)
         {
             return left.Teslas / right.Teslas;
         }

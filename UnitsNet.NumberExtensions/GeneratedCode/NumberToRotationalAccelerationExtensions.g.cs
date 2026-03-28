@@ -32,48 +32,48 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
     /// </summary>
     public static class NumberToRotationalAccelerationExtensions
     {
-        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(QuantityValue)" />
+        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(double)" />
         public static RotationalAcceleration DegreesPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RotationalAcceleration.FromDegreesPerSecondSquared(QuantityValue.CreateChecked(value));
+            => RotationalAcceleration.FromDegreesPerSecondSquared(double.CreateChecked(value));
 #else
             , IConvertible
-            => RotationalAcceleration.FromDegreesPerSecondSquared(value.ToQuantityValue());
+            => RotationalAcceleration.FromDegreesPerSecondSquared(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(QuantityValue)" />
+        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(double)" />
         public static RotationalAcceleration RadiansPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RotationalAcceleration.FromRadiansPerSecondSquared(QuantityValue.CreateChecked(value));
+            => RotationalAcceleration.FromRadiansPerSecondSquared(double.CreateChecked(value));
 #else
             , IConvertible
-            => RotationalAcceleration.FromRadiansPerSecondSquared(value.ToQuantityValue());
+            => RotationalAcceleration.FromRadiansPerSecondSquared(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(QuantityValue)" />
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double)" />
         public static RotationalAcceleration RevolutionsPerMinutePerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(QuantityValue.CreateChecked(value));
+            => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value.ToQuantityValue());
+            => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerSecondSquared(QuantityValue)" />
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerSecondSquared(double)" />
         public static RotationalAcceleration RevolutionsPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => RotationalAcceleration.FromRevolutionsPerSecondSquared(QuantityValue.CreateChecked(value));
+            => RotationalAcceleration.FromRevolutionsPerSecondSquared(double.CreateChecked(value));
 #else
             , IConvertible
-            => RotationalAcceleration.FromRevolutionsPerSecondSquared(value.ToQuantityValue());
+            => RotationalAcceleration.FromRevolutionsPerSecondSquared(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

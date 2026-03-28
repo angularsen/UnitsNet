@@ -41,13 +41,13 @@ namespace UnitsNet
     public readonly partial struct SpecificEnergy :
         IArithmeticQuantity<SpecificEnergy, SpecificEnergyUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<SpecificEnergy, SpecificEnergy, QuantityValue>,
+        IDivisionOperators<SpecificEnergy, SpecificEnergy, double>,
         IMultiplyOperators<SpecificEnergy, Mass, Energy>,
         IMultiplyOperators<SpecificEnergy, MassFlow, Power>,
-        IMultiplyOperators<SpecificEnergy, BrakeSpecificFuelConsumption, QuantityValue>,
         IDivisionOperators<SpecificEnergy, TemperatureDelta, SpecificEntropy>,
         IDivisionOperators<SpecificEnergy, Speed, Speed>,
         IDivisionOperators<SpecificEnergy, SpecificEntropy, TemperatureDelta>,
+        IMultiplyOperators<SpecificEnergy, BrakeSpecificFuelConsumption, double>,
         IComparisonOperators<SpecificEnergy, SpecificEnergy, bool>,
         IParsable<SpecificEnergy>,
 #endif
@@ -60,7 +60,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -226,7 +226,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public SpecificEnergy(QuantityValue value, SpecificEnergyUnit unit)
+        public SpecificEnergy(double value, SpecificEnergyUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -240,7 +240,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public SpecificEnergy(QuantityValue value, UnitSystem unitSystem)
+        public SpecificEnergy(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -282,7 +282,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public SpecificEnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -316,154 +316,154 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.BtuPerPound"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.BtuPerPound"/>
         /// </summary>
-        public QuantityValue BtuPerPound => this.As(SpecificEnergyUnit.BtuPerPound);
+        public double BtuPerPound => this.As(SpecificEnergyUnit.BtuPerPound);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.CaloriePerGram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.CaloriePerGram"/>
         /// </summary>
-        public QuantityValue CaloriesPerGram => this.As(SpecificEnergyUnit.CaloriePerGram);
+        public double CaloriesPerGram => this.As(SpecificEnergyUnit.CaloriePerGram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.GigawattDayPerKilogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.GigawattDayPerKilogram"/>
         /// </summary>
-        public QuantityValue GigawattDaysPerKilogram => this.As(SpecificEnergyUnit.GigawattDayPerKilogram);
+        public double GigawattDaysPerKilogram => this.As(SpecificEnergyUnit.GigawattDayPerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.GigawattDayPerShortTon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.GigawattDayPerShortTon"/>
         /// </summary>
-        public QuantityValue GigawattDaysPerShortTon => this.As(SpecificEnergyUnit.GigawattDayPerShortTon);
+        public double GigawattDaysPerShortTon => this.As(SpecificEnergyUnit.GigawattDayPerShortTon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.GigawattDayPerTonne"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.GigawattDayPerTonne"/>
         /// </summary>
-        public QuantityValue GigawattDaysPerTonne => this.As(SpecificEnergyUnit.GigawattDayPerTonne);
+        public double GigawattDaysPerTonne => this.As(SpecificEnergyUnit.GigawattDayPerTonne);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.GigawattHourPerKilogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.GigawattHourPerKilogram"/>
         /// </summary>
-        public QuantityValue GigawattHoursPerKilogram => this.As(SpecificEnergyUnit.GigawattHourPerKilogram);
+        public double GigawattHoursPerKilogram => this.As(SpecificEnergyUnit.GigawattHourPerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.GigawattHourPerPound"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.GigawattHourPerPound"/>
         /// </summary>
-        public QuantityValue GigawattHoursPerPound => this.As(SpecificEnergyUnit.GigawattHourPerPound);
+        public double GigawattHoursPerPound => this.As(SpecificEnergyUnit.GigawattHourPerPound);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.JoulePerKilogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.JoulePerKilogram"/>
         /// </summary>
-        public QuantityValue JoulesPerKilogram => this.As(SpecificEnergyUnit.JoulePerKilogram);
+        public double JoulesPerKilogram => this.As(SpecificEnergyUnit.JoulePerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilocaloriePerGram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilocaloriePerGram"/>
         /// </summary>
-        public QuantityValue KilocaloriesPerGram => this.As(SpecificEnergyUnit.KilocaloriePerGram);
+        public double KilocaloriesPerGram => this.As(SpecificEnergyUnit.KilocaloriePerGram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilojoulePerKilogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilojoulePerKilogram"/>
         /// </summary>
-        public QuantityValue KilojoulesPerKilogram => this.As(SpecificEnergyUnit.KilojoulePerKilogram);
+        public double KilojoulesPerKilogram => this.As(SpecificEnergyUnit.KilojoulePerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilowattDayPerKilogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilowattDayPerKilogram"/>
         /// </summary>
-        public QuantityValue KilowattDaysPerKilogram => this.As(SpecificEnergyUnit.KilowattDayPerKilogram);
+        public double KilowattDaysPerKilogram => this.As(SpecificEnergyUnit.KilowattDayPerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilowattDayPerShortTon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilowattDayPerShortTon"/>
         /// </summary>
-        public QuantityValue KilowattDaysPerShortTon => this.As(SpecificEnergyUnit.KilowattDayPerShortTon);
+        public double KilowattDaysPerShortTon => this.As(SpecificEnergyUnit.KilowattDayPerShortTon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilowattDayPerTonne"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilowattDayPerTonne"/>
         /// </summary>
-        public QuantityValue KilowattDaysPerTonne => this.As(SpecificEnergyUnit.KilowattDayPerTonne);
+        public double KilowattDaysPerTonne => this.As(SpecificEnergyUnit.KilowattDayPerTonne);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilowattHourPerKilogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilowattHourPerKilogram"/>
         /// </summary>
-        public QuantityValue KilowattHoursPerKilogram => this.As(SpecificEnergyUnit.KilowattHourPerKilogram);
+        public double KilowattHoursPerKilogram => this.As(SpecificEnergyUnit.KilowattHourPerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilowattHourPerPound"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.KilowattHourPerPound"/>
         /// </summary>
-        public QuantityValue KilowattHoursPerPound => this.As(SpecificEnergyUnit.KilowattHourPerPound);
+        public double KilowattHoursPerPound => this.As(SpecificEnergyUnit.KilowattHourPerPound);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegajoulePerKilogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegajoulePerKilogram"/>
         /// </summary>
-        public QuantityValue MegajoulesPerKilogram => this.As(SpecificEnergyUnit.MegajoulePerKilogram);
+        public double MegajoulesPerKilogram => this.As(SpecificEnergyUnit.MegajoulePerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegajoulePerTonne"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegajoulePerTonne"/>
         /// </summary>
-        public QuantityValue MegajoulesPerTonne => this.As(SpecificEnergyUnit.MegajoulePerTonne);
+        public double MegajoulesPerTonne => this.As(SpecificEnergyUnit.MegajoulePerTonne);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattDayPerKilogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattDayPerKilogram"/>
         /// </summary>
-        public QuantityValue MegawattDaysPerKilogram => this.As(SpecificEnergyUnit.MegawattDayPerKilogram);
+        public double MegawattDaysPerKilogram => this.As(SpecificEnergyUnit.MegawattDayPerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattDayPerShortTon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattDayPerShortTon"/>
         /// </summary>
-        public QuantityValue MegawattDaysPerShortTon => this.As(SpecificEnergyUnit.MegawattDayPerShortTon);
+        public double MegawattDaysPerShortTon => this.As(SpecificEnergyUnit.MegawattDayPerShortTon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattDayPerTonne"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattDayPerTonne"/>
         /// </summary>
-        public QuantityValue MegawattDaysPerTonne => this.As(SpecificEnergyUnit.MegawattDayPerTonne);
+        public double MegawattDaysPerTonne => this.As(SpecificEnergyUnit.MegawattDayPerTonne);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattHourPerKilogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattHourPerKilogram"/>
         /// </summary>
-        public QuantityValue MegawattHoursPerKilogram => this.As(SpecificEnergyUnit.MegawattHourPerKilogram);
+        public double MegawattHoursPerKilogram => this.As(SpecificEnergyUnit.MegawattHourPerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattHourPerPound"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.MegawattHourPerPound"/>
         /// </summary>
-        public QuantityValue MegawattHoursPerPound => this.As(SpecificEnergyUnit.MegawattHourPerPound);
+        public double MegawattHoursPerPound => this.As(SpecificEnergyUnit.MegawattHourPerPound);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.TerawattDayPerKilogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.TerawattDayPerKilogram"/>
         /// </summary>
-        public QuantityValue TerawattDaysPerKilogram => this.As(SpecificEnergyUnit.TerawattDayPerKilogram);
+        public double TerawattDaysPerKilogram => this.As(SpecificEnergyUnit.TerawattDayPerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.TerawattDayPerShortTon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.TerawattDayPerShortTon"/>
         /// </summary>
-        public QuantityValue TerawattDaysPerShortTon => this.As(SpecificEnergyUnit.TerawattDayPerShortTon);
+        public double TerawattDaysPerShortTon => this.As(SpecificEnergyUnit.TerawattDayPerShortTon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.TerawattDayPerTonne"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.TerawattDayPerTonne"/>
         /// </summary>
-        public QuantityValue TerawattDaysPerTonne => this.As(SpecificEnergyUnit.TerawattDayPerTonne);
+        public double TerawattDaysPerTonne => this.As(SpecificEnergyUnit.TerawattDayPerTonne);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.WattDayPerKilogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.WattDayPerKilogram"/>
         /// </summary>
-        public QuantityValue WattDaysPerKilogram => this.As(SpecificEnergyUnit.WattDayPerKilogram);
+        public double WattDaysPerKilogram => this.As(SpecificEnergyUnit.WattDayPerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.WattDayPerShortTon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.WattDayPerShortTon"/>
         /// </summary>
-        public QuantityValue WattDaysPerShortTon => this.As(SpecificEnergyUnit.WattDayPerShortTon);
+        public double WattDaysPerShortTon => this.As(SpecificEnergyUnit.WattDayPerShortTon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.WattDayPerTonne"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.WattDayPerTonne"/>
         /// </summary>
-        public QuantityValue WattDaysPerTonne => this.As(SpecificEnergyUnit.WattDayPerTonne);
+        public double WattDaysPerTonne => this.As(SpecificEnergyUnit.WattDayPerTonne);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.WattHourPerKilogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.WattHourPerKilogram"/>
         /// </summary>
-        public QuantityValue WattHoursPerKilogram => this.As(SpecificEnergyUnit.WattHourPerKilogram);
+        public double WattHoursPerKilogram => this.As(SpecificEnergyUnit.WattHourPerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificEnergyUnit.WattHourPerPound"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificEnergyUnit.WattHourPerPound"/>
         /// </summary>
-        public QuantityValue WattHoursPerPound => this.As(SpecificEnergyUnit.WattHourPerPound);
+        public double WattHoursPerPound => this.As(SpecificEnergyUnit.WattHourPerPound);
 
         #endregion
 
@@ -497,7 +497,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.BtuPerPound"/>.
         /// </summary>
-        public static SpecificEnergy FromBtuPerPound(QuantityValue value)
+        public static SpecificEnergy FromBtuPerPound(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.BtuPerPound);
         }
@@ -505,7 +505,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.CaloriePerGram"/>.
         /// </summary>
-        public static SpecificEnergy FromCaloriesPerGram(QuantityValue value)
+        public static SpecificEnergy FromCaloriesPerGram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.CaloriePerGram);
         }
@@ -513,7 +513,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.GigawattDayPerKilogram"/>.
         /// </summary>
-        public static SpecificEnergy FromGigawattDaysPerKilogram(QuantityValue value)
+        public static SpecificEnergy FromGigawattDaysPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.GigawattDayPerKilogram);
         }
@@ -521,7 +521,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.GigawattDayPerShortTon"/>.
         /// </summary>
-        public static SpecificEnergy FromGigawattDaysPerShortTon(QuantityValue value)
+        public static SpecificEnergy FromGigawattDaysPerShortTon(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.GigawattDayPerShortTon);
         }
@@ -529,7 +529,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.GigawattDayPerTonne"/>.
         /// </summary>
-        public static SpecificEnergy FromGigawattDaysPerTonne(QuantityValue value)
+        public static SpecificEnergy FromGigawattDaysPerTonne(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.GigawattDayPerTonne);
         }
@@ -537,7 +537,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.GigawattHourPerKilogram"/>.
         /// </summary>
-        public static SpecificEnergy FromGigawattHoursPerKilogram(QuantityValue value)
+        public static SpecificEnergy FromGigawattHoursPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.GigawattHourPerKilogram);
         }
@@ -545,7 +545,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.GigawattHourPerPound"/>.
         /// </summary>
-        public static SpecificEnergy FromGigawattHoursPerPound(QuantityValue value)
+        public static SpecificEnergy FromGigawattHoursPerPound(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.GigawattHourPerPound);
         }
@@ -553,7 +553,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.JoulePerKilogram"/>.
         /// </summary>
-        public static SpecificEnergy FromJoulesPerKilogram(QuantityValue value)
+        public static SpecificEnergy FromJoulesPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.JoulePerKilogram);
         }
@@ -561,7 +561,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilocaloriePerGram"/>.
         /// </summary>
-        public static SpecificEnergy FromKilocaloriesPerGram(QuantityValue value)
+        public static SpecificEnergy FromKilocaloriesPerGram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.KilocaloriePerGram);
         }
@@ -569,7 +569,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilojoulePerKilogram"/>.
         /// </summary>
-        public static SpecificEnergy FromKilojoulesPerKilogram(QuantityValue value)
+        public static SpecificEnergy FromKilojoulesPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.KilojoulePerKilogram);
         }
@@ -577,7 +577,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilowattDayPerKilogram"/>.
         /// </summary>
-        public static SpecificEnergy FromKilowattDaysPerKilogram(QuantityValue value)
+        public static SpecificEnergy FromKilowattDaysPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.KilowattDayPerKilogram);
         }
@@ -585,7 +585,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilowattDayPerShortTon"/>.
         /// </summary>
-        public static SpecificEnergy FromKilowattDaysPerShortTon(QuantityValue value)
+        public static SpecificEnergy FromKilowattDaysPerShortTon(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.KilowattDayPerShortTon);
         }
@@ -593,7 +593,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilowattDayPerTonne"/>.
         /// </summary>
-        public static SpecificEnergy FromKilowattDaysPerTonne(QuantityValue value)
+        public static SpecificEnergy FromKilowattDaysPerTonne(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.KilowattDayPerTonne);
         }
@@ -601,7 +601,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilowattHourPerKilogram"/>.
         /// </summary>
-        public static SpecificEnergy FromKilowattHoursPerKilogram(QuantityValue value)
+        public static SpecificEnergy FromKilowattHoursPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.KilowattHourPerKilogram);
         }
@@ -609,7 +609,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.KilowattHourPerPound"/>.
         /// </summary>
-        public static SpecificEnergy FromKilowattHoursPerPound(QuantityValue value)
+        public static SpecificEnergy FromKilowattHoursPerPound(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.KilowattHourPerPound);
         }
@@ -617,7 +617,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegajoulePerKilogram"/>.
         /// </summary>
-        public static SpecificEnergy FromMegajoulesPerKilogram(QuantityValue value)
+        public static SpecificEnergy FromMegajoulesPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.MegajoulePerKilogram);
         }
@@ -625,7 +625,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegajoulePerTonne"/>.
         /// </summary>
-        public static SpecificEnergy FromMegajoulesPerTonne(QuantityValue value)
+        public static SpecificEnergy FromMegajoulesPerTonne(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.MegajoulePerTonne);
         }
@@ -633,7 +633,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegawattDayPerKilogram"/>.
         /// </summary>
-        public static SpecificEnergy FromMegawattDaysPerKilogram(QuantityValue value)
+        public static SpecificEnergy FromMegawattDaysPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.MegawattDayPerKilogram);
         }
@@ -641,7 +641,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegawattDayPerShortTon"/>.
         /// </summary>
-        public static SpecificEnergy FromMegawattDaysPerShortTon(QuantityValue value)
+        public static SpecificEnergy FromMegawattDaysPerShortTon(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.MegawattDayPerShortTon);
         }
@@ -649,7 +649,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegawattDayPerTonne"/>.
         /// </summary>
-        public static SpecificEnergy FromMegawattDaysPerTonne(QuantityValue value)
+        public static SpecificEnergy FromMegawattDaysPerTonne(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.MegawattDayPerTonne);
         }
@@ -657,7 +657,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegawattHourPerKilogram"/>.
         /// </summary>
-        public static SpecificEnergy FromMegawattHoursPerKilogram(QuantityValue value)
+        public static SpecificEnergy FromMegawattHoursPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.MegawattHourPerKilogram);
         }
@@ -665,7 +665,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.MegawattHourPerPound"/>.
         /// </summary>
-        public static SpecificEnergy FromMegawattHoursPerPound(QuantityValue value)
+        public static SpecificEnergy FromMegawattHoursPerPound(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.MegawattHourPerPound);
         }
@@ -673,7 +673,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.TerawattDayPerKilogram"/>.
         /// </summary>
-        public static SpecificEnergy FromTerawattDaysPerKilogram(QuantityValue value)
+        public static SpecificEnergy FromTerawattDaysPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.TerawattDayPerKilogram);
         }
@@ -681,7 +681,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.TerawattDayPerShortTon"/>.
         /// </summary>
-        public static SpecificEnergy FromTerawattDaysPerShortTon(QuantityValue value)
+        public static SpecificEnergy FromTerawattDaysPerShortTon(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.TerawattDayPerShortTon);
         }
@@ -689,7 +689,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.TerawattDayPerTonne"/>.
         /// </summary>
-        public static SpecificEnergy FromTerawattDaysPerTonne(QuantityValue value)
+        public static SpecificEnergy FromTerawattDaysPerTonne(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.TerawattDayPerTonne);
         }
@@ -697,7 +697,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.WattDayPerKilogram"/>.
         /// </summary>
-        public static SpecificEnergy FromWattDaysPerKilogram(QuantityValue value)
+        public static SpecificEnergy FromWattDaysPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.WattDayPerKilogram);
         }
@@ -705,7 +705,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.WattDayPerShortTon"/>.
         /// </summary>
-        public static SpecificEnergy FromWattDaysPerShortTon(QuantityValue value)
+        public static SpecificEnergy FromWattDaysPerShortTon(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.WattDayPerShortTon);
         }
@@ -713,7 +713,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.WattDayPerTonne"/>.
         /// </summary>
-        public static SpecificEnergy FromWattDaysPerTonne(QuantityValue value)
+        public static SpecificEnergy FromWattDaysPerTonne(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.WattDayPerTonne);
         }
@@ -721,7 +721,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.WattHourPerKilogram"/>.
         /// </summary>
-        public static SpecificEnergy FromWattHoursPerKilogram(QuantityValue value)
+        public static SpecificEnergy FromWattHoursPerKilogram(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.WattHourPerKilogram);
         }
@@ -729,7 +729,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SpecificEnergy"/> from <see cref="SpecificEnergyUnit.WattHourPerPound"/>.
         /// </summary>
-        public static SpecificEnergy FromWattHoursPerPound(QuantityValue value)
+        public static SpecificEnergy FromWattHoursPerPound(double value)
         {
             return new SpecificEnergy(value, SpecificEnergyUnit.WattHourPerPound);
         }
@@ -740,7 +740,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SpecificEnergy unit value.</returns>
-        public static SpecificEnergy From(QuantityValue value, SpecificEnergyUnit fromUnit)
+        public static SpecificEnergy From(double value, SpecificEnergyUnit fromUnit)
         {
             return new SpecificEnergy(value, fromUnit);
         }
@@ -905,25 +905,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="SpecificEnergy"/> from multiplying value and <see cref="SpecificEnergy"/>.</summary>
-        public static SpecificEnergy operator *(QuantityValue left, SpecificEnergy right)
+        public static SpecificEnergy operator *(double left, SpecificEnergy right)
         {
             return new SpecificEnergy(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="SpecificEnergy"/> from multiplying value and <see cref="SpecificEnergy"/>.</summary>
-        public static SpecificEnergy operator *(SpecificEnergy left, QuantityValue right)
+        public static SpecificEnergy operator *(SpecificEnergy left, double right)
         {
             return new SpecificEnergy(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="SpecificEnergy"/> from dividing <see cref="SpecificEnergy"/> by value.</summary>
-        public static SpecificEnergy operator /(SpecificEnergy left, QuantityValue right)
+        public static SpecificEnergy operator /(SpecificEnergy left, double right)
         {
             return new SpecificEnergy(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="SpecificEnergy"/> by <see cref="SpecificEnergy"/>.</summary>
-        public static QuantityValue operator /(SpecificEnergy left, SpecificEnergy right)
+        public static double operator /(SpecificEnergy left, SpecificEnergy right)
         {
             return left.JoulesPerKilogram / right.JoulesPerKilogram;
         }
@@ -932,8 +932,8 @@ namespace UnitsNet
 
         #region Relational Operators
 
-        /// <summary>Get <see cref="BrakeSpecificFuelConsumption"/> from <see cref="QuantityValue"/> / <see cref="SpecificEnergy"/>.</summary>
-        public static BrakeSpecificFuelConsumption operator /(QuantityValue value, SpecificEnergy specificEnergy)
+        /// <summary>Get <see cref="BrakeSpecificFuelConsumption"/> from <see cref="double"/> / <see cref="SpecificEnergy"/>.</summary>
+        public static BrakeSpecificFuelConsumption operator /(double value, SpecificEnergy specificEnergy)
         {
             return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value / specificEnergy.JoulesPerKilogram);
         }
@@ -948,12 +948,6 @@ namespace UnitsNet
         public static Power operator *(SpecificEnergy specificEnergy, MassFlow massFlow)
         {
             return Power.FromWatts(specificEnergy.JoulesPerKilogram * massFlow.KilogramsPerSecond);
-        }
-
-        /// <summary>Get <see cref="QuantityValue"/> from <see cref="SpecificEnergy"/> * <see cref="BrakeSpecificFuelConsumption"/>.</summary>
-        public static QuantityValue operator *(SpecificEnergy specificEnergy, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
-        {
-            return specificEnergy.JoulesPerKilogram * brakeSpecificFuelConsumption.KilogramsPerJoule;
         }
 
         /// <summary>Get <see cref="SpecificEntropy"/> from <see cref="SpecificEnergy"/> / <see cref="TemperatureDelta"/>.</summary>
@@ -972,6 +966,12 @@ namespace UnitsNet
         public static TemperatureDelta operator /(SpecificEnergy specificEnergy, SpecificEntropy specificEntropy)
         {
             return TemperatureDelta.FromKelvins(specificEnergy.JoulesPerKilogram / specificEntropy.JoulesPerKilogramKelvin);
+        }
+
+        /// <summary>Get <see cref="double"/> from <see cref="SpecificEnergy"/> * <see cref="BrakeSpecificFuelConsumption"/>.</summary>
+        public static double operator *(SpecificEnergy specificEnergy, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
+        {
+            return specificEnergy.JoulesPerKilogram * brakeSpecificFuelConsumption.KilogramsPerJoule;
         }
 
         #endregion

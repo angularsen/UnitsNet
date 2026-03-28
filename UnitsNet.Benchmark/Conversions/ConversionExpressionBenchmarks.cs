@@ -10,7 +10,7 @@ namespace UnitsNet.Benchmark.Conversions;
 [MemoryDiagnoser]
 public class ConversionExpressionBenchmarks
 {
-    private static readonly QuantityValue Value = 123.456;
+    private static readonly double Value = 123.456;
     private static readonly ConversionExpression[] DefaultExpression = Quantity.Infos.SelectMany(GetUnreducedExpressionsForQuantity).ToArray();
     private static readonly ConversionExpression[] ReducedExpression = Quantity.Infos.SelectMany(GetReducedExpressionsForQuantity).ToArray();
 

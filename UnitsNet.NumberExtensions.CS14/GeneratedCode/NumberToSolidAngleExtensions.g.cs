@@ -42,12 +42,12 @@ namespace UnitsNet.NumberExtensions.NumberToSolidAngle
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="SolidAngle.FromSteradians(QuantityValue)" />
+            /// <inheritdoc cref="SolidAngle.FromSteradians(double)" />
             public SolidAngle Steradians
 #if NET7_0_OR_GREATER
-                => SolidAngle.FromSteradians(QuantityValue.CreateChecked(value));
+                => SolidAngle.FromSteradians(double.CreateChecked(value));
 #else
-                => SolidAngle.FromSteradians(value.ToQuantityValue());
+                => SolidAngle.FromSteradians(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

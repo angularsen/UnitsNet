@@ -14,8 +14,8 @@ namespace UnitsNet.Benchmark.Operators.Additions;
 [SimpleJob(RuntimeMoniker.Net80)]
 public class AddTwoTemperatureDeltasWithRandomUnitsBenchmarks
 {
-    private static readonly QuantityValue LeftValue = 1.23;
-    private static readonly QuantityValue RightValue = 4.56;
+    private static readonly double LeftValue = 1.23;
+    private static readonly double RightValue = 4.56;
 
     private readonly Random _random = new(42);
     private (TemperatureDelta left, TemperatureDelta right)[] _operands;

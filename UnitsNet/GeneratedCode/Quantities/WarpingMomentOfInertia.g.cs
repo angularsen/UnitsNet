@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct WarpingMomentOfInertia :
         IArithmeticQuantity<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<WarpingMomentOfInertia, WarpingMomentOfInertia, QuantityValue>,
+        IDivisionOperators<WarpingMomentOfInertia, WarpingMomentOfInertia, double>,
         IComparisonOperators<WarpingMomentOfInertia, WarpingMomentOfInertia, bool>,
         IParsable<WarpingMomentOfInertia>,
 #endif
@@ -51,7 +51,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -145,7 +145,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public WarpingMomentOfInertia(QuantityValue value, WarpingMomentOfInertiaUnit unit)
+        public WarpingMomentOfInertia(double value, WarpingMomentOfInertiaUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public WarpingMomentOfInertia(QuantityValue value, UnitSystem unitSystem)
+        public WarpingMomentOfInertia(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -201,7 +201,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public WarpingMomentOfInertiaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -235,34 +235,34 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.CentimeterToTheSixth"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.CentimeterToTheSixth"/>
         /// </summary>
-        public QuantityValue CentimetersToTheSixth => this.As(WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
+        public double CentimetersToTheSixth => this.As(WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.DecimeterToTheSixth"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.DecimeterToTheSixth"/>
         /// </summary>
-        public QuantityValue DecimetersToTheSixth => this.As(WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
+        public double DecimetersToTheSixth => this.As(WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.FootToTheSixth"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.FootToTheSixth"/>
         /// </summary>
-        public QuantityValue FeetToTheSixth => this.As(WarpingMomentOfInertiaUnit.FootToTheSixth);
+        public double FeetToTheSixth => this.As(WarpingMomentOfInertiaUnit.FootToTheSixth);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.InchToTheSixth"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.InchToTheSixth"/>
         /// </summary>
-        public QuantityValue InchesToTheSixth => this.As(WarpingMomentOfInertiaUnit.InchToTheSixth);
+        public double InchesToTheSixth => this.As(WarpingMomentOfInertiaUnit.InchToTheSixth);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.MeterToTheSixth"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.MeterToTheSixth"/>
         /// </summary>
-        public QuantityValue MetersToTheSixth => this.As(WarpingMomentOfInertiaUnit.MeterToTheSixth);
+        public double MetersToTheSixth => this.As(WarpingMomentOfInertiaUnit.MeterToTheSixth);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.MillimeterToTheSixth"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="WarpingMomentOfInertiaUnit.MillimeterToTheSixth"/>
         /// </summary>
-        public QuantityValue MillimetersToTheSixth => this.As(WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
+        public double MillimetersToTheSixth => this.As(WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
 
         #endregion
 
@@ -296,7 +296,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.CentimeterToTheSixth"/>.
         /// </summary>
-        public static WarpingMomentOfInertia FromCentimetersToTheSixth(QuantityValue value)
+        public static WarpingMomentOfInertia FromCentimetersToTheSixth(double value)
         {
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
         }
@@ -304,7 +304,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.DecimeterToTheSixth"/>.
         /// </summary>
-        public static WarpingMomentOfInertia FromDecimetersToTheSixth(QuantityValue value)
+        public static WarpingMomentOfInertia FromDecimetersToTheSixth(double value)
         {
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.DecimeterToTheSixth);
         }
@@ -312,7 +312,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.FootToTheSixth"/>.
         /// </summary>
-        public static WarpingMomentOfInertia FromFeetToTheSixth(QuantityValue value)
+        public static WarpingMomentOfInertia FromFeetToTheSixth(double value)
         {
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.FootToTheSixth);
         }
@@ -320,7 +320,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.InchToTheSixth"/>.
         /// </summary>
-        public static WarpingMomentOfInertia FromInchesToTheSixth(QuantityValue value)
+        public static WarpingMomentOfInertia FromInchesToTheSixth(double value)
         {
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.InchToTheSixth);
         }
@@ -328,7 +328,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.MeterToTheSixth"/>.
         /// </summary>
-        public static WarpingMomentOfInertia FromMetersToTheSixth(QuantityValue value)
+        public static WarpingMomentOfInertia FromMetersToTheSixth(double value)
         {
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.MeterToTheSixth);
         }
@@ -336,7 +336,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="WarpingMomentOfInertia"/> from <see cref="WarpingMomentOfInertiaUnit.MillimeterToTheSixth"/>.
         /// </summary>
-        public static WarpingMomentOfInertia FromMillimetersToTheSixth(QuantityValue value)
+        public static WarpingMomentOfInertia FromMillimetersToTheSixth(double value)
         {
             return new WarpingMomentOfInertia(value, WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
         }
@@ -347,7 +347,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>WarpingMomentOfInertia unit value.</returns>
-        public static WarpingMomentOfInertia From(QuantityValue value, WarpingMomentOfInertiaUnit fromUnit)
+        public static WarpingMomentOfInertia From(double value, WarpingMomentOfInertiaUnit fromUnit)
         {
             return new WarpingMomentOfInertia(value, fromUnit);
         }
@@ -512,25 +512,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="WarpingMomentOfInertia"/> from multiplying value and <see cref="WarpingMomentOfInertia"/>.</summary>
-        public static WarpingMomentOfInertia operator *(QuantityValue left, WarpingMomentOfInertia right)
+        public static WarpingMomentOfInertia operator *(double left, WarpingMomentOfInertia right)
         {
             return new WarpingMomentOfInertia(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="WarpingMomentOfInertia"/> from multiplying value and <see cref="WarpingMomentOfInertia"/>.</summary>
-        public static WarpingMomentOfInertia operator *(WarpingMomentOfInertia left, QuantityValue right)
+        public static WarpingMomentOfInertia operator *(WarpingMomentOfInertia left, double right)
         {
             return new WarpingMomentOfInertia(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="WarpingMomentOfInertia"/> from dividing <see cref="WarpingMomentOfInertia"/> by value.</summary>
-        public static WarpingMomentOfInertia operator /(WarpingMomentOfInertia left, QuantityValue right)
+        public static WarpingMomentOfInertia operator /(WarpingMomentOfInertia left, double right)
         {
             return new WarpingMomentOfInertia(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="WarpingMomentOfInertia"/> by <see cref="WarpingMomentOfInertia"/>.</summary>
-        public static QuantityValue operator /(WarpingMomentOfInertia left, WarpingMomentOfInertia right)
+        public static double operator /(WarpingMomentOfInertia left, WarpingMomentOfInertia right)
         {
             return left.MetersToTheSixth / right.MetersToTheSixth;
         }

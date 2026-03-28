@@ -304,7 +304,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 mmol/kg", MolalityUnit.MillimolePerKilogram, 4.2)]
         [InlineData("en-US", "4.2 mol/g", MolalityUnit.MolePerGram, 4.2)]
         [InlineData("en-US", "4.2 mol/kg", MolalityUnit.MolePerKilogram, 4.2)]
-        public void Parse(string culture, string quantityString, MolalityUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, MolalityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Molality.Parse(quantityString);
@@ -316,7 +316,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 mmol/kg", MolalityUnit.MillimolePerKilogram, 4.2)]
         [InlineData("en-US", "4.2 mol/g", MolalityUnit.MolePerGram, 4.2)]
         [InlineData("en-US", "4.2 mol/kg", MolalityUnit.MolePerKilogram, 4.2)]
-        public void TryParse(string culture, string quantityString, MolalityUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, MolalityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Molality.TryParse(quantityString, out Molality parsed));
@@ -625,8 +625,8 @@ namespace UnitsNet.Tests
             var quantity = Molality.FromMolesPerKilogram(firstValue);
             var otherQuantity = Molality.FromMolesPerKilogram(secondValue);
             Molality maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Molality.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

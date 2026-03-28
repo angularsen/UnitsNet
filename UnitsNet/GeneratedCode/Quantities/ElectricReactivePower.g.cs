@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct ElectricReactivePower :
         IArithmeticQuantity<ElectricReactivePower, ElectricReactivePowerUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricReactivePower, ElectricReactivePower, QuantityValue>,
+        IDivisionOperators<ElectricReactivePower, ElectricReactivePower, double>,
         IComparisonOperators<ElectricReactivePower, ElectricReactivePower, bool>,
         IParsable<ElectricReactivePower>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -142,7 +142,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricReactivePower(QuantityValue value, ElectricReactivePowerUnit unit)
+        public ElectricReactivePower(double value, ElectricReactivePowerUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -156,7 +156,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricReactivePower(QuantityValue value, UnitSystem unitSystem)
+        public ElectricReactivePower(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -198,7 +198,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public ElectricReactivePowerUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -232,24 +232,24 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricReactivePowerUnit.GigavoltampereReactive"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricReactivePowerUnit.GigavoltampereReactive"/>
         /// </summary>
-        public QuantityValue GigavoltamperesReactive => this.As(ElectricReactivePowerUnit.GigavoltampereReactive);
+        public double GigavoltamperesReactive => this.As(ElectricReactivePowerUnit.GigavoltampereReactive);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricReactivePowerUnit.KilovoltampereReactive"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricReactivePowerUnit.KilovoltampereReactive"/>
         /// </summary>
-        public QuantityValue KilovoltamperesReactive => this.As(ElectricReactivePowerUnit.KilovoltampereReactive);
+        public double KilovoltamperesReactive => this.As(ElectricReactivePowerUnit.KilovoltampereReactive);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricReactivePowerUnit.MegavoltampereReactive"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricReactivePowerUnit.MegavoltampereReactive"/>
         /// </summary>
-        public QuantityValue MegavoltamperesReactive => this.As(ElectricReactivePowerUnit.MegavoltampereReactive);
+        public double MegavoltamperesReactive => this.As(ElectricReactivePowerUnit.MegavoltampereReactive);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricReactivePowerUnit.VoltampereReactive"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricReactivePowerUnit.VoltampereReactive"/>
         /// </summary>
-        public QuantityValue VoltamperesReactive => this.As(ElectricReactivePowerUnit.VoltampereReactive);
+        public double VoltamperesReactive => this.As(ElectricReactivePowerUnit.VoltampereReactive);
 
         #endregion
 
@@ -283,7 +283,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricReactivePower"/> from <see cref="ElectricReactivePowerUnit.GigavoltampereReactive"/>.
         /// </summary>
-        public static ElectricReactivePower FromGigavoltamperesReactive(QuantityValue value)
+        public static ElectricReactivePower FromGigavoltamperesReactive(double value)
         {
             return new ElectricReactivePower(value, ElectricReactivePowerUnit.GigavoltampereReactive);
         }
@@ -291,7 +291,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricReactivePower"/> from <see cref="ElectricReactivePowerUnit.KilovoltampereReactive"/>.
         /// </summary>
-        public static ElectricReactivePower FromKilovoltamperesReactive(QuantityValue value)
+        public static ElectricReactivePower FromKilovoltamperesReactive(double value)
         {
             return new ElectricReactivePower(value, ElectricReactivePowerUnit.KilovoltampereReactive);
         }
@@ -299,7 +299,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricReactivePower"/> from <see cref="ElectricReactivePowerUnit.MegavoltampereReactive"/>.
         /// </summary>
-        public static ElectricReactivePower FromMegavoltamperesReactive(QuantityValue value)
+        public static ElectricReactivePower FromMegavoltamperesReactive(double value)
         {
             return new ElectricReactivePower(value, ElectricReactivePowerUnit.MegavoltampereReactive);
         }
@@ -307,7 +307,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricReactivePower"/> from <see cref="ElectricReactivePowerUnit.VoltampereReactive"/>.
         /// </summary>
-        public static ElectricReactivePower FromVoltamperesReactive(QuantityValue value)
+        public static ElectricReactivePower FromVoltamperesReactive(double value)
         {
             return new ElectricReactivePower(value, ElectricReactivePowerUnit.VoltampereReactive);
         }
@@ -318,7 +318,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricReactivePower unit value.</returns>
-        public static ElectricReactivePower From(QuantityValue value, ElectricReactivePowerUnit fromUnit)
+        public static ElectricReactivePower From(double value, ElectricReactivePowerUnit fromUnit)
         {
             return new ElectricReactivePower(value, fromUnit);
         }
@@ -483,25 +483,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricReactivePower"/> from multiplying value and <see cref="ElectricReactivePower"/>.</summary>
-        public static ElectricReactivePower operator *(QuantityValue left, ElectricReactivePower right)
+        public static ElectricReactivePower operator *(double left, ElectricReactivePower right)
         {
             return new ElectricReactivePower(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricReactivePower"/> from multiplying value and <see cref="ElectricReactivePower"/>.</summary>
-        public static ElectricReactivePower operator *(ElectricReactivePower left, QuantityValue right)
+        public static ElectricReactivePower operator *(ElectricReactivePower left, double right)
         {
             return new ElectricReactivePower(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricReactivePower"/> from dividing <see cref="ElectricReactivePower"/> by value.</summary>
-        public static ElectricReactivePower operator /(ElectricReactivePower left, QuantityValue right)
+        public static ElectricReactivePower operator /(ElectricReactivePower left, double right)
         {
             return new ElectricReactivePower(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricReactivePower"/> by <see cref="ElectricReactivePower"/>.</summary>
-        public static QuantityValue operator /(ElectricReactivePower left, ElectricReactivePower right)
+        public static double operator /(ElectricReactivePower left, ElectricReactivePower right)
         {
             return left.VoltamperesReactive / right.VoltamperesReactive;
         }

@@ -55,7 +55,7 @@ public partial struct Duration
     /// <summary>Implicitly cast <see cref="TimeSpan" /> to <see cref="Duration" />.</summary>
     public static implicit operator Duration(TimeSpan duration)
     {
-        return FromSeconds(new QuantityValue(duration.Ticks, TimeSpan.TicksPerSecond));
+        return FromSeconds((double)duration.Ticks / TimeSpan.TicksPerSecond);
     }
 
     /// <summary>True if <see cref="Duration" /> is less than <see cref="TimeSpan" />.</summary>

@@ -419,7 +419,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 пГр", AbsorbedDoseOfIonizingRadiationUnit.Picogray, 4.2)]
         [InlineData("ru-RU", "4,2 рад", AbsorbedDoseOfIonizingRadiationUnit.Rad, 4.2)]
         [InlineData("ru-RU", "4,2 ТГр", AbsorbedDoseOfIonizingRadiationUnit.Teragray, 4.2)]
-        public void Parse(string culture, string quantityString, AbsorbedDoseOfIonizingRadiationUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, AbsorbedDoseOfIonizingRadiationUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = AbsorbedDoseOfIonizingRadiation.Parse(quantityString);
@@ -462,7 +462,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 пГр", AbsorbedDoseOfIonizingRadiationUnit.Picogray, 4.2)]
         [InlineData("ru-RU", "4,2 рад", AbsorbedDoseOfIonizingRadiationUnit.Rad, 4.2)]
         [InlineData("ru-RU", "4,2 ТГр", AbsorbedDoseOfIonizingRadiationUnit.Teragray, 4.2)]
-        public void TryParse(string culture, string quantityString, AbsorbedDoseOfIonizingRadiationUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, AbsorbedDoseOfIonizingRadiationUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(AbsorbedDoseOfIonizingRadiation.TryParse(quantityString, out AbsorbedDoseOfIonizingRadiation parsed));
@@ -996,8 +996,8 @@ namespace UnitsNet.Tests
             var quantity = AbsorbedDoseOfIonizingRadiation.FromGrays(firstValue);
             var otherQuantity = AbsorbedDoseOfIonizingRadiation.FromGrays(secondValue);
             AbsorbedDoseOfIonizingRadiation maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, AbsorbedDoseOfIonizingRadiation.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

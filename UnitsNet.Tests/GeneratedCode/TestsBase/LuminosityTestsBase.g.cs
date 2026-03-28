@@ -381,7 +381,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 L⊙", LuminosityUnit.SolarLuminosity, 4.2)]
         [InlineData("en-US", "4.2 TW", LuminosityUnit.Terawatt, 4.2)]
         [InlineData("en-US", "4.2 W", LuminosityUnit.Watt, 4.2)]
-        public void Parse(string culture, string quantityString, LuminosityUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, LuminosityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Luminosity.Parse(quantityString);
@@ -404,7 +404,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 L⊙", LuminosityUnit.SolarLuminosity, 4.2)]
         [InlineData("en-US", "4.2 TW", LuminosityUnit.Terawatt, 4.2)]
         [InlineData("en-US", "4.2 W", LuminosityUnit.Watt, 4.2)]
-        public void TryParse(string culture, string quantityString, LuminosityUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, LuminosityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Luminosity.TryParse(quantityString, out Luminosity parsed));
@@ -823,8 +823,8 @@ namespace UnitsNet.Tests
             var quantity = Luminosity.FromWatts(firstValue);
             var otherQuantity = Luminosity.FromWatts(secondValue);
             Luminosity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Luminosity.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

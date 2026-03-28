@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct MassConcentration :
         IArithmeticQuantity<MassConcentration, MassConcentrationUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<MassConcentration, MassConcentration, QuantityValue>,
+        IDivisionOperators<MassConcentration, MassConcentration, double>,
         IDivisionOperators<MassConcentration, VolumeConcentration, Density>,
         IMultiplyOperators<MassConcentration, Volume, Mass>,
         IDivisionOperators<MassConcentration, Molarity, MolarMass>,
@@ -59,7 +59,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -282,7 +282,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public MassConcentration(QuantityValue value, MassConcentrationUnit unit)
+        public MassConcentration(double value, MassConcentrationUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -296,7 +296,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public MassConcentration(QuantityValue value, UnitSystem unitSystem)
+        public MassConcentration(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -338,7 +338,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public MassConcentrationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -372,249 +372,249 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.CentigramPerDeciliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.CentigramPerDeciliter"/>
         /// </summary>
-        public QuantityValue CentigramsPerDeciliter => this.As(MassConcentrationUnit.CentigramPerDeciliter);
+        public double CentigramsPerDeciliter => this.As(MassConcentrationUnit.CentigramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.CentigramPerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.CentigramPerLiter"/>
         /// </summary>
-        public QuantityValue CentigramsPerLiter => this.As(MassConcentrationUnit.CentigramPerLiter);
+        public double CentigramsPerLiter => this.As(MassConcentrationUnit.CentigramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.CentigramPerMicroliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.CentigramPerMicroliter"/>
         /// </summary>
-        public QuantityValue CentigramsPerMicroliter => this.As(MassConcentrationUnit.CentigramPerMicroliter);
+        public double CentigramsPerMicroliter => this.As(MassConcentrationUnit.CentigramPerMicroliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.CentigramPerMilliliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.CentigramPerMilliliter"/>
         /// </summary>
-        public QuantityValue CentigramsPerMilliliter => this.As(MassConcentrationUnit.CentigramPerMilliliter);
+        public double CentigramsPerMilliliter => this.As(MassConcentrationUnit.CentigramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.DecigramPerDeciliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.DecigramPerDeciliter"/>
         /// </summary>
-        public QuantityValue DecigramsPerDeciliter => this.As(MassConcentrationUnit.DecigramPerDeciliter);
+        public double DecigramsPerDeciliter => this.As(MassConcentrationUnit.DecigramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.DecigramPerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.DecigramPerLiter"/>
         /// </summary>
-        public QuantityValue DecigramsPerLiter => this.As(MassConcentrationUnit.DecigramPerLiter);
+        public double DecigramsPerLiter => this.As(MassConcentrationUnit.DecigramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.DecigramPerMicroliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.DecigramPerMicroliter"/>
         /// </summary>
-        public QuantityValue DecigramsPerMicroliter => this.As(MassConcentrationUnit.DecigramPerMicroliter);
+        public double DecigramsPerMicroliter => this.As(MassConcentrationUnit.DecigramPerMicroliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.DecigramPerMilliliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.DecigramPerMilliliter"/>
         /// </summary>
-        public QuantityValue DecigramsPerMilliliter => this.As(MassConcentrationUnit.DecigramPerMilliliter);
+        public double DecigramsPerMilliliter => this.As(MassConcentrationUnit.DecigramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerCubicCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerCubicCentimeter"/>
         /// </summary>
-        public QuantityValue GramsPerCubicCentimeter => this.As(MassConcentrationUnit.GramPerCubicCentimeter);
+        public double GramsPerCubicCentimeter => this.As(MassConcentrationUnit.GramPerCubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerCubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerCubicMeter"/>
         /// </summary>
-        public QuantityValue GramsPerCubicMeter => this.As(MassConcentrationUnit.GramPerCubicMeter);
+        public double GramsPerCubicMeter => this.As(MassConcentrationUnit.GramPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerCubicMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerCubicMillimeter"/>
         /// </summary>
-        public QuantityValue GramsPerCubicMillimeter => this.As(MassConcentrationUnit.GramPerCubicMillimeter);
+        public double GramsPerCubicMillimeter => this.As(MassConcentrationUnit.GramPerCubicMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerDeciliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerDeciliter"/>
         /// </summary>
-        public QuantityValue GramsPerDeciliter => this.As(MassConcentrationUnit.GramPerDeciliter);
+        public double GramsPerDeciliter => this.As(MassConcentrationUnit.GramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerLiter"/>
         /// </summary>
-        public QuantityValue GramsPerLiter => this.As(MassConcentrationUnit.GramPerLiter);
+        public double GramsPerLiter => this.As(MassConcentrationUnit.GramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerMicroliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerMicroliter"/>
         /// </summary>
-        public QuantityValue GramsPerMicroliter => this.As(MassConcentrationUnit.GramPerMicroliter);
+        public double GramsPerMicroliter => this.As(MassConcentrationUnit.GramPerMicroliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerMilliliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.GramPerMilliliter"/>
         /// </summary>
-        public QuantityValue GramsPerMilliliter => this.As(MassConcentrationUnit.GramPerMilliliter);
+        public double GramsPerMilliliter => this.As(MassConcentrationUnit.GramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.KilogramPerCubicCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.KilogramPerCubicCentimeter"/>
         /// </summary>
-        public QuantityValue KilogramsPerCubicCentimeter => this.As(MassConcentrationUnit.KilogramPerCubicCentimeter);
+        public double KilogramsPerCubicCentimeter => this.As(MassConcentrationUnit.KilogramPerCubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.KilogramPerCubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.KilogramPerCubicMeter"/>
         /// </summary>
-        public QuantityValue KilogramsPerCubicMeter => this.As(MassConcentrationUnit.KilogramPerCubicMeter);
+        public double KilogramsPerCubicMeter => this.As(MassConcentrationUnit.KilogramPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.KilogramPerCubicMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.KilogramPerCubicMillimeter"/>
         /// </summary>
-        public QuantityValue KilogramsPerCubicMillimeter => this.As(MassConcentrationUnit.KilogramPerCubicMillimeter);
+        public double KilogramsPerCubicMillimeter => this.As(MassConcentrationUnit.KilogramPerCubicMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.KilogramPerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.KilogramPerLiter"/>
         /// </summary>
-        public QuantityValue KilogramsPerLiter => this.As(MassConcentrationUnit.KilogramPerLiter);
+        public double KilogramsPerLiter => this.As(MassConcentrationUnit.KilogramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.KilopoundPerCubicFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.KilopoundPerCubicFoot"/>
         /// </summary>
-        public QuantityValue KilopoundsPerCubicFoot => this.As(MassConcentrationUnit.KilopoundPerCubicFoot);
+        public double KilopoundsPerCubicFoot => this.As(MassConcentrationUnit.KilopoundPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.KilopoundPerCubicInch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.KilopoundPerCubicInch"/>
         /// </summary>
-        public QuantityValue KilopoundsPerCubicInch => this.As(MassConcentrationUnit.KilopoundPerCubicInch);
+        public double KilopoundsPerCubicInch => this.As(MassConcentrationUnit.KilopoundPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.MicrogramPerCubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.MicrogramPerCubicMeter"/>
         /// </summary>
-        public QuantityValue MicrogramsPerCubicMeter => this.As(MassConcentrationUnit.MicrogramPerCubicMeter);
+        public double MicrogramsPerCubicMeter => this.As(MassConcentrationUnit.MicrogramPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.MicrogramPerDeciliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.MicrogramPerDeciliter"/>
         /// </summary>
-        public QuantityValue MicrogramsPerDeciliter => this.As(MassConcentrationUnit.MicrogramPerDeciliter);
+        public double MicrogramsPerDeciliter => this.As(MassConcentrationUnit.MicrogramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.MicrogramPerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.MicrogramPerLiter"/>
         /// </summary>
-        public QuantityValue MicrogramsPerLiter => this.As(MassConcentrationUnit.MicrogramPerLiter);
+        public double MicrogramsPerLiter => this.As(MassConcentrationUnit.MicrogramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.MicrogramPerMicroliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.MicrogramPerMicroliter"/>
         /// </summary>
-        public QuantityValue MicrogramsPerMicroliter => this.As(MassConcentrationUnit.MicrogramPerMicroliter);
+        public double MicrogramsPerMicroliter => this.As(MassConcentrationUnit.MicrogramPerMicroliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.MicrogramPerMilliliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.MicrogramPerMilliliter"/>
         /// </summary>
-        public QuantityValue MicrogramsPerMilliliter => this.As(MassConcentrationUnit.MicrogramPerMilliliter);
+        public double MicrogramsPerMilliliter => this.As(MassConcentrationUnit.MicrogramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.MilligramPerCubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.MilligramPerCubicMeter"/>
         /// </summary>
-        public QuantityValue MilligramsPerCubicMeter => this.As(MassConcentrationUnit.MilligramPerCubicMeter);
+        public double MilligramsPerCubicMeter => this.As(MassConcentrationUnit.MilligramPerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.MilligramPerDeciliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.MilligramPerDeciliter"/>
         /// </summary>
-        public QuantityValue MilligramsPerDeciliter => this.As(MassConcentrationUnit.MilligramPerDeciliter);
+        public double MilligramsPerDeciliter => this.As(MassConcentrationUnit.MilligramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.MilligramPerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.MilligramPerLiter"/>
         /// </summary>
-        public QuantityValue MilligramsPerLiter => this.As(MassConcentrationUnit.MilligramPerLiter);
+        public double MilligramsPerLiter => this.As(MassConcentrationUnit.MilligramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.MilligramPerMicroliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.MilligramPerMicroliter"/>
         /// </summary>
-        public QuantityValue MilligramsPerMicroliter => this.As(MassConcentrationUnit.MilligramPerMicroliter);
+        public double MilligramsPerMicroliter => this.As(MassConcentrationUnit.MilligramPerMicroliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.MilligramPerMilliliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.MilligramPerMilliliter"/>
         /// </summary>
-        public QuantityValue MilligramsPerMilliliter => this.As(MassConcentrationUnit.MilligramPerMilliliter);
+        public double MilligramsPerMilliliter => this.As(MassConcentrationUnit.MilligramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.NanogramPerDeciliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.NanogramPerDeciliter"/>
         /// </summary>
-        public QuantityValue NanogramsPerDeciliter => this.As(MassConcentrationUnit.NanogramPerDeciliter);
+        public double NanogramsPerDeciliter => this.As(MassConcentrationUnit.NanogramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.NanogramPerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.NanogramPerLiter"/>
         /// </summary>
-        public QuantityValue NanogramsPerLiter => this.As(MassConcentrationUnit.NanogramPerLiter);
+        public double NanogramsPerLiter => this.As(MassConcentrationUnit.NanogramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.NanogramPerMicroliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.NanogramPerMicroliter"/>
         /// </summary>
-        public QuantityValue NanogramsPerMicroliter => this.As(MassConcentrationUnit.NanogramPerMicroliter);
+        public double NanogramsPerMicroliter => this.As(MassConcentrationUnit.NanogramPerMicroliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.NanogramPerMilliliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.NanogramPerMilliliter"/>
         /// </summary>
-        public QuantityValue NanogramsPerMilliliter => this.As(MassConcentrationUnit.NanogramPerMilliliter);
+        public double NanogramsPerMilliliter => this.As(MassConcentrationUnit.NanogramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.OuncePerImperialGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.OuncePerImperialGallon"/>
         /// </summary>
-        public QuantityValue OuncesPerImperialGallon => this.As(MassConcentrationUnit.OuncePerImperialGallon);
+        public double OuncesPerImperialGallon => this.As(MassConcentrationUnit.OuncePerImperialGallon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.OuncePerUSGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.OuncePerUSGallon"/>
         /// </summary>
-        public QuantityValue OuncesPerUSGallon => this.As(MassConcentrationUnit.OuncePerUSGallon);
+        public double OuncesPerUSGallon => this.As(MassConcentrationUnit.OuncePerUSGallon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.PicogramPerDeciliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.PicogramPerDeciliter"/>
         /// </summary>
-        public QuantityValue PicogramsPerDeciliter => this.As(MassConcentrationUnit.PicogramPerDeciliter);
+        public double PicogramsPerDeciliter => this.As(MassConcentrationUnit.PicogramPerDeciliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.PicogramPerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.PicogramPerLiter"/>
         /// </summary>
-        public QuantityValue PicogramsPerLiter => this.As(MassConcentrationUnit.PicogramPerLiter);
+        public double PicogramsPerLiter => this.As(MassConcentrationUnit.PicogramPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.PicogramPerMicroliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.PicogramPerMicroliter"/>
         /// </summary>
-        public QuantityValue PicogramsPerMicroliter => this.As(MassConcentrationUnit.PicogramPerMicroliter);
+        public double PicogramsPerMicroliter => this.As(MassConcentrationUnit.PicogramPerMicroliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.PicogramPerMilliliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.PicogramPerMilliliter"/>
         /// </summary>
-        public QuantityValue PicogramsPerMilliliter => this.As(MassConcentrationUnit.PicogramPerMilliliter);
+        public double PicogramsPerMilliliter => this.As(MassConcentrationUnit.PicogramPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.PoundPerCubicFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.PoundPerCubicFoot"/>
         /// </summary>
-        public QuantityValue PoundsPerCubicFoot => this.As(MassConcentrationUnit.PoundPerCubicFoot);
+        public double PoundsPerCubicFoot => this.As(MassConcentrationUnit.PoundPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.PoundPerCubicInch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.PoundPerCubicInch"/>
         /// </summary>
-        public QuantityValue PoundsPerCubicInch => this.As(MassConcentrationUnit.PoundPerCubicInch);
+        public double PoundsPerCubicInch => this.As(MassConcentrationUnit.PoundPerCubicInch);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.PoundPerImperialGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.PoundPerImperialGallon"/>
         /// </summary>
-        public QuantityValue PoundsPerImperialGallon => this.As(MassConcentrationUnit.PoundPerImperialGallon);
+        public double PoundsPerImperialGallon => this.As(MassConcentrationUnit.PoundPerImperialGallon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.PoundPerUSGallon"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.PoundPerUSGallon"/>
         /// </summary>
-        public QuantityValue PoundsPerUSGallon => this.As(MassConcentrationUnit.PoundPerUSGallon);
+        public double PoundsPerUSGallon => this.As(MassConcentrationUnit.PoundPerUSGallon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.SlugPerCubicFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.SlugPerCubicFoot"/>
         /// </summary>
-        public QuantityValue SlugsPerCubicFoot => this.As(MassConcentrationUnit.SlugPerCubicFoot);
+        public double SlugsPerCubicFoot => this.As(MassConcentrationUnit.SlugPerCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.TonnePerCubicCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.TonnePerCubicCentimeter"/>
         /// </summary>
-        public QuantityValue TonnesPerCubicCentimeter => this.As(MassConcentrationUnit.TonnePerCubicCentimeter);
+        public double TonnesPerCubicCentimeter => this.As(MassConcentrationUnit.TonnePerCubicCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.TonnePerCubicMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.TonnePerCubicMeter"/>
         /// </summary>
-        public QuantityValue TonnesPerCubicMeter => this.As(MassConcentrationUnit.TonnePerCubicMeter);
+        public double TonnesPerCubicMeter => this.As(MassConcentrationUnit.TonnePerCubicMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MassConcentrationUnit.TonnePerCubicMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassConcentrationUnit.TonnePerCubicMillimeter"/>
         /// </summary>
-        public QuantityValue TonnesPerCubicMillimeter => this.As(MassConcentrationUnit.TonnePerCubicMillimeter);
+        public double TonnesPerCubicMillimeter => this.As(MassConcentrationUnit.TonnePerCubicMillimeter);
 
         #endregion
 
@@ -648,7 +648,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.CentigramPerDeciliter"/>.
         /// </summary>
-        public static MassConcentration FromCentigramsPerDeciliter(QuantityValue value)
+        public static MassConcentration FromCentigramsPerDeciliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.CentigramPerDeciliter);
         }
@@ -656,7 +656,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.CentigramPerLiter"/>.
         /// </summary>
-        public static MassConcentration FromCentigramsPerLiter(QuantityValue value)
+        public static MassConcentration FromCentigramsPerLiter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.CentigramPerLiter);
         }
@@ -664,7 +664,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.CentigramPerMicroliter"/>.
         /// </summary>
-        public static MassConcentration FromCentigramsPerMicroliter(QuantityValue value)
+        public static MassConcentration FromCentigramsPerMicroliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.CentigramPerMicroliter);
         }
@@ -672,7 +672,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.CentigramPerMilliliter"/>.
         /// </summary>
-        public static MassConcentration FromCentigramsPerMilliliter(QuantityValue value)
+        public static MassConcentration FromCentigramsPerMilliliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.CentigramPerMilliliter);
         }
@@ -680,7 +680,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.DecigramPerDeciliter"/>.
         /// </summary>
-        public static MassConcentration FromDecigramsPerDeciliter(QuantityValue value)
+        public static MassConcentration FromDecigramsPerDeciliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.DecigramPerDeciliter);
         }
@@ -688,7 +688,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.DecigramPerLiter"/>.
         /// </summary>
-        public static MassConcentration FromDecigramsPerLiter(QuantityValue value)
+        public static MassConcentration FromDecigramsPerLiter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.DecigramPerLiter);
         }
@@ -696,7 +696,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.DecigramPerMicroliter"/>.
         /// </summary>
-        public static MassConcentration FromDecigramsPerMicroliter(QuantityValue value)
+        public static MassConcentration FromDecigramsPerMicroliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.DecigramPerMicroliter);
         }
@@ -704,7 +704,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.DecigramPerMilliliter"/>.
         /// </summary>
-        public static MassConcentration FromDecigramsPerMilliliter(QuantityValue value)
+        public static MassConcentration FromDecigramsPerMilliliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.DecigramPerMilliliter);
         }
@@ -712,7 +712,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.GramPerCubicCentimeter"/>.
         /// </summary>
-        public static MassConcentration FromGramsPerCubicCentimeter(QuantityValue value)
+        public static MassConcentration FromGramsPerCubicCentimeter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.GramPerCubicCentimeter);
         }
@@ -720,7 +720,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.GramPerCubicMeter"/>.
         /// </summary>
-        public static MassConcentration FromGramsPerCubicMeter(QuantityValue value)
+        public static MassConcentration FromGramsPerCubicMeter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.GramPerCubicMeter);
         }
@@ -728,7 +728,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.GramPerCubicMillimeter"/>.
         /// </summary>
-        public static MassConcentration FromGramsPerCubicMillimeter(QuantityValue value)
+        public static MassConcentration FromGramsPerCubicMillimeter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.GramPerCubicMillimeter);
         }
@@ -736,7 +736,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.GramPerDeciliter"/>.
         /// </summary>
-        public static MassConcentration FromGramsPerDeciliter(QuantityValue value)
+        public static MassConcentration FromGramsPerDeciliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.GramPerDeciliter);
         }
@@ -744,7 +744,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.GramPerLiter"/>.
         /// </summary>
-        public static MassConcentration FromGramsPerLiter(QuantityValue value)
+        public static MassConcentration FromGramsPerLiter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.GramPerLiter);
         }
@@ -752,7 +752,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.GramPerMicroliter"/>.
         /// </summary>
-        public static MassConcentration FromGramsPerMicroliter(QuantityValue value)
+        public static MassConcentration FromGramsPerMicroliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.GramPerMicroliter);
         }
@@ -760,7 +760,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.GramPerMilliliter"/>.
         /// </summary>
-        public static MassConcentration FromGramsPerMilliliter(QuantityValue value)
+        public static MassConcentration FromGramsPerMilliliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.GramPerMilliliter);
         }
@@ -768,7 +768,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.KilogramPerCubicCentimeter"/>.
         /// </summary>
-        public static MassConcentration FromKilogramsPerCubicCentimeter(QuantityValue value)
+        public static MassConcentration FromKilogramsPerCubicCentimeter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.KilogramPerCubicCentimeter);
         }
@@ -776,7 +776,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.KilogramPerCubicMeter"/>.
         /// </summary>
-        public static MassConcentration FromKilogramsPerCubicMeter(QuantityValue value)
+        public static MassConcentration FromKilogramsPerCubicMeter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.KilogramPerCubicMeter);
         }
@@ -784,7 +784,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.KilogramPerCubicMillimeter"/>.
         /// </summary>
-        public static MassConcentration FromKilogramsPerCubicMillimeter(QuantityValue value)
+        public static MassConcentration FromKilogramsPerCubicMillimeter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.KilogramPerCubicMillimeter);
         }
@@ -792,7 +792,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.KilogramPerLiter"/>.
         /// </summary>
-        public static MassConcentration FromKilogramsPerLiter(QuantityValue value)
+        public static MassConcentration FromKilogramsPerLiter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.KilogramPerLiter);
         }
@@ -800,7 +800,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.KilopoundPerCubicFoot"/>.
         /// </summary>
-        public static MassConcentration FromKilopoundsPerCubicFoot(QuantityValue value)
+        public static MassConcentration FromKilopoundsPerCubicFoot(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.KilopoundPerCubicFoot);
         }
@@ -808,7 +808,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.KilopoundPerCubicInch"/>.
         /// </summary>
-        public static MassConcentration FromKilopoundsPerCubicInch(QuantityValue value)
+        public static MassConcentration FromKilopoundsPerCubicInch(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.KilopoundPerCubicInch);
         }
@@ -816,7 +816,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.MicrogramPerCubicMeter"/>.
         /// </summary>
-        public static MassConcentration FromMicrogramsPerCubicMeter(QuantityValue value)
+        public static MassConcentration FromMicrogramsPerCubicMeter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.MicrogramPerCubicMeter);
         }
@@ -824,7 +824,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.MicrogramPerDeciliter"/>.
         /// </summary>
-        public static MassConcentration FromMicrogramsPerDeciliter(QuantityValue value)
+        public static MassConcentration FromMicrogramsPerDeciliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.MicrogramPerDeciliter);
         }
@@ -832,7 +832,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.MicrogramPerLiter"/>.
         /// </summary>
-        public static MassConcentration FromMicrogramsPerLiter(QuantityValue value)
+        public static MassConcentration FromMicrogramsPerLiter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.MicrogramPerLiter);
         }
@@ -840,7 +840,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.MicrogramPerMicroliter"/>.
         /// </summary>
-        public static MassConcentration FromMicrogramsPerMicroliter(QuantityValue value)
+        public static MassConcentration FromMicrogramsPerMicroliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.MicrogramPerMicroliter);
         }
@@ -848,7 +848,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.MicrogramPerMilliliter"/>.
         /// </summary>
-        public static MassConcentration FromMicrogramsPerMilliliter(QuantityValue value)
+        public static MassConcentration FromMicrogramsPerMilliliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.MicrogramPerMilliliter);
         }
@@ -856,7 +856,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.MilligramPerCubicMeter"/>.
         /// </summary>
-        public static MassConcentration FromMilligramsPerCubicMeter(QuantityValue value)
+        public static MassConcentration FromMilligramsPerCubicMeter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.MilligramPerCubicMeter);
         }
@@ -864,7 +864,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.MilligramPerDeciliter"/>.
         /// </summary>
-        public static MassConcentration FromMilligramsPerDeciliter(QuantityValue value)
+        public static MassConcentration FromMilligramsPerDeciliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.MilligramPerDeciliter);
         }
@@ -872,7 +872,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.MilligramPerLiter"/>.
         /// </summary>
-        public static MassConcentration FromMilligramsPerLiter(QuantityValue value)
+        public static MassConcentration FromMilligramsPerLiter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.MilligramPerLiter);
         }
@@ -880,7 +880,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.MilligramPerMicroliter"/>.
         /// </summary>
-        public static MassConcentration FromMilligramsPerMicroliter(QuantityValue value)
+        public static MassConcentration FromMilligramsPerMicroliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.MilligramPerMicroliter);
         }
@@ -888,7 +888,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.MilligramPerMilliliter"/>.
         /// </summary>
-        public static MassConcentration FromMilligramsPerMilliliter(QuantityValue value)
+        public static MassConcentration FromMilligramsPerMilliliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.MilligramPerMilliliter);
         }
@@ -896,7 +896,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.NanogramPerDeciliter"/>.
         /// </summary>
-        public static MassConcentration FromNanogramsPerDeciliter(QuantityValue value)
+        public static MassConcentration FromNanogramsPerDeciliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.NanogramPerDeciliter);
         }
@@ -904,7 +904,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.NanogramPerLiter"/>.
         /// </summary>
-        public static MassConcentration FromNanogramsPerLiter(QuantityValue value)
+        public static MassConcentration FromNanogramsPerLiter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.NanogramPerLiter);
         }
@@ -912,7 +912,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.NanogramPerMicroliter"/>.
         /// </summary>
-        public static MassConcentration FromNanogramsPerMicroliter(QuantityValue value)
+        public static MassConcentration FromNanogramsPerMicroliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.NanogramPerMicroliter);
         }
@@ -920,7 +920,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.NanogramPerMilliliter"/>.
         /// </summary>
-        public static MassConcentration FromNanogramsPerMilliliter(QuantityValue value)
+        public static MassConcentration FromNanogramsPerMilliliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.NanogramPerMilliliter);
         }
@@ -928,7 +928,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.OuncePerImperialGallon"/>.
         /// </summary>
-        public static MassConcentration FromOuncesPerImperialGallon(QuantityValue value)
+        public static MassConcentration FromOuncesPerImperialGallon(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.OuncePerImperialGallon);
         }
@@ -936,7 +936,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.OuncePerUSGallon"/>.
         /// </summary>
-        public static MassConcentration FromOuncesPerUSGallon(QuantityValue value)
+        public static MassConcentration FromOuncesPerUSGallon(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.OuncePerUSGallon);
         }
@@ -944,7 +944,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.PicogramPerDeciliter"/>.
         /// </summary>
-        public static MassConcentration FromPicogramsPerDeciliter(QuantityValue value)
+        public static MassConcentration FromPicogramsPerDeciliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.PicogramPerDeciliter);
         }
@@ -952,7 +952,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.PicogramPerLiter"/>.
         /// </summary>
-        public static MassConcentration FromPicogramsPerLiter(QuantityValue value)
+        public static MassConcentration FromPicogramsPerLiter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.PicogramPerLiter);
         }
@@ -960,7 +960,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.PicogramPerMicroliter"/>.
         /// </summary>
-        public static MassConcentration FromPicogramsPerMicroliter(QuantityValue value)
+        public static MassConcentration FromPicogramsPerMicroliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.PicogramPerMicroliter);
         }
@@ -968,7 +968,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.PicogramPerMilliliter"/>.
         /// </summary>
-        public static MassConcentration FromPicogramsPerMilliliter(QuantityValue value)
+        public static MassConcentration FromPicogramsPerMilliliter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.PicogramPerMilliliter);
         }
@@ -976,7 +976,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.PoundPerCubicFoot"/>.
         /// </summary>
-        public static MassConcentration FromPoundsPerCubicFoot(QuantityValue value)
+        public static MassConcentration FromPoundsPerCubicFoot(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.PoundPerCubicFoot);
         }
@@ -984,7 +984,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.PoundPerCubicInch"/>.
         /// </summary>
-        public static MassConcentration FromPoundsPerCubicInch(QuantityValue value)
+        public static MassConcentration FromPoundsPerCubicInch(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.PoundPerCubicInch);
         }
@@ -992,7 +992,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.PoundPerImperialGallon"/>.
         /// </summary>
-        public static MassConcentration FromPoundsPerImperialGallon(QuantityValue value)
+        public static MassConcentration FromPoundsPerImperialGallon(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.PoundPerImperialGallon);
         }
@@ -1000,7 +1000,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.PoundPerUSGallon"/>.
         /// </summary>
-        public static MassConcentration FromPoundsPerUSGallon(QuantityValue value)
+        public static MassConcentration FromPoundsPerUSGallon(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.PoundPerUSGallon);
         }
@@ -1008,7 +1008,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.SlugPerCubicFoot"/>.
         /// </summary>
-        public static MassConcentration FromSlugsPerCubicFoot(QuantityValue value)
+        public static MassConcentration FromSlugsPerCubicFoot(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.SlugPerCubicFoot);
         }
@@ -1016,7 +1016,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.TonnePerCubicCentimeter"/>.
         /// </summary>
-        public static MassConcentration FromTonnesPerCubicCentimeter(QuantityValue value)
+        public static MassConcentration FromTonnesPerCubicCentimeter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.TonnePerCubicCentimeter);
         }
@@ -1024,7 +1024,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.TonnePerCubicMeter"/>.
         /// </summary>
-        public static MassConcentration FromTonnesPerCubicMeter(QuantityValue value)
+        public static MassConcentration FromTonnesPerCubicMeter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.TonnePerCubicMeter);
         }
@@ -1032,7 +1032,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="MassConcentration"/> from <see cref="MassConcentrationUnit.TonnePerCubicMillimeter"/>.
         /// </summary>
-        public static MassConcentration FromTonnesPerCubicMillimeter(QuantityValue value)
+        public static MassConcentration FromTonnesPerCubicMillimeter(double value)
         {
             return new MassConcentration(value, MassConcentrationUnit.TonnePerCubicMillimeter);
         }
@@ -1043,7 +1043,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MassConcentration unit value.</returns>
-        public static MassConcentration From(QuantityValue value, MassConcentrationUnit fromUnit)
+        public static MassConcentration From(double value, MassConcentrationUnit fromUnit)
         {
             return new MassConcentration(value, fromUnit);
         }
@@ -1208,25 +1208,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="MassConcentration"/> from multiplying value and <see cref="MassConcentration"/>.</summary>
-        public static MassConcentration operator *(QuantityValue left, MassConcentration right)
+        public static MassConcentration operator *(double left, MassConcentration right)
         {
             return new MassConcentration(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="MassConcentration"/> from multiplying value and <see cref="MassConcentration"/>.</summary>
-        public static MassConcentration operator *(MassConcentration left, QuantityValue right)
+        public static MassConcentration operator *(MassConcentration left, double right)
         {
             return new MassConcentration(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="MassConcentration"/> from dividing <see cref="MassConcentration"/> by value.</summary>
-        public static MassConcentration operator /(MassConcentration left, QuantityValue right)
+        public static MassConcentration operator /(MassConcentration left, double right)
         {
             return new MassConcentration(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="MassConcentration"/> by <see cref="MassConcentration"/>.</summary>
-        public static QuantityValue operator /(MassConcentration left, MassConcentration right)
+        public static double operator /(MassConcentration left, MassConcentration right)
         {
             return left.KilogramsPerCubicMeter / right.KilogramsPerCubicMeter;
         }

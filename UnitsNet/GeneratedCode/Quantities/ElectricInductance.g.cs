@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct ElectricInductance :
         IArithmeticQuantity<ElectricInductance, ElectricInductanceUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricInductance, ElectricInductance, QuantityValue>,
+        IDivisionOperators<ElectricInductance, ElectricInductance, double>,
         IComparisonOperators<ElectricInductance, ElectricInductance, bool>,
         IParsable<ElectricInductance>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -145,7 +145,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricInductance(QuantityValue value, ElectricInductanceUnit unit)
+        public ElectricInductance(double value, ElectricInductanceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricInductance(QuantityValue value, UnitSystem unitSystem)
+        public ElectricInductance(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -201,7 +201,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public ElectricInductanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -235,29 +235,29 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Henry"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Henry"/>
         /// </summary>
-        public QuantityValue Henries => this.As(ElectricInductanceUnit.Henry);
+        public double Henries => this.As(ElectricInductanceUnit.Henry);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Microhenry"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Microhenry"/>
         /// </summary>
-        public QuantityValue Microhenries => this.As(ElectricInductanceUnit.Microhenry);
+        public double Microhenries => this.As(ElectricInductanceUnit.Microhenry);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Millihenry"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Millihenry"/>
         /// </summary>
-        public QuantityValue Millihenries => this.As(ElectricInductanceUnit.Millihenry);
+        public double Millihenries => this.As(ElectricInductanceUnit.Millihenry);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Nanohenry"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Nanohenry"/>
         /// </summary>
-        public QuantityValue Nanohenries => this.As(ElectricInductanceUnit.Nanohenry);
+        public double Nanohenries => this.As(ElectricInductanceUnit.Nanohenry);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Picohenry"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricInductanceUnit.Picohenry"/>
         /// </summary>
-        public QuantityValue Picohenries => this.As(ElectricInductanceUnit.Picohenry);
+        public double Picohenries => this.As(ElectricInductanceUnit.Picohenry);
 
         #endregion
 
@@ -291,7 +291,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Henry"/>.
         /// </summary>
-        public static ElectricInductance FromHenries(QuantityValue value)
+        public static ElectricInductance FromHenries(double value)
         {
             return new ElectricInductance(value, ElectricInductanceUnit.Henry);
         }
@@ -299,7 +299,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Microhenry"/>.
         /// </summary>
-        public static ElectricInductance FromMicrohenries(QuantityValue value)
+        public static ElectricInductance FromMicrohenries(double value)
         {
             return new ElectricInductance(value, ElectricInductanceUnit.Microhenry);
         }
@@ -307,7 +307,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Millihenry"/>.
         /// </summary>
-        public static ElectricInductance FromMillihenries(QuantityValue value)
+        public static ElectricInductance FromMillihenries(double value)
         {
             return new ElectricInductance(value, ElectricInductanceUnit.Millihenry);
         }
@@ -315,7 +315,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Nanohenry"/>.
         /// </summary>
-        public static ElectricInductance FromNanohenries(QuantityValue value)
+        public static ElectricInductance FromNanohenries(double value)
         {
             return new ElectricInductance(value, ElectricInductanceUnit.Nanohenry);
         }
@@ -323,7 +323,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricInductance"/> from <see cref="ElectricInductanceUnit.Picohenry"/>.
         /// </summary>
-        public static ElectricInductance FromPicohenries(QuantityValue value)
+        public static ElectricInductance FromPicohenries(double value)
         {
             return new ElectricInductance(value, ElectricInductanceUnit.Picohenry);
         }
@@ -334,7 +334,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricInductance unit value.</returns>
-        public static ElectricInductance From(QuantityValue value, ElectricInductanceUnit fromUnit)
+        public static ElectricInductance From(double value, ElectricInductanceUnit fromUnit)
         {
             return new ElectricInductance(value, fromUnit);
         }
@@ -499,25 +499,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricInductance"/> from multiplying value and <see cref="ElectricInductance"/>.</summary>
-        public static ElectricInductance operator *(QuantityValue left, ElectricInductance right)
+        public static ElectricInductance operator *(double left, ElectricInductance right)
         {
             return new ElectricInductance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricInductance"/> from multiplying value and <see cref="ElectricInductance"/>.</summary>
-        public static ElectricInductance operator *(ElectricInductance left, QuantityValue right)
+        public static ElectricInductance operator *(ElectricInductance left, double right)
         {
             return new ElectricInductance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricInductance"/> from dividing <see cref="ElectricInductance"/> by value.</summary>
-        public static ElectricInductance operator /(ElectricInductance left, QuantityValue right)
+        public static ElectricInductance operator /(ElectricInductance left, double right)
         {
             return new ElectricInductance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricInductance"/> by <see cref="ElectricInductance"/>.</summary>
-        public static QuantityValue operator /(ElectricInductance left, ElectricInductance right)
+        public static double operator /(ElectricInductance left, ElectricInductance right)
         {
             return left.Henries / right.Henries;
         }

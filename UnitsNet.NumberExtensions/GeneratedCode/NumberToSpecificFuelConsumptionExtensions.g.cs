@@ -32,48 +32,48 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificFuelConsumption
     /// </summary>
     public static class NumberToSpecificFuelConsumptionExtensions
     {
-        /// <inheritdoc cref="SpecificFuelConsumption.FromGramsPerKilonewtonSecond(QuantityValue)" />
+        /// <inheritdoc cref="SpecificFuelConsumption.FromGramsPerKilonewtonSecond(double)" />
         public static SpecificFuelConsumption GramsPerKilonewtonSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => SpecificFuelConsumption.FromGramsPerKilonewtonSecond(QuantityValue.CreateChecked(value));
+            => SpecificFuelConsumption.FromGramsPerKilonewtonSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => SpecificFuelConsumption.FromGramsPerKilonewtonSecond(value.ToQuantityValue());
+            => SpecificFuelConsumption.FromGramsPerKilonewtonSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(QuantityValue)" />
+        /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(double)" />
         public static SpecificFuelConsumption KilogramsPerKilogramForceHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(QuantityValue.CreateChecked(value));
+            => SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(value.ToQuantityValue());
+            => SpecificFuelConsumption.FromKilogramsPerKilogramForceHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(QuantityValue)" />
+        /// <inheritdoc cref="SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(double)" />
         public static SpecificFuelConsumption KilogramsPerKilonewtonSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(QuantityValue.CreateChecked(value));
+            => SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(double.CreateChecked(value));
 #else
             , IConvertible
-            => SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(value.ToQuantityValue());
+            => SpecificFuelConsumption.FromKilogramsPerKilonewtonSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(QuantityValue)" />
+        /// <inheritdoc cref="SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(double)" />
         public static SpecificFuelConsumption PoundsMassPerPoundForceHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(QuantityValue.CreateChecked(value));
+            => SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(double.CreateChecked(value));
 #else
             , IConvertible
-            => SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(value.ToQuantityValue());
+            => SpecificFuelConsumption.FromPoundsMassPerPoundForceHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

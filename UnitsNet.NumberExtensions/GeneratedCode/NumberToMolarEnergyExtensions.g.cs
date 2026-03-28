@@ -32,37 +32,37 @@ namespace UnitsNet.NumberExtensions.NumberToMolarEnergy
     /// </summary>
     public static class NumberToMolarEnergyExtensions
     {
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(QuantityValue)" />
+        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(double)" />
         public static MolarEnergy JoulesPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MolarEnergy.FromJoulesPerMole(QuantityValue.CreateChecked(value));
+            => MolarEnergy.FromJoulesPerMole(double.CreateChecked(value));
 #else
             , IConvertible
-            => MolarEnergy.FromJoulesPerMole(value.ToQuantityValue());
+            => MolarEnergy.FromJoulesPerMole(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(QuantityValue)" />
+        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(double)" />
         public static MolarEnergy KilojoulesPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MolarEnergy.FromKilojoulesPerMole(QuantityValue.CreateChecked(value));
+            => MolarEnergy.FromKilojoulesPerMole(double.CreateChecked(value));
 #else
             , IConvertible
-            => MolarEnergy.FromKilojoulesPerMole(value.ToQuantityValue());
+            => MolarEnergy.FromKilojoulesPerMole(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(QuantityValue)" />
+        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(double)" />
         public static MolarEnergy MegajoulesPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MolarEnergy.FromMegajoulesPerMole(QuantityValue.CreateChecked(value));
+            => MolarEnergy.FromMegajoulesPerMole(double.CreateChecked(value));
 #else
             , IConvertible
-            => MolarEnergy.FromMegajoulesPerMole(value.ToQuantityValue());
+            => MolarEnergy.FromMegajoulesPerMole(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

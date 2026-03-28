@@ -14,8 +14,8 @@ namespace UnitsNet.Benchmark.Operators.Divisions;
 [SimpleJob(RuntimeMoniker.Net80)]
 public class MassDividedByVolumeWithRandomUnitsBenchmarks
 {
-    private static readonly QuantityValue MassValue = 1.23;
-    private static readonly QuantityValue VolumeValue = 9.42;
+    private static readonly double MassValue = 1.23;
+    private static readonly double VolumeValue = 9.42;
 
     private readonly Random _random = new(42);
     private (Mass left, Volume right)[] _operands;

@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct ElectricSusceptance :
         IArithmeticQuantity<ElectricSusceptance, ElectricSusceptanceUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricSusceptance, ElectricSusceptance, QuantityValue>,
+        IDivisionOperators<ElectricSusceptance, ElectricSusceptance, double>,
         IComparisonOperators<ElectricSusceptance, ElectricSusceptance, bool>,
         IParsable<ElectricSusceptance>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -178,7 +178,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricSusceptance(QuantityValue value, ElectricSusceptanceUnit unit)
+        public ElectricSusceptance(double value, ElectricSusceptanceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -192,7 +192,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricSusceptance(QuantityValue value, UnitSystem unitSystem)
+        public ElectricSusceptance(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -234,7 +234,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public ElectricSusceptanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -268,84 +268,84 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Gigamho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Gigamho"/>
         /// </summary>
-        public QuantityValue Gigamhos => this.As(ElectricSusceptanceUnit.Gigamho);
+        public double Gigamhos => this.As(ElectricSusceptanceUnit.Gigamho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Gigasiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Gigasiemens"/>
         /// </summary>
-        public QuantityValue Gigasiemens => this.As(ElectricSusceptanceUnit.Gigasiemens);
+        public double Gigasiemens => this.As(ElectricSusceptanceUnit.Gigasiemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Kilomho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Kilomho"/>
         /// </summary>
-        public QuantityValue Kilomhos => this.As(ElectricSusceptanceUnit.Kilomho);
+        public double Kilomhos => this.As(ElectricSusceptanceUnit.Kilomho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Kilosiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Kilosiemens"/>
         /// </summary>
-        public QuantityValue Kilosiemens => this.As(ElectricSusceptanceUnit.Kilosiemens);
+        public double Kilosiemens => this.As(ElectricSusceptanceUnit.Kilosiemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Megamho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Megamho"/>
         /// </summary>
-        public QuantityValue Megamhos => this.As(ElectricSusceptanceUnit.Megamho);
+        public double Megamhos => this.As(ElectricSusceptanceUnit.Megamho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Megasiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Megasiemens"/>
         /// </summary>
-        public QuantityValue Megasiemens => this.As(ElectricSusceptanceUnit.Megasiemens);
+        public double Megasiemens => this.As(ElectricSusceptanceUnit.Megasiemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Mho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Mho"/>
         /// </summary>
-        public QuantityValue Mhos => this.As(ElectricSusceptanceUnit.Mho);
+        public double Mhos => this.As(ElectricSusceptanceUnit.Mho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Micromho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Micromho"/>
         /// </summary>
-        public QuantityValue Micromhos => this.As(ElectricSusceptanceUnit.Micromho);
+        public double Micromhos => this.As(ElectricSusceptanceUnit.Micromho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Microsiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Microsiemens"/>
         /// </summary>
-        public QuantityValue Microsiemens => this.As(ElectricSusceptanceUnit.Microsiemens);
+        public double Microsiemens => this.As(ElectricSusceptanceUnit.Microsiemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Millimho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Millimho"/>
         /// </summary>
-        public QuantityValue Millimhos => this.As(ElectricSusceptanceUnit.Millimho);
+        public double Millimhos => this.As(ElectricSusceptanceUnit.Millimho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Millisiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Millisiemens"/>
         /// </summary>
-        public QuantityValue Millisiemens => this.As(ElectricSusceptanceUnit.Millisiemens);
+        public double Millisiemens => this.As(ElectricSusceptanceUnit.Millisiemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Nanomho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Nanomho"/>
         /// </summary>
-        public QuantityValue Nanomhos => this.As(ElectricSusceptanceUnit.Nanomho);
+        public double Nanomhos => this.As(ElectricSusceptanceUnit.Nanomho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Nanosiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Nanosiemens"/>
         /// </summary>
-        public QuantityValue Nanosiemens => this.As(ElectricSusceptanceUnit.Nanosiemens);
+        public double Nanosiemens => this.As(ElectricSusceptanceUnit.Nanosiemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Siemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Siemens"/>
         /// </summary>
-        public QuantityValue Siemens => this.As(ElectricSusceptanceUnit.Siemens);
+        public double Siemens => this.As(ElectricSusceptanceUnit.Siemens);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Teramho"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Teramho"/>
         /// </summary>
-        public QuantityValue Teramhos => this.As(ElectricSusceptanceUnit.Teramho);
+        public double Teramhos => this.As(ElectricSusceptanceUnit.Teramho);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Terasiemens"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricSusceptanceUnit.Terasiemens"/>
         /// </summary>
-        public QuantityValue Terasiemens => this.As(ElectricSusceptanceUnit.Terasiemens);
+        public double Terasiemens => this.As(ElectricSusceptanceUnit.Terasiemens);
 
         #endregion
 
@@ -379,7 +379,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Gigamho"/>.
         /// </summary>
-        public static ElectricSusceptance FromGigamhos(QuantityValue value)
+        public static ElectricSusceptance FromGigamhos(double value)
         {
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Gigamho);
         }
@@ -387,7 +387,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Gigasiemens"/>.
         /// </summary>
-        public static ElectricSusceptance FromGigasiemens(QuantityValue value)
+        public static ElectricSusceptance FromGigasiemens(double value)
         {
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Gigasiemens);
         }
@@ -395,7 +395,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Kilomho"/>.
         /// </summary>
-        public static ElectricSusceptance FromKilomhos(QuantityValue value)
+        public static ElectricSusceptance FromKilomhos(double value)
         {
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Kilomho);
         }
@@ -403,7 +403,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Kilosiemens"/>.
         /// </summary>
-        public static ElectricSusceptance FromKilosiemens(QuantityValue value)
+        public static ElectricSusceptance FromKilosiemens(double value)
         {
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Kilosiemens);
         }
@@ -411,7 +411,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Megamho"/>.
         /// </summary>
-        public static ElectricSusceptance FromMegamhos(QuantityValue value)
+        public static ElectricSusceptance FromMegamhos(double value)
         {
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Megamho);
         }
@@ -419,7 +419,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Megasiemens"/>.
         /// </summary>
-        public static ElectricSusceptance FromMegasiemens(QuantityValue value)
+        public static ElectricSusceptance FromMegasiemens(double value)
         {
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Megasiemens);
         }
@@ -427,7 +427,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Mho"/>.
         /// </summary>
-        public static ElectricSusceptance FromMhos(QuantityValue value)
+        public static ElectricSusceptance FromMhos(double value)
         {
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Mho);
         }
@@ -435,7 +435,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Micromho"/>.
         /// </summary>
-        public static ElectricSusceptance FromMicromhos(QuantityValue value)
+        public static ElectricSusceptance FromMicromhos(double value)
         {
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Micromho);
         }
@@ -443,7 +443,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Microsiemens"/>.
         /// </summary>
-        public static ElectricSusceptance FromMicrosiemens(QuantityValue value)
+        public static ElectricSusceptance FromMicrosiemens(double value)
         {
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Microsiemens);
         }
@@ -451,7 +451,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Millimho"/>.
         /// </summary>
-        public static ElectricSusceptance FromMillimhos(QuantityValue value)
+        public static ElectricSusceptance FromMillimhos(double value)
         {
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Millimho);
         }
@@ -459,7 +459,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Millisiemens"/>.
         /// </summary>
-        public static ElectricSusceptance FromMillisiemens(QuantityValue value)
+        public static ElectricSusceptance FromMillisiemens(double value)
         {
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Millisiemens);
         }
@@ -467,7 +467,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Nanomho"/>.
         /// </summary>
-        public static ElectricSusceptance FromNanomhos(QuantityValue value)
+        public static ElectricSusceptance FromNanomhos(double value)
         {
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Nanomho);
         }
@@ -475,7 +475,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Nanosiemens"/>.
         /// </summary>
-        public static ElectricSusceptance FromNanosiemens(QuantityValue value)
+        public static ElectricSusceptance FromNanosiemens(double value)
         {
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Nanosiemens);
         }
@@ -483,7 +483,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Siemens"/>.
         /// </summary>
-        public static ElectricSusceptance FromSiemens(QuantityValue value)
+        public static ElectricSusceptance FromSiemens(double value)
         {
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Siemens);
         }
@@ -491,7 +491,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Teramho"/>.
         /// </summary>
-        public static ElectricSusceptance FromTeramhos(QuantityValue value)
+        public static ElectricSusceptance FromTeramhos(double value)
         {
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Teramho);
         }
@@ -499,7 +499,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricSusceptance"/> from <see cref="ElectricSusceptanceUnit.Terasiemens"/>.
         /// </summary>
-        public static ElectricSusceptance FromTerasiemens(QuantityValue value)
+        public static ElectricSusceptance FromTerasiemens(double value)
         {
             return new ElectricSusceptance(value, ElectricSusceptanceUnit.Terasiemens);
         }
@@ -510,7 +510,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricSusceptance unit value.</returns>
-        public static ElectricSusceptance From(QuantityValue value, ElectricSusceptanceUnit fromUnit)
+        public static ElectricSusceptance From(double value, ElectricSusceptanceUnit fromUnit)
         {
             return new ElectricSusceptance(value, fromUnit);
         }
@@ -675,25 +675,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricSusceptance"/> from multiplying value and <see cref="ElectricSusceptance"/>.</summary>
-        public static ElectricSusceptance operator *(QuantityValue left, ElectricSusceptance right)
+        public static ElectricSusceptance operator *(double left, ElectricSusceptance right)
         {
             return new ElectricSusceptance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricSusceptance"/> from multiplying value and <see cref="ElectricSusceptance"/>.</summary>
-        public static ElectricSusceptance operator *(ElectricSusceptance left, QuantityValue right)
+        public static ElectricSusceptance operator *(ElectricSusceptance left, double right)
         {
             return new ElectricSusceptance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricSusceptance"/> from dividing <see cref="ElectricSusceptance"/> by value.</summary>
-        public static ElectricSusceptance operator /(ElectricSusceptance left, QuantityValue right)
+        public static ElectricSusceptance operator /(ElectricSusceptance left, double right)
         {
             return new ElectricSusceptance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricSusceptance"/> by <see cref="ElectricSusceptance"/>.</summary>
-        public static QuantityValue operator /(ElectricSusceptance left, ElectricSusceptance right)
+        public static double operator /(ElectricSusceptance left, ElectricSusceptance right)
         {
             return left.Siemens / right.Siemens;
         }

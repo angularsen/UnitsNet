@@ -42,12 +42,12 @@ namespace UnitsNet.NumberExtensions.NumberToPermittivity
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Permittivity.FromFaradsPerMeter(QuantityValue)" />
+            /// <inheritdoc cref="Permittivity.FromFaradsPerMeter(double)" />
             public Permittivity FaradsPerMeter
 #if NET7_0_OR_GREATER
-                => Permittivity.FromFaradsPerMeter(QuantityValue.CreateChecked(value));
+                => Permittivity.FromFaradsPerMeter(double.CreateChecked(value));
 #else
-                => Permittivity.FromFaradsPerMeter(value.ToQuantityValue());
+                => Permittivity.FromFaradsPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

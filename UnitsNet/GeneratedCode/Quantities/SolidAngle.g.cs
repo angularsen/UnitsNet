@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct SolidAngle :
         IArithmeticQuantity<SolidAngle, SolidAngleUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<SolidAngle, SolidAngle, QuantityValue>,
+        IDivisionOperators<SolidAngle, SolidAngle, double>,
         IComparisonOperators<SolidAngle, SolidAngle, bool>,
         IParsable<SolidAngle>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -133,7 +133,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public SolidAngle(QuantityValue value, SolidAngleUnit unit)
+        public SolidAngle(double value, SolidAngleUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -175,7 +175,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public SolidAngleUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -209,9 +209,9 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SolidAngleUnit.Steradian"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SolidAngleUnit.Steradian"/>
         /// </summary>
-        public QuantityValue Steradians => this.As(SolidAngleUnit.Steradian);
+        public double Steradians => this.As(SolidAngleUnit.Steradian);
 
         #endregion
 
@@ -245,7 +245,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="SolidAngle"/> from <see cref="SolidAngleUnit.Steradian"/>.
         /// </summary>
-        public static SolidAngle FromSteradians(QuantityValue value)
+        public static SolidAngle FromSteradians(double value)
         {
             return new SolidAngle(value, SolidAngleUnit.Steradian);
         }
@@ -256,7 +256,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SolidAngle unit value.</returns>
-        public static SolidAngle From(QuantityValue value, SolidAngleUnit fromUnit)
+        public static SolidAngle From(double value, SolidAngleUnit fromUnit)
         {
             return new SolidAngle(value, fromUnit);
         }
@@ -421,25 +421,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="SolidAngle"/> from multiplying value and <see cref="SolidAngle"/>.</summary>
-        public static SolidAngle operator *(QuantityValue left, SolidAngle right)
+        public static SolidAngle operator *(double left, SolidAngle right)
         {
             return new SolidAngle(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="SolidAngle"/> from multiplying value and <see cref="SolidAngle"/>.</summary>
-        public static SolidAngle operator *(SolidAngle left, QuantityValue right)
+        public static SolidAngle operator *(SolidAngle left, double right)
         {
             return new SolidAngle(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="SolidAngle"/> from dividing <see cref="SolidAngle"/> by value.</summary>
-        public static SolidAngle operator /(SolidAngle left, QuantityValue right)
+        public static SolidAngle operator /(SolidAngle left, double right)
         {
             return new SolidAngle(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="SolidAngle"/> by <see cref="SolidAngle"/>.</summary>
-        public static QuantityValue operator /(SolidAngle left, SolidAngle right)
+        public static double operator /(SolidAngle left, SolidAngle right)
         {
             return left.Steradians / right.Steradians;
         }

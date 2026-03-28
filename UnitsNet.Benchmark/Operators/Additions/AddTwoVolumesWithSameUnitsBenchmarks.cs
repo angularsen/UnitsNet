@@ -13,8 +13,8 @@ namespace UnitsNet.Benchmark.Operators.Additions;
 [SimpleJob(RuntimeMoniker.Net80)]
 public class AddTwoVolumesWithSameUnitsBenchmarks
 {
-    private static readonly QuantityValue LeftValue = 1.23;
-    private static readonly QuantityValue RightValue = 4.56;
+    private static readonly double LeftValue = 1.23;
+    private static readonly double RightValue = 4.56;
 
     private (Volume left, Volume right)[] _operands;
 

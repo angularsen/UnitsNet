@@ -42,148 +42,148 @@ namespace UnitsNet.NumberExtensions.NumberToHeatFlux
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="HeatFlux.FromBtusPerHourSquareFoot(QuantityValue)" />
+            /// <inheritdoc cref="HeatFlux.FromBtusPerHourSquareFoot(double)" />
             public HeatFlux BtusPerHourSquareFoot
 #if NET7_0_OR_GREATER
-                => HeatFlux.FromBtusPerHourSquareFoot(QuantityValue.CreateChecked(value));
+                => HeatFlux.FromBtusPerHourSquareFoot(double.CreateChecked(value));
 #else
-                => HeatFlux.FromBtusPerHourSquareFoot(value.ToQuantityValue());
+                => HeatFlux.FromBtusPerHourSquareFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="HeatFlux.FromBtusPerMinuteSquareFoot(QuantityValue)" />
+            /// <inheritdoc cref="HeatFlux.FromBtusPerMinuteSquareFoot(double)" />
             public HeatFlux BtusPerMinuteSquareFoot
 #if NET7_0_OR_GREATER
-                => HeatFlux.FromBtusPerMinuteSquareFoot(QuantityValue.CreateChecked(value));
+                => HeatFlux.FromBtusPerMinuteSquareFoot(double.CreateChecked(value));
 #else
-                => HeatFlux.FromBtusPerMinuteSquareFoot(value.ToQuantityValue());
+                => HeatFlux.FromBtusPerMinuteSquareFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="HeatFlux.FromBtusPerSecondSquareFoot(QuantityValue)" />
+            /// <inheritdoc cref="HeatFlux.FromBtusPerSecondSquareFoot(double)" />
             public HeatFlux BtusPerSecondSquareFoot
 #if NET7_0_OR_GREATER
-                => HeatFlux.FromBtusPerSecondSquareFoot(QuantityValue.CreateChecked(value));
+                => HeatFlux.FromBtusPerSecondSquareFoot(double.CreateChecked(value));
 #else
-                => HeatFlux.FromBtusPerSecondSquareFoot(value.ToQuantityValue());
+                => HeatFlux.FromBtusPerSecondSquareFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="HeatFlux.FromBtusPerSecondSquareInch(QuantityValue)" />
+            /// <inheritdoc cref="HeatFlux.FromBtusPerSecondSquareInch(double)" />
             public HeatFlux BtusPerSecondSquareInch
 #if NET7_0_OR_GREATER
-                => HeatFlux.FromBtusPerSecondSquareInch(QuantityValue.CreateChecked(value));
+                => HeatFlux.FromBtusPerSecondSquareInch(double.CreateChecked(value));
 #else
-                => HeatFlux.FromBtusPerSecondSquareInch(value.ToQuantityValue());
+                => HeatFlux.FromBtusPerSecondSquareInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="HeatFlux.FromCaloriesPerSecondSquareCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="HeatFlux.FromCaloriesPerSecondSquareCentimeter(double)" />
             public HeatFlux CaloriesPerSecondSquareCentimeter
 #if NET7_0_OR_GREATER
-                => HeatFlux.FromCaloriesPerSecondSquareCentimeter(QuantityValue.CreateChecked(value));
+                => HeatFlux.FromCaloriesPerSecondSquareCentimeter(double.CreateChecked(value));
 #else
-                => HeatFlux.FromCaloriesPerSecondSquareCentimeter(value.ToQuantityValue());
+                => HeatFlux.FromCaloriesPerSecondSquareCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="HeatFlux.FromCentiwattsPerSquareMeter(QuantityValue)" />
+            /// <inheritdoc cref="HeatFlux.FromCentiwattsPerSquareMeter(double)" />
             public HeatFlux CentiwattsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => HeatFlux.FromCentiwattsPerSquareMeter(QuantityValue.CreateChecked(value));
+                => HeatFlux.FromCentiwattsPerSquareMeter(double.CreateChecked(value));
 #else
-                => HeatFlux.FromCentiwattsPerSquareMeter(value.ToQuantityValue());
+                => HeatFlux.FromCentiwattsPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="HeatFlux.FromDeciwattsPerSquareMeter(QuantityValue)" />
+            /// <inheritdoc cref="HeatFlux.FromDeciwattsPerSquareMeter(double)" />
             public HeatFlux DeciwattsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => HeatFlux.FromDeciwattsPerSquareMeter(QuantityValue.CreateChecked(value));
+                => HeatFlux.FromDeciwattsPerSquareMeter(double.CreateChecked(value));
 #else
-                => HeatFlux.FromDeciwattsPerSquareMeter(value.ToQuantityValue());
+                => HeatFlux.FromDeciwattsPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="HeatFlux.FromKilocaloriesPerHourSquareMeter(QuantityValue)" />
+            /// <inheritdoc cref="HeatFlux.FromKilocaloriesPerHourSquareMeter(double)" />
             public HeatFlux KilocaloriesPerHourSquareMeter
 #if NET7_0_OR_GREATER
-                => HeatFlux.FromKilocaloriesPerHourSquareMeter(QuantityValue.CreateChecked(value));
+                => HeatFlux.FromKilocaloriesPerHourSquareMeter(double.CreateChecked(value));
 #else
-                => HeatFlux.FromKilocaloriesPerHourSquareMeter(value.ToQuantityValue());
+                => HeatFlux.FromKilocaloriesPerHourSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="HeatFlux.FromKilocaloriesPerSecondSquareCentimeter(QuantityValue)" />
+            /// <inheritdoc cref="HeatFlux.FromKilocaloriesPerSecondSquareCentimeter(double)" />
             public HeatFlux KilocaloriesPerSecondSquareCentimeter
 #if NET7_0_OR_GREATER
-                => HeatFlux.FromKilocaloriesPerSecondSquareCentimeter(QuantityValue.CreateChecked(value));
+                => HeatFlux.FromKilocaloriesPerSecondSquareCentimeter(double.CreateChecked(value));
 #else
-                => HeatFlux.FromKilocaloriesPerSecondSquareCentimeter(value.ToQuantityValue());
+                => HeatFlux.FromKilocaloriesPerSecondSquareCentimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="HeatFlux.FromKilowattsPerSquareMeter(QuantityValue)" />
+            /// <inheritdoc cref="HeatFlux.FromKilowattsPerSquareMeter(double)" />
             public HeatFlux KilowattsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => HeatFlux.FromKilowattsPerSquareMeter(QuantityValue.CreateChecked(value));
+                => HeatFlux.FromKilowattsPerSquareMeter(double.CreateChecked(value));
 #else
-                => HeatFlux.FromKilowattsPerSquareMeter(value.ToQuantityValue());
+                => HeatFlux.FromKilowattsPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="HeatFlux.FromMicrowattsPerSquareMeter(QuantityValue)" />
+            /// <inheritdoc cref="HeatFlux.FromMicrowattsPerSquareMeter(double)" />
             public HeatFlux MicrowattsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => HeatFlux.FromMicrowattsPerSquareMeter(QuantityValue.CreateChecked(value));
+                => HeatFlux.FromMicrowattsPerSquareMeter(double.CreateChecked(value));
 #else
-                => HeatFlux.FromMicrowattsPerSquareMeter(value.ToQuantityValue());
+                => HeatFlux.FromMicrowattsPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="HeatFlux.FromMilliwattsPerSquareMeter(QuantityValue)" />
+            /// <inheritdoc cref="HeatFlux.FromMilliwattsPerSquareMeter(double)" />
             public HeatFlux MilliwattsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => HeatFlux.FromMilliwattsPerSquareMeter(QuantityValue.CreateChecked(value));
+                => HeatFlux.FromMilliwattsPerSquareMeter(double.CreateChecked(value));
 #else
-                => HeatFlux.FromMilliwattsPerSquareMeter(value.ToQuantityValue());
+                => HeatFlux.FromMilliwattsPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="HeatFlux.FromNanowattsPerSquareMeter(QuantityValue)" />
+            /// <inheritdoc cref="HeatFlux.FromNanowattsPerSquareMeter(double)" />
             public HeatFlux NanowattsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => HeatFlux.FromNanowattsPerSquareMeter(QuantityValue.CreateChecked(value));
+                => HeatFlux.FromNanowattsPerSquareMeter(double.CreateChecked(value));
 #else
-                => HeatFlux.FromNanowattsPerSquareMeter(value.ToQuantityValue());
+                => HeatFlux.FromNanowattsPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="HeatFlux.FromPoundsForcePerFootSecond(QuantityValue)" />
+            /// <inheritdoc cref="HeatFlux.FromPoundsForcePerFootSecond(double)" />
             public HeatFlux PoundsForcePerFootSecond
 #if NET7_0_OR_GREATER
-                => HeatFlux.FromPoundsForcePerFootSecond(QuantityValue.CreateChecked(value));
+                => HeatFlux.FromPoundsForcePerFootSecond(double.CreateChecked(value));
 #else
-                => HeatFlux.FromPoundsForcePerFootSecond(value.ToQuantityValue());
+                => HeatFlux.FromPoundsForcePerFootSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="HeatFlux.FromPoundsPerSecondCubed(QuantityValue)" />
+            /// <inheritdoc cref="HeatFlux.FromPoundsPerSecondCubed(double)" />
             public HeatFlux PoundsPerSecondCubed
 #if NET7_0_OR_GREATER
-                => HeatFlux.FromPoundsPerSecondCubed(QuantityValue.CreateChecked(value));
+                => HeatFlux.FromPoundsPerSecondCubed(double.CreateChecked(value));
 #else
-                => HeatFlux.FromPoundsPerSecondCubed(value.ToQuantityValue());
+                => HeatFlux.FromPoundsPerSecondCubed(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="HeatFlux.FromWattsPerSquareFoot(QuantityValue)" />
+            /// <inheritdoc cref="HeatFlux.FromWattsPerSquareFoot(double)" />
             public HeatFlux WattsPerSquareFoot
 #if NET7_0_OR_GREATER
-                => HeatFlux.FromWattsPerSquareFoot(QuantityValue.CreateChecked(value));
+                => HeatFlux.FromWattsPerSquareFoot(double.CreateChecked(value));
 #else
-                => HeatFlux.FromWattsPerSquareFoot(value.ToQuantityValue());
+                => HeatFlux.FromWattsPerSquareFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="HeatFlux.FromWattsPerSquareInch(QuantityValue)" />
+            /// <inheritdoc cref="HeatFlux.FromWattsPerSquareInch(double)" />
             public HeatFlux WattsPerSquareInch
 #if NET7_0_OR_GREATER
-                => HeatFlux.FromWattsPerSquareInch(QuantityValue.CreateChecked(value));
+                => HeatFlux.FromWattsPerSquareInch(double.CreateChecked(value));
 #else
-                => HeatFlux.FromWattsPerSquareInch(value.ToQuantityValue());
+                => HeatFlux.FromWattsPerSquareInch(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="HeatFlux.FromWattsPerSquareMeter(QuantityValue)" />
+            /// <inheritdoc cref="HeatFlux.FromWattsPerSquareMeter(double)" />
             public HeatFlux WattsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => HeatFlux.FromWattsPerSquareMeter(QuantityValue.CreateChecked(value));
+                => HeatFlux.FromWattsPerSquareMeter(double.CreateChecked(value));
 #else
-                => HeatFlux.FromWattsPerSquareMeter(value.ToQuantityValue());
+                => HeatFlux.FromWattsPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct Permeability :
         IArithmeticQuantity<Permeability, PermeabilityUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Permeability, Permeability, QuantityValue>,
+        IDivisionOperators<Permeability, Permeability, double>,
         IComparisonOperators<Permeability, Permeability, bool>,
         IParsable<Permeability>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -133,7 +133,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Permeability(QuantityValue value, PermeabilityUnit unit)
+        public Permeability(double value, PermeabilityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -147,7 +147,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Permeability(QuantityValue value, UnitSystem unitSystem)
+        public Permeability(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -189,7 +189,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public PermeabilityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -223,9 +223,9 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PermeabilityUnit.HenryPerMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PermeabilityUnit.HenryPerMeter"/>
         /// </summary>
-        public QuantityValue HenriesPerMeter => this.As(PermeabilityUnit.HenryPerMeter);
+        public double HenriesPerMeter => this.As(PermeabilityUnit.HenryPerMeter);
 
         #endregion
 
@@ -259,7 +259,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Permeability"/> from <see cref="PermeabilityUnit.HenryPerMeter"/>.
         /// </summary>
-        public static Permeability FromHenriesPerMeter(QuantityValue value)
+        public static Permeability FromHenriesPerMeter(double value)
         {
             return new Permeability(value, PermeabilityUnit.HenryPerMeter);
         }
@@ -270,7 +270,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Permeability unit value.</returns>
-        public static Permeability From(QuantityValue value, PermeabilityUnit fromUnit)
+        public static Permeability From(double value, PermeabilityUnit fromUnit)
         {
             return new Permeability(value, fromUnit);
         }
@@ -435,25 +435,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Permeability"/> from multiplying value and <see cref="Permeability"/>.</summary>
-        public static Permeability operator *(QuantityValue left, Permeability right)
+        public static Permeability operator *(double left, Permeability right)
         {
             return new Permeability(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Permeability"/> from multiplying value and <see cref="Permeability"/>.</summary>
-        public static Permeability operator *(Permeability left, QuantityValue right)
+        public static Permeability operator *(Permeability left, double right)
         {
             return new Permeability(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Permeability"/> from dividing <see cref="Permeability"/> by value.</summary>
-        public static Permeability operator /(Permeability left, QuantityValue right)
+        public static Permeability operator /(Permeability left, double right)
         {
             return new Permeability(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Permeability"/> by <see cref="Permeability"/>.</summary>
-        public static QuantityValue operator /(Permeability left, Permeability right)
+        public static double operator /(Permeability left, Permeability right)
         {
             return left.HenriesPerMeter / right.HenriesPerMeter;
         }

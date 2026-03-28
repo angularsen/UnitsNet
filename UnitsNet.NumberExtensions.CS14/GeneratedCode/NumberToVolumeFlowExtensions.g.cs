@@ -42,604 +42,604 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerDay(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerDay(double)" />
             public VolumeFlow AcreFeetPerDay
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromAcreFeetPerDay(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromAcreFeetPerDay(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromAcreFeetPerDay(value.ToQuantityValue());
+                => VolumeFlow.FromAcreFeetPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerHour(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerHour(double)" />
             public VolumeFlow AcreFeetPerHour
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromAcreFeetPerHour(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromAcreFeetPerHour(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromAcreFeetPerHour(value.ToQuantityValue());
+                => VolumeFlow.FromAcreFeetPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerMinute(double)" />
             public VolumeFlow AcreFeetPerMinute
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromAcreFeetPerMinute(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromAcreFeetPerMinute(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromAcreFeetPerMinute(value.ToQuantityValue());
+                => VolumeFlow.FromAcreFeetPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromAcreFeetPerSecond(double)" />
             public VolumeFlow AcreFeetPerSecond
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromAcreFeetPerSecond(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromAcreFeetPerSecond(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromAcreFeetPerSecond(value.ToQuantityValue());
+                => VolumeFlow.FromAcreFeetPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromCentilitersPerDay(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromCentilitersPerDay(double)" />
             public VolumeFlow CentilitersPerDay
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromCentilitersPerDay(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromCentilitersPerDay(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromCentilitersPerDay(value.ToQuantityValue());
+                => VolumeFlow.FromCentilitersPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromCentilitersPerHour(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromCentilitersPerHour(double)" />
             public VolumeFlow CentilitersPerHour
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromCentilitersPerHour(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromCentilitersPerHour(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromCentilitersPerHour(value.ToQuantityValue());
+                => VolumeFlow.FromCentilitersPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromCentilitersPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromCentilitersPerMinute(double)" />
             public VolumeFlow CentilitersPerMinute
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromCentilitersPerMinute(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromCentilitersPerMinute(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromCentilitersPerMinute(value.ToQuantityValue());
+                => VolumeFlow.FromCentilitersPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromCentilitersPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromCentilitersPerSecond(double)" />
             public VolumeFlow CentilitersPerSecond
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromCentilitersPerSecond(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromCentilitersPerSecond(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromCentilitersPerSecond(value.ToQuantityValue());
+                => VolumeFlow.FromCentilitersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromCubicCentimetersPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromCubicCentimetersPerMinute(double)" />
             public VolumeFlow CubicCentimetersPerMinute
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromCubicCentimetersPerMinute(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromCubicCentimetersPerMinute(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromCubicCentimetersPerMinute(value.ToQuantityValue());
+                => VolumeFlow.FromCubicCentimetersPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromCubicDecimetersPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromCubicDecimetersPerMinute(double)" />
             public VolumeFlow CubicDecimetersPerMinute
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromCubicDecimetersPerMinute(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromCubicDecimetersPerMinute(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromCubicDecimetersPerMinute(value.ToQuantityValue());
+                => VolumeFlow.FromCubicDecimetersPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerHour(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerHour(double)" />
             public VolumeFlow CubicFeetPerHour
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromCubicFeetPerHour(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromCubicFeetPerHour(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromCubicFeetPerHour(value.ToQuantityValue());
+                => VolumeFlow.FromCubicFeetPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerMinute(double)" />
             public VolumeFlow CubicFeetPerMinute
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromCubicFeetPerMinute(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromCubicFeetPerMinute(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromCubicFeetPerMinute(value.ToQuantityValue());
+                => VolumeFlow.FromCubicFeetPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerSecond(double)" />
             public VolumeFlow CubicFeetPerSecond
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromCubicFeetPerSecond(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromCubicFeetPerSecond(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromCubicFeetPerSecond(value.ToQuantityValue());
+                => VolumeFlow.FromCubicFeetPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerDay(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerDay(double)" />
             public VolumeFlow CubicMetersPerDay
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromCubicMetersPerDay(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromCubicMetersPerDay(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromCubicMetersPerDay(value.ToQuantityValue());
+                => VolumeFlow.FromCubicMetersPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerHour(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerHour(double)" />
             public VolumeFlow CubicMetersPerHour
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromCubicMetersPerHour(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromCubicMetersPerHour(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromCubicMetersPerHour(value.ToQuantityValue());
+                => VolumeFlow.FromCubicMetersPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerMinute(double)" />
             public VolumeFlow CubicMetersPerMinute
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromCubicMetersPerMinute(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromCubicMetersPerMinute(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromCubicMetersPerMinute(value.ToQuantityValue());
+                => VolumeFlow.FromCubicMetersPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerSecond(double)" />
             public VolumeFlow CubicMetersPerSecond
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromCubicMetersPerSecond(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromCubicMetersPerSecond(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromCubicMetersPerSecond(value.ToQuantityValue());
+                => VolumeFlow.FromCubicMetersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromCubicMillimetersPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromCubicMillimetersPerSecond(double)" />
             public VolumeFlow CubicMillimetersPerSecond
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromCubicMillimetersPerSecond(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromCubicMillimetersPerSecond(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromCubicMillimetersPerSecond(value.ToQuantityValue());
+                => VolumeFlow.FromCubicMillimetersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerDay(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerDay(double)" />
             public VolumeFlow CubicYardsPerDay
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromCubicYardsPerDay(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromCubicYardsPerDay(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromCubicYardsPerDay(value.ToQuantityValue());
+                => VolumeFlow.FromCubicYardsPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerHour(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerHour(double)" />
             public VolumeFlow CubicYardsPerHour
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromCubicYardsPerHour(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromCubicYardsPerHour(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromCubicYardsPerHour(value.ToQuantityValue());
+                => VolumeFlow.FromCubicYardsPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerMinute(double)" />
             public VolumeFlow CubicYardsPerMinute
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromCubicYardsPerMinute(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromCubicYardsPerMinute(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromCubicYardsPerMinute(value.ToQuantityValue());
+                => VolumeFlow.FromCubicYardsPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerSecond(double)" />
             public VolumeFlow CubicYardsPerSecond
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromCubicYardsPerSecond(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromCubicYardsPerSecond(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromCubicYardsPerSecond(value.ToQuantityValue());
+                => VolumeFlow.FromCubicYardsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromDecalitersPerDay(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromDecalitersPerDay(double)" />
             public VolumeFlow DecalitersPerDay
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromDecalitersPerDay(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromDecalitersPerDay(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromDecalitersPerDay(value.ToQuantityValue());
+                => VolumeFlow.FromDecalitersPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromDecalitersPerHour(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromDecalitersPerHour(double)" />
             public VolumeFlow DecalitersPerHour
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromDecalitersPerHour(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromDecalitersPerHour(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromDecalitersPerHour(value.ToQuantityValue());
+                => VolumeFlow.FromDecalitersPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromDecalitersPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromDecalitersPerMinute(double)" />
             public VolumeFlow DecalitersPerMinute
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromDecalitersPerMinute(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromDecalitersPerMinute(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromDecalitersPerMinute(value.ToQuantityValue());
+                => VolumeFlow.FromDecalitersPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromDecalitersPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromDecalitersPerSecond(double)" />
             public VolumeFlow DecalitersPerSecond
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromDecalitersPerSecond(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromDecalitersPerSecond(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromDecalitersPerSecond(value.ToQuantityValue());
+                => VolumeFlow.FromDecalitersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromDecilitersPerDay(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromDecilitersPerDay(double)" />
             public VolumeFlow DecilitersPerDay
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromDecilitersPerDay(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromDecilitersPerDay(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromDecilitersPerDay(value.ToQuantityValue());
+                => VolumeFlow.FromDecilitersPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromDecilitersPerHour(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromDecilitersPerHour(double)" />
             public VolumeFlow DecilitersPerHour
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromDecilitersPerHour(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromDecilitersPerHour(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromDecilitersPerHour(value.ToQuantityValue());
+                => VolumeFlow.FromDecilitersPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromDecilitersPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromDecilitersPerMinute(double)" />
             public VolumeFlow DecilitersPerMinute
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromDecilitersPerMinute(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromDecilitersPerMinute(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromDecilitersPerMinute(value.ToQuantityValue());
+                => VolumeFlow.FromDecilitersPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromDecilitersPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromDecilitersPerSecond(double)" />
             public VolumeFlow DecilitersPerSecond
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromDecilitersPerSecond(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromDecilitersPerSecond(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromDecilitersPerSecond(value.ToQuantityValue());
+                => VolumeFlow.FromDecilitersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromHectolitersPerDay(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromHectolitersPerDay(double)" />
             public VolumeFlow HectolitersPerDay
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromHectolitersPerDay(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromHectolitersPerDay(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromHectolitersPerDay(value.ToQuantityValue());
+                => VolumeFlow.FromHectolitersPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromHectolitersPerHour(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromHectolitersPerHour(double)" />
             public VolumeFlow HectolitersPerHour
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromHectolitersPerHour(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromHectolitersPerHour(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromHectolitersPerHour(value.ToQuantityValue());
+                => VolumeFlow.FromHectolitersPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromHectolitersPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromHectolitersPerMinute(double)" />
             public VolumeFlow HectolitersPerMinute
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromHectolitersPerMinute(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromHectolitersPerMinute(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromHectolitersPerMinute(value.ToQuantityValue());
+                => VolumeFlow.FromHectolitersPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromHectolitersPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromHectolitersPerSecond(double)" />
             public VolumeFlow HectolitersPerSecond
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromHectolitersPerSecond(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromHectolitersPerSecond(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromHectolitersPerSecond(value.ToQuantityValue());
+                => VolumeFlow.FromHectolitersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromKilolitersPerDay(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromKilolitersPerDay(double)" />
             public VolumeFlow KilolitersPerDay
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromKilolitersPerDay(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromKilolitersPerDay(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromKilolitersPerDay(value.ToQuantityValue());
+                => VolumeFlow.FromKilolitersPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromKilolitersPerHour(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromKilolitersPerHour(double)" />
             public VolumeFlow KilolitersPerHour
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromKilolitersPerHour(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromKilolitersPerHour(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromKilolitersPerHour(value.ToQuantityValue());
+                => VolumeFlow.FromKilolitersPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromKilolitersPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromKilolitersPerMinute(double)" />
             public VolumeFlow KilolitersPerMinute
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromKilolitersPerMinute(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromKilolitersPerMinute(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromKilolitersPerMinute(value.ToQuantityValue());
+                => VolumeFlow.FromKilolitersPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromKilolitersPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromKilolitersPerSecond(double)" />
             public VolumeFlow KilolitersPerSecond
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromKilolitersPerSecond(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromKilolitersPerSecond(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromKilolitersPerSecond(value.ToQuantityValue());
+                => VolumeFlow.FromKilolitersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromKilousGallonsPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromKilousGallonsPerMinute(double)" />
             public VolumeFlow KilousGallonsPerMinute
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromKilousGallonsPerMinute(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromKilousGallonsPerMinute(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromKilousGallonsPerMinute(value.ToQuantityValue());
+                => VolumeFlow.FromKilousGallonsPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromLitersPerDay(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromLitersPerDay(double)" />
             public VolumeFlow LitersPerDay
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromLitersPerDay(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromLitersPerDay(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromLitersPerDay(value.ToQuantityValue());
+                => VolumeFlow.FromLitersPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromLitersPerHour(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromLitersPerHour(double)" />
             public VolumeFlow LitersPerHour
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromLitersPerHour(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromLitersPerHour(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromLitersPerHour(value.ToQuantityValue());
+                => VolumeFlow.FromLitersPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromLitersPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromLitersPerMinute(double)" />
             public VolumeFlow LitersPerMinute
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromLitersPerMinute(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromLitersPerMinute(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromLitersPerMinute(value.ToQuantityValue());
+                => VolumeFlow.FromLitersPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromLitersPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromLitersPerSecond(double)" />
             public VolumeFlow LitersPerSecond
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromLitersPerSecond(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromLitersPerSecond(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromLitersPerSecond(value.ToQuantityValue());
+                => VolumeFlow.FromLitersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromMegalitersPerDay(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromMegalitersPerDay(double)" />
             public VolumeFlow MegalitersPerDay
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromMegalitersPerDay(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromMegalitersPerDay(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromMegalitersPerDay(value.ToQuantityValue());
+                => VolumeFlow.FromMegalitersPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromMegalitersPerHour(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromMegalitersPerHour(double)" />
             public VolumeFlow MegalitersPerHour
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromMegalitersPerHour(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromMegalitersPerHour(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromMegalitersPerHour(value.ToQuantityValue());
+                => VolumeFlow.FromMegalitersPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromMegalitersPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromMegalitersPerMinute(double)" />
             public VolumeFlow MegalitersPerMinute
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromMegalitersPerMinute(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromMegalitersPerMinute(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromMegalitersPerMinute(value.ToQuantityValue());
+                => VolumeFlow.FromMegalitersPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromMegalitersPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromMegalitersPerSecond(double)" />
             public VolumeFlow MegalitersPerSecond
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromMegalitersPerSecond(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromMegalitersPerSecond(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromMegalitersPerSecond(value.ToQuantityValue());
+                => VolumeFlow.FromMegalitersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerDay(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerDay(double)" />
             public VolumeFlow MegaukGallonsPerDay
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromMegaukGallonsPerDay(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromMegaukGallonsPerDay(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromMegaukGallonsPerDay(value.ToQuantityValue());
+                => VolumeFlow.FromMegaukGallonsPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromMegaukGallonsPerSecond(double)" />
             public VolumeFlow MegaukGallonsPerSecond
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromMegaukGallonsPerSecond(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromMegaukGallonsPerSecond(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromMegaukGallonsPerSecond(value.ToQuantityValue());
+                => VolumeFlow.FromMegaukGallonsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromMegausGallonsPerDay(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromMegausGallonsPerDay(double)" />
             public VolumeFlow MegausGallonsPerDay
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromMegausGallonsPerDay(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromMegausGallonsPerDay(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromMegausGallonsPerDay(value.ToQuantityValue());
+                => VolumeFlow.FromMegausGallonsPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerDay(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerDay(double)" />
             public VolumeFlow MicrolitersPerDay
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromMicrolitersPerDay(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromMicrolitersPerDay(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromMicrolitersPerDay(value.ToQuantityValue());
+                => VolumeFlow.FromMicrolitersPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerHour(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerHour(double)" />
             public VolumeFlow MicrolitersPerHour
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromMicrolitersPerHour(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromMicrolitersPerHour(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromMicrolitersPerHour(value.ToQuantityValue());
+                => VolumeFlow.FromMicrolitersPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerMinute(double)" />
             public VolumeFlow MicrolitersPerMinute
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromMicrolitersPerMinute(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromMicrolitersPerMinute(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromMicrolitersPerMinute(value.ToQuantityValue());
+                => VolumeFlow.FromMicrolitersPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerSecond(double)" />
             public VolumeFlow MicrolitersPerSecond
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromMicrolitersPerSecond(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromMicrolitersPerSecond(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromMicrolitersPerSecond(value.ToQuantityValue());
+                => VolumeFlow.FromMicrolitersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromMillilitersPerDay(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromMillilitersPerDay(double)" />
             public VolumeFlow MillilitersPerDay
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromMillilitersPerDay(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromMillilitersPerDay(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromMillilitersPerDay(value.ToQuantityValue());
+                => VolumeFlow.FromMillilitersPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromMillilitersPerHour(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromMillilitersPerHour(double)" />
             public VolumeFlow MillilitersPerHour
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromMillilitersPerHour(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromMillilitersPerHour(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromMillilitersPerHour(value.ToQuantityValue());
+                => VolumeFlow.FromMillilitersPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromMillilitersPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromMillilitersPerMinute(double)" />
             public VolumeFlow MillilitersPerMinute
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromMillilitersPerMinute(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromMillilitersPerMinute(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromMillilitersPerMinute(value.ToQuantityValue());
+                => VolumeFlow.FromMillilitersPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromMillilitersPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromMillilitersPerSecond(double)" />
             public VolumeFlow MillilitersPerSecond
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromMillilitersPerSecond(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromMillilitersPerSecond(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromMillilitersPerSecond(value.ToQuantityValue());
+                => VolumeFlow.FromMillilitersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromMillionUsGallonsPerDay(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromMillionUsGallonsPerDay(double)" />
             public VolumeFlow MillionUsGallonsPerDay
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromMillionUsGallonsPerDay(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromMillionUsGallonsPerDay(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromMillionUsGallonsPerDay(value.ToQuantityValue());
+                => VolumeFlow.FromMillionUsGallonsPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromNanolitersPerDay(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromNanolitersPerDay(double)" />
             public VolumeFlow NanolitersPerDay
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromNanolitersPerDay(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromNanolitersPerDay(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromNanolitersPerDay(value.ToQuantityValue());
+                => VolumeFlow.FromNanolitersPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromNanolitersPerHour(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromNanolitersPerHour(double)" />
             public VolumeFlow NanolitersPerHour
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromNanolitersPerHour(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromNanolitersPerHour(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromNanolitersPerHour(value.ToQuantityValue());
+                => VolumeFlow.FromNanolitersPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromNanolitersPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromNanolitersPerMinute(double)" />
             public VolumeFlow NanolitersPerMinute
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromNanolitersPerMinute(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromNanolitersPerMinute(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromNanolitersPerMinute(value.ToQuantityValue());
+                => VolumeFlow.FromNanolitersPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromNanolitersPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromNanolitersPerSecond(double)" />
             public VolumeFlow NanolitersPerSecond
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromNanolitersPerSecond(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromNanolitersPerSecond(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromNanolitersPerSecond(value.ToQuantityValue());
+                => VolumeFlow.FromNanolitersPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerDay(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerDay(double)" />
             public VolumeFlow OilBarrelsPerDay
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromOilBarrelsPerDay(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromOilBarrelsPerDay(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromOilBarrelsPerDay(value.ToQuantityValue());
+                => VolumeFlow.FromOilBarrelsPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerHour(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerHour(double)" />
             public VolumeFlow OilBarrelsPerHour
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromOilBarrelsPerHour(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromOilBarrelsPerHour(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromOilBarrelsPerHour(value.ToQuantityValue());
+                => VolumeFlow.FromOilBarrelsPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerMinute(double)" />
             public VolumeFlow OilBarrelsPerMinute
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromOilBarrelsPerMinute(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromOilBarrelsPerMinute(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromOilBarrelsPerMinute(value.ToQuantityValue());
+                => VolumeFlow.FromOilBarrelsPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerSecond(double)" />
             public VolumeFlow OilBarrelsPerSecond
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromOilBarrelsPerSecond(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromOilBarrelsPerSecond(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromOilBarrelsPerSecond(value.ToQuantityValue());
+                => VolumeFlow.FromOilBarrelsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerDay(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerDay(double)" />
             public VolumeFlow UkGallonsPerDay
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromUkGallonsPerDay(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromUkGallonsPerDay(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromUkGallonsPerDay(value.ToQuantityValue());
+                => VolumeFlow.FromUkGallonsPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerHour(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerHour(double)" />
             public VolumeFlow UkGallonsPerHour
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromUkGallonsPerHour(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromUkGallonsPerHour(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromUkGallonsPerHour(value.ToQuantityValue());
+                => VolumeFlow.FromUkGallonsPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerMinute(double)" />
             public VolumeFlow UkGallonsPerMinute
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromUkGallonsPerMinute(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromUkGallonsPerMinute(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromUkGallonsPerMinute(value.ToQuantityValue());
+                => VolumeFlow.FromUkGallonsPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromUkGallonsPerSecond(double)" />
             public VolumeFlow UkGallonsPerSecond
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromUkGallonsPerSecond(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromUkGallonsPerSecond(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromUkGallonsPerSecond(value.ToQuantityValue());
+                => VolumeFlow.FromUkGallonsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerDay(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerDay(double)" />
             public VolumeFlow UsGallonsPerDay
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromUsGallonsPerDay(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromUsGallonsPerDay(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromUsGallonsPerDay(value.ToQuantityValue());
+                => VolumeFlow.FromUsGallonsPerDay(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerHour(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerHour(double)" />
             public VolumeFlow UsGallonsPerHour
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromUsGallonsPerHour(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromUsGallonsPerHour(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromUsGallonsPerHour(value.ToQuantityValue());
+                => VolumeFlow.FromUsGallonsPerHour(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerMinute(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerMinute(double)" />
             public VolumeFlow UsGallonsPerMinute
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromUsGallonsPerMinute(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromUsGallonsPerMinute(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromUsGallonsPerMinute(value.ToQuantityValue());
+                => VolumeFlow.FromUsGallonsPerMinute(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerSecond(double)" />
             public VolumeFlow UsGallonsPerSecond
 #if NET7_0_OR_GREATER
-                => VolumeFlow.FromUsGallonsPerSecond(QuantityValue.CreateChecked(value));
+                => VolumeFlow.FromUsGallonsPerSecond(double.CreateChecked(value));
 #else
-                => VolumeFlow.FromUsGallonsPerSecond(value.ToQuantityValue());
+                => VolumeFlow.FromUsGallonsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

@@ -42,28 +42,28 @@ namespace UnitsNet.NumberExtensions.NumberToAreaDensity
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="AreaDensity.FromGramsPerSquareMeter(QuantityValue)" />
+            /// <inheritdoc cref="AreaDensity.FromGramsPerSquareMeter(double)" />
             public AreaDensity GramsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => AreaDensity.FromGramsPerSquareMeter(QuantityValue.CreateChecked(value));
+                => AreaDensity.FromGramsPerSquareMeter(double.CreateChecked(value));
 #else
-                => AreaDensity.FromGramsPerSquareMeter(value.ToQuantityValue());
+                => AreaDensity.FromGramsPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(QuantityValue)" />
+            /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(double)" />
             public AreaDensity KilogramsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => AreaDensity.FromKilogramsPerSquareMeter(QuantityValue.CreateChecked(value));
+                => AreaDensity.FromKilogramsPerSquareMeter(double.CreateChecked(value));
 #else
-                => AreaDensity.FromKilogramsPerSquareMeter(value.ToQuantityValue());
+                => AreaDensity.FromKilogramsPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="AreaDensity.FromMilligramsPerSquareMeter(QuantityValue)" />
+            /// <inheritdoc cref="AreaDensity.FromMilligramsPerSquareMeter(double)" />
             public AreaDensity MilligramsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => AreaDensity.FromMilligramsPerSquareMeter(QuantityValue.CreateChecked(value));
+                => AreaDensity.FromMilligramsPerSquareMeter(double.CreateChecked(value));
 #else
-                => AreaDensity.FromMilligramsPerSquareMeter(value.ToQuantityValue());
+                => AreaDensity.FromMilligramsPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

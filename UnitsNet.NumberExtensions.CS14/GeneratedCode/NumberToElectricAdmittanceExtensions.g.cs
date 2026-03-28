@@ -43,148 +43,148 @@ namespace UnitsNet.NumberExtensions.NumberToElectricAdmittance
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ElectricAdmittance.FromGigamhos(QuantityValue)" />
+            /// <inheritdoc cref="ElectricAdmittance.FromGigamhos(double)" />
             [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
             public ElectricAdmittance Gigamhos
 #if NET7_0_OR_GREATER
-                => ElectricAdmittance.FromGigamhos(QuantityValue.CreateChecked(value));
+                => ElectricAdmittance.FromGigamhos(double.CreateChecked(value));
 #else
-                => ElectricAdmittance.FromGigamhos(value.ToQuantityValue());
+                => ElectricAdmittance.FromGigamhos(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricAdmittance.FromGigasiemens(QuantityValue)" />
+            /// <inheritdoc cref="ElectricAdmittance.FromGigasiemens(double)" />
             [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
             public ElectricAdmittance Gigasiemens
 #if NET7_0_OR_GREATER
-                => ElectricAdmittance.FromGigasiemens(QuantityValue.CreateChecked(value));
+                => ElectricAdmittance.FromGigasiemens(double.CreateChecked(value));
 #else
-                => ElectricAdmittance.FromGigasiemens(value.ToQuantityValue());
+                => ElectricAdmittance.FromGigasiemens(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricAdmittance.FromKilomhos(QuantityValue)" />
+            /// <inheritdoc cref="ElectricAdmittance.FromKilomhos(double)" />
             [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
             public ElectricAdmittance Kilomhos
 #if NET7_0_OR_GREATER
-                => ElectricAdmittance.FromKilomhos(QuantityValue.CreateChecked(value));
+                => ElectricAdmittance.FromKilomhos(double.CreateChecked(value));
 #else
-                => ElectricAdmittance.FromKilomhos(value.ToQuantityValue());
+                => ElectricAdmittance.FromKilomhos(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricAdmittance.FromKilosiemens(QuantityValue)" />
+            /// <inheritdoc cref="ElectricAdmittance.FromKilosiemens(double)" />
             [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
             public ElectricAdmittance Kilosiemens
 #if NET7_0_OR_GREATER
-                => ElectricAdmittance.FromKilosiemens(QuantityValue.CreateChecked(value));
+                => ElectricAdmittance.FromKilosiemens(double.CreateChecked(value));
 #else
-                => ElectricAdmittance.FromKilosiemens(value.ToQuantityValue());
+                => ElectricAdmittance.FromKilosiemens(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricAdmittance.FromMegamhos(QuantityValue)" />
+            /// <inheritdoc cref="ElectricAdmittance.FromMegamhos(double)" />
             [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
             public ElectricAdmittance Megamhos
 #if NET7_0_OR_GREATER
-                => ElectricAdmittance.FromMegamhos(QuantityValue.CreateChecked(value));
+                => ElectricAdmittance.FromMegamhos(double.CreateChecked(value));
 #else
-                => ElectricAdmittance.FromMegamhos(value.ToQuantityValue());
+                => ElectricAdmittance.FromMegamhos(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricAdmittance.FromMegasiemens(QuantityValue)" />
+            /// <inheritdoc cref="ElectricAdmittance.FromMegasiemens(double)" />
             [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
             public ElectricAdmittance Megasiemens
 #if NET7_0_OR_GREATER
-                => ElectricAdmittance.FromMegasiemens(QuantityValue.CreateChecked(value));
+                => ElectricAdmittance.FromMegasiemens(double.CreateChecked(value));
 #else
-                => ElectricAdmittance.FromMegasiemens(value.ToQuantityValue());
+                => ElectricAdmittance.FromMegasiemens(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricAdmittance.FromMhos(QuantityValue)" />
+            /// <inheritdoc cref="ElectricAdmittance.FromMhos(double)" />
             [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
             public ElectricAdmittance Mhos
 #if NET7_0_OR_GREATER
-                => ElectricAdmittance.FromMhos(QuantityValue.CreateChecked(value));
+                => ElectricAdmittance.FromMhos(double.CreateChecked(value));
 #else
-                => ElectricAdmittance.FromMhos(value.ToQuantityValue());
+                => ElectricAdmittance.FromMhos(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricAdmittance.FromMicromhos(QuantityValue)" />
+            /// <inheritdoc cref="ElectricAdmittance.FromMicromhos(double)" />
             [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
             public ElectricAdmittance Micromhos
 #if NET7_0_OR_GREATER
-                => ElectricAdmittance.FromMicromhos(QuantityValue.CreateChecked(value));
+                => ElectricAdmittance.FromMicromhos(double.CreateChecked(value));
 #else
-                => ElectricAdmittance.FromMicromhos(value.ToQuantityValue());
+                => ElectricAdmittance.FromMicromhos(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(QuantityValue)" />
+            /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(double)" />
             [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
             public ElectricAdmittance Microsiemens
 #if NET7_0_OR_GREATER
-                => ElectricAdmittance.FromMicrosiemens(QuantityValue.CreateChecked(value));
+                => ElectricAdmittance.FromMicrosiemens(double.CreateChecked(value));
 #else
-                => ElectricAdmittance.FromMicrosiemens(value.ToQuantityValue());
+                => ElectricAdmittance.FromMicrosiemens(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricAdmittance.FromMillimhos(QuantityValue)" />
+            /// <inheritdoc cref="ElectricAdmittance.FromMillimhos(double)" />
             [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
             public ElectricAdmittance Millimhos
 #if NET7_0_OR_GREATER
-                => ElectricAdmittance.FromMillimhos(QuantityValue.CreateChecked(value));
+                => ElectricAdmittance.FromMillimhos(double.CreateChecked(value));
 #else
-                => ElectricAdmittance.FromMillimhos(value.ToQuantityValue());
+                => ElectricAdmittance.FromMillimhos(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(QuantityValue)" />
+            /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(double)" />
             [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
             public ElectricAdmittance Millisiemens
 #if NET7_0_OR_GREATER
-                => ElectricAdmittance.FromMillisiemens(QuantityValue.CreateChecked(value));
+                => ElectricAdmittance.FromMillisiemens(double.CreateChecked(value));
 #else
-                => ElectricAdmittance.FromMillisiemens(value.ToQuantityValue());
+                => ElectricAdmittance.FromMillisiemens(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricAdmittance.FromNanomhos(QuantityValue)" />
+            /// <inheritdoc cref="ElectricAdmittance.FromNanomhos(double)" />
             [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
             public ElectricAdmittance Nanomhos
 #if NET7_0_OR_GREATER
-                => ElectricAdmittance.FromNanomhos(QuantityValue.CreateChecked(value));
+                => ElectricAdmittance.FromNanomhos(double.CreateChecked(value));
 #else
-                => ElectricAdmittance.FromNanomhos(value.ToQuantityValue());
+                => ElectricAdmittance.FromNanomhos(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(QuantityValue)" />
+            /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(double)" />
             [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
             public ElectricAdmittance Nanosiemens
 #if NET7_0_OR_GREATER
-                => ElectricAdmittance.FromNanosiemens(QuantityValue.CreateChecked(value));
+                => ElectricAdmittance.FromNanosiemens(double.CreateChecked(value));
 #else
-                => ElectricAdmittance.FromNanosiemens(value.ToQuantityValue());
+                => ElectricAdmittance.FromNanosiemens(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricAdmittance.FromSiemens(QuantityValue)" />
+            /// <inheritdoc cref="ElectricAdmittance.FromSiemens(double)" />
             [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
             public ElectricAdmittance Siemens
 #if NET7_0_OR_GREATER
-                => ElectricAdmittance.FromSiemens(QuantityValue.CreateChecked(value));
+                => ElectricAdmittance.FromSiemens(double.CreateChecked(value));
 #else
-                => ElectricAdmittance.FromSiemens(value.ToQuantityValue());
+                => ElectricAdmittance.FromSiemens(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricAdmittance.FromTeramhos(QuantityValue)" />
+            /// <inheritdoc cref="ElectricAdmittance.FromTeramhos(double)" />
             [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
             public ElectricAdmittance Teramhos
 #if NET7_0_OR_GREATER
-                => ElectricAdmittance.FromTeramhos(QuantityValue.CreateChecked(value));
+                => ElectricAdmittance.FromTeramhos(double.CreateChecked(value));
 #else
-                => ElectricAdmittance.FromTeramhos(value.ToQuantityValue());
+                => ElectricAdmittance.FromTeramhos(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ElectricAdmittance.FromTerasiemens(QuantityValue)" />
+            /// <inheritdoc cref="ElectricAdmittance.FromTerasiemens(double)" />
             [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
             public ElectricAdmittance Terasiemens
 #if NET7_0_OR_GREATER
-                => ElectricAdmittance.FromTerasiemens(QuantityValue.CreateChecked(value));
+                => ElectricAdmittance.FromTerasiemens(double.CreateChecked(value));
 #else
-                => ElectricAdmittance.FromTerasiemens(value.ToQuantityValue());
+                => ElectricAdmittance.FromTerasiemens(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

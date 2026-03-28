@@ -325,7 +325,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 S/ft", ElectricConductivityUnit.SiemensPerFoot, 4.2)]
         [InlineData("en-US", "4.2 S/in", ElectricConductivityUnit.SiemensPerInch, 4.2)]
         [InlineData("en-US", "4.2 S/m", ElectricConductivityUnit.SiemensPerMeter, 4.2)]
-        public void Parse(string culture, string quantityString, ElectricConductivityUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, ElectricConductivityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ElectricConductivity.Parse(quantityString);
@@ -340,7 +340,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 S/ft", ElectricConductivityUnit.SiemensPerFoot, 4.2)]
         [InlineData("en-US", "4.2 S/in", ElectricConductivityUnit.SiemensPerInch, 4.2)]
         [InlineData("en-US", "4.2 S/m", ElectricConductivityUnit.SiemensPerMeter, 4.2)]
-        public void TryParse(string culture, string quantityString, ElectricConductivityUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, ElectricConductivityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ElectricConductivity.TryParse(quantityString, out ElectricConductivity parsed));
@@ -679,8 +679,8 @@ namespace UnitsNet.Tests
             var quantity = ElectricConductivity.FromSiemensPerMeter(firstValue);
             var otherQuantity = ElectricConductivity.FromSiemensPerMeter(secondValue);
             ElectricConductivity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, ElectricConductivity.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

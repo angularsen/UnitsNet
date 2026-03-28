@@ -42,20 +42,20 @@ namespace UnitsNet.NumberExtensions.NumberToRatioChangeRate
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="RatioChangeRate.FromDecimalFractionsPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="RatioChangeRate.FromDecimalFractionsPerSecond(double)" />
             public RatioChangeRate DecimalFractionsPerSecond
 #if NET7_0_OR_GREATER
-                => RatioChangeRate.FromDecimalFractionsPerSecond(QuantityValue.CreateChecked(value));
+                => RatioChangeRate.FromDecimalFractionsPerSecond(double.CreateChecked(value));
 #else
-                => RatioChangeRate.FromDecimalFractionsPerSecond(value.ToQuantityValue());
+                => RatioChangeRate.FromDecimalFractionsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RatioChangeRate.FromPercentsPerSecond(QuantityValue)" />
+            /// <inheritdoc cref="RatioChangeRate.FromPercentsPerSecond(double)" />
             public RatioChangeRate PercentsPerSecond
 #if NET7_0_OR_GREATER
-                => RatioChangeRate.FromPercentsPerSecond(QuantityValue.CreateChecked(value));
+                => RatioChangeRate.FromPercentsPerSecond(double.CreateChecked(value));
 #else
-                => RatioChangeRate.FromPercentsPerSecond(value.ToQuantityValue());
+                => RatioChangeRate.FromPercentsPerSecond(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

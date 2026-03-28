@@ -80,9 +80,9 @@ namespace UnitsNet.Tests
         {
             AmplitudeRatio ampRatio = AmplitudeRatio.FromDecibelMillivolts(dBmV);
 
-            QuantityValue actual = ampRatio.ToPowerRatio(ElectricResistance.FromOhms(50)).DecibelMilliwatts;
+            double actual = ampRatio.ToPowerRatio(ElectricResistance.FromOhms(50)).DecibelMilliwatts;
 
-            AssertEx.EqualTolerance(expected, actual, 1e-2m, ComparisonType.Absolute);
+            AssertEx.EqualTolerance(expected, actual, 1e-2, ComparisonType.Absolute);
         }
 
         [Theory]
@@ -94,9 +94,9 @@ namespace UnitsNet.Tests
         {
             AmplitudeRatio ampRatio = AmplitudeRatio.FromDecibelMillivolts(dBmV);
 
-            QuantityValue actual = ampRatio.ToPowerRatio(ElectricResistance.FromOhms(75)).DecibelMilliwatts;
+            double actual = ampRatio.ToPowerRatio(ElectricResistance.FromOhms(75)).DecibelMilliwatts;
 
-            AssertEx.EqualTolerance(expected, actual, 1e-2m, ComparisonType.Absolute);
+            AssertEx.EqualTolerance(expected, actual, 1e-2, ComparisonType.Absolute);
         }
     }
 }

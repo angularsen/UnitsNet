@@ -429,7 +429,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 с", DurationUnit.Second, 4.2)]
         [InlineData("ru-RU", "4,2 нед", DurationUnit.Week, 4.2)]
         [InlineData("ru-RU", "4,2 год", DurationUnit.Year365, 4.2)]
-        public void Parse(string culture, string quantityString, DurationUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, DurationUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Duration.Parse(quantityString);
@@ -506,7 +506,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 с", DurationUnit.Second, 4.2)]
         [InlineData("ru-RU", "4,2 нед", DurationUnit.Week, 4.2)]
         [InlineData("ru-RU", "4,2 год", DurationUnit.Year365, 4.2)]
-        public void TryParse(string culture, string quantityString, DurationUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, DurationUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Duration.TryParse(quantityString, out Duration parsed));
@@ -1294,8 +1294,8 @@ namespace UnitsNet.Tests
             var quantity = Duration.FromSeconds(firstValue);
             var otherQuantity = Duration.FromSeconds(secondValue);
             Duration maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Duration.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

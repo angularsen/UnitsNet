@@ -22,7 +22,7 @@ namespace UnitsNet.Tests
             public void LengthEquals_GivenMaxError_ReturnsTrueIfWithinError()
             {
                 Assert.True(Length.FromMeters(1).Equals(Length.FromMeters(1), Length.Zero), "Equal values have zero difference.");
-                Assert.True(Length.FromMeters(1).Equals(Length.FromMeters(1), Length.FromMillimeters(1e-5m)), "Using a max difference value should not change that fact.");
+                Assert.True(Length.FromMeters(1).Equals(Length.FromMeters(1), Length.FromMillimeters(1e-5)), "Using a max difference value should not change that fact.");
 
                 Assert.True(Length.FromMeters(1 + 0.39).Equals(Length.FromMeters(1.39)),
                     "Example of floating precision arithmetic that would originally produces slightly different results is now correct:" +
@@ -31,7 +31,7 @@ namespace UnitsNet.Tests
                 Assert.True(Length.FromMeters((1 + 0.39) / double.MaxValue).Equals(Length.FromMeters(1.39 / double.MaxValue)),
                     "This is also true for very small values as they would be rounded the same way.");
                 
-                Assert.False((1.39 / double.MaxValue).Equals(Length.FromMeters(1.39 / double.MaxValue).Value.ToDouble()),
+                Assert.False((1.39 / double.MaxValue).Equals(Length.FromMeters(1.39 / double.MaxValue).Value),
                     "The conversion back to double is not guaranteed to round-trip");
             }
             
@@ -39,10 +39,10 @@ namespace UnitsNet.Tests
             public void QuantityValueComparisonEqualsAbsolute_ReturnsTrueIfWithinError()
             {
                 Assert.True(Comparison.EqualsAbsolute(1, 1, 0));
-                Assert.True(Comparison.EqualsAbsolute(1, 1, 0.001m));
-                Assert.True(Comparison.EqualsAbsolute(1, 0.9999m, 0.001m));
-                Assert.False(Comparison.EqualsAbsolute(1, 0.99m, 0.001m));
-                Assert.False(Comparison.EqualsAbsolute(1, 0, 0.001m));
+                Assert.True(Comparison.EqualsAbsolute(1, 1, 0.001));
+                Assert.True(Comparison.EqualsAbsolute(1, 0.9999, 0.001));
+                Assert.False(Comparison.EqualsAbsolute(1, 0.99, 0.001));
+                Assert.False(Comparison.EqualsAbsolute(1, 0, 0.001));
             }
 
             [Fact]
@@ -55,10 +55,10 @@ namespace UnitsNet.Tests
             public void QuantityValueComparisonEquals_GivenAbsoluteTolerance_ReturnsTrueIfWithinError()
             {
                 Assert.True(Comparison.Equals(1, 1, 0, ComparisonType.Absolute));
-                Assert.True(Comparison.Equals(1, 1, 0.001m, ComparisonType.Absolute));
-                Assert.True(Comparison.Equals(1, 0.9999m, 0.001m, ComparisonType.Absolute));
-                Assert.False(Comparison.Equals(1, 0.99m, 0.001m, ComparisonType.Absolute));
-                Assert.False(Comparison.Equals(1, 0, 0.001m, ComparisonType.Absolute));
+                Assert.True(Comparison.Equals(1, 1, 0.001, ComparisonType.Absolute));
+                Assert.True(Comparison.Equals(1, 0.9999, 0.001, ComparisonType.Absolute));
+                Assert.False(Comparison.Equals(1, 0.99, 0.001, ComparisonType.Absolute));
+                Assert.False(Comparison.Equals(1, 0, 0.001, ComparisonType.Absolute));
             }
 
             [Fact]
@@ -77,10 +77,10 @@ namespace UnitsNet.Tests
             [Fact]
             public void QuantityValueComparisonEqualsRelative_ReturnsTrueIfWithinError()
             {
-                Assert.True(Comparison.EqualsRelative(1, 1, 1e-5m));
-                Assert.False(Comparison.EqualsRelative(1, 0, 1e-5m));
-                Assert.True(Comparison.EqualsRelative(100, 120, 0.3m));
-                Assert.False(Comparison.EqualsRelative(100, 120, 0.1m));
+                Assert.True(Comparison.EqualsRelative(1, 1, 1e-5));
+                Assert.False(Comparison.EqualsRelative(1, 0, 1e-5));
+                Assert.True(Comparison.EqualsRelative(100, 120, 0.3));
+                Assert.False(Comparison.EqualsRelative(100, 120, 0.1));
             }
             
             [Fact]
@@ -92,10 +92,10 @@ namespace UnitsNet.Tests
             [Fact]
             public void QuantityValueComparisonEquals_GivenRelativeTolerance_ReturnsTrueIfWithinError()
             {
-                Assert.True(Comparison.Equals(1, 1, 1e-5m, ComparisonType.Relative));
-                Assert.False(Comparison.Equals(1, 0, 1e-5m, ComparisonType.Relative));
-                Assert.True(Comparison.Equals(100, 120, 0.3m, ComparisonType.Relative));
-                Assert.False(Comparison.Equals(100, 120, 0.1m, ComparisonType.Relative));
+                Assert.True(Comparison.Equals(1, 1, 1e-5, ComparisonType.Relative));
+                Assert.False(Comparison.Equals(1, 0, 1e-5, ComparisonType.Relative));
+                Assert.True(Comparison.Equals(100, 120, 0.3, ComparisonType.Relative));
+                Assert.False(Comparison.Equals(100, 120, 0.1, ComparisonType.Relative));
             }
 
             [Fact]

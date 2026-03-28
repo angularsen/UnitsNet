@@ -290,7 +290,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "4.2 C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter, 4.2)]
-        public void Parse(string culture, string quantityString, ElectricChargeDensityUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, ElectricChargeDensityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ElectricChargeDensity.Parse(quantityString);
@@ -300,7 +300,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "4.2 C/m³", ElectricChargeDensityUnit.CoulombPerCubicMeter, 4.2)]
-        public void TryParse(string culture, string quantityString, ElectricChargeDensityUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, ElectricChargeDensityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ElectricChargeDensity.TryParse(quantityString, out ElectricChargeDensity parsed));
@@ -589,8 +589,8 @@ namespace UnitsNet.Tests
             var quantity = ElectricChargeDensity.FromCoulombsPerCubicMeter(firstValue);
             var otherQuantity = ElectricChargeDensity.FromCoulombsPerCubicMeter(secondValue);
             ElectricChargeDensity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, ElectricChargeDensity.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

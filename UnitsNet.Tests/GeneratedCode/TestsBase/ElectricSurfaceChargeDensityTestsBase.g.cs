@@ -304,7 +304,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 C/cm²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, 4.2)]
         [InlineData("en-US", "4.2 C/in²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, 4.2)]
         [InlineData("en-US", "4.2 C/m²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, 4.2)]
-        public void Parse(string culture, string quantityString, ElectricSurfaceChargeDensityUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, ElectricSurfaceChargeDensityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ElectricSurfaceChargeDensity.Parse(quantityString);
@@ -316,7 +316,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 C/cm²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareCentimeter, 4.2)]
         [InlineData("en-US", "4.2 C/in²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareInch, 4.2)]
         [InlineData("en-US", "4.2 C/m²", ElectricSurfaceChargeDensityUnit.CoulombPerSquareMeter, 4.2)]
-        public void TryParse(string culture, string quantityString, ElectricSurfaceChargeDensityUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, ElectricSurfaceChargeDensityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ElectricSurfaceChargeDensity.TryParse(quantityString, out ElectricSurfaceChargeDensity parsed));
@@ -625,8 +625,8 @@ namespace UnitsNet.Tests
             var quantity = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(firstValue);
             var otherQuantity = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(secondValue);
             ElectricSurfaceChargeDensity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, ElectricSurfaceChargeDensity.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

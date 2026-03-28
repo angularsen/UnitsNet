@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct ElectricConductivity :
         IArithmeticQuantity<ElectricConductivity, ElectricConductivityUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricConductivity, ElectricConductivity, QuantityValue>,
+        IDivisionOperators<ElectricConductivity, ElectricConductivity, double>,
         IComparisonOperators<ElectricConductivity, ElectricConductivity, bool>,
         IParsable<ElectricConductivity>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -148,7 +148,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricConductivity(QuantityValue value, ElectricConductivityUnit unit)
+        public ElectricConductivity(double value, ElectricConductivityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -162,7 +162,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricConductivity(QuantityValue value, UnitSystem unitSystem)
+        public ElectricConductivity(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -204,7 +204,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public ElectricConductivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -238,34 +238,34 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductivityUnit.MicrosiemensPerCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.MicrosiemensPerCentimeter"/>
         /// </summary>
-        public QuantityValue MicrosiemensPerCentimeter => this.As(ElectricConductivityUnit.MicrosiemensPerCentimeter);
+        public double MicrosiemensPerCentimeter => this.As(ElectricConductivityUnit.MicrosiemensPerCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductivityUnit.MillisiemensPerCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.MillisiemensPerCentimeter"/>
         /// </summary>
-        public QuantityValue MillisiemensPerCentimeter => this.As(ElectricConductivityUnit.MillisiemensPerCentimeter);
+        public double MillisiemensPerCentimeter => this.As(ElectricConductivityUnit.MillisiemensPerCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerCentimeter"/>
         /// </summary>
-        public QuantityValue SiemensPerCentimeter => this.As(ElectricConductivityUnit.SiemensPerCentimeter);
+        public double SiemensPerCentimeter => this.As(ElectricConductivityUnit.SiemensPerCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerFoot"/>
         /// </summary>
-        public QuantityValue SiemensPerFoot => this.As(ElectricConductivityUnit.SiemensPerFoot);
+        public double SiemensPerFoot => this.As(ElectricConductivityUnit.SiemensPerFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerInch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerInch"/>
         /// </summary>
-        public QuantityValue SiemensPerInch => this.As(ElectricConductivityUnit.SiemensPerInch);
+        public double SiemensPerInch => this.As(ElectricConductivityUnit.SiemensPerInch);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricConductivityUnit.SiemensPerMeter"/>
         /// </summary>
-        public QuantityValue SiemensPerMeter => this.As(ElectricConductivityUnit.SiemensPerMeter);
+        public double SiemensPerMeter => this.As(ElectricConductivityUnit.SiemensPerMeter);
 
         #endregion
 
@@ -299,7 +299,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.MicrosiemensPerCentimeter"/>.
         /// </summary>
-        public static ElectricConductivity FromMicrosiemensPerCentimeter(QuantityValue value)
+        public static ElectricConductivity FromMicrosiemensPerCentimeter(double value)
         {
             return new ElectricConductivity(value, ElectricConductivityUnit.MicrosiemensPerCentimeter);
         }
@@ -307,7 +307,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.MillisiemensPerCentimeter"/>.
         /// </summary>
-        public static ElectricConductivity FromMillisiemensPerCentimeter(QuantityValue value)
+        public static ElectricConductivity FromMillisiemensPerCentimeter(double value)
         {
             return new ElectricConductivity(value, ElectricConductivityUnit.MillisiemensPerCentimeter);
         }
@@ -315,7 +315,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerCentimeter"/>.
         /// </summary>
-        public static ElectricConductivity FromSiemensPerCentimeter(QuantityValue value)
+        public static ElectricConductivity FromSiemensPerCentimeter(double value)
         {
             return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerCentimeter);
         }
@@ -323,7 +323,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerFoot"/>.
         /// </summary>
-        public static ElectricConductivity FromSiemensPerFoot(QuantityValue value)
+        public static ElectricConductivity FromSiemensPerFoot(double value)
         {
             return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerFoot);
         }
@@ -331,7 +331,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerInch"/>.
         /// </summary>
-        public static ElectricConductivity FromSiemensPerInch(QuantityValue value)
+        public static ElectricConductivity FromSiemensPerInch(double value)
         {
             return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerInch);
         }
@@ -339,7 +339,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricConductivity"/> from <see cref="ElectricConductivityUnit.SiemensPerMeter"/>.
         /// </summary>
-        public static ElectricConductivity FromSiemensPerMeter(QuantityValue value)
+        public static ElectricConductivity FromSiemensPerMeter(double value)
         {
             return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerMeter);
         }
@@ -350,7 +350,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricConductivity unit value.</returns>
-        public static ElectricConductivity From(QuantityValue value, ElectricConductivityUnit fromUnit)
+        public static ElectricConductivity From(double value, ElectricConductivityUnit fromUnit)
         {
             return new ElectricConductivity(value, fromUnit);
         }
@@ -515,25 +515,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricConductivity"/> from multiplying value and <see cref="ElectricConductivity"/>.</summary>
-        public static ElectricConductivity operator *(QuantityValue left, ElectricConductivity right)
+        public static ElectricConductivity operator *(double left, ElectricConductivity right)
         {
             return new ElectricConductivity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricConductivity"/> from multiplying value and <see cref="ElectricConductivity"/>.</summary>
-        public static ElectricConductivity operator *(ElectricConductivity left, QuantityValue right)
+        public static ElectricConductivity operator *(ElectricConductivity left, double right)
         {
             return new ElectricConductivity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricConductivity"/> from dividing <see cref="ElectricConductivity"/> by value.</summary>
-        public static ElectricConductivity operator /(ElectricConductivity left, QuantityValue right)
+        public static ElectricConductivity operator /(ElectricConductivity left, double right)
         {
             return new ElectricConductivity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricConductivity"/> by <see cref="ElectricConductivity"/>.</summary>
-        public static QuantityValue operator /(ElectricConductivity left, ElectricConductivity right)
+        public static double operator /(ElectricConductivity left, ElectricConductivity right)
         {
             return left.SiemensPerMeter / right.SiemensPerMeter;
         }

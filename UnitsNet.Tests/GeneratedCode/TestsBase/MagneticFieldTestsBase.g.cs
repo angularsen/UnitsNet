@@ -325,7 +325,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 mT", MagneticFieldUnit.Millitesla, 4.2)]
         [InlineData("en-US", "4.2 nT", MagneticFieldUnit.Nanotesla, 4.2)]
         [InlineData("en-US", "4.2 T", MagneticFieldUnit.Tesla, 4.2)]
-        public void Parse(string culture, string quantityString, MagneticFieldUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, MagneticFieldUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = MagneticField.Parse(quantityString);
@@ -340,7 +340,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 mT", MagneticFieldUnit.Millitesla, 4.2)]
         [InlineData("en-US", "4.2 nT", MagneticFieldUnit.Nanotesla, 4.2)]
         [InlineData("en-US", "4.2 T", MagneticFieldUnit.Tesla, 4.2)]
-        public void TryParse(string culture, string quantityString, MagneticFieldUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, MagneticFieldUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(MagneticField.TryParse(quantityString, out MagneticField parsed));
@@ -679,8 +679,8 @@ namespace UnitsNet.Tests
             var quantity = MagneticField.FromTeslas(firstValue);
             var otherQuantity = MagneticField.FromTeslas(secondValue);
             MagneticField maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, MagneticField.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

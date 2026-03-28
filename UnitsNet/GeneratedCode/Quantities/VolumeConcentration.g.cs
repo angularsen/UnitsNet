@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct VolumeConcentration :
         IArithmeticQuantity<VolumeConcentration, VolumeConcentrationUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<VolumeConcentration, VolumeConcentration, QuantityValue>,
+        IDivisionOperators<VolumeConcentration, VolumeConcentration, double>,
         IMultiplyOperators<VolumeConcentration, Density, MassConcentration>,
         IMultiplyOperators<VolumeConcentration, Molarity, Molarity>,
         IComparisonOperators<VolumeConcentration, VolumeConcentration, bool>,
@@ -56,7 +56,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -192,7 +192,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public VolumeConcentration(QuantityValue value, VolumeConcentrationUnit unit)
+        public VolumeConcentration(double value, VolumeConcentrationUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -234,7 +234,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public VolumeConcentrationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -268,104 +268,104 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.CentiliterPerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.CentiliterPerLiter"/>
         /// </summary>
-        public QuantityValue CentilitersPerLiter => this.As(VolumeConcentrationUnit.CentiliterPerLiter);
+        public double CentilitersPerLiter => this.As(VolumeConcentrationUnit.CentiliterPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.CentiliterPerMilliliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.CentiliterPerMilliliter"/>
         /// </summary>
-        public QuantityValue CentilitersPerMilliliter => this.As(VolumeConcentrationUnit.CentiliterPerMilliliter);
+        public double CentilitersPerMilliliter => this.As(VolumeConcentrationUnit.CentiliterPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.DeciliterPerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.DeciliterPerLiter"/>
         /// </summary>
-        public QuantityValue DecilitersPerLiter => this.As(VolumeConcentrationUnit.DeciliterPerLiter);
+        public double DecilitersPerLiter => this.As(VolumeConcentrationUnit.DeciliterPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.DeciliterPerMilliliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.DeciliterPerMilliliter"/>
         /// </summary>
-        public QuantityValue DecilitersPerMilliliter => this.As(VolumeConcentrationUnit.DeciliterPerMilliliter);
+        public double DecilitersPerMilliliter => this.As(VolumeConcentrationUnit.DeciliterPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.DecimalFraction"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.DecimalFraction"/>
         /// </summary>
-        public QuantityValue DecimalFractions => this.As(VolumeConcentrationUnit.DecimalFraction);
+        public double DecimalFractions => this.As(VolumeConcentrationUnit.DecimalFraction);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.LiterPerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.LiterPerLiter"/>
         /// </summary>
-        public QuantityValue LitersPerLiter => this.As(VolumeConcentrationUnit.LiterPerLiter);
+        public double LitersPerLiter => this.As(VolumeConcentrationUnit.LiterPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.LiterPerMilliliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.LiterPerMilliliter"/>
         /// </summary>
-        public QuantityValue LitersPerMilliliter => this.As(VolumeConcentrationUnit.LiterPerMilliliter);
+        public double LitersPerMilliliter => this.As(VolumeConcentrationUnit.LiterPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.MicroliterPerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.MicroliterPerLiter"/>
         /// </summary>
-        public QuantityValue MicrolitersPerLiter => this.As(VolumeConcentrationUnit.MicroliterPerLiter);
+        public double MicrolitersPerLiter => this.As(VolumeConcentrationUnit.MicroliterPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.MicroliterPerMilliliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.MicroliterPerMilliliter"/>
         /// </summary>
-        public QuantityValue MicrolitersPerMilliliter => this.As(VolumeConcentrationUnit.MicroliterPerMilliliter);
+        public double MicrolitersPerMilliliter => this.As(VolumeConcentrationUnit.MicroliterPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.MilliliterPerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.MilliliterPerLiter"/>
         /// </summary>
-        public QuantityValue MillilitersPerLiter => this.As(VolumeConcentrationUnit.MilliliterPerLiter);
+        public double MillilitersPerLiter => this.As(VolumeConcentrationUnit.MilliliterPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.MilliliterPerMilliliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.MilliliterPerMilliliter"/>
         /// </summary>
-        public QuantityValue MillilitersPerMilliliter => this.As(VolumeConcentrationUnit.MilliliterPerMilliliter);
+        public double MillilitersPerMilliliter => this.As(VolumeConcentrationUnit.MilliliterPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.NanoliterPerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.NanoliterPerLiter"/>
         /// </summary>
-        public QuantityValue NanolitersPerLiter => this.As(VolumeConcentrationUnit.NanoliterPerLiter);
+        public double NanolitersPerLiter => this.As(VolumeConcentrationUnit.NanoliterPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.NanoliterPerMilliliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.NanoliterPerMilliliter"/>
         /// </summary>
-        public QuantityValue NanolitersPerMilliliter => this.As(VolumeConcentrationUnit.NanoliterPerMilliliter);
+        public double NanolitersPerMilliliter => this.As(VolumeConcentrationUnit.NanoliterPerMilliliter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.PartPerBillion"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.PartPerBillion"/>
         /// </summary>
-        public QuantityValue PartsPerBillion => this.As(VolumeConcentrationUnit.PartPerBillion);
+        public double PartsPerBillion => this.As(VolumeConcentrationUnit.PartPerBillion);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.PartPerMillion"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.PartPerMillion"/>
         /// </summary>
-        public QuantityValue PartsPerMillion => this.As(VolumeConcentrationUnit.PartPerMillion);
+        public double PartsPerMillion => this.As(VolumeConcentrationUnit.PartPerMillion);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.PartPerThousand"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.PartPerThousand"/>
         /// </summary>
-        public QuantityValue PartsPerThousand => this.As(VolumeConcentrationUnit.PartPerThousand);
+        public double PartsPerThousand => this.As(VolumeConcentrationUnit.PartPerThousand);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.PartPerTrillion"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.PartPerTrillion"/>
         /// </summary>
-        public QuantityValue PartsPerTrillion => this.As(VolumeConcentrationUnit.PartPerTrillion);
+        public double PartsPerTrillion => this.As(VolumeConcentrationUnit.PartPerTrillion);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.Percent"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.Percent"/>
         /// </summary>
-        public QuantityValue Percent => this.As(VolumeConcentrationUnit.Percent);
+        public double Percent => this.As(VolumeConcentrationUnit.Percent);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.PicoliterPerLiter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.PicoliterPerLiter"/>
         /// </summary>
-        public QuantityValue PicolitersPerLiter => this.As(VolumeConcentrationUnit.PicoliterPerLiter);
+        public double PicolitersPerLiter => this.As(VolumeConcentrationUnit.PicoliterPerLiter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.PicoliterPerMilliliter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeConcentrationUnit.PicoliterPerMilliliter"/>
         /// </summary>
-        public QuantityValue PicolitersPerMilliliter => this.As(VolumeConcentrationUnit.PicoliterPerMilliliter);
+        public double PicolitersPerMilliliter => this.As(VolumeConcentrationUnit.PicoliterPerMilliliter);
 
         #endregion
 
@@ -399,7 +399,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.CentiliterPerLiter"/>.
         /// </summary>
-        public static VolumeConcentration FromCentilitersPerLiter(QuantityValue value)
+        public static VolumeConcentration FromCentilitersPerLiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.CentiliterPerLiter);
         }
@@ -407,7 +407,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.CentiliterPerMilliliter"/>.
         /// </summary>
-        public static VolumeConcentration FromCentilitersPerMilliliter(QuantityValue value)
+        public static VolumeConcentration FromCentilitersPerMilliliter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.CentiliterPerMilliliter);
         }
@@ -415,7 +415,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.DeciliterPerLiter"/>.
         /// </summary>
-        public static VolumeConcentration FromDecilitersPerLiter(QuantityValue value)
+        public static VolumeConcentration FromDecilitersPerLiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.DeciliterPerLiter);
         }
@@ -423,7 +423,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.DeciliterPerMilliliter"/>.
         /// </summary>
-        public static VolumeConcentration FromDecilitersPerMilliliter(QuantityValue value)
+        public static VolumeConcentration FromDecilitersPerMilliliter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.DeciliterPerMilliliter);
         }
@@ -431,7 +431,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.DecimalFraction"/>.
         /// </summary>
-        public static VolumeConcentration FromDecimalFractions(QuantityValue value)
+        public static VolumeConcentration FromDecimalFractions(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.DecimalFraction);
         }
@@ -439,7 +439,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.LiterPerLiter"/>.
         /// </summary>
-        public static VolumeConcentration FromLitersPerLiter(QuantityValue value)
+        public static VolumeConcentration FromLitersPerLiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.LiterPerLiter);
         }
@@ -447,7 +447,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.LiterPerMilliliter"/>.
         /// </summary>
-        public static VolumeConcentration FromLitersPerMilliliter(QuantityValue value)
+        public static VolumeConcentration FromLitersPerMilliliter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.LiterPerMilliliter);
         }
@@ -455,7 +455,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.MicroliterPerLiter"/>.
         /// </summary>
-        public static VolumeConcentration FromMicrolitersPerLiter(QuantityValue value)
+        public static VolumeConcentration FromMicrolitersPerLiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.MicroliterPerLiter);
         }
@@ -463,7 +463,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.MicroliterPerMilliliter"/>.
         /// </summary>
-        public static VolumeConcentration FromMicrolitersPerMilliliter(QuantityValue value)
+        public static VolumeConcentration FromMicrolitersPerMilliliter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.MicroliterPerMilliliter);
         }
@@ -471,7 +471,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.MilliliterPerLiter"/>.
         /// </summary>
-        public static VolumeConcentration FromMillilitersPerLiter(QuantityValue value)
+        public static VolumeConcentration FromMillilitersPerLiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.MilliliterPerLiter);
         }
@@ -479,7 +479,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.MilliliterPerMilliliter"/>.
         /// </summary>
-        public static VolumeConcentration FromMillilitersPerMilliliter(QuantityValue value)
+        public static VolumeConcentration FromMillilitersPerMilliliter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.MilliliterPerMilliliter);
         }
@@ -487,7 +487,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.NanoliterPerLiter"/>.
         /// </summary>
-        public static VolumeConcentration FromNanolitersPerLiter(QuantityValue value)
+        public static VolumeConcentration FromNanolitersPerLiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.NanoliterPerLiter);
         }
@@ -495,7 +495,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.NanoliterPerMilliliter"/>.
         /// </summary>
-        public static VolumeConcentration FromNanolitersPerMilliliter(QuantityValue value)
+        public static VolumeConcentration FromNanolitersPerMilliliter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.NanoliterPerMilliliter);
         }
@@ -503,7 +503,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PartPerBillion"/>.
         /// </summary>
-        public static VolumeConcentration FromPartsPerBillion(QuantityValue value)
+        public static VolumeConcentration FromPartsPerBillion(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.PartPerBillion);
         }
@@ -511,7 +511,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PartPerMillion"/>.
         /// </summary>
-        public static VolumeConcentration FromPartsPerMillion(QuantityValue value)
+        public static VolumeConcentration FromPartsPerMillion(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.PartPerMillion);
         }
@@ -519,7 +519,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PartPerThousand"/>.
         /// </summary>
-        public static VolumeConcentration FromPartsPerThousand(QuantityValue value)
+        public static VolumeConcentration FromPartsPerThousand(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.PartPerThousand);
         }
@@ -527,7 +527,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PartPerTrillion"/>.
         /// </summary>
-        public static VolumeConcentration FromPartsPerTrillion(QuantityValue value)
+        public static VolumeConcentration FromPartsPerTrillion(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.PartPerTrillion);
         }
@@ -535,7 +535,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.Percent"/>.
         /// </summary>
-        public static VolumeConcentration FromPercent(QuantityValue value)
+        public static VolumeConcentration FromPercent(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.Percent);
         }
@@ -543,7 +543,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PicoliterPerLiter"/>.
         /// </summary>
-        public static VolumeConcentration FromPicolitersPerLiter(QuantityValue value)
+        public static VolumeConcentration FromPicolitersPerLiter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.PicoliterPerLiter);
         }
@@ -551,7 +551,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeConcentration"/> from <see cref="VolumeConcentrationUnit.PicoliterPerMilliliter"/>.
         /// </summary>
-        public static VolumeConcentration FromPicolitersPerMilliliter(QuantityValue value)
+        public static VolumeConcentration FromPicolitersPerMilliliter(double value)
         {
             return new VolumeConcentration(value, VolumeConcentrationUnit.PicoliterPerMilliliter);
         }
@@ -562,7 +562,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>VolumeConcentration unit value.</returns>
-        public static VolumeConcentration From(QuantityValue value, VolumeConcentrationUnit fromUnit)
+        public static VolumeConcentration From(double value, VolumeConcentrationUnit fromUnit)
         {
             return new VolumeConcentration(value, fromUnit);
         }
@@ -727,25 +727,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="VolumeConcentration"/> from multiplying value and <see cref="VolumeConcentration"/>.</summary>
-        public static VolumeConcentration operator *(QuantityValue left, VolumeConcentration right)
+        public static VolumeConcentration operator *(double left, VolumeConcentration right)
         {
             return new VolumeConcentration(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="VolumeConcentration"/> from multiplying value and <see cref="VolumeConcentration"/>.</summary>
-        public static VolumeConcentration operator *(VolumeConcentration left, QuantityValue right)
+        public static VolumeConcentration operator *(VolumeConcentration left, double right)
         {
             return new VolumeConcentration(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="VolumeConcentration"/> from dividing <see cref="VolumeConcentration"/> by value.</summary>
-        public static VolumeConcentration operator /(VolumeConcentration left, QuantityValue right)
+        public static VolumeConcentration operator /(VolumeConcentration left, double right)
         {
             return new VolumeConcentration(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="VolumeConcentration"/> by <see cref="VolumeConcentration"/>.</summary>
-        public static QuantityValue operator /(VolumeConcentration left, VolumeConcentration right)
+        public static double operator /(VolumeConcentration left, VolumeConcentration right)
         {
             return left.DecimalFractions / right.DecimalFractions;
         }

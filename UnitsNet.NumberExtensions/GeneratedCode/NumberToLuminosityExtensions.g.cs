@@ -32,158 +32,158 @@ namespace UnitsNet.NumberExtensions.NumberToLuminosity
     /// </summary>
     public static class NumberToLuminosityExtensions
     {
-        /// <inheritdoc cref="Luminosity.FromDecawatts(QuantityValue)" />
+        /// <inheritdoc cref="Luminosity.FromDecawatts(double)" />
         public static Luminosity Decawatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminosity.FromDecawatts(QuantityValue.CreateChecked(value));
+            => Luminosity.FromDecawatts(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminosity.FromDecawatts(value.ToQuantityValue());
+            => Luminosity.FromDecawatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminosity.FromDeciwatts(QuantityValue)" />
+        /// <inheritdoc cref="Luminosity.FromDeciwatts(double)" />
         public static Luminosity Deciwatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminosity.FromDeciwatts(QuantityValue.CreateChecked(value));
+            => Luminosity.FromDeciwatts(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminosity.FromDeciwatts(value.ToQuantityValue());
+            => Luminosity.FromDeciwatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminosity.FromFemtowatts(QuantityValue)" />
+        /// <inheritdoc cref="Luminosity.FromFemtowatts(double)" />
         public static Luminosity Femtowatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminosity.FromFemtowatts(QuantityValue.CreateChecked(value));
+            => Luminosity.FromFemtowatts(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminosity.FromFemtowatts(value.ToQuantityValue());
+            => Luminosity.FromFemtowatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminosity.FromGigawatts(QuantityValue)" />
+        /// <inheritdoc cref="Luminosity.FromGigawatts(double)" />
         public static Luminosity Gigawatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminosity.FromGigawatts(QuantityValue.CreateChecked(value));
+            => Luminosity.FromGigawatts(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminosity.FromGigawatts(value.ToQuantityValue());
+            => Luminosity.FromGigawatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminosity.FromKilowatts(QuantityValue)" />
+        /// <inheritdoc cref="Luminosity.FromKilowatts(double)" />
         public static Luminosity Kilowatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminosity.FromKilowatts(QuantityValue.CreateChecked(value));
+            => Luminosity.FromKilowatts(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminosity.FromKilowatts(value.ToQuantityValue());
+            => Luminosity.FromKilowatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminosity.FromMegawatts(QuantityValue)" />
+        /// <inheritdoc cref="Luminosity.FromMegawatts(double)" />
         public static Luminosity Megawatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminosity.FromMegawatts(QuantityValue.CreateChecked(value));
+            => Luminosity.FromMegawatts(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminosity.FromMegawatts(value.ToQuantityValue());
+            => Luminosity.FromMegawatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminosity.FromMicrowatts(QuantityValue)" />
+        /// <inheritdoc cref="Luminosity.FromMicrowatts(double)" />
         public static Luminosity Microwatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminosity.FromMicrowatts(QuantityValue.CreateChecked(value));
+            => Luminosity.FromMicrowatts(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminosity.FromMicrowatts(value.ToQuantityValue());
+            => Luminosity.FromMicrowatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminosity.FromMilliwatts(QuantityValue)" />
+        /// <inheritdoc cref="Luminosity.FromMilliwatts(double)" />
         public static Luminosity Milliwatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminosity.FromMilliwatts(QuantityValue.CreateChecked(value));
+            => Luminosity.FromMilliwatts(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminosity.FromMilliwatts(value.ToQuantityValue());
+            => Luminosity.FromMilliwatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminosity.FromNanowatts(QuantityValue)" />
+        /// <inheritdoc cref="Luminosity.FromNanowatts(double)" />
         public static Luminosity Nanowatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminosity.FromNanowatts(QuantityValue.CreateChecked(value));
+            => Luminosity.FromNanowatts(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminosity.FromNanowatts(value.ToQuantityValue());
+            => Luminosity.FromNanowatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminosity.FromPetawatts(QuantityValue)" />
+        /// <inheritdoc cref="Luminosity.FromPetawatts(double)" />
         public static Luminosity Petawatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminosity.FromPetawatts(QuantityValue.CreateChecked(value));
+            => Luminosity.FromPetawatts(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminosity.FromPetawatts(value.ToQuantityValue());
+            => Luminosity.FromPetawatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminosity.FromPicowatts(QuantityValue)" />
+        /// <inheritdoc cref="Luminosity.FromPicowatts(double)" />
         public static Luminosity Picowatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminosity.FromPicowatts(QuantityValue.CreateChecked(value));
+            => Luminosity.FromPicowatts(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminosity.FromPicowatts(value.ToQuantityValue());
+            => Luminosity.FromPicowatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminosity.FromSolarLuminosities(QuantityValue)" />
+        /// <inheritdoc cref="Luminosity.FromSolarLuminosities(double)" />
         public static Luminosity SolarLuminosities<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminosity.FromSolarLuminosities(QuantityValue.CreateChecked(value));
+            => Luminosity.FromSolarLuminosities(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminosity.FromSolarLuminosities(value.ToQuantityValue());
+            => Luminosity.FromSolarLuminosities(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminosity.FromTerawatts(QuantityValue)" />
+        /// <inheritdoc cref="Luminosity.FromTerawatts(double)" />
         public static Luminosity Terawatts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminosity.FromTerawatts(QuantityValue.CreateChecked(value));
+            => Luminosity.FromTerawatts(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminosity.FromTerawatts(value.ToQuantityValue());
+            => Luminosity.FromTerawatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Luminosity.FromWatts(QuantityValue)" />
+        /// <inheritdoc cref="Luminosity.FromWatts(double)" />
         public static Luminosity Watts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Luminosity.FromWatts(QuantityValue.CreateChecked(value));
+            => Luminosity.FromWatts(double.CreateChecked(value));
 #else
             , IConvertible
-            => Luminosity.FromWatts(value.ToQuantityValue());
+            => Luminosity.FromWatts(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

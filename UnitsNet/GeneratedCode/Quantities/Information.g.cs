@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct Information :
         IArithmeticQuantity<Information, InformationUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Information, Information, QuantityValue>,
+        IDivisionOperators<Information, Information, double>,
         IComparisonOperators<Information, Information, bool>,
         IParsable<Information>,
 #endif
@@ -51,7 +51,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -244,7 +244,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Information(QuantityValue value, InformationUnit unit)
+        public Information(double value, InformationUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -286,7 +286,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public InformationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -320,199 +320,199 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Bit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Bit"/>
         /// </summary>
-        public QuantityValue Bits => this.As(InformationUnit.Bit);
+        public double Bits => this.As(InformationUnit.Bit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Byte"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Byte"/>
         /// </summary>
-        public QuantityValue Bytes => this.As(InformationUnit.Byte);
+        public double Bytes => this.As(InformationUnit.Byte);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Exabit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exabit"/>
         /// </summary>
-        public QuantityValue Exabits => this.As(InformationUnit.Exabit);
+        public double Exabits => this.As(InformationUnit.Exabit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Exabyte"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exabyte"/>
         /// </summary>
-        public QuantityValue Exabytes => this.As(InformationUnit.Exabyte);
+        public double Exabytes => this.As(InformationUnit.Exabyte);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Exaoctet"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exaoctet"/>
         /// </summary>
-        public QuantityValue Exaoctets => this.As(InformationUnit.Exaoctet);
+        public double Exaoctets => this.As(InformationUnit.Exaoctet);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Exbibit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exbibit"/>
         /// </summary>
-        public QuantityValue Exbibits => this.As(InformationUnit.Exbibit);
+        public double Exbibits => this.As(InformationUnit.Exbibit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Exbibyte"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exbibyte"/>
         /// </summary>
-        public QuantityValue Exbibytes => this.As(InformationUnit.Exbibyte);
+        public double Exbibytes => this.As(InformationUnit.Exbibyte);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Exbioctet"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Exbioctet"/>
         /// </summary>
-        public QuantityValue Exbioctets => this.As(InformationUnit.Exbioctet);
+        public double Exbioctets => this.As(InformationUnit.Exbioctet);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Gibibit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gibibit"/>
         /// </summary>
-        public QuantityValue Gibibits => this.As(InformationUnit.Gibibit);
+        public double Gibibits => this.As(InformationUnit.Gibibit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Gibibyte"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gibibyte"/>
         /// </summary>
-        public QuantityValue Gibibytes => this.As(InformationUnit.Gibibyte);
+        public double Gibibytes => this.As(InformationUnit.Gibibyte);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Gibioctet"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gibioctet"/>
         /// </summary>
-        public QuantityValue Gibioctets => this.As(InformationUnit.Gibioctet);
+        public double Gibioctets => this.As(InformationUnit.Gibioctet);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Gigabit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gigabit"/>
         /// </summary>
-        public QuantityValue Gigabits => this.As(InformationUnit.Gigabit);
+        public double Gigabits => this.As(InformationUnit.Gigabit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Gigabyte"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gigabyte"/>
         /// </summary>
-        public QuantityValue Gigabytes => this.As(InformationUnit.Gigabyte);
+        public double Gigabytes => this.As(InformationUnit.Gigabyte);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Gigaoctet"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Gigaoctet"/>
         /// </summary>
-        public QuantityValue Gigaoctets => this.As(InformationUnit.Gigaoctet);
+        public double Gigaoctets => this.As(InformationUnit.Gigaoctet);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Kibibit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kibibit"/>
         /// </summary>
-        public QuantityValue Kibibits => this.As(InformationUnit.Kibibit);
+        public double Kibibits => this.As(InformationUnit.Kibibit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Kibibyte"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kibibyte"/>
         /// </summary>
-        public QuantityValue Kibibytes => this.As(InformationUnit.Kibibyte);
+        public double Kibibytes => this.As(InformationUnit.Kibibyte);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Kibioctet"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kibioctet"/>
         /// </summary>
-        public QuantityValue Kibioctets => this.As(InformationUnit.Kibioctet);
+        public double Kibioctets => this.As(InformationUnit.Kibioctet);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Kilobit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kilobit"/>
         /// </summary>
-        public QuantityValue Kilobits => this.As(InformationUnit.Kilobit);
+        public double Kilobits => this.As(InformationUnit.Kilobit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Kilobyte"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kilobyte"/>
         /// </summary>
-        public QuantityValue Kilobytes => this.As(InformationUnit.Kilobyte);
+        public double Kilobytes => this.As(InformationUnit.Kilobyte);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Kilooctet"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Kilooctet"/>
         /// </summary>
-        public QuantityValue Kilooctets => this.As(InformationUnit.Kilooctet);
+        public double Kilooctets => this.As(InformationUnit.Kilooctet);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Mebibit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Mebibit"/>
         /// </summary>
-        public QuantityValue Mebibits => this.As(InformationUnit.Mebibit);
+        public double Mebibits => this.As(InformationUnit.Mebibit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Mebibyte"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Mebibyte"/>
         /// </summary>
-        public QuantityValue Mebibytes => this.As(InformationUnit.Mebibyte);
+        public double Mebibytes => this.As(InformationUnit.Mebibyte);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Mebioctet"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Mebioctet"/>
         /// </summary>
-        public QuantityValue Mebioctets => this.As(InformationUnit.Mebioctet);
+        public double Mebioctets => this.As(InformationUnit.Mebioctet);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Megabit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Megabit"/>
         /// </summary>
-        public QuantityValue Megabits => this.As(InformationUnit.Megabit);
+        public double Megabits => this.As(InformationUnit.Megabit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Megabyte"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Megabyte"/>
         /// </summary>
-        public QuantityValue Megabytes => this.As(InformationUnit.Megabyte);
+        public double Megabytes => this.As(InformationUnit.Megabyte);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Megaoctet"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Megaoctet"/>
         /// </summary>
-        public QuantityValue Megaoctets => this.As(InformationUnit.Megaoctet);
+        public double Megaoctets => this.As(InformationUnit.Megaoctet);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Octet"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Octet"/>
         /// </summary>
-        public QuantityValue Octets => this.As(InformationUnit.Octet);
+        public double Octets => this.As(InformationUnit.Octet);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Pebibit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Pebibit"/>
         /// </summary>
-        public QuantityValue Pebibits => this.As(InformationUnit.Pebibit);
+        public double Pebibits => this.As(InformationUnit.Pebibit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Pebibyte"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Pebibyte"/>
         /// </summary>
-        public QuantityValue Pebibytes => this.As(InformationUnit.Pebibyte);
+        public double Pebibytes => this.As(InformationUnit.Pebibyte);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Pebioctet"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Pebioctet"/>
         /// </summary>
-        public QuantityValue Pebioctets => this.As(InformationUnit.Pebioctet);
+        public double Pebioctets => this.As(InformationUnit.Pebioctet);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Petabit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Petabit"/>
         /// </summary>
-        public QuantityValue Petabits => this.As(InformationUnit.Petabit);
+        public double Petabits => this.As(InformationUnit.Petabit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Petabyte"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Petabyte"/>
         /// </summary>
-        public QuantityValue Petabytes => this.As(InformationUnit.Petabyte);
+        public double Petabytes => this.As(InformationUnit.Petabyte);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Petaoctet"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Petaoctet"/>
         /// </summary>
-        public QuantityValue Petaoctets => this.As(InformationUnit.Petaoctet);
+        public double Petaoctets => this.As(InformationUnit.Petaoctet);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Tebibit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Tebibit"/>
         /// </summary>
-        public QuantityValue Tebibits => this.As(InformationUnit.Tebibit);
+        public double Tebibits => this.As(InformationUnit.Tebibit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Tebibyte"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Tebibyte"/>
         /// </summary>
-        public QuantityValue Tebibytes => this.As(InformationUnit.Tebibyte);
+        public double Tebibytes => this.As(InformationUnit.Tebibyte);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Tebioctet"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Tebioctet"/>
         /// </summary>
-        public QuantityValue Tebioctets => this.As(InformationUnit.Tebioctet);
+        public double Tebioctets => this.As(InformationUnit.Tebioctet);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Terabit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Terabit"/>
         /// </summary>
-        public QuantityValue Terabits => this.As(InformationUnit.Terabit);
+        public double Terabits => this.As(InformationUnit.Terabit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Terabyte"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Terabyte"/>
         /// </summary>
-        public QuantityValue Terabytes => this.As(InformationUnit.Terabyte);
+        public double Terabytes => this.As(InformationUnit.Terabyte);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="InformationUnit.Teraoctet"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="InformationUnit.Teraoctet"/>
         /// </summary>
-        public QuantityValue Teraoctets => this.As(InformationUnit.Teraoctet);
+        public double Teraoctets => this.As(InformationUnit.Teraoctet);
 
         #endregion
 
@@ -546,7 +546,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Bit"/>.
         /// </summary>
-        public static Information FromBits(QuantityValue value)
+        public static Information FromBits(double value)
         {
             return new Information(value, InformationUnit.Bit);
         }
@@ -554,7 +554,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Byte"/>.
         /// </summary>
-        public static Information FromBytes(QuantityValue value)
+        public static Information FromBytes(double value)
         {
             return new Information(value, InformationUnit.Byte);
         }
@@ -562,7 +562,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exabit"/>.
         /// </summary>
-        public static Information FromExabits(QuantityValue value)
+        public static Information FromExabits(double value)
         {
             return new Information(value, InformationUnit.Exabit);
         }
@@ -570,7 +570,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exabyte"/>.
         /// </summary>
-        public static Information FromExabytes(QuantityValue value)
+        public static Information FromExabytes(double value)
         {
             return new Information(value, InformationUnit.Exabyte);
         }
@@ -578,7 +578,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exaoctet"/>.
         /// </summary>
-        public static Information FromExaoctets(QuantityValue value)
+        public static Information FromExaoctets(double value)
         {
             return new Information(value, InformationUnit.Exaoctet);
         }
@@ -586,7 +586,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exbibit"/>.
         /// </summary>
-        public static Information FromExbibits(QuantityValue value)
+        public static Information FromExbibits(double value)
         {
             return new Information(value, InformationUnit.Exbibit);
         }
@@ -594,7 +594,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exbibyte"/>.
         /// </summary>
-        public static Information FromExbibytes(QuantityValue value)
+        public static Information FromExbibytes(double value)
         {
             return new Information(value, InformationUnit.Exbibyte);
         }
@@ -602,7 +602,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Exbioctet"/>.
         /// </summary>
-        public static Information FromExbioctets(QuantityValue value)
+        public static Information FromExbioctets(double value)
         {
             return new Information(value, InformationUnit.Exbioctet);
         }
@@ -610,7 +610,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gibibit"/>.
         /// </summary>
-        public static Information FromGibibits(QuantityValue value)
+        public static Information FromGibibits(double value)
         {
             return new Information(value, InformationUnit.Gibibit);
         }
@@ -618,7 +618,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gibibyte"/>.
         /// </summary>
-        public static Information FromGibibytes(QuantityValue value)
+        public static Information FromGibibytes(double value)
         {
             return new Information(value, InformationUnit.Gibibyte);
         }
@@ -626,7 +626,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gibioctet"/>.
         /// </summary>
-        public static Information FromGibioctets(QuantityValue value)
+        public static Information FromGibioctets(double value)
         {
             return new Information(value, InformationUnit.Gibioctet);
         }
@@ -634,7 +634,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gigabit"/>.
         /// </summary>
-        public static Information FromGigabits(QuantityValue value)
+        public static Information FromGigabits(double value)
         {
             return new Information(value, InformationUnit.Gigabit);
         }
@@ -642,7 +642,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gigabyte"/>.
         /// </summary>
-        public static Information FromGigabytes(QuantityValue value)
+        public static Information FromGigabytes(double value)
         {
             return new Information(value, InformationUnit.Gigabyte);
         }
@@ -650,7 +650,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Gigaoctet"/>.
         /// </summary>
-        public static Information FromGigaoctets(QuantityValue value)
+        public static Information FromGigaoctets(double value)
         {
             return new Information(value, InformationUnit.Gigaoctet);
         }
@@ -658,7 +658,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kibibit"/>.
         /// </summary>
-        public static Information FromKibibits(QuantityValue value)
+        public static Information FromKibibits(double value)
         {
             return new Information(value, InformationUnit.Kibibit);
         }
@@ -666,7 +666,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kibibyte"/>.
         /// </summary>
-        public static Information FromKibibytes(QuantityValue value)
+        public static Information FromKibibytes(double value)
         {
             return new Information(value, InformationUnit.Kibibyte);
         }
@@ -674,7 +674,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kibioctet"/>.
         /// </summary>
-        public static Information FromKibioctets(QuantityValue value)
+        public static Information FromKibioctets(double value)
         {
             return new Information(value, InformationUnit.Kibioctet);
         }
@@ -682,7 +682,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kilobit"/>.
         /// </summary>
-        public static Information FromKilobits(QuantityValue value)
+        public static Information FromKilobits(double value)
         {
             return new Information(value, InformationUnit.Kilobit);
         }
@@ -690,7 +690,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kilobyte"/>.
         /// </summary>
-        public static Information FromKilobytes(QuantityValue value)
+        public static Information FromKilobytes(double value)
         {
             return new Information(value, InformationUnit.Kilobyte);
         }
@@ -698,7 +698,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Kilooctet"/>.
         /// </summary>
-        public static Information FromKilooctets(QuantityValue value)
+        public static Information FromKilooctets(double value)
         {
             return new Information(value, InformationUnit.Kilooctet);
         }
@@ -706,7 +706,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Mebibit"/>.
         /// </summary>
-        public static Information FromMebibits(QuantityValue value)
+        public static Information FromMebibits(double value)
         {
             return new Information(value, InformationUnit.Mebibit);
         }
@@ -714,7 +714,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Mebibyte"/>.
         /// </summary>
-        public static Information FromMebibytes(QuantityValue value)
+        public static Information FromMebibytes(double value)
         {
             return new Information(value, InformationUnit.Mebibyte);
         }
@@ -722,7 +722,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Mebioctet"/>.
         /// </summary>
-        public static Information FromMebioctets(QuantityValue value)
+        public static Information FromMebioctets(double value)
         {
             return new Information(value, InformationUnit.Mebioctet);
         }
@@ -730,7 +730,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Megabit"/>.
         /// </summary>
-        public static Information FromMegabits(QuantityValue value)
+        public static Information FromMegabits(double value)
         {
             return new Information(value, InformationUnit.Megabit);
         }
@@ -738,7 +738,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Megabyte"/>.
         /// </summary>
-        public static Information FromMegabytes(QuantityValue value)
+        public static Information FromMegabytes(double value)
         {
             return new Information(value, InformationUnit.Megabyte);
         }
@@ -746,7 +746,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Megaoctet"/>.
         /// </summary>
-        public static Information FromMegaoctets(QuantityValue value)
+        public static Information FromMegaoctets(double value)
         {
             return new Information(value, InformationUnit.Megaoctet);
         }
@@ -754,7 +754,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Octet"/>.
         /// </summary>
-        public static Information FromOctets(QuantityValue value)
+        public static Information FromOctets(double value)
         {
             return new Information(value, InformationUnit.Octet);
         }
@@ -762,7 +762,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Pebibit"/>.
         /// </summary>
-        public static Information FromPebibits(QuantityValue value)
+        public static Information FromPebibits(double value)
         {
             return new Information(value, InformationUnit.Pebibit);
         }
@@ -770,7 +770,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Pebibyte"/>.
         /// </summary>
-        public static Information FromPebibytes(QuantityValue value)
+        public static Information FromPebibytes(double value)
         {
             return new Information(value, InformationUnit.Pebibyte);
         }
@@ -778,7 +778,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Pebioctet"/>.
         /// </summary>
-        public static Information FromPebioctets(QuantityValue value)
+        public static Information FromPebioctets(double value)
         {
             return new Information(value, InformationUnit.Pebioctet);
         }
@@ -786,7 +786,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Petabit"/>.
         /// </summary>
-        public static Information FromPetabits(QuantityValue value)
+        public static Information FromPetabits(double value)
         {
             return new Information(value, InformationUnit.Petabit);
         }
@@ -794,7 +794,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Petabyte"/>.
         /// </summary>
-        public static Information FromPetabytes(QuantityValue value)
+        public static Information FromPetabytes(double value)
         {
             return new Information(value, InformationUnit.Petabyte);
         }
@@ -802,7 +802,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Petaoctet"/>.
         /// </summary>
-        public static Information FromPetaoctets(QuantityValue value)
+        public static Information FromPetaoctets(double value)
         {
             return new Information(value, InformationUnit.Petaoctet);
         }
@@ -810,7 +810,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Tebibit"/>.
         /// </summary>
-        public static Information FromTebibits(QuantityValue value)
+        public static Information FromTebibits(double value)
         {
             return new Information(value, InformationUnit.Tebibit);
         }
@@ -818,7 +818,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Tebibyte"/>.
         /// </summary>
-        public static Information FromTebibytes(QuantityValue value)
+        public static Information FromTebibytes(double value)
         {
             return new Information(value, InformationUnit.Tebibyte);
         }
@@ -826,7 +826,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Tebioctet"/>.
         /// </summary>
-        public static Information FromTebioctets(QuantityValue value)
+        public static Information FromTebioctets(double value)
         {
             return new Information(value, InformationUnit.Tebioctet);
         }
@@ -834,7 +834,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Terabit"/>.
         /// </summary>
-        public static Information FromTerabits(QuantityValue value)
+        public static Information FromTerabits(double value)
         {
             return new Information(value, InformationUnit.Terabit);
         }
@@ -842,7 +842,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Terabyte"/>.
         /// </summary>
-        public static Information FromTerabytes(QuantityValue value)
+        public static Information FromTerabytes(double value)
         {
             return new Information(value, InformationUnit.Terabyte);
         }
@@ -850,7 +850,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Information"/> from <see cref="InformationUnit.Teraoctet"/>.
         /// </summary>
-        public static Information FromTeraoctets(QuantityValue value)
+        public static Information FromTeraoctets(double value)
         {
             return new Information(value, InformationUnit.Teraoctet);
         }
@@ -861,7 +861,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Information unit value.</returns>
-        public static Information From(QuantityValue value, InformationUnit fromUnit)
+        public static Information From(double value, InformationUnit fromUnit)
         {
             return new Information(value, fromUnit);
         }
@@ -1026,25 +1026,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Information"/> from multiplying value and <see cref="Information"/>.</summary>
-        public static Information operator *(QuantityValue left, Information right)
+        public static Information operator *(double left, Information right)
         {
             return new Information(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Information"/> from multiplying value and <see cref="Information"/>.</summary>
-        public static Information operator *(Information left, QuantityValue right)
+        public static Information operator *(Information left, double right)
         {
             return new Information(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Information"/> from dividing <see cref="Information"/> by value.</summary>
-        public static Information operator /(Information left, QuantityValue right)
+        public static Information operator /(Information left, double right)
         {
             return new Information(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Information"/> by <see cref="Information"/>.</summary>
-        public static QuantityValue operator /(Information left, Information right)
+        public static double operator /(Information left, Information right)
         {
             return left.Bits / right.Bits;
         }

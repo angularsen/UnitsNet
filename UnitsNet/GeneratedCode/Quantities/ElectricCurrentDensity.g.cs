@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct ElectricCurrentDensity :
         IArithmeticQuantity<ElectricCurrentDensity, ElectricCurrentDensityUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricCurrentDensity, ElectricCurrentDensity, QuantityValue>,
+        IDivisionOperators<ElectricCurrentDensity, ElectricCurrentDensity, double>,
         IComparisonOperators<ElectricCurrentDensity, ElectricCurrentDensity, bool>,
         IParsable<ElectricCurrentDensity>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -139,7 +139,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ElectricCurrentDensity(QuantityValue value, ElectricCurrentDensityUnit unit)
+        public ElectricCurrentDensity(double value, ElectricCurrentDensityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -153,7 +153,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ElectricCurrentDensity(QuantityValue value, UnitSystem unitSystem)
+        public ElectricCurrentDensity(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -195,7 +195,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public ElectricCurrentDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -229,19 +229,19 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareFoot"/>
         /// </summary>
-        public QuantityValue AmperesPerSquareFoot => this.As(ElectricCurrentDensityUnit.AmperePerSquareFoot);
+        public double AmperesPerSquareFoot => this.As(ElectricCurrentDensityUnit.AmperePerSquareFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareInch"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareInch"/>
         /// </summary>
-        public QuantityValue AmperesPerSquareInch => this.As(ElectricCurrentDensityUnit.AmperePerSquareInch);
+        public double AmperesPerSquareInch => this.As(ElectricCurrentDensityUnit.AmperePerSquareInch);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ElectricCurrentDensityUnit.AmperePerSquareMeter"/>
         /// </summary>
-        public QuantityValue AmperesPerSquareMeter => this.As(ElectricCurrentDensityUnit.AmperePerSquareMeter);
+        public double AmperesPerSquareMeter => this.As(ElectricCurrentDensityUnit.AmperePerSquareMeter);
 
         #endregion
 
@@ -275,7 +275,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentDensity"/> from <see cref="ElectricCurrentDensityUnit.AmperePerSquareFoot"/>.
         /// </summary>
-        public static ElectricCurrentDensity FromAmperesPerSquareFoot(QuantityValue value)
+        public static ElectricCurrentDensity FromAmperesPerSquareFoot(double value)
         {
             return new ElectricCurrentDensity(value, ElectricCurrentDensityUnit.AmperePerSquareFoot);
         }
@@ -283,7 +283,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentDensity"/> from <see cref="ElectricCurrentDensityUnit.AmperePerSquareInch"/>.
         /// </summary>
-        public static ElectricCurrentDensity FromAmperesPerSquareInch(QuantityValue value)
+        public static ElectricCurrentDensity FromAmperesPerSquareInch(double value)
         {
             return new ElectricCurrentDensity(value, ElectricCurrentDensityUnit.AmperePerSquareInch);
         }
@@ -291,7 +291,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ElectricCurrentDensity"/> from <see cref="ElectricCurrentDensityUnit.AmperePerSquareMeter"/>.
         /// </summary>
-        public static ElectricCurrentDensity FromAmperesPerSquareMeter(QuantityValue value)
+        public static ElectricCurrentDensity FromAmperesPerSquareMeter(double value)
         {
             return new ElectricCurrentDensity(value, ElectricCurrentDensityUnit.AmperePerSquareMeter);
         }
@@ -302,7 +302,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricCurrentDensity unit value.</returns>
-        public static ElectricCurrentDensity From(QuantityValue value, ElectricCurrentDensityUnit fromUnit)
+        public static ElectricCurrentDensity From(double value, ElectricCurrentDensityUnit fromUnit)
         {
             return new ElectricCurrentDensity(value, fromUnit);
         }
@@ -467,25 +467,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ElectricCurrentDensity"/> from multiplying value and <see cref="ElectricCurrentDensity"/>.</summary>
-        public static ElectricCurrentDensity operator *(QuantityValue left, ElectricCurrentDensity right)
+        public static ElectricCurrentDensity operator *(double left, ElectricCurrentDensity right)
         {
             return new ElectricCurrentDensity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCurrentDensity"/> from multiplying value and <see cref="ElectricCurrentDensity"/>.</summary>
-        public static ElectricCurrentDensity operator *(ElectricCurrentDensity left, QuantityValue right)
+        public static ElectricCurrentDensity operator *(ElectricCurrentDensity left, double right)
         {
             return new ElectricCurrentDensity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ElectricCurrentDensity"/> from dividing <see cref="ElectricCurrentDensity"/> by value.</summary>
-        public static ElectricCurrentDensity operator /(ElectricCurrentDensity left, QuantityValue right)
+        public static ElectricCurrentDensity operator /(ElectricCurrentDensity left, double right)
         {
             return new ElectricCurrentDensity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ElectricCurrentDensity"/> by <see cref="ElectricCurrentDensity"/>.</summary>
-        public static QuantityValue operator /(ElectricCurrentDensity left, ElectricCurrentDensity right)
+        public static double operator /(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
             return left.AmperesPerSquareMeter / right.AmperesPerSquareMeter;
         }

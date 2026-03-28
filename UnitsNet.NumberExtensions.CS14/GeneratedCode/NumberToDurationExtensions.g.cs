@@ -42,108 +42,108 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Duration.FromDays(QuantityValue)" />
+            /// <inheritdoc cref="Duration.FromDays(double)" />
             public Duration Days
 #if NET7_0_OR_GREATER
-                => Duration.FromDays(QuantityValue.CreateChecked(value));
+                => Duration.FromDays(double.CreateChecked(value));
 #else
-                => Duration.FromDays(value.ToQuantityValue());
+                => Duration.FromDays(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Duration.FromHours(QuantityValue)" />
+            /// <inheritdoc cref="Duration.FromHours(double)" />
             public Duration Hours
 #if NET7_0_OR_GREATER
-                => Duration.FromHours(QuantityValue.CreateChecked(value));
+                => Duration.FromHours(double.CreateChecked(value));
 #else
-                => Duration.FromHours(value.ToQuantityValue());
+                => Duration.FromHours(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Duration.FromJulianYears(QuantityValue)" />
+            /// <inheritdoc cref="Duration.FromJulianYears(double)" />
             public Duration JulianYears
 #if NET7_0_OR_GREATER
-                => Duration.FromJulianYears(QuantityValue.CreateChecked(value));
+                => Duration.FromJulianYears(double.CreateChecked(value));
 #else
-                => Duration.FromJulianYears(value.ToQuantityValue());
+                => Duration.FromJulianYears(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Duration.FromMicroseconds(QuantityValue)" />
+            /// <inheritdoc cref="Duration.FromMicroseconds(double)" />
             public Duration Microseconds
 #if NET7_0_OR_GREATER
-                => Duration.FromMicroseconds(QuantityValue.CreateChecked(value));
+                => Duration.FromMicroseconds(double.CreateChecked(value));
 #else
-                => Duration.FromMicroseconds(value.ToQuantityValue());
+                => Duration.FromMicroseconds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Duration.FromMilliseconds(QuantityValue)" />
+            /// <inheritdoc cref="Duration.FromMilliseconds(double)" />
             public Duration Milliseconds
 #if NET7_0_OR_GREATER
-                => Duration.FromMilliseconds(QuantityValue.CreateChecked(value));
+                => Duration.FromMilliseconds(double.CreateChecked(value));
 #else
-                => Duration.FromMilliseconds(value.ToQuantityValue());
+                => Duration.FromMilliseconds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Duration.FromMinutes(QuantityValue)" />
+            /// <inheritdoc cref="Duration.FromMinutes(double)" />
             public Duration Minutes
 #if NET7_0_OR_GREATER
-                => Duration.FromMinutes(QuantityValue.CreateChecked(value));
+                => Duration.FromMinutes(double.CreateChecked(value));
 #else
-                => Duration.FromMinutes(value.ToQuantityValue());
+                => Duration.FromMinutes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Duration.FromMonths30(QuantityValue)" />
+            /// <inheritdoc cref="Duration.FromMonths30(double)" />
             public Duration Months30
 #if NET7_0_OR_GREATER
-                => Duration.FromMonths30(QuantityValue.CreateChecked(value));
+                => Duration.FromMonths30(double.CreateChecked(value));
 #else
-                => Duration.FromMonths30(value.ToQuantityValue());
+                => Duration.FromMonths30(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Duration.FromNanoseconds(QuantityValue)" />
+            /// <inheritdoc cref="Duration.FromNanoseconds(double)" />
             public Duration Nanoseconds
 #if NET7_0_OR_GREATER
-                => Duration.FromNanoseconds(QuantityValue.CreateChecked(value));
+                => Duration.FromNanoseconds(double.CreateChecked(value));
 #else
-                => Duration.FromNanoseconds(value.ToQuantityValue());
+                => Duration.FromNanoseconds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Duration.FromPicoseconds(QuantityValue)" />
+            /// <inheritdoc cref="Duration.FromPicoseconds(double)" />
             public Duration Picoseconds
 #if NET7_0_OR_GREATER
-                => Duration.FromPicoseconds(QuantityValue.CreateChecked(value));
+                => Duration.FromPicoseconds(double.CreateChecked(value));
 #else
-                => Duration.FromPicoseconds(value.ToQuantityValue());
+                => Duration.FromPicoseconds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Duration.FromSeconds(QuantityValue)" />
+            /// <inheritdoc cref="Duration.FromSeconds(double)" />
             public Duration Seconds
 #if NET7_0_OR_GREATER
-                => Duration.FromSeconds(QuantityValue.CreateChecked(value));
+                => Duration.FromSeconds(double.CreateChecked(value));
 #else
-                => Duration.FromSeconds(value.ToQuantityValue());
+                => Duration.FromSeconds(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Duration.FromSols(QuantityValue)" />
+            /// <inheritdoc cref="Duration.FromSols(double)" />
             public Duration Sols
 #if NET7_0_OR_GREATER
-                => Duration.FromSols(QuantityValue.CreateChecked(value));
+                => Duration.FromSols(double.CreateChecked(value));
 #else
-                => Duration.FromSols(value.ToQuantityValue());
+                => Duration.FromSols(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Duration.FromWeeks(QuantityValue)" />
+            /// <inheritdoc cref="Duration.FromWeeks(double)" />
             public Duration Weeks
 #if NET7_0_OR_GREATER
-                => Duration.FromWeeks(QuantityValue.CreateChecked(value));
+                => Duration.FromWeeks(double.CreateChecked(value));
 #else
-                => Duration.FromWeeks(value.ToQuantityValue());
+                => Duration.FromWeeks(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="Duration.FromYears365(QuantityValue)" />
+            /// <inheritdoc cref="Duration.FromYears365(double)" />
             public Duration Years365
 #if NET7_0_OR_GREATER
-                => Duration.FromYears365(QuantityValue.CreateChecked(value));
+                => Duration.FromYears365(double.CreateChecked(value));
 #else
-                => Duration.FromYears365(value.ToQuantityValue());
+                => Duration.FromYears365(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

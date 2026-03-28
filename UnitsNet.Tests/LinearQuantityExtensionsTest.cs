@@ -78,7 +78,7 @@ public class LinearQuantityExtensionsTest
     public void Equals_TQuantity_WithNullOther_ReturnsFalse()
     {
         var quantity = new ClassOfLinearQuantity(2, ClassOfLinearQuantityUnit.ATon);
-        var tolerance = new ClassOfLinearQuantity(0.1m, ClassOfLinearQuantityUnit.Some);
+        var tolerance = new ClassOfLinearQuantity(0.1, ClassOfLinearQuantityUnit.Some);
         ClassOfLinearQuantity? nullOther = null;
 
         // since 'other' is a reference type, this is calling the TQuantity overload

@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct CoefficientOfThermalExpansion :
         IArithmeticQuantity<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<CoefficientOfThermalExpansion, CoefficientOfThermalExpansion, QuantityValue>,
+        IDivisionOperators<CoefficientOfThermalExpansion, CoefficientOfThermalExpansion, double>,
         IMultiplyOperators<CoefficientOfThermalExpansion, TemperatureDelta, Ratio>,
         IComparisonOperators<CoefficientOfThermalExpansion, CoefficientOfThermalExpansion, bool>,
         IParsable<CoefficientOfThermalExpansion>,
@@ -52,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -146,7 +146,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public CoefficientOfThermalExpansion(QuantityValue value, CoefficientOfThermalExpansionUnit unit)
+        public CoefficientOfThermalExpansion(double value, CoefficientOfThermalExpansionUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -160,7 +160,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public CoefficientOfThermalExpansion(QuantityValue value, UnitSystem unitSystem)
+        public CoefficientOfThermalExpansion(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -202,7 +202,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public CoefficientOfThermalExpansionUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -236,34 +236,34 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.PerDegreeCelsius"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.PerDegreeCelsius"/>
         /// </summary>
-        public QuantityValue PerDegreeCelsius => this.As(CoefficientOfThermalExpansionUnit.PerDegreeCelsius);
+        public double PerDegreeCelsius => this.As(CoefficientOfThermalExpansionUnit.PerDegreeCelsius);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit"/>
         /// </summary>
-        public QuantityValue PerDegreeFahrenheit => this.As(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit);
+        public double PerDegreeFahrenheit => this.As(CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.PerKelvin"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.PerKelvin"/>
         /// </summary>
-        public QuantityValue PerKelvin => this.As(CoefficientOfThermalExpansionUnit.PerKelvin);
+        public double PerKelvin => this.As(CoefficientOfThermalExpansionUnit.PerKelvin);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius"/>
         /// </summary>
-        public QuantityValue PpmPerDegreeCelsius => this.As(CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius);
+        public double PpmPerDegreeCelsius => this.As(CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit"/>
         /// </summary>
-        public QuantityValue PpmPerDegreeFahrenheit => this.As(CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit);
+        public double PpmPerDegreeFahrenheit => this.As(CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.PpmPerKelvin"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="CoefficientOfThermalExpansionUnit.PpmPerKelvin"/>
         /// </summary>
-        public QuantityValue PpmPerKelvin => this.As(CoefficientOfThermalExpansionUnit.PpmPerKelvin);
+        public double PpmPerKelvin => this.As(CoefficientOfThermalExpansionUnit.PpmPerKelvin);
 
         #endregion
 
@@ -297,7 +297,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PerDegreeCelsius"/>.
         /// </summary>
-        public static CoefficientOfThermalExpansion FromPerDegreeCelsius(QuantityValue value)
+        public static CoefficientOfThermalExpansion FromPerDegreeCelsius(double value)
         {
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PerDegreeCelsius);
         }
@@ -305,7 +305,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit"/>.
         /// </summary>
-        public static CoefficientOfThermalExpansion FromPerDegreeFahrenheit(QuantityValue value)
+        public static CoefficientOfThermalExpansion FromPerDegreeFahrenheit(double value)
         {
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit);
         }
@@ -313,7 +313,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PerKelvin"/>.
         /// </summary>
-        public static CoefficientOfThermalExpansion FromPerKelvin(QuantityValue value)
+        public static CoefficientOfThermalExpansion FromPerKelvin(double value)
         {
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PerKelvin);
         }
@@ -321,7 +321,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius"/>.
         /// </summary>
-        public static CoefficientOfThermalExpansion FromPpmPerDegreeCelsius(QuantityValue value)
+        public static CoefficientOfThermalExpansion FromPpmPerDegreeCelsius(double value)
         {
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PpmPerDegreeCelsius);
         }
@@ -329,7 +329,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit"/>.
         /// </summary>
-        public static CoefficientOfThermalExpansion FromPpmPerDegreeFahrenheit(QuantityValue value)
+        public static CoefficientOfThermalExpansion FromPpmPerDegreeFahrenheit(double value)
         {
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PpmPerDegreeFahrenheit);
         }
@@ -337,7 +337,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="CoefficientOfThermalExpansion"/> from <see cref="CoefficientOfThermalExpansionUnit.PpmPerKelvin"/>.
         /// </summary>
-        public static CoefficientOfThermalExpansion FromPpmPerKelvin(QuantityValue value)
+        public static CoefficientOfThermalExpansion FromPpmPerKelvin(double value)
         {
             return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.PpmPerKelvin);
         }
@@ -348,7 +348,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>CoefficientOfThermalExpansion unit value.</returns>
-        public static CoefficientOfThermalExpansion From(QuantityValue value, CoefficientOfThermalExpansionUnit fromUnit)
+        public static CoefficientOfThermalExpansion From(double value, CoefficientOfThermalExpansionUnit fromUnit)
         {
             return new CoefficientOfThermalExpansion(value, fromUnit);
         }
@@ -513,25 +513,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="CoefficientOfThermalExpansion"/> from multiplying value and <see cref="CoefficientOfThermalExpansion"/>.</summary>
-        public static CoefficientOfThermalExpansion operator *(QuantityValue left, CoefficientOfThermalExpansion right)
+        public static CoefficientOfThermalExpansion operator *(double left, CoefficientOfThermalExpansion right)
         {
             return new CoefficientOfThermalExpansion(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="CoefficientOfThermalExpansion"/> from multiplying value and <see cref="CoefficientOfThermalExpansion"/>.</summary>
-        public static CoefficientOfThermalExpansion operator *(CoefficientOfThermalExpansion left, QuantityValue right)
+        public static CoefficientOfThermalExpansion operator *(CoefficientOfThermalExpansion left, double right)
         {
             return new CoefficientOfThermalExpansion(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="CoefficientOfThermalExpansion"/> from dividing <see cref="CoefficientOfThermalExpansion"/> by value.</summary>
-        public static CoefficientOfThermalExpansion operator /(CoefficientOfThermalExpansion left, QuantityValue right)
+        public static CoefficientOfThermalExpansion operator /(CoefficientOfThermalExpansion left, double right)
         {
             return new CoefficientOfThermalExpansion(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="CoefficientOfThermalExpansion"/> by <see cref="CoefficientOfThermalExpansion"/>.</summary>
-        public static QuantityValue operator /(CoefficientOfThermalExpansion left, CoefficientOfThermalExpansion right)
+        public static double operator /(CoefficientOfThermalExpansion left, CoefficientOfThermalExpansion right)
         {
             return left.PerKelvin / right.PerKelvin;
         }

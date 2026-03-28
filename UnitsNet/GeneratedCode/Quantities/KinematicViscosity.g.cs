@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct KinematicViscosity :
         IArithmeticQuantity<KinematicViscosity, KinematicViscosityUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<KinematicViscosity, KinematicViscosity, QuantityValue>,
+        IDivisionOperators<KinematicViscosity, KinematicViscosity, double>,
         IMultiplyOperators<KinematicViscosity, Duration, Area>,
         IMultiplyOperators<KinematicViscosity, Density, DynamicViscosity>,
         IDivisionOperators<KinematicViscosity, Speed, Length>,
@@ -58,7 +58,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -161,7 +161,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public KinematicViscosity(QuantityValue value, KinematicViscosityUnit unit)
+        public KinematicViscosity(double value, KinematicViscosityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -175,7 +175,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public KinematicViscosity(QuantityValue value, UnitSystem unitSystem)
+        public KinematicViscosity(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -217,7 +217,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public KinematicViscosityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -251,49 +251,49 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="KinematicViscosityUnit.Centistokes"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="KinematicViscosityUnit.Centistokes"/>
         /// </summary>
-        public QuantityValue Centistokes => this.As(KinematicViscosityUnit.Centistokes);
+        public double Centistokes => this.As(KinematicViscosityUnit.Centistokes);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="KinematicViscosityUnit.Decistokes"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="KinematicViscosityUnit.Decistokes"/>
         /// </summary>
-        public QuantityValue Decistokes => this.As(KinematicViscosityUnit.Decistokes);
+        public double Decistokes => this.As(KinematicViscosityUnit.Decistokes);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="KinematicViscosityUnit.Kilostokes"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="KinematicViscosityUnit.Kilostokes"/>
         /// </summary>
-        public QuantityValue Kilostokes => this.As(KinematicViscosityUnit.Kilostokes);
+        public double Kilostokes => this.As(KinematicViscosityUnit.Kilostokes);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="KinematicViscosityUnit.Microstokes"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="KinematicViscosityUnit.Microstokes"/>
         /// </summary>
-        public QuantityValue Microstokes => this.As(KinematicViscosityUnit.Microstokes);
+        public double Microstokes => this.As(KinematicViscosityUnit.Microstokes);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="KinematicViscosityUnit.Millistokes"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="KinematicViscosityUnit.Millistokes"/>
         /// </summary>
-        public QuantityValue Millistokes => this.As(KinematicViscosityUnit.Millistokes);
+        public double Millistokes => this.As(KinematicViscosityUnit.Millistokes);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="KinematicViscosityUnit.Nanostokes"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="KinematicViscosityUnit.Nanostokes"/>
         /// </summary>
-        public QuantityValue Nanostokes => this.As(KinematicViscosityUnit.Nanostokes);
+        public double Nanostokes => this.As(KinematicViscosityUnit.Nanostokes);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="KinematicViscosityUnit.SquareFootPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="KinematicViscosityUnit.SquareFootPerSecond"/>
         /// </summary>
-        public QuantityValue SquareFeetPerSecond => this.As(KinematicViscosityUnit.SquareFootPerSecond);
+        public double SquareFeetPerSecond => this.As(KinematicViscosityUnit.SquareFootPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="KinematicViscosityUnit.SquareMeterPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="KinematicViscosityUnit.SquareMeterPerSecond"/>
         /// </summary>
-        public QuantityValue SquareMetersPerSecond => this.As(KinematicViscosityUnit.SquareMeterPerSecond);
+        public double SquareMetersPerSecond => this.As(KinematicViscosityUnit.SquareMeterPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="KinematicViscosityUnit.Stokes"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="KinematicViscosityUnit.Stokes"/>
         /// </summary>
-        public QuantityValue Stokes => this.As(KinematicViscosityUnit.Stokes);
+        public double Stokes => this.As(KinematicViscosityUnit.Stokes);
 
         #endregion
 
@@ -327,7 +327,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.Centistokes"/>.
         /// </summary>
-        public static KinematicViscosity FromCentistokes(QuantityValue value)
+        public static KinematicViscosity FromCentistokes(double value)
         {
             return new KinematicViscosity(value, KinematicViscosityUnit.Centistokes);
         }
@@ -335,7 +335,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.Decistokes"/>.
         /// </summary>
-        public static KinematicViscosity FromDecistokes(QuantityValue value)
+        public static KinematicViscosity FromDecistokes(double value)
         {
             return new KinematicViscosity(value, KinematicViscosityUnit.Decistokes);
         }
@@ -343,7 +343,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.Kilostokes"/>.
         /// </summary>
-        public static KinematicViscosity FromKilostokes(QuantityValue value)
+        public static KinematicViscosity FromKilostokes(double value)
         {
             return new KinematicViscosity(value, KinematicViscosityUnit.Kilostokes);
         }
@@ -351,7 +351,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.Microstokes"/>.
         /// </summary>
-        public static KinematicViscosity FromMicrostokes(QuantityValue value)
+        public static KinematicViscosity FromMicrostokes(double value)
         {
             return new KinematicViscosity(value, KinematicViscosityUnit.Microstokes);
         }
@@ -359,7 +359,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.Millistokes"/>.
         /// </summary>
-        public static KinematicViscosity FromMillistokes(QuantityValue value)
+        public static KinematicViscosity FromMillistokes(double value)
         {
             return new KinematicViscosity(value, KinematicViscosityUnit.Millistokes);
         }
@@ -367,7 +367,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.Nanostokes"/>.
         /// </summary>
-        public static KinematicViscosity FromNanostokes(QuantityValue value)
+        public static KinematicViscosity FromNanostokes(double value)
         {
             return new KinematicViscosity(value, KinematicViscosityUnit.Nanostokes);
         }
@@ -375,7 +375,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.SquareFootPerSecond"/>.
         /// </summary>
-        public static KinematicViscosity FromSquareFeetPerSecond(QuantityValue value)
+        public static KinematicViscosity FromSquareFeetPerSecond(double value)
         {
             return new KinematicViscosity(value, KinematicViscosityUnit.SquareFootPerSecond);
         }
@@ -383,7 +383,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.SquareMeterPerSecond"/>.
         /// </summary>
-        public static KinematicViscosity FromSquareMetersPerSecond(QuantityValue value)
+        public static KinematicViscosity FromSquareMetersPerSecond(double value)
         {
             return new KinematicViscosity(value, KinematicViscosityUnit.SquareMeterPerSecond);
         }
@@ -391,7 +391,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="KinematicViscosity"/> from <see cref="KinematicViscosityUnit.Stokes"/>.
         /// </summary>
-        public static KinematicViscosity FromStokes(QuantityValue value)
+        public static KinematicViscosity FromStokes(double value)
         {
             return new KinematicViscosity(value, KinematicViscosityUnit.Stokes);
         }
@@ -402,7 +402,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>KinematicViscosity unit value.</returns>
-        public static KinematicViscosity From(QuantityValue value, KinematicViscosityUnit fromUnit)
+        public static KinematicViscosity From(double value, KinematicViscosityUnit fromUnit)
         {
             return new KinematicViscosity(value, fromUnit);
         }
@@ -567,25 +567,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="KinematicViscosity"/> from multiplying value and <see cref="KinematicViscosity"/>.</summary>
-        public static KinematicViscosity operator *(QuantityValue left, KinematicViscosity right)
+        public static KinematicViscosity operator *(double left, KinematicViscosity right)
         {
             return new KinematicViscosity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="KinematicViscosity"/> from multiplying value and <see cref="KinematicViscosity"/>.</summary>
-        public static KinematicViscosity operator *(KinematicViscosity left, QuantityValue right)
+        public static KinematicViscosity operator *(KinematicViscosity left, double right)
         {
             return new KinematicViscosity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="KinematicViscosity"/> from dividing <see cref="KinematicViscosity"/> by value.</summary>
-        public static KinematicViscosity operator /(KinematicViscosity left, QuantityValue right)
+        public static KinematicViscosity operator /(KinematicViscosity left, double right)
         {
             return new KinematicViscosity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="KinematicViscosity"/> by <see cref="KinematicViscosity"/>.</summary>
-        public static QuantityValue operator /(KinematicViscosity left, KinematicViscosity right)
+        public static double operator /(KinematicViscosity left, KinematicViscosity right)
         {
             return left.SquareMetersPerSecond / right.SquareMetersPerSecond;
         }

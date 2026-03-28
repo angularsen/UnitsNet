@@ -21,7 +21,7 @@ public interface IQuantity : IFormattable
     /// <summary>
     ///     The value this quantity was constructed with. See also <see cref="Unit" />.
     /// </summary>
-    QuantityValue Value { get; }
+    double Value { get; }
 
     /// <summary>
     ///     Gets the unique key for the unit type and its corresponding value.
@@ -39,7 +39,7 @@ public interface IQuantity : IFormattable
 /// </summary>
 /// <example>
 ///     IQuantity{LengthUnit} length;
-///     QuantityValue centimeters = length.As(LengthUnit.Centimeter); // Type safety on enum type
+///     double centimeters = length.As(LengthUnit.Centimeter); // Type safety on enum type
 /// </example>
 /// <typeparam name="TUnitType">The unit type of the quantity.</typeparam>
 public interface IQuantity<TUnitType> : IQuantity
@@ -106,9 +106,9 @@ public interface IQuantity<TSelf, TUnitType> : IQuantityOfType<TSelf>, IQuantity
     /// <param name="value">The numerical value of the quantity.</param>
     /// <param name="unit">The unit of the quantity.</param>
     /// <returns>An instance of the quantity with the specified value and unit.</returns>
-    static abstract TSelf From(QuantityValue value, TUnitType unit);
+    static abstract TSelf From(double value, TUnitType unit);
 
-    static TSelf IQuantityOfType<TSelf>.Create(QuantityValue value, UnitKey unit) => TSelf.From(value, unit.ToUnit<TUnitType>());
+    static TSelf IQuantityOfType<TSelf>.Create(QuantityValue value, UnitKey unit) => TSelf.From((double)value, unit.ToUnit<TUnitType>());
 
     QuantityInfo<TUnitType> IQuantity<TUnitType>.QuantityInfo
     {

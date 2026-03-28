@@ -367,7 +367,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kg·s⁻¹·cm⁻²", MassFluxUnit.KilogramPerSecondPerSquareCentimeter, 4.2)]
         [InlineData("en-US", "4.2 kg·s⁻¹·m⁻²", MassFluxUnit.KilogramPerSecondPerSquareMeter, 4.2)]
         [InlineData("en-US", "4.2 kg·s⁻¹·mm⁻²", MassFluxUnit.KilogramPerSecondPerSquareMillimeter, 4.2)]
-        public void Parse(string culture, string quantityString, MassFluxUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, MassFluxUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = MassFlux.Parse(quantityString);
@@ -388,7 +388,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kg·s⁻¹·cm⁻²", MassFluxUnit.KilogramPerSecondPerSquareCentimeter, 4.2)]
         [InlineData("en-US", "4.2 kg·s⁻¹·m⁻²", MassFluxUnit.KilogramPerSecondPerSquareMeter, 4.2)]
         [InlineData("en-US", "4.2 kg·s⁻¹·mm⁻²", MassFluxUnit.KilogramPerSecondPerSquareMillimeter, 4.2)]
-        public void TryParse(string culture, string quantityString, MassFluxUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, MassFluxUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(MassFlux.TryParse(quantityString, out MassFlux parsed));
@@ -787,8 +787,8 @@ namespace UnitsNet.Tests
             var quantity = MassFlux.FromKilogramsPerSecondPerSquareMeter(firstValue);
             var otherQuantity = MassFlux.FromKilogramsPerSecondPerSquareMeter(secondValue);
             MassFlux maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, MassFlux.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

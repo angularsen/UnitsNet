@@ -32,37 +32,37 @@ namespace UnitsNet.NumberExtensions.NumberToAreaDensity
     /// </summary>
     public static class NumberToAreaDensityExtensions
     {
-        /// <inheritdoc cref="AreaDensity.FromGramsPerSquareMeter(QuantityValue)" />
+        /// <inheritdoc cref="AreaDensity.FromGramsPerSquareMeter(double)" />
         public static AreaDensity GramsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => AreaDensity.FromGramsPerSquareMeter(QuantityValue.CreateChecked(value));
+            => AreaDensity.FromGramsPerSquareMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => AreaDensity.FromGramsPerSquareMeter(value.ToQuantityValue());
+            => AreaDensity.FromGramsPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(QuantityValue)" />
+        /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(double)" />
         public static AreaDensity KilogramsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => AreaDensity.FromKilogramsPerSquareMeter(QuantityValue.CreateChecked(value));
+            => AreaDensity.FromKilogramsPerSquareMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => AreaDensity.FromKilogramsPerSquareMeter(value.ToQuantityValue());
+            => AreaDensity.FromKilogramsPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="AreaDensity.FromMilligramsPerSquareMeter(QuantityValue)" />
+        /// <inheritdoc cref="AreaDensity.FromMilligramsPerSquareMeter(double)" />
         public static AreaDensity MilligramsPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => AreaDensity.FromMilligramsPerSquareMeter(QuantityValue.CreateChecked(value));
+            => AreaDensity.FromMilligramsPerSquareMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => AreaDensity.FromMilligramsPerSquareMeter(value.ToQuantityValue());
+            => AreaDensity.FromMilligramsPerSquareMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

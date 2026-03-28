@@ -42,12 +42,12 @@ namespace UnitsNet.NumberExtensions.NumberToMagneticFlux
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="MagneticFlux.FromWebers(QuantityValue)" />
+            /// <inheritdoc cref="MagneticFlux.FromWebers(double)" />
             public MagneticFlux Webers
 #if NET7_0_OR_GREATER
-                => MagneticFlux.FromWebers(QuantityValue.CreateChecked(value));
+                => MagneticFlux.FromWebers(double.CreateChecked(value));
 #else
-                => MagneticFlux.FromWebers(value.ToQuantityValue());
+                => MagneticFlux.FromWebers(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

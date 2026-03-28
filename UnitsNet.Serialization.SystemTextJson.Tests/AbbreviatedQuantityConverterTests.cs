@@ -16,7 +16,7 @@ public class AbbreviatedQuantityConverterTests
     {
         // Arrange
         var json = """{"Value":{"N":42,"D":10},"Unit":"g"}""";
-        var expected = new Mass(4.2m, MassUnit.Gram);
+        var expected = new Mass(4.2, MassUnit.Gram);
 
         var options = new JsonSerializerOptions();
         options.Converters.Add(new AbbreviatedQuantityConverter());
@@ -35,7 +35,7 @@ public class AbbreviatedQuantityConverterTests
     {
         // Arrange
         var json = """{"Value":4.2,"Unit":"g"}""";
-        var expected = new Mass(4.2m, MassUnit.Gram);
+        var expected = new Mass(4.2, MassUnit.Gram);
 
         var options = new JsonSerializerOptions();
         options.Converters.Add(new AbbreviatedQuantityConverter(new QuantityValueDecimalNotationConverter()));

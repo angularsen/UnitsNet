@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct ThermalInsulance :
         IArithmeticQuantity<ThermalInsulance, ThermalInsulanceUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ThermalInsulance, ThermalInsulance, QuantityValue>,
+        IDivisionOperators<ThermalInsulance, ThermalInsulance, double>,
         IComparisonOperators<ThermalInsulance, ThermalInsulance, bool>,
         IParsable<ThermalInsulance>,
 #endif
@@ -51,7 +51,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -148,7 +148,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public ThermalInsulance(QuantityValue value, ThermalInsulanceUnit unit)
+        public ThermalInsulance(double value, ThermalInsulanceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -162,7 +162,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public ThermalInsulance(QuantityValue value, UnitSystem unitSystem)
+        public ThermalInsulance(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -204,7 +204,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public ThermalInsulanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -238,39 +238,39 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu"/>
         /// </summary>
-        public QuantityValue HourSquareFeetDegreesFahrenheitPerBtu => this.As(ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu);
+        public double HourSquareFeetDegreesFahrenheitPerBtu => this.As(ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie"/>
         /// </summary>
-        public QuantityValue SquareCentimeterHourDegreesCelsiusPerKilocalorie => this.As(ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie);
+        public double SquareCentimeterHourDegreesCelsiusPerKilocalorie => this.As(ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt"/>
         /// </summary>
-        public QuantityValue SquareCentimeterKelvinsPerWatt => this.As(ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt);
+        public double SquareCentimeterKelvinsPerWatt => this.As(ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt"/>
         /// </summary>
-        public QuantityValue SquareMeterDegreesCelsiusPerWatt => this.As(ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt);
+        public double SquareMeterDegreesCelsiusPerWatt => this.As(ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt"/>
         /// </summary>
-        public QuantityValue SquareMeterKelvinsPerKilowatt => this.As(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt);
+        public double SquareMeterKelvinsPerKilowatt => this.As(ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.SquareMeterKelvinPerWatt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.SquareMeterKelvinPerWatt"/>
         /// </summary>
-        public QuantityValue SquareMeterKelvinsPerWatt => this.As(ThermalInsulanceUnit.SquareMeterKelvinPerWatt);
+        public double SquareMeterKelvinsPerWatt => this.As(ThermalInsulanceUnit.SquareMeterKelvinPerWatt);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt"/>
         /// </summary>
-        public QuantityValue SquareMillimeterKelvinsPerWatt => this.As(ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt);
+        public double SquareMillimeterKelvinsPerWatt => this.As(ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt);
 
         #endregion
 
@@ -304,7 +304,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ThermalInsulance"/> from <see cref="ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu"/>.
         /// </summary>
-        public static ThermalInsulance FromHourSquareFeetDegreesFahrenheitPerBtu(QuantityValue value)
+        public static ThermalInsulance FromHourSquareFeetDegreesFahrenheitPerBtu(double value)
         {
             return new ThermalInsulance(value, ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu);
         }
@@ -312,7 +312,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ThermalInsulance"/> from <see cref="ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie"/>.
         /// </summary>
-        public static ThermalInsulance FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(QuantityValue value)
+        public static ThermalInsulance FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(double value)
         {
             return new ThermalInsulance(value, ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie);
         }
@@ -320,7 +320,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ThermalInsulance"/> from <see cref="ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt"/>.
         /// </summary>
-        public static ThermalInsulance FromSquareCentimeterKelvinsPerWatt(QuantityValue value)
+        public static ThermalInsulance FromSquareCentimeterKelvinsPerWatt(double value)
         {
             return new ThermalInsulance(value, ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt);
         }
@@ -328,7 +328,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ThermalInsulance"/> from <see cref="ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt"/>.
         /// </summary>
-        public static ThermalInsulance FromSquareMeterDegreesCelsiusPerWatt(QuantityValue value)
+        public static ThermalInsulance FromSquareMeterDegreesCelsiusPerWatt(double value)
         {
             return new ThermalInsulance(value, ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt);
         }
@@ -336,7 +336,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ThermalInsulance"/> from <see cref="ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt"/>.
         /// </summary>
-        public static ThermalInsulance FromSquareMeterKelvinsPerKilowatt(QuantityValue value)
+        public static ThermalInsulance FromSquareMeterKelvinsPerKilowatt(double value)
         {
             return new ThermalInsulance(value, ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt);
         }
@@ -344,7 +344,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ThermalInsulance"/> from <see cref="ThermalInsulanceUnit.SquareMeterKelvinPerWatt"/>.
         /// </summary>
-        public static ThermalInsulance FromSquareMeterKelvinsPerWatt(QuantityValue value)
+        public static ThermalInsulance FromSquareMeterKelvinsPerWatt(double value)
         {
             return new ThermalInsulance(value, ThermalInsulanceUnit.SquareMeterKelvinPerWatt);
         }
@@ -352,7 +352,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="ThermalInsulance"/> from <see cref="ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt"/>.
         /// </summary>
-        public static ThermalInsulance FromSquareMillimeterKelvinsPerWatt(QuantityValue value)
+        public static ThermalInsulance FromSquareMillimeterKelvinsPerWatt(double value)
         {
             return new ThermalInsulance(value, ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt);
         }
@@ -363,7 +363,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ThermalInsulance unit value.</returns>
-        public static ThermalInsulance From(QuantityValue value, ThermalInsulanceUnit fromUnit)
+        public static ThermalInsulance From(double value, ThermalInsulanceUnit fromUnit)
         {
             return new ThermalInsulance(value, fromUnit);
         }
@@ -528,25 +528,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="ThermalInsulance"/> from multiplying value and <see cref="ThermalInsulance"/>.</summary>
-        public static ThermalInsulance operator *(QuantityValue left, ThermalInsulance right)
+        public static ThermalInsulance operator *(double left, ThermalInsulance right)
         {
             return new ThermalInsulance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="ThermalInsulance"/> from multiplying value and <see cref="ThermalInsulance"/>.</summary>
-        public static ThermalInsulance operator *(ThermalInsulance left, QuantityValue right)
+        public static ThermalInsulance operator *(ThermalInsulance left, double right)
         {
             return new ThermalInsulance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="ThermalInsulance"/> from dividing <see cref="ThermalInsulance"/> by value.</summary>
-        public static ThermalInsulance operator /(ThermalInsulance left, QuantityValue right)
+        public static ThermalInsulance operator /(ThermalInsulance left, double right)
         {
             return new ThermalInsulance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="ThermalInsulance"/> by <see cref="ThermalInsulance"/>.</summary>
-        public static QuantityValue operator /(ThermalInsulance left, ThermalInsulance right)
+        public static double operator /(ThermalInsulance left, ThermalInsulance right)
         {
             return left.SquareMeterKelvinsPerKilowatt / right.SquareMeterKelvinsPerKilowatt;
         }

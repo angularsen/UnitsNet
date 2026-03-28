@@ -331,7 +331,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 мВ", ElectricPotentialUnit.Millivolt, 4.2)]
         [InlineData("ru-RU", "4,2 нВ", ElectricPotentialUnit.Nanovolt, 4.2)]
         [InlineData("ru-RU", "4,2 В", ElectricPotentialUnit.Volt, 4.2)]
-        public void Parse(string culture, string quantityString, ElectricPotentialUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, ElectricPotentialUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ElectricPotential.Parse(quantityString);
@@ -352,7 +352,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 мВ", ElectricPotentialUnit.Millivolt, 4.2)]
         [InlineData("ru-RU", "4,2 нВ", ElectricPotentialUnit.Nanovolt, 4.2)]
         [InlineData("ru-RU", "4,2 В", ElectricPotentialUnit.Volt, 4.2)]
-        public void TryParse(string culture, string quantityString, ElectricPotentialUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, ElectricPotentialUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ElectricPotential.TryParse(quantityString, out ElectricPotential parsed));
@@ -721,8 +721,8 @@ namespace UnitsNet.Tests
             var quantity = ElectricPotential.FromVolts(firstValue);
             var otherQuantity = ElectricPotential.FromVolts(secondValue);
             ElectricPotential maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, ElectricPotential.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

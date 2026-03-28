@@ -685,7 +685,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 кг/м³", DensityUnit.KilogramPerCubicMeter, 4.2)]
         [InlineData("ru-RU", "4,2 мкг/м³", DensityUnit.MicrogramPerCubicMeter, 4.2)]
         [InlineData("ru-RU", "4,2 мг/м³", DensityUnit.MilligramPerCubicMeter, 4.2)]
-        public void Parse(string culture, string quantityString, DensityUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, DensityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Density.Parse(quantityString);
@@ -760,7 +760,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 кг/м³", DensityUnit.KilogramPerCubicMeter, 4.2)]
         [InlineData("ru-RU", "4,2 мкг/м³", DensityUnit.MicrogramPerCubicMeter, 4.2)]
         [InlineData("ru-RU", "4,2 мг/м³", DensityUnit.MilligramPerCubicMeter, 4.2)]
-        public void TryParse(string culture, string quantityString, DensityUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, DensityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Density.TryParse(quantityString, out Density parsed));
@@ -1667,8 +1667,8 @@ namespace UnitsNet.Tests
             var quantity = Density.FromKilogramsPerCubicMeter(firstValue);
             var otherQuantity = Density.FromKilogramsPerCubicMeter(secondValue);
             Density maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Density.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

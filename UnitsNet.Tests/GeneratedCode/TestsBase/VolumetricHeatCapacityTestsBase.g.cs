@@ -346,7 +346,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kJ/(m³·K)", VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, 4.2)]
         [InlineData("en-US", "4.2 MJ/(m³·°C)", VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, 4.2)]
         [InlineData("en-US", "4.2 MJ/(m³·K)", VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, 4.2)]
-        public void Parse(string culture, string quantityString, VolumetricHeatCapacityUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, VolumetricHeatCapacityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = VolumetricHeatCapacity.Parse(quantityString);
@@ -364,7 +364,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kJ/(m³·K)", VolumetricHeatCapacityUnit.KilojoulePerCubicMeterKelvin, 4.2)]
         [InlineData("en-US", "4.2 MJ/(m³·°C)", VolumetricHeatCapacityUnit.MegajoulePerCubicMeterDegreeCelsius, 4.2)]
         [InlineData("en-US", "4.2 MJ/(m³·K)", VolumetricHeatCapacityUnit.MegajoulePerCubicMeterKelvin, 4.2)]
-        public void TryParse(string culture, string quantityString, VolumetricHeatCapacityUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, VolumetricHeatCapacityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(VolumetricHeatCapacity.TryParse(quantityString, out VolumetricHeatCapacity parsed));
@@ -733,8 +733,8 @@ namespace UnitsNet.Tests
             var quantity = VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(firstValue);
             var otherQuantity = VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(secondValue);
             VolumetricHeatCapacity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, VolumetricHeatCapacity.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

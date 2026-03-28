@@ -62,7 +62,7 @@ public static class LinearQuantityExtensions
         where TTolerance : IQuantityOfType<TQuantity>
     {
         UnitKey quantityUnit = quantity.UnitKey;
-        return Comparison.EqualsAbsolute(quantity.Value, other.GetValue(quantityUnit), tolerance.GetValue(quantityUnit));
+        return Comparison.EqualsAbsolute(quantity.Value, (double)other.GetValue(quantityUnit), (double)tolerance.GetValue(quantityUnit));
     }
 
     /// <summary>
@@ -148,9 +148,9 @@ public static class LinearQuantityExtensions
         if (!enumerator.MoveNext())
         {
 #if NET
-            return TQuantity.From(QuantityValue.Zero, unit);
+            return TQuantity.From(0d, unit);
 #else
-            return (TQuantity)Quantity.From(QuantityValue.Zero, UnitKey.ForUnit(unit));
+            return (TQuantity)Quantity.From(0d, UnitKey.ForUnit(unit));
 #endif
         }
 

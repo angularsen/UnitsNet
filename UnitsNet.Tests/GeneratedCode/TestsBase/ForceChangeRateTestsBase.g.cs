@@ -392,7 +392,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 N/s", ForceChangeRateUnit.NewtonPerSecond, 4.2)]
         [InlineData("en-US", "4.2 lbf/min", ForceChangeRateUnit.PoundForcePerMinute, 4.2)]
         [InlineData("en-US", "4.2 lbf/s", ForceChangeRateUnit.PoundForcePerSecond, 4.2)]
-        public void Parse(string culture, string quantityString, ForceChangeRateUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, ForceChangeRateUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ForceChangeRate.Parse(quantityString);
@@ -420,7 +420,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 N/s", ForceChangeRateUnit.NewtonPerSecond, 4.2)]
         [InlineData("en-US", "4.2 lbf/min", ForceChangeRateUnit.PoundForcePerMinute, 4.2)]
         [InlineData("en-US", "4.2 lbf/s", ForceChangeRateUnit.PoundForcePerSecond, 4.2)]
-        public void TryParse(string culture, string quantityString, ForceChangeRateUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, ForceChangeRateUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ForceChangeRate.TryParse(quantityString, out ForceChangeRate parsed));
@@ -881,8 +881,8 @@ namespace UnitsNet.Tests
             var quantity = ForceChangeRate.FromNewtonsPerSecond(firstValue);
             var otherQuantity = ForceChangeRate.FromNewtonsPerSecond(secondValue);
             ForceChangeRate maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, ForceChangeRate.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

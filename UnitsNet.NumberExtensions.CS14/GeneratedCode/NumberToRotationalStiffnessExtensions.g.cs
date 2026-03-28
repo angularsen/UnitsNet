@@ -42,276 +42,276 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffness
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="RotationalStiffness.FromCentinewtonMetersPerDegree(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromCentinewtonMetersPerDegree(double)" />
             public RotationalStiffness CentinewtonMetersPerDegree
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromCentinewtonMetersPerDegree(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromCentinewtonMetersPerDegree(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromCentinewtonMetersPerDegree(value.ToQuantityValue());
+                => RotationalStiffness.FromCentinewtonMetersPerDegree(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromCentinewtonMillimetersPerDegree(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromCentinewtonMillimetersPerDegree(double)" />
             public RotationalStiffness CentinewtonMillimetersPerDegree
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromCentinewtonMillimetersPerDegree(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromCentinewtonMillimetersPerDegree(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromCentinewtonMillimetersPerDegree(value.ToQuantityValue());
+                => RotationalStiffness.FromCentinewtonMillimetersPerDegree(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromCentinewtonMillimetersPerRadian(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromCentinewtonMillimetersPerRadian(double)" />
             public RotationalStiffness CentinewtonMillimetersPerRadian
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromCentinewtonMillimetersPerRadian(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromCentinewtonMillimetersPerRadian(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromCentinewtonMillimetersPerRadian(value.ToQuantityValue());
+                => RotationalStiffness.FromCentinewtonMillimetersPerRadian(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromDecanewtonMetersPerDegree(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromDecanewtonMetersPerDegree(double)" />
             public RotationalStiffness DecanewtonMetersPerDegree
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromDecanewtonMetersPerDegree(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromDecanewtonMetersPerDegree(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromDecanewtonMetersPerDegree(value.ToQuantityValue());
+                => RotationalStiffness.FromDecanewtonMetersPerDegree(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromDecanewtonMillimetersPerDegree(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromDecanewtonMillimetersPerDegree(double)" />
             public RotationalStiffness DecanewtonMillimetersPerDegree
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromDecanewtonMillimetersPerDegree(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromDecanewtonMillimetersPerDegree(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromDecanewtonMillimetersPerDegree(value.ToQuantityValue());
+                => RotationalStiffness.FromDecanewtonMillimetersPerDegree(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromDecanewtonMillimetersPerRadian(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromDecanewtonMillimetersPerRadian(double)" />
             public RotationalStiffness DecanewtonMillimetersPerRadian
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromDecanewtonMillimetersPerRadian(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromDecanewtonMillimetersPerRadian(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromDecanewtonMillimetersPerRadian(value.ToQuantityValue());
+                => RotationalStiffness.FromDecanewtonMillimetersPerRadian(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromDecinewtonMetersPerDegree(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromDecinewtonMetersPerDegree(double)" />
             public RotationalStiffness DecinewtonMetersPerDegree
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromDecinewtonMetersPerDegree(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromDecinewtonMetersPerDegree(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromDecinewtonMetersPerDegree(value.ToQuantityValue());
+                => RotationalStiffness.FromDecinewtonMetersPerDegree(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromDecinewtonMillimetersPerDegree(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromDecinewtonMillimetersPerDegree(double)" />
             public RotationalStiffness DecinewtonMillimetersPerDegree
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromDecinewtonMillimetersPerDegree(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromDecinewtonMillimetersPerDegree(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromDecinewtonMillimetersPerDegree(value.ToQuantityValue());
+                => RotationalStiffness.FromDecinewtonMillimetersPerDegree(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromDecinewtonMillimetersPerRadian(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromDecinewtonMillimetersPerRadian(double)" />
             public RotationalStiffness DecinewtonMillimetersPerRadian
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromDecinewtonMillimetersPerRadian(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromDecinewtonMillimetersPerRadian(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromDecinewtonMillimetersPerRadian(value.ToQuantityValue());
+                => RotationalStiffness.FromDecinewtonMillimetersPerRadian(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerDegree(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerDegree(double)" />
             public RotationalStiffness KilonewtonMetersPerDegree
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromKilonewtonMetersPerDegree(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromKilonewtonMetersPerDegree(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromKilonewtonMetersPerDegree(value.ToQuantityValue());
+                => RotationalStiffness.FromKilonewtonMetersPerDegree(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(double)" />
             public RotationalStiffness KilonewtonMetersPerRadian
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromKilonewtonMetersPerRadian(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromKilonewtonMetersPerRadian(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromKilonewtonMetersPerRadian(value.ToQuantityValue());
+                => RotationalStiffness.FromKilonewtonMetersPerRadian(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMillimetersPerDegree(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMillimetersPerDegree(double)" />
             public RotationalStiffness KilonewtonMillimetersPerDegree
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromKilonewtonMillimetersPerDegree(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromKilonewtonMillimetersPerDegree(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromKilonewtonMillimetersPerDegree(value.ToQuantityValue());
+                => RotationalStiffness.FromKilonewtonMillimetersPerDegree(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMillimetersPerRadian(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMillimetersPerRadian(double)" />
             public RotationalStiffness KilonewtonMillimetersPerRadian
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromKilonewtonMillimetersPerRadian(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromKilonewtonMillimetersPerRadian(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromKilonewtonMillimetersPerRadian(value.ToQuantityValue());
+                => RotationalStiffness.FromKilonewtonMillimetersPerRadian(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromKilopoundForceFeetPerDegrees(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromKilopoundForceFeetPerDegrees(double)" />
             public RotationalStiffness KilopoundForceFeetPerDegrees
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromKilopoundForceFeetPerDegrees(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromKilopoundForceFeetPerDegrees(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromKilopoundForceFeetPerDegrees(value.ToQuantityValue());
+                => RotationalStiffness.FromKilopoundForceFeetPerDegrees(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromKilopoundForceFeetPerRadian(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromKilopoundForceFeetPerRadian(double)" />
             public RotationalStiffness KilopoundForceFeetPerRadian
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromKilopoundForceFeetPerRadian(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromKilopoundForceFeetPerRadian(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromKilopoundForceFeetPerRadian(value.ToQuantityValue());
+                => RotationalStiffness.FromKilopoundForceFeetPerRadian(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerDegree(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerDegree(double)" />
             public RotationalStiffness MeganewtonMetersPerDegree
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromMeganewtonMetersPerDegree(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromMeganewtonMetersPerDegree(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromMeganewtonMetersPerDegree(value.ToQuantityValue());
+                => RotationalStiffness.FromMeganewtonMetersPerDegree(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(double)" />
             public RotationalStiffness MeganewtonMetersPerRadian
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromMeganewtonMetersPerRadian(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromMeganewtonMetersPerRadian(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromMeganewtonMetersPerRadian(value.ToQuantityValue());
+                => RotationalStiffness.FromMeganewtonMetersPerRadian(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMillimetersPerDegree(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMillimetersPerDegree(double)" />
             public RotationalStiffness MeganewtonMillimetersPerDegree
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromMeganewtonMillimetersPerDegree(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromMeganewtonMillimetersPerDegree(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromMeganewtonMillimetersPerDegree(value.ToQuantityValue());
+                => RotationalStiffness.FromMeganewtonMillimetersPerDegree(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMillimetersPerRadian(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMillimetersPerRadian(double)" />
             public RotationalStiffness MeganewtonMillimetersPerRadian
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromMeganewtonMillimetersPerRadian(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromMeganewtonMillimetersPerRadian(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromMeganewtonMillimetersPerRadian(value.ToQuantityValue());
+                => RotationalStiffness.FromMeganewtonMillimetersPerRadian(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromMicronewtonMetersPerDegree(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromMicronewtonMetersPerDegree(double)" />
             public RotationalStiffness MicronewtonMetersPerDegree
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromMicronewtonMetersPerDegree(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromMicronewtonMetersPerDegree(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromMicronewtonMetersPerDegree(value.ToQuantityValue());
+                => RotationalStiffness.FromMicronewtonMetersPerDegree(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromMicronewtonMillimetersPerDegree(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromMicronewtonMillimetersPerDegree(double)" />
             public RotationalStiffness MicronewtonMillimetersPerDegree
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromMicronewtonMillimetersPerDegree(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromMicronewtonMillimetersPerDegree(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromMicronewtonMillimetersPerDegree(value.ToQuantityValue());
+                => RotationalStiffness.FromMicronewtonMillimetersPerDegree(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromMicronewtonMillimetersPerRadian(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromMicronewtonMillimetersPerRadian(double)" />
             public RotationalStiffness MicronewtonMillimetersPerRadian
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromMicronewtonMillimetersPerRadian(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromMicronewtonMillimetersPerRadian(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromMicronewtonMillimetersPerRadian(value.ToQuantityValue());
+                => RotationalStiffness.FromMicronewtonMillimetersPerRadian(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromMillinewtonMetersPerDegree(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromMillinewtonMetersPerDegree(double)" />
             public RotationalStiffness MillinewtonMetersPerDegree
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromMillinewtonMetersPerDegree(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromMillinewtonMetersPerDegree(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromMillinewtonMetersPerDegree(value.ToQuantityValue());
+                => RotationalStiffness.FromMillinewtonMetersPerDegree(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromMillinewtonMillimetersPerDegree(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromMillinewtonMillimetersPerDegree(double)" />
             public RotationalStiffness MillinewtonMillimetersPerDegree
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromMillinewtonMillimetersPerDegree(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromMillinewtonMillimetersPerDegree(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromMillinewtonMillimetersPerDegree(value.ToQuantityValue());
+                => RotationalStiffness.FromMillinewtonMillimetersPerDegree(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromMillinewtonMillimetersPerRadian(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromMillinewtonMillimetersPerRadian(double)" />
             public RotationalStiffness MillinewtonMillimetersPerRadian
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromMillinewtonMillimetersPerRadian(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromMillinewtonMillimetersPerRadian(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromMillinewtonMillimetersPerRadian(value.ToQuantityValue());
+                => RotationalStiffness.FromMillinewtonMillimetersPerRadian(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromNanonewtonMetersPerDegree(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromNanonewtonMetersPerDegree(double)" />
             public RotationalStiffness NanonewtonMetersPerDegree
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromNanonewtonMetersPerDegree(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromNanonewtonMetersPerDegree(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromNanonewtonMetersPerDegree(value.ToQuantityValue());
+                => RotationalStiffness.FromNanonewtonMetersPerDegree(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromNanonewtonMillimetersPerDegree(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromNanonewtonMillimetersPerDegree(double)" />
             public RotationalStiffness NanonewtonMillimetersPerDegree
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromNanonewtonMillimetersPerDegree(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromNanonewtonMillimetersPerDegree(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromNanonewtonMillimetersPerDegree(value.ToQuantityValue());
+                => RotationalStiffness.FromNanonewtonMillimetersPerDegree(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromNanonewtonMillimetersPerRadian(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromNanonewtonMillimetersPerRadian(double)" />
             public RotationalStiffness NanonewtonMillimetersPerRadian
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromNanonewtonMillimetersPerRadian(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromNanonewtonMillimetersPerRadian(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromNanonewtonMillimetersPerRadian(value.ToQuantityValue());
+                => RotationalStiffness.FromNanonewtonMillimetersPerRadian(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerDegree(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerDegree(double)" />
             public RotationalStiffness NewtonMetersPerDegree
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromNewtonMetersPerDegree(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromNewtonMetersPerDegree(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromNewtonMetersPerDegree(value.ToQuantityValue());
+                => RotationalStiffness.FromNewtonMetersPerDegree(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(double)" />
             public RotationalStiffness NewtonMetersPerRadian
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromNewtonMetersPerRadian(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromNewtonMetersPerRadian(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromNewtonMetersPerRadian(value.ToQuantityValue());
+                => RotationalStiffness.FromNewtonMetersPerRadian(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromNewtonMillimetersPerDegree(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromNewtonMillimetersPerDegree(double)" />
             public RotationalStiffness NewtonMillimetersPerDegree
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromNewtonMillimetersPerDegree(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromNewtonMillimetersPerDegree(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromNewtonMillimetersPerDegree(value.ToQuantityValue());
+                => RotationalStiffness.FromNewtonMillimetersPerDegree(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromNewtonMillimetersPerRadian(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromNewtonMillimetersPerRadian(double)" />
             public RotationalStiffness NewtonMillimetersPerRadian
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromNewtonMillimetersPerRadian(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromNewtonMillimetersPerRadian(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromNewtonMillimetersPerRadian(value.ToQuantityValue());
+                => RotationalStiffness.FromNewtonMillimetersPerRadian(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromPoundForceFeetPerRadian(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromPoundForceFeetPerRadian(double)" />
             public RotationalStiffness PoundForceFeetPerRadian
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromPoundForceFeetPerRadian(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromPoundForceFeetPerRadian(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromPoundForceFeetPerRadian(value.ToQuantityValue());
+                => RotationalStiffness.FromPoundForceFeetPerRadian(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="RotationalStiffness.FromPoundForceFeetPerDegrees(QuantityValue)" />
+            /// <inheritdoc cref="RotationalStiffness.FromPoundForceFeetPerDegrees(double)" />
             public RotationalStiffness PoundForceFeetPerDegrees
 #if NET7_0_OR_GREATER
-                => RotationalStiffness.FromPoundForceFeetPerDegrees(QuantityValue.CreateChecked(value));
+                => RotationalStiffness.FromPoundForceFeetPerDegrees(double.CreateChecked(value));
 #else
-                => RotationalStiffness.FromPoundForceFeetPerDegrees(value.ToQuantityValue());
+                => RotationalStiffness.FromPoundForceFeetPerDegrees(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

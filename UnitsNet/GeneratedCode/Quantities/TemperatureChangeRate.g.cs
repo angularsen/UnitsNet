@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct TemperatureChangeRate :
         IArithmeticQuantity<TemperatureChangeRate, TemperatureChangeRateUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<TemperatureChangeRate, TemperatureChangeRate, QuantityValue>,
+        IDivisionOperators<TemperatureChangeRate, TemperatureChangeRate, double>,
         IMultiplyOperators<TemperatureChangeRate, Duration, TemperatureDelta>,
         IComparisonOperators<TemperatureChangeRate, TemperatureChangeRate, bool>,
         IParsable<TemperatureChangeRate>,
@@ -52,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -179,7 +179,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public TemperatureChangeRate(QuantityValue value, TemperatureChangeRateUnit unit)
+        public TemperatureChangeRate(double value, TemperatureChangeRateUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -193,7 +193,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public TemperatureChangeRate(QuantityValue value, UnitSystem unitSystem)
+        public TemperatureChangeRate(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -235,7 +235,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public TemperatureChangeRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -269,89 +269,89 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond"/>
         /// </summary>
-        public QuantityValue CentidegreesCelsiusPerSecond => this.As(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
+        public double CentidegreesCelsiusPerSecond => this.As(TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond"/>
         /// </summary>
-        public QuantityValue DecadegreesCelsiusPerSecond => this.As(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond);
+        public double DecadegreesCelsiusPerSecond => this.As(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond"/>
         /// </summary>
-        public QuantityValue DecidegreesCelsiusPerSecond => this.As(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
+        public double DecidegreesCelsiusPerSecond => this.As(TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerHour"/>
         /// </summary>
-        public QuantityValue DegreesCelsiusPerHour => this.As(TemperatureChangeRateUnit.DegreeCelsiusPerHour);
+        public double DegreesCelsiusPerHour => this.As(TemperatureChangeRateUnit.DegreeCelsiusPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerMinute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerMinute"/>
         /// </summary>
-        public QuantityValue DegreesCelsiusPerMinute => this.As(TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
+        public double DegreesCelsiusPerMinute => this.As(TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerSecond"/>
         /// </summary>
-        public QuantityValue DegreesCelsiusPerSecond => this.As(TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
+        public double DegreesCelsiusPerSecond => this.As(TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeFahrenheitPerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeFahrenheitPerHour"/>
         /// </summary>
-        public QuantityValue DegreesFahrenheitPerHour => this.As(TemperatureChangeRateUnit.DegreeFahrenheitPerHour);
+        public double DegreesFahrenheitPerHour => this.As(TemperatureChangeRateUnit.DegreeFahrenheitPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeFahrenheitPerMinute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeFahrenheitPerMinute"/>
         /// </summary>
-        public QuantityValue DegreesFahrenheitPerMinute => this.As(TemperatureChangeRateUnit.DegreeFahrenheitPerMinute);
+        public double DegreesFahrenheitPerMinute => this.As(TemperatureChangeRateUnit.DegreeFahrenheitPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeFahrenheitPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeFahrenheitPerSecond"/>
         /// </summary>
-        public QuantityValue DegreesFahrenheitPerSecond => this.As(TemperatureChangeRateUnit.DegreeFahrenheitPerSecond);
+        public double DegreesFahrenheitPerSecond => this.As(TemperatureChangeRateUnit.DegreeFahrenheitPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeKelvinPerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeKelvinPerHour"/>
         /// </summary>
-        public QuantityValue DegreesKelvinPerHour => this.As(TemperatureChangeRateUnit.DegreeKelvinPerHour);
+        public double DegreesKelvinPerHour => this.As(TemperatureChangeRateUnit.DegreeKelvinPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeKelvinPerMinute"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeKelvinPerMinute"/>
         /// </summary>
-        public QuantityValue DegreesKelvinPerMinute => this.As(TemperatureChangeRateUnit.DegreeKelvinPerMinute);
+        public double DegreesKelvinPerMinute => this.As(TemperatureChangeRateUnit.DegreeKelvinPerMinute);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeKelvinPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.DegreeKelvinPerSecond"/>
         /// </summary>
-        public QuantityValue DegreesKelvinPerSecond => this.As(TemperatureChangeRateUnit.DegreeKelvinPerSecond);
+        public double DegreesKelvinPerSecond => this.As(TemperatureChangeRateUnit.DegreeKelvinPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond"/>
         /// </summary>
-        public QuantityValue HectodegreesCelsiusPerSecond => this.As(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
+        public double HectodegreesCelsiusPerSecond => this.As(TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond"/>
         /// </summary>
-        public QuantityValue KilodegreesCelsiusPerSecond => this.As(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
+        public double KilodegreesCelsiusPerSecond => this.As(TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond"/>
         /// </summary>
-        public QuantityValue MicrodegreesCelsiusPerSecond => this.As(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
+        public double MicrodegreesCelsiusPerSecond => this.As(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond"/>
         /// </summary>
-        public QuantityValue MillidegreesCelsiusPerSecond => this.As(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
+        public double MillidegreesCelsiusPerSecond => this.As(TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond"/>
         /// </summary>
-        public QuantityValue NanodegreesCelsiusPerSecond => this.As(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
+        public double NanodegreesCelsiusPerSecond => this.As(TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
 
         #endregion
 
@@ -385,7 +385,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromCentidegreesCelsiusPerSecond(QuantityValue value)
+        public static TemperatureChangeRate FromCentidegreesCelsiusPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond);
         }
@@ -393,7 +393,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromDecadegreesCelsiusPerSecond(QuantityValue value)
+        public static TemperatureChangeRate FromDecadegreesCelsiusPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond);
         }
@@ -401,7 +401,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromDecidegreesCelsiusPerSecond(QuantityValue value)
+        public static TemperatureChangeRate FromDecidegreesCelsiusPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond);
         }
@@ -409,7 +409,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerHour"/>.
         /// </summary>
-        public static TemperatureChangeRate FromDegreesCelsiusPerHour(QuantityValue value)
+        public static TemperatureChangeRate FromDegreesCelsiusPerHour(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeCelsiusPerHour);
         }
@@ -417,7 +417,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerMinute"/>.
         /// </summary>
-        public static TemperatureChangeRate FromDegreesCelsiusPerMinute(QuantityValue value)
+        public static TemperatureChangeRate FromDegreesCelsiusPerMinute(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeCelsiusPerMinute);
         }
@@ -425,7 +425,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromDegreesCelsiusPerSecond(QuantityValue value)
+        public static TemperatureChangeRate FromDegreesCelsiusPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeCelsiusPerSecond);
         }
@@ -433,7 +433,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeFahrenheitPerHour"/>.
         /// </summary>
-        public static TemperatureChangeRate FromDegreesFahrenheitPerHour(QuantityValue value)
+        public static TemperatureChangeRate FromDegreesFahrenheitPerHour(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeFahrenheitPerHour);
         }
@@ -441,7 +441,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeFahrenheitPerMinute"/>.
         /// </summary>
-        public static TemperatureChangeRate FromDegreesFahrenheitPerMinute(QuantityValue value)
+        public static TemperatureChangeRate FromDegreesFahrenheitPerMinute(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeFahrenheitPerMinute);
         }
@@ -449,7 +449,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeFahrenheitPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromDegreesFahrenheitPerSecond(QuantityValue value)
+        public static TemperatureChangeRate FromDegreesFahrenheitPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeFahrenheitPerSecond);
         }
@@ -457,7 +457,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeKelvinPerHour"/>.
         /// </summary>
-        public static TemperatureChangeRate FromDegreesKelvinPerHour(QuantityValue value)
+        public static TemperatureChangeRate FromDegreesKelvinPerHour(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeKelvinPerHour);
         }
@@ -465,7 +465,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeKelvinPerMinute"/>.
         /// </summary>
-        public static TemperatureChangeRate FromDegreesKelvinPerMinute(QuantityValue value)
+        public static TemperatureChangeRate FromDegreesKelvinPerMinute(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeKelvinPerMinute);
         }
@@ -473,7 +473,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.DegreeKelvinPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromDegreesKelvinPerSecond(QuantityValue value)
+        public static TemperatureChangeRate FromDegreesKelvinPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.DegreeKelvinPerSecond);
         }
@@ -481,7 +481,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromHectodegreesCelsiusPerSecond(QuantityValue value)
+        public static TemperatureChangeRate FromHectodegreesCelsiusPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond);
         }
@@ -489,7 +489,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromKilodegreesCelsiusPerSecond(QuantityValue value)
+        public static TemperatureChangeRate FromKilodegreesCelsiusPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond);
         }
@@ -497,7 +497,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromMicrodegreesCelsiusPerSecond(QuantityValue value)
+        public static TemperatureChangeRate FromMicrodegreesCelsiusPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond);
         }
@@ -505,7 +505,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromMillidegreesCelsiusPerSecond(QuantityValue value)
+        public static TemperatureChangeRate FromMillidegreesCelsiusPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond);
         }
@@ -513,7 +513,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="TemperatureChangeRate"/> from <see cref="TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond"/>.
         /// </summary>
-        public static TemperatureChangeRate FromNanodegreesCelsiusPerSecond(QuantityValue value)
+        public static TemperatureChangeRate FromNanodegreesCelsiusPerSecond(double value)
         {
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
         }
@@ -524,7 +524,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>TemperatureChangeRate unit value.</returns>
-        public static TemperatureChangeRate From(QuantityValue value, TemperatureChangeRateUnit fromUnit)
+        public static TemperatureChangeRate From(double value, TemperatureChangeRateUnit fromUnit)
         {
             return new TemperatureChangeRate(value, fromUnit);
         }
@@ -689,25 +689,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="TemperatureChangeRate"/> from multiplying value and <see cref="TemperatureChangeRate"/>.</summary>
-        public static TemperatureChangeRate operator *(QuantityValue left, TemperatureChangeRate right)
+        public static TemperatureChangeRate operator *(double left, TemperatureChangeRate right)
         {
             return new TemperatureChangeRate(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="TemperatureChangeRate"/> from multiplying value and <see cref="TemperatureChangeRate"/>.</summary>
-        public static TemperatureChangeRate operator *(TemperatureChangeRate left, QuantityValue right)
+        public static TemperatureChangeRate operator *(TemperatureChangeRate left, double right)
         {
             return new TemperatureChangeRate(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="TemperatureChangeRate"/> from dividing <see cref="TemperatureChangeRate"/> by value.</summary>
-        public static TemperatureChangeRate operator /(TemperatureChangeRate left, QuantityValue right)
+        public static TemperatureChangeRate operator /(TemperatureChangeRate left, double right)
         {
             return new TemperatureChangeRate(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="TemperatureChangeRate"/> by <see cref="TemperatureChangeRate"/>.</summary>
-        public static QuantityValue operator /(TemperatureChangeRate left, TemperatureChangeRate right)
+        public static double operator /(TemperatureChangeRate left, TemperatureChangeRate right)
         {
             return left.DegreesCelsiusPerSecond / right.DegreesCelsiusPerSecond;
         }

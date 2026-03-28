@@ -32,26 +32,26 @@ namespace UnitsNet.NumberExtensions.NumberToThermalResistance
     /// </summary>
     public static class NumberToThermalResistanceExtensions
     {
-        /// <inheritdoc cref="ThermalResistance.FromDegreesCelsiusPerWatt(QuantityValue)" />
+        /// <inheritdoc cref="ThermalResistance.FromDegreesCelsiusPerWatt(double)" />
         public static ThermalResistance DegreesCelsiusPerWatt<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ThermalResistance.FromDegreesCelsiusPerWatt(QuantityValue.CreateChecked(value));
+            => ThermalResistance.FromDegreesCelsiusPerWatt(double.CreateChecked(value));
 #else
             , IConvertible
-            => ThermalResistance.FromDegreesCelsiusPerWatt(value.ToQuantityValue());
+            => ThermalResistance.FromDegreesCelsiusPerWatt(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="ThermalResistance.FromKelvinsPerWatt(QuantityValue)" />
+        /// <inheritdoc cref="ThermalResistance.FromKelvinsPerWatt(double)" />
         public static ThermalResistance KelvinsPerWatt<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ThermalResistance.FromKelvinsPerWatt(QuantityValue.CreateChecked(value));
+            => ThermalResistance.FromKelvinsPerWatt(double.CreateChecked(value));
 #else
             , IConvertible
-            => ThermalResistance.FromKelvinsPerWatt(value.ToQuantityValue());
+            => ThermalResistance.FromKelvinsPerWatt(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

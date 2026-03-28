@@ -76,8 +76,8 @@ public interface IArithmeticQuantity<TSelf, TUnitType> : IQuantity<TSelf, TUnitT
 #if NET7_0_OR_GREATER
     , IAdditionOperators<TSelf, TSelf, TSelf>
     , ISubtractionOperators<TSelf, TSelf, TSelf>
-    , IMultiplyOperators<TSelf, QuantityValue, TSelf>
-    , IDivisionOperators<TSelf, QuantityValue, TSelf>
+    , IMultiplyOperators<TSelf, double, TSelf>
+    , IDivisionOperators<TSelf, double, TSelf>
     , IUnaryNegationOperators<TSelf, TSelf>
 #endif
     where TSelf : IArithmeticQuantity<TSelf, TUnitType>

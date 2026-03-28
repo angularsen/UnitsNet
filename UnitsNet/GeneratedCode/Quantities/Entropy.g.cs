@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct Entropy :
         IArithmeticQuantity<Entropy, EntropyUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Entropy, Entropy, QuantityValue>,
+        IDivisionOperators<Entropy, Entropy, double>,
         IMultiplyOperators<Entropy, TemperatureDelta, Energy>,
         IDivisionOperators<Entropy, SpecificEntropy, Mass>,
         IDivisionOperators<Entropy, Mass, SpecificEntropy>,
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Entropy(QuantityValue value, EntropyUnit unit)
+        public Entropy(double value, EntropyUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -165,7 +165,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Entropy(QuantityValue value, UnitSystem unitSystem)
+        public Entropy(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -207,7 +207,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public EntropyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -241,39 +241,39 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EntropyUnit.CaloriePerKelvin"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EntropyUnit.CaloriePerKelvin"/>
         /// </summary>
-        public QuantityValue CaloriesPerKelvin => this.As(EntropyUnit.CaloriePerKelvin);
+        public double CaloriesPerKelvin => this.As(EntropyUnit.CaloriePerKelvin);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EntropyUnit.JoulePerDegreeCelsius"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EntropyUnit.JoulePerDegreeCelsius"/>
         /// </summary>
-        public QuantityValue JoulesPerDegreeCelsius => this.As(EntropyUnit.JoulePerDegreeCelsius);
+        public double JoulesPerDegreeCelsius => this.As(EntropyUnit.JoulePerDegreeCelsius);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EntropyUnit.JoulePerKelvin"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EntropyUnit.JoulePerKelvin"/>
         /// </summary>
-        public QuantityValue JoulesPerKelvin => this.As(EntropyUnit.JoulePerKelvin);
+        public double JoulesPerKelvin => this.As(EntropyUnit.JoulePerKelvin);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EntropyUnit.KilocaloriePerKelvin"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EntropyUnit.KilocaloriePerKelvin"/>
         /// </summary>
-        public QuantityValue KilocaloriesPerKelvin => this.As(EntropyUnit.KilocaloriePerKelvin);
+        public double KilocaloriesPerKelvin => this.As(EntropyUnit.KilocaloriePerKelvin);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EntropyUnit.KilojoulePerDegreeCelsius"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EntropyUnit.KilojoulePerDegreeCelsius"/>
         /// </summary>
-        public QuantityValue KilojoulesPerDegreeCelsius => this.As(EntropyUnit.KilojoulePerDegreeCelsius);
+        public double KilojoulesPerDegreeCelsius => this.As(EntropyUnit.KilojoulePerDegreeCelsius);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EntropyUnit.KilojoulePerKelvin"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EntropyUnit.KilojoulePerKelvin"/>
         /// </summary>
-        public QuantityValue KilojoulesPerKelvin => this.As(EntropyUnit.KilojoulePerKelvin);
+        public double KilojoulesPerKelvin => this.As(EntropyUnit.KilojoulePerKelvin);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="EntropyUnit.MegajoulePerKelvin"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="EntropyUnit.MegajoulePerKelvin"/>
         /// </summary>
-        public QuantityValue MegajoulesPerKelvin => this.As(EntropyUnit.MegajoulePerKelvin);
+        public double MegajoulesPerKelvin => this.As(EntropyUnit.MegajoulePerKelvin);
 
         #endregion
 
@@ -307,7 +307,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.CaloriePerKelvin"/>.
         /// </summary>
-        public static Entropy FromCaloriesPerKelvin(QuantityValue value)
+        public static Entropy FromCaloriesPerKelvin(double value)
         {
             return new Entropy(value, EntropyUnit.CaloriePerKelvin);
         }
@@ -315,7 +315,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.JoulePerDegreeCelsius"/>.
         /// </summary>
-        public static Entropy FromJoulesPerDegreeCelsius(QuantityValue value)
+        public static Entropy FromJoulesPerDegreeCelsius(double value)
         {
             return new Entropy(value, EntropyUnit.JoulePerDegreeCelsius);
         }
@@ -323,7 +323,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.JoulePerKelvin"/>.
         /// </summary>
-        public static Entropy FromJoulesPerKelvin(QuantityValue value)
+        public static Entropy FromJoulesPerKelvin(double value)
         {
             return new Entropy(value, EntropyUnit.JoulePerKelvin);
         }
@@ -331,7 +331,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.KilocaloriePerKelvin"/>.
         /// </summary>
-        public static Entropy FromKilocaloriesPerKelvin(QuantityValue value)
+        public static Entropy FromKilocaloriesPerKelvin(double value)
         {
             return new Entropy(value, EntropyUnit.KilocaloriePerKelvin);
         }
@@ -339,7 +339,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.KilojoulePerDegreeCelsius"/>.
         /// </summary>
-        public static Entropy FromKilojoulesPerDegreeCelsius(QuantityValue value)
+        public static Entropy FromKilojoulesPerDegreeCelsius(double value)
         {
             return new Entropy(value, EntropyUnit.KilojoulePerDegreeCelsius);
         }
@@ -347,7 +347,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.KilojoulePerKelvin"/>.
         /// </summary>
-        public static Entropy FromKilojoulesPerKelvin(QuantityValue value)
+        public static Entropy FromKilojoulesPerKelvin(double value)
         {
             return new Entropy(value, EntropyUnit.KilojoulePerKelvin);
         }
@@ -355,7 +355,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Entropy"/> from <see cref="EntropyUnit.MegajoulePerKelvin"/>.
         /// </summary>
-        public static Entropy FromMegajoulesPerKelvin(QuantityValue value)
+        public static Entropy FromMegajoulesPerKelvin(double value)
         {
             return new Entropy(value, EntropyUnit.MegajoulePerKelvin);
         }
@@ -366,7 +366,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Entropy unit value.</returns>
-        public static Entropy From(QuantityValue value, EntropyUnit fromUnit)
+        public static Entropy From(double value, EntropyUnit fromUnit)
         {
             return new Entropy(value, fromUnit);
         }
@@ -531,25 +531,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Entropy"/> from multiplying value and <see cref="Entropy"/>.</summary>
-        public static Entropy operator *(QuantityValue left, Entropy right)
+        public static Entropy operator *(double left, Entropy right)
         {
             return new Entropy(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Entropy"/> from multiplying value and <see cref="Entropy"/>.</summary>
-        public static Entropy operator *(Entropy left, QuantityValue right)
+        public static Entropy operator *(Entropy left, double right)
         {
             return new Entropy(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Entropy"/> from dividing <see cref="Entropy"/> by value.</summary>
-        public static Entropy operator /(Entropy left, QuantityValue right)
+        public static Entropy operator /(Entropy left, double right)
         {
             return new Entropy(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Entropy"/> by <see cref="Entropy"/>.</summary>
-        public static QuantityValue operator /(Entropy left, Entropy right)
+        public static double operator /(Entropy left, Entropy right)
         {
             return left.JoulesPerKelvin / right.JoulesPerKelvin;
         }

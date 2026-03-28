@@ -38,11 +38,11 @@ public static class QuantityExtensions
     }
     
     /// <inheritdoc cref="UnitConverter.ConvertValue{TQuantity,TUnit}" />
-    public static QuantityValue As<TQuantity, TUnit>(this TQuantity quantity, TUnit unit)
+    public static double As<TQuantity, TUnit>(this TQuantity quantity, TUnit unit)
         where TQuantity : IQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
-        return UnitConverter.Default.ConvertValue(quantity, unit);
+        return (double)UnitConverter.Default.ConvertValue(quantity, unit);
     }
 
     /// <summary>
@@ -53,10 +53,10 @@ public static class QuantityExtensions
     /// <param name="quantity"></param>
     /// <param name="unitSystem">The <see cref="UnitSystem" /> to convert the quantity value to.</param>
     /// <returns>The converted value.</returns>
-    public static QuantityValue As<TQuantity>(this TQuantity quantity, UnitSystem unitSystem)
+    public static double As<TQuantity>(this TQuantity quantity, UnitSystem unitSystem)
         where TQuantity : IQuantity
     {
-        return quantity.GetValue(quantity.QuantityInfo.GetDefaultUnit(unitSystem).UnitKey);
+        return (double)quantity.GetValue(quantity.QuantityInfo.GetDefaultUnit(unitSystem).UnitKey);
     }
 
     /// <inheritdoc cref="UnitConverter.ConvertToUnit{TQuantity,TUnit}" />
@@ -89,9 +89,9 @@ public static class QuantityExtensions
     
     /// <inheritdoc cref="UnitConverter.ConvertValue(QuantityValue,UnitKey,UnitKey)" />
     [Obsolete("This method will be removed in the next major update. Consider using the UnitConverter.Default.ConvertValue(quantity, unit) method instead.")]
-    public static QuantityValue As(this IQuantity quantity, UnitKey unit)
+    public static double As(this IQuantity quantity, UnitKey unit)
     {
-        return UnitConverter.Default.ConvertValue(quantity, unit);
+        return (double)UnitConverter.Default.ConvertValue(quantity, unit);
     }
     
     /// <inheritdoc cref="UnitConverter.ConvertTo{TQuantity}" />

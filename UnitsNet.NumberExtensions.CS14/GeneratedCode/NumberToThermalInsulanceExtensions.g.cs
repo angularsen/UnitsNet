@@ -42,60 +42,60 @@ namespace UnitsNet.NumberExtensions.NumberToThermalInsulance
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ThermalInsulance.FromHourSquareFeetDegreesFahrenheitPerBtu(QuantityValue)" />
+            /// <inheritdoc cref="ThermalInsulance.FromHourSquareFeetDegreesFahrenheitPerBtu(double)" />
             public ThermalInsulance HourSquareFeetDegreesFahrenheitPerBtu
 #if NET7_0_OR_GREATER
-                => ThermalInsulance.FromHourSquareFeetDegreesFahrenheitPerBtu(QuantityValue.CreateChecked(value));
+                => ThermalInsulance.FromHourSquareFeetDegreesFahrenheitPerBtu(double.CreateChecked(value));
 #else
-                => ThermalInsulance.FromHourSquareFeetDegreesFahrenheitPerBtu(value.ToQuantityValue());
+                => ThermalInsulance.FromHourSquareFeetDegreesFahrenheitPerBtu(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ThermalInsulance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(QuantityValue)" />
+            /// <inheritdoc cref="ThermalInsulance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(double)" />
             public ThermalInsulance SquareCentimeterHourDegreesCelsiusPerKilocalorie
 #if NET7_0_OR_GREATER
-                => ThermalInsulance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(QuantityValue.CreateChecked(value));
+                => ThermalInsulance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(double.CreateChecked(value));
 #else
-                => ThermalInsulance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(value.ToQuantityValue());
+                => ThermalInsulance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ThermalInsulance.FromSquareCentimeterKelvinsPerWatt(QuantityValue)" />
+            /// <inheritdoc cref="ThermalInsulance.FromSquareCentimeterKelvinsPerWatt(double)" />
             public ThermalInsulance SquareCentimeterKelvinsPerWatt
 #if NET7_0_OR_GREATER
-                => ThermalInsulance.FromSquareCentimeterKelvinsPerWatt(QuantityValue.CreateChecked(value));
+                => ThermalInsulance.FromSquareCentimeterKelvinsPerWatt(double.CreateChecked(value));
 #else
-                => ThermalInsulance.FromSquareCentimeterKelvinsPerWatt(value.ToQuantityValue());
+                => ThermalInsulance.FromSquareCentimeterKelvinsPerWatt(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ThermalInsulance.FromSquareMeterDegreesCelsiusPerWatt(QuantityValue)" />
+            /// <inheritdoc cref="ThermalInsulance.FromSquareMeterDegreesCelsiusPerWatt(double)" />
             public ThermalInsulance SquareMeterDegreesCelsiusPerWatt
 #if NET7_0_OR_GREATER
-                => ThermalInsulance.FromSquareMeterDegreesCelsiusPerWatt(QuantityValue.CreateChecked(value));
+                => ThermalInsulance.FromSquareMeterDegreesCelsiusPerWatt(double.CreateChecked(value));
 #else
-                => ThermalInsulance.FromSquareMeterDegreesCelsiusPerWatt(value.ToQuantityValue());
+                => ThermalInsulance.FromSquareMeterDegreesCelsiusPerWatt(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(QuantityValue)" />
+            /// <inheritdoc cref="ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(double)" />
             public ThermalInsulance SquareMeterKelvinsPerKilowatt
 #if NET7_0_OR_GREATER
-                => ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(QuantityValue.CreateChecked(value));
+                => ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(double.CreateChecked(value));
 #else
-                => ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(value.ToQuantityValue());
+                => ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ThermalInsulance.FromSquareMeterKelvinsPerWatt(QuantityValue)" />
+            /// <inheritdoc cref="ThermalInsulance.FromSquareMeterKelvinsPerWatt(double)" />
             public ThermalInsulance SquareMeterKelvinsPerWatt
 #if NET7_0_OR_GREATER
-                => ThermalInsulance.FromSquareMeterKelvinsPerWatt(QuantityValue.CreateChecked(value));
+                => ThermalInsulance.FromSquareMeterKelvinsPerWatt(double.CreateChecked(value));
 #else
-                => ThermalInsulance.FromSquareMeterKelvinsPerWatt(value.ToQuantityValue());
+                => ThermalInsulance.FromSquareMeterKelvinsPerWatt(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="ThermalInsulance.FromSquareMillimeterKelvinsPerWatt(QuantityValue)" />
+            /// <inheritdoc cref="ThermalInsulance.FromSquareMillimeterKelvinsPerWatt(double)" />
             public ThermalInsulance SquareMillimeterKelvinsPerWatt
 #if NET7_0_OR_GREATER
-                => ThermalInsulance.FromSquareMillimeterKelvinsPerWatt(QuantityValue.CreateChecked(value));
+                => ThermalInsulance.FromSquareMillimeterKelvinsPerWatt(double.CreateChecked(value));
 #else
-                => ThermalInsulance.FromSquareMillimeterKelvinsPerWatt(value.ToQuantityValue());
+                => ThermalInsulance.FromSquareMillimeterKelvinsPerWatt(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

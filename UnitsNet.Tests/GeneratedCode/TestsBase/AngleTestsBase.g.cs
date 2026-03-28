@@ -350,7 +350,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 нрад", AngleUnit.Nanoradian, 4.2)]
         [InlineData("ru-RU", "4,2 рад", AngleUnit.Radian, 4.2)]
         [InlineData("ru-RU", "4,2 r", AngleUnit.Revolution, 4.2)]
-        public void Parse(string culture, string quantityString, AngleUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, AngleUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Angle.Parse(quantityString);
@@ -396,7 +396,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 нрад", AngleUnit.Nanoradian, 4.2)]
         [InlineData("ru-RU", "4,2 рад", AngleUnit.Radian, 4.2)]
         [InlineData("ru-RU", "4,2 r", AngleUnit.Revolution, 4.2)]
-        public void TryParse(string culture, string quantityString, AngleUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, AngleUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Angle.TryParse(quantityString, out Angle parsed));
@@ -965,8 +965,8 @@ namespace UnitsNet.Tests
             var quantity = Angle.FromRadians(firstValue);
             var otherQuantity = Angle.FromRadians(secondValue);
             Angle maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Angle.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

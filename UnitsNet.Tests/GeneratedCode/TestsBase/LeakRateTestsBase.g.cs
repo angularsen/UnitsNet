@@ -311,7 +311,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 mbar·l/s", LeakRateUnit.MillibarLiterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 Torr·l/s", LeakRateUnit.TorrLiterPerSecond, 4.2)]
-        public void Parse(string culture, string quantityString, LeakRateUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, LeakRateUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = LeakRate.Parse(quantityString);
@@ -324,7 +324,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 mbar·l/s", LeakRateUnit.MillibarLiterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 Pa·m³/s", LeakRateUnit.PascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 Torr·l/s", LeakRateUnit.TorrLiterPerSecond, 4.2)]
-        public void TryParse(string culture, string quantityString, LeakRateUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, LeakRateUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(LeakRate.TryParse(quantityString, out LeakRate parsed));
@@ -643,8 +643,8 @@ namespace UnitsNet.Tests
             var quantity = LeakRate.FromPascalCubicMetersPerSecond(firstValue);
             var otherQuantity = LeakRate.FromPascalCubicMetersPerSecond(secondValue);
             LeakRate maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, LeakRate.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

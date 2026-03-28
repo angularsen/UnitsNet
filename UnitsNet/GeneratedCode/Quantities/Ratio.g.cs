@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct Ratio :
         IArithmeticQuantity<Ratio, RatioUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Ratio, Ratio, QuantityValue>,
+        IDivisionOperators<Ratio, Ratio, double>,
         IComparisonOperators<Ratio, Ratio, bool>,
         IParsable<Ratio>,
 #endif
@@ -51,7 +51,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -145,7 +145,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Ratio(QuantityValue value, RatioUnit unit)
+        public Ratio(double value, RatioUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -187,7 +187,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public RatioUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -221,34 +221,34 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RatioUnit.DecimalFraction"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioUnit.DecimalFraction"/>
         /// </summary>
-        public QuantityValue DecimalFractions => this.As(RatioUnit.DecimalFraction);
+        public double DecimalFractions => this.As(RatioUnit.DecimalFraction);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RatioUnit.PartPerBillion"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioUnit.PartPerBillion"/>
         /// </summary>
-        public QuantityValue PartsPerBillion => this.As(RatioUnit.PartPerBillion);
+        public double PartsPerBillion => this.As(RatioUnit.PartPerBillion);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RatioUnit.PartPerMillion"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioUnit.PartPerMillion"/>
         /// </summary>
-        public QuantityValue PartsPerMillion => this.As(RatioUnit.PartPerMillion);
+        public double PartsPerMillion => this.As(RatioUnit.PartPerMillion);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RatioUnit.PartPerThousand"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioUnit.PartPerThousand"/>
         /// </summary>
-        public QuantityValue PartsPerThousand => this.As(RatioUnit.PartPerThousand);
+        public double PartsPerThousand => this.As(RatioUnit.PartPerThousand);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RatioUnit.PartPerTrillion"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioUnit.PartPerTrillion"/>
         /// </summary>
-        public QuantityValue PartsPerTrillion => this.As(RatioUnit.PartPerTrillion);
+        public double PartsPerTrillion => this.As(RatioUnit.PartPerTrillion);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RatioUnit.Percent"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RatioUnit.Percent"/>
         /// </summary>
-        public QuantityValue Percent => this.As(RatioUnit.Percent);
+        public double Percent => this.As(RatioUnit.Percent);
 
         #endregion
 
@@ -282,7 +282,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.DecimalFraction"/>.
         /// </summary>
-        public static Ratio FromDecimalFractions(QuantityValue value)
+        public static Ratio FromDecimalFractions(double value)
         {
             return new Ratio(value, RatioUnit.DecimalFraction);
         }
@@ -290,7 +290,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerBillion"/>.
         /// </summary>
-        public static Ratio FromPartsPerBillion(QuantityValue value)
+        public static Ratio FromPartsPerBillion(double value)
         {
             return new Ratio(value, RatioUnit.PartPerBillion);
         }
@@ -298,7 +298,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerMillion"/>.
         /// </summary>
-        public static Ratio FromPartsPerMillion(QuantityValue value)
+        public static Ratio FromPartsPerMillion(double value)
         {
             return new Ratio(value, RatioUnit.PartPerMillion);
         }
@@ -306,7 +306,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerThousand"/>.
         /// </summary>
-        public static Ratio FromPartsPerThousand(QuantityValue value)
+        public static Ratio FromPartsPerThousand(double value)
         {
             return new Ratio(value, RatioUnit.PartPerThousand);
         }
@@ -314,7 +314,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.PartPerTrillion"/>.
         /// </summary>
-        public static Ratio FromPartsPerTrillion(QuantityValue value)
+        public static Ratio FromPartsPerTrillion(double value)
         {
             return new Ratio(value, RatioUnit.PartPerTrillion);
         }
@@ -322,7 +322,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Ratio"/> from <see cref="RatioUnit.Percent"/>.
         /// </summary>
-        public static Ratio FromPercent(QuantityValue value)
+        public static Ratio FromPercent(double value)
         {
             return new Ratio(value, RatioUnit.Percent);
         }
@@ -333,7 +333,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Ratio unit value.</returns>
-        public static Ratio From(QuantityValue value, RatioUnit fromUnit)
+        public static Ratio From(double value, RatioUnit fromUnit)
         {
             return new Ratio(value, fromUnit);
         }
@@ -498,25 +498,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Ratio"/> from multiplying value and <see cref="Ratio"/>.</summary>
-        public static Ratio operator *(QuantityValue left, Ratio right)
+        public static Ratio operator *(double left, Ratio right)
         {
             return new Ratio(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Ratio"/> from multiplying value and <see cref="Ratio"/>.</summary>
-        public static Ratio operator *(Ratio left, QuantityValue right)
+        public static Ratio operator *(Ratio left, double right)
         {
             return new Ratio(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Ratio"/> from dividing <see cref="Ratio"/> by value.</summary>
-        public static Ratio operator /(Ratio left, QuantityValue right)
+        public static Ratio operator /(Ratio left, double right)
         {
             return new Ratio(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Ratio"/> by <see cref="Ratio"/>.</summary>
-        public static QuantityValue operator /(Ratio left, Ratio right)
+        public static double operator /(Ratio left, Ratio right)
         {
             return left.DecimalFractions / right.DecimalFractions;
         }

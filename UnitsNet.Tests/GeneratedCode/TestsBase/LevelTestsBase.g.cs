@@ -237,7 +237,7 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("en-US", "4.2 dB", LevelUnit.Decibel, 4.2)]
         [InlineData("en-US", "4.2 Np", LevelUnit.Neper, 4.2)]
-        public void Parse(string culture, string quantityString, LevelUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, LevelUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Level.Parse(quantityString);
@@ -248,7 +248,7 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("en-US", "4.2 dB", LevelUnit.Decibel, 4.2)]
         [InlineData("en-US", "4.2 Np", LevelUnit.Neper, 4.2)]
-        public void TryParse(string culture, string quantityString, LevelUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, LevelUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Level.TryParse(quantityString, out Level parsed));
@@ -551,8 +551,8 @@ namespace UnitsNet.Tests
             var quantity = Level.FromDecibels(firstValue);
             var otherQuantity = Level.FromDecibels(secondValue);
             Level maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Level.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, largerTolerance));

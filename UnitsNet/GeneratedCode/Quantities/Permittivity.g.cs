@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct Permittivity :
         IArithmeticQuantity<Permittivity, PermittivityUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Permittivity, Permittivity, QuantityValue>,
+        IDivisionOperators<Permittivity, Permittivity, double>,
         IComparisonOperators<Permittivity, Permittivity, bool>,
         IParsable<Permittivity>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -133,7 +133,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Permittivity(QuantityValue value, PermittivityUnit unit)
+        public Permittivity(double value, PermittivityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -147,7 +147,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Permittivity(QuantityValue value, UnitSystem unitSystem)
+        public Permittivity(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -189,7 +189,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public PermittivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -223,9 +223,9 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PermittivityUnit.FaradPerMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PermittivityUnit.FaradPerMeter"/>
         /// </summary>
-        public QuantityValue FaradsPerMeter => this.As(PermittivityUnit.FaradPerMeter);
+        public double FaradsPerMeter => this.As(PermittivityUnit.FaradPerMeter);
 
         #endregion
 
@@ -259,7 +259,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Permittivity"/> from <see cref="PermittivityUnit.FaradPerMeter"/>.
         /// </summary>
-        public static Permittivity FromFaradsPerMeter(QuantityValue value)
+        public static Permittivity FromFaradsPerMeter(double value)
         {
             return new Permittivity(value, PermittivityUnit.FaradPerMeter);
         }
@@ -270,7 +270,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Permittivity unit value.</returns>
-        public static Permittivity From(QuantityValue value, PermittivityUnit fromUnit)
+        public static Permittivity From(double value, PermittivityUnit fromUnit)
         {
             return new Permittivity(value, fromUnit);
         }
@@ -435,25 +435,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Permittivity"/> from multiplying value and <see cref="Permittivity"/>.</summary>
-        public static Permittivity operator *(QuantityValue left, Permittivity right)
+        public static Permittivity operator *(double left, Permittivity right)
         {
             return new Permittivity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Permittivity"/> from multiplying value and <see cref="Permittivity"/>.</summary>
-        public static Permittivity operator *(Permittivity left, QuantityValue right)
+        public static Permittivity operator *(Permittivity left, double right)
         {
             return new Permittivity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Permittivity"/> from dividing <see cref="Permittivity"/> by value.</summary>
-        public static Permittivity operator /(Permittivity left, QuantityValue right)
+        public static Permittivity operator /(Permittivity left, double right)
         {
             return new Permittivity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Permittivity"/> by <see cref="Permittivity"/>.</summary>
-        public static QuantityValue operator /(Permittivity left, Permittivity right)
+        public static double operator /(Permittivity left, Permittivity right)
         {
             return left.FaradsPerMeter / right.FaradsPerMeter;
         }

@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct Turbidity :
         IArithmeticQuantity<Turbidity, TurbidityUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Turbidity, Turbidity, QuantityValue>,
+        IDivisionOperators<Turbidity, Turbidity, double>,
         IComparisonOperators<Turbidity, Turbidity, bool>,
         IParsable<Turbidity>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -133,7 +133,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Turbidity(QuantityValue value, TurbidityUnit unit)
+        public Turbidity(double value, TurbidityUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -175,7 +175,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public TurbidityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -209,9 +209,9 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TurbidityUnit.NTU"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="TurbidityUnit.NTU"/>
         /// </summary>
-        public QuantityValue NTU => this.As(TurbidityUnit.NTU);
+        public double NTU => this.As(TurbidityUnit.NTU);
 
         #endregion
 
@@ -245,7 +245,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Turbidity"/> from <see cref="TurbidityUnit.NTU"/>.
         /// </summary>
-        public static Turbidity FromNTU(QuantityValue value)
+        public static Turbidity FromNTU(double value)
         {
             return new Turbidity(value, TurbidityUnit.NTU);
         }
@@ -256,7 +256,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Turbidity unit value.</returns>
-        public static Turbidity From(QuantityValue value, TurbidityUnit fromUnit)
+        public static Turbidity From(double value, TurbidityUnit fromUnit)
         {
             return new Turbidity(value, fromUnit);
         }
@@ -421,25 +421,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Turbidity"/> from multiplying value and <see cref="Turbidity"/>.</summary>
-        public static Turbidity operator *(QuantityValue left, Turbidity right)
+        public static Turbidity operator *(double left, Turbidity right)
         {
             return new Turbidity(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Turbidity"/> from multiplying value and <see cref="Turbidity"/>.</summary>
-        public static Turbidity operator *(Turbidity left, QuantityValue right)
+        public static Turbidity operator *(Turbidity left, double right)
         {
             return new Turbidity(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Turbidity"/> from dividing <see cref="Turbidity"/> by value.</summary>
-        public static Turbidity operator /(Turbidity left, QuantityValue right)
+        public static Turbidity operator /(Turbidity left, double right)
         {
             return new Turbidity(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Turbidity"/> by <see cref="Turbidity"/>.</summary>
-        public static QuantityValue operator /(Turbidity left, Turbidity right)
+        public static double operator /(Turbidity left, Turbidity right)
         {
             return left.NTU / right.NTU;
         }

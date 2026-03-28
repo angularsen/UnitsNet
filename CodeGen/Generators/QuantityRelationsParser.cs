@@ -46,7 +46,7 @@ namespace CodeGen.Generators
 
             // Add QuantityValue and 1 as pseudo-quantities to validate relations that use them.
             var pseudoQuantity = new Quantity { Name = null!, Units = [new Unit { SingularName = null! }] };
-            quantityDictionary["QuantityValue"] = pseudoQuantity with { Name = "QuantityValue" };
+            quantityDictionary["double"] = pseudoQuantity with { Name = "double" };
             quantityDictionary["1"] = pseudoQuantity with { Name = "1" };
 
             var relations = ParseRelations(rootDir, quantityDictionary);
@@ -116,7 +116,7 @@ namespace CodeGen.Generators
                         // The left operand of a relation is responsible for generating the operator.
                         quantityRelations.Add(relation);
                     }
-                    else if (relation.RightQuantity == quantity && relation.LeftQuantity.Name is "QuantityValue")
+                    else if (relation.RightQuantity == quantity && relation.LeftQuantity.Name is "double")
                     {
                         // Because we cannot add operators to QuantityValue we make the right operand responsible in this case.
                         quantityRelations.Add(relation);

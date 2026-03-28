@@ -550,7 +550,7 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", "4.2 磅", MassUnit.Pound, 4.2)]
         [InlineData("zh-CN", "4.2 短吨", MassUnit.ShortTon, 4.2)]
         [InlineData("zh-CN", "4.2 吨", MassUnit.Tonne, 4.2)]
-        public void Parse(string culture, string quantityString, MassUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, MassUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Mass.Parse(quantityString);
@@ -647,7 +647,7 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", "4.2 磅", MassUnit.Pound, 4.2)]
         [InlineData("zh-CN", "4.2 短吨", MassUnit.ShortTon, 4.2)]
         [InlineData("zh-CN", "4.2 吨", MassUnit.Tonne, 4.2)]
-        public void TryParse(string culture, string quantityString, MassUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, MassUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Mass.TryParse(quantityString, out Mass parsed));
@@ -1540,8 +1540,8 @@ namespace UnitsNet.Tests
             var quantity = Mass.FromKilograms(firstValue);
             var otherQuantity = Mass.FromKilograms(secondValue);
             Mass maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Mass.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct Irradiation :
         IArithmeticQuantity<Irradiation, IrradiationUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Irradiation, Irradiation, QuantityValue>,
+        IDivisionOperators<Irradiation, Irradiation, double>,
         IComparisonOperators<Irradiation, Irradiation, bool>,
         IParsable<Irradiation>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -157,7 +157,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Irradiation(QuantityValue value, IrradiationUnit unit)
+        public Irradiation(double value, IrradiationUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -171,7 +171,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Irradiation(QuantityValue value, UnitSystem unitSystem)
+        public Irradiation(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -213,7 +213,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public IrradiationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -247,49 +247,49 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradiationUnit.BtuPerSquareFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.BtuPerSquareFoot"/>
         /// </summary>
-        public QuantityValue BtusPerSquareFoot => this.As(IrradiationUnit.BtuPerSquareFoot);
+        public double BtusPerSquareFoot => this.As(IrradiationUnit.BtuPerSquareFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradiationUnit.JoulePerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.JoulePerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue JoulesPerSquareCentimeter => this.As(IrradiationUnit.JoulePerSquareCentimeter);
+        public double JoulesPerSquareCentimeter => this.As(IrradiationUnit.JoulePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradiationUnit.JoulePerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.JoulePerSquareMeter"/>
         /// </summary>
-        public QuantityValue JoulesPerSquareMeter => this.As(IrradiationUnit.JoulePerSquareMeter);
+        public double JoulesPerSquareMeter => this.As(IrradiationUnit.JoulePerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradiationUnit.JoulePerSquareMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.JoulePerSquareMillimeter"/>
         /// </summary>
-        public QuantityValue JoulesPerSquareMillimeter => this.As(IrradiationUnit.JoulePerSquareMillimeter);
+        public double JoulesPerSquareMillimeter => this.As(IrradiationUnit.JoulePerSquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradiationUnit.KilobtuPerSquareFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.KilobtuPerSquareFoot"/>
         /// </summary>
-        public QuantityValue KilobtusPerSquareFoot => this.As(IrradiationUnit.KilobtuPerSquareFoot);
+        public double KilobtusPerSquareFoot => this.As(IrradiationUnit.KilobtuPerSquareFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradiationUnit.KilojoulePerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.KilojoulePerSquareMeter"/>
         /// </summary>
-        public QuantityValue KilojoulesPerSquareMeter => this.As(IrradiationUnit.KilojoulePerSquareMeter);
+        public double KilojoulesPerSquareMeter => this.As(IrradiationUnit.KilojoulePerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradiationUnit.KilowattHourPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.KilowattHourPerSquareMeter"/>
         /// </summary>
-        public QuantityValue KilowattHoursPerSquareMeter => this.As(IrradiationUnit.KilowattHourPerSquareMeter);
+        public double KilowattHoursPerSquareMeter => this.As(IrradiationUnit.KilowattHourPerSquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradiationUnit.MillijoulePerSquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.MillijoulePerSquareCentimeter"/>
         /// </summary>
-        public QuantityValue MillijoulesPerSquareCentimeter => this.As(IrradiationUnit.MillijoulePerSquareCentimeter);
+        public double MillijoulesPerSquareCentimeter => this.As(IrradiationUnit.MillijoulePerSquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IrradiationUnit.WattHourPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IrradiationUnit.WattHourPerSquareMeter"/>
         /// </summary>
-        public QuantityValue WattHoursPerSquareMeter => this.As(IrradiationUnit.WattHourPerSquareMeter);
+        public double WattHoursPerSquareMeter => this.As(IrradiationUnit.WattHourPerSquareMeter);
 
         #endregion
 
@@ -323,7 +323,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.BtuPerSquareFoot"/>.
         /// </summary>
-        public static Irradiation FromBtusPerSquareFoot(QuantityValue value)
+        public static Irradiation FromBtusPerSquareFoot(double value)
         {
             return new Irradiation(value, IrradiationUnit.BtuPerSquareFoot);
         }
@@ -331,7 +331,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareCentimeter"/>.
         /// </summary>
-        public static Irradiation FromJoulesPerSquareCentimeter(QuantityValue value)
+        public static Irradiation FromJoulesPerSquareCentimeter(double value)
         {
             return new Irradiation(value, IrradiationUnit.JoulePerSquareCentimeter);
         }
@@ -339,7 +339,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareMeter"/>.
         /// </summary>
-        public static Irradiation FromJoulesPerSquareMeter(QuantityValue value)
+        public static Irradiation FromJoulesPerSquareMeter(double value)
         {
             return new Irradiation(value, IrradiationUnit.JoulePerSquareMeter);
         }
@@ -347,7 +347,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.JoulePerSquareMillimeter"/>.
         /// </summary>
-        public static Irradiation FromJoulesPerSquareMillimeter(QuantityValue value)
+        public static Irradiation FromJoulesPerSquareMillimeter(double value)
         {
             return new Irradiation(value, IrradiationUnit.JoulePerSquareMillimeter);
         }
@@ -355,7 +355,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.KilobtuPerSquareFoot"/>.
         /// </summary>
-        public static Irradiation FromKilobtusPerSquareFoot(QuantityValue value)
+        public static Irradiation FromKilobtusPerSquareFoot(double value)
         {
             return new Irradiation(value, IrradiationUnit.KilobtuPerSquareFoot);
         }
@@ -363,7 +363,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.KilojoulePerSquareMeter"/>.
         /// </summary>
-        public static Irradiation FromKilojoulesPerSquareMeter(QuantityValue value)
+        public static Irradiation FromKilojoulesPerSquareMeter(double value)
         {
             return new Irradiation(value, IrradiationUnit.KilojoulePerSquareMeter);
         }
@@ -371,7 +371,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.KilowattHourPerSquareMeter"/>.
         /// </summary>
-        public static Irradiation FromKilowattHoursPerSquareMeter(QuantityValue value)
+        public static Irradiation FromKilowattHoursPerSquareMeter(double value)
         {
             return new Irradiation(value, IrradiationUnit.KilowattHourPerSquareMeter);
         }
@@ -379,7 +379,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.MillijoulePerSquareCentimeter"/>.
         /// </summary>
-        public static Irradiation FromMillijoulesPerSquareCentimeter(QuantityValue value)
+        public static Irradiation FromMillijoulesPerSquareCentimeter(double value)
         {
             return new Irradiation(value, IrradiationUnit.MillijoulePerSquareCentimeter);
         }
@@ -387,7 +387,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Irradiation"/> from <see cref="IrradiationUnit.WattHourPerSquareMeter"/>.
         /// </summary>
-        public static Irradiation FromWattHoursPerSquareMeter(QuantityValue value)
+        public static Irradiation FromWattHoursPerSquareMeter(double value)
         {
             return new Irradiation(value, IrradiationUnit.WattHourPerSquareMeter);
         }
@@ -398,7 +398,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Irradiation unit value.</returns>
-        public static Irradiation From(QuantityValue value, IrradiationUnit fromUnit)
+        public static Irradiation From(double value, IrradiationUnit fromUnit)
         {
             return new Irradiation(value, fromUnit);
         }
@@ -563,25 +563,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Irradiation"/> from multiplying value and <see cref="Irradiation"/>.</summary>
-        public static Irradiation operator *(QuantityValue left, Irradiation right)
+        public static Irradiation operator *(double left, Irradiation right)
         {
             return new Irradiation(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Irradiation"/> from multiplying value and <see cref="Irradiation"/>.</summary>
-        public static Irradiation operator *(Irradiation left, QuantityValue right)
+        public static Irradiation operator *(Irradiation left, double right)
         {
             return new Irradiation(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Irradiation"/> from dividing <see cref="Irradiation"/> by value.</summary>
-        public static Irradiation operator /(Irradiation left, QuantityValue right)
+        public static Irradiation operator /(Irradiation left, double right)
         {
             return new Irradiation(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Irradiation"/> by <see cref="Irradiation"/>.</summary>
-        public static QuantityValue operator /(Irradiation left, Irradiation right)
+        public static double operator /(Irradiation left, Irradiation right)
         {
             return left.JoulesPerSquareMeter / right.JoulesPerSquareMeter;
         }

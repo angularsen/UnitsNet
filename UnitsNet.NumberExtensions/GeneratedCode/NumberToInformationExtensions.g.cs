@@ -32,433 +32,433 @@ namespace UnitsNet.NumberExtensions.NumberToInformation
     /// </summary>
     public static class NumberToInformationExtensions
     {
-        /// <inheritdoc cref="Information.FromBits(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromBits(double)" />
         public static Information Bits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromBits(QuantityValue.CreateChecked(value));
+            => Information.FromBits(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromBits(value.ToQuantityValue());
+            => Information.FromBits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromBytes(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromBytes(double)" />
         public static Information Bytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromBytes(QuantityValue.CreateChecked(value));
+            => Information.FromBytes(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromBytes(value.ToQuantityValue());
+            => Information.FromBytes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromExabits(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromExabits(double)" />
         public static Information Exabits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromExabits(QuantityValue.CreateChecked(value));
+            => Information.FromExabits(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromExabits(value.ToQuantityValue());
+            => Information.FromExabits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromExabytes(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromExabytes(double)" />
         public static Information Exabytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromExabytes(QuantityValue.CreateChecked(value));
+            => Information.FromExabytes(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromExabytes(value.ToQuantityValue());
+            => Information.FromExabytes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromExaoctets(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromExaoctets(double)" />
         public static Information Exaoctets<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromExaoctets(QuantityValue.CreateChecked(value));
+            => Information.FromExaoctets(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromExaoctets(value.ToQuantityValue());
+            => Information.FromExaoctets(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromExbibits(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromExbibits(double)" />
         public static Information Exbibits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromExbibits(QuantityValue.CreateChecked(value));
+            => Information.FromExbibits(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromExbibits(value.ToQuantityValue());
+            => Information.FromExbibits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromExbibytes(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromExbibytes(double)" />
         public static Information Exbibytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromExbibytes(QuantityValue.CreateChecked(value));
+            => Information.FromExbibytes(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromExbibytes(value.ToQuantityValue());
+            => Information.FromExbibytes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromExbioctets(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromExbioctets(double)" />
         public static Information Exbioctets<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromExbioctets(QuantityValue.CreateChecked(value));
+            => Information.FromExbioctets(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromExbioctets(value.ToQuantityValue());
+            => Information.FromExbioctets(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromGibibits(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromGibibits(double)" />
         public static Information Gibibits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromGibibits(QuantityValue.CreateChecked(value));
+            => Information.FromGibibits(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromGibibits(value.ToQuantityValue());
+            => Information.FromGibibits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromGibibytes(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromGibibytes(double)" />
         public static Information Gibibytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromGibibytes(QuantityValue.CreateChecked(value));
+            => Information.FromGibibytes(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromGibibytes(value.ToQuantityValue());
+            => Information.FromGibibytes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromGibioctets(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromGibioctets(double)" />
         public static Information Gibioctets<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromGibioctets(QuantityValue.CreateChecked(value));
+            => Information.FromGibioctets(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromGibioctets(value.ToQuantityValue());
+            => Information.FromGibioctets(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromGigabits(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromGigabits(double)" />
         public static Information Gigabits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromGigabits(QuantityValue.CreateChecked(value));
+            => Information.FromGigabits(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromGigabits(value.ToQuantityValue());
+            => Information.FromGigabits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromGigabytes(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromGigabytes(double)" />
         public static Information Gigabytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromGigabytes(QuantityValue.CreateChecked(value));
+            => Information.FromGigabytes(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromGigabytes(value.ToQuantityValue());
+            => Information.FromGigabytes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromGigaoctets(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromGigaoctets(double)" />
         public static Information Gigaoctets<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromGigaoctets(QuantityValue.CreateChecked(value));
+            => Information.FromGigaoctets(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromGigaoctets(value.ToQuantityValue());
+            => Information.FromGigaoctets(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromKibibits(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromKibibits(double)" />
         public static Information Kibibits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromKibibits(QuantityValue.CreateChecked(value));
+            => Information.FromKibibits(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromKibibits(value.ToQuantityValue());
+            => Information.FromKibibits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromKibibytes(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromKibibytes(double)" />
         public static Information Kibibytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromKibibytes(QuantityValue.CreateChecked(value));
+            => Information.FromKibibytes(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromKibibytes(value.ToQuantityValue());
+            => Information.FromKibibytes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromKibioctets(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromKibioctets(double)" />
         public static Information Kibioctets<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromKibioctets(QuantityValue.CreateChecked(value));
+            => Information.FromKibioctets(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromKibioctets(value.ToQuantityValue());
+            => Information.FromKibioctets(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromKilobits(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromKilobits(double)" />
         public static Information Kilobits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromKilobits(QuantityValue.CreateChecked(value));
+            => Information.FromKilobits(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromKilobits(value.ToQuantityValue());
+            => Information.FromKilobits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromKilobytes(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromKilobytes(double)" />
         public static Information Kilobytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromKilobytes(QuantityValue.CreateChecked(value));
+            => Information.FromKilobytes(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromKilobytes(value.ToQuantityValue());
+            => Information.FromKilobytes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromKilooctets(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromKilooctets(double)" />
         public static Information Kilooctets<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromKilooctets(QuantityValue.CreateChecked(value));
+            => Information.FromKilooctets(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromKilooctets(value.ToQuantityValue());
+            => Information.FromKilooctets(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromMebibits(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromMebibits(double)" />
         public static Information Mebibits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromMebibits(QuantityValue.CreateChecked(value));
+            => Information.FromMebibits(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromMebibits(value.ToQuantityValue());
+            => Information.FromMebibits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromMebibytes(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromMebibytes(double)" />
         public static Information Mebibytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromMebibytes(QuantityValue.CreateChecked(value));
+            => Information.FromMebibytes(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromMebibytes(value.ToQuantityValue());
+            => Information.FromMebibytes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromMebioctets(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromMebioctets(double)" />
         public static Information Mebioctets<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromMebioctets(QuantityValue.CreateChecked(value));
+            => Information.FromMebioctets(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromMebioctets(value.ToQuantityValue());
+            => Information.FromMebioctets(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromMegabits(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromMegabits(double)" />
         public static Information Megabits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromMegabits(QuantityValue.CreateChecked(value));
+            => Information.FromMegabits(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromMegabits(value.ToQuantityValue());
+            => Information.FromMegabits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromMegabytes(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromMegabytes(double)" />
         public static Information Megabytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromMegabytes(QuantityValue.CreateChecked(value));
+            => Information.FromMegabytes(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromMegabytes(value.ToQuantityValue());
+            => Information.FromMegabytes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromMegaoctets(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromMegaoctets(double)" />
         public static Information Megaoctets<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromMegaoctets(QuantityValue.CreateChecked(value));
+            => Information.FromMegaoctets(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromMegaoctets(value.ToQuantityValue());
+            => Information.FromMegaoctets(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromOctets(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromOctets(double)" />
         public static Information Octets<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromOctets(QuantityValue.CreateChecked(value));
+            => Information.FromOctets(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromOctets(value.ToQuantityValue());
+            => Information.FromOctets(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromPebibits(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromPebibits(double)" />
         public static Information Pebibits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromPebibits(QuantityValue.CreateChecked(value));
+            => Information.FromPebibits(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromPebibits(value.ToQuantityValue());
+            => Information.FromPebibits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromPebibytes(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromPebibytes(double)" />
         public static Information Pebibytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromPebibytes(QuantityValue.CreateChecked(value));
+            => Information.FromPebibytes(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromPebibytes(value.ToQuantityValue());
+            => Information.FromPebibytes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromPebioctets(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromPebioctets(double)" />
         public static Information Pebioctets<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromPebioctets(QuantityValue.CreateChecked(value));
+            => Information.FromPebioctets(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromPebioctets(value.ToQuantityValue());
+            => Information.FromPebioctets(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromPetabits(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromPetabits(double)" />
         public static Information Petabits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromPetabits(QuantityValue.CreateChecked(value));
+            => Information.FromPetabits(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromPetabits(value.ToQuantityValue());
+            => Information.FromPetabits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromPetabytes(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromPetabytes(double)" />
         public static Information Petabytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromPetabytes(QuantityValue.CreateChecked(value));
+            => Information.FromPetabytes(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromPetabytes(value.ToQuantityValue());
+            => Information.FromPetabytes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromPetaoctets(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromPetaoctets(double)" />
         public static Information Petaoctets<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromPetaoctets(QuantityValue.CreateChecked(value));
+            => Information.FromPetaoctets(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromPetaoctets(value.ToQuantityValue());
+            => Information.FromPetaoctets(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromTebibits(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromTebibits(double)" />
         public static Information Tebibits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromTebibits(QuantityValue.CreateChecked(value));
+            => Information.FromTebibits(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromTebibits(value.ToQuantityValue());
+            => Information.FromTebibits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromTebibytes(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromTebibytes(double)" />
         public static Information Tebibytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromTebibytes(QuantityValue.CreateChecked(value));
+            => Information.FromTebibytes(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromTebibytes(value.ToQuantityValue());
+            => Information.FromTebibytes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromTebioctets(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromTebioctets(double)" />
         public static Information Tebioctets<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromTebioctets(QuantityValue.CreateChecked(value));
+            => Information.FromTebioctets(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromTebioctets(value.ToQuantityValue());
+            => Information.FromTebioctets(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromTerabits(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromTerabits(double)" />
         public static Information Terabits<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromTerabits(QuantityValue.CreateChecked(value));
+            => Information.FromTerabits(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromTerabits(value.ToQuantityValue());
+            => Information.FromTerabits(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromTerabytes(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromTerabytes(double)" />
         public static Information Terabytes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromTerabytes(QuantityValue.CreateChecked(value));
+            => Information.FromTerabytes(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromTerabytes(value.ToQuantityValue());
+            => Information.FromTerabytes(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="Information.FromTeraoctets(QuantityValue)" />
+        /// <inheritdoc cref="Information.FromTeraoctets(double)" />
         public static Information Teraoctets<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Information.FromTeraoctets(QuantityValue.CreateChecked(value));
+            => Information.FromTeraoctets(double.CreateChecked(value));
 #else
             , IConvertible
-            => Information.FromTeraoctets(value.ToQuantityValue());
+            => Information.FromTeraoctets(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

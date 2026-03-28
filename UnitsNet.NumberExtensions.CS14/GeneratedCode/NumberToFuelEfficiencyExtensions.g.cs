@@ -42,36 +42,36 @@ namespace UnitsNet.NumberExtensions.NumberToFuelEfficiency
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="FuelEfficiency.FromKilometersPerLiter(QuantityValue)" />
+            /// <inheritdoc cref="FuelEfficiency.FromKilometersPerLiter(double)" />
             public FuelEfficiency KilometersPerLiter
 #if NET7_0_OR_GREATER
-                => FuelEfficiency.FromKilometersPerLiter(QuantityValue.CreateChecked(value));
+                => FuelEfficiency.FromKilometersPerLiter(double.CreateChecked(value));
 #else
-                => FuelEfficiency.FromKilometersPerLiter(value.ToQuantityValue());
+                => FuelEfficiency.FromKilometersPerLiter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="FuelEfficiency.FromLitersPer100Kilometers(QuantityValue)" />
+            /// <inheritdoc cref="FuelEfficiency.FromLitersPer100Kilometers(double)" />
             public FuelEfficiency LitersPer100Kilometers
 #if NET7_0_OR_GREATER
-                => FuelEfficiency.FromLitersPer100Kilometers(QuantityValue.CreateChecked(value));
+                => FuelEfficiency.FromLitersPer100Kilometers(double.CreateChecked(value));
 #else
-                => FuelEfficiency.FromLitersPer100Kilometers(value.ToQuantityValue());
+                => FuelEfficiency.FromLitersPer100Kilometers(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="FuelEfficiency.FromMilesPerUkGallon(QuantityValue)" />
+            /// <inheritdoc cref="FuelEfficiency.FromMilesPerUkGallon(double)" />
             public FuelEfficiency MilesPerUkGallon
 #if NET7_0_OR_GREATER
-                => FuelEfficiency.FromMilesPerUkGallon(QuantityValue.CreateChecked(value));
+                => FuelEfficiency.FromMilesPerUkGallon(double.CreateChecked(value));
 #else
-                => FuelEfficiency.FromMilesPerUkGallon(value.ToQuantityValue());
+                => FuelEfficiency.FromMilesPerUkGallon(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="FuelEfficiency.FromMilesPerUsGallon(QuantityValue)" />
+            /// <inheritdoc cref="FuelEfficiency.FromMilesPerUsGallon(double)" />
             public FuelEfficiency MilesPerUsGallon
 #if NET7_0_OR_GREATER
-                => FuelEfficiency.FromMilesPerUsGallon(QuantityValue.CreateChecked(value));
+                => FuelEfficiency.FromMilesPerUsGallon(double.CreateChecked(value));
 #else
-                => FuelEfficiency.FromMilesPerUsGallon(value.ToQuantityValue());
+                => FuelEfficiency.FromMilesPerUsGallon(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

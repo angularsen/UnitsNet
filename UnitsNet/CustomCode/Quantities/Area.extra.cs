@@ -19,7 +19,7 @@ namespace UnitsNet
         /// <summary>Get circle area from a radius.</summary>
         public static Area FromCircleRadius(Length radius)
         {
-            return FromSquareMeters(QuantityValue.PI * radius.Meters * radius.Meters);
+            return FromSquareMeters(Math.PI * radius.Meters * radius.Meters);
         }
 
         #endregion

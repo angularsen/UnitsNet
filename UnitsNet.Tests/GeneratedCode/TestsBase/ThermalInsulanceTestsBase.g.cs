@@ -332,7 +332,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 m²K/kW", ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, 4.2)]
         [InlineData("en-US", "4.2 m²K/W", ThermalInsulanceUnit.SquareMeterKelvinPerWatt, 4.2)]
         [InlineData("en-US", "4.2 mm²K/W", ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, 4.2)]
-        public void Parse(string culture, string quantityString, ThermalInsulanceUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, ThermalInsulanceUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = ThermalInsulance.Parse(quantityString);
@@ -348,7 +348,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 m²K/kW", ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt, 4.2)]
         [InlineData("en-US", "4.2 m²K/W", ThermalInsulanceUnit.SquareMeterKelvinPerWatt, 4.2)]
         [InlineData("en-US", "4.2 mm²K/W", ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt, 4.2)]
-        public void TryParse(string culture, string quantityString, ThermalInsulanceUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, ThermalInsulanceUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(ThermalInsulance.TryParse(quantityString, out ThermalInsulance parsed));
@@ -697,8 +697,8 @@ namespace UnitsNet.Tests
             var quantity = ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(firstValue);
             var otherQuantity = ThermalInsulance.FromSquareMeterKelvinsPerKilowatt(secondValue);
             ThermalInsulance maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, ThermalInsulance.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

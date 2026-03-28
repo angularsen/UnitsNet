@@ -17,7 +17,7 @@ namespace UnitsNet;
 ///     The type of unit enum that belongs to this quantity, such as <see cref="LengthUnit" /> for
 ///     <see cref="Length" />.
 /// </typeparam>
-public delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(QuantityValue value, TUnitType fromUnit)
+public delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(double value, TUnitType fromUnit)
     where TQuantity : IQuantity
     where TUnitType : struct, Enum;
 
@@ -202,7 +202,7 @@ public class QuantityParser
     {
         var value = QuantityValue.Parse(valueString, ParseNumberStyles, formatProvider);
         TUnitType parsedUnit = _unitParser.Parse<TUnitType>(unitString, formatProvider);
-        return fromDelegate(value, parsedUnit);
+        return fromDelegate((double)value, parsedUnit);
     }
 
     /// <summary>
@@ -237,7 +237,7 @@ public class QuantityParser
             return false;
         }
 
-        result = fromDelegate(value, parsedUnit);
+        result = fromDelegate((double)value, parsedUnit);
         return true;
     }
 

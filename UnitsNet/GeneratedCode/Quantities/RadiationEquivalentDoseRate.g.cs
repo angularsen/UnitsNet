@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct RadiationEquivalentDoseRate :
         IArithmeticQuantity<RadiationEquivalentDoseRate, RadiationEquivalentDoseRateUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<RadiationEquivalentDoseRate, RadiationEquivalentDoseRate, QuantityValue>,
+        IDivisionOperators<RadiationEquivalentDoseRate, RadiationEquivalentDoseRate, double>,
         IMultiplyOperators<RadiationEquivalentDoseRate, Duration, RadiationEquivalentDose>,
         IComparisonOperators<RadiationEquivalentDoseRate, RadiationEquivalentDoseRate, bool>,
         IParsable<RadiationEquivalentDoseRate>,
@@ -52,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -158,7 +158,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public RadiationEquivalentDoseRate(QuantityValue value, RadiationEquivalentDoseRateUnit unit)
+        public RadiationEquivalentDoseRate(double value, RadiationEquivalentDoseRateUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -172,7 +172,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public RadiationEquivalentDoseRate(QuantityValue value, UnitSystem unitSystem)
+        public RadiationEquivalentDoseRate(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -214,7 +214,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public RadiationEquivalentDoseRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -248,54 +248,54 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.MicrosievertPerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.MicrosievertPerHour"/>
         /// </summary>
-        public QuantityValue MicrosievertsPerHour => this.As(RadiationEquivalentDoseRateUnit.MicrosievertPerHour);
+        public double MicrosievertsPerHour => this.As(RadiationEquivalentDoseRateUnit.MicrosievertPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.MicrosievertPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.MicrosievertPerSecond"/>
         /// </summary>
-        public QuantityValue MicrosievertsPerSecond => this.As(RadiationEquivalentDoseRateUnit.MicrosievertPerSecond);
+        public double MicrosievertsPerSecond => this.As(RadiationEquivalentDoseRateUnit.MicrosievertPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour"/>
         /// </summary>
-        public QuantityValue MilliroentgensEquivalentManPerHour => this.As(RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour);
+        public double MilliroentgensEquivalentManPerHour => this.As(RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.MillisievertPerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.MillisievertPerHour"/>
         /// </summary>
-        public QuantityValue MillisievertsPerHour => this.As(RadiationEquivalentDoseRateUnit.MillisievertPerHour);
+        public double MillisievertsPerHour => this.As(RadiationEquivalentDoseRateUnit.MillisievertPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.MillisievertPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.MillisievertPerSecond"/>
         /// </summary>
-        public QuantityValue MillisievertsPerSecond => this.As(RadiationEquivalentDoseRateUnit.MillisievertPerSecond);
+        public double MillisievertsPerSecond => this.As(RadiationEquivalentDoseRateUnit.MillisievertPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.NanosievertPerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.NanosievertPerHour"/>
         /// </summary>
-        public QuantityValue NanosievertsPerHour => this.As(RadiationEquivalentDoseRateUnit.NanosievertPerHour);
+        public double NanosievertsPerHour => this.As(RadiationEquivalentDoseRateUnit.NanosievertPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.NanosievertPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.NanosievertPerSecond"/>
         /// </summary>
-        public QuantityValue NanosievertsPerSecond => this.As(RadiationEquivalentDoseRateUnit.NanosievertPerSecond);
+        public double NanosievertsPerSecond => this.As(RadiationEquivalentDoseRateUnit.NanosievertPerSecond);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour"/>
         /// </summary>
-        public QuantityValue RoentgensEquivalentManPerHour => this.As(RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour);
+        public double RoentgensEquivalentManPerHour => this.As(RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.SievertPerHour"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.SievertPerHour"/>
         /// </summary>
-        public QuantityValue SievertsPerHour => this.As(RadiationEquivalentDoseRateUnit.SievertPerHour);
+        public double SievertsPerHour => this.As(RadiationEquivalentDoseRateUnit.SievertPerHour);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.SievertPerSecond"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RadiationEquivalentDoseRateUnit.SievertPerSecond"/>
         /// </summary>
-        public QuantityValue SievertsPerSecond => this.As(RadiationEquivalentDoseRateUnit.SievertPerSecond);
+        public double SievertsPerSecond => this.As(RadiationEquivalentDoseRateUnit.SievertPerSecond);
 
         #endregion
 
@@ -329,7 +329,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.MicrosievertPerHour"/>.
         /// </summary>
-        public static RadiationEquivalentDoseRate FromMicrosievertsPerHour(QuantityValue value)
+        public static RadiationEquivalentDoseRate FromMicrosievertsPerHour(double value)
         {
             return new RadiationEquivalentDoseRate(value, RadiationEquivalentDoseRateUnit.MicrosievertPerHour);
         }
@@ -337,7 +337,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.MicrosievertPerSecond"/>.
         /// </summary>
-        public static RadiationEquivalentDoseRate FromMicrosievertsPerSecond(QuantityValue value)
+        public static RadiationEquivalentDoseRate FromMicrosievertsPerSecond(double value)
         {
             return new RadiationEquivalentDoseRate(value, RadiationEquivalentDoseRateUnit.MicrosievertPerSecond);
         }
@@ -345,7 +345,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour"/>.
         /// </summary>
-        public static RadiationEquivalentDoseRate FromMilliroentgensEquivalentManPerHour(QuantityValue value)
+        public static RadiationEquivalentDoseRate FromMilliroentgensEquivalentManPerHour(double value)
         {
             return new RadiationEquivalentDoseRate(value, RadiationEquivalentDoseRateUnit.MilliroentgenEquivalentManPerHour);
         }
@@ -353,7 +353,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.MillisievertPerHour"/>.
         /// </summary>
-        public static RadiationEquivalentDoseRate FromMillisievertsPerHour(QuantityValue value)
+        public static RadiationEquivalentDoseRate FromMillisievertsPerHour(double value)
         {
             return new RadiationEquivalentDoseRate(value, RadiationEquivalentDoseRateUnit.MillisievertPerHour);
         }
@@ -361,7 +361,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.MillisievertPerSecond"/>.
         /// </summary>
-        public static RadiationEquivalentDoseRate FromMillisievertsPerSecond(QuantityValue value)
+        public static RadiationEquivalentDoseRate FromMillisievertsPerSecond(double value)
         {
             return new RadiationEquivalentDoseRate(value, RadiationEquivalentDoseRateUnit.MillisievertPerSecond);
         }
@@ -369,7 +369,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.NanosievertPerHour"/>.
         /// </summary>
-        public static RadiationEquivalentDoseRate FromNanosievertsPerHour(QuantityValue value)
+        public static RadiationEquivalentDoseRate FromNanosievertsPerHour(double value)
         {
             return new RadiationEquivalentDoseRate(value, RadiationEquivalentDoseRateUnit.NanosievertPerHour);
         }
@@ -377,7 +377,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.NanosievertPerSecond"/>.
         /// </summary>
-        public static RadiationEquivalentDoseRate FromNanosievertsPerSecond(QuantityValue value)
+        public static RadiationEquivalentDoseRate FromNanosievertsPerSecond(double value)
         {
             return new RadiationEquivalentDoseRate(value, RadiationEquivalentDoseRateUnit.NanosievertPerSecond);
         }
@@ -385,7 +385,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour"/>.
         /// </summary>
-        public static RadiationEquivalentDoseRate FromRoentgensEquivalentManPerHour(QuantityValue value)
+        public static RadiationEquivalentDoseRate FromRoentgensEquivalentManPerHour(double value)
         {
             return new RadiationEquivalentDoseRate(value, RadiationEquivalentDoseRateUnit.RoentgenEquivalentManPerHour);
         }
@@ -393,7 +393,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.SievertPerHour"/>.
         /// </summary>
-        public static RadiationEquivalentDoseRate FromSievertsPerHour(QuantityValue value)
+        public static RadiationEquivalentDoseRate FromSievertsPerHour(double value)
         {
             return new RadiationEquivalentDoseRate(value, RadiationEquivalentDoseRateUnit.SievertPerHour);
         }
@@ -401,7 +401,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="RadiationEquivalentDoseRate"/> from <see cref="RadiationEquivalentDoseRateUnit.SievertPerSecond"/>.
         /// </summary>
-        public static RadiationEquivalentDoseRate FromSievertsPerSecond(QuantityValue value)
+        public static RadiationEquivalentDoseRate FromSievertsPerSecond(double value)
         {
             return new RadiationEquivalentDoseRate(value, RadiationEquivalentDoseRateUnit.SievertPerSecond);
         }
@@ -412,7 +412,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>RadiationEquivalentDoseRate unit value.</returns>
-        public static RadiationEquivalentDoseRate From(QuantityValue value, RadiationEquivalentDoseRateUnit fromUnit)
+        public static RadiationEquivalentDoseRate From(double value, RadiationEquivalentDoseRateUnit fromUnit)
         {
             return new RadiationEquivalentDoseRate(value, fromUnit);
         }
@@ -577,25 +577,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="RadiationEquivalentDoseRate"/> from multiplying value and <see cref="RadiationEquivalentDoseRate"/>.</summary>
-        public static RadiationEquivalentDoseRate operator *(QuantityValue left, RadiationEquivalentDoseRate right)
+        public static RadiationEquivalentDoseRate operator *(double left, RadiationEquivalentDoseRate right)
         {
             return new RadiationEquivalentDoseRate(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="RadiationEquivalentDoseRate"/> from multiplying value and <see cref="RadiationEquivalentDoseRate"/>.</summary>
-        public static RadiationEquivalentDoseRate operator *(RadiationEquivalentDoseRate left, QuantityValue right)
+        public static RadiationEquivalentDoseRate operator *(RadiationEquivalentDoseRate left, double right)
         {
             return new RadiationEquivalentDoseRate(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="RadiationEquivalentDoseRate"/> from dividing <see cref="RadiationEquivalentDoseRate"/> by value.</summary>
-        public static RadiationEquivalentDoseRate operator /(RadiationEquivalentDoseRate left, QuantityValue right)
+        public static RadiationEquivalentDoseRate operator /(RadiationEquivalentDoseRate left, double right)
         {
             return new RadiationEquivalentDoseRate(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="RadiationEquivalentDoseRate"/> by <see cref="RadiationEquivalentDoseRate"/>.</summary>
-        public static QuantityValue operator /(RadiationEquivalentDoseRate left, RadiationEquivalentDoseRate right)
+        public static double operator /(RadiationEquivalentDoseRate left, RadiationEquivalentDoseRate right)
         {
             return left.SievertsPerSecond / right.SievertsPerSecond;
         }

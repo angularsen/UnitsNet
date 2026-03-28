@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct Illuminance :
         IArithmeticQuantity<Illuminance, IlluminanceUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Illuminance, Illuminance, QuantityValue>,
+        IDivisionOperators<Illuminance, Illuminance, double>,
         IMultiplyOperators<Illuminance, Area, LuminousFlux>,
         IComparisonOperators<Illuminance, Illuminance, bool>,
         IParsable<Illuminance>,
@@ -55,7 +55,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -143,7 +143,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Illuminance(QuantityValue value, IlluminanceUnit unit)
+        public Illuminance(double value, IlluminanceUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -157,7 +157,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public Illuminance(QuantityValue value, UnitSystem unitSystem)
+        public Illuminance(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -199,7 +199,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public IlluminanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -233,24 +233,24 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IlluminanceUnit.Kilolux"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Kilolux"/>
         /// </summary>
-        public QuantityValue Kilolux => this.As(IlluminanceUnit.Kilolux);
+        public double Kilolux => this.As(IlluminanceUnit.Kilolux);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IlluminanceUnit.Lux"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Lux"/>
         /// </summary>
-        public QuantityValue Lux => this.As(IlluminanceUnit.Lux);
+        public double Lux => this.As(IlluminanceUnit.Lux);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IlluminanceUnit.Megalux"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Megalux"/>
         /// </summary>
-        public QuantityValue Megalux => this.As(IlluminanceUnit.Megalux);
+        public double Megalux => this.As(IlluminanceUnit.Megalux);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="IlluminanceUnit.Millilux"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="IlluminanceUnit.Millilux"/>
         /// </summary>
-        public QuantityValue Millilux => this.As(IlluminanceUnit.Millilux);
+        public double Millilux => this.As(IlluminanceUnit.Millilux);
 
         #endregion
 
@@ -284,7 +284,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Kilolux"/>.
         /// </summary>
-        public static Illuminance FromKilolux(QuantityValue value)
+        public static Illuminance FromKilolux(double value)
         {
             return new Illuminance(value, IlluminanceUnit.Kilolux);
         }
@@ -292,7 +292,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Lux"/>.
         /// </summary>
-        public static Illuminance FromLux(QuantityValue value)
+        public static Illuminance FromLux(double value)
         {
             return new Illuminance(value, IlluminanceUnit.Lux);
         }
@@ -300,7 +300,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Megalux"/>.
         /// </summary>
-        public static Illuminance FromMegalux(QuantityValue value)
+        public static Illuminance FromMegalux(double value)
         {
             return new Illuminance(value, IlluminanceUnit.Megalux);
         }
@@ -308,7 +308,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Illuminance"/> from <see cref="IlluminanceUnit.Millilux"/>.
         /// </summary>
-        public static Illuminance FromMillilux(QuantityValue value)
+        public static Illuminance FromMillilux(double value)
         {
             return new Illuminance(value, IlluminanceUnit.Millilux);
         }
@@ -319,7 +319,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Illuminance unit value.</returns>
-        public static Illuminance From(QuantityValue value, IlluminanceUnit fromUnit)
+        public static Illuminance From(double value, IlluminanceUnit fromUnit)
         {
             return new Illuminance(value, fromUnit);
         }
@@ -484,25 +484,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="Illuminance"/> from multiplying value and <see cref="Illuminance"/>.</summary>
-        public static Illuminance operator *(QuantityValue left, Illuminance right)
+        public static Illuminance operator *(double left, Illuminance right)
         {
             return new Illuminance(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Illuminance"/> from multiplying value and <see cref="Illuminance"/>.</summary>
-        public static Illuminance operator *(Illuminance left, QuantityValue right)
+        public static Illuminance operator *(Illuminance left, double right)
         {
             return new Illuminance(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="Illuminance"/> from dividing <see cref="Illuminance"/> by value.</summary>
-        public static Illuminance operator /(Illuminance left, QuantityValue right)
+        public static Illuminance operator /(Illuminance left, double right)
         {
             return new Illuminance(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="Illuminance"/> by <see cref="Illuminance"/>.</summary>
-        public static QuantityValue operator /(Illuminance left, Illuminance right)
+        public static double operator /(Illuminance left, Illuminance right)
         {
             return left.Lux / right.Lux;
         }

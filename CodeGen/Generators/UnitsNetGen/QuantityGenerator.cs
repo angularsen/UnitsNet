@@ -73,7 +73,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = ""Value"", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -125,7 +125,7 @@ namespace UnitsNet
             if (!_quantity.IsAffine)
             {
                 Writer.WL($@"
-        IDivisionOperators<{_quantity.Name}, {_quantity.Name}, QuantityValue>,");
+        IDivisionOperators<{_quantity.Name}, {_quantity.Name}, double>,");
             }
 
             if (_quantity.Relations.Any(r => r.Operator is "*" or "/"))
@@ -308,7 +308,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name=""value"">The numeric value to construct this quantity with.</param>
         /// <param name=""unit"">The unit representation to construct this quantity with.</param>
-        public {_quantity.Name}(QuantityValue value, {_unitEnumName} unit)
+        public {_quantity.Name}(double value, {_unitEnumName} unit)
         {{");
             Writer.WL(@"
             _value = value;");
@@ -327,7 +327,7 @@ namespace UnitsNet
         /// <param name=""unitSystem"">The unit system to create the quantity with.</param>
         /// <exception cref=""ArgumentNullException"">The given <see cref=""UnitSystem""/> is null.</exception>
         /// <exception cref=""ArgumentException"">No unit was found for the given <see cref=""UnitSystem""/>.</exception>
-        public {_quantity.Name}(QuantityValue value, UnitSystem unitSystem)
+        public {_quantity.Name}(double value, UnitSystem unitSystem)
         {{
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -375,7 +375,7 @@ namespace UnitsNet
             {
                 Writer.WL($@"
         /// <inheritdoc />
-        public static QuantityValue LogarithmicScalingFactor {{get;}} = {10 * _quantity.LogarithmicScalingFactor};
+        public static double LogarithmicScalingFactor {{get;}} = {10 * _quantity.LogarithmicScalingFactor};
 ");
             }
 
@@ -390,7 +390,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public {_unitEnumName} Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -421,7 +421,7 @@ namespace UnitsNet
             {
                 Writer.WL($@"
 #if NETSTANDARD2_0
-        QuantityValue ILogarithmicQuantity<{_quantity.Name}>.LogarithmicScalingFactor => LogarithmicScalingFactor;
+        double ILogarithmicQuantity<{_quantity.Name}>.LogarithmicScalingFactor => LogarithmicScalingFactor;
 #endif
 ");
             }
@@ -444,11 +444,11 @@ namespace UnitsNet
 
                 Writer.WL($@"
         /// <summary>
-        ///     Gets a <see cref=""QuantityValue""/> value of this quantity converted into <see cref=""{_unitEnumName}.{unit.SingularName}""/>
+        ///     Gets a <see cref=""double""/> value of this quantity converted into <see cref=""{_unitEnumName}.{unit.SingularName}""/>
         /// </summary>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
-        public QuantityValue {unit.PluralName} => this.As({_unitEnumName}.{unit.SingularName});
+        public double {unit.PluralName} => this.As({_unitEnumName}.{unit.SingularName});
 ");
             }
 
@@ -504,7 +504,7 @@ namespace UnitsNet
         /// </summary>");
                 Writer.WLIfText(2, GetObsoleteAttributeOrNull(unit));
                 Writer.WL($@"
-        public static {_quantity.Name} From{unit.PluralName}(QuantityValue value)
+        public static {_quantity.Name} From{unit.PluralName}(double value)
         {{
             return new {_quantity.Name}(value, {_unitEnumName}.{unit.SingularName});
         }}
@@ -518,7 +518,7 @@ namespace UnitsNet
         /// <param name=""value"">Value to convert from.</param>
         /// <param name=""fromUnit"">Unit to convert from.</param>
         /// <returns>{_quantity.Name} unit value.</returns>
-        public static {_quantity.Name} From(QuantityValue value, {_unitEnumName} fromUnit)
+        public static {_quantity.Name} From(double value, {_unitEnumName} fromUnit)
         {{
             return new {_quantity.Name}(value, fromUnit);
         }}
@@ -707,25 +707,25 @@ namespace UnitsNet
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from multiplying value and <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator *(QuantityValue left, {_quantity.Name} right)
+        public static {_quantity.Name} operator *(double left, {_quantity.Name} right)
         {{
             return new {_quantity.Name}(left * right.Value, right.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from multiplying value and <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator *({_quantity.Name} left, QuantityValue right)
+        public static {_quantity.Name} operator *({_quantity.Name} left, double right)
         {{
             return new {_quantity.Name}(left.Value * right, left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from dividing <see cref=""{_quantity.Name}""/> by value.</summary>
-        public static {_quantity.Name} operator /({_quantity.Name} left, QuantityValue right)
+        public static {_quantity.Name} operator /({_quantity.Name} left, double right)
         {{
             return new {_quantity.Name}(left.Value / right, left.Unit);
         }}
 
         /// <summary>Get ratio value from dividing <see cref=""{_quantity.Name}""/> by <see cref=""{_quantity.Name}""/>.</summary>
-        public static QuantityValue operator /({_quantity.Name} left, {_quantity.Name} right)
+        public static double operator /({_quantity.Name} left, {_quantity.Name} right)
         {{
             return left.{_baseUnit.PluralName} / right.{_baseUnit.PluralName};
         }}
@@ -752,7 +752,7 @@ namespace UnitsNet
         /// </remarks>
         public static {_quantity.Name} operator +({_quantity.Name} left, {_quantity.Name} right)
         {{
-            return new {_quantity.Name}(QuantityValueExtensions.AddWithLogScaling(left.Value, right.As(left.Unit), LogarithmicScalingFactor), left.Unit);
+            return new {_quantity.Name}((double)QuantityValueExtensions.AddWithLogScaling((QuantityValue)left.Value, (QuantityValue)right.As(left.Unit), (QuantityValue)LogarithmicScalingFactor), left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic subtraction of two <see cref=""{_quantity.Name}""/>.</summary>
@@ -761,29 +761,29 @@ namespace UnitsNet
         /// </remarks>
         public static {_quantity.Name} operator -({_quantity.Name} left, {_quantity.Name} right)
         {{
-            return new {_quantity.Name}(QuantityValueExtensions.SubtractWithLogScaling(left.Value, right.As(left.Unit), LogarithmicScalingFactor), left.Unit);
+            return new {_quantity.Name}((double)QuantityValueExtensions.SubtractWithLogScaling((QuantityValue)left.Value, (QuantityValue)right.As(left.Unit), (QuantityValue)LogarithmicScalingFactor), left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic multiplication of value and <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator *(QuantityValue left, {_quantity.Name} right)
+        public static {_quantity.Name} operator *(double left, {_quantity.Name} right)
         {{
             return new {_quantity.Name}(left + right.Value, right.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic multiplication of value and <see cref=""{_quantity.Name}""/>.</summary>
-        public static {_quantity.Name} operator *({_quantity.Name} left, QuantityValue right)
+        public static {_quantity.Name} operator *({_quantity.Name} left, double right)
         {{
             return new {_quantity.Name}(left.Value + right, left.Unit);
         }}
 
         /// <summary>Get <see cref=""{_quantity.Name}""/> from logarithmic division of <see cref=""{_quantity.Name}""/> by value.</summary>
-        public static {_quantity.Name} operator /({_quantity.Name} left, QuantityValue right)
+        public static {_quantity.Name} operator /({_quantity.Name} left, double right)
         {{
             return new {_quantity.Name}(left.Value - right, left.Unit);
         }}
 
         /// <summary>Get ratio value from logarithmic division of <see cref=""{_quantity.Name}""/> by <see cref=""{_quantity.Name}""/>.</summary>
-        public static QuantityValue operator /({_quantity.Name} left, {_quantity.Name} right)
+        public static double operator /({_quantity.Name} left, {_quantity.Name} right)
         {{
             return left.Value - right.As(left.Unit);
         }}
@@ -839,7 +839,7 @@ namespace UnitsNet
                 }
                 else
                 {
-                    const string valueType = "QuantityValue";
+                    const string valueType = "double";
                     var leftParameterType = relation.LeftQuantity.Name;
                     var leftConversionProperty = relation.LeftUnit.PluralName;
                     var rightParameterType = relation.RightQuantity.Name;

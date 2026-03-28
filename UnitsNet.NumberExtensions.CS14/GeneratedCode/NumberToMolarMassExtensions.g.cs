@@ -42,108 +42,108 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="MolarMass.FromCentigramsPerMole(QuantityValue)" />
+            /// <inheritdoc cref="MolarMass.FromCentigramsPerMole(double)" />
             public MolarMass CentigramsPerMole
 #if NET7_0_OR_GREATER
-                => MolarMass.FromCentigramsPerMole(QuantityValue.CreateChecked(value));
+                => MolarMass.FromCentigramsPerMole(double.CreateChecked(value));
 #else
-                => MolarMass.FromCentigramsPerMole(value.ToQuantityValue());
+                => MolarMass.FromCentigramsPerMole(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MolarMass.FromDecagramsPerMole(QuantityValue)" />
+            /// <inheritdoc cref="MolarMass.FromDecagramsPerMole(double)" />
             public MolarMass DecagramsPerMole
 #if NET7_0_OR_GREATER
-                => MolarMass.FromDecagramsPerMole(QuantityValue.CreateChecked(value));
+                => MolarMass.FromDecagramsPerMole(double.CreateChecked(value));
 #else
-                => MolarMass.FromDecagramsPerMole(value.ToQuantityValue());
+                => MolarMass.FromDecagramsPerMole(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MolarMass.FromDecigramsPerMole(QuantityValue)" />
+            /// <inheritdoc cref="MolarMass.FromDecigramsPerMole(double)" />
             public MolarMass DecigramsPerMole
 #if NET7_0_OR_GREATER
-                => MolarMass.FromDecigramsPerMole(QuantityValue.CreateChecked(value));
+                => MolarMass.FromDecigramsPerMole(double.CreateChecked(value));
 #else
-                => MolarMass.FromDecigramsPerMole(value.ToQuantityValue());
+                => MolarMass.FromDecigramsPerMole(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MolarMass.FromGramsPerMole(QuantityValue)" />
+            /// <inheritdoc cref="MolarMass.FromGramsPerMole(double)" />
             public MolarMass GramsPerMole
 #if NET7_0_OR_GREATER
-                => MolarMass.FromGramsPerMole(QuantityValue.CreateChecked(value));
+                => MolarMass.FromGramsPerMole(double.CreateChecked(value));
 #else
-                => MolarMass.FromGramsPerMole(value.ToQuantityValue());
+                => MolarMass.FromGramsPerMole(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MolarMass.FromHectogramsPerMole(QuantityValue)" />
+            /// <inheritdoc cref="MolarMass.FromHectogramsPerMole(double)" />
             public MolarMass HectogramsPerMole
 #if NET7_0_OR_GREATER
-                => MolarMass.FromHectogramsPerMole(QuantityValue.CreateChecked(value));
+                => MolarMass.FromHectogramsPerMole(double.CreateChecked(value));
 #else
-                => MolarMass.FromHectogramsPerMole(value.ToQuantityValue());
+                => MolarMass.FromHectogramsPerMole(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MolarMass.FromKilogramsPerKilomole(QuantityValue)" />
+            /// <inheritdoc cref="MolarMass.FromKilogramsPerKilomole(double)" />
             public MolarMass KilogramsPerKilomole
 #if NET7_0_OR_GREATER
-                => MolarMass.FromKilogramsPerKilomole(QuantityValue.CreateChecked(value));
+                => MolarMass.FromKilogramsPerKilomole(double.CreateChecked(value));
 #else
-                => MolarMass.FromKilogramsPerKilomole(value.ToQuantityValue());
+                => MolarMass.FromKilogramsPerKilomole(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MolarMass.FromKilogramsPerMole(QuantityValue)" />
+            /// <inheritdoc cref="MolarMass.FromKilogramsPerMole(double)" />
             public MolarMass KilogramsPerMole
 #if NET7_0_OR_GREATER
-                => MolarMass.FromKilogramsPerMole(QuantityValue.CreateChecked(value));
+                => MolarMass.FromKilogramsPerMole(double.CreateChecked(value));
 #else
-                => MolarMass.FromKilogramsPerMole(value.ToQuantityValue());
+                => MolarMass.FromKilogramsPerMole(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MolarMass.FromKilopoundsPerMole(QuantityValue)" />
+            /// <inheritdoc cref="MolarMass.FromKilopoundsPerMole(double)" />
             public MolarMass KilopoundsPerMole
 #if NET7_0_OR_GREATER
-                => MolarMass.FromKilopoundsPerMole(QuantityValue.CreateChecked(value));
+                => MolarMass.FromKilopoundsPerMole(double.CreateChecked(value));
 #else
-                => MolarMass.FromKilopoundsPerMole(value.ToQuantityValue());
+                => MolarMass.FromKilopoundsPerMole(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MolarMass.FromMegapoundsPerMole(QuantityValue)" />
+            /// <inheritdoc cref="MolarMass.FromMegapoundsPerMole(double)" />
             public MolarMass MegapoundsPerMole
 #if NET7_0_OR_GREATER
-                => MolarMass.FromMegapoundsPerMole(QuantityValue.CreateChecked(value));
+                => MolarMass.FromMegapoundsPerMole(double.CreateChecked(value));
 #else
-                => MolarMass.FromMegapoundsPerMole(value.ToQuantityValue());
+                => MolarMass.FromMegapoundsPerMole(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MolarMass.FromMicrogramsPerMole(QuantityValue)" />
+            /// <inheritdoc cref="MolarMass.FromMicrogramsPerMole(double)" />
             public MolarMass MicrogramsPerMole
 #if NET7_0_OR_GREATER
-                => MolarMass.FromMicrogramsPerMole(QuantityValue.CreateChecked(value));
+                => MolarMass.FromMicrogramsPerMole(double.CreateChecked(value));
 #else
-                => MolarMass.FromMicrogramsPerMole(value.ToQuantityValue());
+                => MolarMass.FromMicrogramsPerMole(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MolarMass.FromMilligramsPerMole(QuantityValue)" />
+            /// <inheritdoc cref="MolarMass.FromMilligramsPerMole(double)" />
             public MolarMass MilligramsPerMole
 #if NET7_0_OR_GREATER
-                => MolarMass.FromMilligramsPerMole(QuantityValue.CreateChecked(value));
+                => MolarMass.FromMilligramsPerMole(double.CreateChecked(value));
 #else
-                => MolarMass.FromMilligramsPerMole(value.ToQuantityValue());
+                => MolarMass.FromMilligramsPerMole(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MolarMass.FromNanogramsPerMole(QuantityValue)" />
+            /// <inheritdoc cref="MolarMass.FromNanogramsPerMole(double)" />
             public MolarMass NanogramsPerMole
 #if NET7_0_OR_GREATER
-                => MolarMass.FromNanogramsPerMole(QuantityValue.CreateChecked(value));
+                => MolarMass.FromNanogramsPerMole(double.CreateChecked(value));
 #else
-                => MolarMass.FromNanogramsPerMole(value.ToQuantityValue());
+                => MolarMass.FromNanogramsPerMole(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MolarMass.FromPoundsPerMole(QuantityValue)" />
+            /// <inheritdoc cref="MolarMass.FromPoundsPerMole(double)" />
             public MolarMass PoundsPerMole
 #if NET7_0_OR_GREATER
-                => MolarMass.FromPoundsPerMole(QuantityValue.CreateChecked(value));
+                => MolarMass.FromPoundsPerMole(double.CreateChecked(value));
 #else
-                => MolarMass.FromPoundsPerMole(value.ToQuantityValue());
+                => MolarMass.FromPoundsPerMole(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

@@ -286,7 +286,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void PressureFromElevation_ConvertsWithRounding()
         {
-            var pressureFromElevation = Pressure.FromElevation(new Length(129149.9769457631m, LengthUnit.Foot), significantDigits: 13);
+            var pressureFromElevation = Pressure.FromElevation(new Length(129149.9769457631, LengthUnit.Foot), significantDigits: 13);
             Assert.Equal(1, pressureFromElevation.Pascals);
         }
 
@@ -295,7 +295,7 @@ namespace UnitsNet.Tests
         {
             Length elevationFromPressure = Pressure.FromPascals(1).ToElevation(significantDigits: 15);
             Assert.Equal(LengthUnit.Foot, elevationFromPressure.Unit);
-            Assert.Equal(129149.976945763m, elevationFromPressure.Value);
+            Assert.Equal(129149.976945763, elevationFromPressure.Value);
         }
     }
 }

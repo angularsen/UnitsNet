@@ -193,7 +193,7 @@ namespace UnitsNet
                     DefaultUnitAttribute defaultUnit = GetAttribute<DefaultUnitAttribute>(context) ?? new DefaultUnitAttribute(default(TQuantity).Unit);
                     if (defaultUnit.UnitType != null)
                     {
-                        quantity = Quantity.From(quantityValue, defaultUnit.UnitType);
+                        quantity = Quantity.From((double)quantityValue, defaultUnit.UnitType);
                     }
                 }
                 else

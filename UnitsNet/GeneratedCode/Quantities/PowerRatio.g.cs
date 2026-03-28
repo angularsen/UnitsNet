@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct PowerRatio :
         ILogarithmicQuantity<PowerRatio, PowerRatioUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<PowerRatio, PowerRatio, QuantityValue>,
+        IDivisionOperators<PowerRatio, PowerRatio, double>,
         IComparisonOperators<PowerRatio, PowerRatio, bool>,
         IParsable<PowerRatio>,
 #endif
@@ -51,7 +51,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -134,7 +134,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public PowerRatio(QuantityValue value, PowerRatioUnit unit)
+        public PowerRatio(double value, PowerRatioUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -172,14 +172,14 @@ namespace UnitsNet
         public static PowerRatio Zero => Info.Zero;
 
         /// <inheritdoc />
-        public static QuantityValue LogarithmicScalingFactor {get;} = 10;
+        public static double LogarithmicScalingFactor {get;} = 10;
 
         #endregion
 
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public PowerRatioUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -207,7 +207,7 @@ namespace UnitsNet
 #endif
 
 #if NETSTANDARD2_0
-        QuantityValue ILogarithmicQuantity<PowerRatio>.LogarithmicScalingFactor => LogarithmicScalingFactor;
+        double ILogarithmicQuantity<PowerRatio>.LogarithmicScalingFactor => LogarithmicScalingFactor;
 #endif
 
         #endregion
@@ -217,14 +217,14 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerRatioUnit.DecibelMilliwatt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerRatioUnit.DecibelMilliwatt"/>
         /// </summary>
-        public QuantityValue DecibelMilliwatts => this.As(PowerRatioUnit.DecibelMilliwatt);
+        public double DecibelMilliwatts => this.As(PowerRatioUnit.DecibelMilliwatt);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerRatioUnit.DecibelWatt"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerRatioUnit.DecibelWatt"/>
         /// </summary>
-        public QuantityValue DecibelWatts => this.As(PowerRatioUnit.DecibelWatt);
+        public double DecibelWatts => this.As(PowerRatioUnit.DecibelWatt);
 
         #endregion
 
@@ -258,7 +258,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerRatio"/> from <see cref="PowerRatioUnit.DecibelMilliwatt"/>.
         /// </summary>
-        public static PowerRatio FromDecibelMilliwatts(QuantityValue value)
+        public static PowerRatio FromDecibelMilliwatts(double value)
         {
             return new PowerRatio(value, PowerRatioUnit.DecibelMilliwatt);
         }
@@ -266,7 +266,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="PowerRatio"/> from <see cref="PowerRatioUnit.DecibelWatt"/>.
         /// </summary>
-        public static PowerRatio FromDecibelWatts(QuantityValue value)
+        public static PowerRatio FromDecibelWatts(double value)
         {
             return new PowerRatio(value, PowerRatioUnit.DecibelWatt);
         }
@@ -277,7 +277,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>PowerRatio unit value.</returns>
-        public static PowerRatio From(QuantityValue value, PowerRatioUnit fromUnit)
+        public static PowerRatio From(double value, PowerRatioUnit fromUnit)
         {
             return new PowerRatio(value, fromUnit);
         }
@@ -435,7 +435,7 @@ namespace UnitsNet
         /// </remarks>
         public static PowerRatio operator +(PowerRatio left, PowerRatio right)
         {
-            return new PowerRatio(QuantityValueExtensions.AddWithLogScaling(left.Value, right.As(left.Unit), LogarithmicScalingFactor), left.Unit);
+            return new PowerRatio((double)QuantityValueExtensions.AddWithLogScaling((QuantityValue)left.Value, (QuantityValue)right.As(left.Unit), (QuantityValue)LogarithmicScalingFactor), left.Unit);
         }
 
         /// <summary>Get <see cref="PowerRatio"/> from logarithmic subtraction of two <see cref="PowerRatio"/>.</summary>
@@ -444,29 +444,29 @@ namespace UnitsNet
         /// </remarks>
         public static PowerRatio operator -(PowerRatio left, PowerRatio right)
         {
-            return new PowerRatio(QuantityValueExtensions.SubtractWithLogScaling(left.Value, right.As(left.Unit), LogarithmicScalingFactor), left.Unit);
+            return new PowerRatio((double)QuantityValueExtensions.SubtractWithLogScaling((QuantityValue)left.Value, (QuantityValue)right.As(left.Unit), (QuantityValue)LogarithmicScalingFactor), left.Unit);
         }
 
         /// <summary>Get <see cref="PowerRatio"/> from logarithmic multiplication of value and <see cref="PowerRatio"/>.</summary>
-        public static PowerRatio operator *(QuantityValue left, PowerRatio right)
+        public static PowerRatio operator *(double left, PowerRatio right)
         {
             return new PowerRatio(left + right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="PowerRatio"/> from logarithmic multiplication of value and <see cref="PowerRatio"/>.</summary>
-        public static PowerRatio operator *(PowerRatio left, QuantityValue right)
+        public static PowerRatio operator *(PowerRatio left, double right)
         {
             return new PowerRatio(left.Value + right, left.Unit);
         }
 
         /// <summary>Get <see cref="PowerRatio"/> from logarithmic division of <see cref="PowerRatio"/> by value.</summary>
-        public static PowerRatio operator /(PowerRatio left, QuantityValue right)
+        public static PowerRatio operator /(PowerRatio left, double right)
         {
             return new PowerRatio(left.Value - right, left.Unit);
         }
 
         /// <summary>Get ratio value from logarithmic division of <see cref="PowerRatio"/> by <see cref="PowerRatio"/>.</summary>
-        public static QuantityValue operator /(PowerRatio left, PowerRatio right)
+        public static double operator /(PowerRatio left, PowerRatio right)
         {
             return left.Value - right.As(left.Unit);
         }

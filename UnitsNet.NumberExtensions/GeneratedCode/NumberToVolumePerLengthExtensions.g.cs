@@ -32,103 +32,103 @@ namespace UnitsNet.NumberExtensions.NumberToVolumePerLength
     /// </summary>
     public static class NumberToVolumePerLengthExtensions
     {
-        /// <inheritdoc cref="VolumePerLength.FromCubicMetersPerMeter(QuantityValue)" />
+        /// <inheritdoc cref="VolumePerLength.FromCubicMetersPerMeter(double)" />
         public static VolumePerLength CubicMetersPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumePerLength.FromCubicMetersPerMeter(QuantityValue.CreateChecked(value));
+            => VolumePerLength.FromCubicMetersPerMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => VolumePerLength.FromCubicMetersPerMeter(value.ToQuantityValue());
+            => VolumePerLength.FromCubicMetersPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="VolumePerLength.FromCubicYardsPerFoot(QuantityValue)" />
+        /// <inheritdoc cref="VolumePerLength.FromCubicYardsPerFoot(double)" />
         public static VolumePerLength CubicYardsPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumePerLength.FromCubicYardsPerFoot(QuantityValue.CreateChecked(value));
+            => VolumePerLength.FromCubicYardsPerFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => VolumePerLength.FromCubicYardsPerFoot(value.ToQuantityValue());
+            => VolumePerLength.FromCubicYardsPerFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="VolumePerLength.FromCubicYardsPerUsSurveyFoot(QuantityValue)" />
+        /// <inheritdoc cref="VolumePerLength.FromCubicYardsPerUsSurveyFoot(double)" />
         public static VolumePerLength CubicYardsPerUsSurveyFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumePerLength.FromCubicYardsPerUsSurveyFoot(QuantityValue.CreateChecked(value));
+            => VolumePerLength.FromCubicYardsPerUsSurveyFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => VolumePerLength.FromCubicYardsPerUsSurveyFoot(value.ToQuantityValue());
+            => VolumePerLength.FromCubicYardsPerUsSurveyFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="VolumePerLength.FromImperialGallonsPerMile(QuantityValue)" />
+        /// <inheritdoc cref="VolumePerLength.FromImperialGallonsPerMile(double)" />
         public static VolumePerLength ImperialGallonsPerMile<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumePerLength.FromImperialGallonsPerMile(QuantityValue.CreateChecked(value));
+            => VolumePerLength.FromImperialGallonsPerMile(double.CreateChecked(value));
 #else
             , IConvertible
-            => VolumePerLength.FromImperialGallonsPerMile(value.ToQuantityValue());
+            => VolumePerLength.FromImperialGallonsPerMile(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="VolumePerLength.FromLitersPerKilometer(QuantityValue)" />
+        /// <inheritdoc cref="VolumePerLength.FromLitersPerKilometer(double)" />
         public static VolumePerLength LitersPerKilometer<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumePerLength.FromLitersPerKilometer(QuantityValue.CreateChecked(value));
+            => VolumePerLength.FromLitersPerKilometer(double.CreateChecked(value));
 #else
             , IConvertible
-            => VolumePerLength.FromLitersPerKilometer(value.ToQuantityValue());
+            => VolumePerLength.FromLitersPerKilometer(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="VolumePerLength.FromLitersPerMeter(QuantityValue)" />
+        /// <inheritdoc cref="VolumePerLength.FromLitersPerMeter(double)" />
         public static VolumePerLength LitersPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumePerLength.FromLitersPerMeter(QuantityValue.CreateChecked(value));
+            => VolumePerLength.FromLitersPerMeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => VolumePerLength.FromLitersPerMeter(value.ToQuantityValue());
+            => VolumePerLength.FromLitersPerMeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="VolumePerLength.FromLitersPerMillimeter(QuantityValue)" />
+        /// <inheritdoc cref="VolumePerLength.FromLitersPerMillimeter(double)" />
         public static VolumePerLength LitersPerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumePerLength.FromLitersPerMillimeter(QuantityValue.CreateChecked(value));
+            => VolumePerLength.FromLitersPerMillimeter(double.CreateChecked(value));
 #else
             , IConvertible
-            => VolumePerLength.FromLitersPerMillimeter(value.ToQuantityValue());
+            => VolumePerLength.FromLitersPerMillimeter(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="VolumePerLength.FromOilBarrelsPerFoot(QuantityValue)" />
+        /// <inheritdoc cref="VolumePerLength.FromOilBarrelsPerFoot(double)" />
         public static VolumePerLength OilBarrelsPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumePerLength.FromOilBarrelsPerFoot(QuantityValue.CreateChecked(value));
+            => VolumePerLength.FromOilBarrelsPerFoot(double.CreateChecked(value));
 #else
             , IConvertible
-            => VolumePerLength.FromOilBarrelsPerFoot(value.ToQuantityValue());
+            => VolumePerLength.FromOilBarrelsPerFoot(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-        /// <inheritdoc cref="VolumePerLength.FromUsGallonsPerMile(QuantityValue)" />
+        /// <inheritdoc cref="VolumePerLength.FromUsGallonsPerMile(double)" />
         public static VolumePerLength UsGallonsPerMile<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumePerLength.FromUsGallonsPerMile(QuantityValue.CreateChecked(value));
+            => VolumePerLength.FromUsGallonsPerMile(double.CreateChecked(value));
 #else
             , IConvertible
-            => VolumePerLength.FromUsGallonsPerMile(value.ToQuantityValue());
+            => VolumePerLength.FromUsGallonsPerMile(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
     }

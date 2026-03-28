@@ -42,228 +42,228 @@ namespace UnitsNet.NumberExtensions.NumberToMassMomentOfInertia
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareCentimeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareCentimeters(double)" />
             public MassMomentOfInertia GramSquareCentimeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromGramSquareCentimeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromGramSquareCentimeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromGramSquareCentimeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromGramSquareCentimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareDecimeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareDecimeters(double)" />
             public MassMomentOfInertia GramSquareDecimeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromGramSquareDecimeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromGramSquareDecimeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromGramSquareDecimeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromGramSquareDecimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareMeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareMeters(double)" />
             public MassMomentOfInertia GramSquareMeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromGramSquareMeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromGramSquareMeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromGramSquareMeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromGramSquareMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareMillimeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromGramSquareMillimeters(double)" />
             public MassMomentOfInertia GramSquareMillimeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromGramSquareMillimeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromGramSquareMillimeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromGramSquareMillimeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromGramSquareMillimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareCentimeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareCentimeters(double)" />
             public MassMomentOfInertia KilogramSquareCentimeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromKilogramSquareCentimeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromKilogramSquareCentimeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromKilogramSquareCentimeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromKilogramSquareCentimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareDecimeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareDecimeters(double)" />
             public MassMomentOfInertia KilogramSquareDecimeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromKilogramSquareDecimeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromKilogramSquareDecimeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromKilogramSquareDecimeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromKilogramSquareDecimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareMeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareMeters(double)" />
             public MassMomentOfInertia KilogramSquareMeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromKilogramSquareMeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromKilogramSquareMeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromKilogramSquareMeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromKilogramSquareMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareMillimeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromKilogramSquareMillimeters(double)" />
             public MassMomentOfInertia KilogramSquareMillimeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromKilogramSquareMillimeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromKilogramSquareMillimeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromKilogramSquareMillimeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromKilogramSquareMillimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareCentimeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareCentimeters(double)" />
             public MassMomentOfInertia KilotonneSquareCentimeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromKilotonneSquareCentimeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromKilotonneSquareCentimeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromKilotonneSquareCentimeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromKilotonneSquareCentimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareDecimeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareDecimeters(double)" />
             public MassMomentOfInertia KilotonneSquareDecimeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromKilotonneSquareDecimeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromKilotonneSquareDecimeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromKilotonneSquareDecimeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromKilotonneSquareDecimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareMeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareMeters(double)" />
             public MassMomentOfInertia KilotonneSquareMeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromKilotonneSquareMeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromKilotonneSquareMeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromKilotonneSquareMeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromKilotonneSquareMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareMillimeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromKilotonneSquareMillimeters(double)" />
             public MassMomentOfInertia KilotonneSquareMillimeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromKilotonneSquareMillimeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromKilotonneSquareMillimeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromKilotonneSquareMillimeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromKilotonneSquareMillimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareCentimeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareCentimeters(double)" />
             public MassMomentOfInertia MegatonneSquareCentimeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromMegatonneSquareCentimeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromMegatonneSquareCentimeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromMegatonneSquareCentimeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromMegatonneSquareCentimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareDecimeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareDecimeters(double)" />
             public MassMomentOfInertia MegatonneSquareDecimeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromMegatonneSquareDecimeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromMegatonneSquareDecimeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromMegatonneSquareDecimeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromMegatonneSquareDecimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareMeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareMeters(double)" />
             public MassMomentOfInertia MegatonneSquareMeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromMegatonneSquareMeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromMegatonneSquareMeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromMegatonneSquareMeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromMegatonneSquareMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareMillimeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromMegatonneSquareMillimeters(double)" />
             public MassMomentOfInertia MegatonneSquareMillimeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromMegatonneSquareMillimeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromMegatonneSquareMillimeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromMegatonneSquareMillimeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromMegatonneSquareMillimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareCentimeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareCentimeters(double)" />
             public MassMomentOfInertia MilligramSquareCentimeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromMilligramSquareCentimeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromMilligramSquareCentimeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromMilligramSquareCentimeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromMilligramSquareCentimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareDecimeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareDecimeters(double)" />
             public MassMomentOfInertia MilligramSquareDecimeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromMilligramSquareDecimeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromMilligramSquareDecimeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromMilligramSquareDecimeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromMilligramSquareDecimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareMeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareMeters(double)" />
             public MassMomentOfInertia MilligramSquareMeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromMilligramSquareMeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromMilligramSquareMeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromMilligramSquareMeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromMilligramSquareMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareMillimeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromMilligramSquareMillimeters(double)" />
             public MassMomentOfInertia MilligramSquareMillimeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromMilligramSquareMillimeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromMilligramSquareMillimeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromMilligramSquareMillimeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromMilligramSquareMillimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromPoundSquareFeet(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromPoundSquareFeet(double)" />
             public MassMomentOfInertia PoundSquareFeet
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromPoundSquareFeet(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromPoundSquareFeet(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromPoundSquareFeet(value.ToQuantityValue());
+                => MassMomentOfInertia.FromPoundSquareFeet(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromPoundSquareInches(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromPoundSquareInches(double)" />
             public MassMomentOfInertia PoundSquareInches
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromPoundSquareInches(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromPoundSquareInches(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromPoundSquareInches(value.ToQuantityValue());
+                => MassMomentOfInertia.FromPoundSquareInches(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareFeet(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareFeet(double)" />
             public MassMomentOfInertia SlugSquareFeet
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromSlugSquareFeet(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromSlugSquareFeet(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromSlugSquareFeet(value.ToQuantityValue());
+                => MassMomentOfInertia.FromSlugSquareFeet(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareInches(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareInches(double)" />
             public MassMomentOfInertia SlugSquareInches
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromSlugSquareInches(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromSlugSquareInches(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromSlugSquareInches(value.ToQuantityValue());
+                => MassMomentOfInertia.FromSlugSquareInches(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareCentimeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareCentimeters(double)" />
             public MassMomentOfInertia TonneSquareCentimeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromTonneSquareCentimeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromTonneSquareCentimeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromTonneSquareCentimeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromTonneSquareCentimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareDecimeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareDecimeters(double)" />
             public MassMomentOfInertia TonneSquareDecimeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromTonneSquareDecimeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromTonneSquareDecimeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromTonneSquareDecimeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromTonneSquareDecimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareMeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareMeters(double)" />
             public MassMomentOfInertia TonneSquareMeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromTonneSquareMeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromTonneSquareMeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromTonneSquareMeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromTonneSquareMeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
-            /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareMillimeters(QuantityValue)" />
+            /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareMillimeters(double)" />
             public MassMomentOfInertia TonneSquareMillimeters
 #if NET7_0_OR_GREATER
-                => MassMomentOfInertia.FromTonneSquareMillimeters(QuantityValue.CreateChecked(value));
+                => MassMomentOfInertia.FromTonneSquareMillimeters(double.CreateChecked(value));
 #else
-                => MassMomentOfInertia.FromTonneSquareMillimeters(value.ToQuantityValue());
+                => MassMomentOfInertia.FromTonneSquareMillimeters(value.ToDouble(System.Globalization.CultureInfo.InvariantCulture));
 #endif
 
         }

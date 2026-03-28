@@ -41,7 +41,7 @@ namespace UnitsNet
     public readonly partial struct DoseAreaProduct :
         IArithmeticQuantity<DoseAreaProduct, DoseAreaProductUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<DoseAreaProduct, DoseAreaProduct, QuantityValue>,
+        IDivisionOperators<DoseAreaProduct, DoseAreaProduct, double>,
         IComparisonOperators<DoseAreaProduct, DoseAreaProduct, bool>,
         IParsable<DoseAreaProduct>,
 #endif
@@ -54,7 +54,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -205,7 +205,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public DoseAreaProduct(QuantityValue value, DoseAreaProductUnit unit)
+        public DoseAreaProduct(double value, DoseAreaProductUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -219,7 +219,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public DoseAreaProduct(QuantityValue value, UnitSystem unitSystem)
+        public DoseAreaProduct(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -261,7 +261,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public DoseAreaProductUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -295,129 +295,129 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.CentigraySquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.CentigraySquareCentimeter"/>
         /// </summary>
-        public QuantityValue CentigraySquareCentimeters => this.As(DoseAreaProductUnit.CentigraySquareCentimeter);
+        public double CentigraySquareCentimeters => this.As(DoseAreaProductUnit.CentigraySquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.CentigraySquareDecimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.CentigraySquareDecimeter"/>
         /// </summary>
-        public QuantityValue CentigraySquareDecimeters => this.As(DoseAreaProductUnit.CentigraySquareDecimeter);
+        public double CentigraySquareDecimeters => this.As(DoseAreaProductUnit.CentigraySquareDecimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.CentigraySquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.CentigraySquareMeter"/>
         /// </summary>
-        public QuantityValue CentigraySquareMeters => this.As(DoseAreaProductUnit.CentigraySquareMeter);
+        public double CentigraySquareMeters => this.As(DoseAreaProductUnit.CentigraySquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.CentigraySquareMicrometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.CentigraySquareMicrometer"/>
         /// </summary>
-        public QuantityValue CentigraySquareMicrometers => this.As(DoseAreaProductUnit.CentigraySquareMicrometer);
+        public double CentigraySquareMicrometers => this.As(DoseAreaProductUnit.CentigraySquareMicrometer);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.CentigraySquareMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.CentigraySquareMillimeter"/>
         /// </summary>
-        public QuantityValue CentigraySquareMillimeters => this.As(DoseAreaProductUnit.CentigraySquareMillimeter);
+        public double CentigraySquareMillimeters => this.As(DoseAreaProductUnit.CentigraySquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareCentimeter"/>
         /// </summary>
-        public QuantityValue DecigraySquareCentimeters => this.As(DoseAreaProductUnit.DecigraySquareCentimeter);
+        public double DecigraySquareCentimeters => this.As(DoseAreaProductUnit.DecigraySquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareDecimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareDecimeter"/>
         /// </summary>
-        public QuantityValue DecigraySquareDecimeters => this.As(DoseAreaProductUnit.DecigraySquareDecimeter);
+        public double DecigraySquareDecimeters => this.As(DoseAreaProductUnit.DecigraySquareDecimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareMeter"/>
         /// </summary>
-        public QuantityValue DecigraySquareMeters => this.As(DoseAreaProductUnit.DecigraySquareMeter);
+        public double DecigraySquareMeters => this.As(DoseAreaProductUnit.DecigraySquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareMicrometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareMicrometer"/>
         /// </summary>
-        public QuantityValue DecigraySquareMicrometers => this.As(DoseAreaProductUnit.DecigraySquareMicrometer);
+        public double DecigraySquareMicrometers => this.As(DoseAreaProductUnit.DecigraySquareMicrometer);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.DecigraySquareMillimeter"/>
         /// </summary>
-        public QuantityValue DecigraySquareMillimeters => this.As(DoseAreaProductUnit.DecigraySquareMillimeter);
+        public double DecigraySquareMillimeters => this.As(DoseAreaProductUnit.DecigraySquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.GraySquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.GraySquareCentimeter"/>
         /// </summary>
-        public QuantityValue GraySquareCentimeters => this.As(DoseAreaProductUnit.GraySquareCentimeter);
+        public double GraySquareCentimeters => this.As(DoseAreaProductUnit.GraySquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.GraySquareDecimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.GraySquareDecimeter"/>
         /// </summary>
-        public QuantityValue GraySquareDecimeters => this.As(DoseAreaProductUnit.GraySquareDecimeter);
+        public double GraySquareDecimeters => this.As(DoseAreaProductUnit.GraySquareDecimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.GraySquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.GraySquareMeter"/>
         /// </summary>
-        public QuantityValue GraySquareMeters => this.As(DoseAreaProductUnit.GraySquareMeter);
+        public double GraySquareMeters => this.As(DoseAreaProductUnit.GraySquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.GraySquareMicrometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.GraySquareMicrometer"/>
         /// </summary>
-        public QuantityValue GraySquareMicrometers => this.As(DoseAreaProductUnit.GraySquareMicrometer);
+        public double GraySquareMicrometers => this.As(DoseAreaProductUnit.GraySquareMicrometer);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.GraySquareMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.GraySquareMillimeter"/>
         /// </summary>
-        public QuantityValue GraySquareMillimeters => this.As(DoseAreaProductUnit.GraySquareMillimeter);
+        public double GraySquareMillimeters => this.As(DoseAreaProductUnit.GraySquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareCentimeter"/>
         /// </summary>
-        public QuantityValue MicrograySquareCentimeters => this.As(DoseAreaProductUnit.MicrograySquareCentimeter);
+        public double MicrograySquareCentimeters => this.As(DoseAreaProductUnit.MicrograySquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareDecimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareDecimeter"/>
         /// </summary>
-        public QuantityValue MicrograySquareDecimeters => this.As(DoseAreaProductUnit.MicrograySquareDecimeter);
+        public double MicrograySquareDecimeters => this.As(DoseAreaProductUnit.MicrograySquareDecimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareMeter"/>
         /// </summary>
-        public QuantityValue MicrograySquareMeters => this.As(DoseAreaProductUnit.MicrograySquareMeter);
+        public double MicrograySquareMeters => this.As(DoseAreaProductUnit.MicrograySquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareMicrometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareMicrometer"/>
         /// </summary>
-        public QuantityValue MicrograySquareMicrometers => this.As(DoseAreaProductUnit.MicrograySquareMicrometer);
+        public double MicrograySquareMicrometers => this.As(DoseAreaProductUnit.MicrograySquareMicrometer);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MicrograySquareMillimeter"/>
         /// </summary>
-        public QuantityValue MicrograySquareMillimeters => this.As(DoseAreaProductUnit.MicrograySquareMillimeter);
+        public double MicrograySquareMillimeters => this.As(DoseAreaProductUnit.MicrograySquareMillimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MilligraySquareCentimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MilligraySquareCentimeter"/>
         /// </summary>
-        public QuantityValue MilligraySquareCentimeters => this.As(DoseAreaProductUnit.MilligraySquareCentimeter);
+        public double MilligraySquareCentimeters => this.As(DoseAreaProductUnit.MilligraySquareCentimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MilligraySquareDecimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MilligraySquareDecimeter"/>
         /// </summary>
-        public QuantityValue MilligraySquareDecimeters => this.As(DoseAreaProductUnit.MilligraySquareDecimeter);
+        public double MilligraySquareDecimeters => this.As(DoseAreaProductUnit.MilligraySquareDecimeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MilligraySquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MilligraySquareMeter"/>
         /// </summary>
-        public QuantityValue MilligraySquareMeters => this.As(DoseAreaProductUnit.MilligraySquareMeter);
+        public double MilligraySquareMeters => this.As(DoseAreaProductUnit.MilligraySquareMeter);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MilligraySquareMicrometer"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MilligraySquareMicrometer"/>
         /// </summary>
-        public QuantityValue MilligraySquareMicrometers => this.As(DoseAreaProductUnit.MilligraySquareMicrometer);
+        public double MilligraySquareMicrometers => this.As(DoseAreaProductUnit.MilligraySquareMicrometer);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MilligraySquareMillimeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="DoseAreaProductUnit.MilligraySquareMillimeter"/>
         /// </summary>
-        public QuantityValue MilligraySquareMillimeters => this.As(DoseAreaProductUnit.MilligraySquareMillimeter);
+        public double MilligraySquareMillimeters => this.As(DoseAreaProductUnit.MilligraySquareMillimeter);
 
         #endregion
 
@@ -451,7 +451,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.CentigraySquareCentimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromCentigraySquareCentimeters(QuantityValue value)
+        public static DoseAreaProduct FromCentigraySquareCentimeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.CentigraySquareCentimeter);
         }
@@ -459,7 +459,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.CentigraySquareDecimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromCentigraySquareDecimeters(QuantityValue value)
+        public static DoseAreaProduct FromCentigraySquareDecimeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.CentigraySquareDecimeter);
         }
@@ -467,7 +467,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.CentigraySquareMeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromCentigraySquareMeters(QuantityValue value)
+        public static DoseAreaProduct FromCentigraySquareMeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.CentigraySquareMeter);
         }
@@ -475,7 +475,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.CentigraySquareMicrometer"/>.
         /// </summary>
-        public static DoseAreaProduct FromCentigraySquareMicrometers(QuantityValue value)
+        public static DoseAreaProduct FromCentigraySquareMicrometers(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.CentigraySquareMicrometer);
         }
@@ -483,7 +483,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.CentigraySquareMillimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromCentigraySquareMillimeters(QuantityValue value)
+        public static DoseAreaProduct FromCentigraySquareMillimeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.CentigraySquareMillimeter);
         }
@@ -491,7 +491,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.DecigraySquareCentimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromDecigraySquareCentimeters(QuantityValue value)
+        public static DoseAreaProduct FromDecigraySquareCentimeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.DecigraySquareCentimeter);
         }
@@ -499,7 +499,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.DecigraySquareDecimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromDecigraySquareDecimeters(QuantityValue value)
+        public static DoseAreaProduct FromDecigraySquareDecimeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.DecigraySquareDecimeter);
         }
@@ -507,7 +507,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.DecigraySquareMeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromDecigraySquareMeters(QuantityValue value)
+        public static DoseAreaProduct FromDecigraySquareMeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.DecigraySquareMeter);
         }
@@ -515,7 +515,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.DecigraySquareMicrometer"/>.
         /// </summary>
-        public static DoseAreaProduct FromDecigraySquareMicrometers(QuantityValue value)
+        public static DoseAreaProduct FromDecigraySquareMicrometers(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.DecigraySquareMicrometer);
         }
@@ -523,7 +523,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.DecigraySquareMillimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromDecigraySquareMillimeters(QuantityValue value)
+        public static DoseAreaProduct FromDecigraySquareMillimeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.DecigraySquareMillimeter);
         }
@@ -531,7 +531,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.GraySquareCentimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromGraySquareCentimeters(QuantityValue value)
+        public static DoseAreaProduct FromGraySquareCentimeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.GraySquareCentimeter);
         }
@@ -539,7 +539,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.GraySquareDecimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromGraySquareDecimeters(QuantityValue value)
+        public static DoseAreaProduct FromGraySquareDecimeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.GraySquareDecimeter);
         }
@@ -547,7 +547,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.GraySquareMeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromGraySquareMeters(QuantityValue value)
+        public static DoseAreaProduct FromGraySquareMeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.GraySquareMeter);
         }
@@ -555,7 +555,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.GraySquareMicrometer"/>.
         /// </summary>
-        public static DoseAreaProduct FromGraySquareMicrometers(QuantityValue value)
+        public static DoseAreaProduct FromGraySquareMicrometers(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.GraySquareMicrometer);
         }
@@ -563,7 +563,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.GraySquareMillimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromGraySquareMillimeters(QuantityValue value)
+        public static DoseAreaProduct FromGraySquareMillimeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.GraySquareMillimeter);
         }
@@ -571,7 +571,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MicrograySquareCentimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromMicrograySquareCentimeters(QuantityValue value)
+        public static DoseAreaProduct FromMicrograySquareCentimeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.MicrograySquareCentimeter);
         }
@@ -579,7 +579,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MicrograySquareDecimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromMicrograySquareDecimeters(QuantityValue value)
+        public static DoseAreaProduct FromMicrograySquareDecimeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.MicrograySquareDecimeter);
         }
@@ -587,7 +587,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MicrograySquareMeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromMicrograySquareMeters(QuantityValue value)
+        public static DoseAreaProduct FromMicrograySquareMeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.MicrograySquareMeter);
         }
@@ -595,7 +595,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MicrograySquareMicrometer"/>.
         /// </summary>
-        public static DoseAreaProduct FromMicrograySquareMicrometers(QuantityValue value)
+        public static DoseAreaProduct FromMicrograySquareMicrometers(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.MicrograySquareMicrometer);
         }
@@ -603,7 +603,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MicrograySquareMillimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromMicrograySquareMillimeters(QuantityValue value)
+        public static DoseAreaProduct FromMicrograySquareMillimeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.MicrograySquareMillimeter);
         }
@@ -611,7 +611,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MilligraySquareCentimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromMilligraySquareCentimeters(QuantityValue value)
+        public static DoseAreaProduct FromMilligraySquareCentimeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.MilligraySquareCentimeter);
         }
@@ -619,7 +619,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MilligraySquareDecimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromMilligraySquareDecimeters(QuantityValue value)
+        public static DoseAreaProduct FromMilligraySquareDecimeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.MilligraySquareDecimeter);
         }
@@ -627,7 +627,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MilligraySquareMeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromMilligraySquareMeters(QuantityValue value)
+        public static DoseAreaProduct FromMilligraySquareMeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.MilligraySquareMeter);
         }
@@ -635,7 +635,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MilligraySquareMicrometer"/>.
         /// </summary>
-        public static DoseAreaProduct FromMilligraySquareMicrometers(QuantityValue value)
+        public static DoseAreaProduct FromMilligraySquareMicrometers(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.MilligraySquareMicrometer);
         }
@@ -643,7 +643,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="DoseAreaProduct"/> from <see cref="DoseAreaProductUnit.MilligraySquareMillimeter"/>.
         /// </summary>
-        public static DoseAreaProduct FromMilligraySquareMillimeters(QuantityValue value)
+        public static DoseAreaProduct FromMilligraySquareMillimeters(double value)
         {
             return new DoseAreaProduct(value, DoseAreaProductUnit.MilligraySquareMillimeter);
         }
@@ -654,7 +654,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>DoseAreaProduct unit value.</returns>
-        public static DoseAreaProduct From(QuantityValue value, DoseAreaProductUnit fromUnit)
+        public static DoseAreaProduct From(double value, DoseAreaProductUnit fromUnit)
         {
             return new DoseAreaProduct(value, fromUnit);
         }
@@ -819,25 +819,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="DoseAreaProduct"/> from multiplying value and <see cref="DoseAreaProduct"/>.</summary>
-        public static DoseAreaProduct operator *(QuantityValue left, DoseAreaProduct right)
+        public static DoseAreaProduct operator *(double left, DoseAreaProduct right)
         {
             return new DoseAreaProduct(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="DoseAreaProduct"/> from multiplying value and <see cref="DoseAreaProduct"/>.</summary>
-        public static DoseAreaProduct operator *(DoseAreaProduct left, QuantityValue right)
+        public static DoseAreaProduct operator *(DoseAreaProduct left, double right)
         {
             return new DoseAreaProduct(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="DoseAreaProduct"/> from dividing <see cref="DoseAreaProduct"/> by value.</summary>
-        public static DoseAreaProduct operator /(DoseAreaProduct left, QuantityValue right)
+        public static DoseAreaProduct operator /(DoseAreaProduct left, double right)
         {
             return new DoseAreaProduct(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="DoseAreaProduct"/> by <see cref="DoseAreaProduct"/>.</summary>
-        public static QuantityValue operator /(DoseAreaProduct left, DoseAreaProduct right)
+        public static double operator /(DoseAreaProduct left, DoseAreaProduct right)
         {
             return left.GraySquareMeters / right.GraySquareMeters;
         }

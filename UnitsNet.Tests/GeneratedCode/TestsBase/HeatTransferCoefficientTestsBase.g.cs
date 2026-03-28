@@ -327,7 +327,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kkcal/(m²·hr·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, 4.2)]
         [InlineData("en-US", "4.2 W/(m²·°C)", HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, 4.2)]
         [InlineData("en-US", "4.2 W/(m²·K)", HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, 4.2)]
-        public void Parse(string culture, string quantityString, HeatTransferCoefficientUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, HeatTransferCoefficientUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = HeatTransferCoefficient.Parse(quantityString);
@@ -350,7 +350,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 kkcal/(m²·hr·°C)", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, 4.2)]
         [InlineData("en-US", "4.2 W/(m²·°C)", HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, 4.2)]
         [InlineData("en-US", "4.2 W/(m²·K)", HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, 4.2)]
-        public void TryParse(string culture, string quantityString, HeatTransferCoefficientUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, HeatTransferCoefficientUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(HeatTransferCoefficient.TryParse(quantityString, out HeatTransferCoefficient parsed));
@@ -751,8 +751,8 @@ namespace UnitsNet.Tests
             var quantity = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(firstValue);
             var otherQuantity = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(secondValue);
             HeatTransferCoefficient maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, HeatTransferCoefficient.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct VolumeFlowPerArea :
         IArithmeticQuantity<VolumeFlowPerArea, VolumeFlowPerAreaUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<VolumeFlowPerArea, VolumeFlowPerArea, QuantityValue>,
+        IDivisionOperators<VolumeFlowPerArea, VolumeFlowPerArea, double>,
         IComparisonOperators<VolumeFlowPerArea, VolumeFlowPerArea, bool>,
         IParsable<VolumeFlowPerArea>,
 #endif
@@ -51,7 +51,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -133,7 +133,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public VolumeFlowPerArea(QuantityValue value, VolumeFlowPerAreaUnit unit)
+        public VolumeFlowPerArea(double value, VolumeFlowPerAreaUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -147,7 +147,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public VolumeFlowPerArea(QuantityValue value, UnitSystem unitSystem)
+        public VolumeFlowPerArea(double value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -189,7 +189,7 @@ namespace UnitsNet
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public VolumeFlowPerAreaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -223,14 +223,14 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot"/>
         /// </summary>
-        public QuantityValue CubicFeetPerMinutePerSquareFoot => this.As(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot);
+        public double CubicFeetPerMinutePerSquareFoot => this.As(VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter"/>
         /// </summary>
-        public QuantityValue CubicMetersPerSecondPerSquareMeter => this.As(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter);
+        public double CubicMetersPerSecondPerSquareMeter => this.As(VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter);
 
         #endregion
 
@@ -264,7 +264,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeFlowPerArea"/> from <see cref="VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot"/>.
         /// </summary>
-        public static VolumeFlowPerArea FromCubicFeetPerMinutePerSquareFoot(QuantityValue value)
+        public static VolumeFlowPerArea FromCubicFeetPerMinutePerSquareFoot(double value)
         {
             return new VolumeFlowPerArea(value, VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot);
         }
@@ -272,7 +272,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="VolumeFlowPerArea"/> from <see cref="VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter"/>.
         /// </summary>
-        public static VolumeFlowPerArea FromCubicMetersPerSecondPerSquareMeter(QuantityValue value)
+        public static VolumeFlowPerArea FromCubicMetersPerSecondPerSquareMeter(double value)
         {
             return new VolumeFlowPerArea(value, VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter);
         }
@@ -283,7 +283,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>VolumeFlowPerArea unit value.</returns>
-        public static VolumeFlowPerArea From(QuantityValue value, VolumeFlowPerAreaUnit fromUnit)
+        public static VolumeFlowPerArea From(double value, VolumeFlowPerAreaUnit fromUnit)
         {
             return new VolumeFlowPerArea(value, fromUnit);
         }
@@ -448,25 +448,25 @@ namespace UnitsNet
         }
 
         /// <summary>Get <see cref="VolumeFlowPerArea"/> from multiplying value and <see cref="VolumeFlowPerArea"/>.</summary>
-        public static VolumeFlowPerArea operator *(QuantityValue left, VolumeFlowPerArea right)
+        public static VolumeFlowPerArea operator *(double left, VolumeFlowPerArea right)
         {
             return new VolumeFlowPerArea(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="VolumeFlowPerArea"/> from multiplying value and <see cref="VolumeFlowPerArea"/>.</summary>
-        public static VolumeFlowPerArea operator *(VolumeFlowPerArea left, QuantityValue right)
+        public static VolumeFlowPerArea operator *(VolumeFlowPerArea left, double right)
         {
             return new VolumeFlowPerArea(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="VolumeFlowPerArea"/> from dividing <see cref="VolumeFlowPerArea"/> by value.</summary>
-        public static VolumeFlowPerArea operator /(VolumeFlowPerArea left, QuantityValue right)
+        public static VolumeFlowPerArea operator /(VolumeFlowPerArea left, double right)
         {
             return new VolumeFlowPerArea(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="VolumeFlowPerArea"/> by <see cref="VolumeFlowPerArea"/>.</summary>
-        public static QuantityValue operator /(VolumeFlowPerArea left, VolumeFlowPerArea right)
+        public static double operator /(VolumeFlowPerArea left, VolumeFlowPerArea right)
         {
             return left.CubicMetersPerSecondPerSquareMeter / right.CubicMetersPerSecondPerSquareMeter;
         }

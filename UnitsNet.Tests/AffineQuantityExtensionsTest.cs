@@ -76,7 +76,7 @@ public class AffineQuantityExtensionsTest
     public void Equals_Temperature_IQuantity_WithDifferentType_ReturnsFalse()
     {
         var temperature1 = Temperature.FromDegreesCelsius(25.0);
-        IQuantity length = Length.From(QuantityValue.One, LengthUnit.Meter);
+        IQuantity length = Length.From(1.0, LengthUnit.Meter);
         var tolerance = TemperatureDelta.FromDegreesCelsius(1);
 
         var result = temperature1.Equals(length, tolerance);
@@ -101,7 +101,7 @@ public class AffineQuantityExtensionsTest
     public void Equals_TQuantity_WithNullOther_ReturnsFalse()
     {
         var quantity = new ClassOfAffineQuantity(2, ClassOfAffineQuantityUnit.ATon);
-        var tolerance = new ClassOfLinearQuantity(0.1m, ClassOfLinearQuantityUnit.Some);
+        var tolerance = new ClassOfLinearQuantity(0.1, ClassOfLinearQuantityUnit.Some);
         ClassOfAffineQuantity? nullOther = null;
 
         // since 'other' is a reference type, this is calling the TQuantity overload

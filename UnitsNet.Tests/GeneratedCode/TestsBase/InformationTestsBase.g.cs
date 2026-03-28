@@ -496,7 +496,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 Tb", InformationUnit.Terabit, 4.2)]
         [InlineData("en-US", "4.2 TB", InformationUnit.Terabyte, 4.2)]
         [InlineData("en-US", "4.2 To", InformationUnit.Teraoctet, 4.2)]
-        public void Parse(string culture, string quantityString, InformationUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, InformationUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Information.Parse(quantityString);
@@ -544,7 +544,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 Tb", InformationUnit.Terabit, 4.2)]
         [InlineData("en-US", "4.2 TB", InformationUnit.Terabyte, 4.2)]
         [InlineData("en-US", "4.2 To", InformationUnit.Teraoctet, 4.2)]
-        public void TryParse(string culture, string quantityString, InformationUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, InformationUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Information.TryParse(quantityString, out Information parsed));
@@ -1213,8 +1213,8 @@ namespace UnitsNet.Tests
             var quantity = Information.FromBits(firstValue);
             var otherQuantity = Information.FromBits(secondValue);
             Information maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Information.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

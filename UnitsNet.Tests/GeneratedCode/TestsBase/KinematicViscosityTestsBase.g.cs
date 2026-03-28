@@ -354,7 +354,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 нСт", KinematicViscosityUnit.Nanostokes, 4.2)]
         [InlineData("ru-RU", "4,2 м²/с", KinematicViscosityUnit.SquareMeterPerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 Ст", KinematicViscosityUnit.Stokes, 4.2)]
-        public void Parse(string culture, string quantityString, KinematicViscosityUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, KinematicViscosityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = KinematicViscosity.Parse(quantityString);
@@ -380,7 +380,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 нСт", KinematicViscosityUnit.Nanostokes, 4.2)]
         [InlineData("ru-RU", "4,2 м²/с", KinematicViscosityUnit.SquareMeterPerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 Ст", KinematicViscosityUnit.Stokes, 4.2)]
-        public void TryParse(string culture, string quantityString, KinematicViscosityUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, KinematicViscosityUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(KinematicViscosity.TryParse(quantityString, out KinematicViscosity parsed));
@@ -789,8 +789,8 @@ namespace UnitsNet.Tests
             var quantity = KinematicViscosity.FromSquareMetersPerSecond(firstValue);
             var otherQuantity = KinematicViscosity.FromSquareMetersPerSecond(secondValue);
             KinematicViscosity maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, KinematicViscosity.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

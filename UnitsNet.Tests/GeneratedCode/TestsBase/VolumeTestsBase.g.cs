@@ -719,7 +719,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 нл", VolumeUnit.Nanoliter, 4.2)]
         [InlineData("ru-RU", "4,2 Американский галлон", VolumeUnit.UsGallon, 4.2)]
         [InlineData("ru-RU", "4,2 Американская унция", VolumeUnit.UsOunce, 4.2)]
-        public void Parse(string culture, string quantityString, VolumeUnit expectedUnit, decimal expectedValue)
+        public void Parse(string culture, string quantityString, VolumeUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Volume.Parse(quantityString);
@@ -844,7 +844,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 нл", VolumeUnit.Nanoliter, 4.2)]
         [InlineData("ru-RU", "4,2 Американский галлон", VolumeUnit.UsGallon, 4.2)]
         [InlineData("ru-RU", "4,2 Американская унция", VolumeUnit.UsOunce, 4.2)]
-        public void TryParse(string culture, string quantityString, VolumeUnit expectedUnit, decimal expectedValue)
+        public void TryParse(string culture, string quantityString, VolumeUnit expectedUnit, double expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Volume.TryParse(quantityString, out Volume parsed));
@@ -2005,8 +2005,8 @@ namespace UnitsNet.Tests
             var quantity = Volume.FromCubicMeters(firstValue);
             var otherQuantity = Volume.FromCubicMeters(secondValue);
             Volume maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1m;
-            var smallerTolerance = maxTolerance / 1.1m;
+            var largerTolerance = maxTolerance * 1.1;
+            var smallerTolerance = maxTolerance / 1.1;
             Assert.True(quantity.Equals(quantity, Volume.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));

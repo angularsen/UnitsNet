@@ -38,7 +38,7 @@ namespace UnitsNet
     public readonly partial struct Level :
         ILogarithmicQuantity<Level, LevelUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Level, Level, QuantityValue>,
+        IDivisionOperators<Level, Level, double>,
         IComparisonOperators<Level, Level, bool>,
         IParsable<Level>,
 #endif
@@ -51,7 +51,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
-        private readonly QuantityValue _value;
+        private readonly double _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -133,7 +133,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public Level(QuantityValue value, LevelUnit unit)
+        public Level(double value, LevelUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -171,14 +171,14 @@ namespace UnitsNet
         public static Level Zero => Info.Zero;
 
         /// <inheritdoc />
-        public static QuantityValue LogarithmicScalingFactor {get;} = 10;
+        public static double LogarithmicScalingFactor {get;} = 10;
 
         #endregion
 
         #region Properties
 
         /// <inheritdoc />
-        public QuantityValue Value => _value;
+        public double Value => _value;
 
         /// <inheritdoc />
         public LevelUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -206,7 +206,7 @@ namespace UnitsNet
 #endif
 
 #if NETSTANDARD2_0
-        QuantityValue ILogarithmicQuantity<Level>.LogarithmicScalingFactor => LogarithmicScalingFactor;
+        double ILogarithmicQuantity<Level>.LogarithmicScalingFactor => LogarithmicScalingFactor;
 #endif
 
         #endregion
@@ -216,14 +216,14 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LevelUnit.Decibel"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LevelUnit.Decibel"/>
         /// </summary>
-        public QuantityValue Decibels => this.As(LevelUnit.Decibel);
+        public double Decibels => this.As(LevelUnit.Decibel);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="LevelUnit.Neper"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="LevelUnit.Neper"/>
         /// </summary>
-        public QuantityValue Nepers => this.As(LevelUnit.Neper);
+        public double Nepers => this.As(LevelUnit.Neper);
 
         #endregion
 
@@ -257,7 +257,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Decibel"/>.
         /// </summary>
-        public static Level FromDecibels(QuantityValue value)
+        public static Level FromDecibels(double value)
         {
             return new Level(value, LevelUnit.Decibel);
         }
@@ -265,7 +265,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="Level"/> from <see cref="LevelUnit.Neper"/>.
         /// </summary>
-        public static Level FromNepers(QuantityValue value)
+        public static Level FromNepers(double value)
         {
             return new Level(value, LevelUnit.Neper);
         }
@@ -276,7 +276,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Level unit value.</returns>
-        public static Level From(QuantityValue value, LevelUnit fromUnit)
+        public static Level From(double value, LevelUnit fromUnit)
         {
             return new Level(value, fromUnit);
         }
@@ -434,7 +434,7 @@ namespace UnitsNet
         /// </remarks>
         public static Level operator +(Level left, Level right)
         {
-            return new Level(QuantityValueExtensions.AddWithLogScaling(left.Value, right.As(left.Unit), LogarithmicScalingFactor), left.Unit);
+            return new Level((double)QuantityValueExtensions.AddWithLogScaling((QuantityValue)left.Value, (QuantityValue)right.As(left.Unit), (QuantityValue)LogarithmicScalingFactor), left.Unit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic subtraction of two <see cref="Level"/>.</summary>
@@ -443,29 +443,29 @@ namespace UnitsNet
         /// </remarks>
         public static Level operator -(Level left, Level right)
         {
-            return new Level(QuantityValueExtensions.SubtractWithLogScaling(left.Value, right.As(left.Unit), LogarithmicScalingFactor), left.Unit);
+            return new Level((double)QuantityValueExtensions.SubtractWithLogScaling((QuantityValue)left.Value, (QuantityValue)right.As(left.Unit), (QuantityValue)LogarithmicScalingFactor), left.Unit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic multiplication of value and <see cref="Level"/>.</summary>
-        public static Level operator *(QuantityValue left, Level right)
+        public static Level operator *(double left, Level right)
         {
             return new Level(left + right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic multiplication of value and <see cref="Level"/>.</summary>
-        public static Level operator *(Level left, QuantityValue right)
+        public static Level operator *(Level left, double right)
         {
             return new Level(left.Value + right, left.Unit);
         }
 
         /// <summary>Get <see cref="Level"/> from logarithmic division of <see cref="Level"/> by value.</summary>
-        public static Level operator /(Level left, QuantityValue right)
+        public static Level operator /(Level left, double right)
         {
             return new Level(left.Value - right, left.Unit);
         }
 
         /// <summary>Get ratio value from logarithmic division of <see cref="Level"/> by <see cref="Level"/>.</summary>
-        public static QuantityValue operator /(Level left, Level right)
+        public static double operator /(Level left, Level right)
         {
             return left.Value - right.As(left.Unit);
         }
