@@ -290,6 +290,22 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
                 => Pressure.FromMillibars(value.ToDouble(null));
 #endif
 
+            /// <inheritdoc cref="Pressure.FromMilligramsForcePerSquareFoot(double)" />
+            public Pressure MilligramsForcePerSquareFoot
+#if NET7_0_OR_GREATER
+                => Pressure.FromMilligramsForcePerSquareFoot(double.CreateChecked(value));
+#else
+                => Pressure.FromMilligramsForcePerSquareFoot(value.ToDouble(null));
+#endif
+
+            /// <inheritdoc cref="Pressure.FromMilligramsForcePerSquareMeter(double)" />
+            public Pressure MilligramsForcePerSquareMeter
+#if NET7_0_OR_GREATER
+                => Pressure.FromMilligramsForcePerSquareMeter(double.CreateChecked(value));
+#else
+                => Pressure.FromMilligramsForcePerSquareMeter(value.ToDouble(null));
+#endif
+
             /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(double)" />
             public Pressure MillimetersOfMercury
 #if NET7_0_OR_GREATER
