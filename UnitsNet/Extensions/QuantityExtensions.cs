@@ -17,6 +17,10 @@ public static class QuantityExtensions
     /// </summary>
     /// <param name="quantity">The quantity.</param>
     /// <returns>The <see cref="UnitInfo"/> for the quantity's unit.</returns>
+    /// <remarks>
+    ///     On .NET 5+ targets, this is available as a default interface member property
+    ///     <c>IQuantity.UnitInfo</c> instead.
+    /// </remarks>
     public static UnitInfo GetUnitInfo(this IQuantity quantity)
     {
         return quantity.QuantityInfo[quantity.UnitKey];
