@@ -60,6 +60,28 @@ public partial class IQuantityTests
     }
 
     [Fact]
+    public void UnitInfo_ReturnsUnitInfoForQuantityUnit()
+    {
+        var length = new Length(3.0, LengthUnit.Centimeter);
+        IQuantity quantity = length;
+
+        UnitInfo unitInfo = quantity.UnitInfo;
+
+        Assert.Equal(nameof(LengthUnit.Centimeter), unitInfo.Name);
+        Assert.Equal(quantity.UnitKey, unitInfo.UnitKey);
+    }
+
+    [Fact]
+    public void UnitInfo_ReturnsBaseUnitInfo_WhenDefaultConstructed()
+    {
+        IQuantity quantity = new Length(1.0, Length.BaseUnit);
+
+        UnitInfo unitInfo = quantity.UnitInfo;
+
+        Assert.Equal(Length.Info.BaseUnitInfo.UnitKey, unitInfo.UnitKey);
+    }
+
+    [Fact]
     public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
     {
         var unsupportedUnitSystem = new UnitSystem(new BaseUnits(
