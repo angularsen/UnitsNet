@@ -72,9 +72,9 @@ public partial class IQuantityTests
     }
 
     [Fact]
-    public void UnitInfo_ReturnsBaseUnitInfo_WhenDefaultConstructed()
+    public void UnitInfo_Zero_ReturnsBaseUnitInfo()
     {
-        IQuantity quantity = new Length(1.0, Length.BaseUnit);
+        IQuantity quantity = Length.Info.Zero;
 
         UnitInfo unitInfo = quantity.UnitInfo;
 
