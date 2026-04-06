@@ -58,6 +58,13 @@ namespace UnitsNet
         ///     as it avoids the boxing that would normally occur when casting the enum to <see cref="Enum" />.
         /// </remarks>
         UnitKey UnitKey { get; }
+
+#if NET
+        /// <summary>
+        ///     Gets the <see cref="UnitsNet.UnitInfo"/> for the unit this quantity was constructed with.
+        /// </summary>
+        UnitInfo UnitInfo => QuantityInfo[UnitKey];
+#endif
     }
 
     /// <summary>
