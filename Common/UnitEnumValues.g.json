@@ -2018,5 +2018,9 @@
     "SquareMeterKelvinPerKilowatt": 5,
     "SquareMeterKelvinPerWatt": 4,
     "SquareMillimeterKelvinPerWatt": 13
+  },
+  "Flatness": {
+    "IUnit": 2,
+    "MicrometerPerMeter": 4
   }
 }

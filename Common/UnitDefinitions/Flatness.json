@@ -1,0 +1,31 @@
+{
+  "Name": "Flatness",
+  "BaseUnit": "IUnit",
+  "XmlDocSummary": "Flatness is a measurement for the deviation of a surface from a perfectly flat surface.",
+  "Units": [
+    {
+      "SingularName": "IUnit",
+      "PluralName": "IUnits",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "I-Units" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MicrometerPerMeter",
+      "PluralName": "MicrometersPerMeter",
+      "FromUnitToBaseFunc": "{x} / 1e1",
+      "FromBaseToUnitFunc": "{x} * 1e1",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "µm/m" ]
+        }
+      ]
+    }
+  ]
+}
