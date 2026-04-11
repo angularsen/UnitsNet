@@ -11,6 +11,38 @@ namespace UnitsNet;
 /// </summary>
 public static class QuantityExtensions
 {
+#if !NET
+    /// <summary>
+    ///     Gets the <see cref="UnitInfo"/> for the unit this quantity was constructed with.
+    /// </summary>
+    /// <param name="quantity">The quantity.</param>
+    /// <returns>The <see cref="UnitInfo"/> for the quantity's unit.</returns>
+    /// <remarks>
+    ///     On .NET 5+ targets, this is available as a default interface member property
+    ///     <c>IQuantity.UnitInfo</c> instead.
+    /// </remarks>
+    public static UnitInfo GetUnitInfo(this IQuantity quantity)
+    {
+        return quantity.QuantityInfo[quantity.UnitKey];
+    }
+
+    /// <summary>
+    ///     Gets the <see cref="UnitInfo{TUnit}"/> for the unit this quantity was constructed with.
+    /// </summary>
+    /// <typeparam name="TUnit">The unit enum type.</typeparam>
+    /// <param name="quantity">The quantity.</param>
+    /// <returns>The <see cref="UnitInfo{TUnit}"/> for the quantity's unit.</returns>
+    /// <remarks>
+    ///     On .NET 5+ targets, this is available as a default interface member property
+    ///     <c>IQuantity&lt;TUnitType&gt;.UnitInfo</c> instead.
+    /// </remarks>
+    public static UnitInfo<TUnit> GetUnitInfo<TUnit>(this IQuantity<TUnit> quantity)
+        where TUnit : struct, Enum
+    {
+        return quantity.QuantityInfo[quantity.Unit];
+    }
+#endif
+
     /// <inheritdoc cref="IQuantity.As(UnitKey)" />
     /// <remarks>This should be using UnitConverter.Default.ConvertValue(quantity, toUnit) </remarks>
     internal static double GetValue<TQuantity>(this TQuantity quantity, UnitKey toUnit)
