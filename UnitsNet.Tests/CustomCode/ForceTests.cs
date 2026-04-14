@@ -10,6 +10,7 @@ namespace UnitsNet.Tests
         protected override double DecanewtonsInOneNewton => 1E-1;
         protected override double DyneInOneNewton => 1E5;
 
+        protected override double GramsForceInOneNewton => 0.1019716e3;
         protected override double KilogramsForceInOneNewton => 0.1019716;
 
         protected override double KilopoundsForceInOneNewton => 0.2248089e-3;

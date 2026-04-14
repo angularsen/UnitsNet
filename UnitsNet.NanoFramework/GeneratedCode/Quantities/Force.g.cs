@@ -89,6 +89,11 @@ namespace UnitsNet
         public double Dyne => As(ForceUnit.Dyn);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.GramForce"/>
+        /// </summary>
+        public double GramsForce => As(ForceUnit.GramForce);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ForceUnit.KilogramForce"/>
         /// </summary>
         public double KilogramsForce => As(ForceUnit.KilogramForce);
@@ -166,6 +171,11 @@ namespace UnitsNet
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.Dyn"/>.
         /// </summary>
         public static Force FromDyne(double dyne) => new Force(dyne, ForceUnit.Dyn);
+
+        /// <summary>
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.GramForce"/>.
+        /// </summary>
+        public static Force FromGramsForce(double gramsforce) => new Force(gramsforce, ForceUnit.GramForce);
 
         /// <summary>
         ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.KilogramForce"/>.
@@ -274,6 +284,7 @@ namespace UnitsNet
                     {
                         ForceUnit.Decanewton => (_value) * 1e1d,
                         ForceUnit.Dyn => _value / 1e5,
+                        ForceUnit.GramForce => (_value * 9.80665) / 1e3,
                         ForceUnit.KilogramForce => _value * 9.80665,
                         ForceUnit.Kilonewton => (_value) * 1e3d,
                         ForceUnit.Kilopond => _value * 9.80665,
@@ -302,6 +313,7 @@ namespace UnitsNet
                     {
                         ForceUnit.Decanewton => (baseUnitValue) / 1e1d,
                         ForceUnit.Dyn => baseUnitValue * 1e5,
+                        ForceUnit.GramForce => (baseUnitValue / 9.80665) * 1e3,
                         ForceUnit.KilogramForce => baseUnitValue / 9.80665,
                         ForceUnit.Kilonewton => (baseUnitValue) / 1e3d,
                         ForceUnit.Kilopond => baseUnitValue / 9.80665,

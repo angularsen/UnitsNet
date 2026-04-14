@@ -32,6 +32,7 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Dyne#Definition</remarks>
         Dyn = 2,
+        GramForce = 16,
 
         /// <summary>
         ///     The kilogram-force, or kilopond, is equal to the magnitude of the force exerted on one kilogram of mass in a 9.80665 m/s2 gravitational field (standard gravity). Therefore, one kilogram-force is by definition equal to 9.80665 N.

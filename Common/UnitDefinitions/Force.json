@@ -32,6 +32,22 @@
       ]
     },
     {
+      "SingularName": "GramForce",
+      "PluralName": "GramsForce",
+      "FromUnitToBaseFunc": "({x} * 9.80665) / 1e3",
+      "FromBaseToUnitFunc": "({x} / 9.80665) * 1e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "gf" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "гс" ]
+        }
+      ]
+    },
+    {
       "SingularName": "KilogramForce",
       "PluralName": "KilogramsForce",
       "FromUnitToBaseFunc": "{x} * 9.80665",

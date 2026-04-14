@@ -469,7 +469,8 @@
     "Poundal": 12,
     "PoundForce": 13,
     "ShortTonForce": 14,
-    "TonneForce": 15
+    "TonneForce": 15,
+    "GramForce": 16
   },
   "ForceChangeRate": {
     "CentinewtonPerSecond": 1,
