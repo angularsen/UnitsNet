@@ -200,6 +200,7 @@ namespace UnitsNet
                 throw new ArgumentOutOfRangeException(nameof(fractionDenominator), "Denominator for fractional inch must be greater than zero.");
             }
 
+            var feet = Feet;
             var inchTrunc = (int)Math.Truncate(Inches);
             var numerator = (int)Math.Round((Inches - inchTrunc) * fractionDenominator);
 
@@ -207,6 +208,12 @@ namespace UnitsNet
             {
                 inchTrunc++;
                 numerator = 0;
+            }
+
+            if (inchTrunc == InchesInOneFoot)
+            {
+                feet++;
+                inchTrunc = 0;
             }
 
             var inchPart = new System.Text.StringBuilder();
@@ -248,7 +255,7 @@ namespace UnitsNet
                 return inchPart.ToString();
             }
 
-            return $"{Feet}' - {inchPart}";
+            return $"{feet}' - {inchPart}";
         }
     }
 }
