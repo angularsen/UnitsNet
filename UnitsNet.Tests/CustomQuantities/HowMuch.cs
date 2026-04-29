@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using UnitsNet.Units;
 
 namespace UnitsNet.Tests.CustomQuantities
@@ -100,6 +101,118 @@ namespace UnitsNet.Tests.CustomQuantities
 
         Enum IQuantity.Unit => Unit;
 #endif
+
+        #endregion
+
+
+        #region Equality / IComparable
+
+        /// <summary>Returns true if less or equal to.</summary>
+        public static bool operator <=(HowMuch left, HowMuch right)
+        {
+            return left.Value <= right.ToUnit(left.Unit).Value;
+        }
+
+        /// <summary>Returns true if greater than or equal to.</summary>
+        public static bool operator >=(HowMuch left, HowMuch right)
+        {
+            return left.Value >= right.ToUnit(left.Unit).Value;
+        }
+
+        /// <summary>Returns true if less than.</summary>
+        public static bool operator <(HowMuch left, HowMuch right)
+        {
+            return left.Value < right.ToUnit(left.Unit).Value;
+        }
+
+        /// <summary>Returns true if greater than.</summary>
+        public static bool operator >(HowMuch left, HowMuch right)
+        {
+            return left.Value > right.ToUnit(left.Unit).Value;
+        }
+
+        // We use obsolete attribute to communicate the preferred equality members to use.
+        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
+#pragma warning disable CS0809
+
+        /// <summary>Indicates strict equality of two <see cref="HowMuch"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        [Obsolete(
+            "For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(HowMuch other, HowMuch tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        public static bool operator ==(HowMuch left, HowMuch right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <summary>Indicates strict inequality of two <see cref="HowMuch"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        [Obsolete(
+            "For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(HowMuch other, HowMuch tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        public static bool operator !=(HowMuch left, HowMuch right)
+        {
+            return !(left == right);
+        }
+
+        /// <inheritdoc />
+        /// <summary>Indicates strict equality of two <see cref="HowMuch"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        [Obsolete(
+            "Use Equals(HowMuch other, HowMuch tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        public override bool Equals(object? obj)
+        {
+            if (obj is null || !(obj is HowMuch otherQuantity))
+                return false;
+
+            return Equals(otherQuantity);
+        }
+
+        /// <inheritdoc />
+        /// <summary>Indicates strict equality of two <see cref="HowMuch"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
+        [Obsolete(
+            "Use Equals(HowMuch other, HowMuch tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        public bool Equals(HowMuch other)
+        {
+            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+        }
+
+#pragma warning restore CS0809
+
+        public override int GetHashCode()
+        {
+            return Comparison.GetHashCode(Unit, Value);
+        }
+
+        public int CompareTo(object? obj)
+        {
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+            if (!(obj is HowMuch otherQuantity)) throw new ArgumentException("Expected type HowMuch.", nameof(obj));
+
+            return CompareTo(otherQuantity);
+        }
+
+        public int CompareTo(HowMuch other)
+        {
+            return Value.CompareTo(other.ToUnit(Unit).Value);
+        }
+
+        #endregion
+
+        #region IParsable
+
+        public static HowMuch Parse(string str, IFormatProvider? provider)
+        {
+            return UnitsNetSetup.Default.QuantityParser.Parse<HowMuch, HowMuchUnit>(
+                str,
+                provider,
+                From);
+        }
+
+        public static bool TryParse([NotNullWhen(true)] string? str, IFormatProvider? provider, out HowMuch result)
+        {
+            return UnitsNetSetup.Default.QuantityParser.TryParse<HowMuch, HowMuchUnit>(
+                str,
+                provider,
+                From,
+                out result);
+        }
+
         #endregion
     }
 }
