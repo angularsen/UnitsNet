@@ -60,10 +60,10 @@ namespace UnitsNet
     /// </remarks>");
 
             Writer.WLIfText(1, GetObsoleteAttributeOrNull(_quantity));
-            Writer.WL(@$"
+            Writer.W(@$"
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct {_quantity.Name} :");
+    public readonly partial struct {_quantity.Name}");
             GenerateInterfaceExtensions();
 
             Writer.WL($@"
@@ -103,33 +103,26 @@ namespace UnitsNet
 
         private void GenerateInterfaceExtensions()
         {
-            // generate the base interface (either IVectorQuantity, IAffineQuantity or ILogarithmicQuantity)
+            Writer.W($" : IQuantity<{_quantity.Name}, {_unitEnumName}>, ");
+
+            // generate ILogarithmicQuantity, IAffineQuantity or ILinearQuantity
             if (_quantity.Logarithmic)
             {
-                Writer.WL(@$"
-        ILogarithmicQuantity<{_quantity.Name}, {_unitEnumName}>,");
+                Writer.WL($"ILogarithmicQuantity<{_quantity.Name}>");
             }
             else if (!string.IsNullOrEmpty(_quantity.AffineOffsetType))
             {
-                Writer.WL(@$"
-        IAffineQuantity<{_quantity.Name}, {_unitEnumName}, {_quantity.AffineOffsetType}>,");
+                Writer.WL($"IAffineQuantity<{_quantity.Name}, {_quantity.AffineOffsetType}>");
             }
-            else // the default quantity type implements the IVectorQuantity interface
+            else // the default quantity type implements the ILinearQuantity interface
             {
-                Writer.WL(@$"
-        IArithmeticQuantity<{_quantity.Name}, {_unitEnumName}>,");
-            }
-
-            Writer.WL(@"
-#if NET7_0_OR_GREATER");
-            if (!_quantity.IsAffine)
-            {
-                Writer.WL($@"
-        IDivisionOperators<{_quantity.Name}, {_quantity.Name}, double>,");
+                Writer.WL($"ILinearQuantity<{_quantity.Name}>");
             }
 
             if (_quantity.Relations.Any(r => r.Operator is "*" or "/"))
             {
+                Writer.WL(@"
+#if NET7_0_OR_GREATER");
                 foreach (QuantityRelation relation in _quantity.Relations)
                 {
                     if (relation.LeftQuantity != _quantity) continue;
@@ -137,28 +130,20 @@ namespace UnitsNet
                     {
                         case "*":
                             Writer.W(@"
-        IMultiplyOperators");
+        , IMultiplyOperators");
                             break;
                         case "/":
                             Writer.W(@"
-        IDivisionOperators");
+        , IDivisionOperators");
                             break;
                         default:
                             continue;
                     }
-
-                    Writer.WL($"<{relation.LeftQuantity.Name}, {relation.RightQuantity.Name}, {relation.ResultQuantity.Name}>,");
+                    Writer.WL($"<{relation.LeftQuantity.Name}, {relation.RightQuantity.Name}, {relation.ResultQuantity.Name}>");
                 }
+                Writer.WL(@$"
+#endif");
             }
-
-            Writer.WL(@$"
-        IComparisonOperators<{_quantity.Name}, {_quantity.Name}, bool>,
-        IParsable<{_quantity.Name}>,
-#endif
-        IComparable,
-        IComparable<{_quantity.Name}>,
-        IEquatable<{_quantity.Name}>,
-        IFormattable");
         }
 
         private void GenerateQuantityInfo()
