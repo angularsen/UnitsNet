@@ -99,7 +99,9 @@ namespace UnitsNet.Serialization.JsonNet
         /// <returns>The string representation associated with the given quantity</returns>
         protected string GetQuantityType(IQuantity quantity)
         {
+#pragma warning disable CS0618 // IQuantity.QuantityInfo: serialization must work for custom quantities not registered in UnitsNetSetup.Default.
             return _quantities[quantity.QuantityInfo.Name].Name;
+#pragma warning restore CS0618
         }
 
         /// <inheritdoc />
