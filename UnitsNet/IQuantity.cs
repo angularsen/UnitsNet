@@ -58,17 +58,6 @@ namespace UnitsNet
         ///     as it avoids the boxing that would normally occur when casting the enum to <see cref="Enum" />.
         /// </remarks>
         UnitKey UnitKey { get; }
-
-#if NET
-        /// <summary>
-        ///     Gets the <see cref="UnitsNet.UnitInfo"/> for the unit this quantity was constructed with.
-        /// </summary>
-        /// <remarks>
-        ///     On targets that do not support default interface members (e.g. netstandard2.0),
-        ///     use the <c>GetUnitInfo()</c> extension method from <see cref="QuantityExtensions"/> instead.
-        /// </remarks>
-        UnitInfo UnitInfo => QuantityInfo[UnitKey];
-#endif
     }
 
     /// <summary>
@@ -105,12 +94,7 @@ namespace UnitsNet
 
 #if NET
 
-        /// <inheritdoc cref="IQuantity.UnitInfo"/>
-        new UnitInfo<TUnitType> UnitInfo => QuantityInfo[Unit];
-
         #region Implementation of IQuantity
-
-        UnitInfo IQuantity.UnitInfo => UnitInfo;
 
         QuantityInfo IQuantity.QuantityInfo
         {
