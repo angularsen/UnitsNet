@@ -32,6 +32,11 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Dyne#Definition</remarks>
         Dyn = 2,
+
+        /// <summary>
+        ///     The gram-force is a unit of force equal to the magnitude of force exerted by a gram of mass in standard gravity (9.80665 m/s²). It is equal to 9.80665 × 10⁻³ N.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Kilogram-force</remarks>
         GramForce = 16,
 
         /// <summary>

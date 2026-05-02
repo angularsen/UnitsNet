@@ -1002,7 +1002,7 @@ namespace UnitsNet
                 // ForceUnit -> BaseUnit
                 (ForceUnit.Decanewton, ForceUnit.Newton) => new Force((_value) * 1e1d, ForceUnit.Newton),
                 (ForceUnit.Dyn, ForceUnit.Newton) => new Force(_value / 1e5, ForceUnit.Newton),
-                (ForceUnit.GramForce, ForceUnit.Newton) => new Force((_value * 9.80665) / 1e3, ForceUnit.Newton),
+                (ForceUnit.GramForce, ForceUnit.Newton) => new Force(_value * 9.80665e-3, ForceUnit.Newton),
                 (ForceUnit.KilogramForce, ForceUnit.Newton) => new Force(_value * 9.80665, ForceUnit.Newton),
                 (ForceUnit.Kilonewton, ForceUnit.Newton) => new Force((_value) * 1e3d, ForceUnit.Newton),
                 (ForceUnit.Kilopond, ForceUnit.Newton) => new Force(_value * 9.80665, ForceUnit.Newton),
@@ -1019,7 +1019,7 @@ namespace UnitsNet
                 // BaseUnit -> ForceUnit
                 (ForceUnit.Newton, ForceUnit.Decanewton) => new Force((_value) / 1e1d, ForceUnit.Decanewton),
                 (ForceUnit.Newton, ForceUnit.Dyn) => new Force(_value * 1e5, ForceUnit.Dyn),
-                (ForceUnit.Newton, ForceUnit.GramForce) => new Force((_value / 9.80665) * 1e3, ForceUnit.GramForce),
+                (ForceUnit.Newton, ForceUnit.GramForce) => new Force(_value / 9.80665e-3, ForceUnit.GramForce),
                 (ForceUnit.Newton, ForceUnit.KilogramForce) => new Force(_value / 9.80665, ForceUnit.KilogramForce),
                 (ForceUnit.Newton, ForceUnit.Kilonewton) => new Force((_value) / 1e3d, ForceUnit.Kilonewton),
                 (ForceUnit.Newton, ForceUnit.Kilopond) => new Force(_value / 9.80665, ForceUnit.Kilopond),

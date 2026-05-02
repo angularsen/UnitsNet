@@ -284,7 +284,7 @@ namespace UnitsNet
                     {
                         ForceUnit.Decanewton => (_value) * 1e1d,
                         ForceUnit.Dyn => _value / 1e5,
-                        ForceUnit.GramForce => (_value * 9.80665) / 1e3,
+                        ForceUnit.GramForce => _value * 9.80665e-3,
                         ForceUnit.KilogramForce => _value * 9.80665,
                         ForceUnit.Kilonewton => (_value) * 1e3d,
                         ForceUnit.Kilopond => _value * 9.80665,
@@ -313,7 +313,7 @@ namespace UnitsNet
                     {
                         ForceUnit.Decanewton => (baseUnitValue) / 1e1d,
                         ForceUnit.Dyn => baseUnitValue * 1e5,
-                        ForceUnit.GramForce => (baseUnitValue / 9.80665) * 1e3,
+                        ForceUnit.GramForce => baseUnitValue / 9.80665e-3,
                         ForceUnit.KilogramForce => baseUnitValue / 9.80665,
                         ForceUnit.Kilonewton => (baseUnitValue) / 1e3d,
                         ForceUnit.Kilopond => baseUnitValue / 9.80665,

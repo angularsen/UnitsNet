@@ -111,5 +111,12 @@ namespace UnitsNet.Tests
             var duration = Force.FromKilogramsForce(1) / Force.FromNewtons(1);
             Assert.Equal(9.80665, duration);
         }
+
+        [Fact]
+        public void ThousandGramsForceEqualsOneKilogramForce()
+        {
+            var force = Force.FromGramsForce(1000);
+            Assert.Equal(Force.FromKilogramsForce(1), force.ToUnit(ForceUnit.KilogramForce));
+        }
     }
 }
