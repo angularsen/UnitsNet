@@ -250,7 +250,7 @@ namespace UnitsNet
 
             inchPart.Append('"');
 
-            if (Feet == 0)
+            if (feet == 0)
             {
                 return inchPart.ToString();
             }
