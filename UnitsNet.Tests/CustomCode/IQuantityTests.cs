@@ -82,13 +82,28 @@ public partial class IQuantityTests
     }
 
     [Fact]
-    public void GetUnitInfo_TypedQuantity_ReturnsTypedUnitInfo()
+    public void GetUnitInfo_ConcreteQuantity_ReturnsFullyTypedUnitInfo()
+    {
+        var quantity = new Length(3.0, LengthUnit.Centimeter);
+
+        // Overload resolution picks GetUnitInfo<TQuantity, TUnit> for the concrete struct receiver,
+        // returning the most specific UnitInfo<Length, LengthUnit>.
+        UnitInfo<Length, LengthUnit> unitInfo = quantity.GetUnitInfo();
+
+        Assert.Equal(LengthUnit.Centimeter, unitInfo.Value);
+        Assert.Equal(nameof(LengthUnit.Centimeter), unitInfo.Name);
+    }
+
+    [Fact]
+    public void GetUnitInfo_TypedQuantityReference_FallsBackToNonGeneric()
     {
         IQuantity<LengthUnit> quantity = new Length(3.0, LengthUnit.Centimeter);
 
-        UnitInfo<LengthUnit> unitInfo = quantity.GetUnitInfo();
+        // The IQuantity<TUnit> reference does not satisfy the IQuantity<TSelf, TUnit> constraint
+        // (TSelf would be IQuantity<MassUnit>), so resolution falls back to GetUnitInfo(IQuantity).
+        UnitInfo unitInfo = quantity.GetUnitInfo();
 
-        Assert.Equal(LengthUnit.Centimeter, unitInfo.Value);
+        Assert.Equal(LengthUnit.Centimeter, ((UnitInfo<LengthUnit>)unitInfo).Value);
         Assert.Equal(nameof(LengthUnit.Centimeter), unitInfo.Name);
     }
 
