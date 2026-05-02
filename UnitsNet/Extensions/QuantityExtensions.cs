@@ -11,37 +11,41 @@ namespace UnitsNet;
 /// </summary>
 public static class QuantityExtensions
 {
-#if !NET
     /// <summary>
     ///     Gets the <see cref="UnitInfo"/> for the unit this quantity was constructed with.
     /// </summary>
+    /// <remarks>
+    ///     Picked by overload resolution for callers that only have an <see cref="IQuantity"/> reference.
+    ///     Concretely-typed callers (e.g. a <c>Mass</c> receiver) bind to the
+    ///     <see cref="GetUnitInfo{TQuantity,TUnit}(IQuantity{TQuantity,TUnit})"/> overload and get the
+    ///     more specific <see cref="UnitInfo{TQuantity,TUnit}"/> return.
+    /// </remarks>
     /// <param name="quantity">The quantity.</param>
     /// <returns>The <see cref="UnitInfo"/> for the quantity's unit.</returns>
-    /// <remarks>
-    ///     On .NET 5+ targets, this is available as a default interface member property
-    ///     <c>IQuantity.UnitInfo</c> instead.
-    /// </remarks>
     public static UnitInfo GetUnitInfo(this IQuantity quantity)
     {
         return quantity.QuantityInfo[quantity.UnitKey];
     }
 
     /// <summary>
-    ///     Gets the <see cref="UnitInfo{TUnit}"/> for the unit this quantity was constructed with.
+    ///     Gets the <see cref="UnitInfo{TQuantity,TUnit}"/> for the unit this quantity was constructed with.
     /// </summary>
+    /// <remarks>
+    ///     Picked by overload resolution for concretely-typed receivers (e.g. <c>Mass</c>) where C# can
+    ///     infer both <typeparamref name="TQuantity"/> and <typeparamref name="TUnit"/> from the receiver's
+    ///     <see cref="IQuantity{TSelf,TUnit}"/> implementation. Callers with only an <see cref="IQuantity"/>
+    ///     reference fall back to the non-generic <see cref="GetUnitInfo(IQuantity)"/> overload.
+    /// </remarks>
+    /// <typeparam name="TQuantity">The quantity type.</typeparam>
     /// <typeparam name="TUnit">The unit enum type.</typeparam>
     /// <param name="quantity">The quantity.</param>
-    /// <returns>The <see cref="UnitInfo{TUnit}"/> for the quantity's unit.</returns>
-    /// <remarks>
-    ///     On .NET 5+ targets, this is available as a default interface member property
-    ///     <c>IQuantity&lt;TUnitType&gt;.UnitInfo</c> instead.
-    /// </remarks>
-    public static UnitInfo<TUnit> GetUnitInfo<TUnit>(this IQuantity<TUnit> quantity)
+    /// <returns>The <see cref="UnitInfo{TQuantity,TUnit}"/> for the quantity's unit.</returns>
+    public static UnitInfo<TQuantity, TUnit> GetUnitInfo<TQuantity, TUnit>(this IQuantity<TQuantity, TUnit> quantity)
+        where TQuantity : IQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
         return quantity.QuantityInfo[quantity.Unit];
     }
-#endif
 
     /// <inheritdoc cref="IQuantity.As(UnitKey)" />
     /// <remarks>This should be using UnitConverter.Default.ConvertValue(quantity, toUnit) </remarks>

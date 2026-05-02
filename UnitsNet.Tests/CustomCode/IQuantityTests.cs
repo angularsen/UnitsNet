@@ -60,44 +60,59 @@ public partial class IQuantityTests
     }
 
     [Fact]
-    public void UnitInfo_ReturnsUnitInfoForQuantityUnit()
+    public void GetUnitInfo_ReturnsUnitInfoForQuantityUnit()
     {
         var length = new Length(3.0, LengthUnit.Centimeter);
         IQuantity quantity = length;
 
-        UnitInfo unitInfo = quantity.UnitInfo;
+        UnitInfo unitInfo = quantity.GetUnitInfo();
 
         Assert.Equal(nameof(LengthUnit.Centimeter), unitInfo.Name);
         Assert.Equal(quantity.UnitKey, unitInfo.UnitKey);
     }
 
     [Fact]
-    public void UnitInfo_Zero_ReturnsBaseUnitInfo()
+    public void GetUnitInfo_Zero_ReturnsBaseUnitInfo()
     {
         IQuantity quantity = Length.Info.Zero;
 
-        UnitInfo unitInfo = quantity.UnitInfo;
+        UnitInfo unitInfo = quantity.GetUnitInfo();
 
         Assert.Equal(Length.Info.BaseUnitInfo.UnitKey, unitInfo.UnitKey);
     }
 
     [Fact]
-    public void UnitInfo_TypedQuantity_ReturnsTypedUnitInfo()
+    public void GetUnitInfo_ConcreteQuantity_ReturnsFullyTypedUnitInfo()
     {
-        IQuantity<LengthUnit> quantity = new Length(3.0, LengthUnit.Centimeter);
+        var quantity = new Length(3.0, LengthUnit.Centimeter);
 
-        UnitInfo<LengthUnit> unitInfo = quantity.UnitInfo;
+        // Overload resolution picks GetUnitInfo<TQuantity, TUnit> for the concrete struct receiver,
+        // returning the most specific UnitInfo<Length, LengthUnit>.
+        UnitInfo<Length, LengthUnit> unitInfo = quantity.GetUnitInfo();
 
         Assert.Equal(LengthUnit.Centimeter, unitInfo.Value);
         Assert.Equal(nameof(LengthUnit.Centimeter), unitInfo.Name);
     }
 
     [Fact]
-    public void UnitInfo_MatchesUnit()
+    public void GetUnitInfo_TypedQuantityReference_FallsBackToNonGeneric()
+    {
+        IQuantity<LengthUnit> quantity = new Length(3.0, LengthUnit.Centimeter);
+
+        // The IQuantity<TUnit> reference does not satisfy the IQuantity<TSelf, TUnit> constraint
+        // (TSelf would be IQuantity<MassUnit>), so resolution falls back to GetUnitInfo(IQuantity).
+        UnitInfo unitInfo = quantity.GetUnitInfo();
+
+        Assert.Equal(LengthUnit.Centimeter, ((UnitInfo<LengthUnit>)unitInfo).Value);
+        Assert.Equal(nameof(LengthUnit.Centimeter), unitInfo.Name);
+    }
+
+    [Fact]
+    public void GetUnitInfo_MatchesUnit()
     {
         Assert.All(Quantity.Infos.Select(x => x.Zero), quantity =>
         {
-            Assert.Equal(quantity.Unit, quantity.UnitInfo.Value);
+            Assert.Equal(quantity.Unit, quantity.GetUnitInfo().Value);
         });
     }
 
