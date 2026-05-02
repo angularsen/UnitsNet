@@ -165,7 +165,7 @@ namespace UnitsNet
             // If it does feet/inches are fixed something like 4 ft 0 in is displayed instead of 3ft 12 in for things very close to 4 e.g. 3.9999 ft 
             var feet = Feet;
             var inches = Math.Round(Inches);
-            if(inches == InchesInOneFoot)
+            if (inches == InchesInOneFoot)
             {
                 feet++;
                 inches = 0;
