@@ -5,8 +5,18 @@
     <TargetFramework>net10.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
-    <!-- Allow compile with various nullability warnings until fixed. -->
-    <WarningsNotAsErrors>8600,8601,8603,8604,8618,8619,8625</WarningsNotAsErrors>
+    <!--
+      Inherits Directory.Build.props codes and adds nullability warnings the codegen sources
+      have not been annotated for. All stay visible as warnings.
+      CS8600  - null literal to non-nullable
+      CS8601  - possible null reference assignment
+      CS8603  - possible null reference return
+      CS8604  - possible null reference argument
+      CS8618  - non-nullable field uninitialized in ctor
+      CS8619  - nullability mismatch
+      CS8625  - null literal to non-nullable reference
+    -->
+    <WarningsNotAsErrors>$(WarningsNotAsErrors);8600;8601;8603;8604;8618;8619;8625</WarningsNotAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
