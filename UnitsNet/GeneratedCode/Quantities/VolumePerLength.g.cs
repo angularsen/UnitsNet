@@ -37,7 +37,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct VolumePerLength :
-        IArithmeticQuantity<VolumePerLength, VolumePerLengthUnit>,
+        IQuantity<VolumePerLength, VolumePerLengthUnit>, 
+        ILinearQuantity<VolumePerLength>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<VolumePerLength, VolumePerLength, double>,
         IComparisonOperators<VolumePerLength, VolumePerLength, bool>,

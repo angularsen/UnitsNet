@@ -37,7 +37,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct PressureChangeRate :
-        IArithmeticQuantity<PressureChangeRate, PressureChangeRateUnit>,
+        IQuantity<PressureChangeRate, PressureChangeRateUnit>, 
+        ILinearQuantity<PressureChangeRate>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<PressureChangeRate, PressureChangeRate, double>,
         IMultiplyOperators<PressureChangeRate, Duration, Pressure>,

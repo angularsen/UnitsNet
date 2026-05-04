@@ -37,7 +37,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Information :
-        IArithmeticQuantity<Information, InformationUnit>,
+        IQuantity<Information, InformationUnit>, 
+        ILinearQuantity<Information>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Information, Information, double>,
         IComparisonOperators<Information, Information, bool>,

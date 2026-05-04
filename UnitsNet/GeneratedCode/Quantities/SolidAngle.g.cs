@@ -40,7 +40,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct SolidAngle :
-        IArithmeticQuantity<SolidAngle, SolidAngleUnit>,
+        IQuantity<SolidAngle, SolidAngleUnit>, 
+        ILinearQuantity<SolidAngle>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<SolidAngle, SolidAngle, double>,
         IComparisonOperators<SolidAngle, SolidAngle, bool>,

@@ -40,7 +40,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ElectricInductance :
-        IArithmeticQuantity<ElectricInductance, ElectricInductanceUnit>,
+        IQuantity<ElectricInductance, ElectricInductanceUnit>, 
+        ILinearQuantity<ElectricInductance>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricInductance, ElectricInductance, double>,
         IComparisonOperators<ElectricInductance, ElectricInductance, bool>,

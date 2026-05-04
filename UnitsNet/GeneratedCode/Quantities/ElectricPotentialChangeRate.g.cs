@@ -37,7 +37,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ElectricPotentialChangeRate :
-        IArithmeticQuantity<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit>,
+        IQuantity<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit>, 
+        ILinearQuantity<ElectricPotentialChangeRate>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricPotentialChangeRate, ElectricPotentialChangeRate, double>,
         IComparisonOperators<ElectricPotentialChangeRate, ElectricPotentialChangeRate, bool>,

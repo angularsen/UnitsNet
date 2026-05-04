@@ -37,7 +37,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Volume :
-        IArithmeticQuantity<Volume, VolumeUnit>,
+        IQuantity<Volume, VolumeUnit>, 
+        ILinearQuantity<Volume>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Volume, Volume, double>,
         IMultiplyOperators<Volume, Molarity, AmountOfSubstance>,

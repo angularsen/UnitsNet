@@ -41,7 +41,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ElectricAdmittance :
-        IArithmeticQuantity<ElectricAdmittance, ElectricAdmittanceUnit>,
+        IQuantity<ElectricAdmittance, ElectricAdmittanceUnit>, 
+        ILinearQuantity<ElectricAdmittance>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricAdmittance, ElectricAdmittance, double>,
         IComparisonOperators<ElectricAdmittance, ElectricAdmittance, bool>,

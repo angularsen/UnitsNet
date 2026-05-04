@@ -40,7 +40,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ReciprocalArea :
-        IArithmeticQuantity<ReciprocalArea, ReciprocalAreaUnit>,
+        IQuantity<ReciprocalArea, ReciprocalAreaUnit>, 
+        ILinearQuantity<ReciprocalArea>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ReciprocalArea, ReciprocalArea, double>,
         IMultiplyOperators<ReciprocalArea, Volume, Length>,

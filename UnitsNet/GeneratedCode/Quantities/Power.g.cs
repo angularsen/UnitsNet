@@ -37,7 +37,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Power :
-        IArithmeticQuantity<Power, PowerUnit>,
+        IQuantity<Power, PowerUnit>, 
+        ILinearQuantity<Power>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Power, Power, double>,
         IDivisionOperators<Power, HeatFlux, Area>,

@@ -37,7 +37,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Acceleration :
-        IArithmeticQuantity<Acceleration, AccelerationUnit>,
+        IQuantity<Acceleration, AccelerationUnit>, 
+        ILinearQuantity<Acceleration>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Acceleration, Acceleration, double>,
         IDivisionOperators<Acceleration, Jerk, Duration>,

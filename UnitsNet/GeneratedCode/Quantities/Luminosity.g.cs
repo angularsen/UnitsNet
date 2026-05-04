@@ -40,7 +40,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Luminosity :
-        IArithmeticQuantity<Luminosity, LuminosityUnit>,
+        IQuantity<Luminosity, LuminosityUnit>, 
+        ILinearQuantity<Luminosity>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Luminosity, Luminosity, double>,
         IComparisonOperators<Luminosity, Luminosity, bool>,

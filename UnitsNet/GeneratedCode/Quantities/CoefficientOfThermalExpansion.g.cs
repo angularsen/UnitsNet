@@ -37,7 +37,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct CoefficientOfThermalExpansion :
-        IArithmeticQuantity<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>,
+        IQuantity<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>, 
+        ILinearQuantity<CoefficientOfThermalExpansion>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<CoefficientOfThermalExpansion, CoefficientOfThermalExpansion, double>,
         IMultiplyOperators<CoefficientOfThermalExpansion, TemperatureDelta, Ratio>,

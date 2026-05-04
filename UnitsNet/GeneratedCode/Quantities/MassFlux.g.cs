@@ -37,7 +37,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct MassFlux :
-        IArithmeticQuantity<MassFlux, MassFluxUnit>,
+        IQuantity<MassFlux, MassFluxUnit>, 
+        ILinearQuantity<MassFlux>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<MassFlux, MassFlux, double>,
         IDivisionOperators<MassFlux, Speed, Density>,

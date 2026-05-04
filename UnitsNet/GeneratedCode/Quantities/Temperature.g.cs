@@ -37,7 +37,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Temperature :
-        IAffineQuantity<Temperature, TemperatureUnit, TemperatureDelta>,
+        IQuantity<Temperature, TemperatureUnit>, 
+        IAffineQuantity<Temperature, TemperatureDelta>,
 #if NET7_0_OR_GREATER
         IComparisonOperators<Temperature, Temperature, bool>,
         IParsable<Temperature>,

@@ -37,7 +37,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ForcePerLength :
-        IArithmeticQuantity<ForcePerLength, ForcePerLengthUnit>,
+        IQuantity<ForcePerLength, ForcePerLengthUnit>, 
+        ILinearQuantity<ForcePerLength>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ForcePerLength, ForcePerLength, double>,
         IDivisionOperators<ForcePerLength, SpecificWeight, Area>,

@@ -40,7 +40,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ElectricConductivity :
-        IArithmeticQuantity<ElectricConductivity, ElectricConductivityUnit>,
+        IQuantity<ElectricConductivity, ElectricConductivityUnit>, 
+        ILinearQuantity<ElectricConductivity>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricConductivity, ElectricConductivity, double>,
         IComparisonOperators<ElectricConductivity, ElectricConductivity, bool>,

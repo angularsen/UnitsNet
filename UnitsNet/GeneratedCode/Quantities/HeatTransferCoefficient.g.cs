@@ -37,7 +37,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct HeatTransferCoefficient :
-        IArithmeticQuantity<HeatTransferCoefficient, HeatTransferCoefficientUnit>,
+        IQuantity<HeatTransferCoefficient, HeatTransferCoefficientUnit>, 
+        ILinearQuantity<HeatTransferCoefficient>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<HeatTransferCoefficient, HeatTransferCoefficient, double>,
         IComparisonOperators<HeatTransferCoefficient, HeatTransferCoefficient, bool>,

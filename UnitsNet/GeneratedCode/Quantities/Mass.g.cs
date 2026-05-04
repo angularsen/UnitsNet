@@ -37,7 +37,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Mass :
-        IArithmeticQuantity<Mass, MassUnit>,
+        IQuantity<Mass, MassUnit>, 
+        ILinearQuantity<Mass>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Mass, Mass, double>,
         IDivisionOperators<Mass, MolarMass, AmountOfSubstance>,

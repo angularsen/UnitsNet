@@ -37,7 +37,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Level :
-        ILogarithmicQuantity<Level, LevelUnit>,
+        IQuantity<Level, LevelUnit>, 
+        ILogarithmicQuantity<Level>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Level, Level, double>,
         IComparisonOperators<Level, Level, bool>,

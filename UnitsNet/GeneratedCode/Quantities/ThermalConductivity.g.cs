@@ -40,7 +40,8 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ThermalConductivity :
-        IArithmeticQuantity<ThermalConductivity, ThermalConductivityUnit>,
+        IQuantity<ThermalConductivity, ThermalConductivityUnit>, 
+        ILinearQuantity<ThermalConductivity>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ThermalConductivity, ThermalConductivity, double>,
         IComparisonOperators<ThermalConductivity, ThermalConductivity, bool>,
