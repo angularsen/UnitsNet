@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct ElectricSusceptance :
-        IArithmeticQuantity<ElectricSusceptance, ElectricSusceptanceUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricSusceptance, ElectricSusceptance, double>,
-        IComparisonOperators<ElectricSusceptance, ElectricSusceptance, bool>,
-        IParsable<ElectricSusceptance>,
-#endif
-        IComparable,
-        IComparable<ElectricSusceptance>,
-        IEquatable<ElectricSusceptance>,
-        IFormattable
+    public readonly partial struct ElectricSusceptance : IQuantity<ElectricSusceptance, ElectricSusceptanceUnit>, ILinearQuantity<ElectricSusceptance>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Permeability :
-        IArithmeticQuantity<Permeability, PermeabilityUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<Permeability, Permeability, double>,
-        IComparisonOperators<Permeability, Permeability, bool>,
-        IParsable<Permeability>,
-#endif
-        IComparable,
-        IComparable<Permeability>,
-        IEquatable<Permeability>,
-        IFormattable
+    public readonly partial struct Permeability : IQuantity<Permeability, PermeabilityUnit>, ILinearQuantity<Permeability>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

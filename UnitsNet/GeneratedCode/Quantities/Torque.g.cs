@@ -36,24 +36,16 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Torque :
-        IArithmeticQuantity<Torque, TorqueUnit>,
+    public readonly partial struct Torque : IQuantity<Torque, TorqueUnit>, ILinearQuantity<Torque>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Torque, Torque, double>,
-        IDivisionOperators<Torque, RotationalStiffness, Angle>,
-        IDivisionOperators<Torque, ForcePerLength, Area>,
-        IDivisionOperators<Torque, Length, Force>,
-        IDivisionOperators<Torque, Area, ForcePerLength>,
-        IDivisionOperators<Torque, Force, Length>,
-        IMultiplyOperators<Torque, RotationalSpeed, Power>,
-        IDivisionOperators<Torque, Angle, RotationalStiffness>,
-        IComparisonOperators<Torque, Torque, bool>,
-        IParsable<Torque>,
+        , IDivisionOperators<Torque, RotationalStiffness, Angle>
+        , IDivisionOperators<Torque, ForcePerLength, Area>
+        , IDivisionOperators<Torque, Length, Force>
+        , IDivisionOperators<Torque, Area, ForcePerLength>
+        , IDivisionOperators<Torque, Force, Length>
+        , IMultiplyOperators<Torque, RotationalSpeed, Power>
+        , IDivisionOperators<Torque, Angle, RotationalStiffness>
 #endif
-        IComparable,
-        IComparable<Torque>,
-        IEquatable<Torque>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

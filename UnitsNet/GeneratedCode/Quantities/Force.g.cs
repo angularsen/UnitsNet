@@ -36,29 +36,21 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Force :
-        IArithmeticQuantity<Force, ForceUnit>,
+    public readonly partial struct Force : IQuantity<Force, ForceUnit>, ILinearQuantity<Force>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Force, Force, double>,
-        IDivisionOperators<Force, Mass, Acceleration>,
-        IDivisionOperators<Force, Pressure, Area>,
-        IDivisionOperators<Force, ForceChangeRate, Duration>,
-        IDivisionOperators<Force, Duration, ForceChangeRate>,
-        IMultiplyOperators<Force, ReciprocalLength, ForcePerLength>,
-        IDivisionOperators<Force, Length, ForcePerLength>,
-        IDivisionOperators<Force, ForcePerLength, Length>,
-        IDivisionOperators<Force, Acceleration, Mass>,
-        IMultiplyOperators<Force, Speed, Power>,
-        IMultiplyOperators<Force, ReciprocalArea, Pressure>,
-        IDivisionOperators<Force, Area, Pressure>,
-        IMultiplyOperators<Force, Length, Torque>,
-        IComparisonOperators<Force, Force, bool>,
-        IParsable<Force>,
+        , IDivisionOperators<Force, Mass, Acceleration>
+        , IDivisionOperators<Force, Pressure, Area>
+        , IDivisionOperators<Force, ForceChangeRate, Duration>
+        , IDivisionOperators<Force, Duration, ForceChangeRate>
+        , IMultiplyOperators<Force, ReciprocalLength, ForcePerLength>
+        , IDivisionOperators<Force, Length, ForcePerLength>
+        , IDivisionOperators<Force, ForcePerLength, Length>
+        , IDivisionOperators<Force, Acceleration, Mass>
+        , IMultiplyOperators<Force, Speed, Power>
+        , IMultiplyOperators<Force, ReciprocalArea, Pressure>
+        , IDivisionOperators<Force, Area, Pressure>
+        , IMultiplyOperators<Force, Length, Torque>
 #endif
-        IComparable,
-        IComparable<Force>,
-        IEquatable<Force>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

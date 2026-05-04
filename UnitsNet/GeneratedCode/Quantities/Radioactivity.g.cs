@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Radioactivity :
-        IArithmeticQuantity<Radioactivity, RadioactivityUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<Radioactivity, Radioactivity, double>,
-        IComparisonOperators<Radioactivity, Radioactivity, bool>,
-        IParsable<Radioactivity>,
-#endif
-        IComparable,
-        IComparable<Radioactivity>,
-        IEquatable<Radioactivity>,
-        IFormattable
+    public readonly partial struct Radioactivity : IQuantity<Radioactivity, RadioactivityUnit>, ILinearQuantity<Radioactivity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

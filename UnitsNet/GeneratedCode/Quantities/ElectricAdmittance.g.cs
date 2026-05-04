@@ -40,17 +40,7 @@ namespace UnitsNet
     [Obsolete("Admittance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricConductance or ElectricSusceptance instead.")]
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct ElectricAdmittance :
-        IArithmeticQuantity<ElectricAdmittance, ElectricAdmittanceUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricAdmittance, ElectricAdmittance, double>,
-        IComparisonOperators<ElectricAdmittance, ElectricAdmittance, bool>,
-        IParsable<ElectricAdmittance>,
-#endif
-        IComparable,
-        IComparable<ElectricAdmittance>,
-        IEquatable<ElectricAdmittance>,
-        IFormattable
+    public readonly partial struct ElectricAdmittance : IQuantity<ElectricAdmittance, ElectricAdmittanceUnit>, ILinearQuantity<ElectricAdmittance>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

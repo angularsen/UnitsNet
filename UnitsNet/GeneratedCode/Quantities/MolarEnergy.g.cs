@@ -36,18 +36,10 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct MolarEnergy :
-        IArithmeticQuantity<MolarEnergy, MolarEnergyUnit>,
+    public readonly partial struct MolarEnergy : IQuantity<MolarEnergy, MolarEnergyUnit>, ILinearQuantity<MolarEnergy>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<MolarEnergy, MolarEnergy, double>,
-        IMultiplyOperators<MolarEnergy, AmountOfSubstance, Energy>,
-        IComparisonOperators<MolarEnergy, MolarEnergy, bool>,
-        IParsable<MolarEnergy>,
+        , IMultiplyOperators<MolarEnergy, AmountOfSubstance, Energy>
 #endif
-        IComparable,
-        IComparable<MolarEnergy>,
-        IEquatable<MolarEnergy>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

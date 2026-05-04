@@ -36,18 +36,10 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct SpecificVolume :
-        IArithmeticQuantity<SpecificVolume, SpecificVolumeUnit>,
+    public readonly partial struct SpecificVolume : IQuantity<SpecificVolume, SpecificVolumeUnit>, ILinearQuantity<SpecificVolume>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<SpecificVolume, SpecificVolume, double>,
-        IMultiplyOperators<SpecificVolume, Mass, Volume>,
-        IComparisonOperators<SpecificVolume, SpecificVolume, bool>,
-        IParsable<SpecificVolume>,
+        , IMultiplyOperators<SpecificVolume, Mass, Volume>
 #endif
-        IComparable,
-        IComparable<SpecificVolume>,
-        IEquatable<SpecificVolume>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

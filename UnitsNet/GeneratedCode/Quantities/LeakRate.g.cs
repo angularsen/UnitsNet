@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct LeakRate :
-        IArithmeticQuantity<LeakRate, LeakRateUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<LeakRate, LeakRate, double>,
-        IComparisonOperators<LeakRate, LeakRate, bool>,
-        IParsable<LeakRate>,
-#endif
-        IComparable,
-        IComparable<LeakRate>,
-        IEquatable<LeakRate>,
-        IFormattable
+    public readonly partial struct LeakRate : IQuantity<LeakRate, LeakRateUnit>, ILinearQuantity<LeakRate>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

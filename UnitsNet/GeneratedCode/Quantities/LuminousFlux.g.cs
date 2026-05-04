@@ -39,19 +39,11 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct LuminousFlux :
-        IArithmeticQuantity<LuminousFlux, LuminousFluxUnit>,
+    public readonly partial struct LuminousFlux : IQuantity<LuminousFlux, LuminousFluxUnit>, ILinearQuantity<LuminousFlux>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<LuminousFlux, LuminousFlux, double>,
-        IDivisionOperators<LuminousFlux, Illuminance, Area>,
-        IDivisionOperators<LuminousFlux, Area, Illuminance>,
-        IComparisonOperators<LuminousFlux, LuminousFlux, bool>,
-        IParsable<LuminousFlux>,
+        , IDivisionOperators<LuminousFlux, Illuminance, Area>
+        , IDivisionOperators<LuminousFlux, Area, Illuminance>
 #endif
-        IComparable,
-        IComparable<LuminousFlux>,
-        IEquatable<LuminousFlux>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -36,25 +36,17 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Speed :
-        IArithmeticQuantity<Speed, SpeedUnit>,
+    public readonly partial struct Speed : IQuantity<Speed, SpeedUnit>, ILinearQuantity<Speed>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Speed, Speed, double>,
-        IDivisionOperators<Speed, Duration, Acceleration>,
-        IDivisionOperators<Speed, Acceleration, Duration>,
-        IMultiplyOperators<Speed, Length, KinematicViscosity>,
-        IMultiplyOperators<Speed, Duration, Length>,
-        IMultiplyOperators<Speed, Density, MassFlux>,
-        IMultiplyOperators<Speed, Force, Power>,
-        IMultiplyOperators<Speed, Speed, SpecificEnergy>,
-        IMultiplyOperators<Speed, Area, VolumeFlow>,
-        IComparisonOperators<Speed, Speed, bool>,
-        IParsable<Speed>,
+        , IDivisionOperators<Speed, Duration, Acceleration>
+        , IDivisionOperators<Speed, Acceleration, Duration>
+        , IMultiplyOperators<Speed, Length, KinematicViscosity>
+        , IMultiplyOperators<Speed, Duration, Length>
+        , IMultiplyOperators<Speed, Density, MassFlux>
+        , IMultiplyOperators<Speed, Force, Power>
+        , IMultiplyOperators<Speed, Speed, SpecificEnergy>
+        , IMultiplyOperators<Speed, Area, VolumeFlow>
 #endif
-        IComparable,
-        IComparable<Speed>,
-        IEquatable<Speed>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

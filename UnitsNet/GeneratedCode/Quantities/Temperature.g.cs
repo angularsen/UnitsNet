@@ -36,16 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Temperature :
-        IAffineQuantity<Temperature, TemperatureUnit, TemperatureDelta>,
-#if NET7_0_OR_GREATER
-        IComparisonOperators<Temperature, Temperature, bool>,
-        IParsable<Temperature>,
-#endif
-        IComparable,
-        IComparable<Temperature>,
-        IEquatable<Temperature>,
-        IFormattable
+    public readonly partial struct Temperature : IQuantity<Temperature, TemperatureUnit>, IAffineQuantity<Temperature, TemperatureDelta>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Molality :
-        IArithmeticQuantity<Molality, MolalityUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<Molality, Molality, double>,
-        IComparisonOperators<Molality, Molality, bool>,
-        IParsable<Molality>,
-#endif
-        IComparable,
-        IComparable<Molality>,
-        IEquatable<Molality>,
-        IFormattable
+    public readonly partial struct Molality : IQuantity<Molality, MolalityUnit>, ILinearQuantity<Molality>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

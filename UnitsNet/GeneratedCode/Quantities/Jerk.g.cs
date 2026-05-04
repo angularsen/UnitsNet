@@ -36,18 +36,10 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Jerk :
-        IArithmeticQuantity<Jerk, JerkUnit>,
+    public readonly partial struct Jerk : IQuantity<Jerk, JerkUnit>, ILinearQuantity<Jerk>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Jerk, Jerk, double>,
-        IMultiplyOperators<Jerk, Duration, Acceleration>,
-        IComparisonOperators<Jerk, Jerk, bool>,
-        IParsable<Jerk>,
+        , IMultiplyOperators<Jerk, Duration, Acceleration>
 #endif
-        IComparable,
-        IComparable<Jerk>,
-        IEquatable<Jerk>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct MassMomentOfInertia :
-        IArithmeticQuantity<MassMomentOfInertia, MassMomentOfInertiaUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<MassMomentOfInertia, MassMomentOfInertia, double>,
-        IComparisonOperators<MassMomentOfInertia, MassMomentOfInertia, bool>,
-        IParsable<MassMomentOfInertia>,
-#endif
-        IComparable,
-        IComparable<MassMomentOfInertia>,
-        IEquatable<MassMomentOfInertia>,
-        IFormattable
+    public readonly partial struct MassMomentOfInertia : IQuantity<MassMomentOfInertia, MassMomentOfInertiaUnit>, ILinearQuantity<MassMomentOfInertia>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

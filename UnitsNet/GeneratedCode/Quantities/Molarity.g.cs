@@ -39,22 +39,14 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Molarity :
-        IArithmeticQuantity<Molarity, MolarityUnit>,
+    public readonly partial struct Molarity : IQuantity<Molarity, MolarityUnit>, ILinearQuantity<Molarity>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Molarity, Molarity, double>,
-        IMultiplyOperators<Molarity, Volume, AmountOfSubstance>,
-        IMultiplyOperators<Molarity, MolarMass, MassConcentration>,
-        IMultiplyOperators<Molarity, VolumeFlow, MolarFlow>,
-        IMultiplyOperators<Molarity, VolumeConcentration, Molarity>,
-        IDivisionOperators<Molarity, VolumeConcentration, Molarity>,
-        IComparisonOperators<Molarity, Molarity, bool>,
-        IParsable<Molarity>,
+        , IMultiplyOperators<Molarity, Volume, AmountOfSubstance>
+        , IMultiplyOperators<Molarity, MolarMass, MassConcentration>
+        , IMultiplyOperators<Molarity, VolumeFlow, MolarFlow>
+        , IMultiplyOperators<Molarity, VolumeConcentration, Molarity>
+        , IDivisionOperators<Molarity, VolumeConcentration, Molarity>
 #endif
-        IComparable,
-        IComparable<Molarity>,
-        IEquatable<Molarity>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

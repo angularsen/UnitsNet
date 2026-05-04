@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct BitRate :
-        IArithmeticQuantity<BitRate, BitRateUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<BitRate, BitRate, double>,
-        IComparisonOperators<BitRate, BitRate, bool>,
-        IParsable<BitRate>,
-#endif
-        IComparable,
-        IComparable<BitRate>,
-        IEquatable<BitRate>,
-        IFormattable
+    public readonly partial struct BitRate : IQuantity<BitRate, BitRateUnit>, ILinearQuantity<BitRate>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

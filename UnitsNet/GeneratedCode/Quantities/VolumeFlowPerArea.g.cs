@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct VolumeFlowPerArea :
-        IArithmeticQuantity<VolumeFlowPerArea, VolumeFlowPerAreaUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<VolumeFlowPerArea, VolumeFlowPerArea, double>,
-        IComparisonOperators<VolumeFlowPerArea, VolumeFlowPerArea, bool>,
-        IParsable<VolumeFlowPerArea>,
-#endif
-        IComparable,
-        IComparable<VolumeFlowPerArea>,
-        IEquatable<VolumeFlowPerArea>,
-        IFormattable
+    public readonly partial struct VolumeFlowPerArea : IQuantity<VolumeFlowPerArea, VolumeFlowPerAreaUnit>, ILinearQuantity<VolumeFlowPerArea>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

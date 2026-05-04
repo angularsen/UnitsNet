@@ -39,19 +39,11 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct DynamicViscosity :
-        IArithmeticQuantity<DynamicViscosity, DynamicViscosityUnit>,
+    public readonly partial struct DynamicViscosity : IQuantity<DynamicViscosity, DynamicViscosityUnit>, ILinearQuantity<DynamicViscosity>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<DynamicViscosity, DynamicViscosity, double>,
-        IDivisionOperators<DynamicViscosity, KinematicViscosity, Density>,
-        IDivisionOperators<DynamicViscosity, Density, KinematicViscosity>,
-        IComparisonOperators<DynamicViscosity, DynamicViscosity, bool>,
-        IParsable<DynamicViscosity>,
+        , IDivisionOperators<DynamicViscosity, KinematicViscosity, Density>
+        , IDivisionOperators<DynamicViscosity, Density, KinematicViscosity>
 #endif
-        IComparable,
-        IComparable<DynamicViscosity>,
-        IEquatable<DynamicViscosity>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

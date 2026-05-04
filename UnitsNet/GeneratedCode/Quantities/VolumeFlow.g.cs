@@ -36,22 +36,14 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct VolumeFlow :
-        IArithmeticQuantity<VolumeFlow, VolumeFlowUnit>,
+    public readonly partial struct VolumeFlow : IQuantity<VolumeFlow, VolumeFlowUnit>, ILinearQuantity<VolumeFlow>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<VolumeFlow, VolumeFlow, double>,
-        IDivisionOperators<VolumeFlow, Speed, Area>,
-        IMultiplyOperators<VolumeFlow, Density, MassFlow>,
-        IMultiplyOperators<VolumeFlow, Molarity, MolarFlow>,
-        IDivisionOperators<VolumeFlow, Area, Speed>,
-        IMultiplyOperators<VolumeFlow, Duration, Volume>,
-        IComparisonOperators<VolumeFlow, VolumeFlow, bool>,
-        IParsable<VolumeFlow>,
+        , IDivisionOperators<VolumeFlow, Speed, Area>
+        , IMultiplyOperators<VolumeFlow, Density, MassFlow>
+        , IMultiplyOperators<VolumeFlow, Molarity, MolarFlow>
+        , IDivisionOperators<VolumeFlow, Area, Speed>
+        , IMultiplyOperators<VolumeFlow, Duration, Volume>
 #endif
-        IComparable,
-        IComparable<VolumeFlow>,
-        IEquatable<VolumeFlow>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

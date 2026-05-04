@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct WarpingMomentOfInertia :
-        IArithmeticQuantity<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<WarpingMomentOfInertia, WarpingMomentOfInertia, double>,
-        IComparisonOperators<WarpingMomentOfInertia, WarpingMomentOfInertia, bool>,
-        IParsable<WarpingMomentOfInertia>,
-#endif
-        IComparable,
-        IComparable<WarpingMomentOfInertia>,
-        IEquatable<WarpingMomentOfInertia>,
-        IFormattable
+    public readonly partial struct WarpingMomentOfInertia : IQuantity<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>, ILinearQuantity<WarpingMomentOfInertia>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

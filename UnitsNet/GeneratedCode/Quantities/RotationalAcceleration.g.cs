@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct RotationalAcceleration :
-        IArithmeticQuantity<RotationalAcceleration, RotationalAccelerationUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<RotationalAcceleration, RotationalAcceleration, double>,
-        IComparisonOperators<RotationalAcceleration, RotationalAcceleration, bool>,
-        IParsable<RotationalAcceleration>,
-#endif
-        IComparable,
-        IComparable<RotationalAcceleration>,
-        IEquatable<RotationalAcceleration>,
-        IFormattable
+    public readonly partial struct RotationalAcceleration : IQuantity<RotationalAcceleration, RotationalAccelerationUnit>, ILinearQuantity<RotationalAcceleration>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

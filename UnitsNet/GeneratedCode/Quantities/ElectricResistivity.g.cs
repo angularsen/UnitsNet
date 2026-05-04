@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct ElectricResistivity :
-        IArithmeticQuantity<ElectricResistivity, ElectricResistivityUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricResistivity, ElectricResistivity, double>,
-        IComparisonOperators<ElectricResistivity, ElectricResistivity, bool>,
-        IParsable<ElectricResistivity>,
-#endif
-        IComparable,
-        IComparable<ElectricResistivity>,
-        IEquatable<ElectricResistivity>,
-        IFormattable
+    public readonly partial struct ElectricResistivity : IQuantity<ElectricResistivity, ElectricResistivityUnit>, ILinearQuantity<ElectricResistivity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

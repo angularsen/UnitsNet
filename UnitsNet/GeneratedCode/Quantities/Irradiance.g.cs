@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Irradiance :
-        IArithmeticQuantity<Irradiance, IrradianceUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<Irradiance, Irradiance, double>,
-        IComparisonOperators<Irradiance, Irradiance, bool>,
-        IParsable<Irradiance>,
-#endif
-        IComparable,
-        IComparable<Irradiance>,
-        IEquatable<Irradiance>,
-        IFormattable
+    public readonly partial struct Irradiance : IQuantity<Irradiance, IrradianceUnit>, ILinearQuantity<Irradiance>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

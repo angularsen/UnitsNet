@@ -36,30 +36,22 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Energy :
-        IArithmeticQuantity<Energy, EnergyUnit>,
+    public readonly partial struct Energy : IQuantity<Energy, EnergyUnit>, ILinearQuantity<Energy>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Energy, Energy, double>,
-        IDivisionOperators<Energy, MolarEnergy, AmountOfSubstance>,
-        IDivisionOperators<Energy, Power, Duration>,
-        IDivisionOperators<Energy, ElectricPotential, ElectricCharge>,
-        IDivisionOperators<Energy, ElectricCharge, ElectricPotential>,
-        IDivisionOperators<Energy, Volume, EnergyDensity>,
-        IDivisionOperators<Energy, TemperatureDelta, Entropy>,
-        IDivisionOperators<Energy, SpecificEnergy, Mass>,
-        IDivisionOperators<Energy, AmountOfSubstance, MolarEnergy>,
-        IMultiplyOperators<Energy, Frequency, Power>,
-        IDivisionOperators<Energy, Duration, Power>,
-        IDivisionOperators<Energy, Mass, SpecificEnergy>,
-        IDivisionOperators<Energy, Entropy, TemperatureDelta>,
-        IDivisionOperators<Energy, EnergyDensity, Volume>,
-        IComparisonOperators<Energy, Energy, bool>,
-        IParsable<Energy>,
+        , IDivisionOperators<Energy, MolarEnergy, AmountOfSubstance>
+        , IDivisionOperators<Energy, Power, Duration>
+        , IDivisionOperators<Energy, ElectricPotential, ElectricCharge>
+        , IDivisionOperators<Energy, ElectricCharge, ElectricPotential>
+        , IDivisionOperators<Energy, Volume, EnergyDensity>
+        , IDivisionOperators<Energy, TemperatureDelta, Entropy>
+        , IDivisionOperators<Energy, SpecificEnergy, Mass>
+        , IDivisionOperators<Energy, AmountOfSubstance, MolarEnergy>
+        , IMultiplyOperators<Energy, Frequency, Power>
+        , IDivisionOperators<Energy, Duration, Power>
+        , IDivisionOperators<Energy, Mass, SpecificEnergy>
+        , IDivisionOperators<Energy, Entropy, TemperatureDelta>
+        , IDivisionOperators<Energy, EnergyDensity, Volume>
 #endif
-        IComparable,
-        IComparable<Energy>,
-        IEquatable<Energy>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

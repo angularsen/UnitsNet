@@ -36,31 +36,23 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Power :
-        IArithmeticQuantity<Power, PowerUnit>,
+    public readonly partial struct Power : IQuantity<Power, PowerUnit>, ILinearQuantity<Power>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Power, Power, double>,
-        IDivisionOperators<Power, HeatFlux, Area>,
-        IDivisionOperators<Power, ElectricPotential, ElectricCurrent>,
-        IDivisionOperators<Power, ElectricCurrent, ElectricPotential>,
-        IMultiplyOperators<Power, Duration, Energy>,
-        IDivisionOperators<Power, Frequency, Energy>,
-        IDivisionOperators<Power, Speed, Force>,
-        IDivisionOperators<Power, Energy, Frequency>,
-        IDivisionOperators<Power, Area, HeatFlux>,
-        IMultiplyOperators<Power, BrakeSpecificFuelConsumption, MassFlow>,
-        IDivisionOperators<Power, SpecificEnergy, MassFlow>,
-        IDivisionOperators<Power, Torque, RotationalSpeed>,
-        IDivisionOperators<Power, MassFlow, SpecificEnergy>,
-        IDivisionOperators<Power, Force, Speed>,
-        IDivisionOperators<Power, RotationalSpeed, Torque>,
-        IComparisonOperators<Power, Power, bool>,
-        IParsable<Power>,
+        , IDivisionOperators<Power, HeatFlux, Area>
+        , IDivisionOperators<Power, ElectricPotential, ElectricCurrent>
+        , IDivisionOperators<Power, ElectricCurrent, ElectricPotential>
+        , IMultiplyOperators<Power, Duration, Energy>
+        , IDivisionOperators<Power, Frequency, Energy>
+        , IDivisionOperators<Power, Speed, Force>
+        , IDivisionOperators<Power, Energy, Frequency>
+        , IDivisionOperators<Power, Area, HeatFlux>
+        , IMultiplyOperators<Power, BrakeSpecificFuelConsumption, MassFlow>
+        , IDivisionOperators<Power, SpecificEnergy, MassFlow>
+        , IDivisionOperators<Power, Torque, RotationalSpeed>
+        , IDivisionOperators<Power, MassFlow, SpecificEnergy>
+        , IDivisionOperators<Power, Force, Speed>
+        , IDivisionOperators<Power, RotationalSpeed, Torque>
 #endif
-        IComparable,
-        IComparable<Power>,
-        IEquatable<Power>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

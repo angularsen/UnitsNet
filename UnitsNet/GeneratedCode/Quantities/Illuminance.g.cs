@@ -39,18 +39,10 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Illuminance :
-        IArithmeticQuantity<Illuminance, IlluminanceUnit>,
+    public readonly partial struct Illuminance : IQuantity<Illuminance, IlluminanceUnit>, ILinearQuantity<Illuminance>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Illuminance, Illuminance, double>,
-        IMultiplyOperators<Illuminance, Area, LuminousFlux>,
-        IComparisonOperators<Illuminance, Illuminance, bool>,
-        IParsable<Illuminance>,
+        , IMultiplyOperators<Illuminance, Area, LuminousFlux>
 #endif
-        IComparable,
-        IComparable<Illuminance>,
-        IEquatable<Illuminance>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

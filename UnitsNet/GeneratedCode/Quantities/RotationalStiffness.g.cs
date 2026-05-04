@@ -36,20 +36,12 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct RotationalStiffness :
-        IArithmeticQuantity<RotationalStiffness, RotationalStiffnessUnit>,
+    public readonly partial struct RotationalStiffness : IQuantity<RotationalStiffness, RotationalStiffnessUnit>, ILinearQuantity<RotationalStiffness>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<RotationalStiffness, RotationalStiffness, double>,
-        IDivisionOperators<RotationalStiffness, RotationalStiffnessPerLength, Length>,
-        IDivisionOperators<RotationalStiffness, Length, RotationalStiffnessPerLength>,
-        IMultiplyOperators<RotationalStiffness, Angle, Torque>,
-        IComparisonOperators<RotationalStiffness, RotationalStiffness, bool>,
-        IParsable<RotationalStiffness>,
+        , IDivisionOperators<RotationalStiffness, RotationalStiffnessPerLength, Length>
+        , IDivisionOperators<RotationalStiffness, Length, RotationalStiffnessPerLength>
+        , IMultiplyOperators<RotationalStiffness, Angle, Torque>
 #endif
-        IComparable,
-        IComparable<RotationalStiffness>,
-        IEquatable<RotationalStiffness>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

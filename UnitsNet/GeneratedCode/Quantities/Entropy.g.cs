@@ -36,20 +36,12 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Entropy :
-        IArithmeticQuantity<Entropy, EntropyUnit>,
+    public readonly partial struct Entropy : IQuantity<Entropy, EntropyUnit>, ILinearQuantity<Entropy>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Entropy, Entropy, double>,
-        IMultiplyOperators<Entropy, TemperatureDelta, Energy>,
-        IDivisionOperators<Entropy, SpecificEntropy, Mass>,
-        IDivisionOperators<Entropy, Mass, SpecificEntropy>,
-        IComparisonOperators<Entropy, Entropy, bool>,
-        IParsable<Entropy>,
+        , IMultiplyOperators<Entropy, TemperatureDelta, Energy>
+        , IDivisionOperators<Entropy, SpecificEntropy, Mass>
+        , IDivisionOperators<Entropy, Mass, SpecificEntropy>
 #endif
-        IComparable,
-        IComparable<Entropy>,
-        IEquatable<Entropy>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

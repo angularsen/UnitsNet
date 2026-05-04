@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Ratio :
-        IArithmeticQuantity<Ratio, RatioUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<Ratio, Ratio, double>,
-        IComparisonOperators<Ratio, Ratio, bool>,
-        IParsable<Ratio>,
-#endif
-        IComparable,
-        IComparable<Ratio>,
-        IEquatable<Ratio>,
-        IFormattable
+    public readonly partial struct Ratio : IQuantity<Ratio, RatioUnit>, ILinearQuantity<Ratio>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

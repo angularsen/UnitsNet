@@ -39,24 +39,16 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct ReciprocalLength :
-        IArithmeticQuantity<ReciprocalLength, ReciprocalLengthUnit>,
+    public readonly partial struct ReciprocalLength : IQuantity<ReciprocalLength, ReciprocalLengthUnit>, ILinearQuantity<ReciprocalLength>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ReciprocalLength, ReciprocalLength, double>,
-        IMultiplyOperators<ReciprocalLength, Volume, Area>,
-        IMultiplyOperators<ReciprocalLength, Force, ForcePerLength>,
-        IMultiplyOperators<ReciprocalLength, Area, Length>,
-        IDivisionOperators<ReciprocalLength, ReciprocalArea, Length>,
-        IMultiplyOperators<ReciprocalLength, ForcePerLength, Pressure>,
-        IMultiplyOperators<ReciprocalLength, ReciprocalLength, ReciprocalArea>,
-        IDivisionOperators<ReciprocalLength, Length, ReciprocalArea>,
-        IComparisonOperators<ReciprocalLength, ReciprocalLength, bool>,
-        IParsable<ReciprocalLength>,
+        , IMultiplyOperators<ReciprocalLength, Volume, Area>
+        , IMultiplyOperators<ReciprocalLength, Force, ForcePerLength>
+        , IMultiplyOperators<ReciprocalLength, Area, Length>
+        , IDivisionOperators<ReciprocalLength, ReciprocalArea, Length>
+        , IMultiplyOperators<ReciprocalLength, ForcePerLength, Pressure>
+        , IMultiplyOperators<ReciprocalLength, ReciprocalLength, ReciprocalArea>
+        , IDivisionOperators<ReciprocalLength, Length, ReciprocalArea>
 #endif
-        IComparable,
-        IComparable<ReciprocalLength>,
-        IEquatable<ReciprocalLength>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

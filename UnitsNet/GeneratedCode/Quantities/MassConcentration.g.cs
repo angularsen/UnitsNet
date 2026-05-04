@@ -39,22 +39,14 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct MassConcentration :
-        IArithmeticQuantity<MassConcentration, MassConcentrationUnit>,
+    public readonly partial struct MassConcentration : IQuantity<MassConcentration, MassConcentrationUnit>, ILinearQuantity<MassConcentration>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<MassConcentration, MassConcentration, double>,
-        IDivisionOperators<MassConcentration, VolumeConcentration, Density>,
-        IMultiplyOperators<MassConcentration, Volume, Mass>,
-        IDivisionOperators<MassConcentration, Molarity, MolarMass>,
-        IDivisionOperators<MassConcentration, MolarMass, Molarity>,
-        IDivisionOperators<MassConcentration, Density, VolumeConcentration>,
-        IComparisonOperators<MassConcentration, MassConcentration, bool>,
-        IParsable<MassConcentration>,
+        , IDivisionOperators<MassConcentration, VolumeConcentration, Density>
+        , IMultiplyOperators<MassConcentration, Volume, Mass>
+        , IDivisionOperators<MassConcentration, Molarity, MolarMass>
+        , IDivisionOperators<MassConcentration, MolarMass, Molarity>
+        , IDivisionOperators<MassConcentration, Density, VolumeConcentration>
 #endif
-        IComparable,
-        IComparable<MassConcentration>,
-        IEquatable<MassConcentration>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

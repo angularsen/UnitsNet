@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct DoseAreaProduct :
-        IArithmeticQuantity<DoseAreaProduct, DoseAreaProductUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<DoseAreaProduct, DoseAreaProduct, double>,
-        IComparisonOperators<DoseAreaProduct, DoseAreaProduct, bool>,
-        IParsable<DoseAreaProduct>,
-#endif
-        IComparable,
-        IComparable<DoseAreaProduct>,
-        IEquatable<DoseAreaProduct>,
-        IFormattable
+    public readonly partial struct DoseAreaProduct : IQuantity<DoseAreaProduct, DoseAreaProductUnit>, ILinearQuantity<DoseAreaProduct>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

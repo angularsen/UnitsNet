@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Turbidity :
-        IArithmeticQuantity<Turbidity, TurbidityUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<Turbidity, Turbidity, double>,
-        IComparisonOperators<Turbidity, Turbidity, bool>,
-        IParsable<Turbidity>,
-#endif
-        IComparable,
-        IComparable<Turbidity>,
-        IEquatable<Turbidity>,
-        IFormattable
+    public readonly partial struct Turbidity : IQuantity<Turbidity, TurbidityUnit>, ILinearQuantity<Turbidity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

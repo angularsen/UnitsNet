@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct ElectricApparentEnergy :
-        IArithmeticQuantity<ElectricApparentEnergy, ElectricApparentEnergyUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricApparentEnergy, ElectricApparentEnergy, double>,
-        IComparisonOperators<ElectricApparentEnergy, ElectricApparentEnergy, bool>,
-        IParsable<ElectricApparentEnergy>,
-#endif
-        IComparable,
-        IComparable<ElectricApparentEnergy>,
-        IEquatable<ElectricApparentEnergy>,
-        IFormattable
+    public readonly partial struct ElectricApparentEnergy : IQuantity<ElectricApparentEnergy, ElectricApparentEnergyUnit>, ILinearQuantity<ElectricApparentEnergy>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

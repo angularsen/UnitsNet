@@ -36,27 +36,19 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct MassFlow :
-        IArithmeticQuantity<MassFlow, MassFlowUnit>,
+    public readonly partial struct MassFlow : IQuantity<MassFlow, MassFlowUnit>, ILinearQuantity<MassFlow>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<MassFlow, MassFlow, double>,
-        IDivisionOperators<MassFlow, MassFlux, Area>,
-        IDivisionOperators<MassFlow, Power, BrakeSpecificFuelConsumption>,
-        IDivisionOperators<MassFlow, VolumeFlow, Density>,
-        IMultiplyOperators<MassFlow, Duration, Mass>,
-        IDivisionOperators<MassFlow, Area, MassFlux>,
-        IDivisionOperators<MassFlow, MolarMass, MolarFlow>,
-        IDivisionOperators<MassFlow, MolarFlow, MolarMass>,
-        IMultiplyOperators<MassFlow, SpecificEnergy, Power>,
-        IDivisionOperators<MassFlow, BrakeSpecificFuelConsumption, Power>,
-        IDivisionOperators<MassFlow, Density, VolumeFlow>,
-        IComparisonOperators<MassFlow, MassFlow, bool>,
-        IParsable<MassFlow>,
+        , IDivisionOperators<MassFlow, MassFlux, Area>
+        , IDivisionOperators<MassFlow, Power, BrakeSpecificFuelConsumption>
+        , IDivisionOperators<MassFlow, VolumeFlow, Density>
+        , IMultiplyOperators<MassFlow, Duration, Mass>
+        , IDivisionOperators<MassFlow, Area, MassFlux>
+        , IDivisionOperators<MassFlow, MolarMass, MolarFlow>
+        , IDivisionOperators<MassFlow, MolarFlow, MolarMass>
+        , IMultiplyOperators<MassFlow, SpecificEnergy, Power>
+        , IDivisionOperators<MassFlow, BrakeSpecificFuelConsumption, Power>
+        , IDivisionOperators<MassFlow, Density, VolumeFlow>
 #endif
-        IComparable,
-        IComparable<MassFlow>,
-        IEquatable<MassFlow>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

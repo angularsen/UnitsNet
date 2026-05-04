@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct VolumetricHeatCapacity :
-        IArithmeticQuantity<VolumetricHeatCapacity, VolumetricHeatCapacityUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<VolumetricHeatCapacity, VolumetricHeatCapacity, double>,
-        IComparisonOperators<VolumetricHeatCapacity, VolumetricHeatCapacity, bool>,
-        IParsable<VolumetricHeatCapacity>,
-#endif
-        IComparable,
-        IComparable<VolumetricHeatCapacity>,
-        IEquatable<VolumetricHeatCapacity>,
-        IFormattable
+    public readonly partial struct VolumetricHeatCapacity : IQuantity<VolumetricHeatCapacity, VolumetricHeatCapacityUnit>, ILinearQuantity<VolumetricHeatCapacity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

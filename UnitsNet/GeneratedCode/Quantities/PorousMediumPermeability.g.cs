@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct PorousMediumPermeability :
-        IArithmeticQuantity<PorousMediumPermeability, PorousMediumPermeabilityUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<PorousMediumPermeability, PorousMediumPermeability, double>,
-        IComparisonOperators<PorousMediumPermeability, PorousMediumPermeability, bool>,
-        IParsable<PorousMediumPermeability>,
-#endif
-        IComparable,
-        IComparable<PorousMediumPermeability>,
-        IEquatable<PorousMediumPermeability>,
-        IFormattable
+    public readonly partial struct PorousMediumPermeability : IQuantity<PorousMediumPermeability, PorousMediumPermeabilityUnit>, ILinearQuantity<PorousMediumPermeability>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

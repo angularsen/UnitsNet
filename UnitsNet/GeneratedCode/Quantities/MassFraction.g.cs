@@ -39,18 +39,10 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct MassFraction :
-        IArithmeticQuantity<MassFraction, MassFractionUnit>,
+    public readonly partial struct MassFraction : IQuantity<MassFraction, MassFractionUnit>, ILinearQuantity<MassFraction>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<MassFraction, MassFraction, double>,
-        IMultiplyOperators<MassFraction, Mass, Mass>,
-        IComparisonOperators<MassFraction, MassFraction, bool>,
-        IParsable<MassFraction>,
+        , IMultiplyOperators<MassFraction, Mass, Mass>
 #endif
-        IComparable,
-        IComparable<MassFraction>,
-        IEquatable<MassFraction>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

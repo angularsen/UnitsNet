@@ -36,24 +36,16 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct TemperatureDelta :
-        IArithmeticQuantity<TemperatureDelta, TemperatureDeltaUnit>,
+    public readonly partial struct TemperatureDelta : IQuantity<TemperatureDelta, TemperatureDeltaUnit>, ILinearQuantity<TemperatureDelta>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<TemperatureDelta, TemperatureDelta, double>,
-        IDivisionOperators<TemperatureDelta, TemperatureChangeRate, Duration>,
-        IMultiplyOperators<TemperatureDelta, Entropy, Energy>,
-        IDivisionOperators<TemperatureDelta, TemperatureGradient, Length>,
-        IMultiplyOperators<TemperatureDelta, CoefficientOfThermalExpansion, Ratio>,
-        IMultiplyOperators<TemperatureDelta, SpecificEntropy, SpecificEnergy>,
-        IDivisionOperators<TemperatureDelta, Duration, TemperatureChangeRate>,
-        IDivisionOperators<TemperatureDelta, Length, TemperatureGradient>,
-        IComparisonOperators<TemperatureDelta, TemperatureDelta, bool>,
-        IParsable<TemperatureDelta>,
+        , IDivisionOperators<TemperatureDelta, TemperatureChangeRate, Duration>
+        , IMultiplyOperators<TemperatureDelta, Entropy, Energy>
+        , IDivisionOperators<TemperatureDelta, TemperatureGradient, Length>
+        , IMultiplyOperators<TemperatureDelta, CoefficientOfThermalExpansion, Ratio>
+        , IMultiplyOperators<TemperatureDelta, SpecificEntropy, SpecificEnergy>
+        , IDivisionOperators<TemperatureDelta, Duration, TemperatureChangeRate>
+        , IDivisionOperators<TemperatureDelta, Length, TemperatureGradient>
 #endif
-        IComparable,
-        IComparable<TemperatureDelta>,
-        IEquatable<TemperatureDelta>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

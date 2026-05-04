@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Impulse :
-        IArithmeticQuantity<Impulse, ImpulseUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<Impulse, Impulse, double>,
-        IComparisonOperators<Impulse, Impulse, bool>,
-        IParsable<Impulse>,
-#endif
-        IComparable,
-        IComparable<Impulse>,
-        IEquatable<Impulse>,
-        IFormattable
+    public readonly partial struct Impulse : IQuantity<Impulse, ImpulseUnit>, ILinearQuantity<Impulse>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
