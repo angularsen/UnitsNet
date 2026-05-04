@@ -121,8 +121,8 @@ namespace UnitsNet
                 yield return new (AreaDensityUnit.GramPerSquareMeter, "GramPerSquareMeter", "GramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram));
                 yield return new (AreaDensityUnit.KilogramPerSquareMeter, "KilogramPerSquareMeter", "KilogramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
                 yield return new (AreaDensityUnit.MilligramPerSquareMeter, "MilligramPerSquareMeter", "MilligramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram));
-                yield return new (AreaDensityUnit.PoundPerSquareFoot, "PoundPerSquareFoot", "PoundPerSquareFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound));
-                yield return new (AreaDensityUnit.PoundPerThousandSquareFeet, "PoundPerThousandSquareFeet", "PoundPerThousandSquareFeet", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound));
+                yield return new (AreaDensityUnit.PoundPerSquareFoot, "PoundPerSquareFoot", "PoundsPerSquareFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound));
+                yield return new (AreaDensityUnit.PoundPerThousandSquareFeet, "PoundPerThousandSquareFeet", "PoundsPerThousandSquareFeet", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound));
             }
         }
 
@@ -246,12 +246,12 @@ namespace UnitsNet
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.PoundPerSquareFoot"/>
         /// </summary>
-        public double PoundPerSquareFoot => As(AreaDensityUnit.PoundPerSquareFoot);
+        public double PoundsPerSquareFoot => As(AreaDensityUnit.PoundPerSquareFoot);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.PoundPerThousandSquareFeet"/>
         /// </summary>
-        public double PoundPerThousandSquareFeet => As(AreaDensityUnit.PoundPerThousandSquareFeet);
+        public double PoundsPerThousandSquareFeet => As(AreaDensityUnit.PoundPerThousandSquareFeet);
 
         #endregion
 
@@ -331,7 +331,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.PoundPerSquareFoot"/>.
         /// </summary>
-        public static AreaDensity FromPoundPerSquareFoot(double value)
+        public static AreaDensity FromPoundsPerSquareFoot(double value)
         {
             return new AreaDensity(value, AreaDensityUnit.PoundPerSquareFoot);
         }
@@ -339,7 +339,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.PoundPerThousandSquareFeet"/>.
         /// </summary>
-        public static AreaDensity FromPoundPerThousandSquareFeet(double value)
+        public static AreaDensity FromPoundsPerThousandSquareFeet(double value)
         {
             return new AreaDensity(value, AreaDensityUnit.PoundPerThousandSquareFeet);
         }
@@ -749,14 +749,14 @@ namespace UnitsNet
                 // AreaDensityUnit -> BaseUnit
                 (AreaDensityUnit.GramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter) => new AreaDensity(_value / 1000, AreaDensityUnit.KilogramPerSquareMeter),
                 (AreaDensityUnit.MilligramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter) => new AreaDensity(_value / 1000000, AreaDensityUnit.KilogramPerSquareMeter),
-                (AreaDensityUnit.PoundPerSquareFoot, AreaDensityUnit.KilogramPerSquareMeter) => new AreaDensity(_value * 4.8824, AreaDensityUnit.KilogramPerSquareMeter),
-                (AreaDensityUnit.PoundPerThousandSquareFeet, AreaDensityUnit.KilogramPerSquareMeter) => new AreaDensity(_value * 4.8824 / 1000, AreaDensityUnit.KilogramPerSquareMeter),
+                (AreaDensityUnit.PoundPerSquareFoot, AreaDensityUnit.KilogramPerSquareMeter) => new AreaDensity(_value * (0.45359237 / 0.09290304), AreaDensityUnit.KilogramPerSquareMeter),
+                (AreaDensityUnit.PoundPerThousandSquareFeet, AreaDensityUnit.KilogramPerSquareMeter) => new AreaDensity(_value * (0.45359237 / 0.09290304) / 1000, AreaDensityUnit.KilogramPerSquareMeter),
 
                 // BaseUnit -> AreaDensityUnit
                 (AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.GramPerSquareMeter) => new AreaDensity(_value * 1000, AreaDensityUnit.GramPerSquareMeter),
                 (AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.MilligramPerSquareMeter) => new AreaDensity(_value * 1000000, AreaDensityUnit.MilligramPerSquareMeter),
-                (AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.PoundPerSquareFoot) => new AreaDensity(_value / 4.8824, AreaDensityUnit.PoundPerSquareFoot),
-                (AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.PoundPerThousandSquareFeet) => new AreaDensity(_value / 4.8824 * 1000, AreaDensityUnit.PoundPerThousandSquareFeet),
+                (AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.PoundPerSquareFoot) => new AreaDensity(_value / (0.45359237 / 0.09290304), AreaDensityUnit.PoundPerSquareFoot),
+                (AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.PoundPerThousandSquareFeet) => new AreaDensity(_value / (0.45359237 / 0.09290304) * 1000, AreaDensityUnit.PoundPerThousandSquareFeet),
 
                 _ => null
             };

@@ -1,5 +1,5 @@
 GramsPerSquareMeter=g/m²,gsm
 KilogramsPerSquareMeter=kg/m²
 MilligramsPerSquareMeter=mg/m²
-PoundPerSquareFoot=lbs/ft²,lbs/SF
-PoundPerThousandSquareFeet=lbs/MSF
+PoundsPerSquareFoot=lbs/ft²,lbs/SF
+PoundsPerThousandSquareFeet=lbs/1000ft²,lbs/MSF
