@@ -87,7 +87,8 @@ namespace UnitsNet.Tests
             Assert.Multiple(checks:
             [
                 () => { Assert.Equal("g", new UnitAbbreviationsCache([Mass.Info]).GetDefaultAbbreviation(MassUnit.Gram, AmericanCulture)); },
-                () => { Assert.Equal("g", new UnitAbbreviationsCache([Mass.Info]).GetDefaultAbbreviation(typeof(MassUnit), (int)MassUnit.Gram, AmericanCulture)); }
+                () => { Assert.Equal("g", new UnitAbbreviationsCache([Mass.Info]).GetDefaultAbbreviation(typeof(MassUnit), (int)MassUnit.Gram, AmericanCulture)); },
+                () => { Assert.Equal("g", new UnitAbbreviationsCache([Mass.Info]).GetDefaultAbbreviation(Mass.Info[MassUnit.Gram])); }
             ]);
         }
 
