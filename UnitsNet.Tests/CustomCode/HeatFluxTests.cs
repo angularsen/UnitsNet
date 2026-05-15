@@ -34,16 +34,23 @@ namespace UnitsNet.Tests.CustomCode
         protected override double BtusPerSecondSquareInchInOneWattPerSquareMeter => 6.11493693e-7;
         protected override double CaloriesPerSecondSquareCentimeterInOneWattPerSquareMeter => 2.390057361376673e-05;
         protected override double CentiwattsPerSquareMeterInOneWattPerSquareMeter => 1e2;
+        protected override double CentiwattsPerSquareMillimeterInOneWattPerSquareMeter => 1e-4;
         protected override double DeciwattsPerSquareMeterInOneWattPerSquareMeter => 1e1;
+        protected override double DeciwattsPerSquareMillimeterInOneWattPerSquareMeter => 1e-5;
         protected override double KilocaloriesPerSecondSquareCentimeterInOneWattPerSquareMeter => 2.390057361376673e-8;
         protected override double KilocaloriesPerHourSquareMeterInOneWattPerSquareMeter => 0.8604206500956023;
         protected override double KilowattsPerSquareMeterInOneWattPerSquareMeter => 1e-3;
+        protected override double KilowattsPerSquareMillimeterInOneWattPerSquareMeter => 1e-9;
         protected override double MicrowattsPerSquareMeterInOneWattPerSquareMeter => 1e6;
+        protected override double MicrowattsPerSquareMillimeterInOneWattPerSquareMeter => 1;
         protected override double MilliwattsPerSquareMeterInOneWattPerSquareMeter => 1e3;
+        protected override double MilliwattsPerSquareMillimeterInOneWattPerSquareMeter => 1e-3;
         protected override double NanowattsPerSquareMeterInOneWattPerSquareMeter => 1e9;
+        protected override double NanowattsPerSquareMillimeterInOneWattPerSquareMeter => 1e3;
         protected override double WattsPerSquareFootInOneWattPerSquareMeter => 9.290304e-2;
         protected override double WattsPerSquareInchInOneWattPerSquareMeter => 6.4516e-4;
         protected override double WattsPerSquareMeterInOneWattPerSquareMeter => 1;
+        protected override double WattsPerSquareMillimeterInOneWattPerSquareMeter => 1e-6;
         protected override double PoundsForcePerFootSecondInOneWattPerSquareMeter => 6.852176585679176e-2;
         protected override double PoundsPerSecondCubedInOneWattPerSquareMeter => 2.204622621848776;
 
