@@ -84,6 +84,11 @@ namespace UnitsNet
         public double Centigrams => As(MassUnit.Centigram);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Dalton"/>
+        /// </summary>
+        public double Daltons => As(MassUnit.Dalton);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Decagram"/>
         /// </summary>
         public double Decagrams => As(MassUnit.Decagram);
@@ -104,6 +109,11 @@ namespace UnitsNet
         public double Femtograms => As(MassUnit.Femtogram);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Gigadalton"/>
+        /// </summary>
+        public double Gigadaltons => As(MassUnit.Gigadalton);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Grain"/>
         /// </summary>
         public double Grains => As(MassUnit.Grain);
@@ -117,6 +127,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Hectogram"/>
         /// </summary>
         public double Hectograms => As(MassUnit.Hectogram);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Kilodalton"/>
+        /// </summary>
+        public double Kilodaltons => As(MassUnit.Kilodalton);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Kilogram"/>
@@ -142,6 +157,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.LongTon"/>
         /// </summary>
         public double LongTons => As(MassUnit.LongTon);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Megadalton"/>
+        /// </summary>
+        public double Megadaltons => As(MassUnit.Megadalton);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MassUnit.Megapound"/>
@@ -223,6 +243,11 @@ namespace UnitsNet
         public static Mass FromCentigrams(double centigrams) => new Mass(centigrams, MassUnit.Centigram);
 
         /// <summary>
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Dalton"/>.
+        /// </summary>
+        public static Mass FromDaltons(double daltons) => new Mass(daltons, MassUnit.Dalton);
+
+        /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Decagram"/>.
         /// </summary>
         public static Mass FromDecagrams(double decagrams) => new Mass(decagrams, MassUnit.Decagram);
@@ -243,6 +268,11 @@ namespace UnitsNet
         public static Mass FromFemtograms(double femtograms) => new Mass(femtograms, MassUnit.Femtogram);
 
         /// <summary>
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Gigadalton"/>.
+        /// </summary>
+        public static Mass FromGigadaltons(double gigadaltons) => new Mass(gigadaltons, MassUnit.Gigadalton);
+
+        /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Grain"/>.
         /// </summary>
         public static Mass FromGrains(double grains) => new Mass(grains, MassUnit.Grain);
@@ -256,6 +286,11 @@ namespace UnitsNet
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Hectogram"/>.
         /// </summary>
         public static Mass FromHectograms(double hectograms) => new Mass(hectograms, MassUnit.Hectogram);
+
+        /// <summary>
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Kilodalton"/>.
+        /// </summary>
+        public static Mass FromKilodaltons(double kilodaltons) => new Mass(kilodaltons, MassUnit.Kilodalton);
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Kilogram"/>.
@@ -281,6 +316,11 @@ namespace UnitsNet
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.LongTon"/>.
         /// </summary>
         public static Mass FromLongTons(double longtons) => new Mass(longtons, MassUnit.LongTon);
+
+        /// <summary>
+        ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Megadalton"/>.
+        /// </summary>
+        public static Mass FromMegadaltons(double megadaltons) => new Mass(megadaltons, MassUnit.Megadalton);
 
         /// <summary>
         ///     Creates a <see cref="Mass"/> from <see cref="MassUnit.Megapound"/>.
@@ -393,18 +433,22 @@ namespace UnitsNet
                     return Unit switch
                     {
                         MassUnit.Centigram => (_value / 1e3) * 1e-2d,
+                        MassUnit.Dalton => _value *  1.66053906660e-27,
                         MassUnit.Decagram => (_value / 1e3) * 1e1d,
                         MassUnit.Decigram => (_value / 1e3) * 1e-1d,
                         MassUnit.EarthMass => _value * 5.9722E+24,
                         MassUnit.Femtogram => (_value / 1e3) * 1e-15d,
+                        MassUnit.Gigadalton => (_value *  1.66053906660e-27) * 1e9d,
                         MassUnit.Grain => _value * 64.79891e-6,
                         MassUnit.Gram => _value / 1e3,
                         MassUnit.Hectogram => (_value / 1e3) * 1e2d,
+                        MassUnit.Kilodalton => (_value *  1.66053906660e-27) * 1e3d,
                         MassUnit.Kilogram => (_value / 1e3) * 1e3d,
                         MassUnit.Kilopound => (_value * 0.45359237) * 1e3d,
                         MassUnit.Kilotonne => (_value * 1e3) * 1e3d,
                         MassUnit.LongHundredweight => _value * 50.80234544,
                         MassUnit.LongTon => _value * 1016.0469088,
+                        MassUnit.Megadalton => (_value *  1.66053906660e-27) * 1e6d,
                         MassUnit.Megapound => (_value * 0.45359237) * 1e6d,
                         MassUnit.Megatonne => (_value * 1e3) * 1e6d,
                         MassUnit.Microgram => (_value / 1e3) * 1e-6d,
@@ -433,18 +477,22 @@ namespace UnitsNet
                     return unit switch
                     {
                         MassUnit.Centigram => (baseUnitValue * 1e3) / 1e-2d,
+                        MassUnit.Dalton => baseUnitValue /  1.66053906660e-27,
                         MassUnit.Decagram => (baseUnitValue * 1e3) / 1e1d,
                         MassUnit.Decigram => (baseUnitValue * 1e3) / 1e-1d,
                         MassUnit.EarthMass => baseUnitValue / 5.9722E+24,
                         MassUnit.Femtogram => (baseUnitValue * 1e3) / 1e-15d,
+                        MassUnit.Gigadalton => (baseUnitValue /  1.66053906660e-27) / 1e9d,
                         MassUnit.Grain => baseUnitValue / 64.79891e-6,
                         MassUnit.Gram => baseUnitValue * 1e3,
                         MassUnit.Hectogram => (baseUnitValue * 1e3) / 1e2d,
+                        MassUnit.Kilodalton => (baseUnitValue /  1.66053906660e-27) / 1e3d,
                         MassUnit.Kilogram => (baseUnitValue * 1e3) / 1e3d,
                         MassUnit.Kilopound => (baseUnitValue / 0.45359237) / 1e3d,
                         MassUnit.Kilotonne => (baseUnitValue / 1e3) / 1e3d,
                         MassUnit.LongHundredweight => baseUnitValue / 50.80234544,
                         MassUnit.LongTon => baseUnitValue / 1016.0469088,
+                        MassUnit.Megadalton => (baseUnitValue /  1.66053906660e-27) / 1e6d,
                         MassUnit.Megapound => (baseUnitValue / 0.45359237) / 1e6d,
                         MassUnit.Megatonne => (baseUnitValue / 1e3) / 1e6d,
                         MassUnit.Microgram => (baseUnitValue * 1e3) / 1e-6d,

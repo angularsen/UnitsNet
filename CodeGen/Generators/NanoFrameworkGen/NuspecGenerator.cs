@@ -25,7 +25,7 @@ namespace CodeGen.Generators.NanoFrameworkGen
 <package xmlns=""http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd"">
   <metadata>
     <id>UnitsNet.nanoFramework.{_quantity.Name}</id>
-    <version>6.0.0-pre018</version>
+    <version>6.0.0-pre019</version>
     <title>Units.NET {_quantity.Name} - nanoFramework</title>
     <authors>Andreas Gullberg Larsen,nanoframework</authors>
     <owners>UnitsNet</owners>
