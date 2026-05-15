@@ -58,10 +58,11 @@ The project uses a sophisticated code generation system:
 
 ### Adding or Modifying Units
 1. Edit or create JSON file in `Common/UnitDefinitions/`
-2. Follow conversion function guidelines:
+2. Follow conversion function guidelines in [Docs/adding-a-new-unit.md](Docs/adding-a-new-unit.md):
    - Use multiplication for `FromUnitToBaseFunc`
    - Use division for `FromBaseToUnitFunc`
    - Prefer scientific notation (1e3, 1e-5)
+   - Use exact constituent constants instead of pre-computed decimals
 3. Run `generate-code.bat`
 4. Add tests if needed
 
@@ -117,6 +118,15 @@ The project uses a sophisticated code generation system:
 ### Run performance benchmarks
 - Execute: `dotnet run -c Release --project UnitsNet.Benchmark`
 - Results saved to `Artifacts/` folder
+
+## Documentation
+
+All contributor and user documentation lives in [Docs/](Docs/README.md), including:
+- [Adding a New Unit](Docs/adding-a-new-unit.md) — step-by-step guide with JSON schema conventions
+- [Adding Operator Overloads](Docs/adding-operator-overloads.md)
+- [Precision](Docs/precision.md) — conversion precision and test value guidelines
+- [Serialization](Docs/serialization.md), [String Formatting](Docs/string-formatting.md), [Saving to Database](Docs/saving-to-database.md)
+- [Upgrade Guides](Docs/README.md#upgrade-guides) for major version migrations
 
 ## Pull request reviews
 
