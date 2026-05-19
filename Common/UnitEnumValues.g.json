@@ -567,7 +567,14 @@
     "PoundPerSecondCubed": 15,
     "WattPerSquareFoot": 16,
     "WattPerSquareInch": 17,
-    "WattPerSquareMeter": 18
+    "WattPerSquareMeter": 18,
+    "CentiwattPerSquareMillimeter": 22,
+    "DeciwattPerSquareMillimeter": 28,
+    "KilowattPerSquareMillimeter": 24,
+    "MicrowattPerSquareMillimeter": 20,
+    "MilliwattPerSquareMillimeter": 26,
+    "NanowattPerSquareMillimeter": 25,
+    "WattPerSquareMillimeter": 19
   },
   "HeatTransferCoefficient": {
     "BtuPerSquareFootDegreeFahrenheit": 1,
