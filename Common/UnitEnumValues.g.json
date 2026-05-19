@@ -1188,7 +1188,22 @@
     "Torr": 47,
     "MeterOfWaterColumn": 57,
     "CentimeterOfWaterColumn": 48,
-    "Millitorr": 52
+    "Millitorr": 52,
+    "BarG": 53,
+    "CentibarG": 58,
+    "DecapascalG": 50,
+    "DecibarG": 55,
+    "GigapascalG": 54,
+    "HectopascalG": 59,
+    "KilobarG": 51,
+    "KilopascalG": 49,
+    "MegabarG": 60,
+    "MegapascalG": 56,
+    "MicrobarG": 67,
+    "MicropascalG": 65,
+    "MillibarG": 62,
+    "MillipascalG": 68,
+    "PascalG": 69
   },
   "PressureChangeRate": {
     "AtmospherePerSecond": 1,

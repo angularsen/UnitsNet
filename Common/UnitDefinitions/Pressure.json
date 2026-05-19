@@ -31,6 +31,25 @@
       ]
     },
     {
+      "SingularName": "PascalG",
+      "PluralName": "PascalsG",
+      "XmlDocSummary": "The Pa(g) is a metric unit of gauge pressure, where the pressure is relative to atmospheric pressure (approximately 101325 Pa).",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Pressure_measurement#Gauge_pressure",
+      "FromUnitToBaseFunc": "{x} + 101325",
+      "FromBaseToUnitFunc": "{x} - 101325",
+      "Prefixes": [ "Micro", "Milli", "Deca", "Hecto", "Kilo", "Mega", "Giga" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Pa(g)" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "Па(g)" ]
+        }
+      ]
+    },
+    {
       "SingularName": "Atmosphere",
       "PluralName": "Atmospheres",
       "XmlDocSummary": "The standard atmosphere (symbol: atm) is a unit of pressure defined as 101325 Pa. It is sometimes used as a reference pressure or standard pressure. It is approximately equal to Earth's average atmospheric pressure at sea level.",
@@ -64,6 +83,25 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "бар" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BarG",
+      "PluralName": "BarsG",
+      "XmlDocSummary": "The bar(g) is a metric unit of gauge pressure, where the pressure is relative to atmospheric pressure (approximately 1.01325 bar).",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Pressure_measurement#Gauge_pressure",
+      "FromUnitToBaseFunc": "({x} * 1e5) + 101325",
+      "FromBaseToUnitFunc": "({x} - 101325) / 1e5",
+      "Prefixes": [ "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "bar(g)" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "бар(g)" ]
         }
       ]
     },
