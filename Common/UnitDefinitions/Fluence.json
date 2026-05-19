@@ -1,0 +1,26 @@
+{
+  "Name": "Fluence",
+  "BaseUnit": "NeutronPerSquareCentimeter",
+  "XmlDocSummary": "In nuclear physics, fluence is the time-integrated flux of particles (typically neutrons) passing through a unit area. It is commonly measured in neutrons per square centimeter (n/cm²) for reactor vessel wall exposure.",
+  "BaseDimensions": {
+    "L": -2
+  },
+  "Units": [
+    {
+      "SingularName": "NeutronPerSquareCentimeter",
+      "PluralName": "NeutronsPerSquareCentimeter",
+       "BaseUnits": {
+        "L": "Centimeter"
+      },
+      "XmlDocSummary": "The fluence of neutrons measured per square centimeter (n/cm²). Example: A reactor vessel may receive 6×10¹⁹ n/cm² over its lifetime.",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "n/cm²", "n·cm⁻²" ]
+        }
+      ]
+    }
+  ]
+}

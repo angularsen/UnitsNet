@@ -2046,5 +2046,8 @@
     "SquareMeterKelvinPerKilowatt": 5,
     "SquareMeterKelvinPerWatt": 4,
     "SquareMillimeterKelvinPerWatt": 13
+  },
+  "Fluence": {
+    "NeutronPerSquareCentimeter": 4
   }
 }

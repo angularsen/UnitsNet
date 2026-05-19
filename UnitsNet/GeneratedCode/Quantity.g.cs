@@ -78,6 +78,7 @@ public partial class Quantity
             Energy.Info,
             EnergyDensity.Info,
             Entropy.Info,
+            Fluence.Info,
             FluidResistance.Info,
             Force.Info,
             ForceChangeRate.Info,
@@ -210,6 +211,7 @@ public partial class Quantity
             Energy.RegisterDefaultConversions(unitConverter);
             EnergyDensity.RegisterDefaultConversions(unitConverter);
             Entropy.RegisterDefaultConversions(unitConverter);
+            Fluence.RegisterDefaultConversions(unitConverter);
             FluidResistance.RegisterDefaultConversions(unitConverter);
             Force.RegisterDefaultConversions(unitConverter);
             ForceChangeRate.RegisterDefaultConversions(unitConverter);
