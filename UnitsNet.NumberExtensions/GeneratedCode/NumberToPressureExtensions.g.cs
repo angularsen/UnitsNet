@@ -54,6 +54,17 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             => Pressure.FromBars(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Pressure.FromBarsG(double)" />
+        public static Pressure BarsG<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Pressure.FromBarsG(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Pressure.FromBarsG(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Pressure.FromCentibars(double)" />
         public static Pressure Centibars<T>(this T value)
             where T : notnull
@@ -63,6 +74,17 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #else
             , IConvertible
             => Pressure.FromCentibars(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Pressure.FromCentibarsG(double)" />
+        public static Pressure CentibarsG<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Pressure.FromCentibarsG(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Pressure.FromCentibarsG(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromCentimetersOfWaterColumn(double)" />
@@ -87,6 +109,17 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             => Pressure.FromDecapascals(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Pressure.FromDecapascalsG(double)" />
+        public static Pressure DecapascalsG<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Pressure.FromDecapascalsG(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Pressure.FromDecapascalsG(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Pressure.FromDecibars(double)" />
         public static Pressure Decibars<T>(this T value)
             where T : notnull
@@ -96,6 +129,17 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #else
             , IConvertible
             => Pressure.FromDecibars(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Pressure.FromDecibarsG(double)" />
+        public static Pressure DecibarsG<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Pressure.FromDecibarsG(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Pressure.FromDecibarsG(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromDynesPerSquareCentimeter(double)" />
@@ -131,6 +175,17 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             => Pressure.FromGigapascals(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Pressure.FromGigapascalsG(double)" />
+        public static Pressure GigapascalsG<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Pressure.FromGigapascalsG(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Pressure.FromGigapascalsG(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Pressure.FromHectopascals(double)" />
         public static Pressure Hectopascals<T>(this T value)
             where T : notnull
@@ -140,6 +195,17 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #else
             , IConvertible
             => Pressure.FromHectopascals(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Pressure.FromHectopascalsG(double)" />
+        public static Pressure HectopascalsG<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Pressure.FromHectopascalsG(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Pressure.FromHectopascalsG(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromInchesOfMercury(double)" />
@@ -173,6 +239,17 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #else
             , IConvertible
             => Pressure.FromKilobars(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Pressure.FromKilobarsG(double)" />
+        public static Pressure KilobarsG<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Pressure.FromKilobarsG(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Pressure.FromKilobarsG(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareCentimeter(double)" />
@@ -252,6 +329,17 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             => Pressure.FromKilopascals(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Pressure.FromKilopascalsG(double)" />
+        public static Pressure KilopascalsG<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Pressure.FromKilopascalsG(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Pressure.FromKilopascalsG(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareFoot(double)" />
         public static Pressure KilopoundsForcePerSquareFoot<T>(this T value)
             where T : notnull
@@ -296,6 +384,17 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             => Pressure.FromMegabars(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Pressure.FromMegabarsG(double)" />
+        public static Pressure MegabarsG<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Pressure.FromMegabarsG(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Pressure.FromMegabarsG(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double)" />
         public static Pressure MeganewtonsPerSquareMeter<T>(this T value)
             where T : notnull
@@ -316,6 +415,17 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #else
             , IConvertible
             => Pressure.FromMegapascals(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Pressure.FromMegapascalsG(double)" />
+        public static Pressure MegapascalsG<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Pressure.FromMegapascalsG(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Pressure.FromMegapascalsG(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromMetersOfHead(double)" />
@@ -351,6 +461,17 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             => Pressure.FromMicrobars(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Pressure.FromMicrobarsG(double)" />
+        public static Pressure MicrobarsG<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Pressure.FromMicrobarsG(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Pressure.FromMicrobarsG(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Pressure.FromMicropascals(double)" />
         public static Pressure Micropascals<T>(this T value)
             where T : notnull
@@ -362,6 +483,17 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             => Pressure.FromMicropascals(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Pressure.FromMicropascalsG(double)" />
+        public static Pressure MicropascalsG<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Pressure.FromMicropascalsG(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Pressure.FromMicropascalsG(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Pressure.FromMillibars(double)" />
         public static Pressure Millibars<T>(this T value)
             where T : notnull
@@ -371,6 +503,17 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #else
             , IConvertible
             => Pressure.FromMillibars(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Pressure.FromMillibarsG(double)" />
+        public static Pressure MillibarsG<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Pressure.FromMillibarsG(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Pressure.FromMillibarsG(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(double)" />
@@ -404,6 +547,17 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #else
             , IConvertible
             => Pressure.FromMillipascals(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Pressure.FromMillipascalsG(double)" />
+        public static Pressure MillipascalsG<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Pressure.FromMillipascalsG(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Pressure.FromMillipascalsG(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromMillitorrs(double)" />
@@ -459,6 +613,17 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
 #else
             , IConvertible
             => Pressure.FromPascals(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Pressure.FromPascalsG(double)" />
+        public static Pressure PascalsG<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Pressure.FromPascalsG(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Pressure.FromPascalsG(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareFoot(double)" />

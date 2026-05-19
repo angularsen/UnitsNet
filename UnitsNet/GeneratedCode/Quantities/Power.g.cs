@@ -133,28 +133,41 @@ namespace UnitsNet
             {
                 yield return new (PowerUnit.BoilerHorsepower, "BoilerHorsepower", "BoilerHorsepower", BaseUnits.Undefined);
                 yield return new (PowerUnit.BritishThermalUnitPerHour, "BritishThermalUnitPerHour", "BritishThermalUnitsPerHour", BaseUnits.Undefined);
+                yield return new (PowerUnit.DecapascalCubicMeterPerSecond, "DecapascalCubicMeterPerSecond", "DecapascalCubicMeterPerSecond", BaseUnits.Undefined);
                 yield return new (PowerUnit.Decawatt, "Decawatt", "Decawatts", BaseUnits.Undefined);
+                yield return new (PowerUnit.DecipascalCubicMeterPerSecond, "DecipascalCubicMeterPerSecond", "DecipascalCubicMeterPerSecond", BaseUnits.Undefined);
                 yield return new (PowerUnit.Deciwatt, "Deciwatt", "Deciwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Hectogram, time: DurationUnit.Second));
                 yield return new (PowerUnit.ElectricalHorsepower, "ElectricalHorsepower", "ElectricalHorsepower", BaseUnits.Undefined);
+                yield return new (PowerUnit.FemtopascalCubicMeterPerSecond, "FemtopascalCubicMeterPerSecond", "FemtopascalCubicMeterPerSecond", BaseUnits.Undefined);
                 yield return new (PowerUnit.Femtowatt, "Femtowatt", "Femtowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Picogram, time: DurationUnit.Second));
                 yield return new (PowerUnit.GigajoulePerHour, "GigajoulePerHour", "GigajoulesPerHour", BaseUnits.Undefined);
+                yield return new (PowerUnit.GigapascalCubicMeterPerSecond, "GigapascalCubicMeterPerSecond", "GigapascalCubicMeterPerSecond", BaseUnits.Undefined);
                 yield return new (PowerUnit.Gigawatt, "Gigawatt", "Gigawatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond));
                 yield return new (PowerUnit.HydraulicHorsepower, "HydraulicHorsepower", "HydraulicHorsepower", BaseUnits.Undefined);
                 yield return new (PowerUnit.JoulePerHour, "JoulePerHour", "JoulesPerHour", BaseUnits.Undefined);
                 yield return new (PowerUnit.KilobritishThermalUnitPerHour, "KilobritishThermalUnitPerHour", "KilobritishThermalUnitsPerHour", BaseUnits.Undefined);
                 yield return new (PowerUnit.KilojoulePerHour, "KilojoulePerHour", "KilojoulesPerHour", BaseUnits.Undefined);
+                yield return new (PowerUnit.KilopascalCubicMeterPerSecond, "KilopascalCubicMeterPerSecond", "KilopascalCubicMeterPerSecond", BaseUnits.Undefined);
                 yield return new (PowerUnit.Kilowatt, "Kilowatt", "Kilowatts", BaseUnits.Undefined);
                 yield return new (PowerUnit.MechanicalHorsepower, "MechanicalHorsepower", "MechanicalHorsepower", BaseUnits.Undefined);
                 yield return new (PowerUnit.MegabritishThermalUnitPerHour, "MegabritishThermalUnitPerHour", "MegabritishThermalUnitsPerHour", BaseUnits.Undefined);
                 yield return new (PowerUnit.MegajoulePerHour, "MegajoulePerHour", "MegajoulesPerHour", BaseUnits.Undefined);
+                yield return new (PowerUnit.MegapascalCubicMeterPerSecond, "MegapascalCubicMeterPerSecond", "MegapascalCubicMeterPerSecond", BaseUnits.Undefined);
                 yield return new (PowerUnit.Megawatt, "Megawatt", "Megawatts", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second));
                 yield return new (PowerUnit.MetricHorsepower, "MetricHorsepower", "MetricHorsepower", BaseUnits.Undefined);
+                yield return new (PowerUnit.MicropascalCubicMeterPerSecond, "MicropascalCubicMeterPerSecond", "MicropascalCubicMeterPerSecond", BaseUnits.Undefined);
                 yield return new (PowerUnit.Microwatt, "Microwatt", "Microwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second));
                 yield return new (PowerUnit.MillijoulePerHour, "MillijoulePerHour", "MillijoulesPerHour", BaseUnits.Undefined);
+                yield return new (PowerUnit.MillipascalCubicMeterPerSecond, "MillipascalCubicMeterPerSecond", "MillipascalCubicMeterPerSecond", BaseUnits.Undefined);
                 yield return new (PowerUnit.Milliwatt, "Milliwatt", "Milliwatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second));
+                yield return new (PowerUnit.NanopascalCubicMeterPerSecond, "NanopascalCubicMeterPerSecond", "NanopascalCubicMeterPerSecond", BaseUnits.Undefined);
                 yield return new (PowerUnit.Nanowatt, "Nanowatt", "Nanowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second));
+                yield return new (PowerUnit.PascalCubicMeterPerSecond, "PascalCubicMeterPerSecond", "PascalCubicMeterPerSecond", BaseUnits.Undefined);
+                yield return new (PowerUnit.PetapascalCubicMeterPerSecond, "PetapascalCubicMeterPerSecond", "PetapascalCubicMeterPerSecond", BaseUnits.Undefined);
                 yield return new (PowerUnit.Petawatt, "Petawatt", "Petawatts", BaseUnits.Undefined);
+                yield return new (PowerUnit.PicopascalCubicMeterPerSecond, "PicopascalCubicMeterPerSecond", "PicopascalCubicMeterPerSecond", BaseUnits.Undefined);
                 yield return new (PowerUnit.Picowatt, "Picowatt", "Picowatts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second));
+                yield return new (PowerUnit.TerapascalCubicMeterPerSecond, "TerapascalCubicMeterPerSecond", "TerapascalCubicMeterPerSecond", BaseUnits.Undefined);
                 yield return new (PowerUnit.Terawatt, "Terawatt", "Terawatts", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
                 yield return new (PowerUnit.TonOfRefrigeration, "TonOfRefrigeration", "TonsOfRefrigeration", BaseUnits.Undefined);
                 yield return new (PowerUnit.Watt, "Watt", "Watts", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
@@ -274,9 +287,19 @@ namespace UnitsNet
         public double BritishThermalUnitsPerHour => As(PowerUnit.BritishThermalUnitPerHour);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.DecapascalCubicMeterPerSecond"/>
+        /// </summary>
+        public double DecapascalCubicMeterPerSecond => As(PowerUnit.DecapascalCubicMeterPerSecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Decawatt"/>
         /// </summary>
         public double Decawatts => As(PowerUnit.Decawatt);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.DecipascalCubicMeterPerSecond"/>
+        /// </summary>
+        public double DecipascalCubicMeterPerSecond => As(PowerUnit.DecipascalCubicMeterPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Deciwatt"/>
@@ -289,6 +312,11 @@ namespace UnitsNet
         public double ElectricalHorsepower => As(PowerUnit.ElectricalHorsepower);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.FemtopascalCubicMeterPerSecond"/>
+        /// </summary>
+        public double FemtopascalCubicMeterPerSecond => As(PowerUnit.FemtopascalCubicMeterPerSecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Femtowatt"/>
         /// </summary>
         public double Femtowatts => As(PowerUnit.Femtowatt);
@@ -297,6 +325,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.GigajoulePerHour"/>
         /// </summary>
         public double GigajoulesPerHour => As(PowerUnit.GigajoulePerHour);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.GigapascalCubicMeterPerSecond"/>
+        /// </summary>
+        public double GigapascalCubicMeterPerSecond => As(PowerUnit.GigapascalCubicMeterPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Gigawatt"/>
@@ -324,6 +357,11 @@ namespace UnitsNet
         public double KilojoulesPerHour => As(PowerUnit.KilojoulePerHour);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.KilopascalCubicMeterPerSecond"/>
+        /// </summary>
+        public double KilopascalCubicMeterPerSecond => As(PowerUnit.KilopascalCubicMeterPerSecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Kilowatt"/>
         /// </summary>
         public double Kilowatts => As(PowerUnit.Kilowatt);
@@ -344,6 +382,11 @@ namespace UnitsNet
         public double MegajoulesPerHour => As(PowerUnit.MegajoulePerHour);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.MegapascalCubicMeterPerSecond"/>
+        /// </summary>
+        public double MegapascalCubicMeterPerSecond => As(PowerUnit.MegapascalCubicMeterPerSecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Megawatt"/>
         /// </summary>
         public double Megawatts => As(PowerUnit.Megawatt);
@@ -352,6 +395,11 @@ namespace UnitsNet
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.MetricHorsepower"/>
         /// </summary>
         public double MetricHorsepower => As(PowerUnit.MetricHorsepower);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.MicropascalCubicMeterPerSecond"/>
+        /// </summary>
+        public double MicropascalCubicMeterPerSecond => As(PowerUnit.MicropascalCubicMeterPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Microwatt"/>
@@ -364,9 +412,19 @@ namespace UnitsNet
         public double MillijoulesPerHour => As(PowerUnit.MillijoulePerHour);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.MillipascalCubicMeterPerSecond"/>
+        /// </summary>
+        public double MillipascalCubicMeterPerSecond => As(PowerUnit.MillipascalCubicMeterPerSecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Milliwatt"/>
         /// </summary>
         public double Milliwatts => As(PowerUnit.Milliwatt);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.NanopascalCubicMeterPerSecond"/>
+        /// </summary>
+        public double NanopascalCubicMeterPerSecond => As(PowerUnit.NanopascalCubicMeterPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Nanowatt"/>
@@ -374,14 +432,34 @@ namespace UnitsNet
         public double Nanowatts => As(PowerUnit.Nanowatt);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.PascalCubicMeterPerSecond"/>
+        /// </summary>
+        public double PascalCubicMeterPerSecond => As(PowerUnit.PascalCubicMeterPerSecond);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.PetapascalCubicMeterPerSecond"/>
+        /// </summary>
+        public double PetapascalCubicMeterPerSecond => As(PowerUnit.PetapascalCubicMeterPerSecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Petawatt"/>
         /// </summary>
         public double Petawatts => As(PowerUnit.Petawatt);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.PicopascalCubicMeterPerSecond"/>
+        /// </summary>
+        public double PicopascalCubicMeterPerSecond => As(PowerUnit.PicopascalCubicMeterPerSecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Picowatt"/>
         /// </summary>
         public double Picowatts => As(PowerUnit.Picowatt);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.TerapascalCubicMeterPerSecond"/>
+        /// </summary>
+        public double TerapascalCubicMeterPerSecond => As(PowerUnit.TerapascalCubicMeterPerSecond);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerUnit.Terawatt"/>
@@ -411,28 +489,41 @@ namespace UnitsNet
             // Register in unit converter: PowerUnit -> BaseUnit
             unitConverter.SetConversionFunction<Power>(PowerUnit.BoilerHorsepower, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.BritishThermalUnitPerHour, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.DecapascalCubicMeterPerSecond, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Decawatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.DecipascalCubicMeterPerSecond, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Deciwatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.ElectricalHorsepower, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.FemtopascalCubicMeterPerSecond, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Femtowatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.GigajoulePerHour, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.GigapascalCubicMeterPerSecond, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Gigawatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.HydraulicHorsepower, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.JoulePerHour, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.KilobritishThermalUnitPerHour, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.KilojoulePerHour, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.KilopascalCubicMeterPerSecond, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Kilowatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.MechanicalHorsepower, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.MegabritishThermalUnitPerHour, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.MegajoulePerHour, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.MegapascalCubicMeterPerSecond, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Megawatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.MetricHorsepower, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.MicropascalCubicMeterPerSecond, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Microwatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.MillijoulePerHour, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.MillipascalCubicMeterPerSecond, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Milliwatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.NanopascalCubicMeterPerSecond, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Nanowatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.PascalCubicMeterPerSecond, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.PetapascalCubicMeterPerSecond, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Petawatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.PicopascalCubicMeterPerSecond, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Picowatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.TerapascalCubicMeterPerSecond, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Terawatt, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.TonOfRefrigeration, PowerUnit.Watt, quantity => quantity.ToUnit(PowerUnit.Watt));
 
@@ -442,28 +533,41 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> PowerUnit
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.BoilerHorsepower, quantity => quantity.ToUnit(PowerUnit.BoilerHorsepower));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.BritishThermalUnitPerHour, quantity => quantity.ToUnit(PowerUnit.BritishThermalUnitPerHour));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.DecapascalCubicMeterPerSecond, quantity => quantity.ToUnit(PowerUnit.DecapascalCubicMeterPerSecond));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Decawatt, quantity => quantity.ToUnit(PowerUnit.Decawatt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.DecipascalCubicMeterPerSecond, quantity => quantity.ToUnit(PowerUnit.DecipascalCubicMeterPerSecond));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Deciwatt, quantity => quantity.ToUnit(PowerUnit.Deciwatt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.ElectricalHorsepower, quantity => quantity.ToUnit(PowerUnit.ElectricalHorsepower));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.FemtopascalCubicMeterPerSecond, quantity => quantity.ToUnit(PowerUnit.FemtopascalCubicMeterPerSecond));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Femtowatt, quantity => quantity.ToUnit(PowerUnit.Femtowatt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.GigajoulePerHour, quantity => quantity.ToUnit(PowerUnit.GigajoulePerHour));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.GigapascalCubicMeterPerSecond, quantity => quantity.ToUnit(PowerUnit.GigapascalCubicMeterPerSecond));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Gigawatt, quantity => quantity.ToUnit(PowerUnit.Gigawatt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.HydraulicHorsepower, quantity => quantity.ToUnit(PowerUnit.HydraulicHorsepower));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.JoulePerHour, quantity => quantity.ToUnit(PowerUnit.JoulePerHour));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.KilobritishThermalUnitPerHour, quantity => quantity.ToUnit(PowerUnit.KilobritishThermalUnitPerHour));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.KilojoulePerHour, quantity => quantity.ToUnit(PowerUnit.KilojoulePerHour));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.KilopascalCubicMeterPerSecond, quantity => quantity.ToUnit(PowerUnit.KilopascalCubicMeterPerSecond));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Kilowatt, quantity => quantity.ToUnit(PowerUnit.Kilowatt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.MechanicalHorsepower, quantity => quantity.ToUnit(PowerUnit.MechanicalHorsepower));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.MegabritishThermalUnitPerHour, quantity => quantity.ToUnit(PowerUnit.MegabritishThermalUnitPerHour));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.MegajoulePerHour, quantity => quantity.ToUnit(PowerUnit.MegajoulePerHour));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.MegapascalCubicMeterPerSecond, quantity => quantity.ToUnit(PowerUnit.MegapascalCubicMeterPerSecond));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Megawatt, quantity => quantity.ToUnit(PowerUnit.Megawatt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.MetricHorsepower, quantity => quantity.ToUnit(PowerUnit.MetricHorsepower));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.MicropascalCubicMeterPerSecond, quantity => quantity.ToUnit(PowerUnit.MicropascalCubicMeterPerSecond));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Microwatt, quantity => quantity.ToUnit(PowerUnit.Microwatt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.MillijoulePerHour, quantity => quantity.ToUnit(PowerUnit.MillijoulePerHour));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.MillipascalCubicMeterPerSecond, quantity => quantity.ToUnit(PowerUnit.MillipascalCubicMeterPerSecond));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Milliwatt, quantity => quantity.ToUnit(PowerUnit.Milliwatt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.NanopascalCubicMeterPerSecond, quantity => quantity.ToUnit(PowerUnit.NanopascalCubicMeterPerSecond));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Nanowatt, quantity => quantity.ToUnit(PowerUnit.Nanowatt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.PascalCubicMeterPerSecond, quantity => quantity.ToUnit(PowerUnit.PascalCubicMeterPerSecond));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.PetapascalCubicMeterPerSecond, quantity => quantity.ToUnit(PowerUnit.PetapascalCubicMeterPerSecond));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Petawatt, quantity => quantity.ToUnit(PowerUnit.Petawatt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.PicopascalCubicMeterPerSecond, quantity => quantity.ToUnit(PowerUnit.PicopascalCubicMeterPerSecond));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Picowatt, quantity => quantity.ToUnit(PowerUnit.Picowatt));
+            unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.TerapascalCubicMeterPerSecond, quantity => quantity.ToUnit(PowerUnit.TerapascalCubicMeterPerSecond));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.Terawatt, quantity => quantity.ToUnit(PowerUnit.Terawatt));
             unitConverter.SetConversionFunction<Power>(PowerUnit.Watt, PowerUnit.TonOfRefrigeration, quantity => quantity.ToUnit(PowerUnit.TonOfRefrigeration));
         }
@@ -510,11 +614,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.DecapascalCubicMeterPerSecond"/>.
+        /// </summary>
+        public static Power FromDecapascalCubicMeterPerSecond(double value)
+        {
+            return new Power(value, PowerUnit.DecapascalCubicMeterPerSecond);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Decawatt"/>.
         /// </summary>
         public static Power FromDecawatts(double value)
         {
             return new Power(value, PowerUnit.Decawatt);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.DecipascalCubicMeterPerSecond"/>.
+        /// </summary>
+        public static Power FromDecipascalCubicMeterPerSecond(double value)
+        {
+            return new Power(value, PowerUnit.DecipascalCubicMeterPerSecond);
         }
 
         /// <summary>
@@ -534,6 +654,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.FemtopascalCubicMeterPerSecond"/>.
+        /// </summary>
+        public static Power FromFemtopascalCubicMeterPerSecond(double value)
+        {
+            return new Power(value, PowerUnit.FemtopascalCubicMeterPerSecond);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Femtowatt"/>.
         /// </summary>
         public static Power FromFemtowatts(double value)
@@ -547,6 +675,14 @@ namespace UnitsNet
         public static Power FromGigajoulesPerHour(double value)
         {
             return new Power(value, PowerUnit.GigajoulePerHour);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.GigapascalCubicMeterPerSecond"/>.
+        /// </summary>
+        public static Power FromGigapascalCubicMeterPerSecond(double value)
+        {
+            return new Power(value, PowerUnit.GigapascalCubicMeterPerSecond);
         }
 
         /// <summary>
@@ -590,6 +726,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.KilopascalCubicMeterPerSecond"/>.
+        /// </summary>
+        public static Power FromKilopascalCubicMeterPerSecond(double value)
+        {
+            return new Power(value, PowerUnit.KilopascalCubicMeterPerSecond);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Kilowatt"/>.
         /// </summary>
         public static Power FromKilowatts(double value)
@@ -622,6 +766,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MegapascalCubicMeterPerSecond"/>.
+        /// </summary>
+        public static Power FromMegapascalCubicMeterPerSecond(double value)
+        {
+            return new Power(value, PowerUnit.MegapascalCubicMeterPerSecond);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Megawatt"/>.
         /// </summary>
         public static Power FromMegawatts(double value)
@@ -635,6 +787,14 @@ namespace UnitsNet
         public static Power FromMetricHorsepower(double value)
         {
             return new Power(value, PowerUnit.MetricHorsepower);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MicropascalCubicMeterPerSecond"/>.
+        /// </summary>
+        public static Power FromMicropascalCubicMeterPerSecond(double value)
+        {
+            return new Power(value, PowerUnit.MicropascalCubicMeterPerSecond);
         }
 
         /// <summary>
@@ -654,11 +814,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.MillipascalCubicMeterPerSecond"/>.
+        /// </summary>
+        public static Power FromMillipascalCubicMeterPerSecond(double value)
+        {
+            return new Power(value, PowerUnit.MillipascalCubicMeterPerSecond);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Milliwatt"/>.
         /// </summary>
         public static Power FromMilliwatts(double value)
         {
             return new Power(value, PowerUnit.Milliwatt);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.NanopascalCubicMeterPerSecond"/>.
+        /// </summary>
+        public static Power FromNanopascalCubicMeterPerSecond(double value)
+        {
+            return new Power(value, PowerUnit.NanopascalCubicMeterPerSecond);
         }
 
         /// <summary>
@@ -670,6 +846,22 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.PascalCubicMeterPerSecond"/>.
+        /// </summary>
+        public static Power FromPascalCubicMeterPerSecond(double value)
+        {
+            return new Power(value, PowerUnit.PascalCubicMeterPerSecond);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.PetapascalCubicMeterPerSecond"/>.
+        /// </summary>
+        public static Power FromPetapascalCubicMeterPerSecond(double value)
+        {
+            return new Power(value, PowerUnit.PetapascalCubicMeterPerSecond);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Petawatt"/>.
         /// </summary>
         public static Power FromPetawatts(double value)
@@ -678,11 +870,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.PicopascalCubicMeterPerSecond"/>.
+        /// </summary>
+        public static Power FromPicopascalCubicMeterPerSecond(double value)
+        {
+            return new Power(value, PowerUnit.PicopascalCubicMeterPerSecond);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.Picowatt"/>.
         /// </summary>
         public static Power FromPicowatts(double value)
         {
             return new Power(value, PowerUnit.Picowatt);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Power"/> from <see cref="PowerUnit.TerapascalCubicMeterPerSecond"/>.
+        /// </summary>
+        public static Power FromTerapascalCubicMeterPerSecond(double value)
+        {
+            return new Power(value, PowerUnit.TerapascalCubicMeterPerSecond);
         }
 
         /// <summary>
@@ -1192,56 +1400,82 @@ namespace UnitsNet
                 // PowerUnit -> BaseUnit
                 (PowerUnit.BoilerHorsepower, PowerUnit.Watt) => new Power(_value * 9812.5, PowerUnit.Watt),
                 (PowerUnit.BritishThermalUnitPerHour, PowerUnit.Watt) => new Power(_value * 1055.05585262 / 3600, PowerUnit.Watt),
+                (PowerUnit.DecapascalCubicMeterPerSecond, PowerUnit.Watt) => new Power((_value) * 1e1d, PowerUnit.Watt),
                 (PowerUnit.Decawatt, PowerUnit.Watt) => new Power((_value) * 1e1d, PowerUnit.Watt),
+                (PowerUnit.DecipascalCubicMeterPerSecond, PowerUnit.Watt) => new Power((_value) * 1e-1d, PowerUnit.Watt),
                 (PowerUnit.Deciwatt, PowerUnit.Watt) => new Power((_value) * 1e-1d, PowerUnit.Watt),
                 (PowerUnit.ElectricalHorsepower, PowerUnit.Watt) => new Power(_value * 746, PowerUnit.Watt),
+                (PowerUnit.FemtopascalCubicMeterPerSecond, PowerUnit.Watt) => new Power((_value) * 1e-15d, PowerUnit.Watt),
                 (PowerUnit.Femtowatt, PowerUnit.Watt) => new Power((_value) * 1e-15d, PowerUnit.Watt),
                 (PowerUnit.GigajoulePerHour, PowerUnit.Watt) => new Power((_value / 3600) * 1e9d, PowerUnit.Watt),
+                (PowerUnit.GigapascalCubicMeterPerSecond, PowerUnit.Watt) => new Power((_value) * 1e9d, PowerUnit.Watt),
                 (PowerUnit.Gigawatt, PowerUnit.Watt) => new Power((_value) * 1e9d, PowerUnit.Watt),
                 (PowerUnit.HydraulicHorsepower, PowerUnit.Watt) => new Power(_value * 745.69987158227022, PowerUnit.Watt),
                 (PowerUnit.JoulePerHour, PowerUnit.Watt) => new Power(_value / 3600, PowerUnit.Watt),
                 (PowerUnit.KilobritishThermalUnitPerHour, PowerUnit.Watt) => new Power((_value * 1055.05585262 / 3600) * 1e3d, PowerUnit.Watt),
                 (PowerUnit.KilojoulePerHour, PowerUnit.Watt) => new Power((_value / 3600) * 1e3d, PowerUnit.Watt),
+                (PowerUnit.KilopascalCubicMeterPerSecond, PowerUnit.Watt) => new Power((_value) * 1e3d, PowerUnit.Watt),
                 (PowerUnit.Kilowatt, PowerUnit.Watt) => new Power((_value) * 1e3d, PowerUnit.Watt),
                 (PowerUnit.MechanicalHorsepower, PowerUnit.Watt) => new Power(_value * 76.0402249 * 9.80665, PowerUnit.Watt),
                 (PowerUnit.MegabritishThermalUnitPerHour, PowerUnit.Watt) => new Power((_value * 1055.05585262 / 3600) * 1e6d, PowerUnit.Watt),
                 (PowerUnit.MegajoulePerHour, PowerUnit.Watt) => new Power((_value / 3600) * 1e6d, PowerUnit.Watt),
+                (PowerUnit.MegapascalCubicMeterPerSecond, PowerUnit.Watt) => new Power((_value) * 1e6d, PowerUnit.Watt),
                 (PowerUnit.Megawatt, PowerUnit.Watt) => new Power((_value) * 1e6d, PowerUnit.Watt),
                 (PowerUnit.MetricHorsepower, PowerUnit.Watt) => new Power(_value * 75 * 9.80665, PowerUnit.Watt),
+                (PowerUnit.MicropascalCubicMeterPerSecond, PowerUnit.Watt) => new Power((_value) * 1e-6d, PowerUnit.Watt),
                 (PowerUnit.Microwatt, PowerUnit.Watt) => new Power((_value) * 1e-6d, PowerUnit.Watt),
                 (PowerUnit.MillijoulePerHour, PowerUnit.Watt) => new Power((_value / 3600) * 1e-3d, PowerUnit.Watt),
+                (PowerUnit.MillipascalCubicMeterPerSecond, PowerUnit.Watt) => new Power((_value) * 1e-3d, PowerUnit.Watt),
                 (PowerUnit.Milliwatt, PowerUnit.Watt) => new Power((_value) * 1e-3d, PowerUnit.Watt),
+                (PowerUnit.NanopascalCubicMeterPerSecond, PowerUnit.Watt) => new Power((_value) * 1e-9d, PowerUnit.Watt),
                 (PowerUnit.Nanowatt, PowerUnit.Watt) => new Power((_value) * 1e-9d, PowerUnit.Watt),
+                (PowerUnit.PascalCubicMeterPerSecond, PowerUnit.Watt) => new Power(_value, PowerUnit.Watt),
+                (PowerUnit.PetapascalCubicMeterPerSecond, PowerUnit.Watt) => new Power((_value) * 1e15d, PowerUnit.Watt),
                 (PowerUnit.Petawatt, PowerUnit.Watt) => new Power((_value) * 1e15d, PowerUnit.Watt),
+                (PowerUnit.PicopascalCubicMeterPerSecond, PowerUnit.Watt) => new Power((_value) * 1e-12d, PowerUnit.Watt),
                 (PowerUnit.Picowatt, PowerUnit.Watt) => new Power((_value) * 1e-12d, PowerUnit.Watt),
+                (PowerUnit.TerapascalCubicMeterPerSecond, PowerUnit.Watt) => new Power((_value) * 1e12d, PowerUnit.Watt),
                 (PowerUnit.Terawatt, PowerUnit.Watt) => new Power((_value) * 1e12d, PowerUnit.Watt),
                 (PowerUnit.TonOfRefrigeration, PowerUnit.Watt) => new Power(_value * 3516.853, PowerUnit.Watt),
 
                 // BaseUnit -> PowerUnit
                 (PowerUnit.Watt, PowerUnit.BoilerHorsepower) => new Power(_value / 9812.5, PowerUnit.BoilerHorsepower),
                 (PowerUnit.Watt, PowerUnit.BritishThermalUnitPerHour) => new Power(_value * 3600 / 1055.05585262, PowerUnit.BritishThermalUnitPerHour),
+                (PowerUnit.Watt, PowerUnit.DecapascalCubicMeterPerSecond) => new Power((_value) / 1e1d, PowerUnit.DecapascalCubicMeterPerSecond),
                 (PowerUnit.Watt, PowerUnit.Decawatt) => new Power((_value) / 1e1d, PowerUnit.Decawatt),
+                (PowerUnit.Watt, PowerUnit.DecipascalCubicMeterPerSecond) => new Power((_value) / 1e-1d, PowerUnit.DecipascalCubicMeterPerSecond),
                 (PowerUnit.Watt, PowerUnit.Deciwatt) => new Power((_value) / 1e-1d, PowerUnit.Deciwatt),
                 (PowerUnit.Watt, PowerUnit.ElectricalHorsepower) => new Power(_value / 746, PowerUnit.ElectricalHorsepower),
+                (PowerUnit.Watt, PowerUnit.FemtopascalCubicMeterPerSecond) => new Power((_value) / 1e-15d, PowerUnit.FemtopascalCubicMeterPerSecond),
                 (PowerUnit.Watt, PowerUnit.Femtowatt) => new Power((_value) / 1e-15d, PowerUnit.Femtowatt),
                 (PowerUnit.Watt, PowerUnit.GigajoulePerHour) => new Power((_value * 3600) / 1e9d, PowerUnit.GigajoulePerHour),
+                (PowerUnit.Watt, PowerUnit.GigapascalCubicMeterPerSecond) => new Power((_value) / 1e9d, PowerUnit.GigapascalCubicMeterPerSecond),
                 (PowerUnit.Watt, PowerUnit.Gigawatt) => new Power((_value) / 1e9d, PowerUnit.Gigawatt),
                 (PowerUnit.Watt, PowerUnit.HydraulicHorsepower) => new Power(_value / 745.69987158227022, PowerUnit.HydraulicHorsepower),
                 (PowerUnit.Watt, PowerUnit.JoulePerHour) => new Power(_value * 3600, PowerUnit.JoulePerHour),
                 (PowerUnit.Watt, PowerUnit.KilobritishThermalUnitPerHour) => new Power((_value * 3600 / 1055.05585262) / 1e3d, PowerUnit.KilobritishThermalUnitPerHour),
                 (PowerUnit.Watt, PowerUnit.KilojoulePerHour) => new Power((_value * 3600) / 1e3d, PowerUnit.KilojoulePerHour),
+                (PowerUnit.Watt, PowerUnit.KilopascalCubicMeterPerSecond) => new Power((_value) / 1e3d, PowerUnit.KilopascalCubicMeterPerSecond),
                 (PowerUnit.Watt, PowerUnit.Kilowatt) => new Power((_value) / 1e3d, PowerUnit.Kilowatt),
                 (PowerUnit.Watt, PowerUnit.MechanicalHorsepower) => new Power(_value / (76.0402249 * 9.80665), PowerUnit.MechanicalHorsepower),
                 (PowerUnit.Watt, PowerUnit.MegabritishThermalUnitPerHour) => new Power((_value * 3600 / 1055.05585262) / 1e6d, PowerUnit.MegabritishThermalUnitPerHour),
                 (PowerUnit.Watt, PowerUnit.MegajoulePerHour) => new Power((_value * 3600) / 1e6d, PowerUnit.MegajoulePerHour),
+                (PowerUnit.Watt, PowerUnit.MegapascalCubicMeterPerSecond) => new Power((_value) / 1e6d, PowerUnit.MegapascalCubicMeterPerSecond),
                 (PowerUnit.Watt, PowerUnit.Megawatt) => new Power((_value) / 1e6d, PowerUnit.Megawatt),
                 (PowerUnit.Watt, PowerUnit.MetricHorsepower) => new Power(_value / (75 * 9.80665), PowerUnit.MetricHorsepower),
+                (PowerUnit.Watt, PowerUnit.MicropascalCubicMeterPerSecond) => new Power((_value) / 1e-6d, PowerUnit.MicropascalCubicMeterPerSecond),
                 (PowerUnit.Watt, PowerUnit.Microwatt) => new Power((_value) / 1e-6d, PowerUnit.Microwatt),
                 (PowerUnit.Watt, PowerUnit.MillijoulePerHour) => new Power((_value * 3600) / 1e-3d, PowerUnit.MillijoulePerHour),
+                (PowerUnit.Watt, PowerUnit.MillipascalCubicMeterPerSecond) => new Power((_value) / 1e-3d, PowerUnit.MillipascalCubicMeterPerSecond),
                 (PowerUnit.Watt, PowerUnit.Milliwatt) => new Power((_value) / 1e-3d, PowerUnit.Milliwatt),
+                (PowerUnit.Watt, PowerUnit.NanopascalCubicMeterPerSecond) => new Power((_value) / 1e-9d, PowerUnit.NanopascalCubicMeterPerSecond),
                 (PowerUnit.Watt, PowerUnit.Nanowatt) => new Power((_value) / 1e-9d, PowerUnit.Nanowatt),
+                (PowerUnit.Watt, PowerUnit.PascalCubicMeterPerSecond) => new Power(_value, PowerUnit.PascalCubicMeterPerSecond),
+                (PowerUnit.Watt, PowerUnit.PetapascalCubicMeterPerSecond) => new Power((_value) / 1e15d, PowerUnit.PetapascalCubicMeterPerSecond),
                 (PowerUnit.Watt, PowerUnit.Petawatt) => new Power((_value) / 1e15d, PowerUnit.Petawatt),
+                (PowerUnit.Watt, PowerUnit.PicopascalCubicMeterPerSecond) => new Power((_value) / 1e-12d, PowerUnit.PicopascalCubicMeterPerSecond),
                 (PowerUnit.Watt, PowerUnit.Picowatt) => new Power((_value) / 1e-12d, PowerUnit.Picowatt),
+                (PowerUnit.Watt, PowerUnit.TerapascalCubicMeterPerSecond) => new Power((_value) / 1e12d, PowerUnit.TerapascalCubicMeterPerSecond),
                 (PowerUnit.Watt, PowerUnit.Terawatt) => new Power((_value) / 1e12d, PowerUnit.Terawatt),
                 (PowerUnit.Watt, PowerUnit.TonOfRefrigeration) => new Power(_value / 3516.853, PowerUnit.TonOfRefrigeration),
 

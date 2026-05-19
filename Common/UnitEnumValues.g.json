@@ -1086,7 +1086,20 @@
     "Picowatt": 24,
     "Terawatt": 25,
     "Watt": 26,
-    "TonOfRefrigeration": 29
+    "TonOfRefrigeration": 29,
+    "DecapascalCubicMeterPerSecond": 35,
+    "DecipascalCubicMeterPerSecond": 36,
+    "FemtopascalCubicMeterPerSecond": 34,
+    "GigapascalCubicMeterPerSecond": 32,
+    "KilopascalCubicMeterPerSecond": 28,
+    "MegapascalCubicMeterPerSecond": 27,
+    "MicropascalCubicMeterPerSecond": 37,
+    "MillipascalCubicMeterPerSecond": 30,
+    "NanopascalCubicMeterPerSecond": 31,
+    "PascalCubicMeterPerSecond": 33,
+    "PetapascalCubicMeterPerSecond": 45,
+    "PicopascalCubicMeterPerSecond": 47,
+    "TerapascalCubicMeterPerSecond": 42
   },
   "PowerDensity": {
     "DecawattPerCubicFoot": 1,
@@ -1188,7 +1201,22 @@
     "Torr": 47,
     "MeterOfWaterColumn": 57,
     "CentimeterOfWaterColumn": 48,
-    "Millitorr": 52
+    "Millitorr": 52,
+    "BarG": 53,
+    "CentibarG": 58,
+    "DecapascalG": 50,
+    "DecibarG": 55,
+    "GigapascalG": 54,
+    "HectopascalG": 59,
+    "KilobarG": 51,
+    "KilopascalG": 49,
+    "MegabarG": 60,
+    "MegapascalG": 56,
+    "MicrobarG": 67,
+    "MicropascalG": 65,
+    "MillibarG": 62,
+    "MillipascalG": 68,
+    "PascalG": 69
   },
   "PressureChangeRate": {
     "AtmospherePerSecond": 1,
@@ -2018,5 +2046,8 @@
     "SquareMeterKelvinPerKilowatt": 5,
     "SquareMeterKelvinPerWatt": 4,
     "SquareMillimeterKelvinPerWatt": 13
+  },
+  "Fluence": {
+    "NeutronPerSquareCentimeter": 4
   }
 }

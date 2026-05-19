@@ -76,6 +76,7 @@ namespace UnitsNet.Tests
             Assertion(3, EnergyUnit.WattHour, Quantity.From(3, EnergyUnit.WattHour));
             Assertion(3, EnergyDensityUnit.WattHourPerCubicMeter, Quantity.From(3, EnergyDensityUnit.WattHourPerCubicMeter));
             Assertion(3, EntropyUnit.MegajoulePerKelvin, Quantity.From(3, EntropyUnit.MegajoulePerKelvin));
+            Assertion(3, FluenceUnit.NeutronPerSquareCentimeter, Quantity.From(3, FluenceUnit.NeutronPerSquareCentimeter));
             Assertion(3, FluidResistanceUnit.WoodUnit, Quantity.From(3, FluidResistanceUnit.WoodUnit));
             Assertion(3, ForceUnit.TonneForce, Quantity.From(3, ForceUnit.TonneForce));
             Assertion(3, ForceChangeRateUnit.PoundForcePerSecond, Quantity.From(3, ForceChangeRateUnit.PoundForcePerSecond));
@@ -211,6 +212,7 @@ namespace UnitsNet.Tests
             Assertion(Energy.Info, Energy.Zero);
             Assertion(EnergyDensity.Info, EnergyDensity.Zero);
             Assertion(Entropy.Info, Entropy.Zero);
+            Assertion(Fluence.Info, Fluence.Zero);
             Assertion(FluidResistance.Info, FluidResistance.Zero);
             Assertion(Force.Info, Force.Zero);
             Assertion(ForceChangeRate.Info, ForceChangeRate.Zero);

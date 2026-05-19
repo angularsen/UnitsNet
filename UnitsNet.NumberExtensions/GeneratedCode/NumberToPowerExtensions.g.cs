@@ -54,6 +54,17 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             => Power.FromBritishThermalUnitsPerHour(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Power.FromDecapascalCubicMeterPerSecond(double)" />
+        public static Power DecapascalCubicMeterPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Power.FromDecapascalCubicMeterPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Power.FromDecapascalCubicMeterPerSecond(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Power.FromDecawatts(double)" />
         public static Power Decawatts<T>(this T value)
             where T : notnull
@@ -63,6 +74,17 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #else
             , IConvertible
             => Power.FromDecawatts(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Power.FromDecipascalCubicMeterPerSecond(double)" />
+        public static Power DecipascalCubicMeterPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Power.FromDecipascalCubicMeterPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Power.FromDecipascalCubicMeterPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromDeciwatts(double)" />
@@ -87,6 +109,17 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             => Power.FromElectricalHorsepower(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Power.FromFemtopascalCubicMeterPerSecond(double)" />
+        public static Power FemtopascalCubicMeterPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Power.FromFemtopascalCubicMeterPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Power.FromFemtopascalCubicMeterPerSecond(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Power.FromFemtowatts(double)" />
         public static Power Femtowatts<T>(this T value)
             where T : notnull
@@ -107,6 +140,17 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #else
             , IConvertible
             => Power.FromGigajoulesPerHour(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Power.FromGigapascalCubicMeterPerSecond(double)" />
+        public static Power GigapascalCubicMeterPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Power.FromGigapascalCubicMeterPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Power.FromGigapascalCubicMeterPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromGigawatts(double)" />
@@ -164,6 +208,17 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             => Power.FromKilojoulesPerHour(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Power.FromKilopascalCubicMeterPerSecond(double)" />
+        public static Power KilopascalCubicMeterPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Power.FromKilopascalCubicMeterPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Power.FromKilopascalCubicMeterPerSecond(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Power.FromKilowatts(double)" />
         public static Power Kilowatts<T>(this T value)
             where T : notnull
@@ -208,6 +263,17 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             => Power.FromMegajoulesPerHour(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Power.FromMegapascalCubicMeterPerSecond(double)" />
+        public static Power MegapascalCubicMeterPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Power.FromMegapascalCubicMeterPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Power.FromMegapascalCubicMeterPerSecond(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Power.FromMegawatts(double)" />
         public static Power Megawatts<T>(this T value)
             where T : notnull
@@ -228,6 +294,17 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #else
             , IConvertible
             => Power.FromMetricHorsepower(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Power.FromMicropascalCubicMeterPerSecond(double)" />
+        public static Power MicropascalCubicMeterPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Power.FromMicropascalCubicMeterPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Power.FromMicropascalCubicMeterPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromMicrowatts(double)" />
@@ -252,6 +329,17 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             => Power.FromMillijoulesPerHour(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Power.FromMillipascalCubicMeterPerSecond(double)" />
+        public static Power MillipascalCubicMeterPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Power.FromMillipascalCubicMeterPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Power.FromMillipascalCubicMeterPerSecond(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Power.FromMilliwatts(double)" />
         public static Power Milliwatts<T>(this T value)
             where T : notnull
@@ -261,6 +349,17 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #else
             , IConvertible
             => Power.FromMilliwatts(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Power.FromNanopascalCubicMeterPerSecond(double)" />
+        public static Power NanopascalCubicMeterPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Power.FromNanopascalCubicMeterPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Power.FromNanopascalCubicMeterPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromNanowatts(double)" />
@@ -274,6 +373,28 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             => Power.FromNanowatts(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Power.FromPascalCubicMeterPerSecond(double)" />
+        public static Power PascalCubicMeterPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Power.FromPascalCubicMeterPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Power.FromPascalCubicMeterPerSecond(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Power.FromPetapascalCubicMeterPerSecond(double)" />
+        public static Power PetapascalCubicMeterPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Power.FromPetapascalCubicMeterPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Power.FromPetapascalCubicMeterPerSecond(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Power.FromPetawatts(double)" />
         public static Power Petawatts<T>(this T value)
             where T : notnull
@@ -285,6 +406,17 @@ namespace UnitsNet.NumberExtensions.NumberToPower
             => Power.FromPetawatts(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Power.FromPicopascalCubicMeterPerSecond(double)" />
+        public static Power PicopascalCubicMeterPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Power.FromPicopascalCubicMeterPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Power.FromPicopascalCubicMeterPerSecond(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Power.FromPicowatts(double)" />
         public static Power Picowatts<T>(this T value)
             where T : notnull
@@ -294,6 +426,17 @@ namespace UnitsNet.NumberExtensions.NumberToPower
 #else
             , IConvertible
             => Power.FromPicowatts(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Power.FromTerapascalCubicMeterPerSecond(double)" />
+        public static Power TerapascalCubicMeterPerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Power.FromTerapascalCubicMeterPerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Power.FromTerapascalCubicMeterPerSecond(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Power.FromTerawatts(double)" />
