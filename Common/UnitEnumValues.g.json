@@ -1086,7 +1086,20 @@
     "Picowatt": 24,
     "Terawatt": 25,
     "Watt": 26,
-    "TonOfRefrigeration": 29
+    "TonOfRefrigeration": 29,
+    "DecapascalCubicMeterPerSecond": 35,
+    "DecipascalCubicMeterPerSecond": 36,
+    "FemtopascalCubicMeterPerSecond": 34,
+    "GigapascalCubicMeterPerSecond": 32,
+    "KilopascalCubicMeterPerSecond": 28,
+    "MegapascalCubicMeterPerSecond": 27,
+    "MicropascalCubicMeterPerSecond": 37,
+    "MillipascalCubicMeterPerSecond": 30,
+    "NanopascalCubicMeterPerSecond": 31,
+    "PascalCubicMeterPerSecond": 33,
+    "PetapascalCubicMeterPerSecond": 45,
+    "PicopascalCubicMeterPerSecond": 47,
+    "TerapascalCubicMeterPerSecond": 42
   },
   "PowerDensity": {
     "DecawattPerCubicFoot": 1,

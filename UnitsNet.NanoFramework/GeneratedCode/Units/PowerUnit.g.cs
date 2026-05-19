@@ -33,7 +33,9 @@ namespace UnitsNet.Units
         BoilerHorsepower = 1,
         /// <remarks>Based on the International Table (IT) definition of the British thermal unit (BTU), where 1 BTU is defined as exactly 1055.05585262 joules (≈1.05506 kJ). See https://en.wikipedia.org/wiki/British_thermal_unit for details.</remarks>
         BritishThermalUnitPerHour = 2,
+        DecapascalCubicMeterPerSecond = 35,
         Decawatt = 3,
+        DecipascalCubicMeterPerSecond = 36,
         Deciwatt = 4,
 
         /// <summary>
@@ -41,8 +43,10 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Horsepower#Electrical_horsepower</remarks>
         ElectricalHorsepower = 5,
+        FemtopascalCubicMeterPerSecond = 34,
         Femtowatt = 6,
         GigajoulePerHour = 7,
+        GigapascalCubicMeterPerSecond = 32,
         Gigawatt = 8,
 
         /// <summary>
@@ -53,6 +57,7 @@ namespace UnitsNet.Units
         JoulePerHour = 10,
         KilobritishThermalUnitPerHour = 11,
         KilojoulePerHour = 12,
+        KilopascalCubicMeterPerSecond = 28,
         Kilowatt = 13,
 
         /// <summary>
@@ -62,6 +67,7 @@ namespace UnitsNet.Units
         MechanicalHorsepower = 14,
         MegabritishThermalUnitPerHour = 15,
         MegajoulePerHour = 16,
+        MegapascalCubicMeterPerSecond = 27,
         Megawatt = 17,
 
         /// <summary>
@@ -69,12 +75,19 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Horsepower#Metric_horsepower_(PS,_KM,_cv,_hk,_pk,_k,_ks,_ch)</remarks>
         MetricHorsepower = 18,
+        MicropascalCubicMeterPerSecond = 37,
         Microwatt = 19,
         MillijoulePerHour = 20,
+        MillipascalCubicMeterPerSecond = 30,
         Milliwatt = 21,
+        NanopascalCubicMeterPerSecond = 31,
         Nanowatt = 22,
+        PascalCubicMeterPerSecond = 33,
+        PetapascalCubicMeterPerSecond = 45,
         Petawatt = 23,
+        PicopascalCubicMeterPerSecond = 47,
         Picowatt = 24,
+        TerapascalCubicMeterPerSecond = 42,
         Terawatt = 25,
         TonOfRefrigeration = 29,
         Watt = 26,

@@ -33,8 +33,16 @@ namespace UnitsNet.Tests
             Assert.Equal(Power.FromBritishThermalUnitsPerHour(2), 2.BritishThermalUnitsPerHour());
 
         [Fact]
+        public void NumberToDecapascalCubicMeterPerSecondTest() =>
+            Assert.Equal(Power.FromDecapascalCubicMeterPerSecond(2), 2.DecapascalCubicMeterPerSecond());
+
+        [Fact]
         public void NumberToDecawattsTest() =>
             Assert.Equal(Power.FromDecawatts(2), 2.Decawatts());
+
+        [Fact]
+        public void NumberToDecipascalCubicMeterPerSecondTest() =>
+            Assert.Equal(Power.FromDecipascalCubicMeterPerSecond(2), 2.DecipascalCubicMeterPerSecond());
 
         [Fact]
         public void NumberToDeciwattsTest() =>
@@ -45,12 +53,20 @@ namespace UnitsNet.Tests
             Assert.Equal(Power.FromElectricalHorsepower(2), 2.ElectricalHorsepower());
 
         [Fact]
+        public void NumberToFemtopascalCubicMeterPerSecondTest() =>
+            Assert.Equal(Power.FromFemtopascalCubicMeterPerSecond(2), 2.FemtopascalCubicMeterPerSecond());
+
+        [Fact]
         public void NumberToFemtowattsTest() =>
             Assert.Equal(Power.FromFemtowatts(2), 2.Femtowatts());
 
         [Fact]
         public void NumberToGigajoulesPerHourTest() =>
             Assert.Equal(Power.FromGigajoulesPerHour(2), 2.GigajoulesPerHour());
+
+        [Fact]
+        public void NumberToGigapascalCubicMeterPerSecondTest() =>
+            Assert.Equal(Power.FromGigapascalCubicMeterPerSecond(2), 2.GigapascalCubicMeterPerSecond());
 
         [Fact]
         public void NumberToGigawattsTest() =>
@@ -73,6 +89,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Power.FromKilojoulesPerHour(2), 2.KilojoulesPerHour());
 
         [Fact]
+        public void NumberToKilopascalCubicMeterPerSecondTest() =>
+            Assert.Equal(Power.FromKilopascalCubicMeterPerSecond(2), 2.KilopascalCubicMeterPerSecond());
+
+        [Fact]
         public void NumberToKilowattsTest() =>
             Assert.Equal(Power.FromKilowatts(2), 2.Kilowatts());
 
@@ -89,12 +109,20 @@ namespace UnitsNet.Tests
             Assert.Equal(Power.FromMegajoulesPerHour(2), 2.MegajoulesPerHour());
 
         [Fact]
+        public void NumberToMegapascalCubicMeterPerSecondTest() =>
+            Assert.Equal(Power.FromMegapascalCubicMeterPerSecond(2), 2.MegapascalCubicMeterPerSecond());
+
+        [Fact]
         public void NumberToMegawattsTest() =>
             Assert.Equal(Power.FromMegawatts(2), 2.Megawatts());
 
         [Fact]
         public void NumberToMetricHorsepowerTest() =>
             Assert.Equal(Power.FromMetricHorsepower(2), 2.MetricHorsepower());
+
+        [Fact]
+        public void NumberToMicropascalCubicMeterPerSecondTest() =>
+            Assert.Equal(Power.FromMicropascalCubicMeterPerSecond(2), 2.MicropascalCubicMeterPerSecond());
 
         [Fact]
         public void NumberToMicrowattsTest() =>
@@ -105,20 +133,44 @@ namespace UnitsNet.Tests
             Assert.Equal(Power.FromMillijoulesPerHour(2), 2.MillijoulesPerHour());
 
         [Fact]
+        public void NumberToMillipascalCubicMeterPerSecondTest() =>
+            Assert.Equal(Power.FromMillipascalCubicMeterPerSecond(2), 2.MillipascalCubicMeterPerSecond());
+
+        [Fact]
         public void NumberToMilliwattsTest() =>
             Assert.Equal(Power.FromMilliwatts(2), 2.Milliwatts());
+
+        [Fact]
+        public void NumberToNanopascalCubicMeterPerSecondTest() =>
+            Assert.Equal(Power.FromNanopascalCubicMeterPerSecond(2), 2.NanopascalCubicMeterPerSecond());
 
         [Fact]
         public void NumberToNanowattsTest() =>
             Assert.Equal(Power.FromNanowatts(2), 2.Nanowatts());
 
         [Fact]
+        public void NumberToPascalCubicMeterPerSecondTest() =>
+            Assert.Equal(Power.FromPascalCubicMeterPerSecond(2), 2.PascalCubicMeterPerSecond());
+
+        [Fact]
+        public void NumberToPetapascalCubicMeterPerSecondTest() =>
+            Assert.Equal(Power.FromPetapascalCubicMeterPerSecond(2), 2.PetapascalCubicMeterPerSecond());
+
+        [Fact]
         public void NumberToPetawattsTest() =>
             Assert.Equal(Power.FromPetawatts(2), 2.Petawatts());
 
         [Fact]
+        public void NumberToPicopascalCubicMeterPerSecondTest() =>
+            Assert.Equal(Power.FromPicopascalCubicMeterPerSecond(2), 2.PicopascalCubicMeterPerSecond());
+
+        [Fact]
         public void NumberToPicowattsTest() =>
             Assert.Equal(Power.FromPicowatts(2), 2.Picowatts());
+
+        [Fact]
+        public void NumberToTerapascalCubicMeterPerSecondTest() =>
+            Assert.Equal(Power.FromTerapascalCubicMeterPerSecond(2), 2.TerapascalCubicMeterPerSecond());
 
         [Fact]
         public void NumberToTerawattsTest() =>

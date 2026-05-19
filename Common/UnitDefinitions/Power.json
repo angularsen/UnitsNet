@@ -27,6 +27,19 @@
       ]
     },
     {
+      "SingularName": "PascalCubicMeterPerSecond",
+      "PluralName": "PascalCubicMeterPerSecond",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Femto", "Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera", "Peta" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Pa.m³/s" ]
+        }
+      ]
+    },
+    {
       "SingularName": "MechanicalHorsepower",
       "PluralName": "MechanicalHorsepower",
       "XmlDocSummary": "Assuming the third CGPM (1901, CR 70) definition of standard gravity, gn = 9.80665 m/s2, is used to define the pound-force as well as the kilogram force, and the international avoirdupois pound (1959), one imperial horsepower is: 76.0402249 × 9.80665 kg⋅m2/s3",

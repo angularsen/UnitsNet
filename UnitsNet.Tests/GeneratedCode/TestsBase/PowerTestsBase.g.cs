@@ -42,28 +42,41 @@ namespace UnitsNet.Tests
     {
         protected abstract double BoilerHorsepowerInOneWatt { get; }
         protected abstract double BritishThermalUnitsPerHourInOneWatt { get; }
+        protected abstract double DecapascalCubicMeterPerSecondInOneWatt { get; }
         protected abstract double DecawattsInOneWatt { get; }
+        protected abstract double DecipascalCubicMeterPerSecondInOneWatt { get; }
         protected abstract double DeciwattsInOneWatt { get; }
         protected abstract double ElectricalHorsepowerInOneWatt { get; }
+        protected abstract double FemtopascalCubicMeterPerSecondInOneWatt { get; }
         protected abstract double FemtowattsInOneWatt { get; }
         protected abstract double GigajoulesPerHourInOneWatt { get; }
+        protected abstract double GigapascalCubicMeterPerSecondInOneWatt { get; }
         protected abstract double GigawattsInOneWatt { get; }
         protected abstract double HydraulicHorsepowerInOneWatt { get; }
         protected abstract double JoulesPerHourInOneWatt { get; }
         protected abstract double KilobritishThermalUnitsPerHourInOneWatt { get; }
         protected abstract double KilojoulesPerHourInOneWatt { get; }
+        protected abstract double KilopascalCubicMeterPerSecondInOneWatt { get; }
         protected abstract double KilowattsInOneWatt { get; }
         protected abstract double MechanicalHorsepowerInOneWatt { get; }
         protected abstract double MegabritishThermalUnitsPerHourInOneWatt { get; }
         protected abstract double MegajoulesPerHourInOneWatt { get; }
+        protected abstract double MegapascalCubicMeterPerSecondInOneWatt { get; }
         protected abstract double MegawattsInOneWatt { get; }
         protected abstract double MetricHorsepowerInOneWatt { get; }
+        protected abstract double MicropascalCubicMeterPerSecondInOneWatt { get; }
         protected abstract double MicrowattsInOneWatt { get; }
         protected abstract double MillijoulesPerHourInOneWatt { get; }
+        protected abstract double MillipascalCubicMeterPerSecondInOneWatt { get; }
         protected abstract double MilliwattsInOneWatt { get; }
+        protected abstract double NanopascalCubicMeterPerSecondInOneWatt { get; }
         protected abstract double NanowattsInOneWatt { get; }
+        protected abstract double PascalCubicMeterPerSecondInOneWatt { get; }
+        protected abstract double PetapascalCubicMeterPerSecondInOneWatt { get; }
         protected abstract double PetawattsInOneWatt { get; }
+        protected abstract double PicopascalCubicMeterPerSecondInOneWatt { get; }
         protected abstract double PicowattsInOneWatt { get; }
+        protected abstract double TerapascalCubicMeterPerSecondInOneWatt { get; }
         protected abstract double TerawattsInOneWatt { get; }
         protected abstract double TonsOfRefrigerationInOneWatt { get; }
         protected abstract double WattsInOneWatt { get; }
@@ -71,28 +84,41 @@ namespace UnitsNet.Tests
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double BoilerHorsepowerTolerance { get { return 1e-5; } }
         protected virtual double BritishThermalUnitsPerHourTolerance { get { return 1e-5; } }
+        protected virtual double DecapascalCubicMeterPerSecondTolerance { get { return 1e-5; } }
         protected virtual double DecawattsTolerance { get { return 1e-5; } }
+        protected virtual double DecipascalCubicMeterPerSecondTolerance { get { return 1e-5; } }
         protected virtual double DeciwattsTolerance { get { return 1e-5; } }
         protected virtual double ElectricalHorsepowerTolerance { get { return 1e-5; } }
+        protected virtual double FemtopascalCubicMeterPerSecondTolerance { get { return 1e-5; } }
         protected virtual double FemtowattsTolerance { get { return 1e-5; } }
         protected virtual double GigajoulesPerHourTolerance { get { return 1e-5; } }
+        protected virtual double GigapascalCubicMeterPerSecondTolerance { get { return 1e-5; } }
         protected virtual double GigawattsTolerance { get { return 1e-5; } }
         protected virtual double HydraulicHorsepowerTolerance { get { return 1e-5; } }
         protected virtual double JoulesPerHourTolerance { get { return 1e-5; } }
         protected virtual double KilobritishThermalUnitsPerHourTolerance { get { return 1e-5; } }
         protected virtual double KilojoulesPerHourTolerance { get { return 1e-5; } }
+        protected virtual double KilopascalCubicMeterPerSecondTolerance { get { return 1e-5; } }
         protected virtual double KilowattsTolerance { get { return 1e-5; } }
         protected virtual double MechanicalHorsepowerTolerance { get { return 1e-5; } }
         protected virtual double MegabritishThermalUnitsPerHourTolerance { get { return 1e-5; } }
         protected virtual double MegajoulesPerHourTolerance { get { return 1e-5; } }
+        protected virtual double MegapascalCubicMeterPerSecondTolerance { get { return 1e-5; } }
         protected virtual double MegawattsTolerance { get { return 1e-5; } }
         protected virtual double MetricHorsepowerTolerance { get { return 1e-5; } }
+        protected virtual double MicropascalCubicMeterPerSecondTolerance { get { return 1e-5; } }
         protected virtual double MicrowattsTolerance { get { return 1e-5; } }
         protected virtual double MillijoulesPerHourTolerance { get { return 1e-5; } }
+        protected virtual double MillipascalCubicMeterPerSecondTolerance { get { return 1e-5; } }
         protected virtual double MilliwattsTolerance { get { return 1e-5; } }
+        protected virtual double NanopascalCubicMeterPerSecondTolerance { get { return 1e-5; } }
         protected virtual double NanowattsTolerance { get { return 1e-5; } }
+        protected virtual double PascalCubicMeterPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double PetapascalCubicMeterPerSecondTolerance { get { return 1e-5; } }
         protected virtual double PetawattsTolerance { get { return 1e-5; } }
+        protected virtual double PicopascalCubicMeterPerSecondTolerance { get { return 1e-5; } }
         protected virtual double PicowattsTolerance { get { return 1e-5; } }
+        protected virtual double TerapascalCubicMeterPerSecondTolerance { get { return 1e-5; } }
         protected virtual double TerawattsTolerance { get { return 1e-5; } }
         protected virtual double TonsOfRefrigerationTolerance { get { return 1e-5; } }
         protected virtual double WattsTolerance { get { return 1e-5; } }
@@ -104,28 +130,41 @@ namespace UnitsNet.Tests
             {
                 PowerUnit.BoilerHorsepower => (BoilerHorsepowerInOneWatt, BoilerHorsepowerTolerance),
                 PowerUnit.BritishThermalUnitPerHour => (BritishThermalUnitsPerHourInOneWatt, BritishThermalUnitsPerHourTolerance),
+                PowerUnit.DecapascalCubicMeterPerSecond => (DecapascalCubicMeterPerSecondInOneWatt, DecapascalCubicMeterPerSecondTolerance),
                 PowerUnit.Decawatt => (DecawattsInOneWatt, DecawattsTolerance),
+                PowerUnit.DecipascalCubicMeterPerSecond => (DecipascalCubicMeterPerSecondInOneWatt, DecipascalCubicMeterPerSecondTolerance),
                 PowerUnit.Deciwatt => (DeciwattsInOneWatt, DeciwattsTolerance),
                 PowerUnit.ElectricalHorsepower => (ElectricalHorsepowerInOneWatt, ElectricalHorsepowerTolerance),
+                PowerUnit.FemtopascalCubicMeterPerSecond => (FemtopascalCubicMeterPerSecondInOneWatt, FemtopascalCubicMeterPerSecondTolerance),
                 PowerUnit.Femtowatt => (FemtowattsInOneWatt, FemtowattsTolerance),
                 PowerUnit.GigajoulePerHour => (GigajoulesPerHourInOneWatt, GigajoulesPerHourTolerance),
+                PowerUnit.GigapascalCubicMeterPerSecond => (GigapascalCubicMeterPerSecondInOneWatt, GigapascalCubicMeterPerSecondTolerance),
                 PowerUnit.Gigawatt => (GigawattsInOneWatt, GigawattsTolerance),
                 PowerUnit.HydraulicHorsepower => (HydraulicHorsepowerInOneWatt, HydraulicHorsepowerTolerance),
                 PowerUnit.JoulePerHour => (JoulesPerHourInOneWatt, JoulesPerHourTolerance),
                 PowerUnit.KilobritishThermalUnitPerHour => (KilobritishThermalUnitsPerHourInOneWatt, KilobritishThermalUnitsPerHourTolerance),
                 PowerUnit.KilojoulePerHour => (KilojoulesPerHourInOneWatt, KilojoulesPerHourTolerance),
+                PowerUnit.KilopascalCubicMeterPerSecond => (KilopascalCubicMeterPerSecondInOneWatt, KilopascalCubicMeterPerSecondTolerance),
                 PowerUnit.Kilowatt => (KilowattsInOneWatt, KilowattsTolerance),
                 PowerUnit.MechanicalHorsepower => (MechanicalHorsepowerInOneWatt, MechanicalHorsepowerTolerance),
                 PowerUnit.MegabritishThermalUnitPerHour => (MegabritishThermalUnitsPerHourInOneWatt, MegabritishThermalUnitsPerHourTolerance),
                 PowerUnit.MegajoulePerHour => (MegajoulesPerHourInOneWatt, MegajoulesPerHourTolerance),
+                PowerUnit.MegapascalCubicMeterPerSecond => (MegapascalCubicMeterPerSecondInOneWatt, MegapascalCubicMeterPerSecondTolerance),
                 PowerUnit.Megawatt => (MegawattsInOneWatt, MegawattsTolerance),
                 PowerUnit.MetricHorsepower => (MetricHorsepowerInOneWatt, MetricHorsepowerTolerance),
+                PowerUnit.MicropascalCubicMeterPerSecond => (MicropascalCubicMeterPerSecondInOneWatt, MicropascalCubicMeterPerSecondTolerance),
                 PowerUnit.Microwatt => (MicrowattsInOneWatt, MicrowattsTolerance),
                 PowerUnit.MillijoulePerHour => (MillijoulesPerHourInOneWatt, MillijoulesPerHourTolerance),
+                PowerUnit.MillipascalCubicMeterPerSecond => (MillipascalCubicMeterPerSecondInOneWatt, MillipascalCubicMeterPerSecondTolerance),
                 PowerUnit.Milliwatt => (MilliwattsInOneWatt, MilliwattsTolerance),
+                PowerUnit.NanopascalCubicMeterPerSecond => (NanopascalCubicMeterPerSecondInOneWatt, NanopascalCubicMeterPerSecondTolerance),
                 PowerUnit.Nanowatt => (NanowattsInOneWatt, NanowattsTolerance),
+                PowerUnit.PascalCubicMeterPerSecond => (PascalCubicMeterPerSecondInOneWatt, PascalCubicMeterPerSecondTolerance),
+                PowerUnit.PetapascalCubicMeterPerSecond => (PetapascalCubicMeterPerSecondInOneWatt, PetapascalCubicMeterPerSecondTolerance),
                 PowerUnit.Petawatt => (PetawattsInOneWatt, PetawattsTolerance),
+                PowerUnit.PicopascalCubicMeterPerSecond => (PicopascalCubicMeterPerSecondInOneWatt, PicopascalCubicMeterPerSecondTolerance),
                 PowerUnit.Picowatt => (PicowattsInOneWatt, PicowattsTolerance),
+                PowerUnit.TerapascalCubicMeterPerSecond => (TerapascalCubicMeterPerSecondInOneWatt, TerapascalCubicMeterPerSecondTolerance),
                 PowerUnit.Terawatt => (TerawattsInOneWatt, TerawattsTolerance),
                 PowerUnit.TonOfRefrigeration => (TonsOfRefrigerationInOneWatt, TonsOfRefrigerationTolerance),
                 PowerUnit.Watt => (WattsInOneWatt, WattsTolerance),
@@ -137,28 +176,41 @@ namespace UnitsNet.Tests
         {
             new object[] { PowerUnit.BoilerHorsepower },
             new object[] { PowerUnit.BritishThermalUnitPerHour },
+            new object[] { PowerUnit.DecapascalCubicMeterPerSecond },
             new object[] { PowerUnit.Decawatt },
+            new object[] { PowerUnit.DecipascalCubicMeterPerSecond },
             new object[] { PowerUnit.Deciwatt },
             new object[] { PowerUnit.ElectricalHorsepower },
+            new object[] { PowerUnit.FemtopascalCubicMeterPerSecond },
             new object[] { PowerUnit.Femtowatt },
             new object[] { PowerUnit.GigajoulePerHour },
+            new object[] { PowerUnit.GigapascalCubicMeterPerSecond },
             new object[] { PowerUnit.Gigawatt },
             new object[] { PowerUnit.HydraulicHorsepower },
             new object[] { PowerUnit.JoulePerHour },
             new object[] { PowerUnit.KilobritishThermalUnitPerHour },
             new object[] { PowerUnit.KilojoulePerHour },
+            new object[] { PowerUnit.KilopascalCubicMeterPerSecond },
             new object[] { PowerUnit.Kilowatt },
             new object[] { PowerUnit.MechanicalHorsepower },
             new object[] { PowerUnit.MegabritishThermalUnitPerHour },
             new object[] { PowerUnit.MegajoulePerHour },
+            new object[] { PowerUnit.MegapascalCubicMeterPerSecond },
             new object[] { PowerUnit.Megawatt },
             new object[] { PowerUnit.MetricHorsepower },
+            new object[] { PowerUnit.MicropascalCubicMeterPerSecond },
             new object[] { PowerUnit.Microwatt },
             new object[] { PowerUnit.MillijoulePerHour },
+            new object[] { PowerUnit.MillipascalCubicMeterPerSecond },
             new object[] { PowerUnit.Milliwatt },
+            new object[] { PowerUnit.NanopascalCubicMeterPerSecond },
             new object[] { PowerUnit.Nanowatt },
+            new object[] { PowerUnit.PascalCubicMeterPerSecond },
+            new object[] { PowerUnit.PetapascalCubicMeterPerSecond },
             new object[] { PowerUnit.Petawatt },
+            new object[] { PowerUnit.PicopascalCubicMeterPerSecond },
             new object[] { PowerUnit.Picowatt },
+            new object[] { PowerUnit.TerapascalCubicMeterPerSecond },
             new object[] { PowerUnit.Terawatt },
             new object[] { PowerUnit.TonOfRefrigeration },
             new object[] { PowerUnit.Watt },
@@ -235,28 +287,41 @@ namespace UnitsNet.Tests
             Power watt = Power.FromWatts(1);
             AssertEx.EqualTolerance(BoilerHorsepowerInOneWatt, watt.BoilerHorsepower, BoilerHorsepowerTolerance);
             AssertEx.EqualTolerance(BritishThermalUnitsPerHourInOneWatt, watt.BritishThermalUnitsPerHour, BritishThermalUnitsPerHourTolerance);
+            AssertEx.EqualTolerance(DecapascalCubicMeterPerSecondInOneWatt, watt.DecapascalCubicMeterPerSecond, DecapascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(DecawattsInOneWatt, watt.Decawatts, DecawattsTolerance);
+            AssertEx.EqualTolerance(DecipascalCubicMeterPerSecondInOneWatt, watt.DecipascalCubicMeterPerSecond, DecipascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(DeciwattsInOneWatt, watt.Deciwatts, DeciwattsTolerance);
             AssertEx.EqualTolerance(ElectricalHorsepowerInOneWatt, watt.ElectricalHorsepower, ElectricalHorsepowerTolerance);
+            AssertEx.EqualTolerance(FemtopascalCubicMeterPerSecondInOneWatt, watt.FemtopascalCubicMeterPerSecond, FemtopascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(FemtowattsInOneWatt, watt.Femtowatts, FemtowattsTolerance);
             AssertEx.EqualTolerance(GigajoulesPerHourInOneWatt, watt.GigajoulesPerHour, GigajoulesPerHourTolerance);
+            AssertEx.EqualTolerance(GigapascalCubicMeterPerSecondInOneWatt, watt.GigapascalCubicMeterPerSecond, GigapascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(GigawattsInOneWatt, watt.Gigawatts, GigawattsTolerance);
             AssertEx.EqualTolerance(HydraulicHorsepowerInOneWatt, watt.HydraulicHorsepower, HydraulicHorsepowerTolerance);
             AssertEx.EqualTolerance(JoulesPerHourInOneWatt, watt.JoulesPerHour, JoulesPerHourTolerance);
             AssertEx.EqualTolerance(KilobritishThermalUnitsPerHourInOneWatt, watt.KilobritishThermalUnitsPerHour, KilobritishThermalUnitsPerHourTolerance);
             AssertEx.EqualTolerance(KilojoulesPerHourInOneWatt, watt.KilojoulesPerHour, KilojoulesPerHourTolerance);
+            AssertEx.EqualTolerance(KilopascalCubicMeterPerSecondInOneWatt, watt.KilopascalCubicMeterPerSecond, KilopascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(KilowattsInOneWatt, watt.Kilowatts, KilowattsTolerance);
             AssertEx.EqualTolerance(MechanicalHorsepowerInOneWatt, watt.MechanicalHorsepower, MechanicalHorsepowerTolerance);
             AssertEx.EqualTolerance(MegabritishThermalUnitsPerHourInOneWatt, watt.MegabritishThermalUnitsPerHour, MegabritishThermalUnitsPerHourTolerance);
             AssertEx.EqualTolerance(MegajoulesPerHourInOneWatt, watt.MegajoulesPerHour, MegajoulesPerHourTolerance);
+            AssertEx.EqualTolerance(MegapascalCubicMeterPerSecondInOneWatt, watt.MegapascalCubicMeterPerSecond, MegapascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(MegawattsInOneWatt, watt.Megawatts, MegawattsTolerance);
             AssertEx.EqualTolerance(MetricHorsepowerInOneWatt, watt.MetricHorsepower, MetricHorsepowerTolerance);
+            AssertEx.EqualTolerance(MicropascalCubicMeterPerSecondInOneWatt, watt.MicropascalCubicMeterPerSecond, MicropascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(MicrowattsInOneWatt, watt.Microwatts, MicrowattsTolerance);
             AssertEx.EqualTolerance(MillijoulesPerHourInOneWatt, watt.MillijoulesPerHour, MillijoulesPerHourTolerance);
+            AssertEx.EqualTolerance(MillipascalCubicMeterPerSecondInOneWatt, watt.MillipascalCubicMeterPerSecond, MillipascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(MilliwattsInOneWatt, watt.Milliwatts, MilliwattsTolerance);
+            AssertEx.EqualTolerance(NanopascalCubicMeterPerSecondInOneWatt, watt.NanopascalCubicMeterPerSecond, NanopascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(NanowattsInOneWatt, watt.Nanowatts, NanowattsTolerance);
+            AssertEx.EqualTolerance(PascalCubicMeterPerSecondInOneWatt, watt.PascalCubicMeterPerSecond, PascalCubicMeterPerSecondTolerance);
+            AssertEx.EqualTolerance(PetapascalCubicMeterPerSecondInOneWatt, watt.PetapascalCubicMeterPerSecond, PetapascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(PetawattsInOneWatt, watt.Petawatts, PetawattsTolerance);
+            AssertEx.EqualTolerance(PicopascalCubicMeterPerSecondInOneWatt, watt.PicopascalCubicMeterPerSecond, PicopascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(PicowattsInOneWatt, watt.Picowatts, PicowattsTolerance);
+            AssertEx.EqualTolerance(TerapascalCubicMeterPerSecondInOneWatt, watt.TerapascalCubicMeterPerSecond, TerapascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(TerawattsInOneWatt, watt.Terawatts, TerawattsTolerance);
             AssertEx.EqualTolerance(TonsOfRefrigerationInOneWatt, watt.TonsOfRefrigeration, TonsOfRefrigerationTolerance);
             AssertEx.EqualTolerance(WattsInOneWatt, watt.Watts, WattsTolerance);
@@ -297,28 +362,41 @@ namespace UnitsNet.Tests
             var watt = Power.FromWatts(1);
             AssertEx.EqualTolerance(BoilerHorsepowerInOneWatt, watt.As(PowerUnit.BoilerHorsepower), BoilerHorsepowerTolerance);
             AssertEx.EqualTolerance(BritishThermalUnitsPerHourInOneWatt, watt.As(PowerUnit.BritishThermalUnitPerHour), BritishThermalUnitsPerHourTolerance);
+            AssertEx.EqualTolerance(DecapascalCubicMeterPerSecondInOneWatt, watt.As(PowerUnit.DecapascalCubicMeterPerSecond), DecapascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(DecawattsInOneWatt, watt.As(PowerUnit.Decawatt), DecawattsTolerance);
+            AssertEx.EqualTolerance(DecipascalCubicMeterPerSecondInOneWatt, watt.As(PowerUnit.DecipascalCubicMeterPerSecond), DecipascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(DeciwattsInOneWatt, watt.As(PowerUnit.Deciwatt), DeciwattsTolerance);
             AssertEx.EqualTolerance(ElectricalHorsepowerInOneWatt, watt.As(PowerUnit.ElectricalHorsepower), ElectricalHorsepowerTolerance);
+            AssertEx.EqualTolerance(FemtopascalCubicMeterPerSecondInOneWatt, watt.As(PowerUnit.FemtopascalCubicMeterPerSecond), FemtopascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(FemtowattsInOneWatt, watt.As(PowerUnit.Femtowatt), FemtowattsTolerance);
             AssertEx.EqualTolerance(GigajoulesPerHourInOneWatt, watt.As(PowerUnit.GigajoulePerHour), GigajoulesPerHourTolerance);
+            AssertEx.EqualTolerance(GigapascalCubicMeterPerSecondInOneWatt, watt.As(PowerUnit.GigapascalCubicMeterPerSecond), GigapascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(GigawattsInOneWatt, watt.As(PowerUnit.Gigawatt), GigawattsTolerance);
             AssertEx.EqualTolerance(HydraulicHorsepowerInOneWatt, watt.As(PowerUnit.HydraulicHorsepower), HydraulicHorsepowerTolerance);
             AssertEx.EqualTolerance(JoulesPerHourInOneWatt, watt.As(PowerUnit.JoulePerHour), JoulesPerHourTolerance);
             AssertEx.EqualTolerance(KilobritishThermalUnitsPerHourInOneWatt, watt.As(PowerUnit.KilobritishThermalUnitPerHour), KilobritishThermalUnitsPerHourTolerance);
             AssertEx.EqualTolerance(KilojoulesPerHourInOneWatt, watt.As(PowerUnit.KilojoulePerHour), KilojoulesPerHourTolerance);
+            AssertEx.EqualTolerance(KilopascalCubicMeterPerSecondInOneWatt, watt.As(PowerUnit.KilopascalCubicMeterPerSecond), KilopascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(KilowattsInOneWatt, watt.As(PowerUnit.Kilowatt), KilowattsTolerance);
             AssertEx.EqualTolerance(MechanicalHorsepowerInOneWatt, watt.As(PowerUnit.MechanicalHorsepower), MechanicalHorsepowerTolerance);
             AssertEx.EqualTolerance(MegabritishThermalUnitsPerHourInOneWatt, watt.As(PowerUnit.MegabritishThermalUnitPerHour), MegabritishThermalUnitsPerHourTolerance);
             AssertEx.EqualTolerance(MegajoulesPerHourInOneWatt, watt.As(PowerUnit.MegajoulePerHour), MegajoulesPerHourTolerance);
+            AssertEx.EqualTolerance(MegapascalCubicMeterPerSecondInOneWatt, watt.As(PowerUnit.MegapascalCubicMeterPerSecond), MegapascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(MegawattsInOneWatt, watt.As(PowerUnit.Megawatt), MegawattsTolerance);
             AssertEx.EqualTolerance(MetricHorsepowerInOneWatt, watt.As(PowerUnit.MetricHorsepower), MetricHorsepowerTolerance);
+            AssertEx.EqualTolerance(MicropascalCubicMeterPerSecondInOneWatt, watt.As(PowerUnit.MicropascalCubicMeterPerSecond), MicropascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(MicrowattsInOneWatt, watt.As(PowerUnit.Microwatt), MicrowattsTolerance);
             AssertEx.EqualTolerance(MillijoulesPerHourInOneWatt, watt.As(PowerUnit.MillijoulePerHour), MillijoulesPerHourTolerance);
+            AssertEx.EqualTolerance(MillipascalCubicMeterPerSecondInOneWatt, watt.As(PowerUnit.MillipascalCubicMeterPerSecond), MillipascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(MilliwattsInOneWatt, watt.As(PowerUnit.Milliwatt), MilliwattsTolerance);
+            AssertEx.EqualTolerance(NanopascalCubicMeterPerSecondInOneWatt, watt.As(PowerUnit.NanopascalCubicMeterPerSecond), NanopascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(NanowattsInOneWatt, watt.As(PowerUnit.Nanowatt), NanowattsTolerance);
+            AssertEx.EqualTolerance(PascalCubicMeterPerSecondInOneWatt, watt.As(PowerUnit.PascalCubicMeterPerSecond), PascalCubicMeterPerSecondTolerance);
+            AssertEx.EqualTolerance(PetapascalCubicMeterPerSecondInOneWatt, watt.As(PowerUnit.PetapascalCubicMeterPerSecond), PetapascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(PetawattsInOneWatt, watt.As(PowerUnit.Petawatt), PetawattsTolerance);
+            AssertEx.EqualTolerance(PicopascalCubicMeterPerSecondInOneWatt, watt.As(PowerUnit.PicopascalCubicMeterPerSecond), PicopascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(PicowattsInOneWatt, watt.As(PowerUnit.Picowatt), PicowattsTolerance);
+            AssertEx.EqualTolerance(TerapascalCubicMeterPerSecondInOneWatt, watt.As(PowerUnit.TerapascalCubicMeterPerSecond), TerapascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(TerawattsInOneWatt, watt.As(PowerUnit.Terawatt), TerawattsTolerance);
             AssertEx.EqualTolerance(TonsOfRefrigerationInOneWatt, watt.As(PowerUnit.TonOfRefrigeration), TonsOfRefrigerationTolerance);
             AssertEx.EqualTolerance(WattsInOneWatt, watt.As(PowerUnit.Watt), WattsTolerance);
@@ -391,30 +469,43 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 hp(S)", PowerUnit.BoilerHorsepower, 4.2)]
         [InlineData("en-US", "4.2 Btu/h", PowerUnit.BritishThermalUnitPerHour, 4.2)]
         [InlineData("en-US", "4.2 Btu/hr", PowerUnit.BritishThermalUnitPerHour, 4.2)]
+        [InlineData("en-US", "4.2 daPa.m³/s", PowerUnit.DecapascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 daW", PowerUnit.Decawatt, 4.2)]
+        [InlineData("en-US", "4.2 dPa.m³/s", PowerUnit.DecipascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 dW", PowerUnit.Deciwatt, 4.2)]
         [InlineData("en-US", "4.2 hp(E)", PowerUnit.ElectricalHorsepower, 4.2)]
+        [InlineData("en-US", "4.2 fPa.m³/s", PowerUnit.FemtopascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 fW", PowerUnit.Femtowatt, 4.2)]
         [InlineData("en-US", "4.2 GJ/h", PowerUnit.GigajoulePerHour, 4.2)]
+        [InlineData("en-US", "4.2 GPa.m³/s", PowerUnit.GigapascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 GW", PowerUnit.Gigawatt, 4.2)]
         [InlineData("en-US", "4.2 hp(H)", PowerUnit.HydraulicHorsepower, 4.2)]
         [InlineData("en-US", "4.2 J/h", PowerUnit.JoulePerHour, 4.2)]
         [InlineData("en-US", "4.2 kBtu/h", PowerUnit.KilobritishThermalUnitPerHour, 4.2)]
         [InlineData("en-US", "4.2 kBtu/hr", PowerUnit.KilobritishThermalUnitPerHour, 4.2)]
         [InlineData("en-US", "4.2 kJ/h", PowerUnit.KilojoulePerHour, 4.2)]
+        [InlineData("en-US", "4.2 kPa.m³/s", PowerUnit.KilopascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 kW", PowerUnit.Kilowatt, 4.2)]
         [InlineData("en-US", "4.2 hp(I)", PowerUnit.MechanicalHorsepower, 4.2)]
         [InlineData("en-US", "4.2 MBtu/h", PowerUnit.MegabritishThermalUnitPerHour, 4.2)]
         [InlineData("en-US", "4.2 MBtu/hr", PowerUnit.MegabritishThermalUnitPerHour, 4.2)]
         [InlineData("en-US", "4.2 MJ/h", PowerUnit.MegajoulePerHour, 4.2)]
+        [InlineData("en-US", "4.2 MPa.m³/s", PowerUnit.MegapascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 MW", PowerUnit.Megawatt, 4.2)]
         [InlineData("en-US", "4.2 hp(M)", PowerUnit.MetricHorsepower, 4.2)]
+        [InlineData("en-US", "4.2 µPa.m³/s", PowerUnit.MicropascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 µW", PowerUnit.Microwatt, 4.2)]
         [InlineData("en-US", "4.2 mJ/h", PowerUnit.MillijoulePerHour, 4.2)]
+        [InlineData("en-US", "4.2 mPa.m³/s", PowerUnit.MillipascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 mW", PowerUnit.Milliwatt, 4.2)]
+        [InlineData("en-US", "4.2 nPa.m³/s", PowerUnit.NanopascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 nW", PowerUnit.Nanowatt, 4.2)]
+        [InlineData("en-US", "4.2 Pa.m³/s", PowerUnit.PascalCubicMeterPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 PPa.m³/s", PowerUnit.PetapascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 PW", PowerUnit.Petawatt, 4.2)]
+        [InlineData("en-US", "4.2 pPa.m³/s", PowerUnit.PicopascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 pW", PowerUnit.Picowatt, 4.2)]
+        [InlineData("en-US", "4.2 TPa.m³/s", PowerUnit.TerapascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 TW", PowerUnit.Terawatt, 4.2)]
         [InlineData("en-US", "4.2 TR", PowerUnit.TonOfRefrigeration, 4.2)]
         [InlineData("en-US", "4.2 W", PowerUnit.Watt, 4.2)]
@@ -430,30 +521,43 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 hp(S)", PowerUnit.BoilerHorsepower, 4.2)]
         [InlineData("en-US", "4.2 Btu/h", PowerUnit.BritishThermalUnitPerHour, 4.2)]
         [InlineData("en-US", "4.2 Btu/hr", PowerUnit.BritishThermalUnitPerHour, 4.2)]
+        [InlineData("en-US", "4.2 daPa.m³/s", PowerUnit.DecapascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 daW", PowerUnit.Decawatt, 4.2)]
+        [InlineData("en-US", "4.2 dPa.m³/s", PowerUnit.DecipascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 dW", PowerUnit.Deciwatt, 4.2)]
         [InlineData("en-US", "4.2 hp(E)", PowerUnit.ElectricalHorsepower, 4.2)]
+        [InlineData("en-US", "4.2 fPa.m³/s", PowerUnit.FemtopascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 fW", PowerUnit.Femtowatt, 4.2)]
         [InlineData("en-US", "4.2 GJ/h", PowerUnit.GigajoulePerHour, 4.2)]
+        [InlineData("en-US", "4.2 GPa.m³/s", PowerUnit.GigapascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 GW", PowerUnit.Gigawatt, 4.2)]
         [InlineData("en-US", "4.2 hp(H)", PowerUnit.HydraulicHorsepower, 4.2)]
         [InlineData("en-US", "4.2 J/h", PowerUnit.JoulePerHour, 4.2)]
         [InlineData("en-US", "4.2 kBtu/h", PowerUnit.KilobritishThermalUnitPerHour, 4.2)]
         [InlineData("en-US", "4.2 kBtu/hr", PowerUnit.KilobritishThermalUnitPerHour, 4.2)]
         [InlineData("en-US", "4.2 kJ/h", PowerUnit.KilojoulePerHour, 4.2)]
+        [InlineData("en-US", "4.2 kPa.m³/s", PowerUnit.KilopascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 kW", PowerUnit.Kilowatt, 4.2)]
         [InlineData("en-US", "4.2 hp(I)", PowerUnit.MechanicalHorsepower, 4.2)]
         [InlineData("en-US", "4.2 MBtu/h", PowerUnit.MegabritishThermalUnitPerHour, 4.2)]
         [InlineData("en-US", "4.2 MBtu/hr", PowerUnit.MegabritishThermalUnitPerHour, 4.2)]
         [InlineData("en-US", "4.2 MJ/h", PowerUnit.MegajoulePerHour, 4.2)]
+        [InlineData("en-US", "4.2 MPa.m³/s", PowerUnit.MegapascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 MW", PowerUnit.Megawatt, 4.2)]
         [InlineData("en-US", "4.2 hp(M)", PowerUnit.MetricHorsepower, 4.2)]
+        [InlineData("en-US", "4.2 µPa.m³/s", PowerUnit.MicropascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 µW", PowerUnit.Microwatt, 4.2)]
         [InlineData("en-US", "4.2 mJ/h", PowerUnit.MillijoulePerHour, 4.2)]
+        [InlineData("en-US", "4.2 mPa.m³/s", PowerUnit.MillipascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 mW", PowerUnit.Milliwatt, 4.2)]
+        [InlineData("en-US", "4.2 nPa.m³/s", PowerUnit.NanopascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 nW", PowerUnit.Nanowatt, 4.2)]
+        [InlineData("en-US", "4.2 Pa.m³/s", PowerUnit.PascalCubicMeterPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 PPa.m³/s", PowerUnit.PetapascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 PW", PowerUnit.Petawatt, 4.2)]
+        [InlineData("en-US", "4.2 pPa.m³/s", PowerUnit.PicopascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 pW", PowerUnit.Picowatt, 4.2)]
+        [InlineData("en-US", "4.2 TPa.m³/s", PowerUnit.TerapascalCubicMeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 TW", PowerUnit.Terawatt, 4.2)]
         [InlineData("en-US", "4.2 TR", PowerUnit.TonOfRefrigeration, 4.2)]
         [InlineData("en-US", "4.2 W", PowerUnit.Watt, 4.2)]
@@ -469,30 +573,43 @@ namespace UnitsNet.Tests
         [InlineData("hp(S)", PowerUnit.BoilerHorsepower)]
         [InlineData("Btu/h", PowerUnit.BritishThermalUnitPerHour)]
         [InlineData("Btu/hr", PowerUnit.BritishThermalUnitPerHour)]
+        [InlineData("daPa.m³/s", PowerUnit.DecapascalCubicMeterPerSecond)]
         [InlineData("daW", PowerUnit.Decawatt)]
+        [InlineData("dPa.m³/s", PowerUnit.DecipascalCubicMeterPerSecond)]
         [InlineData("dW", PowerUnit.Deciwatt)]
         [InlineData("hp(E)", PowerUnit.ElectricalHorsepower)]
+        [InlineData("fPa.m³/s", PowerUnit.FemtopascalCubicMeterPerSecond)]
         [InlineData("fW", PowerUnit.Femtowatt)]
         [InlineData("GJ/h", PowerUnit.GigajoulePerHour)]
+        [InlineData("GPa.m³/s", PowerUnit.GigapascalCubicMeterPerSecond)]
         [InlineData("GW", PowerUnit.Gigawatt)]
         [InlineData("hp(H)", PowerUnit.HydraulicHorsepower)]
         [InlineData("J/h", PowerUnit.JoulePerHour)]
         [InlineData("kBtu/h", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("kBtu/hr", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("kJ/h", PowerUnit.KilojoulePerHour)]
+        [InlineData("kPa.m³/s", PowerUnit.KilopascalCubicMeterPerSecond)]
         [InlineData("kW", PowerUnit.Kilowatt)]
         [InlineData("hp(I)", PowerUnit.MechanicalHorsepower)]
         [InlineData("MBtu/h", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("MBtu/hr", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("MJ/h", PowerUnit.MegajoulePerHour)]
+        [InlineData("MPa.m³/s", PowerUnit.MegapascalCubicMeterPerSecond)]
         [InlineData("MW", PowerUnit.Megawatt)]
         [InlineData("hp(M)", PowerUnit.MetricHorsepower)]
+        [InlineData("µPa.m³/s", PowerUnit.MicropascalCubicMeterPerSecond)]
         [InlineData("µW", PowerUnit.Microwatt)]
         [InlineData("mJ/h", PowerUnit.MillijoulePerHour)]
+        [InlineData("mPa.m³/s", PowerUnit.MillipascalCubicMeterPerSecond)]
         [InlineData("mW", PowerUnit.Milliwatt)]
+        [InlineData("nPa.m³/s", PowerUnit.NanopascalCubicMeterPerSecond)]
         [InlineData("nW", PowerUnit.Nanowatt)]
+        [InlineData("Pa.m³/s", PowerUnit.PascalCubicMeterPerSecond)]
+        [InlineData("PPa.m³/s", PowerUnit.PetapascalCubicMeterPerSecond)]
         [InlineData("PW", PowerUnit.Petawatt)]
+        [InlineData("pPa.m³/s", PowerUnit.PicopascalCubicMeterPerSecond)]
         [InlineData("pW", PowerUnit.Picowatt)]
+        [InlineData("TPa.m³/s", PowerUnit.TerapascalCubicMeterPerSecond)]
         [InlineData("TW", PowerUnit.Terawatt)]
         [InlineData("TR", PowerUnit.TonOfRefrigeration)]
         [InlineData("W", PowerUnit.Watt)]
@@ -508,30 +625,43 @@ namespace UnitsNet.Tests
         [InlineData("hp(S)", PowerUnit.BoilerHorsepower)]
         [InlineData("Btu/h", PowerUnit.BritishThermalUnitPerHour)]
         [InlineData("Btu/hr", PowerUnit.BritishThermalUnitPerHour)]
+        [InlineData("daPa.m³/s", PowerUnit.DecapascalCubicMeterPerSecond)]
         [InlineData("daW", PowerUnit.Decawatt)]
+        [InlineData("dPa.m³/s", PowerUnit.DecipascalCubicMeterPerSecond)]
         [InlineData("dW", PowerUnit.Deciwatt)]
         [InlineData("hp(E)", PowerUnit.ElectricalHorsepower)]
+        [InlineData("fPa.m³/s", PowerUnit.FemtopascalCubicMeterPerSecond)]
         [InlineData("fW", PowerUnit.Femtowatt)]
         [InlineData("GJ/h", PowerUnit.GigajoulePerHour)]
+        [InlineData("GPa.m³/s", PowerUnit.GigapascalCubicMeterPerSecond)]
         [InlineData("GW", PowerUnit.Gigawatt)]
         [InlineData("hp(H)", PowerUnit.HydraulicHorsepower)]
         [InlineData("J/h", PowerUnit.JoulePerHour)]
         [InlineData("kBtu/h", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("kBtu/hr", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("kJ/h", PowerUnit.KilojoulePerHour)]
+        [InlineData("kPa.m³/s", PowerUnit.KilopascalCubicMeterPerSecond)]
         [InlineData("kW", PowerUnit.Kilowatt)]
         [InlineData("hp(I)", PowerUnit.MechanicalHorsepower)]
         [InlineData("MBtu/h", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("MBtu/hr", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("MJ/h", PowerUnit.MegajoulePerHour)]
+        [InlineData("MPa.m³/s", PowerUnit.MegapascalCubicMeterPerSecond)]
         [InlineData("MW", PowerUnit.Megawatt)]
         [InlineData("hp(M)", PowerUnit.MetricHorsepower)]
+        [InlineData("µPa.m³/s", PowerUnit.MicropascalCubicMeterPerSecond)]
         [InlineData("µW", PowerUnit.Microwatt)]
         [InlineData("mJ/h", PowerUnit.MillijoulePerHour)]
+        [InlineData("mPa.m³/s", PowerUnit.MillipascalCubicMeterPerSecond)]
         [InlineData("mW", PowerUnit.Milliwatt)]
+        [InlineData("nPa.m³/s", PowerUnit.NanopascalCubicMeterPerSecond)]
         [InlineData("nW", PowerUnit.Nanowatt)]
+        [InlineData("Pa.m³/s", PowerUnit.PascalCubicMeterPerSecond)]
+        [InlineData("PPa.m³/s", PowerUnit.PetapascalCubicMeterPerSecond)]
         [InlineData("PW", PowerUnit.Petawatt)]
+        [InlineData("pPa.m³/s", PowerUnit.PicopascalCubicMeterPerSecond)]
         [InlineData("pW", PowerUnit.Picowatt)]
+        [InlineData("TPa.m³/s", PowerUnit.TerapascalCubicMeterPerSecond)]
         [InlineData("TW", PowerUnit.Terawatt)]
         [InlineData("TR", PowerUnit.TonOfRefrigeration)]
         [InlineData("W", PowerUnit.Watt)]
@@ -547,30 +677,43 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "hp(S)", PowerUnit.BoilerHorsepower)]
         [InlineData("en-US", "Btu/h", PowerUnit.BritishThermalUnitPerHour)]
         [InlineData("en-US", "Btu/hr", PowerUnit.BritishThermalUnitPerHour)]
+        [InlineData("en-US", "daPa.m³/s", PowerUnit.DecapascalCubicMeterPerSecond)]
         [InlineData("en-US", "daW", PowerUnit.Decawatt)]
+        [InlineData("en-US", "dPa.m³/s", PowerUnit.DecipascalCubicMeterPerSecond)]
         [InlineData("en-US", "dW", PowerUnit.Deciwatt)]
         [InlineData("en-US", "hp(E)", PowerUnit.ElectricalHorsepower)]
+        [InlineData("en-US", "fPa.m³/s", PowerUnit.FemtopascalCubicMeterPerSecond)]
         [InlineData("en-US", "fW", PowerUnit.Femtowatt)]
         [InlineData("en-US", "GJ/h", PowerUnit.GigajoulePerHour)]
+        [InlineData("en-US", "GPa.m³/s", PowerUnit.GigapascalCubicMeterPerSecond)]
         [InlineData("en-US", "GW", PowerUnit.Gigawatt)]
         [InlineData("en-US", "hp(H)", PowerUnit.HydraulicHorsepower)]
         [InlineData("en-US", "J/h", PowerUnit.JoulePerHour)]
         [InlineData("en-US", "kBtu/h", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("en-US", "kBtu/hr", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("en-US", "kJ/h", PowerUnit.KilojoulePerHour)]
+        [InlineData("en-US", "kPa.m³/s", PowerUnit.KilopascalCubicMeterPerSecond)]
         [InlineData("en-US", "kW", PowerUnit.Kilowatt)]
         [InlineData("en-US", "hp(I)", PowerUnit.MechanicalHorsepower)]
         [InlineData("en-US", "MBtu/h", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("en-US", "MBtu/hr", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("en-US", "MJ/h", PowerUnit.MegajoulePerHour)]
+        [InlineData("en-US", "MPa.m³/s", PowerUnit.MegapascalCubicMeterPerSecond)]
         [InlineData("en-US", "MW", PowerUnit.Megawatt)]
         [InlineData("en-US", "hp(M)", PowerUnit.MetricHorsepower)]
+        [InlineData("en-US", "µPa.m³/s", PowerUnit.MicropascalCubicMeterPerSecond)]
         [InlineData("en-US", "µW", PowerUnit.Microwatt)]
         [InlineData("en-US", "mJ/h", PowerUnit.MillijoulePerHour)]
+        [InlineData("en-US", "mPa.m³/s", PowerUnit.MillipascalCubicMeterPerSecond)]
         [InlineData("en-US", "mW", PowerUnit.Milliwatt)]
+        [InlineData("en-US", "nPa.m³/s", PowerUnit.NanopascalCubicMeterPerSecond)]
         [InlineData("en-US", "nW", PowerUnit.Nanowatt)]
+        [InlineData("en-US", "Pa.m³/s", PowerUnit.PascalCubicMeterPerSecond)]
+        [InlineData("en-US", "PPa.m³/s", PowerUnit.PetapascalCubicMeterPerSecond)]
         [InlineData("en-US", "PW", PowerUnit.Petawatt)]
+        [InlineData("en-US", "pPa.m³/s", PowerUnit.PicopascalCubicMeterPerSecond)]
         [InlineData("en-US", "pW", PowerUnit.Picowatt)]
+        [InlineData("en-US", "TPa.m³/s", PowerUnit.TerapascalCubicMeterPerSecond)]
         [InlineData("en-US", "TW", PowerUnit.Terawatt)]
         [InlineData("en-US", "TR", PowerUnit.TonOfRefrigeration)]
         [InlineData("en-US", "W", PowerUnit.Watt)]
@@ -585,30 +728,43 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "hp(S)", PowerUnit.BoilerHorsepower)]
         [InlineData("en-US", "Btu/h", PowerUnit.BritishThermalUnitPerHour)]
         [InlineData("en-US", "Btu/hr", PowerUnit.BritishThermalUnitPerHour)]
+        [InlineData("en-US", "daPa.m³/s", PowerUnit.DecapascalCubicMeterPerSecond)]
         [InlineData("en-US", "daW", PowerUnit.Decawatt)]
+        [InlineData("en-US", "dPa.m³/s", PowerUnit.DecipascalCubicMeterPerSecond)]
         [InlineData("en-US", "dW", PowerUnit.Deciwatt)]
         [InlineData("en-US", "hp(E)", PowerUnit.ElectricalHorsepower)]
+        [InlineData("en-US", "fPa.m³/s", PowerUnit.FemtopascalCubicMeterPerSecond)]
         [InlineData("en-US", "fW", PowerUnit.Femtowatt)]
         [InlineData("en-US", "GJ/h", PowerUnit.GigajoulePerHour)]
+        [InlineData("en-US", "GPa.m³/s", PowerUnit.GigapascalCubicMeterPerSecond)]
         [InlineData("en-US", "GW", PowerUnit.Gigawatt)]
         [InlineData("en-US", "hp(H)", PowerUnit.HydraulicHorsepower)]
         [InlineData("en-US", "J/h", PowerUnit.JoulePerHour)]
         [InlineData("en-US", "kBtu/h", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("en-US", "kBtu/hr", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("en-US", "kJ/h", PowerUnit.KilojoulePerHour)]
+        [InlineData("en-US", "kPa.m³/s", PowerUnit.KilopascalCubicMeterPerSecond)]
         [InlineData("en-US", "kW", PowerUnit.Kilowatt)]
         [InlineData("en-US", "hp(I)", PowerUnit.MechanicalHorsepower)]
         [InlineData("en-US", "MBtu/h", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("en-US", "MBtu/hr", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("en-US", "MJ/h", PowerUnit.MegajoulePerHour)]
+        [InlineData("en-US", "MPa.m³/s", PowerUnit.MegapascalCubicMeterPerSecond)]
         [InlineData("en-US", "MW", PowerUnit.Megawatt)]
         [InlineData("en-US", "hp(M)", PowerUnit.MetricHorsepower)]
+        [InlineData("en-US", "µPa.m³/s", PowerUnit.MicropascalCubicMeterPerSecond)]
         [InlineData("en-US", "µW", PowerUnit.Microwatt)]
         [InlineData("en-US", "mJ/h", PowerUnit.MillijoulePerHour)]
+        [InlineData("en-US", "mPa.m³/s", PowerUnit.MillipascalCubicMeterPerSecond)]
         [InlineData("en-US", "mW", PowerUnit.Milliwatt)]
+        [InlineData("en-US", "nPa.m³/s", PowerUnit.NanopascalCubicMeterPerSecond)]
         [InlineData("en-US", "nW", PowerUnit.Nanowatt)]
+        [InlineData("en-US", "Pa.m³/s", PowerUnit.PascalCubicMeterPerSecond)]
+        [InlineData("en-US", "PPa.m³/s", PowerUnit.PetapascalCubicMeterPerSecond)]
         [InlineData("en-US", "PW", PowerUnit.Petawatt)]
+        [InlineData("en-US", "pPa.m³/s", PowerUnit.PicopascalCubicMeterPerSecond)]
         [InlineData("en-US", "pW", PowerUnit.Picowatt)]
+        [InlineData("en-US", "TPa.m³/s", PowerUnit.TerapascalCubicMeterPerSecond)]
         [InlineData("en-US", "TW", PowerUnit.Terawatt)]
         [InlineData("en-US", "TR", PowerUnit.TonOfRefrigeration)]
         [InlineData("en-US", "W", PowerUnit.Watt)]
@@ -622,30 +778,43 @@ namespace UnitsNet.Tests
         [InlineData("hp(S)", PowerUnit.BoilerHorsepower)]
         [InlineData("Btu/h", PowerUnit.BritishThermalUnitPerHour)]
         [InlineData("Btu/hr", PowerUnit.BritishThermalUnitPerHour)]
+        [InlineData("daPa.m³/s", PowerUnit.DecapascalCubicMeterPerSecond)]
         [InlineData("daW", PowerUnit.Decawatt)]
+        [InlineData("dPa.m³/s", PowerUnit.DecipascalCubicMeterPerSecond)]
         [InlineData("dW", PowerUnit.Deciwatt)]
         [InlineData("hp(E)", PowerUnit.ElectricalHorsepower)]
+        [InlineData("fPa.m³/s", PowerUnit.FemtopascalCubicMeterPerSecond)]
         [InlineData("fW", PowerUnit.Femtowatt)]
         [InlineData("GJ/h", PowerUnit.GigajoulePerHour)]
+        [InlineData("GPa.m³/s", PowerUnit.GigapascalCubicMeterPerSecond)]
         [InlineData("GW", PowerUnit.Gigawatt)]
         [InlineData("hp(H)", PowerUnit.HydraulicHorsepower)]
         [InlineData("J/h", PowerUnit.JoulePerHour)]
         [InlineData("kBtu/h", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("kBtu/hr", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("kJ/h", PowerUnit.KilojoulePerHour)]
+        [InlineData("kPa.m³/s", PowerUnit.KilopascalCubicMeterPerSecond)]
         [InlineData("kW", PowerUnit.Kilowatt)]
         [InlineData("hp(I)", PowerUnit.MechanicalHorsepower)]
         [InlineData("MBtu/h", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("MBtu/hr", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("MJ/h", PowerUnit.MegajoulePerHour)]
+        [InlineData("MPa.m³/s", PowerUnit.MegapascalCubicMeterPerSecond)]
         [InlineData("MW", PowerUnit.Megawatt)]
         [InlineData("hp(M)", PowerUnit.MetricHorsepower)]
+        [InlineData("µPa.m³/s", PowerUnit.MicropascalCubicMeterPerSecond)]
         [InlineData("µW", PowerUnit.Microwatt)]
         [InlineData("mJ/h", PowerUnit.MillijoulePerHour)]
+        [InlineData("mPa.m³/s", PowerUnit.MillipascalCubicMeterPerSecond)]
         [InlineData("mW", PowerUnit.Milliwatt)]
+        [InlineData("nPa.m³/s", PowerUnit.NanopascalCubicMeterPerSecond)]
         [InlineData("nW", PowerUnit.Nanowatt)]
+        [InlineData("Pa.m³/s", PowerUnit.PascalCubicMeterPerSecond)]
+        [InlineData("PPa.m³/s", PowerUnit.PetapascalCubicMeterPerSecond)]
         [InlineData("PW", PowerUnit.Petawatt)]
+        [InlineData("pPa.m³/s", PowerUnit.PicopascalCubicMeterPerSecond)]
         [InlineData("pW", PowerUnit.Picowatt)]
+        [InlineData("TPa.m³/s", PowerUnit.TerapascalCubicMeterPerSecond)]
         [InlineData("TW", PowerUnit.Terawatt)]
         [InlineData("TR", PowerUnit.TonOfRefrigeration)]
         [InlineData("W", PowerUnit.Watt)]
@@ -661,30 +830,43 @@ namespace UnitsNet.Tests
         [InlineData("hp(S)", PowerUnit.BoilerHorsepower)]
         [InlineData("Btu/h", PowerUnit.BritishThermalUnitPerHour)]
         [InlineData("Btu/hr", PowerUnit.BritishThermalUnitPerHour)]
+        [InlineData("daPa.m³/s", PowerUnit.DecapascalCubicMeterPerSecond)]
         [InlineData("daW", PowerUnit.Decawatt)]
+        [InlineData("dPa.m³/s", PowerUnit.DecipascalCubicMeterPerSecond)]
         [InlineData("dW", PowerUnit.Deciwatt)]
         [InlineData("hp(E)", PowerUnit.ElectricalHorsepower)]
+        [InlineData("fPa.m³/s", PowerUnit.FemtopascalCubicMeterPerSecond)]
         [InlineData("fW", PowerUnit.Femtowatt)]
         [InlineData("GJ/h", PowerUnit.GigajoulePerHour)]
+        [InlineData("GPa.m³/s", PowerUnit.GigapascalCubicMeterPerSecond)]
         [InlineData("GW", PowerUnit.Gigawatt)]
         [InlineData("hp(H)", PowerUnit.HydraulicHorsepower)]
         [InlineData("J/h", PowerUnit.JoulePerHour)]
         [InlineData("kBtu/h", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("kBtu/hr", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("kJ/h", PowerUnit.KilojoulePerHour)]
+        [InlineData("kPa.m³/s", PowerUnit.KilopascalCubicMeterPerSecond)]
         [InlineData("kW", PowerUnit.Kilowatt)]
         [InlineData("hp(I)", PowerUnit.MechanicalHorsepower)]
         [InlineData("MBtu/h", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("MBtu/hr", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("MJ/h", PowerUnit.MegajoulePerHour)]
+        [InlineData("MPa.m³/s", PowerUnit.MegapascalCubicMeterPerSecond)]
         [InlineData("MW", PowerUnit.Megawatt)]
         [InlineData("hp(M)", PowerUnit.MetricHorsepower)]
+        [InlineData("µPa.m³/s", PowerUnit.MicropascalCubicMeterPerSecond)]
         [InlineData("µW", PowerUnit.Microwatt)]
         [InlineData("mJ/h", PowerUnit.MillijoulePerHour)]
+        [InlineData("mPa.m³/s", PowerUnit.MillipascalCubicMeterPerSecond)]
         [InlineData("mW", PowerUnit.Milliwatt)]
+        [InlineData("nPa.m³/s", PowerUnit.NanopascalCubicMeterPerSecond)]
         [InlineData("nW", PowerUnit.Nanowatt)]
+        [InlineData("Pa.m³/s", PowerUnit.PascalCubicMeterPerSecond)]
+        [InlineData("PPa.m³/s", PowerUnit.PetapascalCubicMeterPerSecond)]
         [InlineData("PW", PowerUnit.Petawatt)]
+        [InlineData("pPa.m³/s", PowerUnit.PicopascalCubicMeterPerSecond)]
         [InlineData("pW", PowerUnit.Picowatt)]
+        [InlineData("TPa.m³/s", PowerUnit.TerapascalCubicMeterPerSecond)]
         [InlineData("TW", PowerUnit.Terawatt)]
         [InlineData("TR", PowerUnit.TonOfRefrigeration)]
         [InlineData("W", PowerUnit.Watt)]
@@ -700,30 +882,43 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "hp(S)", PowerUnit.BoilerHorsepower)]
         [InlineData("en-US", "Btu/h", PowerUnit.BritishThermalUnitPerHour)]
         [InlineData("en-US", "Btu/hr", PowerUnit.BritishThermalUnitPerHour)]
+        [InlineData("en-US", "daPa.m³/s", PowerUnit.DecapascalCubicMeterPerSecond)]
         [InlineData("en-US", "daW", PowerUnit.Decawatt)]
+        [InlineData("en-US", "dPa.m³/s", PowerUnit.DecipascalCubicMeterPerSecond)]
         [InlineData("en-US", "dW", PowerUnit.Deciwatt)]
         [InlineData("en-US", "hp(E)", PowerUnit.ElectricalHorsepower)]
+        [InlineData("en-US", "fPa.m³/s", PowerUnit.FemtopascalCubicMeterPerSecond)]
         [InlineData("en-US", "fW", PowerUnit.Femtowatt)]
         [InlineData("en-US", "GJ/h", PowerUnit.GigajoulePerHour)]
+        [InlineData("en-US", "GPa.m³/s", PowerUnit.GigapascalCubicMeterPerSecond)]
         [InlineData("en-US", "GW", PowerUnit.Gigawatt)]
         [InlineData("en-US", "hp(H)", PowerUnit.HydraulicHorsepower)]
         [InlineData("en-US", "J/h", PowerUnit.JoulePerHour)]
         [InlineData("en-US", "kBtu/h", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("en-US", "kBtu/hr", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("en-US", "kJ/h", PowerUnit.KilojoulePerHour)]
+        [InlineData("en-US", "kPa.m³/s", PowerUnit.KilopascalCubicMeterPerSecond)]
         [InlineData("en-US", "kW", PowerUnit.Kilowatt)]
         [InlineData("en-US", "hp(I)", PowerUnit.MechanicalHorsepower)]
         [InlineData("en-US", "MBtu/h", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("en-US", "MBtu/hr", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("en-US", "MJ/h", PowerUnit.MegajoulePerHour)]
+        [InlineData("en-US", "MPa.m³/s", PowerUnit.MegapascalCubicMeterPerSecond)]
         [InlineData("en-US", "MW", PowerUnit.Megawatt)]
         [InlineData("en-US", "hp(M)", PowerUnit.MetricHorsepower)]
+        [InlineData("en-US", "µPa.m³/s", PowerUnit.MicropascalCubicMeterPerSecond)]
         [InlineData("en-US", "µW", PowerUnit.Microwatt)]
         [InlineData("en-US", "mJ/h", PowerUnit.MillijoulePerHour)]
+        [InlineData("en-US", "mPa.m³/s", PowerUnit.MillipascalCubicMeterPerSecond)]
         [InlineData("en-US", "mW", PowerUnit.Milliwatt)]
+        [InlineData("en-US", "nPa.m³/s", PowerUnit.NanopascalCubicMeterPerSecond)]
         [InlineData("en-US", "nW", PowerUnit.Nanowatt)]
+        [InlineData("en-US", "Pa.m³/s", PowerUnit.PascalCubicMeterPerSecond)]
+        [InlineData("en-US", "PPa.m³/s", PowerUnit.PetapascalCubicMeterPerSecond)]
         [InlineData("en-US", "PW", PowerUnit.Petawatt)]
+        [InlineData("en-US", "pPa.m³/s", PowerUnit.PicopascalCubicMeterPerSecond)]
         [InlineData("en-US", "pW", PowerUnit.Picowatt)]
+        [InlineData("en-US", "TPa.m³/s", PowerUnit.TerapascalCubicMeterPerSecond)]
         [InlineData("en-US", "TW", PowerUnit.Terawatt)]
         [InlineData("en-US", "TR", PowerUnit.TonOfRefrigeration)]
         [InlineData("en-US", "W", PowerUnit.Watt)]
@@ -738,30 +933,43 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "hp(S)", PowerUnit.BoilerHorsepower)]
         [InlineData("en-US", "Btu/h", PowerUnit.BritishThermalUnitPerHour)]
         [InlineData("en-US", "Btu/hr", PowerUnit.BritishThermalUnitPerHour)]
+        [InlineData("en-US", "daPa.m³/s", PowerUnit.DecapascalCubicMeterPerSecond)]
         [InlineData("en-US", "daW", PowerUnit.Decawatt)]
+        [InlineData("en-US", "dPa.m³/s", PowerUnit.DecipascalCubicMeterPerSecond)]
         [InlineData("en-US", "dW", PowerUnit.Deciwatt)]
         [InlineData("en-US", "hp(E)", PowerUnit.ElectricalHorsepower)]
+        [InlineData("en-US", "fPa.m³/s", PowerUnit.FemtopascalCubicMeterPerSecond)]
         [InlineData("en-US", "fW", PowerUnit.Femtowatt)]
         [InlineData("en-US", "GJ/h", PowerUnit.GigajoulePerHour)]
+        [InlineData("en-US", "GPa.m³/s", PowerUnit.GigapascalCubicMeterPerSecond)]
         [InlineData("en-US", "GW", PowerUnit.Gigawatt)]
         [InlineData("en-US", "hp(H)", PowerUnit.HydraulicHorsepower)]
         [InlineData("en-US", "J/h", PowerUnit.JoulePerHour)]
         [InlineData("en-US", "kBtu/h", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("en-US", "kBtu/hr", PowerUnit.KilobritishThermalUnitPerHour)]
         [InlineData("en-US", "kJ/h", PowerUnit.KilojoulePerHour)]
+        [InlineData("en-US", "kPa.m³/s", PowerUnit.KilopascalCubicMeterPerSecond)]
         [InlineData("en-US", "kW", PowerUnit.Kilowatt)]
         [InlineData("en-US", "hp(I)", PowerUnit.MechanicalHorsepower)]
         [InlineData("en-US", "MBtu/h", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("en-US", "MBtu/hr", PowerUnit.MegabritishThermalUnitPerHour)]
         [InlineData("en-US", "MJ/h", PowerUnit.MegajoulePerHour)]
+        [InlineData("en-US", "MPa.m³/s", PowerUnit.MegapascalCubicMeterPerSecond)]
         [InlineData("en-US", "MW", PowerUnit.Megawatt)]
         [InlineData("en-US", "hp(M)", PowerUnit.MetricHorsepower)]
+        [InlineData("en-US", "µPa.m³/s", PowerUnit.MicropascalCubicMeterPerSecond)]
         [InlineData("en-US", "µW", PowerUnit.Microwatt)]
         [InlineData("en-US", "mJ/h", PowerUnit.MillijoulePerHour)]
+        [InlineData("en-US", "mPa.m³/s", PowerUnit.MillipascalCubicMeterPerSecond)]
         [InlineData("en-US", "mW", PowerUnit.Milliwatt)]
+        [InlineData("en-US", "nPa.m³/s", PowerUnit.NanopascalCubicMeterPerSecond)]
         [InlineData("en-US", "nW", PowerUnit.Nanowatt)]
+        [InlineData("en-US", "Pa.m³/s", PowerUnit.PascalCubicMeterPerSecond)]
+        [InlineData("en-US", "PPa.m³/s", PowerUnit.PetapascalCubicMeterPerSecond)]
         [InlineData("en-US", "PW", PowerUnit.Petawatt)]
+        [InlineData("en-US", "pPa.m³/s", PowerUnit.PicopascalCubicMeterPerSecond)]
         [InlineData("en-US", "pW", PowerUnit.Picowatt)]
+        [InlineData("en-US", "TPa.m³/s", PowerUnit.TerapascalCubicMeterPerSecond)]
         [InlineData("en-US", "TW", PowerUnit.Terawatt)]
         [InlineData("en-US", "TR", PowerUnit.TonOfRefrigeration)]
         [InlineData("en-US", "W", PowerUnit.Watt)]
@@ -774,28 +982,41 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("en-US", PowerUnit.BoilerHorsepower, "hp(S)")]
         [InlineData("en-US", PowerUnit.BritishThermalUnitPerHour, "Btu/h")]
+        [InlineData("en-US", PowerUnit.DecapascalCubicMeterPerSecond, "daPa.m³/s")]
         [InlineData("en-US", PowerUnit.Decawatt, "daW")]
+        [InlineData("en-US", PowerUnit.DecipascalCubicMeterPerSecond, "dPa.m³/s")]
         [InlineData("en-US", PowerUnit.Deciwatt, "dW")]
         [InlineData("en-US", PowerUnit.ElectricalHorsepower, "hp(E)")]
+        [InlineData("en-US", PowerUnit.FemtopascalCubicMeterPerSecond, "fPa.m³/s")]
         [InlineData("en-US", PowerUnit.Femtowatt, "fW")]
         [InlineData("en-US", PowerUnit.GigajoulePerHour, "GJ/h")]
+        [InlineData("en-US", PowerUnit.GigapascalCubicMeterPerSecond, "GPa.m³/s")]
         [InlineData("en-US", PowerUnit.Gigawatt, "GW")]
         [InlineData("en-US", PowerUnit.HydraulicHorsepower, "hp(H)")]
         [InlineData("en-US", PowerUnit.JoulePerHour, "J/h")]
         [InlineData("en-US", PowerUnit.KilobritishThermalUnitPerHour, "kBtu/h")]
         [InlineData("en-US", PowerUnit.KilojoulePerHour, "kJ/h")]
+        [InlineData("en-US", PowerUnit.KilopascalCubicMeterPerSecond, "kPa.m³/s")]
         [InlineData("en-US", PowerUnit.Kilowatt, "kW")]
         [InlineData("en-US", PowerUnit.MechanicalHorsepower, "hp(I)")]
         [InlineData("en-US", PowerUnit.MegabritishThermalUnitPerHour, "MBtu/h")]
         [InlineData("en-US", PowerUnit.MegajoulePerHour, "MJ/h")]
+        [InlineData("en-US", PowerUnit.MegapascalCubicMeterPerSecond, "MPa.m³/s")]
         [InlineData("en-US", PowerUnit.Megawatt, "MW")]
         [InlineData("en-US", PowerUnit.MetricHorsepower, "hp(M)")]
+        [InlineData("en-US", PowerUnit.MicropascalCubicMeterPerSecond, "µPa.m³/s")]
         [InlineData("en-US", PowerUnit.Microwatt, "µW")]
         [InlineData("en-US", PowerUnit.MillijoulePerHour, "mJ/h")]
+        [InlineData("en-US", PowerUnit.MillipascalCubicMeterPerSecond, "mPa.m³/s")]
         [InlineData("en-US", PowerUnit.Milliwatt, "mW")]
+        [InlineData("en-US", PowerUnit.NanopascalCubicMeterPerSecond, "nPa.m³/s")]
         [InlineData("en-US", PowerUnit.Nanowatt, "nW")]
+        [InlineData("en-US", PowerUnit.PascalCubicMeterPerSecond, "Pa.m³/s")]
+        [InlineData("en-US", PowerUnit.PetapascalCubicMeterPerSecond, "PPa.m³/s")]
         [InlineData("en-US", PowerUnit.Petawatt, "PW")]
+        [InlineData("en-US", PowerUnit.PicopascalCubicMeterPerSecond, "pPa.m³/s")]
         [InlineData("en-US", PowerUnit.Picowatt, "pW")]
+        [InlineData("en-US", PowerUnit.TerapascalCubicMeterPerSecond, "TPa.m³/s")]
         [InlineData("en-US", PowerUnit.Terawatt, "TW")]
         [InlineData("en-US", PowerUnit.TonOfRefrigeration, "TR")]
         [InlineData("en-US", PowerUnit.Watt, "W")]
@@ -885,28 +1106,41 @@ namespace UnitsNet.Tests
             Power watt = Power.FromWatts(1);
             AssertEx.EqualTolerance(1, Power.FromBoilerHorsepower(watt.BoilerHorsepower).Watts, BoilerHorsepowerTolerance);
             AssertEx.EqualTolerance(1, Power.FromBritishThermalUnitsPerHour(watt.BritishThermalUnitsPerHour).Watts, BritishThermalUnitsPerHourTolerance);
+            AssertEx.EqualTolerance(1, Power.FromDecapascalCubicMeterPerSecond(watt.DecapascalCubicMeterPerSecond).Watts, DecapascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(1, Power.FromDecawatts(watt.Decawatts).Watts, DecawattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromDecipascalCubicMeterPerSecond(watt.DecipascalCubicMeterPerSecond).Watts, DecipascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(1, Power.FromDeciwatts(watt.Deciwatts).Watts, DeciwattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromElectricalHorsepower(watt.ElectricalHorsepower).Watts, ElectricalHorsepowerTolerance);
+            AssertEx.EqualTolerance(1, Power.FromFemtopascalCubicMeterPerSecond(watt.FemtopascalCubicMeterPerSecond).Watts, FemtopascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(1, Power.FromFemtowatts(watt.Femtowatts).Watts, FemtowattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromGigajoulesPerHour(watt.GigajoulesPerHour).Watts, GigajoulesPerHourTolerance);
+            AssertEx.EqualTolerance(1, Power.FromGigapascalCubicMeterPerSecond(watt.GigapascalCubicMeterPerSecond).Watts, GigapascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(1, Power.FromGigawatts(watt.Gigawatts).Watts, GigawattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromHydraulicHorsepower(watt.HydraulicHorsepower).Watts, HydraulicHorsepowerTolerance);
             AssertEx.EqualTolerance(1, Power.FromJoulesPerHour(watt.JoulesPerHour).Watts, JoulesPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.FromKilobritishThermalUnitsPerHour(watt.KilobritishThermalUnitsPerHour).Watts, KilobritishThermalUnitsPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.FromKilojoulesPerHour(watt.KilojoulesPerHour).Watts, KilojoulesPerHourTolerance);
+            AssertEx.EqualTolerance(1, Power.FromKilopascalCubicMeterPerSecond(watt.KilopascalCubicMeterPerSecond).Watts, KilopascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(1, Power.FromKilowatts(watt.Kilowatts).Watts, KilowattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromMechanicalHorsepower(watt.MechanicalHorsepower).Watts, MechanicalHorsepowerTolerance);
             AssertEx.EqualTolerance(1, Power.FromMegabritishThermalUnitsPerHour(watt.MegabritishThermalUnitsPerHour).Watts, MegabritishThermalUnitsPerHourTolerance);
             AssertEx.EqualTolerance(1, Power.FromMegajoulesPerHour(watt.MegajoulesPerHour).Watts, MegajoulesPerHourTolerance);
+            AssertEx.EqualTolerance(1, Power.FromMegapascalCubicMeterPerSecond(watt.MegapascalCubicMeterPerSecond).Watts, MegapascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(1, Power.FromMegawatts(watt.Megawatts).Watts, MegawattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromMetricHorsepower(watt.MetricHorsepower).Watts, MetricHorsepowerTolerance);
+            AssertEx.EqualTolerance(1, Power.FromMicropascalCubicMeterPerSecond(watt.MicropascalCubicMeterPerSecond).Watts, MicropascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(1, Power.FromMicrowatts(watt.Microwatts).Watts, MicrowattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromMillijoulesPerHour(watt.MillijoulesPerHour).Watts, MillijoulesPerHourTolerance);
+            AssertEx.EqualTolerance(1, Power.FromMillipascalCubicMeterPerSecond(watt.MillipascalCubicMeterPerSecond).Watts, MillipascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(1, Power.FromMilliwatts(watt.Milliwatts).Watts, MilliwattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromNanopascalCubicMeterPerSecond(watt.NanopascalCubicMeterPerSecond).Watts, NanopascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(1, Power.FromNanowatts(watt.Nanowatts).Watts, NanowattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromPascalCubicMeterPerSecond(watt.PascalCubicMeterPerSecond).Watts, PascalCubicMeterPerSecondTolerance);
+            AssertEx.EqualTolerance(1, Power.FromPetapascalCubicMeterPerSecond(watt.PetapascalCubicMeterPerSecond).Watts, PetapascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(1, Power.FromPetawatts(watt.Petawatts).Watts, PetawattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromPicopascalCubicMeterPerSecond(watt.PicopascalCubicMeterPerSecond).Watts, PicopascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(1, Power.FromPicowatts(watt.Picowatts).Watts, PicowattsTolerance);
+            AssertEx.EqualTolerance(1, Power.FromTerapascalCubicMeterPerSecond(watt.TerapascalCubicMeterPerSecond).Watts, TerapascalCubicMeterPerSecondTolerance);
             AssertEx.EqualTolerance(1, Power.FromTerawatts(watt.Terawatts).Watts, TerawattsTolerance);
             AssertEx.EqualTolerance(1, Power.FromTonsOfRefrigeration(watt.TonsOfRefrigeration).Watts, TonsOfRefrigerationTolerance);
             AssertEx.EqualTolerance(1, Power.FromWatts(watt.Watts).Watts, WattsTolerance);
@@ -1068,28 +1302,41 @@ namespace UnitsNet.Tests
             using var _ = new CultureScope("en-US");
             Assert.Equal("1 hp(S)", new Power(1, PowerUnit.BoilerHorsepower).ToString());
             Assert.Equal("1 Btu/h", new Power(1, PowerUnit.BritishThermalUnitPerHour).ToString());
+            Assert.Equal("1 daPa.m³/s", new Power(1, PowerUnit.DecapascalCubicMeterPerSecond).ToString());
             Assert.Equal("1 daW", new Power(1, PowerUnit.Decawatt).ToString());
+            Assert.Equal("1 dPa.m³/s", new Power(1, PowerUnit.DecipascalCubicMeterPerSecond).ToString());
             Assert.Equal("1 dW", new Power(1, PowerUnit.Deciwatt).ToString());
             Assert.Equal("1 hp(E)", new Power(1, PowerUnit.ElectricalHorsepower).ToString());
+            Assert.Equal("1 fPa.m³/s", new Power(1, PowerUnit.FemtopascalCubicMeterPerSecond).ToString());
             Assert.Equal("1 fW", new Power(1, PowerUnit.Femtowatt).ToString());
             Assert.Equal("1 GJ/h", new Power(1, PowerUnit.GigajoulePerHour).ToString());
+            Assert.Equal("1 GPa.m³/s", new Power(1, PowerUnit.GigapascalCubicMeterPerSecond).ToString());
             Assert.Equal("1 GW", new Power(1, PowerUnit.Gigawatt).ToString());
             Assert.Equal("1 hp(H)", new Power(1, PowerUnit.HydraulicHorsepower).ToString());
             Assert.Equal("1 J/h", new Power(1, PowerUnit.JoulePerHour).ToString());
             Assert.Equal("1 kBtu/h", new Power(1, PowerUnit.KilobritishThermalUnitPerHour).ToString());
             Assert.Equal("1 kJ/h", new Power(1, PowerUnit.KilojoulePerHour).ToString());
+            Assert.Equal("1 kPa.m³/s", new Power(1, PowerUnit.KilopascalCubicMeterPerSecond).ToString());
             Assert.Equal("1 kW", new Power(1, PowerUnit.Kilowatt).ToString());
             Assert.Equal("1 hp(I)", new Power(1, PowerUnit.MechanicalHorsepower).ToString());
             Assert.Equal("1 MBtu/h", new Power(1, PowerUnit.MegabritishThermalUnitPerHour).ToString());
             Assert.Equal("1 MJ/h", new Power(1, PowerUnit.MegajoulePerHour).ToString());
+            Assert.Equal("1 MPa.m³/s", new Power(1, PowerUnit.MegapascalCubicMeterPerSecond).ToString());
             Assert.Equal("1 MW", new Power(1, PowerUnit.Megawatt).ToString());
             Assert.Equal("1 hp(M)", new Power(1, PowerUnit.MetricHorsepower).ToString());
+            Assert.Equal("1 µPa.m³/s", new Power(1, PowerUnit.MicropascalCubicMeterPerSecond).ToString());
             Assert.Equal("1 µW", new Power(1, PowerUnit.Microwatt).ToString());
             Assert.Equal("1 mJ/h", new Power(1, PowerUnit.MillijoulePerHour).ToString());
+            Assert.Equal("1 mPa.m³/s", new Power(1, PowerUnit.MillipascalCubicMeterPerSecond).ToString());
             Assert.Equal("1 mW", new Power(1, PowerUnit.Milliwatt).ToString());
+            Assert.Equal("1 nPa.m³/s", new Power(1, PowerUnit.NanopascalCubicMeterPerSecond).ToString());
             Assert.Equal("1 nW", new Power(1, PowerUnit.Nanowatt).ToString());
+            Assert.Equal("1 Pa.m³/s", new Power(1, PowerUnit.PascalCubicMeterPerSecond).ToString());
+            Assert.Equal("1 PPa.m³/s", new Power(1, PowerUnit.PetapascalCubicMeterPerSecond).ToString());
             Assert.Equal("1 PW", new Power(1, PowerUnit.Petawatt).ToString());
+            Assert.Equal("1 pPa.m³/s", new Power(1, PowerUnit.PicopascalCubicMeterPerSecond).ToString());
             Assert.Equal("1 pW", new Power(1, PowerUnit.Picowatt).ToString());
+            Assert.Equal("1 TPa.m³/s", new Power(1, PowerUnit.TerapascalCubicMeterPerSecond).ToString());
             Assert.Equal("1 TW", new Power(1, PowerUnit.Terawatt).ToString());
             Assert.Equal("1 TR", new Power(1, PowerUnit.TonOfRefrigeration).ToString());
             Assert.Equal("1 W", new Power(1, PowerUnit.Watt).ToString());
@@ -1103,28 +1350,41 @@ namespace UnitsNet.Tests
 
             Assert.Equal("1 hp(S)", new Power(1, PowerUnit.BoilerHorsepower).ToString(swedishCulture));
             Assert.Equal("1 Btu/h", new Power(1, PowerUnit.BritishThermalUnitPerHour).ToString(swedishCulture));
+            Assert.Equal("1 daPa.m³/s", new Power(1, PowerUnit.DecapascalCubicMeterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 daW", new Power(1, PowerUnit.Decawatt).ToString(swedishCulture));
+            Assert.Equal("1 dPa.m³/s", new Power(1, PowerUnit.DecipascalCubicMeterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 dW", new Power(1, PowerUnit.Deciwatt).ToString(swedishCulture));
             Assert.Equal("1 hp(E)", new Power(1, PowerUnit.ElectricalHorsepower).ToString(swedishCulture));
+            Assert.Equal("1 fPa.m³/s", new Power(1, PowerUnit.FemtopascalCubicMeterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 fW", new Power(1, PowerUnit.Femtowatt).ToString(swedishCulture));
             Assert.Equal("1 GJ/h", new Power(1, PowerUnit.GigajoulePerHour).ToString(swedishCulture));
+            Assert.Equal("1 GPa.m³/s", new Power(1, PowerUnit.GigapascalCubicMeterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 GW", new Power(1, PowerUnit.Gigawatt).ToString(swedishCulture));
             Assert.Equal("1 hp(H)", new Power(1, PowerUnit.HydraulicHorsepower).ToString(swedishCulture));
             Assert.Equal("1 J/h", new Power(1, PowerUnit.JoulePerHour).ToString(swedishCulture));
             Assert.Equal("1 kBtu/h", new Power(1, PowerUnit.KilobritishThermalUnitPerHour).ToString(swedishCulture));
             Assert.Equal("1 kJ/h", new Power(1, PowerUnit.KilojoulePerHour).ToString(swedishCulture));
+            Assert.Equal("1 kPa.m³/s", new Power(1, PowerUnit.KilopascalCubicMeterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 kW", new Power(1, PowerUnit.Kilowatt).ToString(swedishCulture));
             Assert.Equal("1 hp(I)", new Power(1, PowerUnit.MechanicalHorsepower).ToString(swedishCulture));
             Assert.Equal("1 MBtu/h", new Power(1, PowerUnit.MegabritishThermalUnitPerHour).ToString(swedishCulture));
             Assert.Equal("1 MJ/h", new Power(1, PowerUnit.MegajoulePerHour).ToString(swedishCulture));
+            Assert.Equal("1 MPa.m³/s", new Power(1, PowerUnit.MegapascalCubicMeterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 MW", new Power(1, PowerUnit.Megawatt).ToString(swedishCulture));
             Assert.Equal("1 hp(M)", new Power(1, PowerUnit.MetricHorsepower).ToString(swedishCulture));
+            Assert.Equal("1 µPa.m³/s", new Power(1, PowerUnit.MicropascalCubicMeterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 µW", new Power(1, PowerUnit.Microwatt).ToString(swedishCulture));
             Assert.Equal("1 mJ/h", new Power(1, PowerUnit.MillijoulePerHour).ToString(swedishCulture));
+            Assert.Equal("1 mPa.m³/s", new Power(1, PowerUnit.MillipascalCubicMeterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 mW", new Power(1, PowerUnit.Milliwatt).ToString(swedishCulture));
+            Assert.Equal("1 nPa.m³/s", new Power(1, PowerUnit.NanopascalCubicMeterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 nW", new Power(1, PowerUnit.Nanowatt).ToString(swedishCulture));
+            Assert.Equal("1 Pa.m³/s", new Power(1, PowerUnit.PascalCubicMeterPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 PPa.m³/s", new Power(1, PowerUnit.PetapascalCubicMeterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 PW", new Power(1, PowerUnit.Petawatt).ToString(swedishCulture));
+            Assert.Equal("1 pPa.m³/s", new Power(1, PowerUnit.PicopascalCubicMeterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 pW", new Power(1, PowerUnit.Picowatt).ToString(swedishCulture));
+            Assert.Equal("1 TPa.m³/s", new Power(1, PowerUnit.TerapascalCubicMeterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 TW", new Power(1, PowerUnit.Terawatt).ToString(swedishCulture));
             Assert.Equal("1 TR", new Power(1, PowerUnit.TonOfRefrigeration).ToString(swedishCulture));
             Assert.Equal("1 W", new Power(1, PowerUnit.Watt).ToString(swedishCulture));
