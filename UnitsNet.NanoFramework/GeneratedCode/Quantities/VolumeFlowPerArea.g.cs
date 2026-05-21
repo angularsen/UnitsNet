@@ -115,55 +115,55 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(VolumeFlowPerAreaUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(VolumeFlowPerAreaUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this VolumeFlowPerArea to another VolumeFlowPerArea with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A VolumeFlowPerArea with the specified unit.</returns>
-                public VolumeFlowPerArea ToUnit(VolumeFlowPerAreaUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new VolumeFlowPerArea(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this VolumeFlowPerArea to another VolumeFlowPerArea with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A VolumeFlowPerArea with the specified unit.</returns>
+        public VolumeFlowPerArea ToUnit(VolumeFlowPerAreaUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new VolumeFlowPerArea(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot => _value * (0.028316846592 / 60) / 9.290304e-2,
-                        VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter => _value,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot => _value * (0.028316846592 / 60) / 9.290304e-2,
+                VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter => _value,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(VolumeFlowPerAreaUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(VolumeFlowPerAreaUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot => baseUnitValue * 9.290304e-2 / (0.028316846592 / 60),
-                        VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                VolumeFlowPerAreaUnit.CubicFootPerMinutePerSquareFoot => baseUnitValue * 9.290304e-2 / (0.028316846592 / 60),
+                VolumeFlowPerAreaUnit.CubicMeterPerSecondPerSquareMeter => baseUnitValue,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

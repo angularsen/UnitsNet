@@ -258,83 +258,83 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(ElectricConductanceUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(ElectricConductanceUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this ElectricConductance to another ElectricConductance with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A ElectricConductance with the specified unit.</returns>
-                public ElectricConductance ToUnit(ElectricConductanceUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new ElectricConductance(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this ElectricConductance to another ElectricConductance with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ElectricConductance with the specified unit.</returns>
+        public ElectricConductance ToUnit(ElectricConductanceUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new ElectricConductance(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        ElectricConductanceUnit.Gigamho => (_value) * 1e9d,
-                        ElectricConductanceUnit.Gigasiemens => (_value) * 1e9d,
-                        ElectricConductanceUnit.Kilomho => (_value) * 1e3d,
-                        ElectricConductanceUnit.Kilosiemens => (_value) * 1e3d,
-                        ElectricConductanceUnit.Megamho => (_value) * 1e6d,
-                        ElectricConductanceUnit.Megasiemens => (_value) * 1e6d,
-                        ElectricConductanceUnit.Mho => _value,
-                        ElectricConductanceUnit.Micromho => (_value) * 1e-6d,
-                        ElectricConductanceUnit.Microsiemens => (_value) * 1e-6d,
-                        ElectricConductanceUnit.Millimho => (_value) * 1e-3d,
-                        ElectricConductanceUnit.Millisiemens => (_value) * 1e-3d,
-                        ElectricConductanceUnit.Nanomho => (_value) * 1e-9d,
-                        ElectricConductanceUnit.Nanosiemens => (_value) * 1e-9d,
-                        ElectricConductanceUnit.Siemens => _value,
-                        ElectricConductanceUnit.Teramho => (_value) * 1e12d,
-                        ElectricConductanceUnit.Terasiemens => (_value) * 1e12d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                ElectricConductanceUnit.Gigamho => (_value) * 1e9d,
+                ElectricConductanceUnit.Gigasiemens => (_value) * 1e9d,
+                ElectricConductanceUnit.Kilomho => (_value) * 1e3d,
+                ElectricConductanceUnit.Kilosiemens => (_value) * 1e3d,
+                ElectricConductanceUnit.Megamho => (_value) * 1e6d,
+                ElectricConductanceUnit.Megasiemens => (_value) * 1e6d,
+                ElectricConductanceUnit.Mho => _value,
+                ElectricConductanceUnit.Micromho => (_value) * 1e-6d,
+                ElectricConductanceUnit.Microsiemens => (_value) * 1e-6d,
+                ElectricConductanceUnit.Millimho => (_value) * 1e-3d,
+                ElectricConductanceUnit.Millisiemens => (_value) * 1e-3d,
+                ElectricConductanceUnit.Nanomho => (_value) * 1e-9d,
+                ElectricConductanceUnit.Nanosiemens => (_value) * 1e-9d,
+                ElectricConductanceUnit.Siemens => _value,
+                ElectricConductanceUnit.Teramho => (_value) * 1e12d,
+                ElectricConductanceUnit.Terasiemens => (_value) * 1e12d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(ElectricConductanceUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(ElectricConductanceUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        ElectricConductanceUnit.Gigamho => (baseUnitValue) / 1e9d,
-                        ElectricConductanceUnit.Gigasiemens => (baseUnitValue) / 1e9d,
-                        ElectricConductanceUnit.Kilomho => (baseUnitValue) / 1e3d,
-                        ElectricConductanceUnit.Kilosiemens => (baseUnitValue) / 1e3d,
-                        ElectricConductanceUnit.Megamho => (baseUnitValue) / 1e6d,
-                        ElectricConductanceUnit.Megasiemens => (baseUnitValue) / 1e6d,
-                        ElectricConductanceUnit.Mho => baseUnitValue,
-                        ElectricConductanceUnit.Micromho => (baseUnitValue) / 1e-6d,
-                        ElectricConductanceUnit.Microsiemens => (baseUnitValue) / 1e-6d,
-                        ElectricConductanceUnit.Millimho => (baseUnitValue) / 1e-3d,
-                        ElectricConductanceUnit.Millisiemens => (baseUnitValue) / 1e-3d,
-                        ElectricConductanceUnit.Nanomho => (baseUnitValue) / 1e-9d,
-                        ElectricConductanceUnit.Nanosiemens => (baseUnitValue) / 1e-9d,
-                        ElectricConductanceUnit.Siemens => baseUnitValue,
-                        ElectricConductanceUnit.Teramho => (baseUnitValue) / 1e12d,
-                        ElectricConductanceUnit.Terasiemens => (baseUnitValue) / 1e12d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                ElectricConductanceUnit.Gigamho => (baseUnitValue) / 1e9d,
+                ElectricConductanceUnit.Gigasiemens => (baseUnitValue) / 1e9d,
+                ElectricConductanceUnit.Kilomho => (baseUnitValue) / 1e3d,
+                ElectricConductanceUnit.Kilosiemens => (baseUnitValue) / 1e3d,
+                ElectricConductanceUnit.Megamho => (baseUnitValue) / 1e6d,
+                ElectricConductanceUnit.Megasiemens => (baseUnitValue) / 1e6d,
+                ElectricConductanceUnit.Mho => baseUnitValue,
+                ElectricConductanceUnit.Micromho => (baseUnitValue) / 1e-6d,
+                ElectricConductanceUnit.Microsiemens => (baseUnitValue) / 1e-6d,
+                ElectricConductanceUnit.Millimho => (baseUnitValue) / 1e-3d,
+                ElectricConductanceUnit.Millisiemens => (baseUnitValue) / 1e-3d,
+                ElectricConductanceUnit.Nanomho => (baseUnitValue) / 1e-9d,
+                ElectricConductanceUnit.Nanosiemens => (baseUnitValue) / 1e-9d,
+                ElectricConductanceUnit.Siemens => baseUnitValue,
+                ElectricConductanceUnit.Teramho => (baseUnitValue) / 1e12d,
+                ElectricConductanceUnit.Terasiemens => (baseUnitValue) / 1e12d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

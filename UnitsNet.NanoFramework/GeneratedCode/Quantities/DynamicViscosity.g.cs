@@ -198,71 +198,71 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(DynamicViscosityUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(DynamicViscosityUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this DynamicViscosity to another DynamicViscosity with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A DynamicViscosity with the specified unit.</returns>
-                public DynamicViscosity ToUnit(DynamicViscosityUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new DynamicViscosity(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this DynamicViscosity to another DynamicViscosity with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A DynamicViscosity with the specified unit.</returns>
+        public DynamicViscosity ToUnit(DynamicViscosityUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new DynamicViscosity(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        DynamicViscosityUnit.Centipoise => (_value / 10) * 1e-2d,
-                        DynamicViscosityUnit.MicropascalSecond => (_value) * 1e-6d,
-                        DynamicViscosityUnit.MillipascalSecond => (_value) * 1e-3d,
-                        DynamicViscosityUnit.NewtonSecondPerMeterSquared => _value,
-                        DynamicViscosityUnit.PascalSecond => _value,
-                        DynamicViscosityUnit.Poise => _value / 10,
-                        DynamicViscosityUnit.PoundForceSecondPerSquareFoot => _value * 4.4482216152605 / 9.290304e-2,
-                        DynamicViscosityUnit.PoundForceSecondPerSquareInch => _value * 4.4482216152605 / 0.00064516,
-                        DynamicViscosityUnit.PoundPerFootSecond => _value * 0.45359237 / 0.3048,
-                        DynamicViscosityUnit.Reyn => _value * 4.4482216152605 / 0.00064516,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                DynamicViscosityUnit.Centipoise => (_value / 10) * 1e-2d,
+                DynamicViscosityUnit.MicropascalSecond => (_value) * 1e-6d,
+                DynamicViscosityUnit.MillipascalSecond => (_value) * 1e-3d,
+                DynamicViscosityUnit.NewtonSecondPerMeterSquared => _value,
+                DynamicViscosityUnit.PascalSecond => _value,
+                DynamicViscosityUnit.Poise => _value / 10,
+                DynamicViscosityUnit.PoundForceSecondPerSquareFoot => _value * 4.4482216152605 / 9.290304e-2,
+                DynamicViscosityUnit.PoundForceSecondPerSquareInch => _value * 4.4482216152605 / 0.00064516,
+                DynamicViscosityUnit.PoundPerFootSecond => _value * 0.45359237 / 0.3048,
+                DynamicViscosityUnit.Reyn => _value * 4.4482216152605 / 0.00064516,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(DynamicViscosityUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(DynamicViscosityUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        DynamicViscosityUnit.Centipoise => (baseUnitValue * 10) / 1e-2d,
-                        DynamicViscosityUnit.MicropascalSecond => (baseUnitValue) / 1e-6d,
-                        DynamicViscosityUnit.MillipascalSecond => (baseUnitValue) / 1e-3d,
-                        DynamicViscosityUnit.NewtonSecondPerMeterSquared => baseUnitValue,
-                        DynamicViscosityUnit.PascalSecond => baseUnitValue,
-                        DynamicViscosityUnit.Poise => baseUnitValue * 10,
-                        DynamicViscosityUnit.PoundForceSecondPerSquareFoot => baseUnitValue * 9.290304e-2 / 4.4482216152605,
-                        DynamicViscosityUnit.PoundForceSecondPerSquareInch => baseUnitValue * 0.00064516 / 4.4482216152605,
-                        DynamicViscosityUnit.PoundPerFootSecond => baseUnitValue * 0.3048 / 0.45359237,
-                        DynamicViscosityUnit.Reyn => baseUnitValue * 0.00064516 / 4.4482216152605,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                DynamicViscosityUnit.Centipoise => (baseUnitValue * 10) / 1e-2d,
+                DynamicViscosityUnit.MicropascalSecond => (baseUnitValue) / 1e-6d,
+                DynamicViscosityUnit.MillipascalSecond => (baseUnitValue) / 1e-3d,
+                DynamicViscosityUnit.NewtonSecondPerMeterSquared => baseUnitValue,
+                DynamicViscosityUnit.PascalSecond => baseUnitValue,
+                DynamicViscosityUnit.Poise => baseUnitValue * 10,
+                DynamicViscosityUnit.PoundForceSecondPerSquareFoot => baseUnitValue * 9.290304e-2 / 4.4482216152605,
+                DynamicViscosityUnit.PoundForceSecondPerSquareInch => baseUnitValue * 0.00064516 / 4.4482216152605,
+                DynamicViscosityUnit.PoundPerFootSecond => baseUnitValue * 0.3048 / 0.45359237,
+                DynamicViscosityUnit.Reyn => baseUnitValue * 0.00064516 / 4.4482216152605,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

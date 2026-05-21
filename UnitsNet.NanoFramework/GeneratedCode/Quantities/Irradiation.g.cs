@@ -188,69 +188,69 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(IrradiationUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(IrradiationUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this Irradiation to another Irradiation with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A Irradiation with the specified unit.</returns>
-                public Irradiation ToUnit(IrradiationUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new Irradiation(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this Irradiation to another Irradiation with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Irradiation with the specified unit.</returns>
+        public Irradiation ToUnit(IrradiationUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new Irradiation(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        IrradiationUnit.BtuPerSquareFoot => _value * 1055.05585262 / 9.290304e-2,
-                        IrradiationUnit.JoulePerSquareCentimeter => _value * 1e4,
-                        IrradiationUnit.JoulePerSquareMeter => _value,
-                        IrradiationUnit.JoulePerSquareMillimeter => _value * 1e6,
-                        IrradiationUnit.KilobtuPerSquareFoot => (_value * 1055.05585262 / 9.290304e-2) * 1e3d,
-                        IrradiationUnit.KilojoulePerSquareMeter => (_value) * 1e3d,
-                        IrradiationUnit.KilowattHourPerSquareMeter => (_value * 3600d) * 1e3d,
-                        IrradiationUnit.MillijoulePerSquareCentimeter => (_value * 1e4) * 1e-3d,
-                        IrradiationUnit.WattHourPerSquareMeter => _value * 3600d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                IrradiationUnit.BtuPerSquareFoot => _value * 1055.05585262 / 9.290304e-2,
+                IrradiationUnit.JoulePerSquareCentimeter => _value * 1e4,
+                IrradiationUnit.JoulePerSquareMeter => _value,
+                IrradiationUnit.JoulePerSquareMillimeter => _value * 1e6,
+                IrradiationUnit.KilobtuPerSquareFoot => (_value * 1055.05585262 / 9.290304e-2) * 1e3d,
+                IrradiationUnit.KilojoulePerSquareMeter => (_value) * 1e3d,
+                IrradiationUnit.KilowattHourPerSquareMeter => (_value * 3600d) * 1e3d,
+                IrradiationUnit.MillijoulePerSquareCentimeter => (_value * 1e4) * 1e-3d,
+                IrradiationUnit.WattHourPerSquareMeter => _value * 3600d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(IrradiationUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(IrradiationUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        IrradiationUnit.BtuPerSquareFoot => baseUnitValue * 9.290304e-2 / 1055.05585262,
-                        IrradiationUnit.JoulePerSquareCentimeter => baseUnitValue / 1e4,
-                        IrradiationUnit.JoulePerSquareMeter => baseUnitValue,
-                        IrradiationUnit.JoulePerSquareMillimeter => baseUnitValue / 1e6,
-                        IrradiationUnit.KilobtuPerSquareFoot => (baseUnitValue * 9.290304e-2 / 1055.05585262) / 1e3d,
-                        IrradiationUnit.KilojoulePerSquareMeter => (baseUnitValue) / 1e3d,
-                        IrradiationUnit.KilowattHourPerSquareMeter => (baseUnitValue / 3600d) / 1e3d,
-                        IrradiationUnit.MillijoulePerSquareCentimeter => (baseUnitValue / 1e4) / 1e-3d,
-                        IrradiationUnit.WattHourPerSquareMeter => baseUnitValue / 3600d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                IrradiationUnit.BtuPerSquareFoot => baseUnitValue * 9.290304e-2 / 1055.05585262,
+                IrradiationUnit.JoulePerSquareCentimeter => baseUnitValue / 1e4,
+                IrradiationUnit.JoulePerSquareMeter => baseUnitValue,
+                IrradiationUnit.JoulePerSquareMillimeter => baseUnitValue / 1e6,
+                IrradiationUnit.KilobtuPerSquareFoot => (baseUnitValue * 9.290304e-2 / 1055.05585262) / 1e3d,
+                IrradiationUnit.KilojoulePerSquareMeter => (baseUnitValue) / 1e3d,
+                IrradiationUnit.KilowattHourPerSquareMeter => (baseUnitValue / 3600d) / 1e3d,
+                IrradiationUnit.MillijoulePerSquareCentimeter => (baseUnitValue / 1e4) / 1e-3d,
+                IrradiationUnit.WattHourPerSquareMeter => baseUnitValue / 3600d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

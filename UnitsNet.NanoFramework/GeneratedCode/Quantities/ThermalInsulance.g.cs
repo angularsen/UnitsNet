@@ -165,65 +165,65 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(ThermalInsulanceUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(ThermalInsulanceUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this ThermalInsulance to another ThermalInsulance with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A ThermalInsulance with the specified unit.</returns>
-                public ThermalInsulance ToUnit(ThermalInsulanceUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new ThermalInsulance(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this ThermalInsulance to another ThermalInsulance with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ThermalInsulance with the specified unit.</returns>
+        public ThermalInsulance ToUnit(ThermalInsulanceUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new ThermalInsulance(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu => _value * (1000 * 0.3048 * 0.3048 * 3600) / (1055.05585262 * 1.8),
-                        ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie => _value * (0.0001 * 3600) / 4.184,
-                        ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt => _value * 0.1,
-                        ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt => _value * 1000.0,
-                        ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt => _value,
-                        ThermalInsulanceUnit.SquareMeterKelvinPerWatt => _value * 1000,
-                        ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt => _value * 0.001,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu => _value * (1000 * 0.3048 * 0.3048 * 3600) / (1055.05585262 * 1.8),
+                ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie => _value * (0.0001 * 3600) / 4.184,
+                ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt => _value * 0.1,
+                ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt => _value * 1000.0,
+                ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt => _value,
+                ThermalInsulanceUnit.SquareMeterKelvinPerWatt => _value * 1000,
+                ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt => _value * 0.001,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(ThermalInsulanceUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(ThermalInsulanceUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu => baseUnitValue * (1055.05585262 * 1.8) / (1000 * 0.3048 * 0.3048 * 3600),
-                        ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie => baseUnitValue * 4.184 / (0.0001 * 3600),
-                        ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt => baseUnitValue / 0.1,
-                        ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt => baseUnitValue / 1000.0,
-                        ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt => baseUnitValue,
-                        ThermalInsulanceUnit.SquareMeterKelvinPerWatt => baseUnitValue / 1000,
-                        ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt => baseUnitValue / 0.001,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                ThermalInsulanceUnit.HourSquareFeetDegreeFahrenheitPerBtu => baseUnitValue * (1055.05585262 * 1.8) / (1000 * 0.3048 * 0.3048 * 3600),
+                ThermalInsulanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie => baseUnitValue * 4.184 / (0.0001 * 3600),
+                ThermalInsulanceUnit.SquareCentimeterKelvinPerWatt => baseUnitValue / 0.1,
+                ThermalInsulanceUnit.SquareMeterDegreeCelsiusPerWatt => baseUnitValue / 1000.0,
+                ThermalInsulanceUnit.SquareMeterKelvinPerKilowatt => baseUnitValue,
+                ThermalInsulanceUnit.SquareMeterKelvinPerWatt => baseUnitValue / 1000,
+                ThermalInsulanceUnit.SquareMillimeterKelvinPerWatt => baseUnitValue / 0.001,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

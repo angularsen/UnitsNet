@@ -288,89 +288,89 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(FluidResistanceUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(FluidResistanceUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this FluidResistance to another FluidResistance with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A FluidResistance with the specified unit.</returns>
-                public FluidResistance ToUnit(FluidResistanceUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new FluidResistance(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this FluidResistance to another FluidResistance with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A FluidResistance with the specified unit.</returns>
+        public FluidResistance ToUnit(FluidResistanceUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new FluidResistance(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth => _value * 1e5,
-                        FluidResistanceUnit.MegapascalSecondPerCubicMeter => (_value) * 1e6d,
-                        FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter => _value * 7.99934208e9,
-                        FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter => _value * 7.99934208e3,
-                        FluidResistanceUnit.MillimeterMercuryMinutePerLiter => _value * 7.99934208e6,
-                        FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter => _value * 7.99934208e9,
-                        FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter => _value * 1.33322368e8,
-                        FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter => _value * 133.322368,
-                        FluidResistanceUnit.MillimeterMercurySecondPerLiter => _value * 1.33322368e5,
-                        FluidResistanceUnit.MillimeterMercurySecondPerMilliliter => _value * 1.33322368e8,
-                        FluidResistanceUnit.PascalMinutePerCubicCentimeter => _value * 6e7,
-                        FluidResistanceUnit.PascalMinutePerCubicMeter => _value * 60,
-                        FluidResistanceUnit.PascalMinutePerLiter => _value * 6e4,
-                        FluidResistanceUnit.PascalMinutePerMilliliter => _value * 6e7,
-                        FluidResistanceUnit.PascalSecondPerCubicCentimeter => _value * 1e6,
-                        FluidResistanceUnit.PascalSecondPerCubicMeter => _value,
-                        FluidResistanceUnit.PascalSecondPerLiter => _value * 1e3,
-                        FluidResistanceUnit.PascalSecondPerMilliliter => _value * 1e6,
-                        FluidResistanceUnit.WoodUnit => _value * 7.99934208e6,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth => _value * 1e5,
+                FluidResistanceUnit.MegapascalSecondPerCubicMeter => (_value) * 1e6d,
+                FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter => _value * 7.99934208e9,
+                FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter => _value * 7.99934208e3,
+                FluidResistanceUnit.MillimeterMercuryMinutePerLiter => _value * 7.99934208e6,
+                FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter => _value * 7.99934208e9,
+                FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter => _value * 1.33322368e8,
+                FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter => _value * 133.322368,
+                FluidResistanceUnit.MillimeterMercurySecondPerLiter => _value * 1.33322368e5,
+                FluidResistanceUnit.MillimeterMercurySecondPerMilliliter => _value * 1.33322368e8,
+                FluidResistanceUnit.PascalMinutePerCubicCentimeter => _value * 6e7,
+                FluidResistanceUnit.PascalMinutePerCubicMeter => _value * 60,
+                FluidResistanceUnit.PascalMinutePerLiter => _value * 6e4,
+                FluidResistanceUnit.PascalMinutePerMilliliter => _value * 6e7,
+                FluidResistanceUnit.PascalSecondPerCubicCentimeter => _value * 1e6,
+                FluidResistanceUnit.PascalSecondPerCubicMeter => _value,
+                FluidResistanceUnit.PascalSecondPerLiter => _value * 1e3,
+                FluidResistanceUnit.PascalSecondPerMilliliter => _value * 1e6,
+                FluidResistanceUnit.WoodUnit => _value * 7.99934208e6,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(FluidResistanceUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(FluidResistanceUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth => baseUnitValue / 1e5,
-                        FluidResistanceUnit.MegapascalSecondPerCubicMeter => (baseUnitValue) / 1e6d,
-                        FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter => baseUnitValue / 7.99934208e9,
-                        FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter => baseUnitValue / 7.99934208e3,
-                        FluidResistanceUnit.MillimeterMercuryMinutePerLiter => baseUnitValue / 7.99934208e6,
-                        FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter => baseUnitValue / 7.99934208e9,
-                        FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter => baseUnitValue / 1.33322368e8,
-                        FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter => baseUnitValue / 133.322368,
-                        FluidResistanceUnit.MillimeterMercurySecondPerLiter => baseUnitValue / 1.33322368e5,
-                        FluidResistanceUnit.MillimeterMercurySecondPerMilliliter => baseUnitValue / 1.33322368e8,
-                        FluidResistanceUnit.PascalMinutePerCubicCentimeter => baseUnitValue / 6e7,
-                        FluidResistanceUnit.PascalMinutePerCubicMeter => baseUnitValue / 60,
-                        FluidResistanceUnit.PascalMinutePerLiter => baseUnitValue / 6e4,
-                        FluidResistanceUnit.PascalMinutePerMilliliter => baseUnitValue / 6e7,
-                        FluidResistanceUnit.PascalSecondPerCubicCentimeter => baseUnitValue / 1e6,
-                        FluidResistanceUnit.PascalSecondPerCubicMeter => baseUnitValue,
-                        FluidResistanceUnit.PascalSecondPerLiter => baseUnitValue / 1e3,
-                        FluidResistanceUnit.PascalSecondPerMilliliter => baseUnitValue / 1e6,
-                        FluidResistanceUnit.WoodUnit => baseUnitValue / 7.99934208e6,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                FluidResistanceUnit.DyneSecondPerCentimeterToTheFifth => baseUnitValue / 1e5,
+                FluidResistanceUnit.MegapascalSecondPerCubicMeter => (baseUnitValue) / 1e6d,
+                FluidResistanceUnit.MillimeterMercuryMinutePerCubicCentimeter => baseUnitValue / 7.99934208e9,
+                FluidResistanceUnit.MillimeterMercuryMinutePerCubicMeter => baseUnitValue / 7.99934208e3,
+                FluidResistanceUnit.MillimeterMercuryMinutePerLiter => baseUnitValue / 7.99934208e6,
+                FluidResistanceUnit.MillimeterMercuryMinutePerMilliliter => baseUnitValue / 7.99934208e9,
+                FluidResistanceUnit.MillimeterMercurySecondPerCubicCentimeter => baseUnitValue / 1.33322368e8,
+                FluidResistanceUnit.MillimeterMercurySecondPerCubicMeter => baseUnitValue / 133.322368,
+                FluidResistanceUnit.MillimeterMercurySecondPerLiter => baseUnitValue / 1.33322368e5,
+                FluidResistanceUnit.MillimeterMercurySecondPerMilliliter => baseUnitValue / 1.33322368e8,
+                FluidResistanceUnit.PascalMinutePerCubicCentimeter => baseUnitValue / 6e7,
+                FluidResistanceUnit.PascalMinutePerCubicMeter => baseUnitValue / 60,
+                FluidResistanceUnit.PascalMinutePerLiter => baseUnitValue / 6e4,
+                FluidResistanceUnit.PascalMinutePerMilliliter => baseUnitValue / 6e7,
+                FluidResistanceUnit.PascalSecondPerCubicCentimeter => baseUnitValue / 1e6,
+                FluidResistanceUnit.PascalSecondPerCubicMeter => baseUnitValue,
+                FluidResistanceUnit.PascalSecondPerLiter => baseUnitValue / 1e3,
+                FluidResistanceUnit.PascalSecondPerMilliliter => baseUnitValue / 1e6,
+                FluidResistanceUnit.WoodUnit => baseUnitValue / 7.99934208e6,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

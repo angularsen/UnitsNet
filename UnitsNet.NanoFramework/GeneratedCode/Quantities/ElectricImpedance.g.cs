@@ -179,67 +179,67 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(ElectricImpedanceUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(ElectricImpedanceUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this ElectricImpedance to another ElectricImpedance with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A ElectricImpedance with the specified unit.</returns>
-                public ElectricImpedance ToUnit(ElectricImpedanceUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new ElectricImpedance(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this ElectricImpedance to another ElectricImpedance with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ElectricImpedance with the specified unit.</returns>
+        public ElectricImpedance ToUnit(ElectricImpedanceUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new ElectricImpedance(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        ElectricImpedanceUnit.Gigaohm => (_value) * 1e9d,
-                        ElectricImpedanceUnit.Kiloohm => (_value) * 1e3d,
-                        ElectricImpedanceUnit.Megaohm => (_value) * 1e6d,
-                        ElectricImpedanceUnit.Microohm => (_value) * 1e-6d,
-                        ElectricImpedanceUnit.Milliohm => (_value) * 1e-3d,
-                        ElectricImpedanceUnit.Nanoohm => (_value) * 1e-9d,
-                        ElectricImpedanceUnit.Ohm => _value,
-                        ElectricImpedanceUnit.Teraohm => (_value) * 1e12d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                ElectricImpedanceUnit.Gigaohm => (_value) * 1e9d,
+                ElectricImpedanceUnit.Kiloohm => (_value) * 1e3d,
+                ElectricImpedanceUnit.Megaohm => (_value) * 1e6d,
+                ElectricImpedanceUnit.Microohm => (_value) * 1e-6d,
+                ElectricImpedanceUnit.Milliohm => (_value) * 1e-3d,
+                ElectricImpedanceUnit.Nanoohm => (_value) * 1e-9d,
+                ElectricImpedanceUnit.Ohm => _value,
+                ElectricImpedanceUnit.Teraohm => (_value) * 1e12d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(ElectricImpedanceUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(ElectricImpedanceUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        ElectricImpedanceUnit.Gigaohm => (baseUnitValue) / 1e9d,
-                        ElectricImpedanceUnit.Kiloohm => (baseUnitValue) / 1e3d,
-                        ElectricImpedanceUnit.Megaohm => (baseUnitValue) / 1e6d,
-                        ElectricImpedanceUnit.Microohm => (baseUnitValue) / 1e-6d,
-                        ElectricImpedanceUnit.Milliohm => (baseUnitValue) / 1e-3d,
-                        ElectricImpedanceUnit.Nanoohm => (baseUnitValue) / 1e-9d,
-                        ElectricImpedanceUnit.Ohm => baseUnitValue,
-                        ElectricImpedanceUnit.Teraohm => (baseUnitValue) / 1e12d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                ElectricImpedanceUnit.Gigaohm => (baseUnitValue) / 1e9d,
+                ElectricImpedanceUnit.Kiloohm => (baseUnitValue) / 1e3d,
+                ElectricImpedanceUnit.Megaohm => (baseUnitValue) / 1e6d,
+                ElectricImpedanceUnit.Microohm => (baseUnitValue) / 1e-6d,
+                ElectricImpedanceUnit.Milliohm => (baseUnitValue) / 1e-3d,
+                ElectricImpedanceUnit.Nanoohm => (baseUnitValue) / 1e-9d,
+                ElectricImpedanceUnit.Ohm => baseUnitValue,
+                ElectricImpedanceUnit.Teraohm => (baseUnitValue) / 1e12d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

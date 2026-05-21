@@ -117,6 +117,7 @@ public partial class Quantity
             MolarFlow.Info,
             Molarity.Info,
             MolarMass.Info,
+            NominalPower.Info,
             Permeability.Info,
             Permittivity.Info,
             PorousMediumPermeability.Info,
@@ -249,6 +250,7 @@ public partial class Quantity
             MolarFlow.RegisterDefaultConversions(unitConverter);
             Molarity.RegisterDefaultConversions(unitConverter);
             MolarMass.RegisterDefaultConversions(unitConverter);
+            NominalPower.RegisterDefaultConversions(unitConverter);
             Permeability.RegisterDefaultConversions(unitConverter);
             Permittivity.RegisterDefaultConversions(unitConverter);
             PorousMediumPermeability.RegisterDefaultConversions(unitConverter);

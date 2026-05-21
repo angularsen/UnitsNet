@@ -155,63 +155,63 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(RadiationEquivalentDoseUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(RadiationEquivalentDoseUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this RadiationEquivalentDose to another RadiationEquivalentDose with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A RadiationEquivalentDose with the specified unit.</returns>
-                public RadiationEquivalentDose ToUnit(RadiationEquivalentDoseUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new RadiationEquivalentDose(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this RadiationEquivalentDose to another RadiationEquivalentDose with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A RadiationEquivalentDose with the specified unit.</returns>
+        public RadiationEquivalentDose ToUnit(RadiationEquivalentDoseUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new RadiationEquivalentDose(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        RadiationEquivalentDoseUnit.Microsievert => (_value) * 1e-6d,
-                        RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan => (_value / 100) * 1e-3d,
-                        RadiationEquivalentDoseUnit.Millisievert => (_value) * 1e-3d,
-                        RadiationEquivalentDoseUnit.Nanosievert => (_value) * 1e-9d,
-                        RadiationEquivalentDoseUnit.RoentgenEquivalentMan => _value / 100,
-                        RadiationEquivalentDoseUnit.Sievert => _value,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                RadiationEquivalentDoseUnit.Microsievert => (_value) * 1e-6d,
+                RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan => (_value / 100) * 1e-3d,
+                RadiationEquivalentDoseUnit.Millisievert => (_value) * 1e-3d,
+                RadiationEquivalentDoseUnit.Nanosievert => (_value) * 1e-9d,
+                RadiationEquivalentDoseUnit.RoentgenEquivalentMan => _value / 100,
+                RadiationEquivalentDoseUnit.Sievert => _value,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(RadiationEquivalentDoseUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(RadiationEquivalentDoseUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        RadiationEquivalentDoseUnit.Microsievert => (baseUnitValue) / 1e-6d,
-                        RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan => (baseUnitValue * 100) / 1e-3d,
-                        RadiationEquivalentDoseUnit.Millisievert => (baseUnitValue) / 1e-3d,
-                        RadiationEquivalentDoseUnit.Nanosievert => (baseUnitValue) / 1e-9d,
-                        RadiationEquivalentDoseUnit.RoentgenEquivalentMan => baseUnitValue * 100,
-                        RadiationEquivalentDoseUnit.Sievert => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                RadiationEquivalentDoseUnit.Microsievert => (baseUnitValue) / 1e-6d,
+                RadiationEquivalentDoseUnit.MilliroentgenEquivalentMan => (baseUnitValue * 100) / 1e-3d,
+                RadiationEquivalentDoseUnit.Millisievert => (baseUnitValue) / 1e-3d,
+                RadiationEquivalentDoseUnit.Nanosievert => (baseUnitValue) / 1e-9d,
+                RadiationEquivalentDoseUnit.RoentgenEquivalentMan => baseUnitValue * 100,
+                RadiationEquivalentDoseUnit.Sievert => baseUnitValue,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

@@ -138,59 +138,59 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(ElectricReactivePowerUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(ElectricReactivePowerUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this ElectricReactivePower to another ElectricReactivePower with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A ElectricReactivePower with the specified unit.</returns>
-                public ElectricReactivePower ToUnit(ElectricReactivePowerUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new ElectricReactivePower(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this ElectricReactivePower to another ElectricReactivePower with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ElectricReactivePower with the specified unit.</returns>
+        public ElectricReactivePower ToUnit(ElectricReactivePowerUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new ElectricReactivePower(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        ElectricReactivePowerUnit.GigavoltampereReactive => (_value) * 1e9d,
-                        ElectricReactivePowerUnit.KilovoltampereReactive => (_value) * 1e3d,
-                        ElectricReactivePowerUnit.MegavoltampereReactive => (_value) * 1e6d,
-                        ElectricReactivePowerUnit.VoltampereReactive => _value,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                ElectricReactivePowerUnit.GigavoltampereReactive => (_value) * 1e9d,
+                ElectricReactivePowerUnit.KilovoltampereReactive => (_value) * 1e3d,
+                ElectricReactivePowerUnit.MegavoltampereReactive => (_value) * 1e6d,
+                ElectricReactivePowerUnit.VoltampereReactive => _value,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(ElectricReactivePowerUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(ElectricReactivePowerUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        ElectricReactivePowerUnit.GigavoltampereReactive => (baseUnitValue) / 1e9d,
-                        ElectricReactivePowerUnit.KilovoltampereReactive => (baseUnitValue) / 1e3d,
-                        ElectricReactivePowerUnit.MegavoltampereReactive => (baseUnitValue) / 1e6d,
-                        ElectricReactivePowerUnit.VoltampereReactive => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                ElectricReactivePowerUnit.GigavoltampereReactive => (baseUnitValue) / 1e9d,
+                ElectricReactivePowerUnit.KilovoltampereReactive => (baseUnitValue) / 1e3d,
+                ElectricReactivePowerUnit.MegavoltampereReactive => (baseUnitValue) / 1e6d,
+                ElectricReactivePowerUnit.VoltampereReactive => baseUnitValue,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

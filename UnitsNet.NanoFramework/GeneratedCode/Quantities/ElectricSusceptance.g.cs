@@ -258,83 +258,83 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(ElectricSusceptanceUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(ElectricSusceptanceUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this ElectricSusceptance to another ElectricSusceptance with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A ElectricSusceptance with the specified unit.</returns>
-                public ElectricSusceptance ToUnit(ElectricSusceptanceUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new ElectricSusceptance(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this ElectricSusceptance to another ElectricSusceptance with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ElectricSusceptance with the specified unit.</returns>
+        public ElectricSusceptance ToUnit(ElectricSusceptanceUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new ElectricSusceptance(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        ElectricSusceptanceUnit.Gigamho => (_value) * 1e9d,
-                        ElectricSusceptanceUnit.Gigasiemens => (_value) * 1e9d,
-                        ElectricSusceptanceUnit.Kilomho => (_value) * 1e3d,
-                        ElectricSusceptanceUnit.Kilosiemens => (_value) * 1e3d,
-                        ElectricSusceptanceUnit.Megamho => (_value) * 1e6d,
-                        ElectricSusceptanceUnit.Megasiemens => (_value) * 1e6d,
-                        ElectricSusceptanceUnit.Mho => _value,
-                        ElectricSusceptanceUnit.Micromho => (_value) * 1e-6d,
-                        ElectricSusceptanceUnit.Microsiemens => (_value) * 1e-6d,
-                        ElectricSusceptanceUnit.Millimho => (_value) * 1e-3d,
-                        ElectricSusceptanceUnit.Millisiemens => (_value) * 1e-3d,
-                        ElectricSusceptanceUnit.Nanomho => (_value) * 1e-9d,
-                        ElectricSusceptanceUnit.Nanosiemens => (_value) * 1e-9d,
-                        ElectricSusceptanceUnit.Siemens => _value,
-                        ElectricSusceptanceUnit.Teramho => (_value) * 1e12d,
-                        ElectricSusceptanceUnit.Terasiemens => (_value) * 1e12d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                ElectricSusceptanceUnit.Gigamho => (_value) * 1e9d,
+                ElectricSusceptanceUnit.Gigasiemens => (_value) * 1e9d,
+                ElectricSusceptanceUnit.Kilomho => (_value) * 1e3d,
+                ElectricSusceptanceUnit.Kilosiemens => (_value) * 1e3d,
+                ElectricSusceptanceUnit.Megamho => (_value) * 1e6d,
+                ElectricSusceptanceUnit.Megasiemens => (_value) * 1e6d,
+                ElectricSusceptanceUnit.Mho => _value,
+                ElectricSusceptanceUnit.Micromho => (_value) * 1e-6d,
+                ElectricSusceptanceUnit.Microsiemens => (_value) * 1e-6d,
+                ElectricSusceptanceUnit.Millimho => (_value) * 1e-3d,
+                ElectricSusceptanceUnit.Millisiemens => (_value) * 1e-3d,
+                ElectricSusceptanceUnit.Nanomho => (_value) * 1e-9d,
+                ElectricSusceptanceUnit.Nanosiemens => (_value) * 1e-9d,
+                ElectricSusceptanceUnit.Siemens => _value,
+                ElectricSusceptanceUnit.Teramho => (_value) * 1e12d,
+                ElectricSusceptanceUnit.Terasiemens => (_value) * 1e12d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(ElectricSusceptanceUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(ElectricSusceptanceUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        ElectricSusceptanceUnit.Gigamho => (baseUnitValue) / 1e9d,
-                        ElectricSusceptanceUnit.Gigasiemens => (baseUnitValue) / 1e9d,
-                        ElectricSusceptanceUnit.Kilomho => (baseUnitValue) / 1e3d,
-                        ElectricSusceptanceUnit.Kilosiemens => (baseUnitValue) / 1e3d,
-                        ElectricSusceptanceUnit.Megamho => (baseUnitValue) / 1e6d,
-                        ElectricSusceptanceUnit.Megasiemens => (baseUnitValue) / 1e6d,
-                        ElectricSusceptanceUnit.Mho => baseUnitValue,
-                        ElectricSusceptanceUnit.Micromho => (baseUnitValue) / 1e-6d,
-                        ElectricSusceptanceUnit.Microsiemens => (baseUnitValue) / 1e-6d,
-                        ElectricSusceptanceUnit.Millimho => (baseUnitValue) / 1e-3d,
-                        ElectricSusceptanceUnit.Millisiemens => (baseUnitValue) / 1e-3d,
-                        ElectricSusceptanceUnit.Nanomho => (baseUnitValue) / 1e-9d,
-                        ElectricSusceptanceUnit.Nanosiemens => (baseUnitValue) / 1e-9d,
-                        ElectricSusceptanceUnit.Siemens => baseUnitValue,
-                        ElectricSusceptanceUnit.Teramho => (baseUnitValue) / 1e12d,
-                        ElectricSusceptanceUnit.Terasiemens => (baseUnitValue) / 1e12d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                ElectricSusceptanceUnit.Gigamho => (baseUnitValue) / 1e9d,
+                ElectricSusceptanceUnit.Gigasiemens => (baseUnitValue) / 1e9d,
+                ElectricSusceptanceUnit.Kilomho => (baseUnitValue) / 1e3d,
+                ElectricSusceptanceUnit.Kilosiemens => (baseUnitValue) / 1e3d,
+                ElectricSusceptanceUnit.Megamho => (baseUnitValue) / 1e6d,
+                ElectricSusceptanceUnit.Megasiemens => (baseUnitValue) / 1e6d,
+                ElectricSusceptanceUnit.Mho => baseUnitValue,
+                ElectricSusceptanceUnit.Micromho => (baseUnitValue) / 1e-6d,
+                ElectricSusceptanceUnit.Microsiemens => (baseUnitValue) / 1e-6d,
+                ElectricSusceptanceUnit.Millimho => (baseUnitValue) / 1e-3d,
+                ElectricSusceptanceUnit.Millisiemens => (baseUnitValue) / 1e-3d,
+                ElectricSusceptanceUnit.Nanomho => (baseUnitValue) / 1e-9d,
+                ElectricSusceptanceUnit.Nanosiemens => (baseUnitValue) / 1e-9d,
+                ElectricSusceptanceUnit.Siemens => baseUnitValue,
+                ElectricSusceptanceUnit.Teramho => (baseUnitValue) / 1e12d,
+                ElectricSusceptanceUnit.Terasiemens => (baseUnitValue) / 1e12d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

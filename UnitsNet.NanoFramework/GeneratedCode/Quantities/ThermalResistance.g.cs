@@ -115,55 +115,55 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(ThermalResistanceUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(ThermalResistanceUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this ThermalResistance to another ThermalResistance with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A ThermalResistance with the specified unit.</returns>
-                public ThermalResistance ToUnit(ThermalResistanceUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new ThermalResistance(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this ThermalResistance to another ThermalResistance with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ThermalResistance with the specified unit.</returns>
+        public ThermalResistance ToUnit(ThermalResistanceUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new ThermalResistance(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        ThermalResistanceUnit.DegreeCelsiusPerWatt => _value,
-                        ThermalResistanceUnit.KelvinPerWatt => _value,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                ThermalResistanceUnit.DegreeCelsiusPerWatt => _value,
+                ThermalResistanceUnit.KelvinPerWatt => _value,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(ThermalResistanceUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(ThermalResistanceUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        ThermalResistanceUnit.DegreeCelsiusPerWatt => baseUnitValue,
-                        ThermalResistanceUnit.KelvinPerWatt => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                ThermalResistanceUnit.DegreeCelsiusPerWatt => baseUnitValue,
+                ThermalResistanceUnit.KelvinPerWatt => baseUnitValue,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

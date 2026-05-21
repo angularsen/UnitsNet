@@ -185,69 +185,69 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(StandardVolumeFlowUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(StandardVolumeFlowUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this StandardVolumeFlow to another StandardVolumeFlow with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A StandardVolumeFlow with the specified unit.</returns>
-                public StandardVolumeFlow ToUnit(StandardVolumeFlowUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new StandardVolumeFlow(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this StandardVolumeFlow to another StandardVolumeFlow with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A StandardVolumeFlow with the specified unit.</returns>
+        public StandardVolumeFlow ToUnit(StandardVolumeFlowUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new StandardVolumeFlow(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute => _value / 6e7,
-                        StandardVolumeFlowUnit.StandardCubicFootPerHour => _value * 0.028316846592 / 3600,
-                        StandardVolumeFlowUnit.StandardCubicFootPerMinute => _value * 0.028316846592 / 60,
-                        StandardVolumeFlowUnit.StandardCubicFootPerSecond => _value * 0.028316846592,
-                        StandardVolumeFlowUnit.StandardCubicMeterPerDay => _value / 86400,
-                        StandardVolumeFlowUnit.StandardCubicMeterPerHour => _value / 3600,
-                        StandardVolumeFlowUnit.StandardCubicMeterPerMinute => _value / 60,
-                        StandardVolumeFlowUnit.StandardCubicMeterPerSecond => _value,
-                        StandardVolumeFlowUnit.StandardLiterPerMinute => _value / 60000,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute => _value / 6e7,
+                StandardVolumeFlowUnit.StandardCubicFootPerHour => _value * 0.028316846592 / 3600,
+                StandardVolumeFlowUnit.StandardCubicFootPerMinute => _value * 0.028316846592 / 60,
+                StandardVolumeFlowUnit.StandardCubicFootPerSecond => _value * 0.028316846592,
+                StandardVolumeFlowUnit.StandardCubicMeterPerDay => _value / 86400,
+                StandardVolumeFlowUnit.StandardCubicMeterPerHour => _value / 3600,
+                StandardVolumeFlowUnit.StandardCubicMeterPerMinute => _value / 60,
+                StandardVolumeFlowUnit.StandardCubicMeterPerSecond => _value,
+                StandardVolumeFlowUnit.StandardLiterPerMinute => _value / 60000,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(StandardVolumeFlowUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(StandardVolumeFlowUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute => baseUnitValue * 6e7,
-                        StandardVolumeFlowUnit.StandardCubicFootPerHour => baseUnitValue / (0.028316846592 / 3600),
-                        StandardVolumeFlowUnit.StandardCubicFootPerMinute => baseUnitValue / (0.028316846592 / 60),
-                        StandardVolumeFlowUnit.StandardCubicFootPerSecond => baseUnitValue / 0.028316846592,
-                        StandardVolumeFlowUnit.StandardCubicMeterPerDay => baseUnitValue * 86400,
-                        StandardVolumeFlowUnit.StandardCubicMeterPerHour => baseUnitValue * 3600,
-                        StandardVolumeFlowUnit.StandardCubicMeterPerMinute => baseUnitValue * 60,
-                        StandardVolumeFlowUnit.StandardCubicMeterPerSecond => baseUnitValue,
-                        StandardVolumeFlowUnit.StandardLiterPerMinute => baseUnitValue * 60000,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                StandardVolumeFlowUnit.StandardCubicCentimeterPerMinute => baseUnitValue * 6e7,
+                StandardVolumeFlowUnit.StandardCubicFootPerHour => baseUnitValue / (0.028316846592 / 3600),
+                StandardVolumeFlowUnit.StandardCubicFootPerMinute => baseUnitValue / (0.028316846592 / 60),
+                StandardVolumeFlowUnit.StandardCubicFootPerSecond => baseUnitValue / 0.028316846592,
+                StandardVolumeFlowUnit.StandardCubicMeterPerDay => baseUnitValue * 86400,
+                StandardVolumeFlowUnit.StandardCubicMeterPerHour => baseUnitValue * 3600,
+                StandardVolumeFlowUnit.StandardCubicMeterPerMinute => baseUnitValue * 60,
+                StandardVolumeFlowUnit.StandardCubicMeterPerSecond => baseUnitValue,
+                StandardVolumeFlowUnit.StandardLiterPerMinute => baseUnitValue * 60000,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

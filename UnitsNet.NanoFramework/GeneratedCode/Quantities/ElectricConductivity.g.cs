@@ -158,63 +158,63 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(ElectricConductivityUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(ElectricConductivityUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this ElectricConductivity to another ElectricConductivity with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A ElectricConductivity with the specified unit.</returns>
-                public ElectricConductivity ToUnit(ElectricConductivityUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new ElectricConductivity(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this ElectricConductivity to another ElectricConductivity with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ElectricConductivity with the specified unit.</returns>
+        public ElectricConductivity ToUnit(ElectricConductivityUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new ElectricConductivity(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        ElectricConductivityUnit.MicrosiemensPerCentimeter => (_value * 1e2) * 1e-6d,
-                        ElectricConductivityUnit.MillisiemensPerCentimeter => (_value * 1e2) * 1e-3d,
-                        ElectricConductivityUnit.SiemensPerCentimeter => _value * 1e2,
-                        ElectricConductivityUnit.SiemensPerFoot => _value / 0.3048,
-                        ElectricConductivityUnit.SiemensPerInch => _value / 2.54e-2,
-                        ElectricConductivityUnit.SiemensPerMeter => _value,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                ElectricConductivityUnit.MicrosiemensPerCentimeter => (_value * 1e2) * 1e-6d,
+                ElectricConductivityUnit.MillisiemensPerCentimeter => (_value * 1e2) * 1e-3d,
+                ElectricConductivityUnit.SiemensPerCentimeter => _value * 1e2,
+                ElectricConductivityUnit.SiemensPerFoot => _value / 0.3048,
+                ElectricConductivityUnit.SiemensPerInch => _value / 2.54e-2,
+                ElectricConductivityUnit.SiemensPerMeter => _value,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(ElectricConductivityUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(ElectricConductivityUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        ElectricConductivityUnit.MicrosiemensPerCentimeter => (baseUnitValue / 1e2) / 1e-6d,
-                        ElectricConductivityUnit.MillisiemensPerCentimeter => (baseUnitValue / 1e2) / 1e-3d,
-                        ElectricConductivityUnit.SiemensPerCentimeter => baseUnitValue / 1e2,
-                        ElectricConductivityUnit.SiemensPerFoot => baseUnitValue * 0.3048,
-                        ElectricConductivityUnit.SiemensPerInch => baseUnitValue * 2.54e-2,
-                        ElectricConductivityUnit.SiemensPerMeter => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                ElectricConductivityUnit.MicrosiemensPerCentimeter => (baseUnitValue / 1e2) / 1e-6d,
+                ElectricConductivityUnit.MillisiemensPerCentimeter => (baseUnitValue / 1e2) / 1e-3d,
+                ElectricConductivityUnit.SiemensPerCentimeter => baseUnitValue / 1e2,
+                ElectricConductivityUnit.SiemensPerFoot => baseUnitValue * 0.3048,
+                ElectricConductivityUnit.SiemensPerInch => baseUnitValue * 2.54e-2,
+                ElectricConductivityUnit.SiemensPerMeter => baseUnitValue,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

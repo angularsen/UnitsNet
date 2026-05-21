@@ -128,57 +128,57 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(MolalityUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(MolalityUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this Molality to another Molality with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A Molality with the specified unit.</returns>
-                public Molality ToUnit(MolalityUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new Molality(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this Molality to another Molality with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Molality with the specified unit.</returns>
+        public Molality ToUnit(MolalityUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new Molality(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        MolalityUnit.MillimolePerKilogram => (_value) * 1e-3d,
-                        MolalityUnit.MolePerGram => _value / 1e-3,
-                        MolalityUnit.MolePerKilogram => _value,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                MolalityUnit.MillimolePerKilogram => (_value) * 1e-3d,
+                MolalityUnit.MolePerGram => _value / 1e-3,
+                MolalityUnit.MolePerKilogram => _value,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(MolalityUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(MolalityUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        MolalityUnit.MillimolePerKilogram => (baseUnitValue) / 1e-3d,
-                        MolalityUnit.MolePerGram => baseUnitValue * 1e-3,
-                        MolalityUnit.MolePerKilogram => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                MolalityUnit.MillimolePerKilogram => (baseUnitValue) / 1e-3d,
+                MolalityUnit.MolePerGram => baseUnitValue * 1e-3,
+                MolalityUnit.MolePerKilogram => baseUnitValue,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

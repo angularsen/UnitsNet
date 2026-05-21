@@ -385,109 +385,109 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(RadioactivityUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(RadioactivityUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this Radioactivity to another Radioactivity with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A Radioactivity with the specified unit.</returns>
-                public Radioactivity ToUnit(RadioactivityUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new Radioactivity(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this Radioactivity to another Radioactivity with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Radioactivity with the specified unit.</returns>
+        public Radioactivity ToUnit(RadioactivityUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new Radioactivity(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        RadioactivityUnit.Becquerel => _value,
-                        RadioactivityUnit.Curie => _value * 3.7e10,
-                        RadioactivityUnit.Exabecquerel => (_value) * 1e18d,
-                        RadioactivityUnit.Gigabecquerel => (_value) * 1e9d,
-                        RadioactivityUnit.Gigacurie => (_value * 3.7e10) * 1e9d,
-                        RadioactivityUnit.Gigarutherford => (_value * 1e6) * 1e9d,
-                        RadioactivityUnit.Kilobecquerel => (_value) * 1e3d,
-                        RadioactivityUnit.Kilocurie => (_value * 3.7e10) * 1e3d,
-                        RadioactivityUnit.Kilorutherford => (_value * 1e6) * 1e3d,
-                        RadioactivityUnit.Megabecquerel => (_value) * 1e6d,
-                        RadioactivityUnit.Megacurie => (_value * 3.7e10) * 1e6d,
-                        RadioactivityUnit.Megarutherford => (_value * 1e6) * 1e6d,
-                        RadioactivityUnit.Microbecquerel => (_value) * 1e-6d,
-                        RadioactivityUnit.Microcurie => (_value * 3.7e10) * 1e-6d,
-                        RadioactivityUnit.Microrutherford => (_value * 1e6) * 1e-6d,
-                        RadioactivityUnit.Millibecquerel => (_value) * 1e-3d,
-                        RadioactivityUnit.Millicurie => (_value * 3.7e10) * 1e-3d,
-                        RadioactivityUnit.Millirutherford => (_value * 1e6) * 1e-3d,
-                        RadioactivityUnit.Nanobecquerel => (_value) * 1e-9d,
-                        RadioactivityUnit.Nanocurie => (_value * 3.7e10) * 1e-9d,
-                        RadioactivityUnit.Nanorutherford => (_value * 1e6) * 1e-9d,
-                        RadioactivityUnit.Petabecquerel => (_value) * 1e15d,
-                        RadioactivityUnit.Picobecquerel => (_value) * 1e-12d,
-                        RadioactivityUnit.Picocurie => (_value * 3.7e10) * 1e-12d,
-                        RadioactivityUnit.Picorutherford => (_value * 1e6) * 1e-12d,
-                        RadioactivityUnit.Rutherford => _value * 1e6,
-                        RadioactivityUnit.Terabecquerel => (_value) * 1e12d,
-                        RadioactivityUnit.Teracurie => (_value * 3.7e10) * 1e12d,
-                        RadioactivityUnit.Terarutherford => (_value * 1e6) * 1e12d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                RadioactivityUnit.Becquerel => _value,
+                RadioactivityUnit.Curie => _value * 3.7e10,
+                RadioactivityUnit.Exabecquerel => (_value) * 1e18d,
+                RadioactivityUnit.Gigabecquerel => (_value) * 1e9d,
+                RadioactivityUnit.Gigacurie => (_value * 3.7e10) * 1e9d,
+                RadioactivityUnit.Gigarutherford => (_value * 1e6) * 1e9d,
+                RadioactivityUnit.Kilobecquerel => (_value) * 1e3d,
+                RadioactivityUnit.Kilocurie => (_value * 3.7e10) * 1e3d,
+                RadioactivityUnit.Kilorutherford => (_value * 1e6) * 1e3d,
+                RadioactivityUnit.Megabecquerel => (_value) * 1e6d,
+                RadioactivityUnit.Megacurie => (_value * 3.7e10) * 1e6d,
+                RadioactivityUnit.Megarutherford => (_value * 1e6) * 1e6d,
+                RadioactivityUnit.Microbecquerel => (_value) * 1e-6d,
+                RadioactivityUnit.Microcurie => (_value * 3.7e10) * 1e-6d,
+                RadioactivityUnit.Microrutherford => (_value * 1e6) * 1e-6d,
+                RadioactivityUnit.Millibecquerel => (_value) * 1e-3d,
+                RadioactivityUnit.Millicurie => (_value * 3.7e10) * 1e-3d,
+                RadioactivityUnit.Millirutherford => (_value * 1e6) * 1e-3d,
+                RadioactivityUnit.Nanobecquerel => (_value) * 1e-9d,
+                RadioactivityUnit.Nanocurie => (_value * 3.7e10) * 1e-9d,
+                RadioactivityUnit.Nanorutherford => (_value * 1e6) * 1e-9d,
+                RadioactivityUnit.Petabecquerel => (_value) * 1e15d,
+                RadioactivityUnit.Picobecquerel => (_value) * 1e-12d,
+                RadioactivityUnit.Picocurie => (_value * 3.7e10) * 1e-12d,
+                RadioactivityUnit.Picorutherford => (_value * 1e6) * 1e-12d,
+                RadioactivityUnit.Rutherford => _value * 1e6,
+                RadioactivityUnit.Terabecquerel => (_value) * 1e12d,
+                RadioactivityUnit.Teracurie => (_value * 3.7e10) * 1e12d,
+                RadioactivityUnit.Terarutherford => (_value * 1e6) * 1e12d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(RadioactivityUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(RadioactivityUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        RadioactivityUnit.Becquerel => baseUnitValue,
-                        RadioactivityUnit.Curie => baseUnitValue / 3.7e10,
-                        RadioactivityUnit.Exabecquerel => (baseUnitValue) / 1e18d,
-                        RadioactivityUnit.Gigabecquerel => (baseUnitValue) / 1e9d,
-                        RadioactivityUnit.Gigacurie => (baseUnitValue / 3.7e10) / 1e9d,
-                        RadioactivityUnit.Gigarutherford => (baseUnitValue / 1e6) / 1e9d,
-                        RadioactivityUnit.Kilobecquerel => (baseUnitValue) / 1e3d,
-                        RadioactivityUnit.Kilocurie => (baseUnitValue / 3.7e10) / 1e3d,
-                        RadioactivityUnit.Kilorutherford => (baseUnitValue / 1e6) / 1e3d,
-                        RadioactivityUnit.Megabecquerel => (baseUnitValue) / 1e6d,
-                        RadioactivityUnit.Megacurie => (baseUnitValue / 3.7e10) / 1e6d,
-                        RadioactivityUnit.Megarutherford => (baseUnitValue / 1e6) / 1e6d,
-                        RadioactivityUnit.Microbecquerel => (baseUnitValue) / 1e-6d,
-                        RadioactivityUnit.Microcurie => (baseUnitValue / 3.7e10) / 1e-6d,
-                        RadioactivityUnit.Microrutherford => (baseUnitValue / 1e6) / 1e-6d,
-                        RadioactivityUnit.Millibecquerel => (baseUnitValue) / 1e-3d,
-                        RadioactivityUnit.Millicurie => (baseUnitValue / 3.7e10) / 1e-3d,
-                        RadioactivityUnit.Millirutherford => (baseUnitValue / 1e6) / 1e-3d,
-                        RadioactivityUnit.Nanobecquerel => (baseUnitValue) / 1e-9d,
-                        RadioactivityUnit.Nanocurie => (baseUnitValue / 3.7e10) / 1e-9d,
-                        RadioactivityUnit.Nanorutherford => (baseUnitValue / 1e6) / 1e-9d,
-                        RadioactivityUnit.Petabecquerel => (baseUnitValue) / 1e15d,
-                        RadioactivityUnit.Picobecquerel => (baseUnitValue) / 1e-12d,
-                        RadioactivityUnit.Picocurie => (baseUnitValue / 3.7e10) / 1e-12d,
-                        RadioactivityUnit.Picorutherford => (baseUnitValue / 1e6) / 1e-12d,
-                        RadioactivityUnit.Rutherford => baseUnitValue / 1e6,
-                        RadioactivityUnit.Terabecquerel => (baseUnitValue) / 1e12d,
-                        RadioactivityUnit.Teracurie => (baseUnitValue / 3.7e10) / 1e12d,
-                        RadioactivityUnit.Terarutherford => (baseUnitValue / 1e6) / 1e12d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                RadioactivityUnit.Becquerel => baseUnitValue,
+                RadioactivityUnit.Curie => baseUnitValue / 3.7e10,
+                RadioactivityUnit.Exabecquerel => (baseUnitValue) / 1e18d,
+                RadioactivityUnit.Gigabecquerel => (baseUnitValue) / 1e9d,
+                RadioactivityUnit.Gigacurie => (baseUnitValue / 3.7e10) / 1e9d,
+                RadioactivityUnit.Gigarutherford => (baseUnitValue / 1e6) / 1e9d,
+                RadioactivityUnit.Kilobecquerel => (baseUnitValue) / 1e3d,
+                RadioactivityUnit.Kilocurie => (baseUnitValue / 3.7e10) / 1e3d,
+                RadioactivityUnit.Kilorutherford => (baseUnitValue / 1e6) / 1e3d,
+                RadioactivityUnit.Megabecquerel => (baseUnitValue) / 1e6d,
+                RadioactivityUnit.Megacurie => (baseUnitValue / 3.7e10) / 1e6d,
+                RadioactivityUnit.Megarutherford => (baseUnitValue / 1e6) / 1e6d,
+                RadioactivityUnit.Microbecquerel => (baseUnitValue) / 1e-6d,
+                RadioactivityUnit.Microcurie => (baseUnitValue / 3.7e10) / 1e-6d,
+                RadioactivityUnit.Microrutherford => (baseUnitValue / 1e6) / 1e-6d,
+                RadioactivityUnit.Millibecquerel => (baseUnitValue) / 1e-3d,
+                RadioactivityUnit.Millicurie => (baseUnitValue / 3.7e10) / 1e-3d,
+                RadioactivityUnit.Millirutherford => (baseUnitValue / 1e6) / 1e-3d,
+                RadioactivityUnit.Nanobecquerel => (baseUnitValue) / 1e-9d,
+                RadioactivityUnit.Nanocurie => (baseUnitValue / 3.7e10) / 1e-9d,
+                RadioactivityUnit.Nanorutherford => (baseUnitValue / 1e6) / 1e-9d,
+                RadioactivityUnit.Petabecquerel => (baseUnitValue) / 1e15d,
+                RadioactivityUnit.Picobecquerel => (baseUnitValue) / 1e-12d,
+                RadioactivityUnit.Picocurie => (baseUnitValue / 3.7e10) / 1e-12d,
+                RadioactivityUnit.Picorutherford => (baseUnitValue / 1e6) / 1e-12d,
+                RadioactivityUnit.Rutherford => baseUnitValue / 1e6,
+                RadioactivityUnit.Terabecquerel => (baseUnitValue) / 1e12d,
+                RadioactivityUnit.Teracurie => (baseUnitValue / 3.7e10) / 1e12d,
+                RadioactivityUnit.Terarutherford => (baseUnitValue / 1e6) / 1e12d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

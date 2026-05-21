@@ -145,61 +145,61 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(RotationalStiffnessPerLengthUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(RotationalStiffnessPerLengthUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this RotationalStiffnessPerLength to another RotationalStiffnessPerLength with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A RotationalStiffnessPerLength with the specified unit.</returns>
-                public RotationalStiffnessPerLength ToUnit(RotationalStiffnessPerLengthUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new RotationalStiffnessPerLength(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this RotationalStiffnessPerLength to another RotationalStiffnessPerLength with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A RotationalStiffnessPerLength with the specified unit.</returns>
+        public RotationalStiffnessPerLength ToUnit(RotationalStiffnessPerLengthUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new RotationalStiffnessPerLength(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter => (_value) * 1e3d,
-                        RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot => _value * (4.4482216152605e3 * 180 / 3.1415926535897931),
-                        RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter => (_value) * 1e6d,
-                        RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter => _value,
-                        RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot => _value * (4.4482216152605 * 180 / 3.1415926535897931),
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter => (_value) * 1e3d,
+                RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot => _value * (4.4482216152605e3 * 180 / 3.1415926535897931),
+                RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter => (_value) * 1e6d,
+                RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter => _value,
+                RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot => _value * (4.4482216152605 * 180 / 3.1415926535897931),
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(RotationalStiffnessPerLengthUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(RotationalStiffnessPerLengthUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter => (baseUnitValue) / 1e3d,
-                        RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot => baseUnitValue / (4.4482216152605e3 * 180 / 3.1415926535897931),
-                        RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter => (baseUnitValue) / 1e6d,
-                        RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter => baseUnitValue,
-                        RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot => baseUnitValue / (4.4482216152605 * 180 / 3.1415926535897931),
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter => (baseUnitValue) / 1e3d,
+                RotationalStiffnessPerLengthUnit.KilopoundForceFootPerDegreesPerFoot => baseUnitValue / (4.4482216152605e3 * 180 / 3.1415926535897931),
+                RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter => (baseUnitValue) / 1e6d,
+                RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter => baseUnitValue,
+                RotationalStiffnessPerLengthUnit.PoundForceFootPerDegreesPerFoot => baseUnitValue / (4.4482216152605 * 180 / 3.1415926535897931),
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

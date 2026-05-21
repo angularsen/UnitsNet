@@ -2018,5 +2018,20 @@
     "SquareMeterKelvinPerKilowatt": 5,
     "SquareMeterKelvinPerWatt": 4,
     "SquareMillimeterKelvinPerWatt": 13
+  },
+  "NominalPower": {
+    "DecawattPeak": 1,
+    "DeciwattPeak": 2,
+    "FemtowattPeak": 3,
+    "GigawattPeak": 4,
+    "KilowattPeak": 5,
+    "MegawattPeak": 6,
+    "MicrowattPeak": 7,
+    "MilliwattPeak": 8,
+    "NanowattPeak": 9,
+    "PetawattPeak": 10,
+    "PicowattPeak": 11,
+    "TerawattPeak": 12,
+    "WattPeak": 13
   }
 }

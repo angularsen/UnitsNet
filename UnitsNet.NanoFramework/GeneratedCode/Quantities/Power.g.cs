@@ -365,105 +365,105 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(PowerUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(PowerUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this Power to another Power with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A Power with the specified unit.</returns>
-                public Power ToUnit(PowerUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new Power(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this Power to another Power with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Power with the specified unit.</returns>
+        public Power ToUnit(PowerUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new Power(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        PowerUnit.BoilerHorsepower => _value * 9812.5,
-                        PowerUnit.BritishThermalUnitPerHour => _value * 1055.05585262 / 3600,
-                        PowerUnit.Decawatt => (_value) * 1e1d,
-                        PowerUnit.Deciwatt => (_value) * 1e-1d,
-                        PowerUnit.ElectricalHorsepower => _value * 746,
-                        PowerUnit.Femtowatt => (_value) * 1e-15d,
-                        PowerUnit.GigajoulePerHour => (_value / 3600) * 1e9d,
-                        PowerUnit.Gigawatt => (_value) * 1e9d,
-                        PowerUnit.HydraulicHorsepower => _value * 745.69987158227022,
-                        PowerUnit.JoulePerHour => _value / 3600,
-                        PowerUnit.KilobritishThermalUnitPerHour => (_value * 1055.05585262 / 3600) * 1e3d,
-                        PowerUnit.KilojoulePerHour => (_value / 3600) * 1e3d,
-                        PowerUnit.Kilowatt => (_value) * 1e3d,
-                        PowerUnit.MechanicalHorsepower => _value * 76.0402249 * 9.80665,
-                        PowerUnit.MegabritishThermalUnitPerHour => (_value * 1055.05585262 / 3600) * 1e6d,
-                        PowerUnit.MegajoulePerHour => (_value / 3600) * 1e6d,
-                        PowerUnit.Megawatt => (_value) * 1e6d,
-                        PowerUnit.MetricHorsepower => _value * 75 * 9.80665,
-                        PowerUnit.Microwatt => (_value) * 1e-6d,
-                        PowerUnit.MillijoulePerHour => (_value / 3600) * 1e-3d,
-                        PowerUnit.Milliwatt => (_value) * 1e-3d,
-                        PowerUnit.Nanowatt => (_value) * 1e-9d,
-                        PowerUnit.Petawatt => (_value) * 1e15d,
-                        PowerUnit.Picowatt => (_value) * 1e-12d,
-                        PowerUnit.Terawatt => (_value) * 1e12d,
-                        PowerUnit.TonOfRefrigeration => _value * 3516.853,
-                        PowerUnit.Watt => _value,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                PowerUnit.BoilerHorsepower => _value * 9812.5,
+                PowerUnit.BritishThermalUnitPerHour => _value * 1055.05585262 / 3600,
+                PowerUnit.Decawatt => (_value) * 1e1d,
+                PowerUnit.Deciwatt => (_value) * 1e-1d,
+                PowerUnit.ElectricalHorsepower => _value * 746,
+                PowerUnit.Femtowatt => (_value) * 1e-15d,
+                PowerUnit.GigajoulePerHour => (_value / 3600) * 1e9d,
+                PowerUnit.Gigawatt => (_value) * 1e9d,
+                PowerUnit.HydraulicHorsepower => _value * 745.69987158227022,
+                PowerUnit.JoulePerHour => _value / 3600,
+                PowerUnit.KilobritishThermalUnitPerHour => (_value * 1055.05585262 / 3600) * 1e3d,
+                PowerUnit.KilojoulePerHour => (_value / 3600) * 1e3d,
+                PowerUnit.Kilowatt => (_value) * 1e3d,
+                PowerUnit.MechanicalHorsepower => _value * 76.0402249 * 9.80665,
+                PowerUnit.MegabritishThermalUnitPerHour => (_value * 1055.05585262 / 3600) * 1e6d,
+                PowerUnit.MegajoulePerHour => (_value / 3600) * 1e6d,
+                PowerUnit.Megawatt => (_value) * 1e6d,
+                PowerUnit.MetricHorsepower => _value * 75 * 9.80665,
+                PowerUnit.Microwatt => (_value) * 1e-6d,
+                PowerUnit.MillijoulePerHour => (_value / 3600) * 1e-3d,
+                PowerUnit.Milliwatt => (_value) * 1e-3d,
+                PowerUnit.Nanowatt => (_value) * 1e-9d,
+                PowerUnit.Petawatt => (_value) * 1e15d,
+                PowerUnit.Picowatt => (_value) * 1e-12d,
+                PowerUnit.Terawatt => (_value) * 1e12d,
+                PowerUnit.TonOfRefrigeration => _value * 3516.853,
+                PowerUnit.Watt => _value,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(PowerUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(PowerUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        PowerUnit.BoilerHorsepower => baseUnitValue / 9812.5,
-                        PowerUnit.BritishThermalUnitPerHour => baseUnitValue * 3600 / 1055.05585262,
-                        PowerUnit.Decawatt => (baseUnitValue) / 1e1d,
-                        PowerUnit.Deciwatt => (baseUnitValue) / 1e-1d,
-                        PowerUnit.ElectricalHorsepower => baseUnitValue / 746,
-                        PowerUnit.Femtowatt => (baseUnitValue) / 1e-15d,
-                        PowerUnit.GigajoulePerHour => (baseUnitValue * 3600) / 1e9d,
-                        PowerUnit.Gigawatt => (baseUnitValue) / 1e9d,
-                        PowerUnit.HydraulicHorsepower => baseUnitValue / 745.69987158227022,
-                        PowerUnit.JoulePerHour => baseUnitValue * 3600,
-                        PowerUnit.KilobritishThermalUnitPerHour => (baseUnitValue * 3600 / 1055.05585262) / 1e3d,
-                        PowerUnit.KilojoulePerHour => (baseUnitValue * 3600) / 1e3d,
-                        PowerUnit.Kilowatt => (baseUnitValue) / 1e3d,
-                        PowerUnit.MechanicalHorsepower => baseUnitValue / (76.0402249 * 9.80665),
-                        PowerUnit.MegabritishThermalUnitPerHour => (baseUnitValue * 3600 / 1055.05585262) / 1e6d,
-                        PowerUnit.MegajoulePerHour => (baseUnitValue * 3600) / 1e6d,
-                        PowerUnit.Megawatt => (baseUnitValue) / 1e6d,
-                        PowerUnit.MetricHorsepower => baseUnitValue / (75 * 9.80665),
-                        PowerUnit.Microwatt => (baseUnitValue) / 1e-6d,
-                        PowerUnit.MillijoulePerHour => (baseUnitValue * 3600) / 1e-3d,
-                        PowerUnit.Milliwatt => (baseUnitValue) / 1e-3d,
-                        PowerUnit.Nanowatt => (baseUnitValue) / 1e-9d,
-                        PowerUnit.Petawatt => (baseUnitValue) / 1e15d,
-                        PowerUnit.Picowatt => (baseUnitValue) / 1e-12d,
-                        PowerUnit.Terawatt => (baseUnitValue) / 1e12d,
-                        PowerUnit.TonOfRefrigeration => baseUnitValue / 3516.853,
-                        PowerUnit.Watt => baseUnitValue,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                PowerUnit.BoilerHorsepower => baseUnitValue / 9812.5,
+                PowerUnit.BritishThermalUnitPerHour => baseUnitValue * 3600 / 1055.05585262,
+                PowerUnit.Decawatt => (baseUnitValue) / 1e1d,
+                PowerUnit.Deciwatt => (baseUnitValue) / 1e-1d,
+                PowerUnit.ElectricalHorsepower => baseUnitValue / 746,
+                PowerUnit.Femtowatt => (baseUnitValue) / 1e-15d,
+                PowerUnit.GigajoulePerHour => (baseUnitValue * 3600) / 1e9d,
+                PowerUnit.Gigawatt => (baseUnitValue) / 1e9d,
+                PowerUnit.HydraulicHorsepower => baseUnitValue / 745.69987158227022,
+                PowerUnit.JoulePerHour => baseUnitValue * 3600,
+                PowerUnit.KilobritishThermalUnitPerHour => (baseUnitValue * 3600 / 1055.05585262) / 1e3d,
+                PowerUnit.KilojoulePerHour => (baseUnitValue * 3600) / 1e3d,
+                PowerUnit.Kilowatt => (baseUnitValue) / 1e3d,
+                PowerUnit.MechanicalHorsepower => baseUnitValue / (76.0402249 * 9.80665),
+                PowerUnit.MegabritishThermalUnitPerHour => (baseUnitValue * 3600 / 1055.05585262) / 1e6d,
+                PowerUnit.MegajoulePerHour => (baseUnitValue * 3600) / 1e6d,
+                PowerUnit.Megawatt => (baseUnitValue) / 1e6d,
+                PowerUnit.MetricHorsepower => baseUnitValue / (75 * 9.80665),
+                PowerUnit.Microwatt => (baseUnitValue) / 1e-6d,
+                PowerUnit.MillijoulePerHour => (baseUnitValue * 3600) / 1e-3d,
+                PowerUnit.Milliwatt => (baseUnitValue) / 1e-3d,
+                PowerUnit.Nanowatt => (baseUnitValue) / 1e-9d,
+                PowerUnit.Petawatt => (baseUnitValue) / 1e15d,
+                PowerUnit.Picowatt => (baseUnitValue) / 1e-12d,
+                PowerUnit.Terawatt => (baseUnitValue) / 1e12d,
+                PowerUnit.TonOfRefrigeration => baseUnitValue / 3516.853,
+                PowerUnit.Watt => baseUnitValue,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

@@ -175,67 +175,67 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(RadiationExposureUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(RadiationExposureUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this RadiationExposure to another RadiationExposure with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A RadiationExposure with the specified unit.</returns>
-                public RadiationExposure ToUnit(RadiationExposureUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new RadiationExposure(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this RadiationExposure to another RadiationExposure with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A RadiationExposure with the specified unit.</returns>
+        public RadiationExposure ToUnit(RadiationExposureUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new RadiationExposure(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        RadiationExposureUnit.CoulombPerKilogram => _value,
-                        RadiationExposureUnit.MicrocoulombPerKilogram => (_value) * 1e-6d,
-                        RadiationExposureUnit.Microroentgen => (_value * 2.58e-4) * 1e-6d,
-                        RadiationExposureUnit.MillicoulombPerKilogram => (_value) * 1e-3d,
-                        RadiationExposureUnit.Milliroentgen => (_value * 2.58e-4) * 1e-3d,
-                        RadiationExposureUnit.NanocoulombPerKilogram => (_value) * 1e-9d,
-                        RadiationExposureUnit.PicocoulombPerKilogram => (_value) * 1e-12d,
-                        RadiationExposureUnit.Roentgen => _value * 2.58e-4,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                RadiationExposureUnit.CoulombPerKilogram => _value,
+                RadiationExposureUnit.MicrocoulombPerKilogram => (_value) * 1e-6d,
+                RadiationExposureUnit.Microroentgen => (_value * 2.58e-4) * 1e-6d,
+                RadiationExposureUnit.MillicoulombPerKilogram => (_value) * 1e-3d,
+                RadiationExposureUnit.Milliroentgen => (_value * 2.58e-4) * 1e-3d,
+                RadiationExposureUnit.NanocoulombPerKilogram => (_value) * 1e-9d,
+                RadiationExposureUnit.PicocoulombPerKilogram => (_value) * 1e-12d,
+                RadiationExposureUnit.Roentgen => _value * 2.58e-4,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(RadiationExposureUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(RadiationExposureUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        RadiationExposureUnit.CoulombPerKilogram => baseUnitValue,
-                        RadiationExposureUnit.MicrocoulombPerKilogram => (baseUnitValue) / 1e-6d,
-                        RadiationExposureUnit.Microroentgen => (baseUnitValue / 2.58e-4) / 1e-6d,
-                        RadiationExposureUnit.MillicoulombPerKilogram => (baseUnitValue) / 1e-3d,
-                        RadiationExposureUnit.Milliroentgen => (baseUnitValue / 2.58e-4) / 1e-3d,
-                        RadiationExposureUnit.NanocoulombPerKilogram => (baseUnitValue) / 1e-9d,
-                        RadiationExposureUnit.PicocoulombPerKilogram => (baseUnitValue) / 1e-12d,
-                        RadiationExposureUnit.Roentgen => baseUnitValue / 2.58e-4,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                RadiationExposureUnit.CoulombPerKilogram => baseUnitValue,
+                RadiationExposureUnit.MicrocoulombPerKilogram => (baseUnitValue) / 1e-6d,
+                RadiationExposureUnit.Microroentgen => (baseUnitValue / 2.58e-4) / 1e-6d,
+                RadiationExposureUnit.MillicoulombPerKilogram => (baseUnitValue) / 1e-3d,
+                RadiationExposureUnit.Milliroentgen => (baseUnitValue / 2.58e-4) / 1e-3d,
+                RadiationExposureUnit.NanocoulombPerKilogram => (baseUnitValue) / 1e-9d,
+                RadiationExposureUnit.PicocoulombPerKilogram => (baseUnitValue) / 1e-12d,
+                RadiationExposureUnit.Roentgen => baseUnitValue / 2.58e-4,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

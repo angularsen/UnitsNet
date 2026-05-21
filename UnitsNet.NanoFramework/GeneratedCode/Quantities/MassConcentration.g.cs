@@ -588,149 +588,149 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(MassConcentrationUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(MassConcentrationUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this MassConcentration to another MassConcentration with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A MassConcentration with the specified unit.</returns>
-                public MassConcentration ToUnit(MassConcentrationUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new MassConcentration(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this MassConcentration to another MassConcentration with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A MassConcentration with the specified unit.</returns>
+        public MassConcentration ToUnit(MassConcentrationUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new MassConcentration(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        MassConcentrationUnit.CentigramPerDeciliter => (_value / 1e-1) * 1e-2d,
-                        MassConcentrationUnit.CentigramPerLiter => (_value) * 1e-2d,
-                        MassConcentrationUnit.CentigramPerMicroliter => (_value / 1e-6) * 1e-2d,
-                        MassConcentrationUnit.CentigramPerMilliliter => (_value / 1e-3) * 1e-2d,
-                        MassConcentrationUnit.DecigramPerDeciliter => (_value / 1e-1) * 1e-1d,
-                        MassConcentrationUnit.DecigramPerLiter => (_value) * 1e-1d,
-                        MassConcentrationUnit.DecigramPerMicroliter => (_value / 1e-6) * 1e-1d,
-                        MassConcentrationUnit.DecigramPerMilliliter => (_value / 1e-3) * 1e-1d,
-                        MassConcentrationUnit.GramPerCubicCentimeter => _value / 1e-3,
-                        MassConcentrationUnit.GramPerCubicMeter => _value / 1e3,
-                        MassConcentrationUnit.GramPerCubicMillimeter => _value / 1e-6,
-                        MassConcentrationUnit.GramPerDeciliter => _value / 1e-1,
-                        MassConcentrationUnit.GramPerLiter => _value,
-                        MassConcentrationUnit.GramPerMicroliter => _value / 1e-6,
-                        MassConcentrationUnit.GramPerMilliliter => _value / 1e-3,
-                        MassConcentrationUnit.KilogramPerCubicCentimeter => (_value / 1e-3) * 1e3d,
-                        MassConcentrationUnit.KilogramPerCubicMeter => (_value / 1e3) * 1e3d,
-                        MassConcentrationUnit.KilogramPerCubicMillimeter => (_value / 1e-6) * 1e3d,
-                        MassConcentrationUnit.KilogramPerLiter => (_value) * 1e3d,
-                        MassConcentrationUnit.KilopoundPerCubicFoot => (_value * 0.45359237 / 0.028316846592) * 1e3d,
-                        MassConcentrationUnit.KilopoundPerCubicInch => (_value * 0.45359237 / 1.6387064e-5) * 1e3d,
-                        MassConcentrationUnit.MicrogramPerCubicMeter => (_value / 1e3) * 1e-6d,
-                        MassConcentrationUnit.MicrogramPerDeciliter => (_value / 1e-1) * 1e-6d,
-                        MassConcentrationUnit.MicrogramPerLiter => (_value) * 1e-6d,
-                        MassConcentrationUnit.MicrogramPerMicroliter => (_value / 1e-6) * 1e-6d,
-                        MassConcentrationUnit.MicrogramPerMilliliter => (_value / 1e-3) * 1e-6d,
-                        MassConcentrationUnit.MilligramPerCubicMeter => (_value / 1e3) * 1e-3d,
-                        MassConcentrationUnit.MilligramPerDeciliter => (_value / 1e-1) * 1e-3d,
-                        MassConcentrationUnit.MilligramPerLiter => (_value) * 1e-3d,
-                        MassConcentrationUnit.MilligramPerMicroliter => (_value / 1e-6) * 1e-3d,
-                        MassConcentrationUnit.MilligramPerMilliliter => (_value / 1e-3) * 1e-3d,
-                        MassConcentrationUnit.NanogramPerDeciliter => (_value / 1e-1) * 1e-9d,
-                        MassConcentrationUnit.NanogramPerLiter => (_value) * 1e-9d,
-                        MassConcentrationUnit.NanogramPerMicroliter => (_value / 1e-6) * 1e-9d,
-                        MassConcentrationUnit.NanogramPerMilliliter => (_value / 1e-3) * 1e-9d,
-                        MassConcentrationUnit.OuncePerImperialGallon => _value * 0.028349523125 / 0.00454609,
-                        MassConcentrationUnit.OuncePerUSGallon => _value * 0.028349523125 / 0.003785411784,
-                        MassConcentrationUnit.PicogramPerDeciliter => (_value / 1e-1) * 1e-12d,
-                        MassConcentrationUnit.PicogramPerLiter => (_value) * 1e-12d,
-                        MassConcentrationUnit.PicogramPerMicroliter => (_value / 1e-6) * 1e-12d,
-                        MassConcentrationUnit.PicogramPerMilliliter => (_value / 1e-3) * 1e-12d,
-                        MassConcentrationUnit.PoundPerCubicFoot => _value * 0.45359237 / 0.028316846592,
-                        MassConcentrationUnit.PoundPerCubicInch => _value * 0.45359237 / 1.6387064e-5,
-                        MassConcentrationUnit.PoundPerImperialGallon => _value * 0.45359237 / 0.00454609,
-                        MassConcentrationUnit.PoundPerUSGallon => _value * 0.45359237 / 0.003785411784,
-                        MassConcentrationUnit.SlugPerCubicFoot => _value * (0.45359237 * 9.80665) / (0.3048 * 0.028316846592),
-                        MassConcentrationUnit.TonnePerCubicCentimeter => _value / 1e-9,
-                        MassConcentrationUnit.TonnePerCubicMeter => _value / 0.001,
-                        MassConcentrationUnit.TonnePerCubicMillimeter => _value / 1e-12,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                MassConcentrationUnit.CentigramPerDeciliter => (_value / 1e-1) * 1e-2d,
+                MassConcentrationUnit.CentigramPerLiter => (_value) * 1e-2d,
+                MassConcentrationUnit.CentigramPerMicroliter => (_value / 1e-6) * 1e-2d,
+                MassConcentrationUnit.CentigramPerMilliliter => (_value / 1e-3) * 1e-2d,
+                MassConcentrationUnit.DecigramPerDeciliter => (_value / 1e-1) * 1e-1d,
+                MassConcentrationUnit.DecigramPerLiter => (_value) * 1e-1d,
+                MassConcentrationUnit.DecigramPerMicroliter => (_value / 1e-6) * 1e-1d,
+                MassConcentrationUnit.DecigramPerMilliliter => (_value / 1e-3) * 1e-1d,
+                MassConcentrationUnit.GramPerCubicCentimeter => _value / 1e-3,
+                MassConcentrationUnit.GramPerCubicMeter => _value / 1e3,
+                MassConcentrationUnit.GramPerCubicMillimeter => _value / 1e-6,
+                MassConcentrationUnit.GramPerDeciliter => _value / 1e-1,
+                MassConcentrationUnit.GramPerLiter => _value,
+                MassConcentrationUnit.GramPerMicroliter => _value / 1e-6,
+                MassConcentrationUnit.GramPerMilliliter => _value / 1e-3,
+                MassConcentrationUnit.KilogramPerCubicCentimeter => (_value / 1e-3) * 1e3d,
+                MassConcentrationUnit.KilogramPerCubicMeter => (_value / 1e3) * 1e3d,
+                MassConcentrationUnit.KilogramPerCubicMillimeter => (_value / 1e-6) * 1e3d,
+                MassConcentrationUnit.KilogramPerLiter => (_value) * 1e3d,
+                MassConcentrationUnit.KilopoundPerCubicFoot => (_value * 0.45359237 / 0.028316846592) * 1e3d,
+                MassConcentrationUnit.KilopoundPerCubicInch => (_value * 0.45359237 / 1.6387064e-5) * 1e3d,
+                MassConcentrationUnit.MicrogramPerCubicMeter => (_value / 1e3) * 1e-6d,
+                MassConcentrationUnit.MicrogramPerDeciliter => (_value / 1e-1) * 1e-6d,
+                MassConcentrationUnit.MicrogramPerLiter => (_value) * 1e-6d,
+                MassConcentrationUnit.MicrogramPerMicroliter => (_value / 1e-6) * 1e-6d,
+                MassConcentrationUnit.MicrogramPerMilliliter => (_value / 1e-3) * 1e-6d,
+                MassConcentrationUnit.MilligramPerCubicMeter => (_value / 1e3) * 1e-3d,
+                MassConcentrationUnit.MilligramPerDeciliter => (_value / 1e-1) * 1e-3d,
+                MassConcentrationUnit.MilligramPerLiter => (_value) * 1e-3d,
+                MassConcentrationUnit.MilligramPerMicroliter => (_value / 1e-6) * 1e-3d,
+                MassConcentrationUnit.MilligramPerMilliliter => (_value / 1e-3) * 1e-3d,
+                MassConcentrationUnit.NanogramPerDeciliter => (_value / 1e-1) * 1e-9d,
+                MassConcentrationUnit.NanogramPerLiter => (_value) * 1e-9d,
+                MassConcentrationUnit.NanogramPerMicroliter => (_value / 1e-6) * 1e-9d,
+                MassConcentrationUnit.NanogramPerMilliliter => (_value / 1e-3) * 1e-9d,
+                MassConcentrationUnit.OuncePerImperialGallon => _value * 0.028349523125 / 0.00454609,
+                MassConcentrationUnit.OuncePerUSGallon => _value * 0.028349523125 / 0.003785411784,
+                MassConcentrationUnit.PicogramPerDeciliter => (_value / 1e-1) * 1e-12d,
+                MassConcentrationUnit.PicogramPerLiter => (_value) * 1e-12d,
+                MassConcentrationUnit.PicogramPerMicroliter => (_value / 1e-6) * 1e-12d,
+                MassConcentrationUnit.PicogramPerMilliliter => (_value / 1e-3) * 1e-12d,
+                MassConcentrationUnit.PoundPerCubicFoot => _value * 0.45359237 / 0.028316846592,
+                MassConcentrationUnit.PoundPerCubicInch => _value * 0.45359237 / 1.6387064e-5,
+                MassConcentrationUnit.PoundPerImperialGallon => _value * 0.45359237 / 0.00454609,
+                MassConcentrationUnit.PoundPerUSGallon => _value * 0.45359237 / 0.003785411784,
+                MassConcentrationUnit.SlugPerCubicFoot => _value * (0.45359237 * 9.80665) / (0.3048 * 0.028316846592),
+                MassConcentrationUnit.TonnePerCubicCentimeter => _value / 1e-9,
+                MassConcentrationUnit.TonnePerCubicMeter => _value / 0.001,
+                MassConcentrationUnit.TonnePerCubicMillimeter => _value / 1e-12,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(MassConcentrationUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(MassConcentrationUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        MassConcentrationUnit.CentigramPerDeciliter => (baseUnitValue * 1e-1) / 1e-2d,
-                        MassConcentrationUnit.CentigramPerLiter => (baseUnitValue) / 1e-2d,
-                        MassConcentrationUnit.CentigramPerMicroliter => (baseUnitValue * 1e-6) / 1e-2d,
-                        MassConcentrationUnit.CentigramPerMilliliter => (baseUnitValue * 1e-3) / 1e-2d,
-                        MassConcentrationUnit.DecigramPerDeciliter => (baseUnitValue * 1e-1) / 1e-1d,
-                        MassConcentrationUnit.DecigramPerLiter => (baseUnitValue) / 1e-1d,
-                        MassConcentrationUnit.DecigramPerMicroliter => (baseUnitValue * 1e-6) / 1e-1d,
-                        MassConcentrationUnit.DecigramPerMilliliter => (baseUnitValue * 1e-3) / 1e-1d,
-                        MassConcentrationUnit.GramPerCubicCentimeter => baseUnitValue * 1e-3,
-                        MassConcentrationUnit.GramPerCubicMeter => baseUnitValue * 1e3,
-                        MassConcentrationUnit.GramPerCubicMillimeter => baseUnitValue * 1e-6,
-                        MassConcentrationUnit.GramPerDeciliter => baseUnitValue * 1e-1,
-                        MassConcentrationUnit.GramPerLiter => baseUnitValue,
-                        MassConcentrationUnit.GramPerMicroliter => baseUnitValue * 1e-6,
-                        MassConcentrationUnit.GramPerMilliliter => baseUnitValue * 1e-3,
-                        MassConcentrationUnit.KilogramPerCubicCentimeter => (baseUnitValue * 1e-3) / 1e3d,
-                        MassConcentrationUnit.KilogramPerCubicMeter => (baseUnitValue * 1e3) / 1e3d,
-                        MassConcentrationUnit.KilogramPerCubicMillimeter => (baseUnitValue * 1e-6) / 1e3d,
-                        MassConcentrationUnit.KilogramPerLiter => (baseUnitValue) / 1e3d,
-                        MassConcentrationUnit.KilopoundPerCubicFoot => (baseUnitValue * 0.028316846592 / 0.45359237) / 1e3d,
-                        MassConcentrationUnit.KilopoundPerCubicInch => (baseUnitValue * 1.6387064e-5 / 0.45359237) / 1e3d,
-                        MassConcentrationUnit.MicrogramPerCubicMeter => (baseUnitValue * 1e3) / 1e-6d,
-                        MassConcentrationUnit.MicrogramPerDeciliter => (baseUnitValue * 1e-1) / 1e-6d,
-                        MassConcentrationUnit.MicrogramPerLiter => (baseUnitValue) / 1e-6d,
-                        MassConcentrationUnit.MicrogramPerMicroliter => (baseUnitValue * 1e-6) / 1e-6d,
-                        MassConcentrationUnit.MicrogramPerMilliliter => (baseUnitValue * 1e-3) / 1e-6d,
-                        MassConcentrationUnit.MilligramPerCubicMeter => (baseUnitValue * 1e3) / 1e-3d,
-                        MassConcentrationUnit.MilligramPerDeciliter => (baseUnitValue * 1e-1) / 1e-3d,
-                        MassConcentrationUnit.MilligramPerLiter => (baseUnitValue) / 1e-3d,
-                        MassConcentrationUnit.MilligramPerMicroliter => (baseUnitValue * 1e-6) / 1e-3d,
-                        MassConcentrationUnit.MilligramPerMilliliter => (baseUnitValue * 1e-3) / 1e-3d,
-                        MassConcentrationUnit.NanogramPerDeciliter => (baseUnitValue * 1e-1) / 1e-9d,
-                        MassConcentrationUnit.NanogramPerLiter => (baseUnitValue) / 1e-9d,
-                        MassConcentrationUnit.NanogramPerMicroliter => (baseUnitValue * 1e-6) / 1e-9d,
-                        MassConcentrationUnit.NanogramPerMilliliter => (baseUnitValue * 1e-3) / 1e-9d,
-                        MassConcentrationUnit.OuncePerImperialGallon => baseUnitValue * 0.00454609 / 0.028349523125,
-                        MassConcentrationUnit.OuncePerUSGallon => baseUnitValue * 0.003785411784 / 0.028349523125,
-                        MassConcentrationUnit.PicogramPerDeciliter => (baseUnitValue * 1e-1) / 1e-12d,
-                        MassConcentrationUnit.PicogramPerLiter => (baseUnitValue) / 1e-12d,
-                        MassConcentrationUnit.PicogramPerMicroliter => (baseUnitValue * 1e-6) / 1e-12d,
-                        MassConcentrationUnit.PicogramPerMilliliter => (baseUnitValue * 1e-3) / 1e-12d,
-                        MassConcentrationUnit.PoundPerCubicFoot => baseUnitValue * 0.028316846592 / 0.45359237,
-                        MassConcentrationUnit.PoundPerCubicInch => baseUnitValue * 1.6387064e-5 / 0.45359237,
-                        MassConcentrationUnit.PoundPerImperialGallon => baseUnitValue * 0.00454609 / 0.45359237,
-                        MassConcentrationUnit.PoundPerUSGallon => baseUnitValue * 0.003785411784 / 0.45359237,
-                        MassConcentrationUnit.SlugPerCubicFoot => baseUnitValue * (0.3048 * 0.028316846592) / (0.45359237 * 9.80665),
-                        MassConcentrationUnit.TonnePerCubicCentimeter => baseUnitValue * 1e-9,
-                        MassConcentrationUnit.TonnePerCubicMeter => baseUnitValue * 0.001,
-                        MassConcentrationUnit.TonnePerCubicMillimeter => baseUnitValue * 1e-12,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                MassConcentrationUnit.CentigramPerDeciliter => (baseUnitValue * 1e-1) / 1e-2d,
+                MassConcentrationUnit.CentigramPerLiter => (baseUnitValue) / 1e-2d,
+                MassConcentrationUnit.CentigramPerMicroliter => (baseUnitValue * 1e-6) / 1e-2d,
+                MassConcentrationUnit.CentigramPerMilliliter => (baseUnitValue * 1e-3) / 1e-2d,
+                MassConcentrationUnit.DecigramPerDeciliter => (baseUnitValue * 1e-1) / 1e-1d,
+                MassConcentrationUnit.DecigramPerLiter => (baseUnitValue) / 1e-1d,
+                MassConcentrationUnit.DecigramPerMicroliter => (baseUnitValue * 1e-6) / 1e-1d,
+                MassConcentrationUnit.DecigramPerMilliliter => (baseUnitValue * 1e-3) / 1e-1d,
+                MassConcentrationUnit.GramPerCubicCentimeter => baseUnitValue * 1e-3,
+                MassConcentrationUnit.GramPerCubicMeter => baseUnitValue * 1e3,
+                MassConcentrationUnit.GramPerCubicMillimeter => baseUnitValue * 1e-6,
+                MassConcentrationUnit.GramPerDeciliter => baseUnitValue * 1e-1,
+                MassConcentrationUnit.GramPerLiter => baseUnitValue,
+                MassConcentrationUnit.GramPerMicroliter => baseUnitValue * 1e-6,
+                MassConcentrationUnit.GramPerMilliliter => baseUnitValue * 1e-3,
+                MassConcentrationUnit.KilogramPerCubicCentimeter => (baseUnitValue * 1e-3) / 1e3d,
+                MassConcentrationUnit.KilogramPerCubicMeter => (baseUnitValue * 1e3) / 1e3d,
+                MassConcentrationUnit.KilogramPerCubicMillimeter => (baseUnitValue * 1e-6) / 1e3d,
+                MassConcentrationUnit.KilogramPerLiter => (baseUnitValue) / 1e3d,
+                MassConcentrationUnit.KilopoundPerCubicFoot => (baseUnitValue * 0.028316846592 / 0.45359237) / 1e3d,
+                MassConcentrationUnit.KilopoundPerCubicInch => (baseUnitValue * 1.6387064e-5 / 0.45359237) / 1e3d,
+                MassConcentrationUnit.MicrogramPerCubicMeter => (baseUnitValue * 1e3) / 1e-6d,
+                MassConcentrationUnit.MicrogramPerDeciliter => (baseUnitValue * 1e-1) / 1e-6d,
+                MassConcentrationUnit.MicrogramPerLiter => (baseUnitValue) / 1e-6d,
+                MassConcentrationUnit.MicrogramPerMicroliter => (baseUnitValue * 1e-6) / 1e-6d,
+                MassConcentrationUnit.MicrogramPerMilliliter => (baseUnitValue * 1e-3) / 1e-6d,
+                MassConcentrationUnit.MilligramPerCubicMeter => (baseUnitValue * 1e3) / 1e-3d,
+                MassConcentrationUnit.MilligramPerDeciliter => (baseUnitValue * 1e-1) / 1e-3d,
+                MassConcentrationUnit.MilligramPerLiter => (baseUnitValue) / 1e-3d,
+                MassConcentrationUnit.MilligramPerMicroliter => (baseUnitValue * 1e-6) / 1e-3d,
+                MassConcentrationUnit.MilligramPerMilliliter => (baseUnitValue * 1e-3) / 1e-3d,
+                MassConcentrationUnit.NanogramPerDeciliter => (baseUnitValue * 1e-1) / 1e-9d,
+                MassConcentrationUnit.NanogramPerLiter => (baseUnitValue) / 1e-9d,
+                MassConcentrationUnit.NanogramPerMicroliter => (baseUnitValue * 1e-6) / 1e-9d,
+                MassConcentrationUnit.NanogramPerMilliliter => (baseUnitValue * 1e-3) / 1e-9d,
+                MassConcentrationUnit.OuncePerImperialGallon => baseUnitValue * 0.00454609 / 0.028349523125,
+                MassConcentrationUnit.OuncePerUSGallon => baseUnitValue * 0.003785411784 / 0.028349523125,
+                MassConcentrationUnit.PicogramPerDeciliter => (baseUnitValue * 1e-1) / 1e-12d,
+                MassConcentrationUnit.PicogramPerLiter => (baseUnitValue) / 1e-12d,
+                MassConcentrationUnit.PicogramPerMicroliter => (baseUnitValue * 1e-6) / 1e-12d,
+                MassConcentrationUnit.PicogramPerMilliliter => (baseUnitValue * 1e-3) / 1e-12d,
+                MassConcentrationUnit.PoundPerCubicFoot => baseUnitValue * 0.028316846592 / 0.45359237,
+                MassConcentrationUnit.PoundPerCubicInch => baseUnitValue * 1.6387064e-5 / 0.45359237,
+                MassConcentrationUnit.PoundPerImperialGallon => baseUnitValue * 0.00454609 / 0.45359237,
+                MassConcentrationUnit.PoundPerUSGallon => baseUnitValue * 0.003785411784 / 0.45359237,
+                MassConcentrationUnit.SlugPerCubicFoot => baseUnitValue * (0.3048 * 0.028316846592) / (0.45359237 * 9.80665),
+                MassConcentrationUnit.TonnePerCubicCentimeter => baseUnitValue * 1e-9,
+                MassConcentrationUnit.TonnePerCubicMeter => baseUnitValue * 0.001,
+                MassConcentrationUnit.TonnePerCubicMillimeter => baseUnitValue * 1e-12,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

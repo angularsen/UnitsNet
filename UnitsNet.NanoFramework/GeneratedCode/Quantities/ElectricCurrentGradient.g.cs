@@ -165,65 +165,65 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(ElectricCurrentGradientUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(ElectricCurrentGradientUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this ElectricCurrentGradient to another ElectricCurrentGradient with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A ElectricCurrentGradient with the specified unit.</returns>
-                public ElectricCurrentGradient ToUnit(ElectricCurrentGradientUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new ElectricCurrentGradient(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this ElectricCurrentGradient to another ElectricCurrentGradient with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ElectricCurrentGradient with the specified unit.</returns>
+        public ElectricCurrentGradient ToUnit(ElectricCurrentGradientUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new ElectricCurrentGradient(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        ElectricCurrentGradientUnit.AmperePerMicrosecond => _value * 1E6,
-                        ElectricCurrentGradientUnit.AmperePerMillisecond => _value * 1E3,
-                        ElectricCurrentGradientUnit.AmperePerMinute => _value / 60,
-                        ElectricCurrentGradientUnit.AmperePerNanosecond => _value * 1E9,
-                        ElectricCurrentGradientUnit.AmperePerSecond => _value,
-                        ElectricCurrentGradientUnit.MilliamperePerMinute => (_value / 60) * 1e-3d,
-                        ElectricCurrentGradientUnit.MilliamperePerSecond => (_value) * 1e-3d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                ElectricCurrentGradientUnit.AmperePerMicrosecond => _value * 1E6,
+                ElectricCurrentGradientUnit.AmperePerMillisecond => _value * 1E3,
+                ElectricCurrentGradientUnit.AmperePerMinute => _value / 60,
+                ElectricCurrentGradientUnit.AmperePerNanosecond => _value * 1E9,
+                ElectricCurrentGradientUnit.AmperePerSecond => _value,
+                ElectricCurrentGradientUnit.MilliamperePerMinute => (_value / 60) * 1e-3d,
+                ElectricCurrentGradientUnit.MilliamperePerSecond => (_value) * 1e-3d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(ElectricCurrentGradientUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(ElectricCurrentGradientUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        ElectricCurrentGradientUnit.AmperePerMicrosecond => baseUnitValue / 1E6,
-                        ElectricCurrentGradientUnit.AmperePerMillisecond => baseUnitValue / 1E3,
-                        ElectricCurrentGradientUnit.AmperePerMinute => baseUnitValue * 60,
-                        ElectricCurrentGradientUnit.AmperePerNanosecond => baseUnitValue / 1E9,
-                        ElectricCurrentGradientUnit.AmperePerSecond => baseUnitValue,
-                        ElectricCurrentGradientUnit.MilliamperePerMinute => (baseUnitValue * 60) / 1e-3d,
-                        ElectricCurrentGradientUnit.MilliamperePerSecond => (baseUnitValue) / 1e-3d,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                ElectricCurrentGradientUnit.AmperePerMicrosecond => baseUnitValue / 1E6,
+                ElectricCurrentGradientUnit.AmperePerMillisecond => baseUnitValue / 1E3,
+                ElectricCurrentGradientUnit.AmperePerMinute => baseUnitValue * 60,
+                ElectricCurrentGradientUnit.AmperePerNanosecond => baseUnitValue / 1E9,
+                ElectricCurrentGradientUnit.AmperePerSecond => baseUnitValue,
+                ElectricCurrentGradientUnit.MilliamperePerMinute => (baseUnitValue * 60) / 1e-3d,
+                ElectricCurrentGradientUnit.MilliamperePerSecond => (baseUnitValue) / 1e-3d,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

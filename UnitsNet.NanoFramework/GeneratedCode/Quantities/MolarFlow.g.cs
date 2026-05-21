@@ -185,69 +185,69 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(MolarFlowUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(MolarFlowUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this MolarFlow to another MolarFlow with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A MolarFlow with the specified unit.</returns>
-                public MolarFlow ToUnit(MolarFlowUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new MolarFlow(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this MolarFlow to another MolarFlow with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A MolarFlow with the specified unit.</returns>
+        public MolarFlow ToUnit(MolarFlowUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new MolarFlow(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        MolarFlowUnit.KilomolePerHour => (_value / 3600) * 1e3d,
-                        MolarFlowUnit.KilomolePerMinute => (_value / 60) * 1e3d,
-                        MolarFlowUnit.KilomolePerSecond => (_value) * 1e3d,
-                        MolarFlowUnit.MolePerHour => _value / 3600,
-                        MolarFlowUnit.MolePerMinute => _value / 60,
-                        MolarFlowUnit.MolePerSecond => _value,
-                        MolarFlowUnit.PoundMolePerHour => (_value * 453.59237) / 3600,
-                        MolarFlowUnit.PoundMolePerMinute => (_value * 453.59237) / 60,
-                        MolarFlowUnit.PoundMolePerSecond => _value * 453.59237,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                MolarFlowUnit.KilomolePerHour => (_value / 3600) * 1e3d,
+                MolarFlowUnit.KilomolePerMinute => (_value / 60) * 1e3d,
+                MolarFlowUnit.KilomolePerSecond => (_value) * 1e3d,
+                MolarFlowUnit.MolePerHour => _value / 3600,
+                MolarFlowUnit.MolePerMinute => _value / 60,
+                MolarFlowUnit.MolePerSecond => _value,
+                MolarFlowUnit.PoundMolePerHour => (_value * 453.59237) / 3600,
+                MolarFlowUnit.PoundMolePerMinute => (_value * 453.59237) / 60,
+                MolarFlowUnit.PoundMolePerSecond => _value * 453.59237,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(MolarFlowUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(MolarFlowUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        MolarFlowUnit.KilomolePerHour => (baseUnitValue * 3600) / 1e3d,
-                        MolarFlowUnit.KilomolePerMinute => (baseUnitValue * 60) / 1e3d,
-                        MolarFlowUnit.KilomolePerSecond => (baseUnitValue) / 1e3d,
-                        MolarFlowUnit.MolePerHour => baseUnitValue * 3600,
-                        MolarFlowUnit.MolePerMinute => baseUnitValue * 60,
-                        MolarFlowUnit.MolePerSecond => baseUnitValue,
-                        MolarFlowUnit.PoundMolePerHour => (baseUnitValue / 453.59237) * 3600,
-                        MolarFlowUnit.PoundMolePerMinute => (baseUnitValue / 453.59237) * 60,
-                        MolarFlowUnit.PoundMolePerSecond => baseUnitValue / 453.59237,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                MolarFlowUnit.KilomolePerHour => (baseUnitValue * 3600) / 1e3d,
+                MolarFlowUnit.KilomolePerMinute => (baseUnitValue * 60) / 1e3d,
+                MolarFlowUnit.KilomolePerSecond => (baseUnitValue) / 1e3d,
+                MolarFlowUnit.MolePerHour => baseUnitValue * 3600,
+                MolarFlowUnit.MolePerMinute => baseUnitValue * 60,
+                MolarFlowUnit.MolePerSecond => baseUnitValue,
+                MolarFlowUnit.PoundMolePerHour => (baseUnitValue / 453.59237) * 3600,
+                MolarFlowUnit.PoundMolePerMinute => (baseUnitValue / 453.59237) * 60,
+                MolarFlowUnit.PoundMolePerSecond => baseUnitValue / 453.59237,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 

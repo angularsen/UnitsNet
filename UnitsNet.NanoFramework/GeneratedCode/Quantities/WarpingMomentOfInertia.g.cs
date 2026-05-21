@@ -155,63 +155,63 @@ namespace UnitsNet
 
         #endregion
 
-                #region Conversion Methods
+        #region Conversion Methods
 
-                /// <summary>
-                ///     Convert to the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>Value converted to the specified unit.</returns>
-                public double As(WarpingMomentOfInertiaUnit unit) => GetValueAs(unit);
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(WarpingMomentOfInertiaUnit unit) => GetValueAs(unit);
 
-                /// <summary>
-                ///     Converts this WarpingMomentOfInertia to another WarpingMomentOfInertia with the unit representation <paramref name="unit" />.
-                /// </summary>
-                /// <returns>A WarpingMomentOfInertia with the specified unit.</returns>
-                public WarpingMomentOfInertia ToUnit(WarpingMomentOfInertiaUnit unit)
-                {
-                    var convertedValue = GetValueAs(unit);
-                    return new WarpingMomentOfInertia(convertedValue, unit);
-                }
+        /// <summary>
+        ///     Converts this WarpingMomentOfInertia to another WarpingMomentOfInertia with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A WarpingMomentOfInertia with the specified unit.</returns>
+        public WarpingMomentOfInertia ToUnit(WarpingMomentOfInertiaUnit unit)
+        {
+            var convertedValue = GetValueAs(unit);
+            return new WarpingMomentOfInertia(convertedValue, unit);
+        }
 
-                /// <summary>
-                ///     Converts the current value + unit to the base unit.
-                ///     This is typically the first step in converting from one unit to another.
-                /// </summary>
-                /// <returns>The value in the base unit representation.</returns>
-                private double GetValueInBaseUnit()
-                {
-                    return Unit switch
-                    {
-                        WarpingMomentOfInertiaUnit.CentimeterToTheSixth => _value / 1e12,
-                        WarpingMomentOfInertiaUnit.DecimeterToTheSixth => _value / 1e6,
-                        WarpingMomentOfInertiaUnit.FootToTheSixth => _value * 0.000801843800914862014464,
-                        WarpingMomentOfInertiaUnit.InchToTheSixth => _value * 0.000000000268535866540096,
-                        WarpingMomentOfInertiaUnit.MeterToTheSixth => _value,
-                        WarpingMomentOfInertiaUnit.MillimeterToTheSixth => _value / 1e18,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
-                    };
-                    }
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double GetValueInBaseUnit()
+        {
+            return Unit switch
+            {
+                WarpingMomentOfInertiaUnit.CentimeterToTheSixth => _value / 1e12,
+                WarpingMomentOfInertiaUnit.DecimeterToTheSixth => _value / 1e6,
+                WarpingMomentOfInertiaUnit.FootToTheSixth => _value * 0.000801843800914862014464,
+                WarpingMomentOfInertiaUnit.InchToTheSixth => _value * 0.000000000268535866540096,
+                WarpingMomentOfInertiaUnit.MeterToTheSixth => _value,
+                WarpingMomentOfInertiaUnit.MillimeterToTheSixth => _value / 1e18,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
+            };
+        }
 
-                private double GetValueAs(WarpingMomentOfInertiaUnit unit)
-                {
-                    if (Unit == unit)
-                        return _value;
+        private double GetValueAs(WarpingMomentOfInertiaUnit unit)
+        {
+            if (Unit == unit)
+                return _value;
 
-                    var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = GetValueInBaseUnit();
 
-                    return unit switch
-                    {
-                        WarpingMomentOfInertiaUnit.CentimeterToTheSixth => baseUnitValue * 1e12,
-                        WarpingMomentOfInertiaUnit.DecimeterToTheSixth => baseUnitValue * 1e6,
-                        WarpingMomentOfInertiaUnit.FootToTheSixth => baseUnitValue / 0.000801843800914862014464,
-                        WarpingMomentOfInertiaUnit.InchToTheSixth => baseUnitValue / 0.000000000268535866540096,
-                        WarpingMomentOfInertiaUnit.MeterToTheSixth => baseUnitValue,
-                        WarpingMomentOfInertiaUnit.MillimeterToTheSixth => baseUnitValue * 1e18,
-                        _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
-                    };
-                    }
+            return unit switch
+            {
+                WarpingMomentOfInertiaUnit.CentimeterToTheSixth => baseUnitValue * 1e12,
+                WarpingMomentOfInertiaUnit.DecimeterToTheSixth => baseUnitValue * 1e6,
+                WarpingMomentOfInertiaUnit.FootToTheSixth => baseUnitValue / 0.000801843800914862014464,
+                WarpingMomentOfInertiaUnit.InchToTheSixth => baseUnitValue / 0.000000000268535866540096,
+                WarpingMomentOfInertiaUnit.MeterToTheSixth => baseUnitValue,
+                WarpingMomentOfInertiaUnit.MillimeterToTheSixth => baseUnitValue * 1e18,
+                _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
+            };
+        }
 
-                #endregion
+        #endregion
     }
 }
 
