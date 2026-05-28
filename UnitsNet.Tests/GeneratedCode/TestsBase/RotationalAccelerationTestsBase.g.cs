@@ -42,14 +42,12 @@ namespace UnitsNet.Tests
     {
         protected abstract double DegreesPerSecondSquaredInOneRadianPerSecondSquared { get; }
         protected abstract double RadiansPerSecondSquaredInOneRadianPerSecondSquared { get; }
-        protected abstract double MillirevolutionsPerMinutePerSecondInOneRadianPerSecondSquared { get; }
         protected abstract double RevolutionsPerMinutePerSecondInOneRadianPerSecondSquared { get; }
         protected abstract double RevolutionsPerSecondSquaredInOneRadianPerSecondSquared { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double DegreesPerSecondSquaredTolerance { get { return 1e-5; } }
         protected virtual double RadiansPerSecondSquaredTolerance { get { return 1e-5; } }
-        protected virtual double MillirevolutionsPerMinutePerSecondTolerance { get { return 1e-5; } }
         protected virtual double RevolutionsPerMinutePerSecondTolerance { get { return 1e-5; } }
         protected virtual double RevolutionsPerSecondSquaredTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
@@ -60,7 +58,6 @@ namespace UnitsNet.Tests
             {
                 RotationalAccelerationUnit.DegreePerSecondSquared => (DegreesPerSecondSquaredInOneRadianPerSecondSquared, DegreesPerSecondSquaredTolerance),
                 RotationalAccelerationUnit.RadianPerSecondSquared => (RadiansPerSecondSquaredInOneRadianPerSecondSquared, RadiansPerSecondSquaredTolerance),
-                RotationalAccelerationUnit.MillirevolutionPerMinutePerSecond => (MillirevolutionsPerMinutePerSecondInOneRadianPerSecondSquared, MillirevolutionsPerMinutePerSecondTolerance),
                 RotationalAccelerationUnit.RevolutionPerMinutePerSecond => (RevolutionsPerMinutePerSecondInOneRadianPerSecondSquared, RevolutionsPerMinutePerSecondTolerance),
                 RotationalAccelerationUnit.RevolutionPerSecondSquared => (RevolutionsPerSecondSquaredInOneRadianPerSecondSquared, RevolutionsPerSecondSquaredTolerance),
                 _ => throw new NotSupportedException()
@@ -71,7 +68,6 @@ namespace UnitsNet.Tests
         {
             new object[] { RotationalAccelerationUnit.DegreePerSecondSquared },
             new object[] { RotationalAccelerationUnit.RadianPerSecondSquared },
-            new object[] { RotationalAccelerationUnit.MillirevolutionPerMinutePerSecond },
             new object[] { RotationalAccelerationUnit.RevolutionPerMinutePerSecond },
             new object[] { RotationalAccelerationUnit.RevolutionPerSecondSquared },
         };

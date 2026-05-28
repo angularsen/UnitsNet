@@ -118,7 +118,6 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<RotationalAccelerationUnit>> GetDefaultMappings()
             {
                 yield return new (RotationalAccelerationUnit.DegreePerSecondSquared, "DegreePerSecondSquared", "DegreesPerSecondSquared", BaseUnits.Undefined);
-                yield return new (RotationalAccelerationUnit.MillirevolutionPerMinutePerSecond, "MillirevolutionPerMinutePerSecond", "MillirevolutionsPerMinutePerSecond", BaseUnits.Undefined);
                 yield return new (RotationalAccelerationUnit.RadianPerSecondSquared, "RadianPerSecondSquared", "RadiansPerSecondSquared", new BaseUnits(time: DurationUnit.Second));
                 yield return new (RotationalAccelerationUnit.RevolutionPerMinutePerSecond, "RevolutionPerMinutePerSecond", "RevolutionsPerMinutePerSecond", BaseUnits.Undefined);
                 yield return new (RotationalAccelerationUnit.RevolutionPerSecondSquared, "RevolutionPerSecondSquared", "RevolutionsPerSecondSquared", BaseUnits.Undefined);
@@ -238,11 +237,6 @@ namespace UnitsNet
         public double RadiansPerSecondSquared => As(RotationalAccelerationUnit.RadianPerSecondSquared);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalAccelerationUnit.MillirevolutionPerMinutePerSecond"/>
-        /// </summary>
-        public double MillirevolutionsPerMinutePerSecond => As(RotationalAccelerationUnit.MillirevolutionPerMinutePerSecond);
-
-        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalAccelerationUnit.RevolutionPerMinutePerSecond"/>
         /// </summary>
         public double RevolutionsPerMinutePerSecond => As(RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
@@ -264,7 +258,6 @@ namespace UnitsNet
         {
             // Register in unit converter: RotationalAccelerationUnit -> BaseUnit
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.DegreePerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared, quantity => quantity.ToUnit(RotationalAccelerationUnit.RadianPerSecondSquared));
-            unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.MillirevolutionPerMinutePerSecond, RotationalAccelerationUnit.RadianPerSecondSquared, quantity => quantity.ToUnit(RotationalAccelerationUnit.RadianPerSecondSquared));
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, RotationalAccelerationUnit.RadianPerSecondSquared, quantity => quantity.ToUnit(RotationalAccelerationUnit.RadianPerSecondSquared));
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RevolutionPerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared, quantity => quantity.ToUnit(RotationalAccelerationUnit.RadianPerSecondSquared));
 
@@ -273,7 +266,6 @@ namespace UnitsNet
 
             // Register in unit converter: BaseUnit -> RotationalAccelerationUnit
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.DegreePerSecondSquared, quantity => quantity.ToUnit(RotationalAccelerationUnit.DegreePerSecondSquared));
-            unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.MillirevolutionPerMinutePerSecond, quantity => quantity.ToUnit(RotationalAccelerationUnit.MillirevolutionPerMinutePerSecond));
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RevolutionPerMinutePerSecond, quantity => quantity.ToUnit(RotationalAccelerationUnit.RevolutionPerMinutePerSecond));
             unitConverter.SetConversionFunction<RotationalAcceleration>(RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RevolutionPerSecondSquared, quantity => quantity.ToUnit(RotationalAccelerationUnit.RevolutionPerSecondSquared));
         }
@@ -317,14 +309,6 @@ namespace UnitsNet
         public static RotationalAcceleration FromRadiansPerSecondSquared(double value)
         {
             return new RotationalAcceleration(value, RotationalAccelerationUnit.RadianPerSecondSquared);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.MillirevolutionPerMinutePerSecond"/>.
-        /// </summary>
-        public static RotationalAcceleration FromMillirevolutionsPerMinutePerSecond(double value)
-        {
-            return new RotationalAcceleration(value, RotationalAccelerationUnit.MillirevolutionPerMinutePerSecond);
         }
 
         /// <summary>
@@ -737,13 +721,11 @@ namespace UnitsNet
             {
                 // RotationalAccelerationUnit -> BaseUnit
                 (RotationalAccelerationUnit.DegreePerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared) => new RotationalAcceleration((Math.PI / 180) * _value, RotationalAccelerationUnit.RadianPerSecondSquared),
-                (RotationalAccelerationUnit.MillirevolutionPerMinutePerSecond, RotationalAccelerationUnit.RadianPerSecondSquared) => new RotationalAcceleration(((2 * Math.PI) / 60) * _value * 1e-3d, RotationalAccelerationUnit.RadianPerSecondSquared),
                 (RotationalAccelerationUnit.RevolutionPerMinutePerSecond, RotationalAccelerationUnit.RadianPerSecondSquared) => new RotationalAcceleration(((2 * Math.PI) / 60) * _value, RotationalAccelerationUnit.RadianPerSecondSquared),
                 (RotationalAccelerationUnit.RevolutionPerSecondSquared, RotationalAccelerationUnit.RadianPerSecondSquared) => new RotationalAcceleration((2 * Math.PI) * _value, RotationalAccelerationUnit.RadianPerSecondSquared),
 
                 // BaseUnit -> RotationalAccelerationUnit
                 (RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.DegreePerSecondSquared) => new RotationalAcceleration((180 / Math.PI) * _value, RotationalAccelerationUnit.DegreePerSecondSquared),
-                (RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.MillirevolutionPerMinutePerSecond) => new RotationalAcceleration((60 / (2 * Math.PI)) * _value / 1e-3d, RotationalAccelerationUnit.MillirevolutionPerMinutePerSecond),
                 (RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RevolutionPerMinutePerSecond) => new RotationalAcceleration((60 / (2 * Math.PI)) * _value, RotationalAccelerationUnit.RevolutionPerMinutePerSecond),
                 (RotationalAccelerationUnit.RadianPerSecondSquared, RotationalAccelerationUnit.RevolutionPerSecondSquared) => new RotationalAcceleration((1 / (2 * Math.PI)) * _value, RotationalAccelerationUnit.RevolutionPerSecondSquared),
 

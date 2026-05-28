@@ -48,7 +48,6 @@ namespace UnitsNet.Tests
         protected abstract double MicroradiansPerSecondInOneRadianPerSecond { get; }
         protected abstract double MillidegreesPerSecondInOneRadianPerSecond { get; }
         protected abstract double MilliradiansPerSecondInOneRadianPerSecond { get; }
-        protected abstract double MillirevolutionsPerMinuteInOneRadianPerSecond { get; }
         protected abstract double NanodegreesPerSecondInOneRadianPerSecond { get; }
         protected abstract double NanoradiansPerSecondInOneRadianPerSecond { get; }
         protected abstract double RadiansPerSecondInOneRadianPerSecond { get; }
@@ -64,7 +63,6 @@ namespace UnitsNet.Tests
         protected virtual double MicroradiansPerSecondTolerance { get { return 1e-5; } }
         protected virtual double MillidegreesPerSecondTolerance { get { return 1e-5; } }
         protected virtual double MilliradiansPerSecondTolerance { get { return 1e-5; } }
-        protected virtual double MillirevolutionsPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double NanodegreesPerSecondTolerance { get { return 1e-5; } }
         protected virtual double NanoradiansPerSecondTolerance { get { return 1e-5; } }
         protected virtual double RadiansPerSecondTolerance { get { return 1e-5; } }
@@ -84,7 +82,6 @@ namespace UnitsNet.Tests
                 RotationalSpeedUnit.MicroradianPerSecond => (MicroradiansPerSecondInOneRadianPerSecond, MicroradiansPerSecondTolerance),
                 RotationalSpeedUnit.MillidegreePerSecond => (MillidegreesPerSecondInOneRadianPerSecond, MillidegreesPerSecondTolerance),
                 RotationalSpeedUnit.MilliradianPerSecond => (MilliradiansPerSecondInOneRadianPerSecond, MilliradiansPerSecondTolerance),
-                RotationalSpeedUnit.MillirevolutionPerMinute => (MillirevolutionsPerMinuteInOneRadianPerSecond, MillirevolutionsPerMinuteTolerance),
                 RotationalSpeedUnit.NanodegreePerSecond => (NanodegreesPerSecondInOneRadianPerSecond, NanodegreesPerSecondTolerance),
                 RotationalSpeedUnit.NanoradianPerSecond => (NanoradiansPerSecondInOneRadianPerSecond, NanoradiansPerSecondTolerance),
                 RotationalSpeedUnit.RadianPerSecond => (RadiansPerSecondInOneRadianPerSecond, RadiansPerSecondTolerance),
@@ -104,7 +101,6 @@ namespace UnitsNet.Tests
             new object[] { RotationalSpeedUnit.MicroradianPerSecond },
             new object[] { RotationalSpeedUnit.MillidegreePerSecond },
             new object[] { RotationalSpeedUnit.MilliradianPerSecond },
-            new object[] { RotationalSpeedUnit.MillirevolutionPerMinute },
             new object[] { RotationalSpeedUnit.NanodegreePerSecond },
             new object[] { RotationalSpeedUnit.NanoradianPerSecond },
             new object[] { RotationalSpeedUnit.RadianPerSecond },
