@@ -38,7 +38,6 @@ namespace UnitsNet.Units
         RadianPerSecond = 11,
         RevolutionPerMinute = 12,
         RevolutionPerSecond = 13,
-        MillirevolutionPerMinute = 14,
     }
 
     #pragma warning restore 1591
