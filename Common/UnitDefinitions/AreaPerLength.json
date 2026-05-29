@@ -1,0 +1,85 @@
+{
+  "Name": "AreaPerLength",
+  "BaseUnit": "SquareMeterPerMeter",
+  "XmlDocSummary": "The magnitude of area per unit length, typically used in structural engineering to specify distributed reinforcement.",
+  "BaseDimensions": {
+    "L": 1
+  },
+  "Units": [
+    {
+      "SingularName": "SquareMeterPerMeter",
+      "PluralName": "SquareMetersPerMeter",
+      "BaseUnits": {
+        "L": "Meter"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "m²/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SquareCentimeterPerMeter",
+      "PluralName": "SquareCentimetersPerMeter",
+      "FromUnitToBaseFunc": "{x} * 1e-4",
+      "FromBaseToUnitFunc": "{x} / 1e-4",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cm²/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SquareMillimeterPerMeter",
+      "PluralName": "SquareMillimetersPerMeter",
+      "FromUnitToBaseFunc": "{x} * 1e-6",
+      "FromBaseToUnitFunc": "{x} / 1e-6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mm²/m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SquareInchPerFoot",
+      "PluralName": "SquareInchesPerFoot",
+      "FromUnitToBaseFunc": "{x} * 0.00064516 / 0.3048",
+      "FromBaseToUnitFunc": "{x} * 0.3048 / 0.00064516",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "in²/ft" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SquareInchPerInch",
+      "PluralName": "SquareInchesPerInch",
+      "FromUnitToBaseFunc": "{x} * 0.00064516 / 0.0254",
+      "FromBaseToUnitFunc": "{x} * 0.0254 / 0.00064516",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "in²/in" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SquareFootPerFoot",
+      "PluralName": "SquareFeetPerFoot",
+      "FromUnitToBaseFunc": "{x} * 0.09290304 / 0.3048",
+      "FromBaseToUnitFunc": "{x} * 0.3048 / 0.09290304",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft²/ft" ]
+        }
+      ]
+    }
+  ]
+}
