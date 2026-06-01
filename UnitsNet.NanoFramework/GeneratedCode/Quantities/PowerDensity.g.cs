@@ -79,6 +79,16 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.BtuPerSecondCubicFoot"/>
+        /// </summary>
+        public double BtusPerSecondCubicFoot => As(PowerDensityUnit.BtuPerSecondCubicFoot);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.BtuPerSecondCubicInch"/>
+        /// </summary>
+        public double BtusPerSecondCubicInch => As(PowerDensityUnit.BtuPerSecondCubicInch);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.DecawattPerCubicFoot"/>
         /// </summary>
         public double DecawattsPerCubicFoot => As(PowerDensityUnit.DecawattPerCubicFoot);
@@ -301,6 +311,16 @@ namespace UnitsNet
         #endregion
 
         #region Static Factory Methods
+
+        /// <summary>
+        ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.BtuPerSecondCubicFoot"/>.
+        /// </summary>
+        public static PowerDensity FromBtusPerSecondCubicFoot(double btuspersecondcubicfoot) => new PowerDensity(btuspersecondcubicfoot, PowerDensityUnit.BtuPerSecondCubicFoot);
+
+        /// <summary>
+        ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.BtuPerSecondCubicInch"/>.
+        /// </summary>
+        public static PowerDensity FromBtusPerSecondCubicInch(double btuspersecondcubicinch) => new PowerDensity(btuspersecondcubicinch, PowerDensityUnit.BtuPerSecondCubicInch);
 
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.DecawattPerCubicFoot"/>.
@@ -562,6 +582,8 @@ namespace UnitsNet
                 {
                     return Unit switch
                     {
+                        PowerDensityUnit.BtuPerSecondCubicFoot => _value * 1055.05585262 / (0.3048 * 0.3048 * 0.3048),
+                        PowerDensityUnit.BtuPerSecondCubicInch => _value * 1055.05585262 / (2.54e-2 * 2.54e-2 * 2.54e-2),
                         PowerDensityUnit.DecawattPerCubicFoot => (_value / 0.028316846592) * 1e1d,
                         PowerDensityUnit.DecawattPerCubicInch => (_value / 1.6387064e-5) * 1e1d,
                         PowerDensityUnit.DecawattPerCubicMeter => (_value) * 1e1d,
@@ -619,6 +641,8 @@ namespace UnitsNet
 
                     return unit switch
                     {
+                        PowerDensityUnit.BtuPerSecondCubicFoot => baseUnitValue / 1055.05585262 * (0.3048 * 0.3048 * 0.3048),
+                        PowerDensityUnit.BtuPerSecondCubicInch => baseUnitValue / 1055.05585262 * (2.54e-2 * 2.54e-2 * 2.54e-2),
                         PowerDensityUnit.DecawattPerCubicFoot => (baseUnitValue * 0.028316846592) / 1e1d,
                         PowerDensityUnit.DecawattPerCubicInch => (baseUnitValue * 1.6387064e-5) / 1e1d,
                         PowerDensityUnit.DecawattPerCubicMeter => (baseUnitValue) / 1e1d,

@@ -25,6 +25,10 @@ namespace UnitsNet.Units
 
     public enum PowerDensityUnit
     {
+        /// <remarks>Based on the International Table (IT) definition of the British thermal unit (BTU), where 1 BTU is defined as exactly 1055.05585262 joules (≈1.05506 kJ). See https://en.wikipedia.org/wiki/British_thermal_unit for details.</remarks>
+        BtuPerSecondCubicFoot = 47,
+        /// <remarks>Based on the International Table (IT) definition of the British thermal unit (BTU), where 1 BTU is defined as exactly 1055.05585262 joules (≈1.05506 kJ). See https://en.wikipedia.org/wiki/British_thermal_unit for details.</remarks>
+        BtuPerSecondCubicInch = 51,
         DecawattPerCubicFoot = 1,
         DecawattPerCubicInch = 2,
         DecawattPerCubicMeter = 3,

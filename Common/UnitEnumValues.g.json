@@ -1132,7 +1132,9 @@
     "WattPerCubicFoot": 41,
     "WattPerCubicInch": 42,
     "WattPerCubicMeter": 43,
-    "WattPerLiter": 44
+    "WattPerLiter": 44,
+    "BtuPerSecondCubicFoot": 47,
+    "BtuPerSecondCubicInch": 51
   },
   "PowerRatio": {
     "DecibelMilliwatt": 1,
