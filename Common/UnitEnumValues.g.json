@@ -1492,7 +1492,8 @@
   },
   "ThermalConductivity": {
     "BtuPerHourFootFahrenheit": 1,
-    "WattPerMeterKelvin": 2
+    "WattPerMeterKelvin": 2,
+    "BtuPerSecondInchFahrenheit": 6
   },
   "ThermalResistance": {
     "DegreeCelsiusPerWatt": 10,
