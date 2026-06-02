@@ -43,6 +43,17 @@ namespace UnitsNet.NumberExtensions.NumberToHeatTransferCoefficient
             => HeatTransferCoefficient.FromBtusPerHourSquareFootDegreeFahrenheit(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="HeatTransferCoefficient.FromBtusPerSecondSquareInchDegreeFahrenheit(double)" />
+        public static HeatTransferCoefficient BtusPerSecondSquareInchDegreeFahrenheit<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => HeatTransferCoefficient.FromBtusPerSecondSquareInchDegreeFahrenheit(double.CreateChecked(value));
+#else
+            , IConvertible
+            => HeatTransferCoefficient.FromBtusPerSecondSquareInchDegreeFahrenheit(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="HeatTransferCoefficient.FromCaloriesPerHourSquareMeterDegreeCelsius(double)" />
         public static HeatTransferCoefficient CaloriesPerHourSquareMeterDegreeCelsius<T>(this T value)
             where T : notnull

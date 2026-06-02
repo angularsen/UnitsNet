@@ -55,6 +55,18 @@
       ]
     },
     {
+      "SingularName": "BtuPerSecondSquareInchDegreeFahrenheit",
+      "PluralName": "BtusPerSecondSquareInchDegreeFahrenheit",
+      "FromUnitToBaseFunc": "{x} * ((1055.05585262 / (2.54e-2 * 2.54e-2)) * 1.8)",
+      "FromBaseToUnitFunc": "{x} / ((1055.05585262 / (2.54e-2 * 2.54e-2)) * 1.8)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Btu/(s·in²·°F)", "Btu/(in²·s·°F)", "Btu/(hr·in²·°F)", "Btu/(in²·hr·°F)" ]
+        }
+      ]
+    },
+    {
       "SingularName": "CaloriePerHourSquareMeterDegreeCelsius",
       "PluralName": "CaloriesPerHourSquareMeterDegreeCelsius",
       "Prefixes": [ "Kilo" ],
