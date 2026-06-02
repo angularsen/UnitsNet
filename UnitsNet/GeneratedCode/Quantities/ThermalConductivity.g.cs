@@ -121,6 +121,7 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<ThermalConductivityUnit>> GetDefaultMappings()
             {
                 yield return new (ThermalConductivityUnit.BtuPerHourFootFahrenheit, "BtuPerHourFootFahrenheit", "BtusPerHourFootFahrenheit", BaseUnits.Undefined);
+                yield return new (ThermalConductivityUnit.BtuPerSecondInchFahrenheit, "BtuPerSecondInchFahrenheit", "BtusPerSecondInchFahrenheit", BaseUnits.Undefined);
                 yield return new (ThermalConductivityUnit.WattPerMeterKelvin, "WattPerMeterKelvin", "WattsPerMeterKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin));
             }
         }
@@ -233,6 +234,11 @@ namespace UnitsNet
         public double BtusPerHourFootFahrenheit => As(ThermalConductivityUnit.BtuPerHourFootFahrenheit);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalConductivityUnit.BtuPerSecondInchFahrenheit"/>
+        /// </summary>
+        public double BtusPerSecondInchFahrenheit => As(ThermalConductivityUnit.BtuPerSecondInchFahrenheit);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalConductivityUnit.WattPerMeterKelvin"/>
         /// </summary>
         public double WattsPerMeterKelvin => As(ThermalConductivityUnit.WattPerMeterKelvin);
@@ -249,12 +255,14 @@ namespace UnitsNet
         {
             // Register in unit converter: ThermalConductivityUnit -> BaseUnit
             unitConverter.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.BtuPerHourFootFahrenheit, ThermalConductivityUnit.WattPerMeterKelvin, quantity => quantity.ToUnit(ThermalConductivityUnit.WattPerMeterKelvin));
+            unitConverter.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.BtuPerSecondInchFahrenheit, ThermalConductivityUnit.WattPerMeterKelvin, quantity => quantity.ToUnit(ThermalConductivityUnit.WattPerMeterKelvin));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.WattPerMeterKelvin, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> ThermalConductivityUnit
             unitConverter.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.BtuPerHourFootFahrenheit, quantity => quantity.ToUnit(ThermalConductivityUnit.BtuPerHourFootFahrenheit));
+            unitConverter.SetConversionFunction<ThermalConductivity>(ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.BtuPerSecondInchFahrenheit, quantity => quantity.ToUnit(ThermalConductivityUnit.BtuPerSecondInchFahrenheit));
         }
 
         /// <summary>
@@ -288,6 +296,14 @@ namespace UnitsNet
         public static ThermalConductivity FromBtusPerHourFootFahrenheit(double value)
         {
             return new ThermalConductivity(value, ThermalConductivityUnit.BtuPerHourFootFahrenheit);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ThermalConductivity"/> from <see cref="ThermalConductivityUnit.BtuPerSecondInchFahrenheit"/>.
+        /// </summary>
+        public static ThermalConductivity FromBtusPerSecondInchFahrenheit(double value)
+        {
+            return new ThermalConductivity(value, ThermalConductivityUnit.BtuPerSecondInchFahrenheit);
         }
 
         /// <summary>
@@ -692,9 +708,11 @@ namespace UnitsNet
             {
                 // ThermalConductivityUnit -> BaseUnit
                 (ThermalConductivityUnit.BtuPerHourFootFahrenheit, ThermalConductivityUnit.WattPerMeterKelvin) => new ThermalConductivity(_value * ((1055.05585262 / (0.3048 * 3600)) * 1.8), ThermalConductivityUnit.WattPerMeterKelvin),
+                (ThermalConductivityUnit.BtuPerSecondInchFahrenheit, ThermalConductivityUnit.WattPerMeterKelvin) => new ThermalConductivity(_value * ((1055.05585262 / 2.54e-2) * 1.8), ThermalConductivityUnit.WattPerMeterKelvin),
 
                 // BaseUnit -> ThermalConductivityUnit
                 (ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.BtuPerHourFootFahrenheit) => new ThermalConductivity(_value / ((1055.05585262 / (0.3048 * 3600)) * 1.8), ThermalConductivityUnit.BtuPerHourFootFahrenheit),
+                (ThermalConductivityUnit.WattPerMeterKelvin, ThermalConductivityUnit.BtuPerSecondInchFahrenheit) => new ThermalConductivity(_value / ((1055.05585262 / 2.54e-2) * 1.8), ThermalConductivityUnit.BtuPerSecondInchFahrenheit),
 
                 _ => null
             };

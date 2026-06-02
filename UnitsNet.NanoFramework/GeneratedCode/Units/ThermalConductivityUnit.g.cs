@@ -26,6 +26,7 @@ namespace UnitsNet.Units
     public enum ThermalConductivityUnit
     {
         BtuPerHourFootFahrenheit = 1,
+        BtuPerSecondInchFahrenheit = 6,
         WattPerMeterKelvin = 2,
     }
 

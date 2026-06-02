@@ -1,2 +1,3 @@
 BtusPerHourFootFahrenheit=BTU/(h·ft·°F)
+BtusPerSecondInchFahrenheit=BTU/(s·in·°F)
 WattsPerMeterKelvin=W/(m·K)

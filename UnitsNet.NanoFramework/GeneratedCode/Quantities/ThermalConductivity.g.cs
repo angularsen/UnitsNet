@@ -87,6 +87,11 @@ namespace UnitsNet
         public double BtusPerHourFootFahrenheit => As(ThermalConductivityUnit.BtuPerHourFootFahrenheit);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalConductivityUnit.BtuPerSecondInchFahrenheit"/>
+        /// </summary>
+        public double BtusPerSecondInchFahrenheit => As(ThermalConductivityUnit.BtuPerSecondInchFahrenheit);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="ThermalConductivityUnit.WattPerMeterKelvin"/>
         /// </summary>
         public double WattsPerMeterKelvin => As(ThermalConductivityUnit.WattPerMeterKelvin);
@@ -99,6 +104,11 @@ namespace UnitsNet
         ///     Creates a <see cref="ThermalConductivity"/> from <see cref="ThermalConductivityUnit.BtuPerHourFootFahrenheit"/>.
         /// </summary>
         public static ThermalConductivity FromBtusPerHourFootFahrenheit(double btusperhourfootfahrenheit) => new ThermalConductivity(btusperhourfootfahrenheit, ThermalConductivityUnit.BtuPerHourFootFahrenheit);
+
+        /// <summary>
+        ///     Creates a <see cref="ThermalConductivity"/> from <see cref="ThermalConductivityUnit.BtuPerSecondInchFahrenheit"/>.
+        /// </summary>
+        public static ThermalConductivity FromBtusPerSecondInchFahrenheit(double btuspersecondinchfahrenheit) => new ThermalConductivity(btuspersecondinchfahrenheit, ThermalConductivityUnit.BtuPerSecondInchFahrenheit);
 
         /// <summary>
         ///     Creates a <see cref="ThermalConductivity"/> from <see cref="ThermalConductivityUnit.WattPerMeterKelvin"/>.
@@ -146,6 +156,7 @@ namespace UnitsNet
                     return Unit switch
                     {
                         ThermalConductivityUnit.BtuPerHourFootFahrenheit => _value * ((1055.05585262 / (0.3048 * 3600)) * 1.8),
+                        ThermalConductivityUnit.BtuPerSecondInchFahrenheit => _value * ((1055.05585262 / 2.54e-2) * 1.8),
                         ThermalConductivityUnit.WattPerMeterKelvin => _value,
                         _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
@@ -161,6 +172,7 @@ namespace UnitsNet
                     return unit switch
                     {
                         ThermalConductivityUnit.BtuPerHourFootFahrenheit => baseUnitValue / ((1055.05585262 / (0.3048 * 3600)) * 1.8),
+                        ThermalConductivityUnit.BtuPerSecondInchFahrenheit => baseUnitValue / ((1055.05585262 / 2.54e-2) * 1.8),
                         ThermalConductivityUnit.WattPerMeterKelvin => baseUnitValue,
                         _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
