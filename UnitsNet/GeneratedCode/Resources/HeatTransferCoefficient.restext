@@ -1,4 +1,5 @@
 BtusPerHourSquareFootDegreeFahrenheit=Btu/(h·ft²·°F),Btu/(ft²·h·°F),Btu/(hr·ft²·°F),Btu/(ft²·hr·°F)
+BtusPerSecondSquareInchDegreeFahrenheit=Btu/(s·in²·°F),Btu/(in²·s·°F),Btu/(hr·in²·°F),Btu/(in²·hr·°F)
 CaloriesPerHourSquareMeterDegreeCelsius=kcal/(h·m²·°C),kcal/(m²·h·°C),kcal/(hr·m²·°C),kcal/(m²·hr·°C)
 KilocaloriesPerHourSquareMeterDegreeCelsius=kkcal/(h·m²·°C),kkcal/(m²·h·°C),kkcal/(hr·m²·°C),kkcal/(m²·hr·°C)
 WattsPerSquareMeterCelsius=W/(m²·°C)

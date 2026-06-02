@@ -575,7 +575,8 @@
     "WattPerSquareMeterKelvin": 3,
     "BtuPerHourSquareFootDegreeFahrenheit": 11,
     "KilocaloriePerHourSquareMeterDegreeCelsius": 8,
-    "CaloriePerHourSquareMeterDegreeCelsius": 5
+    "CaloriePerHourSquareMeterDegreeCelsius": 5,
+    "BtuPerSecondSquareInchDegreeFahrenheit": 4
   },
   "Illuminance": {
     "Kilolux": 1,
@@ -1132,7 +1133,9 @@
     "WattPerCubicFoot": 41,
     "WattPerCubicInch": 42,
     "WattPerCubicMeter": 43,
-    "WattPerLiter": 44
+    "WattPerLiter": 44,
+    "BtuPerSecondCubicFoot": 47,
+    "BtuPerSecondCubicInch": 51
   },
   "PowerRatio": {
     "DecibelMilliwatt": 1,
@@ -1489,7 +1492,8 @@
   },
   "ThermalConductivity": {
     "BtuPerHourFootFahrenheit": 1,
-    "WattPerMeterKelvin": 2
+    "WattPerMeterKelvin": 2,
+    "BtuPerSecondInchFahrenheit": 6
   },
   "ThermalResistance": {
     "DegreeCelsiusPerWatt": 10,

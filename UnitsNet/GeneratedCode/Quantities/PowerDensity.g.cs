@@ -117,6 +117,8 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PowerDensityUnit}"/> representing the default unit mappings for PowerDensity.</returns>
             public static IEnumerable<UnitDefinition<PowerDensityUnit>> GetDefaultMappings()
             {
+                yield return new (PowerDensityUnit.BtuPerSecondCubicFoot, "BtuPerSecondCubicFoot", "BtusPerSecondCubicFoot", BaseUnits.Undefined);
+                yield return new (PowerDensityUnit.BtuPerSecondCubicInch, "BtuPerSecondCubicInch", "BtusPerSecondCubicInch", BaseUnits.Undefined);
                 yield return new (PowerDensityUnit.DecawattPerCubicFoot, "DecawattPerCubicFoot", "DecawattsPerCubicFoot", BaseUnits.Undefined);
                 yield return new (PowerDensityUnit.DecawattPerCubicInch, "DecawattPerCubicInch", "DecawattsPerCubicInch", BaseUnits.Undefined);
                 yield return new (PowerDensityUnit.DecawattPerCubicMeter, "DecawattPerCubicMeter", "DecawattsPerCubicMeter", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
@@ -265,6 +267,16 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Properties
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.BtuPerSecondCubicFoot"/>
+        /// </summary>
+        public double BtusPerSecondCubicFoot => As(PowerDensityUnit.BtuPerSecondCubicFoot);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.BtuPerSecondCubicInch"/>
+        /// </summary>
+        public double BtusPerSecondCubicInch => As(PowerDensityUnit.BtuPerSecondCubicInch);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PowerDensityUnit.DecawattPerCubicFoot"/>
@@ -497,6 +509,8 @@ namespace UnitsNet
         internal static void RegisterDefaultConversions(UnitConverter unitConverter)
         {
             // Register in unit converter: PowerDensityUnit -> BaseUnit
+            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.BtuPerSecondCubicFoot, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
+            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.BtuPerSecondCubicInch, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
             unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.DecawattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
             unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.DecawattPerCubicInch, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
             unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.DecawattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.WattPerCubicMeter));
@@ -545,6 +559,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> PowerDensityUnit
+            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.BtuPerSecondCubicFoot, quantity => quantity.ToUnit(PowerDensityUnit.BtuPerSecondCubicFoot));
+            unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.BtuPerSecondCubicInch, quantity => quantity.ToUnit(PowerDensityUnit.BtuPerSecondCubicInch));
             unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DecawattPerCubicFoot, quantity => quantity.ToUnit(PowerDensityUnit.DecawattPerCubicFoot));
             unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DecawattPerCubicInch, quantity => quantity.ToUnit(PowerDensityUnit.DecawattPerCubicInch));
             unitConverter.SetConversionFunction<PowerDensity>(PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DecawattPerCubicMeter, quantity => quantity.ToUnit(PowerDensityUnit.DecawattPerCubicMeter));
@@ -614,6 +630,22 @@ namespace UnitsNet
         #endregion
 
         #region Static Factory Methods
+
+        /// <summary>
+        ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.BtuPerSecondCubicFoot"/>.
+        /// </summary>
+        public static PowerDensity FromBtusPerSecondCubicFoot(double value)
+        {
+            return new PowerDensity(value, PowerDensityUnit.BtuPerSecondCubicFoot);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.BtuPerSecondCubicInch"/>.
+        /// </summary>
+        public static PowerDensity FromBtusPerSecondCubicInch(double value)
+        {
+            return new PowerDensity(value, PowerDensityUnit.BtuPerSecondCubicInch);
+        }
 
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.DecawattPerCubicFoot"/>.
@@ -1360,6 +1392,8 @@ namespace UnitsNet
             PowerDensity? convertedOrNull = (Unit, unit) switch
             {
                 // PowerDensityUnit -> BaseUnit
+                (PowerDensityUnit.BtuPerSecondCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity(_value * 1055.05585262 / (0.3048 * 0.3048 * 0.3048), PowerDensityUnit.WattPerCubicMeter),
+                (PowerDensityUnit.BtuPerSecondCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity(_value * 1055.05585262 / (2.54e-2 * 2.54e-2 * 2.54e-2), PowerDensityUnit.WattPerCubicMeter),
                 (PowerDensityUnit.DecawattPerCubicFoot, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 0.028316846592) * 1e1d, PowerDensityUnit.WattPerCubicMeter),
                 (PowerDensityUnit.DecawattPerCubicInch, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value / 1.6387064e-5) * 1e1d, PowerDensityUnit.WattPerCubicMeter),
                 (PowerDensityUnit.DecawattPerCubicMeter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity((_value) * 1e1d, PowerDensityUnit.WattPerCubicMeter),
@@ -1405,6 +1439,8 @@ namespace UnitsNet
                 (PowerDensityUnit.WattPerLiter, PowerDensityUnit.WattPerCubicMeter) => new PowerDensity(_value * 1.0e3, PowerDensityUnit.WattPerCubicMeter),
 
                 // BaseUnit -> PowerDensityUnit
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.BtuPerSecondCubicFoot) => new PowerDensity(_value / 1055.05585262 * (0.3048 * 0.3048 * 0.3048), PowerDensityUnit.BtuPerSecondCubicFoot),
+                (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.BtuPerSecondCubicInch) => new PowerDensity(_value / 1055.05585262 * (2.54e-2 * 2.54e-2 * 2.54e-2), PowerDensityUnit.BtuPerSecondCubicInch),
                 (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DecawattPerCubicFoot) => new PowerDensity((_value * 0.028316846592) / 1e1d, PowerDensityUnit.DecawattPerCubicFoot),
                 (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DecawattPerCubicInch) => new PowerDensity((_value * 1.6387064e-5) / 1e1d, PowerDensityUnit.DecawattPerCubicInch),
                 (PowerDensityUnit.WattPerCubicMeter, PowerDensityUnit.DecawattPerCubicMeter) => new PowerDensity((_value) / 1e1d, PowerDensityUnit.DecawattPerCubicMeter),
