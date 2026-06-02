@@ -575,7 +575,8 @@
     "WattPerSquareMeterKelvin": 3,
     "BtuPerHourSquareFootDegreeFahrenheit": 11,
     "KilocaloriePerHourSquareMeterDegreeCelsius": 8,
-    "CaloriePerHourSquareMeterDegreeCelsius": 5
+    "CaloriePerHourSquareMeterDegreeCelsius": 5,
+    "BtuPerSecondSquareInchDegreeFahrenheit": 4
   },
   "Illuminance": {
     "Kilolux": 1,
