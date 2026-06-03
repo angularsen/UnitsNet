@@ -70,6 +70,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ForceDividedBySpecificWeightEqualsVolume()
+        {
+            Volume volume = Force.FromNewtons(200) / SpecificWeight.FromNewtonsPerCubicMeter(50);
+            Assert.Equal(Volume.FromCubicMeters(4), volume);
+        }
+
+        [Fact]
+        public void ForceDividedByVolumeEqualsSpecificWeight()
+        {
+            SpecificWeight specificWeight = Force.FromNewtons(200) / Volume.FromCubicMeters(50);
+            Assert.Equal(SpecificWeight.FromNewtonsPerCubicMeter(4), specificWeight);
+        }
+
+        [Fact]
         public void MassByAccelerationEqualsForce()
         {
             Force force = Force.FromMassByAcceleration(Mass.FromKilograms(85), Acceleration.FromMetersPerSecondSquared(-4));

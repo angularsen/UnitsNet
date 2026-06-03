@@ -212,6 +212,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void PressureDividedByAccelerationEqualsAreaDensity()
+        {
+            var areaDensity = Pressure.FromPascals(20) / Acceleration.FromMetersPerSecondSquared(2);
+            Assert.Equal(AreaDensity.FromKilogramsPerSquareMeter(10), areaDensity);
+        }
+
+        [Fact]
+        public void PressureDividedByAreaDensityEqualsAcceleration()
+        {
+            var acceleration = Pressure.FromPascals(20) / AreaDensity.FromKilogramsPerSquareMeter(2);
+            Assert.Equal(Acceleration.FromMetersPerSecondSquared(10), acceleration);
+        }
+
+        [Fact]
         public void PressureDividedByLengthEqualsSpecificWeight()
         {
             var specificWeight = Pressure.FromPascals(20) / Length.FromMeters(2);

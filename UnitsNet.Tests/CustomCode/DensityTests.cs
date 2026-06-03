@@ -162,6 +162,13 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void DensityTimesLengthEqualsAreaDensity()
+        {
+            AreaDensity areaDensity = Density.FromKilogramsPerCubicMeter(10) * Length.FromMeters(2);
+            Assert.Equal(AreaDensity.FromKilogramsPerSquareMeter(20), areaDensity);
+        }
+
+        [Fact]
         public static void DensityTimesVolumeConcentrationEqualsMassConcentration()
         {
             MassConcentration massConcentration = Density.FromKilogramsPerCubicMeter(20) * VolumeConcentration.FromPercent(50);

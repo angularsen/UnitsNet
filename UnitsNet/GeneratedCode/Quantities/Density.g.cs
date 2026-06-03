@@ -43,6 +43,7 @@ namespace UnitsNet
         IArithmeticQuantity<Density, DensityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Density, Density, double>,
+        IMultiplyOperators<Density, Length, AreaDensity>,
         IMultiplyOperators<Density, KinematicViscosity, DynamicViscosity>,
         IMultiplyOperators<Density, Area, LinearDensity>,
         IMultiplyOperators<Density, Volume, Mass>,
@@ -1379,6 +1380,12 @@ namespace UnitsNet
         public SpecificVolume Inverse()
         {
             return SpecificVolume.FromCubicMetersPerKilogram(1 / KilogramsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="AreaDensity"/> from <see cref="Density"/> * <see cref="Length"/>.</summary>
+        public static AreaDensity operator *(Density density, Length length)
+        {
+            return AreaDensity.FromKilogramsPerSquareMeter(density.KilogramsPerCubicMeter * length.Meters);
         }
 
         /// <summary>Get <see cref="DynamicViscosity"/> from <see cref="Density"/> * <see cref="KinematicViscosity"/>.</summary>

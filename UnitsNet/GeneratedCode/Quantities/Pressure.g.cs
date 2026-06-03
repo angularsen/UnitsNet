@@ -40,6 +40,8 @@ namespace UnitsNet
         IArithmeticQuantity<Pressure, PressureUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Pressure, Pressure, double>,
+        IDivisionOperators<Pressure, AreaDensity, Acceleration>,
+        IDivisionOperators<Pressure, Acceleration, AreaDensity>,
         IDivisionOperators<Pressure, PressureChangeRate, Duration>,
         IDivisionOperators<Pressure, ReciprocalArea, Force>,
         IMultiplyOperators<Pressure, Area, Force>,
@@ -1245,6 +1247,18 @@ namespace UnitsNet
         #endregion
 
         #region Relational Operators
+
+        /// <summary>Get <see cref="Acceleration"/> from <see cref="Pressure"/> / <see cref="AreaDensity"/>.</summary>
+        public static Acceleration operator /(Pressure pressure, AreaDensity areaDensity)
+        {
+            return Acceleration.FromMetersPerSecondSquared(pressure.Pascals / areaDensity.KilogramsPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="AreaDensity"/> from <see cref="Pressure"/> / <see cref="Acceleration"/>.</summary>
+        public static AreaDensity operator /(Pressure pressure, Acceleration acceleration)
+        {
+            return AreaDensity.FromKilogramsPerSquareMeter(pressure.Pascals / acceleration.MetersPerSecondSquared);
+        }
 
         /// <summary>Get <see cref="Duration"/> from <see cref="Pressure"/> / <see cref="PressureChangeRate"/>.</summary>
         public static Duration operator /(Pressure pressure, PressureChangeRate pressureChangeRate)
