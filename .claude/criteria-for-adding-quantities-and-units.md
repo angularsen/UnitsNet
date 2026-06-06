@@ -1,6 +1,6 @@
 # Criteria for adding quantities and units
 
-Related wiki page: https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit#a-quantity-is-a-good-fit-to-add-if-it
+See also: [Docs/adding-a-new-unit.md](../Docs/adding-a-new-unit.md#great-but-before-you-start) for the full contributor guide.
 
 To avoid bloating the library, we want to ensure quantities and units are widely used and well defined.
 Avoid little used units that are obscure or too domain specific.
