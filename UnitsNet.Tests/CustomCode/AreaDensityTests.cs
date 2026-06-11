@@ -34,6 +34,10 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MilligramsPerSquareMeterInOneKilogramPerSquareMeter => 1000000;
 
+        protected override double PoundsPerSquareFootInOneKilogramPerSquareMeter => 1 / (0.45359237 / 0.09290304);
+
+        protected override double PoundsPerThousandSquareFeetInOneKilogramPerSquareMeter => 1000 / (0.45359237 / 0.09290304);
+
         [Fact]
         public void AreaDensityTimesAreaEqualsMass()
         {

@@ -93,6 +93,16 @@ namespace UnitsNet
         /// </summary>
         public double MilligramsPerSquareMeter => As(AreaDensityUnit.MilligramPerSquareMeter);
 
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.PoundPerSquareFoot"/>
+        /// </summary>
+        public double PoundsPerSquareFoot => As(AreaDensityUnit.PoundPerSquareFoot);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.PoundPerThousandSquareFeet"/>
+        /// </summary>
+        public double PoundsPerThousandSquareFeet => As(AreaDensityUnit.PoundPerThousandSquareFeet);
+
         #endregion
 
         #region Static Factory Methods
@@ -111,6 +121,16 @@ namespace UnitsNet
         ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.MilligramPerSquareMeter"/>.
         /// </summary>
         public static AreaDensity FromMilligramsPerSquareMeter(double milligramspersquaremeter) => new AreaDensity(milligramspersquaremeter, AreaDensityUnit.MilligramPerSquareMeter);
+
+        /// <summary>
+        ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.PoundPerSquareFoot"/>.
+        /// </summary>
+        public static AreaDensity FromPoundsPerSquareFoot(double poundspersquarefoot) => new AreaDensity(poundspersquarefoot, AreaDensityUnit.PoundPerSquareFoot);
+
+        /// <summary>
+        ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.PoundPerThousandSquareFeet"/>.
+        /// </summary>
+        public static AreaDensity FromPoundsPerThousandSquareFeet(double poundsperthousandsquarefeet) => new AreaDensity(poundsperthousandsquarefeet, AreaDensityUnit.PoundPerThousandSquareFeet);
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AreaDensityUnit" /> to <see cref="AreaDensity" />.
@@ -155,6 +175,8 @@ namespace UnitsNet
                         AreaDensityUnit.GramPerSquareMeter => _value / 1000,
                         AreaDensityUnit.KilogramPerSquareMeter => _value,
                         AreaDensityUnit.MilligramPerSquareMeter => _value / 1000000,
+                        AreaDensityUnit.PoundPerSquareFoot => _value * (0.45359237 / 0.09290304),
+                        AreaDensityUnit.PoundPerThousandSquareFeet => _value * (0.45359237 / 0.09290304) / 1000,
                         _ => throw new NotImplementedException($"Can't convert {Unit} to base units.")
                     };
                     }
@@ -171,6 +193,8 @@ namespace UnitsNet
                         AreaDensityUnit.GramPerSquareMeter => baseUnitValue * 1000,
                         AreaDensityUnit.KilogramPerSquareMeter => baseUnitValue,
                         AreaDensityUnit.MilligramPerSquareMeter => baseUnitValue * 1000000,
+                        AreaDensityUnit.PoundPerSquareFoot => baseUnitValue / (0.45359237 / 0.09290304),
+                        AreaDensityUnit.PoundPerThousandSquareFeet => baseUnitValue / (0.45359237 / 0.09290304) * 1000,
                         _ => throw new NotImplementedException($"Can't convert {Unit} to {unit}.")
                     };
                     }
