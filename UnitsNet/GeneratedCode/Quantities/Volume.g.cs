@@ -36,30 +36,22 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Volume :
-        IArithmeticQuantity<Volume, VolumeUnit>,
+    public readonly partial struct Volume : IQuantity<Volume, VolumeUnit>, ILinearQuantity<Volume>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Volume, Volume, double>,
-        IMultiplyOperators<Volume, Molarity, AmountOfSubstance>,
-        IMultiplyOperators<Volume, ReciprocalLength, Area>,
-        IDivisionOperators<Volume, Length, Area>,
-        IMultiplyOperators<Volume, Length, AreaMomentOfInertia>,
-        IDivisionOperators<Volume, VolumeFlow, Duration>,
-        IMultiplyOperators<Volume, EnergyDensity, Energy>,
-        IMultiplyOperators<Volume, ReciprocalArea, Length>,
-        IDivisionOperators<Volume, Area, Length>,
-        IMultiplyOperators<Volume, Density, Mass>,
-        IMultiplyOperators<Volume, MassConcentration, Mass>,
-        IDivisionOperators<Volume, SpecificVolume, Mass>,
-        IDivisionOperators<Volume, Mass, SpecificVolume>,
-        IDivisionOperators<Volume, Duration, VolumeFlow>,
-        IComparisonOperators<Volume, Volume, bool>,
-        IParsable<Volume>,
+        , IMultiplyOperators<Volume, Molarity, AmountOfSubstance>
+        , IMultiplyOperators<Volume, ReciprocalLength, Area>
+        , IDivisionOperators<Volume, Length, Area>
+        , IMultiplyOperators<Volume, Length, AreaMomentOfInertia>
+        , IDivisionOperators<Volume, VolumeFlow, Duration>
+        , IMultiplyOperators<Volume, EnergyDensity, Energy>
+        , IMultiplyOperators<Volume, ReciprocalArea, Length>
+        , IDivisionOperators<Volume, Area, Length>
+        , IMultiplyOperators<Volume, Density, Mass>
+        , IMultiplyOperators<Volume, MassConcentration, Mass>
+        , IDivisionOperators<Volume, SpecificVolume, Mass>
+        , IDivisionOperators<Volume, Mass, SpecificVolume>
+        , IDivisionOperators<Volume, Duration, VolumeFlow>
 #endif
-        IComparable,
-        IComparable<Volume>,
-        IEquatable<Volume>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

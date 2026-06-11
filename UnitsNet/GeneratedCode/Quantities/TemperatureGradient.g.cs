@@ -36,18 +36,10 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct TemperatureGradient :
-        IArithmeticQuantity<TemperatureGradient, TemperatureGradientUnit>,
+    public readonly partial struct TemperatureGradient : IQuantity<TemperatureGradient, TemperatureGradientUnit>, ILinearQuantity<TemperatureGradient>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<TemperatureGradient, TemperatureGradient, double>,
-        IMultiplyOperators<TemperatureGradient, Length, TemperatureDelta>,
-        IComparisonOperators<TemperatureGradient, TemperatureGradient, bool>,
-        IParsable<TemperatureGradient>,
+        , IMultiplyOperators<TemperatureGradient, Length, TemperatureDelta>
 #endif
-        IComparable,
-        IComparable<TemperatureGradient>,
-        IEquatable<TemperatureGradient>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

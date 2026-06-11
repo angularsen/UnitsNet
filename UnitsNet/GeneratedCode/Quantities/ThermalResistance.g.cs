@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct ThermalResistance :
-        IArithmeticQuantity<ThermalResistance, ThermalResistanceUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<ThermalResistance, ThermalResistance, double>,
-        IComparisonOperators<ThermalResistance, ThermalResistance, bool>,
-        IParsable<ThermalResistance>,
-#endif
-        IComparable,
-        IComparable<ThermalResistance>,
-        IEquatable<ThermalResistance>,
-        IFormattable
+    public readonly partial struct ThermalResistance : IQuantity<ThermalResistance, ThermalResistanceUnit>, ILinearQuantity<ThermalResistance>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

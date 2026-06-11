@@ -36,35 +36,27 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Length :
-        IArithmeticQuantity<Length, LengthUnit>,
+    public readonly partial struct Length : IQuantity<Length, LengthUnit>, ILinearQuantity<Length>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Length, Length, double>,
-        IMultiplyOperators<Length, Length, Area>,
-        IDivisionOperators<Length, ReciprocalLength, Area>,
-        IMultiplyOperators<Length, Volume, AreaMomentOfInertia>,
-        IDivisionOperators<Length, Speed, Duration>,
-        IMultiplyOperators<Length, ForcePerLength, Force>,
-        IMultiplyOperators<Length, Pressure, ForcePerLength>,
-        IMultiplyOperators<Length, Speed, KinematicViscosity>,
-        IMultiplyOperators<Length, LinearDensity, Mass>,
-        IMultiplyOperators<Length, SpecificWeight, Pressure>,
-        IDivisionOperators<Length, Volume, ReciprocalArea>,
-        IMultiplyOperators<Length, ReciprocalArea, ReciprocalLength>,
-        IDivisionOperators<Length, Area, ReciprocalLength>,
-        IMultiplyOperators<Length, RotationalStiffnessPerLength, RotationalStiffness>,
-        IDivisionOperators<Length, Duration, Speed>,
-        IMultiplyOperators<Length, TemperatureGradient, TemperatureDelta>,
-        IMultiplyOperators<Length, Force, Torque>,
-        IMultiplyOperators<Length, Area, Volume>,
-        IDivisionOperators<Length, ReciprocalArea, Volume>,
-        IComparisonOperators<Length, Length, bool>,
-        IParsable<Length>,
+        , IMultiplyOperators<Length, Length, Area>
+        , IDivisionOperators<Length, ReciprocalLength, Area>
+        , IMultiplyOperators<Length, Volume, AreaMomentOfInertia>
+        , IDivisionOperators<Length, Speed, Duration>
+        , IMultiplyOperators<Length, ForcePerLength, Force>
+        , IMultiplyOperators<Length, Pressure, ForcePerLength>
+        , IMultiplyOperators<Length, Speed, KinematicViscosity>
+        , IMultiplyOperators<Length, LinearDensity, Mass>
+        , IMultiplyOperators<Length, SpecificWeight, Pressure>
+        , IDivisionOperators<Length, Volume, ReciprocalArea>
+        , IMultiplyOperators<Length, ReciprocalArea, ReciprocalLength>
+        , IDivisionOperators<Length, Area, ReciprocalLength>
+        , IMultiplyOperators<Length, RotationalStiffnessPerLength, RotationalStiffness>
+        , IDivisionOperators<Length, Duration, Speed>
+        , IMultiplyOperators<Length, TemperatureGradient, TemperatureDelta>
+        , IMultiplyOperators<Length, Force, Torque>
+        , IMultiplyOperators<Length, Area, Volume>
+        , IDivisionOperators<Length, ReciprocalArea, Volume>
 #endif
-        IComparable,
-        IComparable<Length>,
-        IEquatable<Length>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

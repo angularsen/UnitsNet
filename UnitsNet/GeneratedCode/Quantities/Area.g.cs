@@ -36,33 +36,25 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Area :
-        IArithmeticQuantity<Area, AreaUnit>,
+    public readonly partial struct Area : IQuantity<Area, AreaUnit>, ILinearQuantity<Area>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Area, Area, double>,
-        IMultiplyOperators<Area, Pressure, Force>,
-        IMultiplyOperators<Area, SpecificWeight, ForcePerLength>,
-        IMultiplyOperators<Area, ReciprocalLength, Length>,
-        IDivisionOperators<Area, Length, Length>,
-        IMultiplyOperators<Area, Density, LinearDensity>,
-        IMultiplyOperators<Area, Illuminance, LuminousFlux>,
-        IMultiplyOperators<Area, Luminance, LuminousIntensity>,
-        IMultiplyOperators<Area, AreaDensity, Mass>,
-        IMultiplyOperators<Area, MassFlux, MassFlow>,
-        IMultiplyOperators<Area, HeatFlux, Power>,
-        IMultiplyOperators<Area, ReciprocalArea, Ratio>,
-        IDivisionOperators<Area, Volume, ReciprocalLength>,
-        IMultiplyOperators<Area, ForcePerLength, Torque>,
-        IMultiplyOperators<Area, Length, Volume>,
-        IDivisionOperators<Area, ReciprocalLength, Volume>,
-        IMultiplyOperators<Area, Speed, VolumeFlow>,
-        IComparisonOperators<Area, Area, bool>,
-        IParsable<Area>,
+        , IMultiplyOperators<Area, Pressure, Force>
+        , IMultiplyOperators<Area, SpecificWeight, ForcePerLength>
+        , IMultiplyOperators<Area, ReciprocalLength, Length>
+        , IDivisionOperators<Area, Length, Length>
+        , IMultiplyOperators<Area, Density, LinearDensity>
+        , IMultiplyOperators<Area, Illuminance, LuminousFlux>
+        , IMultiplyOperators<Area, Luminance, LuminousIntensity>
+        , IMultiplyOperators<Area, AreaDensity, Mass>
+        , IMultiplyOperators<Area, MassFlux, MassFlow>
+        , IMultiplyOperators<Area, HeatFlux, Power>
+        , IMultiplyOperators<Area, ReciprocalArea, Ratio>
+        , IDivisionOperators<Area, Volume, ReciprocalLength>
+        , IMultiplyOperators<Area, ForcePerLength, Torque>
+        , IMultiplyOperators<Area, Length, Volume>
+        , IDivisionOperators<Area, ReciprocalLength, Volume>
+        , IMultiplyOperators<Area, Speed, VolumeFlow>
 #endif
-        IComparable,
-        IComparable<Area>,
-        IEquatable<Area>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

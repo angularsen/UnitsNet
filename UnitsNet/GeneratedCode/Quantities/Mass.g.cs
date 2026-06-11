@@ -36,33 +36,25 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Mass :
-        IArithmeticQuantity<Mass, MassUnit>,
+    public readonly partial struct Mass : IQuantity<Mass, MassUnit>, ILinearQuantity<Mass>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Mass, Mass, double>,
-        IDivisionOperators<Mass, MolarMass, AmountOfSubstance>,
-        IDivisionOperators<Mass, AreaDensity, Area>,
-        IDivisionOperators<Mass, Area, AreaDensity>,
-        IDivisionOperators<Mass, Volume, Density>,
-        IDivisionOperators<Mass, MassFlow, Duration>,
-        IMultiplyOperators<Mass, SpecificEnergy, Energy>,
-        IMultiplyOperators<Mass, SpecificEntropy, Entropy>,
-        IMultiplyOperators<Mass, Acceleration, Force>,
-        IDivisionOperators<Mass, LinearDensity, Length>,
-        IDivisionOperators<Mass, Length, LinearDensity>,
-        IMultiplyOperators<Mass, MassFraction, Mass>,
-        IDivisionOperators<Mass, MassFraction, Mass>,
-        IDivisionOperators<Mass, Duration, MassFlow>,
-        IDivisionOperators<Mass, AmountOfSubstance, MolarMass>,
-        IMultiplyOperators<Mass, SpecificVolume, Volume>,
-        IDivisionOperators<Mass, Density, Volume>,
-        IComparisonOperators<Mass, Mass, bool>,
-        IParsable<Mass>,
+        , IDivisionOperators<Mass, MolarMass, AmountOfSubstance>
+        , IDivisionOperators<Mass, AreaDensity, Area>
+        , IDivisionOperators<Mass, Area, AreaDensity>
+        , IDivisionOperators<Mass, Volume, Density>
+        , IDivisionOperators<Mass, MassFlow, Duration>
+        , IMultiplyOperators<Mass, SpecificEnergy, Energy>
+        , IMultiplyOperators<Mass, SpecificEntropy, Entropy>
+        , IMultiplyOperators<Mass, Acceleration, Force>
+        , IDivisionOperators<Mass, LinearDensity, Length>
+        , IDivisionOperators<Mass, Length, LinearDensity>
+        , IMultiplyOperators<Mass, MassFraction, Mass>
+        , IDivisionOperators<Mass, MassFraction, Mass>
+        , IDivisionOperators<Mass, Duration, MassFlow>
+        , IDivisionOperators<Mass, AmountOfSubstance, MolarMass>
+        , IMultiplyOperators<Mass, SpecificVolume, Volume>
+        , IDivisionOperators<Mass, Density, Volume>
 #endif
-        IComparable,
-        IComparable<Mass>,
-        IEquatable<Mass>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

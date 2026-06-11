@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Scalar :
-        IArithmeticQuantity<Scalar, ScalarUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<Scalar, Scalar, double>,
-        IComparisonOperators<Scalar, Scalar, bool>,
-        IParsable<Scalar>,
-#endif
-        IComparable,
-        IComparable<Scalar>,
-        IEquatable<Scalar>,
-        IFormattable
+    public readonly partial struct Scalar : IQuantity<Scalar, ScalarUnit>, ILinearQuantity<Scalar>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

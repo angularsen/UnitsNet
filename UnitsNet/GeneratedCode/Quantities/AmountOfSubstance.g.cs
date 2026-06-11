@@ -36,23 +36,15 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct AmountOfSubstance :
-        IArithmeticQuantity<AmountOfSubstance, AmountOfSubstanceUnit>,
+    public readonly partial struct AmountOfSubstance : IQuantity<AmountOfSubstance, AmountOfSubstanceUnit>, ILinearQuantity<AmountOfSubstance>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<AmountOfSubstance, AmountOfSubstance, double>,
-        IDivisionOperators<AmountOfSubstance, MolarFlow, Duration>,
-        IMultiplyOperators<AmountOfSubstance, MolarEnergy, Energy>,
-        IMultiplyOperators<AmountOfSubstance, MolarMass, Mass>,
-        IDivisionOperators<AmountOfSubstance, Duration, MolarFlow>,
-        IDivisionOperators<AmountOfSubstance, Volume, Molarity>,
-        IDivisionOperators<AmountOfSubstance, Molarity, Volume>,
-        IComparisonOperators<AmountOfSubstance, AmountOfSubstance, bool>,
-        IParsable<AmountOfSubstance>,
+        , IDivisionOperators<AmountOfSubstance, MolarFlow, Duration>
+        , IMultiplyOperators<AmountOfSubstance, MolarEnergy, Energy>
+        , IMultiplyOperators<AmountOfSubstance, MolarMass, Mass>
+        , IDivisionOperators<AmountOfSubstance, Duration, MolarFlow>
+        , IDivisionOperators<AmountOfSubstance, Volume, Molarity>
+        , IDivisionOperators<AmountOfSubstance, Molarity, Volume>
 #endif
-        IComparable,
-        IComparable<AmountOfSubstance>,
-        IEquatable<AmountOfSubstance>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

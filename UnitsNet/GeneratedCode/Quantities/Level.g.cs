@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Level :
-        ILogarithmicQuantity<Level, LevelUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<Level, Level, double>,
-        IComparisonOperators<Level, Level, bool>,
-        IParsable<Level>,
-#endif
-        IComparable,
-        IComparable<Level>,
-        IEquatable<Level>,
-        IFormattable
+    public readonly partial struct Level : IQuantity<Level, LevelUnit>, ILogarithmicQuantity<Level>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

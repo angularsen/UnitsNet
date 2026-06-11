@@ -39,21 +39,13 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct SpecificWeight :
-        IArithmeticQuantity<SpecificWeight, SpecificWeightUnit>,
+    public readonly partial struct SpecificWeight : IQuantity<SpecificWeight, SpecificWeightUnit>, ILinearQuantity<SpecificWeight>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<SpecificWeight, SpecificWeight, double>,
-        IDivisionOperators<SpecificWeight, Density, Acceleration>,
-        IDivisionOperators<SpecificWeight, Acceleration, Density>,
-        IMultiplyOperators<SpecificWeight, Area, ForcePerLength>,
-        IMultiplyOperators<SpecificWeight, Length, Pressure>,
-        IComparisonOperators<SpecificWeight, SpecificWeight, bool>,
-        IParsable<SpecificWeight>,
+        , IDivisionOperators<SpecificWeight, Density, Acceleration>
+        , IDivisionOperators<SpecificWeight, Acceleration, Density>
+        , IMultiplyOperators<SpecificWeight, Area, ForcePerLength>
+        , IMultiplyOperators<SpecificWeight, Length, Pressure>
 #endif
-        IComparable,
-        IComparable<SpecificWeight>,
-        IEquatable<SpecificWeight>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

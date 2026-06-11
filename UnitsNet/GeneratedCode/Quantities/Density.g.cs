@@ -39,24 +39,16 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Density :
-        IArithmeticQuantity<Density, DensityUnit>,
+    public readonly partial struct Density : IQuantity<Density, DensityUnit>, ILinearQuantity<Density>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Density, Density, double>,
-        IMultiplyOperators<Density, KinematicViscosity, DynamicViscosity>,
-        IMultiplyOperators<Density, Area, LinearDensity>,
-        IMultiplyOperators<Density, Volume, Mass>,
-        IMultiplyOperators<Density, VolumeConcentration, MassConcentration>,
-        IMultiplyOperators<Density, VolumeFlow, MassFlow>,
-        IMultiplyOperators<Density, Speed, MassFlux>,
-        IMultiplyOperators<Density, Acceleration, SpecificWeight>,
-        IComparisonOperators<Density, Density, bool>,
-        IParsable<Density>,
+        , IMultiplyOperators<Density, KinematicViscosity, DynamicViscosity>
+        , IMultiplyOperators<Density, Area, LinearDensity>
+        , IMultiplyOperators<Density, Volume, Mass>
+        , IMultiplyOperators<Density, VolumeConcentration, MassConcentration>
+        , IMultiplyOperators<Density, VolumeFlow, MassFlow>
+        , IMultiplyOperators<Density, Speed, MassFlux>
+        , IMultiplyOperators<Density, Acceleration, SpecificWeight>
 #endif
-        IComparable,
-        IComparable<Density>,
-        IEquatable<Density>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

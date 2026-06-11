@@ -36,18 +36,10 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct CoefficientOfThermalExpansion :
-        IArithmeticQuantity<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>,
+    public readonly partial struct CoefficientOfThermalExpansion : IQuantity<CoefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit>, ILinearQuantity<CoefficientOfThermalExpansion>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<CoefficientOfThermalExpansion, CoefficientOfThermalExpansion, double>,
-        IMultiplyOperators<CoefficientOfThermalExpansion, TemperatureDelta, Ratio>,
-        IComparisonOperators<CoefficientOfThermalExpansion, CoefficientOfThermalExpansion, bool>,
-        IParsable<CoefficientOfThermalExpansion>,
+        , IMultiplyOperators<CoefficientOfThermalExpansion, TemperatureDelta, Ratio>
 #endif
-        IComparable,
-        IComparable<CoefficientOfThermalExpansion>,
-        IEquatable<CoefficientOfThermalExpansion>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

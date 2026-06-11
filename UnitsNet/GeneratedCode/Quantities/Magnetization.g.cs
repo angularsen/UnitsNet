@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Magnetization :
-        IArithmeticQuantity<Magnetization, MagnetizationUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<Magnetization, Magnetization, double>,
-        IComparisonOperators<Magnetization, Magnetization, bool>,
-        IParsable<Magnetization>,
-#endif
-        IComparable,
-        IComparable<Magnetization>,
-        IEquatable<Magnetization>,
-        IFormattable
+    public readonly partial struct Magnetization : IQuantity<Magnetization, MagnetizationUnit>, ILinearQuantity<Magnetization>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

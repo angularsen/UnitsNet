@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct FluidResistance :
-        IArithmeticQuantity<FluidResistance, FluidResistanceUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<FluidResistance, FluidResistance, double>,
-        IComparisonOperators<FluidResistance, FluidResistance, bool>,
-        IParsable<FluidResistance>,
-#endif
-        IComparable,
-        IComparable<FluidResistance>,
-        IEquatable<FluidResistance>,
-        IFormattable
+    public readonly partial struct FluidResistance : IQuantity<FluidResistance, FluidResistanceUnit>, ILinearQuantity<FluidResistance>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

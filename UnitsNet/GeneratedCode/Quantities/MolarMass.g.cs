@@ -36,20 +36,12 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct MolarMass :
-        IArithmeticQuantity<MolarMass, MolarMassUnit>,
+    public readonly partial struct MolarMass : IQuantity<MolarMass, MolarMassUnit>, ILinearQuantity<MolarMass>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<MolarMass, MolarMass, double>,
-        IMultiplyOperators<MolarMass, AmountOfSubstance, Mass>,
-        IMultiplyOperators<MolarMass, Molarity, MassConcentration>,
-        IMultiplyOperators<MolarMass, MolarFlow, MassFlow>,
-        IComparisonOperators<MolarMass, MolarMass, bool>,
-        IParsable<MolarMass>,
+        , IMultiplyOperators<MolarMass, AmountOfSubstance, Mass>
+        , IMultiplyOperators<MolarMass, Molarity, MassConcentration>
+        , IMultiplyOperators<MolarMass, MolarFlow, MassFlow>
 #endif
-        IComparable,
-        IComparable<MolarMass>,
-        IEquatable<MolarMass>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

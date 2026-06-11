@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct RelativeHumidity :
-        IArithmeticQuantity<RelativeHumidity, RelativeHumidityUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<RelativeHumidity, RelativeHumidity, double>,
-        IComparisonOperators<RelativeHumidity, RelativeHumidity, bool>,
-        IParsable<RelativeHumidity>,
-#endif
-        IComparable,
-        IComparable<RelativeHumidity>,
-        IEquatable<RelativeHumidity>,
-        IFormattable
+    public readonly partial struct RelativeHumidity : IQuantity<RelativeHumidity, RelativeHumidityUnit>, ILinearQuantity<RelativeHumidity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

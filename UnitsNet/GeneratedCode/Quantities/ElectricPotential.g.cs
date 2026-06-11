@@ -39,21 +39,13 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct ElectricPotential :
-        IArithmeticQuantity<ElectricPotential, ElectricPotentialUnit>,
+    public readonly partial struct ElectricPotential : IQuantity<ElectricPotential, ElectricPotentialUnit>, ILinearQuantity<ElectricPotential>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricPotential, ElectricPotential, double>,
-        IDivisionOperators<ElectricPotential, ElectricResistance, ElectricCurrent>,
-        IDivisionOperators<ElectricPotential, ElectricCurrent, ElectricResistance>,
-        IMultiplyOperators<ElectricPotential, ElectricCharge, Energy>,
-        IMultiplyOperators<ElectricPotential, ElectricCurrent, Power>,
-        IComparisonOperators<ElectricPotential, ElectricPotential, bool>,
-        IParsable<ElectricPotential>,
+        , IDivisionOperators<ElectricPotential, ElectricResistance, ElectricCurrent>
+        , IDivisionOperators<ElectricPotential, ElectricCurrent, ElectricResistance>
+        , IMultiplyOperators<ElectricPotential, ElectricCharge, Energy>
+        , IMultiplyOperators<ElectricPotential, ElectricCurrent, Power>
 #endif
-        IComparable,
-        IComparable<ElectricPotential>,
-        IEquatable<ElectricPotential>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

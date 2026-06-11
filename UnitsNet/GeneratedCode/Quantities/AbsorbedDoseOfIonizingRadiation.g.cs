@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct AbsorbedDoseOfIonizingRadiation :
-        IArithmeticQuantity<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiationUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiation, double>,
-        IComparisonOperators<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiation, bool>,
-        IParsable<AbsorbedDoseOfIonizingRadiation>,
-#endif
-        IComparable,
-        IComparable<AbsorbedDoseOfIonizingRadiation>,
-        IEquatable<AbsorbedDoseOfIonizingRadiation>,
-        IFormattable
+    public readonly partial struct AbsorbedDoseOfIonizingRadiation : IQuantity<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiationUnit>, ILinearQuantity<AbsorbedDoseOfIonizingRadiation>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

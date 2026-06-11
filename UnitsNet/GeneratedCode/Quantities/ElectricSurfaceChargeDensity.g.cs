@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct ElectricSurfaceChargeDensity :
-        IArithmeticQuantity<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensity, double>,
-        IComparisonOperators<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensity, bool>,
-        IParsable<ElectricSurfaceChargeDensity>,
-#endif
-        IComparable,
-        IComparable<ElectricSurfaceChargeDensity>,
-        IEquatable<ElectricSurfaceChargeDensity>,
-        IFormattable
+    public readonly partial struct ElectricSurfaceChargeDensity : IQuantity<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>, ILinearQuantity<ElectricSurfaceChargeDensity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

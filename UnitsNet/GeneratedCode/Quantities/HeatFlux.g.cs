@@ -36,18 +36,10 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct HeatFlux :
-        IArithmeticQuantity<HeatFlux, HeatFluxUnit>,
+    public readonly partial struct HeatFlux : IQuantity<HeatFlux, HeatFluxUnit>, ILinearQuantity<HeatFlux>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<HeatFlux, HeatFlux, double>,
-        IMultiplyOperators<HeatFlux, Area, Power>,
-        IComparisonOperators<HeatFlux, HeatFlux, bool>,
-        IParsable<HeatFlux>,
+        , IMultiplyOperators<HeatFlux, Area, Power>
 #endif
-        IComparable,
-        IComparable<HeatFlux>,
-        IEquatable<HeatFlux>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

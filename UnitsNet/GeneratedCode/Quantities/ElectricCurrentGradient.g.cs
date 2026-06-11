@@ -36,18 +36,10 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct ElectricCurrentGradient :
-        IArithmeticQuantity<ElectricCurrentGradient, ElectricCurrentGradientUnit>,
+    public readonly partial struct ElectricCurrentGradient : IQuantity<ElectricCurrentGradient, ElectricCurrentGradientUnit>, ILinearQuantity<ElectricCurrentGradient>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricCurrentGradient, ElectricCurrentGradient, double>,
-        IMultiplyOperators<ElectricCurrentGradient, Duration, ElectricCurrent>,
-        IComparisonOperators<ElectricCurrentGradient, ElectricCurrentGradient, bool>,
-        IParsable<ElectricCurrentGradient>,
+        , IMultiplyOperators<ElectricCurrentGradient, Duration, ElectricCurrent>
 #endif
-        IComparable,
-        IComparable<ElectricCurrentGradient>,
-        IEquatable<ElectricCurrentGradient>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

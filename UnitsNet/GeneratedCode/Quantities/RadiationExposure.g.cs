@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct RadiationExposure :
-        IArithmeticQuantity<RadiationExposure, RadiationExposureUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<RadiationExposure, RadiationExposure, double>,
-        IComparisonOperators<RadiationExposure, RadiationExposure, bool>,
-        IParsable<RadiationExposure>,
-#endif
-        IComparable,
-        IComparable<RadiationExposure>,
-        IEquatable<RadiationExposure>,
-        IFormattable
+    public readonly partial struct RadiationExposure : IQuantity<RadiationExposure, RadiationExposureUnit>, ILinearQuantity<RadiationExposure>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

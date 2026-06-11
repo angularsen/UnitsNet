@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Information :
-        IArithmeticQuantity<Information, InformationUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<Information, Information, double>,
-        IComparisonOperators<Information, Information, bool>,
-        IParsable<Information>,
-#endif
-        IComparable,
-        IComparable<Information>,
-        IEquatable<Information>,
-        IFormattable
+    public readonly partial struct Information : IQuantity<Information, InformationUnit>, ILinearQuantity<Information>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -39,20 +39,12 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct LinearDensity :
-        IArithmeticQuantity<LinearDensity, LinearDensityUnit>,
+    public readonly partial struct LinearDensity : IQuantity<LinearDensity, LinearDensityUnit>, ILinearQuantity<LinearDensity>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<LinearDensity, LinearDensity, double>,
-        IDivisionOperators<LinearDensity, Density, Area>,
-        IDivisionOperators<LinearDensity, Area, Density>,
-        IMultiplyOperators<LinearDensity, Length, Mass>,
-        IComparisonOperators<LinearDensity, LinearDensity, bool>,
-        IParsable<LinearDensity>,
+        , IDivisionOperators<LinearDensity, Density, Area>
+        , IDivisionOperators<LinearDensity, Area, Density>
+        , IMultiplyOperators<LinearDensity, Length, Mass>
 #endif
-        IComparable,
-        IComparable<LinearDensity>,
-        IEquatable<LinearDensity>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

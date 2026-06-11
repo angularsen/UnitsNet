@@ -36,18 +36,10 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct TemperatureChangeRate :
-        IArithmeticQuantity<TemperatureChangeRate, TemperatureChangeRateUnit>,
+    public readonly partial struct TemperatureChangeRate : IQuantity<TemperatureChangeRate, TemperatureChangeRateUnit>, ILinearQuantity<TemperatureChangeRate>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<TemperatureChangeRate, TemperatureChangeRate, double>,
-        IMultiplyOperators<TemperatureChangeRate, Duration, TemperatureDelta>,
-        IComparisonOperators<TemperatureChangeRate, TemperatureChangeRate, bool>,
-        IParsable<TemperatureChangeRate>,
+        , IMultiplyOperators<TemperatureChangeRate, Duration, TemperatureDelta>
 #endif
-        IComparable,
-        IComparable<TemperatureChangeRate>,
-        IEquatable<TemperatureChangeRate>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -39,22 +39,14 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct ReciprocalArea :
-        IArithmeticQuantity<ReciprocalArea, ReciprocalAreaUnit>,
+    public readonly partial struct ReciprocalArea : IQuantity<ReciprocalArea, ReciprocalAreaUnit>, ILinearQuantity<ReciprocalArea>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ReciprocalArea, ReciprocalArea, double>,
-        IMultiplyOperators<ReciprocalArea, Volume, Length>,
-        IMultiplyOperators<ReciprocalArea, Force, Pressure>,
-        IMultiplyOperators<ReciprocalArea, Area, Ratio>,
-        IMultiplyOperators<ReciprocalArea, Length, ReciprocalLength>,
-        IDivisionOperators<ReciprocalArea, ReciprocalLength, ReciprocalLength>,
-        IComparisonOperators<ReciprocalArea, ReciprocalArea, bool>,
-        IParsable<ReciprocalArea>,
+        , IMultiplyOperators<ReciprocalArea, Volume, Length>
+        , IMultiplyOperators<ReciprocalArea, Force, Pressure>
+        , IMultiplyOperators<ReciprocalArea, Area, Ratio>
+        , IMultiplyOperators<ReciprocalArea, Length, ReciprocalLength>
+        , IDivisionOperators<ReciprocalArea, ReciprocalLength, ReciprocalLength>
 #endif
-        IComparable,
-        IComparable<ReciprocalArea>,
-        IEquatable<ReciprocalArea>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

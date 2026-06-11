@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct ElectricField :
-        IArithmeticQuantity<ElectricField, ElectricFieldUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricField, ElectricField, double>,
-        IComparisonOperators<ElectricField, ElectricField, bool>,
-        IParsable<ElectricField>,
-#endif
-        IComparable,
-        IComparable<ElectricField>,
-        IEquatable<ElectricField>,
-        IFormattable
+    public readonly partial struct ElectricField : IQuantity<ElectricField, ElectricFieldUnit>, ILinearQuantity<ElectricField>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

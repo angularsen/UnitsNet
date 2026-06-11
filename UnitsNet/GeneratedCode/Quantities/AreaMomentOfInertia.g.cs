@@ -36,19 +36,11 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct AreaMomentOfInertia :
-        IArithmeticQuantity<AreaMomentOfInertia, AreaMomentOfInertiaUnit>,
+    public readonly partial struct AreaMomentOfInertia : IQuantity<AreaMomentOfInertia, AreaMomentOfInertiaUnit>, ILinearQuantity<AreaMomentOfInertia>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<AreaMomentOfInertia, AreaMomentOfInertia, double>,
-        IDivisionOperators<AreaMomentOfInertia, Volume, Length>,
-        IDivisionOperators<AreaMomentOfInertia, Length, Volume>,
-        IComparisonOperators<AreaMomentOfInertia, AreaMomentOfInertia, bool>,
-        IParsable<AreaMomentOfInertia>,
+        , IDivisionOperators<AreaMomentOfInertia, Volume, Length>
+        , IDivisionOperators<AreaMomentOfInertia, Length, Volume>
 #endif
-        IComparable,
-        IComparable<AreaMomentOfInertia>,
-        IEquatable<AreaMomentOfInertia>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

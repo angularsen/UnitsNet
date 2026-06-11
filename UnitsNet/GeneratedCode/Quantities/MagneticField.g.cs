@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct MagneticField :
-        IArithmeticQuantity<MagneticField, MagneticFieldUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<MagneticField, MagneticField, double>,
-        IComparisonOperators<MagneticField, MagneticField, bool>,
-        IParsable<MagneticField>,
-#endif
-        IComparable,
-        IComparable<MagneticField>,
-        IEquatable<MagneticField>,
-        IFormattable
+    public readonly partial struct MagneticField : IQuantity<MagneticField, MagneticFieldUnit>, ILinearQuantity<MagneticField>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct VolumePerLength :
-        IArithmeticQuantity<VolumePerLength, VolumePerLengthUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<VolumePerLength, VolumePerLength, double>,
-        IComparisonOperators<VolumePerLength, VolumePerLength, bool>,
-        IParsable<VolumePerLength>,
-#endif
-        IComparable,
-        IComparable<VolumePerLength>,
-        IEquatable<VolumePerLength>,
-        IFormattable
+    public readonly partial struct VolumePerLength : IQuantity<VolumePerLength, VolumePerLengthUnit>, ILinearQuantity<VolumePerLength>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

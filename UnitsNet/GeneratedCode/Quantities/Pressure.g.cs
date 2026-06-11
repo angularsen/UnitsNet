@@ -36,27 +36,19 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Pressure :
-        IArithmeticQuantity<Pressure, PressureUnit>,
+    public readonly partial struct Pressure : IQuantity<Pressure, PressureUnit>, ILinearQuantity<Pressure>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Pressure, Pressure, double>,
-        IDivisionOperators<Pressure, PressureChangeRate, Duration>,
-        IDivisionOperators<Pressure, ReciprocalArea, Force>,
-        IMultiplyOperators<Pressure, Area, Force>,
-        IMultiplyOperators<Pressure, Length, ForcePerLength>,
-        IDivisionOperators<Pressure, ReciprocalLength, ForcePerLength>,
-        IDivisionOperators<Pressure, SpecificWeight, Length>,
-        IDivisionOperators<Pressure, Duration, PressureChangeRate>,
-        IDivisionOperators<Pressure, Force, ReciprocalArea>,
-        IDivisionOperators<Pressure, ForcePerLength, ReciprocalLength>,
-        IDivisionOperators<Pressure, Length, SpecificWeight>,
-        IComparisonOperators<Pressure, Pressure, bool>,
-        IParsable<Pressure>,
+        , IDivisionOperators<Pressure, PressureChangeRate, Duration>
+        , IDivisionOperators<Pressure, ReciprocalArea, Force>
+        , IMultiplyOperators<Pressure, Area, Force>
+        , IMultiplyOperators<Pressure, Length, ForcePerLength>
+        , IDivisionOperators<Pressure, ReciprocalLength, ForcePerLength>
+        , IDivisionOperators<Pressure, SpecificWeight, Length>
+        , IDivisionOperators<Pressure, Duration, PressureChangeRate>
+        , IDivisionOperators<Pressure, Force, ReciprocalArea>
+        , IDivisionOperators<Pressure, ForcePerLength, ReciprocalLength>
+        , IDivisionOperators<Pressure, Length, SpecificWeight>
 #endif
-        IComparable,
-        IComparable<Pressure>,
-        IEquatable<Pressure>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

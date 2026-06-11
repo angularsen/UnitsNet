@@ -36,18 +36,10 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct ForceChangeRate :
-        IArithmeticQuantity<ForceChangeRate, ForceChangeRateUnit>,
+    public readonly partial struct ForceChangeRate : IQuantity<ForceChangeRate, ForceChangeRateUnit>, ILinearQuantity<ForceChangeRate>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ForceChangeRate, ForceChangeRate, double>,
-        IMultiplyOperators<ForceChangeRate, Duration, Force>,
-        IComparisonOperators<ForceChangeRate, ForceChangeRate, bool>,
-        IParsable<ForceChangeRate>,
+        , IMultiplyOperators<ForceChangeRate, Duration, Force>
 #endif
-        IComparable,
-        IComparable<ForceChangeRate>,
-        IEquatable<ForceChangeRate>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

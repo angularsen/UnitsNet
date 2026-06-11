@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct SpecificFuelConsumption :
-        IArithmeticQuantity<SpecificFuelConsumption, SpecificFuelConsumptionUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<SpecificFuelConsumption, SpecificFuelConsumption, double>,
-        IComparisonOperators<SpecificFuelConsumption, SpecificFuelConsumption, bool>,
-        IParsable<SpecificFuelConsumption>,
-#endif
-        IComparable,
-        IComparable<SpecificFuelConsumption>,
-        IEquatable<SpecificFuelConsumption>,
-        IFormattable
+    public readonly partial struct SpecificFuelConsumption : IQuantity<SpecificFuelConsumption, SpecificFuelConsumptionUnit>, ILinearQuantity<SpecificFuelConsumption>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

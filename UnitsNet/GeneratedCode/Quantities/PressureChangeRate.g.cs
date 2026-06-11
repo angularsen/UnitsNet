@@ -36,18 +36,10 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct PressureChangeRate :
-        IArithmeticQuantity<PressureChangeRate, PressureChangeRateUnit>,
+    public readonly partial struct PressureChangeRate : IQuantity<PressureChangeRate, PressureChangeRateUnit>, ILinearQuantity<PressureChangeRate>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<PressureChangeRate, PressureChangeRate, double>,
-        IMultiplyOperators<PressureChangeRate, Duration, Pressure>,
-        IComparisonOperators<PressureChangeRate, PressureChangeRate, bool>,
-        IParsable<PressureChangeRate>,
+        , IMultiplyOperators<PressureChangeRate, Duration, Pressure>
 #endif
-        IComparable,
-        IComparable<PressureChangeRate>,
-        IEquatable<PressureChangeRate>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

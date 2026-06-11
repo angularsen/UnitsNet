@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct ThermalConductivity :
-        IArithmeticQuantity<ThermalConductivity, ThermalConductivityUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<ThermalConductivity, ThermalConductivity, double>,
-        IComparisonOperators<ThermalConductivity, ThermalConductivity, bool>,
-        IParsable<ThermalConductivity>,
-#endif
-        IComparable,
-        IComparable<ThermalConductivity>,
-        IEquatable<ThermalConductivity>,
-        IFormattable
+    public readonly partial struct ThermalConductivity : IQuantity<ThermalConductivity, ThermalConductivityUnit>, ILinearQuantity<ThermalConductivity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

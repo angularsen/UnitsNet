@@ -39,23 +39,15 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct SpecificEnergy :
-        IArithmeticQuantity<SpecificEnergy, SpecificEnergyUnit>,
+    public readonly partial struct SpecificEnergy : IQuantity<SpecificEnergy, SpecificEnergyUnit>, ILinearQuantity<SpecificEnergy>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<SpecificEnergy, SpecificEnergy, double>,
-        IMultiplyOperators<SpecificEnergy, Mass, Energy>,
-        IMultiplyOperators<SpecificEnergy, MassFlow, Power>,
-        IDivisionOperators<SpecificEnergy, TemperatureDelta, SpecificEntropy>,
-        IDivisionOperators<SpecificEnergy, Speed, Speed>,
-        IDivisionOperators<SpecificEnergy, SpecificEntropy, TemperatureDelta>,
-        IMultiplyOperators<SpecificEnergy, BrakeSpecificFuelConsumption, double>,
-        IComparisonOperators<SpecificEnergy, SpecificEnergy, bool>,
-        IParsable<SpecificEnergy>,
+        , IMultiplyOperators<SpecificEnergy, Mass, Energy>
+        , IMultiplyOperators<SpecificEnergy, MassFlow, Power>
+        , IDivisionOperators<SpecificEnergy, TemperatureDelta, SpecificEntropy>
+        , IDivisionOperators<SpecificEnergy, Speed, Speed>
+        , IDivisionOperators<SpecificEnergy, SpecificEntropy, TemperatureDelta>
+        , IMultiplyOperators<SpecificEnergy, BrakeSpecificFuelConsumption, double>
 #endif
-        IComparable,
-        IComparable<SpecificEnergy>,
-        IEquatable<SpecificEnergy>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

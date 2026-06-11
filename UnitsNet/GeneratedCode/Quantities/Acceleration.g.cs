@@ -36,22 +36,14 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Acceleration :
-        IArithmeticQuantity<Acceleration, AccelerationUnit>,
+    public readonly partial struct Acceleration : IQuantity<Acceleration, AccelerationUnit>, ILinearQuantity<Acceleration>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Acceleration, Acceleration, double>,
-        IDivisionOperators<Acceleration, Jerk, Duration>,
-        IMultiplyOperators<Acceleration, Mass, Force>,
-        IDivisionOperators<Acceleration, Duration, Jerk>,
-        IMultiplyOperators<Acceleration, Density, SpecificWeight>,
-        IMultiplyOperators<Acceleration, Duration, Speed>,
-        IComparisonOperators<Acceleration, Acceleration, bool>,
-        IParsable<Acceleration>,
+        , IDivisionOperators<Acceleration, Jerk, Duration>
+        , IMultiplyOperators<Acceleration, Mass, Force>
+        , IDivisionOperators<Acceleration, Duration, Jerk>
+        , IMultiplyOperators<Acceleration, Density, SpecificWeight>
+        , IMultiplyOperators<Acceleration, Duration, Speed>
 #endif
-        IComparable,
-        IComparable<Acceleration>,
-        IEquatable<Acceleration>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

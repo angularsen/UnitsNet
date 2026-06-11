@@ -36,18 +36,10 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Frequency :
-        IArithmeticQuantity<Frequency, FrequencyUnit>,
+    public readonly partial struct Frequency : IQuantity<Frequency, FrequencyUnit>, ILinearQuantity<Frequency>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Frequency, Frequency, double>,
-        IMultiplyOperators<Frequency, Energy, Power>,
-        IComparisonOperators<Frequency, Frequency, bool>,
-        IParsable<Frequency>,
+        , IMultiplyOperators<Frequency, Energy, Power>
 #endif
-        IComparable,
-        IComparable<Frequency>,
-        IEquatable<Frequency>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -1,12 +1,14 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System.Numerics;
+
 namespace UnitsNet
 {
     /// <summary>
     ///     Represents a quantity.
     /// </summary>
-    public interface IQuantity : IFormattable
+    public interface IQuantity : IComparable, IFormattable
     {
         /// <summary>
         ///     Information about the quantity type, such as unit values and names.
@@ -129,8 +131,18 @@ namespace UnitsNet
     ///     methods, without having to include the unit type as additional generic parameter.
     /// </remarks>
     /// <typeparam name="TQuantity"></typeparam>
-    public interface IQuantityOfType<out TQuantity> : IQuantity
+    public interface IQuantityOfType<TQuantity> : IQuantity
+#if NET7_0_OR_GREATER
+        , IComparisonOperators<TQuantity, TQuantity, bool>
+        , IParsable<TQuantity>
+#endif
+        , IComparable<TQuantity>
+        , IEquatable<TQuantity>
         where TQuantity : IQuantity
+#if NET7_0_OR_GREATER
+        , IComparisonOperators<TQuantity, TQuantity, bool>
+        , IParsable<TQuantity>
+#endif
     {
 #if NET
         /// <summary>

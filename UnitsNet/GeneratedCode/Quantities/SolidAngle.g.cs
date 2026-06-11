@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct SolidAngle :
-        IArithmeticQuantity<SolidAngle, SolidAngleUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<SolidAngle, SolidAngle, double>,
-        IComparisonOperators<SolidAngle, SolidAngle, bool>,
-        IParsable<SolidAngle>,
-#endif
-        IComparable,
-        IComparable<SolidAngle>,
-        IEquatable<SolidAngle>,
-        IFormattable
+    public readonly partial struct SolidAngle : IQuantity<SolidAngle, SolidAngleUnit>, ILinearQuantity<SolidAngle>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

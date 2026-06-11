@@ -39,19 +39,11 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct VolumeConcentration :
-        IArithmeticQuantity<VolumeConcentration, VolumeConcentrationUnit>,
+    public readonly partial struct VolumeConcentration : IQuantity<VolumeConcentration, VolumeConcentrationUnit>, ILinearQuantity<VolumeConcentration>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<VolumeConcentration, VolumeConcentration, double>,
-        IMultiplyOperators<VolumeConcentration, Density, MassConcentration>,
-        IMultiplyOperators<VolumeConcentration, Molarity, Molarity>,
-        IComparisonOperators<VolumeConcentration, VolumeConcentration, bool>,
-        IParsable<VolumeConcentration>,
+        , IMultiplyOperators<VolumeConcentration, Density, MassConcentration>
+        , IMultiplyOperators<VolumeConcentration, Molarity, Molarity>
 #endif
-        IComparable,
-        IComparable<VolumeConcentration>,
-        IEquatable<VolumeConcentration>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct StandardVolumeFlow :
-        IArithmeticQuantity<StandardVolumeFlow, StandardVolumeFlowUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<StandardVolumeFlow, StandardVolumeFlow, double>,
-        IComparisonOperators<StandardVolumeFlow, StandardVolumeFlow, bool>,
-        IParsable<StandardVolumeFlow>,
-#endif
-        IComparable,
-        IComparable<StandardVolumeFlow>,
-        IEquatable<StandardVolumeFlow>,
-        IFormattable
+    public readonly partial struct StandardVolumeFlow : IQuantity<StandardVolumeFlow, StandardVolumeFlowUnit>, ILinearQuantity<StandardVolumeFlow>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

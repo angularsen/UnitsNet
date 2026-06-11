@@ -36,20 +36,12 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct MassFlux :
-        IArithmeticQuantity<MassFlux, MassFluxUnit>,
+    public readonly partial struct MassFlux : IQuantity<MassFlux, MassFluxUnit>, ILinearQuantity<MassFlux>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<MassFlux, MassFlux, double>,
-        IDivisionOperators<MassFlux, Speed, Density>,
-        IMultiplyOperators<MassFlux, Area, MassFlow>,
-        IDivisionOperators<MassFlux, Density, Speed>,
-        IComparisonOperators<MassFlux, MassFlux, bool>,
-        IParsable<MassFlux>,
+        , IDivisionOperators<MassFlux, Speed, Density>
+        , IMultiplyOperators<MassFlux, Area, MassFlow>
+        , IDivisionOperators<MassFlux, Density, Speed>
 #endif
-        IComparable,
-        IComparable<MassFlux>,
-        IEquatable<MassFlux>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

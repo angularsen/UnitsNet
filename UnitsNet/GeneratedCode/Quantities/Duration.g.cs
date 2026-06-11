@@ -36,32 +36,24 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Duration :
-        IArithmeticQuantity<Duration, DurationUnit>,
+    public readonly partial struct Duration : IQuantity<Duration, DurationUnit>, ILinearQuantity<Duration>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Duration, Duration, double>,
-        IMultiplyOperators<Duration, Jerk, Acceleration>,
-        IMultiplyOperators<Duration, MolarFlow, AmountOfSubstance>,
-        IMultiplyOperators<Duration, RotationalSpeed, Angle>,
-        IMultiplyOperators<Duration, KinematicViscosity, Area>,
-        IMultiplyOperators<Duration, ElectricCurrent, ElectricCharge>,
-        IMultiplyOperators<Duration, ElectricCurrentGradient, ElectricCurrent>,
-        IMultiplyOperators<Duration, Power, Energy>,
-        IMultiplyOperators<Duration, ForceChangeRate, Force>,
-        IMultiplyOperators<Duration, Speed, Length>,
-        IMultiplyOperators<Duration, MassFlow, Mass>,
-        IMultiplyOperators<Duration, PressureChangeRate, Pressure>,
-        IMultiplyOperators<Duration, RadiationEquivalentDoseRate, RadiationEquivalentDose>,
-        IMultiplyOperators<Duration, Acceleration, Speed>,
-        IMultiplyOperators<Duration, TemperatureChangeRate, TemperatureDelta>,
-        IMultiplyOperators<Duration, VolumeFlow, Volume>,
-        IComparisonOperators<Duration, Duration, bool>,
-        IParsable<Duration>,
+        , IMultiplyOperators<Duration, Jerk, Acceleration>
+        , IMultiplyOperators<Duration, MolarFlow, AmountOfSubstance>
+        , IMultiplyOperators<Duration, RotationalSpeed, Angle>
+        , IMultiplyOperators<Duration, KinematicViscosity, Area>
+        , IMultiplyOperators<Duration, ElectricCurrent, ElectricCharge>
+        , IMultiplyOperators<Duration, ElectricCurrentGradient, ElectricCurrent>
+        , IMultiplyOperators<Duration, Power, Energy>
+        , IMultiplyOperators<Duration, ForceChangeRate, Force>
+        , IMultiplyOperators<Duration, Speed, Length>
+        , IMultiplyOperators<Duration, MassFlow, Mass>
+        , IMultiplyOperators<Duration, PressureChangeRate, Pressure>
+        , IMultiplyOperators<Duration, RadiationEquivalentDoseRate, RadiationEquivalentDose>
+        , IMultiplyOperators<Duration, Acceleration, Speed>
+        , IMultiplyOperators<Duration, TemperatureChangeRate, TemperatureDelta>
+        , IMultiplyOperators<Duration, VolumeFlow, Volume>
 #endif
-        IComparable,
-        IComparable<Duration>,
-        IEquatable<Duration>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

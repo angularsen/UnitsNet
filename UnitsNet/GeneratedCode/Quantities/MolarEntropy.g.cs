@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct MolarEntropy :
-        IArithmeticQuantity<MolarEntropy, MolarEntropyUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<MolarEntropy, MolarEntropy, double>,
-        IComparisonOperators<MolarEntropy, MolarEntropy, bool>,
-        IParsable<MolarEntropy>,
-#endif
-        IComparable,
-        IComparable<MolarEntropy>,
-        IEquatable<MolarEntropy>,
-        IFormattable
+    public readonly partial struct MolarEntropy : IQuantity<MolarEntropy, MolarEntropyUnit>, ILinearQuantity<MolarEntropy>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

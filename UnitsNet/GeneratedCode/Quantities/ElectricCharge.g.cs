@@ -39,20 +39,12 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct ElectricCharge :
-        IArithmeticQuantity<ElectricCharge, ElectricChargeUnit>,
+    public readonly partial struct ElectricCharge : IQuantity<ElectricCharge, ElectricChargeUnit>, ILinearQuantity<ElectricCharge>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricCharge, ElectricCharge, double>,
-        IDivisionOperators<ElectricCharge, ElectricCurrent, Duration>,
-        IDivisionOperators<ElectricCharge, Duration, ElectricCurrent>,
-        IMultiplyOperators<ElectricCharge, ElectricPotential, Energy>,
-        IComparisonOperators<ElectricCharge, ElectricCharge, bool>,
-        IParsable<ElectricCharge>,
+        , IDivisionOperators<ElectricCharge, ElectricCurrent, Duration>
+        , IDivisionOperators<ElectricCharge, Duration, ElectricCurrent>
+        , IMultiplyOperators<ElectricCharge, ElectricPotential, Energy>
 #endif
-        IComparable,
-        IComparable<ElectricCharge>,
-        IEquatable<ElectricCharge>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

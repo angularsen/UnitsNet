@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct VitaminA :
-        IArithmeticQuantity<VitaminA, VitaminAUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<VitaminA, VitaminA, double>,
-        IComparisonOperators<VitaminA, VitaminA, bool>,
-        IParsable<VitaminA>,
-#endif
-        IComparable,
-        IComparable<VitaminA>,
-        IEquatable<VitaminA>,
-        IFormattable
+    public readonly partial struct VitaminA : IQuantity<VitaminA, VitaminAUnit>, ILinearQuantity<VitaminA>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct LinearPowerDensity :
-        IArithmeticQuantity<LinearPowerDensity, LinearPowerDensityUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<LinearPowerDensity, LinearPowerDensity, double>,
-        IComparisonOperators<LinearPowerDensity, LinearPowerDensity, bool>,
-        IParsable<LinearPowerDensity>,
-#endif
-        IComparable,
-        IComparable<LinearPowerDensity>,
-        IEquatable<LinearPowerDensity>,
-        IFormattable
+    public readonly partial struct LinearPowerDensity : IQuantity<LinearPowerDensity, LinearPowerDensityUnit>, ILinearQuantity<LinearPowerDensity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

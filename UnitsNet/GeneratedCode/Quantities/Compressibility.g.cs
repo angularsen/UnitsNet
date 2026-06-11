@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Compressibility :
-        IArithmeticQuantity<Compressibility, CompressibilityUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<Compressibility, Compressibility, double>,
-        IComparisonOperators<Compressibility, Compressibility, bool>,
-        IParsable<Compressibility>,
-#endif
-        IComparable,
-        IComparable<Compressibility>,
-        IEquatable<Compressibility>,
-        IFormattable
+    public readonly partial struct Compressibility : IQuantity<Compressibility, CompressibilityUnit>, ILinearQuantity<Compressibility>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -36,18 +36,10 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct EnergyDensity :
-        IArithmeticQuantity<EnergyDensity, EnergyDensityUnit>,
+    public readonly partial struct EnergyDensity : IQuantity<EnergyDensity, EnergyDensityUnit>, ILinearQuantity<EnergyDensity>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<EnergyDensity, EnergyDensity, double>,
-        IMultiplyOperators<EnergyDensity, Volume, Energy>,
-        IComparisonOperators<EnergyDensity, EnergyDensity, bool>,
-        IParsable<EnergyDensity>,
+        , IMultiplyOperators<EnergyDensity, Volume, Energy>
 #endif
-        IComparable,
-        IComparable<EnergyDensity>,
-        IEquatable<EnergyDensity>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

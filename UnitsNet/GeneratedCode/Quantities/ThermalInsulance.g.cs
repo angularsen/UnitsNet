@@ -36,17 +36,7 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct ThermalInsulance :
-        IArithmeticQuantity<ThermalInsulance, ThermalInsulanceUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<ThermalInsulance, ThermalInsulance, double>,
-        IComparisonOperators<ThermalInsulance, ThermalInsulance, bool>,
-        IParsable<ThermalInsulance>,
-#endif
-        IComparable,
-        IComparable<ThermalInsulance>,
-        IEquatable<ThermalInsulance>,
-        IFormattable
+    public readonly partial struct ThermalInsulance : IQuantity<ThermalInsulance, ThermalInsulanceUnit>, ILinearQuantity<ThermalInsulance>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

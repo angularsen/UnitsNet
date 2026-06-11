@@ -36,20 +36,12 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Angle :
-        IArithmeticQuantity<Angle, AngleUnit>,
+    public readonly partial struct Angle : IQuantity<Angle, AngleUnit>, ILinearQuantity<Angle>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<Angle, Angle, double>,
-        IDivisionOperators<Angle, RotationalSpeed, Duration>,
-        IDivisionOperators<Angle, Duration, RotationalSpeed>,
-        IMultiplyOperators<Angle, RotationalStiffness, Torque>,
-        IComparisonOperators<Angle, Angle, bool>,
-        IParsable<Angle>,
+        , IDivisionOperators<Angle, RotationalSpeed, Duration>
+        , IDivisionOperators<Angle, Duration, RotationalSpeed>
+        , IMultiplyOperators<Angle, RotationalStiffness, Torque>
 #endif
-        IComparable,
-        IComparable<Angle>,
-        IEquatable<Angle>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

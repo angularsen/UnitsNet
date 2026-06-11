@@ -39,17 +39,7 @@ namespace UnitsNet
     /// </remarks>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct Permittivity :
-        IArithmeticQuantity<Permittivity, PermittivityUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<Permittivity, Permittivity, double>,
-        IComparisonOperators<Permittivity, Permittivity, bool>,
-        IParsable<Permittivity>,
-#endif
-        IComparable,
-        IComparable<Permittivity>,
-        IEquatable<Permittivity>,
-        IFormattable
+    public readonly partial struct Permittivity : IQuantity<Permittivity, PermittivityUnit>, ILinearQuantity<Permittivity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

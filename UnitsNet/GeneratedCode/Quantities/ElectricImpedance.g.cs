@@ -40,17 +40,7 @@ namespace UnitsNet
     [Obsolete("Impedance is a complex number, which is not currently supported by UnitsNet. Please use either ElectricResistance or ElectricReactance instead.")]
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct ElectricImpedance :
-        IArithmeticQuantity<ElectricImpedance, ElectricImpedanceUnit>,
-#if NET7_0_OR_GREATER
-        IDivisionOperators<ElectricImpedance, ElectricImpedance, double>,
-        IComparisonOperators<ElectricImpedance, ElectricImpedance, bool>,
-        IParsable<ElectricImpedance>,
-#endif
-        IComparable,
-        IComparable<ElectricImpedance>,
-        IEquatable<ElectricImpedance>,
-        IFormattable
+    public readonly partial struct ElectricImpedance : IQuantity<ElectricImpedance, ElectricImpedanceUnit>, ILinearQuantity<ElectricImpedance>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -36,18 +36,10 @@ namespace UnitsNet
     /// </summary>
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
-    public readonly partial struct AreaDensity :
-        IArithmeticQuantity<AreaDensity, AreaDensityUnit>,
+    public readonly partial struct AreaDensity : IQuantity<AreaDensity, AreaDensityUnit>, ILinearQuantity<AreaDensity>
 #if NET7_0_OR_GREATER
-        IDivisionOperators<AreaDensity, AreaDensity, double>,
-        IMultiplyOperators<AreaDensity, Area, Mass>,
-        IComparisonOperators<AreaDensity, AreaDensity, bool>,
-        IParsable<AreaDensity>,
+        , IMultiplyOperators<AreaDensity, Area, Mass>
 #endif
-        IComparable,
-        IComparable<AreaDensity>,
-        IEquatable<AreaDensity>,
-        IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
