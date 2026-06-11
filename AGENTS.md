@@ -10,7 +10,6 @@ UnitsNet is a .NET library that provides strongly-typed physical units and quant
 
 ### Build and Test
 - **Build project**: `build.bat` or `dotnet build UnitsNet.slnx`
-- **Build all targets** (including nanoFramework): `build-all-targets.bat`
 - **Run tests**: `test.bat` or `dotnet test UnitsNet.slnx`
 - **Run single test**: `dotnet test UnitsNet.Tests --filter "FullyQualifiedName~TestClassName.TestMethodName"`
 - **Clean artifacts**: `clean.bat`
@@ -37,7 +36,6 @@ UnitsNet is a .NET library that provides strongly-typed physical units and quant
 - **Common/UnitDefinitions/**: 131 JSON files defining physical quantities
 - **UnitsNet.NumberExtensions/**: Extension methods for numeric types
 - **UnitsNet.Serialization.*/**: JSON.NET and System.Text.Json serialization support
-- **UnitsNet.NanoFramework/**: Support for embedded .NET nanoFramework
 
 ### Code Generation Process
 The project uses a sophisticated code generation system:
@@ -86,11 +84,6 @@ The project uses a sophisticated code generation system:
 - Tests accept error margin of 1E-5 for most units
 
 ## Special Considerations
-
-### .NET nanoFramework Support
-- Separate projects for nanoFramework compatibility
-- Use `build-all-targets.bat` to include nanoFramework builds
-- Limited feature set compared to full .NET
 
 ### Performance
 - Conversion functions are compiled to delegates for performance

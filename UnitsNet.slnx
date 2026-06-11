@@ -10,7 +10,6 @@
     <File Path=".gitattributes" />
     <File Path=".gitignore" />
     <File Path="azure-pipelines.yml" />
-    <File Path="build-all-targets.bat" />
     <File Path="build.bat" />
     <File Path="clean.bat" />
     <File Path="CODE_OF_CONDUCT.md" />
@@ -29,7 +28,6 @@
   </Folder>
   <Folder Name="/_Files/Build/">
     <File Path="Build/build-functions.psm1" />
-    <File Path="Build/build-pack-nano-nugets.psm1" />
     <File Path="Build/build.ps1" />
     <File Path="Build/bump-version-json.bat" />
     <File Path="Build/bump-version-json.sh" />
