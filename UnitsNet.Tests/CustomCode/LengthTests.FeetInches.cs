@@ -3,6 +3,8 @@
 
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
+using Microsoft.VisualStudio.TestPlatform.Common.Utilities;
 using Xunit;
 
 namespace UnitsNet.Tests
@@ -153,6 +155,34 @@ namespace UnitsNet.Tests
             var length = Length.FromInches(inch);
 
             Assert.Equal(expected, length.FeetInches.ToArchitecturalString(fractionDenominator));
+        }
+
+        [Theory]
+        [InlineData(11.9999, "1 ft 0 in")]
+        [InlineData(-11.9999, "-1 ft 0 in")]
+        [InlineData(23.98, "2 ft 0 in")]
+        [InlineData(-23.98, "-2 ft 0 in")]
+        [InlineData(13, "1 ft 1 in")]
+        [InlineData(-13, "-1 ft 1 in")]
+        [InlineData(38.563, "3 ft 3 in")]
+        [InlineData(-38.563, "-3 ft 3 in")]
+        [InlineData(50.2, "4 ft 2 in")]
+        [InlineData(-50.2, "-4 ft 2 in")]
+        [InlineData(-50.2, "-4 фут 2 дюйм", "ru-RU")]//ensure we are using alternate units
+        [InlineData(-50.2, "\u22124 ft 2 in", "nb-NO")]// nb-NO does not have alternate abbreviations defined in length.json but does use a different negative symbol
+        public static void FeetInches_ToStringFormatsCorrectly(double inch, string expected, string? cultureString = null)
+        {
+            var length = Length.FromInches(inch);
+            CultureInfo culture;
+            if (cultureString == null)
+            {
+                culture = CultureInfo.InvariantCulture;
+            }
+            else
+            {
+                culture = new CultureInfo(cultureString, useUserOverride: false);
+            }
+            Assert.Equal(expected, length.FeetInches.ToString(culture));
         }
     }
 }

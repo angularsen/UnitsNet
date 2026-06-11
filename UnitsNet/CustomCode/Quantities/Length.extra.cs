@@ -160,18 +160,36 @@ namespace UnitsNet
             var footUnit = Length.GetAbbreviation(LengthUnit.Foot, cultureInfo);
             var inchUnit = Length.GetAbbreviation(LengthUnit.Inch, cultureInfo);
 
+
             // Note that it isn't customary to use fractions - one wouldn't say "I am 5 feet and 4.5 inches".
             // So inches are rounded when converting from base units to feet/inches.
             // When we do this we check if we rounded inches to 12(InchesInOneFoot).
             // If it does feet/inches are fixed something like 4 ft 0 in is displayed instead of 3ft 12 in for things very close to 4 e.g. 3.9999 ft 
-            var feet = Feet;
-            var inches = Math.Round(Inches);
+            double feet;
+            double inches;
+            bool isNegative = Feet < 0 || Inches < 0;
+            if (isNegative)
+            {
+                feet = -Feet;
+                inches = Math.Round(-Inches);
+            }
+            else
+            {
+                feet = Feet;
+                inches = Math.Round(Inches);
+            }
+
             if (inches == Length.InchesInOneFoot)
             {
                 feet++;
                 inches = 0;
             }
 
+            if (isNegative)
+            {
+                //we re-negate feet here so the negative will be handled by the built in formatter
+                feet = -feet;
+            }
             return string.Format(cultureInfo, "{0:n0} {1} {2:n0} {3}", feet, footUnit, inches, inchUnit);
         }
 
