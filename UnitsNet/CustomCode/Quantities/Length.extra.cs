@@ -11,7 +11,7 @@ namespace UnitsNet
 {
     public partial struct Length
     {
-        private const double InchesInOneFoot = 12;
+        internal const double InchesInOneFoot = 12;
 
         /// <summary>
         ///     Converts the length to a customary feet/inches combination.
@@ -33,7 +33,7 @@ namespace UnitsNet
         /// </summary>
         public static Length FromFeetInches(double feet, double inches)
         {
-            return FromInches(InchesInOneFoot*feet + inches);
+            return FromInches(InchesInOneFoot * feet + inches);
         }
 
         /// <summary>
@@ -48,7 +48,8 @@ namespace UnitsNet
         /// <returns>Parsed length.</returns>
         public static Length ParseFeetInches(string str, IFormatProvider? formatProvider = null)
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            if (str == null)
+                throw new ArgumentNullException(nameof(str));
             if (!TryParseFeetInches(str, out Length result, formatProvider))
             {
                 // A bit lazy, but I didn't want to duplicate this edge case implementation just to get more narrow exception descriptions.
@@ -165,12 +166,12 @@ namespace UnitsNet
             // If it does feet/inches are fixed something like 4 ft 0 in is displayed instead of 3ft 12 in for things very close to 4 e.g. 3.9999 ft 
             var feet = Feet;
             var inches = Math.Round(Inches);
-            if (inches == InchesInOneFoot)
+            if (inches == Length.InchesInOneFoot)
             {
                 feet++;
                 inches = 0;
             }
-            
+
             return string.Format(cultureInfo, "{0:n0} {1} {2:n0} {3}", feet, footUnit, inches, inchUnit);
         }
 
@@ -199,10 +200,20 @@ namespace UnitsNet
             {
                 throw new ArgumentOutOfRangeException(nameof(fractionDenominator), "Denominator for fractional inch must be greater than zero.");
             }
-
             var feet = Feet;
-            var inchTrunc = (int)Math.Truncate(Inches);
-            var numerator = (int)Math.Round((Inches - inchTrunc) * fractionDenominator);
+            var inches = Inches;
+            //if negative value we record this and invert the values, at the end we add a negative sign as necessary, but all the calculations are done positive so rounding behavior is the same.
+            var isNegative = Feet < 0 || Inches < 0;
+            if (isNegative)
+            {
+                feet = -feet;
+                inches = -inches;
+            }
+
+
+            var inchTrunc = (int)Math.Truncate(inches);
+            var numerator = (int)Math.Round((inches - inchTrunc) * fractionDenominator);
+
 
             if (numerator == fractionDenominator)
             {
@@ -210,7 +221,7 @@ namespace UnitsNet
                 numerator = 0;
             }
 
-            if (inchTrunc == InchesInOneFoot)
+            if (inchTrunc == Length.InchesInOneFoot)
             {
                 feet++;
                 inchTrunc = 0;
@@ -255,7 +266,14 @@ namespace UnitsNet
                 return inchPart.ToString();
             }
 
-            return $"{feet}' - {inchPart}";
+            //add the sign to the beginning if negative
+            string? sign = null;
+            if (isNegative)
+            {
+                sign = "-";
+            }
+
+            return $"{sign}{feet}' - {inchPart}";
         }
     }
 }

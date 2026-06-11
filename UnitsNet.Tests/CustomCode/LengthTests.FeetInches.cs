@@ -20,7 +20,7 @@ namespace UnitsNet.Tests
         public void FeetInchesFrom()
         {
             Length meter = Length.FromFeetInches(2, 3);
-            double expectedMeters = 2/FeetInOneMeter + 3/InchesInOneMeter;
+            double expectedMeters = 2 / FeetInOneMeter + 3 / InchesInOneMeter;
             AssertEx.EqualTolerance(expectedMeters, meter.Meters, FeetTolerance);
         }
 
@@ -107,6 +107,52 @@ namespace UnitsNet.Tests
         {
             Assert.False(Length.TryParseFeetInches(str, out Length result, formatProvider));
             Assert.Equal(Length.Zero, result);
+        }
+
+        [Theory]
+        [InlineData(-11.9999, 0, -11.9999)]
+        [InlineData(-23.98, -1, -11.98)]
+        [InlineData(-13, -1, -1)]
+        [InlineData(-38.563, -3, -2.563)]
+
+        public static void NegativeFeetInchesIsAsExpected(double inch, double expectedFeet, double expectedInches)
+        {
+            var length = Length.FromInches(inch);
+
+            Assert.Equal(expectedFeet, length.FeetInches.Feet, tolerance: 0.000000000001d);
+            Assert.Equal(expectedInches, length.FeetInches.Inches, tolerance: 0.000000000001d);
+
+        }
+
+        [Theory]
+        [InlineData(1, -11, 0, 1)]
+        [InlineData(-2, 2, -1, -10)]
+        [InlineData(-1, 32, 1, 8)]
+
+        public static void MixedPositiveNegativeFeetInchesIsAsExpected(double feet, double inch, double expectedFeet, double expectedInches)
+        {
+            var length = Length.FromFeetInches(feet, inch);
+
+            Assert.Equal(expectedFeet, length.FeetInches.Feet);
+            Assert.Equal(expectedInches, length.FeetInches.Inches);
+
+        }
+
+        [Theory]
+        [InlineData(11.9999, 16, "1' - 0\"")]
+        [InlineData(-11.9999, 16, "-1' - 0\"")]
+        [InlineData(23.98, 32, "1' - 11 31/32\"")]
+        [InlineData(-23.98, 32, "-1' - 11 31/32\"")]
+        [InlineData(13, 32, "1' - 1\"")]
+        [InlineData(-13, 32, "-1' - 1\"")]
+        [InlineData(38.563, 32, "3' - 2 9/16\"")]
+        [InlineData(-38.563, 32, "-3' - 2 9/16\"")]
+
+        public static void NegativeToArchitecturalString_ReturnsFormatted(double inch, int fractionDenominator, string expected)
+        {
+            var length = Length.FromInches(inch);
+
+            Assert.Equal(expected, length.FeetInches.ToArchitecturalString(fractionDenominator));
         }
     }
 }

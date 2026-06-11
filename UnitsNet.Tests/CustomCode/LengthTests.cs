@@ -52,7 +52,7 @@ namespace UnitsNet.Tests
 
         protected override double ShacklesInOneMeter => 0.0364538;
 
-        protected override double NauticalMilesInOneMeter => 1.0/1852.0;
+        protected override double NauticalMilesInOneMeter => 1.0 / 1852.0;
 
         protected override double HandsInOneMeter => 9.8425196850393701;
 
@@ -240,6 +240,9 @@ namespace UnitsNet.Tests
             Assert.Equal(expected, inverseLength.InverseMeters);
         }
 
+
+
+
         [Theory]
         [InlineData(3, 2.563, 16, "3' - 2 9/16\"")]
         [InlineData(3, 2.563, 32, "3' - 2 9/16\"")]
@@ -253,6 +256,7 @@ namespace UnitsNet.Tests
         [InlineData(3, 2.6, 16, "3' - 2 5/8\"")]
         [InlineData(3, 2.6, 32, "3' - 2 19/32\"")]
         [InlineData(3, 2.6, 128, "3' - 2 77/128\"")]
+        [InlineData(3, 11.9988, 128, "4' - 0\"")]
         public static void ToArchitecturalString_ReturnsFormatted(double ft, double inch, int fractionDenominator, string expected)
         {
             var length = Length.FromFeetInches(ft, inch);
