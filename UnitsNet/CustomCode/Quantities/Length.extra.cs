@@ -284,14 +284,14 @@ namespace UnitsNet
                 return inchPart.ToString();
             }
 
-            //add the sign to the beginning if negative
-            string? sign = null;
+
             if (isNegative)
             {
-                sign = "-";
+                //re-negate feet so the output uses a culture correct negative sign.
+                feet = -feet;
             }
 
-            return $"{sign}{feet}' - {inchPart}";
+            return $"{feet}' - {inchPart}";
         }
     }
 }
