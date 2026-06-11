@@ -134,6 +134,13 @@ namespace UnitsNet.Tests
             Assert.Equal(mass, Mass.FromKilograms(6));
         }
 
+        [Fact]
+        public void VolumeTimesSpecificWeightEqualsForce()
+        {
+            Force force = Volume.FromCubicMeters(2) * SpecificWeight.FromNewtonsPerCubicMeter(3);
+            Assert.Equal(force, Force.FromNewtons(6));
+        }
+
         [Theory]
         [InlineData(20, 2, 10)]
         [InlineData(20, 80, 0.25)]

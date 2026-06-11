@@ -36,6 +36,13 @@ namespace UnitsNet.Tests
         protected override double MillistandardGravityInOneMeterPerSecondSquared => 101.9716212977928;
 
         [Fact]
+        public void AccelerationTimesAreaDensityEqualsPressure()
+        {
+            Pressure pressure = Acceleration.FromMetersPerSecondSquared(10) * AreaDensity.FromKilogramsPerSquareMeter(2);
+            Assert.Equal(Pressure.FromPascals(20), pressure);
+        }
+
+        [Fact]
         public void AccelerationTimesDensityEqualsSpecificWeight()
         {
             SpecificWeight specificWeight = Acceleration.FromMetersPerSecondSquared(10) * Density.FromKilogramsPerCubicMeter(2);
@@ -47,6 +54,13 @@ namespace UnitsNet.Tests
         {
             Speed speed = Acceleration.FromMetersPerSecondSquared(10) * Duration.FromSeconds(10);
             Assert.Equal(Speed.FromMetersPerSecond(100), speed);
+        }
+
+        [Fact]
+        public void AccelerationTimesLinearDensityEqualsForcePerLength()
+        {
+            ForcePerLength forcePerLength = Acceleration.FromMetersPerSecondSquared(10) * LinearDensity.FromKilogramsPerMeter(2);
+            Assert.Equal(ForcePerLength.FromNewtonsPerMeter(20), forcePerLength);
         }
     }
 }

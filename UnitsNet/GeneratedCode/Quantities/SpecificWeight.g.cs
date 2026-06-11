@@ -45,6 +45,7 @@ namespace UnitsNet
         IDivisionOperators<SpecificWeight, SpecificWeight, double>,
         IDivisionOperators<SpecificWeight, Density, Acceleration>,
         IDivisionOperators<SpecificWeight, Acceleration, Density>,
+        IMultiplyOperators<SpecificWeight, Volume, Force>,
         IMultiplyOperators<SpecificWeight, Area, ForcePerLength>,
         IMultiplyOperators<SpecificWeight, Length, Pressure>,
         IComparisonOperators<SpecificWeight, SpecificWeight, bool>,
@@ -757,6 +758,12 @@ namespace UnitsNet
         public static Density operator /(SpecificWeight specificWeight, Acceleration acceleration)
         {
             return Density.FromKilogramsPerCubicMeter(specificWeight.NewtonsPerCubicMeter / acceleration.MetersPerSecondSquared);
+        }
+
+        /// <summary>Get <see cref="Force"/> from <see cref="SpecificWeight"/> * <see cref="Volume"/>.</summary>
+        public static Force operator *(SpecificWeight specificWeight, Volume volume)
+        {
+            return Force.FromNewtons(specificWeight.NewtonsPerCubicMeter * volume.CubicMeters);
         }
 
         /// <summary>Get <see cref="ForcePerLength"/> from <see cref="SpecificWeight"/> * <see cref="Area"/>.</summary>

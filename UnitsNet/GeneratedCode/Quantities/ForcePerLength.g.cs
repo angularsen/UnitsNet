@@ -40,10 +40,12 @@ namespace UnitsNet
         IArithmeticQuantity<ForcePerLength, ForcePerLengthUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ForcePerLength, ForcePerLength, double>,
+        IDivisionOperators<ForcePerLength, LinearDensity, Acceleration>,
         IDivisionOperators<ForcePerLength, SpecificWeight, Area>,
         IMultiplyOperators<ForcePerLength, Length, Force>,
         IDivisionOperators<ForcePerLength, ReciprocalLength, Force>,
         IDivisionOperators<ForcePerLength, Pressure, Length>,
+        IDivisionOperators<ForcePerLength, Acceleration, LinearDensity>,
         IMultiplyOperators<ForcePerLength, ReciprocalLength, Pressure>,
         IDivisionOperators<ForcePerLength, Length, Pressure>,
         IDivisionOperators<ForcePerLength, Force, ReciprocalLength>,
@@ -1085,6 +1087,12 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Get <see cref="Acceleration"/> from <see cref="ForcePerLength"/> / <see cref="LinearDensity"/>.</summary>
+        public static Acceleration operator /(ForcePerLength forcePerLength, LinearDensity linearDensity)
+        {
+            return Acceleration.FromMetersPerSecondSquared(forcePerLength.NewtonsPerMeter / linearDensity.KilogramsPerMeter);
+        }
+
         /// <summary>Get <see cref="Area"/> from <see cref="ForcePerLength"/> / <see cref="SpecificWeight"/>.</summary>
         public static Area operator /(ForcePerLength forcePerLength, SpecificWeight specificWeight)
         {
@@ -1107,6 +1115,12 @@ namespace UnitsNet
         public static Length operator /(ForcePerLength forcePerLength, Pressure pressure)
         {
             return Length.FromMeters(forcePerLength.NewtonsPerMeter / pressure.NewtonsPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="LinearDensity"/> from <see cref="ForcePerLength"/> / <see cref="Acceleration"/>.</summary>
+        public static LinearDensity operator /(ForcePerLength forcePerLength, Acceleration acceleration)
+        {
+            return LinearDensity.FromKilogramsPerMeter(forcePerLength.NewtonsPerMeter / acceleration.MetersPerSecondSquared);
         }
 
         /// <summary>Get <see cref="Pressure"/> from <see cref="ForcePerLength"/> * <see cref="ReciprocalLength"/>.</summary>

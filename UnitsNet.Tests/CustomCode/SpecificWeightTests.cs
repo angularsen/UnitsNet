@@ -49,6 +49,13 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void SpecificWeightTimesVolumeEqualsForce()
+        {
+            Force force = SpecificWeight.FromNewtonsPerCubicMeter(10) * Volume.FromCubicMeters(2);
+            Assert.Equal(Force.FromNewtons(20), force);
+        }
+
+        [Fact]
         public void SpecificWeightDividedByDensityEqualsAcceleration()
         {
             Acceleration acceleration = SpecificWeight.FromNewtonsPerCubicMeter(40) / Density.FromKilogramsPerCubicMeter(4);
