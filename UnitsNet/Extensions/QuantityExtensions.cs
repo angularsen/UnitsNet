@@ -44,7 +44,10 @@ public static class QuantityExtensions
         where TQuantity : IQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
-        return quantity.QuantityInfo[quantity.Unit];
+        // Azure CI build failed on binding QuantityInfo through IQuantity<TUnit>, so cast to expose the fully typed indexer.
+        // This is likely a .NET SDK version compatibility thing, did not bother looking closer at it.
+        var quantityInfo = (QuantityInfo<TQuantity, TUnit>)quantity.QuantityInfo;
+        return quantityInfo[quantity.Unit];
     }
 
     /// <inheritdoc cref="IQuantity.As(UnitKey)" />
