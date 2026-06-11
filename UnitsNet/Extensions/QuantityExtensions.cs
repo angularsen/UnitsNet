@@ -12,6 +12,30 @@ namespace UnitsNet;
 public static class QuantityExtensions
 {
     /// <summary>
+    ///     Gets the <see cref="UnitsNet.QuantityInfo"/> for the given quantity instance, looked up via
+    ///     <see cref="UnitsNetSetup.Default"/>.
+    /// </summary>
+    /// <remarks>
+    ///     Use the static <c>TSelf.Info</c> directly when you have a typed quantity reference for the best performance.
+    ///     This extension is convenient when working with an <see cref="IQuantity"/> reference where the concrete
+    ///     type is not known at compile time.
+    /// </remarks>
+    /// <param name="quantity">The quantity instance.</param>
+    /// <returns>The <see cref="UnitsNet.QuantityInfo"/> registered in <see cref="UnitsNetSetup.Default"/> for the quantity's runtime type.</returns>
+    public static QuantityInfo GetQuantityInfo(this IQuantity quantity)
+    {
+        return UnitsNetSetup.Default.Quantities.GetQuantityInfo(quantity.GetType());
+    }
+
+    /// <inheritdoc cref="GetQuantityInfo(IQuantity)"/>
+    /// <typeparam name="TUnit">The unit enum type of the quantity.</typeparam>
+    public static QuantityInfo<TUnit> GetQuantityInfo<TUnit>(this IQuantity<TUnit> quantity)
+        where TUnit : struct, Enum
+    {
+        return (QuantityInfo<TUnit>)UnitsNetSetup.Default.Quantities.GetQuantityInfo(quantity.GetType());
+    }
+
+    /// <summary>
     ///     Gets the <see cref="UnitInfo"/> for the unit this quantity was constructed with.
     /// </summary>
     /// <remarks>
@@ -24,7 +48,7 @@ public static class QuantityExtensions
     /// <returns>The <see cref="UnitInfo"/> for the quantity's unit.</returns>
     public static UnitInfo GetUnitInfo(this IQuantity quantity)
     {
-        return quantity.QuantityInfo[quantity.UnitKey];
+        return quantity.GetQuantityInfo()[quantity.UnitKey];
     }
 
     /// <summary>
@@ -44,10 +68,14 @@ public static class QuantityExtensions
         where TQuantity : IQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
+#if NET
+        return TQuantity.Info[quantity.Unit];
+#else
         // Azure CI build failed on binding QuantityInfo through IQuantity<TUnit>, so cast to expose the fully typed indexer.
         // This is likely a .NET SDK version compatibility thing, did not bother looking closer at it.
         var quantityInfo = (QuantityInfo<TQuantity, TUnit>)quantity.QuantityInfo;
         return quantityInfo[quantity.Unit];
+#endif
     }
 
     /// <inheritdoc cref="IQuantity.As(UnitKey)" />
@@ -75,7 +103,11 @@ public static class QuantityExtensions
     public static double As<TQuantity>(this TQuantity quantity, UnitSystem unitSystem)
         where TQuantity : IQuantity
     {
+#if NET
+        return quantity.GetValue(quantity.GetQuantityInfo().GetDefaultUnit(unitSystem).UnitKey);
+#else
         return quantity.GetValue(quantity.QuantityInfo.GetDefaultUnit(unitSystem).UnitKey);
+#endif
     }
 
     /// <summary>
@@ -103,7 +135,7 @@ public static class QuantityExtensions
         where TQuantity : IQuantityOfType<TQuantity>
     {
 #if NET
-        QuantityInfo quantityInfo = quantity.QuantityInfo;
+        QuantityInfo quantityInfo = TQuantity.Info;
         UnitKey unitKey = quantityInfo.GetDefaultUnit(unitSystem).UnitKey;
         return TQuantity.Create(quantity.As(unitKey), unitKey);
 #else
@@ -280,6 +312,10 @@ public static class QuantityExtensions
             nbValues++;
         }
 
+#if NET
+        return TQuantity.From(sumOfValues / nbValues, unit);
+#else
         return firstQuantity.QuantityInfo.From(sumOfValues / nbValues, unit);
+#endif
     }
 }

@@ -162,7 +162,11 @@ public static class LinearQuantityExtensions
             resultValue += enumerator.Current!.GetValue(unitKey);
         }
 
+#if NET
+        return TQuantity.From(resultValue, unit);
+#else
         return firstQuantity.QuantityInfo.From(resultValue, unit);
+#endif
     }
 
     /// <summary>
