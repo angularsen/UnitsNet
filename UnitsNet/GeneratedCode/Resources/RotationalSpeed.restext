@@ -9,5 +9,6 @@ MilliradiansPerSecond=mrad/s
 NanodegreesPerSecond=n°/s,ndeg/s
 NanoradiansPerSecond=nrad/s
 RadiansPerSecond=rad/s
+MillirevolutionsPerMinute=mrpm,mr/min
 RevolutionsPerMinute=rpm,r/min
 RevolutionsPerSecond=r/s
