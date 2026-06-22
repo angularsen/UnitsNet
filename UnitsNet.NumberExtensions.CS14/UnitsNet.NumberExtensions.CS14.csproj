@@ -2,7 +2,7 @@
   <!-- NuGet properties -->
   <PropertyGroup>
     <PackageId>UnitsNet.NumberExtensions.CS14</PackageId>
-    <Version>6.0.0-pre101</Version>
+    <Version>6.0.0-pre102</Version>
     <Authors>Andreas Gullberg Larsen, Lu Li, Jon Suda</Authors>
     <Title>Units.NET NumberExtensions for C# 14</Title>
     <Description>C# 14 extension members for number types to create quantities using the new syntax, such as 5.Meters instead of Length.FromMeters(5). Requires C# 14 preview.</Description>
