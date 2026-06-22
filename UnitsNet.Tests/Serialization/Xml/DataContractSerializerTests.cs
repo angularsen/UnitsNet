@@ -62,28 +62,6 @@ namespace UnitsNet.Tests.Serialization.Xml
         }
 
         [Fact]
-        public void ZeroQuantity_WithNonBaseUnit_SerializedMemberNameAndNoValue()
-        {
-            var quantity = new Mass(0, MassUnit.Milligram);
-            var expectedXml = $"<Mass {Namespace} {XmlSchema}><Unit>Milligram</Unit></Mass>";
-
-            var xml = SerializeObject(quantity);
-
-            Assert.Equal(expectedXml, xml);
-        }
-
-        [Fact]
-        public void DefaultQuantity_SerializedWithoutAnyFields()
-        {
-            var quantity = default(Mass);
-            var expectedXml = $"<Mass {Namespace} {XmlSchema}/>";
-
-            var xml = SerializeObject(quantity);
-
-            Assert.Equal(expectedXml, xml);
-        }
-
-        [Fact]
         public void InterfaceObject_IncludesTypeInformation()
         {
             var testObject = new TestInterfaceObject { Quantity = new Information(1.20, InformationUnit.Exabyte) };

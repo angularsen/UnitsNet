@@ -51,13 +51,13 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Value", Order = 1, EmitDefaultValue = false)]
+        [DataMember(Name = "Value", Order = 1)]
         private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
         /// </summary>
-        [DataMember(Name = "Unit", Order = 2, EmitDefaultValue = false)]
+        [DataMember(Name = "Unit", Order = 2)]
         private readonly ForceChangeRateUnit? _unit;
 
         /// <summary>
