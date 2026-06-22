@@ -187,7 +187,11 @@ public static class LogarithmicQuantityExtensions
             sumInLinearSpace += enumerator.Current!.GetValue(unitKey).ToLinearSpace(logarithmicScalingFactor);
         }
 
+#if NET
+        return TQuantity.From(sumInLinearSpace.ToLogSpace(logarithmicScalingFactor, significantDigits), targetUnit);
+#else
         return firstQuantity.QuantityInfo.From(sumInLinearSpace.ToLogSpace(logarithmicScalingFactor, significantDigits), targetUnit);
+#endif
     }
 
     /// <summary>
@@ -331,7 +335,11 @@ public static class LogarithmicQuantityExtensions
         }
 
         var avgInLinearSpace = sumInLinearSpace / nbQuantities;
+#if NET
+        return TQuantity.From(avgInLinearSpace.ToLogSpace(logarithmicScalingFactor, significantDigits), unit);
+#else
         return firstQuantity.QuantityInfo.From(avgInLinearSpace.ToLogSpace(logarithmicScalingFactor, significantDigits), unit);
+#endif
     }
 
     /// <summary>
@@ -471,7 +479,11 @@ public static class LogarithmicQuantityExtensions
         }
 
         var geometricMean = QuantityValue.RootN(sumInLogSpace, nbQuantities, accuracy);
+#if NET
+        return TQuantity.From(geometricMean, unitKey.ToUnit<TUnit>());
+#else
         return firstQuantity.QuantityInfo.From(geometricMean, unitKey.ToUnit<TUnit>());
+#endif
     }
 
     /// <summary>

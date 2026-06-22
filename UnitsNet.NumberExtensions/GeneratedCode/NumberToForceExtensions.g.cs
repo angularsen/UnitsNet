@@ -54,6 +54,17 @@ namespace UnitsNet.NumberExtensions.NumberToForce
             => Force.FromDyne(value.ToQuantityValue());
 #endif
 
+        /// <inheritdoc cref="Force.FromGramsForce(QuantityValue)" />
+        public static Force GramsForce<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Force.FromGramsForce(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => Force.FromGramsForce(value.ToQuantityValue());
+#endif
+
         /// <inheritdoc cref="Force.FromKilogramsForce(QuantityValue)" />
         public static Force KilogramsForce<T>(this T value)
             where T : notnull

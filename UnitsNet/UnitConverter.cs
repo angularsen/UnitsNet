@@ -1,9 +1,6 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using UnitsNet.InternalHelpers;
@@ -137,7 +134,9 @@ public class UnitConverter
     public bool TryConvertTo<TQuantity>(TQuantity quantity, UnitKey toUnitKey, [NotNullWhen(true)] out IQuantity? convertedQuantity)
         where TQuantity : IQuantity
     {
+#pragma warning disable CS0618 // Type or member is obsolete
         QuantityInfo quantityInfo = quantity.QuantityInfo;
+#pragma warning restore CS0618 // Type or member is obsolete
         if (quantityInfo.UnitType == toUnitKey.UnitEnumType)
         {
             if (TryConvertValue(quantity.Value, quantity.UnitKey, toUnitKey, out QuantityValue convertedValue))
@@ -177,7 +176,12 @@ public class UnitConverter
     {
         if (TryConvertValue(quantity.Value, quantity.Unit, toUnit, out QuantityValue convertedValue))
         {
-            convertedQuantity = quantity.QuantityInfo.From(convertedValue, toUnit);
+#if NET
+            QuantityInfo<TQuantity, TUnit> quantityInfo = TQuantity.Info;
+#else
+            QuantityInfo<TQuantity, TUnit> quantityInfo = quantity.QuantityInfo;
+#endif
+            convertedQuantity = quantityInfo.From(convertedValue, toUnit);
             return true;
         }
 
@@ -508,7 +512,10 @@ public class UnitConverter
     public IQuantity ConvertTo<TQuantity>(TQuantity quantity, UnitKey toUnitKey)
         where TQuantity : IQuantity
     {
+#pragma warning disable CS0618 // Type or member is obsolete
+        // the alternative is to use Quantities.GetQuantityInfo(quantity.GetType());
         QuantityInfo quantityInfo = quantity.QuantityInfo;
+#pragma warning restore CS0618 // Type or member is obsolete
         if (quantityInfo.UnitType == toUnitKey.UnitEnumType)
         {
             QuantityValue convertedValue = ConvertValue(quantity.Value, quantity.UnitKey, toUnitKey);
@@ -547,7 +554,12 @@ public class UnitConverter
         where TUnit : struct, Enum
     {
         QuantityValue convertedValue = ConvertValue(quantity.Value, quantity.Unit, toUnit);
-        return quantity.QuantityInfo.From(convertedValue, toUnit);
+#if NET
+        QuantityInfo<TQuantity, TUnit> quantityInfo = TQuantity.Info;
+#else
+        QuantityInfo<TQuantity, TUnit> quantityInfo = quantity.QuantityInfo;
+#endif
+        return quantityInfo.From(convertedValue, toUnit);
     }
 
     /// <summary>

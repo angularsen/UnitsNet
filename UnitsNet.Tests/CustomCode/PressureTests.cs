@@ -109,6 +109,10 @@ namespace UnitsNet.Tests
 
         protected override double MillipascalsInOnePascal => 1e3;
 
+        protected override double MilligramsForcePerSquareFootInOnePascal => 9.4734736122936992615e3;
+
+        protected override double MilligramsForcePerSquareMeterInOnePascal => 1.0197162129779282259e5;
+
         [Fact]
         public void Absolute_WithAbsolutePressureReference_IsEqual()
         {

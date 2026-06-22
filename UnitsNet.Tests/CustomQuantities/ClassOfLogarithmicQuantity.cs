@@ -24,7 +24,7 @@ public enum ClassOfLogarithmicQuantityUnit
 [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
 public class ClassOfLogarithmicQuantity(QuantityValue value, ClassOfLogarithmicQuantityUnit unit) : ILogarithmicQuantity<ClassOfLogarithmicQuantity, ClassOfLogarithmicQuantityUnit>
 {
-    public static readonly QuantityInfo<ClassOfLogarithmicQuantity, ClassOfLogarithmicQuantityUnit> Info = new(
+    public static QuantityInfo<ClassOfLogarithmicQuantity, ClassOfLogarithmicQuantityUnit> Info { get; } = new(
         ClassOfLogarithmicQuantityUnit.Some,
         new UnitDefinition<ClassOfLogarithmicQuantityUnit>[]
         {

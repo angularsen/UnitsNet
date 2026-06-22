@@ -3,9 +3,6 @@
   <PropertyGroup>
     <!-- Default to output to Artifacts folder -->
     <OutputPath>$(MSBuildThisFileDirectory)Artifacts/$(MSBuildProjectName)</OutputPath>
-    <!-- Specific output folder for .NET nanoFramework projects -->
-    <OutputPath Condition=" '$(TargetFrameworkIdentifier)' == '.NETnanoFramework'">$(MSBuildThisFileDirectory)Artifacts/UnitsNet.NanoFramework/$(MSBuildProjectName)</OutputPath>
-
   </PropertyGroup>
 
   <!-- Workaround for `dotnet test UnitsNet.sln`: https://dasmulli.blog/2018/01/20/make-dotnet-test-work-on-solution-files/ -->
@@ -17,8 +14,14 @@
   <PropertyGroup>
     <!-- Warning instead of compile error on obsolete errors.-->
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <!-- 612: obsolete, 618: obsolete with message -->
-    <WarningsNotAsErrors>612,618</WarningsNotAsErrors>
+    <!--
+      Warnings stay visible but do not fail the build. NU1903 (high) and NU1904 (critical) still fail.
+      CS0612  - obsolete member
+      CS0618  - obsolete member with message
+      NU1901  - NuGet audit: low severity vulnerability
+      NU1902  - NuGet audit: moderate severity vulnerability
+    -->
+    <WarningsNotAsErrors>612;618;NU1901;NU1902</WarningsNotAsErrors>
   </PropertyGroup>
 
   <!-- Build symbol package (.snupkg) to distribute the PDB file for debugging, in addition to Source Link per recommendation: https://learn.microsoft.com/en-us/dotnet/standard/library-guidance/sourcelink -->

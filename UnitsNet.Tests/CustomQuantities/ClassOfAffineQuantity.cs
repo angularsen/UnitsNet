@@ -24,7 +24,7 @@ public enum ClassOfAffineQuantityUnit
 [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
 public class ClassOfAffineQuantity(QuantityValue value, ClassOfAffineQuantityUnit unit) : IAffineQuantity<ClassOfAffineQuantity, ClassOfAffineQuantityUnit, ClassOfLinearQuantity>
 {
-    public static readonly QuantityInfo<ClassOfAffineQuantity, ClassOfAffineQuantityUnit> Info = new(
+    public static QuantityInfo<ClassOfAffineQuantity, ClassOfAffineQuantityUnit> Info { get; } = new(
         ClassOfAffineQuantityUnit.Some,
         new UnitDefinition<ClassOfAffineQuantityUnit>[]
         {

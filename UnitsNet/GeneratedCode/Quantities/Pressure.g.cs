@@ -219,6 +219,12 @@ namespace UnitsNet
                 yield return new (PressureUnit.Millibar, "Millibar", "Millibars", BaseUnits.Undefined,
                      new QuantityValue(1, 100)
                 );
+                yield return new (PressureUnit.MilligramForcePerSquareFoot, "MilligramForcePerSquareFoot", "MilligramsForcePerSquareFoot", BaseUnits.Undefined,
+                     new QuantityValue(1858060800, 196133)
+                );
+                yield return new (PressureUnit.MilligramForcePerSquareMeter, "MilligramForcePerSquareMeter", "MilligramsForcePerSquareMeter", BaseUnits.Undefined,
+                     new QuantityValue(20000000000, 196133)
+                );
                 yield return new (PressureUnit.MillimeterOfMercury, "MillimeterOfMercury", "MillimetersOfMercury", BaseUnits.Undefined,
                      new QuantityValue(200000000, 26664477483)
                 );
@@ -524,6 +530,16 @@ namespace UnitsNet
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.Millibar"/>
         /// </summary>
         public QuantityValue Millibars => this.As(PressureUnit.Millibar);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.MilligramForcePerSquareFoot"/>
+        /// </summary>
+        public QuantityValue MilligramsForcePerSquareFoot => this.As(PressureUnit.MilligramForcePerSquareFoot);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.MilligramForcePerSquareMeter"/>
+        /// </summary>
+        public QuantityValue MilligramsForcePerSquareMeter => this.As(PressureUnit.MilligramForcePerSquareMeter);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PressureUnit.MillimeterOfMercury"/>
@@ -885,6 +901,22 @@ namespace UnitsNet
         public static Pressure FromMillibars(QuantityValue value)
         {
             return new Pressure(value, PressureUnit.Millibar);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MilligramForcePerSquareFoot"/>.
+        /// </summary>
+        public static Pressure FromMilligramsForcePerSquareFoot(QuantityValue value)
+        {
+            return new Pressure(value, PressureUnit.MilligramForcePerSquareFoot);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MilligramForcePerSquareMeter"/>.
+        /// </summary>
+        public static Pressure FromMilligramsForcePerSquareMeter(QuantityValue value)
+        {
+            return new Pressure(value, PressureUnit.MilligramForcePerSquareMeter);
         }
 
         /// <summary>

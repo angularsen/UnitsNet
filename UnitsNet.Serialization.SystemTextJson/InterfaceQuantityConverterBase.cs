@@ -33,6 +33,9 @@ public abstract class InterfaceQuantityConverterBase<TJsonUnit> : JsonConverter<
             typeProperty = JsonQuantityPropertyNames.TypePropertyName;
         }
 
+#pragma warning disable CS0618 // Type or member is obsolete
+        QuantityInfo quantityInfo = quantity.QuantityInfo;
+#pragma warning restore CS0618 // Type or member is obsolete
         if (options.DefaultIgnoreCondition == JsonIgnoreCondition.WhenWritingDefault)
         {
             if (!QuantityValue.IsZero(quantity.Value))
@@ -42,7 +45,7 @@ public abstract class InterfaceQuantityConverterBase<TJsonUnit> : JsonConverter<
                 WriteValueProperty(writer, quantity, options);
             }
 
-            if (quantity.UnitKey.UnitEnumValue != quantity.QuantityInfo.BaseUnitInfo.UnitKey.UnitEnumValue)
+            if (quantity.UnitKey.UnitEnumValue != quantityInfo.BaseUnitInfo.UnitKey.UnitEnumValue)
             {
                 // write the Unit property
                 writer.WritePropertyName(unitProperty);
@@ -60,7 +63,7 @@ public abstract class InterfaceQuantityConverterBase<TJsonUnit> : JsonConverter<
         }
 
         // write the Type property (disambiguation based on the quantity name)
-        writer.WriteString(typeProperty, quantity.QuantityInfo.Name);
+        writer.WriteString(typeProperty, quantityInfo.Name);
 
         writer.WriteEndObject();
     }

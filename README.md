@@ -30,10 +30,10 @@ New units will be backported to  `maintenance/v5` until v6 becomes stable.
 * [Precision and Accuracy](#precision-and-accuracy)
 * [Serialize to JSON, XML and more](#serialize-to-json-xml-and-more)
 * [Want To Contribute?](#want-to-contribute)
+* [Units.NET on other platforms](#unitsnet-on-other-platforms)
 * [Continuous Integration](#continuous-integration)
 * [Who are Using This?](#who-are-using-unitsnet)
 * [Top Usages by GitHub Repos](#top-usages-by-gitHub-repos)
-* [Units.NET on other platforms](#unitsnet-on-other-platforms)
 
 ### Installing via NuGet
 
@@ -51,7 +51,6 @@ or go to [NuGet Gallery | UnitsNet](https://www.nuget.org/packages/UnitsNet) for
 * .NET 8.0 (LTS)
 * .NET 9.0 (latest stable)
 * .NET 10.0 (preview)
-* [.NET nanoFramework](https://www.nanoframework.net/)
 
 
 ### Extension Packages
@@ -462,6 +461,19 @@ Read the wiki on [Serializing to JSON, XML and more](https://github.com/angulars
 * [Adding a New Unit](https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit) is fairly easy to do and we are happy to help.
 * Want a new feature or to report a bug? [Create an issue](https://github.com/angularsen/UnitsNet/issues/new/choose) or start a [discussion](https://github.com/angularsen/UnitsNet/discussions).
 
+
+### Units.NET on other platforms
+
+Get the same strongly typed units on other platforms, based on the same [unit definitions](/Common/UnitDefinitions).
+
+| Language                   | Name                   | Package                                                                      | Repository                                                        | Maintainers  |
+|----------------------------|------------------------|------------------------------------------------------------------------------|-------------------------------------------------------------------|--------------|
+| JavaScript /<br>TypeScript | unitsnet-js            | [npm](https://www.npmjs.com/package/unitsnet-js)                             | [github](https://github.com/haimkastner/unitsnet-js)              | @haimkastner |
+| Python                     | unitsnet-py            | [pypi](https://pypi.org/project/unitsnet-py)                                 | [github](https://github.com/haimkastner/unitsnet-py)              | @haimkastner |
+| Golang                     | unitsnet-go            | [pkg.go.dev](https://pkg.go.dev/github.com/haimkastner/unitsnet-go)          | [github](https://github.com/haimkastner/unitsnet-go)              | @haimkastner |
+| .NET nanoFramework         | nanoFramework.UnitsNet | [nuget](https://www.nuget.org/packages/nanoFramework.UnitsNet.Acceleration/) | [github](https://github.com/nanoframework/nanoFramework.UnitsNet) | @josesimoes  |
+
+
 ### Continuous Integration
 
 [Azure DevOps](https://dev.azure.com/unitsnet/Units.NET/) performs the following:
@@ -576,13 +588,3 @@ Produced with [ghtopdep](https://github.com/github-tooling/ghtopdep).
 | https://github.com/BriefFiniteElementNet/BriefFiniteElement.Net | 156     |
 | https://github.com/WhiteBlackGoose/UnitsOfMeasure               | 59      |
 | https://github.com/pi-top/pi-top-4-.NET-SDK                     | 50      |
-
-### Units.NET on other platforms
-
-Get the same strongly typed units on other platforms, based on the same [unit definitions](/Common/UnitDefinitions).
-
-| Language                   | Name        | Package                                                             | Repository                                           | Maintainers  |
-|----------------------------|-------------|---------------------------------------------------------------------|------------------------------------------------------|--------------|
-| JavaScript /<br>TypeScript | unitsnet-js | [npm](https://www.npmjs.com/package/unitsnet-js)                    | [github](https://github.com/haimkastner/unitsnet-js) | @haimkastner |
-| Python                     | unitsnet-py | [pypi](https://pypi.org/project/unitsnet-py)                        | [github](https://github.com/haimkastner/unitsnet-py) | @haimkastner |
-| Golang                     | unitsnet-go | [pkg.go.dev](https://pkg.go.dev/github.com/haimkastner/unitsnet-go) | [github](https://github.com/haimkastner/unitsnet-go) | @haimkastner |

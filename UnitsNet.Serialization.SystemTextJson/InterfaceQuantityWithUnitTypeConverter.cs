@@ -294,7 +294,9 @@ public class InterfaceQuantityWithUnitTypeConverter : JsonConverter<IQuantity>
             WriteValueProperty(writer, quantity, options);
         }
 
+#pragma warning disable CS0618 // Type or member is obsolete
         QuantityInfo quantityInfo = quantity.QuantityInfo;
+#pragma warning restore CS0618 // Type or member is obsolete
         var unitFormat = $"{quantityInfo.UnitType.Name}.{quantityInfo[quantity.UnitKey].Name}";
         writer.WriteString(unitProperty, unitFormat);
 

@@ -13,7 +13,6 @@ Due to GitHub App permission restrictions, the workflow files are created in the
 
 ### CI Workflow (ci.yml)
 - Triggers on pushes to master, release/*, and maintenance/* branches
-- Builds with .NET nanoFramework support using `nanoframework/nanobuild@v1` action
 - Runs tests and uploads coverage to codecov.io
 - Publishes NuGet packages to nuget.org (only on master branch)
 - Uses Windows runner to match Azure Pipelines configuration
@@ -25,13 +24,9 @@ Due to GitHub App permission restrictions, the workflow files are created in the
 - Uploads test coverage to codecov.io
 - No NuGet publishing for PRs
 
-## .NET nanoFramework Support
-
-The key challenge mentioned in the issue was .NET nanoFramework support. This is handled using the `nanoframework/nanobuild@v1` GitHub Action, which is the official GitHub Actions equivalent of the Azure Pipelines `InstallNanoMSBuildComponents@1` task.
-
 ## Migration Notes
 
-- Both workflows use the existing PowerShell build script (`Build/build.ps1`) with the `-IncludeNanoFramework` flag
+- Both workflows use the existing PowerShell build script (`Build/build.ps1`)
 - Secrets needed: `CODECOV_TOKEN` and `NUGET_ORG_APIKEY` (should already be configured)
 - The workflows are designed to run alongside Azure Pipelines for comparison
 - Azure Pipelines configuration files remain unchanged as requested

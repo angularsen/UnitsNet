@@ -43,9 +43,7 @@ namespace CodeGen
         /// </remarks>
         /// <param name="verbose">Verbose output? Defaults to false.</param>
         /// <param name="repositoryRoot">The repository root directory, defaults to searching parent directories for UnitsNet.sln.</param>
-        /// <param name="skipNanoFramework">Skip generate nanoFramework Units? Defaults to false</param>
-        /// <param name="updateNanoFrameworkDependencies">Update nanoFramework nuget dependencies? Defaults to false.</param>
-        public static int Main(bool verbose = false, DirectoryInfo? repositoryRoot = null, bool skipNanoFramework = false, bool updateNanoFrameworkDependencies = false)
+        public static int Main(bool verbose = false, DirectoryInfo? repositoryRoot = null)
         {
             Log.Logger = new LoggerConfiguration()
                 .WriteTo
@@ -72,22 +70,6 @@ namespace CodeGen
                 QuantityRelationsParser.ParseAndApplyRelations(rootDir, quantities);
 
                 UnitsNetGenerator.Generate(rootDir, quantities, quantityNameToUnitEnumValues);
-
-                if (updateNanoFrameworkDependencies)
-                {
-                    if (!NanoFrameworkGenerator.UpdateNanoFrameworkDependencies(
-                        rootDir,
-                        quantities))
-                    {
-                        return 1;
-                    }
-                }
-
-                if (!skipNanoFramework)
-                {
-                    Log.Information("Generate nanoFramework projects\n---");
-                    NanoFrameworkGenerator.Generate(rootDir, quantities, quantityNameToUnitEnumValues);
-                }
 
                 Log.Information("Completed in {ElapsedMs} ms!", sw.ElapsedMilliseconds);
                 return 0;

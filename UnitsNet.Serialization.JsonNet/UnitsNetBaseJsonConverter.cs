@@ -177,7 +177,9 @@ namespace UnitsNet.Serialization.JsonNet
         {
             quantity = quantity ?? throw new ArgumentNullException(nameof(quantity));
 
+#pragma warning disable CS0618 // IQuantity.QuantityInfo: serialization must work for custom quantities not registered in UnitsNetSetup.Default.
             return new ValueUnit {Value = (double)quantity.Value, Unit = $"{quantity.QuantityInfo.UnitType.Name}.{quantity.Unit}"};
+#pragma warning restore CS0618
         }
 
         /// <summary>

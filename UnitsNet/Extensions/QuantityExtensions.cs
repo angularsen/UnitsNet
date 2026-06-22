@@ -11,6 +11,79 @@ namespace UnitsNet;
 /// </summary>
 public static class QuantityExtensions
 {
+    /// <summary>
+    ///     Gets the <see cref="UnitsNet.QuantityInfo"/> for the given quantity instance, looked up via
+    ///     <see cref="UnitsNetSetup.Default"/>.
+    /// </summary>
+    /// <remarks>
+    ///     Use the static <c>TSelf.Info</c> directly when you have a typed quantity reference for the best performance.
+    ///     This extension is convenient when working with an <see cref="IQuantity"/> reference where the concrete
+    ///     type is not known at compile time.
+    /// </remarks>
+    /// <param name="quantity">The quantity instance.</param>
+    /// <returns>The <see cref="UnitsNet.QuantityInfo"/> registered in <see cref="UnitsNetSetup.Default"/> for the quantity's runtime type.</returns>
+    public static QuantityInfo GetQuantityInfo(this IQuantity quantity)
+    {
+#pragma warning disable CS0618 // Type or member is obsolete
+        return quantity.QuantityInfo;
+#pragma warning restore CS0618 // Type or member is obsolete
+    }
+
+    /// <inheritdoc cref="GetQuantityInfo(IQuantity)"/>
+    /// <typeparam name="TUnit">The unit enum type of the quantity.</typeparam>
+    public static QuantityInfo<TUnit> GetQuantityInfo<TUnit>(this IQuantity<TUnit> quantity)
+        where TUnit : struct, Enum
+    {
+#pragma warning disable CS0618 // Type or member is obsolete
+        return quantity.QuantityInfo;
+#pragma warning restore CS0618 // Type or member is obsolete
+    }
+
+    /// <summary>
+    ///     Gets the <see cref="UnitInfo"/> for the unit this quantity was constructed with.
+    /// </summary>
+    /// <remarks>
+    ///     Picked by overload resolution for callers that only have an <see cref="IQuantity"/> reference.
+    ///     Concretely-typed callers (e.g. a <c>Mass</c> receiver) bind to the
+    ///     <see cref="GetUnitInfo{TQuantity,TUnit}(IQuantity{TQuantity,TUnit})"/> overload and get the
+    ///     more specific <see cref="UnitInfo{TQuantity,TUnit}"/> return.
+    /// </remarks>
+    /// <param name="quantity">The quantity.</param>
+    /// <returns>The <see cref="UnitInfo"/> for the quantity's unit.</returns>
+    public static UnitInfo GetUnitInfo(this IQuantity quantity)
+    {
+#pragma warning disable CS0618 // Type or member is obsolete
+        return quantity.QuantityInfo[quantity.UnitKey];
+#pragma warning restore CS0618 // Type or member is obsolete
+    }
+
+    /// <summary>
+    ///     Gets the <see cref="UnitInfo{TQuantity,TUnit}"/> for the unit this quantity was constructed with.
+    /// </summary>
+    /// <remarks>
+    ///     Picked by overload resolution for concretely-typed receivers (e.g. <c>Mass</c>) where C# can
+    ///     infer both <typeparamref name="TQuantity"/> and <typeparamref name="TUnit"/> from the receiver's
+    ///     <see cref="IQuantity{TSelf,TUnit}"/> implementation. Callers with only an <see cref="IQuantity"/>
+    ///     reference fall back to the non-generic <see cref="GetUnitInfo(IQuantity)"/> overload.
+    /// </remarks>
+    /// <typeparam name="TQuantity">The quantity type.</typeparam>
+    /// <typeparam name="TUnit">The unit enum type.</typeparam>
+    /// <param name="quantity">The quantity.</param>
+    /// <returns>The <see cref="UnitInfo{TQuantity,TUnit}"/> for the quantity's unit.</returns>
+    public static UnitInfo<TQuantity, TUnit> GetUnitInfo<TQuantity, TUnit>(this IQuantity<TQuantity, TUnit> quantity)
+        where TQuantity : IQuantity<TQuantity, TUnit>
+        where TUnit : struct, Enum
+    {
+#if NET
+        return TQuantity.Info[quantity.Unit];
+#else
+        // Azure CI build failed on binding QuantityInfo through IQuantity<TUnit>, so cast to expose the fully typed indexer.
+        // This is likely a .NET SDK version compatibility thing, did not bother looking closer at it.
+        QuantityInfo<TQuantity, TUnit> quantityInfo = quantity.QuantityInfo;
+        return quantityInfo[quantity.Unit];
+#endif
+    }
+
     /// <inheritdoc cref="UnitConverter.ConvertValue(QuantityValue,UnitKey,UnitKey)" />
     internal static QuantityValue GetValue<TQuantity>(this TQuantity quantity, UnitKey toUnit)
         where TQuantity : IQuantity
@@ -56,7 +129,9 @@ public static class QuantityExtensions
     public static QuantityValue As<TQuantity>(this TQuantity quantity, UnitSystem unitSystem)
         where TQuantity : IQuantity
     {
+#pragma warning disable CS0618 // Type or member is obsolete
         return quantity.GetValue(quantity.QuantityInfo.GetDefaultUnit(unitSystem).UnitKey);
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 
     /// <inheritdoc cref="UnitConverter.ConvertToUnit{TQuantity,TUnit}" />
@@ -80,7 +155,7 @@ public static class QuantityExtensions
         where TQuantity : IQuantityOfType<TQuantity>
     {
 #if NET
-        QuantityInfo quantityInfo = quantity.QuantityInfo;
+        QuantityInfo quantityInfo = TQuantity.Info;
 #else
         QuantityInfo quantityInfo = ((IQuantity)quantity).QuantityInfo;
 #endif
@@ -282,6 +357,10 @@ public static class QuantityExtensions
             nbValues++;
         }
 
+#if NET
+        return TQuantity.From(sumOfValues / nbValues, unit);
+#else
         return firstQuantity.QuantityInfo.From(sumOfValues / nbValues, unit);
+#endif
     }
 }

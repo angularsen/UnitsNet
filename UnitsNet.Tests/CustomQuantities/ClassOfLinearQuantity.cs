@@ -24,7 +24,7 @@ public enum ClassOfLinearQuantityUnit
 [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
 public class ClassOfLinearQuantity(QuantityValue value, ClassOfLinearQuantityUnit unit) : IArithmeticQuantity<ClassOfLinearQuantity, ClassOfLinearQuantityUnit>
 {
-    public static readonly QuantityInfo<ClassOfLinearQuantity, ClassOfLinearQuantityUnit> Info = new(
+    public static QuantityInfo<ClassOfLinearQuantity, ClassOfLinearQuantityUnit> Info { get; } = new(
         ClassOfLinearQuantityUnit.Some,
         new UnitDefinition<ClassOfLinearQuantityUnit>[]
         {

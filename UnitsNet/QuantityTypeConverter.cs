@@ -153,8 +153,10 @@ namespace UnitsNet
             // Ensure the attribute's unit is compatible with this converter's quantity.
             if (attribute?.UnitType != null)
             {
+#pragma warning disable CS0618 // IQuantity.QuantityInfo is obsolete on .NET 5+; use it here so consumers can author custom quantities (e.g. HowMuch in tests) without registering them in UnitsNetSetup.Default.
                 Type declaredUnitType = attribute.UnitType.GetType();
                 QuantityInfo quantityInfo = default(TQuantity).QuantityInfo;
+#pragma warning restore CS0618
                 if (declaredUnitType != quantityInfo.UnitType)
                 {
                     throw new ArgumentException(

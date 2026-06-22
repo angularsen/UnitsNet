@@ -21,7 +21,7 @@ public readonly struct HowMuch : IQuantity<HowMuch, HowMuchUnit>
 
     public QuantityValue Value { get; }
     
-    public static readonly QuantityInfo<HowMuch, HowMuchUnit> Info = new(
+    public static QuantityInfo<HowMuch, HowMuchUnit> Info { get; } = new(
         nameof(HowMuch),
         HowMuchUnit.Some,
         new UnitDefinition<HowMuchUnit>[]

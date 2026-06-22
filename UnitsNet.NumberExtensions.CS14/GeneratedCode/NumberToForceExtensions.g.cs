@@ -58,6 +58,14 @@ namespace UnitsNet.NumberExtensions.NumberToForce
                 => Force.FromDyne(value.ToQuantityValue());
 #endif
 
+            /// <inheritdoc cref="Force.FromGramsForce(QuantityValue)" />
+            public Force GramsForce
+#if NET7_0_OR_GREATER
+                => Force.FromGramsForce(QuantityValue.CreateChecked(value));
+#else
+                => Force.FromGramsForce(value.ToQuantityValue());
+#endif
+
             /// <inheritdoc cref="Force.FromKilogramsForce(QuantityValue)" />
             public Force KilogramsForce
 #if NET7_0_OR_GREATER

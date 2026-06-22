@@ -53,8 +53,7 @@ public abstract class JsonQuantityConverterBase<TQuantity, TUnit> : JsonConverte
     /// </remarks>
     protected JsonQuantityConverterBase()
 #if NET
-        // TODO see if we want to expose the QuantityInfo (a.k.a. the static "Info" property) on the IQuantity<TQuantity, TUnit> interface
-        : this(TQuantity.From(QuantityValue.Zero, default).QuantityInfo)
+        : this(TQuantity.Info)
 #else
         : this((QuantityInfo<TQuantity, TUnit>)UnitsNetSetup.Default.Quantities.GetQuantityInfo(typeof(TQuantity)))
 #endif

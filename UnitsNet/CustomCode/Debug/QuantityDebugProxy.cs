@@ -36,7 +36,9 @@ public readonly struct QuantityDebugProxy: IFormattable
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     internal QuantityInfo QuantityInfo
     {
+#pragma warning disable CS0618 // Type or member is obsolete
         get => _quantity.QuantityInfo;
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -81,7 +83,7 @@ public readonly struct QuantityDebugProxy: IFormattable
     /// </remarks>
     public UnitInformation Unit
     {
-        get => new(this, _quantity.QuantityInfo[_quantity.UnitKey]);
+        get => new(this, QuantityInfo[_quantity.UnitKey]);
     }
     
     /// <summary>
@@ -245,7 +247,9 @@ public readonly struct QuantityDebugProxy: IFormattable
     {
         try
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             UnitsNetSetup configuration = GetConfiguration(quantity.QuantityInfo);
+#pragma warning restore CS0618 // Type or member is obsolete
             return configuration.Formatter.Format(quantity, format ?? DefaultFormatSpecifier, formatProvider ?? DefaultFormatProvider);
         }
         catch (Exception)
@@ -255,7 +259,10 @@ public readonly struct QuantityDebugProxy: IFormattable
             // and https://youtrack.jetbrains.com/issue/RSRP-502262/Cannot-evaluate-expressions-with-DebuggerTypeProxy-and-DebuggerDisplay
             try
             {
-                return $"{{{quantity.Value} {quantity.QuantityInfo[quantity.UnitKey].PluralName}}}";
+#pragma warning disable CS0618 // Type or member is obsolete
+                QuantityInfo quantityInfo = quantity.QuantityInfo;
+#pragma warning restore CS0618 // Type or member is obsolete
+                return $"{{{quantity.Value} {quantityInfo[quantity.UnitKey].PluralName}}}";
             }
             catch (Exception)
             {

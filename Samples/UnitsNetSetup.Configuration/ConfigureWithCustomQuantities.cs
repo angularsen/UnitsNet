@@ -41,7 +41,7 @@ internal static class ConfigureWithCustomQuantities
 
         public static HowMuch Zero { get; } = new(0, HowMuchUnit.Some);
 
-        public static readonly QuantityInfo<HowMuch, HowMuchUnit> Info = new(
+        public static QuantityInfo<HowMuch, HowMuchUnit> Info { get; } = new(
             HowMuchUnit.Some,
             new UnitDefinition<HowMuchUnit>[]
             {

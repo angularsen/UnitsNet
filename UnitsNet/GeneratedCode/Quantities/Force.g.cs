@@ -134,6 +134,9 @@ namespace UnitsNet
                 yield return new (ForceUnit.Dyn, "Dyn", "Dyne", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Second),
                      100000
                 );
+                yield return new (ForceUnit.GramForce, "GramForce", "GramsForce", BaseUnits.Undefined,
+                     new QuantityValue(20000000, 196133)
+                );
                 yield return new (ForceUnit.KilogramForce, "KilogramForce", "KilogramsForce", BaseUnits.Undefined,
                      new QuantityValue(20000, 196133)
                 );
@@ -284,6 +287,11 @@ namespace UnitsNet
         public QuantityValue Dyne => this.As(ForceUnit.Dyn);
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ForceUnit.GramForce"/>
+        /// </summary>
+        public QuantityValue GramsForce => this.As(ForceUnit.GramForce);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ForceUnit.KilogramForce"/>
         /// </summary>
         public QuantityValue KilogramsForce => this.As(ForceUnit.KilogramForce);
@@ -391,6 +399,14 @@ namespace UnitsNet
         public static Force FromDyne(QuantityValue value)
         {
             return new Force(value, ForceUnit.Dyn);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Force"/> from <see cref="ForceUnit.GramForce"/>.
+        /// </summary>
+        public static Force FromGramsForce(QuantityValue value)
+        {
+            return new Force(value, ForceUnit.GramForce);
         }
 
         /// <summary>

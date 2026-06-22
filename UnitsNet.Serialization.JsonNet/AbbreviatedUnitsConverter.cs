@@ -164,7 +164,9 @@ namespace UnitsNet.Serialization.JsonNet
         protected virtual void WriteTypeProperty(JsonWriter writer, IQuantity quantity, JsonSerializer serializer)
         {
             writer.WritePropertyName(TypeProperty);
+#pragma warning disable CS0618 // Type or member is obsolete
             writer.WriteValue(quantity.QuantityInfo.Name);
+#pragma warning restore CS0618 // Type or member is obsolete
         }
 
         /// <summary>
