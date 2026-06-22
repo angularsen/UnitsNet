@@ -383,8 +383,9 @@ namespace UnitsNet.Tests
         [InlineData(double.PositiveInfinity, LengthUnit.Millimeter, ReciprocalLengthUnit.InverseCentimeter, 0)]
         [InlineData(double.NegativeInfinity, LengthUnit.Millimeter, ReciprocalLengthUnit.InverseCentimeter, 0)]
         [InlineData(double.NaN, LengthUnit.Millimeter, ReciprocalLengthUnit.InverseCentimeter, double.NaN)]
-        public void GetConversionFunction_WithCompatibleQuantityType(double fromValue, LengthUnit fromUnit, ReciprocalLengthUnit toUnit, double expectedValue)
+        public void GetConversionFunction_WithCompatibleQuantityType(double fromValue, LengthUnit fromUnit, ReciprocalLengthUnit toUnit, double expected)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             IEnumerable<QuantityConverterBuildOptions> converterOptions = GetQuantityConverterBuildOptions();
 
             Assert.All(converterOptions, options =>
@@ -409,8 +410,9 @@ namespace UnitsNet.Tests
         [InlineData(double.PositiveInfinity, LengthUnit.Millimeter, ReciprocalLengthUnit.InverseCentimeter, 0)]
         [InlineData(double.NegativeInfinity, LengthUnit.Millimeter, ReciprocalLengthUnit.InverseCentimeter, 0)]
         [InlineData(double.NaN, LengthUnit.Millimeter, ReciprocalLengthUnit.InverseCentimeter, double.NaN)]
-        public void TryGetConversionFunction_WithCompatibleQuantityType(double fromValue, LengthUnit fromUnit, ReciprocalLengthUnit toUnit, double expectedValue)
+        public void TryGetConversionFunction_WithCompatibleQuantityType(double fromValue, LengthUnit fromUnit, ReciprocalLengthUnit toUnit, double expected)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             IEnumerable<QuantityConverterBuildOptions> converterOptions = GetQuantityConverterBuildOptions();
 
             Assert.All(converterOptions, options =>
@@ -444,8 +446,9 @@ namespace UnitsNet.Tests
         [InlineData(1, HowMuchUnit.Some, HowMuchUnit.AShitTon, 0.01)]
         [InlineData(1, HowMuchUnit.ATon, HowMuchUnit.Some, 10)]
         [InlineData(1, HowMuchUnit.AShitTon, HowMuchUnit.Some, 100)]
-        public void ConversionForUnitsOfCustomQuantity(double fromValue, HowMuchUnit fromUnit, HowMuchUnit toUnit, double expectedValue)
+        public void ConversionForUnitsOfCustomQuantity(double fromValue, HowMuchUnit fromUnit, HowMuchUnit toUnit, double expected)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             IEnumerable<QuantityConverterBuildOptions> converterOptions = GetQuantityConverterBuildOptions();
 
             Assert.All(converterOptions, options =>
@@ -465,8 +468,10 @@ namespace UnitsNet.Tests
         [InlineData(100, MassUnit.Kilogram, HowMuchUnit.Some, 1)]
         [InlineData(10000, MassUnit.Kilogram, HowMuchUnit.AShitTon, 1)]
         public void GetConversionFunction_WithCustomConversionForDifferentQuantities(double fromValue, MassUnit fromUnit, HowMuchUnit toUnit,
-            double expectedValue)
+            double expected)
         {
+            var expectedFromValue = QuantityValue.FromDoubleRounded(fromValue);
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             IEnumerable<QuantityConverterBuildOptions> converterOptions = GetQuantityConverterBuildOptions();
 
             Assert.All(converterOptions, options =>
@@ -487,7 +492,7 @@ namespace UnitsNet.Tests
                     {
                         ConvertValueDelegate conversionFunction = unitConverter.GetConversionFunction(toUnit, fromUnit);
                         QuantityValue converted = conversionFunction(expectedValue);
-                        Assert.Equal(fromValue, converted);
+                        Assert.Equal(expectedFromValue, converted);
                     });
             });
         }
@@ -498,8 +503,10 @@ namespace UnitsNet.Tests
         [InlineData(100, MassUnit.Kilogram, HowMuchUnit.Some, 1)]
         [InlineData(10000, MassUnit.Kilogram, HowMuchUnit.AShitTon, 1)]
         public void TryGetConversionFunction_WithCustomConversionForDifferentQuantities(double fromValue, MassUnit fromUnit, HowMuchUnit toUnit,
-            double expectedValue)
+            double expected)
         {
+            var expectedFromValue = QuantityValue.FromDoubleRounded(fromValue);
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             IEnumerable<QuantityConverterBuildOptions> converterOptions = GetQuantityConverterBuildOptions();
 
             Assert.All(converterOptions, options =>
@@ -520,7 +527,7 @@ namespace UnitsNet.Tests
                     {
                         var success = unitConverter.TryGetConversionFunction(toUnit, fromUnit, out ConvertValueDelegate? conversionFunction);
                         Assert.True(success);
-                        Assert.Equal(fromValue, conversionFunction!(expectedValue));
+                        Assert.Equal(expectedFromValue, conversionFunction!(expectedValue));
                     });
             });
         }
@@ -531,8 +538,10 @@ namespace UnitsNet.Tests
         [InlineData(10, VolumeUnit.Liter, HowMuchUnit.ATon, 1)]
         [InlineData(1, VolumeUnit.Kiloliter, HowMuchUnit.AShitTon, 10)]
         public void GetConversionFunction_WithCustomConversionExpressionForDifferentQuantities(double fromValue, VolumeUnit fromUnit, HowMuchUnit toUnit,
-            double expectedValue)
+            double expected)
         {
+            var expectedFromValue = QuantityValue.FromDoubleRounded(fromValue);
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             IEnumerable<QuantityConverterBuildOptions> converterOptions = GetQuantityConverterBuildOptions();
 
             Assert.All(converterOptions, options =>
@@ -554,7 +563,7 @@ namespace UnitsNet.Tests
                     {
                         ConvertValueDelegate conversionFunction = unitConverter.GetConversionFunction(toUnit, fromUnit);
                         QuantityValue converted = conversionFunction(expectedValue);
-                        Assert.Equal(fromValue, converted);
+                        Assert.Equal(expectedFromValue, converted);
                     });
             });
         }
@@ -565,8 +574,10 @@ namespace UnitsNet.Tests
         [InlineData(10, VolumeUnit.Liter, HowMuchUnit.ATon, 1)]
         [InlineData(1, VolumeUnit.Kiloliter, HowMuchUnit.AShitTon, 10)]
         public void TryGetConversionFunction_WithCustomConversionExpressionForDifferentQuantities(double fromValue, VolumeUnit fromUnit, HowMuchUnit toUnit,
-            double expectedValue)
+            double expected)
         {
+            var expectedFromValue = QuantityValue.FromDoubleRounded(fromValue);
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             IEnumerable<QuantityConverterBuildOptions> converterOptions = GetQuantityConverterBuildOptions();
 
             Assert.All(converterOptions, options =>
@@ -588,7 +599,7 @@ namespace UnitsNet.Tests
                     {
                         var success = unitConverter.TryGetConversionFunction(toUnit, fromUnit, out ConvertValueDelegate? conversionFunction);
                         Assert.True(success);
-                        Assert.Equal(fromValue, conversionFunction!(expectedValue));
+                        Assert.Equal(expectedFromValue, conversionFunction!(expectedValue));
                     });
             });
         }
@@ -599,8 +610,10 @@ namespace UnitsNet.Tests
         [InlineData(100, MassFractionUnit.Percent, RatioUnit.DecimalFraction, 1)]
         [InlineData(1, MassFractionUnit.GramPerKilogram, RatioUnit.PartPerThousand, 1)]
         public void GetConversionFunction_WithCustomConversionForDifferentDimensionlessQuantities(double fromValue, MassFractionUnit fromUnit, RatioUnit toUnit,
-            double expectedValue)
+            double expected)
         {
+            var expectedFromValue = QuantityValue.FromDoubleRounded(fromValue);
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             IEnumerable<QuantityConverterBuildOptions> converterOptions = GetQuantityConverterBuildOptions();
 
             Assert.All(converterOptions, options =>
@@ -620,7 +633,7 @@ namespace UnitsNet.Tests
                     {
                         ConvertValueDelegate conversionFunction = unitConverter.GetConversionFunction(toUnit, fromUnit);
                         QuantityValue converted = conversionFunction(expectedValue);
-                        Assert.Equal(fromValue, converted);
+                        Assert.Equal(expectedFromValue, converted);
                     });
             });
         }
@@ -631,8 +644,10 @@ namespace UnitsNet.Tests
         [InlineData(100, MassFractionUnit.Percent, RatioUnit.DecimalFraction, 1)]
         [InlineData(1, MassFractionUnit.GramPerKilogram, RatioUnit.PartPerThousand, 1)]
         public void TryGetConversionFunction_WithCustomConversionForDifferentDimensionlessQuantities(double fromValue, MassFractionUnit fromUnit, RatioUnit toUnit,
-            double expectedValue)
+            double expected)
         {
+            var expectedFromValue = QuantityValue.FromDoubleRounded(fromValue);
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             IEnumerable<QuantityConverterBuildOptions> converterOptions = GetQuantityConverterBuildOptions();
 
             Assert.All(converterOptions, options =>
@@ -652,7 +667,7 @@ namespace UnitsNet.Tests
                     {
                         var success = unitConverter.TryGetConversionFunction(toUnit, fromUnit, out ConvertValueDelegate? conversionFunction);
                         Assert.True(success);
-                        Assert.Equal(fromValue, conversionFunction!(expectedValue));
+                        Assert.Equal(expectedFromValue, conversionFunction!(expectedValue));
                     });
             });
         }
@@ -663,8 +678,9 @@ namespace UnitsNet.Tests
         [InlineData(100, 1, "Length", "Meter", "Centimeter")]
         [InlineData(1, 1000, "Mass", "Gram", "Kilogram")]
         [InlineData(1000, 1, "ElectricCurrent", "Kiloampere", "Ampere")]
-        public void ConvertByName_ConvertsTheValueToGivenUnit(double expectedValue, double inputValue, string quantityTypeName, string fromUnit, string toUnit)
+        public void ConvertByName_ConvertsTheValueToGivenUnit(double expected, double inputValue, string quantityTypeName, string fromUnit, string toUnit)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             Assert.Equal(expectedValue, UnitConverter.ConvertByName(inputValue, quantityTypeName, fromUnit, toUnit));
         }
 
@@ -709,9 +725,10 @@ namespace UnitsNet.Tests
         [InlineData(100, 1, "Length", "Meter", "Centimeter")]
         [InlineData(1, 1000, "Mass", "Gram", "Kilogram")]
         [InlineData(1000, 1, "ElectricCurrent", "Kiloampere", "Ampere")]
-        public void TryConvertByName_ReturnsTrueOnSuccessAndOutputsResult(double expectedValue, double inputValue, string quantityTypeName, string fromUnit,
+        public void TryConvertByName_ReturnsTrueOnSuccessAndOutputsResult(double expected, double inputValue, string quantityTypeName, string fromUnit,
             string toUnit)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             Assert.True(UnitConverter.TryConvertByName(inputValue, quantityTypeName, fromUnit, toUnit, out QuantityValue result));
             Assert.Equal(expectedValue, result);
         }
@@ -723,9 +740,10 @@ namespace UnitsNet.Tests
         [InlineData(1, 1, "Mass", "Gram", "Gram")] // same-units (non-base)
         [InlineData(1, 1000, "Mass", "Gram", "Kilogram")] // non-base -> base
         [InlineData(2000, 2, "Mass", "Gram", "Milligram")] // non-base -> non-base
-        public void TryConvertValueByName_ReturnsTrueOnSuccessAndOutputsResult(double expectedValue, double inputValue, string quantityTypeName, string fromUnit,
+        public void TryConvertValueByName_ReturnsTrueOnSuccessAndOutputsResult(double expected, double inputValue, string quantityTypeName, string fromUnit,
             string toUnit)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             Assert.Multiple(() =>
             {
                 var converter = new UnitConverter(UnitParser.Default);
@@ -756,9 +774,10 @@ namespace UnitsNet.Tests
         [InlineData(100, 1, "Length", "m", "cm")]
         [InlineData(1, 1000, "Mass", "g", "kg")]
         [InlineData(1000, 1, "ElectricCurrent", "kA", "A")]
-        public void ConvertByAbbreviation_ConvertsTheValueToGivenUnit(double expectedValue, double inputValue, string quantityTypeName, string fromUnit,
+        public void ConvertByAbbreviation_ConvertsTheValueToGivenUnit(double expected, double inputValue, string quantityTypeName, string fromUnit,
             string toUnit)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             Assert.Equal(expectedValue, UnitConverter.ConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit));
             Assert.Equal(expectedValue, UnitConverter.ConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, CultureInfo.InvariantCulture));
             Assert.Equal(expectedValue, UnitConverter.ConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, "en-US"));
@@ -802,9 +821,10 @@ namespace UnitsNet.Tests
         [InlineData(100, 1, "Length", "m", "cm", "en-US")]
         [InlineData(1, 1000, "Mass", "g", "kg", "en-US")]
         [InlineData(1000, 1, "ElectricCurrent", "kA", "A", "en-US")]
-        public void TryConvertByAbbreviation_ReturnsTrueOnSuccessAndOutputsResult(double expectedValue, double inputValue, string quantityTypeName,
+        public void TryConvertByAbbreviation_ReturnsTrueOnSuccessAndOutputsResult(double expected, double inputValue, string quantityTypeName,
             string fromUnit, string toUnit, string culture)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             Assert.Multiple(
             () =>
             {
@@ -825,9 +845,10 @@ namespace UnitsNet.Tests
         [InlineData(100, 1, "Length", "m", "cm")]
         [InlineData(1, 1000, "Mass", "g", "kg")]
         [InlineData(1000, 1, "ElectricCurrent", "kA", "A")]
-        public void TryConvertByAbbreviation_WithDefaultCulture_ReturnsTrueOnSuccessAndOutputsResult(double expectedValue, double inputValue, string quantityTypeName,
+        public void TryConvertByAbbreviation_WithDefaultCulture_ReturnsTrueOnSuccessAndOutputsResult(double expected, double inputValue, string quantityTypeName,
             string fromUnit, string toUnit)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             Assert.True(UnitConverter.TryConvertByAbbreviation(inputValue, quantityTypeName, fromUnit, toUnit, out QuantityValue result));
             Assert.Equal(expectedValue, result);
         }
@@ -839,9 +860,10 @@ namespace UnitsNet.Tests
         [InlineData(100, 1, "Length", "m", "cm")]
         [InlineData(1, 1000, "Mass", "g", "kg")]
         [InlineData(1000, 1, "ElectricCurrent", "kA", "A")]
-        public void TryConvertValueByAbbreviation_ReturnsTrueOnSuccessAndOutputsResult(double expectedValue, double inputValue, string quantityTypeName,
+        public void TryConvertValueByAbbreviation_ReturnsTrueOnSuccessAndOutputsResult(double expected, double inputValue, string quantityTypeName,
             string fromUnit, string toUnit)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             UnitParser unitParser = UnitParser.Default;
             Assert.Multiple(() =>
             {
@@ -873,8 +895,9 @@ namespace UnitsNet.Tests
         [InlineData(1000, 1, MassUnit.Gram, MassUnit.Milligram)]    // non-base -> non-base
         [InlineData(1000, 1, ElectricCurrentUnit.Kiloampere, ElectricCurrentUnit.Ampere)]
         [InlineData(0.1, 10, AreaUnit.SquareCentimeter, ReciprocalAreaUnit.InverseSquareCentimeter)] // inverse relationship
-        public void Convert_ReturnsTrueOnSuccessAndOutputsResult(double expectedValue, double inputValue, Enum fromUnit, Enum toUnit)
+        public void Convert_ReturnsTrueOnSuccessAndOutputsResult(double expected, double inputValue, Enum fromUnit, Enum toUnit)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             QuantityValue convertedValue = UnitConverter.Convert(inputValue, fromUnit, toUnit);
             Assert.Equal(expectedValue, convertedValue);
         }
@@ -887,8 +910,9 @@ namespace UnitsNet.Tests
         [InlineData(1000, 1, MassUnit.Gram, MassUnit.Milligram)]    // non-base -> non-base
         [InlineData(1000, 1, ElectricCurrentUnit.Kiloampere, ElectricCurrentUnit.Ampere)]
         [InlineData(0.1, 10, AreaUnit.SquareCentimeter, ReciprocalAreaUnit.InverseSquareCentimeter)] // inverse relationship
-        public void TryConvert_ReturnsTrueOnSuccessAndOutputsResult(double expectedValue, double inputValue, Enum fromUnit, Enum toUnit)
+        public void TryConvert_ReturnsTrueOnSuccessAndOutputsResult(double expected, double inputValue, Enum fromUnit, Enum toUnit)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             Assert.True(UnitConverter.TryConvert(inputValue, fromUnit, toUnit, out QuantityValue result));
             Assert.Equal(expectedValue, result);
         }

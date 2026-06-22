@@ -105,7 +105,7 @@ namespace UnitsNet.Tests
         {
             var expression = new ConversionExpression(coefficient, null, exponent, constantTerm);
             QuantityValue result = expression.Evaluate(value);
-            Assert.Equal(expected, result);
+            Assert.Equal(QuantityValue.FromDoubleRounded(expected), result);
         }
 
         [Theory]
@@ -116,9 +116,10 @@ namespace UnitsNet.Tests
         public void Evaluate_Value_WithNestedFunction_ReturnsExpectedResult(double coefficient, int exponent, double constantTerm, double value,
             double expected)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             var expression = new ConversionExpression(coefficient, quantityValue => -quantityValue / 2, exponent, constantTerm);
             QuantityValue result = expression.Evaluate(value);
-            Assert.Equal(expected, result);
+            Assert.Equal(expectedValue, result);
         }
 
         [Theory]

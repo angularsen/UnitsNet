@@ -1212,10 +1212,11 @@ public class QuantityConversionsBuilderExtensionsTests
     [InlineData(MassConcentrationUnit.PoundPerUSGallon, DensityUnit.PoundPerUSGallon, 1)]
     public void GetQuantityConversionFrom_QuantityWithSameDimensions_ReturnsTheClosestMatchingUnit(MassConcentrationUnit fromUnit, DensityUnit expectedUnit, double expectedCoefficient)
     {
+        var expectedValue = QuantityValue.FromDoubleRounded(expectedCoefficient);
         QuantityConversionFunction conversionFunction = Density.Info.GetQuantityConversionFrom(MassConcentration.Info[fromUnit]);
 
         Assert.Equal(expectedUnit, conversionFunction.TargetUnit.ToUnit<DensityUnit>());
-        Assert.Equal(expectedCoefficient, conversionFunction.Convert(QuantityValue.One));
+        Assert.Equal(expectedValue, conversionFunction.Convert(QuantityValue.One));
     }
 
     [Theory]
@@ -1226,10 +1227,11 @@ public class QuantityConversionsBuilderExtensionsTests
     [InlineData(MassFractionUnit.HectogramPerGram, RatioUnit.DecimalFraction, 100)]
     public void GetQuantityConversionFrom_DimensionlessQuantity_ReturnsTheClosestMatchingUnit(MassFractionUnit fromUnit, RatioUnit expectedUnit, double expectedCoefficient)
     {
+        var expectedValue = QuantityValue.FromDoubleRounded(expectedCoefficient);
         QuantityConversionFunction conversionFunction = Ratio.Info.GetQuantityConversionFrom(MassFraction.Info[fromUnit]);
 
         Assert.Equal(expectedUnit, conversionFunction.TargetUnit.ToUnit<RatioUnit>());
-        Assert.Equal(expectedCoefficient, conversionFunction.Convert(QuantityValue.One));
+        Assert.Equal(expectedValue, conversionFunction.Convert(QuantityValue.One));
     }
 
     [Fact]

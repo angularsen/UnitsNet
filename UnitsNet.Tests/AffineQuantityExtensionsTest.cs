@@ -127,11 +127,12 @@ public class AffineQuantityExtensionsTest
     [InlineData(new[] { 25.0 }, 25.0)] // Single value
     public void Average_Temperature(double[] values, double expectedAverage)
     {
+        var expectedAverageValue = QuantityValue.FromDoubleRounded(expectedAverage);
         Temperature[] temperatures = Array.ConvertAll(values, value => Temperature.FromDegreesCelsius(value));
 
         Temperature result = temperatures.Average();
-        
-        Assert.Equal(expectedAverage, result.Value);
+
+        Assert.Equal(expectedAverageValue, result.Value);
         Assert.Equal(TemperatureUnit.DegreeCelsius, result.Unit);
     }
 
@@ -172,11 +173,12 @@ public class AffineQuantityExtensionsTest
     [InlineData(new[] { 77.0, 86.0, 95.0 }, TemperatureUnit.DegreeFahrenheit, 86.0)] // Average in Fahrenheit
     public void Average_Temperature_WithUnit(double[] values, TemperatureUnit unit, double expectedAverage)
     {
+        var expectedAverageValue = QuantityValue.FromDoubleRounded(expectedAverage);
         Temperature[] temperatures = Array.ConvertAll(values, value => Temperature.From(value, unit));
 
         Temperature result = temperatures.Average(unit);
 
-        Assert.Equal(expectedAverage, result.Value);
+        Assert.Equal(expectedAverageValue, result.Value);
         Assert.Equal(unit, result.Unit);
     }
     

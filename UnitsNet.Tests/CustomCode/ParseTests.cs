@@ -26,9 +26,10 @@ namespace UnitsNet.Tests
         [InlineData("500,005 m", 500005)]
         public void ParseLengthToMetersUsEnglish(string s, double expected)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             CultureInfo usEnglish = CultureInfo.GetCultureInfo("en-US");
             QuantityValue actual = Length.Parse(s, usEnglish).Meters;
-            Assert.Equal(expected, actual);
+            Assert.Equal(expectedValue, actual);
         }
 
         [Theory]
@@ -51,6 +52,7 @@ namespace UnitsNet.Tests
         // quantity doesn't match number format
         public void ParseWithCultureUsingSpaceAsThousandSeparators(string s, double expected)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             var numberFormat = (NumberFormatInfo) CultureInfo.InvariantCulture.NumberFormat.Clone();
             numberFormat.NumberGroupSeparator = " ";
             numberFormat.CurrencyGroupSeparator = " ";
@@ -58,7 +60,7 @@ namespace UnitsNet.Tests
             numberFormat.CurrencyDecimalSeparator = ".";
 
             QuantityValue actual = Length.Parse(s, numberFormat).Meters;
-            Assert.Equal(expected, actual);
+            Assert.Equal(expectedValue, actual);
         }
 
         [Theory]
@@ -82,6 +84,7 @@ namespace UnitsNet.Tests
         [InlineData("5.555 m", 5555)] // Dot is group separator not decimal
         public void ParseWithCultureUsingDotAsThousandSeparators(string s, double expected)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             var numberFormat = (NumberFormatInfo) CultureInfo.InvariantCulture.NumberFormat.Clone();
             numberFormat.NumberGroupSeparator = ".";
             numberFormat.CurrencyGroupSeparator = ".";
@@ -89,7 +92,7 @@ namespace UnitsNet.Tests
             numberFormat.CurrencyDecimalSeparator = ",";
 
             QuantityValue actual = Length.Parse(s, numberFormat).Meters;
-            Assert.Equal(expected, actual);
+            Assert.Equal(expectedValue, actual);
         }
 
         [Fact]
@@ -150,8 +153,9 @@ namespace UnitsNet.Tests
         [InlineData("1 г", "ru-RU", 1, MassUnit.Gram)]
         [InlineData("1 kg", "en-US", 1, MassUnit.Kilogram)]
         [InlineData("1 кг", "ru-RU", 1, MassUnit.Kilogram)]
-        public void ParseMassWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expectedValue, Enum expectedUnit)
+        public void ParseMassWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expected, Enum expectedUnit)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             var actual = Mass.Parse(str, CultureInfo.GetCultureInfo(cultureName));
 
             Assert.Equal(expectedUnit, actual.Unit);
@@ -165,8 +169,9 @@ namespace UnitsNet.Tests
         [InlineData("1 м", "ru-RU", 1, LengthUnit.Meter)]
         [InlineData("1 km", "en-US", 1, LengthUnit.Kilometer)]
         [InlineData("1 км", "ru-RU", 1, LengthUnit.Kilometer)]
-        public void ParseLengthWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expectedValue, Enum expectedUnit)
+        public void ParseLengthWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expected, Enum expectedUnit)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             var actual = Length.Parse(str, CultureInfo.GetCultureInfo(cultureName));
 
             Assert.Equal(expectedUnit, actual.Unit);
@@ -180,8 +185,9 @@ namespace UnitsNet.Tests
         [InlineData("1 Н", "ru-RU", 1, ForceUnit.Newton)]
         [InlineData("1 kN", "en-US", 1, ForceUnit.Kilonewton)]
         [InlineData("1 кН", "ru-RU", 1, ForceUnit.Kilonewton)]
-        public void ParseForceWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expectedValue, Enum expectedUnit)
+        public void ParseForceWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expected, Enum expectedUnit)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             var actual = Force.Parse(str, CultureInfo.GetCultureInfo(cultureName));
 
             Assert.Equal(expectedUnit, actual.Unit);
@@ -201,8 +207,9 @@ namespace UnitsNet.Tests
         [InlineData("1 MB", "ru-RU", 1, InformationUnit.Megabyte)]
         [InlineData("1 MiB", "en-US", 1, InformationUnit.Mebibyte)]
         [InlineData("1 MiB", "ru-RU", 1, InformationUnit.Mebibyte)]
-        public void ParseInformationWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expectedValue, Enum expectedUnit)
+        public void ParseInformationWithPrefixUnits_GivenCulture_ReturnsQuantityWithSameUnitAndValue(string str, string cultureName, double expected, Enum expectedUnit)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             var actual = Information.Parse(str, CultureInfo.GetCultureInfo(cultureName));
 
             Assert.Equal(expectedUnit, actual.Unit);

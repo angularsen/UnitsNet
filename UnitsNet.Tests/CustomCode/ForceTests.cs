@@ -109,7 +109,7 @@ namespace UnitsNet.Tests
         public void KilogramForceDividedByNewtonEqualsStandardGravity()
         {
             var duration = Force.FromKilogramsForce(1) / Force.FromNewtons(1);
-            Assert.Equal(9.80665, duration);
+            Assert.Equal(9.80665m, duration);
         }
 
         [Fact]

@@ -141,17 +141,17 @@ namespace UnitsNet.Tests
         [Fact]
         public void NegativeMassToStonePoundsReturnsCorrectValues()
         {
-            var negativeMass = Mass.FromPounds(-1.0);
+            var negativeMass = Mass.FromPounds(-1);
             var stonePounds = negativeMass.StonePounds;
 
             Assert.Equal(0, stonePounds.Stone);
-            Assert.Equal(-1.0, stonePounds.Pounds);
+            Assert.Equal(-1, stonePounds.Pounds);
 
-            negativeMass = Mass.FromPounds(-25.0);
+            negativeMass = Mass.FromPounds(-25);
             stonePounds = negativeMass.StonePounds;
 
-            Assert.Equal(-1.0, stonePounds.Stone);
-            Assert.Equal(-11.0, stonePounds.Pounds);
+            Assert.Equal(-1, stonePounds.Stone);
+            Assert.Equal(-11, stonePounds.Pounds);
         }
 
         [Theory]

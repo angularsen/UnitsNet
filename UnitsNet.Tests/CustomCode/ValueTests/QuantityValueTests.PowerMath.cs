@@ -63,13 +63,14 @@ public partial class QuantityValueTests
         [InlineData(double.NegativeInfinity, 0, 1)]
         [InlineData(double.NegativeInfinity, 1, double.NegativeInfinity)]
         [InlineData(double.NegativeInfinity, 2, double.PositiveInfinity)]
-        public void PowWithNaNOrInfinityTests(double number, int power, double expectedResult)
+        public void PowWithNaNOrInfinityTests(double number, int power, double expected)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             var result = QuantityValue.Pow(number, power);
 #if NET
             Assert.Equal(double.Pow(number, power), result.ToDouble());
 #endif
-            Assert.Equal(expectedResult, result);
+            Assert.Equal(expectedValue, result);
         }
 
         [Theory]
@@ -109,13 +110,14 @@ public partial class QuantityValueTests
         [InlineData(double.NegativeInfinity, 1, double.NegativeInfinity)]
         [InlineData(double.NegativeInfinity, 2, double.PositiveInfinity)]
         [InlineData(double.NegativeInfinity, 3, double.NegativeInfinity)]
-        public void PowRationalWithNaNOrInfinityTests(double number, double power, double expectedResult)
+        public void PowRationalWithNaNOrInfinityTests(double number, double power, double expected)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             var result = QuantityValue.Pow(number, power);
 #if NET
             Assert.Equal(double.Pow(number, power), result.ToDouble());
 #endif
-            Assert.Equal(expectedResult, result);
+            Assert.Equal(expectedValue, result);
         }
 
         [Fact]
@@ -134,10 +136,11 @@ public partial class QuantityValueTests
         public void Sqrt_WithSpecialValues_MatchesTheOutputOfMathSqrt(double doubleValue)
         {
             var expected = Math.Sqrt(doubleValue);
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
 
             var actual = QuantityValue.Sqrt(doubleValue);
 
-            Assert.Equal(expected, actual);
+            Assert.Equal(expectedValue, actual);
         }
 
         [Theory]
@@ -412,13 +415,14 @@ public partial class QuantityValueTests
         [InlineData(double.NegativeInfinity, 1, double.NegativeInfinity)]
         [InlineData(double.NegativeInfinity, 2, double.NaN)]
         [InlineData(double.NegativeInfinity, 3, double.NegativeInfinity)]
-        public void RootWithNaNOrInfinityTests(double number, int root, double expectedResult)
+        public void RootWithNaNOrInfinityTests(double number, int root, double expected)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             var result = QuantityValue.RootN(number, root);
 #if NET
             Assert.Equal(double.RootN(number, root), result.ToDouble());
 #endif
-            Assert.Equal(expectedResult, result);
+            Assert.Equal(expectedValue, result);
         }
 
         [Fact]

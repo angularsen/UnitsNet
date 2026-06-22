@@ -546,13 +546,14 @@ public class QuantityInfoTest
     [InlineData(2, MassUnit.Milligram)]
     public void From_ValueAndUnit_ReturnsTheExpectedQuantity(double value, MassUnit unit)
     {
+        var expectedValue = QuantityValue.FromDoubleRounded(value);
         Assert.Multiple(() =>
         {
             QuantityInfo<Mass, MassUnit> quantityInfo = Mass.Info;
 
             Mass quantity = quantityInfo.From(value, unit);
 
-            Assert.Equal(value, quantity.Value);
+            Assert.Equal(expectedValue, quantity.Value);
             Assert.Equal(unit, quantity.Unit);
         }, () =>
         {
@@ -560,7 +561,7 @@ public class QuantityInfoTest
 
             IQuantity<MassUnit> quantity = quantityInfo.From(value, unit);
 
-            Assert.Equal(value, quantity.Value);
+            Assert.Equal(expectedValue, quantity.Value);
             Assert.Equal(unit, quantity.Unit);
         }, () =>
         {
@@ -568,7 +569,7 @@ public class QuantityInfoTest
 
             IQuantity quantity = quantityInfo.From(value, unit);
 
-            Assert.Equal(value, quantity.Value);
+            Assert.Equal(expectedValue, quantity.Value);
             Assert.Equal(unit, quantity.Unit);
         });
     }
@@ -578,11 +579,12 @@ public class QuantityInfoTest
     [InlineData(2, MassUnit.Milligram)]
     public void From_ValueAndUnitKey_WithSameUnitType_ReturnsTheExpectedQuantity(double value, MassUnit unit)
     {
+        var expectedValue = QuantityValue.FromDoubleRounded(value);
         IQuantityInstanceInfo<Mass> quantityInfo = Mass.Info;
 
         Mass quantity = quantityInfo.Create(value, UnitKey.ForUnit(unit));
 
-        Assert.Equal(value, quantity.Value);
+        Assert.Equal(expectedValue, quantity.Value);
         Assert.Equal(unit, quantity.Unit);
     }
 
@@ -591,11 +593,12 @@ public class QuantityInfoTest
     [InlineData(2, MassUnit.Milligram)]
     public void From_ValueAnEnum_WithSameUnitType_ReturnsTheExpectedQuantity(double value, Enum unit)
     {
+        var expectedValue = QuantityValue.FromDoubleRounded(value);
         QuantityInfo<Mass, MassUnit> quantityInfo = Mass.Info;
 
         IQuantity quantity = quantityInfo.From(value, unit);
 
-        Assert.Equal(value, quantity.Value);
+        Assert.Equal(expectedValue, quantity.Value);
         Assert.Equal(unit, quantity.Unit);
     }
 

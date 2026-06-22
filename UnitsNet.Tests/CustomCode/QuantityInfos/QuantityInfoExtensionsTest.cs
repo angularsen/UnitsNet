@@ -253,8 +253,9 @@ public class QuantityInfoExtensionsTest
     [InlineData(HowMuchUnit.ATon, MassUnit.Tonne, 1)]
     [InlineData(HowMuchUnit.Some, MassUnit.Tonne, 0.1)]
     [InlineData(HowMuchUnit.AShitTon, MassUnit.Tonne, 10)]
-    public void TryToConvertFrom_QuantityWithoutSIBase_ToQuantity(HowMuchUnit fromUnit, MassUnit expectedUnit, double expectedValue)
+    public void TryToConvertFrom_QuantityWithoutSIBase_ToQuantity(HowMuchUnit fromUnit, MassUnit expectedUnit, double expected)
     {
+        var expectedValue = QuantityValue.FromDoubleRounded(expected);
         QuantityValue valueToConvert = QuantityValue.One;
         UnitInfo fromUnitInfo = HowMuch.Info[fromUnit];
 
@@ -269,8 +270,9 @@ public class QuantityInfoExtensionsTest
     [InlineData(MassUnit.Tonne, HowMuchUnit.ATon, 1)]
     [InlineData(MassUnit.Kilogram, HowMuchUnit.ATon, 0.001)]
     [InlineData(MassUnit.Gram, HowMuchUnit.ATon, 0.000001)]
-    public void TryToConvertFrom_QuantityWithoutMatchingSIBase_ToIQuantity(MassUnit fromUnit, HowMuchUnit expectedUnit, double expectedValue)
+    public void TryToConvertFrom_QuantityWithoutMatchingSIBase_ToIQuantity(MassUnit fromUnit, HowMuchUnit expectedUnit, double expected)
     {
+        var expectedValue = QuantityValue.FromDoubleRounded(expected);
         QuantityValue valueToConvert = QuantityValue.One;
         UnitInfo fromUnitInfo = Mass.Info[fromUnit];
         var success = HowMuch.Info.TryConvertFrom(valueToConvert, fromUnitInfo, out IQuantity? result);
@@ -285,8 +287,9 @@ public class QuantityInfoExtensionsTest
     [InlineData(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, 1)]
     [InlineData(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, 10)]
     public void TryToConvertFrom_QuantityBaseDifferentFromSI_ToQuantity(TemperatureChangeRateUnit fromUnit, TemperatureChangeRateUnit expectedUnit,
-        double expectedValue)
+        double expected)
     {
+        var expectedValue = QuantityValue.FromDoubleRounded(expected);
         QuantityValue valueToConvert = QuantityValue.One;
         UnitInfo fromUnitInfo = TemperatureChangeRate.Info[fromUnit];
         // we simulate a different quantity type, having a non-standard base unit (note: the "official" TemperatureChangeRate is currently using DegreeCelsiusPerSecond)
@@ -305,8 +308,9 @@ public class QuantityInfoExtensionsTest
     [InlineData(TemperatureChangeRateUnit.DegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, 1)]
     [InlineData(TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, TemperatureChangeRateUnit.DegreeCelsiusPerSecond, 10)]
     public void TryToConvertFrom_QuantityBaseDifferentFromSI_ToIQuantity(TemperatureChangeRateUnit fromUnit, TemperatureChangeRateUnit expectedUnit,
-        double expectedValue)
+        double expected)
     {
+        var expectedValue = QuantityValue.FromDoubleRounded(expected);
         QuantityValue valueToConvert = QuantityValue.One;
         UnitInfo fromUnitInfo = TemperatureChangeRate.Info[fromUnit];
         // we simulate a different quantity type, having a non-standard base unit (note: the "official" TemperatureChangeRate is currently using DegreeCelsiusPerSecond)

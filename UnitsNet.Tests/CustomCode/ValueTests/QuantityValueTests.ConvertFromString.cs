@@ -378,7 +378,7 @@ public partial class QuantityValueTests
             public void Parsing_ExponentStringWithoutDecimalSeparator_With_NumberStyle_ExcludingDecimals_ShouldReturnTheExpectedResult()
             {
                 var result = QuantityValue.Parse("1e3", NumberStyles.Any & ~ NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
-                Assert.Equal(1e3, result);
+                Assert.Equal(1e3m, result);
             }
 
             [Theory]

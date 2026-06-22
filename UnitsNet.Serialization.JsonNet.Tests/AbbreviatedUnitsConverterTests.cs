@@ -154,7 +154,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             var quantity = DeserializeObject<IQuantity>(json);
             
-            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(1.2m, quantity.Value);
             Assert.Equal(MassUnit.Milligram, quantity.Unit);
         }
 
@@ -177,7 +177,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             var quantity = DeserializeObject<Mass>(json);
 
-            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(1.2m, quantity.Value);
             Assert.Equal(MassUnit.Milligram, quantity.Unit);
         }
 
@@ -188,7 +188,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             var quantity = DeserializeObject<IQuantity>(json);
 
-            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(1.2m, quantity.Value);
             Assert.Equal(MassUnit.EarthMass, quantity.Unit);
         }
 
@@ -199,7 +199,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             var quantity = DeserializeObject<IQuantity>(json);
 
-            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(1.2m, quantity.Value);
             Assert.Equal(MassUnit.Milligram, quantity.Unit);
         }
 
@@ -211,8 +211,8 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             var megabar = DeserializeObject<IQuantity>(json);
             var millibar = DeserializeObject<IQuantity>(json.ToLower());
 
-            Assert.Equal(1.2, megabar.Value);
-            Assert.Equal(1.2, millibar.Value);
+            Assert.Equal(1.2m, megabar.Value);
+            Assert.Equal(1.2m, millibar.Value);
             Assert.Equal(PressureUnit.Megabar, megabar.Unit);
             Assert.Equal(PressureUnit.Millibar, millibar.Unit);
         }
@@ -224,7 +224,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             var quantity = DeserializeObject<IQuantity>(json);
 
-            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(1.2m, quantity.Value);
             Assert.Equal(MassUnit.Milligram, quantity.Unit);
         }
 
@@ -294,7 +294,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             var quantity = DeserializeObject<IQuantity>(json);
 
-            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(1.2m, quantity.Value);
             Assert.Equal(MassUnit.Milligram, quantity.Unit);
         }
 
@@ -305,7 +305,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             var quantity = DeserializeObject<Mass>(json);
 
-            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(1.2m, quantity.Value);
             Assert.Equal(MassUnit.Milligram, quantity.Unit);
         }
 
@@ -338,7 +338,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             var quantity = DeserializeObject<IQuantity>(json);
 
-            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(1.2m, quantity.Value);
             Assert.Equal(Mass.BaseUnit, quantity.Unit);
         }
 
@@ -349,7 +349,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             var quantity = DeserializeObject<Mass>(json);
 
-            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(1.2m, quantity.Value);
             Assert.Equal(Mass.BaseUnit, quantity.Unit);
         }
 

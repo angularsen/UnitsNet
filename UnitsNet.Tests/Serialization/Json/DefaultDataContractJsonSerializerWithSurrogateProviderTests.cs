@@ -89,7 +89,7 @@ internal class DefaultDataContractJsonSerializerWithSurrogateProviderTests : Ser
 
         var quantity = DeserializeObject<Mass>(json);
 
-        Assert.Equal(1.2, quantity.Value);
+        Assert.Equal(1.2m, quantity.Value);
         Assert.Equal(expectedUnit, quantity.Unit);
     }
 
@@ -126,7 +126,7 @@ internal class DefaultDataContractJsonSerializerWithSurrogateProviderTests : Ser
 
         var quantity = DeserializeObject<Mass>(json);
 
-        Assert.Equal(1.2, quantity.Value);
+        Assert.Equal(1.2m, quantity.Value);
         Assert.Equal(Mass.BaseUnit, quantity.Unit);
     }
 

@@ -47,11 +47,12 @@ namespace UnitsNet.Tests
         [InlineData(1000, 60)]
         public void ExpectVoltageConvertedToAmplitudeRatioCorrectly(double voltage, double expected)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             // Amplitude ratio increases linearly by 20 dBV with power-of-10 increases of voltage.
             ElectricPotential v = ElectricPotential.FromVolts(voltage);
 
             var actual = AmplitudeRatio.FromElectricPotential(v).DecibelVolts;
-            Assert.Equal(expected, actual);
+            Assert.Equal(expectedValue, actual);
         }
 
         [Theory]
@@ -62,11 +63,12 @@ namespace UnitsNet.Tests
         [InlineData(40, 100)]
         public void ExpectAmplitudeRatioConvertedToVoltageCorrectly(double amplitudeRatio, double expected)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             // Voltage increases by powers of 10 for every 20 dBV increase in amplitude ratio.
             AmplitudeRatio ar = AmplitudeRatio.FromDecibelVolts(amplitudeRatio);
 
             var actual = ar.ToElectricPotential().Volts;
-            Assert.Equal(expected, actual);
+            Assert.Equal(expectedValue, actual);
         }
 
         // http://www.maximintegrated.com/en/app-notes/index.mvp/id/808
