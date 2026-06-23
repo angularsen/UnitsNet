@@ -373,6 +373,28 @@ namespace UnitsNet.NumberExtensions.NumberToPressure
             => Pressure.FromMillibars(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Pressure.FromMilligramsForcePerSquareFoot(double)" />
+        public static Pressure MilligramsForcePerSquareFoot<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Pressure.FromMilligramsForcePerSquareFoot(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Pressure.FromMilligramsForcePerSquareFoot(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Pressure.FromMilligramsForcePerSquareMeter(double)" />
+        public static Pressure MilligramsForcePerSquareMeter<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Pressure.FromMilligramsForcePerSquareMeter(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Pressure.FromMilligramsForcePerSquareMeter(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(double)" />
         public static Pressure MillimetersOfMercury<T>(this T value)
             where T : notnull

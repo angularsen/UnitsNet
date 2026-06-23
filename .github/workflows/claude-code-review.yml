@@ -41,7 +41,7 @@ jobs:
             - Breaking changes, if any
             - Style and conventions
             - New quantities or units
-              - See `.claude/pr-review-instructions.md` for guidance and criteria, they should be widely used and well defined
+              - See `.agents/criteria-for-adding-quantities-and-units.md` for guidance and criteria, they should be widely used and well defined
               - If it seems domain specific or obscure we ask for justification and use cases
             - Changes to generated code
               - Focus feedback on changes to code generators

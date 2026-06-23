@@ -34,6 +34,12 @@ namespace UnitsNet.Units
         Dyn = 2,
 
         /// <summary>
+        ///     The gram-force is a unit of force equal to the magnitude of force exerted by a gram of mass in standard gravity (9.80665 m/s²). It is equal to 9.80665 × 10⁻³ N.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Kilogram-force</remarks>
+        GramForce = 16,
+
+        /// <summary>
         ///     The kilogram-force, or kilopond, is equal to the magnitude of the force exerted on one kilogram of mass in a 9.80665 m/s2 gravitational field (standard gravity). Therefore, one kilogram-force is by definition equal to 9.80665 N.
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Kilogram-force</remarks>

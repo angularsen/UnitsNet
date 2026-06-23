@@ -40,8 +40,6 @@ namespace CodeGen.Helpers
                     }
 
                     // Make sure all line endings on Windows are CRLF.
-                    // This is important for opening .nfproj flies in Visual Studio,
-                    // and maybe for some other files too.
                     line = line.Replace("\r", "").Replace("\n", Environment.NewLine);
 
                     output.WriteLine(line);
