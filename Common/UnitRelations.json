@@ -11,6 +11,7 @@
   "Area.SquareMeter = Length.Meter * Length.Meter",
   "Area.SquareMeter = Volume.CubicMeter * ReciprocalLength.InverseMeter",
   "AreaDensity.KilogramPerSquareMeter = Density.KilogramPerCubicMeter * Length.Meter",
+  "AreaMomentOfInertia.MeterToTheFourth = Area.SquareMeter * Area.SquareMeter",
   "AreaMomentOfInertia.MeterToTheFourth = Volume.CubicMeter * Length.Meter",
   "double = SpecificEnergy.JoulePerKilogram * BrakeSpecificFuelConsumption.KilogramPerJoule",
   "DynamicViscosity.NewtonSecondPerMeterSquared = Density.KilogramPerCubicMeter * KinematicViscosity.SquareMeterPerSecond",

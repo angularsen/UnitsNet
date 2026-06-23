@@ -40,6 +40,7 @@ namespace UnitsNet
         IArithmeticQuantity<AreaMomentOfInertia, AreaMomentOfInertiaUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<AreaMomentOfInertia, AreaMomentOfInertia, double>,
+        IDivisionOperators<AreaMomentOfInertia, Area, Area>,
         IDivisionOperators<AreaMomentOfInertia, Volume, Length>,
         IDivisionOperators<AreaMomentOfInertia, Length, Volume>,
         IComparisonOperators<AreaMomentOfInertia, AreaMomentOfInertia, bool>,
@@ -565,6 +566,12 @@ namespace UnitsNet
         #endregion
 
         #region Relational Operators
+
+        /// <summary>Get <see cref="Area"/> from <see cref="AreaMomentOfInertia"/> / <see cref="Area"/>.</summary>
+        public static Area operator /(AreaMomentOfInertia areaMomentOfInertia, Area area)
+        {
+            return Area.FromSquareMeters(areaMomentOfInertia.MetersToTheFourth / area.SquareMeters);
+        }
 
         /// <summary>Get <see cref="Length"/> from <see cref="AreaMomentOfInertia"/> / <see cref="Volume"/>.</summary>
         public static Length operator /(AreaMomentOfInertia areaMomentOfInertia, Volume volume)

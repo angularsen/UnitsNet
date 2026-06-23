@@ -40,6 +40,7 @@ namespace UnitsNet
         IArithmeticQuantity<Area, AreaUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Area, Area, double>,
+        IMultiplyOperators<Area, Area, AreaMomentOfInertia>,
         IMultiplyOperators<Area, Pressure, Force>,
         IMultiplyOperators<Area, SpecificWeight, ForcePerLength>,
         IMultiplyOperators<Area, ReciprocalLength, Length>,
@@ -713,6 +714,12 @@ namespace UnitsNet
         public ReciprocalArea Inverse()
         {
             return ReciprocalArea.FromInverseSquareMeters(1 / SquareMeters);
+        }
+
+        /// <summary>Get <see cref="AreaMomentOfInertia"/> from <see cref="Area"/> * <see cref="Area"/>.</summary>
+        public static AreaMomentOfInertia operator *(Area left, Area right)
+        {
+            return AreaMomentOfInertia.FromMetersToTheFourth(left.SquareMeters * right.SquareMeters);
         }
 
         /// <summary>Get <see cref="Force"/> from <see cref="Area"/> * <see cref="Pressure"/>.</summary>
