@@ -22,9 +22,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void DoubleDividedByBrakeSpecificFuelConsumptionEqualsSpecificEnergy()
+        public void ScalarDividedByBrakeSpecificFuelConsumptionEqualsSpecificEnergy()
         {
-            SpecificEnergy massFlow = 2 / BrakeSpecificFuelConsumption.FromKilogramsPerJoule(4);
+            SpecificEnergy massFlow = Scalar.FromAmount(2) / BrakeSpecificFuelConsumption.FromKilogramsPerJoule(4);
             Assert.Equal(SpecificEnergy.FromJoulesPerKilogram(0.5), massFlow);
         }
 
@@ -32,7 +32,7 @@ namespace UnitsNet.Tests
         public void BrakeSpecificFuelConsumptionTimesSpecificEnergyEqualsEnergy()
         {
             var value = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(20) * SpecificEnergy.FromJoulesPerKilogram(10);
-            Assert.Equal(200, value);
+            Assert.Equal(Scalar.FromAmount(200), value);
         }
     }
 }

@@ -45,10 +45,10 @@ namespace UnitsNet
         IDivisionOperators<SpecificEnergy, SpecificEnergy, double>,
         IMultiplyOperators<SpecificEnergy, Mass, Energy>,
         IMultiplyOperators<SpecificEnergy, MassFlow, Power>,
+        IMultiplyOperators<SpecificEnergy, BrakeSpecificFuelConsumption, Scalar>,
         IDivisionOperators<SpecificEnergy, TemperatureDelta, SpecificEntropy>,
         IDivisionOperators<SpecificEnergy, Speed, Speed>,
         IDivisionOperators<SpecificEnergy, SpecificEntropy, TemperatureDelta>,
-        IMultiplyOperators<SpecificEnergy, BrakeSpecificFuelConsumption, double>,
         IComparisonOperators<SpecificEnergy, SpecificEnergy, bool>,
         IParsable<SpecificEnergy>,
 #endif
@@ -957,12 +957,6 @@ namespace UnitsNet
 
         #region Relational Operators
 
-        /// <summary>Get <see cref="BrakeSpecificFuelConsumption"/> from <see cref="double"/> / <see cref="SpecificEnergy"/>.</summary>
-        public static BrakeSpecificFuelConsumption operator /(double value, SpecificEnergy specificEnergy)
-        {
-            return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value / specificEnergy.JoulesPerKilogram);
-        }
-
         /// <summary>Get <see cref="Energy"/> from <see cref="SpecificEnergy"/> * <see cref="Mass"/>.</summary>
         public static Energy operator *(SpecificEnergy specificEnergy, Mass mass)
         {
@@ -973,6 +967,12 @@ namespace UnitsNet
         public static Power operator *(SpecificEnergy specificEnergy, MassFlow massFlow)
         {
             return Power.FromWatts(specificEnergy.JoulesPerKilogram * massFlow.KilogramsPerSecond);
+        }
+
+        /// <summary>Get <see cref="Scalar"/> from <see cref="SpecificEnergy"/> * <see cref="BrakeSpecificFuelConsumption"/>.</summary>
+        public static Scalar operator *(SpecificEnergy specificEnergy, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
+        {
+            return Scalar.FromAmount(specificEnergy.JoulesPerKilogram * brakeSpecificFuelConsumption.KilogramsPerJoule);
         }
 
         /// <summary>Get <see cref="SpecificEntropy"/> from <see cref="SpecificEnergy"/> / <see cref="TemperatureDelta"/>.</summary>
@@ -991,12 +991,6 @@ namespace UnitsNet
         public static TemperatureDelta operator /(SpecificEnergy specificEnergy, SpecificEntropy specificEntropy)
         {
             return TemperatureDelta.FromKelvins(specificEnergy.JoulesPerKilogram / specificEntropy.JoulesPerKilogramKelvin);
-        }
-
-        /// <summary>Get <see cref="double"/> from <see cref="SpecificEnergy"/> * <see cref="BrakeSpecificFuelConsumption"/>.</summary>
-        public static double operator *(SpecificEnergy specificEnergy, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
-        {
-            return specificEnergy.JoulesPerKilogram * brakeSpecificFuelConsumption.KilogramsPerJoule;
         }
 
         #endregion

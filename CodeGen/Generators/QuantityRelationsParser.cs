@@ -23,8 +23,7 @@ namespace CodeGen.Generators
         ///     The relations are defined in UnitRelations.json
         ///     Each defined relation can be applied multiple times to one or two quantities depending on the operator and the operands.
         ///
-        ///     The format of a relation definition is "Quantity.Unit operator Quantity.Unit = Quantity.Unit" (See examples below).
-        ///     "double" can be used as a unitless operand.
+        ///     The format of a relation definition is "Quantity.Unit = Quantity.Unit * Quantity.Unit" (See examples below).
         ///     "1" can be used as the result operand to define inverse relations.
         ///
         ///     Division relations are inferred from multiplication relations,
@@ -43,10 +42,8 @@ namespace CodeGen.Generators
         {
             var quantityDictionary = quantities.ToDictionary(q => q.Name, q => q);
 
-            // Add double and 1 as pseudo-quantities to validate relations that use them.
-            var pseudoQuantity = new Quantity { Name = null!, Units = [new Unit { SingularName = null! }] };
-            quantityDictionary["double"] = pseudoQuantity with { Name = "double" };
-            quantityDictionary["1"] = pseudoQuantity with { Name = "1" };
+            // Add 1 as a pseudo-quantity to validate inverse relations.
+            quantityDictionary["1"] = new Quantity { Name = "1", Units = [new Unit()] };
 
             var relations = ParseRelations(rootDir, quantityDictionary);
 
@@ -61,7 +58,7 @@ namespace CodeGen.Generators
                     RightUnit = r.LeftUnit,
                 })
                 .ToList());
-            
+
             // We can infer division relations from multiplication relations.
             relations.AddRange(relations
                 .Where(r => r is { Operator: "*", NoInferredDivision: false })
@@ -81,8 +78,8 @@ namespace CodeGen.Generators
             relations.Sort();
 
             var duplicates = relations
-                .GroupBy(r => r.SortString)
-                .Where(g => g.Count() > 1)
+                .CountBy(r => r.SortString)
+                .Where(g => g.Value > 1)
                 .Select(g => g.Key)
                 .ToList();
 
@@ -91,10 +88,10 @@ namespace CodeGen.Generators
                 var list = string.Join("\n  ", duplicates);
                 throw new UnitsNetCodeGenException($"Duplicate inferred relations:\n  {list}");
             }
-            
+
             var ambiguous = relations
-                .GroupBy(r => $"{r.LeftQuantity.Name} {r.Operator} {r.RightQuantity.Name}")
-                .Where(g => g.Count() > 1)
+                .CountBy(r => r.DisambiguationString)
+                .Where(g => g.Value > 1)
                 .Select(g => g.Key)
                 .ToList();
 
@@ -106,23 +103,8 @@ namespace CodeGen.Generators
 
             foreach (var quantity in quantities)
             {
-                var quantityRelations = new List<QuantityRelation>();
-
-                foreach (var relation in relations)
-                {
-                    if (relation.LeftQuantity == quantity)
-                    {
-                        // The left operand of a relation is responsible for generating the operator.
-                        quantityRelations.Add(relation);
-                    }
-                    else if (relation.RightQuantity == quantity && relation.LeftQuantity.Name is "double")
-                    {
-                        // Because we cannot add operators to double we make the right operand responsible in this case.
-                        quantityRelations.Add(relation);
-                    }
-                }
-
-                quantity.Relations = quantityRelations.ToArray();
+                // The left operand of a relation is responsible for generating the operator.
+                quantity.Relations = relations.Where(relation => relation.LeftQuantity == quantity).ToArray();
             }
         }
 

@@ -41,7 +41,7 @@ namespace UnitsNet
 #if NET7_0_OR_GREATER
         IDivisionOperators<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumption, double>,
         IMultiplyOperators<BrakeSpecificFuelConsumption, Power, MassFlow>,
-        IMultiplyOperators<BrakeSpecificFuelConsumption, SpecificEnergy, double>,
+        IMultiplyOperators<BrakeSpecificFuelConsumption, SpecificEnergy, Scalar>,
         IComparisonOperators<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumption, bool>,
         IParsable<BrakeSpecificFuelConsumption>,
 #endif
@@ -524,16 +524,10 @@ namespace UnitsNet
             return MassFlow.FromKilogramsPerSecond(brakeSpecificFuelConsumption.KilogramsPerJoule * power.Watts);
         }
 
-        /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="double"/> / <see cref="BrakeSpecificFuelConsumption"/>.</summary>
-        public static SpecificEnergy operator /(double value, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
+        /// <summary>Get <see cref="Scalar"/> from <see cref="BrakeSpecificFuelConsumption"/> * <see cref="SpecificEnergy"/>.</summary>
+        public static Scalar operator *(BrakeSpecificFuelConsumption brakeSpecificFuelConsumption, SpecificEnergy specificEnergy)
         {
-            return SpecificEnergy.FromJoulesPerKilogram(value / brakeSpecificFuelConsumption.KilogramsPerJoule);
-        }
-
-        /// <summary>Get <see cref="double"/> from <see cref="BrakeSpecificFuelConsumption"/> * <see cref="SpecificEnergy"/>.</summary>
-        public static double operator *(BrakeSpecificFuelConsumption brakeSpecificFuelConsumption, SpecificEnergy specificEnergy)
-        {
-            return brakeSpecificFuelConsumption.KilogramsPerJoule * specificEnergy.JoulesPerKilogram;
+            return Scalar.FromAmount(brakeSpecificFuelConsumption.KilogramsPerJoule * specificEnergy.JoulesPerKilogram);
         }
 
         #endregion

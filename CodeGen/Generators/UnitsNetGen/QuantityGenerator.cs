@@ -854,28 +854,11 @@ namespace UnitsNet
                     var leftPart = $"{leftParameter}.{leftConversionProperty}";
                     var rightPart = $"{rightParameter}.{rightConversionProperty}";
 
-                    if (leftParameter is "double")
-                    {
-                        leftParameter = leftPart = "value";
-                    }
-
-                    if (rightParameter is "double")
-                    {
-                        rightParameter = rightPart = "value";
-                    }
-
-                    var expression = $"{leftPart} {relation.Operator} {rightPart}";
-
-                    if (relation.ResultQuantity.Name is not "double")
-                    {
-                        expression = $"{relation.ResultQuantity.Name}.From{relation.ResultUnit.PluralName}({expression})";
-                    }
-
                     Writer.WL($@"
         /// <summary>Get <see cref=""{relation.ResultQuantity.Name}""/> from <see cref=""{relation.LeftQuantity.Name}""/> {relation.Operator} <see cref=""{relation.RightQuantity.Name}""/>.</summary>
         public static {relation.ResultQuantity.Name} operator {relation.Operator}({relation.LeftQuantity.Name} {leftParameter}, {relation.RightQuantity.Name} {rightParameter})
         {{
-            return {expression};
+            return {relation.ResultQuantity.Name}.From{relation.ResultUnit.PluralName}({leftPart} {relation.Operator} {rightPart});
         }}
 ");
                 }
