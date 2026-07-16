@@ -1,7 +1,7 @@
 name: PR_$(Date:yyyy.MM.dd)$(Rev:.rrr)
 
 # PR pipeline
-# - Build all targets (netstandard2.0, .NET nanoFramework)
+# - Build all targets
 # - Run tests and upload test coverage to codecov.io
 
 trigger: none
@@ -56,14 +56,10 @@ stages:
         version: '10.x'
         includePreviewVersions: true
 
-    - task: InstallNanoMSBuildComponents@1
-      displayName: Install .NET nanoFramework MSBuild components
-
     - task: PowerShell@2
       displayName: 'Build, test, pack'
       inputs:
         filePath: 'Build/build.ps1'
-        arguments: '-IncludeNanoFramework'
         failOnStderr: true
         showWarnings: true
         pwsh: true

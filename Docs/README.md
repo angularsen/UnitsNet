@@ -15,7 +15,6 @@
 
 ## Platform Support
 
-- [.NET nanoFramework](nanoframework.md) — embedded device support
 - [Experimental: Generic Math](experimental-generic-math.md) — .NET 7+ generic math interfaces
 
 ## Upgrade Guides
