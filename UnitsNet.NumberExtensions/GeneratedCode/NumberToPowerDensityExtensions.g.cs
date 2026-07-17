@@ -32,6 +32,28 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
     /// </summary>
     public static class NumberToPowerDensityExtensions
     {
+        /// <inheritdoc cref="PowerDensity.FromBtusPerSecondCubicFoot(double)" />
+        public static PowerDensity BtusPerSecondCubicFoot<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => PowerDensity.FromBtusPerSecondCubicFoot(double.CreateChecked(value));
+#else
+            , IConvertible
+            => PowerDensity.FromBtusPerSecondCubicFoot(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="PowerDensity.FromBtusPerSecondCubicInch(double)" />
+        public static PowerDensity BtusPerSecondCubicInch<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => PowerDensity.FromBtusPerSecondCubicInch(double.CreateChecked(value));
+#else
+            , IConvertible
+            => PowerDensity.FromBtusPerSecondCubicInch(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicFoot(double)" />
         public static PowerDensity DecawattsPerCubicFoot<T>(this T value)
             where T : notnull

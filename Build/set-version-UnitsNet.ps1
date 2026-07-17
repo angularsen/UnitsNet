@@ -53,8 +53,6 @@ $root = Resolve-Path "$PSScriptRoot\.."
 $paramSet = $PsCmdlet.ParameterSetName
 $projFile = "$root\UnitsNet\UnitsNet.csproj"
 $numberExtensionsProjFile = "$root\UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj"
-$nanoFrameworkNuspecGeneratorFile = "$root\CodeGen\Generators\NanoFrameworkGen\NuspecGenerator.cs"
-$nanoFrameworkAssemblyInfoFile = "$root\UnitsNet.NanoFramework\GeneratedCode\Properties\AssemblyInfo.cs"
 
 # Use UnitsNet.Common.props version as base if bumping major/minor/patch
 $newVersion = Get-NewProjectVersion $projFile $paramSet $setVersion $bumpVersion
@@ -65,17 +63,6 @@ $didStash = Invoke-StashPush
 # Update project files
 Set-ProjectVersion $projFile $newVersion
 Set-ProjectVersion $numberExtensionsProjFile $newVersion
-
-# Update AssemblyInfo.cs file for .NET nanoFramework
-Set-AssemblyInfoVersion $nanoFrameworkAssemblyInfoFile $newVersion
-
-# Update codegen and .nuspec files for nanoFramework
-Set-NuspecVersion $nanoFrameworkNuspecGeneratorFile $newVersion
-Get-ChildItem -Path "$root\UnitsNet.NanoFramework\GeneratedCode" -Include '*.nuspec' -Recurse |
-    Foreach-object {
-        Set-NuspecVersion $_.FullName $newVersion
-        $versionFiles += $_.FullName
-    }
 
 # Git commit and tag
 Invoke-CommitVersionBump @("UnitsNet") $newVersion

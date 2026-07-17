@@ -49,14 +49,10 @@ stages:
         version: '10.x'
         includePreviewVersions: true
 
-    - task: InstallNanoMSBuildComponents@1
-      displayName: Install .NET nanoFramework MSBuild components
-
     - task: PowerShell@2
       displayName: 'Build, test, pack'
       inputs:
         filePath: 'Build/build.ps1'
-        arguments: '-IncludeNanoFramework'
         failOnStderr: true
         showWarnings: true
         pwsh: true

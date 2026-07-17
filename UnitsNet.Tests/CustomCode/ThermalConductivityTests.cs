@@ -29,5 +29,6 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override double WattsPerMeterKelvinInOneWattPerMeterKelvin => 1;
         protected override double BtusPerHourFootFahrenheitInOneWattPerMeterKelvin => 5.77789317e-1;
+        protected override double BtusPerSecondInchFahrenheitInOneWattPerMeterKelvin => 1.33747527e-5;
     }
 }

@@ -34,6 +34,12 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MilligramsPerSquareMeterInOneKilogramPerSquareMeter => 1000000;
 
+        /// <summary>https://www.kylesconverter.com/area-density/kilograms-per-square-meter-to-pounds-per-square-foot</summary>
+        protected override double PoundsPerSquareFootInOneKilogramPerSquareMeter => 0.20481614362252172;
+
+        /// <summary>https://www.kylesconverter.com/area-density/grams-per-square-meter-to-pounds-per-thousand-square-feet</summary>
+        protected override double PoundsPerThousandSquareFeetInOneKilogramPerSquareMeter => 204.81614362252172;
+
         [Fact]
         public void AreaDensityTimesAreaEqualsMass()
         {

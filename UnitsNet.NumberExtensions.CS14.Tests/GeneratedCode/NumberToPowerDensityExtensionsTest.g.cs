@@ -25,6 +25,14 @@ namespace UnitsNet.Tests
     public class NumberToPowerDensityExtensionsTests
     {
         [Fact]
+        public void NumberToBtusPerSecondCubicFootTest() =>
+            Assert.Equal(PowerDensity.FromBtusPerSecondCubicFoot(2), 2.BtusPerSecondCubicFoot);
+
+        [Fact]
+        public void NumberToBtusPerSecondCubicInchTest() =>
+            Assert.Equal(PowerDensity.FromBtusPerSecondCubicInch(2), 2.BtusPerSecondCubicInch);
+
+        [Fact]
         public void NumberToDecawattsPerCubicFootTest() =>
             Assert.Equal(PowerDensity.FromDecawattsPerCubicFoot(2), 2.DecawattsPerCubicFoot);
 

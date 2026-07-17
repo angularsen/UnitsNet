@@ -124,18 +124,25 @@ namespace UnitsNet
                 yield return new (HeatFluxUnit.BtuPerSecondSquareInch, "BtuPerSecondSquareInch", "BtusPerSecondSquareInch", BaseUnits.Undefined);
                 yield return new (HeatFluxUnit.CaloriePerSecondSquareCentimeter, "CaloriePerSecondSquareCentimeter", "CaloriesPerSecondSquareCentimeter", BaseUnits.Undefined);
                 yield return new (HeatFluxUnit.CentiwattPerSquareMeter, "CentiwattPerSquareMeter", "CentiwattsPerSquareMeter", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Second));
+                yield return new (HeatFluxUnit.CentiwattPerSquareMillimeter, "CentiwattPerSquareMillimeter", "CentiwattsPerSquareMillimeter", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Second));
                 yield return new (HeatFluxUnit.DeciwattPerSquareMeter, "DeciwattPerSquareMeter", "DeciwattsPerSquareMeter", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Second));
+                yield return new (HeatFluxUnit.DeciwattPerSquareMillimeter, "DeciwattPerSquareMillimeter", "DeciwattsPerSquareMillimeter", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Second));
                 yield return new (HeatFluxUnit.KilocaloriePerHourSquareMeter, "KilocaloriePerHourSquareMeter", "KilocaloriesPerHourSquareMeter", BaseUnits.Undefined);
                 yield return new (HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, "KilocaloriePerSecondSquareCentimeter", "KilocaloriesPerSecondSquareCentimeter", BaseUnits.Undefined);
                 yield return new (HeatFluxUnit.KilowattPerSquareMeter, "KilowattPerSquareMeter", "KilowattsPerSquareMeter", BaseUnits.Undefined);
+                yield return new (HeatFluxUnit.KilowattPerSquareMillimeter, "KilowattPerSquareMillimeter", "KilowattsPerSquareMillimeter", BaseUnits.Undefined);
                 yield return new (HeatFluxUnit.MicrowattPerSquareMeter, "MicrowattPerSquareMeter", "MicrowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second));
+                yield return new (HeatFluxUnit.MicrowattPerSquareMillimeter, "MicrowattPerSquareMillimeter", "MicrowattsPerSquareMillimeter", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second));
                 yield return new (HeatFluxUnit.MilliwattPerSquareMeter, "MilliwattPerSquareMeter", "MilliwattsPerSquareMeter", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second));
+                yield return new (HeatFluxUnit.MilliwattPerSquareMillimeter, "MilliwattPerSquareMillimeter", "MilliwattsPerSquareMillimeter", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second));
                 yield return new (HeatFluxUnit.NanowattPerSquareMeter, "NanowattPerSquareMeter", "NanowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second));
+                yield return new (HeatFluxUnit.NanowattPerSquareMillimeter, "NanowattPerSquareMillimeter", "NanowattsPerSquareMillimeter", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second));
                 yield return new (HeatFluxUnit.PoundForcePerFootSecond, "PoundForcePerFootSecond", "PoundsForcePerFootSecond", BaseUnits.Undefined);
                 yield return new (HeatFluxUnit.PoundPerSecondCubed, "PoundPerSecondCubed", "PoundsPerSecondCubed", BaseUnits.Undefined);
                 yield return new (HeatFluxUnit.WattPerSquareFoot, "WattPerSquareFoot", "WattsPerSquareFoot", BaseUnits.Undefined);
                 yield return new (HeatFluxUnit.WattPerSquareInch, "WattPerSquareInch", "WattsPerSquareInch", BaseUnits.Undefined);
                 yield return new (HeatFluxUnit.WattPerSquareMeter, "WattPerSquareMeter", "WattsPerSquareMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (HeatFluxUnit.WattPerSquareMillimeter, "WattPerSquareMillimeter", "WattsPerSquareMillimeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second));
             }
         }
 
@@ -272,9 +279,19 @@ namespace UnitsNet
         public double CentiwattsPerSquareMeter => As(HeatFluxUnit.CentiwattPerSquareMeter);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.CentiwattPerSquareMillimeter"/>
+        /// </summary>
+        public double CentiwattsPerSquareMillimeter => As(HeatFluxUnit.CentiwattPerSquareMillimeter);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.DeciwattPerSquareMeter"/>
         /// </summary>
         public double DeciwattsPerSquareMeter => As(HeatFluxUnit.DeciwattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.DeciwattPerSquareMillimeter"/>
+        /// </summary>
+        public double DeciwattsPerSquareMillimeter => As(HeatFluxUnit.DeciwattPerSquareMillimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.KilocaloriePerHourSquareMeter"/>
@@ -292,9 +309,19 @@ namespace UnitsNet
         public double KilowattsPerSquareMeter => As(HeatFluxUnit.KilowattPerSquareMeter);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.KilowattPerSquareMillimeter"/>
+        /// </summary>
+        public double KilowattsPerSquareMillimeter => As(HeatFluxUnit.KilowattPerSquareMillimeter);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.MicrowattPerSquareMeter"/>
         /// </summary>
         public double MicrowattsPerSquareMeter => As(HeatFluxUnit.MicrowattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.MicrowattPerSquareMillimeter"/>
+        /// </summary>
+        public double MicrowattsPerSquareMillimeter => As(HeatFluxUnit.MicrowattPerSquareMillimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.MilliwattPerSquareMeter"/>
@@ -302,9 +329,19 @@ namespace UnitsNet
         public double MilliwattsPerSquareMeter => As(HeatFluxUnit.MilliwattPerSquareMeter);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.MilliwattPerSquareMillimeter"/>
+        /// </summary>
+        public double MilliwattsPerSquareMillimeter => As(HeatFluxUnit.MilliwattPerSquareMillimeter);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.NanowattPerSquareMeter"/>
         /// </summary>
         public double NanowattsPerSquareMeter => As(HeatFluxUnit.NanowattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.NanowattPerSquareMillimeter"/>
+        /// </summary>
+        public double NanowattsPerSquareMillimeter => As(HeatFluxUnit.NanowattPerSquareMillimeter);
 
         /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.PoundForcePerFootSecond"/>
@@ -331,6 +368,11 @@ namespace UnitsNet
         /// </summary>
         public double WattsPerSquareMeter => As(HeatFluxUnit.WattPerSquareMeter);
 
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="HeatFluxUnit.WattPerSquareMillimeter"/>
+        /// </summary>
+        public double WattsPerSquareMillimeter => As(HeatFluxUnit.WattPerSquareMillimeter);
+
         #endregion
 
         #region Static Methods
@@ -348,17 +390,24 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.BtuPerSecondSquareInch, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.CaloriePerSecondSquareCentimeter, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.CentiwattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
+            unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.CentiwattPerSquareMillimeter, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.DeciwattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
+            unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.DeciwattPerSquareMillimeter, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.KilocaloriePerHourSquareMeter, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.KilowattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
+            unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.KilowattPerSquareMillimeter, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.MicrowattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
+            unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.MicrowattPerSquareMillimeter, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.MilliwattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
+            unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.MilliwattPerSquareMillimeter, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.NanowattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
+            unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.NanowattPerSquareMillimeter, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.PoundForcePerFootSecond, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.PoundPerSecondCubed, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareFoot, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareInch, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
+            unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMillimeter, HeatFluxUnit.WattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMeter));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter, quantity => quantity);
@@ -370,17 +419,24 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.BtuPerSecondSquareInch, quantity => quantity.ToUnit(HeatFluxUnit.BtuPerSecondSquareInch));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.CaloriePerSecondSquareCentimeter, quantity => quantity.ToUnit(HeatFluxUnit.CaloriePerSecondSquareCentimeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.CentiwattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.CentiwattPerSquareMeter));
+            unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.CentiwattPerSquareMillimeter, quantity => quantity.ToUnit(HeatFluxUnit.CentiwattPerSquareMillimeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.DeciwattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.DeciwattPerSquareMeter));
+            unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.DeciwattPerSquareMillimeter, quantity => quantity.ToUnit(HeatFluxUnit.DeciwattPerSquareMillimeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.KilocaloriePerHourSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.KilocaloriePerHourSquareMeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, quantity => quantity.ToUnit(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.KilowattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.KilowattPerSquareMeter));
+            unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.KilowattPerSquareMillimeter, quantity => quantity.ToUnit(HeatFluxUnit.KilowattPerSquareMillimeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.MicrowattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.MicrowattPerSquareMeter));
+            unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.MicrowattPerSquareMillimeter, quantity => quantity.ToUnit(HeatFluxUnit.MicrowattPerSquareMillimeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.MilliwattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.MilliwattPerSquareMeter));
+            unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.MilliwattPerSquareMillimeter, quantity => quantity.ToUnit(HeatFluxUnit.MilliwattPerSquareMillimeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.NanowattPerSquareMeter, quantity => quantity.ToUnit(HeatFluxUnit.NanowattPerSquareMeter));
+            unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.NanowattPerSquareMillimeter, quantity => quantity.ToUnit(HeatFluxUnit.NanowattPerSquareMillimeter));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.PoundForcePerFootSecond, quantity => quantity.ToUnit(HeatFluxUnit.PoundForcePerFootSecond));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.PoundPerSecondCubed, quantity => quantity.ToUnit(HeatFluxUnit.PoundPerSecondCubed));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.WattPerSquareFoot, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareFoot));
             unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.WattPerSquareInch, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareInch));
+            unitConverter.SetConversionFunction<HeatFlux>(HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.WattPerSquareMillimeter, quantity => quantity.ToUnit(HeatFluxUnit.WattPerSquareMillimeter));
         }
 
         /// <summary>
@@ -457,11 +513,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.CentiwattPerSquareMillimeter"/>.
+        /// </summary>
+        public static HeatFlux FromCentiwattsPerSquareMillimeter(double value)
+        {
+            return new HeatFlux(value, HeatFluxUnit.CentiwattPerSquareMillimeter);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.DeciwattPerSquareMeter"/>.
         /// </summary>
         public static HeatFlux FromDeciwattsPerSquareMeter(double value)
         {
             return new HeatFlux(value, HeatFluxUnit.DeciwattPerSquareMeter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.DeciwattPerSquareMillimeter"/>.
+        /// </summary>
+        public static HeatFlux FromDeciwattsPerSquareMillimeter(double value)
+        {
+            return new HeatFlux(value, HeatFluxUnit.DeciwattPerSquareMillimeter);
         }
 
         /// <summary>
@@ -489,11 +561,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.KilowattPerSquareMillimeter"/>.
+        /// </summary>
+        public static HeatFlux FromKilowattsPerSquareMillimeter(double value)
+        {
+            return new HeatFlux(value, HeatFluxUnit.KilowattPerSquareMillimeter);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.MicrowattPerSquareMeter"/>.
         /// </summary>
         public static HeatFlux FromMicrowattsPerSquareMeter(double value)
         {
             return new HeatFlux(value, HeatFluxUnit.MicrowattPerSquareMeter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.MicrowattPerSquareMillimeter"/>.
+        /// </summary>
+        public static HeatFlux FromMicrowattsPerSquareMillimeter(double value)
+        {
+            return new HeatFlux(value, HeatFluxUnit.MicrowattPerSquareMillimeter);
         }
 
         /// <summary>
@@ -505,11 +593,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.MilliwattPerSquareMillimeter"/>.
+        /// </summary>
+        public static HeatFlux FromMilliwattsPerSquareMillimeter(double value)
+        {
+            return new HeatFlux(value, HeatFluxUnit.MilliwattPerSquareMillimeter);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.NanowattPerSquareMeter"/>.
         /// </summary>
         public static HeatFlux FromNanowattsPerSquareMeter(double value)
         {
             return new HeatFlux(value, HeatFluxUnit.NanowattPerSquareMeter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.NanowattPerSquareMillimeter"/>.
+        /// </summary>
+        public static HeatFlux FromNanowattsPerSquareMillimeter(double value)
+        {
+            return new HeatFlux(value, HeatFluxUnit.NanowattPerSquareMillimeter);
         }
 
         /// <summary>
@@ -550,6 +654,14 @@ namespace UnitsNet
         public static HeatFlux FromWattsPerSquareMeter(double value)
         {
             return new HeatFlux(value, HeatFluxUnit.WattPerSquareMeter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.WattPerSquareMillimeter"/>.
+        /// </summary>
+        public static HeatFlux FromWattsPerSquareMillimeter(double value)
+        {
+            return new HeatFlux(value, HeatFluxUnit.WattPerSquareMillimeter);
         }
 
         /// <summary>
@@ -961,17 +1073,24 @@ namespace UnitsNet
                 (HeatFluxUnit.BtuPerSecondSquareInch, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(_value * 1055.05585262 / (2.54e-2 * 2.54e-2), HeatFluxUnit.WattPerSquareMeter),
                 (HeatFluxUnit.CaloriePerSecondSquareCentimeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(_value * 4.184e4, HeatFluxUnit.WattPerSquareMeter),
                 (HeatFluxUnit.CentiwattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux((_value) * 1e-2d, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.CentiwattPerSquareMillimeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux((_value / 1e-6) * 1e-2d, HeatFluxUnit.WattPerSquareMeter),
                 (HeatFluxUnit.DeciwattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux((_value) * 1e-1d, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.DeciwattPerSquareMillimeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux((_value / 1e-6) * 1e-1d, HeatFluxUnit.WattPerSquareMeter),
                 (HeatFluxUnit.KilocaloriePerHourSquareMeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(_value * 4.184e3 / 3600, HeatFluxUnit.WattPerSquareMeter),
                 (HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux((_value * 4.184e4) * 1e3d, HeatFluxUnit.WattPerSquareMeter),
                 (HeatFluxUnit.KilowattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux((_value) * 1e3d, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.KilowattPerSquareMillimeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux((_value / 1e-6) * 1e3d, HeatFluxUnit.WattPerSquareMeter),
                 (HeatFluxUnit.MicrowattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux((_value) * 1e-6d, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.MicrowattPerSquareMillimeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux((_value / 1e-6) * 1e-6d, HeatFluxUnit.WattPerSquareMeter),
                 (HeatFluxUnit.MilliwattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux((_value) * 1e-3d, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.MilliwattPerSquareMillimeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux((_value / 1e-6) * 1e-3d, HeatFluxUnit.WattPerSquareMeter),
                 (HeatFluxUnit.NanowattPerSquareMeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux((_value) * 1e-9d, HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.NanowattPerSquareMillimeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux((_value / 1e-6) * 1e-9d, HeatFluxUnit.WattPerSquareMeter),
                 (HeatFluxUnit.PoundForcePerFootSecond, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(_value * 1.3558179483314004 / 9.290304e-2, HeatFluxUnit.WattPerSquareMeter),
                 (HeatFluxUnit.PoundPerSecondCubed, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(_value * 4.5359237e-1, HeatFluxUnit.WattPerSquareMeter),
                 (HeatFluxUnit.WattPerSquareFoot, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(_value / (0.3048 * 0.3048), HeatFluxUnit.WattPerSquareMeter),
                 (HeatFluxUnit.WattPerSquareInch, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(_value / (2.54e-2 * 2.54e-2), HeatFluxUnit.WattPerSquareMeter),
+                (HeatFluxUnit.WattPerSquareMillimeter, HeatFluxUnit.WattPerSquareMeter) => new HeatFlux(_value / 1e-6, HeatFluxUnit.WattPerSquareMeter),
 
                 // BaseUnit -> HeatFluxUnit
                 (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.BtuPerHourSquareFoot) => new HeatFlux(_value * (0.3048 * 0.3048 * 3600) / 1055.05585262, HeatFluxUnit.BtuPerHourSquareFoot),
@@ -980,17 +1099,24 @@ namespace UnitsNet
                 (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.BtuPerSecondSquareInch) => new HeatFlux(_value * (2.54e-2 * 2.54e-2) / 1055.05585262, HeatFluxUnit.BtuPerSecondSquareInch),
                 (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.CaloriePerSecondSquareCentimeter) => new HeatFlux(_value / 4.184e4, HeatFluxUnit.CaloriePerSecondSquareCentimeter),
                 (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.CentiwattPerSquareMeter) => new HeatFlux((_value) / 1e-2d, HeatFluxUnit.CentiwattPerSquareMeter),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.CentiwattPerSquareMillimeter) => new HeatFlux((_value * 1e-6) / 1e-2d, HeatFluxUnit.CentiwattPerSquareMillimeter),
                 (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.DeciwattPerSquareMeter) => new HeatFlux((_value) / 1e-1d, HeatFluxUnit.DeciwattPerSquareMeter),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.DeciwattPerSquareMillimeter) => new HeatFlux((_value * 1e-6) / 1e-1d, HeatFluxUnit.DeciwattPerSquareMillimeter),
                 (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.KilocaloriePerHourSquareMeter) => new HeatFlux(_value * 3600 / 4.184e3, HeatFluxUnit.KilocaloriePerHourSquareMeter),
                 (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.KilocaloriePerSecondSquareCentimeter) => new HeatFlux((_value / 4.184e4) / 1e3d, HeatFluxUnit.KilocaloriePerSecondSquareCentimeter),
                 (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.KilowattPerSquareMeter) => new HeatFlux((_value) / 1e3d, HeatFluxUnit.KilowattPerSquareMeter),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.KilowattPerSquareMillimeter) => new HeatFlux((_value * 1e-6) / 1e3d, HeatFluxUnit.KilowattPerSquareMillimeter),
                 (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.MicrowattPerSquareMeter) => new HeatFlux((_value) / 1e-6d, HeatFluxUnit.MicrowattPerSquareMeter),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.MicrowattPerSquareMillimeter) => new HeatFlux((_value * 1e-6) / 1e-6d, HeatFluxUnit.MicrowattPerSquareMillimeter),
                 (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.MilliwattPerSquareMeter) => new HeatFlux((_value) / 1e-3d, HeatFluxUnit.MilliwattPerSquareMeter),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.MilliwattPerSquareMillimeter) => new HeatFlux((_value * 1e-6) / 1e-3d, HeatFluxUnit.MilliwattPerSquareMillimeter),
                 (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.NanowattPerSquareMeter) => new HeatFlux((_value) / 1e-9d, HeatFluxUnit.NanowattPerSquareMeter),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.NanowattPerSquareMillimeter) => new HeatFlux((_value * 1e-6) / 1e-9d, HeatFluxUnit.NanowattPerSquareMillimeter),
                 (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.PoundForcePerFootSecond) => new HeatFlux(_value * 9.290304e-2 / 1.3558179483314004, HeatFluxUnit.PoundForcePerFootSecond),
                 (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.PoundPerSecondCubed) => new HeatFlux(_value / 4.5359237e-1, HeatFluxUnit.PoundPerSecondCubed),
                 (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.WattPerSquareFoot) => new HeatFlux(_value * (0.3048 * 0.3048), HeatFluxUnit.WattPerSquareFoot),
                 (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.WattPerSquareInch) => new HeatFlux(_value * (2.54e-2 * 2.54e-2), HeatFluxUnit.WattPerSquareInch),
+                (HeatFluxUnit.WattPerSquareMeter, HeatFluxUnit.WattPerSquareMillimeter) => new HeatFlux(_value * 1e-6, HeatFluxUnit.WattPerSquareMillimeter),
 
                 _ => null
             };
