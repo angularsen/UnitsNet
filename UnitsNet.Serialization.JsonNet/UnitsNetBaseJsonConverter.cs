@@ -21,12 +21,15 @@ namespace UnitsNet.Serialization.JsonNet
 #endif
     public abstract class UnitsNetBaseJsonConverter<T> : NullableQuantityConverter<T>
     {
+        private const string ErrorCodeDataKey = "errorCode";
+        private const string RegisteredQuantityInstantiationFailedErrorCode = "JsonNetRegisteredQuantityInstantiationFailed";
+
         private readonly ConcurrentDictionary<string, (Type Quantity, Type Unit)> _registeredTypes = new();
 
         /// <summary>
         /// Register custom types so that the converter can instantiate these quantities.
-        /// Instead of calling <see cref="Quantity.From(double,UnitKey)"/>, the <see cref="Activator"/> will be used to instantiate the object.
-        /// It is therefore assumed that the constructor of <paramref name="quantity"/> is specified with <c>new T(double value, typeof(<paramref name="unit"/>) unit)</c>.
+        /// Instead of calling <see cref="Quantity.From(double,UnitKey)"/>, <see cref="Activator.CreateInstance(Type, object?[])"/> will be used to instantiate the object.
+        /// It is therefore assumed that <paramref name="quantity"/> has a public constructor that accepts <c>(double value, <paramref name="unit"/> unit)</c>.
         /// Registering the same <paramref name="unit"/> multiple times, it will overwrite the one registered.
         /// </summary>
         public void RegisterCustomType(Type quantity, Type unit)
@@ -100,21 +103,25 @@ namespace UnitsNet.Serialization.JsonNet
                 try
                 {
                     IQuantity? instance = (IQuantity?)Activator.CreateInstance(registeredQuantity, valueUnit.Value, unit);
-                    return instance ?? throw CreateUnableToInstantiateQuantityException(registeredQuantity, registeredType.Unit ?? unit.GetType(), unit);
+                    return instance ?? throw CreateRegisteredQuantityInstantiationException(registeredQuantity, registeredType.Unit ?? unit.GetType(), unit);
                 }
-                catch (Exception ex) when (ex is not UnitsNetException)
+                catch (Exception ex) when (!IsRegisteredQuantityInstantiationException(ex))
                 {
-                    throw CreateUnableToInstantiateQuantityException(registeredQuantity, registeredType.Unit ?? unit.GetType(), unit, ex);
+                    throw CreateRegisteredQuantityInstantiationException(registeredQuantity, registeredType.Unit ?? unit.GetType(), unit, ex);
                 }
             }
 
             return Quantity.From(valueUnit.Value, unit);
         }
 
-        private static UnitsNetException CreateUnableToInstantiateQuantityException(Type quantityType, Type unitType, Enum unit, Exception? innerException = null)
+        private static bool IsRegisteredQuantityInstantiationException(Exception ex) =>
+            ex is UnitsNetException && Equals(ex.Data[ErrorCodeDataKey], RegisteredQuantityInstantiationFailedErrorCode);
+
+        private static UnitsNetException CreateRegisteredQuantityInstantiationException(Type quantityType, Type unitType, Enum unit, Exception? innerException = null)
         {
-            string message = $"Unable to instantiate registered quantity type \"{quantityType.FullName}\" for unit \"{unitType.FullName}.{unit}\".";
+            string message = $"Unable to instantiate registered quantity type \"{quantityType.FullName}\" for unit \"{unitType.FullName}.{unit}\". The converter expected a non-null quantity instance from a public constructor accepting (double value, {unitType.Name} unit).";
             var ex = innerException is null ? new UnitsNetException(message) : new UnitsNetException(message, innerException);
+            ex.Data[ErrorCodeDataKey] = RegisteredQuantityInstantiationFailedErrorCode;
             ex.Data["quantityType"] = quantityType;
             ex.Data["unitType"] = unitType;
             ex.Data["unit"] = unit;
