@@ -26,6 +26,7 @@ namespace UnitsNet
     /// <summary>
     ///     A way of representing a number of items.
     /// </summary>
+    [Obsolete("Scalar is a unitless value wrapper rather than a physical quantity and will be removed in UnitsNet v6. Use a plain numeric value, QuantityValue, or a semantic dimensionless quantity such as Ratio where appropriate.")]
     public struct  Scalar
     {
         /// <summary>
