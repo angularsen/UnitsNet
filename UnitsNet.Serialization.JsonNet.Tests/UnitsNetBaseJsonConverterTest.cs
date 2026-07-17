@@ -69,12 +69,12 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
-        public void UnitsNetBaseJsonConverter_ConvertValueUnit_throws_InvalidOperationException_when_registered_quantity_cannot_be_instantiated()
+        public void UnitsNetBaseJsonConverter_ConvertValueUnit_throws_UnitsNetException_when_registered_quantity_cannot_be_instantiated()
         {
             var sut = new TestQuantityConverter();
             sut.RegisterCustomType(typeof(IQuantity), typeof(HowMuchUnit));
 
-            var result = Assert.Throws<InvalidOperationException>(() => sut.Test_ConvertValueUnit("HowMuchUnit.Some", 10.2365));
+            var result = Assert.Throws<UnitsNetException>(() => sut.Test_ConvertValueUnit("HowMuchUnit.Some", 10.2365));
 
             Assert.Contains("Unable to instantiate registered quantity type", result.Message);
             Assert.Equal(typeof(IQuantity), result.Data["quantityType"]);

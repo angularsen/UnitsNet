@@ -102,7 +102,7 @@ namespace UnitsNet.Serialization.JsonNet
                     IQuantity? instance = (IQuantity?)Activator.CreateInstance(registeredQuantity, valueUnit.Value, unit);
                     return instance ?? throw CreateUnableToInstantiateQuantityException(registeredQuantity, registeredType.Unit ?? unit.GetType(), unit);
                 }
-                catch (Exception ex) when (ex is not InvalidOperationException)
+                catch (Exception ex) when (ex is not UnitsNetException)
                 {
                     throw CreateUnableToInstantiateQuantityException(registeredQuantity, registeredType.Unit ?? unit.GetType(), unit, ex);
                 }
@@ -111,9 +111,10 @@ namespace UnitsNet.Serialization.JsonNet
             return Quantity.From(valueUnit.Value, unit);
         }
 
-        private static InvalidOperationException CreateUnableToInstantiateQuantityException(Type quantityType, Type unitType, Enum unit, Exception? innerException = null)
+        private static UnitsNetException CreateUnableToInstantiateQuantityException(Type quantityType, Type unitType, Enum unit, Exception? innerException = null)
         {
-            var ex = new InvalidOperationException($"Unable to instantiate registered quantity type \"{quantityType.FullName}\" for unit \"{unitType.FullName}.{unit}\".", innerException);
+            string message = $"Unable to instantiate registered quantity type \"{quantityType.FullName}\" for unit \"{unitType.FullName}.{unit}\".";
+            var ex = innerException is null ? new UnitsNetException(message) : new UnitsNetException(message, innerException);
             ex.Data["quantityType"] = quantityType;
             ex.Data["unitType"] = unitType;
             ex.Data["unit"] = unit;
