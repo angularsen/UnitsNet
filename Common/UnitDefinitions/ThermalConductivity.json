@@ -39,6 +39,18 @@
           "Abbreviations": [ "BTU/(h·ft·°F)" ]
         }
       ]
+    },
+    {
+      "SingularName": "BtuPerSecondInchFahrenheit",
+      "PluralName": "BtusPerSecondInchFahrenheit",
+      "FromUnitToBaseFunc": "{x} * ((1055.05585262 / 2.54e-2) * 1.8)",
+      "FromBaseToUnitFunc": "{x} / ((1055.05585262 / 2.54e-2) * 1.8)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "BTU/(s·in·°F)" ]
+        }
+      ]
     }
   ]
 }

@@ -40,6 +40,8 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class PowerDensityTestsBase : QuantityTestsBase
     {
+        protected abstract double BtusPerSecondCubicFootInOneWattPerCubicMeter { get; }
+        protected abstract double BtusPerSecondCubicInchInOneWattPerCubicMeter { get; }
         protected abstract double DecawattsPerCubicFootInOneWattPerCubicMeter { get; }
         protected abstract double DecawattsPerCubicInchInOneWattPerCubicMeter { get; }
         protected abstract double DecawattsPerCubicMeterInOneWattPerCubicMeter { get; }
@@ -86,6 +88,8 @@ namespace UnitsNet.Tests
         protected abstract double WattsPerLiterInOneWattPerCubicMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double BtusPerSecondCubicFootTolerance { get { return 1e-5; } }
+        protected virtual double BtusPerSecondCubicInchTolerance { get { return 1e-5; } }
         protected virtual double DecawattsPerCubicFootTolerance { get { return 1e-5; } }
         protected virtual double DecawattsPerCubicInchTolerance { get { return 1e-5; } }
         protected virtual double DecawattsPerCubicMeterTolerance { get { return 1e-5; } }
@@ -136,6 +140,8 @@ namespace UnitsNet.Tests
         {
             return unit switch
             {
+                PowerDensityUnit.BtuPerSecondCubicFoot => (BtusPerSecondCubicFootInOneWattPerCubicMeter, BtusPerSecondCubicFootTolerance),
+                PowerDensityUnit.BtuPerSecondCubicInch => (BtusPerSecondCubicInchInOneWattPerCubicMeter, BtusPerSecondCubicInchTolerance),
                 PowerDensityUnit.DecawattPerCubicFoot => (DecawattsPerCubicFootInOneWattPerCubicMeter, DecawattsPerCubicFootTolerance),
                 PowerDensityUnit.DecawattPerCubicInch => (DecawattsPerCubicInchInOneWattPerCubicMeter, DecawattsPerCubicInchTolerance),
                 PowerDensityUnit.DecawattPerCubicMeter => (DecawattsPerCubicMeterInOneWattPerCubicMeter, DecawattsPerCubicMeterTolerance),
@@ -186,6 +192,8 @@ namespace UnitsNet.Tests
 
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
+            new object[] { PowerDensityUnit.BtuPerSecondCubicFoot },
+            new object[] { PowerDensityUnit.BtuPerSecondCubicInch },
             new object[] { PowerDensityUnit.DecawattPerCubicFoot },
             new object[] { PowerDensityUnit.DecawattPerCubicInch },
             new object[] { PowerDensityUnit.DecawattPerCubicMeter },
@@ -301,6 +309,8 @@ namespace UnitsNet.Tests
         public void WattPerCubicMeterToPowerDensityUnits()
         {
             PowerDensity wattpercubicmeter = PowerDensity.FromWattsPerCubicMeter(1);
+            AssertEx.EqualTolerance(BtusPerSecondCubicFootInOneWattPerCubicMeter, wattpercubicmeter.BtusPerSecondCubicFoot, BtusPerSecondCubicFootTolerance);
+            AssertEx.EqualTolerance(BtusPerSecondCubicInchInOneWattPerCubicMeter, wattpercubicmeter.BtusPerSecondCubicInch, BtusPerSecondCubicInchTolerance);
             AssertEx.EqualTolerance(DecawattsPerCubicFootInOneWattPerCubicMeter, wattpercubicmeter.DecawattsPerCubicFoot, DecawattsPerCubicFootTolerance);
             AssertEx.EqualTolerance(DecawattsPerCubicInchInOneWattPerCubicMeter, wattpercubicmeter.DecawattsPerCubicInch, DecawattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(DecawattsPerCubicMeterInOneWattPerCubicMeter, wattpercubicmeter.DecawattsPerCubicMeter, DecawattsPerCubicMeterTolerance);
@@ -380,6 +390,8 @@ namespace UnitsNet.Tests
         public void As()
         {
             var wattpercubicmeter = PowerDensity.FromWattsPerCubicMeter(1);
+            AssertEx.EqualTolerance(BtusPerSecondCubicFootInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.BtuPerSecondCubicFoot), BtusPerSecondCubicFootTolerance);
+            AssertEx.EqualTolerance(BtusPerSecondCubicInchInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.BtuPerSecondCubicInch), BtusPerSecondCubicInchTolerance);
             AssertEx.EqualTolerance(DecawattsPerCubicFootInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.DecawattPerCubicFoot), DecawattsPerCubicFootTolerance);
             AssertEx.EqualTolerance(DecawattsPerCubicInchInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.DecawattPerCubicInch), DecawattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(DecawattsPerCubicMeterInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.DecawattPerCubicMeter), DecawattsPerCubicMeterTolerance);
@@ -490,6 +502,8 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", "4.2 BTU/(s·ft³)", PowerDensityUnit.BtuPerSecondCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 BTU/(s·in³)", PowerDensityUnit.BtuPerSecondCubicInch, 4.2)]
         [InlineData("en-US", "4.2 daW/ft³", PowerDensityUnit.DecawattPerCubicFoot, 4.2)]
         [InlineData("en-US", "4.2 daW/in³", PowerDensityUnit.DecawattPerCubicInch, 4.2)]
         [InlineData("en-US", "4.2 daW/m³", PowerDensityUnit.DecawattPerCubicMeter, 4.2)]
@@ -543,6 +557,8 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", "4.2 BTU/(s·ft³)", PowerDensityUnit.BtuPerSecondCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 BTU/(s·in³)", PowerDensityUnit.BtuPerSecondCubicInch, 4.2)]
         [InlineData("en-US", "4.2 daW/ft³", PowerDensityUnit.DecawattPerCubicFoot, 4.2)]
         [InlineData("en-US", "4.2 daW/in³", PowerDensityUnit.DecawattPerCubicInch, 4.2)]
         [InlineData("en-US", "4.2 daW/m³", PowerDensityUnit.DecawattPerCubicMeter, 4.2)]
@@ -596,6 +612,8 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("BTU/(s·ft³)", PowerDensityUnit.BtuPerSecondCubicFoot)]
+        [InlineData("BTU/(s·in³)", PowerDensityUnit.BtuPerSecondCubicInch)]
         [InlineData("daW/ft³", PowerDensityUnit.DecawattPerCubicFoot)]
         [InlineData("daW/in³", PowerDensityUnit.DecawattPerCubicInch)]
         [InlineData("daW/m³", PowerDensityUnit.DecawattPerCubicMeter)]
@@ -649,6 +667,8 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("BTU/(s·ft³)", PowerDensityUnit.BtuPerSecondCubicFoot)]
+        [InlineData("BTU/(s·in³)", PowerDensityUnit.BtuPerSecondCubicInch)]
         [InlineData("daW/ft³", PowerDensityUnit.DecawattPerCubicFoot)]
         [InlineData("daW/in³", PowerDensityUnit.DecawattPerCubicInch)]
         [InlineData("daW/m³", PowerDensityUnit.DecawattPerCubicMeter)]
@@ -702,6 +722,8 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", "BTU/(s·ft³)", PowerDensityUnit.BtuPerSecondCubicFoot)]
+        [InlineData("en-US", "BTU/(s·in³)", PowerDensityUnit.BtuPerSecondCubicInch)]
         [InlineData("en-US", "daW/ft³", PowerDensityUnit.DecawattPerCubicFoot)]
         [InlineData("en-US", "daW/in³", PowerDensityUnit.DecawattPerCubicInch)]
         [InlineData("en-US", "daW/m³", PowerDensityUnit.DecawattPerCubicMeter)]
@@ -754,6 +776,8 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", "BTU/(s·ft³)", PowerDensityUnit.BtuPerSecondCubicFoot)]
+        [InlineData("en-US", "BTU/(s·in³)", PowerDensityUnit.BtuPerSecondCubicInch)]
         [InlineData("en-US", "daW/ft³", PowerDensityUnit.DecawattPerCubicFoot)]
         [InlineData("en-US", "daW/in³", PowerDensityUnit.DecawattPerCubicInch)]
         [InlineData("en-US", "daW/m³", PowerDensityUnit.DecawattPerCubicMeter)]
@@ -805,6 +829,8 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("BTU/(s·ft³)", PowerDensityUnit.BtuPerSecondCubicFoot)]
+        [InlineData("BTU/(s·in³)", PowerDensityUnit.BtuPerSecondCubicInch)]
         [InlineData("daW/ft³", PowerDensityUnit.DecawattPerCubicFoot)]
         [InlineData("daW/in³", PowerDensityUnit.DecawattPerCubicInch)]
         [InlineData("daW/m³", PowerDensityUnit.DecawattPerCubicMeter)]
@@ -858,6 +884,8 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("BTU/(s·ft³)", PowerDensityUnit.BtuPerSecondCubicFoot)]
+        [InlineData("BTU/(s·in³)", PowerDensityUnit.BtuPerSecondCubicInch)]
         [InlineData("daW/ft³", PowerDensityUnit.DecawattPerCubicFoot)]
         [InlineData("daW/in³", PowerDensityUnit.DecawattPerCubicInch)]
         [InlineData("daW/m³", PowerDensityUnit.DecawattPerCubicMeter)]
@@ -911,6 +939,8 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", "BTU/(s·ft³)", PowerDensityUnit.BtuPerSecondCubicFoot)]
+        [InlineData("en-US", "BTU/(s·in³)", PowerDensityUnit.BtuPerSecondCubicInch)]
         [InlineData("en-US", "daW/ft³", PowerDensityUnit.DecawattPerCubicFoot)]
         [InlineData("en-US", "daW/in³", PowerDensityUnit.DecawattPerCubicInch)]
         [InlineData("en-US", "daW/m³", PowerDensityUnit.DecawattPerCubicMeter)]
@@ -963,6 +993,8 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", "BTU/(s·ft³)", PowerDensityUnit.BtuPerSecondCubicFoot)]
+        [InlineData("en-US", "BTU/(s·in³)", PowerDensityUnit.BtuPerSecondCubicInch)]
         [InlineData("en-US", "daW/ft³", PowerDensityUnit.DecawattPerCubicFoot)]
         [InlineData("en-US", "daW/in³", PowerDensityUnit.DecawattPerCubicInch)]
         [InlineData("en-US", "daW/m³", PowerDensityUnit.DecawattPerCubicMeter)]
@@ -1014,6 +1046,8 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", PowerDensityUnit.BtuPerSecondCubicFoot, "BTU/(s·ft³)")]
+        [InlineData("en-US", PowerDensityUnit.BtuPerSecondCubicInch, "BTU/(s·in³)")]
         [InlineData("en-US", PowerDensityUnit.DecawattPerCubicFoot, "daW/ft³")]
         [InlineData("en-US", PowerDensityUnit.DecawattPerCubicInch, "daW/in³")]
         [InlineData("en-US", PowerDensityUnit.DecawattPerCubicMeter, "daW/m³")]
@@ -1142,6 +1176,8 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             PowerDensity wattpercubicmeter = PowerDensity.FromWattsPerCubicMeter(1);
+            AssertEx.EqualTolerance(1, PowerDensity.FromBtusPerSecondCubicFoot(wattpercubicmeter.BtusPerSecondCubicFoot).WattsPerCubicMeter, BtusPerSecondCubicFootTolerance);
+            AssertEx.EqualTolerance(1, PowerDensity.FromBtusPerSecondCubicInch(wattpercubicmeter.BtusPerSecondCubicInch).WattsPerCubicMeter, BtusPerSecondCubicInchTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.FromDecawattsPerCubicFoot(wattpercubicmeter.DecawattsPerCubicFoot).WattsPerCubicMeter, DecawattsPerCubicFootTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.FromDecawattsPerCubicInch(wattpercubicmeter.DecawattsPerCubicInch).WattsPerCubicMeter, DecawattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.FromDecawattsPerCubicMeter(wattpercubicmeter.DecawattsPerCubicMeter).WattsPerCubicMeter, DecawattsPerCubicMeterTolerance);
@@ -1244,8 +1280,8 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, PowerDensityUnit.WattPerCubicMeter, 1, PowerDensityUnit.WattPerCubicMeter, true)]  // Same value and unit.
         [InlineData(1, PowerDensityUnit.WattPerCubicMeter, 2, PowerDensityUnit.WattPerCubicMeter, false)] // Different value.
-        [InlineData(2, PowerDensityUnit.WattPerCubicMeter, 1, PowerDensityUnit.DecawattPerCubicFoot, false)] // Different value and unit.
-        [InlineData(1, PowerDensityUnit.WattPerCubicMeter, 1, PowerDensityUnit.DecawattPerCubicFoot, false)] // Different unit.
+        [InlineData(2, PowerDensityUnit.WattPerCubicMeter, 1, PowerDensityUnit.BtuPerSecondCubicFoot, false)] // Different value and unit.
+        [InlineData(1, PowerDensityUnit.WattPerCubicMeter, 1, PowerDensityUnit.BtuPerSecondCubicFoot, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, PowerDensityUnit unitA, double valueB, PowerDensityUnit unitB, bool expectEqual)
         {
             var a = new PowerDensity(valueA, unitA);
@@ -1342,6 +1378,8 @@ namespace UnitsNet.Tests
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
             using var _ = new CultureScope("en-US");
+            Assert.Equal("1 BTU/(s·ft³)", new PowerDensity(1, PowerDensityUnit.BtuPerSecondCubicFoot).ToString());
+            Assert.Equal("1 BTU/(s·in³)", new PowerDensity(1, PowerDensityUnit.BtuPerSecondCubicInch).ToString());
             Assert.Equal("1 daW/ft³", new PowerDensity(1, PowerDensityUnit.DecawattPerCubicFoot).ToString());
             Assert.Equal("1 daW/in³", new PowerDensity(1, PowerDensityUnit.DecawattPerCubicInch).ToString());
             Assert.Equal("1 daW/m³", new PowerDensity(1, PowerDensityUnit.DecawattPerCubicMeter).ToString());
@@ -1394,6 +1432,8 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
+            Assert.Equal("1 BTU/(s·ft³)", new PowerDensity(1, PowerDensityUnit.BtuPerSecondCubicFoot).ToString(swedishCulture));
+            Assert.Equal("1 BTU/(s·in³)", new PowerDensity(1, PowerDensityUnit.BtuPerSecondCubicInch).ToString(swedishCulture));
             Assert.Equal("1 daW/ft³", new PowerDensity(1, PowerDensityUnit.DecawattPerCubicFoot).ToString(swedishCulture));
             Assert.Equal("1 daW/in³", new PowerDensity(1, PowerDensityUnit.DecawattPerCubicInch).ToString(swedishCulture));
             Assert.Equal("1 daW/m³", new PowerDensity(1, PowerDensityUnit.DecawattPerCubicMeter).ToString(swedishCulture));

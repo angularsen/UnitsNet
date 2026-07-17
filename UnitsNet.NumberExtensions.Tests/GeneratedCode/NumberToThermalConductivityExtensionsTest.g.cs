@@ -29,6 +29,10 @@ namespace UnitsNet.Tests
             Assert.Equal(ThermalConductivity.FromBtusPerHourFootFahrenheit(2), 2.BtusPerHourFootFahrenheit());
 
         [Fact]
+        public void NumberToBtusPerSecondInchFahrenheitTest() =>
+            Assert.Equal(ThermalConductivity.FromBtusPerSecondInchFahrenheit(2), 2.BtusPerSecondInchFahrenheit());
+
+        [Fact]
         public void NumberToWattsPerMeterKelvinTest() =>
             Assert.Equal(ThermalConductivity.FromWattsPerMeterKelvin(2), 2.WattsPerMeterKelvin());
 

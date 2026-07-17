@@ -1,3 +1,5 @@
+BtusPerSecondCubicFoot=BTU/(s·ft³)
+BtusPerSecondCubicInch=BTU/(s·in³)
 DecawattsPerCubicFoot=daW/ft³
 DecawattsPerCubicInch=daW/in³
 DecawattsPerCubicMeter=daW/m³

@@ -74,5 +74,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MegawattsPerLiterInOneWattPerCubicMeter => 1e-9;
         protected override double GigawattsPerLiterInOneWattPerCubicMeter => 1e-12;
         protected override double TerawattsPerLiterInOneWattPerCubicMeter => 1e-15;
+
+        protected override double BtusPerSecondCubicInchInOneWattPerCubicMeter => 1.5531939811e-8;
+        protected override double BtusPerSecondCubicFootInOneWattPerCubicMeter => 2.6839191993e-5;
     }
 }

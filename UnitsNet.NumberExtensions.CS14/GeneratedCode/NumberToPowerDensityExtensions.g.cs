@@ -42,6 +42,22 @@ namespace UnitsNet.NumberExtensions.NumberToPowerDensity
             , IConvertible
 #endif
         {
+            /// <inheritdoc cref="PowerDensity.FromBtusPerSecondCubicFoot(double)" />
+            public PowerDensity BtusPerSecondCubicFoot
+#if NET7_0_OR_GREATER
+                => PowerDensity.FromBtusPerSecondCubicFoot(double.CreateChecked(value));
+#else
+                => PowerDensity.FromBtusPerSecondCubicFoot(value.ToDouble(null));
+#endif
+
+            /// <inheritdoc cref="PowerDensity.FromBtusPerSecondCubicInch(double)" />
+            public PowerDensity BtusPerSecondCubicInch
+#if NET7_0_OR_GREATER
+                => PowerDensity.FromBtusPerSecondCubicInch(double.CreateChecked(value));
+#else
+                => PowerDensity.FromBtusPerSecondCubicInch(value.ToDouble(null));
+#endif
+
             /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicFoot(double)" />
             public PowerDensity DecawattsPerCubicFoot
 #if NET7_0_OR_GREATER
