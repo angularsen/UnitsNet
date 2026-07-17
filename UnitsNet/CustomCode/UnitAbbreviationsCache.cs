@@ -155,6 +155,11 @@ namespace UnitsNet
         /// <param name="abbreviations">Unit abbreviations to add.</param>
         public void MapUnitToAbbreviation(UnitInfo unitInfo, IFormatProvider? formatProvider, params IEnumerable<string> abbreviations)
         {
+            if (unitInfo == null)
+            {
+                throw new ArgumentNullException(nameof(unitInfo));
+            }
+
             AddAbbreviation(unitInfo, formatProvider, false, abbreviations);
         }
 
@@ -230,6 +235,11 @@ namespace UnitsNet
         /// <param name="abbreviation">Unit abbreviation to add as default.</param>
         public void MapUnitToDefaultAbbreviation(UnitInfo unitInfo, IFormatProvider? formatProvider, string abbreviation)
         {
+            if (unitInfo == null)
+            {
+                throw new ArgumentNullException(nameof(unitInfo));
+            }
+
             AddAbbreviation(unitInfo, formatProvider, true, abbreviation);
         }
 
@@ -310,6 +320,11 @@ namespace UnitsNet
         /// </exception>
         public string GetDefaultAbbreviation(UnitInfo unitInfo, IFormatProvider? formatProvider = null)
         {
+            if (unitInfo == null)
+            {
+                throw new ArgumentNullException(nameof(unitInfo));
+            }
+
             IReadOnlyList<string> abbreviations = GetUnitAbbreviations(unitInfo, formatProvider);
             if (abbreviations.Count == 0)
             {
@@ -385,6 +400,11 @@ namespace UnitsNet
         /// </exception>
         public IReadOnlyList<string> GetUnitAbbreviations(UnitInfo unitInfo, IFormatProvider? formatProvider = null)
         {
+            if (unitInfo == null)
+            {
+                throw new ArgumentNullException(nameof(unitInfo));
+            }
+
             if (formatProvider is not CultureInfo culture)
             {
                 culture = CultureInfo.CurrentCulture;
