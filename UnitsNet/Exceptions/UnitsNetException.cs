@@ -10,6 +10,11 @@ namespace UnitsNet
     /// </summary>
     public class UnitsNetException : Exception
     {
+        /// <summary>
+        ///     Key used in <see cref="Exception.Data" /> for stable UnitsNet error codes.
+        /// </summary>
+        public const string ErrorCodeDataKey = "errorCode";
+
         /// <inheritdoc />
         public UnitsNetException()
         {

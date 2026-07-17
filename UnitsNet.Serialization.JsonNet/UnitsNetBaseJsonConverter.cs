@@ -21,7 +21,6 @@ namespace UnitsNet.Serialization.JsonNet
 #endif
     public abstract class UnitsNetBaseJsonConverter<T> : NullableQuantityConverter<T>
     {
-        private const string ErrorCodeDataKey = "errorCode";
         private const string RegisteredQuantityInstantiationFailedErrorCode = "JsonNetRegisteredQuantityInstantiationFailed";
 
         private readonly ConcurrentDictionary<string, (Type Quantity, Type Unit)> _registeredTypes = new();
@@ -115,13 +114,13 @@ namespace UnitsNet.Serialization.JsonNet
         }
 
         private static bool IsRegisteredQuantityInstantiationException(Exception ex) =>
-            ex is UnitsNetException && Equals(ex.Data[ErrorCodeDataKey], RegisteredQuantityInstantiationFailedErrorCode);
+            ex is UnitsNetException && Equals(ex.Data[UnitsNetException.ErrorCodeDataKey], RegisteredQuantityInstantiationFailedErrorCode);
 
         private static UnitsNetException CreateRegisteredQuantityInstantiationException(Type quantityType, Type unitType, Enum unit, Exception? innerException = null)
         {
             string message = $"Unable to instantiate registered quantity type \"{quantityType.FullName}\" for unit \"{unitType.FullName}.{unit}\". The converter expected a non-null quantity instance from a public constructor accepting (double value, {unitType.Name} unit).";
             var ex = innerException is null ? new UnitsNetException(message) : new UnitsNetException(message, innerException);
-            ex.Data[ErrorCodeDataKey] = RegisteredQuantityInstantiationFailedErrorCode;
+            ex.Data[UnitsNetException.ErrorCodeDataKey] = RegisteredQuantityInstantiationFailedErrorCode;
             ex.Data["quantityType"] = quantityType;
             ex.Data["unitType"] = unitType;
             ex.Data["unit"] = unit;

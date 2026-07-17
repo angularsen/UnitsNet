@@ -77,7 +77,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             var result = Assert.Throws<UnitsNetException>(() => sut.Test_ConvertValueUnit("HowMuchUnit.Some", 10.2365));
 
             Assert.Contains("Unable to instantiate registered quantity type", result.Message);
-            Assert.Equal("JsonNetRegisteredQuantityInstantiationFailed", result.Data["errorCode"]);
+            Assert.Equal("JsonNetRegisteredQuantityInstantiationFailed", result.Data[UnitsNetException.ErrorCodeDataKey]);
             Assert.Equal(typeof(IQuantity), result.Data["quantityType"]);
             Assert.Equal(typeof(HowMuchUnit), result.Data["unitType"]);
             Assert.Equal(HowMuchUnit.Some, result.Data["unit"]);
@@ -93,7 +93,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             var result = Assert.Throws<UnitsNetException>(() => sut.Test_ConvertValueUnit("HowMuchUnit.Some", 10.2365));
 
             Assert.Contains("Unable to instantiate registered quantity type", result.Message);
-            Assert.Equal("JsonNetRegisteredQuantityInstantiationFailed", result.Data["errorCode"]);
+            Assert.Equal("JsonNetRegisteredQuantityInstantiationFailed", result.Data[UnitsNetException.ErrorCodeDataKey]);
             Assert.Equal(typeof(ThrowingQuantity), result.Data["quantityType"]);
             Assert.Equal(typeof(HowMuchUnit), result.Data["unitType"]);
             Assert.Equal(HowMuchUnit.Some, result.Data["unit"]);
