@@ -36,5 +36,13 @@ namespace UnitsNet.Tests
         public void NumberToMilligramsPerSquareMeterTest() =>
             Assert.Equal(AreaDensity.FromMilligramsPerSquareMeter(2), 2.MilligramsPerSquareMeter);
 
+        [Fact]
+        public void NumberToPoundsPerSquareFootTest() =>
+            Assert.Equal(AreaDensity.FromPoundsPerSquareFoot(2), 2.PoundsPerSquareFoot);
+
+        [Fact]
+        public void NumberToPoundsPerThousandSquareFeetTest() =>
+            Assert.Equal(AreaDensity.FromPoundsPerThousandSquareFeet(2), 2.PoundsPerThousandSquareFeet);
+
     }
 }

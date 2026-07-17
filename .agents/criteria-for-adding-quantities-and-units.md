@@ -22,6 +22,13 @@ Ask for justification and use cases if this is not clear.
 - [x] Can be converted to other units of the same quantity
 - [x] The conversion function is well established without ambiguous competing standards
 
+### Review test values for new units
+
+- [x] Test values use literal constants, not expressions that repeat the JSON conversion functions
+- [x] Test values preferably cite a verifiable source, such as an online converter, standard, or reference table
+- [x] Test values have at least 7 significant figures where possible, but no more precision than `double` can usefully represent
+- [x] The expected value independently sanity-checks the conversion function instead of mirroring its implementation
+
 ### Avoid X-per-Y units
 
 There are many variations of unit A over unit B, such as `LengthPerAngle` and we want to avoid adding these unless they are very common.

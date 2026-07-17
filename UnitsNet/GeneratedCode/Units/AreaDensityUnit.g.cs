@@ -33,6 +33,8 @@ namespace UnitsNet.Units
         GramPerSquareMeter = 6,
         KilogramPerSquareMeter = 1,
         MilligramPerSquareMeter = 10,
+        PoundPerSquareFoot = 8,
+        PoundPerThousandSquareFeet = 3,
     }
 
     #pragma warning restore 1591
