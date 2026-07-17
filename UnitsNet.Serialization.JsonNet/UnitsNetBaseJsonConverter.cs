@@ -92,19 +92,32 @@ namespace UnitsNet.Serialization.JsonNet
             }
 
             var unit = GetUnit(valueUnit.Unit);
-            var registeredQuantity = GetRegisteredType(valueUnit.Unit).Quantity;
+            var registeredType = GetRegisteredType(valueUnit.Unit);
+            var registeredQuantity = registeredType.Quantity;
 
             if (registeredQuantity is not null)
             {
-                IQuantity? instance = (IQuantity?)Activator.CreateInstance(registeredQuantity, valueUnit.Value, unit);
-                if (instance is null)
+                try
                 {
-                    throw new Exception("Unable to convert value unit, instance is null.");
+                    IQuantity? instance = (IQuantity?)Activator.CreateInstance(registeredQuantity, valueUnit.Value, unit);
+                    return instance ?? throw CreateUnableToInstantiateQuantityException(registeredQuantity, registeredType.Unit ?? unit.GetType(), unit);
                 }
-                return instance;
+                catch (Exception ex) when (ex is not InvalidOperationException)
+                {
+                    throw CreateUnableToInstantiateQuantityException(registeredQuantity, registeredType.Unit ?? unit.GetType(), unit, ex);
+                }
             }
 
             return Quantity.From(valueUnit.Value, unit);
+        }
+
+        private static InvalidOperationException CreateUnableToInstantiateQuantityException(Type quantityType, Type unitType, Enum unit, Exception? innerException = null)
+        {
+            var ex = new InvalidOperationException($"Unable to instantiate registered quantity type \"{quantityType.FullName}\" for unit \"{unitType.FullName}.{unit}\".", innerException);
+            ex.Data["quantityType"] = quantityType;
+            ex.Data["unitType"] = unitType;
+            ex.Data["unit"] = unit;
+            return ex;
         }
 
         private (Type? Quantity, Type? Unit) GetRegisteredType(string unit)
