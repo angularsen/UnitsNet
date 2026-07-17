@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Text;
 
 namespace UnitsNetGen.Generator;
@@ -16,7 +18,6 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
     private const string ModuleAttribute = "UnitsNetGen.Generation.UnitsNetModuleAttribute";
     private const string UnitSetAttribute = "UnitsNetGen.Generation.UnitSetAttribute";
     private const string QuantityAttribute = "UnitsNetGen.Generation.QuantityDefinitionAttribute";
-    private const string UnitAttribute = "UnitsNetGen.Generation.UnitDefinitionAttribute";
     private const string GenerationNamespace = "UnitsNetGen.Generation";
     private const string BuiltInsNamespace = "UnitsNetGen.BuiltIns";
 
@@ -44,6 +45,30 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
         DiagnosticSeverity.Error,
         true);
 
+    private static readonly DiagnosticDescriptor InvalidJsonDefinition = new DiagnosticDescriptor(
+        "UNG004",
+        "JSON quantity definition is invalid",
+        "Definition file '{0}' is invalid: {1}",
+        "UnitsNetGen",
+        DiagnosticSeverity.Error,
+        true);
+
+    private static readonly DiagnosticDescriptor DuplicateDefinition = new DiagnosticDescriptor(
+        "UNG005",
+        "Quantity definition ID is duplicated",
+        "Quantity definition ID '{0}' is provided by more than one JSON file",
+        "UnitsNetGen",
+        DiagnosticSeverity.Error,
+        true);
+
+    private static readonly DiagnosticDescriptor InvalidPattern = new DiagnosticDescriptor(
+        "UNG006",
+        "Unit selection pattern is invalid",
+        "Pattern '{0}' for quantity '{1}' is invalid: {2}",
+        "UnitsNetGen",
+        DiagnosticSeverity.Error,
+        true);
+
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         context.RegisterPostInitializationOutput(static output =>
@@ -58,11 +83,41 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
                 return symbol is not null && HasAttribute(symbol, ModuleAttribute) ? symbol : null;
             });
 
-        context.RegisterSourceOutput(modules.Where(static module => module is not null).Collect(), Emit);
+        IncrementalValuesProvider<JsonDefinitionResult> jsonDefinitions = context.AdditionalTextsProvider
+            .Combine(context.AnalyzerConfigOptionsProvider)
+            .Where(static input => IsJsonDefinition(input.Left, input.Right))
+            .Select(static (input, cancellationToken) => JsonDefinitionParser.Parse(input.Left, cancellationToken));
+
+        context.RegisterSourceOutput(
+            modules.Where(static module => module is not null).Collect().Combine(jsonDefinitions.Collect()),
+            static (productionContext, input) => Emit(productionContext, input.Left, input.Right));
     }
 
-    private static void Emit(SourceProductionContext context, ImmutableArray<INamedTypeSymbol?> moduleSymbols)
+    private static void Emit(
+        SourceProductionContext context,
+        ImmutableArray<INamedTypeSymbol?> moduleSymbols,
+        ImmutableArray<JsonDefinitionResult> jsonDefinitionResults)
     {
+        var jsonDefinitions = new Dictionary<string, QuantityDefinition>(StringComparer.Ordinal);
+        foreach (JsonDefinitionResult result in jsonDefinitionResults)
+        {
+            if (result.Error is not null)
+            {
+                context.ReportDiagnostic(Diagnostic.Create(InvalidJsonDefinition, Location.None, result.Path, result.Error));
+                continue;
+            }
+
+            QuantityDefinition definition = result.Definition!;
+            if (jsonDefinitions.ContainsKey(definition.Id))
+            {
+                context.ReportDiagnostic(Diagnostic.Create(DuplicateDefinition, Location.None, definition.Id));
+            }
+            else
+            {
+                jsonDefinitions.Add(definition.Id, definition);
+            }
+        }
+
         var requests = new Dictionary<string, SelectionRequest>(StringComparer.Ordinal);
 
         foreach (INamedTypeSymbol module in moduleSymbols.OfType<INamedTypeSymbol>())
@@ -81,7 +136,7 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
                     continue;
                 }
 
-                QuantityDefinition? definition = ResolveDefinition(definitionMarker);
+                QuantityDefinition? definition = ResolveDefinition(definitionMarker, jsonDefinitions);
                 if (definition is null)
                 {
                     context.ReportDiagnostic(Diagnostic.Create(MissingDefinition, module.Locations.FirstOrDefault(), definitionMarker.ToDisplayString()));
@@ -101,14 +156,14 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
                     continue;
                 }
 
-                string? pattern = GetUnitSetPattern(arguments[1]);
-                if (pattern is null)
+                IReadOnlyList<string>? patterns = GetUnitSetPatterns(arguments[1]);
+                if (patterns is null || patterns.Count == 0)
                 {
                     context.ReportDiagnostic(Diagnostic.Create(EmptyUnitSet, module.Locations.FirstOrDefault(), "<missing UnitSet attribute>", definition.Name));
                     continue;
                 }
 
-                request.Patterns.Add(pattern);
+                request.Patterns.UnionWith(patterns);
             }
         }
 
@@ -130,7 +185,13 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
             {
                 foreach (string pattern in request.Patterns)
                 {
-                    UnitDefinition[] matches = request.Definition.Units.Where(unit => Matches(pattern, unit.SingularName)).ToArray();
+                    if (!TryCreateMatcher(pattern, out Func<string, bool>? matcher, out string patternError))
+                    {
+                        context.ReportDiagnostic(Diagnostic.Create(InvalidPattern, Location.None, pattern, request.Definition.Name, patternError));
+                        continue;
+                    }
+
+                    UnitDefinition[] matches = request.Definition.Units.Where(unit => matcher(unit.SingularName)).ToArray();
                     if (matches.Length == 0)
                     {
                         context.ReportDiagnostic(Diagnostic.Create(EmptyUnitSet, Location.None, pattern, request.Definition.Name));
@@ -157,7 +218,9 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
         }
     }
 
-    private static QuantityDefinition? ResolveDefinition(INamedTypeSymbol marker)
+    private static QuantityDefinition? ResolveDefinition(
+        INamedTypeSymbol marker,
+        IReadOnlyDictionary<string, QuantityDefinition> jsonDefinitions)
     {
         if (marker.ContainingNamespace.ToDisplayString() == BuiltInsNamespace && BuiltInCatalog.TryGet(marker.Name, out QuantityDefinition builtIn))
         {
@@ -165,82 +228,69 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
         }
 
         AttributeData? quantityAttribute = marker.GetAttributes().FirstOrDefault(attribute => AttributeName(attribute) == QuantityAttribute);
-        if (quantityAttribute is null || quantityAttribute.ConstructorArguments.Length != 2)
+        if (quantityAttribute is null || quantityAttribute.ConstructorArguments.Length != 1)
         {
             return null;
         }
 
-        string name = (string?)quantityAttribute.ConstructorArguments[0].Value ?? marker.Name;
-        string baseUnit = (string?)quantityAttribute.ConstructorArguments[1].Value ?? string.Empty;
-        string targetNamespace = marker.ContainingNamespace.IsGlobalNamespace ? "UnitsNetGen.Custom" : marker.ContainingNamespace.ToDisplayString();
-        foreach (KeyValuePair<string, TypedConstant> argument in quantityAttribute.NamedArguments)
-        {
-            if (argument.Key == "Namespace" && argument.Value.Value is string configuredNamespace && configuredNamespace.Length > 0)
-            {
-                targetNamespace = configuredNamespace;
-            }
-        }
-
-        var units = new List<UnitDefinition>();
-        foreach (AttributeData unitAttribute in marker.GetAttributes().Where(attribute => AttributeName(attribute) == UnitAttribute))
-        {
-            if (unitAttribute.ConstructorArguments.Length != 4)
-            {
-                continue;
-            }
-
-            string singularName = (string?)unitAttribute.ConstructorArguments[0].Value ?? string.Empty;
-            string pluralName = (string?)unitAttribute.ConstructorArguments[1].Value ?? singularName;
-            string abbreviation = (string?)unitAttribute.ConstructorArguments[2].Value ?? singularName;
-            double scale = (double)(unitAttribute.ConstructorArguments[3].Value ?? 1d);
-            double offset = 0;
-            foreach (KeyValuePair<string, TypedConstant> argument in unitAttribute.NamedArguments)
-            {
-                if (argument.Key == "OffsetToBase" && argument.Value.Value is double configuredOffset)
-                {
-                    offset = configuredOffset;
-                }
-            }
-
-            units.Add(new UnitDefinition(singularName, pluralName, abbreviation, scale, offset));
-        }
-
-        return new QuantityDefinition(name, targetNamespace, baseUnit, units);
+        string? id = quantityAttribute.ConstructorArguments[0].Value as string;
+        return id is not null && jsonDefinitions.TryGetValue(id, out QuantityDefinition definition) ? definition : null;
     }
 
-    private static string? GetUnitSetPattern(ITypeSymbol unitSet)
+    private static IReadOnlyList<string>? GetUnitSetPatterns(ITypeSymbol unitSet)
     {
         AttributeData? attribute = unitSet.GetAttributes().FirstOrDefault(candidate => AttributeName(candidate) == UnitSetAttribute);
-        return attribute?.ConstructorArguments.Length == 1 ? attribute.ConstructorArguments[0].Value as string : null;
+        if (attribute?.ConstructorArguments.Length != 1)
+        {
+            return null;
+        }
+
+        TypedConstant argument = attribute.ConstructorArguments[0];
+        return argument.Kind == TypedConstantKind.Array
+            ? argument.Values.Select(value => value.Value as string).Where(value => value is not null).Cast<string>().ToArray()
+            : argument.Value is string value ? new[] { value } : null;
     }
 
-    private static bool Matches(string pattern, string unitName)
+    private static bool TryCreateMatcher(string pattern, out Func<string, bool> matcher, out string error)
     {
-        if (pattern == "*")
+        try
         {
+            bool isRegex = pattern.StartsWith("regex:", StringComparison.OrdinalIgnoreCase);
+            string expression = isRegex ? pattern.Substring("regex:".Length) : pattern;
+            if (!isRegex && expression.StartsWith("glob:", StringComparison.OrdinalIgnoreCase))
+            {
+                expression = expression.Substring("glob:".Length);
+            }
+
+            if (!isRegex)
+            {
+                expression = "^" + Regex.Escape(expression).Replace("\\*", ".*") + "$";
+            }
+
+            var regex = new Regex(
+                expression,
+                RegexOptions.CultureInvariant | RegexOptions.IgnoreCase,
+                TimeSpan.FromMilliseconds(100));
+            matcher = value =>
+            {
+                try
+                {
+                    return regex.IsMatch(value);
+                }
+                catch (RegexMatchTimeoutException)
+                {
+                    return false;
+                }
+            };
+            error = string.Empty;
             return true;
         }
-
-        bool startsWithWildcard = pattern.StartsWith("*", StringComparison.Ordinal);
-        bool endsWithWildcard = pattern.EndsWith("*", StringComparison.Ordinal);
-        string value = pattern.Trim('*');
-
-        if (startsWithWildcard && endsWithWildcard)
+        catch (ArgumentException exception)
         {
-            return unitName.IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0;
+            matcher = _ => false;
+            error = exception.Message;
+            return false;
         }
-
-        if (startsWithWildcard)
-        {
-            return unitName.EndsWith(value, StringComparison.OrdinalIgnoreCase);
-        }
-
-        if (endsWithWildcard)
-        {
-            return unitName.StartsWith(value, StringComparison.OrdinalIgnoreCase);
-        }
-
-        return string.Equals(unitName, value, StringComparison.OrdinalIgnoreCase);
     }
 
     private static bool HasAttribute(ISymbol symbol, string metadataName)
@@ -248,6 +298,19 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
 
     private static string? AttributeName(AttributeData attribute)
         => attribute.AttributeClass?.ToDisplayString();
+
+    private static bool IsJsonDefinition(AdditionalText file, AnalyzerConfigOptionsProvider optionsProvider)
+    {
+        if (file.Path.EndsWith(".unitsnet.json", StringComparison.OrdinalIgnoreCase))
+        {
+            return true;
+        }
+
+        return optionsProvider.GetOptions(file).TryGetValue(
+                   "build_metadata.AdditionalFiles.UnitsNetGenDefinition",
+                   out string? value) &&
+               string.Equals(value, "true", StringComparison.OrdinalIgnoreCase);
+    }
 
     private sealed class SelectionRequest
     {

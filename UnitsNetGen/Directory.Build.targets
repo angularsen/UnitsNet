@@ -1,0 +1,9 @@
+<Project>
+  <!-- ProjectReference-based POC equivalent of the target packed under buildTransitive/. -->
+  <Import Project="$(MSBuildThisFileDirectory)UnitsNetGen.Generator/buildTransitive/UnitsNetGen.Generator.targets" />
+
+  <!-- ProjectReference analyzers do not carry their private dependencies. The packed analyzer does. -->
+  <ItemGroup Condition="'$(MSBuildProjectName)' != 'UnitsNetGen' and '$(MSBuildProjectName)' != 'UnitsNetGen.Generator'">
+    <Analyzer Include="$(MSBuildThisFileDirectory)../Artifacts/UnitsNetGen.Generator/netstandard2.0/Newtonsoft.Json.dll" />
+  </ItemGroup>
+</Project>

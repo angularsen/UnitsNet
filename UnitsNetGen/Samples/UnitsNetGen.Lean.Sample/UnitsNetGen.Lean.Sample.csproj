@@ -9,6 +9,9 @@
     <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)Generated</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <UnitsNetGenDefinition Include="../../../Common/UnitDefinitions/Length.json" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\UnitsNetGen\UnitsNetGen.csproj" />
     <ProjectReference Include="..\..\UnitsNetGen.Generator\UnitsNetGen.Generator.csproj"
                       OutputItemType="Analyzer"

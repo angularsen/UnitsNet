@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -123,8 +122,19 @@ internal static class QuantityEmitter
         {
             writer.Append("            new global::UnitsNetGen.UnitInfo<").Append(unitType).Append(">(")
                 .Append(unitType).Append('.').Append(unit.SingularName).Append(", \"").Append(Escape(unit.SingularName))
-                .Append("\", \"").Append(Escape(unit.PluralName)).Append("\", \"").Append(Escape(unit.Abbreviation)).Append("\", ")
-                .Append(Number(unit.ScaleToBase)).Append(", ").Append(Number(unit.OffsetToBase)).AppendLine("),");
+                .Append("\", \"").Append(Escape(unit.PluralName)).Append('"');
+            foreach (UnitLocalizationDefinition localization in unit.Localizations)
+            {
+                writer.Append(", new global::UnitsNetGen.UnitLocalization(\"").Append(Escape(localization.Culture)).Append('"');
+                foreach (string abbreviation in localization.Abbreviations)
+                {
+                    writer.Append(", \"").Append(Escape(abbreviation)).Append('"');
+                }
+
+                writer.Append(')');
+            }
+
+            writer.AppendLine("),");
         }
 
         writer.AppendLine("        };");
@@ -133,6 +143,28 @@ internal static class QuantityEmitter
         writer.Append("        public ").Append(unitType).Append(" BaseUnit => ").Append(unitType).Append('.').Append(quantity.BaseUnit).AppendLine(";");
         writer.Append("        public global::System.Collections.Generic.IReadOnlyList<global::UnitsNetGen.UnitInfo<")
             .Append(unitType).AppendLine(">> Units => AllUnits;");
+        writer.AppendLine();
+        writer.Append("        public double ToBase(double x, ").Append(unitType).AppendLine(" unit) => unit switch");
+        writer.AppendLine("        {");
+        foreach (UnitDefinition unit in selection.Units)
+        {
+            writer.Append("            ").Append(unitType).Append('.').Append(unit.SingularName).Append(" => ")
+                .Append(unit.FromUnitToBaseExpression).AppendLine(",");
+        }
+
+        writer.AppendLine("            _ => throw new global::System.ArgumentOutOfRangeException(nameof(unit), unit, null),");
+        writer.AppendLine("        };");
+        writer.AppendLine();
+        writer.Append("        public double FromBase(double x, ").Append(unitType).AppendLine(" unit) => unit switch");
+        writer.AppendLine("        {");
+        foreach (UnitDefinition unit in selection.Units)
+        {
+            writer.Append("            ").Append(unitType).Append('.').Append(unit.SingularName).Append(" => ")
+                .Append(unit.FromBaseToUnitExpression).AppendLine(",");
+        }
+
+        writer.AppendLine("            _ => throw new global::System.ArgumentOutOfRangeException(nameof(unit), unit, null),");
+        writer.AppendLine("        };");
         writer.AppendLine("    }");
         writer.AppendLine("}");
         return writer.ToString();
@@ -176,8 +208,6 @@ internal static class QuantityEmitter
             writer.AppendLine("    public static Power operator /(Energy energy, Duration duration) => new(energy.BaseValue / duration.BaseValue, Power.BaseUnit);");
         }
     }
-
-    private static string Number(double value) => value.ToString("R", CultureInfo.InvariantCulture);
 
     private static string Escape(string value) => value.Replace("\\", "\\\\").Replace("\"", "\\\"");
 }

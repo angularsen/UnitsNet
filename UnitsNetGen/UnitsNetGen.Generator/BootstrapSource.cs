@@ -17,40 +17,15 @@ namespace UnitsNetGen.Generation
     [global::System.AttributeUsage(global::System.AttributeTargets.Interface)]
     public sealed class UnitSetAttribute : global::System.Attribute
     {
-        public UnitSetAttribute(string pattern) => Pattern = pattern;
-        public string Pattern { get; }
+        public UnitSetAttribute(params string[] patterns) => Patterns = patterns;
+        public string[] Patterns { get; }
     }
 
     [global::System.AttributeUsage(global::System.AttributeTargets.Interface)]
     public sealed class QuantityDefinitionAttribute : global::System.Attribute
     {
-        public QuantityDefinitionAttribute(string name, string baseUnit)
-        {
-            Name = name;
-            BaseUnit = baseUnit;
-        }
-
-        public string Name { get; }
-        public string BaseUnit { get; }
-        public string? Namespace { get; set; }
-    }
-
-    [global::System.AttributeUsage(global::System.AttributeTargets.Interface, AllowMultiple = true)]
-    public sealed class UnitDefinitionAttribute : global::System.Attribute
-    {
-        public UnitDefinitionAttribute(string singularName, string pluralName, string abbreviation, double scaleToBase)
-        {
-            SingularName = singularName;
-            PluralName = pluralName;
-            Abbreviation = abbreviation;
-            ScaleToBase = scaleToBase;
-        }
-
-        public string SingularName { get; }
-        public string PluralName { get; }
-        public string Abbreviation { get; }
-        public double ScaleToBase { get; }
-        public double OffsetToBase { get; set; }
+        public QuantityDefinitionAttribute(string id) => Id = id;
+        public string Id { get; }
     }
 
     public interface IInclude<TQuantityDefinition>

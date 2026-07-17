@@ -6,14 +6,12 @@ namespace UnitsNetGen;
 public sealed class UnitInfo<TUnit>
     where TUnit : struct, Enum
 {
-    public UnitInfo(TUnit unit, string singularName, string pluralName, string abbreviation, double scaleToBase, double offsetToBase)
+    public UnitInfo(TUnit unit, string singularName, string pluralName, params UnitLocalization[] localizations)
     {
         Unit = unit;
         SingularName = singularName;
         PluralName = pluralName;
-        Abbreviation = abbreviation;
-        ScaleToBase = scaleToBase;
-        OffsetToBase = offsetToBase;
+        Localizations = localizations;
     }
 
     public TUnit Unit { get; }
@@ -22,13 +20,34 @@ public sealed class UnitInfo<TUnit>
 
     public string PluralName { get; }
 
-    public string Abbreviation { get; }
+    public IReadOnlyList<UnitLocalization> Localizations { get; }
 
-    public double ScaleToBase { get; }
+    public IReadOnlyList<string> GetAbbreviations(System.Globalization.CultureInfo? culture)
+    {
+        string cultureName = (culture ?? System.Globalization.CultureInfo.CurrentCulture).Name;
+        while (cultureName.Length > 0)
+        {
+            UnitLocalization? exact = Localizations.FirstOrDefault(localization =>
+                string.Equals(localization.Culture, cultureName, StringComparison.OrdinalIgnoreCase));
+            if (exact is not null)
+            {
+                return exact.Abbreviations;
+            }
 
-    public double OffsetToBase { get; }
+            int separator = cultureName.LastIndexOf('-');
+            cultureName = separator < 0 ? string.Empty : cultureName.Substring(0, separator);
+        }
 
-    public double ToBase(double value) => (value * ScaleToBase) + OffsetToBase;
+        UnitLocalization? english = Localizations.FirstOrDefault(localization =>
+            string.Equals(localization.Culture, "en-US", StringComparison.OrdinalIgnoreCase));
+        if (english is not null)
+        {
+            return english.Abbreviations;
+        }
 
-    public double FromBase(double value) => (value - OffsetToBase) / ScaleToBase;
+        return Localizations.FirstOrDefault()?.Abbreviations ?? Array.Empty<string>();
+    }
+
+    public string GetDefaultAbbreviation(System.Globalization.CultureInfo? culture)
+        => GetAbbreviations(culture).FirstOrDefault() ?? string.Empty;
 }

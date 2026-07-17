@@ -18,6 +18,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <UnitsNetGenDefinition Include="HowMuch.unitsnet.json" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\UnitsNetGen\UnitsNetGen.csproj" />
     <ProjectReference Include="..\UnitsNetGen.Generator\UnitsNetGen.Generator.csproj"
                       OutputItemType="Analyzer"

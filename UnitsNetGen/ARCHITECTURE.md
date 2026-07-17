@@ -37,10 +37,10 @@ internal interface EngineeringUnits :
 }
 ```
 
-Select units with a wildcard by defining a named unit set:
+Select units with a regular expression by defining a named unit set:
 
 ```csharp
-[UnitSet("*Gram")]
+[UnitSet("regex:.*Gram$")]
 internal interface GramUnits;
 
 [UnitsNetModule]
@@ -51,26 +51,31 @@ internal interface LeanUnits :
 }
 ```
 
-Patterns support `*`, `prefix*`, `*suffix`, and exact unit names. The generator always includes the base unit so every selected quantity remains convertible. It reports a compile-time diagnostic when a pattern matches no units.
+Patterns prefixed with `regex:` use case-insensitive, culture-invariant regular expressions with a timeout. Patterns prefixed with `glob:` support `*`, and bare patterns retain glob behavior for convenience. The generator always includes the base unit so every selected quantity remains convertible. It reports compile-time diagnostics for invalid expressions and patterns that match no units.
 
-Define and select an application- or third-party-owned quantity with marker metadata:
+Custom quantities use JSON definition files. The custom MSBuild item is converted to Roslyn `AdditionalFiles` by a target that the generator package places under `buildTransitive/`:
+
+```xml
+<ItemGroup>
+  <UnitsNetGenDefinition Include="HowMuch.unitsnet.json" />
+</ItemGroup>
+```
+
+The JSON shape follows the existing UnitsNet quantity definitions and adds an optional `Namespace` for stable third-party identity; it defaults to `UnitsNetGen`, allowing files such as the existing `Length.json` to be consumed unchanged. It supports localized abbreviations, prefix expansion, and `FromUnitToBaseFunc`/`FromBaseToUnitFunc` expressions. A minimal marker binds type-safe module selection to the JSON's logical `Namespace.Name` ID:
 
 ```csharp
 namespace Fictional;
 
 using UnitsNetGen.Generation;
 
-[QuantityDefinition("HowMuch", "Some")]
-[UnitDefinition("Some", "Some", "sm", 1)]
-[UnitDefinition("Lots", "Lots", "lots", 2)]
-[UnitDefinition("Tons", "Tons", "tons", 20)]
+[QuantityDefinition("Fictional.Measurements.HowMuch")]
 public interface HowMuchDefinition;
 
 [UnitsNetModule]
 internal interface FictionalUnits : IInclude<HowMuchDefinition>;
 ```
 
-`ScaleToBase` means `baseValue = value * scale + offset`. A definition package can contain only public marker interfaces and attributes; a module that selects them owns the generated runtime types.
+Conversion expressions are parsed as C# expressions and restricted to numeric literals, `x`, arithmetic operators, parentheses, `Math.PI`, `Math.E`, and an allowlist of numeric `Math` functions. The generator emits the validated expressions directly into conversion switches; it does not compile expressions or use reflection at runtime. A definition package can contain public marker types and JSON definitions while the module that selects them owns the generated runtime types.
 
 ## Projects
 
@@ -78,7 +83,7 @@ internal interface FictionalUnits : IInclude<HowMuchDefinition>;
 - `UnitsNetGen.Generator`: the incremental generator, marker bootstrap source, built-in catalog, diagnostics, and emitters.
 - `UnitsNetGen.Tests`: generated API and runtime behavior tests.
 - `Samples/UnitsNetGen.AllSi.Sample`: all ten POC quantities and conditional derived-quantity operators.
-- `Samples/UnitsNetGen.Lean.Sample`: Length plus only Mass units matching `*Gram`.
+- `Samples/UnitsNetGen.Lean.Sample`: Length plus only Mass units matching `regex:.*Gram$`.
 - `Samples/UnitsNetGen.Custom.Sample`: a fictional `HowMuch` quantity in its own namespace.
 
 The projects live in their own solution and do not participate in the existing UnitsNet solution.
@@ -92,7 +97,8 @@ For each selected definition, the generator emits:
 - typed `FromXxx()` factories and `.Xxx` conversion properties;
 - `As()`, `ToUnit()`, `Parse()`, `TryParse()`, and `ToString()`;
 - equality, comparison, same-quantity addition/subtraction, and scalar multiplication/division;
-- metadata that delegates shared behavior to the runtime.
+- localized unit metadata that delegates shared behavior to the runtime;
+- direct, validated conversion switches for affine and nonlinear conversions.
 
 When all operands/results are present, it also emits selected SI relationships:
 
@@ -108,14 +114,15 @@ The relationship operators work in base units and return the result's base unit.
 
 ## POC catalog
 
-The embedded catalog is deliberately small: Length, Mass, Duration, Area, Speed, Acceleration, Force, Pressure, Energy, and Power. Definitions use linear/affine conversion metadata and English abbreviations only.
+The embedded catalog is deliberately small: Length, Mass, Duration, Area, Speed, Acceleration, Force, Pressure, Energy, and Power. JSON-backed custom definitions exercise multiple cultures, multiple abbreviations, prefix expansion, arithmetic conversion expressions, and allowlisted nonlinear `Math` functions.
 
 ## Deliberate limitations
 
 - This is a design probe, not a compatibility layer for UnitsNet v6.
 - Quantity values use `double` only.
-- Localization, serialization, unit systems, generic math, logarithmic/nonlinear conversions, and rich parse ambiguity handling are deferred.
-- Wildcards filter unit names, not abbreviations.
+- Serialization, unit systems, generic math, logarithmic quantity semantics, culture selection, and rich parse ambiguity handling are deferred.
+- Regex/glob patterns filter expanded unit names, not abbreviations.
+- Prefix expansion uses a common SI/binary prefix table; it does not yet reproduce every culture-specific prefix convention from UnitsNet v6.
 - Third-party public API authors must ship a generated module to establish stable type identity.
 - Multiple module marker interfaces in one project are merged into one generated set. Conflicting selections produce one union.
 

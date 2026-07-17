@@ -5,5 +5,25 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>UnitsNetGen</RootNamespace>
+    <PackageId>UnitsNetGen</PackageId>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" GeneratePathProperty="true" PrivateAssets="all" />
+    <ProjectReference Include="..\UnitsNetGen.Generator\UnitsNetGen.Generator.csproj"
+                      PrivateAssets="all"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="../../Artifacts/UnitsNetGen.Generator/netstandard2.0/UnitsNetGen.Generator.dll"
+          Pack="true"
+          PackagePath="analyzers/dotnet/cs" />
+    <None Include="$(PkgNewtonsoft_Json)/lib/netstandard2.0/Newtonsoft.Json.dll"
+          Pack="true"
+          PackagePath="analyzers/dotnet/cs" />
+    <None Include="../UnitsNetGen.Generator/buildTransitive/UnitsNetGen.Generator.targets"
+          Pack="true"
+          PackagePath="buildTransitive/UnitsNetGen.targets" />
+    <None Include="../ARCHITECTURE.md" Pack="true" PackagePath="README.md" />
+  </ItemGroup>
 </Project>

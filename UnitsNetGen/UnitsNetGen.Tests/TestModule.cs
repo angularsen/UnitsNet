@@ -5,15 +5,12 @@ using Catalog = UnitsNetGen.BuiltIns;
 
 namespace UnitsNetGen.Tests;
 
-[UnitSet("*Gram")]
+[UnitSet("regex:.*Gram$")]
 internal interface GramUnits
 {
 }
 
-[QuantityDefinition("HowMuch", "Some", Namespace = "Fictional.Measurements")]
-[UnitDefinition("Some", "Some", "sm", 1)]
-[UnitDefinition("Lots", "Lots", "lots", 2)]
-[UnitDefinition("Tons", "Tons", "tons", 20)]
+[QuantityDefinition("Fictional.Measurements.HowMuch")]
 internal interface HowMuchDefinition
 {
 }

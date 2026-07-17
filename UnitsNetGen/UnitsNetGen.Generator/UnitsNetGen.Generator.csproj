@@ -6,9 +6,27 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>UnitsNetGen.Generator</RootNamespace>
     <IsRoslynComponent>true</IsRoslynComponent>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <IncludeSymbols>false</IncludeSymbols>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <PackageId>UnitsNetGen.Generator</PackageId>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <NoWarn>$(NoWarn);RS1036;RS2008</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
+    <PackageReference Include="Newtonsoft.Json" GeneratePathProperty="true" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(TargetPath)" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="$(PkgNewtonsoft_Json)/lib/netstandard2.0/Newtonsoft.Json.dll"
+          Pack="true"
+          PackagePath="analyzers/dotnet/cs"
+          Visible="false" />
+    <None Include="buildTransitive/UnitsNetGen.Generator.targets"
+          Pack="true"
+          PackagePath="buildTransitive/UnitsNetGen.Generator.targets" />
+    <None Include="../ARCHITECTURE.md" Pack="true" PackagePath="README.md" />
   </ItemGroup>
 </Project>

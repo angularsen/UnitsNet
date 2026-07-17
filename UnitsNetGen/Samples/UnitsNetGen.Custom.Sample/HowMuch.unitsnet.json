@@ -1,0 +1,71 @@
+{
+  "Name": "HowMuch",
+  "Namespace": "Fictional.Measurements",
+  "BaseUnit": "Some",
+  "Units": [
+    {
+      "SingularName": "Some",
+      "PluralName": "Some",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "sm" ]
+        },
+        {
+          "Culture": "nb-NO",
+          "Abbreviations": [ "noe" ],
+          "AbbreviationsForPrefixes": {
+            "Kilo": "knoe"
+          }
+        }
+      ]
+    },
+    {
+      "SingularName": "Lots",
+      "PluralName": "Lots",
+      "FromUnitToBaseFunc": "{x} * 2",
+      "FromBaseToUnitFunc": "{x} / 2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lots", "lts" ]
+        },
+        {
+          "Culture": "nb-NO",
+          "Abbreviations": [ "mye" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Tons",
+      "PluralName": "Tons",
+      "FromUnitToBaseFunc": "({x} * 4) * 5",
+      "FromBaseToUnitFunc": "{x} / (4 * 5)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "tons" ]
+        },
+        {
+          "Culture": "nb-NO",
+          "Abbreviations": [ "tonn" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Magnitude",
+      "PluralName": "Magnitudes",
+      "FromUnitToBaseFunc": "Math.Pow({x}, 2)",
+      "FromBaseToUnitFunc": "Math.Sqrt({x})",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mag" ]
+        }
+      ]
+    }
+  ]
+}

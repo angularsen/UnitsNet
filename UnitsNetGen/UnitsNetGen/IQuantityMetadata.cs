@@ -11,4 +11,8 @@ public interface IQuantityMetadata<TUnit>
     TUnit BaseUnit { get; }
 
     IReadOnlyList<UnitInfo<TUnit>> Units { get; }
+
+    double ToBase(double value, TUnit unit);
+
+    double FromBase(double value, TUnit unit);
 }

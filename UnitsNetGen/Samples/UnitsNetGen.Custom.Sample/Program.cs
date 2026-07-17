@@ -4,10 +4,7 @@ using UnitsNetGen.Generation;
 
 namespace Fictional.Measurements;
 
-[QuantityDefinition("HowMuch", "Some")]
-[UnitDefinition("Some", "Some", "sm", 1)]
-[UnitDefinition("Lots", "Lots", "lots", 2)]
-[UnitDefinition("Tons", "Tons", "tons", 20)]
+[QuantityDefinition("Fictional.Measurements.HowMuch")]
 public interface HowMuchDefinition
 {
 }
@@ -23,6 +20,7 @@ internal static class Program
     {
         HowMuch amount = HowMuch.Parse("10 tons");
         Console.WriteLine($"{amount} = {amount.Lots} lots = {amount.Some} sm");
+        Console.WriteLine($"3 magnitudes = {HowMuch.FromMagnitudes(3).Some} sm");
         Console.WriteLine($"Generated in custom namespace: {typeof(HowMuch).FullName}");
     }
 }

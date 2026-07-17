@@ -10,9 +10,9 @@ public static class QuantityOperations
     public static double Convert<TUnit>(double value, TUnit fromUnit, TUnit toUnit, IQuantityMetadata<TUnit> metadata)
         where TUnit : struct, Enum
     {
-        UnitInfo<TUnit> from = GetUnit(fromUnit, metadata);
-        UnitInfo<TUnit> to = GetUnit(toUnit, metadata);
-        return to.FromBase(from.ToBase(value));
+        _ = GetUnit(fromUnit, metadata);
+        _ = GetUnit(toUnit, metadata);
+        return metadata.FromBase(metadata.ToBase(value, fromUnit), toUnit);
     }
 
     public static bool TryParse<TUnit>(
@@ -32,14 +32,19 @@ public static class QuantityOperations
         }
 
         string trimmed = text.Trim();
-        foreach (UnitInfo<TUnit> candidate in metadata.Units.OrderByDescending(x => x.Abbreviation.Length))
+        var culture = formatProvider as CultureInfo ?? CultureInfo.CurrentCulture;
+        foreach (UnitInfo<TUnit> candidate in metadata.Units)
         {
-            if (TryReadValue(trimmed, candidate.Abbreviation, formatProvider, out value) ||
-                TryReadValue(trimmed, candidate.SingularName, formatProvider, out value) ||
-                TryReadValue(trimmed, candidate.PluralName, formatProvider, out value))
+            IEnumerable<string> suffixes = candidate.GetAbbreviations(culture)
+                .Concat(new[] { candidate.SingularName, candidate.PluralName })
+                .OrderByDescending(suffix => suffix.Length);
+            foreach (string suffix in suffixes)
             {
-                unit = candidate.Unit;
-                return true;
+                if (TryReadValue(trimmed, suffix, formatProvider, out value))
+                {
+                    unit = candidate.Unit;
+                    return true;
+                }
             }
         }
 
@@ -55,12 +60,16 @@ public static class QuantityOperations
         where TUnit : struct, Enum
     {
         UnitInfo<TUnit> info = GetUnit(unit, metadata);
-        return $"{value.ToString(format, formatProvider ?? CultureInfo.CurrentCulture)} {info.Abbreviation}";
+        var culture = formatProvider as CultureInfo ?? CultureInfo.CurrentCulture;
+        return $"{value.ToString(format, formatProvider ?? culture)} {info.GetDefaultAbbreviation(culture)}".TrimEnd();
     }
 
     public static double GetBaseValue<TUnit>(double value, TUnit unit, IQuantityMetadata<TUnit> metadata)
         where TUnit : struct, Enum
-        => GetUnit(unit, metadata).ToBase(value);
+    {
+        _ = GetUnit(unit, metadata);
+        return metadata.ToBase(value, unit);
+    }
 
     private static UnitInfo<TUnit> GetUnit<TUnit>(TUnit unit, IQuantityMetadata<TUnit> metadata)
         where TUnit : struct, Enum

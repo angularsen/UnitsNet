@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace UnitsNetGen.Generator;
 
@@ -57,5 +58,15 @@ internal static class BuiltInCatalog
         => new QuantityDefinition(name, "UnitsNetGen", baseUnit, units);
 
     private static UnitDefinition Unit(string singularName, string pluralName, string abbreviation, double scaleToBase)
-        => new UnitDefinition(singularName, pluralName, abbreviation, scaleToBase);
+    {
+        string scale = scaleToBase.ToString("R", CultureInfo.InvariantCulture);
+        string toBase = scaleToBase == 1 ? "x" : $"x * {scale}";
+        string fromBase = scaleToBase == 1 ? "x" : $"x / {scale}";
+        return new UnitDefinition(
+            singularName,
+            pluralName,
+            toBase,
+            fromBase,
+            new[] { new UnitLocalizationDefinition("en-US", new[] { abbreviation }) });
+    }
 }

@@ -6,14 +6,19 @@ using Catalog = UnitsNetGen.BuiltIns;
 
 namespace UnitsNetGen.Lean.Sample;
 
-[UnitSet("*Gram")]
+[UnitSet("regex:.*Gram$")]
 internal interface GramUnits
+{
+}
+
+[QuantityDefinition("UnitsNetGen.Length")]
+internal interface LengthDefinition
 {
 }
 
 [UnitsNetModule]
 internal interface LeanUnits :
-    IInclude<Catalog.Length>,
+    IInclude<LengthDefinition>,
     IInclude<Catalog.Mass, GramUnits>
 {
 }
