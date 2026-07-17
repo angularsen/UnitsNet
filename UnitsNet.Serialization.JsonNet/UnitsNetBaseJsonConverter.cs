@@ -84,7 +84,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// Convert a <see cref="ValueUnit"/> to an <see cref="IQuantity"/>
         /// </summary>
         /// <param name="valueUnit">The value unit to convert</param>
-        /// <exception cref="UnitsNetException">Thrown when an invalid Unit has been provided</exception>
+        /// <exception cref="UnitsNetException">Thrown when an invalid unit has been provided, or when a registered custom quantity type cannot be instantiated.</exception>
         /// <returns>An IQuantity</returns>
         protected IQuantity ConvertValueUnit(ValueUnit valueUnit)
         {
@@ -99,14 +99,16 @@ namespace UnitsNet.Serialization.JsonNet
 
             if (registeredQuantity is not null)
             {
+                // RegisterCustomType stores quantity/unit pairs, so a registered quantity has a registered unit.
+                Type registeredUnit = registeredType.Unit!;
                 try
                 {
                     IQuantity? instance = (IQuantity?)Activator.CreateInstance(registeredQuantity, valueUnit.Value, unit);
-                    return instance ?? throw CreateRegisteredQuantityInstantiationException(registeredQuantity, registeredType.Unit ?? unit.GetType(), unit);
+                    return instance ?? throw CreateRegisteredQuantityInstantiationException(registeredQuantity, registeredUnit, unit);
                 }
                 catch (Exception ex) when (!IsRegisteredQuantityInstantiationException(ex))
                 {
-                    throw CreateRegisteredQuantityInstantiationException(registeredQuantity, registeredType.Unit ?? unit.GetType(), unit, ex);
+                    throw CreateRegisteredQuantityInstantiationException(registeredQuantity, registeredUnit, unit, ex);
                 }
             }
 
