@@ -149,6 +149,14 @@ namespace UnitsNet.Tests
             Assert.Equal(Pressure.FromMillibars(2), 2.Millibars);
 
         [Fact]
+        public void NumberToMilligramsForcePerSquareFootTest() =>
+            Assert.Equal(Pressure.FromMilligramsForcePerSquareFoot(2), 2.MilligramsForcePerSquareFoot);
+
+        [Fact]
+        public void NumberToMilligramsForcePerSquareMeterTest() =>
+            Assert.Equal(Pressure.FromMilligramsForcePerSquareMeter(2), 2.MilligramsForcePerSquareMeter);
+
+        [Fact]
         public void NumberToMillimetersOfMercuryTest() =>
             Assert.Equal(Pressure.FromMillimetersOfMercury(2), 2.MillimetersOfMercury);
 

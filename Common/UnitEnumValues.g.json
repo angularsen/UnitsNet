@@ -469,7 +469,8 @@
     "Poundal": 12,
     "PoundForce": 13,
     "ShortTonForce": 14,
-    "TonneForce": 15
+    "TonneForce": 15,
+    "GramForce": 16
   },
   "ForceChangeRate": {
     "CentinewtonPerSecond": 1,
@@ -1191,7 +1192,9 @@
     "Torr": 47,
     "MeterOfWaterColumn": 57,
     "CentimeterOfWaterColumn": 48,
-    "Millitorr": 52
+    "Millitorr": 52,
+    "MilligramForcePerSquareFoot": 59,
+    "MilligramForcePerSquareMeter": 51
   },
   "PressureChangeRate": {
     "AtmospherePerSecond": 1,

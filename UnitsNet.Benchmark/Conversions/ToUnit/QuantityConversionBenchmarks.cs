@@ -19,7 +19,7 @@ public class QuantityConversionBenchmarks
         double result = 0;
         foreach (IQuantity quantity in Quantities)
         {
-            foreach (UnitInfo unitInfo in quantity.QuantityInfo.UnitInfos)
+            foreach (UnitInfo unitInfo in quantity.GetQuantityInfo().UnitInfos)
             {
                 result = quantity.As(unitInfo.Value);
             }

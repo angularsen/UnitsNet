@@ -51,7 +51,6 @@ or go to [NuGet Gallery | UnitsNet](https://www.nuget.org/packages/UnitsNet) for
 * .NET 8.0 (LTS)
 * .NET 9.0 (latest stable)
 * .NET 10.0 (preview)
-* [.NET nanoFramework](https://www.nanoframework.net/)
 
 
 ### Extension Packages
