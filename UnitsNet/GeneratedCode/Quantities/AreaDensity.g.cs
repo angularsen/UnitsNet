@@ -121,6 +121,8 @@ namespace UnitsNet
                 yield return new (AreaDensityUnit.GramPerSquareMeter, "GramPerSquareMeter", "GramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram));
                 yield return new (AreaDensityUnit.KilogramPerSquareMeter, "KilogramPerSquareMeter", "KilogramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
                 yield return new (AreaDensityUnit.MilligramPerSquareMeter, "MilligramPerSquareMeter", "MilligramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram));
+                yield return new (AreaDensityUnit.PoundPerSquareFoot, "PoundPerSquareFoot", "PoundsPerSquareFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound));
+                yield return new (AreaDensityUnit.PoundPerThousandSquareFeet, "PoundPerThousandSquareFeet", "PoundsPerThousandSquareFeet", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound));
             }
         }
 
@@ -241,6 +243,16 @@ namespace UnitsNet
         /// </summary>
         public double MilligramsPerSquareMeter => As(AreaDensityUnit.MilligramPerSquareMeter);
 
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.PoundPerSquareFoot"/>
+        /// </summary>
+        public double PoundsPerSquareFoot => As(AreaDensityUnit.PoundPerSquareFoot);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaDensityUnit.PoundPerThousandSquareFeet"/>
+        /// </summary>
+        public double PoundsPerThousandSquareFeet => As(AreaDensityUnit.PoundPerThousandSquareFeet);
+
         #endregion
 
         #region Static Methods
@@ -254,6 +266,8 @@ namespace UnitsNet
             // Register in unit converter: AreaDensityUnit -> BaseUnit
             unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.GramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter, quantity => quantity.ToUnit(AreaDensityUnit.KilogramPerSquareMeter));
             unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.MilligramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter, quantity => quantity.ToUnit(AreaDensityUnit.KilogramPerSquareMeter));
+            unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.PoundPerSquareFoot, AreaDensityUnit.KilogramPerSquareMeter, quantity => quantity.ToUnit(AreaDensityUnit.KilogramPerSquareMeter));
+            unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.PoundPerThousandSquareFeet, AreaDensityUnit.KilogramPerSquareMeter, quantity => quantity.ToUnit(AreaDensityUnit.KilogramPerSquareMeter));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter, quantity => quantity);
@@ -261,6 +275,8 @@ namespace UnitsNet
             // Register in unit converter: BaseUnit -> AreaDensityUnit
             unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.GramPerSquareMeter, quantity => quantity.ToUnit(AreaDensityUnit.GramPerSquareMeter));
             unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.MilligramPerSquareMeter, quantity => quantity.ToUnit(AreaDensityUnit.MilligramPerSquareMeter));
+            unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.PoundPerSquareFoot, quantity => quantity.ToUnit(AreaDensityUnit.PoundPerSquareFoot));
+            unitConverter.SetConversionFunction<AreaDensity>(AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.PoundPerThousandSquareFeet, quantity => quantity.ToUnit(AreaDensityUnit.PoundPerThousandSquareFeet));
         }
 
         /// <summary>
@@ -310,6 +326,22 @@ namespace UnitsNet
         public static AreaDensity FromMilligramsPerSquareMeter(double value)
         {
             return new AreaDensity(value, AreaDensityUnit.MilligramPerSquareMeter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.PoundPerSquareFoot"/>.
+        /// </summary>
+        public static AreaDensity FromPoundsPerSquareFoot(double value)
+        {
+            return new AreaDensity(value, AreaDensityUnit.PoundPerSquareFoot);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.PoundPerThousandSquareFeet"/>.
+        /// </summary>
+        public static AreaDensity FromPoundsPerThousandSquareFeet(double value)
+        {
+            return new AreaDensity(value, AreaDensityUnit.PoundPerThousandSquareFeet);
         }
 
         /// <summary>
@@ -717,10 +749,14 @@ namespace UnitsNet
                 // AreaDensityUnit -> BaseUnit
                 (AreaDensityUnit.GramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter) => new AreaDensity(_value / 1000, AreaDensityUnit.KilogramPerSquareMeter),
                 (AreaDensityUnit.MilligramPerSquareMeter, AreaDensityUnit.KilogramPerSquareMeter) => new AreaDensity(_value / 1000000, AreaDensityUnit.KilogramPerSquareMeter),
+                (AreaDensityUnit.PoundPerSquareFoot, AreaDensityUnit.KilogramPerSquareMeter) => new AreaDensity(_value * (0.45359237 / 0.09290304), AreaDensityUnit.KilogramPerSquareMeter),
+                (AreaDensityUnit.PoundPerThousandSquareFeet, AreaDensityUnit.KilogramPerSquareMeter) => new AreaDensity(_value * (0.45359237 / 0.09290304) / 1000, AreaDensityUnit.KilogramPerSquareMeter),
 
                 // BaseUnit -> AreaDensityUnit
                 (AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.GramPerSquareMeter) => new AreaDensity(_value * 1000, AreaDensityUnit.GramPerSquareMeter),
                 (AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.MilligramPerSquareMeter) => new AreaDensity(_value * 1000000, AreaDensityUnit.MilligramPerSquareMeter),
+                (AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.PoundPerSquareFoot) => new AreaDensity(_value / (0.45359237 / 0.09290304), AreaDensityUnit.PoundPerSquareFoot),
+                (AreaDensityUnit.KilogramPerSquareMeter, AreaDensityUnit.PoundPerThousandSquareFeet) => new AreaDensity(_value / (0.45359237 / 0.09290304) * 1000, AreaDensityUnit.PoundPerThousandSquareFeet),
 
                 _ => null
             };

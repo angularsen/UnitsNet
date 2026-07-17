@@ -40,7 +40,7 @@ namespace UnitsNet.Tests
             Assertion(3, AmplitudeRatioUnit.DecibelVolt, Quantity.From(3, AmplitudeRatioUnit.DecibelVolt));
             Assertion(3, AngleUnit.Revolution, Quantity.From(3, AngleUnit.Revolution));
             Assertion(3, AreaUnit.UsSurveySquareFoot, Quantity.From(3, AreaUnit.UsSurveySquareFoot));
-            Assertion(3, AreaDensityUnit.MilligramPerSquareMeter, Quantity.From(3, AreaDensityUnit.MilligramPerSquareMeter));
+            Assertion(3, AreaDensityUnit.PoundPerThousandSquareFeet, Quantity.From(3, AreaDensityUnit.PoundPerThousandSquareFeet));
             Assertion(3, AreaMomentOfInertiaUnit.MillimeterToTheFourth, Quantity.From(3, AreaMomentOfInertiaUnit.MillimeterToTheFourth));
             Assertion(3, BitRateUnit.TeraoctetPerSecond, Quantity.From(3, BitRateUnit.TeraoctetPerSecond));
             Assertion(3, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, Quantity.From(3, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour));

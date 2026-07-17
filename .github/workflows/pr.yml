@@ -34,15 +34,10 @@ jobs:
           6.0.x
           8.0.x
 
-    - name: Setup .NET nanoFramework build components
-      uses: nanoframework/nanobuild@v1
-      with:
-        workload: 'nanoFramework'
-
     - name: Build, Test and Pack
       shell: pwsh
       run: |
-        ./Build/build.ps1 -IncludeNanoFramework
+        ./Build/build.ps1
       working-directory: ${{ github.workspace }}
 
     - name: Upload Test Results

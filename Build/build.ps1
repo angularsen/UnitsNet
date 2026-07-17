@@ -9,16 +9,13 @@
     on the master branch.
 .EXAMPLE
   powershell ./build.ps1
-  powershell ./build.ps1 -IncludeNanoFramework
 
 .NOTES
     Author: Andreas Gullberg Larsen
     Last modified: Jan 21, 2018
     #>
 [CmdletBinding()]
-Param(
-    [switch] $IncludeNanoFramework
-  )
+Param()
 
 remove-module build-functions -ErrorAction SilentlyContinue
 import-module $PSScriptRoot\build-functions.psm1
@@ -33,16 +30,6 @@ try {
   Start-Build
   Start-Tests
   Start-PackNugets
-
-  # Build NanoFramework if requested (Windows-only, requires Visual Studio)
-  if ($IncludeNanoFramework) {
-    write-host -foreground cyan "`n===== Building NanoFramework projects (requires Visual Studio) =====`n"
-    Start-BuildNanoFramework
-    Start-PackNugetsNanoFramework
-  }
-  else {
-    write-host -foreground yellow "`nSkipping NanoFramework build. Use -IncludeNanoFramework flag to build NanoFramework projects.`n"
-  }
 
   Compress-ArtifactsAsZip
 }

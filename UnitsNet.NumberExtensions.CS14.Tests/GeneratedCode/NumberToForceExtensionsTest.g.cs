@@ -33,6 +33,10 @@ namespace UnitsNet.Tests
             Assert.Equal(Force.FromDyne(2), 2.Dyne);
 
         [Fact]
+        public void NumberToGramsForceTest() =>
+            Assert.Equal(Force.FromGramsForce(2), 2.GramsForce);
+
+        [Fact]
         public void NumberToKilogramsForceTest() =>
             Assert.Equal(Force.FromKilogramsForce(2), 2.KilogramsForce);
 
