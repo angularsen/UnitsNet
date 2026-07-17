@@ -12,6 +12,9 @@ on:
 
 jobs:
   claude-review:
+    # Fork PRs cannot request OIDC tokens and contain untrusted input. A
+    # maintainer can request a review explicitly by commenting `@claude`.
+    if: github.event.pull_request.head.repo.full_name == github.repository
     # Optional: Filter by PR author
     # if: |
     #   github.event.pull_request.user.login == 'external-contributor' ||
