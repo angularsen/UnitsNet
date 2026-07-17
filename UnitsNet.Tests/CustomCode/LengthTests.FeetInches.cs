@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.Globalization;
+using UnitsNet.Tests.Helpers;
 
 namespace UnitsNet.Tests
 {
@@ -179,6 +180,18 @@ namespace UnitsNet.Tests
                 culture = new CultureInfo(cultureString, useUserOverride: false);
             }
             Assert.Equal(expected, length.FeetInches.ToString(culture));
+        }
+
+        [Theory]
+        [InlineData(47.9988, "4 ft 0 in")]
+        [InlineData(-47.9988, "-4 ft 0 in")]
+        public static void FeetInches_ToString_RoundsTwelveInchesIntoNextFoot(double inch, string expected)
+        {
+            using var _ = new CultureScope(CultureInfo.InvariantCulture);
+
+            var length = Length.FromInches(inch);
+
+            Assert.Equal(expected, length.FeetInches.ToString());
         }
     }
 }
