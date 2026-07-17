@@ -85,8 +85,17 @@ Conversion expressions are parsed as C# expressions and restricted to numeric li
 - `Samples/UnitsNetGen.AllSi.Sample`: all ten POC quantities and conditional derived-quantity operators.
 - `Samples/UnitsNetGen.Lean.Sample`: Length plus only Mass units matching `regex:.*Gram$`.
 - `Samples/UnitsNetGen.Custom.Sample`: a fictional `HowMuch` quantity in its own namespace.
+- `Samples/UnitsNetGen.NetStandard.Sample`: compile-time coverage for a generated module targeting `netstandard2.0`.
 
 The projects live in their own solution and do not participate in the existing UnitsNet solution.
+
+## Framework targets
+
+The `UnitsNetGen` package supplies runtime assets for `netstandard2.0` and `net10.0`. The generator remains a `netstandard2.0` analyzer so current compiler hosts can load it regardless of the consumer target. Executable samples and tests target .NET 10, while the dedicated .NET Standard sample proves that the shared runtime and generated baseline API compile without newer framework contracts.
+
+On .NET 10, generated quantities additionally implement `IParsable<TSelf>` and the applicable generic-math operator interfaces from `System.Numerics`. This enables generic parsing, addition, subtraction, scalar multiplication/division, and comparison without changing the portable API emitted for `netstandard2.0`.
+
+Further modern-target opportunities include allocation-free `ISpanParsable<TSelf>`/`ISpanFormattable` paths, UTF-8 parsing and formatting, and optionally abstracting the numeric storage type through generic math. Those require deliberate API and performance design beyond this POC.
 
 ## Generated surface
 
@@ -97,6 +106,7 @@ For each selected definition, the generator emits:
 - typed `FromXxx()` factories and `.Xxx` conversion properties;
 - `As()`, `ToUnit()`, `Parse()`, `TryParse()`, and `ToString()`;
 - equality, comparison, same-quantity addition/subtraction, and scalar multiplication/division;
+- .NET 10 generic parsing and generic-math contracts;
 - localized unit metadata that delegates shared behavior to the runtime;
 - direct, validated conversion switches for affine and nonlinear conversions.
 
@@ -120,7 +130,7 @@ The embedded catalog is deliberately small: Length, Mass, Duration, Area, Speed,
 
 - This is a design probe, not a compatibility layer for UnitsNet v6.
 - Quantity values use `double` only.
-- Serialization, unit systems, generic math, logarithmic quantity semantics, culture selection, and rich parse ambiguity handling are deferred.
+- Serialization, unit systems, generic numeric storage, logarithmic quantity semantics, culture selection, and rich parse ambiguity handling are deferred.
 - Regex/glob patterns filter expanded unit names, not abbreviations.
 - Prefix expansion uses a common SI/binary prefix table; it does not yet reproduce every culture-specific prefix convention from UnitsNet v6.
 - Third-party public API authors must ship a generated module to establish stable type identity.

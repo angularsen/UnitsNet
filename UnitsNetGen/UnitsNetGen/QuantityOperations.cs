@@ -31,7 +31,7 @@ public static class QuantityOperations
             return false;
         }
 
-        string trimmed = text.Trim();
+        string trimmed = text!.Trim();
         var culture = formatProvider as CultureInfo ?? CultureInfo.CurrentCulture;
         foreach (UnitInfo<TUnit> candidate in metadata.Units)
         {

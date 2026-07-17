@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net10.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -9,7 +9,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" GeneratePathProperty="true" PrivateAssets="all" />
+    <PackageReference Include="Newtonsoft.Json" PrivateAssets="all" />
     <ProjectReference Include="..\UnitsNetGen.Generator\UnitsNetGen.Generator.csproj"
                       PrivateAssets="all"
                       ReferenceOutputAssembly="false" />
@@ -18,7 +18,7 @@
     <None Include="../../Artifacts/UnitsNetGen.Generator/netstandard2.0/UnitsNetGen.Generator.dll"
           Pack="true"
           PackagePath="analyzers/dotnet/cs" />
-    <None Include="$(PkgNewtonsoft_Json)/lib/netstandard2.0/Newtonsoft.Json.dll"
+    <None Include="$(NuGetPackageRoot)/newtonsoft.json/$(NewtonsoftJsonVersion)/lib/netstandard2.0/Newtonsoft.Json.dll"
           Pack="true"
           PackagePath="analyzers/dotnet/cs" />
     <None Include="../UnitsNetGen.Generator/buildTransitive/UnitsNetGen.Generator.targets"

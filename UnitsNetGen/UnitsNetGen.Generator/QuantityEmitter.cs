@@ -33,6 +33,14 @@ internal static class QuantityEmitter
             .Append(" : global::UnitsNetGen.IQuantity<").Append(unitType).Append(">, ")
             .Append("global::System.IEquatable<").Append(quantity.Name).Append(">, ")
             .Append("global::System.IComparable<").Append(quantity.Name).AppendLine(">");
+        writer.AppendLine("#if NET10_0_OR_GREATER");
+        writer.Append("    , global::System.IParsable<").Append(quantity.Name).AppendLine(">");
+        writer.Append("    , global::System.Numerics.IAdditionOperators<").Append(quantity.Name).Append(", ").Append(quantity.Name).Append(", ").Append(quantity.Name).AppendLine(">");
+        writer.Append("    , global::System.Numerics.ISubtractionOperators<").Append(quantity.Name).Append(", ").Append(quantity.Name).Append(", ").Append(quantity.Name).AppendLine(">");
+        writer.Append("    , global::System.Numerics.IMultiplyOperators<").Append(quantity.Name).Append(", double, ").Append(quantity.Name).AppendLine(">");
+        writer.Append("    , global::System.Numerics.IDivisionOperators<").Append(quantity.Name).Append(", double, ").Append(quantity.Name).AppendLine(">");
+        writer.Append("    , global::System.Numerics.IComparisonOperators<").Append(quantity.Name).Append(", ").Append(quantity.Name).AppendLine(", bool>");
+        writer.AppendLine("#endif");
         writer.AppendLine("{");
         writer.Append("    private static readonly QuantityMetadata Metadata = new QuantityMetadata();").AppendLine();
         writer.AppendLine("    private readonly double _value;");
@@ -87,6 +95,19 @@ internal static class QuantityEmitter
         writer.AppendLine("        quantity = default;");
         writer.AppendLine("        return false;");
         writer.AppendLine("    }");
+        writer.AppendLine("#if NET10_0_OR_GREATER");
+        writer.Append("    public static bool TryParse(string? text, global::System.IFormatProvider? formatProvider, out ").Append(quantity.Name).AppendLine(" quantity)");
+        writer.AppendLine("    {");
+        writer.AppendLine("        if (global::UnitsNetGen.QuantityOperations.TryParse(text, formatProvider, Metadata, out double value, out var unit))");
+        writer.AppendLine("        {");
+        writer.Append("            quantity = new ").Append(quantity.Name).AppendLine("(value, unit);");
+        writer.AppendLine("            return true;");
+        writer.AppendLine("        }");
+        writer.AppendLine();
+        writer.AppendLine("        quantity = default;");
+        writer.AppendLine("        return false;");
+        writer.AppendLine("    }");
+        writer.AppendLine("#endif");
         writer.AppendLine();
         writer.Append("    public int CompareTo(").Append(quantity.Name).AppendLine(" other) => BaseValue.CompareTo(other.BaseValue);");
         writer.Append("    public bool Equals(").Append(quantity.Name).AppendLine(" other) => BaseValue.Equals(other.BaseValue);");

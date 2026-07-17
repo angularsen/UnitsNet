@@ -66,4 +66,21 @@ public sealed class GeneratedQuantityTests
         Assert.Equal(2000, prefixed.Some, 10);
         Assert.Equal("2 knoe", prefixed.ToString(null, norwegian));
     }
+
+    [Fact]
+    public void Net10GeneratedQuantities_SupportGenericParsingAndMath()
+    {
+        Length parsed = Parse<Length>("1.5 km");
+        Length total = Add(parsed, Length.FromMeters(500));
+
+        Assert.Equal(2, total.Kilometers, 10);
+    }
+
+    private static T Parse<T>(string text)
+        where T : IParsable<T>
+        => T.Parse(text, System.Globalization.CultureInfo.InvariantCulture);
+
+    private static T Add<T>(T left, T right)
+        where T : System.Numerics.IAdditionOperators<T, T, T>
+        => left + right;
 }
