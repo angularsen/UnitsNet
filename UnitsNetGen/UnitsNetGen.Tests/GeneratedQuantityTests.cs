@@ -55,12 +55,12 @@ public sealed class GeneratedQuantityTests
     {
         var norwegian = System.Globalization.CultureInfo.GetCultureInfo("nb-NO");
 
-        HowMuch localized = HowMuch.Parse("10 tonn", norwegian);
+        HowMuch localized = HowMuch.Parse("10 tonnevis", norwegian);
         HowMuch nonlinear = HowMuch.FromMagnitudes(3);
         HowMuch prefixed = HowMuch.FromKilosome(2);
 
         Assert.Equal(200, localized.Some, 10);
-        Assert.Equal("10 tonn", localized.ToString(null, norwegian));
+        Assert.Equal("10 tonnevis", localized.ToString(null, norwegian));
         Assert.Equal(9, nonlinear.Some, 10);
         Assert.Equal(3, nonlinear.Magnitudes, 10);
         Assert.Equal(2000, prefixed.Some, 10);
