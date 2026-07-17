@@ -49,8 +49,16 @@ namespace UnitsNet.Tests
             Assert.Equal(HeatFlux.FromCentiwattsPerSquareMeter(2), 2.CentiwattsPerSquareMeter());
 
         [Fact]
+        public void NumberToCentiwattsPerSquareMillimeterTest() =>
+            Assert.Equal(HeatFlux.FromCentiwattsPerSquareMillimeter(2), 2.CentiwattsPerSquareMillimeter());
+
+        [Fact]
         public void NumberToDeciwattsPerSquareMeterTest() =>
             Assert.Equal(HeatFlux.FromDeciwattsPerSquareMeter(2), 2.DeciwattsPerSquareMeter());
+
+        [Fact]
+        public void NumberToDeciwattsPerSquareMillimeterTest() =>
+            Assert.Equal(HeatFlux.FromDeciwattsPerSquareMillimeter(2), 2.DeciwattsPerSquareMillimeter());
 
         [Fact]
         public void NumberToKilocaloriesPerHourSquareMeterTest() =>
@@ -65,16 +73,32 @@ namespace UnitsNet.Tests
             Assert.Equal(HeatFlux.FromKilowattsPerSquareMeter(2), 2.KilowattsPerSquareMeter());
 
         [Fact]
+        public void NumberToKilowattsPerSquareMillimeterTest() =>
+            Assert.Equal(HeatFlux.FromKilowattsPerSquareMillimeter(2), 2.KilowattsPerSquareMillimeter());
+
+        [Fact]
         public void NumberToMicrowattsPerSquareMeterTest() =>
             Assert.Equal(HeatFlux.FromMicrowattsPerSquareMeter(2), 2.MicrowattsPerSquareMeter());
+
+        [Fact]
+        public void NumberToMicrowattsPerSquareMillimeterTest() =>
+            Assert.Equal(HeatFlux.FromMicrowattsPerSquareMillimeter(2), 2.MicrowattsPerSquareMillimeter());
 
         [Fact]
         public void NumberToMilliwattsPerSquareMeterTest() =>
             Assert.Equal(HeatFlux.FromMilliwattsPerSquareMeter(2), 2.MilliwattsPerSquareMeter());
 
         [Fact]
+        public void NumberToMilliwattsPerSquareMillimeterTest() =>
+            Assert.Equal(HeatFlux.FromMilliwattsPerSquareMillimeter(2), 2.MilliwattsPerSquareMillimeter());
+
+        [Fact]
         public void NumberToNanowattsPerSquareMeterTest() =>
             Assert.Equal(HeatFlux.FromNanowattsPerSquareMeter(2), 2.NanowattsPerSquareMeter());
+
+        [Fact]
+        public void NumberToNanowattsPerSquareMillimeterTest() =>
+            Assert.Equal(HeatFlux.FromNanowattsPerSquareMillimeter(2), 2.NanowattsPerSquareMillimeter());
 
         [Fact]
         public void NumberToPoundsForcePerFootSecondTest() =>
@@ -95,6 +119,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToWattsPerSquareMeterTest() =>
             Assert.Equal(HeatFlux.FromWattsPerSquareMeter(2), 2.WattsPerSquareMeter());
+
+        [Fact]
+        public void NumberToWattsPerSquareMillimeterTest() =>
+            Assert.Equal(HeatFlux.FromWattsPerSquareMillimeter(2), 2.WattsPerSquareMillimeter());
 
     }
 }

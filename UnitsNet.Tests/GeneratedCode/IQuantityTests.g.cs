@@ -82,7 +82,7 @@ namespace UnitsNet.Tests
             Assertion(3, ForcePerLengthUnit.TonneForcePerMillimeter, Quantity.From(3, ForcePerLengthUnit.TonneForcePerMillimeter));
             Assertion(3, FrequencyUnit.Terahertz, Quantity.From(3, FrequencyUnit.Terahertz));
             Assertion(3, FuelEfficiencyUnit.MilePerUsGallon, Quantity.From(3, FuelEfficiencyUnit.MilePerUsGallon));
-            Assertion(3, HeatFluxUnit.WattPerSquareMeter, Quantity.From(3, HeatFluxUnit.WattPerSquareMeter));
+            Assertion(3, HeatFluxUnit.WattPerSquareMillimeter, Quantity.From(3, HeatFluxUnit.WattPerSquareMillimeter));
             Assertion(3, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, Quantity.From(3, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
             Assertion(3, IlluminanceUnit.Millilux, Quantity.From(3, IlluminanceUnit.Millilux));
             Assertion(3, ImpulseUnit.SlugFootPerSecond, Quantity.From(3, ImpulseUnit.SlugFootPerSecond));
