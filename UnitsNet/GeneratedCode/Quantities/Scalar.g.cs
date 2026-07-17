@@ -40,8 +40,6 @@ namespace UnitsNet
         IArithmeticQuantity<Scalar, ScalarUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Scalar, Scalar, double>,
-        IDivisionOperators<Scalar, SpecificEnergy, BrakeSpecificFuelConsumption>,
-        IDivisionOperators<Scalar, BrakeSpecificFuelConsumption, SpecificEnergy>,
         IComparisonOperators<Scalar, Scalar, bool>,
         IParsable<Scalar>,
 #endif
@@ -466,22 +464,6 @@ namespace UnitsNet
         public static double operator /(Scalar left, Scalar right)
         {
             return left.Amount / right.Amount;
-        }
-
-        #endregion
-
-        #region Relational Operators
-
-        /// <summary>Get <see cref="BrakeSpecificFuelConsumption"/> from <see cref="Scalar"/> / <see cref="SpecificEnergy"/>.</summary>
-        public static BrakeSpecificFuelConsumption operator /(Scalar scalar, SpecificEnergy specificEnergy)
-        {
-            return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(scalar.Amount / specificEnergy.JoulesPerKilogram);
-        }
-
-        /// <summary>Get <see cref="SpecificEnergy"/> from <see cref="Scalar"/> / <see cref="BrakeSpecificFuelConsumption"/>.</summary>
-        public static SpecificEnergy operator /(Scalar scalar, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
-        {
-            return SpecificEnergy.FromJoulesPerKilogram(scalar.Amount / brakeSpecificFuelConsumption.KilogramsPerJoule);
         }
 
         #endregion

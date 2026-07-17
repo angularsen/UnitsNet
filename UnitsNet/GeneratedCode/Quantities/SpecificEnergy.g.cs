@@ -45,7 +45,7 @@ namespace UnitsNet
         IDivisionOperators<SpecificEnergy, SpecificEnergy, double>,
         IMultiplyOperators<SpecificEnergy, Mass, Energy>,
         IMultiplyOperators<SpecificEnergy, MassFlow, Power>,
-        IMultiplyOperators<SpecificEnergy, BrakeSpecificFuelConsumption, Scalar>,
+        IMultiplyOperators<SpecificEnergy, BrakeSpecificFuelConsumption, Ratio>,
         IDivisionOperators<SpecificEnergy, TemperatureDelta, SpecificEntropy>,
         IDivisionOperators<SpecificEnergy, Speed, Speed>,
         IDivisionOperators<SpecificEnergy, SpecificEntropy, TemperatureDelta>,
@@ -969,10 +969,10 @@ namespace UnitsNet
             return Power.FromWatts(specificEnergy.JoulesPerKilogram * massFlow.KilogramsPerSecond);
         }
 
-        /// <summary>Get <see cref="Scalar"/> from <see cref="SpecificEnergy"/> * <see cref="BrakeSpecificFuelConsumption"/>.</summary>
-        public static Scalar operator *(SpecificEnergy specificEnergy, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
+        /// <summary>Get <see cref="Ratio"/> from <see cref="SpecificEnergy"/> * <see cref="BrakeSpecificFuelConsumption"/>.</summary>
+        public static Ratio operator *(SpecificEnergy specificEnergy, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
         {
-            return Scalar.FromAmount(specificEnergy.JoulesPerKilogram * brakeSpecificFuelConsumption.KilogramsPerJoule);
+            return Ratio.FromDecimalFractions(specificEnergy.JoulesPerKilogram * brakeSpecificFuelConsumption.KilogramsPerJoule);
         }
 
         /// <summary>Get <see cref="SpecificEntropy"/> from <see cref="SpecificEnergy"/> / <see cref="TemperatureDelta"/>.</summary>
