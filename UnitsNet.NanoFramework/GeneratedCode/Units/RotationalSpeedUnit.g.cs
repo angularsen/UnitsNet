@@ -33,6 +33,7 @@ namespace UnitsNet.Units
         MicroradianPerSecond = 6,
         MillidegreePerSecond = 7,
         MilliradianPerSecond = 8,
+        MillirevolutionPerMinute = 17,
         NanodegreePerSecond = 9,
         NanoradianPerSecond = 10,
         RadianPerSecond = 11,

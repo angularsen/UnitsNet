@@ -57,6 +57,10 @@ namespace UnitsNet.Tests
             Assert.Equal(RotationalSpeed.FromMilliradiansPerSecond(2), 2.MilliradiansPerSecond());
 
         [Fact]
+        public void NumberToMillirevolutionsPerMinuteTest() =>
+            Assert.Equal(RotationalSpeed.FromMillirevolutionsPerMinute(2), 2.MillirevolutionsPerMinute());
+
+        [Fact]
         public void NumberToNanodegreesPerSecondTest() =>
             Assert.Equal(RotationalSpeed.FromNanodegreesPerSecond(2), 2.NanodegreesPerSecond());
 

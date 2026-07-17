@@ -84,6 +84,11 @@ namespace UnitsNet
         public double DegreesPerSecondSquared => As(RotationalAccelerationUnit.DegreePerSecondSquared);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalAccelerationUnit.MillirevolutionPerMinutePerSecond"/>
+        /// </summary>
+        public double MillirevolutionsPerMinutePerSecond => As(RotationalAccelerationUnit.MillirevolutionPerMinutePerSecond);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalAccelerationUnit.RadianPerSecondSquared"/>
         /// </summary>
         public double RadiansPerSecondSquared => As(RotationalAccelerationUnit.RadianPerSecondSquared);
@@ -106,6 +111,11 @@ namespace UnitsNet
         ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.DegreePerSecondSquared"/>.
         /// </summary>
         public static RotationalAcceleration FromDegreesPerSecondSquared(double degreespersecondsquared) => new RotationalAcceleration(degreespersecondsquared, RotationalAccelerationUnit.DegreePerSecondSquared);
+
+        /// <summary>
+        ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.MillirevolutionPerMinutePerSecond"/>.
+        /// </summary>
+        public static RotationalAcceleration FromMillirevolutionsPerMinutePerSecond(double millirevolutionsperminutepersecond) => new RotationalAcceleration(millirevolutionsperminutepersecond, RotationalAccelerationUnit.MillirevolutionPerMinutePerSecond);
 
         /// <summary>
         ///     Creates a <see cref="RotationalAcceleration"/> from <see cref="RotationalAccelerationUnit.RadianPerSecondSquared"/>.
@@ -163,6 +173,7 @@ namespace UnitsNet
                     return Unit switch
                     {
                         RotationalAccelerationUnit.DegreePerSecondSquared => (3.1415926535897931 / 180) * _value,
+                        RotationalAccelerationUnit.MillirevolutionPerMinutePerSecond => ((2 * 3.1415926535897931) / 60) * _value * 1e-3,
                         RotationalAccelerationUnit.RadianPerSecondSquared => _value,
                         RotationalAccelerationUnit.RevolutionPerMinutePerSecond => ((2 * 3.1415926535897931) / 60) * _value,
                         RotationalAccelerationUnit.RevolutionPerSecondSquared => (2 * 3.1415926535897931) * _value,
@@ -180,6 +191,7 @@ namespace UnitsNet
                     return unit switch
                     {
                         RotationalAccelerationUnit.DegreePerSecondSquared => (180 / 3.1415926535897931) * baseUnitValue,
+                        RotationalAccelerationUnit.MillirevolutionPerMinutePerSecond => (60 / (2 * 3.1415926535897931)) * baseUnitValue / 1e-3,
                         RotationalAccelerationUnit.RadianPerSecondSquared => baseUnitValue,
                         RotationalAccelerationUnit.RevolutionPerMinutePerSecond => (60 / (2 * 3.1415926535897931)) * baseUnitValue,
                         RotationalAccelerationUnit.RevolutionPerSecondSquared => (1 / (2 * 3.1415926535897931)) * baseUnitValue,

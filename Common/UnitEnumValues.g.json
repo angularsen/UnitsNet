@@ -1254,7 +1254,8 @@
     "DegreePerSecondSquared": 1,
     "RadianPerSecondSquared": 2,
     "RevolutionPerMinutePerSecond": 3,
-    "RevolutionPerSecondSquared": 4
+    "RevolutionPerSecondSquared": 4,
+    "MillirevolutionPerMinutePerSecond": 7
   },
   "RotationalSpeed": {
     "CentiradianPerSecond": 1,
@@ -1269,7 +1270,8 @@
     "NanoradianPerSecond": 10,
     "RadianPerSecond": 11,
     "RevolutionPerMinute": 12,
-    "RevolutionPerSecond": 13
+    "RevolutionPerSecond": 13,
+    "MillirevolutionPerMinute": 17
   },
   "RotationalStiffness": {
     "CentinewtonMeterPerDegree": 1,

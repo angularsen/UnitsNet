@@ -119,6 +119,11 @@ namespace UnitsNet
         public double MilliradiansPerSecond => As(RotationalSpeedUnit.MilliradianPerSecond);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalSpeedUnit.MillirevolutionPerMinute"/>
+        /// </summary>
+        public double MillirevolutionsPerMinute => As(RotationalSpeedUnit.MillirevolutionPerMinute);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="RotationalSpeedUnit.NanodegreePerSecond"/>
         /// </summary>
         public double NanodegreesPerSecond => As(RotationalSpeedUnit.NanodegreePerSecond);
@@ -186,6 +191,11 @@ namespace UnitsNet
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.MilliradianPerSecond"/>.
         /// </summary>
         public static RotationalSpeed FromMilliradiansPerSecond(double milliradianspersecond) => new RotationalSpeed(milliradianspersecond, RotationalSpeedUnit.MilliradianPerSecond);
+
+        /// <summary>
+        ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.MillirevolutionPerMinute"/>.
+        /// </summary>
+        public static RotationalSpeed FromMillirevolutionsPerMinute(double millirevolutionsperminute) => new RotationalSpeed(millirevolutionsperminute, RotationalSpeedUnit.MillirevolutionPerMinute);
 
         /// <summary>
         ///     Creates a <see cref="RotationalSpeed"/> from <see cref="RotationalSpeedUnit.NanodegreePerSecond"/>.
@@ -260,6 +270,7 @@ namespace UnitsNet
                         RotationalSpeedUnit.MicroradianPerSecond => (_value) * 1e-6d,
                         RotationalSpeedUnit.MillidegreePerSecond => ((3.1415926535897931 / 180) * _value) * 1e-3d,
                         RotationalSpeedUnit.MilliradianPerSecond => (_value) * 1e-3d,
+                        RotationalSpeedUnit.MillirevolutionPerMinute => (_value * 2 * 3.1415926535897931) / 60000,
                         RotationalSpeedUnit.NanodegreePerSecond => ((3.1415926535897931 / 180) * _value) * 1e-9d,
                         RotationalSpeedUnit.NanoradianPerSecond => (_value) * 1e-9d,
                         RotationalSpeedUnit.RadianPerSecond => _value,
@@ -286,6 +297,7 @@ namespace UnitsNet
                         RotationalSpeedUnit.MicroradianPerSecond => (baseUnitValue) / 1e-6d,
                         RotationalSpeedUnit.MillidegreePerSecond => ((180 / 3.1415926535897931) * baseUnitValue) / 1e-3d,
                         RotationalSpeedUnit.MilliradianPerSecond => (baseUnitValue) / 1e-3d,
+                        RotationalSpeedUnit.MillirevolutionPerMinute => (baseUnitValue / (2 * 3.1415926535897931)) * 60000,
                         RotationalSpeedUnit.NanodegreePerSecond => ((180 / 3.1415926535897931) * baseUnitValue) / 1e-9d,
                         RotationalSpeedUnit.NanoradianPerSecond => (baseUnitValue) / 1e-9d,
                         RotationalSpeedUnit.RadianPerSecond => baseUnitValue,
