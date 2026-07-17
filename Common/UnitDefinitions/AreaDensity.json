@@ -69,7 +69,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lbs/ft²", "lbs/SF" ]
+          "Abbreviations": [ "lb/ft²", "lbs/ft²", "lb/SF", "lbs/SF" ]
         }
       ]
     },
@@ -85,7 +85,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lbs/1000ft²", "lbs/MSF" ]
+          "Abbreviations": [ "lb/MSF", "lbs/MSF", "lb/1000ft²", "lbs/1000ft²", "lbm/MSF" ]
         }
       ]
     }
