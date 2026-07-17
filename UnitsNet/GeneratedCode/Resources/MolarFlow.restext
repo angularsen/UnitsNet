@@ -1,7 +1,7 @@
-KilomolesPerHour=kkmol/h
+KilomolesPerHour=kmol/h
 KilomolesPerMinute=kmol/min
 KilomolesPerSecond=kmol/s
-MolesPerHour=kmol/h
+MolesPerHour=mol/h
 MolesPerMinute=mol/min
 MolesPerSecond=mol/s
 PoundMolesPerHour=lbmol/h
