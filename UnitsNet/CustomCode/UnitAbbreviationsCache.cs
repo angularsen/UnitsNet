@@ -155,12 +155,7 @@ namespace UnitsNet
         /// <param name="abbreviations">Unit abbreviations to add.</param>
         public void MapUnitToAbbreviation(UnitInfo unitInfo, IFormatProvider? formatProvider, params IEnumerable<string> abbreviations)
         {
-            if (unitInfo == null)
-            {
-                throw new ArgumentNullException(nameof(unitInfo));
-            }
-
-            AddAbbreviation(unitInfo, formatProvider, false, abbreviations);
+            AddAbbreviation(GetConfiguredUnitInfo(unitInfo), formatProvider, false, abbreviations);
         }
 
         #endregion
@@ -235,12 +230,7 @@ namespace UnitsNet
         /// <param name="abbreviation">Unit abbreviation to add as default.</param>
         public void MapUnitToDefaultAbbreviation(UnitInfo unitInfo, IFormatProvider? formatProvider, string abbreviation)
         {
-            if (unitInfo == null)
-            {
-                throw new ArgumentNullException(nameof(unitInfo));
-            }
-
-            AddAbbreviation(unitInfo, formatProvider, true, abbreviation);
+            AddAbbreviation(GetConfiguredUnitInfo(unitInfo), formatProvider, true, abbreviation);
         }
 
         #endregion
@@ -320,11 +310,7 @@ namespace UnitsNet
         /// </exception>
         public string GetDefaultAbbreviation(UnitInfo unitInfo, IFormatProvider? formatProvider = null)
         {
-            if (unitInfo == null)
-            {
-                throw new ArgumentNullException(nameof(unitInfo));
-            }
-
+            unitInfo = GetConfiguredUnitInfo(unitInfo);
             IReadOnlyList<string> abbreviations = GetUnitAbbreviations(unitInfo, formatProvider);
             if (abbreviations.Count == 0)
             {
@@ -400,11 +386,7 @@ namespace UnitsNet
         /// </exception>
         public IReadOnlyList<string> GetUnitAbbreviations(UnitInfo unitInfo, IFormatProvider? formatProvider = null)
         {
-            if (unitInfo == null)
-            {
-                throw new ArgumentNullException(nameof(unitInfo));
-            }
-
+            unitInfo = GetConfiguredUnitInfo(unitInfo);
             if (formatProvider is not CultureInfo culture)
             {
                 culture = CultureInfo.CurrentCulture;
@@ -461,6 +443,12 @@ namespace UnitsNet
             }
 
             return allAbbreviations;
+        }
+
+        private UnitInfo GetConfiguredUnitInfo(UnitInfo unitInfo)
+        {
+            if (unitInfo is null) throw new ArgumentNullException(nameof(unitInfo));
+            return Quantities.GetUnitInfo(unitInfo.UnitKey);
         }
 
         /// <summary>

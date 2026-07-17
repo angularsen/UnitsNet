@@ -82,6 +82,21 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void UnitInfoOverloads_WithUnitOutsideConfiguredQuantities_ThrowUnitNotFoundException()
+        {
+            var unitAbbreviationCache = new UnitAbbreviationsCache([Mass.Info]);
+            UnitInfo lengthUnitInfo = Length.Info[LengthUnit.Meter];
+
+            Assert.Multiple(checks:
+            [
+                () => Assert.Throws<UnitNotFoundException>(() => unitAbbreviationCache.GetUnitAbbreviations(lengthUnitInfo, AmericanCulture)),
+                () => Assert.Throws<UnitNotFoundException>(() => unitAbbreviationCache.GetDefaultAbbreviation(lengthUnitInfo, AmericanCulture)),
+                () => Assert.Throws<UnitNotFoundException>(() => unitAbbreviationCache.MapUnitToAbbreviation(lengthUnitInfo, AmericanCulture, "m")),
+                () => Assert.Throws<UnitNotFoundException>(() => unitAbbreviationCache.MapUnitToDefaultAbbreviation(lengthUnitInfo, AmericanCulture, "m"))
+            ]);
+        }
+
+        [Fact]
         public void GetDefaultAbbreviationReturnsTheExpectedAbbreviationWhenConstructedWithTheSpecificQuantityInfo()
         {
             Assert.Multiple(checks:
