@@ -253,7 +253,7 @@ namespace UnitsNet.Tests
         {
             try
             {
-                var parsed = MolarFlow.Parse("1 kkmol/h", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MolarFlow.Parse("1 kmol/h", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.KilomolesPerHour, KilomolesPerHourTolerance);
                 Assert.Equal(MolarFlowUnit.KilomolePerHour, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -274,7 +274,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsed = MolarFlow.Parse("1 kmol/h", CultureInfo.GetCultureInfo("en-US"));
+                var parsed = MolarFlow.Parse("1 mol/h", CultureInfo.GetCultureInfo("en-US"));
                 AssertEx.EqualTolerance(1, parsed.MolesPerHour, MolesPerHourTolerance);
                 Assert.Equal(MolarFlowUnit.MolePerHour, parsed.Unit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
@@ -320,7 +320,7 @@ namespace UnitsNet.Tests
         public void TryParse()
         {
             {
-                Assert.True(MolarFlow.TryParse("1 kkmol/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MolarFlow.TryParse("1 kmol/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.KilomolesPerHour, KilomolesPerHourTolerance);
                 Assert.Equal(MolarFlowUnit.KilomolePerHour, parsed.Unit);
             }
@@ -338,7 +338,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(MolarFlow.TryParse("1 kmol/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
+                Assert.True(MolarFlow.TryParse("1 mol/h", CultureInfo.GetCultureInfo("en-US"), out var parsed));
                 AssertEx.EqualTolerance(1, parsed.MolesPerHour, MolesPerHourTolerance);
                 Assert.Equal(MolarFlowUnit.MolePerHour, parsed.Unit);
             }
@@ -380,7 +380,7 @@ namespace UnitsNet.Tests
         {
             try
             {
-                var parsedUnit = MolarFlow.ParseUnit("kkmol/h", CultureInfo.GetCultureInfo("en-US"));
+                var parsedUnit = MolarFlow.ParseUnit("kmol/h", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MolarFlowUnit.KilomolePerHour, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -398,7 +398,7 @@ namespace UnitsNet.Tests
 
             try
             {
-                var parsedUnit = MolarFlow.ParseUnit("kmol/h", CultureInfo.GetCultureInfo("en-US"));
+                var parsedUnit = MolarFlow.ParseUnit("mol/h", CultureInfo.GetCultureInfo("en-US"));
                 Assert.Equal(MolarFlowUnit.MolePerHour, parsedUnit);
             } catch (AmbiguousUnitParseException) { /* Some units have the same abbreviations */ }
 
@@ -438,7 +438,7 @@ namespace UnitsNet.Tests
         public void TryParseUnit()
         {
             {
-                Assert.True(MolarFlow.TryParseUnit("kkmol/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.True(MolarFlow.TryParseUnit("kmol/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MolarFlowUnit.KilomolePerHour, parsedUnit);
             }
 
@@ -453,7 +453,7 @@ namespace UnitsNet.Tests
             }
 
             {
-                Assert.True(MolarFlow.TryParseUnit("kmol/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
+                Assert.True(MolarFlow.TryParseUnit("mol/h", CultureInfo.GetCultureInfo("en-US"), out var parsedUnit));
                 Assert.Equal(MolarFlowUnit.MolePerHour, parsedUnit);
             }
 
@@ -686,10 +686,10 @@ namespace UnitsNet.Tests
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
             using var _ = new CultureScope("en-US");
-            Assert.Equal("1 kkmol/h", new MolarFlow(1, MolarFlowUnit.KilomolePerHour).ToString());
+            Assert.Equal("1 kmol/h", new MolarFlow(1, MolarFlowUnit.KilomolePerHour).ToString());
             Assert.Equal("1 kmol/min", new MolarFlow(1, MolarFlowUnit.KilomolePerMinute).ToString());
             Assert.Equal("1 kmol/s", new MolarFlow(1, MolarFlowUnit.KilomolePerSecond).ToString());
-            Assert.Equal("1 kmol/h", new MolarFlow(1, MolarFlowUnit.MolePerHour).ToString());
+            Assert.Equal("1 mol/h", new MolarFlow(1, MolarFlowUnit.MolePerHour).ToString());
             Assert.Equal("1 mol/min", new MolarFlow(1, MolarFlowUnit.MolePerMinute).ToString());
             Assert.Equal("1 mol/s", new MolarFlow(1, MolarFlowUnit.MolePerSecond).ToString());
             Assert.Equal("1 lbmol/h", new MolarFlow(1, MolarFlowUnit.PoundMolePerHour).ToString());
@@ -703,10 +703,10 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 kkmol/h", new MolarFlow(1, MolarFlowUnit.KilomolePerHour).ToString(swedishCulture));
+            Assert.Equal("1 kmol/h", new MolarFlow(1, MolarFlowUnit.KilomolePerHour).ToString(swedishCulture));
             Assert.Equal("1 kmol/min", new MolarFlow(1, MolarFlowUnit.KilomolePerMinute).ToString(swedishCulture));
             Assert.Equal("1 kmol/s", new MolarFlow(1, MolarFlowUnit.KilomolePerSecond).ToString(swedishCulture));
-            Assert.Equal("1 kmol/h", new MolarFlow(1, MolarFlowUnit.MolePerHour).ToString(swedishCulture));
+            Assert.Equal("1 mol/h", new MolarFlow(1, MolarFlowUnit.MolePerHour).ToString(swedishCulture));
             Assert.Equal("1 mol/min", new MolarFlow(1, MolarFlowUnit.MolePerMinute).ToString(swedishCulture));
             Assert.Equal("1 mol/s", new MolarFlow(1, MolarFlowUnit.MolePerSecond).ToString(swedishCulture));
             Assert.Equal("1 lbmol/h", new MolarFlow(1, MolarFlowUnit.PoundMolePerHour).ToString(swedishCulture));
