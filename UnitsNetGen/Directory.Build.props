@@ -1,0 +1,7 @@
+<Project>
+  <!-- Preserve repository-wide build settings when this nearer props file is discovered. -->
+  <Import Project="../Directory.Build.props" />
+
+  <!-- Register analyzer-config metadata before IDE design-time builds capture the project model. -->
+  <Import Project="UnitsNetGen.Generator/buildTransitive/UnitsNetGen.Generator.props" />
+</Project>

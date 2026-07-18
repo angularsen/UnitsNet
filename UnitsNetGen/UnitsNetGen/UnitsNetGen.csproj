@@ -21,6 +21,9 @@
     <None Include="$(NuGetPackageRoot)/newtonsoft.json/$(NewtonsoftJsonVersion)/lib/netstandard2.0/Newtonsoft.Json.dll"
           Pack="true"
           PackagePath="analyzers/dotnet/cs" />
+    <None Include="../UnitsNetGen.Generator/buildTransitive/UnitsNetGen.Generator.props"
+          Pack="true"
+          PackagePath="buildTransitive/UnitsNetGen.props" />
     <None Include="../UnitsNetGen.Generator/buildTransitive/UnitsNetGen.Generator.targets"
           Pack="true"
           PackagePath="buildTransitive/UnitsNetGen.targets" />

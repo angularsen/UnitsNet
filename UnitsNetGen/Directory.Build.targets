@@ -4,6 +4,6 @@
 
   <!-- ProjectReference analyzers do not carry their private dependencies. The packed analyzer does. -->
   <ItemGroup Condition="'$(MSBuildProjectName)' != 'UnitsNetGen' and '$(MSBuildProjectName)' != 'UnitsNetGen.Generator'">
-    <Analyzer Include="$(MSBuildThisFileDirectory)../Artifacts/UnitsNetGen.Generator/netstandard2.0/Newtonsoft.Json.dll" />
+    <Analyzer Include="$(NuGetPackageRoot)/newtonsoft.json/$(NewtonsoftJsonVersion)/lib/netstandard2.0/Newtonsoft.Json.dll" />
   </ItemGroup>
 </Project>

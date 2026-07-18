@@ -53,13 +53,15 @@ internal interface LeanUnits :
 
 Patterns prefixed with `regex:` use case-insensitive, culture-invariant regular expressions with a timeout. Patterns prefixed with `glob:` support `*`, and bare patterns retain glob behavior for convenience. The generator always includes the base unit so every selected quantity remains convertible. It reports compile-time diagnostics for invalid expressions and patterns that match no units.
 
-Custom quantities use JSON definition files. The custom MSBuild item is converted to Roslyn `AdditionalFiles` by a target that the generator package places under `buildTransitive/`:
+Custom quantities use JSON definition files. The custom MSBuild item is converted to Roslyn `AdditionalFiles` by package assets under `buildTransitive/`:
 
 ```xml
 <ItemGroup>
   <UnitsNetGenDefinition Include="HowMuch.unitsnet.json" />
 </ItemGroup>
 ```
+
+The package registers `UnitsNetGenDefinition` as compiler-visible `AdditionalFiles` metadata early from a `.props` file, then maps the consumer item after project items are evaluated from a `.targets` file. This split keeps CLI and IDE design-time generator inputs consistent, including ordinary filenames such as `Length.json` that cannot be identified by extension alone.
 
 The JSON shape follows the existing UnitsNet quantity definitions and adds an optional `Namespace` for stable third-party identity; it defaults to `UnitsNetGen`, allowing files such as the existing `Length.json` to be consumed unchanged. It supports localized abbreviations, prefix expansion, and `FromUnitToBaseFunc`/`FromBaseToUnitFunc` expressions. A minimal marker binds type-safe module selection to the JSON's logical `Namespace.Name` ID:
 
