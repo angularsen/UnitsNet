@@ -19,8 +19,10 @@ internal static class Program
     public static void Main()
     {
         HowMuch amount = HowMuch.Parse("10 tons");
-        Console.WriteLine($"{amount} = {amount.Lots} lots = {amount.Some} sm");
-        Console.WriteLine($"3 magnitudes = {HowMuch.FromMagnitudes(3).Some} sm");
+        HowMuch magnitude = HowMuch.FromMagnitudes(3);
+
+        Console.WriteLine($"{amount} = {amount.ToUnit(HowMuchUnit.Lots)} = {amount.ToUnit(HowMuchUnit.Some)}");
+        Console.WriteLine($"{magnitude} = {magnitude.ToUnit(HowMuchUnit.Some)}");
         Console.WriteLine($"Generated in custom namespace: {typeof(HowMuch).FullName}");
     }
 }

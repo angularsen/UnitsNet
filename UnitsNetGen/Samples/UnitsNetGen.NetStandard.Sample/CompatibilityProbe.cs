@@ -16,7 +16,8 @@ internal interface NetStandardUnits :
 /// <summary>Compile-time proof that generated quantities and their runtime work on netstandard2.0.</summary>
 public static class CompatibilityProbe
 {
-    public static double KilometersToMeters(double value) => Length.FromKilometers(value).Meters;
+    public static Length KilometersToMeters(double value) =>
+        Length.FromKilometers(value).ToUnit(LengthUnit.Meter);
 
     public static bool TryParseLength(string text, out Length length) => Length.TryParse(text, out length);
 }

@@ -30,8 +30,8 @@ internal static class Program
         Length parsed = Length.Parse("2.5 km");
         Mass payload = Mass.FromMilligrams(750_000);
 
-        Console.WriteLine($"{parsed} = {parsed.Meters} m");
-        Console.WriteLine($"{payload} = {payload.Grams} g");
+        Console.WriteLine($"{parsed} = {parsed.ToUnit(LengthUnit.Meter)}");
+        Console.WriteLine($"{payload} = {payload.ToUnit(MassUnit.Gram)}");
         Console.WriteLine($"Generated quantities: {typeof(Length).Name}, {typeof(Mass).Name}");
         Console.WriteLine($"Generated mass units: {string.Join(", ", Enum.GetNames<MassUnit>())}");
     }
