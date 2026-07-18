@@ -58,12 +58,14 @@ public sealed class GeneratedQuantityTests
         HowMuch localized = HowMuch.Parse("10 tonnevis", norwegian);
         HowMuch nonlinear = HowMuch.FromMagnitudes(3);
         HowMuch prefixed = HowMuch.FromKilosome(2);
+        HowMuch alternatePrefixed = HowMuch.Parse("2 kn", norwegian);
 
         Assert.Equal(200, localized.Some, 10);
         Assert.Equal("10 tonnevis", localized.ToString(null, norwegian));
         Assert.Equal(9, nonlinear.Some, 10);
         Assert.Equal(3, nonlinear.Magnitudes, 10);
         Assert.Equal(2000, prefixed.Some, 10);
+        Assert.Equal(2000, alternatePrefixed.Some, 10);
         Assert.Equal("2 knoe", prefixed.ToString(null, norwegian));
     }
 

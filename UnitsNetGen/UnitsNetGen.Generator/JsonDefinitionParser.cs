@@ -3,20 +3,26 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using Microsoft.CodeAnalysis;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace UnitsNetGen.Generator;
 
 internal static class JsonDefinitionParser
 {
+    private static readonly JsonSerializerOptions SerializerOptions = new JsonSerializerOptions
+    {
+        AllowTrailingCommas = true,
+        PropertyNameCaseInsensitive = true,
+        ReadCommentHandling = JsonCommentHandling.Skip,
+    };
+
     public static JsonDefinitionResult Parse(AdditionalText file, System.Threading.CancellationToken cancellationToken)
     {
         try
         {
             string json = file.GetText(cancellationToken)?.ToString() ?? string.Empty;
-            JsonQuantity? parsed = JsonConvert.DeserializeObject<JsonQuantity>(json);
+            JsonQuantity? parsed = JsonSerializer.Deserialize<JsonQuantity>(json, SerializerOptions);
             if (parsed is null)
             {
                 return Error(file.Path, "The file did not contain a quantity definition.");
@@ -65,9 +71,11 @@ internal static class JsonDefinitionParser
             var definition = new QuantityDefinition(parsed.Name!, targetNamespace, parsed.BaseUnit!, units, file.Path);
             return new JsonDefinitionResult(file.Path, PrefixExpander.Expand(definition), null);
         }
-        catch (JsonReaderException exception)
+        catch (JsonException exception)
         {
-            return Error(file.Path, $"JSON line {exception.LineNumber}, position {exception.LinePosition}: {exception.Message}");
+            long line = exception.LineNumber.GetValueOrDefault() + 1;
+            long position = exception.BytePositionInLine.GetValueOrDefault();
+            return Error(file.Path, $"JSON line {line}, byte position {position}: {exception.Message}");
         }
         catch (Exception exception)
         {
@@ -75,7 +83,8 @@ internal static class JsonDefinitionParser
         }
     }
 
-    private static IReadOnlyDictionary<string, IReadOnlyList<string>> ParsePrefixAbbreviations(IDictionary<string, JToken>? values)
+    private static IReadOnlyDictionary<string, IReadOnlyList<string>> ParsePrefixAbbreviations(
+        IDictionary<string, JsonElement>? values)
     {
         var result = new Dictionary<string, IReadOnlyList<string>>(StringComparer.Ordinal);
         if (values is null)
@@ -83,15 +92,32 @@ internal static class JsonDefinitionParser
             return result;
         }
 
-        foreach (KeyValuePair<string, JToken> value in values)
+        foreach (KeyValuePair<string, JsonElement> value in values)
         {
-            string[] abbreviations = value.Value.Type == JTokenType.Array
-                ? value.Value.ToObject<string[]>() ?? Array.Empty<string>()
-                : new[] { value.Value.ToObject<string>() ?? string.Empty };
+            string[] abbreviations;
+            if (value.Value.ValueKind == JsonValueKind.Array)
+            {
+                abbreviations = value.Value.EnumerateArray().Select(ReadAbbreviation).ToArray();
+            }
+            else
+            {
+                abbreviations = new[] { ReadAbbreviation(value.Value) };
+            }
+
             result[value.Key] = abbreviations;
         }
 
         return result;
+    }
+
+    private static string ReadAbbreviation(JsonElement value)
+    {
+        if (value.ValueKind != JsonValueKind.String)
+        {
+            throw new JsonException("Prefix abbreviations must be strings or arrays of strings.");
+        }
+
+        return value.GetString() ?? string.Empty;
     }
 
     private static JsonDefinitionResult Error(string path, string error) => new JsonDefinitionResult(path, null, error);
@@ -118,6 +144,6 @@ internal static class JsonDefinitionParser
     {
         public string? Culture { get; set; }
         public string[]? Abbreviations { get; set; }
-        public Dictionary<string, JToken>? AbbreviationsForPrefixes { get; set; }
+        public Dictionary<string, JsonElement>? AbbreviationsForPrefixes { get; set; }
     }
 }

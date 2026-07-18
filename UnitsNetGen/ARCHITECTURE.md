@@ -77,7 +77,7 @@ public interface HowMuchDefinition;
 internal interface FictionalUnits : IInclude<HowMuchDefinition>;
 ```
 
-Conversion expressions are parsed as C# expressions and restricted to numeric literals, `x`, arithmetic operators, parentheses, `Math.PI`, `Math.E`, and an allowlist of numeric `Math` functions. The generator emits the validated expressions directly into conversion switches; it does not compile expressions or use reflection at runtime. A definition package can contain public marker types and JSON definitions while the module that selects them owns the generated runtime types.
+Definitions are read with `System.Text.Json`. Its .NET Standard support assemblies are bundled privately beside the analyzer, while the generated/runtime library has no JSON-library dependency. Conversion expressions are parsed as C# expressions and restricted to numeric literals, `x`, arithmetic operators, parentheses, `Math.PI`, `Math.E`, and an allowlist of numeric `Math` functions. The generator emits the validated expressions directly into conversion switches; it does not compile expressions or use reflection at runtime. A definition package can contain public marker types and JSON definitions while the module that selects them owns the generated runtime types.
 
 ## Projects
 

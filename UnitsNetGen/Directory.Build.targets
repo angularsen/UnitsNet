@@ -4,6 +4,14 @@
 
   <!-- ProjectReference analyzers do not carry their private dependencies. The packed analyzer does. -->
   <ItemGroup Condition="'$(MSBuildProjectName)' != 'UnitsNetGen' and '$(MSBuildProjectName)' != 'UnitsNetGen.Generator'">
-    <Analyzer Include="$(NuGetPackageRoot)/newtonsoft.json/$(NewtonsoftJsonVersion)/lib/netstandard2.0/Newtonsoft.Json.dll" />
+    <Analyzer Include="$(NuGetPackageRoot)/microsoft.bcl.asyncinterfaces/$(MicrosoftBclAsyncInterfacesVersion)/lib/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.dll" />
+    <Analyzer Include="$(NuGetPackageRoot)/system.buffers/$(SystemBuffersVersion)/lib/netstandard2.0/System.Buffers.dll" />
+    <Analyzer Include="$(NuGetPackageRoot)/system.io.pipelines/$(SystemIoPipelinesVersion)/lib/netstandard2.0/System.IO.Pipelines.dll" />
+    <Analyzer Include="$(NuGetPackageRoot)/system.memory/$(SystemMemoryVersion)/lib/netstandard2.0/System.Memory.dll" />
+    <Analyzer Include="$(NuGetPackageRoot)/system.numerics.vectors/$(SystemNumericsVectorsVersion)/lib/netstandard2.0/System.Numerics.Vectors.dll" />
+    <Analyzer Include="$(NuGetPackageRoot)/system.runtime.compilerservices.unsafe/$(SystemRuntimeCompilerServicesUnsafeVersion)/lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll" />
+    <Analyzer Include="$(NuGetPackageRoot)/system.text.encodings.web/$(SystemTextEncodingsWebVersion)/lib/netstandard2.0/System.Text.Encodings.Web.dll" />
+    <Analyzer Include="$(NuGetPackageRoot)/system.text.json/$(SystemTextJsonVersion)/lib/netstandard2.0/System.Text.Json.dll" />
+    <Analyzer Include="$(NuGetPackageRoot)/system.threading.tasks.extensions/$(SystemThreadingTasksExtensionsVersion)/lib/netstandard2.0/System.Threading.Tasks.Extensions.dll" />
   </ItemGroup>
 </Project>

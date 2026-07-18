@@ -1,12 +1,20 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-    <NewtonsoftJsonVersion>13.0.4</NewtonsoftJsonVersion>
+    <MicrosoftBclAsyncInterfacesVersion>10.0.0</MicrosoftBclAsyncInterfacesVersion>
+    <SystemBuffersVersion>4.6.1</SystemBuffersVersion>
+    <SystemIoPipelinesVersion>10.0.0</SystemIoPipelinesVersion>
+    <SystemMemoryVersion>4.6.3</SystemMemoryVersion>
+    <SystemNumericsVectorsVersion>4.6.1</SystemNumericsVectorsVersion>
+    <SystemRuntimeCompilerServicesUnsafeVersion>6.1.2</SystemRuntimeCompilerServicesUnsafeVersion>
+    <SystemTextEncodingsWebVersion>10.0.0</SystemTextEncodingsWebVersion>
+    <SystemTextJsonVersion>10.0.0</SystemTextJsonVersion>
+    <SystemThreadingTasksExtensionsVersion>4.6.3</SystemThreadingTasksExtensionsVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.14.0" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.5.1" />
-    <PackageVersion Include="Newtonsoft.Json" Version="$(NewtonsoftJsonVersion)" />
+    <PackageVersion Include="System.Text.Json" Version="$(SystemTextJsonVersion)" />
     <PackageVersion Include="xunit" Version="2.9.3" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5" />
   </ItemGroup>
