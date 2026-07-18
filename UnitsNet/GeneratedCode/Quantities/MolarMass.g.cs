@@ -37,8 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct MolarMass :
-        IQuantity<MolarMass, MolarMassUnit>, 
-        ILinearQuantity<MolarMass>,
+        ILinearQuantity<MolarMass, MolarMassUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<MolarMass, MolarMass, double>,
         IMultiplyOperators<MolarMass, AmountOfSubstance, Mass>,

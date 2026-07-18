@@ -40,8 +40,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Molality :
-        IQuantity<Molality, MolalityUnit>, 
-        ILinearQuantity<Molality>,
+        ILinearQuantity<Molality, MolalityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Molality, Molality, double>,
         IComparisonOperators<Molality, Molality, bool>,

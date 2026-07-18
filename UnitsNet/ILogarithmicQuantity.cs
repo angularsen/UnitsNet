@@ -7,6 +7,15 @@ using System.Numerics;
 
 namespace UnitsNet;
 
+/// <inheritdoc cref="ILogarithmicQuantity{TSelf}"/>
+/// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
+/// <typeparam name="TUnitType">The underlying unit enum type.</typeparam>
+public interface ILogarithmicQuantity<TSelf, TUnitType> : IQuantity<TSelf, TUnitType>, ILogarithmicQuantity<TSelf>
+    where TSelf : ILogarithmicQuantity<TSelf, TUnitType>
+    where TUnitType : struct, Enum
+{
+}
+
 /// <summary>
 ///     Represents a logarithmic quantity that supports arithmetic operations and implements generic math interfaces 
 ///     (in .NET 7+). This interface is designed for quantities that are logarithmic in nature, such as decibels.

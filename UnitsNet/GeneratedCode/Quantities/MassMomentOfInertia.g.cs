@@ -37,8 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct MassMomentOfInertia :
-        IQuantity<MassMomentOfInertia, MassMomentOfInertiaUnit>, 
-        ILinearQuantity<MassMomentOfInertia>,
+        ILinearQuantity<MassMomentOfInertia, MassMomentOfInertiaUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<MassMomentOfInertia, MassMomentOfInertia, double>,
         IComparisonOperators<MassMomentOfInertia, MassMomentOfInertia, bool>,

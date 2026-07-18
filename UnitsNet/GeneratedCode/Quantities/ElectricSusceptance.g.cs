@@ -40,8 +40,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ElectricSusceptance :
-        IQuantity<ElectricSusceptance, ElectricSusceptanceUnit>, 
-        ILinearQuantity<ElectricSusceptance>,
+        ILinearQuantity<ElectricSusceptance, ElectricSusceptanceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricSusceptance, ElectricSusceptance, double>,
         IComparisonOperators<ElectricSusceptance, ElectricSusceptance, bool>,

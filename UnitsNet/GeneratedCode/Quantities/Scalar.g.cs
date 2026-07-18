@@ -37,8 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Scalar :
-        IQuantity<Scalar, ScalarUnit>, 
-        ILinearQuantity<Scalar>,
+        ILinearQuantity<Scalar, ScalarUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Scalar, Scalar, double>,
         IComparisonOperators<Scalar, Scalar, bool>,

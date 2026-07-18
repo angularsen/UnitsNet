@@ -176,7 +176,7 @@ public static class LogarithmicQuantityExtensions
     ///     logarithmic space.
     /// </remarks>
     public static TQuantity Sum<TQuantity, TUnit>(this IEnumerable<TQuantity> quantities, TUnit targetUnit)
-        where TQuantity : ILogarithmicQuantity<TQuantity>, IQuantity<TQuantity, TUnit>
+        where TQuantity : ILogarithmicQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
         if (quantities is null)
@@ -228,7 +228,7 @@ public static class LogarithmicQuantityExtensions
     ///     logarithmic space.
     /// </remarks>
     public static TQuantity Sum<TSource, TQuantity, TUnit>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnit targetUnit)
-        where TQuantity : ILogarithmicQuantity<TQuantity>, IQuantity<TQuantity, TUnit>
+        where TQuantity : ILogarithmicQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
         return source.Select(selector).Sum(targetUnit);
@@ -316,7 +316,7 @@ public static class LogarithmicQuantityExtensions
     ///     averaged, and then the result is converted back to logarithmic space using the same unit.
     /// </remarks>
     public static TQuantity ArithmeticMean<TQuantity, TUnit>(this IEnumerable<TQuantity> quantities, TUnit unit)
-        where TQuantity : ILogarithmicQuantity<TQuantity>, IQuantity<TQuantity, TUnit>
+        where TQuantity : ILogarithmicQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
         if (quantities is null)
@@ -371,7 +371,7 @@ public static class LogarithmicQuantityExtensions
     ///     averaged, and then the result is converted back to logarithmic space using the same unit.
     /// </remarks>
     public static TQuantity ArithmeticMean<TSource, TQuantity, TUnit>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnit targetUnit)
-        where TQuantity : ILogarithmicQuantity<TQuantity>, IQuantity<TQuantity, TUnit>
+        where TQuantity : ILogarithmicQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
         return ArithmeticMean(source.Select(selector), targetUnit);
@@ -456,7 +456,7 @@ public static class LogarithmicQuantityExtensions
     ///     logarithmic quantities is equal to the sum the values, converted in unit of the first element.
     /// </remarks>
     public static TQuantity GeometricMean<TQuantity, TUnit>(this IEnumerable<TQuantity> quantities, TUnit targetUnit)
-        where TQuantity : ILogarithmicQuantity<TQuantity>, IQuantity<TQuantity, TUnit>
+        where TQuantity : ILogarithmicQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
         if (quantities is null)
@@ -506,7 +506,7 @@ public static class LogarithmicQuantityExtensions
     ///     logarithmic quantities is equal to the sum the values, converted in unit of the first element.
     /// </remarks>
     public static TQuantity GeometricMean<TSource, TQuantity, TUnit>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnit targetUnit)
-        where TQuantity : ILogarithmicQuantity<TQuantity>, IQuantity<TQuantity, TUnit>
+        where TQuantity : ILogarithmicQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
         return source.Select(selector).GeometricMean(targetUnit);

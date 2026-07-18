@@ -40,8 +40,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct SpecificFuelConsumption :
-        IQuantity<SpecificFuelConsumption, SpecificFuelConsumptionUnit>, 
-        ILinearQuantity<SpecificFuelConsumption>,
+        ILinearQuantity<SpecificFuelConsumption, SpecificFuelConsumptionUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<SpecificFuelConsumption, SpecificFuelConsumption, double>,
         IComparisonOperators<SpecificFuelConsumption, SpecificFuelConsumption, bool>,

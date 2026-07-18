@@ -37,8 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ElectricCurrentGradient :
-        IQuantity<ElectricCurrentGradient, ElectricCurrentGradientUnit>, 
-        ILinearQuantity<ElectricCurrentGradient>,
+        ILinearQuantity<ElectricCurrentGradient, ElectricCurrentGradientUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricCurrentGradient, ElectricCurrentGradient, double>,
         IMultiplyOperators<ElectricCurrentGradient, Duration, ElectricCurrent>,

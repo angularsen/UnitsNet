@@ -37,8 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Ratio :
-        IQuantity<Ratio, RatioUnit>, 
-        ILinearQuantity<Ratio>,
+        ILinearQuantity<Ratio, RatioUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Ratio, Ratio, double>,
         IComparisonOperators<Ratio, Ratio, bool>,

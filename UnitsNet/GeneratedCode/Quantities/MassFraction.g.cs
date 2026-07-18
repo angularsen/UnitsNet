@@ -40,8 +40,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct MassFraction :
-        IQuantity<MassFraction, MassFractionUnit>, 
-        ILinearQuantity<MassFraction>,
+        ILinearQuantity<MassFraction, MassFractionUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<MassFraction, MassFraction, double>,
         IMultiplyOperators<MassFraction, Mass, Mass>,

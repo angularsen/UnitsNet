@@ -37,8 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct SpecificEntropy :
-        IQuantity<SpecificEntropy, SpecificEntropyUnit>, 
-        ILinearQuantity<SpecificEntropy>,
+        ILinearQuantity<SpecificEntropy, SpecificEntropyUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<SpecificEntropy, SpecificEntropy, double>,
         IMultiplyOperators<SpecificEntropy, Mass, Entropy>,

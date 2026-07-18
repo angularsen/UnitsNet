@@ -37,8 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Force :
-        IQuantity<Force, ForceUnit>, 
-        ILinearQuantity<Force>,
+        ILinearQuantity<Force, ForceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Force, Force, double>,
         IDivisionOperators<Force, Mass, Acceleration>,

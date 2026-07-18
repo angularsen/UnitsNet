@@ -40,8 +40,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct PorousMediumPermeability :
-        IQuantity<PorousMediumPermeability, PorousMediumPermeabilityUnit>, 
-        ILinearQuantity<PorousMediumPermeability>,
+        ILinearQuantity<PorousMediumPermeability, PorousMediumPermeabilityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<PorousMediumPermeability, PorousMediumPermeability, double>,
         IComparisonOperators<PorousMediumPermeability, PorousMediumPermeability, bool>,

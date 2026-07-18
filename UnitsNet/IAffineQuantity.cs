@@ -8,6 +8,21 @@ using System.Numerics;
 namespace UnitsNet;
 
 /// <summary>
+///     An <see cref="IQuantity{TSelf, TUnitType}"/> that (in .NET 7+) implements generic math interfaces for arithmetic operations.
+/// </summary>
+/// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
+/// <typeparam name="TUnitType">The underlying unit enum type.</typeparam>
+/// <typeparam name="TOffset"></typeparam>
+public interface IAffineQuantity<TSelf, TUnitType, TOffset> : IQuantity<TSelf, TUnitType>, IAffineQuantity<TSelf, TOffset>
+#if NET7_0_OR_GREATER
+    where TOffset : IAdditiveIdentity<TOffset, TOffset>
+#endif
+    where TSelf : IAffineQuantity<TSelf, TUnitType, TOffset>
+    where TUnitType : struct, Enum
+{
+}
+
+/// <summary>
 ///     An <see cref="IQuantity{TSelf}"/> that (in .NET 7+) implements generic math interfaces for arithmetic operations.
 /// </summary>
 /// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>

@@ -37,8 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct HeatFlux :
-        IQuantity<HeatFlux, HeatFluxUnit>, 
-        ILinearQuantity<HeatFlux>,
+        ILinearQuantity<HeatFlux, HeatFluxUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<HeatFlux, HeatFlux, double>,
         IMultiplyOperators<HeatFlux, Area, Power>,

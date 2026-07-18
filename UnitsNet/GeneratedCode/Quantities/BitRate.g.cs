@@ -40,8 +40,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct BitRate :
-        IQuantity<BitRate, BitRateUnit>, 
-        ILinearQuantity<BitRate>,
+        ILinearQuantity<BitRate, BitRateUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<BitRate, BitRate, double>,
         IComparisonOperators<BitRate, BitRate, bool>,

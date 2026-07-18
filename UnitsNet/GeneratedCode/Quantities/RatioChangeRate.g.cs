@@ -37,8 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct RatioChangeRate :
-        IQuantity<RatioChangeRate, RatioChangeRateUnit>, 
-        ILinearQuantity<RatioChangeRate>,
+        ILinearQuantity<RatioChangeRate, RatioChangeRateUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<RatioChangeRate, RatioChangeRate, double>,
         IComparisonOperators<RatioChangeRate, RatioChangeRate, bool>,

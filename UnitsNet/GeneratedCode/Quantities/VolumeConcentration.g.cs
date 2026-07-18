@@ -40,8 +40,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct VolumeConcentration :
-        IQuantity<VolumeConcentration, VolumeConcentrationUnit>, 
-        ILinearQuantity<VolumeConcentration>,
+        ILinearQuantity<VolumeConcentration, VolumeConcentrationUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<VolumeConcentration, VolumeConcentration, double>,
         IMultiplyOperators<VolumeConcentration, Density, MassConcentration>,

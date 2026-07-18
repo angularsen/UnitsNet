@@ -37,8 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct PowerRatio :
-        IQuantity<PowerRatio, PowerRatioUnit>, 
-        ILogarithmicQuantity<PowerRatio>,
+        ILogarithmicQuantity<PowerRatio, PowerRatioUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<PowerRatio, PowerRatio, double>,
         IComparisonOperators<PowerRatio, PowerRatio, bool>,

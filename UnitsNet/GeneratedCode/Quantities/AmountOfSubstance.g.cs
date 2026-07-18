@@ -37,8 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct AmountOfSubstance :
-        IQuantity<AmountOfSubstance, AmountOfSubstanceUnit>, 
-        ILinearQuantity<AmountOfSubstance>,
+        ILinearQuantity<AmountOfSubstance, AmountOfSubstanceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<AmountOfSubstance, AmountOfSubstance, double>,
         IDivisionOperators<AmountOfSubstance, MolarFlow, Duration>,

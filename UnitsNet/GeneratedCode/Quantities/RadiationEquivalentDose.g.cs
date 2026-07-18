@@ -37,8 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct RadiationEquivalentDose :
-        IQuantity<RadiationEquivalentDose, RadiationEquivalentDoseUnit>, 
-        ILinearQuantity<RadiationEquivalentDose>,
+        ILinearQuantity<RadiationEquivalentDose, RadiationEquivalentDoseUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<RadiationEquivalentDose, RadiationEquivalentDose, double>,
         IDivisionOperators<RadiationEquivalentDose, RadiationEquivalentDoseRate, Duration>,

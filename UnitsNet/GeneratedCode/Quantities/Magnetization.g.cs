@@ -40,8 +40,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Magnetization :
-        IQuantity<Magnetization, MagnetizationUnit>, 
-        ILinearQuantity<Magnetization>,
+        ILinearQuantity<Magnetization, MagnetizationUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Magnetization, Magnetization, double>,
         IComparisonOperators<Magnetization, Magnetization, bool>,

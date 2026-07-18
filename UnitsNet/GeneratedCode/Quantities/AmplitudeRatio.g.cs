@@ -37,8 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct AmplitudeRatio :
-        IQuantity<AmplitudeRatio, AmplitudeRatioUnit>, 
-        ILogarithmicQuantity<AmplitudeRatio>,
+        ILogarithmicQuantity<AmplitudeRatio, AmplitudeRatioUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<AmplitudeRatio, AmplitudeRatio, double>,
         IComparisonOperators<AmplitudeRatio, AmplitudeRatio, bool>,

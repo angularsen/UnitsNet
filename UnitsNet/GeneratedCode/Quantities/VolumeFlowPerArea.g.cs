@@ -37,8 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct VolumeFlowPerArea :
-        IQuantity<VolumeFlowPerArea, VolumeFlowPerAreaUnit>, 
-        ILinearQuantity<VolumeFlowPerArea>,
+        ILinearQuantity<VolumeFlowPerArea, VolumeFlowPerAreaUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<VolumeFlowPerArea, VolumeFlowPerArea, double>,
         IComparisonOperators<VolumeFlowPerArea, VolumeFlowPerArea, bool>,

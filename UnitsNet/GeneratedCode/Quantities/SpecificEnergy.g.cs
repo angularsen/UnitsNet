@@ -40,8 +40,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct SpecificEnergy :
-        IQuantity<SpecificEnergy, SpecificEnergyUnit>, 
-        ILinearQuantity<SpecificEnergy>,
+        ILinearQuantity<SpecificEnergy, SpecificEnergyUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<SpecificEnergy, SpecificEnergy, double>,
         IMultiplyOperators<SpecificEnergy, Mass, Energy>,

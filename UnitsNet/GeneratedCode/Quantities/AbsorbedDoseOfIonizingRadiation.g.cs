@@ -40,8 +40,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct AbsorbedDoseOfIonizingRadiation :
-        IQuantity<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiationUnit>, 
-        ILinearQuantity<AbsorbedDoseOfIonizingRadiation>,
+        ILinearQuantity<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiationUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiation, double>,
         IComparisonOperators<AbsorbedDoseOfIonizingRadiation, AbsorbedDoseOfIonizingRadiation, bool>,

@@ -40,8 +40,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct DoseAreaProduct :
-        IQuantity<DoseAreaProduct, DoseAreaProductUnit>, 
-        ILinearQuantity<DoseAreaProduct>,
+        ILinearQuantity<DoseAreaProduct, DoseAreaProductUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<DoseAreaProduct, DoseAreaProduct, double>,
         IComparisonOperators<DoseAreaProduct, DoseAreaProduct, bool>,

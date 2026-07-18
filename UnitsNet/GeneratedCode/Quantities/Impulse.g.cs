@@ -37,8 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Impulse :
-        IQuantity<Impulse, ImpulseUnit>, 
-        ILinearQuantity<Impulse>,
+        ILinearQuantity<Impulse, ImpulseUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Impulse, Impulse, double>,
         IComparisonOperators<Impulse, Impulse, bool>,

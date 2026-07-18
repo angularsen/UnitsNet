@@ -40,8 +40,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct FluidResistance :
-        IQuantity<FluidResistance, FluidResistanceUnit>, 
-        ILinearQuantity<FluidResistance>,
+        ILinearQuantity<FluidResistance, FluidResistanceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<FluidResistance, FluidResistance, double>,
         IComparisonOperators<FluidResistance, FluidResistance, bool>,

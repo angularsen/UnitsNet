@@ -37,8 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct RotationalSpeed :
-        IQuantity<RotationalSpeed, RotationalSpeedUnit>, 
-        ILinearQuantity<RotationalSpeed>,
+        ILinearQuantity<RotationalSpeed, RotationalSpeedUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<RotationalSpeed, RotationalSpeed, double>,
         IMultiplyOperators<RotationalSpeed, Duration, Angle>,
