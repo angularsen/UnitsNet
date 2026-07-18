@@ -30,9 +30,11 @@ namespace UnitsNet.NumberExtensions.NumberToScalar
     /// <summary>
     /// A number to Scalar Extensions
     /// </summary>
+    [Obsolete("Scalar is a unitless value wrapper rather than a physical quantity and will be removed in UnitsNet v6. Use a plain numeric value, QuantityValue, or a semantic dimensionless quantity such as Ratio where appropriate.")]
     public static class NumberToScalarExtensions
     {
         /// <inheritdoc cref="Scalar.FromAmount(UnitsNet.QuantityValue)" />
+        [Obsolete("Scalar is a unitless value wrapper rather than a physical quantity and will be removed in UnitsNet v6. Use a plain numeric value, QuantityValue, or a semantic dimensionless quantity such as Ratio where appropriate.")]
         public static Scalar Amount<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
