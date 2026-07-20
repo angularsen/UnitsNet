@@ -88,6 +88,9 @@ Prefer the most widely used abbreviation in the domain, but try to adapt to our 
 * Use `/` over `⁻¹`, such as `km/h` and `J/(mol·K)`
 * Use `h` for hours, `min` for minutes and `s` for seconds (`m` is ambiguous with meters)
 * Use abbreviations defined by [SI Unit System](https://en.wikipedia.org/wiki/International_System_of_Units), such as `l` instead of `L` for liters
+* For force-derived compound units, prefer the technically precise force abbreviation as the primary abbreviation: `lbf`, `ozf`, `gf`, etc. Common shorthand variants such as `lb`, `oz`, or `g` may be added as secondary abbreviations when they are widely used and unambiguous for that quantity. For example, `lbf·ft` should be the primary abbreviation for pound-force foot torque, but `lb·ft` can be accepted as a parsing alias. Do not add shorthand aliases if they would be ambiguous within the same quantity.
+* If a common shorthand abbreviation fits multiple quantities, add it to each relevant quantity, e.g. `ft-lb` for torque and energy, or `oz·in` for torque and static unbalance if both are supported. Global parsing should be ambiguous, while quantity-specific parsing still works.
+* Prefer singular unit symbols such as `lb` and `oz`, not pluralized forms such as `lbs` and `ozs`. A pluralized form can be accepted as a secondary abbreviation if it is a strong domain convention, but it should not normally be the primary abbreviation.
 * Use suffixes to distinguish variants of similar units, such as `gal (U.S.)` vs `gal (imp.)` for gallons
   * `(U.S.)` for United States
   * `(imp.)` for imperial / British units
