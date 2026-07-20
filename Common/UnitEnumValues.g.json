@@ -1329,9 +1329,6 @@
     "NewtonMeterPerRadianPerMeter": 4,
     "PoundForceFootPerDegreesPerFoot": 5
   },
-  "Scalar": {
-    "Amount": 1
-  },
   "SolidAngle": {
     "Steradian": 1
   },

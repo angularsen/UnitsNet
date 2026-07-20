@@ -138,7 +138,6 @@ public partial class Quantity
             RotationalSpeed.Info,
             RotationalStiffness.Info,
             RotationalStiffnessPerLength.Info,
-            Scalar.Info,
             SolidAngle.Info,
             SpecificEnergy.Info,
             SpecificEntropy.Info,
@@ -270,7 +269,6 @@ public partial class Quantity
             RotationalSpeed.RegisterDefaultConversions(unitConverter);
             RotationalStiffness.RegisterDefaultConversions(unitConverter);
             RotationalStiffnessPerLength.RegisterDefaultConversions(unitConverter);
-            Scalar.RegisterDefaultConversions(unitConverter);
             SolidAngle.RegisterDefaultConversions(unitConverter);
             SpecificEnergy.RegisterDefaultConversions(unitConverter);
             SpecificEntropy.RegisterDefaultConversions(unitConverter);
