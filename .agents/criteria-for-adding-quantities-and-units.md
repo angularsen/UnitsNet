@@ -15,6 +15,8 @@ Ask for justification and use cases if this is not clear.
 - [x] Can be represented by a `double` numeric value, integer values are not well supported and may suffer from precision errors
 - [x] Is not [dimensionless/unitless](https://en.wikipedia.org/wiki/Dimensionless_quantity) (consider using `Ratio`)
 
+Single-unit quantities are the exception. If a proposed quantity has only one unit, it needs stronger justification: the quantity must be widely used as a typed quantity representation on its own, not just as a unit abbreviation with no conversions.
+
 ### A unit is a good fit to add to a quantity, if it
 
 - [x] Is well documented and unambiguous, e.g. has a wiki page or found in online unit converters
