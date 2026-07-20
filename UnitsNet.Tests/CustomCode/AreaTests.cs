@@ -199,5 +199,12 @@ namespace UnitsNet.Tests
             Volume volume = Area.FromSquareMeters(20) / ReciprocalLength.FromInverseMeters(5);
             Assert.Equal(Volume.FromCubicMeters(4), volume);
         }
+
+        [Fact]
+        public void AreaTimesAreaEqualsAreaMomentOfInertia()
+        {
+            AreaMomentOfInertia areaMomentOfInertia = Area.FromSquareMeters(3) * Area.FromSquareMeters(4);
+            Assert.Equal(AreaMomentOfInertia.FromMetersToTheFourth(12), areaMomentOfInertia);
+        }
     }
 }

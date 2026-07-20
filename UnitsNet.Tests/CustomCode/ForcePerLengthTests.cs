@@ -89,5 +89,19 @@ namespace UnitsNet.Tests.CustomCode
             Torque torque = ForcePerLength.FromNewtonsPerMeter(10) * Area.FromSquareMeters(9);
             Assert.Equal(torque, Torque.FromNewtonMeters(90));
         }
+
+        [Fact]
+        public void ForcePerLengthDividedByAccelerationEqualsLinearDensity()
+        {
+            LinearDensity linearDensity = ForcePerLength.FromNewtonsPerMeter(20) / Acceleration.FromMetersPerSecondSquared(2);
+            Assert.Equal(LinearDensity.FromKilogramsPerMeter(10), linearDensity);
+        }
+
+        [Fact]
+        public void ForcePerLengthDividedByLinearDensityEqualsAcceleration()
+        {
+            Acceleration acceleration = ForcePerLength.FromNewtonsPerMeter(20) / LinearDensity.FromKilogramsPerMeter(2);
+            Assert.Equal(Acceleration.FromMetersPerSecondSquared(10), acceleration);
+        }
     }
 }

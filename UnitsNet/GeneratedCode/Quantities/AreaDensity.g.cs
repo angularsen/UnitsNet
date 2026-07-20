@@ -40,7 +40,11 @@ namespace UnitsNet
         IArithmeticQuantity<AreaDensity, AreaDensityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<AreaDensity, AreaDensity, double>,
+        IDivisionOperators<AreaDensity, Length, Density>,
+        IDivisionOperators<AreaDensity, Density, Length>,
+        IMultiplyOperators<AreaDensity, Length, LinearDensity>,
         IMultiplyOperators<AreaDensity, Area, Mass>,
+        IMultiplyOperators<AreaDensity, Acceleration, Pressure>,
         IComparisonOperators<AreaDensity, AreaDensity, bool>,
         IParsable<AreaDensity>,
 #endif
@@ -549,10 +553,34 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Get <see cref="Density"/> from <see cref="AreaDensity"/> / <see cref="Length"/>.</summary>
+        public static Density operator /(AreaDensity areaDensity, Length length)
+        {
+            return Density.FromKilogramsPerCubicMeter(areaDensity.KilogramsPerSquareMeter / length.Meters);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="AreaDensity"/> / <see cref="Density"/>.</summary>
+        public static Length operator /(AreaDensity areaDensity, Density density)
+        {
+            return Length.FromMeters(areaDensity.KilogramsPerSquareMeter / density.KilogramsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="LinearDensity"/> from <see cref="AreaDensity"/> * <see cref="Length"/>.</summary>
+        public static LinearDensity operator *(AreaDensity areaDensity, Length length)
+        {
+            return LinearDensity.FromKilogramsPerMeter(areaDensity.KilogramsPerSquareMeter * length.Meters);
+        }
+
         /// <summary>Get <see cref="Mass"/> from <see cref="AreaDensity"/> * <see cref="Area"/>.</summary>
         public static Mass operator *(AreaDensity areaDensity, Area area)
         {
             return Mass.FromKilograms(areaDensity.KilogramsPerSquareMeter * area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="AreaDensity"/> * <see cref="Acceleration"/>.</summary>
+        public static Pressure operator *(AreaDensity areaDensity, Acceleration acceleration)
+        {
+            return Pressure.FromPascals(areaDensity.KilogramsPerSquareMeter * acceleration.MetersPerSecondSquared);
         }
 
         #endregion
