@@ -45,6 +45,10 @@ namespace UnitsNet.Tests
 
         protected override double NewtonMillimetersInOneNewtonMeter => 1000;
 
+        protected override double OunceForceFeetInOneNewtonMeter => 11.800994388436246;
+
+        protected override double OunceForceInchesInOneNewtonMeter => 141.61193266123496;
+
         protected override double PoundForceFeetInOneNewtonMeter => 0.737562149277;
 
         protected override double PoundForceInchesInOneNewtonMeter => 8.85074579;

@@ -1536,7 +1536,9 @@
     "PoundForceInch": 22,
     "TonneForceCentimeter": 23,
     "TonneForceMeter": 24,
-    "TonneForceMillimeter": 25
+    "TonneForceMillimeter": 25,
+    "OunceForceFoot": 26,
+    "OunceForceInch": 27
   },
   "TorquePerLength": {
     "KilogramForceCentimeterPerMeter": 1,
