@@ -31,6 +31,14 @@ Single-unit quantities are the exception. If a proposed quantity has only one un
 - [x] Test values have at least 7 significant figures where possible, but no more precision than `double` can usefully represent
 - [x] The expected value independently sanity-checks the conversion function instead of mirroring its implementation
 
+### Review abbreviations for new units
+
+- [x] The primary abbreviation is the technically precise one when there is a clear distinction, such as `lbf`, `ozf`, or `gf` for force-derived compound units
+- [x] Common shorthand variants such as `lb`, `oz`, or `g` are only secondary abbreviations, and only when they are widely used and unambiguous for that quantity
+- [x] Shorthand aliases do not create ambiguity with another unit in the same quantity
+- [x] Common shorthand aliases that fit multiple quantities are mapped to each relevant quantity, e.g. `ft-lb` for torque and energy, or `oz·in` for torque and static unbalance
+- [x] Singular unit symbols such as `lb` and `oz` are preferred over pluralized forms such as `lbs` and `ozs`; pluralized forms should only be secondary aliases when they are strong domain conventions
+
 ### Avoid X-per-Y units
 
 There are many variations of unit A over unit B, such as `LengthPerAngle` and we want to avoid adding these unless they are very common.
