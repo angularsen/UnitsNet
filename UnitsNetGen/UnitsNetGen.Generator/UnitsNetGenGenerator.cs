@@ -71,6 +71,22 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
         DiagnosticSeverity.Error,
         true);
 
+    private static readonly DiagnosticDescriptor InvalidRelationDefinition = new DiagnosticDescriptor(
+        "UNG010",
+        "Quantity relation definition is invalid",
+        "Relation file '{0}' is invalid: {1}",
+        "UnitsNetGen",
+        DiagnosticSeverity.Error,
+        true);
+
+    private static readonly DiagnosticDescriptor InvalidRelationSet = new DiagnosticDescriptor(
+        "UNG011",
+        "Selected quantity relations are invalid",
+        "{0}",
+        "UnitsNetGen",
+        DiagnosticSeverity.Error,
+        true);
+
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         context.RegisterPostInitializationOutput(static output =>
@@ -90,15 +106,28 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
             .Where(static input => IsJsonDefinition(input.Left, input.Right))
             .Select(static (input, cancellationToken) => JsonDefinitionParser.Parse(input.Left, cancellationToken));
 
+        IncrementalValuesProvider<RelationDefinitionResult> relationDefinitions = context.AdditionalTextsProvider
+            .Combine(context.AnalyzerConfigOptionsProvider)
+            .Where(static input => IsRelationDefinition(input.Left, input.Right))
+            .Select(static (input, cancellationToken) => QuantityRelationParser.Parse(input.Left, cancellationToken));
+
         context.RegisterSourceOutput(
-            modules.Where(static module => module is not null).Collect().Combine(jsonDefinitions.Collect()),
-            static (productionContext, input) => Emit(productionContext, input.Left, input.Right));
+            modules.Where(static module => module is not null)
+                .Collect()
+                .Combine(jsonDefinitions.Collect())
+                .Combine(relationDefinitions.Collect()),
+            static (productionContext, input) => Emit(
+                productionContext,
+                input.Left.Left,
+                input.Left.Right,
+                input.Right));
     }
 
     private static void Emit(
         SourceProductionContext context,
         ImmutableArray<INamedTypeSymbol?> moduleSymbols,
-        ImmutableArray<JsonDefinitionResult> jsonDefinitionResults)
+        ImmutableArray<JsonDefinitionResult> jsonDefinitionResults,
+        ImmutableArray<RelationDefinitionResult> relationDefinitionResults)
     {
         var jsonDefinitions = new Dictionary<string, QuantityDefinition>(StringComparer.Ordinal);
         foreach (JsonDefinitionResult result in jsonDefinitionResults)
@@ -224,6 +253,30 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
             selections.Add(new QuantitySelection(request.Definition, distinctUnits));
         }
 
+        var relationDefinitions = new List<QuantityRelationDefinition>(BuiltInRelationCatalog.Definitions);
+        foreach (RelationDefinitionResult result in relationDefinitionResults)
+        {
+            if (result.Error is not null)
+            {
+                context.ReportDiagnostic(Diagnostic.Create(
+                    InvalidRelationDefinition,
+                    Location.None,
+                    result.Path,
+                    result.Error));
+                continue;
+            }
+
+            relationDefinitions.AddRange(result.Definitions!);
+        }
+
+        IReadOnlyList<QuantityRelation> expandedRelations = QuantityRelationParser.Expand(relationDefinitions);
+        IReadOnlyDictionary<string, IReadOnlyList<EmittedQuantityRelation>> relationshipsByOwner =
+            QuantityRelationPlanner.Plan(selections, expandedRelations, out IReadOnlyList<string> relationErrors);
+        foreach (string error in relationErrors)
+        {
+            context.ReportDiagnostic(Diagnostic.Create(InvalidRelationSet, Location.None, error));
+        }
+
         if (emitUnitsNetCompatibilityContracts)
         {
             context.AddSource(
@@ -233,13 +286,13 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
 
         foreach (QuantitySelection selection in selections)
         {
-            var selectedNames = new HashSet<string>(
-                selections
-                    .Where(candidate => candidate.Definition.TargetNamespace == selection.Definition.TargetNamespace)
-                    .Select(candidate => candidate.Definition.Name),
-                StringComparer.Ordinal);
+            string ownerKey = selection.Definition.TargetNamespace + "." + selection.Definition.Name;
+            IReadOnlyList<EmittedQuantityRelation> relationships =
+                relationshipsByOwner.TryGetValue(ownerKey, out IReadOnlyList<EmittedQuantityRelation>? owned)
+                    ? owned
+                    : Array.Empty<EmittedQuantityRelation>();
             string hintName = selection.Definition.TargetNamespace.Replace('.', '_') + "_" + selection.Definition.Name + ".g.cs";
-            context.AddSource(hintName, SourceText.From(QuantityEmitter.Emit(selection, selectedNames), System.Text.Encoding.UTF8));
+            context.AddSource(hintName, SourceText.From(QuantityEmitter.Emit(selection, relationships), System.Text.Encoding.UTF8));
         }
     }
 
@@ -396,6 +449,19 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
 
         return optionsProvider.GetOptions(file).TryGetValue(
                    "build_metadata.AdditionalFiles.UnitsNetGenDefinition",
+                   out string? value) &&
+               string.Equals(value, "true", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static bool IsRelationDefinition(AdditionalText file, AnalyzerConfigOptionsProvider optionsProvider)
+    {
+        if (file.Path.EndsWith(".unitsnet.relations.json", StringComparison.OrdinalIgnoreCase))
+        {
+            return true;
+        }
+
+        return optionsProvider.GetOptions(file).TryGetValue(
+                   "build_metadata.AdditionalFiles.UnitsNetGenRelation",
                    out string? value) &&
                string.Equals(value, "true", StringComparison.OrdinalIgnoreCase);
     }

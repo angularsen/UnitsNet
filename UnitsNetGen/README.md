@@ -79,6 +79,25 @@ internal interface FictionalUnits : IInclude<HowMuchDefinition>;
 
 Custom definitions support localized abbreviations, prefix expansion, and affine or nonlinear conversion expressions.
 
+Custom definitions can also contribute relationships using the same equation format as the built-in
+`Common/UnitRelations.json` catalog:
+
+```xml
+<ItemGroup>
+  <UnitsNetGenRelation Include="HowMuch.unitsnet.relations.json" />
+</ItemGroup>
+```
+
+```json
+[
+  "HowMuch.Lots = HowMuch.Some * HowMuch.Some -- NoInferredDivision"
+]
+```
+
+Multiplication is expanded in both operand orders, and division relationships are inferred unless
+the equation ends in `-- NoInferredDivision`. An operator is emitted only when its quantities and
+the equation's units are selected in the same generated namespace.
+
 ## Learn more
 
 See the [proof-of-concept architecture](https://github.com/angularsen/UnitsNet/blob/master/UnitsNetGen/ARCHITECTURE.md) and [sample projects](https://github.com/angularsen/UnitsNet/tree/master/UnitsNetGen/Samples) for the full design and working scenarios.

@@ -61,6 +61,12 @@ keeps the broader SI relationship chain continuously buildable.
   - Demonstrate a generic library consuming different generated representations.
   - Document why concrete generated structs in different assemblies are not assignment-compatible.
 
+- [x] **Follow-up: replace hardcoded relationships with catalog data**
+  - Embed `Common/UnitRelations.json` as the built-in relationship source of truth.
+  - Generate commutative multiplication and inferred division overloads using the catalog rules.
+  - Accept custom `UnitsNetGenRelation` files through compiler `AdditionalFiles`.
+  - Filter operators with the selected quantities, canonical units, and generated namespace.
+
 ## Deferred
 
 - Restore and validate the full UnitsNet quantity catalog.

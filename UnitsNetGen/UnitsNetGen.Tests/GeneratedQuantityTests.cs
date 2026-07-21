@@ -39,6 +39,21 @@ public sealed class GeneratedQuantityTests
     }
 
     [Fact]
+    public void BuiltInRelations_GenerateCommutativeAndInferredOperators()
+    {
+        Mass mass = Mass.FromKilograms(3);
+        Acceleration acceleration = Acceleration.FromMetersPerSecondSquared(4);
+
+        Force forward = mass * acceleration;
+        Force reversed = acceleration * mass;
+
+        Assert.Equal(12, forward.Newtons, 10);
+        Assert.Equal(forward, reversed);
+        Assert.Equal(mass, forward / acceleration);
+        Assert.Equal(acceleration, forward / mass);
+    }
+
+    [Fact]
     public void RepresentativeCatalog_SupportsAffineLogarithmicAndBinaryConversions()
     {
         Temperature boiling = Temperature.FromDegreesCelsius(100);
@@ -70,6 +85,15 @@ public sealed class GeneratedQuantityTests
         Assert.Equal(200, amount.Some, 10);
         Assert.Equal(100, amount.Lots, 10);
         Assert.Equal("Fictional.Measurements.HowMuch", typeof(HowMuch).FullName);
+    }
+
+    [Fact]
+    public void CustomRelationFile_GeneratesRelationshipOperator()
+    {
+        HowMuch product = HowMuch.FromSome(2) * HowMuch.FromSome(3);
+
+        Assert.Equal(6, product.Lots, 10);
+        Assert.Equal(12, product.Some, 10);
     }
 
     [Fact]

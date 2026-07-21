@@ -1,5 +1,6 @@
 <Project>
   <ItemGroup>
     <CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="UnitsNetGenDefinition" />
+    <CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="UnitsNetGenRelation" />
   </ItemGroup>
 </Project>

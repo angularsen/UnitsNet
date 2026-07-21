@@ -289,12 +289,20 @@ When all operands and results are selected, the generator emits relationships su
 - `Speed / Duration -> Acceleration`
 - `Mass * Acceleration -> Force`
 - `Force / Area -> Pressure`
-- `Force * Length -> Energy`
+- `Force * Speed -> Power`
+- `Power * Duration -> Energy`
 - `Energy / Duration -> Power`
 
-Relationship operators work in base units and return the result's base unit. They disappear when a
-module omits any operand or result quantity, avoiding hidden dependencies. The full implementation
-can derive this relationship inventory from catalog metadata instead of hardcoding quantity names.
+Relationship operators convert through the canonical units named by each equation and return that
+equation's result unit. They disappear when a module omits an operand, result, or canonical unit,
+avoiding hidden dependencies. The full implementation
+derives this inventory from the embedded `Common/UnitRelations.json` catalog instead of hardcoding
+quantity names. Its relation pipeline preserves the catalog's canonical units, generates both
+operand orders for commutative multiplication, infers division, and honors `NoInferredDivision`.
+
+Third-party packages and applications can add relation arrays with the same equation format through
+`UnitsNetGenRelation` MSBuild items. These become compiler `AdditionalFiles`, are merged with the
+immutable built-in catalog, and are filtered with the selected quantities and units before emission.
 
 ## Catalog
 

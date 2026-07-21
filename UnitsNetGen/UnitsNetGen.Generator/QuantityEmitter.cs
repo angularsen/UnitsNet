@@ -10,7 +10,9 @@ namespace UnitsNetGen.Generator;
 
 internal static class QuantityEmitter
 {
-    public static string Emit(QuantitySelection selection, ISet<string> selectedQuantityNames)
+    public static string Emit(
+        QuantitySelection selection,
+        IReadOnlyList<EmittedQuantityRelation> relationships)
     {
         QuantityDefinition quantity = selection.Definition;
         string unitTypeName = quantity.Name + "Unit";
@@ -194,7 +196,7 @@ internal static class QuantityEmitter
         writer.Append("    public static bool operator <=(").Append(quantity.Name).Append(" left, ").Append(quantity.Name).AppendLine(" right) => left.CompareTo(right) <= 0;");
         writer.Append("    public static bool operator >=(").Append(quantity.Name).Append(" left, ").Append(quantity.Name).AppendLine(" right) => left.CompareTo(right) >= 0;");
 
-        EmitRelationships(writer, quantity.Name, selectedQuantityNames);
+        EmitRelationships(writer, relationships);
 
         writer.AppendLine();
         writer.Append("    private sealed class QuantityMetadata : global::UnitsNetGen.IQuantityMetadata<").Append(unitType).AppendLine(">");
@@ -258,42 +260,31 @@ internal static class QuantityEmitter
         return writer.ToString();
     }
 
-    private static void EmitRelationships(StringBuilder writer, string quantityName, ISet<string> selected)
+    private static void EmitRelationships(
+        StringBuilder writer,
+        IReadOnlyList<EmittedQuantityRelation> relationships)
     {
-        if (quantityName == "Length" && selected.Contains("Area"))
+        foreach (EmittedQuantityRelation relationship in relationships)
         {
-            writer.AppendLine("    public static Area operator *(Length left, Length right) => new(left.BaseValue * right.BaseValue, Area.BaseUnit);");
-        }
+            string leftType = relationship.Left.Definition.Name;
+            string rightType = relationship.Right.Definition.Name;
+            if (relationship.Operator == "inverse")
+            {
+                writer.Append("    public ").Append(rightType).Append(" Inverse() => ")
+                    .Append(rightType).Append(".From").Append(relationship.RightUnit.PluralName)
+                    .Append("(1 / ")
+                    .Append(relationship.LeftUnit.PluralName).AppendLine("));");
+                continue;
+            }
 
-        if (quantityName == "Length" && selected.Contains("Duration") && selected.Contains("Speed"))
-        {
-            writer.AppendLine("    public static Speed operator /(Length length, Duration duration) => new(length.BaseValue / duration.BaseValue, Speed.BaseUnit);");
-        }
-
-        if (quantityName == "Speed" && selected.Contains("Duration") && selected.Contains("Acceleration"))
-        {
-            writer.AppendLine("    public static Acceleration operator /(Speed speed, Duration duration) => new(speed.BaseValue / duration.BaseValue, Acceleration.BaseUnit);");
-        }
-
-        if (quantityName == "Mass" && selected.Contains("Acceleration") && selected.Contains("Force"))
-        {
-            writer.AppendLine("    public static Force operator *(Mass mass, Acceleration acceleration) => new(mass.BaseValue * acceleration.BaseValue, Force.BaseUnit);");
-            writer.AppendLine("    public static Force operator *(Acceleration acceleration, Mass mass) => mass * acceleration;");
-        }
-
-        if (quantityName == "Force" && selected.Contains("Area") && selected.Contains("Pressure"))
-        {
-            writer.AppendLine("    public static Pressure operator /(Force force, Area area) => new(force.BaseValue / area.BaseValue, Pressure.BaseUnit);");
-        }
-
-        if (quantityName == "Force" && selected.Contains("Length") && selected.Contains("Energy"))
-        {
-            writer.AppendLine("    public static Energy operator *(Force force, Length length) => new(force.BaseValue * length.BaseValue, Energy.BaseUnit);");
-        }
-
-        if (quantityName == "Energy" && selected.Contains("Duration") && selected.Contains("Power"))
-        {
-            writer.AppendLine("    public static Power operator /(Energy energy, Duration duration) => new(energy.BaseValue / duration.BaseValue, Power.BaseUnit);");
+            QuantitySelection result = relationship.Result!;
+            writer.Append("    public static ").Append(result.Definition.Name).Append(" operator ")
+                .Append(relationship.Operator).Append('(').Append(leftType).Append(" left, ")
+                .Append(rightType).Append(" right) => ")
+                .Append(result.Definition.Name).Append(".From").Append(relationship.ResultUnit!.PluralName)
+                .Append("(left.").Append(relationship.LeftUnit.PluralName).Append(' ')
+                .Append(relationship.Operator).Append(" right.")
+                .Append(relationship.RightUnit.PluralName).AppendLine(");");
         }
     }
 

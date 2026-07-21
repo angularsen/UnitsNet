@@ -19,6 +19,7 @@
   </ItemGroup>
   <ItemGroup>
     <UnitsNetGenDefinition Include="HowMuch.unitsnet.json" />
+    <UnitsNetGenRelation Include="HowMuch.unitsnet.relations.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UnitsNetGen\UnitsNetGen.csproj" />

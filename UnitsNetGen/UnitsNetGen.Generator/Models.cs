@@ -145,3 +145,140 @@ internal sealed class JsonDefinitionResult
 
     public string? Error { get; }
 }
+
+internal sealed class QuantityRelationDefinition
+{
+    public QuantityRelationDefinition(
+        RelationEndpoint result,
+        RelationEndpoint left,
+        RelationEndpoint right,
+        bool noInferredDivision,
+        string source)
+    {
+        Result = result;
+        Left = left;
+        Right = right;
+        NoInferredDivision = noInferredDivision;
+        Source = source;
+    }
+
+    public RelationEndpoint Result { get; }
+
+    public RelationEndpoint Left { get; }
+
+    public RelationEndpoint Right { get; }
+
+    public bool NoInferredDivision { get; }
+
+    public string Source { get; }
+}
+
+internal sealed class RelationEndpoint
+{
+    public RelationEndpoint(string quantity, string? unit)
+    {
+        Quantity = quantity;
+        Unit = unit;
+    }
+
+    public string Quantity { get; }
+
+    public string? Unit { get; }
+}
+
+internal sealed class QuantityRelation
+{
+    public QuantityRelation(
+        string @operator,
+        RelationEndpoint result,
+        RelationEndpoint left,
+        RelationEndpoint right,
+        bool noInferredDivision,
+        string source)
+    {
+        Operator = @operator;
+        Result = result;
+        Left = left;
+        Right = right;
+        NoInferredDivision = noInferredDivision;
+        Source = source;
+    }
+
+    public string Operator { get; }
+
+    public RelationEndpoint Result { get; }
+
+    public RelationEndpoint Left { get; }
+
+    public RelationEndpoint Right { get; }
+
+    public bool NoInferredDivision { get; }
+
+    public string Source { get; }
+
+    public string Key => Result.Quantity + "." + Result.Unit + " = " +
+                         Left.Quantity + "." + Left.Unit + " " + Operator + " " +
+                         Right.Quantity + "." + Right.Unit;
+}
+
+internal sealed class RelationDefinitionResult
+{
+    public RelationDefinitionResult(
+        string path,
+        IReadOnlyList<QuantityRelationDefinition>? definitions,
+        string? error)
+    {
+        Path = path;
+        Definitions = definitions;
+        Error = error;
+    }
+
+    public string Path { get; }
+
+    public IReadOnlyList<QuantityRelationDefinition>? Definitions { get; }
+
+    public string? Error { get; }
+}
+
+internal sealed class EmittedQuantityRelation
+{
+    public EmittedQuantityRelation(
+        string @operator,
+        QuantitySelection? result,
+        UnitDefinition? resultUnit,
+        QuantitySelection left,
+        UnitDefinition leftUnit,
+        QuantitySelection right,
+        UnitDefinition rightUnit,
+        string source)
+    {
+        Operator = @operator;
+        Result = result;
+        ResultUnit = resultUnit;
+        Left = left;
+        LeftUnit = leftUnit;
+        Right = right;
+        RightUnit = rightUnit;
+        Source = source;
+    }
+
+    public string Operator { get; }
+
+    public QuantitySelection? Result { get; }
+
+    public UnitDefinition? ResultUnit { get; }
+
+    public QuantitySelection Left { get; }
+
+    public UnitDefinition LeftUnit { get; }
+
+    public QuantitySelection Right { get; }
+
+    public UnitDefinition RightUnit { get; }
+
+    public string Source { get; }
+
+    public string Key => Result?.Definition.Name + "." + ResultUnit?.SingularName + " = " +
+                         Left.Definition.Name + "." + LeftUnit.SingularName + " " + Operator + " " +
+                         Right.Definition.Name + "." + RightUnit.SingularName;
+}

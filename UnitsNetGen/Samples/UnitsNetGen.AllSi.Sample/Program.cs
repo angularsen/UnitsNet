@@ -21,13 +21,14 @@ internal static class Program
         Acceleration acceleration = speed / Duration.FromSeconds(10);
         Force force = Mass.FromKilograms(1500) * acceleration;
         Pressure pressure = force / (Length.FromMeters(2) * Length.FromMeters(3));
-        Energy energy = force * Length.FromMeters(5);
-        Power power = energy / Duration.FromSeconds(30);
+        Power power = force * speed;
+        Energy energy = power * Duration.FromSeconds(30);
 
         Console.WriteLine($"Distance: {distance}");
         Console.WriteLine($"Speed: {speed.ToUnit(SpeedUnit.KilometerPerHour)}");
         Console.WriteLine($"Force: {force}");
         Console.WriteLine($"Pressure: {pressure.ToUnit(PressureUnit.Kilopascal)}");
+        Console.WriteLine($"Energy: {energy.ToUnit(EnergyUnit.Kilojoule)}");
         Console.WriteLine($"Power: {power.ToUnit(PowerUnit.Kilowatt)}");
     }
 }

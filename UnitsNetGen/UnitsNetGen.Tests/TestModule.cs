@@ -27,6 +27,9 @@ internal interface RepresentativeProfile :
 [UnitsNetModule]
 internal interface TestUnits :
     IIncludeProfile<RepresentativeProfile>,
+    IInclude<Catalog.Mass>,
+    IInclude<Catalog.Acceleration>,
+    IInclude<Catalog.Force>,
     IInclude<Catalog.Information, ByteUnits>,
     IInclude<HowMuchDefinition>
 {

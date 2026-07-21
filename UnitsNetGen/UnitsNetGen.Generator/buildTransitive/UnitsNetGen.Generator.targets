@@ -1,5 +1,6 @@
 <Project>
   <ItemGroup>
     <AdditionalFiles Include="@(UnitsNetGenDefinition)" UnitsNetGenDefinition="true" />
+    <AdditionalFiles Include="@(UnitsNetGenRelation)" UnitsNetGenRelation="true" />
   </ItemGroup>
 </Project>

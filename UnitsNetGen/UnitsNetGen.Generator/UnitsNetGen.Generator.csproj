@@ -41,5 +41,7 @@
                       LogicalName="UnitsNetGen.Generator.BuiltIns.Level.json" />
     <EmbeddedResource Include="../../Common/UnitDefinitions/Information.json"
                       LogicalName="UnitsNetGen.Generator.BuiltIns.Information.json" />
+    <EmbeddedResource Include="../../Common/UnitRelations.json"
+                      LogicalName="UnitsNetGen.Generator.BuiltIns.UnitRelations.json" />
   </ItemGroup>
 </Project>
