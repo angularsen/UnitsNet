@@ -18,7 +18,7 @@
 Param()
 
 remove-module build-functions -ErrorAction SilentlyContinue
-import-module $PSScriptRoot\build-functions.psm1
+import-module (Join-Path $PSScriptRoot "build-functions.psm1")
 
 try {
   & "$PSScriptRoot/init.ps1" # Ensure tools are downloaded
