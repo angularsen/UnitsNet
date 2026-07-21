@@ -9,7 +9,7 @@ on:
       - ".github/actions/**"
 
 env:
-  FRAMEWORK: net6.0
+  FRAMEWORK: net10.0
   EXECUTION_OPTIONS: --iterationTime 500 --disableLogFile # see https://benchmarkdotnet.org/articles/guides/console-args.html
   BENCHMARK_PAGES_BRANCH: gh-pages
   BENCHMARK_DATA_FOLDER: benchmarks
@@ -21,25 +21,19 @@ jobs:
     strategy:
       # max-parallel: 1 # is it better to avoid running in parallel?
       matrix:
-        runtime: ["net6.0", "netcoreapp21", "net472"]
+        runtime: ["net10.0", "net9.0", "net48"]
     steps:
       - run: echo Starting benchmarks for ${{ matrix.runtime }}
 
       # checkout the current branch
       - uses: actions/checkout@v2
 
-      # we need all frameworks (even if only running one target at a time)
-      - uses: actions/setup-dotnet@v1
+      # The benchmark host targets net10, with net9 installed for runtime comparisons.
+      - uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: "2.1.x"
-
-      - uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: "3.1.x"
-
-      - uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: "5.0.x"
+          dotnet-version: |
+            9.0.x
+            10.0.x
 
       # executing the benchmark for the current framework, placing the result in a corresponding sub-folder
       - uses: ./.github/actions/run-benchmarks
@@ -62,7 +56,7 @@ jobs:
     strategy:
       max-parallel: 1 # cannot commit on the same branch in parallel
       matrix:
-        runtime: ["net6.0", "netcoreapp21", "net472"]
+        runtime: ["net10.0", "net9.0", "net48"]
     steps:
       - name: Initializing git folder ️
         uses: actions/checkout@v2.3.1
