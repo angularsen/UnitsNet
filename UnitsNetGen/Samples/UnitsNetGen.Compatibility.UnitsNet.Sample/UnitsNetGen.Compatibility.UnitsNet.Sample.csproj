@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../UnitsNetGen.Compatibility.Shared/CompatibilityScenario.cs" Link="CompatibilityScenario.cs" />
+    <Compile Include="../UnitsNetGen.Compatibility.Shared/Program.cs" Link="Program.cs" />
+    <ProjectReference Include="../../../UnitsNet/UnitsNet.csproj" />
+  </ItemGroup>
+</Project>

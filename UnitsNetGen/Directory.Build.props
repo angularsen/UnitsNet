@@ -1,0 +1,27 @@
+<Project>
+  <!-- Preserve repository-wide build settings when this nearer props file is discovered. -->
+  <Import Project="../Directory.Build.props" />
+
+  <!-- Register analyzer-config metadata before IDE design-time builds capture the project model. -->
+  <Import Project="UnitsNetGen.Generator/buildTransitive/UnitsNetGen.Generator.props" />
+
+  <!--
+    MinVer versions both the public runtime and its bundled generator. The prefix isolates their
+    versions from the existing UnitsNet/* and JsonNet/* tags in this monorepo.
+  -->
+  <PropertyGroup>
+    <MinVerTagPrefix>UnitsNetGen/</MinVerTagPrefix>
+    <MinVerMinimumMajorMinor>1.0</MinVerMinimumMajorMinor>
+    <MinVerDefaultPreReleaseIdentifiers>alpha.0</MinVerDefaultPreReleaseIdentifiers>
+  </PropertyGroup>
+
+  <!-- Reproducible portable symbols with Source Link are part of the package quality contract. -->
+  <PropertyGroup>
+    <DebugType>portable</DebugType>
+    <Deterministic>true</Deterministic>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+    <!-- Only the combined runtime + generator project is a public package. -->
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+</Project>

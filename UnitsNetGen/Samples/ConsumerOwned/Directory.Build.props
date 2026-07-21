@@ -1,0 +1,17 @@
+<Project>
+  <!-- Preserve the UnitsNetGen and repository-wide build settings from the nearest parent file. -->
+  <Import Project="../../Directory.Build.props" />
+
+  <PropertyGroup>
+    <!--
+      The runnable projects only reference ConsumerOwned.Units transitively, but their restore
+      graphs must still re-evaluate the floating local package versions during the Debug workflow.
+    -->
+    <UnitsNetGenSampleUpdateLocalPackagesOnBuild
+        Condition="'$(UnitsNetGenSampleUpdateLocalPackagesOnBuild)' == '' and '$(Configuration)' == 'Debug'">true</UnitsNetGenSampleUpdateLocalPackagesOnBuild>
+    <UnitsNetGenSampleUpdateLocalPackagesOnBuild
+        Condition="'$(UnitsNetGenSampleUpdateLocalPackagesOnBuild)' == ''">false</UnitsNetGenSampleUpdateLocalPackagesOnBuild>
+    <RestoreForceEvaluate
+        Condition="'$(UnitsNetGenSampleUpdateLocalPackagesOnBuild)' == 'true'">true</RestoreForceEvaluate>
+  </PropertyGroup>
+</Project>

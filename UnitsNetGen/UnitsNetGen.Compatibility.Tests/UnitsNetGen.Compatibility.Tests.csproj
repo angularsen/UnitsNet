@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../UnitsNet.Core/UnitsNet.Core.csproj" />
+    <ProjectReference Include="../Samples/UnitsNetGen.Compatibility.Generated.Sample/UnitsNetGen.Compatibility.Generated.Sample.csproj">
+      <Aliases>Generated</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="../Samples/UnitsNetGen.Compatibility.UnitsNet.Sample/UnitsNetGen.Compatibility.UnitsNet.Sample.csproj">
+      <Aliases>LegacyScenario</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="../../UnitsNet/UnitsNet.csproj">
+      <Aliases>Legacy</Aliases>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
