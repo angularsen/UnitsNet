@@ -10,6 +10,32 @@ on:
       - '**/*.md'
       - '**/*.png'
   workflow_dispatch:
+    inputs:
+      run_tests:
+        description: Run tests
+        required: true
+        default: true
+        type: boolean
+      collect_coverage:
+        description: Collect and upload coverage (requires tests)
+        required: true
+        default: true
+        type: boolean
+      pack_nugets:
+        description: Pack and upload NuGet artifacts
+        required: true
+        default: true
+        type: boolean
+      upload_artifacts:
+        description: Create and upload the full artifact archive
+        required: true
+        default: true
+        type: boolean
+      publish_nuget:
+        description: Publish to nuget.org (master only; forces packing)
+        required: true
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -47,11 +73,23 @@ jobs:
           9.0.x
           10.0.x
 
-    - name: Build, test and pack
+    - name: Build selected components
       shell: pwsh
-      run: ./Build/build.ps1
+      env:
+        RUN_TESTS: ${{ github.event_name != 'workflow_dispatch' || inputs.run_tests }}
+        COLLECT_COVERAGE: ${{ github.event_name != 'workflow_dispatch' || inputs.collect_coverage }}
+        PACK_NUGETS: ${{ github.event_name != 'workflow_dispatch' || inputs.pack_nugets || inputs.publish_nuget }}
+        CREATE_ARCHIVE: ${{ github.event_name != 'workflow_dispatch' || inputs.upload_artifacts }}
+      run: |
+        $buildArguments = @()
+        if ($env:RUN_TESTS -ne 'true') { $buildArguments += '-SkipTests' }
+        if ($env:COLLECT_COVERAGE -ne 'true') { $buildArguments += '-SkipCoverage' }
+        if ($env:PACK_NUGETS -ne 'true') { $buildArguments += '-SkipPack' }
+        if ($env:CREATE_ARCHIVE -ne 'true') { $buildArguments += '-SkipArchive' }
+        ./Build/build.ps1 @buildArguments
 
     - name: Upload coverage to Codecov
+      if: github.event_name != 'workflow_dispatch' || (inputs.run_tests && inputs.collect_coverage)
       uses: codecov/codecov-action@v6
       with:
         directory: Artifacts/Coverage
@@ -60,6 +98,7 @@ jobs:
         use_oidc: true
 
     - name: Upload artifacts
+      if: github.event_name != 'workflow_dispatch' || inputs.upload_artifacts
       uses: actions/upload-artifact@v7
       with:
         name: artifacts
@@ -67,6 +106,7 @@ jobs:
         retention-days: 30
 
     - name: Upload NuGet packages
+      if: github.event_name != 'workflow_dispatch' || inputs.pack_nugets || inputs.publish_nuget
       uses: actions/upload-artifact@v7
       with:
         name: nuget-packages
@@ -81,7 +121,10 @@ jobs:
     needs: build-and-test
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    if: github.ref == 'refs/heads/master' && github.repository_owner == 'angularsen'
+    if: >-
+      github.ref == 'refs/heads/master' &&
+      github.repository_owner == 'angularsen' &&
+      (github.event_name == 'push' || inputs.publish_nuget)
     environment: Publish
     permissions:
       contents: read

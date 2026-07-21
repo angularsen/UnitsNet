@@ -34,6 +34,10 @@ function Start-Build {
 }
 
 function Start-Tests {
+  Param(
+    [switch] $SkipCoverage
+  )
+
   $projectPaths = @(
     "UnitsNet.Tests/UnitsNet.Tests.csproj",
     "UnitsNet.NumberExtensions.Tests/UnitsNet.NumberExtensions.Tests.csproj",
@@ -43,7 +47,9 @@ function Start-Tests {
 
   # Parent dir must exist before xunit tries to write files to it
   new-item -type directory -force $testReportDir 1> $null
-  new-item -type directory -force $testCoverageDir 1> $null
+  if (-not $SkipCoverage) {
+    new-item -type directory -force $testCoverageDir 1> $null
+  }
 
   write-host -foreground blue "Run tests...`n---"
   foreach ($projectPath in $projectPaths) {
@@ -54,24 +60,35 @@ function Start-Tests {
     # dotnet commands (xunit, dotcover) must run in same dir as project
     push-location $projectDir
 
-    # Build validates every target framework. Run tests and collect coverage only on the latest
-    # .NET runtime because net8.0, net9.0, and net10.0 compile the same code paths. The separate
-    # CLR4 workflow tests the meaningfully different netstandard2.0 assets on .NET Framework.
-    & dotnet dotcover test `
-      --no-build `
-      --framework net10.0 `
-      --logger trx `
-      --results-directory "$testReportDir" `
-      --dotCoverFilters="+:module=UnitsNet*;-:module=*Tests" `
-      --dotCoverOutput="$coverageReportFile" `
-      --dcReportType=DetailedXML
+    # Build validates every target framework. Run tests only on the latest .NET runtime because
+    # net8.0, net9.0, and net10.0 compile the same code paths. The separate CLR4 workflow tests
+    # the meaningfully different netstandard2.0 assets on .NET Framework.
+    if ($SkipCoverage) {
+      & dotnet test `
+        --no-build `
+        --framework net10.0 `
+        --logger trx `
+        --results-directory "$testReportDir"
+    }
+    else {
+      & dotnet dotcover test `
+        --no-build `
+        --framework net10.0 `
+        --logger trx `
+        --results-directory "$testReportDir" `
+        --dotCoverFilters="+:module=UnitsNet*;-:module=*Tests" `
+        --dotCoverOutput="$coverageReportFile" `
+        --dcReportType=DetailedXML
+    }
 
     if ($lastexitcode -ne 0) { exit 1 }
     pop-location
   }
 
-  # Generate a summarized code coverage report for all test projects
-  & $reportGenerator -reports:"$testCoverageDir/*.coverage.xml" -targetdir:"$testCoverageDir" -reporttypes:HtmlSummary
+  if (-not $SkipCoverage) {
+    # Generate a summarized code coverage report for all test projects
+    & $reportGenerator -reports:"$testCoverageDir/*.coverage.xml" -targetdir:"$testCoverageDir" -reporttypes:HtmlSummary
+  }
 
   write-host -foreground blue "Run tests...END`n"
 }
