@@ -108,6 +108,10 @@ namespace UnitsNet.Tests
 
         protected override double MillipascalsInOnePascal => 1e3;
 
+        protected override double MilligramsForcePerSquareFootInOnePascal => 9.4734736122936992615e3;
+
+        protected override double MilligramsForcePerSquareMeterInOnePascal => 1.0197162129779282259e5;
+
         [Fact]
         public void Absolute_WithAbsolutePressureReference_IsEqual()
         {
@@ -209,6 +213,20 @@ namespace UnitsNet.Tests
         {
             var refPressure = new ReferencePressure(Pressure.FromAtmospheres(3), PressureReference.Vacuum);
             Assert.Throws<ArgumentOutOfRangeException>(() => refPressure.Gauge.Atmospheres);
+        }
+
+        [Fact]
+        public void PressureDividedByAccelerationEqualsAreaDensity()
+        {
+            var areaDensity = Pressure.FromPascals(20) / Acceleration.FromMetersPerSecondSquared(2);
+            Assert.Equal(AreaDensity.FromKilogramsPerSquareMeter(10), areaDensity);
+        }
+
+        [Fact]
+        public void PressureDividedByAreaDensityEqualsAcceleration()
+        {
+            var acceleration = Pressure.FromPascals(20) / AreaDensity.FromKilogramsPerSquareMeter(2);
+            Assert.Equal(Acceleration.FromMetersPerSecondSquared(10), acceleration);
         }
 
         [Fact]

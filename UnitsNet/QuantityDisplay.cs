@@ -32,7 +32,9 @@ internal readonly struct QuantityDisplay(IQuantity quantity)
         public AbbreviationDisplay(IQuantity quantity)
         {
             _quantity = quantity;
+#pragma warning disable CS0618 // IQuantity.QuantityInfo: debug proxy must work for custom quantities not registered in UnitsNetSetup.Default.
             QuantityInfo quantityQuantityInfo = quantity.QuantityInfo;
+#pragma warning restore CS0618
             IQuantity baseQuantity = quantity.ToUnit(quantityQuantityInfo.BaseUnitInfo.Value);
             Conversions = quantityQuantityInfo.UnitInfos.Select(x => new ConvertedQuantity(baseQuantity, x)).ToArray();
         }
@@ -70,8 +72,11 @@ internal readonly struct QuantityDisplay(IQuantity quantity)
         public UnitDisplay(IQuantity quantity)
         {
             Unit = quantity.Unit;
-            IQuantity baseQuantity = quantity.ToUnit(quantity.QuantityInfo.BaseUnitInfo.Value);
-            Conversions = quantity.QuantityInfo.UnitInfos.Select(x => new ConvertedQuantity(baseQuantity, x.Value)).ToArray();
+#pragma warning disable CS0618 // IQuantity.QuantityInfo: debug proxy must work for custom quantities not registered in UnitsNetSetup.Default.
+            QuantityInfo info = quantity.QuantityInfo;
+#pragma warning restore CS0618
+            IQuantity baseQuantity = quantity.ToUnit(info.BaseUnitInfo.Value);
+            Conversions = info.UnitInfos.Select(x => new ConvertedQuantity(baseQuantity, x.Value)).ToArray();
         }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -110,7 +115,9 @@ internal readonly struct QuantityDisplay(IQuantity quantity)
         public QuantityConvertor(IQuantity quantity)
         {
             QuantityToString = new StringFormatsDisplay(quantity);
+#pragma warning disable CS0618 // IQuantity.QuantityInfo: debug proxy must work for custom quantities not registered in UnitsNetSetup.Default.
             QuantityInfo quantityQuantityInfo = quantity.QuantityInfo;
+#pragma warning restore CS0618
             IQuantity baseQuantity = quantity.ToUnit(quantityQuantityInfo.BaseUnitInfo.Value);
             QuantityToUnit = quantityQuantityInfo.UnitInfos.Select(x => new ConvertedQuantity(baseQuantity.ToUnit(x.Value), x)).ToArray();
         }

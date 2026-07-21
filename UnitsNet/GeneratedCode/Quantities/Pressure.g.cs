@@ -40,6 +40,8 @@ namespace UnitsNet
         IArithmeticQuantity<Pressure, PressureUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Pressure, Pressure, double>,
+        IDivisionOperators<Pressure, AreaDensity, Acceleration>,
+        IDivisionOperators<Pressure, Acceleration, AreaDensity>,
         IDivisionOperators<Pressure, PressureChangeRate, Duration>,
         IDivisionOperators<Pressure, ReciprocalArea, Force>,
         IMultiplyOperators<Pressure, Area, Force>,
@@ -158,6 +160,8 @@ namespace UnitsNet
                 yield return new (PressureUnit.Microbar, "Microbar", "Microbars", BaseUnits.Undefined);
                 yield return new (PressureUnit.Micropascal, "Micropascal", "Micropascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second));
                 yield return new (PressureUnit.Millibar, "Millibar", "Millibars", BaseUnits.Undefined);
+                yield return new (PressureUnit.MilligramForcePerSquareFoot, "MilligramForcePerSquareFoot", "MilligramsForcePerSquareFoot", BaseUnits.Undefined);
+                yield return new (PressureUnit.MilligramForcePerSquareMeter, "MilligramForcePerSquareMeter", "MilligramsForcePerSquareMeter", BaseUnits.Undefined);
                 yield return new (PressureUnit.MillimeterOfMercury, "MillimeterOfMercury", "MillimetersOfMercury", BaseUnits.Undefined);
                 yield return new (PressureUnit.MillimeterOfWaterColumn, "MillimeterOfWaterColumn", "MillimetersOfWaterColumn", BaseUnits.Undefined);
                 yield return new (PressureUnit.Millipascal, "Millipascal", "Millipascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second));
@@ -436,6 +440,16 @@ namespace UnitsNet
         public double Millibars => As(PressureUnit.Millibar);
 
         /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.MilligramForcePerSquareFoot"/>
+        /// </summary>
+        public double MilligramsForcePerSquareFoot => As(PressureUnit.MilligramForcePerSquareFoot);
+
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.MilligramForcePerSquareMeter"/>
+        /// </summary>
+        public double MilligramsForcePerSquareMeter => As(PressureUnit.MilligramForcePerSquareMeter);
+
+        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="PressureUnit.MillimeterOfMercury"/>
         /// </summary>
         public double MillimetersOfMercury => As(PressureUnit.MillimeterOfMercury);
@@ -562,6 +576,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Microbar, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Micropascal, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Millibar, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
+            unitConverter.SetConversionFunction<Pressure>(PressureUnit.MilligramForcePerSquareFoot, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
+            unitConverter.SetConversionFunction<Pressure>(PressureUnit.MilligramForcePerSquareMeter, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.MillimeterOfMercury, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.MillimeterOfWaterColumn, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Millipascal, PressureUnit.Pascal, quantity => quantity.ToUnit(PressureUnit.Pascal));
@@ -614,6 +630,8 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Microbar, quantity => quantity.ToUnit(PressureUnit.Microbar));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Micropascal, quantity => quantity.ToUnit(PressureUnit.Micropascal));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Millibar, quantity => quantity.ToUnit(PressureUnit.Millibar));
+            unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.MilligramForcePerSquareFoot, quantity => quantity.ToUnit(PressureUnit.MilligramForcePerSquareFoot));
+            unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.MilligramForcePerSquareMeter, quantity => quantity.ToUnit(PressureUnit.MilligramForcePerSquareMeter));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.MillimeterOfMercury, quantity => quantity.ToUnit(PressureUnit.MillimeterOfMercury));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.MillimeterOfWaterColumn, quantity => quantity.ToUnit(PressureUnit.MillimeterOfWaterColumn));
             unitConverter.SetConversionFunction<Pressure>(PressureUnit.Pascal, PressureUnit.Millipascal, quantity => quantity.ToUnit(PressureUnit.Millipascal));
@@ -903,6 +921,22 @@ namespace UnitsNet
         public static Pressure FromMillibars(double value)
         {
             return new Pressure(value, PressureUnit.Millibar);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MilligramForcePerSquareFoot"/>.
+        /// </summary>
+        public static Pressure FromMilligramsForcePerSquareFoot(double value)
+        {
+            return new Pressure(value, PressureUnit.MilligramForcePerSquareFoot);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Pressure"/> from <see cref="PressureUnit.MilligramForcePerSquareMeter"/>.
+        /// </summary>
+        public static Pressure FromMilligramsForcePerSquareMeter(double value)
+        {
+            return new Pressure(value, PressureUnit.MilligramForcePerSquareMeter);
         }
 
         /// <summary>
@@ -1246,6 +1280,18 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Get <see cref="Acceleration"/> from <see cref="Pressure"/> / <see cref="AreaDensity"/>.</summary>
+        public static Acceleration operator /(Pressure pressure, AreaDensity areaDensity)
+        {
+            return Acceleration.FromMetersPerSecondSquared(pressure.Pascals / areaDensity.KilogramsPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="AreaDensity"/> from <see cref="Pressure"/> / <see cref="Acceleration"/>.</summary>
+        public static AreaDensity operator /(Pressure pressure, Acceleration acceleration)
+        {
+            return AreaDensity.FromKilogramsPerSquareMeter(pressure.Pascals / acceleration.MetersPerSecondSquared);
+        }
+
         /// <summary>Get <see cref="Duration"/> from <see cref="Pressure"/> / <see cref="PressureChangeRate"/>.</summary>
         public static Duration operator /(Pressure pressure, PressureChangeRate pressureChangeRate)
         {
@@ -1529,6 +1575,8 @@ namespace UnitsNet
                 (PressureUnit.Microbar, PressureUnit.Pascal) => new Pressure((_value * 1e5) * 1e-6d, PressureUnit.Pascal),
                 (PressureUnit.Micropascal, PressureUnit.Pascal) => new Pressure((_value) * 1e-6d, PressureUnit.Pascal),
                 (PressureUnit.Millibar, PressureUnit.Pascal) => new Pressure((_value * 1e5) * 1e-3d, PressureUnit.Pascal),
+                (PressureUnit.MilligramForcePerSquareFoot, PressureUnit.Pascal) => new Pressure(_value * 9.80665e-6 / 9.290304e-2, PressureUnit.Pascal),
+                (PressureUnit.MilligramForcePerSquareMeter, PressureUnit.Pascal) => new Pressure(_value * 9.80665e-6, PressureUnit.Pascal),
                 (PressureUnit.MillimeterOfMercury, PressureUnit.Pascal) => new Pressure(_value * 133.322387415, PressureUnit.Pascal),
                 (PressureUnit.MillimeterOfWaterColumn, PressureUnit.Pascal) => new Pressure((_value * 9.80665e3) * 1e-3d, PressureUnit.Pascal),
                 (PressureUnit.Millipascal, PressureUnit.Pascal) => new Pressure((_value) * 1e-3d, PressureUnit.Pascal),
@@ -1578,6 +1626,8 @@ namespace UnitsNet
                 (PressureUnit.Pascal, PressureUnit.Microbar) => new Pressure((_value / 1e5) / 1e-6d, PressureUnit.Microbar),
                 (PressureUnit.Pascal, PressureUnit.Micropascal) => new Pressure((_value) / 1e-6d, PressureUnit.Micropascal),
                 (PressureUnit.Pascal, PressureUnit.Millibar) => new Pressure((_value / 1e5) / 1e-3d, PressureUnit.Millibar),
+                (PressureUnit.Pascal, PressureUnit.MilligramForcePerSquareFoot) => new Pressure(_value / 9.80665e-6 * 9.290304e-2, PressureUnit.MilligramForcePerSquareFoot),
+                (PressureUnit.Pascal, PressureUnit.MilligramForcePerSquareMeter) => new Pressure(_value / 9.80665e-6, PressureUnit.MilligramForcePerSquareMeter),
                 (PressureUnit.Pascal, PressureUnit.MillimeterOfMercury) => new Pressure(_value / 133.322387415, PressureUnit.MillimeterOfMercury),
                 (PressureUnit.Pascal, PressureUnit.MillimeterOfWaterColumn) => new Pressure((_value / 9.80665e3) / 1e-3d, PressureUnit.MillimeterOfWaterColumn),
                 (PressureUnit.Pascal, PressureUnit.Millipascal) => new Pressure((_value) / 1e-3d, PressureUnit.Millipascal),

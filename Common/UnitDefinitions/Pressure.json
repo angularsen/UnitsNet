@@ -401,6 +401,34 @@
           "Abbreviations": [ "inH2O", "inch wc", "wc" ]
         }
       ]
+    },
+    {
+      "SingularName": "MilligramForcePerSquareMeter",
+      "PluralName": "MilligramsForcePerSquareMeter",
+      "FromUnitToBaseFunc": "{x} * 9.80665e-6",
+      "FromBaseToUnitFunc": "{x} / 9.80665e-6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mgf/m²" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "мгс/м²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MilligramForcePerSquareFoot",
+      "PluralName": "MilligramsForcePerSquareFoot",
+      "FromUnitToBaseFunc": "{x} * 9.80665e-6 / 9.290304e-2",
+      "FromBaseToUnitFunc": "{x} / 9.80665e-6 * 9.290304e-2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mgf/ft²" ]
+        }
+      ]
     }
   ]
 }

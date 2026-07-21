@@ -105,7 +105,7 @@ namespace UnitsNet
             MapUnitToAbbreviation(UnitKey.ForUnit(unit), abbreviations);
         }
 
-        /// <inheritdoc cref="MapUnitToAbbreviation{TUnitType}(TUnitType,IEnumerable{string})"/>>
+        /// <inheritdoc cref="MapUnitToAbbreviation{TUnitType}(TUnitType,IEnumerable{string})"/>
         /// <param name="unitType">The unit enum type.</param>
         /// <param name="unitValue">The unit enum value.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
@@ -121,7 +121,7 @@ namespace UnitsNet
             MapUnitToAbbreviation(UnitKey.Create(unitType, unitValue), formatProvider, abbreviations);
         }
 
-        /// <inheritdoc cref="MapUnitToAbbreviation{TUnitType}(TUnitType,IEnumerable{string})"/>>
+        /// <inheritdoc cref="MapUnitToAbbreviation{TUnitType}(TUnitType,IEnumerable{string})"/>
         /// <param name="unitKey">The unit key value.</param>
         /// <param name="abbreviations">Unit abbreviations to add.</param>
         public void MapUnitToAbbreviation(UnitKey unitKey, params IEnumerable<string> abbreviations)
@@ -129,7 +129,7 @@ namespace UnitsNet
             MapUnitToAbbreviation(unitKey, CultureInfo.CurrentCulture, abbreviations);
         }
 
-        /// <inheritdoc cref="MapUnitToAbbreviation{TUnitType}(TUnitType,IEnumerable{string})"/>>
+        /// <inheritdoc cref="MapUnitToAbbreviation{TUnitType}(TUnitType,IEnumerable{string})"/>
         /// <param name="unit">The unit enum value.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="abbreviations">Unit abbreviations to add.</param>
@@ -140,13 +140,22 @@ namespace UnitsNet
             MapUnitToAbbreviation(UnitKey.ForUnit(unit), formatProvider, abbreviations);
         }
         
-        /// <inheritdoc cref="MapUnitToAbbreviation{TUnitType}(TUnitType,IEnumerable{string})"/>>
+        /// <inheritdoc cref="MapUnitToAbbreviation{TUnitType}(TUnitType,IEnumerable{string})"/>
         /// <param name="unitKey">The unit key value.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="abbreviations">Unit abbreviations to add.</param>
         public void MapUnitToAbbreviation(UnitKey unitKey, IFormatProvider? formatProvider, params IEnumerable<string> abbreviations)
         {
-            PerformAbbreviationMapping(unitKey, formatProvider, false, abbreviations);
+            MapUnitToAbbreviation(Quantities.GetUnitInfo(unitKey), formatProvider, abbreviations);
+        }
+
+        /// <inheritdoc cref="MapUnitToAbbreviation{TUnitType}(TUnitType,IEnumerable{string})"/>
+        /// <param name="unitInfo">The info representing the unit.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="abbreviations">Unit abbreviations to add.</param>
+        public void MapUnitToAbbreviation(UnitInfo unitInfo, IFormatProvider? formatProvider, params IEnumerable<string> abbreviations)
+        {
+            AddAbbreviation(GetConfiguredUnitInfo(unitInfo), formatProvider, false, abbreviations);
         }
 
         #endregion
@@ -171,7 +180,7 @@ namespace UnitsNet
             MapUnitToDefaultAbbreviation(UnitKey.ForUnit(unit), abbreviation);
         }
 
-        /// <inheritdoc cref="MapUnitToDefaultAbbreviation{TUnitType}(TUnitType,string)"/>>
+        /// <inheritdoc cref="MapUnitToDefaultAbbreviation{TUnitType}(TUnitType,string)"/>
         /// <param name="unitKey">The unit key value.</param>
         /// <param name="abbreviation">Unit abbreviations to add as default.</param>
         public void MapUnitToDefaultAbbreviation(UnitKey unitKey, string abbreviation)
@@ -179,7 +188,7 @@ namespace UnitsNet
             MapUnitToDefaultAbbreviation(unitKey, CultureInfo.CurrentCulture, abbreviation);
         }
 
-        /// <inheritdoc cref="MapUnitToDefaultAbbreviation{TUnitType}(TUnitType,string)"/>>
+        /// <inheritdoc cref="MapUnitToDefaultAbbreviation{TUnitType}(TUnitType,string)"/>
         /// <param name="unit">The unit enum value.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="abbreviation">Unit abbreviation to add as default.</param>
@@ -190,7 +199,7 @@ namespace UnitsNet
             MapUnitToDefaultAbbreviation(UnitKey.ForUnit(unit), formatProvider, abbreviation);
         }
 
-        /// <inheritdoc cref="MapUnitToDefaultAbbreviation{TUnitType}(TUnitType,string)"/>>
+        /// <inheritdoc cref="MapUnitToDefaultAbbreviation{TUnitType}(TUnitType,string)"/>
         /// <param name="unitType">The unit enum type.</param>
         /// <param name="unitValue">The unit enum value.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
@@ -206,22 +215,26 @@ namespace UnitsNet
             MapUnitToDefaultAbbreviation(UnitKey.Create(unitType, unitValue), formatProvider, abbreviation);
         }
 
-        /// <inheritdoc cref="MapUnitToDefaultAbbreviation{TUnitType}(TUnitType,string)"/>>
+        /// <inheritdoc cref="MapUnitToDefaultAbbreviation{TUnitType}(TUnitType,string)"/>
         /// <param name="unitKey">The unit key value.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <param name="abbreviation">Unit abbreviation to add as default.</param>
         public void MapUnitToDefaultAbbreviation(UnitKey unitKey, IFormatProvider? formatProvider, string abbreviation)
         {
-            PerformAbbreviationMapping(unitKey, formatProvider, true, abbreviation);
+            MapUnitToDefaultAbbreviation(Quantities.GetUnitInfo(unitKey), formatProvider, abbreviation);
+        }
+
+        /// <inheritdoc cref="MapUnitToDefaultAbbreviation{TUnitType}(TUnitType,string)"/>
+        /// <param name="unitInfo">The info representing the unit.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="abbreviation">Unit abbreviation to add as default.</param>
+        public void MapUnitToDefaultAbbreviation(UnitInfo unitInfo, IFormatProvider? formatProvider, string abbreviation)
+        {
+            AddAbbreviation(GetConfiguredUnitInfo(unitInfo), formatProvider, true, abbreviation);
         }
 
         #endregion
 
-        private void PerformAbbreviationMapping(UnitKey unitKey, IFormatProvider? formatProvider, bool setAsDefault, params IEnumerable<string> abbreviations)
-        {
-            AddAbbreviation(Quantities.GetUnitInfo(unitKey), formatProvider, setAsDefault, abbreviations);
-        }
-        
         /// <summary>
         ///     Gets the default abbreviation for a given unit type and its numeric enum value.
         ///     If a unit has more than one abbreviation defined, then it returns the first one.
@@ -282,10 +295,26 @@ namespace UnitsNet
         /// </exception>
         public string GetDefaultAbbreviation(UnitKey unitKey, IFormatProvider? formatProvider = null)
         {
-            IReadOnlyList<string> abbreviations = GetUnitAbbreviations(unitKey, formatProvider);
+            return GetDefaultAbbreviation(Quantities.GetUnitInfo(unitKey), formatProvider);
+        }
+
+        /// <inheritdoc cref="GetDefaultAbbreviation{TUnitType}" />
+        /// <param name="unitInfo">The info representing the unit.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <exception cref="UnitNotFoundException">
+        ///     Thrown when no unit information is found for the specified
+        ///     <paramref name="unitInfo" />.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Thrown when no abbreviations are mapped for the specified unit.
+        /// </exception>
+        public string GetDefaultAbbreviation(UnitInfo unitInfo, IFormatProvider? formatProvider = null)
+        {
+            unitInfo = GetConfiguredUnitInfo(unitInfo);
+            IReadOnlyList<string> abbreviations = GetUnitAbbreviations(unitInfo, formatProvider);
             if (abbreviations.Count == 0)
             {
-                throw new InvalidOperationException($"No abbreviations were found for {unitKey.UnitEnumType.Name}.{(Enum)unitKey}. Make sure that the unit abbreviations are mapped.");
+                throw new InvalidOperationException($"No abbreviations were found for {unitInfo.QuantityInfo.Name}.{unitInfo.Name}. Make sure that the unit abbreviations are mapped.");
             }
 
             return abbreviations[0];
@@ -342,12 +371,28 @@ namespace UnitsNet
         /// </exception>
         public IReadOnlyList<string> GetUnitAbbreviations(UnitKey unitKey, IFormatProvider? formatProvider = null)
         {
+            return GetUnitAbbreviations(Quantities.GetUnitInfo(unitKey), formatProvider);
+        }
+
+        /// <summary>
+        /// Retrieves the unit abbreviations for a specified unit info and optional format provider.
+        /// </summary>
+        /// <param name="unitInfo">The unit info object representing the unit.</param> 
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <returns>A read-only collection of unit abbreviation strings.</returns>
+        /// <exception cref="UnitNotFoundException">
+        ///     Thrown when no unit information is found for the specified
+        ///     <paramref name="unitInfo" />.
+        /// </exception>
+        public IReadOnlyList<string> GetUnitAbbreviations(UnitInfo unitInfo, IFormatProvider? formatProvider = null)
+        {
+            unitInfo = GetConfiguredUnitInfo(unitInfo);
             if (formatProvider is not CultureInfo culture)
             {
                 culture = CultureInfo.CurrentCulture;
             }
 
-            return GetAbbreviationsWithFallbackCulture(Quantities.GetUnitInfo(unitKey), culture);
+            return GetAbbreviationsWithFallbackCulture(unitInfo, culture);
         }
 
         /// <summary>
@@ -398,6 +443,12 @@ namespace UnitsNet
             }
 
             return allAbbreviations;
+        }
+
+        private UnitInfo GetConfiguredUnitInfo(UnitInfo unitInfo)
+        {
+            if (unitInfo is null) throw new ArgumentNullException(nameof(unitInfo));
+            return Quantities.GetUnitInfo(unitInfo.UnitKey);
         }
 
         /// <summary>

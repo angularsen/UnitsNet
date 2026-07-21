@@ -117,6 +117,58 @@ public partial class IQuantityTests
     }
 
     [Fact]
+    public void GetQuantityInfo_NonGeneric_ReturnsRegisteredQuantityInfo()
+    {
+        IQuantity quantity = new Mass(1.0, MassUnit.Kilogram);
+
+        QuantityInfo info = quantity.GetQuantityInfo();
+
+        Assert.Same(Mass.Info, info);
+    }
+
+    [Fact]
+    public void GetQuantityInfo_Typed_ReturnsRegisteredQuantityInfo()
+    {
+        IQuantity<MassUnit> quantity = new Mass(1.0, MassUnit.Kilogram);
+
+        QuantityInfo<MassUnit> info = quantity.GetQuantityInfo();
+
+        Assert.Same(Mass.Info, info);
+    }
+
+    [Fact]
+    public void StaticAbstract_Info_ReturnsSameAsTypedInfo()
+    {
+        // Calls IQuantity<TSelf, TUnitType>.Info via the static abstract member.
+        QuantityInfo<Mass, MassUnit> typedInfo = Mass.Info;
+        QuantityInfo<Mass, MassUnit> viaStaticAbstract = StaticAbstractAccess<Mass, MassUnit>();
+
+        Assert.Same(typedInfo, viaStaticAbstract);
+
+        static QuantityInfo<TSelf, TUnit> StaticAbstractAccess<TSelf, TUnit>()
+            where TSelf : IQuantity<TSelf, TUnit>
+            where TUnit : struct, Enum
+        {
+            return TSelf.Info;
+        }
+    }
+
+    [Fact]
+    public void StaticAbstract_Info_NonGeneric_ReturnsSameAsTypedInfo()
+    {
+        // Calls IQuantityOfType<TQuantity>.Info via the static abstract member.
+        QuantityInfo info = StaticAbstractAccess<Mass>();
+
+        Assert.Same((QuantityInfo)Mass.Info, info);
+
+        static QuantityInfo StaticAbstractAccess<TQuantity>()
+            where TQuantity : IQuantityOfType<TQuantity>
+        {
+            return TQuantity.Info;
+        }
+    }
+
+    [Fact]
     public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
     {
         var unsupportedUnitSystem = new UnitSystem(new BaseUnits(

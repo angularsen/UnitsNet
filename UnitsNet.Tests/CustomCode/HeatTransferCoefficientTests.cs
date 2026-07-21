@@ -30,6 +30,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double WattsPerSquareMeterCelsiusInOneWattPerSquareMeterKelvin => 1;
         protected override double WattsPerSquareMeterKelvinInOneWattPerSquareMeterKelvin => 1;
         protected override double BtusPerHourSquareFootDegreeFahrenheitInOneWattPerSquareMeterKelvin => 1.7611018368230584e-1;
+        protected override double BtusPerSecondSquareInchDegreeFahrenheitInOneWattPerSquareMeterKelvin => 3.3971871852296651e-7;
         protected override double KilocaloriesPerHourSquareMeterDegreeCelsiusInOneWattPerSquareMeterKelvin => 0.8604206500956023;
         protected override double CaloriesPerHourSquareMeterDegreeCelsiusInOneWattPerSquareMeterKelvin => 860.4206500956023;
     }

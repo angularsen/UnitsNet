@@ -32,6 +32,24 @@
       ]
     },
     {
+      "SingularName": "GramForce",
+      "PluralName": "GramsForce",
+      "FromUnitToBaseFunc": "{x} * 9.80665e-3",
+      "FromBaseToUnitFunc": "{x} / 9.80665e-3",
+      "XmlDocSummary": "The gram-force is a unit of force equal to the magnitude of force exerted by a gram of mass in standard gravity (9.80665 m/s²). It is equal to 9.80665 × 10⁻³ N.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Kilogram-force",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "gf" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "гс" ]
+        }
+      ]
+    },
+    {
       "SingularName": "KilogramForce",
       "PluralName": "KilogramsForce",
       "FromUnitToBaseFunc": "{x} * 9.80665",

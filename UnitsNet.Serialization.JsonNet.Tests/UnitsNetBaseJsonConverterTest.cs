@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
+using UnitsNet.Tests.CustomQuantities;
 using Xunit;
 
 namespace UnitsNet.Serialization.JsonNet.Tests
@@ -65,6 +66,39 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             Assert.Equal("\"PowerUnit Watt\" is not a valid unit.", result.Message);
             Assert.True(result.Data.Contains("type"));
             Assert.Equal("PowerUnit Watt", result.Data["type"]);
+        }
+
+        [Fact]
+        public void UnitsNetBaseJsonConverter_ConvertValueUnit_throws_UnitsNetException_when_registered_quantity_cannot_be_instantiated()
+        {
+            var sut = new TestQuantityConverter();
+            sut.RegisterCustomType(typeof(IQuantity), typeof(HowMuchUnit));
+
+            var result = Assert.Throws<UnitsNetException>(() => sut.Test_ConvertValueUnit("HowMuchUnit.Some", 10.2365));
+
+            Assert.Contains("Unable to instantiate registered quantity type", result.Message);
+            Assert.Equal("JsonNetRegisteredQuantityInstantiationFailed", result.Data[UnitsNetException.ErrorCodeDataKey]);
+            Assert.Equal(typeof(IQuantity), result.Data["quantityType"]);
+            Assert.Equal(typeof(HowMuchUnit), result.Data["unitType"]);
+            Assert.Equal(HowMuchUnit.Some, result.Data["unit"]);
+            Assert.NotNull(result.InnerException);
+        }
+
+        [Fact]
+        public void UnitsNetBaseJsonConverter_ConvertValueUnit_wraps_exception_when_registered_quantity_constructor_throws()
+        {
+            var sut = new TestQuantityConverter();
+            sut.RegisterCustomType(typeof(ThrowingQuantity), typeof(HowMuchUnit));
+
+            var result = Assert.Throws<UnitsNetException>(() => sut.Test_ConvertValueUnit("HowMuchUnit.Some", 10.2365));
+
+            Assert.Contains("Unable to instantiate registered quantity type", result.Message);
+            Assert.Equal("JsonNetRegisteredQuantityInstantiationFailed", result.Data[UnitsNetException.ErrorCodeDataKey]);
+            Assert.Equal(typeof(ThrowingQuantity), result.Data["quantityType"]);
+            Assert.Equal(typeof(HowMuchUnit), result.Data["unitType"]);
+            Assert.Equal(HowMuchUnit.Some, result.Data["unit"]);
+            Assert.NotNull(result.InnerException);
+            Assert.Contains("Thrown from registered quantity constructor.", result.InnerException.ToString());
         }
 
         [Fact]
@@ -225,6 +259,33 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
                 return (result.Unit, result.Value);
             }
+        }
+
+        private class TestQuantityConverter : UnitsNetBaseJsonConverter<IQuantity>
+        {
+            public override bool CanRead => false;
+            public override bool CanWrite => false;
+            public override void WriteJson(JsonWriter writer, IQuantity value, JsonSerializer serializer) => throw new NotImplementedException();
+            public override IQuantity ReadJson(JsonReader reader, Type objectType, IQuantity existingValue, bool hasExistingValue, JsonSerializer serializer) => throw new NotImplementedException();
+
+            public IQuantity Test_ConvertValueUnit(string unit, double value) => ConvertValueUnit(new ValueUnit {Unit = unit, Value = value});
+        }
+
+        private class ThrowingQuantity : IQuantity
+        {
+            public ThrowingQuantity(double value, HowMuchUnit unit)
+            {
+                throw new UnitsNetException("Thrown from registered quantity constructor.");
+            }
+
+            public QuantityInfo QuantityInfo => throw new NotImplementedException();
+            public Enum Unit => throw new NotImplementedException();
+            public double Value => throw new NotImplementedException();
+            public UnitKey UnitKey => throw new NotImplementedException();
+            public double As(Enum unit) => throw new NotImplementedException();
+            public double As(UnitKey unitKey) => throw new NotImplementedException();
+            public IQuantity ToUnit(Enum unit) => throw new NotImplementedException();
+            public string ToString(string format, IFormatProvider formatProvider) => throw new NotImplementedException();
         }
     }
 }

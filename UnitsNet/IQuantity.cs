@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 namespace UnitsNet
@@ -11,6 +11,13 @@ namespace UnitsNet
         /// <summary>
         ///     Information about the quantity type, such as unit values and names.
         /// </summary>
+        /// <remarks>
+        ///     Kept for back-compat with netstandard2.0. On .NET 5+, prefer the static <c>TSelf.Info</c>
+        ///     property or the <c>GetQuantityInfo()</c> extension method on <see cref="QuantityExtensions"/>.
+        /// </remarks>
+#if NET
+        [Obsolete("Kept for back-compat with netstandard2.0. On .NET 5+, use the static TSelf.Info property or the GetQuantityInfo() extension method.")]
+#endif
         QuantityInfo QuantityInfo { get; }
 
         /// <summary>
@@ -82,6 +89,9 @@ namespace UnitsNet
         new TUnitType Unit { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+#if NET
+        [Obsolete("Kept for back-compat with netstandard2.0. On .NET 5+, use the static TSelf.Info property or the GetQuantityInfo() extension method.")]
+#endif
         new QuantityInfo<TUnitType> QuantityInfo { get; }
 
         /// <summary>
@@ -96,10 +106,12 @@ namespace UnitsNet
 
         #region Implementation of IQuantity
 
+#pragma warning disable CS0618 // Type or member is obsolete
         QuantityInfo IQuantity.QuantityInfo
         {
             get => QuantityInfo;
         }
+#pragma warning restore CS0618
 
         Enum IQuantity.Unit
         {
@@ -121,6 +133,16 @@ namespace UnitsNet
         where TQuantity : IQuantity
     {
 #if NET
+        /// <summary>
+        ///     The static <see cref="UnitsNet.QuantityInfo"/> for this quantity type.
+        /// </summary>
+        /// <remarks>
+        ///     Implemented by every quantity as a public static <c>Info</c> property. Prefer this and the
+        ///     <see cref="QuantityExtensions.GetQuantityInfo(IQuantity)"/> extension method over the
+        ///     obsolete instance <see cref="IQuantity.QuantityInfo"/> property.
+        /// </remarks>
+        public static abstract QuantityInfo Info { get; }
+
         /// <summary>
         ///     Creates an instance of the quantity from a specified value and unit.
         /// </summary>
@@ -144,9 +166,15 @@ namespace UnitsNet
         where TUnitType : struct, Enum
     {
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+#if NET
+        [Obsolete("Kept for back-compat with netstandard2.0. On .NET 5+, use the static TSelf.Info property or the GetQuantityInfo() extension method.")]
+#endif
         new QuantityInfo<TSelf, TUnitType> QuantityInfo { get; }
 
 #if NET
+        /// <inheritdoc cref="IQuantityOfType{TQuantity}.Info"/>
+        public new static abstract QuantityInfo<TSelf, TUnitType> Info { get; }
+
         /// <summary>
         ///     Creates an instance of the quantity from a specified value and unit.
         /// </summary>
@@ -157,10 +185,14 @@ namespace UnitsNet
 
         static TSelf IQuantityOfType<TSelf>.Create(double value, UnitKey unit) => TSelf.From(value, unit.ToUnit<TUnitType>());
 
+        static QuantityInfo IQuantityOfType<TSelf>.Info => TSelf.Info;
+
+#pragma warning disable CS0618 // Type or member is obsolete
         QuantityInfo<TUnitType> IQuantity<TUnitType>.QuantityInfo
         {
             get => QuantityInfo;
         }
+#pragma warning restore CS0618
 
         IQuantity<TUnitType> IQuantity<TUnitType>.ToUnit(TUnitType unit)
         {

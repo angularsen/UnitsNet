@@ -10,6 +10,7 @@ namespace UnitsNet.Tests
         protected override double DecanewtonsInOneNewton => 1E-1;
         protected override double DyneInOneNewton => 1E5;
 
+        protected override double GramsForceInOneNewton => 0.1019716e3;
         protected override double KilogramsForceInOneNewton => 0.1019716;
 
         protected override double KilopoundsForceInOneNewton => 0.2248089e-3;
@@ -70,6 +71,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ForceDividedBySpecificWeightEqualsVolume()
+        {
+            Volume volume = Force.FromNewtons(200) / SpecificWeight.FromNewtonsPerCubicMeter(50);
+            Assert.Equal(Volume.FromCubicMeters(4), volume);
+        }
+
+        [Fact]
+        public void ForceDividedByVolumeEqualsSpecificWeight()
+        {
+            SpecificWeight specificWeight = Force.FromNewtons(200) / Volume.FromCubicMeters(50);
+            Assert.Equal(SpecificWeight.FromNewtonsPerCubicMeter(4), specificWeight);
+        }
+
+        [Fact]
         public void MassByAccelerationEqualsForce()
         {
             Force force = Force.FromMassByAcceleration(Mass.FromKilograms(85), Acceleration.FromMetersPerSecondSquared(-4));
@@ -109,6 +124,13 @@ namespace UnitsNet.Tests
         {
             var duration = Force.FromKilogramsForce(1) / Force.FromNewtons(1);
             Assert.Equal(9.80665, duration);
+        }
+
+        [Fact]
+        public void ThousandGramsForceEqualsOneKilogramForce()
+        {
+            var force = Force.FromGramsForce(1000);
+            Assert.Equal(Force.FromKilogramsForce(1), force.ToUnit(ForceUnit.KilogramForce));
         }
     }
 }

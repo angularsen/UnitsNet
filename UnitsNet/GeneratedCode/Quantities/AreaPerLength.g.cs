@@ -40,6 +40,7 @@ namespace UnitsNet
         IArithmeticQuantity<AreaPerLength, AreaPerLengthUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<AreaPerLength, AreaPerLength, double>,
+        IMultiplyOperators<AreaPerLength, Length, Area>,
         IComparisonOperators<AreaPerLength, AreaPerLength, bool>,
         IParsable<AreaPerLength>,
 #endif
@@ -558,6 +559,16 @@ namespace UnitsNet
         public static double operator /(AreaPerLength left, AreaPerLength right)
         {
             return left.SquareMetersPerMeter / right.SquareMetersPerMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Area"/> from <see cref="AreaPerLength"/> * <see cref="Length"/>.</summary>
+        public static Area operator *(AreaPerLength areaPerLength, Length length)
+        {
+            return Area.FromSquareMeters(areaPerLength.SquareMetersPerMeter * length.Meters);
         }
 
         #endregion
