@@ -37,7 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Angle :
-        IArithmeticQuantity<Angle, AngleUnit>,
+        ILinearQuantity<Angle, AngleUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Angle, Angle, double>,
         IDivisionOperators<Angle, RotationalSpeed, Duration>,
