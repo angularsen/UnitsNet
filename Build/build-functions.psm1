@@ -54,9 +54,12 @@ function Start-Tests {
     # dotnet commands (xunit, dotcover) must run in same dir as project
     push-location $projectDir
 
-    # Create coverage report for this test project
+    # Build validates every target framework. Run tests and collect coverage only on the latest
+    # .NET runtime because net8.0, net9.0, and net10.0 compile the same code paths. The separate
+    # CLR4 workflow tests the meaningfully different netstandard2.0 assets on .NET Framework.
     & dotnet dotcover test `
       --no-build `
+      --framework net10.0 `
       --logger trx `
       --results-directory "$testReportDir" `
       --dotCoverFilters="+:module=UnitsNet*;-:module=*Tests" `
