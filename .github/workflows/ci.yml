@@ -83,6 +83,9 @@ jobs:
     timeout-minutes: 10
     if: github.ref == 'refs/heads/master' && github.repository_owner == 'angularsen'
     environment: Publish
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
     - name: Download NuGet packages
@@ -96,8 +99,14 @@ jobs:
       with:
         dotnet-version: 10.0.x
 
+    - name: Log in to NuGet with trusted publishing
+      uses: NuGet/login@v1
+      id: nuget-login
+      with:
+        user: angularsen
+
     - name: Push to nuget.org
       env:
-        NUGET_ORG_APIKEY: ${{ secrets.NUGET_ORG_APIKEY }}
-      run: dotnet nuget push "**/*.nupkg" --skip-duplicate --api-key "$NUGET_ORG_APIKEY" --source https://api.nuget.org/v3/index.json
+        NUGET_API_KEY: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
+      run: dotnet nuget push "**/*.nupkg" --skip-duplicate --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json
       working-directory: nugets
