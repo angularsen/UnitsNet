@@ -42,6 +42,7 @@ namespace UnitsNet.Tests
             Assertion(3, AreaUnit.UsSurveySquareFoot, Quantity.From(3, AreaUnit.UsSurveySquareFoot));
             Assertion(3, AreaDensityUnit.PoundPerThousandSquareFeet, Quantity.From(3, AreaDensityUnit.PoundPerThousandSquareFeet));
             Assertion(3, AreaMomentOfInertiaUnit.MillimeterToTheFourth, Quantity.From(3, AreaMomentOfInertiaUnit.MillimeterToTheFourth));
+            Assertion(3, AreaPerLengthUnit.SquareMillimeterPerMeter, Quantity.From(3, AreaPerLengthUnit.SquareMillimeterPerMeter));
             Assertion(3, BitRateUnit.TeraoctetPerSecond, Quantity.From(3, BitRateUnit.TeraoctetPerSecond));
             Assertion(3, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, Quantity.From(3, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour));
             Assertion(3, CoefficientOfThermalExpansionUnit.PpmPerKelvin, Quantity.From(3, CoefficientOfThermalExpansionUnit.PpmPerKelvin));
@@ -177,6 +178,7 @@ namespace UnitsNet.Tests
             Assertion(Area.Info, Area.Zero);
             Assertion(AreaDensity.Info, AreaDensity.Zero);
             Assertion(AreaMomentOfInertia.Info, AreaMomentOfInertia.Zero);
+            Assertion(AreaPerLength.Info, AreaPerLength.Zero);
             Assertion(BitRate.Info, BitRate.Zero);
             Assertion(BrakeSpecificFuelConsumption.Info, BrakeSpecificFuelConsumption.Zero);
             Assertion(CoefficientOfThermalExpansion.Info, CoefficientOfThermalExpansion.Zero);

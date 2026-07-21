@@ -40,6 +40,7 @@ namespace UnitsNet
         ILinearQuantity<Length, LengthUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Length, Length, double>,
+        IMultiplyOperators<Length, AreaPerLength, Area>,
         IMultiplyOperators<Length, Length, Area>,
         IDivisionOperators<Length, ReciprocalLength, Area>,
         IMultiplyOperators<Length, Density, AreaDensity>,
@@ -1165,6 +1166,12 @@ namespace UnitsNet
         public ReciprocalLength Inverse()
         {
             return ReciprocalLength.FromInverseMeters(1 / Meters);
+        }
+
+        /// <summary>Get <see cref="Area"/> from <see cref="Length"/> * <see cref="AreaPerLength"/>.</summary>
+        public static Area operator *(Length length, AreaPerLength areaPerLength)
+        {
+            return Area.FromSquareMeters(length.Meters * areaPerLength.SquareMetersPerMeter);
         }
 
         /// <summary>Get <see cref="Area"/> from <see cref="Length"/> * <see cref="Length"/>.</summary>
