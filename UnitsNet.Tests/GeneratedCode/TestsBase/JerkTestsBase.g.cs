@@ -808,7 +808,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<JerkUnit>();
+            var units = EnumHelper.GetValues<JerkUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

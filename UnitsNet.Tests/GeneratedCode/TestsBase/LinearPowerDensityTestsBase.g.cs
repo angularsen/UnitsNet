@@ -983,7 +983,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<LinearPowerDensityUnit>();
+            var units = EnumHelper.GetValues<LinearPowerDensityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

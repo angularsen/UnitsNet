@@ -703,7 +703,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<AreaDensityUnit>();
+            var units = EnumHelper.GetValues<AreaDensityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);

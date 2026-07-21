@@ -641,7 +641,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void HasAtLeastOneAbbreviationSpecified()
         {
-            var units = Enum.GetValues<ElectricConductivityUnit>();
+            var units = EnumHelper.GetValues<ElectricConductivityUnit>();
             foreach (var unit in units)
             {
                 var defaultAbbreviation = UnitsNetSetup.Default.UnitAbbreviations.GetDefaultAbbreviation(unit);
