@@ -40,7 +40,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct FuelEfficiency :
-        IArithmeticQuantity<FuelEfficiency, FuelEfficiencyUnit>,
+        ILinearQuantity<FuelEfficiency, FuelEfficiencyUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<FuelEfficiency, FuelEfficiency, double>,
         IComparisonOperators<FuelEfficiency, FuelEfficiency, bool>,

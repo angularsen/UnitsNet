@@ -37,7 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct MolarFlow :
-        IArithmeticQuantity<MolarFlow, MolarFlowUnit>,
+        ILinearQuantity<MolarFlow, MolarFlowUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<MolarFlow, MolarFlow, double>,
         IMultiplyOperators<MolarFlow, Duration, AmountOfSubstance>,

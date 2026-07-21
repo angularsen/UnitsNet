@@ -11,13 +11,6 @@ namespace UnitsNet;
 /// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
 /// <typeparam name="TUnitType">The underlying unit enum type.</typeparam>
 public interface ILogarithmicQuantity<TSelf, TUnitType> : IQuantity<TSelf, TUnitType>, ILogarithmicQuantity<TSelf>
-#if NET7_0_OR_GREATER
-    , IAdditionOperators<TSelf, TSelf, TSelf>
-    , ISubtractionOperators<TSelf, TSelf, TSelf>
-    , IMultiplyOperators<TSelf, double, TSelf>
-    , IDivisionOperators<TSelf, double, TSelf>
-    , IUnaryNegationOperators<TSelf, TSelf>
-#endif
     where TSelf : ILogarithmicQuantity<TSelf, TUnitType>
     where TUnitType : struct, Enum
 {
@@ -34,7 +27,7 @@ public interface ILogarithmicQuantity<TSelf, TUnitType> : IQuantity<TSelf, TUnit
 ///     to logarithmic quantities, including arithmetic operations and a logarithmic scaling factor.
 ///     The logarithmic scale assumed here is base-10.
 /// </remarks>
-public interface ILogarithmicQuantity<TSelf> : IQuantityOfType<TSelf>
+public interface ILogarithmicQuantity<TSelf> : IQuantityOfType<TSelf>, IArithmeticQuantity<TSelf>
 #if NET7_0_OR_GREATER
     , IMultiplicativeIdentity<TSelf, TSelf>
 #endif

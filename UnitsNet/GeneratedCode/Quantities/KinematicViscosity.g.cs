@@ -40,7 +40,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct KinematicViscosity :
-        IArithmeticQuantity<KinematicViscosity, KinematicViscosityUnit>,
+        ILinearQuantity<KinematicViscosity, KinematicViscosityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<KinematicViscosity, KinematicViscosity, double>,
         IMultiplyOperators<KinematicViscosity, Duration, Area>,

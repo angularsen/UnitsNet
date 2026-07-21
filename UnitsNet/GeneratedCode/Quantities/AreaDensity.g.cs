@@ -37,7 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct AreaDensity :
-        IArithmeticQuantity<AreaDensity, AreaDensityUnit>,
+        ILinearQuantity<AreaDensity, AreaDensityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<AreaDensity, AreaDensity, double>,
         IDivisionOperators<AreaDensity, Length, Density>,

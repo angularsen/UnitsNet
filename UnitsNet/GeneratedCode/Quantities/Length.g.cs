@@ -37,7 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Length :
-        IArithmeticQuantity<Length, LengthUnit>,
+        ILinearQuantity<Length, LengthUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Length, Length, double>,
         IMultiplyOperators<Length, Length, Area>,
