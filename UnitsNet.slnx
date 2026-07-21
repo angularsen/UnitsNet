@@ -9,7 +9,6 @@
     <File Path=".editorconfig" />
     <File Path=".gitattributes" />
     <File Path=".gitignore" />
-    <File Path="azure-pipelines.yml" />
     <File Path="build.bat" />
     <File Path="clean.bat" />
     <File Path="CODE_OF_CONDUCT.md" />
