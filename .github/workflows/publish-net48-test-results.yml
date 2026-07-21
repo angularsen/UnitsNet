@@ -1,0 +1,50 @@
+name: Publish .NET Framework 4.8 Test Results
+
+on:
+  workflow_run:
+    workflows:
+      - .NET Framework 4.8 Compatibility
+    types:
+      - completed
+
+# This workflow receives write permission because it never checks out or executes contributor
+# code. It only downloads immutable artifacts from the exact workflow run that triggered it.
+permissions: {}
+
+jobs:
+  publish:
+    name: Publish test results
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.conclusion == 'failure' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      actions: read
+      checks: write
+
+    steps:
+    - name: Download test results
+      uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
+      with:
+        name: net48-test-results
+        path: artifacts/net48-test-results
+        github-token: ${{ github.token }}
+        run-id: ${{ github.event.workflow_run.id }}
+
+    - name: Download workflow event
+      uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
+      with:
+        name: net48-event
+        path: artifacts/net48-event
+        github-token: ${{ github.token }}
+        run-id: ${{ github.event.workflow_run.id }}
+
+    - name: Publish test results
+      if: ${{ hashFiles('artifacts/net48-test-results/*.trx') != '' }}
+      uses: EnricoMi/publish-unit-test-result-action@d0a4676d0e0b938bc201470d88276b7c74c712b3 # v2
+      with:
+        check_name: .NET Framework 4.8 Test Results
+        comment_mode: off
+        commit: ${{ github.event.workflow_run.head_sha }}
+        event_file: artifacts/net48-event/event.json
+        event_name: ${{ github.event.workflow_run.event }}
+        files: artifacts/net48-test-results/*.trx
