@@ -1,0 +1,237 @@
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+
+extern alias Generated;
+extern alias Legacy;
+extern alias LegacyScenario;
+
+using System.Reflection;
+using Xunit;
+
+namespace UnitsNetGen.Compatibility.Tests;
+
+public sealed class CompatibilityTests
+{
+    public static IEnumerable<object[]> QuantityApis()
+    {
+        yield return QuantityApi(
+            typeof(Legacy::UnitsNet.Length),
+            typeof(Generated::UnitsNet.Length),
+            "Meters",
+            "Kilometers",
+            "FromMeters",
+            "FromKilometers",
+            "op_Multiply");
+        yield return QuantityApi(
+            typeof(Legacy::UnitsNet.Mass),
+            typeof(Generated::UnitsNet.Mass),
+            "Kilograms",
+            "FromKilograms");
+        yield return QuantityApi(
+            typeof(Legacy::UnitsNet.Duration),
+            typeof(Generated::UnitsNet.Duration),
+            "Seconds",
+            "FromSeconds");
+        yield return QuantityApi(
+            typeof(Legacy::UnitsNet.Area),
+            typeof(Generated::UnitsNet.Area),
+            "SquareMeters",
+            "FromSquareMeters");
+        yield return QuantityApi(
+            typeof(Legacy::UnitsNet.Speed),
+            typeof(Generated::UnitsNet.Speed),
+            "MetersPerSecond",
+            "FromMetersPerSecond");
+        yield return QuantityApi(
+            typeof(Legacy::UnitsNet.Acceleration),
+            typeof(Generated::UnitsNet.Acceleration),
+            "MetersPerSecondSquared",
+            "FromMetersPerSecondSquared");
+        yield return QuantityApi(
+            typeof(Legacy::UnitsNet.Force),
+            typeof(Generated::UnitsNet.Force),
+            "Newtons",
+            "FromNewtons");
+        yield return QuantityApi(
+            typeof(Legacy::UnitsNet.Pressure),
+            typeof(Generated::UnitsNet.Pressure),
+            "Pascals",
+            "FromPascals");
+        yield return QuantityApi(
+            typeof(Legacy::UnitsNet.Energy),
+            typeof(Generated::UnitsNet.Energy),
+            "Joules",
+            "FromJoules");
+        yield return QuantityApi(
+            typeof(Legacy::UnitsNet.Power),
+            typeof(Generated::UnitsNet.Power),
+            "Watts",
+            "FromWatts");
+        yield return QuantityApi(
+            typeof(Legacy::UnitsNet.Temperature),
+            typeof(Generated::UnitsNet.Temperature),
+            "DegreesCelsius",
+            "DegreesFahrenheit",
+            "FromDegreesCelsius",
+            "FromDegreesFahrenheit");
+        yield return QuantityApi(
+            typeof(Legacy::UnitsNet.Level),
+            typeof(Generated::UnitsNet.Level),
+            "Decibels",
+            "FromDecibels",
+            "op_Addition");
+        yield return QuantityApi(
+            typeof(Legacy::UnitsNet.Information),
+            typeof(Generated::UnitsNet.Information),
+            "Bits",
+            "Kibibytes",
+            "FromBits",
+            "FromKibibytes");
+    }
+
+    public static IEnumerable<object[]> UnitEnums()
+    {
+        yield return new object[]
+        {
+            typeof(Legacy::UnitsNet.Units.LengthUnit),
+            typeof(Generated::UnitsNet.Units.LengthUnit),
+        };
+        yield return UnitEnum<Legacy::UnitsNet.Units.MassUnit, Generated::UnitsNet.Units.MassUnit>();
+        yield return UnitEnum<Legacy::UnitsNet.Units.DurationUnit, Generated::UnitsNet.Units.DurationUnit>();
+        yield return new object[]
+        {
+            typeof(Legacy::UnitsNet.Units.AreaUnit),
+            typeof(Generated::UnitsNet.Units.AreaUnit),
+        };
+        yield return UnitEnum<Legacy::UnitsNet.Units.SpeedUnit, Generated::UnitsNet.Units.SpeedUnit>();
+        yield return UnitEnum<Legacy::UnitsNet.Units.AccelerationUnit, Generated::UnitsNet.Units.AccelerationUnit>();
+        yield return UnitEnum<Legacy::UnitsNet.Units.ForceUnit, Generated::UnitsNet.Units.ForceUnit>();
+        yield return UnitEnum<Legacy::UnitsNet.Units.PressureUnit, Generated::UnitsNet.Units.PressureUnit>();
+        yield return UnitEnum<Legacy::UnitsNet.Units.EnergyUnit, Generated::UnitsNet.Units.EnergyUnit>();
+        yield return UnitEnum<Legacy::UnitsNet.Units.PowerUnit, Generated::UnitsNet.Units.PowerUnit>();
+        yield return new object[]
+        {
+            typeof(Legacy::UnitsNet.Units.TemperatureUnit),
+            typeof(Generated::UnitsNet.Units.TemperatureUnit),
+        };
+        yield return new object[]
+        {
+            typeof(Legacy::UnitsNet.Units.LevelUnit),
+            typeof(Generated::UnitsNet.Units.LevelUnit),
+        };
+        yield return new object[]
+        {
+            typeof(Legacy::UnitsNet.Units.InformationUnit),
+            typeof(Generated::UnitsNet.Units.InformationUnit),
+        };
+    }
+
+    [Fact]
+    public void LinkedConsumer_ProducesSameOutput()
+    {
+        string legacy = LegacyScenario::UnitsNetGen.Compatibility.CompatibilityScenario.Run();
+        string generated = Generated::UnitsNetGen.Compatibility.CompatibilityScenario.Run();
+
+        Assert.Equal(legacy, generated);
+    }
+
+    [Fact]
+    public void BothImplementations_ImplementSharedCoreContract()
+    {
+        Type contract = typeof(UnitsNet.Core.IQuantity<double>);
+        Type[] legacyTypes =
+        {
+            typeof(Legacy::UnitsNet.Length),
+            typeof(Legacy::UnitsNet.Mass),
+            typeof(Legacy::UnitsNet.Duration),
+            typeof(Legacy::UnitsNet.Area),
+            typeof(Legacy::UnitsNet.Speed),
+            typeof(Legacy::UnitsNet.Acceleration),
+            typeof(Legacy::UnitsNet.Force),
+            typeof(Legacy::UnitsNet.Pressure),
+            typeof(Legacy::UnitsNet.Energy),
+            typeof(Legacy::UnitsNet.Power),
+            typeof(Legacy::UnitsNet.Temperature),
+            typeof(Legacy::UnitsNet.Level),
+            typeof(Legacy::UnitsNet.Information),
+        };
+        Type[] generatedTypes =
+        {
+            typeof(Generated::UnitsNet.Length),
+            typeof(Generated::UnitsNet.Mass),
+            typeof(Generated::UnitsNet.Duration),
+            typeof(Generated::UnitsNet.Area),
+            typeof(Generated::UnitsNet.Speed),
+            typeof(Generated::UnitsNet.Acceleration),
+            typeof(Generated::UnitsNet.Force),
+            typeof(Generated::UnitsNet.Pressure),
+            typeof(Generated::UnitsNet.Energy),
+            typeof(Generated::UnitsNet.Power),
+            typeof(Generated::UnitsNet.Temperature),
+            typeof(Generated::UnitsNet.Level),
+            typeof(Generated::UnitsNet.Information),
+        };
+
+        Assert.All(legacyTypes, type => Assert.True(contract.IsAssignableFrom(type), type.FullName));
+        Assert.All(generatedTypes, type => Assert.True(contract.IsAssignableFrom(type), type.FullName));
+    }
+
+    [Theory]
+    [MemberData(nameof(QuantityApis))]
+    public void GeneratedQuantity_ExposesCompatibleApiSubset(
+        Type legacyType,
+        Type generatedType,
+        string[] quantitySpecificMembers)
+    {
+        string[] commonMembers =
+        {
+            "Value",
+            "Unit",
+            "As",
+            "ToUnit",
+            "Parse",
+            "TryParse",
+            "ToString",
+        };
+        var selectedNames = new HashSet<string>(commonMembers.Concat(quantitySpecificMembers));
+        HashSet<string> legacySurface = GetSurface(legacyType, selectedNames);
+        HashSet<string> generatedSurface = GetSurface(generatedType, selectedNames);
+
+        Assert.NotEmpty(generatedSurface);
+        Assert.Subset(legacySurface, generatedSurface);
+    }
+
+    [Theory]
+    [MemberData(nameof(UnitEnums))]
+    public void GeneratedUnitEnum_MatchesUnitsNet(Type legacyType, Type generatedType)
+    {
+        Assert.Equal(
+            Enum.GetNames(legacyType).OrderBy(name => name, StringComparer.Ordinal),
+            Enum.GetNames(generatedType).OrderBy(name => name, StringComparer.Ordinal));
+    }
+
+    private static object[] QuantityApi(Type legacyType, Type generatedType, params string[] members) =>
+        new object[] { legacyType, generatedType, members };
+
+    private static object[] UnitEnum<TLegacy, TGenerated>() => new object[] { typeof(TLegacy), typeof(TGenerated) };
+
+    private static HashSet<string> GetSurface(Type type, ISet<string> selectedNames)
+    {
+        const BindingFlags flags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static |
+                                   BindingFlags.DeclaredOnly;
+        IEnumerable<string> properties = type.GetProperties(flags)
+            .Where(property => selectedNames.Contains(property.Name))
+            .Select(property => $"P:{property.Name}:{TypeName(property.PropertyType)}");
+        IEnumerable<string> methods = type.GetMethods(flags)
+            .Where(method => selectedNames.Contains(method.Name))
+            .Select(MethodSignature);
+        return properties.Concat(methods).ToHashSet(StringComparer.Ordinal);
+    }
+
+    private static string MethodSignature(MethodInfo method)
+    {
+        string parameters = string.Join(",", method.GetParameters().Select(parameter => TypeName(parameter.ParameterType)));
+        return $"M:{method.Name}:{TypeName(method.ReturnType)}({parameters})";
+    }
+
+    private static string TypeName(Type type) => type.FullName ?? type.Name;
+}

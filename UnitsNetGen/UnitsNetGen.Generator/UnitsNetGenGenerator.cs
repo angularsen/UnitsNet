@@ -20,6 +20,8 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
     private const string QuantityAttribute = "UnitsNetGen.Generation.QuantityDefinitionAttribute";
     private const string GenerationNamespace = "UnitsNetGen.Generation";
     private const string BuiltInsNamespace = "UnitsNetGen.BuiltIns";
+    private const string IncludeName = "IInclude";
+    private const string IncludeProfileName = "IIncludeProfile";
 
     private static readonly DiagnosticDescriptor MissingDefinition = new DiagnosticDescriptor(
         "UNG001",
@@ -119,17 +121,24 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
         }
 
         var requests = new Dictionary<string, SelectionRequest>(StringComparer.Ordinal);
+        bool emitUnitsNetCompatibilityContracts = false;
 
         foreach (INamedTypeSymbol module in moduleSymbols.OfType<INamedTypeSymbol>())
         {
-            foreach (INamedTypeSymbol inheritedInterface in module.AllInterfaces)
+            string? moduleNamespace = GetModuleTargetNamespace(module);
+            emitUnitsNetCompatibilityContracts |= string.Equals(moduleNamespace, "UnitsNet", StringComparison.Ordinal);
+            INamedTypeSymbol[] directIncludes = module.Interfaces.Where(IsInclude).ToArray();
+            var directDefinitions = new HashSet<ITypeSymbol>(
+                directIncludes
+                    .Where(include => include.TypeArguments.Length > 0)
+                    .Select(include => include.TypeArguments[0]),
+                SymbolEqualityComparer.Default);
+            IEnumerable<INamedTypeSymbol> profileIncludes = GetProfileIncludes(module)
+                .Where(include => include.TypeArguments.Length > 0 && !directDefinitions.Contains(include.TypeArguments[0]));
+
+            foreach (INamedTypeSymbol inheritedInterface in profileIncludes.Concat(directIncludes))
             {
                 INamedTypeSymbol genericDefinition = inheritedInterface.OriginalDefinition;
-                if (genericDefinition.Name != "IInclude" || genericDefinition.ContainingNamespace.ToDisplayString() != GenerationNamespace)
-                {
-                    continue;
-                }
-
                 ImmutableArray<ITypeSymbol> arguments = inheritedInterface.TypeArguments;
                 if (arguments.Length is < 1 or > 2 || arguments[0] is not INamedTypeSymbol definitionMarker)
                 {
@@ -141,6 +150,11 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
                 {
                     context.ReportDiagnostic(Diagnostic.Create(MissingDefinition, module.Locations.FirstOrDefault(), definitionMarker.ToDisplayString()));
                     continue;
+                }
+
+                if (!string.IsNullOrWhiteSpace(moduleNamespace))
+                {
+                    definition = definition.WithTargetNamespace(moduleNamespace!);
                 }
 
                 string key = definition.TargetNamespace + "." + definition.Name;
@@ -210,12 +224,86 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
             selections.Add(new QuantitySelection(request.Definition, distinctUnits));
         }
 
-        var selectedNames = new HashSet<string>(selections.Select(selection => selection.Definition.Name), StringComparer.Ordinal);
+        if (emitUnitsNetCompatibilityContracts)
+        {
+            context.AddSource(
+                "UnitsNetGen.Compatibility.g.cs",
+                SourceText.From(BootstrapSource.CompatibilityText, System.Text.Encoding.UTF8));
+        }
+
         foreach (QuantitySelection selection in selections)
         {
+            var selectedNames = new HashSet<string>(
+                selections
+                    .Where(candidate => candidate.Definition.TargetNamespace == selection.Definition.TargetNamespace)
+                    .Select(candidate => candidate.Definition.Name),
+                StringComparer.Ordinal);
             string hintName = selection.Definition.TargetNamespace.Replace('.', '_') + "_" + selection.Definition.Name + ".g.cs";
             context.AddSource(hintName, SourceText.From(QuantityEmitter.Emit(selection, selectedNames), System.Text.Encoding.UTF8));
         }
+    }
+
+    private static bool IsInclude(INamedTypeSymbol candidate)
+    {
+        INamedTypeSymbol definition = candidate.OriginalDefinition;
+        return definition.Name == IncludeName &&
+               definition.ContainingNamespace.ToDisplayString() == GenerationNamespace;
+    }
+
+    private static bool IsIncludeProfile(INamedTypeSymbol candidate)
+    {
+        INamedTypeSymbol definition = candidate.OriginalDefinition;
+        return definition.Name == IncludeProfileName &&
+               definition.ContainingNamespace.ToDisplayString() == GenerationNamespace;
+    }
+
+    private static IEnumerable<INamedTypeSymbol> GetProfileIncludes(INamedTypeSymbol module)
+    {
+        var includes = new List<INamedTypeSymbol>();
+        var pending = new Queue<INamedTypeSymbol>();
+        var visited = new HashSet<INamedTypeSymbol>(SymbolEqualityComparer.Default);
+
+        foreach (INamedTypeSymbol profileSelection in module.AllInterfaces.Where(IsIncludeProfile))
+        {
+            if (profileSelection.TypeArguments.Length == 1 &&
+                profileSelection.TypeArguments[0] is INamedTypeSymbol profile)
+            {
+                pending.Enqueue(profile);
+            }
+        }
+
+        while (pending.Count > 0)
+        {
+            INamedTypeSymbol profile = pending.Dequeue();
+            if (!visited.Add(profile))
+            {
+                continue;
+            }
+
+            includes.AddRange(profile.AllInterfaces.Where(IsInclude));
+            foreach (INamedTypeSymbol nestedSelection in profile.AllInterfaces.Where(IsIncludeProfile))
+            {
+                if (nestedSelection.TypeArguments.Length == 1 &&
+                    nestedSelection.TypeArguments[0] is INamedTypeSymbol nestedProfile)
+                {
+                    pending.Enqueue(nestedProfile);
+                }
+            }
+        }
+
+        return includes;
+    }
+
+    private static string? GetModuleTargetNamespace(INamedTypeSymbol module)
+    {
+        AttributeData? moduleAttribute = module.GetAttributes()
+            .FirstOrDefault(attribute => AttributeName(attribute) == ModuleAttribute);
+        if (moduleAttribute?.ConstructorArguments.Length != 1)
+        {
+            return null;
+        }
+
+        return moduleAttribute.ConstructorArguments[0].Value as string;
     }
 
     private static QuantityDefinition? ResolveDefinition(

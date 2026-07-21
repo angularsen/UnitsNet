@@ -1,23 +1,13 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 
 using UnitsNetGen;
 using UnitsNetGen.Generation;
-using Catalog = UnitsNetGen.BuiltIns;
+using AllSiProfile = UnitsNetGen.Profiles.AllSi;
 
 namespace UnitsNetGen.AllSi.Sample;
 
 [UnitsNetModule]
-internal interface AllSiUnits :
-    IInclude<Catalog.Length>,
-    IInclude<Catalog.Mass>,
-    IInclude<Catalog.Duration>,
-    IInclude<Catalog.Area>,
-    IInclude<Catalog.Speed>,
-    IInclude<Catalog.Acceleration>,
-    IInclude<Catalog.Force>,
-    IInclude<Catalog.Pressure>,
-    IInclude<Catalog.Energy>,
-    IInclude<Catalog.Power>
+internal interface AllSiUnits : IIncludeProfile<AllSiProfile>
 {
 }
 

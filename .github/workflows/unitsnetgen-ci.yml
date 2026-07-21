@@ -60,7 +60,7 @@ jobs:
         run: dotnet build UnitsNetGen.slnx --configuration Release --no-restore --no-incremental -p:UnitsNetGenSampleUpdateLocalPackageOnBuild=true
 
       - name: Test
-        run: dotnet test UnitsNetGen/UnitsNetGen.Tests/UnitsNetGen.Tests.csproj --configuration Release --no-build
+        run: dotnet test UnitsNetGen.slnx --configuration Release --no-build -p:UnitsNetGenSampleUpdateLocalPackageOnBuild=false
 
       - name: Pack
         run: dotnet pack UnitsNetGen/UnitsNetGen/UnitsNetGen.csproj --configuration Release --no-build --output Artifacts/UnitsNetGen.CI -p:UnitsNetGenPackForPublish=true

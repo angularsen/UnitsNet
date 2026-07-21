@@ -6,8 +6,9 @@ UnitsNetGen explores a compile-time composition model for a future UnitsNet arch
 author selects only the quantities and units that belong in an assembly, while generated quantity
 structs keep the strongly typed API and share a small runtime for conversion, parsing, and formatting.
 
-This is intentionally standalone. It does not reference or reuse any existing UnitsNet interface,
-runtime type, generated type, or code-generation model.
+The generator, runtime, and generated types do not reuse the existing UnitsNet runtime or
+code-generation model. UnitsNet and UnitsNetGen deliberately share the small `UnitsNet.Core`
+contract assembly across the quantity catalog.
 
 The experiment is inspired by
 [the modular-package experiment](https://github.com/angularsen/UnitsNet/pull/1181),
@@ -44,22 +45,32 @@ using UnitsNetGen.Generation;
 [UnitsNetModule]
 internal interface EngineeringUnits :
     IInclude<Length>,
-    IInclude<Force>,
-    IInclude<Pressure>
+    IInclude<Temperature>,
+    IInclude<Information>
 {
 }
+```
+
+Pass a target namespace to the module attribute to generate a source-compatible surface. In
+compatibility mode, quantities use `UnitsNet`, unit enums use `UnitsNet.Units`, and generated
+quantities implement the exercised `UnitsNet.IQuantity<TUnit>` contract:
+
+```csharp
+[UnitsNetModule("UnitsNet")]
+internal interface CompatibilityUnits :
+    IInclude<Length>,
+    IInclude<Temperature>;
 ```
 
 Select units with a regular expression by defining a named unit set:
 
 ```csharp
-[UnitSet("regex:.*Gram$")]
-internal interface GramUnits;
+[UnitSet("regex:.*Meter$")]
+internal interface MeterUnits;
 
 [UnitsNetModule]
 internal interface LeanUnits :
-    IInclude<Length>,
-    IInclude<Mass, GramUnits>
+    IInclude<Length, MeterUnits>
 {
 }
 ```
@@ -69,6 +80,24 @@ timeout. Patterns prefixed with `glob:` support `*`, and bare patterns retain gl
 convenience. The generator always includes the base unit so every selected quantity remains
 convertible. It reports compile-time diagnostics for invalid expressions and patterns that match no
 units.
+
+Quantity profiles compose reusable catalog selections:
+
+```csharp
+using UnitsNetGen.Profiles;
+
+[UnitsNetModule]
+internal interface ApplicationUnits :
+    IIncludeProfile<AllQuantities>,
+    IInclude<HowMuchDefinition>;
+```
+
+`AllQuantities` contains the built-in catalog, while `AllSi` selects the SI relationship sample.
+Consumers can define profiles from
+`IInclude<TDefinition>` and nest them through `IIncludeProfile<TProfile>`. Profile selections are
+defaults: direct selections on the module override a profile's unit selection for the same quantity.
+Selections from separate module interfaces remain additive because modules are merged into one
+generated surface per compilation.
 
 Custom quantities use JSON definition files. The custom MSBuild item is converted to Roslyn
 `AdditionalFiles` by package assets under `buildTransitive/`:
@@ -112,18 +141,51 @@ JSON definitions while the module that selects them owns the generated runtime t
 
 ## Projects
 
+- `UnitsNet.Core`: stable semantic identity and numeric-generic contracts shared by both implementations.
 - `UnitsNetGen`: the lean runtime and the new `IQuantity<TUnit>` contract.
 - `UnitsNetGen.Generator`: the incremental generator, marker bootstrap source, built-in catalog,
   diagnostics, and emitters.
 - `UnitsNetGen.Tests`: generated API and runtime behavior tests.
-- `Samples/UnitsNetGen.AllSi.Sample`: all ten POC quantities and conditional derived-quantity operators.
-- `Samples/UnitsNetGen.Lean.Sample`: Length plus only Mass units matching `regex:.*Gram$`.
+- `UnitsNetGen.Compatibility.Tests`: linked-output, selected public-API, unit-name, and shared-contract
+  comparisons.
+- `Samples/UnitsNetGen.AllSi.Sample`: the SI quantity chain from Length and Duration through Speed,
+  Acceleration, Force, Pressure, Energy, and Power.
+- `Samples/UnitsNetGen.Representative.Sample`: a varied catalog selection and conditional
+  cross-quantity operators.
+- `Samples/UnitsNetGen.Lean.Sample`: filtered Length and Information unit sets.
+- `Samples/UnitsNetGen.Compatibility.UnitsNet.Sample`: the shared compatibility consumer using
+  UnitsNet v6.
+- `Samples/UnitsNetGen.Compatibility.Generated.Sample`: the exact same linked consumer source using
+  generated quantities.
 - `Samples/UnitsNetGen.Custom.Sample`: a fictional `HowMuch` quantity in its own namespace.
 - `Samples/UnitsNetGen.NetStandard.Sample`: compile-time coverage for a generated module targeting `netstandard2.0`.
 - `Samples/UnitsNetGen.NuGet.Sample`: an isolated real-consumer scenario using only a locally packed
   `PackageReference` and consumer-owned JSON.
 
-The projects live in their own solution and do not participate in the existing UnitsNet solution.
+The compatibility test project uses aliased references to compare both implementations' selected
+public API and unit names without introducing concrete-type ambiguity. The projects live in their
+own solution and do not participate in the existing UnitsNet solution.
+
+## Compatibility boundaries
+
+The linked-source samples establish source compatibility for factories, properties, unit enums,
+conversions, parsing, formatting, operators, and `IQuantity<TUnit>` calls. Compatibility tests compare
+the selected public surfaces and report drift between UnitsNet and UnitsNetGen.
+
+`UnitsNet.Core.IQuantity<TValue>` establishes contract compatibility without exposing a concrete unit
+enum. `UnitsNet.Core.IQuantity<TUnit, TValue>` additionally exposes the representation's unit type.
+Both contracts provide a semantic `QuantityId`, stored value/unit, and base value. A generic library
+can therefore consume either implementation even though their concrete types differ.
+
+The experiment does not provide binary compatibility between concrete quantity structs. CLR type
+identity includes the defining assembly, so `UnitsNet.Length` from `UnitsNet.dll` and a type with the
+same full name generated into an application assembly are not assignment-compatible. Stable public
+APIs must use the shared contracts, explicit data transfer, or a quantity module generated once and
+referenced by downstream consumers.
+
+The `UnitsNet.Core` project is a separate signed assembly and prerelease package. Packing UnitsNetGen
+also packs Core to the same output directory and records it as a package dependency, keeping the
+real-consumer sample and CI artifacts self-contained while the POC evolves.
 
 The NuGet sample has a local-only MSBuild dependency that incrementally packs changed UnitsNetGen or
 generator sources before restore, then refreshes its floating `1.0.0-local.*` package before
@@ -220,7 +282,7 @@ For each selected definition, the generator emits:
 - localized unit metadata that delegates shared behavior to the runtime;
 - direct, validated conversion switches for affine and nonlinear conversions.
 
-When all operands/results are present, it also emits selected SI relationships:
+When all operands and results are selected, the generator emits relationships such as:
 
 - `Length * Length -> Area`
 - `Length / Duration -> Speed`
@@ -230,22 +292,27 @@ When all operands/results are present, it also emits selected SI relationships:
 - `Force * Length -> Energy`
 - `Energy / Duration -> Power`
 
-The relationship operators work in base units and return the result's base unit. They disappear when
-a module omits one of the involved quantities, avoiding hidden dependencies.
+Relationship operators work in base units and return the result's base unit. They disappear when a
+module omits any operand or result quantity, avoiding hidden dependencies. The full implementation
+can derive this relationship inventory from catalog metadata instead of hardcoding quantity names.
 
-## POC catalog
+## Catalog
 
-The embedded catalog is deliberately small: Length, Mass, Duration, Area, Speed, Acceleration, Force,
-Pressure, Energy, and Power. JSON-backed custom definitions exercise multiple cultures, multiple
-abbreviations, prefix expansion, arithmetic conversion expressions, and allowlisted nonlinear `Math`
-functions.
+The catalog model is designed for all UnitsNet quantity and unit definitions. Definitions come from
+the UnitsNet JSON catalog and cover linear, affine, and logarithmic behavior; SI, non-SI,
+decimal-prefix, and binary-prefix units; localized abbreviations; and cross-quantity relationships.
+
+`AllQuantities` selects the available built-in catalog. `AllSi` exercises the complete SI relationship
+chain in a focused sample, while the representative sample provides a faster varied selection for
+day-to-day generator iteration. JSON-backed third-party definitions participate in the same
+selection, profile, conversion, localization, and relationship model as built-ins.
 
 ## Deliberate limitations
 
-- This is a design probe, not a compatibility layer for UnitsNet v6.
+- This is a design probe for a future architecture, not yet a committed replacement for UnitsNet v6.
 - Quantity values use `double` only.
-- Serialization, unit systems, generic numeric storage, logarithmic quantity semantics, culture
-  selection, and rich parse ambiguity handling are deferred.
+- Serialization, unit systems, generic numeric storage, culture selection, and rich parse ambiguity
+  handling are deferred.
 - Regex/glob patterns filter expanded unit names, not abbreviations.
 - Prefix expansion uses a common SI/binary prefix table; it does not yet reproduce every
   culture-specific prefix convention from UnitsNet v6.

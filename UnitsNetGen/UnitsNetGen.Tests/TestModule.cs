@@ -5,8 +5,8 @@ using Catalog = UnitsNetGen.BuiltIns;
 
 namespace UnitsNetGen.Tests;
 
-[UnitSet("regex:.*Gram$")]
-internal interface GramUnits
+[UnitSet("regex:.*Byte$")]
+internal interface ByteUnits
 {
 }
 
@@ -15,18 +15,19 @@ internal interface HowMuchDefinition
 {
 }
 
+internal interface RepresentativeProfile :
+    IInclude<Catalog.Length>,
+    IInclude<Catalog.Area>,
+    IInclude<Catalog.Temperature>,
+    IInclude<Catalog.Level>,
+    IInclude<Catalog.Information>
+{
+}
+
 [UnitsNetModule]
 internal interface TestUnits :
-    IInclude<Catalog.Length>,
-    IInclude<Catalog.Mass, GramUnits>,
-    IInclude<Catalog.Duration>,
-    IInclude<Catalog.Area>,
-    IInclude<Catalog.Speed>,
-    IInclude<Catalog.Acceleration>,
-    IInclude<Catalog.Force>,
-    IInclude<Catalog.Pressure>,
-    IInclude<Catalog.Energy>,
-    IInclude<Catalog.Power>,
+    IIncludeProfile<RepresentativeProfile>,
+    IInclude<Catalog.Information, ByteUnits>,
     IInclude<HowMuchDefinition>
 {
 }

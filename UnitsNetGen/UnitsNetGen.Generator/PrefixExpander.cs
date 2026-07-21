@@ -29,6 +29,9 @@ internal static class PrefixExpander
         ["Kibi"] = new PrefixInfo("Kibi", "Ki", 1024),
         ["Mebi"] = new PrefixInfo("Mebi", "Mi", 1048576),
         ["Gibi"] = new PrefixInfo("Gibi", "Gi", 1073741824),
+        ["Tebi"] = new PrefixInfo("Tebi", "Ti", 1099511627776),
+        ["Pebi"] = new PrefixInfo("Pebi", "Pi", 1125899906842624),
+        ["Exbi"] = new PrefixInfo("Exbi", "Ei", 1152921504606846976),
     };
 
     public static QuantityDefinition Expand(QuantityDefinition quantity)
@@ -65,7 +68,14 @@ internal static class PrefixExpander
             .GroupBy(unit => unit.SingularName, StringComparer.Ordinal)
             .Select(group => group.First())
             .ToArray();
-        return new QuantityDefinition(quantity.Name, quantity.TargetNamespace, quantity.BaseUnit, distinct, quantity.SourcePath);
+        return new QuantityDefinition(
+            quantity.Name,
+            quantity.TargetNamespace,
+            quantity.BaseUnit,
+            distinct,
+            quantity.SourcePath,
+            quantity.IsLogarithmic,
+            quantity.LogarithmicScalingFactor);
     }
 
     private static string LowerFirst(string value)

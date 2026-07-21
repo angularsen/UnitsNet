@@ -14,4 +14,32 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" />
     <PackageReference Include="System.Text.Json" PrivateAssets="all" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="../../Common/UnitDefinitions/Length.json"
+                      LogicalName="UnitsNetGen.Generator.BuiltIns.Length.json" />
+    <EmbeddedResource Include="../../Common/UnitDefinitions/Mass.json"
+                      LogicalName="UnitsNetGen.Generator.BuiltIns.Mass.json" />
+    <EmbeddedResource Include="../../Common/UnitDefinitions/Duration.json"
+                      LogicalName="UnitsNetGen.Generator.BuiltIns.Duration.json" />
+    <EmbeddedResource Include="../../Common/UnitDefinitions/Area.json"
+                      LogicalName="UnitsNetGen.Generator.BuiltIns.Area.json" />
+    <EmbeddedResource Include="../../Common/UnitDefinitions/Speed.json"
+                      LogicalName="UnitsNetGen.Generator.BuiltIns.Speed.json" />
+    <EmbeddedResource Include="../../Common/UnitDefinitions/Acceleration.json"
+                      LogicalName="UnitsNetGen.Generator.BuiltIns.Acceleration.json" />
+    <EmbeddedResource Include="../../Common/UnitDefinitions/Force.json"
+                      LogicalName="UnitsNetGen.Generator.BuiltIns.Force.json" />
+    <EmbeddedResource Include="../../Common/UnitDefinitions/Pressure.json"
+                      LogicalName="UnitsNetGen.Generator.BuiltIns.Pressure.json" />
+    <EmbeddedResource Include="../../Common/UnitDefinitions/Energy.json"
+                      LogicalName="UnitsNetGen.Generator.BuiltIns.Energy.json" />
+    <EmbeddedResource Include="../../Common/UnitDefinitions/Power.json"
+                      LogicalName="UnitsNetGen.Generator.BuiltIns.Power.json" />
+    <EmbeddedResource Include="../../Common/UnitDefinitions/Temperature.json"
+                      LogicalName="UnitsNetGen.Generator.BuiltIns.Temperature.json" />
+    <EmbeddedResource Include="../../Common/UnitDefinitions/Level.json"
+                      LogicalName="UnitsNetGen.Generator.BuiltIns.Level.json" />
+    <EmbeddedResource Include="../../Common/UnitDefinitions/Information.json"
+                      LogicalName="UnitsNetGen.Generator.BuiltIns.Information.json" />
+  </ItemGroup>
 </Project>

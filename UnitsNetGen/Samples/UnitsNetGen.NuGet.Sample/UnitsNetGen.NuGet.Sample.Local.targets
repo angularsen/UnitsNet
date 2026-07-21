@@ -17,6 +17,8 @@
                                    Exclude="$(_UnitsNetGenSourceRoot)UnitsNetGen\bin\**;$(_UnitsNetGenSourceRoot)UnitsNetGen\obj\**" />
     <_UnitsNetGenLocalPackageInput Include="$(_UnitsNetGenSourceRoot)UnitsNetGen.Generator\**\*"
                                    Exclude="$(_UnitsNetGenSourceRoot)UnitsNetGen.Generator\bin\**;$(_UnitsNetGenSourceRoot)UnitsNetGen.Generator\obj\**" />
+    <_UnitsNetGenLocalPackageInput Include="$(_UnitsNetGenSourceRoot)..\UnitsNet.Core\**\*"
+                                   Exclude="$(_UnitsNetGenSourceRoot)..\UnitsNet.Core\bin\**;$(_UnitsNetGenSourceRoot)..\UnitsNet.Core\obj\**" />
     <_UnitsNetGenLocalPackageInput Include="$(_UnitsNetGenSourceRoot)ARCHITECTURE.md;$(_UnitsNetGenSourceRoot)README.md;$(_UnitsNetGenSourceRoot)THIRD-PARTY-NOTICES.md;$(_UnitsNetGenSourceRoot)Directory.Build.props;$(_UnitsNetGenSourceRoot)Directory.Build.targets;$(_UnitsNetGenSourceRoot)Directory.Packages.props;$(_UnitsNetGenSourceRoot)..\Docs\Images\logo-32.png" />
   </ItemGroup>
 

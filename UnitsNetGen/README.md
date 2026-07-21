@@ -2,6 +2,10 @@
 
 UnitsNetGen is a proof of concept for composing lean, strongly typed quantities and units at compile time. It combines a small runtime with a Roslyn source generator and supports both built-in SI definitions and consumer-owned JSON definitions.
 
+Generated quantities and UnitsNet v6 quantities implement the shared
+`UnitsNet.Core.IQuantity<TUnit, TValue>` contract. This enables generic source and data interoperation
+without claiming that concrete structs generated into different assemblies have the same CLR type.
+
 **Experimental:** UnitsNetGen's API and package format may change while the architecture is being explored.
 
 ## Select built-in quantities
@@ -15,21 +19,39 @@ using UnitsNetGen.Generation;
 [UnitsNetModule]
 internal interface EngineeringUnits :
     IInclude<Length>,
-    IInclude<Force>,
-    IInclude<Pressure>;
+    IInclude<Temperature>,
+    IInclude<Information>;
 ```
 
 Select a subset of units with a regular expression:
 
 ```csharp
-[UnitSet("regex:.*Gram$")]
-internal interface GramUnits;
+[UnitSet("regex:.*Meter$")]
+internal interface MeterUnits;
 
 [UnitsNetModule]
-internal interface LeanUnits : IInclude<Mass, GramUnits>;
+internal interface LeanUnits : IInclude<Length, MeterUnits>;
 ```
 
+Select the available catalog with a profile and add individual quantities alongside it:
+
+```csharp
+using UnitsNetGen.Profiles;
+
+[UnitsNetModule]
+internal interface ApplicationUnits :
+    IIncludeProfile<AllQuantities>,
+    IInclude<MyCustomDefinition>;
+```
+
+Profiles provide defaults. A direct `IInclude<TQuantity, TUnitSet>` on the module overrides that
+profile's unit selection for the same quantity. Profiles can be consumer-defined and nested.
+
 The generated API includes strongly typed quantity structs and unit enums, parsing, formatting, conversion, arithmetic, and localized abbreviations.
+
+Generate the selected API in the established `UnitsNet` and `UnitsNet.Units` namespaces with
+`[UnitsNetModule("UnitsNet")]`. The compatibility samples compile the exact same linked consumer
+source against UnitsNet v6 and UnitsNetGen.
 
 ## Add custom quantities
 

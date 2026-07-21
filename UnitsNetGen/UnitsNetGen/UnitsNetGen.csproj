@@ -40,10 +40,19 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MinVer" PrivateAssets="all" />
+    <ProjectReference Include="../../UnitsNet.Core/UnitsNet.Core.csproj" />
     <ProjectReference Include="..\UnitsNetGen.Generator\UnitsNetGen.Generator.csproj"
                       PrivateAssets="all"
                       ReferenceOutputAssembly="false" />
   </ItemGroup>
+  <Target Name="PackUnitsNetCore"
+          BeforeTargets="GenerateNuspec"
+          Condition="'$(TargetFramework)' == ''">
+    <MSBuild Projects="../../UnitsNet.Core/UnitsNet.Core.csproj"
+             Targets="Pack"
+             BuildInParallel="false"
+             Properties="Configuration=$(Configuration);PackageOutputPath=$(PackageOutputPath);NoBuild=true" />
+  </Target>
   <ItemGroup>
     <None Include="../../Artifacts/UnitsNetGen.Generator/netstandard2.0/UnitsNetGen.Generator.dll"
           Pack="true"

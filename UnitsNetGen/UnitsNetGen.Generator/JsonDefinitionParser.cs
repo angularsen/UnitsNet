@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.Json;
 using Microsoft.CodeAnalysis;
@@ -19,18 +20,23 @@ internal static class JsonDefinitionParser
 
     public static JsonDefinitionResult Parse(AdditionalText file, System.Threading.CancellationToken cancellationToken)
     {
+        string json = file.GetText(cancellationToken)?.ToString() ?? string.Empty;
+        return Parse(json, file.Path);
+    }
+
+    public static JsonDefinitionResult Parse(string json, string path)
+    {
         try
         {
-            string json = file.GetText(cancellationToken)?.ToString() ?? string.Empty;
             JsonQuantity? parsed = JsonSerializer.Deserialize<JsonQuantity>(json, SerializerOptions);
             if (parsed is null)
             {
-                return Error(file.Path, "The file did not contain a quantity definition.");
+                return Error(path, "The file did not contain a quantity definition.");
             }
 
             if (string.IsNullOrWhiteSpace(parsed.Name) || string.IsNullOrWhiteSpace(parsed.BaseUnit))
             {
-                return Error(file.Path, "Name and BaseUnit are required.");
+                return Error(path, "Name and BaseUnit are required.");
             }
 
             var units = new List<UnitDefinition>();
@@ -38,17 +44,17 @@ internal static class JsonDefinitionParser
             {
                 if (string.IsNullOrWhiteSpace(unit.SingularName) || string.IsNullOrWhiteSpace(unit.PluralName))
                 {
-                    return Error(file.Path, "Every unit requires SingularName and PluralName.");
+                    return Error(path, "Every unit requires SingularName and PluralName.");
                 }
 
                 if (!ConversionExpression.TryNormalize(unit.FromUnitToBaseFunc, out string toBase, out string toBaseError))
                 {
-                    return Error(file.Path, $"{unit.SingularName}.FromUnitToBaseFunc: {toBaseError}");
+                    return Error(path, $"{unit.SingularName}.FromUnitToBaseFunc: {toBaseError}");
                 }
 
                 if (!ConversionExpression.TryNormalize(unit.FromBaseToUnitFunc, out string fromBase, out string fromBaseError))
                 {
-                    return Error(file.Path, $"{unit.SingularName}.FromBaseToUnitFunc: {fromBaseError}");
+                    return Error(path, $"{unit.SingularName}.FromBaseToUnitFunc: {fromBaseError}");
                 }
 
                 UnitLocalizationDefinition[] localizations = (unit.Localization ?? Array.Empty<JsonLocalization>())
@@ -68,18 +74,33 @@ internal static class JsonDefinitionParser
             }
 
             string targetNamespace = string.IsNullOrWhiteSpace(parsed.Namespace) ? "UnitsNetGen" : parsed.Namespace!;
-            var definition = new QuantityDefinition(parsed.Name!, targetNamespace, parsed.BaseUnit!, units, file.Path);
-            return new JsonDefinitionResult(file.Path, PrefixExpander.Expand(definition), null);
+            bool isLogarithmic = bool.TryParse(parsed.Logarithmic, out bool logarithmic) && logarithmic;
+            double logarithmicScalingFactor = double.TryParse(
+                parsed.LogarithmicScalingFactor,
+                NumberStyles.Float,
+                CultureInfo.InvariantCulture,
+                out double scalingFactor)
+                    ? scalingFactor
+                    : 1;
+            var definition = new QuantityDefinition(
+                parsed.Name!,
+                targetNamespace,
+                parsed.BaseUnit!,
+                units,
+                path,
+                isLogarithmic,
+                logarithmicScalingFactor);
+            return new JsonDefinitionResult(path, PrefixExpander.Expand(definition), null);
         }
         catch (JsonException exception)
         {
             long line = exception.LineNumber.GetValueOrDefault() + 1;
             long position = exception.BytePositionInLine.GetValueOrDefault();
-            return Error(file.Path, $"JSON line {line}, byte position {position}: {exception.Message}");
+            return Error(path, $"JSON line {line}, byte position {position}: {exception.Message}");
         }
         catch (Exception exception)
         {
-            return Error(file.Path, exception.Message);
+            return Error(path, exception.Message);
         }
     }
 
@@ -127,6 +148,8 @@ internal static class JsonDefinitionParser
         public string? Name { get; set; }
         public string? Namespace { get; set; }
         public string? BaseUnit { get; set; }
+        public string? Logarithmic { get; set; }
+        public string? LogarithmicScalingFactor { get; set; }
         public JsonUnit[]? Units { get; set; }
     }
 

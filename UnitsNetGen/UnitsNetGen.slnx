@@ -1,11 +1,16 @@
 <Solution>
+  <Project Path="../UnitsNet.Core/UnitsNet.Core.csproj" />
   <Project Path="UnitsNetGen/UnitsNetGen.csproj" />
   <Project Path="UnitsNetGen.Generator/UnitsNetGen.Generator.csproj" />
   <Project Path="UnitsNetGen.Tests/UnitsNetGen.Tests.csproj" />
+  <Project Path="UnitsNetGen.Compatibility.Tests/UnitsNetGen.Compatibility.Tests.csproj" />
   <Folder Name="/Samples/">
     <Project Path="Samples/UnitsNetGen.AllSi.Sample/UnitsNetGen.AllSi.Sample.csproj" />
+    <Project Path="Samples/UnitsNetGen.Representative.Sample/UnitsNetGen.Representative.Sample.csproj" />
     <Project Path="Samples/UnitsNetGen.Lean.Sample/UnitsNetGen.Lean.Sample.csproj" />
     <Project Path="Samples/UnitsNetGen.Custom.Sample/UnitsNetGen.Custom.Sample.csproj" />
+    <Project Path="Samples/UnitsNetGen.Compatibility.UnitsNet.Sample/UnitsNetGen.Compatibility.UnitsNet.Sample.csproj" />
+    <Project Path="Samples/UnitsNetGen.Compatibility.Generated.Sample/UnitsNetGen.Compatibility.Generated.Sample.csproj" />
     <Project Path="Samples/UnitsNetGen.NetStandard.Sample/UnitsNetGen.NetStandard.Sample.csproj" />
   </Folder>
 </Solution>

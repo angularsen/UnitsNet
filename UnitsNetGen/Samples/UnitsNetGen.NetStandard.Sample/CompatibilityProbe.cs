@@ -9,7 +9,7 @@ namespace UnitsNetGen.NetStandard.Sample;
 [UnitsNetModule]
 internal interface NetStandardUnits :
     IInclude<Catalog.Length>,
-    IInclude<Catalog.Mass>
+    IInclude<Catalog.Temperature>
 {
 }
 

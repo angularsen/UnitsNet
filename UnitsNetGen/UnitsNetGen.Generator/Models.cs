@@ -6,13 +6,24 @@ namespace UnitsNetGen.Generator;
 
 internal sealed class QuantityDefinition
 {
-    public QuantityDefinition(string name, string targetNamespace, string baseUnit, IReadOnlyList<UnitDefinition> units, string? sourcePath = null)
+    public QuantityDefinition(
+        string name,
+        string targetNamespace,
+        string baseUnit,
+        IReadOnlyList<UnitDefinition> units,
+        string? sourcePath = null,
+        bool isLogarithmic = false,
+        double logarithmicScalingFactor = 1,
+        string? semanticId = null)
     {
         Name = name;
         TargetNamespace = targetNamespace;
         BaseUnit = baseUnit;
         Units = units;
         SourcePath = sourcePath;
+        IsLogarithmic = isLogarithmic;
+        LogarithmicScalingFactor = logarithmicScalingFactor;
+        SemanticId = semanticId ?? targetNamespace + "." + name;
     }
 
     public string Name { get; }
@@ -25,7 +36,35 @@ internal sealed class QuantityDefinition
 
     public string? SourcePath { get; }
 
-    public string Id => TargetNamespace + "." + Name;
+    public bool IsLogarithmic { get; }
+
+    public double LogarithmicScalingFactor { get; }
+
+    public string Id => SemanticId;
+
+    public string SemanticId { get; }
+
+    public QuantityDefinition WithTargetNamespace(string targetNamespace)
+        => new QuantityDefinition(
+            Name,
+            targetNamespace,
+            BaseUnit,
+            Units,
+            SourcePath,
+            IsLogarithmic,
+            LogarithmicScalingFactor,
+            SemanticId);
+
+    public QuantityDefinition WithSemanticId(string semanticId)
+        => new QuantityDefinition(
+            Name,
+            TargetNamespace,
+            BaseUnit,
+            Units,
+            SourcePath,
+            IsLogarithmic,
+            LogarithmicScalingFactor,
+            semanticId);
 }
 
 internal sealed class UnitDefinition

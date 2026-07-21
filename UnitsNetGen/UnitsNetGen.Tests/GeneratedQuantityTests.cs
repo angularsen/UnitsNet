@@ -20,24 +20,46 @@ public sealed class GeneratedQuantityTests
     [Fact]
     public void UnitPattern_ExcludesNonMatchingUnit()
     {
-        string[] names = Enum.GetNames<MassUnit>();
+        string[] names = Enum.GetNames<InformationUnit>();
 
-        Assert.Contains("Kilogram", names);
-        Assert.Contains("Gram", names);
-        Assert.Contains("Milligram", names);
-        Assert.DoesNotContain("Pound", names);
+        Assert.Contains("Bit", names);
+        Assert.Contains("Byte", names);
+        Assert.Contains("Kilobyte", names);
+        Assert.Contains("Kibibyte", names);
+        Assert.DoesNotContain("Octet", names);
+        Assert.DoesNotContain("Kibioctet", names);
     }
 
     [Fact]
     public void DerivedOperators_AppearWhenAllQuantitiesAreSelected()
     {
-        Force force = Mass.FromKilograms(2) * Acceleration.FromMetersPerSecondSquared(3);
         Area area = Length.FromMeters(2) * Length.FromMeters(4);
-        Pressure pressure = force / area;
 
-        Assert.Equal(6, force.Newtons, 10);
         Assert.Equal(8, area.SquareMeters, 10);
-        Assert.Equal(0.75, pressure.Pascals, 10);
+    }
+
+    [Fact]
+    public void RepresentativeCatalog_SupportsAffineLogarithmicAndBinaryConversions()
+    {
+        Temperature boiling = Temperature.FromDegreesCelsius(100);
+        Level combined = Level.FromDecibels(10) + Level.FromDecibels(10);
+        Information data = Information.FromKibibytes(2);
+
+        Assert.Equal(373.15, boiling.Kelvins, 10);
+        Assert.Equal(212, boiling.DegreesFahrenheit, 10);
+        Assert.Equal(13.010299956639813, combined.Decibels, 10);
+        Assert.Equal(16_384, data.Bits, 10);
+    }
+
+    [Fact]
+    public void BuiltInDefinition_PreservesLocalizedAbbreviations()
+    {
+        var russian = System.Globalization.CultureInfo.GetCultureInfo("ru-RU");
+
+        Length length = Length.Parse("2 м", russian);
+
+        Assert.Equal(2, length.Meters, 10);
+        Assert.Equal("2 м", length.ToString(null, russian));
     }
 
     [Fact]
