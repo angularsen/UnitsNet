@@ -88,8 +88,13 @@ jobs:
         if ($env:CREATE_ARCHIVE -ne 'true') { $buildArguments += '-SkipArchive' }
         ./Build/build.ps1 @buildArguments
 
+    # Codecov intermittently fails while importing its verification key from Keybase.
+    # Keep coverage non-blocking until upstream adds reliable retry/error handling:
+    # https://github.com/codecov/codecov-action/issues/1876
+    # https://github.com/codecov/wrapper/pull/66
     - name: Upload coverage to Codecov
       if: github.event_name != 'workflow_dispatch' || (inputs.run_tests && inputs.collect_coverage)
+      continue-on-error: true
       uses: codecov/codecov-action@v6
       with:
         directory: Artifacts/Coverage
