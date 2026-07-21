@@ -263,3 +263,10 @@ Artifacts
 # Claude Code assistant
 .claude/settings.local.json
 .claude/worktrees/
+
+# Keep the shared repository-local NuGet feed present on clean checkouts.
+!Artifacts/
+Artifacts/*
+!Artifacts/Nugets/
+Artifacts/Nugets/*
+!Artifacts/Nugets/.gitkeep

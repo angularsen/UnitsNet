@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+
+    <!--
+      Repository-only sample properties; these are custom UnitsNetGen POC settings, not built-in MSBuild properties.
+      The package-consumer sample must not also load the analyzer dependencies used by local ProjectReference samples.
+    -->
+    <UnitsNetGenSampleUsePackagedAnalyzer>true</UnitsNetGenSampleUsePackagedAnalyzer>
+
+    <!--
+      RepositoryLocalNuGetFeed is shared by repository projects that produce development packages.
+      UnitsNetGenSampleLocalFeed selects that feed for this sample and can still be overridden.
+      UnitsNetGenSampleLocalVersion floats over timestamped packages. NuGet's built-in RestoreSources
+      property prevents this sample from accidentally resolving UnitsNetGen from a published feed.
+      Both custom properties can be overridden with -p:PropertyName=Value.
+    -->
+    <!-- Fallback supports the clean-room script, which deliberately disables Directory.Build.props. -->
+    <RepositoryLocalNuGetFeed Condition="'$(RepositoryLocalNuGetFeed)' == ''">$(MSBuildThisFileDirectory)..\..\..\Artifacts\Nugets</RepositoryLocalNuGetFeed>
+    <UnitsNetGenSampleLocalFeed Condition="'$(UnitsNetGenSampleLocalFeed)' == ''">$(RepositoryLocalNuGetFeed)</UnitsNetGenSampleLocalFeed>
+    <UnitsNetGenSampleLocalVersion Condition="'$(UnitsNetGenSampleLocalVersion)' == ''">1.0.0-local.*</UnitsNetGenSampleLocalVersion>
+    <RestoreSources>$(UnitsNetGenSampleLocalFeed)</RestoreSources>
+  </PropertyGroup>
+  <ItemGroup>
+    <UnitsNetGenDefinition Include="HowMuch.unitsnet.json" />
+    <PackageReference Include="UnitsNetGen" Version="$(UnitsNetGenSampleLocalVersion)" />
+  </ItemGroup>
+
+  <!-- Repository-only automation that packs and restores the newest local package before compilation. -->
+  <Import Project="UnitsNetGen.NuGet.Sample.Local.targets" />
+</Project>

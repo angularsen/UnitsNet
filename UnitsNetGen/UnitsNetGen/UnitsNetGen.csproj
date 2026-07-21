@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net10.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>UnitsNetGen</RootNamespace>
+    <IsPackable>true</IsPackable>
+
+    <!--
+      A normal developer pack feeds the real-consumer sample with a unique local prerelease.
+      CI and release preparation opt into the MinVer-derived publish version explicitly.
+    -->
+    <UnitsNetGenPackForPublish Condition="'$(UnitsNetGenPackForPublish)' == '' and '$(GITHUB_ACTIONS)' == 'true'">true</UnitsNetGenPackForPublish>
+    <UnitsNetGenPackForPublish Condition="'$(UnitsNetGenPackForPublish)' == ''">false</UnitsNetGenPackForPublish>
+    <UnitsNetGenLocalFeed Condition="'$(UnitsNetGenLocalFeed)' == ''">$(RepositoryLocalNuGetFeed)</UnitsNetGenLocalFeed>
+    <MinVerVersionOverride Condition="'$(UnitsNetGenPackForPublish)' != 'true' and '$(MinVerVersionOverride)' == ''">1.0.0-local.$([System.DateTime]::UtcNow.ToString('yyyyMMddHHmmssfff'))</MinVerVersionOverride>
+    <PackageOutputPath Condition="'$(UnitsNetGenPackForPublish)' != 'true' and '$(PackageOutputPath)' == ''">$(UnitsNetGenLocalFeed)</PackageOutputPath>
+
+    <PackageId>UnitsNetGen</PackageId>
+    <Title>UnitsNetGen</Title>
+    <Description>Generate lean, strongly typed quantities and units at compile time from built-in or custom definitions.</Description>
+    <Authors>Andreas Gullberg Larsen</Authors>
+    <Copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).</Copyright>
+    <PackageProjectUrl>https://github.com/angularsen/UnitsNet/tree/master/UnitsNetGen</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/angularsen/UnitsNet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <PackageLicenseExpression>MIT-0</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageIcon>logo-32.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>unitsnet unit units quantity quantities measurement source-generator code-generation modular conversion parsing</PackageTags>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <!-- Build-only source directory for analyzer dependency files copied into the combined NuGet package. -->
+    <_UnitsNetGenAnalyzerDependencyDirectory>$(MSBuildThisFileDirectory)../../Artifacts/UnitsNetGen.Generator/netstandard2.0/</_UnitsNetGenAnalyzerDependencyDirectory>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MinVer" PrivateAssets="all" />
+    <ProjectReference Include="..\UnitsNetGen.Generator\UnitsNetGen.Generator.csproj"
+                      PrivateAssets="all"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="../../Artifacts/UnitsNetGen.Generator/netstandard2.0/UnitsNetGen.Generator.dll"
+          Pack="true"
+          PackagePath="analyzers/dotnet/cs" />
+    <None Include="$(_UnitsNetGenAnalyzerDependencyDirectory)Microsoft.Bcl.AsyncInterfaces.dll;$(_UnitsNetGenAnalyzerDependencyDirectory)System.Buffers.dll;$(_UnitsNetGenAnalyzerDependencyDirectory)System.IO.Pipelines.dll;$(_UnitsNetGenAnalyzerDependencyDirectory)System.Memory.dll;$(_UnitsNetGenAnalyzerDependencyDirectory)System.Numerics.Vectors.dll;$(_UnitsNetGenAnalyzerDependencyDirectory)System.Runtime.CompilerServices.Unsafe.dll;$(_UnitsNetGenAnalyzerDependencyDirectory)System.Text.Encodings.Web.dll;$(_UnitsNetGenAnalyzerDependencyDirectory)System.Text.Json.dll;$(_UnitsNetGenAnalyzerDependencyDirectory)System.Threading.Tasks.Extensions.dll"
+          Pack="true"
+          PackagePath="analyzers/dotnet/cs"
+          Visible="false" />
+    <None Include="../UnitsNetGen.Generator/buildTransitive/UnitsNetGen.Generator.props"
+          Pack="true"
+          PackagePath="buildTransitive/UnitsNetGen.props" />
+    <None Include="../UnitsNetGen.Generator/buildTransitive/UnitsNetGen.Generator.targets"
+          Pack="true"
+          PackagePath="buildTransitive/UnitsNetGen.targets" />
+    <None Include="../README.md" Pack="true" PackagePath="README.md" />
+    <None Include="../THIRD-PARTY-NOTICES.md" Pack="true" PackagePath="THIRD-PARTY-NOTICES.md" />
+    <None Include="$(NuGetPackageRoot)/system.text.json/$(SystemTextJsonVersion)/THIRD-PARTY-NOTICES.TXT"
+          Pack="true"
+          PackagePath="DOTNET-THIRD-PARTY-NOTICES.TXT" />
+    <None Include="../../Docs/Images/logo-32.png" Pack="true" PackagePath="logo-32.png" />
+  </ItemGroup>
+</Project>

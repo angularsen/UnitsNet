@@ -1,0 +1,31 @@
+{
+  "Name": "HowMuch",
+  "Namespace": "NuGetConsumer.Measurements",
+  "BaseUnit": "Some",
+  "Units": [
+    {
+      "SingularName": "Some",
+      "PluralName": "Some",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "sm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Lots",
+      "PluralName": "Lots",
+      "FromUnitToBaseFunc": "{x} * 2",
+      "FromBaseToUnitFunc": "{x} / 2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lots" ]
+        }
+      ]
+    }
+  ]
+}

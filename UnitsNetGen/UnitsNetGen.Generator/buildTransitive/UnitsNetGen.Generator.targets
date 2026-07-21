@@ -1,0 +1,5 @@
+<Project>
+  <ItemGroup>
+    <AdditionalFiles Include="@(UnitsNetGenDefinition)" UnitsNetGenDefinition="true" />
+  </ItemGroup>
+</Project>

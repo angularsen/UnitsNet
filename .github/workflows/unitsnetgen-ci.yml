@@ -1,0 +1,76 @@
+name: UnitsNetGen CI
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - 'UnitsNetGen/*'
+    paths:
+      - 'UnitsNetGen/**'
+      - 'UnitsNetGen.slnx'
+      - 'Directory.Build.props'
+      - 'NullableAttributes.cs'
+      - 'global.json'
+      - '.github/workflows/unitsnetgen-ci.yml'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'UnitsNetGen/**'
+      - 'UnitsNetGen.slnx'
+      - 'Directory.Build.props'
+      - 'NullableAttributes.cs'
+      - 'global.json'
+      - '.github/workflows/unitsnetgen-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: unitsnetgen-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  DOTNET_NOLOGO: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+
+jobs:
+  build-test-pack:
+    name: Build, test, and pack
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: dotnet restore UnitsNetGen.slnx -p:UnitsNetGenSampleUpdateLocalPackageOnBuild=true
+
+      - name: Build
+        run: dotnet build UnitsNetGen.slnx --configuration Release --no-restore --no-incremental -p:UnitsNetGenSampleUpdateLocalPackageOnBuild=true
+
+      - name: Test
+        run: dotnet test UnitsNetGen/UnitsNetGen.Tests/UnitsNetGen.Tests.csproj --configuration Release --no-build
+
+      - name: Pack
+        run: dotnet pack UnitsNetGen/UnitsNetGen/UnitsNetGen.csproj --configuration Release --no-build --output Artifacts/UnitsNetGen.CI -p:UnitsNetGenPackForPublish=true
+
+      - name: Upload packages
+        uses: actions/upload-artifact@v7
+        with:
+          name: unitsnetgen-packages-${{ github.sha }}
+          path: |
+            Artifacts/UnitsNetGen.CI/*.nupkg
+            Artifacts/UnitsNetGen.CI/*.snupkg
+          if-no-files-found: error
+          retention-days: 14
