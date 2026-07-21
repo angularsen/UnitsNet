@@ -7,9 +7,17 @@ on:
       - 'release/**'
       - 'maintenance/**'
     paths-ignore:
-      - '**/*.png'
       - '**/*.md'
+      - '**/*.png'
   workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  # Never interrupt a master run while it may be publishing an immutable package set.
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
 
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
@@ -18,87 +26,78 @@ env:
 jobs:
   build-and-test:
     name: Build & Test
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
       with:
         fetch-depth: 1
         lfs: true
 
-    - name: Setup .NET SDK
-      uses: actions/setup-dotnet@v4
+    - name: Setup .NET SDKs
+      uses: actions/setup-dotnet@v6
       with:
         dotnet-version: |
-          6.0.x
           8.0.x
+          9.0.x
+          10.0.x
 
-    - name: Build, Test and Pack
+    - name: Build, test and pack
       shell: pwsh
-      run: |
-        ./Build/build.ps1
-      working-directory: ${{ github.workspace }}
+      run: ./Build/build.ps1
 
-    - name: Upload to codecov.io
-      shell: pwsh
-      env:
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-      run: |
-        Write-Host -Foreground Green "Downloading codecov binaries..."
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v6
+      with:
+        directory: Artifacts/Coverage
+        fail_ci_if_error: true
+        plugins: noop
+        use_oidc: true
 
-        Invoke-WebRequest -Uri https://uploader.codecov.io/verification.gpg -OutFile codecov.asc
-        gpg.exe --import codecov.asc
-
-        Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe -Outfile codecov.exe
-        Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM -Outfile codecov.exe.SHA256SUM
-        Invoke-WebRequest -Uri https://uploader.codecov.io/latest/windows/codecov.exe.SHA256SUM.sig -Outfile codecov.exe.SHA256SUM.sig
-
-        gpg.exe --verify codecov.exe.SHA256SUM.sig codecov.exe.SHA256SUM
-        If ($(Compare-Object -ReferenceObject  $(($(certUtil -hashfile codecov.exe SHA256)[1], "codecov.exe") -join "  ") -DifferenceObject $(Get-Content codecov.exe.SHA256SUM)).length -eq 0) { echo "SHASUM verified" } Else {exit 1}
-
-        Write-Host -Foreground Green "Uploading to codecov..."
-
-        .\codecov.exe --dir "Artifacts/Coverage" -t "$env:CODECOV_TOKEN" --build "${{ github.run_number }}"
-
-        Write-Host -Foreground Green "✅ Uploaded to codecov."
-
-    - name: Upload Artifacts
-      uses: actions/upload-artifact@v4
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v7
       with:
         name: artifacts
         path: Artifacts/
         retention-days: 30
 
     - name: Upload NuGet packages
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: nuget-packages
         path: |
           Artifacts/**/*.nupkg
           Artifacts/**/*.snupkg
+        if-no-files-found: error
         retention-days: 30
 
   publish-nuget:
-    name: Publish to NuGet
+    name: Publish NuGet packages
     needs: build-and-test
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     if: github.ref == 'refs/heads/master' && github.repository_owner == 'angularsen'
     environment: Publish
 
     steps:
     - name: Download NuGet packages
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: nuget-packages
         path: nugets
 
     - name: Setup .NET SDK
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v6
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: 10.0.x
 
     - name: Push to nuget.org
-      run: |
-        dotnet nuget push "**/*.nupkg" --skip-duplicate --api-key ${{ secrets.NUGET_ORG_APIKEY }} --source https://api.nuget.org/v3/index.json
+      env:
+        NUGET_ORG_APIKEY: ${{ secrets.NUGET_ORG_APIKEY }}
+      run: dotnet nuget push "**/*.nupkg" --skip-duplicate --api-key "$NUGET_ORG_APIKEY" --source https://api.nuget.org/v3/index.json
       working-directory: nugets
