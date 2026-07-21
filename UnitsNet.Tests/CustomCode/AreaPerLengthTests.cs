@@ -7,11 +7,9 @@ namespace UnitsNet.Tests
 {
     public class AreaPerLengthTests : AreaPerLengthTestsBase
     {
-        // NIST: https://www.nist.gov/pml/us-surveyfoot
-        // The international foot is exactly 0.3048 m.
-        // Since one foot is exactly 12 inches, one inch is exactly 0.0254 m.
-        private const double MetersPerFoot = 0.3048;
-        private const double MetersPerInch = MetersPerFoot / 12;
+        // Sanity checked against area-per-length conversion tables:
+        // - Cognite PROSPER units: https://docs.cognite.com/cdf/integration/guides/simulators/connectors/prosper/prosper_units
+        // - Nucor Skyline technical product manual: https://www.nucorskyline.com/file%20library/document%20library/english/brochures/product_manual_en.pdf
 
         protected override double SquareMetersPerMeterInOneSquareMeterPerMeter => 1;
 
@@ -19,11 +17,11 @@ namespace UnitsNet.Tests
 
         protected override double SquareMillimetersPerMeterInOneSquareMeterPerMeter => 1E6;
 
-        protected override double SquareInchesPerFootInOneSquareMeterPerMeter => MetersPerFoot / (MetersPerInch * MetersPerInch);
+        protected override double SquareInchesPerFootInOneSquareMeterPerMeter => 472.44094488188976;
 
-        protected override double SquareInchesPerInchInOneSquareMeterPerMeter => MetersPerInch / (MetersPerInch * MetersPerInch);
+        protected override double SquareInchesPerInchInOneSquareMeterPerMeter => 39.370078740157481;
 
-        protected override double SquareFeetPerFootInOneSquareMeterPerMeter => MetersPerFoot / (MetersPerFoot * MetersPerFoot);
+        protected override double SquareFeetPerFootInOneSquareMeterPerMeter => 3.2808398950131234;
 
         [Fact]
         public void AreaPerLengthTimesLengthEqualsArea()
