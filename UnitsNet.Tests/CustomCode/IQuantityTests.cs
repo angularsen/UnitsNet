@@ -169,6 +169,24 @@ public partial class IQuantityTests
     }
 
     [Fact]
+    public void ToUnit_SelfTypedGenericConstraint_ReturnsConcreteQuantity()
+    {
+        var length = Length.FromKilometers(1.5);
+
+        Length converted = ConvertToUnit<Length, LengthUnit>(length, LengthUnit.Meter);
+
+        Assert.Equal(1500, converted.Value);
+        Assert.Equal(LengthUnit.Meter, converted.Unit);
+
+        static TQuantity ConvertToUnit<TQuantity, TUnit>(TQuantity quantity, TUnit unit)
+            where TQuantity : IQuantity<TQuantity, TUnit>
+            where TUnit : struct, Enum
+        {
+            return quantity.ToUnit(unit);
+        }
+    }
+
+    [Fact]
     public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
     {
         var unsupportedUnitSystem = new UnitSystem(new BaseUnits(
