@@ -136,6 +136,7 @@ public partial class IQuantityTests
         Assert.Same(Mass.Info, info);
     }
 
+#if NET
     [Fact]
     public void StaticAbstract_Info_ReturnsSameAsTypedInfo()
     {
@@ -185,6 +186,7 @@ public partial class IQuantityTests
             return quantity.ToUnit(unit);
         }
     }
+#endif
 
     [Fact]
     public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
