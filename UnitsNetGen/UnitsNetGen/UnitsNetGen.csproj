@@ -15,6 +15,7 @@
     <UnitsNetGenPackForPublish Condition="'$(UnitsNetGenPackForPublish)' == ''">false</UnitsNetGenPackForPublish>
     <UnitsNetGenLocalFeed Condition="'$(UnitsNetGenLocalFeed)' == ''">$(RepositoryLocalNuGetFeed)</UnitsNetGenLocalFeed>
     <MinVerVersionOverride Condition="'$(UnitsNetGenPackForPublish)' != 'true' and '$(MinVerVersionOverride)' == ''">1.0.0-local.dev.$([System.DateTime]::UtcNow.ToString('yyyyMMddHHmmssfff'))</MinVerVersionOverride>
+    <UnitsNetCoreVersionOverride Condition="'$(UnitsNetGenPackForPublish)' != 'true' and '$(UnitsNetCoreVersionOverride)' == ''">$(MinVerVersionOverride)</UnitsNetCoreVersionOverride>
     <PackageOutputPath Condition="'$(UnitsNetGenPackForPublish)' != 'true' and '$(PackageOutputPath)' == ''">$(UnitsNetGenLocalFeed)</PackageOutputPath>
 
     <PackageId>UnitsNetGen</PackageId>
@@ -40,7 +41,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MinVer" PrivateAssets="all" />
-    <ProjectReference Include="../../UnitsNet.Core/UnitsNet.Core.csproj" />
+    <ProjectReference Include="../../UnitsNet.Core/UnitsNet.Core.csproj"
+                      AdditionalProperties="UnitsNetCoreVersionOverride=$(UnitsNetCoreVersionOverride)" />
     <ProjectReference Include="..\UnitsNetGen.Generator\UnitsNetGen.Generator.csproj"
                       PrivateAssets="all"
                       ReferenceOutputAssembly="false" />
@@ -51,7 +53,7 @@
     <MSBuild Projects="../../UnitsNet.Core/UnitsNet.Core.csproj"
              Targets="Pack"
              BuildInParallel="false"
-             Properties="Configuration=$(Configuration);PackageOutputPath=$(PackageOutputPath);NoBuild=true" />
+             Properties="Configuration=$(Configuration);PackageOutputPath=$(PackageOutputPath);NoBuild=true;UnitsNetCoreVersionOverride=$(UnitsNetCoreVersionOverride)" />
   </Target>
   <ItemGroup>
     <None Include="../../Artifacts/UnitsNetGen.Generator/netstandard2.0/UnitsNetGen.Generator.dll"

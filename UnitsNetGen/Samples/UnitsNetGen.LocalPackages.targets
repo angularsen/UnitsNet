@@ -18,6 +18,8 @@
         Condition="'$(UnitsNetGenSampleUpdateLocalPackagesOnBuild)' == '' and '$(Configuration)' == 'Debug'">true</UnitsNetGenSampleUpdateLocalPackagesOnBuild>
     <UnitsNetGenSampleUpdateLocalPackagesOnBuild
         Condition="'$(UnitsNetGenSampleUpdateLocalPackagesOnBuild)' == ''">false</UnitsNetGenSampleUpdateLocalPackagesOnBuild>
+    <RestoreForceEvaluate
+        Condition="'$(UnitsNetGenSampleUpdateLocalPackagesOnBuild)' == 'true'">true</RestoreForceEvaluate>
 
     <!-- Leading underscores follow the MSBuild convention for implementation-private properties. -->
     <_UnitsNetGenSourceRoot>$(MSBuildThisFileDirectory)..\</_UnitsNetGenSourceRoot>
@@ -49,7 +51,7 @@
           Inputs="@(_UnitsNetGenLocalPackageInput);@(UnitsNetGenSampleAdditionalLocalPackageInput)"
           Outputs="$(_UnitsNetGenSampleLocalPackStamp)">
     <Message Importance="high" Text="Packing the latest local UnitsNetGen package..." />
-    <Exec Command="dotnet pack &quot;$(_UnitsNetGenSourceProject)&quot; --configuration Release --output &quot;$(UnitsNetGenSampleLocalFeed)&quot; -p:MinVerVersionOverride=$(_UnitsNetGenSampleLocalPackageVersion)" />
+    <Exec Command="dotnet pack &quot;$(_UnitsNetGenSourceProject)&quot; --configuration Release --output &quot;$(UnitsNetGenSampleLocalFeed)&quot; -p:MinVerVersionOverride=$(_UnitsNetGenSampleLocalPackageVersion) -p:UnitsNetCoreVersionOverride=$(_UnitsNetGenSampleLocalPackageVersion)" />
 
     <Message Condition="'@(UnitsNetGenSampleAdditionalLocalPackageProject)' != ''"
              Importance="high"

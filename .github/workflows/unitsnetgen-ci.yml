@@ -54,7 +54,7 @@ jobs:
           dotnet-version: 10.0.x
 
       - name: Restore
-        run: dotnet restore UnitsNetGen.slnx -p:UnitsNetGenSampleUpdateLocalPackagesOnBuild=true
+        run: dotnet restore UnitsNetGen.slnx -p:UnitsNetGenSampleUpdateLocalPackagesOnBuild=true -p:RestoreForceEvaluate=true
 
       - name: Build
         run: dotnet build UnitsNetGen.slnx --configuration Release --no-restore --no-incremental -p:UnitsNetGenSampleUpdateLocalPackagesOnBuild=true
