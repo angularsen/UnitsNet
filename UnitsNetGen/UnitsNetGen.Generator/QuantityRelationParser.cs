@@ -15,6 +15,7 @@ internal static class QuantityRelationParser
     private static readonly JsonSerializerOptions SerializerOptions = new JsonSerializerOptions
     {
         AllowTrailingCommas = true,
+        PropertyNameCaseInsensitive = true,
         ReadCommentHandling = JsonCommentHandling.Skip,
     };
 
@@ -30,16 +31,37 @@ internal static class QuantityRelationParser
     {
         try
         {
-            string[]? relationStrings = JsonSerializer.Deserialize<string[]>(json, SerializerOptions);
-            if (relationStrings is null)
+            using JsonDocument document = JsonDocument.Parse(
+                json,
+                new JsonDocumentOptions
+                {
+                    AllowTrailingCommas = true,
+                    CommentHandling = JsonCommentHandling.Skip,
+                });
+            if (document.RootElement.ValueKind != JsonValueKind.Array)
             {
                 return Error(path, "The file did not contain a relation array.");
             }
 
             var definitions = new List<QuantityRelationDefinition>();
-            foreach (string relationString in relationStrings)
+            int index = 0;
+            foreach (JsonElement element in document.RootElement.EnumerateArray())
             {
-                definitions.Add(ParseRelation(relationString));
+                if (element.ValueKind == JsonValueKind.String)
+                {
+                    definitions.Add(ParseRelation(element.GetString()!));
+                }
+                else if (element.ValueKind == JsonValueKind.Object)
+                {
+                    definitions.Add(ParseStructuredRelation(element, path, index));
+                }
+                else
+                {
+                    throw new FormatException(
+                        $"Relation at index {index} must be a string or structured relation object.");
+                }
+
+                index++;
             }
 
             return new RelationDefinitionResult(path, definitions, null);
@@ -101,6 +123,17 @@ internal static class QuantityRelationParser
             .ToArray();
     }
 
+    public static IReadOnlyList<QuantityRelationDefinition> QualifyQuantityIds(
+        IEnumerable<QuantityRelationDefinition> definitions,
+        string quantityNamespace) => definitions
+        .Select(definition => new QuantityRelationDefinition(
+            Qualify(definition.Result, quantityNamespace),
+            Qualify(definition.Left, quantityNamespace),
+            Qualify(definition.Right, quantityNamespace),
+            definition.NoInferredDivision,
+            definition.Source))
+        .ToArray();
+
     private static QuantityRelationDefinition ParseRelation(string relationString)
     {
         string[] segments = relationString.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -138,6 +171,70 @@ internal static class QuantityRelationParser
         }
 
         return new RelationEndpoint(segments[0], segments[1]);
+    }
+
+    private static QuantityRelationDefinition ParseStructuredRelation(
+        JsonElement element,
+        string path,
+        int index)
+    {
+        var relation = element.Deserialize<StructuredRelation>(SerializerOptions)
+            ?? throw new FormatException($"Relation at index {index} was empty.");
+        if (!string.IsNullOrWhiteSpace(relation.Operator) && relation.Operator != "*")
+        {
+            throw new FormatException(
+                $"Relation at index {index} uses unsupported operator '{relation.Operator}'. Expected '*'.");
+        }
+
+        return new QuantityRelationDefinition(
+            StructuredEndpoint(relation.Result, "result", index),
+            StructuredEndpoint(relation.Left, "left", index),
+            StructuredEndpoint(relation.Right, "right", index),
+            relation.NoInferredDivision,
+            $"{path} relation {index + 1}");
+    }
+
+    private static RelationEndpoint StructuredEndpoint(
+        StructuredRelationEndpoint? endpoint,
+        string role,
+        int index)
+    {
+        if (endpoint is null || string.IsNullOrWhiteSpace(endpoint.Quantity))
+        {
+            throw new FormatException($"Relation at index {index} has no {role} quantity ID.");
+        }
+
+        if (endpoint.Quantity is not ("1" or "double") && string.IsNullOrWhiteSpace(endpoint.Unit))
+        {
+            throw new FormatException($"Relation at index {index} has no {role} unit.");
+        }
+
+        return new RelationEndpoint(endpoint.Quantity!, endpoint.Unit);
+    }
+
+    private static RelationEndpoint Qualify(RelationEndpoint endpoint, string quantityNamespace) =>
+        endpoint.Quantity is "1" or "double" || endpoint.Quantity.Contains('.')
+            ? endpoint
+            : new RelationEndpoint(quantityNamespace + "." + endpoint.Quantity, endpoint.Unit);
+
+    private sealed class StructuredRelation
+    {
+        public StructuredRelationEndpoint? Result { get; set; }
+
+        public StructuredRelationEndpoint? Left { get; set; }
+
+        public StructuredRelationEndpoint? Right { get; set; }
+
+        public string? Operator { get; set; }
+
+        public bool NoInferredDivision { get; set; }
+    }
+
+    private sealed class StructuredRelationEndpoint
+    {
+        public string? Quantity { get; set; }
+
+        public string? Unit { get; set; }
     }
 
     private static RelationDefinitionResult Error(string path, string error)

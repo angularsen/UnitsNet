@@ -55,6 +55,17 @@ internal static class ConversionExpression
         return true;
     }
 
+    public static string Substitute(string expression, string replacement)
+    {
+        ExpressionSyntax syntax = SyntaxFactory.ParseExpression(expression);
+        ExpressionSyntax replacementSyntax = SyntaxFactory.ParenthesizedExpression(
+            SyntaxFactory.ParseExpression(replacement));
+        return new ValueRewriter(replacementSyntax)
+            .Visit(syntax)!
+            .NormalizeWhitespace()
+            .ToFullString();
+    }
+
     private static bool IsAllowed(ExpressionSyntax expression, out string error)
     {
         switch (expression)
@@ -135,4 +146,14 @@ internal static class ConversionExpression
             SyntaxKind.MultiplyExpression or
             SyntaxKind.DivideExpression or
             SyntaxKind.ModuloExpression;
+
+    private sealed class ValueRewriter : CSharpSyntaxRewriter
+    {
+        private readonly ExpressionSyntax _replacement;
+
+        public ValueRewriter(ExpressionSyntax replacement) => _replacement = replacement;
+
+        public override SyntaxNode? VisitIdentifierName(IdentifierNameSyntax node) =>
+            node.Identifier.ValueText == "x" ? _replacement : base.VisitIdentifierName(node);
+    }
 }

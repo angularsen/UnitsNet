@@ -278,7 +278,7 @@ internal sealed class EmittedQuantityRelation
 
     public string Source { get; }
 
-    public string Key => Result?.Definition.Name + "." + ResultUnit?.SingularName + " = " +
-                         Left.Definition.Name + "." + LeftUnit.SingularName + " " + Operator + " " +
-                         Right.Definition.Name + "." + RightUnit.SingularName;
+    public string Key => Result?.Definition.SemanticId + "." + ResultUnit?.SingularName + " = " +
+                         Left.Definition.SemanticId + "." + LeftUnit.SingularName + " " + Operator + " " +
+                         Right.Definition.SemanticId + "." + RightUnit.SingularName;
 }

@@ -251,27 +251,53 @@ internal static class QuantityEmitter
     {
         foreach (EmittedQuantityRelation relationship in relationships)
         {
-            string leftType = relationship.Left.Definition.Name;
-            string rightType = relationship.Right.Definition.Name;
+            string leftType = QuantityType(relationship.Left.Definition);
+            string rightType = QuantityType(relationship.Right.Definition);
+            string leftValue = ConversionExpression.Substitute(
+                relationship.LeftUnit.FromBaseToUnitExpression,
+                relationship.Operator == "inverse" ? "BaseValue" : "left.BaseValue");
+            string rightValue = ConversionExpression.Substitute(
+                relationship.RightUnit.FromBaseToUnitExpression,
+                "right.BaseValue");
             if (relationship.Operator == "inverse")
             {
+                string inverseValue = "1 / (" + leftValue + ")";
                 writer.Append("    public ").Append(rightType).Append(" Inverse() => ")
-                    .Append(rightType).Append(".From").Append(relationship.RightUnit.PluralName)
-                    .Append("(1 / ")
-                    .Append(relationship.LeftUnit.PluralName).AppendLine(");");
+                    .Append(ConstructFromRelationUnit(
+                        relationship.Right,
+                        relationship.RightUnit,
+                        inverseValue))
+                    .AppendLine(";");
                 continue;
             }
 
             QuantitySelection result = relationship.Result!;
-            writer.Append("    public static ").Append(result.Definition.Name).Append(" operator ")
+            string relationValue = "(" + leftValue + ") " + relationship.Operator + " (" + rightValue + ")";
+            writer.Append("    public static ").Append(QuantityType(result.Definition)).Append(" operator ")
                 .Append(relationship.Operator).Append('(').Append(leftType).Append(" left, ")
                 .Append(rightType).Append(" right) => ")
-                .Append(result.Definition.Name).Append(".From").Append(relationship.ResultUnit!.PluralName)
-                .Append("(left.").Append(relationship.LeftUnit.PluralName).Append(' ')
-                .Append(relationship.Operator).Append(" right.")
-                .Append(relationship.RightUnit.PluralName).AppendLine(");");
+                .Append(ConstructFromRelationUnit(result, relationship.ResultUnit!, relationValue))
+                .AppendLine(";");
         }
     }
+
+    private static string ConstructFromRelationUnit(
+        QuantitySelection result,
+        UnitDefinition relationUnit,
+        string value)
+    {
+        string baseValue = ConversionExpression.Substitute(relationUnit.FromUnitToBaseExpression, value);
+        return "new " + QuantityType(result.Definition) + "(" + baseValue + ", " +
+               UnitType(result.Definition) + "." + result.Definition.BaseUnit + ")";
+    }
+
+    private static string QuantityType(QuantityDefinition definition) =>
+        "global::" + definition.TargetNamespace + "." + definition.Name;
+
+    private static string UnitType(QuantityDefinition definition) =>
+        definition.TargetNamespace == "UnitsNet"
+            ? "global::UnitsNet.Units." + definition.Name + "Unit"
+            : "global::" + definition.TargetNamespace + "." + definition.Name + "Unit";
 
     private static void EmitLogarithmicOperators(
         StringBuilder writer,

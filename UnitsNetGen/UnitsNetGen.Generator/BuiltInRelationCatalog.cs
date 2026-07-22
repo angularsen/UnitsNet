@@ -25,6 +25,6 @@ internal static class BuiltInRelationCatalog
             throw new InvalidOperationException($"Embedded built-in relation catalog is invalid: {result.Error}");
         }
 
-        return result.Definitions!;
+        return QuantityRelationParser.QualifyQuantityIds(result.Definitions!, "UnitsNet");
     }
 }
