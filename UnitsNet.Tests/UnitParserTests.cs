@@ -35,6 +35,23 @@ public class UnitParserTests
         Assert.NotEqual(UnitAbbreviationsCache.Default, unitParser.Abbreviations);
         Assert.Equal(UnitsNetSetup.Default.Quantities, unitParser.Quantities);
     }
+
+    [Fact]
+    public void CreateDefault_WithAdditionalQuantity_CreatesParserWithExtendedCatalog()
+    {
+        var unitParser = UnitParser.CreateDefault(selector => selector.WithAdditionalQuantities([HowMuch.Info]));
+
+        Assert.Contains(HowMuch.Info, unitParser.Quantities.Infos);
+    }
+
+    [Fact]
+    public void Create_WithConfiguredAbbreviation_ParsesExternalQuantityUnit()
+    {
+        var unitParser = UnitParser.Create([HowMuch.Info], _ => { },
+            abbreviations => abbreviations.MapUnitToAbbreviation(HowMuchUnit.Some, "some"));
+
+        Assert.Equal(HowMuchUnit.Some, unitParser.Parse<HowMuchUnit>("some"));
+    }
         
     [Theory]
     [InlineData("m^^2", AreaUnit.SquareMeter)]
