@@ -78,6 +78,16 @@ public sealed class GeneratedQuantityTests
     }
 
     [Fact]
+    public void Parsing_DistinguishesCaseSensitiveSiPrefixes()
+    {
+        Length millimeters = Length.Parse("2 mm", System.Globalization.CultureInfo.InvariantCulture);
+        Length megameters = Length.Parse("2 Mm", System.Globalization.CultureInfo.InvariantCulture);
+
+        Assert.Equal(0.002, millimeters.Meters, 10);
+        Assert.Equal(2_000_000, megameters.Meters, 10);
+    }
+
+    [Fact]
     public void CustomQuantity_GetsSameGeneratedSurfaceInOwnNamespace()
     {
         HowMuch amount = HowMuch.Parse("10 tons");

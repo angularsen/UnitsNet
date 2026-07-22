@@ -38,9 +38,14 @@ internal static class QuantityEmitter
 
         writer.Append("public enum ").Append(unitTypeName).AppendLine();
         writer.AppendLine("{");
-        for (int index = 0; index < selection.Units.Count; index++)
+        foreach (UnitDefinition unit in selection.Units)
         {
-            writer.Append("    ").Append(selection.Units[index].SingularName).Append(" = ").Append(index).AppendLine(",");
+            int definitionIndex = quantity.Units.ToList().FindIndex(candidate =>
+                string.Equals(candidate.SingularName, unit.SingularName, StringComparison.Ordinal));
+            int enumValue = BuiltInUnitEnumValues.TryGet(quantity.SemanticId, unit.SingularName, out int stableValue)
+                ? stableValue
+                : definitionIndex + 1;
+            writer.Append("    ").Append(unit.SingularName).Append(" = ").Append(enumValue).AppendLine(",");
         }
 
         writer.AppendLine("}");
@@ -253,7 +258,7 @@ internal static class QuantityEmitter
                 writer.Append("    public ").Append(rightType).Append(" Inverse() => ")
                     .Append(rightType).Append(".From").Append(relationship.RightUnit.PluralName)
                     .Append("(1 / ")
-                    .Append(relationship.LeftUnit.PluralName).AppendLine("));");
+                    .Append(relationship.LeftUnit.PluralName).AppendLine(");");
                 continue;
             }
 

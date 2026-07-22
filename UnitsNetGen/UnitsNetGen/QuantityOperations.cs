@@ -1,6 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 
 using System.Globalization;
+using System.Collections.Concurrent;
 
 namespace UnitsNetGen;
 
@@ -35,18 +36,17 @@ public static class QuantityOperations
 
         string trimmed = text!.Trim();
         var culture = formatProvider as CultureInfo ?? CultureInfo.CurrentCulture;
-        foreach (UnitInfo<TUnit> candidate in metadata.Units)
+        foreach (SuffixCandidate<TUnit> candidate in SuffixCache<TUnit>.Get(metadata, culture))
         {
-            IEnumerable<string> suffixes = candidate.GetAbbreviations(culture)
-                .Concat(new[] { candidate.SingularName, candidate.PluralName })
-                .OrderByDescending(suffix => suffix.Length);
-            foreach (string suffix in suffixes)
+            if (TryReadValue(
+                    trimmed,
+                    candidate.Suffix,
+                    candidate.CaseSensitive,
+                    formatProvider,
+                    out value))
             {
-                if (TryReadValue(trimmed, suffix, formatProvider, out value))
-                {
-                    unit = candidate.Unit;
-                    return true;
-                }
+                unit = candidate.Unit;
+                return true;
             }
         }
 
@@ -89,10 +89,18 @@ public static class QuantityOperations
         throw new ArgumentOutOfRangeException(nameof(unit), unit, $"Unit is not generated for {metadata.Name}.");
     }
 
-    private static bool TryReadValue(string text, string suffix, IFormatProvider? formatProvider, out double value)
+    private static bool TryReadValue(
+        string text,
+        string suffix,
+        bool caseSensitive,
+        IFormatProvider? formatProvider,
+        out double value)
     {
         value = default;
-        if (!text.EndsWith(suffix, StringComparison.OrdinalIgnoreCase))
+        StringComparison comparison = caseSensitive
+            ? StringComparison.Ordinal
+            : StringComparison.OrdinalIgnoreCase;
+        if (!text.EndsWith(suffix, comparison))
         {
             return false;
         }
@@ -110,5 +118,50 @@ public static class QuantityOperations
         }
 
         return formatProvider is null && double.TryParse(number, styles, CultureInfo.InvariantCulture, out value);
+    }
+
+    private sealed class SuffixCandidate<TUnit>
+        where TUnit : struct, Enum
+    {
+        public SuffixCandidate(string suffix, TUnit unit, bool caseSensitive)
+        {
+            Suffix = suffix;
+            Unit = unit;
+            CaseSensitive = caseSensitive;
+        }
+
+        public string Suffix { get; }
+
+        public TUnit Unit { get; }
+
+        public bool CaseSensitive { get; }
+    }
+
+    private static class SuffixCache<TUnit>
+        where TUnit : struct, Enum
+    {
+        private static readonly ConcurrentDictionary<(IQuantityMetadata<TUnit>, string), SuffixCandidate<TUnit>[]> Cache = new();
+
+        public static IReadOnlyList<SuffixCandidate<TUnit>> Get(
+            IQuantityMetadata<TUnit> metadata,
+            CultureInfo culture) =>
+            Cache.GetOrAdd((metadata, culture.Name), key => Create(key.Item1, culture));
+
+        private static SuffixCandidate<TUnit>[] Create(
+            IQuantityMetadata<TUnit> metadata,
+            CultureInfo culture) =>
+            metadata.Units
+                .SelectMany(unit =>
+                    unit.GetAbbreviations(culture)
+                        .Select(abbreviation => new SuffixCandidate<TUnit>(abbreviation, unit.Unit, true))
+                        .Concat(new[]
+                        {
+                            new SuffixCandidate<TUnit>(unit.SingularName, unit.Unit, false),
+                            new SuffixCandidate<TUnit>(unit.PluralName, unit.Unit, false),
+                        }))
+                .Where(candidate => candidate.Suffix.Length > 0)
+                .OrderByDescending(candidate => candidate.Suffix.Length)
+                .ThenBy(candidate => candidate.Suffix, StringComparer.Ordinal)
+                .ToArray();
     }
 }

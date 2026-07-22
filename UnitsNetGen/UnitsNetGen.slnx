@@ -2,6 +2,7 @@
   <Project Path="../UnitsNet.Core/UnitsNet.Core.csproj" />
   <Project Path="UnitsNetGen/UnitsNetGen.csproj" />
   <Project Path="UnitsNetGen.Generator/UnitsNetGen.Generator.csproj" />
+  <Project Path="UnitsNetGen.Generator.Tests/UnitsNetGen.Generator.Tests.csproj" />
   <Project Path="UnitsNetGen.Tests/UnitsNetGen.Tests.csproj" />
   <Project Path="UnitsNetGen.Compatibility.Tests/UnitsNetGen.Compatibility.Tests.csproj" />
   <Folder Name="/Samples/">

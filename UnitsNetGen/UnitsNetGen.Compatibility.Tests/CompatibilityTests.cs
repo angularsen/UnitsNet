@@ -204,9 +204,13 @@ public sealed class CompatibilityTests
     [MemberData(nameof(UnitEnums))]
     public void GeneratedUnitEnum_MatchesUnitsNet(Type legacyType, Type generatedType)
     {
-        Assert.Equal(
-            Enum.GetNames(legacyType).OrderBy(name => name, StringComparer.Ordinal),
-            Enum.GetNames(generatedType).OrderBy(name => name, StringComparer.Ordinal));
+        string[] names = Enum.GetNames(legacyType).OrderBy(name => name, StringComparer.Ordinal).ToArray();
+        Assert.Equal(names, Enum.GetNames(generatedType).OrderBy(name => name, StringComparer.Ordinal));
+        Assert.All(
+            names,
+            name => Assert.Equal(
+                Convert.ToInt32(Enum.Parse(legacyType, name)),
+                Convert.ToInt32(Enum.Parse(generatedType, name))));
     }
 
     private static object[] QuantityApi(Type legacyType, Type generatedType, params string[] members) =>

@@ -241,11 +241,12 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
                 }
             }
 
-            UnitDefinition baseUnit = request.Definition.Units.First(unit => unit.SingularName == request.Definition.BaseUnit);
-            selectedUnits.Insert(0, baseUnit);
-            UnitDefinition[] distinctUnits = selectedUnits
-                .GroupBy(unit => unit.SingularName, StringComparer.Ordinal)
-                .Select(group => group.First())
+            selectedUnits.Add(request.Definition.Units.First(unit => unit.SingularName == request.Definition.BaseUnit));
+            var selectedNames = new HashSet<string>(
+                selectedUnits.Select(unit => unit.SingularName),
+                StringComparer.Ordinal);
+            UnitDefinition[] distinctUnits = request.Definition.Units
+                .Where(unit => selectedNames.Contains(unit.SingularName))
                 .ToArray();
             selections.Add(new QuantitySelection(request.Definition, distinctUnits));
         }
