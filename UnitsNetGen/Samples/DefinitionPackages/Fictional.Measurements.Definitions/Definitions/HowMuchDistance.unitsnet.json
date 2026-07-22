@@ -1,0 +1,16 @@
+{
+  "Name": "HowMuchDistance",
+  "Namespace": "Fictional.Measurements",
+  "BaseUnit": "SomeMeter",
+  "Units": [
+    {
+      "SingularName": "SomeMeter",
+      "PluralName": "SomeMeters",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        { "Culture": "en-US", "Abbreviations": [ "sm·m" ] }
+      ]
+    }
+  ]
+}

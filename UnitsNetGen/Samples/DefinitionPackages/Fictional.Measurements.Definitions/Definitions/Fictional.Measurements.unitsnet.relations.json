@@ -1,0 +1,17 @@
+[
+  {
+    "result": {
+      "quantity": "Fictional.Measurements.HowMuchDistance",
+      "unit": "SomeMeter"
+    },
+    "left": {
+      "quantity": "Fictional.Measurements.HowMuch",
+      "unit": "Some"
+    },
+    "operator": "*",
+    "right": {
+      "quantity": "UnitsNet.Length",
+      "unit": "Meter"
+    }
+  }
+]

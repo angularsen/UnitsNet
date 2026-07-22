@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>true</IsPackable>
+    <PackageId>Fictional.Measurements.Definitions</PackageId>
+    <PackageVersion>1.0.0-alpha.1</PackageVersion>
+    <Authors>UnitsNetGen sample</Authors>
+    <Description>Definition-only sample package for UnitsNetGen quantities and relationships.</Description>
+    <PackageLicenseExpression>MIT-0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/angularsen/UnitsNet/tree/master/UnitsNetGen</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>unitsnetgen definitions quantities units sample</PackageTags>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../../UnitsNetGen/UnitsNetGen.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Definitions/*.unitsnet.json"
+          Pack="true"
+          PackagePath="build/definitions" />
+    <None Include="Definitions/*.unitsnet.relations.json"
+          Pack="true"
+          PackagePath="build/definitions" />
+    <None Include="build/Fictional.Measurements.Definitions.props"
+          Pack="true"
+          PackagePath="build/Fictional.Measurements.Definitions.props" />
+    <None Include="README.md" Pack="true" PackagePath="README.md" />
+  </ItemGroup>
+</Project>

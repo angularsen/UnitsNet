@@ -6,6 +6,10 @@
   <Project Path="UnitsNetGen.Tests/UnitsNetGen.Tests.csproj" />
   <Project Path="UnitsNetGen.Compatibility.Tests/UnitsNetGen.Compatibility.Tests.csproj" />
   <Folder Name="/Samples/">
+    <Project Path="Samples/DefinitionPackages/Fictional.Measurements.Definitions/Fictional.Measurements.Definitions.csproj" />
+    <Project Path="Samples/ConsumerOwned/ConsumerOwned.Units/ConsumerOwned.Units.csproj" />
+    <Project Path="Samples/ConsumerOwned/ConsumerOwned.Domain/ConsumerOwned.Domain.csproj" />
+    <Project Path="Samples/ConsumerOwned/ConsumerOwned.Reporting/ConsumerOwned.Reporting.csproj" />
     <Project Path="Samples/UnitsNetGen.AllSi.Sample/UnitsNetGen.AllSi.Sample.csproj" />
     <Project Path="Samples/UnitsNetGen.Representative.Sample/UnitsNetGen.Representative.Sample.csproj" />
     <Project Path="Samples/UnitsNetGen.Lean.Sample/UnitsNetGen.Lean.Sample.csproj" />
