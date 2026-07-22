@@ -90,7 +90,7 @@ internal static class QuantityEmitter
         writer.AppendLine();
         writer.AppendLine("    public double Value => _value;");
         writer.Append("    public ").Append(unitType).AppendLine(" Unit => _unit;");
-        writer.Append("    public static global::UnitsNet.Core.QuantityId QuantityId => new global::UnitsNet.Core.QuantityId(\"")
+        writer.Append("    public static global::UnitsNet.Core.QuantityId QuantityId { get; } = new global::UnitsNet.Core.QuantityId(\"")
             .Append(Escape(quantity.SemanticId)).AppendLine("\");");
         writer.Append("    public static ").Append(unitType).Append(" BaseUnit => ").Append(unitType).Append('.').Append(quantity.BaseUnit).AppendLine(";");
         if (quantity.IsLogarithmic)
