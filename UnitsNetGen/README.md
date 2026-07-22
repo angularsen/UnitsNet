@@ -69,6 +69,84 @@ markers, JSON definitions, localizations, and relationships, but no compiled qua
 application units project references those packages and selects their definitions alongside the
 built-in catalog.
 
+### Intended solution structure
+
+The application has one project that owns generation. Every other application project references
+that project instead of running UnitsNetGen independently:
+
+```text
+MyApplication.slnx
+└── src
+    ├── MyApplication.Units
+    │   ├── MyApplication.Units.csproj
+    │   └── ApplicationUnits.cs
+    ├── MyApplication.Domain
+    │   └── MyApplication.Domain.csproj      -> MyApplication.Units
+    ├── MyApplication.Persistence
+    │   └── MyApplication.Persistence.csproj -> MyApplication.Units
+    ├── MyApplication.Api
+    │   └── MyApplication.Api.csproj         -> MyApplication.Units
+    └── MyApplication.Cli
+        └── MyApplication.Cli.csproj         -> MyApplication.Units
+```
+
+`MyApplication.Units` references `UnitsNetGen` and any third-party definition packages. Its module
+marker selects the built-in and third-party definitions the application needs. The generated
+quantity structs, unit enums, conversions, formatting, parsing, and cross-quantity operators all
+become part of `MyApplication.Units.dll`.
+
+```mermaid
+flowchart LR
+    BuiltIns["UnitsNetGen built-in catalog<br/>recipe"]
+    PackageA["Acme.Measurements.Definitions<br/>third-party recipe package"]
+    PackageB["Other.Definitions<br/>third-party recipe package"]
+    Module["MyApplication.Units<br/>selection + source generation"]
+    Types["MyApplication.Units.dll<br/>application-owned quantity types"]
+    Domain["Domain"]
+    Persistence["Persistence"]
+    Api["API / UI"]
+    Cli["CLI / services"]
+
+    BuiltIns --> Module
+    PackageA --> Module
+    PackageB --> Module
+    Module --> Types
+    Types --> Domain
+    Types --> Persistence
+    Types --> Api
+    Types --> Cli
+```
+
+The packages on the left are recipes: they describe quantities, units, localizations, conversions,
+and relationships. The application project in the middle decides which recipes to combine and owns
+the resulting CLR types. This single generation boundary is what lets every project on the right
+exchange the same strongly typed values.
+
+### Package models
+
+There are two possible models for distributing third-party quantities:
+
+1. A **compiled quantity package** generates and ships its own quantity structs and unit enums.
+   This is convenient for a fixed, standalone API, but the package author chooses the available
+   quantities and units. Two packages that independently compile the same logical quantity create
+   different CLR types. A consumer also cannot freely compose operators across those package
+   boundaries, because neither independently compiled assembly owns both operand types.
+2. A **definition package** ships public marker interfaces together with JSON definitions,
+   localizations, conversion expressions, and relationships. It does not ship compiled quantity
+   structs. The consuming application selects the definitions and generates them once in its own
+   units project.
+
+UnitsNetGen chooses the definition-package model for third-party extensibility. It preserves the
+consumer's ability to bring only the quantities and units it needs, makes built-in and third-party
+relationships visible to one generator, and gives all generated types one predictable assembly
+identity inside the application. It also avoids forcing a third party's selection and generation
+policy on every consumer.
+
+A compiled module can still be useful when an organization deliberately wants to publish one
+canonical quantity assembly for several applications. That is a deployment choice rather than the
+primary composition model, and independently compiled modules do not gain type identity or operator
+interoperability merely because their definitions have the same names.
+
 See `Samples/DefinitionPackages/Fictional.Measurements.Definitions` and
 `Samples/ConsumerOwned` for the complete packable-provider and shared-consumer scenario.
 
