@@ -1,0 +1,84 @@
+<Project>
+  <PropertyGroup>
+    <!--
+      Repository-only sample settings. These are custom UnitsNetGen properties, not built-in
+      MSBuild properties. Package-facing samples always restore from the repository-local feed.
+    -->
+    <RepositoryLocalNuGetFeed
+        Condition="'$(RepositoryLocalNuGetFeed)' == ''">$(MSBuildThisFileDirectory)..\..\Artifacts\Nugets</RepositoryLocalNuGetFeed>
+    <UnitsNetGenSampleLocalFeed
+        Condition="'$(UnitsNetGenSampleLocalFeed)' == ''">$(RepositoryLocalNuGetFeed)</UnitsNetGenSampleLocalFeed>
+    <UnitsNetGenSampleLocalVersion
+        Condition="'$(UnitsNetGenSampleLocalVersion)' == ''">1.0.0-local.dev.*</UnitsNetGenSampleLocalVersion>
+
+    <!-- Retain the original singular switch as a compatibility alias for existing commands. -->
+    <UnitsNetGenSampleUpdateLocalPackagesOnBuild
+        Condition="'$(UnitsNetGenSampleUpdateLocalPackagesOnBuild)' == '' and '$(UnitsNetGenSampleUpdateLocalPackageOnBuild)' != ''">$(UnitsNetGenSampleUpdateLocalPackageOnBuild)</UnitsNetGenSampleUpdateLocalPackagesOnBuild>
+    <UnitsNetGenSampleUpdateLocalPackagesOnBuild
+        Condition="'$(UnitsNetGenSampleUpdateLocalPackagesOnBuild)' == '' and '$(Configuration)' == 'Debug'">true</UnitsNetGenSampleUpdateLocalPackagesOnBuild>
+    <UnitsNetGenSampleUpdateLocalPackagesOnBuild
+        Condition="'$(UnitsNetGenSampleUpdateLocalPackagesOnBuild)' == ''">false</UnitsNetGenSampleUpdateLocalPackagesOnBuild>
+
+    <!-- Leading underscores follow the MSBuild convention for implementation-private properties. -->
+    <_UnitsNetGenSourceRoot>$(MSBuildThisFileDirectory)..\</_UnitsNetGenSourceRoot>
+    <_UnitsNetGenSourceProject>$(_UnitsNetGenSourceRoot)UnitsNetGen\UnitsNetGen.csproj</_UnitsNetGenSourceProject>
+    <_UnitsNetGenSampleLocalPackStamp>$(UnitsNetGenSampleLocalFeed)\.$(MSBuildProjectName).local-pack.stamp</_UnitsNetGenSampleLocalPackStamp>
+    <!-- MinVer cannot distinguish uncommitted edits, so local packages use a unique override. -->
+    <_UnitsNetGenSampleLocalPackageVersion>1.0.0-local.dev.$([System.DateTime]::UtcNow.ToString('yyyyMMddHHmmssfff'))</_UnitsNetGenSampleLocalPackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <_UnitsNetGenLocalPackageInput Include="$(_UnitsNetGenSourceRoot)UnitsNetGen\**\*"
+                                   Exclude="$(_UnitsNetGenSourceRoot)UnitsNetGen\bin\**;$(_UnitsNetGenSourceRoot)UnitsNetGen\obj\**" />
+    <_UnitsNetGenLocalPackageInput Include="$(_UnitsNetGenSourceRoot)UnitsNetGen.Generator\**\*"
+                                   Exclude="$(_UnitsNetGenSourceRoot)UnitsNetGen.Generator\bin\**;$(_UnitsNetGenSourceRoot)UnitsNetGen.Generator\obj\**" />
+    <_UnitsNetGenLocalPackageInput Include="$(_UnitsNetGenSourceRoot)..\UnitsNet.Core\**\*"
+                                   Exclude="$(_UnitsNetGenSourceRoot)..\UnitsNet.Core\bin\**;$(_UnitsNetGenSourceRoot)..\UnitsNet.Core\obj\**" />
+    <_UnitsNetGenLocalPackageInput Include="$(MSBuildThisFileFullPath)" />
+    <_UnitsNetGenLocalPackageInput Include="$(_UnitsNetGenSourceRoot)ARCHITECTURE.md" />
+    <_UnitsNetGenLocalPackageInput Include="$(_UnitsNetGenSourceRoot)README.md" />
+    <_UnitsNetGenLocalPackageInput Include="$(_UnitsNetGenSourceRoot)THIRD-PARTY-NOTICES.md" />
+    <_UnitsNetGenLocalPackageInput Include="$(_UnitsNetGenSourceRoot)Directory.Build.props" />
+    <_UnitsNetGenLocalPackageInput Include="$(_UnitsNetGenSourceRoot)Directory.Build.targets" />
+    <_UnitsNetGenLocalPackageInput Include="$(_UnitsNetGenSourceRoot)Directory.Packages.props" />
+    <_UnitsNetGenLocalPackageInput Include="$(_UnitsNetGenSourceRoot)..\Docs\Images\logo-32.png" />
+  </ItemGroup>
+
+  <Target Name="_PackLocalUnitsNetGenPackages"
+          Condition="'$(UnitsNetGenSampleUpdateLocalPackagesOnBuild)' == 'true'"
+          Inputs="@(_UnitsNetGenLocalPackageInput);@(UnitsNetGenSampleAdditionalLocalPackageInput)"
+          Outputs="$(_UnitsNetGenSampleLocalPackStamp)">
+    <Message Importance="high" Text="Packing the latest local UnitsNetGen package..." />
+    <Exec Command="dotnet pack &quot;$(_UnitsNetGenSourceProject)&quot; --configuration Release --output &quot;$(UnitsNetGenSampleLocalFeed)&quot; -p:MinVerVersionOverride=$(_UnitsNetGenSampleLocalPackageVersion)" />
+
+    <Message Condition="'@(UnitsNetGenSampleAdditionalLocalPackageProject)' != ''"
+             Importance="high"
+             Text="Packing local definition package %(UnitsNetGenSampleAdditionalLocalPackageProject.Identity)..." />
+    <Exec Condition="'@(UnitsNetGenSampleAdditionalLocalPackageProject)' != ''"
+          Command="dotnet pack &quot;%(UnitsNetGenSampleAdditionalLocalPackageProject.Identity)&quot; --configuration Release --output &quot;$(UnitsNetGenSampleLocalFeed)&quot; -p:MinVerVersionOverride=$(_UnitsNetGenSampleLocalPackageVersion) -p:PackageVersion=$(_UnitsNetGenSampleLocalPackageVersion)" />
+    <Touch Files="$(_UnitsNetGenSampleLocalPackStamp)" AlwaysCreate="true" />
+  </Target>
+
+  <!-- Bootstrap the feed before NuGet tries to resolve a floating PackageReference. -->
+  <Target Name="_PackLocalUnitsNetGenPackagesBeforeRestore"
+          BeforeTargets="Restore;_GenerateRestoreGraphProjectEntry"
+          DependsOnTargets="_PackLocalUnitsNetGenPackages"
+          Condition="'$(UnitsNetGenSampleUpdateLocalPackagesOnBuild)' == 'true'" />
+
+  <!-- Rider can build without a separate restore, so refresh assets before references are resolved. -->
+  <Target Name="UpdateLocalUnitsNetGenPackages"
+          BeforeTargets="PrepareForBuild"
+          DependsOnTargets="_PackLocalUnitsNetGenPackages"
+          Condition="'$(UnitsNetGenSampleUpdateLocalPackagesOnBuild)' == 'true' and '$(DesignTimeBuild)' != 'true'">
+    <Message Importance="high" Text="Resolving the latest local UnitsNetGen packages..." />
+    <MSBuild Projects="$(MSBuildProjectFullPath)"
+             Targets="Restore"
+             BuildInParallel="false"
+             Properties="UnitsNetGenSampleUpdateLocalPackagesOnBuild=false;RestoreForceEvaluate=true"
+             RemoveProperties="TargetFramework;RuntimeIdentifier;SelfContained" />
+  </Target>
+
+  <!-- Compatibility alias for the original sample target name. -->
+  <Target Name="UpdateLocalUnitsNetGenPackage"
+          DependsOnTargets="UpdateLocalUnitsNetGenPackages" />
+</Project>

@@ -14,7 +14,7 @@
     <UnitsNetGenPackForPublish Condition="'$(UnitsNetGenPackForPublish)' == '' and '$(GITHUB_ACTIONS)' == 'true'">true</UnitsNetGenPackForPublish>
     <UnitsNetGenPackForPublish Condition="'$(UnitsNetGenPackForPublish)' == ''">false</UnitsNetGenPackForPublish>
     <UnitsNetGenLocalFeed Condition="'$(UnitsNetGenLocalFeed)' == ''">$(RepositoryLocalNuGetFeed)</UnitsNetGenLocalFeed>
-    <MinVerVersionOverride Condition="'$(UnitsNetGenPackForPublish)' != 'true' and '$(MinVerVersionOverride)' == ''">1.0.0-local.$([System.DateTime]::UtcNow.ToString('yyyyMMddHHmmssfff'))</MinVerVersionOverride>
+    <MinVerVersionOverride Condition="'$(UnitsNetGenPackForPublish)' != 'true' and '$(MinVerVersionOverride)' == ''">1.0.0-local.dev.$([System.DateTime]::UtcNow.ToString('yyyyMMddHHmmssfff'))</MinVerVersionOverride>
     <PackageOutputPath Condition="'$(UnitsNetGenPackForPublish)' != 'true' and '$(PackageOutputPath)' == ''">$(UnitsNetGenLocalFeed)</PackageOutputPath>
 
     <PackageId>UnitsNetGen</PackageId>
