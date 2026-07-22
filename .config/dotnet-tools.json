@@ -2,11 +2,12 @@
   "version": 1,
   "isRoot": true,
   "tools": {
-    "jetbrains.dotcover.globaltool": {
-      "version": "2022.2.3",
+    "jetbrains.dotcover.commandlinetools": {
+      "version": "2025.1.8",
       "commands": [
-        "dotnet-dotcover"
-      ]
+        "dotCover"
+      ],
+      "rollForward": false
     },
     "timeitsharp": {
       "version": "0.0.8",

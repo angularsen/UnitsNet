@@ -62,15 +62,22 @@ jobs:
         foreach ($testProject in $testProjects) {
           $projectName = [IO.Path]::GetFileNameWithoutExtension($testProject)
 
-          dotnet dotcover test $testProject `
-            --configuration Release `
-            --framework net48 `
-            --logger trx `
-            --results-directory Artifacts/TestResults `
-            -p:ContinuousIntegrationBuild=true `
-            --dotCoverFilters="+:module=UnitsNet*;-:module=*Tests" `
-            --dotCoverOutput="Artifacts/Coverage/$projectName.coverage.xml" `
-            --dcReportType=DetailedXML
+          $testArguments = @(
+            $testProject,
+            '--configuration', 'Release',
+            '--framework', 'net48',
+            '--logger', 'trx',
+            '--results-directory', 'Artifacts/TestResults',
+            '-p:ContinuousIntegrationBuild=true'
+          )
+
+          dotnet tool run dotCover -- cover-dotnet `
+            --TargetWorkingDir $PWD.Path `
+            --Output "Artifacts/Coverage/$projectName.coverage.xml" `
+            --ReportType DetailedXML `
+            --Filters '+:module=UnitsNet*;-:module=*Tests' `
+            --ReturnTargetExitCode `
+            -- test @testArguments
 
           if ($LASTEXITCODE -ne 0) {
             exit $LASTEXITCODE
