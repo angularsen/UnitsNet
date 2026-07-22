@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using CodeGen.Exceptions;
@@ -133,7 +134,8 @@ namespace CodeGen.Generators
             try
             {
                 var text = File.ReadAllText(relationsFileName);
-                var relationStrings = JsonConvert.DeserializeObject<SortedSet<string>>(text) ?? [];
+                var relationStrings = JsonConvert.DeserializeObject<List<string>>(text)
+                    ?.ToImmutableSortedSet(StringComparer.OrdinalIgnoreCase) ?? [];
 
                 var parsedRelations = relationStrings.Select(relationString => ParseRelation(relationString, quantities)).ToList();
 
