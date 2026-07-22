@@ -4,10 +4,11 @@ UnitsNetGen is a proof of concept for composing lean, strongly typed quantities 
 time. It combines a small runtime with a Roslyn source generator and supports both built-in catalog
 definitions and consumer-selected third-party definition packages.
 
-Generated quantities and UnitsNet v6 quantities implement the shared
-`UnitsNet.Core.IQuantity<TUnit, TValue>` contract. This enables generic source and data
-interoperation without claiming that concrete structs generated into different assemblies have the
-same CLR type.
+Generated quantities and modern UnitsNet v6 assets implement the shared self-typed
+`UnitsNet.Core.IQuantity<TSelf, TUnit, TValue>` contract. It exposes stored value and unit as
+instance data, with semantic identity, base unit, and construction on the quantity type. This
+enables generic source and data interoperation without claiming that concrete structs generated
+into different assemblies have the same CLR type.
 
 **Experimental:** UnitsNetGen's API and package format may change while the architecture is being
 explored.

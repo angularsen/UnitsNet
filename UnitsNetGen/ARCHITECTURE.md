@@ -150,8 +150,8 @@ directly references it.
 
 ## Projects
 
-- `UnitsNet.Core`: stable semantic identity and numeric-generic contracts shared by both
-  implementations.
+- `UnitsNet.Core`: minimal modern value/unit contracts and a self-typed static contract shared by
+  both implementations.
 - `UnitsNetGen`: the lean runtime and the new `IQuantity<TUnit>` contract.
 - `UnitsNetGen.Generator`: the incremental generator, marker bootstrap source, built-in catalog,
   diagnostics, and emitters.
@@ -197,11 +197,16 @@ The linked-source samples establish source compatibility for factories, properti
 conversions, parsing, formatting, and operators. Compatibility tests compare the selected public
 surfaces, enum names and stable values, runtime output, and shared Core contract behavior.
 
-`UnitsNet.Core.IQuantity<TValue>` establishes contract compatibility without exposing a concrete
-unit enum. `UnitsNet.Core.IQuantity<TUnit, TValue>` additionally exposes the representation's unit
-type.
-Both contracts provide a semantic `QuantityId`, stored value/unit, and base value. A generic library
-can therefore consume either implementation even though their concrete types differ.
+`UnitsNet.Core.IQuantity<TValue>` exposes only the stored numeric value.
+`UnitsNet.Core.IQuantity<TUnit, TValue>` additionally exposes its strongly typed stored unit.
+`UnitsNet.Core.IQuantity<TSelf, TUnit, TValue>` adds static semantic identity, base unit, and
+construction. A generic library can therefore consume or create either implementation even though
+their concrete types differ.
+
+`QuantityId` belongs to the quantity type rather than each value instance. Base-unit conversion is
+derived behavior and is intentionally not part of the instance contract. Generated relationships
+and equality use internal conversion helpers; reusable public conversion behavior belongs in
+extensions backed by immutable definition metadata.
 
 UnitsNetGen deliberately does not emit substitute copies of legacy `UnitsNet.IQuantity` interfaces.
 Exact legacy interface identity would require moving those interfaces to a canonical assembly and
@@ -215,9 +220,10 @@ Projects inside one application share its consumer-owned module. Independent app
 shared contracts
 or explicit serialized data instead of assuming their generated structs have the same identity.
 
-The `UnitsNet.Core` project is a separate signed assembly and prerelease package. Packing
-UnitsNetGen also packs Core to the same output directory and records it as a package dependency.
-This keeps the real-consumer sample and CI artifacts self-contained while the POC evolves.
+The `UnitsNet.Core` project is a separate signed assembly and prerelease package. Local packing
+gives Core and UnitsNetGen the same unique development version, packs them to the same output
+directory, and records Core as a package dependency. This avoids stale same-version Core packages
+in the NuGet cache while keeping the real-consumer samples and CI artifacts self-contained.
 
 The package-facing samples import one repository-only MSBuild target that incrementally packs
 changed UnitsNetGen or generator sources before restore, then refreshes their floating
@@ -292,10 +298,13 @@ files; it is not a consumer-facing MSBuild property or API.
 
 ## Framework targets
 
-The `UnitsNetGen` runtime supplies assets for .NET 8, 9, and 10. The generator remains a
-`netstandard2.0` analyzer solely so current compiler and IDE hosts can load it regardless of the
-consumer target. That analyzer target is an implementation constraint, not runtime support for
-generated quantity modules.
+The `UnitsNetGen` runtime and `UnitsNet.Core` supply assets for .NET 8, 9, and 10. The modern
+UnitsNet v6 assets implement the shared Core contracts. Its existing `netstandard2.0` asset retains
+the legacy API without referencing Core or exposing the experimental contracts.
+
+The generator remains a `netstandard2.0` analyzer solely so current compiler and IDE hosts can load
+it regardless of the consumer target. That analyzer target is an implementation constraint, not
+runtime support for generated quantity modules.
 
 On all supported runtime targets, generated quantities implement `IParsable<TSelf>` and applicable
 generic-math operator interfaces from `System.Numerics`. This enables generic parsing, addition,
@@ -312,7 +321,9 @@ For each selected definition, the generator emits:
 
 - a unit enum containing only selected units;
 - an immutable strongly typed quantity struct;
-- typed `FromXxx()` factories and `.Xxx` conversion properties;
+- typed `FromXxx()` factories, a generic `From(value, unit)` factory, and `.Xxx` conversion
+  properties;
+- static semantic identity and base-unit members through the self-typed Core contract;
 - `As()`, `ToUnit()`, `Parse()`, `TryParse()`, and `ToString()`;
 - equality, comparison, same-quantity addition/subtraction, and scalar multiplication/division;
 - modern .NET generic parsing and generic-math contracts;

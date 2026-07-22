@@ -134,6 +134,25 @@ public sealed class GeneratedQuantityTests
         Assert.Equal(2, total.Kilometers, 10);
     }
 
+    [Fact]
+    public void GeneratedQuantity_ImplementsMinimalSelfTypedCoreContract()
+    {
+        Assert.Equal(new UnitsNet.Core.QuantityId("UnitsNet.Length"), Length.QuantityId);
+        Assert.Equal(LengthUnit.Meter, Length.BaseUnit);
+
+        Length length = Create<Length, LengthUnit>(2, LengthUnit.Meter);
+        UnitsNet.Core.IQuantity<LengthUnit, double> stored = length;
+        Assert.Equal(2d, stored.Value);
+        Assert.Equal(LengthUnit.Meter, stored.Unit);
+
+        const System.Reflection.BindingFlags publicMembers =
+            System.Reflection.BindingFlags.Public |
+            System.Reflection.BindingFlags.Instance |
+            System.Reflection.BindingFlags.Static;
+        Assert.Null(typeof(Length).GetProperty("BaseValue", publicMembers));
+        Assert.Null(typeof(Length).GetProperty("UnitName", publicMembers));
+    }
+
     private static T Parse<T>(string text)
         where T : IParsable<T>
         => T.Parse(text, System.Globalization.CultureInfo.InvariantCulture);
@@ -141,4 +160,9 @@ public sealed class GeneratedQuantityTests
     private static T Add<T>(T left, T right)
         where T : System.Numerics.IAdditionOperators<T, T, T>
         => left + right;
+
+    private static TQuantity Create<TQuantity, TUnit>(double value, TUnit unit)
+        where TQuantity : UnitsNet.Core.IQuantity<TQuantity, TUnit, double>
+        where TUnit : struct, Enum
+        => TQuantity.From(value, unit);
 }

@@ -60,7 +60,8 @@ internal static class QuantityEmitter
 
         writer.Append("public readonly partial struct ").Append(quantity.Name)
             .Append(" : global::UnitsNetGen.IQuantity<").Append(unitType).Append(">, ")
-            .Append("global::UnitsNet.Core.IQuantity<").Append(unitType).Append(", double>, ");
+            .Append("global::UnitsNet.Core.IQuantity<").Append(quantity.Name).Append(", ")
+            .Append(unitType).Append(", double>, ");
         writer
             .Append("global::System.IEquatable<").Append(quantity.Name).Append(">, ")
             .Append("global::System.IComparable<").Append(quantity.Name).AppendLine(">");
@@ -84,11 +85,13 @@ internal static class QuantityEmitter
         writer.AppendLine("        _ = global::UnitsNetGen.QuantityOperations.GetBaseValue(value, unit, Metadata);");
         writer.AppendLine("    }");
         writer.AppendLine();
+        writer.Append("    public static ").Append(quantity.Name).Append(" From(double value, ")
+            .Append(unitType).AppendLine(" unit) => new(value, unit);");
+        writer.AppendLine();
         writer.AppendLine("    public double Value => _value;");
         writer.Append("    public ").Append(unitType).AppendLine(" Unit => _unit;");
-        writer.Append("    public global::UnitsNet.Core.QuantityId QuantityId => new global::UnitsNet.Core.QuantityId(\"")
+        writer.Append("    public static global::UnitsNet.Core.QuantityId QuantityId => new global::UnitsNet.Core.QuantityId(\"")
             .Append(Escape(quantity.SemanticId)).AppendLine("\");");
-        writer.AppendLine("    public string UnitName => Unit.ToString();");
         writer.Append("    public static ").Append(unitType).Append(" BaseUnit => ").Append(unitType).Append('.').Append(quantity.BaseUnit).AppendLine(";");
         if (quantity.IsLogarithmic)
         {
@@ -99,7 +102,7 @@ internal static class QuantityEmitter
 
         writer.Append("    public static global::System.Collections.Generic.IReadOnlyList<global::UnitsNetGen.UnitInfo<")
             .Append(unitType).AppendLine(">> UnitInfos => Metadata.Units;");
-        writer.AppendLine("    public double BaseValue => global::UnitsNetGen.QuantityOperations.GetBaseValue(_value, _unit, Metadata);");
+        writer.AppendLine("    internal double BaseValue => global::UnitsNetGen.QuantityOperations.GetBaseValue(_value, _unit, Metadata);");
         writer.AppendLine();
 
         foreach (UnitDefinition unit in selection.Units)

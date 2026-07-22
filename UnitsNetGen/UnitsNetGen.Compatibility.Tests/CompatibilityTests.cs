@@ -175,6 +175,15 @@ public sealed class CompatibilityTests
         Assert.All(generatedTypes, type => Assert.True(contract.IsAssignableFrom(type), type.FullName));
     }
 
+    [Fact]
+    public void BothImplementations_ImplementSelfTypedCoreContract()
+    {
+        AssertSelfTypedContract<Legacy::UnitsNet.Length, Legacy::UnitsNet.Units.LengthUnit>(
+            Legacy::UnitsNet.Units.LengthUnit.Meter);
+        AssertSelfTypedContract<Generated::UnitsNet.Length, Generated::UnitsNet.Units.LengthUnit>(
+            Generated::UnitsNet.Units.LengthUnit.Meter);
+    }
+
     [Theory]
     [MemberData(nameof(QuantityApis))]
     public void GeneratedQuantity_ExposesCompatibleApiSubset(
@@ -186,6 +195,9 @@ public sealed class CompatibilityTests
         {
             "Value",
             "Unit",
+            "QuantityId",
+            "BaseUnit",
+            "From",
             "As",
             "ToUnit",
             "Parse",
@@ -217,6 +229,19 @@ public sealed class CompatibilityTests
         new object[] { legacyType, generatedType, members };
 
     private static object[] UnitEnum<TLegacy, TGenerated>() => new object[] { typeof(TLegacy), typeof(TGenerated) };
+
+    private static void AssertSelfTypedContract<TQuantity, TUnit>(TUnit baseUnit)
+        where TQuantity : UnitsNet.Core.IQuantity<TQuantity, TUnit, double>
+        where TUnit : struct, Enum
+    {
+        Assert.Equal(new UnitsNet.Core.QuantityId("UnitsNet.Length"), TQuantity.QuantityId);
+        Assert.Equal(baseUnit, TQuantity.BaseUnit);
+
+        TQuantity quantity = TQuantity.From(2, baseUnit);
+        UnitsNet.Core.IQuantity<TUnit, double> stored = quantity;
+        Assert.Equal(2d, stored.Value);
+        Assert.Equal(baseUnit, stored.Unit);
+    }
 
     private static HashSet<string> GetSurface(Type type, ISet<string> selectedNames)
     {

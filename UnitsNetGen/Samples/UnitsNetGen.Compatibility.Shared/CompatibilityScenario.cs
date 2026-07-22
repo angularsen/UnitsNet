@@ -24,13 +24,15 @@ public static class CompatibilityScenario
             FormattableString.Invariant($"Temperature: {temperature.Value:R} {temperature.Unit}"),
             FormattableString.Invariant($"Level: {combinedLevel.Value:R} {combinedLevel.Unit}"),
             FormattableString.Invariant($"Information: {payload.Value:R} {payload.Unit}"),
-            DescribeCoreContract(distance));
+            DescribeCoreContract<Length, LengthUnit>(distance));
     }
 
     public static Length ParseLength(string text) =>
         Length.Parse(text, CultureInfo.InvariantCulture);
 
-    private static string DescribeCoreContract(UnitsNet.Core.IQuantity<double> quantity) =>
+    private static string DescribeCoreContract<TQuantity, TUnit>(TQuantity quantity)
+        where TQuantity : UnitsNet.Core.IQuantity<TQuantity, TUnit, double>
+        where TUnit : struct, Enum =>
         FormattableString.Invariant(
-            $"Core: {quantity.QuantityId}={quantity.BaseValue:R} {quantity.UnitName}");
+            $"Core: {TQuantity.QuantityId}={quantity.Value:R} {quantity.Unit}");
 }

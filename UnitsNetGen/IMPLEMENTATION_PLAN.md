@@ -74,8 +74,8 @@ keeps the broader SI relationship chain continuously buildable.
   - Treat third-party packages as definition providers: JSON, localizations, relations, and public
     definition markers, but no compiled quantity structs.
   - Recommend one consumer-owned units library as the generation boundary shared by an application.
-  - Target the runtime at modern .NET 8, 9, and 10; keep the analyzer itself on `netstandard2.0` only
-    for compiler-host compatibility.
+  - Target the runtime and shared Core contracts at modern .NET 8, 9, and 10; keep the analyzer
+    itself on `netstandard2.0` only for compiler-host compatibility.
 
 - [x] **9. Harden generator correctness and compatibility**
   - Add generator-driver tests for diagnostics, generated source, relationships, and incrementality.
@@ -85,6 +85,8 @@ keeps the broader SI relationship chain continuously buildable.
     quantities.
   - Remove generated substitutes for legacy `UnitsNet.IQuantity` interfaces while retaining concrete
     source compatibility and the shared `UnitsNet.Core` contract.
+  - Keep the instance contract minimal, with static quantity identity, base unit, and construction
+    on a modern self-typed composite interface.
 
 - [x] **10. Make generation genuinely incremental and diagnostic-friendly**
   - Discover modules with `ForAttributeWithMetadataName`.

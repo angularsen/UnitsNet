@@ -1,12 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net10.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>UnitsNet.Core</RootNamespace>
     <AssemblyName>UnitsNet.Core</AssemblyName>
-    <Version>1.0.0-alpha.1</Version>
+    <Version Condition="'$(UnitsNetCoreVersionOverride)' == ''">1.0.0-alpha.1</Version>
+    <Version Condition="'$(UnitsNetCoreVersionOverride)' != ''">$(UnitsNetCoreVersionOverride)</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>../UnitsNet.snk</AssemblyOriginatorKeyFile>

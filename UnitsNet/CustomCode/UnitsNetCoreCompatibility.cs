@@ -1,98 +1,89 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+#if NET8_0_OR_GREATER
+
 using UnitsNet.Core;
 using UnitsNet.Units;
 
 namespace UnitsNet;
 
-public readonly partial struct Length : UnitsNet.Core.IQuantity<LengthUnit, double>
+public readonly partial struct Length : IQuantity<Length, LengthUnit, double>
 {
-    QuantityId UnitsNet.Core.IQuantity<double>.QuantityId => new("UnitsNet.Length");
-    double UnitsNet.Core.IQuantity<double>.BaseValue => As(BaseUnit);
-    string UnitsNet.Core.IQuantity<double>.UnitName => Unit.ToString();
+    /// <inheritdoc />
+    public static QuantityId QuantityId => new("UnitsNet.Length");
 }
 
-public readonly partial struct Mass : UnitsNet.Core.IQuantity<MassUnit, double>
+public readonly partial struct Mass : IQuantity<Mass, MassUnit, double>
 {
-    QuantityId UnitsNet.Core.IQuantity<double>.QuantityId => new("UnitsNet.Mass");
-    double UnitsNet.Core.IQuantity<double>.BaseValue => As(BaseUnit);
-    string UnitsNet.Core.IQuantity<double>.UnitName => Unit.ToString();
+    /// <inheritdoc />
+    public static QuantityId QuantityId => new("UnitsNet.Mass");
 }
 
-public readonly partial struct Duration : UnitsNet.Core.IQuantity<DurationUnit, double>
+public readonly partial struct Duration : IQuantity<Duration, DurationUnit, double>
 {
-    QuantityId UnitsNet.Core.IQuantity<double>.QuantityId => new("UnitsNet.Duration");
-    double UnitsNet.Core.IQuantity<double>.BaseValue => As(BaseUnit);
-    string UnitsNet.Core.IQuantity<double>.UnitName => Unit.ToString();
+    /// <inheritdoc />
+    public static QuantityId QuantityId => new("UnitsNet.Duration");
 }
 
-public readonly partial struct Area : UnitsNet.Core.IQuantity<AreaUnit, double>
+public readonly partial struct Area : IQuantity<Area, AreaUnit, double>
 {
-    QuantityId UnitsNet.Core.IQuantity<double>.QuantityId => new("UnitsNet.Area");
-    double UnitsNet.Core.IQuantity<double>.BaseValue => As(BaseUnit);
-    string UnitsNet.Core.IQuantity<double>.UnitName => Unit.ToString();
+    /// <inheritdoc />
+    public static QuantityId QuantityId => new("UnitsNet.Area");
 }
 
-public readonly partial struct Speed : UnitsNet.Core.IQuantity<SpeedUnit, double>
+public readonly partial struct Speed : IQuantity<Speed, SpeedUnit, double>
 {
-    QuantityId UnitsNet.Core.IQuantity<double>.QuantityId => new("UnitsNet.Speed");
-    double UnitsNet.Core.IQuantity<double>.BaseValue => As(BaseUnit);
-    string UnitsNet.Core.IQuantity<double>.UnitName => Unit.ToString();
+    /// <inheritdoc />
+    public static QuantityId QuantityId => new("UnitsNet.Speed");
 }
 
-public readonly partial struct Acceleration : UnitsNet.Core.IQuantity<AccelerationUnit, double>
+public readonly partial struct Acceleration : IQuantity<Acceleration, AccelerationUnit, double>
 {
-    QuantityId UnitsNet.Core.IQuantity<double>.QuantityId => new("UnitsNet.Acceleration");
-    double UnitsNet.Core.IQuantity<double>.BaseValue => As(BaseUnit);
-    string UnitsNet.Core.IQuantity<double>.UnitName => Unit.ToString();
+    /// <inheritdoc />
+    public static QuantityId QuantityId => new("UnitsNet.Acceleration");
 }
 
-public readonly partial struct Force : UnitsNet.Core.IQuantity<ForceUnit, double>
+public readonly partial struct Force : IQuantity<Force, ForceUnit, double>
 {
-    QuantityId UnitsNet.Core.IQuantity<double>.QuantityId => new("UnitsNet.Force");
-    double UnitsNet.Core.IQuantity<double>.BaseValue => As(BaseUnit);
-    string UnitsNet.Core.IQuantity<double>.UnitName => Unit.ToString();
+    /// <inheritdoc />
+    public static QuantityId QuantityId => new("UnitsNet.Force");
 }
 
-public readonly partial struct Pressure : UnitsNet.Core.IQuantity<PressureUnit, double>
+public readonly partial struct Pressure : IQuantity<Pressure, PressureUnit, double>
 {
-    QuantityId UnitsNet.Core.IQuantity<double>.QuantityId => new("UnitsNet.Pressure");
-    double UnitsNet.Core.IQuantity<double>.BaseValue => As(BaseUnit);
-    string UnitsNet.Core.IQuantity<double>.UnitName => Unit.ToString();
+    /// <inheritdoc />
+    public static QuantityId QuantityId => new("UnitsNet.Pressure");
 }
 
-public readonly partial struct Energy : UnitsNet.Core.IQuantity<EnergyUnit, double>
+public readonly partial struct Energy : IQuantity<Energy, EnergyUnit, double>
 {
-    QuantityId UnitsNet.Core.IQuantity<double>.QuantityId => new("UnitsNet.Energy");
-    double UnitsNet.Core.IQuantity<double>.BaseValue => As(BaseUnit);
-    string UnitsNet.Core.IQuantity<double>.UnitName => Unit.ToString();
+    /// <inheritdoc />
+    public static QuantityId QuantityId => new("UnitsNet.Energy");
 }
 
-public readonly partial struct Power : UnitsNet.Core.IQuantity<PowerUnit, double>
+public readonly partial struct Power : IQuantity<Power, PowerUnit, double>
 {
-    QuantityId UnitsNet.Core.IQuantity<double>.QuantityId => new("UnitsNet.Power");
-    double UnitsNet.Core.IQuantity<double>.BaseValue => As(BaseUnit);
-    string UnitsNet.Core.IQuantity<double>.UnitName => Unit.ToString();
+    /// <inheritdoc />
+    public static QuantityId QuantityId => new("UnitsNet.Power");
 }
 
-public readonly partial struct Temperature : UnitsNet.Core.IQuantity<TemperatureUnit, double>
+public readonly partial struct Temperature : IQuantity<Temperature, TemperatureUnit, double>
 {
-    QuantityId UnitsNet.Core.IQuantity<double>.QuantityId => new("UnitsNet.Temperature");
-    double UnitsNet.Core.IQuantity<double>.BaseValue => As(BaseUnit);
-    string UnitsNet.Core.IQuantity<double>.UnitName => Unit.ToString();
+    /// <inheritdoc />
+    public static QuantityId QuantityId => new("UnitsNet.Temperature");
 }
 
-public readonly partial struct Level : UnitsNet.Core.IQuantity<LevelUnit, double>
+public readonly partial struct Level : IQuantity<Level, LevelUnit, double>
 {
-    QuantityId UnitsNet.Core.IQuantity<double>.QuantityId => new("UnitsNet.Level");
-    double UnitsNet.Core.IQuantity<double>.BaseValue => As(BaseUnit);
-    string UnitsNet.Core.IQuantity<double>.UnitName => Unit.ToString();
+    /// <inheritdoc />
+    public static QuantityId QuantityId => new("UnitsNet.Level");
 }
 
-public readonly partial struct Information : UnitsNet.Core.IQuantity<InformationUnit, double>
+public readonly partial struct Information : IQuantity<Information, InformationUnit, double>
 {
-    QuantityId UnitsNet.Core.IQuantity<double>.QuantityId => new("UnitsNet.Information");
-    double UnitsNet.Core.IQuantity<double>.BaseValue => As(BaseUnit);
-    string UnitsNet.Core.IQuantity<double>.UnitName => Unit.ToString();
+    /// <inheritdoc />
+    public static QuantityId QuantityId => new("UnitsNet.Information");
 }
+
+#endif
