@@ -1,9 +1,9 @@
-name: Publish .NET Framework 4.8 Test Results
+name: Publish net48 Test Results
 
 on:
   workflow_run:
     workflows:
-      - .NET Framework 4.8 Compatibility
+      - net48 Compatibility
     types:
       - completed
 
@@ -13,7 +13,7 @@ permissions: {}
 
 jobs:
   publish:
-    name: Publish test results
+    name: ${{ github.event.workflow_run.event == 'pull_request' && 'Publish PR net48 Test Results' || 'Publish CI net48 Test Results' }}
     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.conclusion == 'failure' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -42,7 +42,7 @@ jobs:
       if: ${{ hashFiles('artifacts/net48-test-results/*.trx') != '' }}
       uses: EnricoMi/publish-unit-test-result-action@d0a4676d0e0b938bc201470d88276b7c74c712b3 # v2
       with:
-        check_name: .NET Framework 4.8 Test Results
+        check_name: ${{ github.event.workflow_run.event == 'pull_request' && 'PR net48 Test Results' || 'CI net48 Test Results' }}
         comment_mode: off
         commit: ${{ github.event.workflow_run.head_sha }}
         event_file: artifacts/net48-event/event.json

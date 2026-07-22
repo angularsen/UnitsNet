@@ -21,7 +21,7 @@ env:
 
 jobs:
   build-and-test:
-    name: Build & Test
+    name: PR Build & Test
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
@@ -62,7 +62,7 @@ jobs:
       uses: EnricoMi/publish-unit-test-result-action@v2
       with:
         files: Artifacts/TestResults/*.trx
-        check_name: Test Results
+        check_name: PR Test Results
         comment_mode: off
 
     - name: Upload coverage to Codecov
