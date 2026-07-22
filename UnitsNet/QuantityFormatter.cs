@@ -144,9 +144,9 @@ public class QuantityFormatter
             switch (format[0])
             {
 #if NET
-                case 'S' or 's' when int.TryParse(format.AsSpan(1), out var precisionSpecifier):
+                case 'S' or 's' when int.TryParse(format.AsSpan(1), CultureInfo.InvariantCulture, out var precisionSpecifier):
                     return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, precisionSpecifier);
-                case 'A' or 'a' when int.TryParse(format.AsSpan(1), out var abbreviationIndex):
+                case 'A' or 'a' when int.TryParse(format.AsSpan(1), CultureInfo.InvariantCulture, out var abbreviationIndex):
                 {
                     IReadOnlyList<string> abbreviations = _unitAbbreviations.GetUnitAbbreviations(quantity.UnitKey, formatProvider);
 
@@ -157,14 +157,14 @@ public class QuantityFormatter
 
                     return abbreviations[abbreviationIndex];
                 }
-                case 'C' or 'c' when int.TryParse(format.AsSpan(1), out _):
+                case 'C' or 'c' when int.TryParse(format.AsSpan(1), CultureInfo.InvariantCulture, out _):
                     throw new FormatException($"The \"{format}\" (currency) format is not supported.");
-                case 'P' or 'p' when int.TryParse(format.AsSpan(1), out _):
+                case 'P' or 'p' when int.TryParse(format.AsSpan(1), CultureInfo.InvariantCulture, out _):
                     throw new FormatException($"The \"{format}\" (percent) format is not supported.");
 #else
-                case 'S' or 's' when int.TryParse(format.Substring(1), out var precisionSpecifier):
+                case 'S' or 's' when int.TryParse(format.Substring(1), NumberStyles.Integer, CultureInfo.InvariantCulture, out var precisionSpecifier):
                     return ToStringWithSignificantDigitsAfterRadix(quantity, formatProvider, precisionSpecifier);
-                case 'A' or 'a' when int.TryParse(format.Substring(1), out var abbreviationIndex):
+                case 'A' or 'a' when int.TryParse(format.Substring(1), NumberStyles.Integer, CultureInfo.InvariantCulture, out var abbreviationIndex):
                 {
                     IReadOnlyList<string> abbreviations = _unitAbbreviations.GetUnitAbbreviations(quantity.UnitKey, formatProvider);
 
@@ -175,9 +175,9 @@ public class QuantityFormatter
 
                     return abbreviations[abbreviationIndex];
                 }
-                case 'C' or 'c' when int.TryParse(format.Substring(1), out _):
+                case 'C' or 'c' when int.TryParse(format.Substring(1), NumberStyles.Integer, CultureInfo.InvariantCulture, out _):
                     throw new FormatException($"The \"{format}\" (currency) format is not supported.");
-                case 'P' or 'p' when int.TryParse(format.Substring(1), out _):
+                case 'P' or 'p' when int.TryParse(format.Substring(1), NumberStyles.Integer, CultureInfo.InvariantCulture, out _):
                     throw new FormatException($"The \"{format}\" (percent) format is not supported.");
 #endif
             }
