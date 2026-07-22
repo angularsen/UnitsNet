@@ -70,6 +70,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void FactoryMethods_WithNullArguments_ThrowArgumentNullException()
+        {
+            Assert.Multiple(checks:
+            [
+                () => Assert.Equal("configureQuantities",
+                    Assert.Throws<ArgumentNullException>(() => UnitAbbreviationsCache.CreateDefault(null!)).ParamName),
+                () => Assert.Equal("defaultQuantities",
+                    Assert.Throws<ArgumentNullException>(() => UnitAbbreviationsCache.Create(null!, _ => { })).ParamName),
+                () => Assert.Equal("configureQuantities",
+                    Assert.Throws<ArgumentNullException>(() => UnitAbbreviationsCache.Create([Mass.Info], null!)).ParamName)
+            ]);
+        }
+
+        [Fact]
         public void UnitAbbreviationsCache_Default_ReturnsInstanceFromUnitsNetSetup()
         {
             Assert.Equal(UnitsNetSetup.Default.UnitAbbreviations, UnitAbbreviationsCache.Default);

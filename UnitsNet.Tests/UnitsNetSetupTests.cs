@@ -31,6 +31,35 @@ public class UnitsNetSetupTests
     }
 
     [Fact]
+    public void Create_WithSelectedAndAdditionalQuantities_AppendsToSelectedCatalog()
+    {
+        UnitsNetSetup setup = UnitsNetSetup.Create(builder => builder.WithQuantities([Mass.Info],
+            selector => selector.WithAdditionalQuantities([HowMuch.Info])));
+
+        Assert.Equal([Mass.Info, HowMuch.Info], setup.Quantities.Infos);
+    }
+
+    [Fact]
+    public void FactoryMethods_WithNullArguments_ThrowArgumentNullException()
+    {
+        var builder = new UnitsNetSetup.DefaultConfigurationBuilder();
+
+        Assert.Multiple(checks:
+        [
+            () => Assert.Equal("configuration",
+                Assert.Throws<ArgumentNullException>(() => UnitsNetSetup.Create(null!)).ParamName),
+            () => Assert.Equal("quantities",
+                Assert.Throws<ArgumentNullException>(() => builder.WithQuantities((IEnumerable<QuantityInfo>)null!)).ParamName),
+            () => Assert.Equal("quantities",
+                Assert.Throws<ArgumentNullException>(() => builder.WithQuantities((Func<IEnumerable<QuantityInfo>>)null!)).ParamName),
+            () => Assert.Equal("quantities",
+                Assert.Throws<ArgumentNullException>(() => builder.WithQuantities((IEnumerable<QuantityInfo>)null!, _ => { })).ParamName),
+            () => Assert.Equal("configureQuantities",
+                Assert.Throws<ArgumentNullException>(() => builder.WithQuantities(() => [Mass.Info], null!)).ParamName)
+        ]);
+    }
+
+    [Fact]
     public void Builder_WithQuantitiesTwice_ThrowsInvalidOperationException()
     {
         Assert.Throws<InvalidOperationException>(() => UnitsNetSetup.Create(builder => builder
