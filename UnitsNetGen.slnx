@@ -8,6 +8,7 @@
   <Folder Name="/Samples/">
     <Project Path="UnitsNetGen/Samples/DefinitionPackages/Fictional.Measurements.Definitions/Fictional.Measurements.Definitions.csproj" />
     <Project Path="UnitsNetGen/Samples/ConsumerOwned/ConsumerOwned.Units/ConsumerOwned.Units.csproj" />
+    <Project Path="UnitsNetGen/Samples/ConsumerOwned/ConsumerOwned.Units.ProjectReferences/ConsumerOwned.Units.ProjectReferences.csproj" />
     <Project Path="UnitsNetGen/Samples/ConsumerOwned/ConsumerOwned.Domain/ConsumerOwned.Domain.csproj" />
     <Project Path="UnitsNetGen/Samples/ConsumerOwned/ConsumerOwned.Reporting/ConsumerOwned.Reporting.csproj" />
     <Project Path="UnitsNetGen/Samples/UnitsNetGen.AllSi.Sample/UnitsNetGen.AllSi.Sample.csproj" />
@@ -16,6 +17,5 @@
     <Project Path="UnitsNetGen/Samples/UnitsNetGen.Custom.Sample/UnitsNetGen.Custom.Sample.csproj" />
     <Project Path="UnitsNetGen/Samples/UnitsNetGen.Compatibility.UnitsNet.Sample/UnitsNetGen.Compatibility.UnitsNet.Sample.csproj" />
     <Project Path="UnitsNetGen/Samples/UnitsNetGen.Compatibility.Generated.Sample/UnitsNetGen.Compatibility.Generated.Sample.csproj" />
-    <Project Path="UnitsNetGen/Samples/UnitsNetGen.NuGet.Sample/UnitsNetGen.NuGet.Sample.csproj" />
   </Folder>
 </Solution>

@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)Generated</CompilerGeneratedFilesOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Link the exact module declaration compiled by the package-facing consumer. -->
+    <Compile Include="../ConsumerOwned.Units/ApplicationUnits.cs"
+             Link="ApplicationUnits.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../DefinitionPackages/Fictional.Measurements.Definitions/Fictional.Measurements.Definitions.csproj" />
+    <ProjectReference Include="../../../UnitsNetGen/UnitsNetGen.csproj" />
+    <ProjectReference Include="../../../UnitsNetGen.Generator/UnitsNetGen.Generator.csproj"
+                      OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- ProjectReference does not import the definition package's build/*.props content. -->
+    <UnitsNetGenDefinition Include="../../DefinitionPackages/Fictional.Measurements.Definitions/Definitions/*.unitsnet.json" />
+    <UnitsNetGenRelation Include="../../DefinitionPackages/Fictional.Measurements.Definitions/Definitions/*.unitsnet.relations.json" />
+  </ItemGroup>
+</Project>

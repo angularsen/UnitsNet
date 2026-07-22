@@ -174,9 +174,18 @@ directly references it.
   `PackageReference` and consumer-owned JSON.
 - `Samples/DefinitionPackages/Fictional.Measurements.Definitions`: a packable definition-only NuGet
   containing markers, JSON definitions, localization, and structured relationships.
-- `Samples/ConsumerOwned/ConsumerOwned.Units`: the single application-owned generation boundary.
+- `Samples/ConsumerOwned/ConsumerOwned.Units`: the package-facing application-owned generation
+  boundary. It consumes locally packed runtime and definition packages.
+- `Samples/ConsumerOwned/ConsumerOwned.Units.ProjectReferences`: a maintainer-facing twin that
+  compiles the same linked module declaration with direct project references and explicit
+  definition files.
 - `Samples/ConsumerOwned/ConsumerOwned.Domain` and `ConsumerOwned.Reporting`: two downstream
   consumers sharing the exact generated CLR types from `ConsumerOwned.Units`.
+
+Feature and compatibility samples use project references because they exercise generated behavior
+inside this repository. `UnitsNetGen.NuGet.Sample` and `ConsumerOwned.Units` deliberately cross the
+local package boundary: the former covers a minimal consumer-owned definition, while the latter
+composes a separately packed definition recipe into a shared application assembly.
 
 The compatibility test project uses aliased references to compare both implementations' selected
 public API and unit names without introducing concrete-type ambiguity. The projects live in their
@@ -210,30 +219,33 @@ The `UnitsNet.Core` project is a separate signed assembly and prerelease package
 UnitsNetGen also packs Core to the same output directory and records it as a package dependency.
 This keeps the real-consumer sample and CI artifacts self-contained while the POC evolves.
 
-The NuGet sample has a local-only MSBuild dependency that incrementally packs changed UnitsNetGen or
-generator sources before restore, then refreshes its floating `1.0.0-local.*` package before
-compilation. Its restore source is restricted to the shared `Artifacts/Nugets` development feed, so
-it can never fall back to a published UnitsNetGen package. Running or building
-`UnitsNetGen.NuGet.Sample` therefore uses the latest local source without introducing a project
-reference or bypassing the NuGet package boundary.
+The package-facing samples import one repository-only MSBuild target that incrementally packs
+changed UnitsNetGen or generator sources before restore, then refreshes their floating
+`1.0.0-local.dev.*` dependencies before compilation. `ConsumerOwned.Units` registers the fictional
+definition provider as an additional package, so the automation packs the runtime first and the
+definition recipe second with the same unique version. Restore is restricted to the shared
+`Artifacts/Nugets` development feed and can never fall back to a published package.
 
 The dependency can also be invoked explicitly:
 
 ```powershell
 dotnet msbuild `
   UnitsNetGen/Samples/UnitsNetGen.NuGet.Sample/UnitsNetGen.NuGet.Sample.csproj `
-  -t:UpdateLocalUnitsNetGenPackage
+  -t:UpdateLocalUnitsNetGenPackages
 ```
 
 This repository-only automation defaults on for Debug builds and off for other configurations. Set
-`UnitsNetGenSampleUpdateLocalPackageOnBuild=true` or `false` explicitly to override the default.
+`UnitsNetGenSampleUpdateLocalPackagesOnBuild=true` or `false` explicitly to override the default.
+The older singular property and target names remain aliases for existing local commands.
 
 `RepositoryLocalNuGetFeed` in the root `Directory.Build.props` gives every repository project the
 shared `Artifacts/Nugets` path. The repository-level `NuGet.Config` exposes it to solution-wide IDE
 package tooling, and generated packages remain gitignored. The UnitsNetGen package project supports
 a plain `dotnet pack UnitsNetGen/UnitsNetGen/UnitsNetGen.csproj`, which creates a unique
-`1.0.0-local.*` package in that feed for the real-consumer sample. Since local versions are
-prereleases, enable prerelease packages and refresh the feed in the IDE after packing. Pass
+`1.0.0-local.dev.*` package in that feed for the real-consumer samples. The dedicated `dev`
+identifier prevents another local prerelease label from shadowing the floating dependency. Local
+development versions are prereleases, so enable prerelease packages and refresh the feed in the IDE
+after packing. Pass
 `-p:UnitsNetGenPackForPublish=true` to create the MinVer-derived publish version instead; CI sets
 this explicitly.
 
@@ -251,9 +263,10 @@ and unprefixed tags are ignored. A release tag such as `UnitsNetGen/1.0.0-alpha.
 alpha version with commit height. `UnitsNetGen.Generator` remains an internal, non-packable project
 because its generated code requires the runtime shipped in the combined package.
 
-The NuGet sample passes a timestamped `MinVerVersionOverride` so repeated packages containing
-uncommitted changes remain unique. The package includes complete NuGet metadata, including its
-README, icon, XML API documentation, repository commit metadata, and portable PDBs in an `.snupkg`.
+The local package automation passes a timestamped `MinVerVersionOverride` so repeated packages
+containing uncommitted changes remain unique. The package includes complete NuGet metadata,
+including its README, icon, XML API documentation, repository commit metadata, and portable PDBs
+in an `.snupkg`.
 GitHub Actions enables `ContinuousIntegrationBuild`, producing deterministic CI packages with
 stable source paths
 and Source Link metadata for the matching commit. Local development packages retain developer source
@@ -261,8 +274,8 @@ paths and may therefore be reported as non-deterministic by NuGet Package Explor
 publishing artifacts.
 
 The separate `UnitsNetGen CI` workflow uses full Git history, builds and tests `UnitsNetGen.slnx`,
-packs the combined package with its MinVer version, and uploads it as a workflow artifact. It does
-not publish to NuGet.org.
+runs the minimal NuGet consumer with an isolated package cache, packs the combined package with its
+MinVer version, and uploads it as a workflow artifact. It does not publish to NuGet.org.
 
 ## Analyzer dependency plumbing
 

@@ -54,13 +54,17 @@ jobs:
           dotnet-version: 10.0.x
 
       - name: Restore
-        run: dotnet restore UnitsNetGen.slnx -p:UnitsNetGenSampleUpdateLocalPackageOnBuild=true
+        run: dotnet restore UnitsNetGen.slnx -p:UnitsNetGenSampleUpdateLocalPackagesOnBuild=true
 
       - name: Build
-        run: dotnet build UnitsNetGen.slnx --configuration Release --no-restore --no-incremental -p:UnitsNetGenSampleUpdateLocalPackageOnBuild=true
+        run: dotnet build UnitsNetGen.slnx --configuration Release --no-restore --no-incremental -p:UnitsNetGenSampleUpdateLocalPackagesOnBuild=true
 
       - name: Test
-        run: dotnet test UnitsNetGen.slnx --configuration Release --no-build -p:UnitsNetGenSampleUpdateLocalPackageOnBuild=false
+        run: dotnet test UnitsNetGen.slnx --configuration Release --no-build -p:UnitsNetGenSampleUpdateLocalPackagesOnBuild=false
+
+      - name: Run isolated NuGet consumer
+        shell: pwsh
+        run: ./UnitsNetGen/Samples/UnitsNetGen.NuGet.Sample/run.ps1
 
       - name: Pack
         run: dotnet pack UnitsNetGen/UnitsNetGen/UnitsNetGen.csproj --configuration Release --no-build --output Artifacts/UnitsNetGen.CI -p:UnitsNetGenPackForPublish=true

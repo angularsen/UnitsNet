@@ -147,6 +147,20 @@ canonical quantity assembly for several applications. That is a deployment choic
 primary composition model, and independently compiled modules do not gain type identity or operator
 interoperability merely because their definitions have the same names.
 
+The `Samples/ConsumerOwned` scenario shows both repository integration modes side by side:
+
+- `ConsumerOwned.Units` is the canonical package-facing project. It consumes locally packed
+  `UnitsNetGen` and `Fictional.Measurements.Definitions` packages and receives the recipe files
+  through the definition package's `build/*.props`.
+- `ConsumerOwned.Units.ProjectReferences` compiles the exact same linked module declaration using
+  direct project references. It includes the definition files explicitly because NuGet build
+  content does not flow through a `ProjectReference`.
+
+Feature-focused samples use project references for a fast repository development loop. The two
+NuGet-facing scenarios validate package integration: `UnitsNetGen.NuGet.Sample` covers a minimal
+consumer-owned JSON file, while `ConsumerOwned.Units` composes a separate definition package into
+an application-owned shared assembly.
+
 See `Samples/DefinitionPackages/Fictional.Measurements.Definitions` and
 `Samples/ConsumerOwned` for the complete packable-provider and shared-consumer scenario.
 
