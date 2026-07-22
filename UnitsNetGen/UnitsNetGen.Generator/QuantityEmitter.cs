@@ -56,15 +56,10 @@ internal static class QuantityEmitter
         writer.Append("public readonly partial struct ").Append(quantity.Name)
             .Append(" : global::UnitsNetGen.IQuantity<").Append(unitType).Append(">, ")
             .Append("global::UnitsNet.Core.IQuantity<").Append(unitType).Append(", double>, ");
-        if (unitsNetCompatibility)
-        {
-            writer.Append("global::UnitsNet.IQuantity<").Append(unitType).Append(">, ");
-        }
-
         writer
             .Append("global::System.IEquatable<").Append(quantity.Name).Append(">, ")
             .Append("global::System.IComparable<").Append(quantity.Name).AppendLine(">");
-        writer.AppendLine("#if NET10_0_OR_GREATER");
+        writer.AppendLine("#if NET8_0_OR_GREATER");
         writer.Append("    , global::System.IParsable<").Append(quantity.Name).AppendLine(">");
         writer.Append("    , global::System.Numerics.IAdditionOperators<").Append(quantity.Name).Append(", ").Append(quantity.Name).Append(", ").Append(quantity.Name).AppendLine(">");
         writer.Append("    , global::System.Numerics.ISubtractionOperators<").Append(quantity.Name).Append(", ").Append(quantity.Name).Append(", ").Append(quantity.Name).AppendLine(">");
@@ -114,21 +109,6 @@ internal static class QuantityEmitter
         writer.AppendLine("        global::UnitsNetGen.QuantityOperations.Convert(_value, _unit, unit, Metadata);");
         writer.AppendLine();
         writer.Append("    public ").Append(quantity.Name).Append(" ToUnit(").Append(unitType).AppendLine(" unit) => new(As(unit), unit);");
-        if (unitsNetCompatibility)
-        {
-            writer.AppendLine("    double global::UnitsNet.IQuantity.As(global::System.Enum unit) =>");
-            writer.Append("        unit is ").Append(unitType).AppendLine(" typedUnit");
-            writer.AppendLine("            ? As(typedUnit)");
-            writer.AppendLine("            : throw new global::System.InvalidCastException(\"The unit type is not compatible with this quantity.\");");
-            writer.AppendLine("    global::System.Enum global::UnitsNet.IQuantity.Unit => Unit;");
-            writer.AppendLine("    global::UnitsNet.IQuantity global::UnitsNet.IQuantity.ToUnit(global::System.Enum unit) =>");
-            writer.Append("        unit is ").Append(unitType).AppendLine(" typedUnit");
-            writer.AppendLine("            ? ToUnit(typedUnit)");
-            writer.AppendLine("            : throw new global::System.InvalidCastException(\"The unit type is not compatible with this quantity.\");");
-            writer.Append("    global::UnitsNet.IQuantity<").Append(unitType).Append("> global::UnitsNet.IQuantity<")
-                .Append(unitType).AppendLine(">.ToUnit(" + unitType + " unit) => ToUnit(unit);");
-        }
-
         writer.AppendLine();
         writer.Append("    public static ").Append(quantity.Name).AppendLine(" Parse(string text, global::System.IFormatProvider? formatProvider = null)");
         writer.AppendLine("    {");
@@ -151,7 +131,7 @@ internal static class QuantityEmitter
         writer.AppendLine("        quantity = default;");
         writer.AppendLine("        return false;");
         writer.AppendLine("    }");
-        writer.AppendLine("#if NET10_0_OR_GREATER");
+        writer.AppendLine("#if NET8_0_OR_GREATER");
         writer.Append("    public static bool TryParse(string? text, global::System.IFormatProvider? formatProvider, out ").Append(quantity.Name).AppendLine(" quantity)");
         writer.AppendLine("    {");
         writer.AppendLine("        if (global::UnitsNetGen.QuantityOperations.TryParse(text, formatProvider, Metadata, out double value, out var unit))");

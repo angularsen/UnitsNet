@@ -1,7 +1,7 @@
 # UnitsNetGen prototype implementation plan
 
-This plan tracks the compatibility, catalog-composition, shared-contract, numeric-storage, and
-interoperability experiments. The representative sample keeps iteration fast, while the AllSi sample
+This plan tracks the compatibility, catalog-composition, shared-contract, definition-package, and
+relationship experiments. The representative sample keeps iteration fast, while the AllSi sample
 keeps the broader SI relationship chain continuously buildable.
 
 ## Branches
@@ -67,8 +67,51 @@ keeps the broader SI relationship chain continuously buildable.
   - Accept custom `UnitsNetGenRelation` files through compiler `AdditionalFiles`.
   - Filter operators with the selected quantities, canonical units, and generated namespace.
 
+- [ ] **8. Establish consumer-owned generation and definition packages**
+  - Put stable authoring attributes and selection interfaces in the UnitsNetGen runtime instead of
+    emitting public copies into every compilation.
+  - Treat third-party packages as definition providers: JSON, localizations, relations, and public
+    definition markers, but no compiled quantity structs.
+  - Recommend one consumer-owned units library as the generation boundary shared by an application.
+  - Target the runtime at modern .NET 8, 9, and 10; keep the analyzer itself on `netstandard2.0` only
+    for compiler-host compatibility.
+
+- [ ] **9. Harden generator correctness and compatibility**
+  - Add generator-driver tests for diagnostics, generated source, relationships, and incrementality.
+  - Fix inverse relationship emission and diagnose ambiguous generated members.
+  - Parse case-significant abbreviations with one longest-suffix-first lookup.
+  - Preserve UnitsNet's stable built-in enum values and stable full-definition ordinals for custom
+    quantities.
+  - Remove generated substitutes for legacy `UnitsNet.IQuantity` interfaces while retaining concrete
+    source compatibility and the shared `UnitsNet.Core` contract.
+
+- [ ] **10. Make generation genuinely incremental and diagnostic-friendly**
+  - Discover modules with `ForAttributeWithMetadataName`.
+  - Extract value-equatable module requests instead of carrying Roslyn symbols through the pipeline.
+  - Diagnose definition collisions and attach module or additional-file locations where possible.
+  - Keep output deterministic regardless of include or pattern ordering.
+
+- [ ] **11. Generate relationships across definition namespaces**
+  - Resolve relation endpoints globally by stable semantic quantity ID.
+  - Separate semantic IDs from generated CLR namespaces and names.
+  - Let selected quantities control relationship availability without requiring relation anchor units
+    to be part of the public unit selection.
+  - Emit operators on a deterministic locally generated operand and diagnose relationships that
+    cannot be represented.
+  - Accept an unambiguous structured relation format for third-party definitions while retaining the
+    existing UnitsNet relation catalog as an input format.
+
+- [ ] **12. Demonstrate the application-owned units-library workflow**
+  - Add a definition-only third-party package for the fictional HowMuch quantities.
+  - Add a shared application units library that selects built-in and third-party definitions.
+  - Add two consumers that reference the same generated library and therefore share CLR type identity.
+  - Document that independently generated application modules intentionally have different CLR type
+    identities.
+
 ## Deferred
 
 - Restore and validate the full UnitsNet quantity catalog.
 - Define the complete permanent set of built-in quantity profiles.
 - Run catalog-wide API compatibility, generator performance, and output-size measurements.
+- Canonical precompiled third-party quantity modules and operators between independently compiled
+  module packages.

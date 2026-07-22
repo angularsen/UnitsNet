@@ -150,12 +150,9 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
         }
 
         var requests = new Dictionary<string, SelectionRequest>(StringComparer.Ordinal);
-        bool emitUnitsNetCompatibilityContracts = false;
-
         foreach (INamedTypeSymbol module in moduleSymbols.OfType<INamedTypeSymbol>())
         {
             string? moduleNamespace = GetModuleTargetNamespace(module);
-            emitUnitsNetCompatibilityContracts |= string.Equals(moduleNamespace, "UnitsNet", StringComparison.Ordinal);
             INamedTypeSymbol[] directIncludes = module.Interfaces.Where(IsInclude).ToArray();
             var directDefinitions = new HashSet<ITypeSymbol>(
                 directIncludes
@@ -275,13 +272,6 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
         foreach (string error in relationErrors)
         {
             context.ReportDiagnostic(Diagnostic.Create(InvalidRelationSet, Location.None, error));
-        }
-
-        if (emitUnitsNetCompatibilityContracts)
-        {
-            context.AddSource(
-                "UnitsNetGen.Compatibility.g.cs",
-                SourceText.From(BootstrapSource.CompatibilityText, System.Text.Encoding.UTF8));
         }
 
         foreach (QuantitySelection selection in selections)

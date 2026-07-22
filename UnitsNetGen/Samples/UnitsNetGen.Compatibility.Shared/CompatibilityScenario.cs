@@ -10,8 +10,7 @@ public static class CompatibilityScenario
 {
     public static string Run()
     {
-        global::UnitsNet.IQuantity<LengthUnit> distanceContract = Length.FromKilometers(1.5);
-        Length distance = (Length)distanceContract.ToUnit(LengthUnit.Meter);
+        Length distance = Length.FromKilometers(1.5).ToUnit(LengthUnit.Meter);
         Area area = Length.FromMeters(2) * Length.FromMeters(3);
         Temperature temperature = Temperature.FromDegreesCelsius(21.5)
             .ToUnit(TemperatureUnit.DegreeFahrenheit);

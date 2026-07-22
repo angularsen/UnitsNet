@@ -11,6 +11,5 @@
     <Project Path="Samples/UnitsNetGen.Custom.Sample/UnitsNetGen.Custom.Sample.csproj" />
     <Project Path="Samples/UnitsNetGen.Compatibility.UnitsNet.Sample/UnitsNetGen.Compatibility.UnitsNet.Sample.csproj" />
     <Project Path="Samples/UnitsNetGen.Compatibility.Generated.Sample/UnitsNetGen.Compatibility.Generated.Sample.csproj" />
-    <Project Path="Samples/UnitsNetGen.NetStandard.Sample/UnitsNetGen.NetStandard.Sample.csproj" />
   </Folder>
 </Solution>
