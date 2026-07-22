@@ -296,7 +296,9 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
                 relationshipsByOwner.TryGetValue(ownerKey, out IReadOnlyList<EmittedQuantityRelation>? owned)
                     ? owned
                     : Array.Empty<EmittedQuantityRelation>();
-            string hintName = selection.Definition.TargetNamespace.Replace('.', '_') + "_" + selection.Definition.Name + ".g.cs";
+            string modulePrefix = Regex.Replace(module.Name, "[^A-Za-z0-9_]", "_");
+            string hintName = modulePrefix + "_" + selection.Definition.TargetNamespace.Replace('.', '_') + "_" +
+                              selection.Definition.Name + ".g.cs";
             context.AddSource(hintName, SourceText.From(QuantityEmitter.Emit(selection, relationships), System.Text.Encoding.UTF8));
         }
     }

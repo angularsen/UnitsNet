@@ -4,7 +4,8 @@
 
 UnitsNetGen explores a compile-time composition model for a future UnitsNet architecture. A module
 author selects only the quantities and units that belong in an assembly, while generated quantity
-structs keep the strongly typed API and share a small runtime for conversion, parsing, and formatting.
+structs keep the strongly typed API and share a small runtime for conversion, parsing, and
+formatting.
 
 The generator, runtime, and generated types do not reuse the existing UnitsNet runtime or
 code-generation model. UnitsNet and UnitsNetGen deliberately share the small `UnitsNet.Core`
@@ -12,27 +13,33 @@ contract assembly across the quantity catalog.
 
 The experiment is inspired by
 [the modular-package experiment](https://github.com/angularsen/UnitsNet/pull/1181),
-[the source-generator discussion](https://github.com/angularsen/UnitsNet/issues/902), and the current
+[the source-generator discussion](https://github.com/angularsen/UnitsNet/issues/902), and
+the current
 [Roslyn source-generator model](https://github.com/dotnet/roslyn/blob/main/docs/features/source-generators.cookbook.md).
 
 ## Feasibility conclusions
 
-The idea is viable if the unit of composition is a **module assembly**:
+The idea is viable if the unit of composition is a **consumer-owned module assembly**:
 
 1. A module declares an interface that selects quantity definitions.
 2. One incremental generator resolves the selection and emits only the selected quantity and unit
    types into that module.
-3. Applications and libraries reference the module assembly in the normal way.
+3. The application's domain, persistence, UI, and service projects reference that assembly normally.
 
 The module boundary is important because a generated public type has the identity of the assembly
 into which it is generated. If two unrelated assemblies both generate `Length`, those are distinct
-CLR types. A reusable library should therefore generate its public quantities once and ship that
-module, rather than require every downstream consumer to regenerate them.
+CLR types. An application should therefore generate its quantities once in a shared internal
+library, then reference that library everywhere else in the application.
+
+Third parties publish **definition packages**, not compiled quantity structs. A definition package
+contains JSON definitions, localizations, relationships, and small public definition markers. The
+consumer remains responsible for selecting and compiling those definitions into its module.
 
 Roslyn generators are additive and unordered; a generator cannot consume another generator's output
 in the same compilation. Consequently, UnitsNetGen uses one generator for built-in and custom
-definitions. Marker attributes and interfaces are constant bootstrap source emitted during
-post-initialization, while all selected quantity output is produced by the same generation pipeline.
+definitions. Stable public authoring contracts live in the UnitsNetGen runtime so definition-marker
+assemblies can reference one identity. Built-in catalog markers and profiles are internal bootstrap
+source emitted during post-initialization.
 
 ## Developer experience
 
@@ -51,9 +58,8 @@ internal interface EngineeringUnits :
 }
 ```
 
-Pass a target namespace to the module attribute to generate a source-compatible surface. In
-compatibility mode, quantities use `UnitsNet`, unit enums use `UnitsNet.Units`, and generated
-quantities implement the exercised `UnitsNet.IQuantity<TUnit>` contract:
+Pass a target namespace to the module attribute to generate a source-compatible concrete surface.
+In compatibility mode, quantities use `UnitsNet` and unit enums use `UnitsNet.Units`:
 
 ```csharp
 [UnitsNetModule("UnitsNet")]
@@ -96,8 +102,8 @@ internal interface ApplicationUnits :
 Consumers can define profiles from
 `IInclude<TDefinition>` and nest them through `IIncludeProfile<TProfile>`. Profile selections are
 defaults: direct selections on the module override a profile's unit selection for the same quantity.
-Selections from separate module interfaces remain additive because modules are merged into one
-generated surface per compilation.
+The recommended application architecture has one module marker in its shared units project. Profiles
+and direct includes compose the complete generated surface at that boundary.
 
 Custom quantities use JSON definition files. The custom MSBuild item is converted to Roslyn
 `AdditionalFiles` by package assets under `buildTransitive/`:
@@ -109,9 +115,9 @@ Custom quantities use JSON definition files. The custom MSBuild item is converte
 ```
 
 The package registers `UnitsNetGenDefinition` as compiler-visible `AdditionalFiles` metadata early
-from a `.props` file, then maps the consumer item after project items are evaluated from a `.targets`
-file. This split keeps CLI and IDE design-time generator inputs consistent, including ordinary
-filenames such as `Length.json` that cannot be identified by extension alone.
+from a `.props` file, then maps the consumer item after project items are evaluated from a
+`.targets` file. This split keeps CLI and IDE design-time generator inputs consistent, including
+ordinary filenames such as `Length.json` that cannot be identified by extension alone.
 
 The JSON shape follows the existing UnitsNet quantity definitions and adds an optional `Namespace`
 for stable third-party identity; it defaults to `UnitsNetGen`, allowing files such as the existing
@@ -134,20 +140,26 @@ internal interface FictionalUnits : IInclude<HowMuchDefinition>;
 Definitions are read with `System.Text.Json`. Its .NET Standard support assemblies are bundled
 privately beside the analyzer, while the generated/runtime library has no JSON-library dependency.
 Conversion expressions are parsed as C# expressions and restricted to numeric literals, `x`,
-arithmetic operators, parentheses, `Math.PI`, `Math.E`, and an allowlist of numeric `Math` functions.
+arithmetic operators, parentheses, `Math.PI`, `Math.E`, and an allowlist of numeric `Math`
+functions.
 The generator emits the validated expressions directly into conversion switches; it does not compile
-expressions or use reflection at runtime. A definition package can contain public marker types and
-JSON definitions while the module that selects them owns the generated runtime types.
+expressions or use reflection at runtime. A definition package contains public marker types and JSON
+definitions while the module that selects them owns the generated runtime types. Its package-local
+`build/*.props` file exposes the JSON as compiler `AdditionalFiles` only to the project that
+directly references it.
 
 ## Projects
 
-- `UnitsNet.Core`: stable semantic identity and numeric-generic contracts shared by both implementations.
+- `UnitsNet.Core`: stable semantic identity and numeric-generic contracts shared by both
+  implementations.
 - `UnitsNetGen`: the lean runtime and the new `IQuantity<TUnit>` contract.
 - `UnitsNetGen.Generator`: the incremental generator, marker bootstrap source, built-in catalog,
   diagnostics, and emitters.
+- `UnitsNetGen.Generator.Tests`: generator-driver coverage for diagnostics, stable output,
+  incrementality, and all relationship shapes.
 - `UnitsNetGen.Tests`: generated API and runtime behavior tests.
-- `UnitsNetGen.Compatibility.Tests`: linked-output, selected public-API, unit-name, and shared-contract
-  comparisons.
+- `UnitsNetGen.Compatibility.Tests`: linked-output, selected public-API, unit-name, and
+  shared-contract comparisons.
 - `Samples/UnitsNetGen.AllSi.Sample`: the SI quantity chain from Length and Duration through Speed,
   Acceleration, Force, Pressure, Energy, and Power.
 - `Samples/UnitsNetGen.Representative.Sample`: a varied catalog selection and conditional
@@ -158,9 +170,13 @@ JSON definitions while the module that selects them owns the generated runtime t
 - `Samples/UnitsNetGen.Compatibility.Generated.Sample`: the exact same linked consumer source using
   generated quantities.
 - `Samples/UnitsNetGen.Custom.Sample`: a fictional `HowMuch` quantity in its own namespace.
-- `Samples/UnitsNetGen.NetStandard.Sample`: compile-time coverage for a generated module targeting `netstandard2.0`.
 - `Samples/UnitsNetGen.NuGet.Sample`: an isolated real-consumer scenario using only a locally packed
   `PackageReference` and consumer-owned JSON.
+- `Samples/DefinitionPackages/Fictional.Measurements.Definitions`: a packable definition-only NuGet
+  containing markers, JSON definitions, localization, and structured relationships.
+- `Samples/ConsumerOwned/ConsumerOwned.Units`: the single application-owned generation boundary.
+- `Samples/ConsumerOwned/ConsumerOwned.Domain` and `ConsumerOwned.Reporting`: two downstream
+  consumers sharing the exact generated CLR types from `ConsumerOwned.Units`.
 
 The compatibility test project uses aliased references to compare both implementations' selected
 public API and unit names without introducing concrete-type ambiguity. The projects live in their
@@ -169,23 +185,30 @@ own solution and do not participate in the existing UnitsNet solution.
 ## Compatibility boundaries
 
 The linked-source samples establish source compatibility for factories, properties, unit enums,
-conversions, parsing, formatting, operators, and `IQuantity<TUnit>` calls. Compatibility tests compare
-the selected public surfaces and report drift between UnitsNet and UnitsNetGen.
+conversions, parsing, formatting, and operators. Compatibility tests compare the selected public
+surfaces, enum names and stable values, runtime output, and shared Core contract behavior.
 
-`UnitsNet.Core.IQuantity<TValue>` establishes contract compatibility without exposing a concrete unit
-enum. `UnitsNet.Core.IQuantity<TUnit, TValue>` additionally exposes the representation's unit type.
+`UnitsNet.Core.IQuantity<TValue>` establishes contract compatibility without exposing a concrete
+unit enum. `UnitsNet.Core.IQuantity<TUnit, TValue>` additionally exposes the representation's unit
+type.
 Both contracts provide a semantic `QuantityId`, stored value/unit, and base value. A generic library
 can therefore consume either implementation even though their concrete types differ.
 
-The experiment does not provide binary compatibility between concrete quantity structs. CLR type
-identity includes the defining assembly, so `UnitsNet.Length` from `UnitsNet.dll` and a type with the
-same full name generated into an application assembly are not assignment-compatible. Stable public
-APIs must use the shared contracts, explicit data transfer, or a quantity module generated once and
-referenced by downstream consumers.
+UnitsNetGen deliberately does not emit substitute copies of legacy `UnitsNet.IQuantity` interfaces.
+Exact legacy interface identity would require moving those interfaces to a canonical assembly and
+coordinating that change with UnitsNet itself. The prototype instead targets concrete source
+compatibility and the clean shared contracts.
 
-The `UnitsNet.Core` project is a separate signed assembly and prerelease package. Packing UnitsNetGen
-also packs Core to the same output directory and records it as a package dependency, keeping the
-real-consumer sample and CI artifacts self-contained while the POC evolves.
+The experiment does not provide binary compatibility between concrete quantity structs. CLR type
+identity includes the defining assembly, so `UnitsNet.Length` from `UnitsNet.dll` and a type with
+the same full name generated into an application assembly are not assignment-compatible.
+Projects inside one application share its consumer-owned module. Independent applications exchange
+shared contracts
+or explicit serialized data instead of assuming their generated structs have the same identity.
+
+The `UnitsNet.Core` project is a separate signed assembly and prerelease package. Packing
+UnitsNetGen also packs Core to the same output directory and records it as a package dependency.
+This keeps the real-consumer sample and CI artifacts self-contained while the POC evolves.
 
 The NuGet sample has a local-only MSBuild dependency that incrementally packs changed UnitsNetGen or
 generator sources before restore, then refreshes its floating `1.0.0-local.*` package before
@@ -211,8 +234,8 @@ package tooling, and generated packages remain gitignored. The UnitsNetGen packa
 a plain `dotnet pack UnitsNetGen/UnitsNetGen/UnitsNetGen.csproj`, which creates a unique
 `1.0.0-local.*` package in that feed for the real-consumer sample. Since local versions are
 prereleases, enable prerelease packages and refresh the feed in the IDE after packing. Pass
-`-p:UnitsNetGenPackForPublish=true` to create the MinVer-derived publish version instead; CI sets this
-explicitly.
+`-p:UnitsNetGenPackForPublish=true` to create the MinVer-derived publish version instead; CI sets
+this explicitly.
 
 Run `pwsh UnitsNetGen/Samples/UnitsNetGen.NuGet.Sample/run.ps1` from the repository root for the
 clean-room check. The script provides an isolated package cache and disables repository
@@ -222,47 +245,48 @@ executing the consumer.
 ## Versioning and CI
 
 The combined `UnitsNetGen` package uses MinVer with the tag prefix `UnitsNetGen/`, a minimum version
-of `1.0`, and `alpha.0` as the default prerelease identifiers. Existing `UnitsNet/*`, `JsonNet/*`, and
-unprefixed tags are ignored. A release tag such as `UnitsNetGen/1.0.0-alpha.1` or
+of `1.0`, and `alpha.0` as the default prerelease identifiers. Existing `UnitsNet/*`, `JsonNet/*`,
+and unprefixed tags are ignored. A release tag such as `UnitsNetGen/1.0.0-alpha.1` or
 `UnitsNetGen/1.0.0` becomes the exact package version. Untagged builds receive a MinVer-generated
 alpha version with commit height. `UnitsNetGen.Generator` remains an internal, non-packable project
 because its generated code requires the runtime shipped in the combined package.
 
 The NuGet sample passes a timestamped `MinVerVersionOverride` so repeated packages containing
-uncommitted changes remain unique. The package includes complete NuGet metadata, its README and icon,
-XML API documentation, repository commit metadata, and portable PDBs in an `.snupkg`. GitHub Actions
-enables `ContinuousIntegrationBuild`, producing deterministic CI packages with stable source paths
+uncommitted changes remain unique. The package includes complete NuGet metadata, including its
+README, icon, XML API documentation, repository commit metadata, and portable PDBs in an `.snupkg`.
+GitHub Actions enables `ContinuousIntegrationBuild`, producing deterministic CI packages with
+stable source paths
 and Source Link metadata for the matching commit. Local development packages retain developer source
 paths and may therefore be reported as non-deterministic by NuGet Package Explorer; they are not
 publishing artifacts.
 
 The separate `UnitsNetGen CI` workflow uses full Git history, builds and tests `UnitsNetGen.slnx`,
-packs the combined package with its MinVer version, and uploads it as a workflow artifact. It does not
-publish to NuGet.org.
+packs the combined package with its MinVer version, and uploads it as a workflow artifact. It does
+not publish to NuGet.org.
 
 ## Analyzer dependency plumbing
 
 `UnitsNetGen/Directory.Packages.props` and `UnitsNetGen/Directory.Build.targets` support development
-with an analyzer `ProjectReference`; they are not copied into the shipped package. Project references
-do not automatically expose private analyzer dependencies, so the local target points Roslyn at the
-restored `System.Text.Json` support assemblies.
+with an analyzer `ProjectReference`; they are not copied into the shipped package. Project
+references do not automatically expose private analyzer dependencies. The local target therefore
+points Roslyn at the restored `System.Text.Json` support assemblies.
 
 Packaged consumers do not configure any of this. The support assemblies are private files beside
-`UnitsNetGen.Generator.dll` under `analyzers/dotnet/cs`, and the package declares no runtime dependency
-on them. `_UnitsNetGenAnalyzerDependencyDirectory` is evaluated only while packing to locate those
+`UnitsNetGen.Generator.dll` under `analyzers/dotnet/cs`, and the package declares no runtime
+dependency on them. `_UnitsNetGenAnalyzerDependencyDirectory` is evaluated only while packing to
+locate those
 files; it is not a consumer-facing MSBuild property or API.
 
 ## Framework targets
 
-The `UnitsNetGen` package supplies runtime assets for `netstandard2.0` and `net10.0`. The generator
-remains a `netstandard2.0` analyzer so current compiler hosts can load it regardless of the consumer
-target. Executable samples and tests target .NET 10, while the dedicated .NET Standard sample proves
-that the shared runtime and generated baseline API compile without newer framework contracts.
+The `UnitsNetGen` runtime supplies assets for .NET 8, 9, and 10. The generator remains a
+`netstandard2.0` analyzer solely so current compiler and IDE hosts can load it regardless of the
+consumer target. That analyzer target is an implementation constraint, not runtime support for
+generated quantity modules.
 
-On .NET 10, generated quantities additionally implement `IParsable<TSelf>` and the applicable
+On all supported runtime targets, generated quantities implement `IParsable<TSelf>` and applicable
 generic-math operator interfaces from `System.Numerics`. This enables generic parsing, addition,
-subtraction, scalar multiplication/division, and comparison without changing the portable API emitted
-for `netstandard2.0`.
+subtraction, scalar multiplication/division, and comparison.
 
 Further modern-target opportunities include allocation-free
 `ISpanParsable<TSelf>`/`ISpanFormattable` paths, UTF-8 parsing and formatting, and optionally
@@ -278,7 +302,7 @@ For each selected definition, the generator emits:
 - typed `FromXxx()` factories and `.Xxx` conversion properties;
 - `As()`, `ToUnit()`, `Parse()`, `TryParse()`, and `ToString()`;
 - equality, comparison, same-quantity addition/subtraction, and scalar multiplication/division;
-- .NET 10 generic parsing and generic-math contracts;
+- modern .NET generic parsing and generic-math contracts;
 - localized unit metadata that delegates shared behavior to the runtime;
 - direct, validated conversion switches for affine and nonlinear conversions.
 
@@ -293,16 +317,33 @@ When all operands and results are selected, the generator emits relationships su
 - `Power * Duration -> Energy`
 - `Energy / Duration -> Power`
 
-Relationship operators convert through the canonical units named by each equation and return that
-equation's result unit. They disappear when a module omits an operand, result, or canonical unit,
-avoiding hidden dependencies. The full implementation
-derives this inventory from the embedded `Common/UnitRelations.json` catalog instead of hardcoding
-quantity names. Its relation pipeline preserves the catalog's canonical units, generates both
-operand orders for commutative multiplication, infers division, and honors `NoInferredDivision`.
+Relationship operators convert through the anchor units named by each equation. Selecting the
+participating quantities controls whether an operator exists; anchor units do not need to be exposed
+in the generated public unit enums. The generator uses the full immutable definitions to inline the
+necessary private conversions and constructs the result in its selected base unit.
 
-Third-party packages and applications can add relation arrays with the same equation format through
-`UnitsNetGenRelation` MSBuild items. These become compiler `AdditionalFiles`, are merged with the
-immutable built-in catalog, and are filtered with the selected quantities and units before emission.
+The built-in inventory comes from `Common/UnitRelations.json` rather than hardcoded quantity names.
+The relation pipeline resolves endpoints globally by semantic quantity ID, generates both operand
+orders for commutative multiplication, infers division, and honors `NoInferredDivision`. Generated
+types may remain in different CLR namespaces because emitted signatures use fully qualified names.
+
+Third-party packages and applications can add structured semantic relationships through
+`UnitsNetGenRelation` MSBuild items:
+
+```json
+[
+  {
+    "result": { "quantity": "Fictional.HowMuchDistance", "unit": "SomeMeter" },
+    "left": { "quantity": "Fictional.HowMuch", "unit": "Some" },
+    "operator": "*",
+    "right": { "quantity": "UnitsNet.Length", "unit": "Meter" }
+  }
+]
+```
+
+The existing UnitsNet string equations remain supported and are normalized to the same semantic
+model. Structured relations are preferred for third-party packages because semantic IDs remain
+unambiguous across namespaces.
 
 ## Catalog
 
@@ -310,8 +351,9 @@ The catalog model is designed for all UnitsNet quantity and unit definitions. De
 the UnitsNet JSON catalog and cover linear, affine, and logarithmic behavior; SI, non-SI,
 decimal-prefix, and binary-prefix units; localized abbreviations; and cross-quantity relationships.
 
-`AllQuantities` selects the available built-in catalog. `AllSi` exercises the complete SI relationship
-chain in a focused sample, while the representative sample provides a faster varied selection for
+`AllQuantities` selects the available built-in catalog. `AllSi` exercises the complete SI
+relationship chain in a focused sample, while the representative sample provides a faster varied
+selection for
 day-to-day generator iteration. JSON-backed third-party definitions participate in the same
 selection, profile, conversion, localization, and relationship model as built-ins.
 
@@ -324,9 +366,11 @@ selection, profile, conversion, localization, and relationship model as built-in
 - Regex/glob patterns filter expanded unit names, not abbreviations.
 - Prefix expansion uses a common SI/binary prefix table; it does not yet reproduce every
   culture-specific prefix convention from UnitsNet v6.
-- Third-party public API authors must ship a generated module to establish stable type identity.
-- Multiple module marker interfaces in one project are merged into one generated set. Conflicting
-  selections produce one union.
+- Definition packages contain recipes, not quantity structs. Independently generated application
+  modules intentionally have distinct CLR type identities.
+- The supported application pattern uses one module marker in one consumer-owned units project.
+- Canonical precompiled third-party modules and operators between independently compiled modules are
+  outside this prototype's scope.
 
 ## What this POC should prove
 

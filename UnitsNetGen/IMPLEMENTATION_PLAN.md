@@ -65,9 +65,10 @@ keeps the broader SI relationship chain continuously buildable.
   - Embed `Common/UnitRelations.json` as the built-in relationship source of truth.
   - Generate commutative multiplication and inferred division overloads using the catalog rules.
   - Accept custom `UnitsNetGenRelation` files through compiler `AdditionalFiles`.
-  - Filter operators with the selected quantities, canonical units, and generated namespace.
+  - Filter operators with selected semantic quantities while retaining private access to relation
+    anchor conversions.
 
-- [ ] **8. Establish consumer-owned generation and definition packages**
+- [x] **8. Establish consumer-owned generation and definition packages**
   - Put stable authoring attributes and selection interfaces in the UnitsNetGen runtime instead of
     emitting public copies into every compilation.
   - Treat third-party packages as definition providers: JSON, localizations, relations, and public
@@ -76,7 +77,7 @@ keeps the broader SI relationship chain continuously buildable.
   - Target the runtime at modern .NET 8, 9, and 10; keep the analyzer itself on `netstandard2.0` only
     for compiler-host compatibility.
 
-- [ ] **9. Harden generator correctness and compatibility**
+- [x] **9. Harden generator correctness and compatibility**
   - Add generator-driver tests for diagnostics, generated source, relationships, and incrementality.
   - Fix inverse relationship emission and diagnose ambiguous generated members.
   - Parse case-significant abbreviations with one longest-suffix-first lookup.
@@ -85,13 +86,13 @@ keeps the broader SI relationship chain continuously buildable.
   - Remove generated substitutes for legacy `UnitsNet.IQuantity` interfaces while retaining concrete
     source compatibility and the shared `UnitsNet.Core` contract.
 
-- [ ] **10. Make generation genuinely incremental and diagnostic-friendly**
+- [x] **10. Make generation genuinely incremental and diagnostic-friendly**
   - Discover modules with `ForAttributeWithMetadataName`.
   - Extract value-equatable module requests instead of carrying Roslyn symbols through the pipeline.
   - Diagnose definition collisions and attach module or additional-file locations where possible.
   - Keep output deterministic regardless of include or pattern ordering.
 
-- [ ] **11. Generate relationships across definition namespaces**
+- [x] **11. Generate relationships across definition namespaces**
   - Resolve relation endpoints globally by stable semantic quantity ID.
   - Separate semantic IDs from generated CLR namespaces and names.
   - Let selected quantities control relationship availability without requiring relation anchor units
@@ -101,7 +102,7 @@ keeps the broader SI relationship chain continuously buildable.
   - Accept an unambiguous structured relation format for third-party definitions while retaining the
     existing UnitsNet relation catalog as an input format.
 
-- [ ] **12. Demonstrate the application-owned units-library workflow**
+- [x] **12. Demonstrate the application-owned units-library workflow**
   - Add a definition-only third-party package for the fictional HowMuch quantities.
   - Add a shared application units library that selects built-in and third-party definitions.
   - Add two consumers that reference the same generated library and therefore share CLR type identity.
