@@ -6,7 +6,6 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Text;
 
@@ -87,35 +86,53 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
         DiagnosticSeverity.Error,
         true);
 
+    private static readonly DiagnosticDescriptor MissingUnitSet = new DiagnosticDescriptor(
+        "UNG012",
+        "Unit-set marker is invalid",
+        "Unit-set type selected for quantity '{0}' has no UnitSet attribute or no patterns",
+        "UnitsNetGen",
+        DiagnosticSeverity.Error,
+        true);
+
+    private static readonly DiagnosticDescriptor ConflictingTargetDefinition = new DiagnosticDescriptor(
+        "UNG013",
+        "Generated quantity target is ambiguous",
+        "Definitions '{0}' and '{1}' both generate '{2}'",
+        "UnitsNetGen",
+        DiagnosticSeverity.Error,
+        true);
+
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         context.RegisterPostInitializationOutput(static output =>
             output.AddSource("UnitsNetGen.Markers.g.cs", SourceText.From(BootstrapSource.Text, System.Text.Encoding.UTF8)));
 
-        IncrementalValuesProvider<INamedTypeSymbol?> modules = context.SyntaxProvider.CreateSyntaxProvider(
-            static (node, _) => node is InterfaceDeclarationSyntax declaration && declaration.AttributeLists.Count > 0,
-            static (syntaxContext, cancellationToken) =>
-            {
-                var declaration = (InterfaceDeclarationSyntax)syntaxContext.Node;
-                INamedTypeSymbol? symbol = syntaxContext.SemanticModel.GetDeclaredSymbol(declaration, cancellationToken) as INamedTypeSymbol;
-                return symbol is not null && HasAttribute(symbol, ModuleAttribute) ? symbol : null;
-            });
+        IncrementalValuesProvider<ModuleRequest> modules = context.SyntaxProvider
+            .ForAttributeWithMetadataName(
+                ModuleAttribute,
+                static (node, _) => node is Microsoft.CodeAnalysis.CSharp.Syntax.InterfaceDeclarationSyntax,
+                static (attributeContext, _) => CreateModuleRequest((INamedTypeSymbol)attributeContext.TargetSymbol))
+            .WithComparer(ModuleRequestComparer.Instance)
+            .WithTrackingName("Modules");
 
         IncrementalValuesProvider<JsonDefinitionResult> jsonDefinitions = context.AdditionalTextsProvider
             .Combine(context.AnalyzerConfigOptionsProvider)
             .Where(static input => IsJsonDefinition(input.Left, input.Right))
-            .Select(static (input, cancellationToken) => JsonDefinitionParser.Parse(input.Left, cancellationToken));
+            .Select(static (input, cancellationToken) => JsonDefinitionParser.Parse(input.Left, cancellationToken))
+            .WithTrackingName("Definitions");
 
         IncrementalValuesProvider<RelationDefinitionResult> relationDefinitions = context.AdditionalTextsProvider
             .Combine(context.AnalyzerConfigOptionsProvider)
             .Where(static input => IsRelationDefinition(input.Left, input.Right))
-            .Select(static (input, cancellationToken) => QuantityRelationParser.Parse(input.Left, cancellationToken));
+            .Select(static (input, cancellationToken) => QuantityRelationParser.Parse(input.Left, cancellationToken))
+            .WithTrackingName("Relations");
 
+        IncrementalValuesProvider<((ModuleRequest Left, ImmutableArray<JsonDefinitionResult> Right) Left, ImmutableArray<RelationDefinitionResult> Right)> generationInputs =
+            modules.Combine(jsonDefinitions.Collect())
+                .Combine(relationDefinitions.Collect())
+                .WithTrackingName("GenerationInputs");
         context.RegisterSourceOutput(
-            modules.Where(static module => module is not null)
-                .Collect()
-                .Combine(jsonDefinitions.Collect())
-                .Combine(relationDefinitions.Collect()),
+            generationInputs,
             static (productionContext, input) => Emit(
                 productionContext,
                 input.Left.Left,
@@ -125,7 +142,7 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
 
     private static void Emit(
         SourceProductionContext context,
-        ImmutableArray<INamedTypeSymbol?> moduleSymbols,
+        ModuleRequest module,
         ImmutableArray<JsonDefinitionResult> jsonDefinitionResults,
         ImmutableArray<RelationDefinitionResult> relationDefinitionResults)
     {
@@ -134,14 +151,14 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
         {
             if (result.Error is not null)
             {
-                context.ReportDiagnostic(Diagnostic.Create(InvalidJsonDefinition, Location.None, result.Path, result.Error));
+                context.ReportDiagnostic(Diagnostic.Create(InvalidJsonDefinition, FileLocation(result.Path), result.Path, result.Error));
                 continue;
             }
 
             QuantityDefinition definition = result.Definition!;
             if (jsonDefinitions.ContainsKey(definition.Id))
             {
-                context.ReportDiagnostic(Diagnostic.Create(DuplicateDefinition, Location.None, definition.Id));
+                context.ReportDiagnostic(Diagnostic.Create(DuplicateDefinition, FileLocation(result.Path), definition.Id));
             }
             else
             {
@@ -150,61 +167,58 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
         }
 
         var requests = new Dictionary<string, SelectionRequest>(StringComparer.Ordinal);
-        foreach (INamedTypeSymbol module in moduleSymbols.OfType<INamedTypeSymbol>())
+        Location moduleLocation = module.Location.ToLocation();
+        foreach (ModuleSelection selection in module.Selections)
         {
-            string? moduleNamespace = GetModuleTargetNamespace(module);
-            INamedTypeSymbol[] directIncludes = module.Interfaces.Where(IsInclude).ToArray();
-            var directDefinitions = new HashSet<ITypeSymbol>(
-                directIncludes
-                    .Where(include => include.TypeArguments.Length > 0)
-                    .Select(include => include.TypeArguments[0]),
-                SymbolEqualityComparer.Default);
-            IEnumerable<INamedTypeSymbol> profileIncludes = GetProfileIncludes(module)
-                .Where(include => include.TypeArguments.Length > 0 && !directDefinitions.Contains(include.TypeArguments[0]));
-
-            foreach (INamedTypeSymbol inheritedInterface in profileIncludes.Concat(directIncludes))
+            QuantityDefinition? definition = ResolveDefinition(selection, jsonDefinitions);
+            if (definition is null)
             {
-                INamedTypeSymbol genericDefinition = inheritedInterface.OriginalDefinition;
-                ImmutableArray<ITypeSymbol> arguments = inheritedInterface.TypeArguments;
-                if (arguments.Length is < 1 or > 2 || arguments[0] is not INamedTypeSymbol definitionMarker)
-                {
-                    continue;
-                }
-
-                QuantityDefinition? definition = ResolveDefinition(definitionMarker, jsonDefinitions);
-                if (definition is null)
-                {
-                    context.ReportDiagnostic(Diagnostic.Create(MissingDefinition, module.Locations.FirstOrDefault(), definitionMarker.ToDisplayString()));
-                    continue;
-                }
-
-                if (!string.IsNullOrWhiteSpace(moduleNamespace))
-                {
-                    definition = definition.WithTargetNamespace(moduleNamespace!);
-                }
-
-                string key = definition.TargetNamespace + "." + definition.Name;
-                if (!requests.TryGetValue(key, out SelectionRequest? request))
-                {
-                    request = new SelectionRequest(definition);
-                    requests.Add(key, request);
-                }
-
-                if (arguments.Length == 1)
-                {
-                    request.IncludeAll = true;
-                    continue;
-                }
-
-                IReadOnlyList<string>? patterns = GetUnitSetPatterns(arguments[1]);
-                if (patterns is null || patterns.Count == 0)
-                {
-                    context.ReportDiagnostic(Diagnostic.Create(EmptyUnitSet, module.Locations.FirstOrDefault(), "<missing UnitSet attribute>", definition.Name));
-                    continue;
-                }
-
-                request.Patterns.UnionWith(patterns);
+                context.ReportDiagnostic(Diagnostic.Create(MissingDefinition, moduleLocation, selection.MarkerName));
+                continue;
             }
+
+            if (!string.IsNullOrWhiteSpace(module.TargetNamespace))
+            {
+                definition = definition.WithTargetNamespace(module.TargetNamespace!);
+            }
+
+            string key = definition.TargetNamespace + "." + definition.Name;
+            if (!requests.TryGetValue(key, out SelectionRequest? request))
+            {
+                request = new SelectionRequest(definition);
+                requests.Add(key, request);
+            }
+            else if (!SameDefinition(request.Definition, definition))
+            {
+                context.ReportDiagnostic(Diagnostic.Create(
+                    ConflictingTargetDefinition,
+                    moduleLocation,
+                    request.Definition.SemanticId,
+                    definition.SemanticId,
+                    key));
+                continue;
+            }
+
+            if (selection.IsDirect && !request.HasDirectSelection)
+            {
+                request.IncludeAll = false;
+                request.Patterns.Clear();
+                request.HasDirectSelection = true;
+            }
+
+            if (selection.Patterns.Length == 0)
+            {
+                if (!selection.HasUnitSet)
+                {
+                    context.ReportDiagnostic(Diagnostic.Create(MissingUnitSet, moduleLocation, definition.Name));
+                    continue;
+                }
+
+                request.IncludeAll = true;
+                continue;
+            }
+
+            request.Patterns.UnionWith(selection.Patterns);
         }
 
         var selections = new List<QuantitySelection>();
@@ -212,7 +226,7 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
         {
             if (!request.Definition.Units.Any(unit => unit.SingularName == request.Definition.BaseUnit))
             {
-                context.ReportDiagnostic(Diagnostic.Create(InvalidDefinition, Location.None, request.Definition.Name, request.Definition.BaseUnit));
+                context.ReportDiagnostic(Diagnostic.Create(InvalidDefinition, moduleLocation, request.Definition.Name, request.Definition.BaseUnit));
                 continue;
             }
 
@@ -227,14 +241,14 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
                 {
                     if (!TryCreateMatcher(pattern, out Func<string, bool>? matcher, out string patternError))
                     {
-                        context.ReportDiagnostic(Diagnostic.Create(InvalidPattern, Location.None, pattern, request.Definition.Name, patternError));
+                        context.ReportDiagnostic(Diagnostic.Create(InvalidPattern, moduleLocation, pattern, request.Definition.Name, patternError));
                         continue;
                     }
 
                     UnitDefinition[] matches = request.Definition.Units.Where(unit => matcher(unit.SingularName)).ToArray();
                     if (matches.Length == 0)
                     {
-                        context.ReportDiagnostic(Diagnostic.Create(EmptyUnitSet, Location.None, pattern, request.Definition.Name));
+                        context.ReportDiagnostic(Diagnostic.Create(EmptyUnitSet, moduleLocation, pattern, request.Definition.Name));
                     }
 
                     selectedUnits.AddRange(matches);
@@ -258,7 +272,7 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
             {
                 context.ReportDiagnostic(Diagnostic.Create(
                     InvalidRelationDefinition,
-                    Location.None,
+                    FileLocation(result.Path),
                     result.Path,
                     result.Error));
                 continue;
@@ -272,7 +286,7 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
             QuantityRelationPlanner.Plan(selections, expandedRelations, out IReadOnlyList<string> relationErrors);
         foreach (string error in relationErrors)
         {
-            context.ReportDiagnostic(Diagnostic.Create(InvalidRelationSet, Location.None, error));
+            context.ReportDiagnostic(Diagnostic.Create(InvalidRelationSet, moduleLocation, error));
         }
 
         foreach (QuantitySelection selection in selections)
@@ -300,6 +314,67 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
         return definition.Name == IncludeProfileName &&
                definition.ContainingNamespace.ToDisplayString() == GenerationNamespace;
     }
+
+    private static ModuleRequest CreateModuleRequest(INamedTypeSymbol module)
+    {
+        string? targetNamespace = GetModuleTargetNamespace(module);
+        ModuleSelection[] direct = module.Interfaces
+            .Where(IsInclude)
+            .Select(include => CreateModuleSelection(include, true))
+            .Where(selection => selection is not null)
+            .Cast<ModuleSelection>()
+            .ToArray();
+        var directIds = new HashSet<string>(
+            direct.Select(SelectionIdentity),
+            StringComparer.Ordinal);
+        IEnumerable<ModuleSelection> profiles = GetProfileIncludes(module)
+            .Select(include => CreateModuleSelection(include, false))
+            .Where(selection => selection is not null)
+            .Cast<ModuleSelection>()
+            .Where(selection => !directIds.Contains(SelectionIdentity(selection)));
+        ImmutableArray<ModuleSelection> selections = profiles
+            .Concat(direct)
+            .OrderBy(selection => selection.IsDirect)
+            .ThenBy(SelectionIdentity, StringComparer.Ordinal)
+            .ThenBy(selection => string.Join("\u001f", selection.Patterns), StringComparer.Ordinal)
+            .ToImmutableArray();
+        return new ModuleRequest(
+            module.ToDisplayString(),
+            targetNamespace,
+            selections,
+            SourceLocation.From(module.Locations.FirstOrDefault()));
+    }
+
+    private static ModuleSelection? CreateModuleSelection(INamedTypeSymbol include, bool isDirect)
+    {
+        ImmutableArray<ITypeSymbol> arguments = include.TypeArguments;
+        if (arguments.Length is < 1 or > 2 || arguments[0] is not INamedTypeSymbol marker)
+        {
+            return null;
+        }
+
+        string? builtInName = marker.ContainingNamespace.ToDisplayString() == BuiltInsNamespace
+            ? marker.Name
+            : null;
+        AttributeData? definitionAttribute = marker.GetAttributes()
+            .FirstOrDefault(attribute => AttributeName(attribute) == QuantityAttribute);
+        string? definitionId = definitionAttribute?.ConstructorArguments.Length == 1
+            ? definitionAttribute.ConstructorArguments[0].Value as string
+            : null;
+        IReadOnlyList<string>? patterns = arguments.Length == 2
+            ? GetUnitSetPatterns(arguments[1])
+            : Array.Empty<string>();
+        return new ModuleSelection(
+            marker.ToDisplayString(),
+            builtInName,
+            definitionId,
+            (patterns ?? Array.Empty<string>()).OrderBy(value => value, StringComparer.Ordinal).ToImmutableArray(),
+            arguments.Length == 1 || patterns is not null,
+            isDirect);
+    }
+
+    private static string SelectionIdentity(ModuleSelection selection) =>
+        selection.SemanticId ?? selection.MarkerName;
 
     private static IEnumerable<INamedTypeSymbol> GetProfileIncludes(INamedTypeSymbol module)
     {
@@ -351,22 +426,19 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
     }
 
     private static QuantityDefinition? ResolveDefinition(
-        INamedTypeSymbol marker,
+        ModuleSelection selection,
         IReadOnlyDictionary<string, QuantityDefinition> jsonDefinitions)
     {
-        if (marker.ContainingNamespace.ToDisplayString() == BuiltInsNamespace && BuiltInCatalog.TryGet(marker.Name, out QuantityDefinition builtIn))
+        if (selection.BuiltInName is not null &&
+            BuiltInCatalog.TryGet(selection.BuiltInName, out QuantityDefinition builtIn))
         {
             return builtIn;
         }
 
-        AttributeData? quantityAttribute = marker.GetAttributes().FirstOrDefault(attribute => AttributeName(attribute) == QuantityAttribute);
-        if (quantityAttribute is null || quantityAttribute.ConstructorArguments.Length != 1)
-        {
-            return null;
-        }
-
-        string? id = quantityAttribute.ConstructorArguments[0].Value as string;
-        return id is not null && jsonDefinitions.TryGetValue(id, out QuantityDefinition definition) ? definition : null;
+        return selection.DefinitionId is not null &&
+               jsonDefinitions.TryGetValue(selection.DefinitionId, out QuantityDefinition definition)
+            ? definition
+            : null;
     }
 
     private static IReadOnlyList<string>? GetUnitSetPatterns(ITypeSymbol unitSet)
@@ -425,11 +497,19 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
         }
     }
 
-    private static bool HasAttribute(ISymbol symbol, string metadataName)
-        => symbol.GetAttributes().Any(attribute => AttributeName(attribute) == metadataName);
-
     private static string? AttributeName(AttributeData attribute)
         => attribute.AttributeClass?.ToDisplayString();
+
+    private static bool SameDefinition(QuantityDefinition left, QuantityDefinition right) =>
+        string.Equals(left.SemanticId, right.SemanticId, StringComparison.Ordinal) &&
+        string.Equals(left.SourcePath, right.SourcePath, StringComparison.Ordinal);
+
+    private static Location FileLocation(string path) => string.IsNullOrWhiteSpace(path)
+        ? Location.None
+        : Location.Create(
+            path,
+            new TextSpan(0, 0),
+            new LinePositionSpan(new LinePosition(0, 0), new LinePosition(0, 0)));
 
     private static bool IsJsonDefinition(AdditionalText file, AnalyzerConfigOptionsProvider optionsProvider)
     {
@@ -468,6 +548,8 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
 
         public bool IncludeAll { get; set; }
 
-        public HashSet<string> Patterns { get; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        public bool HasDirectSelection { get; set; }
+
+        public HashSet<string> Patterns { get; } = new HashSet<string>(StringComparer.Ordinal);
     }
 }
