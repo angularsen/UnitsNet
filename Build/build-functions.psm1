@@ -71,14 +71,17 @@ function Start-Tests {
         --results-directory "$testReportDir"
     }
     else {
-      & dotnet dotcover test `
+      & dotnet tool run dotCover -- cover-dotnet `
+        --TargetWorkingDir $projectDir `
+        --Output "$coverageReportFile" `
+        --ReportType DetailedXML `
+        --Filters '+:module=UnitsNet*;-:module=*Tests' `
+        --ReturnTargetExitCode `
+        -- test `
         --no-build `
         --framework net10.0 `
         --logger trx `
-        --results-directory "$testReportDir" `
-        --dotCoverFilters="+:module=UnitsNet*;-:module=*Tests" `
-        --dotCoverOutput="$coverageReportFile" `
-        --dcReportType=DetailedXML
+        --results-directory "$testReportDir"
     }
 
     if ($lastexitcode -ne 0) { exit 1 }
