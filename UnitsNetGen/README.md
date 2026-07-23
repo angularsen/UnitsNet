@@ -11,6 +11,10 @@ quantity type. Linear, affine, and logarithmic capability interfaces mirror thei
 arithmetic semantics. This enables generic algorithms and source/data interoperation without
 claiming that concrete structs generated into different assemblies have the same CLR type.
 
+Each generated quantity owns a static `Convert(value, fromUnit, toUnit)` primitive and the familiar
+instance `As(unit)` and `ToUnit(unit)` members. Conversion uses immutable generated metadata rather
+than runtime registration or a global quantity lookup.
+
 **Experimental:** UnitsNetGen's API and package format may change while the architecture is being
 explored.
 

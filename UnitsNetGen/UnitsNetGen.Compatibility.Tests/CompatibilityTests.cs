@@ -179,9 +179,11 @@ public sealed class CompatibilityTests
     public void BothImplementations_ImplementSelfTypedCoreContract()
     {
         AssertSelfTypedContract<Legacy::UnitsNet.Length, Legacy::UnitsNet.Units.LengthUnit>(
-            Legacy::UnitsNet.Units.LengthUnit.Meter);
+            Legacy::UnitsNet.Units.LengthUnit.Meter,
+            Legacy::UnitsNet.Units.LengthUnit.Kilometer);
         AssertSelfTypedContract<Generated::UnitsNet.Length, Generated::UnitsNet.Units.LengthUnit>(
-            Generated::UnitsNet.Units.LengthUnit.Meter);
+            Generated::UnitsNet.Units.LengthUnit.Meter,
+            Generated::UnitsNet.Units.LengthUnit.Kilometer);
     }
 
     [Fact]
@@ -228,6 +230,7 @@ public sealed class CompatibilityTests
             "BaseUnit",
             "Zero",
             "From",
+            "Convert",
             "As",
             "ToUnit",
             "Parse",
@@ -260,7 +263,7 @@ public sealed class CompatibilityTests
 
     private static object[] UnitEnum<TLegacy, TGenerated>() => new object[] { typeof(TLegacy), typeof(TGenerated) };
 
-    private static void AssertSelfTypedContract<TQuantity, TUnit>(TUnit baseUnit)
+    private static void AssertSelfTypedContract<TQuantity, TUnit>(TUnit baseUnit, TUnit largerUnit)
         where TQuantity : UnitsNet.Core.IQuantity<TQuantity, TUnit, double>
         where TUnit : struct, Enum
     {
@@ -272,6 +275,7 @@ public sealed class CompatibilityTests
         Assert.Equal(2d, stored.Value);
         Assert.Equal(baseUnit, stored.Unit);
         Assert.Equal(2d, quantity.As(baseUnit));
+        Assert.Equal(1000d, TQuantity.Convert(1, largerUnit, baseUnit), 10);
     }
 
     private static void AssertLinearCapabilities<TQuantity, TUnit>()

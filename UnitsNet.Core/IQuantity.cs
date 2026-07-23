@@ -21,7 +21,7 @@ public interface IQuantity<out TUnit, out TValue> : IQuantity<TValue>
 }
 
 /// <summary>
-/// A self-typed quantity contract with type-level identity, base unit, and construction.
+/// A self-typed quantity contract with type-level identity, construction, and conversion.
 /// </summary>
 /// <typeparam name="TSelf">The concrete quantity type.</typeparam>
 /// <typeparam name="TUnit">The unit enum type.</typeparam>
@@ -39,8 +39,11 @@ public interface IQuantity<TSelf, TUnit, TValue> : IQuantity<TUnit, TValue>
     /// <summary>Creates a quantity with a value expressed in the specified unit.</summary>
     static abstract TSelf From(TValue value, TUnit unit);
 
+    /// <summary>Converts a numeric value between two units of this quantity.</summary>
+    static abstract TValue Convert(TValue value, TUnit fromUnit, TUnit toUnit);
+
     /// <summary>Gets this quantity's value expressed in the specified unit.</summary>
-    TValue As(TUnit unit);
+    TValue As(TUnit unit) => TSelf.Convert(Value, Unit, unit);
 
     /// <summary>Converts this quantity to the specified unit.</summary>
     TSelf ToUnit(TUnit unit) => TSelf.From(As(unit), unit);

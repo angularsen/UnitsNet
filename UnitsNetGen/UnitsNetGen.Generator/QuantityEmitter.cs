@@ -89,6 +89,9 @@ internal static class QuantityEmitter
         writer.AppendLine();
         writer.Append("    public static ").Append(quantity.Name).Append(" From(double value, ")
             .Append(unitType).AppendLine(" unit) => new(value, unit);");
+        writer.Append("    public static double Convert(double value, ").Append(unitType).Append(" fromUnit, ")
+            .Append(unitType).AppendLine(" toUnit) =>");
+        writer.AppendLine("        global::UnitsNetGen.QuantityOperations.Convert(value, fromUnit, toUnit, Metadata);");
         writer.AppendLine();
         writer.AppendLine("    public double Value => _value;");
         writer.Append("    public ").Append(unitType).Append(" Unit => _unit.Equals(default(").Append(unitType)
@@ -118,7 +121,7 @@ internal static class QuantityEmitter
 
         writer.AppendLine();
         writer.Append("    public double As(").Append(unitType).AppendLine(" unit) =>");
-        writer.AppendLine("        global::UnitsNetGen.QuantityOperations.Convert(_value, Unit, unit, Metadata);");
+        writer.AppendLine("        Convert(_value, Unit, unit);");
         writer.AppendLine();
         writer.Append("    public ").Append(quantity.Name).Append(" ToUnit(").Append(unitType).AppendLine(" unit) => new(As(unit), unit);");
         writer.AppendLine();

@@ -199,9 +199,11 @@ surfaces, enum names and stable values, runtime output, and shared Core contract
 
 `UnitsNet.Core.IQuantity<TValue>` exposes only the stored numeric value.
 `UnitsNet.Core.IQuantity<TUnit, TValue>` additionally exposes its strongly typed stored unit.
-`UnitsNet.Core.IQuantity<TSelf, TUnit, TValue>` adds static semantic identity, base unit, and
-construction together with strongly typed conversion. A generic library can therefore consume,
-create, or convert either implementation even though their concrete types differ.
+`UnitsNet.Core.IQuantity<TSelf, TUnit, TValue>` adds static semantic identity, base unit,
+construction, and a static conversion primitive. Its default instance behavior composes these
+members, while concrete quantities still expose generated `As()` and `ToUnit()` methods for normal
+strongly typed use. A generic library can therefore consume, create, or convert either
+implementation even though their concrete types differ.
 
 The Core capability hierarchy adapts UnitsNet's proven modern generic design without carrying over
 `UnitKey`, quantity metadata, setup registries, or obsolete compatibility members:
@@ -217,11 +219,13 @@ algorithms shared by UnitsNet and UnitsNetGen. The capability layer remains `dou
 numeric storage abstraction is evaluated separately.
 
 `QuantityId` belongs to the quantity type rather than each value instance. Base-unit conversion is
-derived behavior and is intentionally not part of the instance contract. Generated relationships
-and equality use internal conversion helpers; reusable public conversion behavior belongs in
-the quantity contract and algorithms backed by immutable definition metadata. Internal base values
-are sufficient for relationships because all participating recipe quantities are generated into
-one consumer-owned assembly; independently compiled modules cannot acquire cross-module operators.
+derived behavior and is intentionally not stored on each instance. Generated relationships and
+equality use internal conversion helpers; reusable public conversion behavior belongs in the
+self-typed quantity contract and is backed by immutable definition metadata. There is no global
+conversion registry: compile-time definition recipes generate the selected converters directly
+into the consumer-owned assembly. Internal base values are sufficient for relationships because
+all participating recipe quantities are generated into that assembly; independently compiled
+modules cannot acquire cross-module operators.
 
 UnitsNetGen deliberately does not emit substitute copies of legacy `UnitsNet.IQuantity` interfaces.
 Exact legacy interface identity would require moving those interfaces to a canonical assembly and

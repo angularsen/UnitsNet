@@ -494,7 +494,7 @@ namespace UnitsNet
         public static double operator /(Level left, Level right)
         {
             // Logarithmic division = subtraction
-            return Convert.ToDouble(left.Value - right.ToUnit(left.Unit).Value);
+            return System.Convert.ToDouble(left.Value - right.ToUnit(left.Unit).Value);
         }
 
         #endregion

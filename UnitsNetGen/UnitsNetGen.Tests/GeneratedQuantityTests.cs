@@ -144,6 +144,8 @@ public sealed class GeneratedQuantityTests
         UnitsNet.Core.IQuantity<LengthUnit, double> stored = length;
         Assert.Equal(2d, stored.Value);
         Assert.Equal(LengthUnit.Meter, stored.Unit);
+        Assert.Equal(1000, ConvertValue<Length, LengthUnit>(1, LengthUnit.Kilometer, LengthUnit.Meter), 10);
+        Assert.Equal(1000, Length.FromKilometers(1).As(LengthUnit.Meter), 10);
 
         const System.Reflection.BindingFlags publicMembers =
             System.Reflection.BindingFlags.Public |
@@ -218,6 +220,11 @@ public sealed class GeneratedQuantityTests
         where TQuantity : UnitsNet.Core.IQuantity<TQuantity, TUnit, double>
         where TUnit : struct, Enum
         => TQuantity.From(value, unit);
+
+    private static double ConvertValue<TQuantity, TUnit>(double value, TUnit fromUnit, TUnit toUnit)
+        where TQuantity : UnitsNet.Core.IQuantity<TQuantity, TUnit, double>
+        where TUnit : struct, Enum
+        => TQuantity.Convert(value, fromUnit, toUnit);
 
     private static void AssertLinearCapability<TQuantity, TUnit>()
         where TQuantity : UnitsNet.Core.ILinearQuantity<TQuantity, TUnit>

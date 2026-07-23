@@ -39,7 +39,7 @@ public static class QuantityMath
         double result = 0;
         foreach (TQuantity quantity in quantities)
         {
-            result += quantity.As(unit);
+            result += TQuantity.Convert(quantity.Value, quantity.Unit, unit);
         }
 
         return TQuantity.From(result, unit);
@@ -79,7 +79,7 @@ public static class QuantityMath
         var count = 0;
         foreach (TQuantity quantity in quantities)
         {
-            result += quantity.As(unit);
+            result += TQuantity.Convert(quantity.Value, quantity.Unit, unit);
             count++;
         }
 
