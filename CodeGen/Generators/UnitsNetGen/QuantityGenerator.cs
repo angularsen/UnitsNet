@@ -1024,7 +1024,7 @@ namespace UnitsNet
 
             Writer.WL( $@"
 
-        /// <inheritdoc cref=""IQuantity.As(UnitKey)""/>
+        /// <inheritdoc cref=""QuantityExtensions.As(IQuantity, UnitKey)""/>
         public double As(UnitKey unitKey)
         {{
             return As(unitKey.ToUnit<{_unitEnumName}>());
@@ -1129,30 +1129,6 @@ namespace UnitsNet
         }}
 ");
             Writer.WL($@"
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {{
-            if (unit is not {_unitEnumName} typedUnit)
-                throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
-
-            return As(typedUnit);
-        }}
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {{
-            if (!(unit is {_unitEnumName} typedUnit))
-                throw new ArgumentException($""The given unit is of type {{unit.GetType()}}. Only {{typeof({_unitEnumName})}} is supported."", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }}
-
-        /// <inheritdoc />
-        IQuantity<{_unitEnumName}> IQuantity<{_unitEnumName}>.ToUnit({_unitEnumName} unit) => ToUnit(unit);
-
-        #endregion
-
         #endregion
 ");
         }
