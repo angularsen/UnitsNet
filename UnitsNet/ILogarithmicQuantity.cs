@@ -41,7 +41,7 @@ public interface ILogarithmicQuantity<TSelf> : IQuantityOfType<TSelf>, IArithmet
     /// <value>
     ///     The logarithmic scaling factor.
     /// </value>
-    static abstract double LogarithmicScalingFactor { get; }
+    static abstract QuantityValue LogarithmicScalingFactor { get; }
 
     /// <summary>
     ///     The zero value of this quantity.
@@ -57,6 +57,6 @@ public interface ILogarithmicQuantity<TSelf> : IQuantityOfType<TSelf>, IArithmet
         /// <value>
         ///     The logarithmic scaling factor.
         /// </value>
-        double LogarithmicScalingFactor { get; }
+        QuantityValue LogarithmicScalingFactor { get; }
 #endif
 }

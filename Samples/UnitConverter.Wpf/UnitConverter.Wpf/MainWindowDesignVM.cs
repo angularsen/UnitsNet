@@ -30,8 +30,8 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
 
         public string FromHeader { get; } = "Value [cm]";
         public string ToHeader { get; } = "Result [dm]";
-        public double FromValue { get; set; } = 14.5;
-        public double ToValue { get; } = 1.45;
+        public QuantityValue FromValue { get; set; } = 14.5m;
+        public QuantityValue ToValue { get; } = 1.45m;
 
         public ICommand SwapCommand { get; } = new RoutedCommand();
 

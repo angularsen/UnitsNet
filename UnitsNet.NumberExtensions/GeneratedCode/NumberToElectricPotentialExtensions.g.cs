@@ -32,70 +32,70 @@ namespace UnitsNet.NumberExtensions.NumberToElectricPotential
     /// </summary>
     public static class NumberToElectricPotentialExtensions
     {
-        /// <inheritdoc cref="ElectricPotential.FromKilovolts(double)" />
+        /// <inheritdoc cref="ElectricPotential.FromKilovolts(QuantityValue)" />
         public static ElectricPotential Kilovolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricPotential.FromKilovolts(double.CreateChecked(value));
+            => ElectricPotential.FromKilovolts(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricPotential.FromKilovolts(value.ToDouble(null));
+            => ElectricPotential.FromKilovolts(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricPotential.FromMegavolts(double)" />
+        /// <inheritdoc cref="ElectricPotential.FromMegavolts(QuantityValue)" />
         public static ElectricPotential Megavolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricPotential.FromMegavolts(double.CreateChecked(value));
+            => ElectricPotential.FromMegavolts(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricPotential.FromMegavolts(value.ToDouble(null));
+            => ElectricPotential.FromMegavolts(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricPotential.FromMicrovolts(double)" />
+        /// <inheritdoc cref="ElectricPotential.FromMicrovolts(QuantityValue)" />
         public static ElectricPotential Microvolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricPotential.FromMicrovolts(double.CreateChecked(value));
+            => ElectricPotential.FromMicrovolts(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricPotential.FromMicrovolts(value.ToDouble(null));
+            => ElectricPotential.FromMicrovolts(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricPotential.FromMillivolts(double)" />
+        /// <inheritdoc cref="ElectricPotential.FromMillivolts(QuantityValue)" />
         public static ElectricPotential Millivolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricPotential.FromMillivolts(double.CreateChecked(value));
+            => ElectricPotential.FromMillivolts(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricPotential.FromMillivolts(value.ToDouble(null));
+            => ElectricPotential.FromMillivolts(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricPotential.FromNanovolts(double)" />
+        /// <inheritdoc cref="ElectricPotential.FromNanovolts(QuantityValue)" />
         public static ElectricPotential Nanovolts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricPotential.FromNanovolts(double.CreateChecked(value));
+            => ElectricPotential.FromNanovolts(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricPotential.FromNanovolts(value.ToDouble(null));
+            => ElectricPotential.FromNanovolts(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricPotential.FromVolts(double)" />
+        /// <inheritdoc cref="ElectricPotential.FromVolts(QuantityValue)" />
         public static ElectricPotential Volts<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricPotential.FromVolts(double.CreateChecked(value));
+            => ElectricPotential.FromVolts(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricPotential.FromVolts(value.ToDouble(null));
+            => ElectricPotential.FromVolts(value.ToQuantityValue());
 #endif
 
     }

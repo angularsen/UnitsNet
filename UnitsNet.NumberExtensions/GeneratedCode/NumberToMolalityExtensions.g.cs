@@ -32,37 +32,37 @@ namespace UnitsNet.NumberExtensions.NumberToMolality
     /// </summary>
     public static class NumberToMolalityExtensions
     {
-        /// <inheritdoc cref="Molality.FromMillimolesPerKilogram(double)" />
+        /// <inheritdoc cref="Molality.FromMillimolesPerKilogram(QuantityValue)" />
         public static Molality MillimolesPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Molality.FromMillimolesPerKilogram(double.CreateChecked(value));
+            => Molality.FromMillimolesPerKilogram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Molality.FromMillimolesPerKilogram(value.ToDouble(null));
+            => Molality.FromMillimolesPerKilogram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Molality.FromMolesPerGram(double)" />
+        /// <inheritdoc cref="Molality.FromMolesPerGram(QuantityValue)" />
         public static Molality MolesPerGram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Molality.FromMolesPerGram(double.CreateChecked(value));
+            => Molality.FromMolesPerGram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Molality.FromMolesPerGram(value.ToDouble(null));
+            => Molality.FromMolesPerGram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Molality.FromMolesPerKilogram(double)" />
+        /// <inheritdoc cref="Molality.FromMolesPerKilogram(QuantityValue)" />
         public static Molality MolesPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Molality.FromMolesPerKilogram(double.CreateChecked(value));
+            => Molality.FromMolesPerKilogram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Molality.FromMolesPerKilogram(value.ToDouble(null));
+            => Molality.FromMolesPerKilogram(value.ToQuantityValue());
 #endif
 
     }

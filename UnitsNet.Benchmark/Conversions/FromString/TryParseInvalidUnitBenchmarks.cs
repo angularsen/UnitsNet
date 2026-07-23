@@ -20,7 +20,7 @@ public class TryParseInvalidUnitBenchmarks
     private static readonly CultureInfo Culture = CultureInfo.InvariantCulture;
     private readonly Random _random = new(42);
     private string[] _invalidUnits = [];
-
+    
     [GlobalSetup]
     public void Setup()
     {

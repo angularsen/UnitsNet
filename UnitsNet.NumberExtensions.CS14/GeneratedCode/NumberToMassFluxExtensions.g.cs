@@ -42,100 +42,100 @@ namespace UnitsNet.NumberExtensions.NumberToMassFlux
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="MassFlux.FromGramsPerHourPerSquareCentimeter(double)" />
+            /// <inheritdoc cref="MassFlux.FromGramsPerHourPerSquareCentimeter(QuantityValue)" />
             public MassFlux GramsPerHourPerSquareCentimeter
 #if NET7_0_OR_GREATER
-                => MassFlux.FromGramsPerHourPerSquareCentimeter(double.CreateChecked(value));
+                => MassFlux.FromGramsPerHourPerSquareCentimeter(QuantityValue.CreateChecked(value));
 #else
-                => MassFlux.FromGramsPerHourPerSquareCentimeter(value.ToDouble(null));
+                => MassFlux.FromGramsPerHourPerSquareCentimeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="MassFlux.FromGramsPerHourPerSquareMeter(double)" />
+            /// <inheritdoc cref="MassFlux.FromGramsPerHourPerSquareMeter(QuantityValue)" />
             public MassFlux GramsPerHourPerSquareMeter
 #if NET7_0_OR_GREATER
-                => MassFlux.FromGramsPerHourPerSquareMeter(double.CreateChecked(value));
+                => MassFlux.FromGramsPerHourPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
-                => MassFlux.FromGramsPerHourPerSquareMeter(value.ToDouble(null));
+                => MassFlux.FromGramsPerHourPerSquareMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="MassFlux.FromGramsPerHourPerSquareMillimeter(double)" />
+            /// <inheritdoc cref="MassFlux.FromGramsPerHourPerSquareMillimeter(QuantityValue)" />
             public MassFlux GramsPerHourPerSquareMillimeter
 #if NET7_0_OR_GREATER
-                => MassFlux.FromGramsPerHourPerSquareMillimeter(double.CreateChecked(value));
+                => MassFlux.FromGramsPerHourPerSquareMillimeter(QuantityValue.CreateChecked(value));
 #else
-                => MassFlux.FromGramsPerHourPerSquareMillimeter(value.ToDouble(null));
+                => MassFlux.FromGramsPerHourPerSquareMillimeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareCentimeter(double)" />
+            /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareCentimeter(QuantityValue)" />
             public MassFlux GramsPerSecondPerSquareCentimeter
 #if NET7_0_OR_GREATER
-                => MassFlux.FromGramsPerSecondPerSquareCentimeter(double.CreateChecked(value));
+                => MassFlux.FromGramsPerSecondPerSquareCentimeter(QuantityValue.CreateChecked(value));
 #else
-                => MassFlux.FromGramsPerSecondPerSquareCentimeter(value.ToDouble(null));
+                => MassFlux.FromGramsPerSecondPerSquareCentimeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMeter(double)" />
+            /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMeter(QuantityValue)" />
             public MassFlux GramsPerSecondPerSquareMeter
 #if NET7_0_OR_GREATER
-                => MassFlux.FromGramsPerSecondPerSquareMeter(double.CreateChecked(value));
+                => MassFlux.FromGramsPerSecondPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
-                => MassFlux.FromGramsPerSecondPerSquareMeter(value.ToDouble(null));
+                => MassFlux.FromGramsPerSecondPerSquareMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMillimeter(double)" />
+            /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMillimeter(QuantityValue)" />
             public MassFlux GramsPerSecondPerSquareMillimeter
 #if NET7_0_OR_GREATER
-                => MassFlux.FromGramsPerSecondPerSquareMillimeter(double.CreateChecked(value));
+                => MassFlux.FromGramsPerSecondPerSquareMillimeter(QuantityValue.CreateChecked(value));
 #else
-                => MassFlux.FromGramsPerSecondPerSquareMillimeter(value.ToDouble(null));
+                => MassFlux.FromGramsPerSecondPerSquareMillimeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="MassFlux.FromKilogramsPerHourPerSquareCentimeter(double)" />
+            /// <inheritdoc cref="MassFlux.FromKilogramsPerHourPerSquareCentimeter(QuantityValue)" />
             public MassFlux KilogramsPerHourPerSquareCentimeter
 #if NET7_0_OR_GREATER
-                => MassFlux.FromKilogramsPerHourPerSquareCentimeter(double.CreateChecked(value));
+                => MassFlux.FromKilogramsPerHourPerSquareCentimeter(QuantityValue.CreateChecked(value));
 #else
-                => MassFlux.FromKilogramsPerHourPerSquareCentimeter(value.ToDouble(null));
+                => MassFlux.FromKilogramsPerHourPerSquareCentimeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="MassFlux.FromKilogramsPerHourPerSquareMeter(double)" />
+            /// <inheritdoc cref="MassFlux.FromKilogramsPerHourPerSquareMeter(QuantityValue)" />
             public MassFlux KilogramsPerHourPerSquareMeter
 #if NET7_0_OR_GREATER
-                => MassFlux.FromKilogramsPerHourPerSquareMeter(double.CreateChecked(value));
+                => MassFlux.FromKilogramsPerHourPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
-                => MassFlux.FromKilogramsPerHourPerSquareMeter(value.ToDouble(null));
+                => MassFlux.FromKilogramsPerHourPerSquareMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="MassFlux.FromKilogramsPerHourPerSquareMillimeter(double)" />
+            /// <inheritdoc cref="MassFlux.FromKilogramsPerHourPerSquareMillimeter(QuantityValue)" />
             public MassFlux KilogramsPerHourPerSquareMillimeter
 #if NET7_0_OR_GREATER
-                => MassFlux.FromKilogramsPerHourPerSquareMillimeter(double.CreateChecked(value));
+                => MassFlux.FromKilogramsPerHourPerSquareMillimeter(QuantityValue.CreateChecked(value));
 #else
-                => MassFlux.FromKilogramsPerHourPerSquareMillimeter(value.ToDouble(null));
+                => MassFlux.FromKilogramsPerHourPerSquareMillimeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareCentimeter(double)" />
+            /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareCentimeter(QuantityValue)" />
             public MassFlux KilogramsPerSecondPerSquareCentimeter
 #if NET7_0_OR_GREATER
-                => MassFlux.FromKilogramsPerSecondPerSquareCentimeter(double.CreateChecked(value));
+                => MassFlux.FromKilogramsPerSecondPerSquareCentimeter(QuantityValue.CreateChecked(value));
 #else
-                => MassFlux.FromKilogramsPerSecondPerSquareCentimeter(value.ToDouble(null));
+                => MassFlux.FromKilogramsPerSecondPerSquareCentimeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMeter(double)" />
+            /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMeter(QuantityValue)" />
             public MassFlux KilogramsPerSecondPerSquareMeter
 #if NET7_0_OR_GREATER
-                => MassFlux.FromKilogramsPerSecondPerSquareMeter(double.CreateChecked(value));
+                => MassFlux.FromKilogramsPerSecondPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
-                => MassFlux.FromKilogramsPerSecondPerSquareMeter(value.ToDouble(null));
+                => MassFlux.FromKilogramsPerSecondPerSquareMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMillimeter(double)" />
+            /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMillimeter(QuantityValue)" />
             public MassFlux KilogramsPerSecondPerSquareMillimeter
 #if NET7_0_OR_GREATER
-                => MassFlux.FromKilogramsPerSecondPerSquareMillimeter(double.CreateChecked(value));
+                => MassFlux.FromKilogramsPerSecondPerSquareMillimeter(QuantityValue.CreateChecked(value));
 #else
-                => MassFlux.FromKilogramsPerSecondPerSquareMillimeter(value.ToDouble(null));
+                => MassFlux.FromKilogramsPerSecondPerSquareMillimeter(value.ToQuantityValue());
 #endif
 
         }

@@ -21,22 +21,6 @@ namespace UnitsNet
         QuantityInfo QuantityInfo { get; }
 
         /// <summary>
-        ///     Gets the value in the given unit.
-        /// </summary>
-        /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length"/> you should provide a <see cref="LengthUnit"/> value.</param>
-        /// <returns>Value converted to the specified unit.</returns>
-        /// <exception cref="InvalidCastException">Wrong unit enum type was given.</exception>
-        double As(Enum unit);
-
-        /// <summary>
-        ///     Gets the value in the given unit key.
-        /// </summary>
-        /// <param name="unitKey">The unit key. The unit type must be compatible, so for <see cref="Length"/> you should provide a <see cref="LengthUnit"/> value.</param>
-        /// <returns>Value converted to the specified unit.</returns>
-        /// <exception cref="InvalidCastException">Wrong unit enum type was given.</exception>
-        double As(UnitKey unitKey);
-
-        /// <summary>
         ///     The unit this quantity was constructed with -or- BaseUnit if default ctor was used.
         /// </summary>
         Enum Unit { get; }
@@ -44,18 +28,7 @@ namespace UnitsNet
         /// <summary>
         ///     The value this quantity was constructed with. See also <see cref="Unit"/>.
         /// </summary>
-        double Value { get; }
-
-        /// <summary>
-        ///     Converts this <see cref="IQuantity"/> to an <see cref="IQuantity"/> in the given <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="unit">
-        ///     The unit <see cref="Enum"/> value. The <see cref="Enum"/> must be compatible with the units of the <see cref="IQuantity"/>.
-        ///     For example, if the <see cref="IQuantity"/> is a <see cref="Length"/>, you should provide a <see cref="LengthUnit"/> value.
-        /// </param>
-        /// <exception cref="NotImplementedException">Conversion was not possible from this <see cref="IQuantity"/> to <paramref name="unit"/>.</exception>
-        /// <returns>A new <see cref="IQuantity"/> in the given <paramref name="unit"/>.</returns>
-        IQuantity ToUnit(Enum unit);
+        QuantityValue Value { get; }
 
         /// <summary>
         ///     Gets the unique key for the unit type and its corresponding value.
@@ -73,18 +46,12 @@ namespace UnitsNet
     /// </summary>
     /// <example>
     ///     IQuantity{LengthUnit} length;
-    ///     double centimeters = length.As(LengthUnit.Centimeter); // Type safety on enum type
+    ///     QuantityValue centimeters = length.As(LengthUnit.Centimeter); // Type safety on enum type
     /// </example>
     /// <typeparam name="TUnitType">The unit type of the quantity.</typeparam>
     public interface IQuantity<TUnitType> : IQuantity
         where TUnitType : struct, Enum
     {
-        /// <summary>
-        ///     Convert to a unit representation <typeparamref name="TUnitType"/>.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        double As(TUnitType unit);
-
         /// <inheritdoc cref="IQuantity.Unit"/>
         new TUnitType Unit { get; }
 
@@ -93,14 +60,6 @@ namespace UnitsNet
         [Obsolete("Kept for back-compat with netstandard2.0. On .NET 5+, use the static TSelf.Info property or the GetQuantityInfo() extension method.")]
 #endif
         new QuantityInfo<TUnitType> QuantityInfo { get; }
-
-        /// <summary>
-        ///     Converts this <see cref="IQuantity{TUnitType}"/> to an <see cref="IQuantity{TUnitType}"/> in the given <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="unit">The unit value.</param>
-        /// <exception cref="NotImplementedException">Conversion was not possible from this <see cref="IQuantity"/> to <paramref name="unit"/>.</exception>
-        /// <returns>A new <see cref="IQuantity{TUnitType}"/> in the given <paramref name="unit"/>.</returns>
-        IQuantity<TUnitType> ToUnit(TUnitType unit);
 
 #if NET
 
@@ -149,7 +108,7 @@ namespace UnitsNet
         /// <param name="value">The numerical value of the quantity.</param>
         /// <param name="unit">The unit of the quantity.</param>
         /// <returns>An instance of the quantity with the specified value and unit.</returns>
-        public static abstract TQuantity Create(double value, UnitKey unit);
+        public static abstract TQuantity Create(QuantityValue value, UnitKey unit);
 #else
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         new IQuantityInstanceInfo<TQuantity> QuantityInfo { get; }
@@ -181,19 +140,9 @@ namespace UnitsNet
         /// <param name="value">The numerical value of the quantity.</param>
         /// <param name="unit">The unit of the quantity.</param>
         /// <returns>An instance of the quantity with the specified value and unit.</returns>
-        static abstract TSelf From(double value, TUnitType unit);
+        static abstract TSelf From(QuantityValue value, TUnitType unit);
 
-        /// <summary>
-        ///     Converts this quantity to the specified unit while preserving its concrete quantity type.
-        /// </summary>
-        /// <param name="unit">The unit value.</param>
-        /// <returns>A new <typeparamref name="TSelf" /> in the specified unit.</returns>
-        new TSelf ToUnit(TUnitType unit)
-        {
-            return TSelf.From(As(unit), unit);
-        }
-
-        static TSelf IQuantityOfType<TSelf>.Create(double value, UnitKey unit) => TSelf.From(value, unit.ToUnit<TUnitType>());
+        static TSelf IQuantityOfType<TSelf>.Create(QuantityValue value, UnitKey unit) => TSelf.From(value, unit.ToUnit<TUnitType>());
 
         static QuantityInfo IQuantityOfType<TSelf>.Info => TSelf.Info;
 
@@ -204,10 +153,6 @@ namespace UnitsNet
         }
 #pragma warning restore CS0618
 
-        IQuantity<TUnitType> IQuantity<TUnitType>.ToUnit(TUnitType unit)
-        {
-            return ToUnit(unit);
-        }
 #endif
 
     }

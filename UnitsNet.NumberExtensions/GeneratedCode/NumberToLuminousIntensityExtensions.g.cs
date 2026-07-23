@@ -32,15 +32,15 @@ namespace UnitsNet.NumberExtensions.NumberToLuminousIntensity
     /// </summary>
     public static class NumberToLuminousIntensityExtensions
     {
-        /// <inheritdoc cref="LuminousIntensity.FromCandela(double)" />
+        /// <inheritdoc cref="LuminousIntensity.FromCandela(QuantityValue)" />
         public static LuminousIntensity Candela<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => LuminousIntensity.FromCandela(double.CreateChecked(value));
+            => LuminousIntensity.FromCandela(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => LuminousIntensity.FromCandela(value.ToDouble(null));
+            => LuminousIntensity.FromCandela(value.ToQuantityValue());
 #endif
 
     }

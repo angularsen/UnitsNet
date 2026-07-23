@@ -42,116 +42,116 @@ namespace UnitsNet.NumberExtensions.NumberToLuminosity
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Luminosity.FromDecawatts(double)" />
+            /// <inheritdoc cref="Luminosity.FromDecawatts(QuantityValue)" />
             public Luminosity Decawatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromDecawatts(double.CreateChecked(value));
+                => Luminosity.FromDecawatts(QuantityValue.CreateChecked(value));
 #else
-                => Luminosity.FromDecawatts(value.ToDouble(null));
+                => Luminosity.FromDecawatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromDeciwatts(double)" />
+            /// <inheritdoc cref="Luminosity.FromDeciwatts(QuantityValue)" />
             public Luminosity Deciwatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromDeciwatts(double.CreateChecked(value));
+                => Luminosity.FromDeciwatts(QuantityValue.CreateChecked(value));
 #else
-                => Luminosity.FromDeciwatts(value.ToDouble(null));
+                => Luminosity.FromDeciwatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromFemtowatts(double)" />
+            /// <inheritdoc cref="Luminosity.FromFemtowatts(QuantityValue)" />
             public Luminosity Femtowatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromFemtowatts(double.CreateChecked(value));
+                => Luminosity.FromFemtowatts(QuantityValue.CreateChecked(value));
 #else
-                => Luminosity.FromFemtowatts(value.ToDouble(null));
+                => Luminosity.FromFemtowatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromGigawatts(double)" />
+            /// <inheritdoc cref="Luminosity.FromGigawatts(QuantityValue)" />
             public Luminosity Gigawatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromGigawatts(double.CreateChecked(value));
+                => Luminosity.FromGigawatts(QuantityValue.CreateChecked(value));
 #else
-                => Luminosity.FromGigawatts(value.ToDouble(null));
+                => Luminosity.FromGigawatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromKilowatts(double)" />
+            /// <inheritdoc cref="Luminosity.FromKilowatts(QuantityValue)" />
             public Luminosity Kilowatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromKilowatts(double.CreateChecked(value));
+                => Luminosity.FromKilowatts(QuantityValue.CreateChecked(value));
 #else
-                => Luminosity.FromKilowatts(value.ToDouble(null));
+                => Luminosity.FromKilowatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromMegawatts(double)" />
+            /// <inheritdoc cref="Luminosity.FromMegawatts(QuantityValue)" />
             public Luminosity Megawatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromMegawatts(double.CreateChecked(value));
+                => Luminosity.FromMegawatts(QuantityValue.CreateChecked(value));
 #else
-                => Luminosity.FromMegawatts(value.ToDouble(null));
+                => Luminosity.FromMegawatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromMicrowatts(double)" />
+            /// <inheritdoc cref="Luminosity.FromMicrowatts(QuantityValue)" />
             public Luminosity Microwatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromMicrowatts(double.CreateChecked(value));
+                => Luminosity.FromMicrowatts(QuantityValue.CreateChecked(value));
 #else
-                => Luminosity.FromMicrowatts(value.ToDouble(null));
+                => Luminosity.FromMicrowatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromMilliwatts(double)" />
+            /// <inheritdoc cref="Luminosity.FromMilliwatts(QuantityValue)" />
             public Luminosity Milliwatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromMilliwatts(double.CreateChecked(value));
+                => Luminosity.FromMilliwatts(QuantityValue.CreateChecked(value));
 #else
-                => Luminosity.FromMilliwatts(value.ToDouble(null));
+                => Luminosity.FromMilliwatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromNanowatts(double)" />
+            /// <inheritdoc cref="Luminosity.FromNanowatts(QuantityValue)" />
             public Luminosity Nanowatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromNanowatts(double.CreateChecked(value));
+                => Luminosity.FromNanowatts(QuantityValue.CreateChecked(value));
 #else
-                => Luminosity.FromNanowatts(value.ToDouble(null));
+                => Luminosity.FromNanowatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromPetawatts(double)" />
+            /// <inheritdoc cref="Luminosity.FromPetawatts(QuantityValue)" />
             public Luminosity Petawatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromPetawatts(double.CreateChecked(value));
+                => Luminosity.FromPetawatts(QuantityValue.CreateChecked(value));
 #else
-                => Luminosity.FromPetawatts(value.ToDouble(null));
+                => Luminosity.FromPetawatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromPicowatts(double)" />
+            /// <inheritdoc cref="Luminosity.FromPicowatts(QuantityValue)" />
             public Luminosity Picowatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromPicowatts(double.CreateChecked(value));
+                => Luminosity.FromPicowatts(QuantityValue.CreateChecked(value));
 #else
-                => Luminosity.FromPicowatts(value.ToDouble(null));
+                => Luminosity.FromPicowatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromSolarLuminosities(double)" />
+            /// <inheritdoc cref="Luminosity.FromSolarLuminosities(QuantityValue)" />
             public Luminosity SolarLuminosities
 #if NET7_0_OR_GREATER
-                => Luminosity.FromSolarLuminosities(double.CreateChecked(value));
+                => Luminosity.FromSolarLuminosities(QuantityValue.CreateChecked(value));
 #else
-                => Luminosity.FromSolarLuminosities(value.ToDouble(null));
+                => Luminosity.FromSolarLuminosities(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromTerawatts(double)" />
+            /// <inheritdoc cref="Luminosity.FromTerawatts(QuantityValue)" />
             public Luminosity Terawatts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromTerawatts(double.CreateChecked(value));
+                => Luminosity.FromTerawatts(QuantityValue.CreateChecked(value));
 #else
-                => Luminosity.FromTerawatts(value.ToDouble(null));
+                => Luminosity.FromTerawatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminosity.FromWatts(double)" />
+            /// <inheritdoc cref="Luminosity.FromWatts(QuantityValue)" />
             public Luminosity Watts
 #if NET7_0_OR_GREATER
-                => Luminosity.FromWatts(double.CreateChecked(value));
+                => Luminosity.FromWatts(QuantityValue.CreateChecked(value));
 #else
-                => Luminosity.FromWatts(value.ToDouble(null));
+                => Luminosity.FromWatts(value.ToQuantityValue());
 #endif
 
         }

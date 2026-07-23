@@ -42,116 +42,116 @@ namespace UnitsNet.NumberExtensions.NumberToArea
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Area.FromAcres(double)" />
+            /// <inheritdoc cref="Area.FromAcres(QuantityValue)" />
             public Area Acres
 #if NET7_0_OR_GREATER
-                => Area.FromAcres(double.CreateChecked(value));
+                => Area.FromAcres(QuantityValue.CreateChecked(value));
 #else
-                => Area.FromAcres(value.ToDouble(null));
+                => Area.FromAcres(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Area.FromHectares(double)" />
+            /// <inheritdoc cref="Area.FromHectares(QuantityValue)" />
             public Area Hectares
 #if NET7_0_OR_GREATER
-                => Area.FromHectares(double.CreateChecked(value));
+                => Area.FromHectares(QuantityValue.CreateChecked(value));
 #else
-                => Area.FromHectares(value.ToDouble(null));
+                => Area.FromHectares(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Area.FromSquareCentimeters(double)" />
+            /// <inheritdoc cref="Area.FromSquareCentimeters(QuantityValue)" />
             public Area SquareCentimeters
 #if NET7_0_OR_GREATER
-                => Area.FromSquareCentimeters(double.CreateChecked(value));
+                => Area.FromSquareCentimeters(QuantityValue.CreateChecked(value));
 #else
-                => Area.FromSquareCentimeters(value.ToDouble(null));
+                => Area.FromSquareCentimeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Area.FromSquareDecimeters(double)" />
+            /// <inheritdoc cref="Area.FromSquareDecimeters(QuantityValue)" />
             public Area SquareDecimeters
 #if NET7_0_OR_GREATER
-                => Area.FromSquareDecimeters(double.CreateChecked(value));
+                => Area.FromSquareDecimeters(QuantityValue.CreateChecked(value));
 #else
-                => Area.FromSquareDecimeters(value.ToDouble(null));
+                => Area.FromSquareDecimeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Area.FromSquareFeet(double)" />
+            /// <inheritdoc cref="Area.FromSquareFeet(QuantityValue)" />
             public Area SquareFeet
 #if NET7_0_OR_GREATER
-                => Area.FromSquareFeet(double.CreateChecked(value));
+                => Area.FromSquareFeet(QuantityValue.CreateChecked(value));
 #else
-                => Area.FromSquareFeet(value.ToDouble(null));
+                => Area.FromSquareFeet(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Area.FromSquareInches(double)" />
+            /// <inheritdoc cref="Area.FromSquareInches(QuantityValue)" />
             public Area SquareInches
 #if NET7_0_OR_GREATER
-                => Area.FromSquareInches(double.CreateChecked(value));
+                => Area.FromSquareInches(QuantityValue.CreateChecked(value));
 #else
-                => Area.FromSquareInches(value.ToDouble(null));
+                => Area.FromSquareInches(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Area.FromSquareKilometers(double)" />
+            /// <inheritdoc cref="Area.FromSquareKilometers(QuantityValue)" />
             public Area SquareKilometers
 #if NET7_0_OR_GREATER
-                => Area.FromSquareKilometers(double.CreateChecked(value));
+                => Area.FromSquareKilometers(QuantityValue.CreateChecked(value));
 #else
-                => Area.FromSquareKilometers(value.ToDouble(null));
+                => Area.FromSquareKilometers(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Area.FromSquareMeters(double)" />
+            /// <inheritdoc cref="Area.FromSquareMeters(QuantityValue)" />
             public Area SquareMeters
 #if NET7_0_OR_GREATER
-                => Area.FromSquareMeters(double.CreateChecked(value));
+                => Area.FromSquareMeters(QuantityValue.CreateChecked(value));
 #else
-                => Area.FromSquareMeters(value.ToDouble(null));
+                => Area.FromSquareMeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Area.FromSquareMicrometers(double)" />
+            /// <inheritdoc cref="Area.FromSquareMicrometers(QuantityValue)" />
             public Area SquareMicrometers
 #if NET7_0_OR_GREATER
-                => Area.FromSquareMicrometers(double.CreateChecked(value));
+                => Area.FromSquareMicrometers(QuantityValue.CreateChecked(value));
 #else
-                => Area.FromSquareMicrometers(value.ToDouble(null));
+                => Area.FromSquareMicrometers(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Area.FromSquareMiles(double)" />
+            /// <inheritdoc cref="Area.FromSquareMiles(QuantityValue)" />
             public Area SquareMiles
 #if NET7_0_OR_GREATER
-                => Area.FromSquareMiles(double.CreateChecked(value));
+                => Area.FromSquareMiles(QuantityValue.CreateChecked(value));
 #else
-                => Area.FromSquareMiles(value.ToDouble(null));
+                => Area.FromSquareMiles(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Area.FromSquareMillimeters(double)" />
+            /// <inheritdoc cref="Area.FromSquareMillimeters(QuantityValue)" />
             public Area SquareMillimeters
 #if NET7_0_OR_GREATER
-                => Area.FromSquareMillimeters(double.CreateChecked(value));
+                => Area.FromSquareMillimeters(QuantityValue.CreateChecked(value));
 #else
-                => Area.FromSquareMillimeters(value.ToDouble(null));
+                => Area.FromSquareMillimeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Area.FromSquareNauticalMiles(double)" />
+            /// <inheritdoc cref="Area.FromSquareNauticalMiles(QuantityValue)" />
             public Area SquareNauticalMiles
 #if NET7_0_OR_GREATER
-                => Area.FromSquareNauticalMiles(double.CreateChecked(value));
+                => Area.FromSquareNauticalMiles(QuantityValue.CreateChecked(value));
 #else
-                => Area.FromSquareNauticalMiles(value.ToDouble(null));
+                => Area.FromSquareNauticalMiles(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Area.FromSquareYards(double)" />
+            /// <inheritdoc cref="Area.FromSquareYards(QuantityValue)" />
             public Area SquareYards
 #if NET7_0_OR_GREATER
-                => Area.FromSquareYards(double.CreateChecked(value));
+                => Area.FromSquareYards(QuantityValue.CreateChecked(value));
 #else
-                => Area.FromSquareYards(value.ToDouble(null));
+                => Area.FromSquareYards(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double)" />
+            /// <inheritdoc cref="Area.FromUsSurveySquareFeet(QuantityValue)" />
             public Area UsSurveySquareFeet
 #if NET7_0_OR_GREATER
-                => Area.FromUsSurveySquareFeet(double.CreateChecked(value));
+                => Area.FromUsSurveySquareFeet(QuantityValue.CreateChecked(value));
 #else
-                => Area.FromUsSurveySquareFeet(value.ToDouble(null));
+                => Area.FromUsSurveySquareFeet(value.ToQuantityValue());
 #endif
 
         }

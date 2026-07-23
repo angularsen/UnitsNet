@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -20,6 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Fractions" />
     <PackageReference Include="Newtonsoft.Json" />
     <PackageReference Include="NuGet.Protocol" />
     <PackageReference Include="Serilog" />

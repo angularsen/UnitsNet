@@ -32,279 +32,279 @@ namespace UnitsNet.NumberExtensions.NumberToDoseAreaProduct
     /// </summary>
     public static class NumberToDoseAreaProductExtensions
     {
-        /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareCentimeters(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareCentimeters(QuantityValue)" />
         public static DoseAreaProduct CentigraySquareCentimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromCentigraySquareCentimeters(double.CreateChecked(value));
+            => DoseAreaProduct.FromCentigraySquareCentimeters(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromCentigraySquareCentimeters(value.ToDouble(null));
+            => DoseAreaProduct.FromCentigraySquareCentimeters(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareDecimeters(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareDecimeters(QuantityValue)" />
         public static DoseAreaProduct CentigraySquareDecimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromCentigraySquareDecimeters(double.CreateChecked(value));
+            => DoseAreaProduct.FromCentigraySquareDecimeters(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromCentigraySquareDecimeters(value.ToDouble(null));
+            => DoseAreaProduct.FromCentigraySquareDecimeters(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareMeters(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareMeters(QuantityValue)" />
         public static DoseAreaProduct CentigraySquareMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromCentigraySquareMeters(double.CreateChecked(value));
+            => DoseAreaProduct.FromCentigraySquareMeters(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromCentigraySquareMeters(value.ToDouble(null));
+            => DoseAreaProduct.FromCentigraySquareMeters(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareMicrometers(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareMicrometers(QuantityValue)" />
         public static DoseAreaProduct CentigraySquareMicrometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromCentigraySquareMicrometers(double.CreateChecked(value));
+            => DoseAreaProduct.FromCentigraySquareMicrometers(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromCentigraySquareMicrometers(value.ToDouble(null));
+            => DoseAreaProduct.FromCentigraySquareMicrometers(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareMillimeters(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromCentigraySquareMillimeters(QuantityValue)" />
         public static DoseAreaProduct CentigraySquareMillimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromCentigraySquareMillimeters(double.CreateChecked(value));
+            => DoseAreaProduct.FromCentigraySquareMillimeters(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromCentigraySquareMillimeters(value.ToDouble(null));
+            => DoseAreaProduct.FromCentigraySquareMillimeters(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareCentimeters(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareCentimeters(QuantityValue)" />
         public static DoseAreaProduct DecigraySquareCentimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromDecigraySquareCentimeters(double.CreateChecked(value));
+            => DoseAreaProduct.FromDecigraySquareCentimeters(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromDecigraySquareCentimeters(value.ToDouble(null));
+            => DoseAreaProduct.FromDecigraySquareCentimeters(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareDecimeters(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareDecimeters(QuantityValue)" />
         public static DoseAreaProduct DecigraySquareDecimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromDecigraySquareDecimeters(double.CreateChecked(value));
+            => DoseAreaProduct.FromDecigraySquareDecimeters(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromDecigraySquareDecimeters(value.ToDouble(null));
+            => DoseAreaProduct.FromDecigraySquareDecimeters(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareMeters(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareMeters(QuantityValue)" />
         public static DoseAreaProduct DecigraySquareMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromDecigraySquareMeters(double.CreateChecked(value));
+            => DoseAreaProduct.FromDecigraySquareMeters(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromDecigraySquareMeters(value.ToDouble(null));
+            => DoseAreaProduct.FromDecigraySquareMeters(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareMicrometers(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareMicrometers(QuantityValue)" />
         public static DoseAreaProduct DecigraySquareMicrometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromDecigraySquareMicrometers(double.CreateChecked(value));
+            => DoseAreaProduct.FromDecigraySquareMicrometers(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromDecigraySquareMicrometers(value.ToDouble(null));
+            => DoseAreaProduct.FromDecigraySquareMicrometers(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareMillimeters(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromDecigraySquareMillimeters(QuantityValue)" />
         public static DoseAreaProduct DecigraySquareMillimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromDecigraySquareMillimeters(double.CreateChecked(value));
+            => DoseAreaProduct.FromDecigraySquareMillimeters(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromDecigraySquareMillimeters(value.ToDouble(null));
+            => DoseAreaProduct.FromDecigraySquareMillimeters(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromGraySquareCentimeters(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromGraySquareCentimeters(QuantityValue)" />
         public static DoseAreaProduct GraySquareCentimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromGraySquareCentimeters(double.CreateChecked(value));
+            => DoseAreaProduct.FromGraySquareCentimeters(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromGraySquareCentimeters(value.ToDouble(null));
+            => DoseAreaProduct.FromGraySquareCentimeters(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromGraySquareDecimeters(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromGraySquareDecimeters(QuantityValue)" />
         public static DoseAreaProduct GraySquareDecimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromGraySquareDecimeters(double.CreateChecked(value));
+            => DoseAreaProduct.FromGraySquareDecimeters(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromGraySquareDecimeters(value.ToDouble(null));
+            => DoseAreaProduct.FromGraySquareDecimeters(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromGraySquareMeters(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromGraySquareMeters(QuantityValue)" />
         public static DoseAreaProduct GraySquareMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromGraySquareMeters(double.CreateChecked(value));
+            => DoseAreaProduct.FromGraySquareMeters(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromGraySquareMeters(value.ToDouble(null));
+            => DoseAreaProduct.FromGraySquareMeters(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromGraySquareMicrometers(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromGraySquareMicrometers(QuantityValue)" />
         public static DoseAreaProduct GraySquareMicrometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromGraySquareMicrometers(double.CreateChecked(value));
+            => DoseAreaProduct.FromGraySquareMicrometers(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromGraySquareMicrometers(value.ToDouble(null));
+            => DoseAreaProduct.FromGraySquareMicrometers(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromGraySquareMillimeters(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromGraySquareMillimeters(QuantityValue)" />
         public static DoseAreaProduct GraySquareMillimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromGraySquareMillimeters(double.CreateChecked(value));
+            => DoseAreaProduct.FromGraySquareMillimeters(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromGraySquareMillimeters(value.ToDouble(null));
+            => DoseAreaProduct.FromGraySquareMillimeters(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareCentimeters(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareCentimeters(QuantityValue)" />
         public static DoseAreaProduct MicrograySquareCentimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromMicrograySquareCentimeters(double.CreateChecked(value));
+            => DoseAreaProduct.FromMicrograySquareCentimeters(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromMicrograySquareCentimeters(value.ToDouble(null));
+            => DoseAreaProduct.FromMicrograySquareCentimeters(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareDecimeters(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareDecimeters(QuantityValue)" />
         public static DoseAreaProduct MicrograySquareDecimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromMicrograySquareDecimeters(double.CreateChecked(value));
+            => DoseAreaProduct.FromMicrograySquareDecimeters(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromMicrograySquareDecimeters(value.ToDouble(null));
+            => DoseAreaProduct.FromMicrograySquareDecimeters(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareMeters(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareMeters(QuantityValue)" />
         public static DoseAreaProduct MicrograySquareMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromMicrograySquareMeters(double.CreateChecked(value));
+            => DoseAreaProduct.FromMicrograySquareMeters(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromMicrograySquareMeters(value.ToDouble(null));
+            => DoseAreaProduct.FromMicrograySquareMeters(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareMicrometers(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareMicrometers(QuantityValue)" />
         public static DoseAreaProduct MicrograySquareMicrometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromMicrograySquareMicrometers(double.CreateChecked(value));
+            => DoseAreaProduct.FromMicrograySquareMicrometers(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromMicrograySquareMicrometers(value.ToDouble(null));
+            => DoseAreaProduct.FromMicrograySquareMicrometers(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareMillimeters(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromMicrograySquareMillimeters(QuantityValue)" />
         public static DoseAreaProduct MicrograySquareMillimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromMicrograySquareMillimeters(double.CreateChecked(value));
+            => DoseAreaProduct.FromMicrograySquareMillimeters(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromMicrograySquareMillimeters(value.ToDouble(null));
+            => DoseAreaProduct.FromMicrograySquareMillimeters(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareCentimeters(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareCentimeters(QuantityValue)" />
         public static DoseAreaProduct MilligraySquareCentimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromMilligraySquareCentimeters(double.CreateChecked(value));
+            => DoseAreaProduct.FromMilligraySquareCentimeters(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromMilligraySquareCentimeters(value.ToDouble(null));
+            => DoseAreaProduct.FromMilligraySquareCentimeters(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareDecimeters(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareDecimeters(QuantityValue)" />
         public static DoseAreaProduct MilligraySquareDecimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromMilligraySquareDecimeters(double.CreateChecked(value));
+            => DoseAreaProduct.FromMilligraySquareDecimeters(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromMilligraySquareDecimeters(value.ToDouble(null));
+            => DoseAreaProduct.FromMilligraySquareDecimeters(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareMeters(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareMeters(QuantityValue)" />
         public static DoseAreaProduct MilligraySquareMeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromMilligraySquareMeters(double.CreateChecked(value));
+            => DoseAreaProduct.FromMilligraySquareMeters(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromMilligraySquareMeters(value.ToDouble(null));
+            => DoseAreaProduct.FromMilligraySquareMeters(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareMicrometers(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareMicrometers(QuantityValue)" />
         public static DoseAreaProduct MilligraySquareMicrometers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromMilligraySquareMicrometers(double.CreateChecked(value));
+            => DoseAreaProduct.FromMilligraySquareMicrometers(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromMilligraySquareMicrometers(value.ToDouble(null));
+            => DoseAreaProduct.FromMilligraySquareMicrometers(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareMillimeters(double)" />
+        /// <inheritdoc cref="DoseAreaProduct.FromMilligraySquareMillimeters(QuantityValue)" />
         public static DoseAreaProduct MilligraySquareMillimeters<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => DoseAreaProduct.FromMilligraySquareMillimeters(double.CreateChecked(value));
+            => DoseAreaProduct.FromMilligraySquareMillimeters(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => DoseAreaProduct.FromMilligraySquareMillimeters(value.ToDouble(null));
+            => DoseAreaProduct.FromMilligraySquareMillimeters(value.ToQuantityValue());
 #endif
 
     }

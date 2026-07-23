@@ -14,20 +14,26 @@ namespace UnitsNet
         /// </summary>
         /// <param name="quantity">The quantity.</param>
         /// <param name="reference">The reference value that <paramref name="quantity" /> is compared to.</param>
-        public Level(double quantity, double reference)
+        /// <param name="significantDigits">The number of significant digits to use in the calculation. Default is 15.</param>
+        /// <exception cref="T:System.ArgumentOutOfRangeException">
+        ///     Thrown when the number of significant digits is less than 1 or greater than 17.
+        /// </exception>
+        public Level(double quantity, double reference, byte significantDigits = 15)
             : this()
         {
-            string errorMessage =
-                $"The base-10 logarithm of a number ≤ 0 is undefined ({quantity}/{reference}).";
+            var errorMessage = $"The base-10 logarithm of a number ≤ 0 is undefined ({quantity}/{reference}).";
 
-            // ReSharper disable CompareOfFloatsByEqualityOperator
-            if (quantity == 0 || quantity < 0 && reference > 0)
+            if (quantity == 0 || (quantity < 0 && reference > 0))
+            {
                 throw new ArgumentOutOfRangeException(nameof(quantity), errorMessage);
-            if (reference == 0 || quantity > 0 && reference < 0)
-                throw new ArgumentOutOfRangeException(nameof(reference), errorMessage);
-            // ReSharper restore CompareOfFloatsByEqualityOperator
+            }
 
-            _value = 10*Math.Log10(quantity/reference);
+            if (reference == 0 || (quantity > 0 && reference < 0))
+            {
+                throw new ArgumentOutOfRangeException(nameof(reference), errorMessage);
+            }
+
+            _value = QuantityValue.FromDoubleRounded(10 * Math.Log10(quantity / reference), significantDigits);
             _unit = LevelUnit.Decibel;
         }
     }

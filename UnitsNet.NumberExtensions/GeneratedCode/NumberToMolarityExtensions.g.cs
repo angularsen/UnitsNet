@@ -32,125 +32,125 @@ namespace UnitsNet.NumberExtensions.NumberToMolarity
     /// </summary>
     public static class NumberToMolarityExtensions
     {
-        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(double)" />
+        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(QuantityValue)" />
         public static Molarity CentimolesPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Molarity.FromCentimolesPerLiter(double.CreateChecked(value));
+            => Molarity.FromCentimolesPerLiter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Molarity.FromCentimolesPerLiter(value.ToDouble(null));
+            => Molarity.FromCentimolesPerLiter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(double)" />
+        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(QuantityValue)" />
         public static Molarity DecimolesPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Molarity.FromDecimolesPerLiter(double.CreateChecked(value));
+            => Molarity.FromDecimolesPerLiter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Molarity.FromDecimolesPerLiter(value.ToDouble(null));
+            => Molarity.FromDecimolesPerLiter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Molarity.FromFemtomolesPerLiter(double)" />
+        /// <inheritdoc cref="Molarity.FromFemtomolesPerLiter(QuantityValue)" />
         public static Molarity FemtomolesPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Molarity.FromFemtomolesPerLiter(double.CreateChecked(value));
+            => Molarity.FromFemtomolesPerLiter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Molarity.FromFemtomolesPerLiter(value.ToDouble(null));
+            => Molarity.FromFemtomolesPerLiter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Molarity.FromKilomolesPerCubicMeter(double)" />
+        /// <inheritdoc cref="Molarity.FromKilomolesPerCubicMeter(QuantityValue)" />
         public static Molarity KilomolesPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Molarity.FromKilomolesPerCubicMeter(double.CreateChecked(value));
+            => Molarity.FromKilomolesPerCubicMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Molarity.FromKilomolesPerCubicMeter(value.ToDouble(null));
+            => Molarity.FromKilomolesPerCubicMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(double)" />
+        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(QuantityValue)" />
         public static Molarity MicromolesPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Molarity.FromMicromolesPerLiter(double.CreateChecked(value));
+            => Molarity.FromMicromolesPerLiter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Molarity.FromMicromolesPerLiter(value.ToDouble(null));
+            => Molarity.FromMicromolesPerLiter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(double)" />
+        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(QuantityValue)" />
         public static Molarity MillimolesPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Molarity.FromMillimolesPerLiter(double.CreateChecked(value));
+            => Molarity.FromMillimolesPerLiter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Molarity.FromMillimolesPerLiter(value.ToDouble(null));
+            => Molarity.FromMillimolesPerLiter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(double)" />
+        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(QuantityValue)" />
         public static Molarity MolesPerCubicMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Molarity.FromMolesPerCubicMeter(double.CreateChecked(value));
+            => Molarity.FromMolesPerCubicMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Molarity.FromMolesPerCubicMeter(value.ToDouble(null));
+            => Molarity.FromMolesPerCubicMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Molarity.FromMolesPerLiter(double)" />
+        /// <inheritdoc cref="Molarity.FromMolesPerLiter(QuantityValue)" />
         public static Molarity MolesPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Molarity.FromMolesPerLiter(double.CreateChecked(value));
+            => Molarity.FromMolesPerLiter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Molarity.FromMolesPerLiter(value.ToDouble(null));
+            => Molarity.FromMolesPerLiter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(double)" />
+        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(QuantityValue)" />
         public static Molarity NanomolesPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Molarity.FromNanomolesPerLiter(double.CreateChecked(value));
+            => Molarity.FromNanomolesPerLiter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Molarity.FromNanomolesPerLiter(value.ToDouble(null));
+            => Molarity.FromNanomolesPerLiter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(double)" />
+        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(QuantityValue)" />
         public static Molarity PicomolesPerLiter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Molarity.FromPicomolesPerLiter(double.CreateChecked(value));
+            => Molarity.FromPicomolesPerLiter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Molarity.FromPicomolesPerLiter(value.ToDouble(null));
+            => Molarity.FromPicomolesPerLiter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Molarity.FromPoundMolesPerCubicFoot(double)" />
+        /// <inheritdoc cref="Molarity.FromPoundMolesPerCubicFoot(QuantityValue)" />
         public static Molarity PoundMolesPerCubicFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Molarity.FromPoundMolesPerCubicFoot(double.CreateChecked(value));
+            => Molarity.FromPoundMolesPerCubicFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Molarity.FromPoundMolesPerCubicFoot(value.ToDouble(null));
+            => Molarity.FromPoundMolesPerCubicFoot(value.ToQuantityValue());
 #endif
 
     }

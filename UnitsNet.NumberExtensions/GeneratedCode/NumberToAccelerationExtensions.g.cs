@@ -32,158 +32,158 @@ namespace UnitsNet.NumberExtensions.NumberToAcceleration
     /// </summary>
     public static class NumberToAccelerationExtensions
     {
-        /// <inheritdoc cref="Acceleration.FromCentimetersPerSecondSquared(double)" />
+        /// <inheritdoc cref="Acceleration.FromCentimetersPerSecondSquared(QuantityValue)" />
         public static Acceleration CentimetersPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Acceleration.FromCentimetersPerSecondSquared(double.CreateChecked(value));
+            => Acceleration.FromCentimetersPerSecondSquared(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Acceleration.FromCentimetersPerSecondSquared(value.ToDouble(null));
+            => Acceleration.FromCentimetersPerSecondSquared(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(double)" />
+        /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(QuantityValue)" />
         public static Acceleration DecimetersPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Acceleration.FromDecimetersPerSecondSquared(double.CreateChecked(value));
+            => Acceleration.FromDecimetersPerSecondSquared(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Acceleration.FromDecimetersPerSecondSquared(value.ToDouble(null));
+            => Acceleration.FromDecimetersPerSecondSquared(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Acceleration.FromFeetPerSecondSquared(double)" />
+        /// <inheritdoc cref="Acceleration.FromFeetPerSecondSquared(QuantityValue)" />
         public static Acceleration FeetPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Acceleration.FromFeetPerSecondSquared(double.CreateChecked(value));
+            => Acceleration.FromFeetPerSecondSquared(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Acceleration.FromFeetPerSecondSquared(value.ToDouble(null));
+            => Acceleration.FromFeetPerSecondSquared(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Acceleration.FromInchesPerSecondSquared(double)" />
+        /// <inheritdoc cref="Acceleration.FromInchesPerSecondSquared(QuantityValue)" />
         public static Acceleration InchesPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Acceleration.FromInchesPerSecondSquared(double.CreateChecked(value));
+            => Acceleration.FromInchesPerSecondSquared(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Acceleration.FromInchesPerSecondSquared(value.ToDouble(null));
+            => Acceleration.FromInchesPerSecondSquared(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(double)" />
+        /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(QuantityValue)" />
         public static Acceleration KilometersPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Acceleration.FromKilometersPerSecondSquared(double.CreateChecked(value));
+            => Acceleration.FromKilometersPerSecondSquared(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Acceleration.FromKilometersPerSecondSquared(value.ToDouble(null));
+            => Acceleration.FromKilometersPerSecondSquared(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(double)" />
+        /// <inheritdoc cref="Acceleration.FromKnotsPerHour(QuantityValue)" />
         public static Acceleration KnotsPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Acceleration.FromKnotsPerHour(double.CreateChecked(value));
+            => Acceleration.FromKnotsPerHour(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Acceleration.FromKnotsPerHour(value.ToDouble(null));
+            => Acceleration.FromKnotsPerHour(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Acceleration.FromKnotsPerMinute(double)" />
+        /// <inheritdoc cref="Acceleration.FromKnotsPerMinute(QuantityValue)" />
         public static Acceleration KnotsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Acceleration.FromKnotsPerMinute(double.CreateChecked(value));
+            => Acceleration.FromKnotsPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Acceleration.FromKnotsPerMinute(value.ToDouble(null));
+            => Acceleration.FromKnotsPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Acceleration.FromKnotsPerSecond(double)" />
+        /// <inheritdoc cref="Acceleration.FromKnotsPerSecond(QuantityValue)" />
         public static Acceleration KnotsPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Acceleration.FromKnotsPerSecond(double.CreateChecked(value));
+            => Acceleration.FromKnotsPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Acceleration.FromKnotsPerSecond(value.ToDouble(null));
+            => Acceleration.FromKnotsPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(double)" />
+        /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(QuantityValue)" />
         public static Acceleration MetersPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Acceleration.FromMetersPerSecondSquared(double.CreateChecked(value));
+            => Acceleration.FromMetersPerSecondSquared(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Acceleration.FromMetersPerSecondSquared(value.ToDouble(null));
+            => Acceleration.FromMetersPerSecondSquared(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(double)" />
+        /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(QuantityValue)" />
         public static Acceleration MicrometersPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Acceleration.FromMicrometersPerSecondSquared(double.CreateChecked(value));
+            => Acceleration.FromMicrometersPerSecondSquared(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Acceleration.FromMicrometersPerSecondSquared(value.ToDouble(null));
+            => Acceleration.FromMicrometersPerSecondSquared(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(double)" />
+        /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(QuantityValue)" />
         public static Acceleration MillimetersPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Acceleration.FromMillimetersPerSecondSquared(double.CreateChecked(value));
+            => Acceleration.FromMillimetersPerSecondSquared(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Acceleration.FromMillimetersPerSecondSquared(value.ToDouble(null));
+            => Acceleration.FromMillimetersPerSecondSquared(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Acceleration.FromMillistandardGravity(double)" />
+        /// <inheritdoc cref="Acceleration.FromMillistandardGravity(QuantityValue)" />
         public static Acceleration MillistandardGravity<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Acceleration.FromMillistandardGravity(double.CreateChecked(value));
+            => Acceleration.FromMillistandardGravity(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Acceleration.FromMillistandardGravity(value.ToDouble(null));
+            => Acceleration.FromMillistandardGravity(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(double)" />
+        /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(QuantityValue)" />
         public static Acceleration NanometersPerSecondSquared<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Acceleration.FromNanometersPerSecondSquared(double.CreateChecked(value));
+            => Acceleration.FromNanometersPerSecondSquared(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Acceleration.FromNanometersPerSecondSquared(value.ToDouble(null));
+            => Acceleration.FromNanometersPerSecondSquared(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Acceleration.FromStandardGravity(double)" />
+        /// <inheritdoc cref="Acceleration.FromStandardGravity(QuantityValue)" />
         public static Acceleration StandardGravity<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Acceleration.FromStandardGravity(double.CreateChecked(value));
+            => Acceleration.FromStandardGravity(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Acceleration.FromStandardGravity(value.ToDouble(null));
+            => Acceleration.FromStandardGravity(value.ToQuantityValue());
 #endif
 
     }

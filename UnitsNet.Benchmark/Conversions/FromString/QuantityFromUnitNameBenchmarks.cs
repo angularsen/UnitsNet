@@ -14,30 +14,30 @@ public class QuantityFromUnitNameBenchmarks
     private string[] _unitNames;
 
     [Params(1000)]
-    public int NbAbbreviations { get; set; }
+    public int NbIterations { get; set; }
 
     [GlobalSetup(Target = nameof(FromMassUnitName))]
     public void PrepareMassUnits()
     {
-        _unitNames = _random.GetItems(Mass.Info.UnitInfos.Select(x => x.Name).ToArray(), NbAbbreviations);
+        _unitNames = _random.GetItems(Mass.Info.UnitInfos.Select(x => x.Name).ToArray(), NbIterations);
     }
 
     [GlobalSetup(Target = nameof(FromVolumeUnitName))]
     public void PrepareVolumeUnits()
     {
-        _unitNames = _random.GetItems(Volume.Info.UnitInfos.Select(x => x.Name).ToArray(), NbAbbreviations);
+        _unitNames = _random.GetItems(Volume.Info.UnitInfos.Select(x => x.Name).ToArray(), NbIterations);
     }
 
     [GlobalSetup(Target = nameof(FromPressureUnitName))]
     public void PreparePressureUnits()
     {
-        _unitNames = _random.GetItems(Pressure.Info.UnitInfos.Select(x => x.Name).ToArray(), NbAbbreviations);
+        _unitNames = _random.GetItems(Pressure.Info.UnitInfos.Select(x => x.Name).ToArray(), NbIterations);
     }
 
     [GlobalSetup(Target = nameof(FromVolumeFlowUnitName))]
     public void PrepareVolumeFlowUnits()
     {
-        _unitNames = _random.GetItems(VolumeFlow.Info.UnitInfos.Select(x => x.Name).ToArray(), NbAbbreviations);
+        _unitNames = _random.GetItems(VolumeFlow.Info.UnitInfos.Select(x => x.Name).ToArray(), NbIterations);
     }
 
     [Benchmark(Baseline = true)]
@@ -46,7 +46,7 @@ public class QuantityFromUnitNameBenchmarks
         IQuantity quantity = null;
         foreach (var unitName in _unitNames)
         {
-            quantity = Quantity.From(1, nameof(Mass), unitName);
+            quantity = Quantity.From(QuantityValue.One, nameof(Mass), unitName);
         }
 
         return quantity;
@@ -58,7 +58,7 @@ public class QuantityFromUnitNameBenchmarks
         IQuantity quantity = null;
         foreach (var unitName in _unitNames)
         {
-            quantity = Quantity.From(1, nameof(Volume), unitName);
+            quantity = Quantity.From(QuantityValue.One, nameof(Volume), unitName);
         }
 
         return quantity;
@@ -70,7 +70,7 @@ public class QuantityFromUnitNameBenchmarks
         IQuantity quantity = null;
         foreach (var unitName in _unitNames)
         {
-            quantity = Quantity.From(1, nameof(Pressure), unitName);
+            quantity = Quantity.From(QuantityValue.One, nameof(Pressure), unitName);
         }
 
         return quantity;
@@ -82,7 +82,7 @@ public class QuantityFromUnitNameBenchmarks
         IQuantity quantity = null;
         foreach (var unitName in _unitNames)
         {
-            quantity = Quantity.From(1, nameof(VolumeFlow), unitName);
+            quantity = Quantity.From(QuantityValue.One, nameof(VolumeFlow), unitName);
         }
 
         return quantity;

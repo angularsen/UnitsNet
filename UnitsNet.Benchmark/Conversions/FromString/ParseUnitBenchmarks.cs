@@ -12,7 +12,7 @@ namespace UnitsNet.Benchmark.Conversions.FromString;
 public class ParseUnitBenchmarks
 {
     private const int NbAbbreviations = 1000;
-    
+
     private static readonly CultureInfo Culture = CultureInfo.InvariantCulture;
     private readonly Random _random = new(42);
     private string[] _densityUnits;
@@ -57,8 +57,7 @@ public class ParseUnitBenchmarks
     public void PrepareVolumeFlowUnits()
     {
         _volumeFlowUnits = _random.GetRandomAbbreviations<VolumeFlowUnit>(UnitsNetSetup.Default.UnitAbbreviations, NbAbbreviations);
-        // initializes the QuantityInfoLookup and the abbreviations cache
-        VolumeFlow.TryParseUnit("_invalid", Culture, out _);
+        VolumeFlow.ParseUnit(_volumeFlowUnits[0], Culture);
     }
 
     [Benchmark(Baseline = true)]

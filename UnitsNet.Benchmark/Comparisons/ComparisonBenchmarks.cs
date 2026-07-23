@@ -1,68 +1,79 @@
 ﻿using System;
-using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
+using UnitsNet.Units;
 
 namespace UnitsNet.Benchmark.Comparisons;
 
 [MemoryDiagnoser]
-[ShortRunJob(RuntimeMoniker.Net48)]
-[ShortRunJob(RuntimeMoniker.Net80)]
+[SimpleJob(RuntimeMoniker.Net48)]
+[SimpleJob(RuntimeMoniker.Net90)]
 public class ComparisonBenchmarks
 {
     private static readonly Mass Tolerance = Mass.FromNanograms(1);
 
-    public static IEnumerable<object[]> Operands()
-    {
-        // equal value and unit
-        yield return [Mass.From(42, Mass.BaseUnit), Mass.From(42, Mass.BaseUnit)];
-        // equal value and unit
-        yield return [Mass.FromGrams(42), Mass.FromGrams(42)];
-        // zero in another unit
-        yield return [Mass.Zero, Mass.FromGrams(0)];
-        // same quantity in another unit
-        yield return [Mass.FromGrams(42), Mass.FromMilligrams(42000)];
-        // same quantity in another unit (in reverse)
-        yield return [Mass.FromMilligrams(42000), Mass.FromGrams(42)];
-        // different value and same unit
-        yield return [Mass.FromGrams(42), Mass.FromGrams(42.1)];
-        // huge values, same unit
-        yield return [Mass.FromGrams(-1e37), Mass.FromGrams(1 / 1e12)];
-        // huge values, different units
-        yield return [Mass.FromGrams(-1e37), Mass.FromMilligrams(1 / 1e12)];
-        // Math.PI, same unit
-        yield return [Mass.FromGrams(Math.PI), Mass.FromGrams(Math.PI)];
-        // Math.PI, different units
-        yield return [Mass.FromGrams(Math.PI), Mass.FromMilligrams(Math.PI)];
-        // very close fractions, same units
-        yield return [Mass.FromGrams(12.3456789987654321), Mass.FromGrams(12.3456789987654322)];
-    }
+    // [Params(true, false, Priority = 3)]
+    [Params(true)]
+    public bool Frozen { get; set; }
 
-    [Benchmark]
-    [ArgumentsSource(nameof(Operands))]
-    public bool Equals(Mass a, Mass b)
-    {
-        return a.Equals(b);
-    }
+    // [Params(ConversionCachingMode.All, ConversionCachingMode.None, Priority = 2)]
+    [Params(ConversionCachingMode.All)]
+    public ConversionCachingMode CachingMode { get; set; }
+    
 
-    [Benchmark]
-    [ArgumentsSource(nameof(Operands))]
-    public bool EqualsTolerance(Mass a, Mass b)
-    {
-        return a.Equals(b, Tolerance);
-    }
+    // [Params(MassUnit.Milligram, MassUnit.Gram, MassUnit.Kilogram)]
+    [Params(MassUnit.Milligram)]
+    public MassUnit LeftUnit { get; set; }
+    
+    // [Params(MassUnit.Gram, MassUnit.Kilogram)]
+    // [Params(MassUnit.Gram)]
+    [Params(MassUnit.Milligram)]
+    public MassUnit RightUnit { get; set; }
 
-    [Benchmark]
-    [ArgumentsSource(nameof(Operands))]
-    public bool GetHashCode(Mass a, Mass b)
-    {
-        return a.GetHashCode() == b.GetHashCode();
-    }
+    [ParamsSource(nameof(LeftValues))]
+    public QuantityValue LeftValue { get; set; }
 
-    [Benchmark]
-    [ArgumentsSource(nameof(Operands))]
-    public int CompareTo(Mass a, Mass b)
+    public QuantityValue[] LeftValues => [95];
+    
+    
+    [ParamsSource(nameof(RightValues))]
+    public QuantityValue RightValue { get; set; }
+
+    public QuantityValue[] RightValues => [95];
+    
+    private Mass _leftQuantity, _rightQuantity;
+    
+    [GlobalSetup]
+    public void GlobalSetup()
     {
-        return a.CompareTo(b);
+        Console.Out.WriteLine("Preparing the configuration..");
+        UnitsNetSetup.ConfigureDefaults(builder => builder
+            .WithQuantities([Mass.Info])
+            .WithConverterOptions(new QuantityConverterBuildOptions(Frozen, CachingMode)));
+        Console.Out.WriteLine("Default configuration set.");
+        Quantity.From(QuantityValue.Zero, MassUnit.Kilogram);
+        
+        _leftQuantity = new Mass(LeftValue, LeftUnit);
+        _rightQuantity = new Mass(RightValue, RightUnit);
+    }
+    
+    [Benchmark]
+    public bool Equals()
+    {
+        return _leftQuantity.Equals(_rightQuantity);
+    }
+    
+    [Benchmark(Baseline = true)]
+    public bool EqualsTolerance()
+    {
+        return _leftQuantity.Equals(_rightQuantity, Tolerance);
+    }
+    
+    [Benchmark(Baseline = false)]
+    public bool EqualsToleranceBoxed()
+    {
+        Mass left = _leftQuantity;
+        IQuantity<Mass, MassUnit> right = _rightQuantity;
+        return left.Equals(right, Tolerance);
     }
 }

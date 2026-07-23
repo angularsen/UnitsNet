@@ -398,7 +398,7 @@ namespace UnitsNet
         /// <summary>
         /// Retrieves the unit abbreviations for a specified unit info and optional format provider.
         /// </summary>
-        /// <param name="unitInfo">The unit info object representing the unit.</param> 
+        /// <param name="unitInfo">The unit info object representing the unit.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <returns>A read-only collection of unit abbreviation strings.</returns>
         /// <exception cref="UnitNotFoundException">

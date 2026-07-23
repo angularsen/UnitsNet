@@ -19,7 +19,7 @@ public
 #else
 internal
 #endif
-interface IQuantityInfo 
+interface IQuantityInfo
 {
     /// <summary>
     ///     Quantity name, such as "Length" or "Mass".
@@ -128,5 +128,5 @@ interface IQuantityInstanceInfo<out TQuantity> : IQuantityInfo
     /// <param name="value">The numerical value of the quantity.</param>
     /// <param name="unitKey">The unit key of the quantity.</param>
     /// <returns>An instance of the quantity with the specified value and unit.</returns>
-    public TQuantity Create(double value, UnitKey unitKey);
+    public TQuantity Create(QuantityValue value, UnitKey unitKey);
 }

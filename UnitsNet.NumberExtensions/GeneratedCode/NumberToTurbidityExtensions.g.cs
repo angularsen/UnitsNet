@@ -32,15 +32,15 @@ namespace UnitsNet.NumberExtensions.NumberToTurbidity
     /// </summary>
     public static class NumberToTurbidityExtensions
     {
-        /// <inheritdoc cref="Turbidity.FromNTU(double)" />
+        /// <inheritdoc cref="Turbidity.FromNTU(QuantityValue)" />
         public static Turbidity NTU<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Turbidity.FromNTU(double.CreateChecked(value));
+            => Turbidity.FromNTU(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Turbidity.FromNTU(value.ToDouble(null));
+            => Turbidity.FromNTU(value.ToQuantityValue());
 #endif
 
     }

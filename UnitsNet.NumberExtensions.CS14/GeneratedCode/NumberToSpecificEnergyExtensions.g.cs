@@ -42,244 +42,244 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEnergy
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="SpecificEnergy.FromBtuPerPound(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromBtuPerPound(QuantityValue)" />
             public SpecificEnergy BtuPerPound
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromBtuPerPound(double.CreateChecked(value));
+                => SpecificEnergy.FromBtuPerPound(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromBtuPerPound(value.ToDouble(null));
+                => SpecificEnergy.FromBtuPerPound(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromCaloriesPerGram(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromCaloriesPerGram(QuantityValue)" />
             public SpecificEnergy CaloriesPerGram
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromCaloriesPerGram(double.CreateChecked(value));
+                => SpecificEnergy.FromCaloriesPerGram(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromCaloriesPerGram(value.ToDouble(null));
+                => SpecificEnergy.FromCaloriesPerGram(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromGigawattDaysPerKilogram(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromGigawattDaysPerKilogram(QuantityValue)" />
             public SpecificEnergy GigawattDaysPerKilogram
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromGigawattDaysPerKilogram(double.CreateChecked(value));
+                => SpecificEnergy.FromGigawattDaysPerKilogram(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromGigawattDaysPerKilogram(value.ToDouble(null));
+                => SpecificEnergy.FromGigawattDaysPerKilogram(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromGigawattDaysPerShortTon(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromGigawattDaysPerShortTon(QuantityValue)" />
             public SpecificEnergy GigawattDaysPerShortTon
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromGigawattDaysPerShortTon(double.CreateChecked(value));
+                => SpecificEnergy.FromGigawattDaysPerShortTon(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromGigawattDaysPerShortTon(value.ToDouble(null));
+                => SpecificEnergy.FromGigawattDaysPerShortTon(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromGigawattDaysPerTonne(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromGigawattDaysPerTonne(QuantityValue)" />
             public SpecificEnergy GigawattDaysPerTonne
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromGigawattDaysPerTonne(double.CreateChecked(value));
+                => SpecificEnergy.FromGigawattDaysPerTonne(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromGigawattDaysPerTonne(value.ToDouble(null));
+                => SpecificEnergy.FromGigawattDaysPerTonne(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromGigawattHoursPerKilogram(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromGigawattHoursPerKilogram(QuantityValue)" />
             public SpecificEnergy GigawattHoursPerKilogram
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromGigawattHoursPerKilogram(double.CreateChecked(value));
+                => SpecificEnergy.FromGigawattHoursPerKilogram(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromGigawattHoursPerKilogram(value.ToDouble(null));
+                => SpecificEnergy.FromGigawattHoursPerKilogram(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromGigawattHoursPerPound(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromGigawattHoursPerPound(QuantityValue)" />
             public SpecificEnergy GigawattHoursPerPound
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromGigawattHoursPerPound(double.CreateChecked(value));
+                => SpecificEnergy.FromGigawattHoursPerPound(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromGigawattHoursPerPound(value.ToDouble(null));
+                => SpecificEnergy.FromGigawattHoursPerPound(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromJoulesPerKilogram(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromJoulesPerKilogram(QuantityValue)" />
             public SpecificEnergy JoulesPerKilogram
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromJoulesPerKilogram(double.CreateChecked(value));
+                => SpecificEnergy.FromJoulesPerKilogram(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromJoulesPerKilogram(value.ToDouble(null));
+                => SpecificEnergy.FromJoulesPerKilogram(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromKilocaloriesPerGram(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromKilocaloriesPerGram(QuantityValue)" />
             public SpecificEnergy KilocaloriesPerGram
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromKilocaloriesPerGram(double.CreateChecked(value));
+                => SpecificEnergy.FromKilocaloriesPerGram(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromKilocaloriesPerGram(value.ToDouble(null));
+                => SpecificEnergy.FromKilocaloriesPerGram(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromKilojoulesPerKilogram(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromKilojoulesPerKilogram(QuantityValue)" />
             public SpecificEnergy KilojoulesPerKilogram
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromKilojoulesPerKilogram(double.CreateChecked(value));
+                => SpecificEnergy.FromKilojoulesPerKilogram(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromKilojoulesPerKilogram(value.ToDouble(null));
+                => SpecificEnergy.FromKilojoulesPerKilogram(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromKilowattDaysPerKilogram(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromKilowattDaysPerKilogram(QuantityValue)" />
             public SpecificEnergy KilowattDaysPerKilogram
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromKilowattDaysPerKilogram(double.CreateChecked(value));
+                => SpecificEnergy.FromKilowattDaysPerKilogram(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromKilowattDaysPerKilogram(value.ToDouble(null));
+                => SpecificEnergy.FromKilowattDaysPerKilogram(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromKilowattDaysPerShortTon(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromKilowattDaysPerShortTon(QuantityValue)" />
             public SpecificEnergy KilowattDaysPerShortTon
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromKilowattDaysPerShortTon(double.CreateChecked(value));
+                => SpecificEnergy.FromKilowattDaysPerShortTon(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromKilowattDaysPerShortTon(value.ToDouble(null));
+                => SpecificEnergy.FromKilowattDaysPerShortTon(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromKilowattDaysPerTonne(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromKilowattDaysPerTonne(QuantityValue)" />
             public SpecificEnergy KilowattDaysPerTonne
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromKilowattDaysPerTonne(double.CreateChecked(value));
+                => SpecificEnergy.FromKilowattDaysPerTonne(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromKilowattDaysPerTonne(value.ToDouble(null));
+                => SpecificEnergy.FromKilowattDaysPerTonne(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromKilowattHoursPerKilogram(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromKilowattHoursPerKilogram(QuantityValue)" />
             public SpecificEnergy KilowattHoursPerKilogram
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromKilowattHoursPerKilogram(double.CreateChecked(value));
+                => SpecificEnergy.FromKilowattHoursPerKilogram(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromKilowattHoursPerKilogram(value.ToDouble(null));
+                => SpecificEnergy.FromKilowattHoursPerKilogram(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromKilowattHoursPerPound(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromKilowattHoursPerPound(QuantityValue)" />
             public SpecificEnergy KilowattHoursPerPound
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromKilowattHoursPerPound(double.CreateChecked(value));
+                => SpecificEnergy.FromKilowattHoursPerPound(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromKilowattHoursPerPound(value.ToDouble(null));
+                => SpecificEnergy.FromKilowattHoursPerPound(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromMegajoulesPerKilogram(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromMegajoulesPerKilogram(QuantityValue)" />
             public SpecificEnergy MegajoulesPerKilogram
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromMegajoulesPerKilogram(double.CreateChecked(value));
+                => SpecificEnergy.FromMegajoulesPerKilogram(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromMegajoulesPerKilogram(value.ToDouble(null));
+                => SpecificEnergy.FromMegajoulesPerKilogram(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromMegajoulesPerTonne(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromMegajoulesPerTonne(QuantityValue)" />
             public SpecificEnergy MegajoulesPerTonne
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromMegajoulesPerTonne(double.CreateChecked(value));
+                => SpecificEnergy.FromMegajoulesPerTonne(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromMegajoulesPerTonne(value.ToDouble(null));
+                => SpecificEnergy.FromMegajoulesPerTonne(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromMegawattDaysPerKilogram(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromMegawattDaysPerKilogram(QuantityValue)" />
             public SpecificEnergy MegawattDaysPerKilogram
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromMegawattDaysPerKilogram(double.CreateChecked(value));
+                => SpecificEnergy.FromMegawattDaysPerKilogram(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromMegawattDaysPerKilogram(value.ToDouble(null));
+                => SpecificEnergy.FromMegawattDaysPerKilogram(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromMegawattDaysPerShortTon(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromMegawattDaysPerShortTon(QuantityValue)" />
             public SpecificEnergy MegawattDaysPerShortTon
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromMegawattDaysPerShortTon(double.CreateChecked(value));
+                => SpecificEnergy.FromMegawattDaysPerShortTon(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromMegawattDaysPerShortTon(value.ToDouble(null));
+                => SpecificEnergy.FromMegawattDaysPerShortTon(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromMegawattDaysPerTonne(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromMegawattDaysPerTonne(QuantityValue)" />
             public SpecificEnergy MegawattDaysPerTonne
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromMegawattDaysPerTonne(double.CreateChecked(value));
+                => SpecificEnergy.FromMegawattDaysPerTonne(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromMegawattDaysPerTonne(value.ToDouble(null));
+                => SpecificEnergy.FromMegawattDaysPerTonne(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromMegawattHoursPerKilogram(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromMegawattHoursPerKilogram(QuantityValue)" />
             public SpecificEnergy MegawattHoursPerKilogram
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromMegawattHoursPerKilogram(double.CreateChecked(value));
+                => SpecificEnergy.FromMegawattHoursPerKilogram(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromMegawattHoursPerKilogram(value.ToDouble(null));
+                => SpecificEnergy.FromMegawattHoursPerKilogram(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromMegawattHoursPerPound(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromMegawattHoursPerPound(QuantityValue)" />
             public SpecificEnergy MegawattHoursPerPound
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromMegawattHoursPerPound(double.CreateChecked(value));
+                => SpecificEnergy.FromMegawattHoursPerPound(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromMegawattHoursPerPound(value.ToDouble(null));
+                => SpecificEnergy.FromMegawattHoursPerPound(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromTerawattDaysPerKilogram(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromTerawattDaysPerKilogram(QuantityValue)" />
             public SpecificEnergy TerawattDaysPerKilogram
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromTerawattDaysPerKilogram(double.CreateChecked(value));
+                => SpecificEnergy.FromTerawattDaysPerKilogram(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromTerawattDaysPerKilogram(value.ToDouble(null));
+                => SpecificEnergy.FromTerawattDaysPerKilogram(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromTerawattDaysPerShortTon(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromTerawattDaysPerShortTon(QuantityValue)" />
             public SpecificEnergy TerawattDaysPerShortTon
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromTerawattDaysPerShortTon(double.CreateChecked(value));
+                => SpecificEnergy.FromTerawattDaysPerShortTon(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromTerawattDaysPerShortTon(value.ToDouble(null));
+                => SpecificEnergy.FromTerawattDaysPerShortTon(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromTerawattDaysPerTonne(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromTerawattDaysPerTonne(QuantityValue)" />
             public SpecificEnergy TerawattDaysPerTonne
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromTerawattDaysPerTonne(double.CreateChecked(value));
+                => SpecificEnergy.FromTerawattDaysPerTonne(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromTerawattDaysPerTonne(value.ToDouble(null));
+                => SpecificEnergy.FromTerawattDaysPerTonne(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromWattDaysPerKilogram(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromWattDaysPerKilogram(QuantityValue)" />
             public SpecificEnergy WattDaysPerKilogram
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromWattDaysPerKilogram(double.CreateChecked(value));
+                => SpecificEnergy.FromWattDaysPerKilogram(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromWattDaysPerKilogram(value.ToDouble(null));
+                => SpecificEnergy.FromWattDaysPerKilogram(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromWattDaysPerShortTon(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromWattDaysPerShortTon(QuantityValue)" />
             public SpecificEnergy WattDaysPerShortTon
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromWattDaysPerShortTon(double.CreateChecked(value));
+                => SpecificEnergy.FromWattDaysPerShortTon(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromWattDaysPerShortTon(value.ToDouble(null));
+                => SpecificEnergy.FromWattDaysPerShortTon(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromWattDaysPerTonne(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromWattDaysPerTonne(QuantityValue)" />
             public SpecificEnergy WattDaysPerTonne
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromWattDaysPerTonne(double.CreateChecked(value));
+                => SpecificEnergy.FromWattDaysPerTonne(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromWattDaysPerTonne(value.ToDouble(null));
+                => SpecificEnergy.FromWattDaysPerTonne(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromWattHoursPerKilogram(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromWattHoursPerKilogram(QuantityValue)" />
             public SpecificEnergy WattHoursPerKilogram
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromWattHoursPerKilogram(double.CreateChecked(value));
+                => SpecificEnergy.FromWattHoursPerKilogram(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromWattHoursPerKilogram(value.ToDouble(null));
+                => SpecificEnergy.FromWattHoursPerKilogram(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEnergy.FromWattHoursPerPound(double)" />
+            /// <inheritdoc cref="SpecificEnergy.FromWattHoursPerPound(QuantityValue)" />
             public SpecificEnergy WattHoursPerPound
 #if NET7_0_OR_GREATER
-                => SpecificEnergy.FromWattHoursPerPound(double.CreateChecked(value));
+                => SpecificEnergy.FromWattHoursPerPound(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEnergy.FromWattHoursPerPound(value.ToDouble(null));
+                => SpecificEnergy.FromWattHoursPerPound(value.ToQuantityValue());
 #endif
 
         }

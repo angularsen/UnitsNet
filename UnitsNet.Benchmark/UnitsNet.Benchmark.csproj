@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\UnitsNet.Serialization.SystemTextJson\UnitsNet.Serialization.SystemTextJson.csproj" />
     <ProjectReference Include="..\UnitsNet\UnitsNet.csproj" />
   </ItemGroup>
 </Project>

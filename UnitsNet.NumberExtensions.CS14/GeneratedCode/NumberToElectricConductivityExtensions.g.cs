@@ -42,52 +42,52 @@ namespace UnitsNet.NumberExtensions.NumberToElectricConductivity
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ElectricConductivity.FromMicrosiemensPerCentimeter(double)" />
+            /// <inheritdoc cref="ElectricConductivity.FromMicrosiemensPerCentimeter(QuantityValue)" />
             public ElectricConductivity MicrosiemensPerCentimeter
 #if NET7_0_OR_GREATER
-                => ElectricConductivity.FromMicrosiemensPerCentimeter(double.CreateChecked(value));
+                => ElectricConductivity.FromMicrosiemensPerCentimeter(QuantityValue.CreateChecked(value));
 #else
-                => ElectricConductivity.FromMicrosiemensPerCentimeter(value.ToDouble(null));
+                => ElectricConductivity.FromMicrosiemensPerCentimeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricConductivity.FromMillisiemensPerCentimeter(double)" />
+            /// <inheritdoc cref="ElectricConductivity.FromMillisiemensPerCentimeter(QuantityValue)" />
             public ElectricConductivity MillisiemensPerCentimeter
 #if NET7_0_OR_GREATER
-                => ElectricConductivity.FromMillisiemensPerCentimeter(double.CreateChecked(value));
+                => ElectricConductivity.FromMillisiemensPerCentimeter(QuantityValue.CreateChecked(value));
 #else
-                => ElectricConductivity.FromMillisiemensPerCentimeter(value.ToDouble(null));
+                => ElectricConductivity.FromMillisiemensPerCentimeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricConductivity.FromSiemensPerCentimeter(double)" />
+            /// <inheritdoc cref="ElectricConductivity.FromSiemensPerCentimeter(QuantityValue)" />
             public ElectricConductivity SiemensPerCentimeter
 #if NET7_0_OR_GREATER
-                => ElectricConductivity.FromSiemensPerCentimeter(double.CreateChecked(value));
+                => ElectricConductivity.FromSiemensPerCentimeter(QuantityValue.CreateChecked(value));
 #else
-                => ElectricConductivity.FromSiemensPerCentimeter(value.ToDouble(null));
+                => ElectricConductivity.FromSiemensPerCentimeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricConductivity.FromSiemensPerFoot(double)" />
+            /// <inheritdoc cref="ElectricConductivity.FromSiemensPerFoot(QuantityValue)" />
             public ElectricConductivity SiemensPerFoot
 #if NET7_0_OR_GREATER
-                => ElectricConductivity.FromSiemensPerFoot(double.CreateChecked(value));
+                => ElectricConductivity.FromSiemensPerFoot(QuantityValue.CreateChecked(value));
 #else
-                => ElectricConductivity.FromSiemensPerFoot(value.ToDouble(null));
+                => ElectricConductivity.FromSiemensPerFoot(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricConductivity.FromSiemensPerInch(double)" />
+            /// <inheritdoc cref="ElectricConductivity.FromSiemensPerInch(QuantityValue)" />
             public ElectricConductivity SiemensPerInch
 #if NET7_0_OR_GREATER
-                => ElectricConductivity.FromSiemensPerInch(double.CreateChecked(value));
+                => ElectricConductivity.FromSiemensPerInch(QuantityValue.CreateChecked(value));
 #else
-                => ElectricConductivity.FromSiemensPerInch(value.ToDouble(null));
+                => ElectricConductivity.FromSiemensPerInch(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(double)" />
+            /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(QuantityValue)" />
             public ElectricConductivity SiemensPerMeter
 #if NET7_0_OR_GREATER
-                => ElectricConductivity.FromSiemensPerMeter(double.CreateChecked(value));
+                => ElectricConductivity.FromSiemensPerMeter(QuantityValue.CreateChecked(value));
 #else
-                => ElectricConductivity.FromSiemensPerMeter(value.ToDouble(null));
+                => ElectricConductivity.FromSiemensPerMeter(value.ToQuantityValue());
 #endif
 
         }

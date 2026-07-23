@@ -13,24 +13,32 @@ namespace UnitsNet.Benchmark.Operators.Additions;
 [SimpleJob(RuntimeMoniker.Net80)]
 public class AddTwoVolumesWithSameUnitsBenchmarks
 {
-    private static readonly double LeftValue = 1.23;
-    private static readonly double RightValue = 4.56;
+    private static readonly QuantityValue LeftValue = 1.23;
+    private static readonly QuantityValue RightValue = 4.56;
 
     private (Volume left, Volume right)[] _operands;
 
-    [Params(1_000)]
+    [Params(1000)]
     public int NbOperations { get; set; }
 
+    [Params(true, false)]
+    public bool Frozen { get; set; }
+
+    [Params(ConversionCachingMode.All)]
+    public ConversionCachingMode CachingMode { get; set; }
+    
     [Params(VolumeUnit.CubicMeter, VolumeUnit.Liter, VolumeUnit.Milliliter)]
     public VolumeUnit Unit { get; set; }
 
     [GlobalSetup]
     public void PrepareQuantities()
     {
+        UnitsNetSetup.ConfigureDefaults(builder => builder.WithConverterOptions(new QuantityConverterBuildOptions(Frozen, CachingMode)));
+        
         _operands = Enumerable.Range(0, NbOperations).Select(_ => (Volume.From(LeftValue, Unit), Volume.From(RightValue, Unit))).ToArray();
     }
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
     public Volume AddTwoVolumes()
     {
         Volume sum = default;

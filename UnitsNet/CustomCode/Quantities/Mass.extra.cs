@@ -4,7 +4,11 @@
 using System;
 using System.Threading;
 using System.Globalization;
+using System.Numerics;
 using UnitsNet.Units;
+#if NET
+using System.Text.Json.Serialization;
+#endif
 
 namespace UnitsNet
 {
@@ -20,19 +24,22 @@ namespace UnitsNet
         ///     StonePounds related code makes it easier to work with Stone/Pound combination, which are customarily used in the UK
         ///     to express body weight. For example, someone weighs 11 stone 4 pounds (about 72 kilograms).
         /// </summary>
-        private const double StonesInOnePound = 14.0;
+        private static readonly QuantityValue StonesInOnePound = 14;
 
         /// <summary>
         ///     Converts the mass to a customary stone/pounds combination.
         /// </summary>
+#if NET
+        [JsonIgnore]
+#endif
         public StonePounds StonePounds
         {
             get
             {
-                var inPounds = Pounds;
+                QuantityValue inPounds = Pounds;
 
-                var stones = Math.Truncate(inPounds / StonesInOnePound);
-                var pounds = inPounds % StonesInOnePound;
+                var stones = (BigInteger)(inPounds / StonesInOnePound); // BigInteger division returns the quotient (equivalent to Math.Truncate)
+                QuantityValue pounds = inPounds % StonesInOnePound;
 
                 return new StonePounds(stones, pounds);
             }
@@ -41,7 +48,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from combination of stone and pounds.
         /// </summary>
-        public static Mass FromStonePounds(double stone, double pounds)
+        public static Mass FromStonePounds(QuantityValue stone, QuantityValue pounds)
         {
             return FromPounds(StonesInOnePound*stone + pounds);
         }
@@ -56,7 +63,7 @@ namespace UnitsNet
         /// <summary>
         ///     Construct from stone and pounds.
         /// </summary>
-        public StonePounds(double stone, double pounds)
+        public StonePounds(QuantityValue stone, QuantityValue pounds)
         {
             Stone = stone;
             Pounds = pounds;
@@ -65,12 +72,12 @@ namespace UnitsNet
         /// <summary>
         ///     The stone value it was created with.
         /// </summary>
-        public double Stone { get; }
+        public QuantityValue Stone { get; }
 
         /// <summary>
         ///     The pounds value it was created with.
         /// </summary>
-        public double Pounds { get; }
+        public QuantityValue Pounds { get; }
 
         /// <inheritdoc cref="ToString(IFormatProvider)"/>
         public override string ToString()
@@ -88,14 +95,17 @@ namespace UnitsNet
         /// </param>
         public string ToString(IFormatProvider? cultureInfo)
         {
-            cultureInfo = cultureInfo ?? CultureInfo.CurrentCulture;
+            if (cultureInfo is not CultureInfo unitLocalizationCulture)
+            {
+                cultureInfo = unitLocalizationCulture = CultureInfo.CurrentCulture;
+            }
 
-            var stoneUnit = Mass.GetAbbreviation(MassUnit.Stone, cultureInfo);
-            var poundUnit = Mass.GetAbbreviation(MassUnit.Pound, cultureInfo);
+            var stoneUnit = Mass.GetAbbreviation(MassUnit.Stone, unitLocalizationCulture);
+            var poundUnit = Mass.GetAbbreviation(MassUnit.Pound, unitLocalizationCulture);
 
             // Note that it isn't customary to use fractions - one wouldn't say "I am 11 stone and 4.5 pounds".
             // So pounds are rounded here.
-            return string.Format(cultureInfo, "{0:n0} {1} {2:n0} {3}", Stone, stoneUnit, Math.Round(Pounds), poundUnit);
+            return string.Format(cultureInfo, "{0:n0} {1} {2:n0} {3}", Stone, stoneUnit, Math.Round(Pounds.ToDouble()), poundUnit);
         }
     }
 }

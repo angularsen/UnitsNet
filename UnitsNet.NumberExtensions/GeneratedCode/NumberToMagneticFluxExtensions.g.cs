@@ -32,15 +32,15 @@ namespace UnitsNet.NumberExtensions.NumberToMagneticFlux
     /// </summary>
     public static class NumberToMagneticFluxExtensions
     {
-        /// <inheritdoc cref="MagneticFlux.FromWebers(double)" />
+        /// <inheritdoc cref="MagneticFlux.FromWebers(QuantityValue)" />
         public static MagneticFlux Webers<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MagneticFlux.FromWebers(double.CreateChecked(value));
+            => MagneticFlux.FromWebers(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MagneticFlux.FromWebers(value.ToDouble(null));
+            => MagneticFlux.FromWebers(value.ToQuantityValue());
 #endif
 
     }

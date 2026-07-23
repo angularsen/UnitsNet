@@ -42,68 +42,68 @@ namespace UnitsNet.NumberExtensions.NumberToElectricReactance
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ElectricReactance.FromGigaohms(double)" />
+            /// <inheritdoc cref="ElectricReactance.FromGigaohms(QuantityValue)" />
             public ElectricReactance Gigaohms
 #if NET7_0_OR_GREATER
-                => ElectricReactance.FromGigaohms(double.CreateChecked(value));
+                => ElectricReactance.FromGigaohms(QuantityValue.CreateChecked(value));
 #else
-                => ElectricReactance.FromGigaohms(value.ToDouble(null));
+                => ElectricReactance.FromGigaohms(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricReactance.FromKiloohms(double)" />
+            /// <inheritdoc cref="ElectricReactance.FromKiloohms(QuantityValue)" />
             public ElectricReactance Kiloohms
 #if NET7_0_OR_GREATER
-                => ElectricReactance.FromKiloohms(double.CreateChecked(value));
+                => ElectricReactance.FromKiloohms(QuantityValue.CreateChecked(value));
 #else
-                => ElectricReactance.FromKiloohms(value.ToDouble(null));
+                => ElectricReactance.FromKiloohms(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricReactance.FromMegaohms(double)" />
+            /// <inheritdoc cref="ElectricReactance.FromMegaohms(QuantityValue)" />
             public ElectricReactance Megaohms
 #if NET7_0_OR_GREATER
-                => ElectricReactance.FromMegaohms(double.CreateChecked(value));
+                => ElectricReactance.FromMegaohms(QuantityValue.CreateChecked(value));
 #else
-                => ElectricReactance.FromMegaohms(value.ToDouble(null));
+                => ElectricReactance.FromMegaohms(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricReactance.FromMicroohms(double)" />
+            /// <inheritdoc cref="ElectricReactance.FromMicroohms(QuantityValue)" />
             public ElectricReactance Microohms
 #if NET7_0_OR_GREATER
-                => ElectricReactance.FromMicroohms(double.CreateChecked(value));
+                => ElectricReactance.FromMicroohms(QuantityValue.CreateChecked(value));
 #else
-                => ElectricReactance.FromMicroohms(value.ToDouble(null));
+                => ElectricReactance.FromMicroohms(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricReactance.FromMilliohms(double)" />
+            /// <inheritdoc cref="ElectricReactance.FromMilliohms(QuantityValue)" />
             public ElectricReactance Milliohms
 #if NET7_0_OR_GREATER
-                => ElectricReactance.FromMilliohms(double.CreateChecked(value));
+                => ElectricReactance.FromMilliohms(QuantityValue.CreateChecked(value));
 #else
-                => ElectricReactance.FromMilliohms(value.ToDouble(null));
+                => ElectricReactance.FromMilliohms(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricReactance.FromNanoohms(double)" />
+            /// <inheritdoc cref="ElectricReactance.FromNanoohms(QuantityValue)" />
             public ElectricReactance Nanoohms
 #if NET7_0_OR_GREATER
-                => ElectricReactance.FromNanoohms(double.CreateChecked(value));
+                => ElectricReactance.FromNanoohms(QuantityValue.CreateChecked(value));
 #else
-                => ElectricReactance.FromNanoohms(value.ToDouble(null));
+                => ElectricReactance.FromNanoohms(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricReactance.FromOhms(double)" />
+            /// <inheritdoc cref="ElectricReactance.FromOhms(QuantityValue)" />
             public ElectricReactance Ohms
 #if NET7_0_OR_GREATER
-                => ElectricReactance.FromOhms(double.CreateChecked(value));
+                => ElectricReactance.FromOhms(QuantityValue.CreateChecked(value));
 #else
-                => ElectricReactance.FromOhms(value.ToDouble(null));
+                => ElectricReactance.FromOhms(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricReactance.FromTeraohms(double)" />
+            /// <inheritdoc cref="ElectricReactance.FromTeraohms(QuantityValue)" />
             public ElectricReactance Teraohms
 #if NET7_0_OR_GREATER
-                => ElectricReactance.FromTeraohms(double.CreateChecked(value));
+                => ElectricReactance.FromTeraohms(QuantityValue.CreateChecked(value));
 #else
-                => ElectricReactance.FromTeraohms(value.ToDouble(null));
+                => ElectricReactance.FromTeraohms(value.ToQuantityValue());
 #endif
 
         }

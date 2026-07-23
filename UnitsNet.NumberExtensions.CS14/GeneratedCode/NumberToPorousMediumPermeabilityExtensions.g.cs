@@ -42,44 +42,44 @@ namespace UnitsNet.NumberExtensions.NumberToPorousMediumPermeability
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="PorousMediumPermeability.FromDarcys(double)" />
+            /// <inheritdoc cref="PorousMediumPermeability.FromDarcys(QuantityValue)" />
             public PorousMediumPermeability Darcys
 #if NET7_0_OR_GREATER
-                => PorousMediumPermeability.FromDarcys(double.CreateChecked(value));
+                => PorousMediumPermeability.FromDarcys(QuantityValue.CreateChecked(value));
 #else
-                => PorousMediumPermeability.FromDarcys(value.ToDouble(null));
+                => PorousMediumPermeability.FromDarcys(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="PorousMediumPermeability.FromMicrodarcys(double)" />
+            /// <inheritdoc cref="PorousMediumPermeability.FromMicrodarcys(QuantityValue)" />
             public PorousMediumPermeability Microdarcys
 #if NET7_0_OR_GREATER
-                => PorousMediumPermeability.FromMicrodarcys(double.CreateChecked(value));
+                => PorousMediumPermeability.FromMicrodarcys(QuantityValue.CreateChecked(value));
 #else
-                => PorousMediumPermeability.FromMicrodarcys(value.ToDouble(null));
+                => PorousMediumPermeability.FromMicrodarcys(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="PorousMediumPermeability.FromMillidarcys(double)" />
+            /// <inheritdoc cref="PorousMediumPermeability.FromMillidarcys(QuantityValue)" />
             public PorousMediumPermeability Millidarcys
 #if NET7_0_OR_GREATER
-                => PorousMediumPermeability.FromMillidarcys(double.CreateChecked(value));
+                => PorousMediumPermeability.FromMillidarcys(QuantityValue.CreateChecked(value));
 #else
-                => PorousMediumPermeability.FromMillidarcys(value.ToDouble(null));
+                => PorousMediumPermeability.FromMillidarcys(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="PorousMediumPermeability.FromSquareCentimeters(double)" />
+            /// <inheritdoc cref="PorousMediumPermeability.FromSquareCentimeters(QuantityValue)" />
             public PorousMediumPermeability SquareCentimeters
 #if NET7_0_OR_GREATER
-                => PorousMediumPermeability.FromSquareCentimeters(double.CreateChecked(value));
+                => PorousMediumPermeability.FromSquareCentimeters(QuantityValue.CreateChecked(value));
 #else
-                => PorousMediumPermeability.FromSquareCentimeters(value.ToDouble(null));
+                => PorousMediumPermeability.FromSquareCentimeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="PorousMediumPermeability.FromSquareMeters(double)" />
+            /// <inheritdoc cref="PorousMediumPermeability.FromSquareMeters(QuantityValue)" />
             public PorousMediumPermeability SquareMeters
 #if NET7_0_OR_GREATER
-                => PorousMediumPermeability.FromSquareMeters(double.CreateChecked(value));
+                => PorousMediumPermeability.FromSquareMeters(QuantityValue.CreateChecked(value));
 #else
-                => PorousMediumPermeability.FromSquareMeters(value.ToDouble(null));
+                => PorousMediumPermeability.FromSquareMeters(value.ToQuantityValue());
 #endif
 
         }

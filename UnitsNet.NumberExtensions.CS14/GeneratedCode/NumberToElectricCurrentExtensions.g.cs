@@ -42,76 +42,76 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ElectricCurrent.FromAmperes(double)" />
+            /// <inheritdoc cref="ElectricCurrent.FromAmperes(QuantityValue)" />
             public ElectricCurrent Amperes
 #if NET7_0_OR_GREATER
-                => ElectricCurrent.FromAmperes(double.CreateChecked(value));
+                => ElectricCurrent.FromAmperes(QuantityValue.CreateChecked(value));
 #else
-                => ElectricCurrent.FromAmperes(value.ToDouble(null));
+                => ElectricCurrent.FromAmperes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricCurrent.FromCentiamperes(double)" />
+            /// <inheritdoc cref="ElectricCurrent.FromCentiamperes(QuantityValue)" />
             public ElectricCurrent Centiamperes
 #if NET7_0_OR_GREATER
-                => ElectricCurrent.FromCentiamperes(double.CreateChecked(value));
+                => ElectricCurrent.FromCentiamperes(QuantityValue.CreateChecked(value));
 #else
-                => ElectricCurrent.FromCentiamperes(value.ToDouble(null));
+                => ElectricCurrent.FromCentiamperes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricCurrent.FromFemtoamperes(double)" />
+            /// <inheritdoc cref="ElectricCurrent.FromFemtoamperes(QuantityValue)" />
             public ElectricCurrent Femtoamperes
 #if NET7_0_OR_GREATER
-                => ElectricCurrent.FromFemtoamperes(double.CreateChecked(value));
+                => ElectricCurrent.FromFemtoamperes(QuantityValue.CreateChecked(value));
 #else
-                => ElectricCurrent.FromFemtoamperes(value.ToDouble(null));
+                => ElectricCurrent.FromFemtoamperes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricCurrent.FromKiloamperes(double)" />
+            /// <inheritdoc cref="ElectricCurrent.FromKiloamperes(QuantityValue)" />
             public ElectricCurrent Kiloamperes
 #if NET7_0_OR_GREATER
-                => ElectricCurrent.FromKiloamperes(double.CreateChecked(value));
+                => ElectricCurrent.FromKiloamperes(QuantityValue.CreateChecked(value));
 #else
-                => ElectricCurrent.FromKiloamperes(value.ToDouble(null));
+                => ElectricCurrent.FromKiloamperes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricCurrent.FromMegaamperes(double)" />
+            /// <inheritdoc cref="ElectricCurrent.FromMegaamperes(QuantityValue)" />
             public ElectricCurrent Megaamperes
 #if NET7_0_OR_GREATER
-                => ElectricCurrent.FromMegaamperes(double.CreateChecked(value));
+                => ElectricCurrent.FromMegaamperes(QuantityValue.CreateChecked(value));
 #else
-                => ElectricCurrent.FromMegaamperes(value.ToDouble(null));
+                => ElectricCurrent.FromMegaamperes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricCurrent.FromMicroamperes(double)" />
+            /// <inheritdoc cref="ElectricCurrent.FromMicroamperes(QuantityValue)" />
             public ElectricCurrent Microamperes
 #if NET7_0_OR_GREATER
-                => ElectricCurrent.FromMicroamperes(double.CreateChecked(value));
+                => ElectricCurrent.FromMicroamperes(QuantityValue.CreateChecked(value));
 #else
-                => ElectricCurrent.FromMicroamperes(value.ToDouble(null));
+                => ElectricCurrent.FromMicroamperes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricCurrent.FromMilliamperes(double)" />
+            /// <inheritdoc cref="ElectricCurrent.FromMilliamperes(QuantityValue)" />
             public ElectricCurrent Milliamperes
 #if NET7_0_OR_GREATER
-                => ElectricCurrent.FromMilliamperes(double.CreateChecked(value));
+                => ElectricCurrent.FromMilliamperes(QuantityValue.CreateChecked(value));
 #else
-                => ElectricCurrent.FromMilliamperes(value.ToDouble(null));
+                => ElectricCurrent.FromMilliamperes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricCurrent.FromNanoamperes(double)" />
+            /// <inheritdoc cref="ElectricCurrent.FromNanoamperes(QuantityValue)" />
             public ElectricCurrent Nanoamperes
 #if NET7_0_OR_GREATER
-                => ElectricCurrent.FromNanoamperes(double.CreateChecked(value));
+                => ElectricCurrent.FromNanoamperes(QuantityValue.CreateChecked(value));
 #else
-                => ElectricCurrent.FromNanoamperes(value.ToDouble(null));
+                => ElectricCurrent.FromNanoamperes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(double)" />
+            /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(QuantityValue)" />
             public ElectricCurrent Picoamperes
 #if NET7_0_OR_GREATER
-                => ElectricCurrent.FromPicoamperes(double.CreateChecked(value));
+                => ElectricCurrent.FromPicoamperes(QuantityValue.CreateChecked(value));
 #else
-                => ElectricCurrent.FromPicoamperes(value.ToDouble(null));
+                => ElectricCurrent.FromPicoamperes(value.ToQuantityValue());
 #endif
 
         }

@@ -42,76 +42,76 @@ namespace UnitsNet.NumberExtensions.NumberToStandardVolumeFlow
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicCentimetersPerMinute(double)" />
+            /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicCentimetersPerMinute(QuantityValue)" />
             public StandardVolumeFlow StandardCubicCentimetersPerMinute
 #if NET7_0_OR_GREATER
-                => StandardVolumeFlow.FromStandardCubicCentimetersPerMinute(double.CreateChecked(value));
+                => StandardVolumeFlow.FromStandardCubicCentimetersPerMinute(QuantityValue.CreateChecked(value));
 #else
-                => StandardVolumeFlow.FromStandardCubicCentimetersPerMinute(value.ToDouble(null));
+                => StandardVolumeFlow.FromStandardCubicCentimetersPerMinute(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicFeetPerHour(double)" />
+            /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicFeetPerHour(QuantityValue)" />
             public StandardVolumeFlow StandardCubicFeetPerHour
 #if NET7_0_OR_GREATER
-                => StandardVolumeFlow.FromStandardCubicFeetPerHour(double.CreateChecked(value));
+                => StandardVolumeFlow.FromStandardCubicFeetPerHour(QuantityValue.CreateChecked(value));
 #else
-                => StandardVolumeFlow.FromStandardCubicFeetPerHour(value.ToDouble(null));
+                => StandardVolumeFlow.FromStandardCubicFeetPerHour(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicFeetPerMinute(double)" />
+            /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicFeetPerMinute(QuantityValue)" />
             public StandardVolumeFlow StandardCubicFeetPerMinute
 #if NET7_0_OR_GREATER
-                => StandardVolumeFlow.FromStandardCubicFeetPerMinute(double.CreateChecked(value));
+                => StandardVolumeFlow.FromStandardCubicFeetPerMinute(QuantityValue.CreateChecked(value));
 #else
-                => StandardVolumeFlow.FromStandardCubicFeetPerMinute(value.ToDouble(null));
+                => StandardVolumeFlow.FromStandardCubicFeetPerMinute(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicFeetPerSecond(double)" />
+            /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicFeetPerSecond(QuantityValue)" />
             public StandardVolumeFlow StandardCubicFeetPerSecond
 #if NET7_0_OR_GREATER
-                => StandardVolumeFlow.FromStandardCubicFeetPerSecond(double.CreateChecked(value));
+                => StandardVolumeFlow.FromStandardCubicFeetPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => StandardVolumeFlow.FromStandardCubicFeetPerSecond(value.ToDouble(null));
+                => StandardVolumeFlow.FromStandardCubicFeetPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerDay(double)" />
+            /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerDay(QuantityValue)" />
             public StandardVolumeFlow StandardCubicMetersPerDay
 #if NET7_0_OR_GREATER
-                => StandardVolumeFlow.FromStandardCubicMetersPerDay(double.CreateChecked(value));
+                => StandardVolumeFlow.FromStandardCubicMetersPerDay(QuantityValue.CreateChecked(value));
 #else
-                => StandardVolumeFlow.FromStandardCubicMetersPerDay(value.ToDouble(null));
+                => StandardVolumeFlow.FromStandardCubicMetersPerDay(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerHour(double)" />
+            /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerHour(QuantityValue)" />
             public StandardVolumeFlow StandardCubicMetersPerHour
 #if NET7_0_OR_GREATER
-                => StandardVolumeFlow.FromStandardCubicMetersPerHour(double.CreateChecked(value));
+                => StandardVolumeFlow.FromStandardCubicMetersPerHour(QuantityValue.CreateChecked(value));
 #else
-                => StandardVolumeFlow.FromStandardCubicMetersPerHour(value.ToDouble(null));
+                => StandardVolumeFlow.FromStandardCubicMetersPerHour(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerMinute(double)" />
+            /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerMinute(QuantityValue)" />
             public StandardVolumeFlow StandardCubicMetersPerMinute
 #if NET7_0_OR_GREATER
-                => StandardVolumeFlow.FromStandardCubicMetersPerMinute(double.CreateChecked(value));
+                => StandardVolumeFlow.FromStandardCubicMetersPerMinute(QuantityValue.CreateChecked(value));
 #else
-                => StandardVolumeFlow.FromStandardCubicMetersPerMinute(value.ToDouble(null));
+                => StandardVolumeFlow.FromStandardCubicMetersPerMinute(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerSecond(double)" />
+            /// <inheritdoc cref="StandardVolumeFlow.FromStandardCubicMetersPerSecond(QuantityValue)" />
             public StandardVolumeFlow StandardCubicMetersPerSecond
 #if NET7_0_OR_GREATER
-                => StandardVolumeFlow.FromStandardCubicMetersPerSecond(double.CreateChecked(value));
+                => StandardVolumeFlow.FromStandardCubicMetersPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => StandardVolumeFlow.FromStandardCubicMetersPerSecond(value.ToDouble(null));
+                => StandardVolumeFlow.FromStandardCubicMetersPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="StandardVolumeFlow.FromStandardLitersPerMinute(double)" />
+            /// <inheritdoc cref="StandardVolumeFlow.FromStandardLitersPerMinute(QuantityValue)" />
             public StandardVolumeFlow StandardLitersPerMinute
 #if NET7_0_OR_GREATER
-                => StandardVolumeFlow.FromStandardLitersPerMinute(double.CreateChecked(value));
+                => StandardVolumeFlow.FromStandardLitersPerMinute(QuantityValue.CreateChecked(value));
 #else
-                => StandardVolumeFlow.FromStandardLitersPerMinute(value.ToDouble(null));
+                => StandardVolumeFlow.FromStandardLitersPerMinute(value.ToQuantityValue());
 #endif
 
         }

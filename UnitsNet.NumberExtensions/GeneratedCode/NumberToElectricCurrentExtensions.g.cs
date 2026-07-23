@@ -32,103 +32,103 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrent
     /// </summary>
     public static class NumberToElectricCurrentExtensions
     {
-        /// <inheritdoc cref="ElectricCurrent.FromAmperes(double)" />
+        /// <inheritdoc cref="ElectricCurrent.FromAmperes(QuantityValue)" />
         public static ElectricCurrent Amperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrent.FromAmperes(double.CreateChecked(value));
+            => ElectricCurrent.FromAmperes(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrent.FromAmperes(value.ToDouble(null));
+            => ElectricCurrent.FromAmperes(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricCurrent.FromCentiamperes(double)" />
+        /// <inheritdoc cref="ElectricCurrent.FromCentiamperes(QuantityValue)" />
         public static ElectricCurrent Centiamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrent.FromCentiamperes(double.CreateChecked(value));
+            => ElectricCurrent.FromCentiamperes(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrent.FromCentiamperes(value.ToDouble(null));
+            => ElectricCurrent.FromCentiamperes(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricCurrent.FromFemtoamperes(double)" />
+        /// <inheritdoc cref="ElectricCurrent.FromFemtoamperes(QuantityValue)" />
         public static ElectricCurrent Femtoamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrent.FromFemtoamperes(double.CreateChecked(value));
+            => ElectricCurrent.FromFemtoamperes(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrent.FromFemtoamperes(value.ToDouble(null));
+            => ElectricCurrent.FromFemtoamperes(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricCurrent.FromKiloamperes(double)" />
+        /// <inheritdoc cref="ElectricCurrent.FromKiloamperes(QuantityValue)" />
         public static ElectricCurrent Kiloamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrent.FromKiloamperes(double.CreateChecked(value));
+            => ElectricCurrent.FromKiloamperes(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrent.FromKiloamperes(value.ToDouble(null));
+            => ElectricCurrent.FromKiloamperes(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricCurrent.FromMegaamperes(double)" />
+        /// <inheritdoc cref="ElectricCurrent.FromMegaamperes(QuantityValue)" />
         public static ElectricCurrent Megaamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrent.FromMegaamperes(double.CreateChecked(value));
+            => ElectricCurrent.FromMegaamperes(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrent.FromMegaamperes(value.ToDouble(null));
+            => ElectricCurrent.FromMegaamperes(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricCurrent.FromMicroamperes(double)" />
+        /// <inheritdoc cref="ElectricCurrent.FromMicroamperes(QuantityValue)" />
         public static ElectricCurrent Microamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrent.FromMicroamperes(double.CreateChecked(value));
+            => ElectricCurrent.FromMicroamperes(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrent.FromMicroamperes(value.ToDouble(null));
+            => ElectricCurrent.FromMicroamperes(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricCurrent.FromMilliamperes(double)" />
+        /// <inheritdoc cref="ElectricCurrent.FromMilliamperes(QuantityValue)" />
         public static ElectricCurrent Milliamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrent.FromMilliamperes(double.CreateChecked(value));
+            => ElectricCurrent.FromMilliamperes(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrent.FromMilliamperes(value.ToDouble(null));
+            => ElectricCurrent.FromMilliamperes(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricCurrent.FromNanoamperes(double)" />
+        /// <inheritdoc cref="ElectricCurrent.FromNanoamperes(QuantityValue)" />
         public static ElectricCurrent Nanoamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrent.FromNanoamperes(double.CreateChecked(value));
+            => ElectricCurrent.FromNanoamperes(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrent.FromNanoamperes(value.ToDouble(null));
+            => ElectricCurrent.FromNanoamperes(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(double)" />
+        /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(QuantityValue)" />
         public static ElectricCurrent Picoamperes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrent.FromPicoamperes(double.CreateChecked(value));
+            => ElectricCurrent.FromPicoamperes(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrent.FromPicoamperes(value.ToDouble(null));
+            => ElectricCurrent.FromPicoamperes(value.ToQuantityValue());
 #endif
 
     }

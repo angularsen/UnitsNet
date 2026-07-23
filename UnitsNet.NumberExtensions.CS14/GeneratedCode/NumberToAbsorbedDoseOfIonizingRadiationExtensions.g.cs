@@ -42,140 +42,140 @@ namespace UnitsNet.NumberExtensions.NumberToAbsorbedDoseOfIonizingRadiation
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromCentigrays(double)" />
+            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromCentigrays(QuantityValue)" />
             public AbsorbedDoseOfIonizingRadiation Centigrays
 #if NET7_0_OR_GREATER
-                => AbsorbedDoseOfIonizingRadiation.FromCentigrays(double.CreateChecked(value));
+                => AbsorbedDoseOfIonizingRadiation.FromCentigrays(QuantityValue.CreateChecked(value));
 #else
-                => AbsorbedDoseOfIonizingRadiation.FromCentigrays(value.ToDouble(null));
+                => AbsorbedDoseOfIonizingRadiation.FromCentigrays(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromDecigrays(double)" />
+            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromDecigrays(QuantityValue)" />
             public AbsorbedDoseOfIonizingRadiation Decigrays
 #if NET7_0_OR_GREATER
-                => AbsorbedDoseOfIonizingRadiation.FromDecigrays(double.CreateChecked(value));
+                => AbsorbedDoseOfIonizingRadiation.FromDecigrays(QuantityValue.CreateChecked(value));
 #else
-                => AbsorbedDoseOfIonizingRadiation.FromDecigrays(value.ToDouble(null));
+                => AbsorbedDoseOfIonizingRadiation.FromDecigrays(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromFemtograys(double)" />
+            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromFemtograys(QuantityValue)" />
             public AbsorbedDoseOfIonizingRadiation Femtograys
 #if NET7_0_OR_GREATER
-                => AbsorbedDoseOfIonizingRadiation.FromFemtograys(double.CreateChecked(value));
+                => AbsorbedDoseOfIonizingRadiation.FromFemtograys(QuantityValue.CreateChecked(value));
 #else
-                => AbsorbedDoseOfIonizingRadiation.FromFemtograys(value.ToDouble(null));
+                => AbsorbedDoseOfIonizingRadiation.FromFemtograys(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromGigagrays(double)" />
+            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromGigagrays(QuantityValue)" />
             public AbsorbedDoseOfIonizingRadiation Gigagrays
 #if NET7_0_OR_GREATER
-                => AbsorbedDoseOfIonizingRadiation.FromGigagrays(double.CreateChecked(value));
+                => AbsorbedDoseOfIonizingRadiation.FromGigagrays(QuantityValue.CreateChecked(value));
 #else
-                => AbsorbedDoseOfIonizingRadiation.FromGigagrays(value.ToDouble(null));
+                => AbsorbedDoseOfIonizingRadiation.FromGigagrays(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromGrays(double)" />
+            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromGrays(QuantityValue)" />
             public AbsorbedDoseOfIonizingRadiation Grays
 #if NET7_0_OR_GREATER
-                => AbsorbedDoseOfIonizingRadiation.FromGrays(double.CreateChecked(value));
+                => AbsorbedDoseOfIonizingRadiation.FromGrays(QuantityValue.CreateChecked(value));
 #else
-                => AbsorbedDoseOfIonizingRadiation.FromGrays(value.ToDouble(null));
+                => AbsorbedDoseOfIonizingRadiation.FromGrays(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromKilograys(double)" />
+            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromKilograys(QuantityValue)" />
             public AbsorbedDoseOfIonizingRadiation Kilograys
 #if NET7_0_OR_GREATER
-                => AbsorbedDoseOfIonizingRadiation.FromKilograys(double.CreateChecked(value));
+                => AbsorbedDoseOfIonizingRadiation.FromKilograys(QuantityValue.CreateChecked(value));
 #else
-                => AbsorbedDoseOfIonizingRadiation.FromKilograys(value.ToDouble(null));
+                => AbsorbedDoseOfIonizingRadiation.FromKilograys(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromKilorads(double)" />
+            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromKilorads(QuantityValue)" />
             public AbsorbedDoseOfIonizingRadiation Kilorads
 #if NET7_0_OR_GREATER
-                => AbsorbedDoseOfIonizingRadiation.FromKilorads(double.CreateChecked(value));
+                => AbsorbedDoseOfIonizingRadiation.FromKilorads(QuantityValue.CreateChecked(value));
 #else
-                => AbsorbedDoseOfIonizingRadiation.FromKilorads(value.ToDouble(null));
+                => AbsorbedDoseOfIonizingRadiation.FromKilorads(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMegagrays(double)" />
+            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMegagrays(QuantityValue)" />
             public AbsorbedDoseOfIonizingRadiation Megagrays
 #if NET7_0_OR_GREATER
-                => AbsorbedDoseOfIonizingRadiation.FromMegagrays(double.CreateChecked(value));
+                => AbsorbedDoseOfIonizingRadiation.FromMegagrays(QuantityValue.CreateChecked(value));
 #else
-                => AbsorbedDoseOfIonizingRadiation.FromMegagrays(value.ToDouble(null));
+                => AbsorbedDoseOfIonizingRadiation.FromMegagrays(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMegarads(double)" />
+            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMegarads(QuantityValue)" />
             public AbsorbedDoseOfIonizingRadiation Megarads
 #if NET7_0_OR_GREATER
-                => AbsorbedDoseOfIonizingRadiation.FromMegarads(double.CreateChecked(value));
+                => AbsorbedDoseOfIonizingRadiation.FromMegarads(QuantityValue.CreateChecked(value));
 #else
-                => AbsorbedDoseOfIonizingRadiation.FromMegarads(value.ToDouble(null));
+                => AbsorbedDoseOfIonizingRadiation.FromMegarads(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMicrograys(double)" />
+            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMicrograys(QuantityValue)" />
             public AbsorbedDoseOfIonizingRadiation Micrograys
 #if NET7_0_OR_GREATER
-                => AbsorbedDoseOfIonizingRadiation.FromMicrograys(double.CreateChecked(value));
+                => AbsorbedDoseOfIonizingRadiation.FromMicrograys(QuantityValue.CreateChecked(value));
 #else
-                => AbsorbedDoseOfIonizingRadiation.FromMicrograys(value.ToDouble(null));
+                => AbsorbedDoseOfIonizingRadiation.FromMicrograys(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMilligrays(double)" />
+            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMilligrays(QuantityValue)" />
             public AbsorbedDoseOfIonizingRadiation Milligrays
 #if NET7_0_OR_GREATER
-                => AbsorbedDoseOfIonizingRadiation.FromMilligrays(double.CreateChecked(value));
+                => AbsorbedDoseOfIonizingRadiation.FromMilligrays(QuantityValue.CreateChecked(value));
 #else
-                => AbsorbedDoseOfIonizingRadiation.FromMilligrays(value.ToDouble(null));
+                => AbsorbedDoseOfIonizingRadiation.FromMilligrays(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMillirads(double)" />
+            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromMillirads(QuantityValue)" />
             public AbsorbedDoseOfIonizingRadiation Millirads
 #if NET7_0_OR_GREATER
-                => AbsorbedDoseOfIonizingRadiation.FromMillirads(double.CreateChecked(value));
+                => AbsorbedDoseOfIonizingRadiation.FromMillirads(QuantityValue.CreateChecked(value));
 #else
-                => AbsorbedDoseOfIonizingRadiation.FromMillirads(value.ToDouble(null));
+                => AbsorbedDoseOfIonizingRadiation.FromMillirads(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromNanograys(double)" />
+            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromNanograys(QuantityValue)" />
             public AbsorbedDoseOfIonizingRadiation Nanograys
 #if NET7_0_OR_GREATER
-                => AbsorbedDoseOfIonizingRadiation.FromNanograys(double.CreateChecked(value));
+                => AbsorbedDoseOfIonizingRadiation.FromNanograys(QuantityValue.CreateChecked(value));
 #else
-                => AbsorbedDoseOfIonizingRadiation.FromNanograys(value.ToDouble(null));
+                => AbsorbedDoseOfIonizingRadiation.FromNanograys(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromPetagrays(double)" />
+            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromPetagrays(QuantityValue)" />
             public AbsorbedDoseOfIonizingRadiation Petagrays
 #if NET7_0_OR_GREATER
-                => AbsorbedDoseOfIonizingRadiation.FromPetagrays(double.CreateChecked(value));
+                => AbsorbedDoseOfIonizingRadiation.FromPetagrays(QuantityValue.CreateChecked(value));
 #else
-                => AbsorbedDoseOfIonizingRadiation.FromPetagrays(value.ToDouble(null));
+                => AbsorbedDoseOfIonizingRadiation.FromPetagrays(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromPicograys(double)" />
+            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromPicograys(QuantityValue)" />
             public AbsorbedDoseOfIonizingRadiation Picograys
 #if NET7_0_OR_GREATER
-                => AbsorbedDoseOfIonizingRadiation.FromPicograys(double.CreateChecked(value));
+                => AbsorbedDoseOfIonizingRadiation.FromPicograys(QuantityValue.CreateChecked(value));
 #else
-                => AbsorbedDoseOfIonizingRadiation.FromPicograys(value.ToDouble(null));
+                => AbsorbedDoseOfIonizingRadiation.FromPicograys(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromRads(double)" />
+            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromRads(QuantityValue)" />
             public AbsorbedDoseOfIonizingRadiation Rads
 #if NET7_0_OR_GREATER
-                => AbsorbedDoseOfIonizingRadiation.FromRads(double.CreateChecked(value));
+                => AbsorbedDoseOfIonizingRadiation.FromRads(QuantityValue.CreateChecked(value));
 #else
-                => AbsorbedDoseOfIonizingRadiation.FromRads(value.ToDouble(null));
+                => AbsorbedDoseOfIonizingRadiation.FromRads(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromTeragrays(double)" />
+            /// <inheritdoc cref="AbsorbedDoseOfIonizingRadiation.FromTeragrays(QuantityValue)" />
             public AbsorbedDoseOfIonizingRadiation Teragrays
 #if NET7_0_OR_GREATER
-                => AbsorbedDoseOfIonizingRadiation.FromTeragrays(double.CreateChecked(value));
+                => AbsorbedDoseOfIonizingRadiation.FromTeragrays(QuantityValue.CreateChecked(value));
 #else
-                => AbsorbedDoseOfIonizingRadiation.FromTeragrays(value.ToDouble(null));
+                => AbsorbedDoseOfIonizingRadiation.FromTeragrays(value.ToQuantityValue());
 #endif
 
         }

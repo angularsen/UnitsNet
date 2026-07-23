@@ -42,12 +42,12 @@ namespace UnitsNet.NumberExtensions.NumberToLuminousIntensity
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="LuminousIntensity.FromCandela(double)" />
+            /// <inheritdoc cref="LuminousIntensity.FromCandela(QuantityValue)" />
             public LuminousIntensity Candela
 #if NET7_0_OR_GREATER
-                => LuminousIntensity.FromCandela(double.CreateChecked(value));
+                => LuminousIntensity.FromCandela(QuantityValue.CreateChecked(value));
 #else
-                => LuminousIntensity.FromCandela(value.ToDouble(null));
+                => LuminousIntensity.FromCandela(value.ToQuantityValue());
 #endif
 
         }

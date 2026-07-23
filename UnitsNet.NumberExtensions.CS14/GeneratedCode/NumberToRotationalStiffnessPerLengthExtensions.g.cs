@@ -42,44 +42,44 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalStiffnessPerLength
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="RotationalStiffnessPerLength.FromKilonewtonMetersPerRadianPerMeter(double)" />
+            /// <inheritdoc cref="RotationalStiffnessPerLength.FromKilonewtonMetersPerRadianPerMeter(QuantityValue)" />
             public RotationalStiffnessPerLength KilonewtonMetersPerRadianPerMeter
 #if NET7_0_OR_GREATER
-                => RotationalStiffnessPerLength.FromKilonewtonMetersPerRadianPerMeter(double.CreateChecked(value));
+                => RotationalStiffnessPerLength.FromKilonewtonMetersPerRadianPerMeter(QuantityValue.CreateChecked(value));
 #else
-                => RotationalStiffnessPerLength.FromKilonewtonMetersPerRadianPerMeter(value.ToDouble(null));
+                => RotationalStiffnessPerLength.FromKilonewtonMetersPerRadianPerMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="RotationalStiffnessPerLength.FromKilopoundForceFeetPerDegreesPerFeet(double)" />
+            /// <inheritdoc cref="RotationalStiffnessPerLength.FromKilopoundForceFeetPerDegreesPerFeet(QuantityValue)" />
             public RotationalStiffnessPerLength KilopoundForceFeetPerDegreesPerFeet
 #if NET7_0_OR_GREATER
-                => RotationalStiffnessPerLength.FromKilopoundForceFeetPerDegreesPerFeet(double.CreateChecked(value));
+                => RotationalStiffnessPerLength.FromKilopoundForceFeetPerDegreesPerFeet(QuantityValue.CreateChecked(value));
 #else
-                => RotationalStiffnessPerLength.FromKilopoundForceFeetPerDegreesPerFeet(value.ToDouble(null));
+                => RotationalStiffnessPerLength.FromKilopoundForceFeetPerDegreesPerFeet(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="RotationalStiffnessPerLength.FromMeganewtonMetersPerRadianPerMeter(double)" />
+            /// <inheritdoc cref="RotationalStiffnessPerLength.FromMeganewtonMetersPerRadianPerMeter(QuantityValue)" />
             public RotationalStiffnessPerLength MeganewtonMetersPerRadianPerMeter
 #if NET7_0_OR_GREATER
-                => RotationalStiffnessPerLength.FromMeganewtonMetersPerRadianPerMeter(double.CreateChecked(value));
+                => RotationalStiffnessPerLength.FromMeganewtonMetersPerRadianPerMeter(QuantityValue.CreateChecked(value));
 #else
-                => RotationalStiffnessPerLength.FromMeganewtonMetersPerRadianPerMeter(value.ToDouble(null));
+                => RotationalStiffnessPerLength.FromMeganewtonMetersPerRadianPerMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(double)" />
+            /// <inheritdoc cref="RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(QuantityValue)" />
             public RotationalStiffnessPerLength NewtonMetersPerRadianPerMeter
 #if NET7_0_OR_GREATER
-                => RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(double.CreateChecked(value));
+                => RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(QuantityValue.CreateChecked(value));
 #else
-                => RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(value.ToDouble(null));
+                => RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="RotationalStiffnessPerLength.FromPoundForceFeetPerDegreesPerFeet(double)" />
+            /// <inheritdoc cref="RotationalStiffnessPerLength.FromPoundForceFeetPerDegreesPerFeet(QuantityValue)" />
             public RotationalStiffnessPerLength PoundForceFeetPerDegreesPerFeet
 #if NET7_0_OR_GREATER
-                => RotationalStiffnessPerLength.FromPoundForceFeetPerDegreesPerFeet(double.CreateChecked(value));
+                => RotationalStiffnessPerLength.FromPoundForceFeetPerDegreesPerFeet(QuantityValue.CreateChecked(value));
 #else
-                => RotationalStiffnessPerLength.FromPoundForceFeetPerDegreesPerFeet(value.ToDouble(null));
+                => RotationalStiffnessPerLength.FromPoundForceFeetPerDegreesPerFeet(value.ToQuantityValue());
 #endif
 
         }
