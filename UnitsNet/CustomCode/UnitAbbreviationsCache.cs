@@ -320,6 +320,29 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="GetDefaultAbbreviation{TUnitType}" />
+        /// <param name="quantityName">The invariant quantity name, such as "Length". This parameter does not support localization.</param>
+        /// <param name="unitName">The invariant unit name, such as "Meter". This parameter does not support localization.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when <paramref name="quantityName" /> or <paramref name="unitName" /> is null.
+        /// </exception>
+        /// <exception cref="QuantityNotFoundException">
+        ///     Thrown when no quantity information is found for the specified
+        ///     <paramref name="quantityName" />.
+        /// </exception>
+        /// <exception cref="UnitNotFoundException">
+        ///     Thrown when no unit information is found for the specified
+        ///     <paramref name="quantityName" /> and <paramref name="unitName" />.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Thrown when no abbreviations are mapped for the specified unit.
+        /// </exception>
+        public string GetDefaultAbbreviation(string quantityName, string unitName, IFormatProvider? formatProvider = null)
+        {
+            return GetDefaultAbbreviation(GetConfiguredUnitInfo(quantityName, unitName), formatProvider);
+        }
+
+        /// <inheritdoc cref="GetDefaultAbbreviation{TUnitType}" />
         /// <param name="unitInfo">The info representing the unit.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <exception cref="UnitNotFoundException">
@@ -393,6 +416,29 @@ namespace UnitsNet
         public IReadOnlyList<string> GetUnitAbbreviations(UnitKey unitKey, IFormatProvider? formatProvider = null)
         {
             return GetUnitAbbreviations(Quantities.GetUnitInfo(unitKey), formatProvider);
+        }
+
+        /// <summary>
+        /// Retrieves the unit abbreviations for a specified quantity and unit name with an optional format provider.
+        /// </summary>
+        /// <param name="quantityName">The invariant quantity name, such as "Length". This parameter does not support localization.</param>
+        /// <param name="unitName">The invariant unit name, such as "Meter". This parameter does not support localization.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <returns>A read-only collection of unit abbreviation strings.</returns>
+        /// <exception cref="ArgumentNullException">
+        ///     Thrown when <paramref name="quantityName" /> or <paramref name="unitName" /> is null.
+        /// </exception>
+        /// <exception cref="QuantityNotFoundException">
+        ///     Thrown when no quantity information is found for the specified
+        ///     <paramref name="quantityName" />.
+        /// </exception>
+        /// <exception cref="UnitNotFoundException">
+        ///     Thrown when no unit information is found for the specified
+        ///     <paramref name="quantityName" /> and <paramref name="unitName" />.
+        /// </exception>
+        public IReadOnlyList<string> GetUnitAbbreviations(string quantityName, string unitName, IFormatProvider? formatProvider = null)
+        {
+            return GetUnitAbbreviations(GetConfiguredUnitInfo(quantityName, unitName), formatProvider);
         }
 
         /// <summary>
@@ -470,6 +516,14 @@ namespace UnitsNet
         {
             if (unitInfo is null) throw new ArgumentNullException(nameof(unitInfo));
             return Quantities.GetUnitInfo(unitInfo.UnitKey);
+        }
+
+        private UnitInfo GetConfiguredUnitInfo(string quantityName, string unitName)
+        {
+            if (quantityName is null) throw new ArgumentNullException(nameof(quantityName));
+            if (unitName is null) throw new ArgumentNullException(nameof(unitName));
+
+            return Quantities.GetUnitByName(quantityName, unitName);
         }
 
         /// <summary>

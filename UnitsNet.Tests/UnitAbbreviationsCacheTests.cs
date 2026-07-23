@@ -131,6 +131,79 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void GetDefaultAbbreviation_WithQuantityAndUnitNames_ReturnsTheExpectedAbbreviation()
+        {
+            var unitAbbreviationCache = new UnitAbbreviationsCache([Length.Info]);
+
+            string abbreviation = unitAbbreviationCache.GetDefaultAbbreviation("Length", "Millimeter", AmericanCulture);
+
+            Assert.Equal("mm", abbreviation);
+        }
+
+        [Fact]
+        public void GetUnitAbbreviations_WithQuantityAndUnitNames_ReturnsTheExpectedAbbreviations()
+        {
+            var unitAbbreviationCache = new UnitAbbreviationsCache([Area.Info]);
+
+            var abbreviations = unitAbbreviationCache.GetUnitAbbreviations("Area", "SquareMeter", AmericanCulture);
+
+            Assert.Contains("m²", abbreviations);
+        }
+
+        [Fact]
+        public void QuantityAndUnitNameOverloads_AreCaseInsensitive()
+        {
+            var unitAbbreviationCache = new UnitAbbreviationsCache([Length.Info]);
+
+            string abbreviation = unitAbbreviationCache.GetDefaultAbbreviation("length", "millimeter", AmericanCulture);
+
+            Assert.Equal("mm", abbreviation);
+        }
+
+        [Fact]
+        public void QuantityAndUnitNameOverloads_UseConfiguredQuantityLookup()
+        {
+            var unitAbbreviationCache = new UnitAbbreviationsCache([Mass.Info]);
+
+            Assert.Multiple(checks:
+            [
+                () => Assert.Equal("g", unitAbbreviationCache.GetDefaultAbbreviation("Mass", "Gram", AmericanCulture)),
+                () => Assert.Throws<QuantityNotFoundException>(() => unitAbbreviationCache.GetDefaultAbbreviation("Length", "Meter", AmericanCulture)),
+                () => Assert.Throws<QuantityNotFoundException>(() => unitAbbreviationCache.GetUnitAbbreviations("Length", "Meter", AmericanCulture))
+            ]);
+        }
+
+        [Fact]
+        public void QuantityAndUnitNameOverloads_WithInvalidNames_ThrowExpectedExceptions()
+        {
+            var unitAbbreviationCache = new UnitAbbreviationsCache([Length.Info]);
+
+            Assert.Multiple(checks:
+            [
+                () => Assert.Throws<QuantityNotFoundException>(() => unitAbbreviationCache.GetDefaultAbbreviation("InvalidQuantity", "Meter", AmericanCulture)),
+                () => Assert.Throws<UnitNotFoundException>(() => unitAbbreviationCache.GetDefaultAbbreviation("Length", "InvalidUnit", AmericanCulture)),
+                () => Assert.Throws<QuantityNotFoundException>(() => unitAbbreviationCache.GetUnitAbbreviations("InvalidQuantity", "Meter", AmericanCulture)),
+                () => Assert.Throws<UnitNotFoundException>(() => unitAbbreviationCache.GetUnitAbbreviations("Length", "InvalidUnit", AmericanCulture))
+            ]);
+        }
+
+        [Fact]
+        public void QuantityAndUnitNameOverloads_WithNullNames_ThrowArgumentNullException()
+        {
+            Assert.Multiple(checks:
+            [
+                () => Assert.Equal("quantityName",
+                    Assert.Throws<ArgumentNullException>(() => UnitAbbreviationsCache.Default.GetDefaultAbbreviation(null!, "Meter")).ParamName),
+                () => Assert.Equal("unitName",
+                    Assert.Throws<ArgumentNullException>(() => UnitAbbreviationsCache.Default.GetDefaultAbbreviation("Length", null!)).ParamName),
+                () => Assert.Equal("quantityName",
+                    Assert.Throws<ArgumentNullException>(() => UnitAbbreviationsCache.Default.GetUnitAbbreviations(null!, "Meter")).ParamName),
+                () => Assert.Equal("unitName",
+                    Assert.Throws<ArgumentNullException>(() => UnitAbbreviationsCache.Default.GetUnitAbbreviations("Length", null!)).ParamName)
+            ]);
+        }
+
+        [Fact]
         public void GetDefaultAbbreviationReturnsTheExpectedAbbreviationWhenConstructedWithTheSpecificQuantityInfo()
         {
             Assert.Multiple(checks:
