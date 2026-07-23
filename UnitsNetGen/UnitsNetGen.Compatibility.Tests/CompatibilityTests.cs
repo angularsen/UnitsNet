@@ -72,7 +72,18 @@ public sealed class CompatibilityTests
             "DegreesCelsius",
             "DegreesFahrenheit",
             "FromDegreesCelsius",
-            "FromDegreesFahrenheit");
+            "FromDegreesFahrenheit",
+            "op_Addition",
+            "op_Subtraction");
+        yield return QuantityApi(
+            typeof(Legacy::UnitsNet.TemperatureDelta),
+            typeof(Generated::UnitsNet.TemperatureDelta),
+            "DegreesCelsius",
+            "DegreesFahrenheit",
+            "FromDegreesCelsius",
+            "FromDegreesFahrenheit",
+            "op_Addition",
+            "op_Subtraction");
         yield return QuantityApi(
             typeof(Legacy::UnitsNet.Level),
             typeof(Generated::UnitsNet.Level),
@@ -113,6 +124,9 @@ public sealed class CompatibilityTests
             typeof(Legacy::UnitsNet.Units.TemperatureUnit),
             typeof(Generated::UnitsNet.Units.TemperatureUnit),
         };
+        yield return UnitEnum<
+            Legacy::UnitsNet.Units.TemperatureDeltaUnit,
+            Generated::UnitsNet.Units.TemperatureDeltaUnit>();
         yield return new object[]
         {
             typeof(Legacy::UnitsNet.Units.LevelUnit),
@@ -151,6 +165,7 @@ public sealed class CompatibilityTests
             typeof(Legacy::UnitsNet.Energy),
             typeof(Legacy::UnitsNet.Power),
             typeof(Legacy::UnitsNet.Temperature),
+            typeof(Legacy::UnitsNet.TemperatureDelta),
             typeof(Legacy::UnitsNet.Level),
             typeof(Legacy::UnitsNet.Information),
         };
@@ -167,6 +182,7 @@ public sealed class CompatibilityTests
             typeof(Generated::UnitsNet.Energy),
             typeof(Generated::UnitsNet.Power),
             typeof(Generated::UnitsNet.Temperature),
+            typeof(Generated::UnitsNet.TemperatureDelta),
             typeof(Generated::UnitsNet.Level),
             typeof(Generated::UnitsNet.Information),
         };
@@ -191,8 +207,20 @@ public sealed class CompatibilityTests
     {
         AssertLinearCapabilities<Legacy::UnitsNet.Length, Legacy::UnitsNet.Units.LengthUnit>();
         AssertLinearCapabilities<Generated::UnitsNet.Length, Generated::UnitsNet.Units.LengthUnit>();
-        AssertAffineCapabilities<Legacy::UnitsNet.Temperature, Legacy::UnitsNet.Units.TemperatureUnit>();
-        AssertAffineCapabilities<Generated::UnitsNet.Temperature, Generated::UnitsNet.Units.TemperatureUnit>();
+        AssertAffineCapabilities<
+            Legacy::UnitsNet.Temperature,
+            Legacy::UnitsNet.Units.TemperatureUnit,
+            Legacy::UnitsNet.TemperatureDelta>();
+        AssertAffineCapabilities<
+            Generated::UnitsNet.Temperature,
+            Generated::UnitsNet.Units.TemperatureUnit,
+            Generated::UnitsNet.TemperatureDelta>();
+        AssertLinearCapabilities<
+            Legacy::UnitsNet.TemperatureDelta,
+            Legacy::UnitsNet.Units.TemperatureDeltaUnit>();
+        AssertLinearCapabilities<
+            Generated::UnitsNet.TemperatureDelta,
+            Generated::UnitsNet.Units.TemperatureDeltaUnit>();
         AssertLogarithmicCapabilities<Legacy::UnitsNet.Level, Legacy::UnitsNet.Units.LevelUnit>();
         AssertLogarithmicCapabilities<Generated::UnitsNet.Level, Generated::UnitsNet.Units.LevelUnit>();
     }
@@ -285,11 +313,13 @@ public sealed class CompatibilityTests
         Assert.Equal(TQuantity.Zero, UnitsNet.Core.QuantityMath.Sum(Array.Empty<TQuantity>()));
     }
 
-    private static void AssertAffineCapabilities<TQuantity, TUnit>()
-        where TQuantity : UnitsNet.Core.IAffineQuantity<TQuantity, TUnit>
+    private static void AssertAffineCapabilities<TQuantity, TUnit, TOffset>()
+        where TQuantity : UnitsNet.Core.IAffineQuantity<TQuantity, TUnit, TOffset>
         where TUnit : struct, Enum
+        where TOffset : UnitsNet.Core.ILinearQuantity<TOffset>
     {
         Assert.Equal(TQuantity.BaseUnit, TQuantity.Zero.Unit);
+        Assert.Equal(TQuantity.Zero, TQuantity.Zero + TOffset.Zero);
     }
 
     private static void AssertLogarithmicCapabilities<TQuantity, TUnit>()

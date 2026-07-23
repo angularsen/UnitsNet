@@ -30,8 +30,12 @@ using UnitsNetGen.Generation;
 internal interface EngineeringUnits :
     IInclude<Length>,
     IInclude<Temperature>,
+    IInclude<TemperatureDelta>,
     IInclude<Information>;
 ```
+
+Affine quantities name a linear offset quantity in their definition. Select both together;
+`UNG015` reports a missing offset selection before source emission.
 
 Select a subset of units with a regular expression:
 
@@ -68,6 +72,10 @@ Length total = UnitsNet.Core.QuantityMath.Sum(new[]
     Length.FromKilometers(1),
     Length.FromMeters(500),
 });
+
+Temperature midpoint = UnitsNet.Core.AffineQuantityMath.Average(
+    new[] { Temperature.FromDegreesCelsius(0), Temperature.FromDegreesFahrenheit(212) },
+    TemperatureUnit.DegreeCelsius);
 ```
 
 Generate the selected API in the established `UnitsNet` and `UnitsNet.Units` namespaces with

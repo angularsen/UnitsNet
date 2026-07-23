@@ -20,6 +20,7 @@ namespace UnitsNetGen.BuiltIns
     internal sealed class Energy { }
     internal sealed class Power { }
     internal sealed class Temperature { }
+    internal sealed class TemperatureDelta { }
     internal sealed class Level { }
     internal sealed class Information { }
 }
@@ -52,6 +53,7 @@ namespace UnitsNetGen.Profiles
         global::UnitsNetGen.Generation.IInclude<global::UnitsNetGen.BuiltIns.Energy>,
         global::UnitsNetGen.Generation.IInclude<global::UnitsNetGen.BuiltIns.Power>,
         global::UnitsNetGen.Generation.IInclude<global::UnitsNetGen.BuiltIns.Temperature>,
+        global::UnitsNetGen.Generation.IInclude<global::UnitsNetGen.BuiltIns.TemperatureDelta>,
         global::UnitsNetGen.Generation.IInclude<global::UnitsNetGen.BuiltIns.Level>,
         global::UnitsNetGen.Generation.IInclude<global::UnitsNetGen.BuiltIns.Information>
     {

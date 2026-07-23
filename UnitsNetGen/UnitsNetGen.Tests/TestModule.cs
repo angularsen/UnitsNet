@@ -19,6 +19,7 @@ internal interface RepresentativeProfile :
     IInclude<Catalog.Length>,
     IInclude<Catalog.Area>,
     IInclude<Catalog.Temperature>,
+    IInclude<Catalog.TemperatureDelta>,
     IInclude<Catalog.Level>,
     IInclude<Catalog.Information>
 {

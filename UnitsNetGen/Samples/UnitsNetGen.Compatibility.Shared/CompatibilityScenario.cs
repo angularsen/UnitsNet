@@ -14,6 +14,12 @@ public static class CompatibilityScenario
         Area area = Length.FromMeters(2) * Length.FromMeters(3);
         Temperature temperature = Temperature.FromDegreesCelsius(21.5)
             .ToUnit(TemperatureUnit.DegreeFahrenheit);
+        Temperature freezing = Temperature.FromDegreesCelsius(0);
+        Temperature boiling = Temperature.FromDegreesFahrenheit(212);
+        TemperatureDelta temperatureRange = boiling - freezing;
+        Temperature midpoint = UnitsNet.Core.AffineQuantityMath.Average(
+            new[] { freezing, boiling },
+            TemperatureUnit.DegreeCelsius);
         Level combinedLevel = Level.FromDecibels(10) + Level.FromDecibels(10);
         Information payload = Information.FromKibibytes(2).ToUnit(InformationUnit.Bit);
         Length total = UnitsNet.Core.QuantityMath.Sum(new[]
@@ -32,6 +38,8 @@ public static class CompatibilityScenario
             FormattableString.Invariant($"Length: {distance.Value:R} {distance.Unit}"),
             FormattableString.Invariant($"Area: {area.Value:R} {area.Unit}"),
             FormattableString.Invariant($"Temperature: {temperature.Value:R} {temperature.Unit}"),
+            FormattableString.Invariant($"Temperature range: {temperatureRange.Value:R} {temperatureRange.Unit}"),
+            FormattableString.Invariant($"Temperature midpoint: {midpoint.Value:R} {midpoint.Unit}"),
             FormattableString.Invariant($"Level: {combinedLevel.Value:R} {combinedLevel.Unit}"),
             FormattableString.Invariant($"Information: {payload.Value:R} {payload.Unit}"),
             FormattableString.Invariant($"Sum: {total.Value:R} {total.Unit}"),

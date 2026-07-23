@@ -128,7 +128,7 @@ public readonly partial struct Power : UnitsNet.Core.ILinearQuantity<Power, Powe
     static Power System.Numerics.IAdditiveIdentity<Power, Power>.AdditiveIdentity => Zero;
 }
 
-public readonly partial struct Temperature : UnitsNet.Core.IAffineQuantity<Temperature, TemperatureUnit>
+public readonly partial struct Temperature : UnitsNet.Core.IAffineQuantity<Temperature, TemperatureUnit, TemperatureDelta>
 {
     /// <inheritdoc />
     public static QuantityId QuantityId { get; } = new("UnitsNet.Temperature");
@@ -136,6 +136,18 @@ public readonly partial struct Temperature : UnitsNet.Core.IAffineQuantity<Tempe
     /// <inheritdoc />
     public static double Convert(double value, TemperatureUnit fromUnit, TemperatureUnit toUnit) =>
         From(value, fromUnit).As(toUnit);
+}
+
+public readonly partial struct TemperatureDelta : UnitsNet.Core.ILinearQuantity<TemperatureDelta, TemperatureDeltaUnit>
+{
+    /// <inheritdoc />
+    public static QuantityId QuantityId { get; } = new("UnitsNet.TemperatureDelta");
+
+    /// <inheritdoc />
+    public static double Convert(double value, TemperatureDeltaUnit fromUnit, TemperatureDeltaUnit toUnit) =>
+        From(value, fromUnit).As(toUnit);
+
+    static TemperatureDelta System.Numerics.IAdditiveIdentity<TemperatureDelta, TemperatureDelta>.AdditiveIdentity => Zero;
 }
 
 public readonly partial struct Level : UnitsNet.Core.ILogarithmicQuantity<Level, LevelUnit>

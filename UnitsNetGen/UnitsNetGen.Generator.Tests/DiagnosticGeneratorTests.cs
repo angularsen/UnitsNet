@@ -34,6 +34,28 @@ public sealed class DiagnosticGeneratorTests
     }
 
     [Fact]
+    public void AffineQuantityWithoutOffsetSelection_ReportsRequiredQuantity()
+    {
+        GeneratorTestHost.TestRun run = GeneratorTestHost.Run("""
+            using UnitsNetGen.Generation;
+
+            [UnitsNetModule]
+            internal interface Module : IInclude<UnitsNetGen.BuiltIns.Temperature>;
+            """);
+
+        Diagnostic diagnostic = Assert.Single(run.Result.Diagnostics, item => item.Id == "UNG015");
+        Assert.Contains("UnitsNet.Temperature", diagnostic.GetMessage(), StringComparison.Ordinal);
+        Assert.Contains("UnitsNet.TemperatureDelta", diagnostic.GetMessage(), StringComparison.Ordinal);
+        Assert.Equal("Test.cs", diagnostic.Location.GetLineSpan().Path);
+        Assert.DoesNotContain(
+            run.Compilation.GetDiagnostics(),
+            item => item.Id is "CS0246" or "CS0101" or "CS0102");
+        Assert.DoesNotContain(
+            run.Result.Results.SelectMany(result => result.GeneratedSources),
+            source => source.SourceText.ToString().Contains("partial struct Temperature", StringComparison.Ordinal));
+    }
+
+    [Fact]
     public void UnitSetWithoutAttribute_ReportsAtModuleDeclaration()
     {
         GeneratorTestHost.TestRun run = GeneratorTestHost.Run("""

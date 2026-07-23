@@ -159,7 +159,8 @@ public sealed class GeneratedQuantityTests
     public void GeneratedQuantities_AdvertiseTheirArithmeticCapabilities()
     {
         AssertLinearCapability<Length, LengthUnit>();
-        AssertAffineCapability<Temperature, TemperatureUnit>();
+        AssertLinearCapability<TemperatureDelta, TemperatureDeltaUnit>();
+        AssertAffineCapability<Temperature, TemperatureUnit, TemperatureDelta>();
         AssertLogarithmicCapability<Level, LevelUnit>();
         Assert.DoesNotContain(
             typeof(Temperature).GetInterfaces(),
@@ -167,6 +168,29 @@ public sealed class GeneratedQuantityTests
         Assert.DoesNotContain(
             typeof(Level).GetInterfaces(),
             type => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(UnitsNet.Core.ILinearQuantity<>));
+    }
+
+    [Fact]
+    public void AffineQuantity_UsesLinearOffsetsAndSupportsGenericAverage()
+    {
+        Temperature freezing = Temperature.FromDegreesCelsius(0);
+        Temperature boiling = Temperature.FromDegreesFahrenheit(212);
+
+        TemperatureDelta interval = Difference<Temperature, TemperatureUnit, TemperatureDelta>(boiling, freezing);
+        Temperature raised = AddOffset<Temperature, TemperatureUnit, TemperatureDelta>(freezing, interval);
+        Temperature commutative = interval + freezing;
+        Temperature lowered = boiling - interval;
+        Temperature average = UnitsNet.Core.AffineQuantityMath.Average(
+            new[] { freezing, boiling },
+            TemperatureUnit.DegreeCelsius);
+
+        Assert.Equal(100, interval.DegreesCelsius, 10);
+        Assert.Equal(100, raised.DegreesCelsius, 10);
+        Assert.Equal(100, commutative.DegreesCelsius, 10);
+        Assert.Equal(0, lowered.DegreesCelsius, 10);
+        Assert.Equal(50, average.DegreesCelsius, 10);
+        Assert.Throws<InvalidOperationException>(() =>
+            UnitsNet.Core.AffineQuantityMath.Average(Array.Empty<Temperature>(), TemperatureUnit.Kelvin));
     }
 
     [Fact]
@@ -231,10 +255,23 @@ public sealed class GeneratedQuantityTests
         where TUnit : struct, Enum
         => Assert.Equal(TQuantity.BaseUnit, TQuantity.Zero.Unit);
 
-    private static void AssertAffineCapability<TQuantity, TUnit>()
-        where TQuantity : UnitsNet.Core.IAffineQuantity<TQuantity, TUnit>
+    private static void AssertAffineCapability<TQuantity, TUnit, TOffset>()
+        where TQuantity : UnitsNet.Core.IAffineQuantity<TQuantity, TUnit, TOffset>
         where TUnit : struct, Enum
+        where TOffset : UnitsNet.Core.ILinearQuantity<TOffset>
         => Assert.Equal(TQuantity.BaseUnit, TQuantity.Zero.Unit);
+
+    private static TQuantity AddOffset<TQuantity, TUnit, TOffset>(TQuantity quantity, TOffset offset)
+        where TQuantity : UnitsNet.Core.IAffineQuantity<TQuantity, TUnit, TOffset>
+        where TUnit : struct, Enum
+        where TOffset : UnitsNet.Core.ILinearQuantity<TOffset>
+        => quantity + offset;
+
+    private static TOffset Difference<TQuantity, TUnit, TOffset>(TQuantity left, TQuantity right)
+        where TQuantity : UnitsNet.Core.IAffineQuantity<TQuantity, TUnit, TOffset>
+        where TUnit : struct, Enum
+        where TOffset : UnitsNet.Core.ILinearQuantity<TOffset>
+        => left - right;
 
     private static void AssertLogarithmicCapability<TQuantity, TUnit>()
         where TQuantity : UnitsNet.Core.ILogarithmicQuantity<TQuantity, TUnit>

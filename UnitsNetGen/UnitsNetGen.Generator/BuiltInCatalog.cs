@@ -22,6 +22,7 @@ internal static class BuiltInCatalog
         "Energy",
         "Power",
         "Temperature",
+        "TemperatureDelta",
         "Level",
         "Information",
     };

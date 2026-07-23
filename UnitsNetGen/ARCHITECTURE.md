@@ -53,6 +53,7 @@ using UnitsNetGen.Generation;
 internal interface EngineeringUnits :
     IInclude<Length>,
     IInclude<Temperature>,
+    IInclude<TemperatureDelta>,
     IInclude<Information>
 {
 }
@@ -65,7 +66,8 @@ In compatibility mode, quantities use `UnitsNet` and unit enums use `UnitsNet.Un
 [UnitsNetModule("UnitsNet")]
 internal interface CompatibilityUnits :
     IInclude<Length>,
-    IInclude<Temperature>;
+    IInclude<Temperature>,
+    IInclude<TemperatureDelta>;
 ```
 
 Select units with a regular expression by defining a named unit set:
@@ -209,14 +211,15 @@ The Core capability hierarchy adapts UnitsNet's proven modern generic design wit
 `UnitKey`, quantity metadata, setup registries, or obsolete compatibility members:
 
 - `ILinearQuantity<TSelf, TUnit>` advertises conventional arithmetic and additive zero;
-- `IAffineQuantity<TSelf, TUnit>` identifies offset conversions without claiming conventional
-  same-quantity arithmetic;
+- `IAffineQuantity<TSelf, TUnit, TOffset>` identifies offset conversions and expresses differences
+  through a linear offset quantity without claiming conventional same-quantity arithmetic;
 - `ILogarithmicQuantity<TSelf, TUnit>` identifies logarithmic arithmetic and scaling without
   claiming conventional generic-math semantics.
 
 `QuantityMath.Sum` and `QuantityMath.Average` use those contracts for reusable mixed-unit linear
-algorithms shared by UnitsNet and UnitsNetGen. The capability layer remains `double`-based while
-numeric storage abstraction is evaluated separately.
+algorithms shared by UnitsNet and UnitsNetGen. `AffineQuantityMath.Average` averages affine values
+in an explicit target unit. The capability layer remains `double`-based while numeric storage
+abstraction is evaluated separately.
 
 `QuantityId` belongs to the quantity type rather than each value instance. Base-unit conversion is
 derived behavior and is intentionally not stored on each instance. Generated relationships and
@@ -327,8 +330,9 @@ runtime support for generated quantity modules.
 
 On all supported runtime targets, generated quantities implement `IParsable<TSelf>` and applicable
 Core capability and generic-math interfaces. Linear quantities support conventional arithmetic and
-shared aggregation; affine quantities avoid same-quantity arithmetic; logarithmic quantities keep
-their explicit logarithmic behavior. All generated quantities support generic comparison.
+shared aggregation; affine quantities add or subtract linear offsets and produce an offset when
+subtracted from one another; logarithmic quantities keep their explicit logarithmic behavior. All
+generated quantities support generic comparison.
 
 Further modern-target opportunities include allocation-free
 `ISpanParsable<TSelf>`/`ISpanFormattable` paths, UTF-8 parsing and formatting, and optionally
@@ -347,6 +351,8 @@ For each selected definition, the generator emits:
 - `As()`, `ToUnit()`, `Parse()`, `TryParse()`, and `ToString()`;
 - default values normalized to zero in the base unit, matching UnitsNet;
 - arithmetic selected by the definition's linear, affine, or logarithmic semantics;
+- affine arithmetic generated with a selected linear offset companion, with `UNG015` reporting a
+  missing companion before emission;
 - modern .NET generic parsing, comparison, and capability contracts;
 - localized unit metadata that delegates shared behavior to the runtime;
 - direct, validated conversion switches for affine and nonlinear conversions.

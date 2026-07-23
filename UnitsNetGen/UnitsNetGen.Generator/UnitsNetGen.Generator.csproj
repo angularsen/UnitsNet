@@ -37,6 +37,8 @@
                       LogicalName="UnitsNetGen.Generator.BuiltIns.Power.json" />
     <EmbeddedResource Include="../../Common/UnitDefinitions/Temperature.json"
                       LogicalName="UnitsNetGen.Generator.BuiltIns.Temperature.json" />
+    <EmbeddedResource Include="../../Common/UnitDefinitions/TemperatureDelta.json"
+                      LogicalName="UnitsNetGen.Generator.BuiltIns.TemperatureDelta.json" />
     <EmbeddedResource Include="../../Common/UnitDefinitions/Level.json"
                       LogicalName="UnitsNetGen.Generator.BuiltIns.Level.json" />
     <EmbeddedResource Include="../../Common/UnitDefinitions/Information.json"

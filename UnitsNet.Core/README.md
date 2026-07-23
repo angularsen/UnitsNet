@@ -11,11 +11,12 @@ primitive enables generic conversion without a global registry, while generated 
 `ToUnit` members retain the natural strongly typed API.
 
 Capability interfaces distinguish linear, affine, and logarithmic quantities. Linear quantities
-advertise conventional generic-math operators and an additive zero; affine quantities avoid
-claiming same-quantity arithmetic; logarithmic quantities identify their distinct scaling and
-arithmetic semantics without claiming conventional generic math. `QuantityMath` provides shared
-`Sum` and `Average` algorithms that work for both UnitsNet and UnitsNetGen linear quantities,
-including mixed-unit sequences.
+advertise conventional generic-math operators and an additive zero; affine quantities add and
+subtract a named linear offset and produce that offset when two values are subtracted; logarithmic
+quantities identify their distinct scaling and arithmetic semantics without claiming conventional
+generic math. `QuantityMath` provides shared `Sum` and `Average` algorithms for linear quantities,
+while `AffineQuantityMath.Average` averages affine values in an explicit target unit. The algorithms
+work for both UnitsNet and UnitsNetGen quantities.
 
 The capability layer is intentionally `double`-based for this POC. Generic numeric storage remains
 a separate design experiment.

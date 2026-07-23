@@ -110,6 +110,14 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
         DiagnosticSeverity.Error,
         true);
 
+    private static readonly DiagnosticDescriptor MissingAffineOffset = new DiagnosticDescriptor(
+        "UNG015",
+        "Affine offset quantity is not selected",
+        "Affine quantity '{0}' requires offset quantity '{1}'; include both quantities in the module",
+        "UnitsNetGen",
+        DiagnosticSeverity.Error,
+        true);
+
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         context.RegisterPostInitializationOutput(static output =>
@@ -297,6 +305,29 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
             selections.Add(new QuantitySelection(request.Definition, distinctUnits));
         }
 
+        IReadOnlyDictionary<string, QuantitySelection> selectionsBySemanticId = selections
+            .GroupBy(selection => selection.Definition.SemanticId, StringComparer.Ordinal)
+            .ToDictionary(group => group.Key, group => group.First(), StringComparer.Ordinal);
+        var hasMissingAffineOffset = false;
+        foreach (QuantitySelection selection in selections.Where(selection => selection.Definition.IsAffine))
+        {
+            string offsetId = AffineOffsetSemanticId(selection.Definition);
+            if (!selectionsBySemanticId.ContainsKey(offsetId))
+            {
+                context.ReportDiagnostic(Diagnostic.Create(
+                    MissingAffineOffset,
+                    moduleLocation,
+                    selection.Definition.SemanticId,
+                    offsetId));
+                hasMissingAffineOffset = true;
+            }
+        }
+
+        if (hasMissingAffineOffset)
+        {
+            return;
+        }
+
         var relationDefinitions = new List<QuantityRelationDefinition>(BuiltInRelationCatalog.Definitions);
         foreach (RelationDefinitionResult result in relationDefinitionResults)
         {
@@ -331,8 +362,29 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
             string modulePrefix = Regex.Replace(module.Name, "[^A-Za-z0-9_]", "_");
             string hintName = modulePrefix + "_" + selection.Definition.TargetNamespace.Replace('.', '_') + "_" +
                               selection.Definition.Name + ".g.cs";
-            context.AddSource(hintName, SourceText.From(QuantityEmitter.Emit(selection, relationships), System.Text.Encoding.UTF8));
+            QuantitySelection? affineOffset = selection.Definition.IsAffine
+                ? selectionsBySemanticId[AffineOffsetSemanticId(selection.Definition)]
+                : null;
+            context.AddSource(
+                hintName,
+                SourceText.From(
+                    QuantityEmitter.Emit(selection, relationships, affineOffset),
+                    System.Text.Encoding.UTF8));
         }
+    }
+
+    private static string AffineOffsetSemanticId(QuantityDefinition definition)
+    {
+        string offsetType = definition.AffineOffsetType!;
+        if (offsetType.Contains("."))
+        {
+            return offsetType;
+        }
+
+        int separator = definition.SemanticId.LastIndexOf('.');
+        return separator < 0
+            ? offsetType
+            : definition.SemanticId.Substring(0, separator + 1) + offsetType;
     }
 
     private static bool IsInclude(INamedTypeSymbol candidate)

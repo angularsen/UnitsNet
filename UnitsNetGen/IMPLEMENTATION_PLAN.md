@@ -12,7 +12,8 @@ keeps the broader SI relationship chain continuously buildable.
 ## Progress
 
 - [x] **0. Add focused representative and AllSi catalog scenarios**
-  - Keep Length, Area, Temperature, Level, and Information as the fast representative selection.
+  - Keep Length, Area, Temperature, TemperatureDelta, Level, and Information as the fast
+    representative selection.
   - Include the Length, Mass, Duration, Area, Speed, Acceleration, Force, Pressure, Energy, and Power
     SI relationship chain.
   - Keep HowMuch as the custom third-party definition.
@@ -120,6 +121,12 @@ keeps the broader SI relationship chain continuously buildable.
   - Reuse `Sum` and `Average` across UnitsNet and UnitsNetGen linear quantities.
   - Classify generated arithmetic from logarithmic and affine definition metadata.
   - Treat a default generated struct as zero in its base unit, matching UnitsNet behavior.
+
+- [x] **14. Guard module ownership and complete affine semantics**
+  - Diagnose multiple module markers before they emit colliding source.
+  - Require an affine quantity's linear offset companion with an actionable diagnostic.
+  - Generate quantity/offset addition and subtraction in both concrete implementations.
+  - Share target-unit affine averaging without treating logarithmic averages as linear arithmetic.
 
 ## Deferred
 

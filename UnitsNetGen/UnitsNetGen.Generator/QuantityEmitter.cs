@@ -12,7 +12,8 @@ internal static class QuantityEmitter
 {
     public static string Emit(
         QuantitySelection selection,
-        IReadOnlyList<EmittedQuantityRelation> relationships)
+        IReadOnlyList<EmittedQuantityRelation> relationships,
+        QuantitySelection? affineOffset)
     {
         QuantityDefinition quantity = selection.Definition;
         string unitTypeName = quantity.Name + "Unit";
@@ -60,14 +61,19 @@ internal static class QuantityEmitter
             writer.AppendLine("{");
         }
 
-        string capabilityInterface = quantity.IsLogarithmic
-            ? "global::UnitsNet.Core.ILogarithmicQuantity<"
-            : quantity.IsAffine
-                ? "global::UnitsNet.Core.IAffineQuantity<"
+        writer.Append("public readonly partial struct ").Append(quantity.Name).Append(" : ");
+        if (quantity.IsAffine)
+        {
+            writer.Append("global::UnitsNet.Core.IAffineQuantity<").Append(quantity.Name).Append(", ")
+                .Append(unitType).Append(", ").Append(QuantityType(affineOffset!.Definition)).Append(">, ");
+        }
+        else
+        {
+            string capabilityInterface = quantity.IsLogarithmic
+                ? "global::UnitsNet.Core.ILogarithmicQuantity<"
                 : "global::UnitsNet.Core.ILinearQuantity<";
-        writer.Append("public readonly partial struct ").Append(quantity.Name)
-            .Append(" : ").Append(capabilityInterface).Append(quantity.Name).Append(", ")
-            .Append(unitType).Append(">, ");
+            writer.Append(capabilityInterface).Append(quantity.Name).Append(", ").Append(unitType).Append(">, ");
+        }
         writer
             .Append("global::System.IEquatable<").Append(quantity.Name).Append(">, ")
             .Append("global::System.IComparable<").Append(quantity.Name).AppendLine(">");
@@ -172,7 +178,11 @@ internal static class QuantityEmitter
         {
             EmitLogarithmicOperators(writer, quantity.Name, quantity.LogarithmicScalingFactor);
         }
-        else if (!quantity.IsAffine)
+        else if (quantity.IsAffine)
+        {
+            EmitAffineOperators(writer, selection, affineOffset!);
+        }
+        else
         {
             writer.Append("    public static ").Append(quantity.Name).Append(" operator -(").Append(quantity.Name)
                 .AppendLine(" quantity) => new(-quantity.Value, quantity.Unit);");
@@ -341,6 +351,27 @@ internal static class QuantityEmitter
             .AppendLine(" quantity, double scalar) => new(quantity.Value - scalar, quantity.Unit);");
         writer.Append("    public static double operator /(").Append(quantityName).Append(" left, ").Append(quantityName)
             .AppendLine(" right) => left.Value - right.As(left.Unit);");
+    }
+
+    private static void EmitAffineOperators(
+        StringBuilder writer,
+        QuantitySelection quantity,
+        QuantitySelection offset)
+    {
+        string quantityType = quantity.Definition.Name;
+        string offsetType = QuantityType(offset.Definition);
+        string offsetBaseUnit = UnitType(offset.Definition) + "." + offset.Definition.BaseUnit;
+        writer.Append("    public static ").Append(quantityType).Append(" operator +(").Append(quantityType)
+            .Append(" left, ").Append(offsetType).AppendLine(" right) =>")
+            .Append("        new(left.BaseValue + right.BaseValue, BaseUnit);").AppendLine();
+        writer.Append("    public static ").Append(quantityType).Append(" operator +(").Append(offsetType)
+            .Append(" left, ").Append(quantityType).AppendLine(" right) => right + left;");
+        writer.Append("    public static ").Append(quantityType).Append(" operator -(").Append(quantityType)
+            .Append(" left, ").Append(offsetType).AppendLine(" right) =>")
+            .Append("        new(left.BaseValue - right.BaseValue, BaseUnit);").AppendLine();
+        writer.Append("    public static ").Append(offsetType).Append(" operator -(").Append(quantityType)
+            .Append(" left, ").Append(quantityType).AppendLine(" right) =>")
+            .Append("        new(left.BaseValue - right.BaseValue, ").Append(offsetBaseUnit).AppendLine(");");
     }
 
     private static string Escape(string value) => value.Replace("\\", "\\\\").Replace("\"", "\\\"");
