@@ -33,17 +33,34 @@ function Start-Build {
   write-host -foreground blue "Start-Build...END`n"
 }
 
+function Get-TestProjects {
+  Param(
+    [Parameter(Mandatory)]
+    [string] $Framework
+  )
+
+  $testProjects = Get-ChildItem -Path $root -Recurse -Filter "*.Tests.csproj" -File | Sort-Object FullName
+  foreach ($testProject in $testProjects) {
+    $propertiesJson = & dotnet msbuild $testProject.FullName `
+      -getProperty:TargetFrameworks,TargetFramework `
+      -nologo
+    if ($lastexitcode -ne 0) { throw "Failed to read target frameworks from $($testProject.FullName)." }
+
+    $properties = $propertiesJson | ConvertFrom-Json
+    $targetFrameworks = @($properties.Properties.TargetFrameworks -split ';') + $properties.Properties.TargetFramework
+    if ($targetFrameworks -contains $Framework) {
+      $testProject
+    }
+  }
+}
+
 function Start-Tests {
   Param(
     [switch] $SkipCoverage
   )
 
-  $projectPaths = @(
-    "UnitsNet.Tests/UnitsNet.Tests.csproj",
-    "UnitsNet.NumberExtensions.Tests/UnitsNet.NumberExtensions.Tests.csproj",
-    "UnitsNet.NumberExtensions.CS14.Tests/UnitsNet.NumberExtensions.CS14.Tests.csproj",
-    "UnitsNet.Serialization.JsonNet.Tests/UnitsNet.Serialization.JsonNet.Tests.csproj"
-    )
+  $testProjects = @(Get-TestProjects -Framework "net10.0")
+  if ($testProjects.Count -eq 0) { throw "No test projects targeting net10.0 were found." }
 
   # Parent dir must exist before xunit tries to write files to it
   new-item -type directory -force $testReportDir 1> $null
@@ -52,10 +69,9 @@ function Start-Tests {
   }
 
   write-host -foreground blue "Run tests...`n---"
-  foreach ($projectPath in $projectPaths) {
-    $projectFileNameNoEx = [System.IO.Path]::GetFileNameWithoutExtension($projectPath)
-    $coverageReportFile = Join-Path $testCoverageDir "${projectFileNameNoEx}.coverage.xml"
-    $projectDir = Join-Path $root ([System.IO.Path]::GetDirectoryName($projectPath))
+  foreach ($testProject in $testProjects) {
+    $coverageReportFile = Join-Path $testCoverageDir "$($testProject.BaseName).coverage.xml"
+    $projectDir = $testProject.DirectoryName
 
     # dotnet commands (xunit, dotcover) must run in same dir as project
     push-location $projectDir
@@ -138,4 +154,4 @@ function Compress-ArtifactsAsZip {
   write-host -foreground blue "Zip artifacts...END`n"
 }
 
-export-modulemember -function Remove-ArtifactsDir, Update-GeneratedCode, Start-Build, Start-Tests, Start-PackNugets, Compress-ArtifactsAsZip
+export-modulemember -function Remove-ArtifactsDir, Update-GeneratedCode, Start-Build, Get-TestProjects, Start-Tests, Start-PackNugets, Compress-ArtifactsAsZip
