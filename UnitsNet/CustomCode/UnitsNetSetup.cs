@@ -15,6 +15,13 @@ namespace UnitsNet;
 public sealed class UnitsNetSetup
 {
     /// <summary>
+    ///     Synchronizes the default builder swap and creation checks with the value creation already synchronized by <see cref="Lazy{T}" />.
+    /// </summary>
+    private static readonly object DefaultConfigurationLock = new();
+    private static DefaultConfigurationBuilder _defaultConfigurationBuilder = new();
+    private static readonly Lazy<UnitsNetSetup> DefaultConfiguration = new(BuildDefault);
+
+    /// <summary>
     ///     Builds a UnitsNet setup by selecting built-in or external quantity definitions.
     /// </summary>
     public sealed class DefaultConfigurationBuilder
@@ -92,14 +99,12 @@ public sealed class UnitsNetSetup
         }
     }
 
-    static UnitsNetSetup()
+    private static UnitsNetSetup BuildDefault()
     {
-        IReadOnlyCollection<QuantityInfo> quantityInfos = Quantity.DefaultProvider.Quantities;
-
-        // note: in order to support the ConvertByAbbreviation, the unit converter should require a UnitParser in the constructor
-        var unitConverter = UnitConverter.CreateDefault();
-
-        Default = new UnitsNetSetup(quantityInfos, unitConverter);
+        lock (DefaultConfigurationLock)
+        {
+            return _defaultConfigurationBuilder.Build();
+        }
     }
 
     /// <summary>
@@ -114,6 +119,37 @@ public sealed class UnitsNetSetup
         var builder = new DefaultConfigurationBuilder();
         configuration(builder);
         return builder.Build();
+    }
+
+    /// <summary>
+    ///     Configures and creates the global default setup before its first use.
+    /// </summary>
+    /// <param name="configuration">Configures the quantities included in the default setup.</param>
+    /// <returns>The configured global default setup.</returns>
+    /// <exception cref="InvalidOperationException">The default setup has already been created.</exception>
+    /// <seealso cref="Default" />
+    public static UnitsNetSetup ConfigureDefaults(Action<DefaultConfigurationBuilder> configuration)
+    {
+        if (configuration is null) throw new ArgumentNullException(nameof(configuration));
+
+        lock (DefaultConfigurationLock)
+        {
+            if (DefaultConfiguration.IsValueCreated)
+            {
+                throw new InvalidOperationException("The default configuration cannot be changed after it has been created.");
+            }
+
+            var builder = new DefaultConfigurationBuilder();
+            configuration(builder);
+
+            if (DefaultConfiguration.IsValueCreated)
+            {
+                throw new InvalidOperationException("The default configuration was created while it was being configured.");
+            }
+
+            _defaultConfigurationBuilder = builder;
+            return DefaultConfiguration.Value;
+        }
     }
 
     /// <summary>
@@ -140,11 +176,14 @@ public sealed class UnitsNetSetup
     ///     provided.
     /// </summary>
     /// <remarks>
+    ///     Call <see cref="ConfigureDefaults" /> before first accessing this property to select a different quantity catalog.<br />
+    ///     <br />
     ///     Manipulating this instance, such as adding new units or changing default unit abbreviations, will affect most
     ///     usages of UnitsNet in the
     ///     current AppDomain since the typical use is via static members and not providing a setup instance.
     /// </remarks>
-    public static UnitsNetSetup Default { get; }
+    /// <seealso cref="ConfigureDefaults" />
+    public static UnitsNetSetup Default => DefaultConfiguration.Value;
 
     /// <summary>
     ///     Converts between units of a quantity, such as from meters to centimeters of a given length.
