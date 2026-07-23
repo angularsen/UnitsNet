@@ -36,7 +36,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct HeatFlux :
-        IArithmeticQuantity<HeatFlux, HeatFluxUnit>,
+        ILinearQuantity<HeatFlux, HeatFluxUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<HeatFlux, HeatFlux, QuantityValue>,
         IMultiplyOperators<HeatFlux, Area, Power>,
@@ -135,8 +135,14 @@ namespace UnitsNet
                 yield return new (HeatFluxUnit.CentiwattPerSquareMeter, "CentiwattPerSquareMeter", "CentiwattsPerSquareMeter", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Second),
                      100
                 );
+                yield return new (HeatFluxUnit.CentiwattPerSquareMillimeter, "CentiwattPerSquareMillimeter", "CentiwattsPerSquareMillimeter", new BaseUnits(mass: MassUnit.Decagram, time: DurationUnit.Second),
+                     new QuantityValue(1, 10000)
+                );
                 yield return new (HeatFluxUnit.DeciwattPerSquareMeter, "DeciwattPerSquareMeter", "DeciwattsPerSquareMeter", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Second),
                      10
+                );
+                yield return new (HeatFluxUnit.DeciwattPerSquareMillimeter, "DeciwattPerSquareMillimeter", "DeciwattsPerSquareMillimeter", new BaseUnits(mass: MassUnit.Hectogram, time: DurationUnit.Second),
+                     new QuantityValue(1, 100000)
                 );
                 yield return new (HeatFluxUnit.KilocaloriePerHourSquareMeter, "KilocaloriePerHourSquareMeter", "KilocaloriesPerHourSquareMeter", BaseUnits.Undefined,
                      new QuantityValue(450, 523)
@@ -147,14 +153,26 @@ namespace UnitsNet
                 yield return new (HeatFluxUnit.KilowattPerSquareMeter, "KilowattPerSquareMeter", "KilowattsPerSquareMeter", BaseUnits.Undefined,
                      new QuantityValue(1, 1000)
                 );
+                yield return new (HeatFluxUnit.KilowattPerSquareMillimeter, "KilowattPerSquareMillimeter", "KilowattsPerSquareMillimeter", BaseUnits.Undefined,
+                     new QuantityValue(1, 1000000000)
+                );
                 yield return new (HeatFluxUnit.MicrowattPerSquareMeter, "MicrowattPerSquareMeter", "MicrowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second),
                      1000000
+                );
+                yield return new (HeatFluxUnit.MicrowattPerSquareMillimeter, "MicrowattPerSquareMillimeter", "MicrowattsPerSquareMillimeter", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second),
+                     1
                 );
                 yield return new (HeatFluxUnit.MilliwattPerSquareMeter, "MilliwattPerSquareMeter", "MilliwattsPerSquareMeter", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second),
                      1000
                 );
+                yield return new (HeatFluxUnit.MilliwattPerSquareMillimeter, "MilliwattPerSquareMillimeter", "MilliwattsPerSquareMillimeter", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second),
+                     new QuantityValue(1, 1000)
+                );
                 yield return new (HeatFluxUnit.NanowattPerSquareMeter, "NanowattPerSquareMeter", "NanowattsPerSquareMeter", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second),
                      1000000000
+                );
+                yield return new (HeatFluxUnit.NanowattPerSquareMillimeter, "NanowattPerSquareMillimeter", "NanowattsPerSquareMillimeter", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second),
+                     1000
                 );
                 yield return new (HeatFluxUnit.PoundForcePerFootSecond, "PoundForcePerFootSecond", "PoundsForcePerFootSecond", BaseUnits.Undefined,
                      new QuantityValue(609600000000, 8896443230521)
@@ -169,6 +187,9 @@ namespace UnitsNet
                      new QuantityValue(16129, 25000000)
                 );
                 yield return new (HeatFluxUnit.WattPerSquareMeter, "WattPerSquareMeter", "WattsPerSquareMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second));
+                yield return new (HeatFluxUnit.WattPerSquareMillimeter, "WattPerSquareMillimeter", "WattsPerSquareMillimeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second),
+                     new QuantityValue(1, 1000000)
+                );
             }
         }
 
@@ -302,9 +323,19 @@ namespace UnitsNet
         public QuantityValue CentiwattsPerSquareMeter => this.As(HeatFluxUnit.CentiwattPerSquareMeter);
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="HeatFluxUnit.CentiwattPerSquareMillimeter"/>
+        /// </summary>
+        public QuantityValue CentiwattsPerSquareMillimeter => this.As(HeatFluxUnit.CentiwattPerSquareMillimeter);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="HeatFluxUnit.DeciwattPerSquareMeter"/>
         /// </summary>
         public QuantityValue DeciwattsPerSquareMeter => this.As(HeatFluxUnit.DeciwattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="HeatFluxUnit.DeciwattPerSquareMillimeter"/>
+        /// </summary>
+        public QuantityValue DeciwattsPerSquareMillimeter => this.As(HeatFluxUnit.DeciwattPerSquareMillimeter);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="HeatFluxUnit.KilocaloriePerHourSquareMeter"/>
@@ -322,9 +353,19 @@ namespace UnitsNet
         public QuantityValue KilowattsPerSquareMeter => this.As(HeatFluxUnit.KilowattPerSquareMeter);
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="HeatFluxUnit.KilowattPerSquareMillimeter"/>
+        /// </summary>
+        public QuantityValue KilowattsPerSquareMillimeter => this.As(HeatFluxUnit.KilowattPerSquareMillimeter);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="HeatFluxUnit.MicrowattPerSquareMeter"/>
         /// </summary>
         public QuantityValue MicrowattsPerSquareMeter => this.As(HeatFluxUnit.MicrowattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="HeatFluxUnit.MicrowattPerSquareMillimeter"/>
+        /// </summary>
+        public QuantityValue MicrowattsPerSquareMillimeter => this.As(HeatFluxUnit.MicrowattPerSquareMillimeter);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="HeatFluxUnit.MilliwattPerSquareMeter"/>
@@ -332,9 +373,19 @@ namespace UnitsNet
         public QuantityValue MilliwattsPerSquareMeter => this.As(HeatFluxUnit.MilliwattPerSquareMeter);
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="HeatFluxUnit.MilliwattPerSquareMillimeter"/>
+        /// </summary>
+        public QuantityValue MilliwattsPerSquareMillimeter => this.As(HeatFluxUnit.MilliwattPerSquareMillimeter);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="HeatFluxUnit.NanowattPerSquareMeter"/>
         /// </summary>
         public QuantityValue NanowattsPerSquareMeter => this.As(HeatFluxUnit.NanowattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="HeatFluxUnit.NanowattPerSquareMillimeter"/>
+        /// </summary>
+        public QuantityValue NanowattsPerSquareMillimeter => this.As(HeatFluxUnit.NanowattPerSquareMillimeter);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="HeatFluxUnit.PoundForcePerFootSecond"/>
@@ -360,6 +411,11 @@ namespace UnitsNet
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="HeatFluxUnit.WattPerSquareMeter"/>
         /// </summary>
         public QuantityValue WattsPerSquareMeter => this.As(HeatFluxUnit.WattPerSquareMeter);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="HeatFluxUnit.WattPerSquareMillimeter"/>
+        /// </summary>
+        public QuantityValue WattsPerSquareMillimeter => this.As(HeatFluxUnit.WattPerSquareMillimeter);
 
         #endregion
 
@@ -439,11 +495,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.CentiwattPerSquareMillimeter"/>.
+        /// </summary>
+        public static HeatFlux FromCentiwattsPerSquareMillimeter(QuantityValue value)
+        {
+            return new HeatFlux(value, HeatFluxUnit.CentiwattPerSquareMillimeter);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.DeciwattPerSquareMeter"/>.
         /// </summary>
         public static HeatFlux FromDeciwattsPerSquareMeter(QuantityValue value)
         {
             return new HeatFlux(value, HeatFluxUnit.DeciwattPerSquareMeter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.DeciwattPerSquareMillimeter"/>.
+        /// </summary>
+        public static HeatFlux FromDeciwattsPerSquareMillimeter(QuantityValue value)
+        {
+            return new HeatFlux(value, HeatFluxUnit.DeciwattPerSquareMillimeter);
         }
 
         /// <summary>
@@ -471,11 +543,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.KilowattPerSquareMillimeter"/>.
+        /// </summary>
+        public static HeatFlux FromKilowattsPerSquareMillimeter(QuantityValue value)
+        {
+            return new HeatFlux(value, HeatFluxUnit.KilowattPerSquareMillimeter);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.MicrowattPerSquareMeter"/>.
         /// </summary>
         public static HeatFlux FromMicrowattsPerSquareMeter(QuantityValue value)
         {
             return new HeatFlux(value, HeatFluxUnit.MicrowattPerSquareMeter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.MicrowattPerSquareMillimeter"/>.
+        /// </summary>
+        public static HeatFlux FromMicrowattsPerSquareMillimeter(QuantityValue value)
+        {
+            return new HeatFlux(value, HeatFluxUnit.MicrowattPerSquareMillimeter);
         }
 
         /// <summary>
@@ -487,11 +575,27 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.MilliwattPerSquareMillimeter"/>.
+        /// </summary>
+        public static HeatFlux FromMilliwattsPerSquareMillimeter(QuantityValue value)
+        {
+            return new HeatFlux(value, HeatFluxUnit.MilliwattPerSquareMillimeter);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.NanowattPerSquareMeter"/>.
         /// </summary>
         public static HeatFlux FromNanowattsPerSquareMeter(QuantityValue value)
         {
             return new HeatFlux(value, HeatFluxUnit.NanowattPerSquareMeter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.NanowattPerSquareMillimeter"/>.
+        /// </summary>
+        public static HeatFlux FromNanowattsPerSquareMillimeter(QuantityValue value)
+        {
+            return new HeatFlux(value, HeatFluxUnit.NanowattPerSquareMillimeter);
         }
 
         /// <summary>
@@ -532,6 +636,14 @@ namespace UnitsNet
         public static HeatFlux FromWattsPerSquareMeter(QuantityValue value)
         {
             return new HeatFlux(value, HeatFluxUnit.WattPerSquareMeter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="HeatFlux"/> from <see cref="HeatFluxUnit.WattPerSquareMillimeter"/>.
+        /// </summary>
+        public static HeatFlux FromWattsPerSquareMillimeter(QuantityValue value)
+        {
+            return new HeatFlux(value, HeatFluxUnit.WattPerSquareMillimeter);
         }
 
         /// <summary>

@@ -23,6 +23,7 @@ This is to help grow the number of people that can contribute to the project and
 * Test class: Use `Tests` suffix for the type you are testing, such as `UnitSystemTests`
 * Test method: `<method>_<condition>_<result>` (`Parse_AmbiguousUnits_ThrowsException`)
 * If there are many tests for a single method, you can wrap those in an inner class named the same as the method and then you can skip that part of the test method names
+* Test conversion values should have at least 7 significant digits (`double` supports ~15-17, so anything beyond 16 is not useful)
 
 ## Unit Definitions (.JSON)
 

@@ -36,9 +36,10 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Area :
-        IArithmeticQuantity<Area, AreaUnit>,
+        ILinearQuantity<Area, AreaUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Area, Area, QuantityValue>,
+        IMultiplyOperators<Area, Area, AreaMomentOfInertia>,
         IMultiplyOperators<Area, Pressure, Force>,
         IMultiplyOperators<Area, SpecificWeight, ForcePerLength>,
         IMultiplyOperators<Area, ReciprocalLength, Length>,
@@ -688,6 +689,12 @@ namespace UnitsNet
         public ReciprocalArea Inverse()
         {
             return UnitConverter.Default.ConvertTo(Value, Unit, ReciprocalArea.Info);
+        }
+
+        /// <summary>Get <see cref="AreaMomentOfInertia"/> from <see cref="Area"/> * <see cref="Area"/>.</summary>
+        public static AreaMomentOfInertia operator *(Area left, Area right)
+        {
+            return AreaMomentOfInertia.FromMetersToTheFourth(left.SquareMeters * right.SquareMeters);
         }
 
         /// <summary>Get <see cref="Force"/> from <see cref="Area"/> * <see cref="Pressure"/>.</summary>

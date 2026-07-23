@@ -41,6 +41,7 @@ namespace UnitsNet.Tests
     public abstract partial class HeatTransferCoefficientTestsBase : QuantityTestsBase
     {
         protected abstract double BtusPerHourSquareFootDegreeFahrenheitInOneWattPerSquareMeterKelvin { get; }
+        protected abstract double BtusPerSecondSquareInchDegreeFahrenheitInOneWattPerSquareMeterKelvin { get; }
         protected abstract double CaloriesPerHourSquareMeterDegreeCelsiusInOneWattPerSquareMeterKelvin { get; }
         protected abstract double KilocaloriesPerHourSquareMeterDegreeCelsiusInOneWattPerSquareMeterKelvin { get; }
         protected abstract double WattsPerSquareMeterCelsiusInOneWattPerSquareMeterKelvin { get; }
@@ -48,6 +49,7 @@ namespace UnitsNet.Tests
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double BtusPerHourSquareFootDegreeFahrenheitTolerance { get { return 1e-5; } }
+        protected virtual double BtusPerSecondSquareInchDegreeFahrenheitTolerance { get { return 1e-5; } }
         protected virtual double CaloriesPerHourSquareMeterDegreeCelsiusTolerance { get { return 1e-5; } }
         protected virtual double KilocaloriesPerHourSquareMeterDegreeCelsiusTolerance { get { return 1e-5; } }
         protected virtual double WattsPerSquareMeterCelsiusTolerance { get { return 1e-5; } }
@@ -59,6 +61,7 @@ namespace UnitsNet.Tests
             return unit switch
             {
                 HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit => (BtusPerHourSquareFootDegreeFahrenheitInOneWattPerSquareMeterKelvin, BtusPerHourSquareFootDegreeFahrenheitTolerance),
+                HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit => (BtusPerSecondSquareInchDegreeFahrenheitInOneWattPerSquareMeterKelvin, BtusPerSecondSquareInchDegreeFahrenheitTolerance),
                 HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius => (CaloriesPerHourSquareMeterDegreeCelsiusInOneWattPerSquareMeterKelvin, CaloriesPerHourSquareMeterDegreeCelsiusTolerance),
                 HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius => (KilocaloriesPerHourSquareMeterDegreeCelsiusInOneWattPerSquareMeterKelvin, KilocaloriesPerHourSquareMeterDegreeCelsiusTolerance),
                 HeatTransferCoefficientUnit.WattPerSquareMeterCelsius => (WattsPerSquareMeterCelsiusInOneWattPerSquareMeterKelvin, WattsPerSquareMeterCelsiusTolerance),
@@ -70,6 +73,7 @@ namespace UnitsNet.Tests
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit },
+            new object[] { HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit },
             new object[] { HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius },
             new object[] { HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius },
             new object[] { HeatTransferCoefficientUnit.WattPerSquareMeterCelsius },
@@ -160,6 +164,7 @@ namespace UnitsNet.Tests
         {
             HeatTransferCoefficient wattpersquaremeterkelvin = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
             AssertEx.EqualTolerance(BtusPerHourSquareFootDegreeFahrenheitInOneWattPerSquareMeterKelvin, wattpersquaremeterkelvin.BtusPerHourSquareFootDegreeFahrenheit, BtusPerHourSquareFootDegreeFahrenheitTolerance);
+            AssertEx.EqualTolerance(BtusPerSecondSquareInchDegreeFahrenheitInOneWattPerSquareMeterKelvin, wattpersquaremeterkelvin.BtusPerSecondSquareInchDegreeFahrenheit, BtusPerSecondSquareInchDegreeFahrenheitTolerance);
             AssertEx.EqualTolerance(CaloriesPerHourSquareMeterDegreeCelsiusInOneWattPerSquareMeterKelvin, wattpersquaremeterkelvin.CaloriesPerHourSquareMeterDegreeCelsius, CaloriesPerHourSquareMeterDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(KilocaloriesPerHourSquareMeterDegreeCelsiusInOneWattPerSquareMeterKelvin, wattpersquaremeterkelvin.KilocaloriesPerHourSquareMeterDegreeCelsius, KilocaloriesPerHourSquareMeterDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(WattsPerSquareMeterCelsiusInOneWattPerSquareMeterKelvin, wattpersquaremeterkelvin.WattsPerSquareMeterCelsius, WattsPerSquareMeterCelsiusTolerance);
@@ -200,6 +205,7 @@ namespace UnitsNet.Tests
         {
             var wattpersquaremeterkelvin = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
             AssertEx.EqualTolerance(BtusPerHourSquareFootDegreeFahrenheitInOneWattPerSquareMeterKelvin, wattpersquaremeterkelvin.As(HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit), BtusPerHourSquareFootDegreeFahrenheitTolerance);
+            AssertEx.EqualTolerance(BtusPerSecondSquareInchDegreeFahrenheitInOneWattPerSquareMeterKelvin, wattpersquaremeterkelvin.As(HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit), BtusPerSecondSquareInchDegreeFahrenheitTolerance);
             AssertEx.EqualTolerance(CaloriesPerHourSquareMeterDegreeCelsiusInOneWattPerSquareMeterKelvin, wattpersquaremeterkelvin.As(HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius), CaloriesPerHourSquareMeterDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(KilocaloriesPerHourSquareMeterDegreeCelsiusInOneWattPerSquareMeterKelvin, wattpersquaremeterkelvin.As(HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius), KilocaloriesPerHourSquareMeterDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(WattsPerSquareMeterCelsiusInOneWattPerSquareMeterKelvin, wattpersquaremeterkelvin.As(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius), WattsPerSquareMeterCelsiusTolerance);
@@ -317,6 +323,10 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 Btu/(ft²·h·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, 4.2)]
         [InlineData("en-US", "4.2 Btu/(hr·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, 4.2)]
         [InlineData("en-US", "4.2 Btu/(ft²·hr·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, 4.2)]
+        [InlineData("en-US", "4.2 Btu/(s·in²·°F)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit, 4.2)]
+        [InlineData("en-US", "4.2 Btu/(in²·s·°F)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit, 4.2)]
+        [InlineData("en-US", "4.2 Btu/(s*in^2*degF)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit, 4.2)]
+        [InlineData("en-US", "4.2 Btu/(in^2*s*degF)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit, 4.2)]
         [InlineData("en-US", "4.2 kcal/(h·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, 4.2)]
         [InlineData("en-US", "4.2 kcal/(m²·h·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, 4.2)]
         [InlineData("en-US", "4.2 kcal/(hr·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, 4.2)]
@@ -340,6 +350,10 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 Btu/(ft²·h·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, 4.2)]
         [InlineData("en-US", "4.2 Btu/(hr·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, 4.2)]
         [InlineData("en-US", "4.2 Btu/(ft²·hr·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, 4.2)]
+        [InlineData("en-US", "4.2 Btu/(s·in²·°F)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit, 4.2)]
+        [InlineData("en-US", "4.2 Btu/(in²·s·°F)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit, 4.2)]
+        [InlineData("en-US", "4.2 Btu/(s*in^2*degF)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit, 4.2)]
+        [InlineData("en-US", "4.2 Btu/(in^2*s*degF)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit, 4.2)]
         [InlineData("en-US", "4.2 kcal/(h·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, 4.2)]
         [InlineData("en-US", "4.2 kcal/(m²·h·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, 4.2)]
         [InlineData("en-US", "4.2 kcal/(hr·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, 4.2)]
@@ -363,6 +377,10 @@ namespace UnitsNet.Tests
         [InlineData("Btu/(ft²·h·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
         [InlineData("Btu/(hr·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
         [InlineData("Btu/(ft²·hr·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("Btu/(s·in²·°F)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("Btu/(in²·s·°F)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("Btu/(s*in^2*degF)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("Btu/(in^2*s*degF)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
         [InlineData("kcal/(h·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
         [InlineData("kcal/(m²·h·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
         [InlineData("kcal/(hr·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
@@ -386,6 +404,10 @@ namespace UnitsNet.Tests
         [InlineData("Btu/(ft²·h·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
         [InlineData("Btu/(hr·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
         [InlineData("Btu/(ft²·hr·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("Btu/(s·in²·°F)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("Btu/(in²·s·°F)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("Btu/(s*in^2*degF)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("Btu/(in^2*s*degF)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
         [InlineData("kcal/(h·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
         [InlineData("kcal/(m²·h·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
         [InlineData("kcal/(hr·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
@@ -409,6 +431,10 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "Btu/(ft²·h·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
         [InlineData("en-US", "Btu/(hr·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
         [InlineData("en-US", "Btu/(ft²·hr·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(s·in²·°F)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(in²·s·°F)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(s*in^2*degF)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(in^2*s*degF)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
         [InlineData("en-US", "kcal/(h·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
         [InlineData("en-US", "kcal/(m²·h·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
         [InlineData("en-US", "kcal/(hr·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
@@ -431,6 +457,10 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "Btu/(ft²·h·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
         [InlineData("en-US", "Btu/(hr·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
         [InlineData("en-US", "Btu/(ft²·hr·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(s·in²·°F)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(in²·s·°F)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(s*in^2*degF)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(in^2*s*degF)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
         [InlineData("en-US", "kcal/(h·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
         [InlineData("en-US", "kcal/(m²·h·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
         [InlineData("en-US", "kcal/(hr·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
@@ -452,6 +482,10 @@ namespace UnitsNet.Tests
         [InlineData("Btu/(ft²·h·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
         [InlineData("Btu/(hr·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
         [InlineData("Btu/(ft²·hr·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("Btu/(s·in²·°F)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("Btu/(in²·s·°F)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("Btu/(s*in^2*degF)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("Btu/(in^2*s*degF)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
         [InlineData("kcal/(h·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
         [InlineData("kcal/(m²·h·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
         [InlineData("kcal/(hr·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
@@ -475,6 +509,10 @@ namespace UnitsNet.Tests
         [InlineData("Btu/(ft²·h·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
         [InlineData("Btu/(hr·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
         [InlineData("Btu/(ft²·hr·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("Btu/(s·in²·°F)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("Btu/(in²·s·°F)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("Btu/(s*in^2*degF)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("Btu/(in^2*s*degF)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
         [InlineData("kcal/(h·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
         [InlineData("kcal/(m²·h·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
         [InlineData("kcal/(hr·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
@@ -498,6 +536,10 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "Btu/(ft²·h·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
         [InlineData("en-US", "Btu/(hr·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
         [InlineData("en-US", "Btu/(ft²·hr·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(s·in²·°F)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(in²·s·°F)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(s*in^2*degF)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(in^2*s*degF)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
         [InlineData("en-US", "kcal/(h·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
         [InlineData("en-US", "kcal/(m²·h·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
         [InlineData("en-US", "kcal/(hr·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
@@ -520,6 +562,10 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "Btu/(ft²·h·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
         [InlineData("en-US", "Btu/(hr·ft²·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
         [InlineData("en-US", "Btu/(ft²·hr·°F)", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(s·in²·°F)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(in²·s·°F)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(s*in^2*degF)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/(in^2*s*degF)", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit)]
         [InlineData("en-US", "kcal/(h·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
         [InlineData("en-US", "kcal/(m²·h·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
         [InlineData("en-US", "kcal/(hr·m²·°C)", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius)]
@@ -538,6 +584,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, "Btu/(h·ft²·°F)")]
+        [InlineData("en-US", HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit, "Btu/(s·in²·°F)")]
         [InlineData("en-US", HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, "kcal/(h·m²·°C)")]
         [InlineData("en-US", HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius, "kkcal/(h·m²·°C)")]
         [InlineData("en-US", HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, "W/(m²·°C)")]
@@ -630,6 +677,7 @@ namespace UnitsNet.Tests
         {
             HeatTransferCoefficient wattpersquaremeterkelvin = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(3);
             Assert.Equal(3, HeatTransferCoefficient.FromBtusPerHourSquareFootDegreeFahrenheit(wattpersquaremeterkelvin.BtusPerHourSquareFootDegreeFahrenheit).WattsPerSquareMeterKelvin);
+            Assert.Equal(3, HeatTransferCoefficient.FromBtusPerSecondSquareInchDegreeFahrenheit(wattpersquaremeterkelvin.BtusPerSecondSquareInchDegreeFahrenheit).WattsPerSquareMeterKelvin);
             Assert.Equal(3, HeatTransferCoefficient.FromCaloriesPerHourSquareMeterDegreeCelsius(wattpersquaremeterkelvin.CaloriesPerHourSquareMeterDegreeCelsius).WattsPerSquareMeterKelvin);
             Assert.Equal(3, HeatTransferCoefficient.FromKilocaloriesPerHourSquareMeterDegreeCelsius(wattpersquaremeterkelvin.KilocaloriesPerHourSquareMeterDegreeCelsius).WattsPerSquareMeterKelvin);
             Assert.Equal(3, HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(wattpersquaremeterkelvin.WattsPerSquareMeterCelsius).WattsPerSquareMeterKelvin);
@@ -801,6 +849,7 @@ namespace UnitsNet.Tests
         {
             using var _ = new CultureScope("en-US");
             Assert.Equal("1 Btu/(h·ft²·°F)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit).ToString());
+            Assert.Equal("1 Btu/(s·in²·°F)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit).ToString());
             Assert.Equal("1 kcal/(h·m²·°C)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius).ToString());
             Assert.Equal("1 kkcal/(h·m²·°C)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius).ToString());
             Assert.Equal("1 W/(m²·°C)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius).ToString());
@@ -814,6 +863,7 @@ namespace UnitsNet.Tests
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
             Assert.Equal("1 Btu/(h·ft²·°F)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit).ToString(swedishCulture));
+            Assert.Equal("1 Btu/(s·in²·°F)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit).ToString(swedishCulture));
             Assert.Equal("1 kcal/(h·m²·°C)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius).ToString(swedishCulture));
             Assert.Equal("1 kkcal/(h·m²·°C)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.KilocaloriePerHourSquareMeterDegreeCelsius).ToString(swedishCulture));
             Assert.Equal("1 W/(m²·°C)", new HeatTransferCoefficient(1, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius).ToString(swedishCulture));

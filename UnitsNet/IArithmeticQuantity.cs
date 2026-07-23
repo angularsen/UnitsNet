@@ -22,7 +22,7 @@ namespace UnitsNet;
 ///     </para>
 /// </remarks>
 /// <typeparam name="TSelf">The type that implements this interface.</typeparam>
-public interface ILinearQuantity<TSelf> : IQuantityOfType<TSelf>
+public interface ILinearQuantity<TSelf> : IQuantityOfType<TSelf>, IArithmeticQuantity<TSelf>
 #if NET7_0_OR_GREATER
     , IAdditiveIdentity<TSelf, TSelf>
 #endif
@@ -67,20 +67,44 @@ public interface ILinearQuantity<TSelf> : IQuantityOfType<TSelf>
 }
 
 /// <summary>
+///     An <see cref="ILinearQuantity{TSelf}" /> with a strongly typed unit enum.
+/// </summary>
+/// <remarks>
+///     This interface represents linear quantities with known unit enum types, and (in .NET 7+) implements generic math
+///     interfaces for arithmetic operations.
+/// </remarks>
+/// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
+/// <typeparam name="TUnitType">The underlying unit enum type.</typeparam>
+public interface ILinearQuantity<TSelf, TUnitType> : IArithmeticQuantity<TSelf, TUnitType>, ILinearQuantity<TSelf>
+    where TSelf : ILinearQuantity<TSelf, TUnitType>
+    where TUnitType : struct, Enum
+{
+}
+
+/// <summary>
 ///     An <see cref="IQuantity{TSelf, TUnitType}" /> that (in .NET 7+) implements generic math interfaces for arithmetic
 ///     operations.
 /// </summary>
 /// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
 /// <typeparam name="TUnitType">The underlying unit enum type.</typeparam>
-public interface IArithmeticQuantity<TSelf, TUnitType> : IQuantity<TSelf, TUnitType>, ILinearQuantity<TSelf>
+public interface IArithmeticQuantity<TSelf, TUnitType> : IQuantity<TSelf, TUnitType>, IArithmeticQuantity<TSelf>
+    where TSelf : IArithmeticQuantity<TSelf, TUnitType>
+    where TUnitType : struct, Enum
+{
+}
+
+/// <summary>
+///     A quantity that (in .NET 7+) implements generic math interfaces for arithmetic operations.
+/// </summary>
+/// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
+public interface IArithmeticQuantity<TSelf>
 #if NET7_0_OR_GREATER
-    , IAdditionOperators<TSelf, TSelf, TSelf>
+    : IAdditionOperators<TSelf, TSelf, TSelf>
     , ISubtractionOperators<TSelf, TSelf, TSelf>
     , IMultiplyOperators<TSelf, QuantityValue, TSelf>
     , IDivisionOperators<TSelf, QuantityValue, TSelf>
     , IUnaryNegationOperators<TSelf, TSelf>
 #endif
-    where TSelf : IArithmeticQuantity<TSelf, TUnitType>
-    where TUnitType : struct, Enum
+    where TSelf : IArithmeticQuantity<TSelf>
 {
 }

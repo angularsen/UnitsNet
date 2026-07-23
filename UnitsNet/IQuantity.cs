@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 namespace UnitsNet
@@ -26,7 +26,7 @@ namespace UnitsNet
         Enum Unit { get; }
 
         /// <summary>
-        ///     The value this quantity was constructed with. See also <see cref="Unit" />.
+        ///     The value this quantity was constructed with. See also <see cref="Unit"/>.
         /// </summary>
         QuantityValue Value { get; }
 
@@ -42,7 +42,7 @@ namespace UnitsNet
 
     /// <summary>
     ///     A stronger typed interface where the unit enum type is known, to avoid passing in the
-    ///     wrong unit enum type and not having to cast from <see cref="Enum" />.
+    ///     wrong unit enum type and not having to cast from <see cref="Enum"/>.
     /// </summary>
     /// <example>
     ///     IQuantity{LengthUnit} length;
@@ -52,7 +52,7 @@ namespace UnitsNet
     public interface IQuantity<TUnitType> : IQuantity
         where TUnitType : struct, Enum
     {
-        /// <inheritdoc cref="IQuantity.Unit" />
+        /// <inheritdoc cref="IQuantity.Unit"/>
         new TUnitType Unit { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -110,7 +110,7 @@ namespace UnitsNet
         /// <returns>An instance of the quantity with the specified value and unit.</returns>
         public static abstract TQuantity Create(QuantityValue value, UnitKey unit);
 #else
-        /// <inheritdoc cref="IQuantity.QuantityInfo" />
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         new IQuantityInstanceInfo<TQuantity> QuantityInfo { get; }
 #endif
     }
@@ -152,7 +152,8 @@ namespace UnitsNet
             get => QuantityInfo;
         }
 #pragma warning restore CS0618
-        
+
 #endif
+
     }
 }

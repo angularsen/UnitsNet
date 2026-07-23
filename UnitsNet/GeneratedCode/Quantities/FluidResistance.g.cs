@@ -39,7 +39,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct FluidResistance :
-        IArithmeticQuantity<FluidResistance, FluidResistanceUnit>,
+        ILinearQuantity<FluidResistance, FluidResistanceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<FluidResistance, FluidResistance, QuantityValue>,
         IComparisonOperators<FluidResistance, FluidResistance, bool>,

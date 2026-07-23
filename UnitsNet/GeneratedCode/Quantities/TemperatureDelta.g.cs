@@ -36,7 +36,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct TemperatureDelta :
-        IArithmeticQuantity<TemperatureDelta, TemperatureDeltaUnit>,
+        ILinearQuantity<TemperatureDelta, TemperatureDeltaUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<TemperatureDelta, TemperatureDelta, QuantityValue>,
         IDivisionOperators<TemperatureDelta, TemperatureChangeRate, Duration>,

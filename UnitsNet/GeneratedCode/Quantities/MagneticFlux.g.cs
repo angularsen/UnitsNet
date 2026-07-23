@@ -39,7 +39,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct MagneticFlux :
-        IArithmeticQuantity<MagneticFlux, MagneticFluxUnit>,
+        ILinearQuantity<MagneticFlux, MagneticFluxUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<MagneticFlux, MagneticFlux, QuantityValue>,
         IComparisonOperators<MagneticFlux, MagneticFlux, bool>,

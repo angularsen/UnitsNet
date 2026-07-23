@@ -50,6 +50,14 @@ namespace UnitsNet.NumberExtensions.NumberToHeatTransferCoefficient
                 => HeatTransferCoefficient.FromBtusPerHourSquareFootDegreeFahrenheit(value.ToQuantityValue());
 #endif
 
+            /// <inheritdoc cref="HeatTransferCoefficient.FromBtusPerSecondSquareInchDegreeFahrenheit(QuantityValue)" />
+            public HeatTransferCoefficient BtusPerSecondSquareInchDegreeFahrenheit
+#if NET7_0_OR_GREATER
+                => HeatTransferCoefficient.FromBtusPerSecondSquareInchDegreeFahrenheit(QuantityValue.CreateChecked(value));
+#else
+                => HeatTransferCoefficient.FromBtusPerSecondSquareInchDegreeFahrenheit(value.ToQuantityValue());
+#endif
+
             /// <inheritdoc cref="HeatTransferCoefficient.FromCaloriesPerHourSquareMeterDegreeCelsius(QuantityValue)" />
             public HeatTransferCoefficient CaloriesPerHourSquareMeterDegreeCelsius
 #if NET7_0_OR_GREATER

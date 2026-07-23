@@ -36,7 +36,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct ElectricApparentEnergy :
-        IArithmeticQuantity<ElectricApparentEnergy, ElectricApparentEnergyUnit>,
+        ILinearQuantity<ElectricApparentEnergy, ElectricApparentEnergyUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricApparentEnergy, ElectricApparentEnergy, QuantityValue>,
         IComparisonOperators<ElectricApparentEnergy, ElectricApparentEnergy, bool>,

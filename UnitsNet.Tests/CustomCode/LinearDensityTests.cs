@@ -61,10 +61,31 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
+        public void LinearDensityDividedByAreaDensityEqualsLength()
+        {
+            Length length = LinearDensity.FromKilogramsPerMeter(20) / AreaDensity.FromKilogramsPerSquareMeter(2);
+            Assert.Equal(Length.FromMeters(10), length);
+        }
+
+        [Fact]
         public void LinearDensityDividedByDensityEqualsArea()
         {
             Area area = LinearDensity.FromGramsPerCentimeter(10) / Density.FromGramsPerCubicCentimeter(2);
             Assert.Equal(5, area.SquareCentimeters);
+        }
+
+        [Fact]
+        public void LinearDensityDividedByLengthEqualsAreaDensity()
+        {
+            AreaDensity areaDensity = LinearDensity.FromKilogramsPerMeter(20) / Length.FromMeters(2);
+            Assert.Equal(AreaDensity.FromKilogramsPerSquareMeter(10), areaDensity);
+        }
+
+        [Fact]
+        public void LinearDensityTimesAccelerationEqualsForcePerLength()
+        {
+            ForcePerLength forcePerLength = LinearDensity.FromKilogramsPerMeter(10) * Acceleration.FromMetersPerSecondSquared(2);
+            Assert.Equal(ForcePerLength.FromNewtonsPerMeter(20), forcePerLength);
         }
 
         [Fact]

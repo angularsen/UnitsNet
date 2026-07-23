@@ -39,7 +39,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct ThermalConductivity :
-        IArithmeticQuantity<ThermalConductivity, ThermalConductivityUnit>,
+        ILinearQuantity<ThermalConductivity, ThermalConductivityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ThermalConductivity, ThermalConductivity, QuantityValue>,
         IComparisonOperators<ThermalConductivity, ThermalConductivity, bool>,
@@ -121,6 +121,9 @@ namespace UnitsNet
             {
                 yield return new (ThermalConductivityUnit.BtuPerHourFootFahrenheit, "BtuPerHourFootFahrenheit", "BtusPerHourFootFahrenheit", BaseUnits.Undefined,
                      new QuantityValue(30480000000, 52752792631)
+                );
+                yield return new (ThermalConductivityUnit.BtuPerSecondInchFahrenheit, "BtuPerSecondInchFahrenheit", "BtusPerSecondInchFahrenheit", BaseUnits.Undefined,
+                     new QuantityValue(6350000, 474775133679)
                 );
                 yield return new (ThermalConductivityUnit.WattPerMeterKelvin, "WattPerMeterKelvin", "WattsPerMeterKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin));
             }
@@ -231,6 +234,11 @@ namespace UnitsNet
         public QuantityValue BtusPerHourFootFahrenheit => this.As(ThermalConductivityUnit.BtuPerHourFootFahrenheit);
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ThermalConductivityUnit.BtuPerSecondInchFahrenheit"/>
+        /// </summary>
+        public QuantityValue BtusPerSecondInchFahrenheit => this.As(ThermalConductivityUnit.BtuPerSecondInchFahrenheit);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ThermalConductivityUnit.WattPerMeterKelvin"/>
         /// </summary>
         public QuantityValue WattsPerMeterKelvin => this.As(ThermalConductivityUnit.WattPerMeterKelvin);
@@ -270,6 +278,14 @@ namespace UnitsNet
         public static ThermalConductivity FromBtusPerHourFootFahrenheit(QuantityValue value)
         {
             return new ThermalConductivity(value, ThermalConductivityUnit.BtuPerHourFootFahrenheit);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ThermalConductivity"/> from <see cref="ThermalConductivityUnit.BtuPerSecondInchFahrenheit"/>.
+        /// </summary>
+        public static ThermalConductivity FromBtusPerSecondInchFahrenheit(QuantityValue value)
+        {
+            return new ThermalConductivity(value, ThermalConductivityUnit.BtuPerSecondInchFahrenheit);
         }
 
         /// <summary>

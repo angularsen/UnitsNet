@@ -141,7 +141,7 @@ public static class LinearQuantityExtensions
     ///     when most of the quantities in the sequence are expected to be in the target unit.
     /// </remarks>
     public static TQuantity Sum<TQuantity, TUnit>(this IEnumerable<TQuantity> quantities, TUnit unit)
-        where TQuantity : ILinearQuantity<TQuantity>, IQuantity<TQuantity, TUnit>
+        where TQuantity : ILinearQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
         using IEnumerator<TQuantity> enumerator = quantities.GetEnumerator();
@@ -182,7 +182,7 @@ public static class LinearQuantityExtensions
     /// <returns>The sum of the projected quantities in the specified unit.</returns>
     /// <exception cref="ArgumentNullException">Thrown if the source or selector is null.</exception>
     public static TQuantity Sum<TSource, TQuantity, TUnit>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnit targetUnit)
-        where TQuantity : ILinearQuantity<TQuantity>, IQuantity<TQuantity, TUnit>
+        where TQuantity : ILinearQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
         return source.Select(selector).Sum(targetUnit);
@@ -235,7 +235,7 @@ public static class LinearQuantityExtensions
     ///     when most of the quantities in the sequence are expected to be in the target unit.
     /// </remarks>
     public static TQuantity Average<TQuantity, TUnit>(this IEnumerable<TQuantity> quantities, TUnit targetUnit)
-        where TQuantity : ILinearQuantity<TQuantity>, IQuantity<TQuantity, TUnit>
+        where TQuantity : ILinearQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
         return quantities.ArithmeticMean(targetUnit);
@@ -254,7 +254,7 @@ public static class LinearQuantityExtensions
     /// <returns>The average of the projected quantities in the specified unit.</returns>
     /// <exception cref="InvalidOperationException">Thrown when the sequence is empty.</exception>
     public static TQuantity Average<TSource, TQuantity, TUnit>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnit targetUnit)
-        where TQuantity : ILinearQuantity<TQuantity>, IQuantity<TQuantity, TUnit>
+        where TQuantity : ILinearQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
         return source.Select(selector).Average(targetUnit);

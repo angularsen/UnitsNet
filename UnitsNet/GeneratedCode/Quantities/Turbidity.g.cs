@@ -39,7 +39,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Turbidity :
-        IArithmeticQuantity<Turbidity, TurbidityUnit>,
+        ILinearQuantity<Turbidity, TurbidityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Turbidity, Turbidity, QuantityValue>,
         IComparisonOperators<Turbidity, Turbidity, bool>,

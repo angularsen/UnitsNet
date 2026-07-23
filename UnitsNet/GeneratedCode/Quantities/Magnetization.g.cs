@@ -39,7 +39,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Magnetization :
-        IArithmeticQuantity<Magnetization, MagnetizationUnit>,
+        ILinearQuantity<Magnetization, MagnetizationUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Magnetization, Magnetization, QuantityValue>,
         IComparisonOperators<Magnetization, Magnetization, bool>,

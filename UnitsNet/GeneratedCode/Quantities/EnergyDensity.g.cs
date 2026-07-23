@@ -36,7 +36,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct EnergyDensity :
-        IArithmeticQuantity<EnergyDensity, EnergyDensityUnit>,
+        ILinearQuantity<EnergyDensity, EnergyDensityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<EnergyDensity, EnergyDensity, QuantityValue>,
         IMultiplyOperators<EnergyDensity, Volume, Energy>,

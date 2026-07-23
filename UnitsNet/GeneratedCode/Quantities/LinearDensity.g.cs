@@ -39,11 +39,14 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct LinearDensity :
-        IArithmeticQuantity<LinearDensity, LinearDensityUnit>,
+        ILinearQuantity<LinearDensity, LinearDensityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<LinearDensity, LinearDensity, QuantityValue>,
         IDivisionOperators<LinearDensity, Density, Area>,
+        IDivisionOperators<LinearDensity, Length, AreaDensity>,
         IDivisionOperators<LinearDensity, Area, Density>,
+        IMultiplyOperators<LinearDensity, Acceleration, ForcePerLength>,
+        IDivisionOperators<LinearDensity, AreaDensity, Length>,
         IMultiplyOperators<LinearDensity, Length, Mass>,
         IComparisonOperators<LinearDensity, LinearDensity, bool>,
         IParsable<LinearDensity>,
@@ -743,10 +746,28 @@ namespace UnitsNet
             return Area.FromSquareMeters(linearDensity.KilogramsPerMeter / density.KilogramsPerCubicMeter);
         }
 
+        /// <summary>Get <see cref="AreaDensity"/> from <see cref="LinearDensity"/> / <see cref="Length"/>.</summary>
+        public static AreaDensity operator /(LinearDensity linearDensity, Length length)
+        {
+            return AreaDensity.FromKilogramsPerSquareMeter(linearDensity.KilogramsPerMeter / length.Meters);
+        }
+
         /// <summary>Get <see cref="Density"/> from <see cref="LinearDensity"/> / <see cref="Area"/>.</summary>
         public static Density operator /(LinearDensity linearDensity, Area area)
         {
             return Density.FromKilogramsPerCubicMeter(linearDensity.KilogramsPerMeter / area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="ForcePerLength"/> from <see cref="LinearDensity"/> * <see cref="Acceleration"/>.</summary>
+        public static ForcePerLength operator *(LinearDensity linearDensity, Acceleration acceleration)
+        {
+            return ForcePerLength.FromNewtonsPerMeter(linearDensity.KilogramsPerMeter * acceleration.MetersPerSecondSquared);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="LinearDensity"/> / <see cref="AreaDensity"/>.</summary>
+        public static Length operator /(LinearDensity linearDensity, AreaDensity areaDensity)
+        {
+            return Length.FromMeters(linearDensity.KilogramsPerMeter / areaDensity.KilogramsPerSquareMeter);
         }
 
         /// <summary>Get <see cref="Mass"/> from <see cref="LinearDensity"/> * <see cref="Length"/>.</summary>

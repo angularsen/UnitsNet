@@ -73,6 +73,40 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void CreateDefault_WithAdditionalQuantity_ReturnsCacheWithExtendedQuantityInfoLookup()
+        {
+            var unitAbbreviationCache = UnitAbbreviationsCache.CreateDefault(selector => selector.WithAdditionalQuantities([HowMuch.Info]));
+
+            Assert.NotEqual(UnitsNetSetup.Default.Quantities, unitAbbreviationCache.Quantities);
+            Assert.Equal("g", unitAbbreviationCache.GetUnitAbbreviations(MassUnit.Gram, AmericanCulture)[0]);
+            Assert.Empty(unitAbbreviationCache.GetUnitAbbreviations(HowMuchUnit.Some, AmericanCulture));
+        }
+
+        [Fact]
+        public void Create_WithBaseAndAdditionalQuantities_ReturnsConfiguredCache()
+        {
+            var unitAbbreviationCache = UnitAbbreviationsCache.Create([Mass.Info],
+                selector => selector.WithAdditionalQuantities([HowMuch.Info]));
+
+            Assert.Equal([Mass.Info, HowMuch.Info], unitAbbreviationCache.Quantities.Infos);
+            Assert.Throws<UnitNotFoundException>(() => unitAbbreviationCache.GetUnitAbbreviations(LengthUnit.Meter));
+        }
+
+        [Fact]
+        public void FactoryMethods_WithNullArguments_ThrowArgumentNullException()
+        {
+            Assert.Multiple(checks:
+            [
+                () => Assert.Equal("configureQuantities",
+                    Assert.Throws<ArgumentNullException>(() => UnitAbbreviationsCache.CreateDefault(null!)).ParamName),
+                () => Assert.Equal("defaultQuantities",
+                    Assert.Throws<ArgumentNullException>(() => UnitAbbreviationsCache.Create(null!, _ => { })).ParamName),
+                () => Assert.Equal("configureQuantities",
+                    Assert.Throws<ArgumentNullException>(() => UnitAbbreviationsCache.Create([Mass.Info], null!)).ParamName)
+            ]);
+        }
+
+        [Fact]
         public void UnitAbbreviationsCache_Default_ReturnsInstanceFromUnitsNetSetup()
         {
             Assert.Equal(UnitsNetSetup.Default.UnitAbbreviations, UnitAbbreviationsCache.Default);
@@ -105,12 +139,28 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void UnitInfoOverloads_WithUnitOutsideConfiguredQuantities_ThrowUnitNotFoundException()
+        {
+            var unitAbbreviationCache = new UnitAbbreviationsCache([Mass.Info]);
+            UnitInfo lengthUnitInfo = Length.Info[LengthUnit.Meter];
+
+            Assert.Multiple(checks:
+            [
+                () => Assert.Throws<UnitNotFoundException>(() => unitAbbreviationCache.GetUnitAbbreviations(lengthUnitInfo, AmericanCulture)),
+                () => Assert.Throws<UnitNotFoundException>(() => unitAbbreviationCache.GetDefaultAbbreviation(lengthUnitInfo, AmericanCulture)),
+                () => Assert.Throws<UnitNotFoundException>(() => unitAbbreviationCache.MapUnitToAbbreviation(lengthUnitInfo, AmericanCulture, "m")),
+                () => Assert.Throws<UnitNotFoundException>(() => unitAbbreviationCache.MapUnitToDefaultAbbreviation(lengthUnitInfo, AmericanCulture, "m"))
+            ]);
+        }
+
+        [Fact]
         public void GetDefaultAbbreviationReturnsTheExpectedAbbreviationWhenConstructedWithTheSpecificQuantityInfo()
         {
             Assert.Multiple(checks:
             [
                 () => { Assert.Equal("g", new UnitAbbreviationsCache([Mass.Info]).GetDefaultAbbreviation(MassUnit.Gram, AmericanCulture)); },
-                () => { Assert.Equal("g", new UnitAbbreviationsCache([Mass.Info]).GetDefaultAbbreviation(typeof(MassUnit), (int)MassUnit.Gram, AmericanCulture)); }
+                () => { Assert.Equal("g", new UnitAbbreviationsCache([Mass.Info]).GetDefaultAbbreviation(typeof(MassUnit), (int)MassUnit.Gram, AmericanCulture)); },
+                () => { Assert.Equal("g", new UnitAbbreviationsCache([Mass.Info]).GetDefaultAbbreviation(Mass.Info[MassUnit.Gram])); }
             ]);
         }
 
@@ -154,6 +204,14 @@ namespace UnitsNet.Tests
         public void GetDefaultAbbreviation_WithNullUnitType_ThrowsArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => UnitAbbreviationsCache.Default.GetDefaultAbbreviation(null!, 1));
+        }
+
+        [Fact]
+        public void GetDefaultAbbreviation_WithNullUnitInfo_ThrowsArgumentNullException()
+        {
+            var result = Assert.Throws<ArgumentNullException>(() => UnitAbbreviationsCache.Default.GetDefaultAbbreviation((UnitInfo)null!));
+
+            Assert.Equal("unitInfo", result.ParamName);
         }
 
         [Fact]
@@ -254,6 +312,14 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void MapUnitToDefaultAbbreviation_WithNullUnitInfo_ThrowsArgumentNullException()
+        {
+            var result = Assert.Throws<ArgumentNullException>(() => UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation((UnitInfo)null!, AmericanCulture, "x"));
+
+            Assert.Equal("unitInfo", result.ParamName);
+        }
+
+        [Fact]
         public void MapUnitToDefaultAbbreviation_GivenCustomAbbreviation_SetsAbbreviationUsedByQuantityToString()
         {
             // Use a distinct culture here so that we don't mess up other tests that may rely on the default cache.
@@ -274,6 +340,22 @@ namespace UnitsNet.Tests
             Assert.Equal("zz", cache.GetUnitAbbreviations(MassUnit.Gram).Last());
             Assert.Equal("g", cache.GetDefaultAbbreviation(MassUnit.Gram, AmericanCulture));
             Assert.DoesNotContain("zz", cache.GetUnitAbbreviations(MassUnit.Gram, AmericanCulture));
+        }
+
+        [Fact]
+        public void MapUnitToAbbreviation_WithNullUnitInfo_ThrowsArgumentNullException()
+        {
+            var result = Assert.Throws<ArgumentNullException>(() => UnitAbbreviationsCache.Default.MapUnitToAbbreviation((UnitInfo)null!, AmericanCulture, "x"));
+
+            Assert.Equal("unitInfo", result.ParamName);
+        }
+
+        [Fact]
+        public void GetUnitAbbreviations_WithNullUnitInfo_ThrowsArgumentNullException()
+        {
+            var result = Assert.Throws<ArgumentNullException>(() => UnitAbbreviationsCache.Default.GetUnitAbbreviations((UnitInfo)null!, AmericanCulture));
+
+            Assert.Equal("unitInfo", result.ParamName);
         }
 
         [Fact]

@@ -39,7 +39,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Illuminance :
-        IArithmeticQuantity<Illuminance, IlluminanceUnit>,
+        ILinearQuantity<Illuminance, IlluminanceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Illuminance, Illuminance, QuantityValue>,
         IMultiplyOperators<Illuminance, Area, LuminousFlux>,

@@ -36,7 +36,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct ThermalInsulance :
-        IArithmeticQuantity<ThermalInsulance, ThermalInsulanceUnit>,
+        ILinearQuantity<ThermalInsulance, ThermalInsulanceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ThermalInsulance, ThermalInsulance, QuantityValue>,
         IComparisonOperators<ThermalInsulance, ThermalInsulance, bool>,

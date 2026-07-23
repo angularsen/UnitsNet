@@ -36,7 +36,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct MolarEnergy :
-        IArithmeticQuantity<MolarEnergy, MolarEnergyUnit>,
+        ILinearQuantity<MolarEnergy, MolarEnergyUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<MolarEnergy, MolarEnergy, QuantityValue>,
         IMultiplyOperators<MolarEnergy, AmountOfSubstance, Energy>,

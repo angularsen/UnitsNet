@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using Newtonsoft.Json;
@@ -130,7 +131,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         {
             // Arrange
             var unitAbbreviationsCache = new UnitAbbreviationsCache([HowMuch.Info]);
-            unitAbbreviationsCache.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "s");
+            unitAbbreviationsCache.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, CultureInfo.InvariantCulture, "s");
             var settings = new JsonSerializerSettings { Converters = [new AbbreviatedUnitsConverter(new UnitParser(unitAbbreviationsCache))] };
 
             var quantity = HowMuch.From(1.2, HowMuchUnit.Some);
@@ -380,7 +381,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         {
             // Arrange
             var unitAbbreviationsCache = new UnitAbbreviationsCache([HowMuch.Info]);
-            unitAbbreviationsCache.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "s");
+            unitAbbreviationsCache.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, CultureInfo.InvariantCulture, "s");
             var settings = new JsonSerializerSettings { Converters = [new AbbreviatedUnitsConverter(new UnitParser(unitAbbreviationsCache))] };
 
             const string json = """{"Value":1.2,"Unit":"s","Type":"HowMuch"}""";

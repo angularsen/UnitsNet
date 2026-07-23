@@ -36,7 +36,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Torque :
-        IArithmeticQuantity<Torque, TorqueUnit>,
+        ILinearQuantity<Torque, TorqueUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Torque, Torque, QuantityValue>,
         IDivisionOperators<Torque, RotationalStiffness, Angle>,

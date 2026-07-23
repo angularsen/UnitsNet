@@ -2,11 +2,23 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using UnitsNet.Tests.CustomQuantities;
+using UnitsNet.InternalHelpers;
 
 namespace UnitsNet.Tests;
 
 public class LogarithmicQuantityExtensionsTest
 {
+    [Theory]
+    [InlineData(8, 3, 2)]
+    [InlineData(-8, 3, -2)]
+    [InlineData(-16, 2, double.NaN)]
+    public void MathHelper_RootN_ReturnsExpectedRoot(double number, int n, double expected)
+    {
+        double actual = MathHelper.RootN(number, n);
+
+        Assert.Equal(expected, actual);
+    }
+
     [Theory]
     [InlineData(1, 2)]
     [InlineData(100, 110)]

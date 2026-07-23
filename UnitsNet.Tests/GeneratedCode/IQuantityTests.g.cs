@@ -40,8 +40,9 @@ namespace UnitsNet.Tests
             Assertion(3, AmplitudeRatioUnit.DecibelVolt, Quantity.From(3, AmplitudeRatioUnit.DecibelVolt));
             Assertion(3, AngleUnit.Revolution, Quantity.From(3, AngleUnit.Revolution));
             Assertion(3, AreaUnit.UsSurveySquareFoot, Quantity.From(3, AreaUnit.UsSurveySquareFoot));
-            Assertion(3, AreaDensityUnit.MilligramPerSquareMeter, Quantity.From(3, AreaDensityUnit.MilligramPerSquareMeter));
+            Assertion(3, AreaDensityUnit.PoundPerThousandSquareFeet, Quantity.From(3, AreaDensityUnit.PoundPerThousandSquareFeet));
             Assertion(3, AreaMomentOfInertiaUnit.MillimeterToTheFourth, Quantity.From(3, AreaMomentOfInertiaUnit.MillimeterToTheFourth));
+            Assertion(3, AreaPerLengthUnit.SquareMillimeterPerMeter, Quantity.From(3, AreaPerLengthUnit.SquareMillimeterPerMeter));
             Assertion(3, BitRateUnit.TeraoctetPerSecond, Quantity.From(3, BitRateUnit.TeraoctetPerSecond));
             Assertion(3, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, Quantity.From(3, BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour));
             Assertion(3, CoefficientOfThermalExpansionUnit.PpmPerKelvin, Quantity.From(3, CoefficientOfThermalExpansionUnit.PpmPerKelvin));
@@ -82,7 +83,7 @@ namespace UnitsNet.Tests
             Assertion(3, ForcePerLengthUnit.TonneForcePerMillimeter, Quantity.From(3, ForcePerLengthUnit.TonneForcePerMillimeter));
             Assertion(3, FrequencyUnit.Terahertz, Quantity.From(3, FrequencyUnit.Terahertz));
             Assertion(3, FuelEfficiencyUnit.MilePerUsGallon, Quantity.From(3, FuelEfficiencyUnit.MilePerUsGallon));
-            Assertion(3, HeatFluxUnit.WattPerSquareMeter, Quantity.From(3, HeatFluxUnit.WattPerSquareMeter));
+            Assertion(3, HeatFluxUnit.WattPerSquareMillimeter, Quantity.From(3, HeatFluxUnit.WattPerSquareMillimeter));
             Assertion(3, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, Quantity.From(3, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
             Assertion(3, IlluminanceUnit.Millilux, Quantity.From(3, IlluminanceUnit.Millilux));
             Assertion(3, ImpulseUnit.SlugFootPerSecond, Quantity.From(3, ImpulseUnit.SlugFootPerSecond));
@@ -177,6 +178,7 @@ namespace UnitsNet.Tests
             Assertion(Area.Info, Area.Zero);
             Assertion(AreaDensity.Info, AreaDensity.Zero);
             Assertion(AreaMomentOfInertia.Info, AreaMomentOfInertia.Zero);
+            Assertion(AreaPerLength.Info, AreaPerLength.Zero);
             Assertion(BitRate.Info, BitRate.Zero);
             Assertion(BrakeSpecificFuelConsumption.Info, BrakeSpecificFuelConsumption.Zero);
             Assertion(CoefficientOfThermalExpansion.Info, CoefficientOfThermalExpansion.Zero);

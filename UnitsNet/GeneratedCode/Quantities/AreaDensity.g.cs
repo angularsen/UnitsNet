@@ -36,10 +36,14 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct AreaDensity :
-        IArithmeticQuantity<AreaDensity, AreaDensityUnit>,
+        ILinearQuantity<AreaDensity, AreaDensityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<AreaDensity, AreaDensity, QuantityValue>,
+        IDivisionOperators<AreaDensity, Length, Density>,
+        IDivisionOperators<AreaDensity, Density, Length>,
+        IMultiplyOperators<AreaDensity, Length, LinearDensity>,
         IMultiplyOperators<AreaDensity, Area, Mass>,
+        IMultiplyOperators<AreaDensity, Acceleration, Pressure>,
         IComparisonOperators<AreaDensity, AreaDensity, bool>,
         IParsable<AreaDensity>,
 #endif
@@ -123,6 +127,12 @@ namespace UnitsNet
                 yield return new (AreaDensityUnit.KilogramPerSquareMeter, "KilogramPerSquareMeter", "KilogramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
                 yield return new (AreaDensityUnit.MilligramPerSquareMeter, "MilligramPerSquareMeter", "MilligramsPerSquareMeter", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram),
                      1000000
+                );
+                yield return new (AreaDensityUnit.PoundPerSquareFoot, "PoundPerSquareFoot", "PoundsPerSquareFoot", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound),
+                     new QuantityValue(9290304, 45359237)
+                );
+                yield return new (AreaDensityUnit.PoundPerThousandSquareFeet, "PoundPerThousandSquareFeet", "PoundsPerThousandSquareFeet", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound),
+                     new QuantityValue(9290304000, 45359237)
                 );
             }
         }
@@ -241,6 +251,16 @@ namespace UnitsNet
         /// </summary>
         public QuantityValue MilligramsPerSquareMeter => this.As(AreaDensityUnit.MilligramPerSquareMeter);
 
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaDensityUnit.PoundPerSquareFoot"/>
+        /// </summary>
+        public QuantityValue PoundsPerSquareFoot => this.As(AreaDensityUnit.PoundPerSquareFoot);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaDensityUnit.PoundPerThousandSquareFeet"/>
+        /// </summary>
+        public QuantityValue PoundsPerThousandSquareFeet => this.As(AreaDensityUnit.PoundPerThousandSquareFeet);
+
         #endregion
 
         #region Static Methods
@@ -292,6 +312,22 @@ namespace UnitsNet
         public static AreaDensity FromMilligramsPerSquareMeter(QuantityValue value)
         {
             return new AreaDensity(value, AreaDensityUnit.MilligramPerSquareMeter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.PoundPerSquareFoot"/>.
+        /// </summary>
+        public static AreaDensity FromPoundsPerSquareFoot(QuantityValue value)
+        {
+            return new AreaDensity(value, AreaDensityUnit.PoundPerSquareFoot);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="AreaDensity"/> from <see cref="AreaDensityUnit.PoundPerThousandSquareFeet"/>.
+        /// </summary>
+        public static AreaDensity FromPoundsPerThousandSquareFeet(QuantityValue value)
+        {
+            return new AreaDensity(value, AreaDensityUnit.PoundPerThousandSquareFeet);
         }
 
         /// <summary>
@@ -492,10 +528,34 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Get <see cref="Density"/> from <see cref="AreaDensity"/> / <see cref="Length"/>.</summary>
+        public static Density operator /(AreaDensity areaDensity, Length length)
+        {
+            return Density.FromKilogramsPerCubicMeter(areaDensity.KilogramsPerSquareMeter / length.Meters);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="AreaDensity"/> / <see cref="Density"/>.</summary>
+        public static Length operator /(AreaDensity areaDensity, Density density)
+        {
+            return Length.FromMeters(areaDensity.KilogramsPerSquareMeter / density.KilogramsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="LinearDensity"/> from <see cref="AreaDensity"/> * <see cref="Length"/>.</summary>
+        public static LinearDensity operator *(AreaDensity areaDensity, Length length)
+        {
+            return LinearDensity.FromKilogramsPerMeter(areaDensity.KilogramsPerSquareMeter * length.Meters);
+        }
+
         /// <summary>Get <see cref="Mass"/> from <see cref="AreaDensity"/> * <see cref="Area"/>.</summary>
         public static Mass operator *(AreaDensity areaDensity, Area area)
         {
             return Mass.FromKilograms(areaDensity.KilogramsPerSquareMeter * area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="AreaDensity"/> * <see cref="Acceleration"/>.</summary>
+        public static Pressure operator *(AreaDensity areaDensity, Acceleration acceleration)
+        {
+            return Pressure.FromPascals(areaDensity.KilogramsPerSquareMeter * acceleration.MetersPerSecondSquared);
         }
 
         #endregion

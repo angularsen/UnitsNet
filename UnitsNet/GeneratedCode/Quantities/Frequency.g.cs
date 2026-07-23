@@ -36,7 +36,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Frequency :
-        IArithmeticQuantity<Frequency, FrequencyUnit>,
+        ILinearQuantity<Frequency, FrequencyUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Frequency, Frequency, QuantityValue>,
         IMultiplyOperators<Frequency, Energy, Power>,

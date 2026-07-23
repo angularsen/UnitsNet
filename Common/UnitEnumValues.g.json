@@ -86,7 +86,9 @@
   "AreaDensity": {
     "KilogramPerSquareMeter": 1,
     "GramPerSquareMeter": 6,
-    "MilligramPerSquareMeter": 10
+    "MilligramPerSquareMeter": 10,
+    "PoundPerThousandSquareFeet": 3,
+    "PoundPerSquareFoot": 8
   },
   "AreaMomentOfInertia": {
     "CentimeterToTheFourth": 1,
@@ -568,7 +570,14 @@
     "PoundPerSecondCubed": 15,
     "WattPerSquareFoot": 16,
     "WattPerSquareInch": 17,
-    "WattPerSquareMeter": 18
+    "WattPerSquareMeter": 18,
+    "CentiwattPerSquareMillimeter": 22,
+    "DeciwattPerSquareMillimeter": 28,
+    "KilowattPerSquareMillimeter": 24,
+    "MicrowattPerSquareMillimeter": 20,
+    "MilliwattPerSquareMillimeter": 26,
+    "NanowattPerSquareMillimeter": 25,
+    "WattPerSquareMillimeter": 19
   },
   "HeatTransferCoefficient": {
     "BtuPerSquareFootDegreeFahrenheit": 1,
@@ -576,7 +585,8 @@
     "WattPerSquareMeterKelvin": 3,
     "BtuPerHourSquareFootDegreeFahrenheit": 11,
     "KilocaloriePerHourSquareMeterDegreeCelsius": 8,
-    "CaloriePerHourSquareMeterDegreeCelsius": 5
+    "CaloriePerHourSquareMeterDegreeCelsius": 5,
+    "BtuPerSecondSquareInchDegreeFahrenheit": 4
   },
   "Illuminance": {
     "Kilolux": 1,
@@ -1133,7 +1143,9 @@
     "WattPerCubicFoot": 41,
     "WattPerCubicInch": 42,
     "WattPerCubicMeter": 43,
-    "WattPerLiter": 44
+    "WattPerLiter": 44,
+    "BtuPerSecondCubicFoot": 47,
+    "BtuPerSecondCubicInch": 51
   },
   "PowerRatio": {
     "DecibelMilliwatt": 1,
@@ -1492,7 +1504,8 @@
   },
   "ThermalConductivity": {
     "BtuPerHourFootFahrenheit": 1,
-    "WattPerMeterKelvin": 2
+    "WattPerMeterKelvin": 2,
+    "BtuPerSecondInchFahrenheit": 6
   },
   "ThermalResistance": {
     "DegreeCelsiusPerWatt": 10,
@@ -2021,5 +2034,13 @@
     "SquareMeterKelvinPerKilowatt": 5,
     "SquareMeterKelvinPerWatt": 4,
     "SquareMillimeterKelvinPerWatt": 13
+  },
+  "AreaPerLength": {
+    "SquareCentimeterPerMeter": 10,
+    "SquareFootPerFoot": 4,
+    "SquareInchPerFoot": 3,
+    "SquareInchPerInch": 7,
+    "SquareMeterPerMeter": 1,
+    "SquareMillimeterPerMeter": 5
   }
 }

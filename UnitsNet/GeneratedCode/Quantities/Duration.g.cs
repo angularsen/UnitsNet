@@ -36,7 +36,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Duration :
-        IArithmeticQuantity<Duration, DurationUnit>,
+        ILinearQuantity<Duration, DurationUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Duration, Duration, QuantityValue>,
         IMultiplyOperators<Duration, Jerk, Acceleration>,

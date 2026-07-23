@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.Linq;
@@ -6,37 +6,46 @@ using System.Linq;
 namespace UnitsNet;
 
 /// <summary>
-///     Provides functionality to select and configure quantities for use within the UnitsNet library.
+///     Selects the quantities used to construct an isolated UnitsNet component or setup.
 /// </summary>
-/// <remarks>
-///     This class allows for the selection of default quantities, addition of custom quantities, and configuration of
-///     specific quantities.
-///     It supports lazy loading of quantities and can be used to build a collection of quantity information dynamically at
-///     runtime.
-/// </remarks>
 public sealed class QuantitiesSelector
 {
-    private readonly Func<IEnumerable<QuantityInfo>> _defaultQuantitiesSelection;
+    private readonly Func<IEnumerable<QuantityInfo>> _defaultQuantities;
     private IEnumerable<QuantityInfo>? _additionalQuantities;
     private QuantitiesInfoBuilder? _quantitiesInfoBuilder;
 
-    internal QuantitiesSelector(Func<IEnumerable<QuantityInfo>> defaultQuantitiesSelection)
+    internal QuantitiesSelector(Func<IEnumerable<QuantityInfo>> defaultQuantities)
     {
-        _defaultQuantitiesSelection = defaultQuantitiesSelection;
+        _defaultQuantities = defaultQuantities ?? throw new ArgumentNullException(nameof(defaultQuantities));
     }
 
     /// <summary>
-    ///     Adds additional quantities to the current selection.
+    ///     Appends external quantity definitions to the current selection.
     /// </summary>
-    /// <param name="quantities">The quantities to be added.</param>
-    /// <returns>The current <see cref="QuantitiesSelector" /> instance with the additional quantities included.</returns>
-    /// <remarks>
-    ///     This method allows for the dynamic addition of custom quantities to the existing selection of quantities.
-    /// </remarks>
+    /// <param name="quantities">The quantity definitions to append.</param>
+    /// <returns>This selector, for method chaining.</returns>
     public QuantitiesSelector WithAdditionalQuantities(IEnumerable<QuantityInfo> quantities)
     {
+        if (quantities is null) throw new ArgumentNullException(nameof(quantities));
+
         _additionalQuantities = _additionalQuantities?.Concat(quantities) ?? quantities;
         return this;
+    }
+
+    internal IEnumerable<QuantityInfo> GetQuantityInfos()
+    {
+        IEnumerable<QuantityInfo> quantities = _defaultQuantities();
+        if (_additionalQuantities is not null)
+        {
+            quantities = quantities.Concat(_additionalQuantities);
+        }
+
+        if (_quantitiesInfoBuilder is not null)
+        {
+            quantities = quantities.Select(_quantitiesInfoBuilder.CreateOrDefault);
+        }
+
+        return quantities;
     }
 
     /// <summary>
@@ -57,40 +66,11 @@ public sealed class QuantitiesSelector
         where TQuantity : IQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
+        if (createCustomConfigurationDelegate is null) throw new ArgumentNullException(nameof(createCustomConfigurationDelegate));
+
         _quantitiesInfoBuilder ??= new QuantitiesInfoBuilder();
         _quantitiesInfoBuilder.ConfigureQuantity(createCustomConfigurationDelegate);
         return this;
-    }
-
-    /// <summary>
-    ///     Retrieves the selected collection of <see cref="QuantityInfo" /> objects based on the current configuration.
-    /// </summary>
-    /// <remarks>
-    ///     This method combines the default quantities, any additional quantities, and applies custom configurations
-    ///     if a <see cref="QuantitiesInfoBuilder" /> is provided.
-    /// </remarks>
-    /// <returns>
-    ///     An <see cref="IEnumerable{T}" /> of <see cref="QuantityInfo" /> representing the selected quantities.
-    /// </returns>
-    internal IEnumerable<QuantityInfo> GetQuantityInfos()
-    {
-        if (_quantitiesInfoBuilder is null && _additionalQuantities is null)
-        {
-            return _defaultQuantitiesSelection();
-        }
-
-        IEnumerable<QuantityInfo> enumeration = _defaultQuantitiesSelection();
-        if (_additionalQuantities is not null)
-        {
-            enumeration = enumeration.Concat(_additionalQuantities);
-        }
-
-        if (_quantitiesInfoBuilder is not null)
-        {
-            enumeration = enumeration.Select(_quantitiesInfoBuilder.CreateOrDefault);
-        }
-
-        return enumeration;
     }
 
     /// <summary>
@@ -121,6 +101,8 @@ public sealed class QuantitiesSelector
         where TQuantity : IQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
+        if (defaultConfiguration is null) throw new ArgumentNullException(nameof(defaultConfiguration));
+
         return _quantitiesInfoBuilder is null ? defaultConfiguration() : _quantitiesInfoBuilder.CreateOrDefault(defaultConfiguration);
     }
 }

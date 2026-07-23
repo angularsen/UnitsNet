@@ -50,6 +50,14 @@ namespace UnitsNet.NumberExtensions.NumberToThermalConductivity
                 => ThermalConductivity.FromBtusPerHourFootFahrenheit(value.ToQuantityValue());
 #endif
 
+            /// <inheritdoc cref="ThermalConductivity.FromBtusPerSecondInchFahrenheit(QuantityValue)" />
+            public ThermalConductivity BtusPerSecondInchFahrenheit
+#if NET7_0_OR_GREATER
+                => ThermalConductivity.FromBtusPerSecondInchFahrenheit(QuantityValue.CreateChecked(value));
+#else
+                => ThermalConductivity.FromBtusPerSecondInchFahrenheit(value.ToQuantityValue());
+#endif
+
             /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(QuantityValue)" />
             public ThermalConductivity WattsPerMeterKelvin
 #if NET7_0_OR_GREATER

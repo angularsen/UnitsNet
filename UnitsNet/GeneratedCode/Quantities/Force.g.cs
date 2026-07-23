@@ -36,7 +36,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Force :
-        IArithmeticQuantity<Force, ForceUnit>,
+        ILinearQuantity<Force, ForceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Force, Force, QuantityValue>,
         IDivisionOperators<Force, Mass, Acceleration>,
@@ -50,7 +50,9 @@ namespace UnitsNet
         IMultiplyOperators<Force, Speed, Power>,
         IMultiplyOperators<Force, ReciprocalArea, Pressure>,
         IDivisionOperators<Force, Area, Pressure>,
+        IDivisionOperators<Force, Volume, SpecificWeight>,
         IMultiplyOperators<Force, Length, Torque>,
+        IDivisionOperators<Force, SpecificWeight, Volume>,
         IComparisonOperators<Force, Force, bool>,
         IParsable<Force>,
 #endif
@@ -777,10 +779,22 @@ namespace UnitsNet
             return Pressure.FromPascals(force.Newtons / area.SquareMeters);
         }
 
+        /// <summary>Get <see cref="SpecificWeight"/> from <see cref="Force"/> / <see cref="Volume"/>.</summary>
+        public static SpecificWeight operator /(Force force, Volume volume)
+        {
+            return SpecificWeight.FromNewtonsPerCubicMeter(force.Newtons / volume.CubicMeters);
+        }
+
         /// <summary>Get <see cref="Torque"/> from <see cref="Force"/> * <see cref="Length"/>.</summary>
         public static Torque operator *(Force force, Length length)
         {
             return Torque.FromNewtonMeters(force.Newtons * length.Meters);
+        }
+
+        /// <summary>Get <see cref="Volume"/> from <see cref="Force"/> / <see cref="SpecificWeight"/>.</summary>
+        public static Volume operator /(Force force, SpecificWeight specificWeight)
+        {
+            return Volume.FromCubicMeters(force.Newtons / specificWeight.NewtonsPerCubicMeter);
         }
 
         #endregion

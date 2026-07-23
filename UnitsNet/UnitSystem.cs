@@ -16,11 +16,11 @@ namespace UnitsNet
         /// <summary>
         /// Creates an instance of a unit system with the specified base units.
         /// </summary>
-        /// <param name="baseUnits">The base units for the unit system.</param>
+        /// <param name="baseUnits">One or more base units that define the unit system.</param>
         public UnitSystem(BaseUnits baseUnits)
         {
             if (baseUnits is null) throw new ArgumentNullException(nameof(baseUnits));
-            if(baseUnits == BaseUnits.Undefined) throw new ArgumentException("A unit system must at least some base units defined.", nameof(baseUnits));
+            if (baseUnits == BaseUnits.Undefined) throw new ArgumentException("A unit system must define at least one base unit.", nameof(baseUnits));
 
             BaseUnits = baseUnits;
         }
@@ -64,7 +64,7 @@ namespace UnitsNet
         /// <inheritdoc />
         public override int GetHashCode()
         {
-            return BaseUnits.GetHashCode();
+            return new {BaseUnits}.GetHashCode();
         }
 
         /// <summary>
@@ -72,10 +72,12 @@ namespace UnitsNet
         /// </summary>
         public BaseUnits BaseUnits{ get; }
 
+        private static readonly BaseUnits SIBaseUnits = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
+            ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
+
         /// <summary>
         /// Gets the SI unit system.
         /// </summary>
-        public static UnitSystem SI { get; } = new UnitSystem(new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
-            ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela));
+        public static UnitSystem SI { get; } = new UnitSystem(SIBaseUnits);
     }
 }

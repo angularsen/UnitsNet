@@ -39,7 +39,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Permeability :
-        IArithmeticQuantity<Permeability, PermeabilityUnit>,
+        ILinearQuantity<Permeability, PermeabilityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Permeability, Permeability, QuantityValue>,
         IComparisonOperators<Permeability, Permeability, bool>,

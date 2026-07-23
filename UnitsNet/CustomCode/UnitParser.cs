@@ -83,56 +83,52 @@ public sealed class UnitParser
     }
 
     /// <summary>
-    ///     Creates an instance of <see cref="UnitParser" /> with the default quantities.
+    ///     Creates a parser for the built-in quantities and any additions made by <paramref name="configureQuantities" />.
     /// </summary>
-    /// <param name="configureQuantities">An action to configure the default quantities.</param>
-    /// <returns>An instance of <see cref="UnitParser" /> configured with the default quantities.</returns>
+    /// <param name="configureQuantities">Configures the selected quantities.</param>
+    /// <returns>A parser for the configured quantity selection.</returns>
     public static UnitParser CreateDefault(Action<QuantitiesSelector> configureQuantities)
     {
         return new UnitParser(UnitAbbreviationsCache.CreateDefault(configureQuantities));
     }
 
     /// <summary>
-    ///     Creates an instance of <see cref="UnitParser" /> with the default quantities.
+    ///     Creates a parser for the built-in quantities, with configurable quantities and abbreviations.
     /// </summary>
-    /// <param name="configureQuantities">An action to configure the default quantities.</param>
-    /// <param name="configureAbbreviations">
-    ///     An action to configure the unit abbreviations.
-    /// </param>
-    /// <returns>An instance of <see cref="UnitParser" /> configured with the default quantities.</returns>
+    /// <param name="configureQuantities">Configures the selected quantities.</param>
+    /// <param name="configureAbbreviations">Configures abbreviations before constructing the parser.</param>
+    /// <returns>A parser for the configured quantities and abbreviations.</returns>
     public static UnitParser CreateDefault(Action<QuantitiesSelector> configureQuantities, Action<UnitAbbreviationsCache> configureAbbreviations)
     {
-        var unitAbbreviationsCache = UnitAbbreviationsCache.CreateDefault(configureQuantities);
-        configureAbbreviations(unitAbbreviationsCache);
-        return new UnitParser(unitAbbreviationsCache);
+        return Create(Quantity.DefaultProvider.Quantities, configureQuantities, configureAbbreviations);
     }
 
     /// <summary>
-    ///     Creates an instance of the <see cref="UnitParser" /> class.
+    ///     Creates a parser for a configured selection based on <paramref name="defaultQuantities" />.
     /// </summary>
-    /// <param name="defaultQuantities">A collection of default quantities to be used by the <see cref="UnitParser" />.</param>
-    /// <param name="configureQuantities">An action to configure the quantities using a <see cref="QuantitiesSelector" />.</param>
-    /// <returns>A new instance of the <see cref="UnitParser" /> class.</returns>
+    /// <param name="defaultQuantities">The initial quantity definitions.</param>
+    /// <param name="configureQuantities">Configures the selected quantities.</param>
+    /// <returns>A parser for the configured quantity selection.</returns>
     public static UnitParser Create(IEnumerable<QuantityInfo> defaultQuantities, Action<QuantitiesSelector> configureQuantities)
     {
         return new UnitParser(UnitAbbreviationsCache.Create(defaultQuantities, configureQuantities));
     }
 
     /// <summary>
-    ///     Creates an instance of the <see cref="UnitParser" /> class.
+    ///     Creates a parser for a base catalog, with configurable quantities and abbreviations.
     /// </summary>
-    /// <param name="defaultQuantities">A collection of default quantities to be used by the <see cref="UnitParser" />.</param>
-    /// <param name="configureQuantities">An action to configure the quantities using a <see cref="QuantitiesSelector" />.</param>
-    /// <param name="configureAbbreviations">
-    ///     An action to configure the unit abbreviations.
-    /// </param>
-    /// <returns>A new instance of the <see cref="UnitParser" /> class.</returns>
+    /// <param name="defaultQuantities">The initial quantity definitions.</param>
+    /// <param name="configureQuantities">Configures the selected quantities.</param>
+    /// <param name="configureAbbreviations">Configures abbreviations before constructing the parser.</param>
+    /// <returns>A parser for the configured quantities and abbreviations.</returns>
     public static UnitParser Create(IEnumerable<QuantityInfo> defaultQuantities, Action<QuantitiesSelector> configureQuantities,
         Action<UnitAbbreviationsCache> configureAbbreviations)
     {
-        var unitAbbreviationsCache = UnitAbbreviationsCache.Create(defaultQuantities, configureQuantities);
-        configureAbbreviations(unitAbbreviationsCache);
-        return new UnitParser(unitAbbreviationsCache);
+        if (configureAbbreviations is null) throw new ArgumentNullException(nameof(configureAbbreviations));
+
+        var unitAbbreviations = UnitAbbreviationsCache.Create(defaultQuantities, configureQuantities);
+        configureAbbreviations(unitAbbreviations);
+        return new UnitParser(unitAbbreviations);
     }
 
     /// <summary>

@@ -36,7 +36,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Speed :
-        IArithmeticQuantity<Speed, SpeedUnit>,
+        ILinearQuantity<Speed, SpeedUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Speed, Speed, QuantityValue>,
         IDivisionOperators<Speed, Duration, Acceleration>,

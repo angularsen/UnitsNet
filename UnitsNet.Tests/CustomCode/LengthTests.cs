@@ -108,10 +108,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void LengthTimesAreaDensityEqualsLinearDensity()
+        {
+            LinearDensity linearDensity = Length.FromMeters(2) * AreaDensity.FromKilogramsPerSquareMeter(10);
+            Assert.Equal(LinearDensity.FromKilogramsPerMeter(20), linearDensity);
+        }
+
+        [Fact]
         public void LengthTimesAreaEqualsVolume()
         {
             Volume volume = Length.FromMeters(3) * Area.FromSquareMeters(9);
             Assert.Equal(volume, Volume.FromCubicMeters(27));
+        }
+
+        [Fact]
+        public void LengthTimesDensityEqualsAreaDensity()
+        {
+            AreaDensity areaDensity = Length.FromMeters(2) * Density.FromKilogramsPerCubicMeter(10);
+            Assert.Equal(AreaDensity.FromKilogramsPerSquareMeter(20), areaDensity);
         }
 
         [Fact]

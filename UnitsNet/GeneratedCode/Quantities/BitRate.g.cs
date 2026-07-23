@@ -39,7 +39,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct BitRate :
-        IArithmeticQuantity<BitRate, BitRateUnit>,
+        ILinearQuantity<BitRate, BitRateUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<BitRate, BitRate, QuantityValue>,
         IComparisonOperators<BitRate, BitRate, bool>,

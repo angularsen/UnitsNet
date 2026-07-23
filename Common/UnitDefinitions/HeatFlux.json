@@ -25,6 +25,23 @@
       ]
     },
     {
+      "SingularName": "WattPerSquareMillimeter",
+      "PluralName": "WattsPerSquareMillimeter",
+      "BaseUnits": {
+        "M": "Kilogram",
+        "T": "Second"
+      },
+      "FromUnitToBaseFunc": "{x} / 1e-6",
+      "FromBaseToUnitFunc": "{x} * 1e-6",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "W/mm²" ]
+        }
+      ]
+    },
+    {
       "SingularName": "WattPerSquareInch",
       "PluralName": "WattsPerSquareInch",
       "FromUnitToBaseFunc": "{x} / (2.54e-2 * 2.54e-2)",

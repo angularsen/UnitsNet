@@ -22,7 +22,7 @@ public enum ClassOfLinearQuantityUnit
 /// </summary>
 [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
 [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
-public class ClassOfLinearQuantity(QuantityValue value, ClassOfLinearQuantityUnit unit) : IArithmeticQuantity<ClassOfLinearQuantity, ClassOfLinearQuantityUnit>
+public class ClassOfLinearQuantity(QuantityValue value, ClassOfLinearQuantityUnit unit) : ILinearQuantity<ClassOfLinearQuantity, ClassOfLinearQuantityUnit>
 {
     public static QuantityInfo<ClassOfLinearQuantity, ClassOfLinearQuantityUnit> Info { get; } = new(
         ClassOfLinearQuantityUnit.Some,

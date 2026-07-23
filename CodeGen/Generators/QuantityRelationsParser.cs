@@ -136,12 +136,13 @@ namespace CodeGen.Generators
                 var text = File.ReadAllText(relationsFileName);
 
                 // Explicitly sort to keep the file consistent.
-                var relationStringsOrdered = (JsonConvert.DeserializeObject<List<string>>(text) ?? []).ToImmutableSortedSet(StringComparer.OrdinalIgnoreCase);
+                var relationStrings = JsonConvert.DeserializeObject<List<string>>(text)
+                    ?.ToImmutableSortedSet(StringComparer.OrdinalIgnoreCase) ?? [];
 
-                var parsedRelations = relationStringsOrdered.Select(relationString => ParseRelation(relationString, quantities)).ToList();
+                var parsedRelations = relationStrings.Select(relationString => ParseRelation(relationString, quantities)).ToList();
 
                 // File parsed successfully, save it back to disk in the sorted state.
-                File.WriteAllText(relationsFileName, JsonConvert.SerializeObject(relationStringsOrdered, Formatting.Indented));
+                File.WriteAllText(relationsFileName, JsonConvert.SerializeObject(relationStrings, Formatting.Indented));
 
                 return parsedRelations;
             }

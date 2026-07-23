@@ -337,10 +337,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("en-US", "4.2 kkmol/h", MolarFlowUnit.KilomolePerHour, 4.2)]
+        [InlineData("en-US", "4.2 kmol/h", MolarFlowUnit.KilomolePerHour, 4.2)]
         [InlineData("en-US", "4.2 kmol/min", MolarFlowUnit.KilomolePerMinute, 4.2)]
         [InlineData("en-US", "4.2 kmol/s", MolarFlowUnit.KilomolePerSecond, 4.2)]
-        [InlineData("en-US", "4.2 kmol/h", MolarFlowUnit.MolePerHour, 4.2)]
+        [InlineData("en-US", "4.2 mol/h", MolarFlowUnit.MolePerHour, 4.2)]
         [InlineData("en-US", "4.2 mol/min", MolarFlowUnit.MolePerMinute, 4.2)]
         [InlineData("en-US", "4.2 mol/s", MolarFlowUnit.MolePerSecond, 4.2)]
         [InlineData("en-US", "4.2 lbmol/h", MolarFlowUnit.PoundMolePerHour, 4.2)]
@@ -355,10 +355,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("en-US", "4.2 kkmol/h", MolarFlowUnit.KilomolePerHour, 4.2)]
+        [InlineData("en-US", "4.2 kmol/h", MolarFlowUnit.KilomolePerHour, 4.2)]
         [InlineData("en-US", "4.2 kmol/min", MolarFlowUnit.KilomolePerMinute, 4.2)]
         [InlineData("en-US", "4.2 kmol/s", MolarFlowUnit.KilomolePerSecond, 4.2)]
-        [InlineData("en-US", "4.2 kmol/h", MolarFlowUnit.MolePerHour, 4.2)]
+        [InlineData("en-US", "4.2 mol/h", MolarFlowUnit.MolePerHour, 4.2)]
         [InlineData("en-US", "4.2 mol/min", MolarFlowUnit.MolePerMinute, 4.2)]
         [InlineData("en-US", "4.2 mol/s", MolarFlowUnit.MolePerSecond, 4.2)]
         [InlineData("en-US", "4.2 lbmol/h", MolarFlowUnit.PoundMolePerHour, 4.2)]
@@ -373,10 +373,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("kkmol/h", MolarFlowUnit.KilomolePerHour)]
+        [InlineData("kmol/h", MolarFlowUnit.KilomolePerHour)]
         [InlineData("kmol/min", MolarFlowUnit.KilomolePerMinute)]
         [InlineData("kmol/s", MolarFlowUnit.KilomolePerSecond)]
-        [InlineData("kmol/h", MolarFlowUnit.MolePerHour)]
+        [InlineData("mol/h", MolarFlowUnit.MolePerHour)]
         [InlineData("mol/min", MolarFlowUnit.MolePerMinute)]
         [InlineData("mol/s", MolarFlowUnit.MolePerSecond)]
         [InlineData("lbmol/h", MolarFlowUnit.PoundMolePerHour)]
@@ -391,10 +391,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("kkmol/h", MolarFlowUnit.KilomolePerHour)]
+        [InlineData("kmol/h", MolarFlowUnit.KilomolePerHour)]
         [InlineData("kmol/min", MolarFlowUnit.KilomolePerMinute)]
         [InlineData("kmol/s", MolarFlowUnit.KilomolePerSecond)]
-        [InlineData("kmol/h", MolarFlowUnit.MolePerHour)]
+        [InlineData("mol/h", MolarFlowUnit.MolePerHour)]
         [InlineData("mol/min", MolarFlowUnit.MolePerMinute)]
         [InlineData("mol/s", MolarFlowUnit.MolePerSecond)]
         [InlineData("lbmol/h", MolarFlowUnit.PoundMolePerHour)]
@@ -409,10 +409,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("en-US", "kkmol/h", MolarFlowUnit.KilomolePerHour)]
+        [InlineData("en-US", "kmol/h", MolarFlowUnit.KilomolePerHour)]
         [InlineData("en-US", "kmol/min", MolarFlowUnit.KilomolePerMinute)]
         [InlineData("en-US", "kmol/s", MolarFlowUnit.KilomolePerSecond)]
-        [InlineData("en-US", "kmol/h", MolarFlowUnit.MolePerHour)]
+        [InlineData("en-US", "mol/h", MolarFlowUnit.MolePerHour)]
         [InlineData("en-US", "mol/min", MolarFlowUnit.MolePerMinute)]
         [InlineData("en-US", "mol/s", MolarFlowUnit.MolePerSecond)]
         [InlineData("en-US", "lbmol/h", MolarFlowUnit.PoundMolePerHour)]
@@ -426,10 +426,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("en-US", "kkmol/h", MolarFlowUnit.KilomolePerHour)]
+        [InlineData("en-US", "kmol/h", MolarFlowUnit.KilomolePerHour)]
         [InlineData("en-US", "kmol/min", MolarFlowUnit.KilomolePerMinute)]
         [InlineData("en-US", "kmol/s", MolarFlowUnit.KilomolePerSecond)]
-        [InlineData("en-US", "kmol/h", MolarFlowUnit.MolePerHour)]
+        [InlineData("en-US", "mol/h", MolarFlowUnit.MolePerHour)]
         [InlineData("en-US", "mol/min", MolarFlowUnit.MolePerMinute)]
         [InlineData("en-US", "mol/s", MolarFlowUnit.MolePerSecond)]
         [InlineData("en-US", "lbmol/h", MolarFlowUnit.PoundMolePerHour)]
@@ -442,10 +442,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("kkmol/h", MolarFlowUnit.KilomolePerHour)]
+        [InlineData("kmol/h", MolarFlowUnit.KilomolePerHour)]
         [InlineData("kmol/min", MolarFlowUnit.KilomolePerMinute)]
         [InlineData("kmol/s", MolarFlowUnit.KilomolePerSecond)]
-        [InlineData("kmol/h", MolarFlowUnit.MolePerHour)]
+        [InlineData("mol/h", MolarFlowUnit.MolePerHour)]
         [InlineData("mol/min", MolarFlowUnit.MolePerMinute)]
         [InlineData("mol/s", MolarFlowUnit.MolePerSecond)]
         [InlineData("lbmol/h", MolarFlowUnit.PoundMolePerHour)]
@@ -460,10 +460,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("kkmol/h", MolarFlowUnit.KilomolePerHour)]
+        [InlineData("kmol/h", MolarFlowUnit.KilomolePerHour)]
         [InlineData("kmol/min", MolarFlowUnit.KilomolePerMinute)]
         [InlineData("kmol/s", MolarFlowUnit.KilomolePerSecond)]
-        [InlineData("kmol/h", MolarFlowUnit.MolePerHour)]
+        [InlineData("mol/h", MolarFlowUnit.MolePerHour)]
         [InlineData("mol/min", MolarFlowUnit.MolePerMinute)]
         [InlineData("mol/s", MolarFlowUnit.MolePerSecond)]
         [InlineData("lbmol/h", MolarFlowUnit.PoundMolePerHour)]
@@ -478,10 +478,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("en-US", "kkmol/h", MolarFlowUnit.KilomolePerHour)]
+        [InlineData("en-US", "kmol/h", MolarFlowUnit.KilomolePerHour)]
         [InlineData("en-US", "kmol/min", MolarFlowUnit.KilomolePerMinute)]
         [InlineData("en-US", "kmol/s", MolarFlowUnit.KilomolePerSecond)]
-        [InlineData("en-US", "kmol/h", MolarFlowUnit.MolePerHour)]
+        [InlineData("en-US", "mol/h", MolarFlowUnit.MolePerHour)]
         [InlineData("en-US", "mol/min", MolarFlowUnit.MolePerMinute)]
         [InlineData("en-US", "mol/s", MolarFlowUnit.MolePerSecond)]
         [InlineData("en-US", "lbmol/h", MolarFlowUnit.PoundMolePerHour)]
@@ -495,10 +495,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("en-US", "kkmol/h", MolarFlowUnit.KilomolePerHour)]
+        [InlineData("en-US", "kmol/h", MolarFlowUnit.KilomolePerHour)]
         [InlineData("en-US", "kmol/min", MolarFlowUnit.KilomolePerMinute)]
         [InlineData("en-US", "kmol/s", MolarFlowUnit.KilomolePerSecond)]
-        [InlineData("en-US", "kmol/h", MolarFlowUnit.MolePerHour)]
+        [InlineData("en-US", "mol/h", MolarFlowUnit.MolePerHour)]
         [InlineData("en-US", "mol/min", MolarFlowUnit.MolePerMinute)]
         [InlineData("en-US", "mol/s", MolarFlowUnit.MolePerSecond)]
         [InlineData("en-US", "lbmol/h", MolarFlowUnit.PoundMolePerHour)]
@@ -511,10 +511,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("en-US", MolarFlowUnit.KilomolePerHour, "kkmol/h")]
+        [InlineData("en-US", MolarFlowUnit.KilomolePerHour, "kmol/h")]
         [InlineData("en-US", MolarFlowUnit.KilomolePerMinute, "kmol/min")]
         [InlineData("en-US", MolarFlowUnit.KilomolePerSecond, "kmol/s")]
-        [InlineData("en-US", MolarFlowUnit.MolePerHour, "kmol/h")]
+        [InlineData("en-US", MolarFlowUnit.MolePerHour, "mol/h")]
         [InlineData("en-US", MolarFlowUnit.MolePerMinute, "mol/min")]
         [InlineData("en-US", MolarFlowUnit.MolePerSecond, "mol/s")]
         [InlineData("en-US", MolarFlowUnit.PoundMolePerHour, "lbmol/h")]
@@ -782,10 +782,10 @@ namespace UnitsNet.Tests
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
             using var _ = new CultureScope("en-US");
-            Assert.Equal("1 kkmol/h", new MolarFlow(1, MolarFlowUnit.KilomolePerHour).ToString());
+            Assert.Equal("1 kmol/h", new MolarFlow(1, MolarFlowUnit.KilomolePerHour).ToString());
             Assert.Equal("1 kmol/min", new MolarFlow(1, MolarFlowUnit.KilomolePerMinute).ToString());
             Assert.Equal("1 kmol/s", new MolarFlow(1, MolarFlowUnit.KilomolePerSecond).ToString());
-            Assert.Equal("1 kmol/h", new MolarFlow(1, MolarFlowUnit.MolePerHour).ToString());
+            Assert.Equal("1 mol/h", new MolarFlow(1, MolarFlowUnit.MolePerHour).ToString());
             Assert.Equal("1 mol/min", new MolarFlow(1, MolarFlowUnit.MolePerMinute).ToString());
             Assert.Equal("1 mol/s", new MolarFlow(1, MolarFlowUnit.MolePerSecond).ToString());
             Assert.Equal("1 lbmol/h", new MolarFlow(1, MolarFlowUnit.PoundMolePerHour).ToString());
@@ -799,10 +799,10 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
-            Assert.Equal("1 kkmol/h", new MolarFlow(1, MolarFlowUnit.KilomolePerHour).ToString(swedishCulture));
+            Assert.Equal("1 kmol/h", new MolarFlow(1, MolarFlowUnit.KilomolePerHour).ToString(swedishCulture));
             Assert.Equal("1 kmol/min", new MolarFlow(1, MolarFlowUnit.KilomolePerMinute).ToString(swedishCulture));
             Assert.Equal("1 kmol/s", new MolarFlow(1, MolarFlowUnit.KilomolePerSecond).ToString(swedishCulture));
-            Assert.Equal("1 kmol/h", new MolarFlow(1, MolarFlowUnit.MolePerHour).ToString(swedishCulture));
+            Assert.Equal("1 mol/h", new MolarFlow(1, MolarFlowUnit.MolePerHour).ToString(swedishCulture));
             Assert.Equal("1 mol/min", new MolarFlow(1, MolarFlowUnit.MolePerMinute).ToString(swedishCulture));
             Assert.Equal("1 mol/s", new MolarFlow(1, MolarFlowUnit.MolePerSecond).ToString(swedishCulture));
             Assert.Equal("1 lbmol/h", new MolarFlow(1, MolarFlowUnit.PoundMolePerHour).ToString(swedishCulture));

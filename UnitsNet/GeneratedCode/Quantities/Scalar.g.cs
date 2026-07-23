@@ -36,7 +36,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Scalar :
-        IArithmeticQuantity<Scalar, ScalarUnit>,
+        ILinearQuantity<Scalar, ScalarUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Scalar, Scalar, QuantityValue>,
         IComparisonOperators<Scalar, Scalar, bool>,

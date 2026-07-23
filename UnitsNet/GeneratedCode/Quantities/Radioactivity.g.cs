@@ -36,7 +36,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Radioactivity :
-        IArithmeticQuantity<Radioactivity, RadioactivityUnit>,
+        ILinearQuantity<Radioactivity, RadioactivityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Radioactivity, Radioactivity, QuantityValue>,
         IComparisonOperators<Radioactivity, Radioactivity, bool>,

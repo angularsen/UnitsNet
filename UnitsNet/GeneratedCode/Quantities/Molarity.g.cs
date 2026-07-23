@@ -39,7 +39,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Molarity :
-        IArithmeticQuantity<Molarity, MolarityUnit>,
+        ILinearQuantity<Molarity, MolarityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Molarity, Molarity, QuantityValue>,
         IMultiplyOperators<Molarity, Volume, AmountOfSubstance>,

@@ -36,7 +36,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct HeatTransferCoefficient :
-        IArithmeticQuantity<HeatTransferCoefficient, HeatTransferCoefficientUnit>,
+        ILinearQuantity<HeatTransferCoefficient, HeatTransferCoefficientUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<HeatTransferCoefficient, HeatTransferCoefficient, QuantityValue>,
         IComparisonOperators<HeatTransferCoefficient, HeatTransferCoefficient, bool>,
@@ -118,6 +118,9 @@ namespace UnitsNet
             {
                 yield return new (HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit, "BtuPerHourSquareFootDegreeFahrenheit", "BtusPerHourSquareFootDegreeFahrenheit", BaseUnits.Undefined,
                      new QuantityValue(9290304000, 52752792631)
+                );
+                yield return new (HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit, "BtuPerSecondSquareInchDegreeFahrenheit", "BtusPerSecondSquareInchDegreeFahrenheit", BaseUnits.Undefined,
+                     new QuantityValue(161290, 474775133679)
                 );
                 yield return new (HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius, "CaloriePerHourSquareMeterDegreeCelsius", "CaloriesPerHourSquareMeterDegreeCelsius", BaseUnits.Undefined,
                      new QuantityValue(450000, 523)
@@ -237,6 +240,11 @@ namespace UnitsNet
         public QuantityValue BtusPerHourSquareFootDegreeFahrenheit => this.As(HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit);
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit"/>
+        /// </summary>
+        public QuantityValue BtusPerSecondSquareInchDegreeFahrenheit => this.As(HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius"/>
         /// </summary>
         public QuantityValue CaloriesPerHourSquareMeterDegreeCelsius => this.As(HeatTransferCoefficientUnit.CaloriePerHourSquareMeterDegreeCelsius);
@@ -291,6 +299,14 @@ namespace UnitsNet
         public static HeatTransferCoefficient FromBtusPerHourSquareFootDegreeFahrenheit(QuantityValue value)
         {
             return new HeatTransferCoefficient(value, HeatTransferCoefficientUnit.BtuPerHourSquareFootDegreeFahrenheit);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="HeatTransferCoefficient"/> from <see cref="HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit"/>.
+        /// </summary>
+        public static HeatTransferCoefficient FromBtusPerSecondSquareInchDegreeFahrenheit(QuantityValue value)
+        {
+            return new HeatTransferCoefficient(value, HeatTransferCoefficientUnit.BtuPerSecondSquareInchDegreeFahrenheit);
         }
 
         /// <summary>

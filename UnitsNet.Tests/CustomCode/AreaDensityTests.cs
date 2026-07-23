@@ -34,11 +34,45 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MilligramsPerSquareMeterInOneKilogramPerSquareMeter => 1000000;
 
+        /// <summary>https://www.kylesconverter.com/area-density/kilograms-per-square-meter-to-pounds-per-square-foot</summary>
+        protected override double PoundsPerSquareFootInOneKilogramPerSquareMeter => 0.20481614362252172;
+
+        /// <summary>https://www.kylesconverter.com/area-density/grams-per-square-meter-to-pounds-per-thousand-square-feet</summary>
+        protected override double PoundsPerThousandSquareFeetInOneKilogramPerSquareMeter => 204.81614362252172;
+
+        [Fact]
+        public void AreaDensityDividedByDensityEqualsLength()
+        {
+            Length length = AreaDensity.FromKilogramsPerSquareMeter(20) / Density.FromKilogramsPerCubicMeter(2);
+            Assert.Equal(Length.FromMeters(10), length);
+        }
+
+        [Fact]
+        public void AreaDensityDividedByLengthEqualsDensity()
+        {
+            Density density = AreaDensity.FromKilogramsPerSquareMeter(20) / Length.FromMeters(2);
+            Assert.Equal(Density.FromKilogramsPerCubicMeter(10), density);
+        }
+
+        [Fact]
+        public void AreaDensityTimesAccelerationEqualsPressure()
+        {
+            Pressure pressure = AreaDensity.FromKilogramsPerSquareMeter(10) * Acceleration.FromMetersPerSecondSquared(2);
+            Assert.Equal(Pressure.FromPascals(20), pressure);
+        }
+
         [Fact]
         public void AreaDensityTimesAreaEqualsMass()
         {
             Mass massOfOneA4Paper = AreaDensity.FromGramsPerSquareMeter(120) * Area.FromSquareCentimeters(625);
             Assert.Equal(7.5m, massOfOneA4Paper.Grams);
+        }
+
+        [Fact]
+        public void AreaDensityTimesLengthEqualsLinearDensity()
+        {
+            LinearDensity linearDensity = AreaDensity.FromKilogramsPerSquareMeter(10) * Length.FromMeters(2);
+            Assert.Equal(LinearDensity.FromKilogramsPerMeter(20), linearDensity);
         }
     }
 }

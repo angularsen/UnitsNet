@@ -46,5 +46,12 @@ namespace UnitsNet.Tests.CustomCode
             Volume volume = AreaMomentOfInertia.FromMetersToTheFourth(20) / Length.FromMeters(10);
             Assert.Equal(Volume.FromCubicMeters(2), volume);
         }
+
+        [Fact]
+        public void AreaMomentOfInertiaDividedByAreaEqualsArea()
+        {
+            Area area = AreaMomentOfInertia.FromMetersToTheFourth(20) / Area.FromSquareMeters(10);
+            Assert.Equal(Area.FromSquareMeters(2), area);
+        }
     }
 }

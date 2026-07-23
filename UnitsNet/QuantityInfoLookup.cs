@@ -77,6 +77,8 @@ public class QuantityInfoLookup
     /// </remarks>
     public QuantityInfoLookup(IEnumerable<QuantityInfo> quantityInfos)
     {
+        if (quantityInfos is null) throw new ArgumentNullException(nameof(quantityInfos));
+
         _quantities = quantityInfos as QuantityInfo[] ?? quantityInfos.ToArray();
         _quantitiesByName = new Lazy<QuantityByNameLookupDictionary>(GroupQuantitiesByName);
         _quantitiesByType = new Lazy<QuantityByTypeLookupDictionary>(GroupQuantitiesByType);
@@ -101,6 +103,9 @@ public class QuantityInfoLookup
 
     internal static QuantityInfoLookup Create(IEnumerable<QuantityInfo> defaultQuantities, Action<QuantitiesSelector> configureQuantities)
     {
+        if (defaultQuantities is null) throw new ArgumentNullException(nameof(defaultQuantities));
+        if (configureQuantities is null) throw new ArgumentNullException(nameof(configureQuantities));
+
         var selector = new QuantitiesSelector(() => defaultQuantities);
         configureQuantities(selector);
         return Create(selector);
@@ -108,6 +113,8 @@ public class QuantityInfoLookup
 
     internal static QuantityInfoLookup Create(QuantitiesSelector selector)
     {
+        if (selector is null) throw new ArgumentNullException(nameof(selector));
+
         return new QuantityInfoLookup(selector.GetQuantityInfos());
     }
 

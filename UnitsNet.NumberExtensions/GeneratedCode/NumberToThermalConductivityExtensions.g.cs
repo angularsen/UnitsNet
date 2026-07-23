@@ -43,6 +43,17 @@ namespace UnitsNet.NumberExtensions.NumberToThermalConductivity
             => ThermalConductivity.FromBtusPerHourFootFahrenheit(value.ToQuantityValue());
 #endif
 
+        /// <inheritdoc cref="ThermalConductivity.FromBtusPerSecondInchFahrenheit(QuantityValue)" />
+        public static ThermalConductivity BtusPerSecondInchFahrenheit<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => ThermalConductivity.FromBtusPerSecondInchFahrenheit(QuantityValue.CreateChecked(value));
+#else
+            , IConvertible
+            => ThermalConductivity.FromBtusPerSecondInchFahrenheit(value.ToQuantityValue());
+#endif
+
         /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(QuantityValue)" />
         public static ThermalConductivity WattsPerMeterKelvin<T>(this T value)
             where T : notnull

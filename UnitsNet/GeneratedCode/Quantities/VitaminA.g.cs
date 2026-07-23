@@ -36,7 +36,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct VitaminA :
-        IArithmeticQuantity<VitaminA, VitaminAUnit>,
+        ILinearQuantity<VitaminA, VitaminAUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<VitaminA, VitaminA, QuantityValue>,
         IComparisonOperators<VitaminA, VitaminA, bool>,

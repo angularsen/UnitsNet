@@ -39,7 +39,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct LinearPowerDensity :
-        IArithmeticQuantity<LinearPowerDensity, LinearPowerDensityUnit>,
+        ILinearQuantity<LinearPowerDensity, LinearPowerDensityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<LinearPowerDensity, LinearPowerDensity, QuantityValue>,
         IComparisonOperators<LinearPowerDensity, LinearPowerDensity, bool>,

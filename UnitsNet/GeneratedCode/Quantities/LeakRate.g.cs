@@ -39,7 +39,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct LeakRate :
-        IArithmeticQuantity<LeakRate, LeakRateUnit>,
+        ILinearQuantity<LeakRate, LeakRateUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<LeakRate, LeakRate, QuantityValue>,
         IComparisonOperators<LeakRate, LeakRate, bool>,

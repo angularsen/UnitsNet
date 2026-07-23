@@ -39,7 +39,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct VolumetricHeatCapacity :
-        IArithmeticQuantity<VolumetricHeatCapacity, VolumetricHeatCapacityUnit>,
+        ILinearQuantity<VolumetricHeatCapacity, VolumetricHeatCapacityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<VolumetricHeatCapacity, VolumetricHeatCapacity, QuantityValue>,
         IComparisonOperators<VolumetricHeatCapacity, VolumetricHeatCapacity, bool>,

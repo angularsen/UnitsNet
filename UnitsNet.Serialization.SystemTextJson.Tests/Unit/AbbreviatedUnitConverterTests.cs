@@ -64,7 +64,7 @@ public class AbbreviatedUnitConverterTests
                                     "g (custom)"
                                     """;
         var abbreviations = new UnitAbbreviationsCache([Mass.Info]);
-        abbreviations.MapUnitToDefaultAbbreviation(MassUnit.Gram, "g (custom)");
+        abbreviations.MapUnitToDefaultAbbreviation(MassUnit.Gram, CultureInfo.InvariantCulture, "g (custom)");
         
         var options = new JsonSerializerOptions();
         options.Converters.Add(new AbbreviatedUnitConverter(new UnitParser(abbreviations)));

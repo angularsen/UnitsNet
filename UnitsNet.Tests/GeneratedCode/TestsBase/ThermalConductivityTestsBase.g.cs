@@ -41,10 +41,12 @@ namespace UnitsNet.Tests
     public abstract partial class ThermalConductivityTestsBase : QuantityTestsBase
     {
         protected abstract double BtusPerHourFootFahrenheitInOneWattPerMeterKelvin { get; }
+        protected abstract double BtusPerSecondInchFahrenheitInOneWattPerMeterKelvin { get; }
         protected abstract double WattsPerMeterKelvinInOneWattPerMeterKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double BtusPerHourFootFahrenheitTolerance { get { return 1e-5; } }
+        protected virtual double BtusPerSecondInchFahrenheitTolerance { get { return 1e-5; } }
         protected virtual double WattsPerMeterKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
@@ -53,6 +55,7 @@ namespace UnitsNet.Tests
             return unit switch
             {
                 ThermalConductivityUnit.BtuPerHourFootFahrenheit => (BtusPerHourFootFahrenheitInOneWattPerMeterKelvin, BtusPerHourFootFahrenheitTolerance),
+                ThermalConductivityUnit.BtuPerSecondInchFahrenheit => (BtusPerSecondInchFahrenheitInOneWattPerMeterKelvin, BtusPerSecondInchFahrenheitTolerance),
                 ThermalConductivityUnit.WattPerMeterKelvin => (WattsPerMeterKelvinInOneWattPerMeterKelvin, WattsPerMeterKelvinTolerance),
                 _ => throw new NotSupportedException()
             };
@@ -61,6 +64,7 @@ namespace UnitsNet.Tests
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
             new object[] { ThermalConductivityUnit.BtuPerHourFootFahrenheit },
+            new object[] { ThermalConductivityUnit.BtuPerSecondInchFahrenheit },
             new object[] { ThermalConductivityUnit.WattPerMeterKelvin },
         };
 
@@ -148,6 +152,7 @@ namespace UnitsNet.Tests
         {
             ThermalConductivity wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(1);
             AssertEx.EqualTolerance(BtusPerHourFootFahrenheitInOneWattPerMeterKelvin, wattpermeterkelvin.BtusPerHourFootFahrenheit, BtusPerHourFootFahrenheitTolerance);
+            AssertEx.EqualTolerance(BtusPerSecondInchFahrenheitInOneWattPerMeterKelvin, wattpermeterkelvin.BtusPerSecondInchFahrenheit, BtusPerSecondInchFahrenheitTolerance);
             AssertEx.EqualTolerance(WattsPerMeterKelvinInOneWattPerMeterKelvin, wattpermeterkelvin.WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
         }
 
@@ -185,6 +190,7 @@ namespace UnitsNet.Tests
         {
             var wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(1);
             AssertEx.EqualTolerance(BtusPerHourFootFahrenheitInOneWattPerMeterKelvin, wattpermeterkelvin.As(ThermalConductivityUnit.BtuPerHourFootFahrenheit), BtusPerHourFootFahrenheitTolerance);
+            AssertEx.EqualTolerance(BtusPerSecondInchFahrenheitInOneWattPerMeterKelvin, wattpermeterkelvin.As(ThermalConductivityUnit.BtuPerSecondInchFahrenheit), BtusPerSecondInchFahrenheitTolerance);
             AssertEx.EqualTolerance(WattsPerMeterKelvinInOneWattPerMeterKelvin, wattpermeterkelvin.As(ThermalConductivityUnit.WattPerMeterKelvin), WattsPerMeterKelvinTolerance);
         }
 
@@ -296,6 +302,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "4.2 BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit, 4.2)]
+        [InlineData("en-US", "4.2 BTU/(s·in·°F)", ThermalConductivityUnit.BtuPerSecondInchFahrenheit, 4.2)]
         [InlineData("en-US", "4.2 W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin, 4.2)]
         public void Parse(string culture, string quantityString, ThermalConductivityUnit expectedUnit, decimal expectedValue)
         {
@@ -307,6 +314,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "4.2 BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit, 4.2)]
+        [InlineData("en-US", "4.2 BTU/(s·in·°F)", ThermalConductivityUnit.BtuPerSecondInchFahrenheit, 4.2)]
         [InlineData("en-US", "4.2 W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin, 4.2)]
         public void TryParse(string culture, string quantityString, ThermalConductivityUnit expectedUnit, decimal expectedValue)
         {
@@ -318,6 +326,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
+        [InlineData("BTU/(s·in·°F)", ThermalConductivityUnit.BtuPerSecondInchFahrenheit)]
         [InlineData("W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin)]
         public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ThermalConductivityUnit expectedUnit)
         {
@@ -329,6 +338,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
+        [InlineData("BTU/(s·in·°F)", ThermalConductivityUnit.BtuPerSecondInchFahrenheit)]
         [InlineData("W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin)]
         public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ThermalConductivityUnit expectedUnit)
         {
@@ -340,6 +350,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
+        [InlineData("en-US", "BTU/(s·in·°F)", ThermalConductivityUnit.BtuPerSecondInchFahrenheit)]
         [InlineData("en-US", "W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin)]
         public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ThermalConductivityUnit expectedUnit)
         {
@@ -350,6 +361,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
+        [InlineData("en-US", "BTU/(s·in·°F)", ThermalConductivityUnit.BtuPerSecondInchFahrenheit)]
         [InlineData("en-US", "W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin)]
         public void ParseUnit_WithCulture(string culture, string abbreviation, ThermalConductivityUnit expectedUnit)
         {
@@ -359,6 +371,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
+        [InlineData("BTU/(s·in·°F)", ThermalConductivityUnit.BtuPerSecondInchFahrenheit)]
         [InlineData("W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin)]
         public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ThermalConductivityUnit expectedUnit)
         {
@@ -370,6 +383,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
+        [InlineData("BTU/(s·in·°F)", ThermalConductivityUnit.BtuPerSecondInchFahrenheit)]
         [InlineData("W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin)]
         public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ThermalConductivityUnit expectedUnit)
         {
@@ -381,6 +395,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
+        [InlineData("en-US", "BTU/(s·in·°F)", ThermalConductivityUnit.BtuPerSecondInchFahrenheit)]
         [InlineData("en-US", "W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin)]
         public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ThermalConductivityUnit expectedUnit)
         {
@@ -391,6 +406,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", "BTU/(h·ft·°F)", ThermalConductivityUnit.BtuPerHourFootFahrenheit)]
+        [InlineData("en-US", "BTU/(s·in·°F)", ThermalConductivityUnit.BtuPerSecondInchFahrenheit)]
         [InlineData("en-US", "W/(m·K)", ThermalConductivityUnit.WattPerMeterKelvin)]
         public void TryParseUnit_WithCulture(string culture, string abbreviation, ThermalConductivityUnit expectedUnit)
         {
@@ -400,6 +416,7 @@ namespace UnitsNet.Tests
 
         [Theory]
         [InlineData("en-US", ThermalConductivityUnit.BtuPerHourFootFahrenheit, "BTU/(h·ft·°F)")]
+        [InlineData("en-US", ThermalConductivityUnit.BtuPerSecondInchFahrenheit, "BTU/(s·in·°F)")]
         [InlineData("en-US", ThermalConductivityUnit.WattPerMeterKelvin, "W/(m·K)")]
         public void GetAbbreviationForCulture(string culture, ThermalConductivityUnit unit, string expectedAbbreviation)
         {
@@ -489,6 +506,7 @@ namespace UnitsNet.Tests
         {
             ThermalConductivity wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(3);
             Assert.Equal(3, ThermalConductivity.FromBtusPerHourFootFahrenheit(wattpermeterkelvin.BtusPerHourFootFahrenheit).WattsPerMeterKelvin);
+            Assert.Equal(3, ThermalConductivity.FromBtusPerSecondInchFahrenheit(wattpermeterkelvin.BtusPerSecondInchFahrenheit).WattsPerMeterKelvin);
             Assert.Equal(3, ThermalConductivity.FromWattsPerMeterKelvin(wattpermeterkelvin.WattsPerMeterKelvin).WattsPerMeterKelvin);
         }
 
@@ -657,6 +675,7 @@ namespace UnitsNet.Tests
         {
             using var _ = new CultureScope("en-US");
             Assert.Equal("1 BTU/(h·ft·°F)", new ThermalConductivity(1, ThermalConductivityUnit.BtuPerHourFootFahrenheit).ToString());
+            Assert.Equal("1 BTU/(s·in·°F)", new ThermalConductivity(1, ThermalConductivityUnit.BtuPerSecondInchFahrenheit).ToString());
             Assert.Equal("1 W/(m·K)", new ThermalConductivity(1, ThermalConductivityUnit.WattPerMeterKelvin).ToString());
         }
 
@@ -667,6 +686,7 @@ namespace UnitsNet.Tests
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
             Assert.Equal("1 BTU/(h·ft·°F)", new ThermalConductivity(1, ThermalConductivityUnit.BtuPerHourFootFahrenheit).ToString(swedishCulture));
+            Assert.Equal("1 BTU/(s·in·°F)", new ThermalConductivity(1, ThermalConductivityUnit.BtuPerSecondInchFahrenheit).ToString(swedishCulture));
             Assert.Equal("1 W/(m·K)", new ThermalConductivity(1, ThermalConductivityUnit.WattPerMeterKelvin).ToString(swedishCulture));
         }
 

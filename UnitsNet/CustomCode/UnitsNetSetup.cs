@@ -14,102 +14,84 @@ namespace UnitsNet;
 /// </summary>
 public sealed class UnitsNetSetup
 {
-    private static readonly DefaultConfigurationBuilder ConfigurationBuilder = new();
-    internal static readonly Lazy<UnitsNetSetup> DefaultConfiguration = new(ConfigurationBuilder.Build);
-    
     /// <summary>
-    ///     Builder for configuring the default setup of UnitsNet, including quantities, units, unit abbreviations, and
-    ///     conversion functions.<br />
-    ///     <br />
-    ///     This builder allows for customization of the default configuration by specifying which quantities to use,
-    ///     adding additional quantities, and enabling or disabling the quantity converter feature.<br />
-    ///     <br />
-    ///     Once the configuration is built, it cannot be changed.
+    ///     Synchronizes the default builder swap and creation checks with the value creation already synchronized by <see cref="Lazy{T}" />.
+    /// </summary>
+    private static readonly object DefaultConfigurationLock = new();
+    private static DefaultConfigurationBuilder _defaultConfigurationBuilder = new();
+    internal static readonly Lazy<UnitsNetSetup> DefaultConfiguration = new(BuildDefault);
+
+    /// <summary>
+    ///     Builds a UnitsNet setup by selecting built-in or external quantity definitions.
     /// </summary>
     public sealed class DefaultConfigurationBuilder
     {
         private QuantitiesSelector? _quantitiesSelector;
 
         private QuantityConverterBuildOptions _quantityConverterOptions = new();
-        
+
         // TODO see about allowing eager loading
         // private AbbreviationsCachingMode AbbreviationsCaching { get; set; } = AbbreviationsCachingMode.Lazy;
         // TODO see about caching the regex associated with the UnitParser
         // private UnitsCachingMode UnitParserCaching { get; set; } = UnitsCachingMode.Lazy;
-        
 
         /// <summary>
-        ///     Specifies the quantities to be used in the default configuration.
+        ///     Uses the specified quantities as the setup's base catalog.
         /// </summary>
-        /// <param name="quantities">A collection of quantities to use.</param>
-        /// <returns>The current instance of <see cref="DefaultConfigurationBuilder" /> for method chaining.</returns>
-        /// <exception cref="InvalidOperationException">Thrown if the list of quantities to use is already specified.</exception>
+        /// <param name="quantities">The quantity definitions to use.</param>
+        /// <returns>This builder, for method chaining.</returns>
         public DefaultConfigurationBuilder WithQuantities(IEnumerable<QuantityInfo> quantities)
         {
+            if (quantities is null) throw new ArgumentNullException(nameof(quantities));
             return WithQuantities(() => quantities);
         }
 
         /// <summary>
-        ///     Specifies the quantities to be used in the default configuration.
+        ///     Uses quantities returned by <paramref name="quantities" /> as the setup's base catalog.
         /// </summary>
-        /// <param name="quantities">A function that returns a collection of quantities to use.</param>
-        /// <returns>The current instance of <see cref="UnitsNet.UnitsNetSetup.DefaultConfigurationBuilder" /> for method chaining.</returns>
-        /// <exception cref="InvalidOperationException">Thrown if the list of quantities to use is already specified.</exception>
+        /// <param name="quantities">Provides the quantity definitions to use.</param>
+        /// <returns>This builder, for method chaining.</returns>
         public DefaultConfigurationBuilder WithQuantities(Func<IEnumerable<QuantityInfo>> quantities)
         {
-            if (_quantitiesSelector != null)
-            {
-                throw new InvalidOperationException("The list of quantities to use is already specified");
-            }
+            if (quantities is null) throw new ArgumentNullException(nameof(quantities));
+            if (_quantitiesSelector is not null) throw new InvalidOperationException("The base quantity selection is already configured.");
 
             _quantitiesSelector = new QuantitiesSelector(quantities);
             return this;
         }
 
         /// <summary>
-        ///     Specifies the quantities to be used in the default configuration and allows further configuration of these
-        ///     quantities.
+        ///     Uses the specified quantities as the setup's base catalog and configures that selection.
         /// </summary>
-        /// <param name="quantities">A collection of quantities to use.</param>
-        /// <param name="configureQuantities">An action to configure the selected quantities.</param>
-        /// <returns>The current instance of <see cref="UnitsNet.UnitsNetSetup.DefaultConfigurationBuilder" /> for method chaining.</returns>
-        /// <exception cref="InvalidOperationException">Thrown if the list of quantities to use is already specified.</exception>
+        /// <param name="quantities">The quantity definitions to use.</param>
+        /// <param name="configureQuantities">Configures the selected quantities.</param>
+        /// <returns>This builder, for method chaining.</returns>
         public DefaultConfigurationBuilder WithQuantities(IEnumerable<QuantityInfo> quantities, Action<QuantitiesSelector> configureQuantities)
         {
+            if (quantities is null) throw new ArgumentNullException(nameof(quantities));
             return WithQuantities(() => quantities, configureQuantities);
         }
 
         /// <summary>
-        ///     Specifies the quantities to be used in the default configuration and allows further configuration of these
-        ///     quantities.
+        ///     Uses quantities returned by <paramref name="quantities" /> as the setup's base catalog and configures that selection.
         /// </summary>
-        /// <param name="quantities">A collection of quantities to use.</param>
-        /// <param name="configureQuantities">An action to configure the selected quantities.</param>
-        /// <returns>The current instance of <see cref="UnitsNet.UnitsNetSetup.DefaultConfigurationBuilder" /> for method chaining.</returns>
-        /// <exception cref="InvalidOperationException">Thrown if the list of quantities to use is already specified.</exception>
+        /// <param name="quantities">Provides the quantity definitions to use.</param>
+        /// <param name="configureQuantities">Configures the selected quantities.</param>
+        /// <returns>This builder, for method chaining.</returns>
         public DefaultConfigurationBuilder WithQuantities(Func<IEnumerable<QuantityInfo>> quantities, Action<QuantitiesSelector> configureQuantities)
         {
-            if (_quantitiesSelector != null)
-            {
-                throw new InvalidOperationException("The list of quantities to use is already specified");
-            }
+            if (configureQuantities is null) throw new ArgumentNullException(nameof(configureQuantities));
 
-            _quantitiesSelector = new QuantitiesSelector(quantities);
-            configureQuantities(_quantitiesSelector);
+            WithQuantities(quantities);
+            configureQuantities(_quantitiesSelector!);
             return this;
         }
 
         /// <summary>
-        ///     Appends the list of default quantities with a custom set of definitions.
-        ///     Adds additional quantities to the default configuration. These quantities are not part of the library by default
-        ///     and are appended to the default list of quantities.
+        ///     Appends external quantity definitions to the current selection.
         /// </summary>
-        /// <param name="quantities">The quantities to add to the default configuration.</param>
-        /// <returns>
-        ///     The <see cref="UnitsNet.UnitsNetSetup.DefaultConfigurationBuilder" /> instance with the additional quantities
-        ///     added.
-        /// </returns>
-        /// <exception cref="System.InvalidOperationException">Thrown if the list of quantities to use is already specified.</exception>
+        /// <param name="quantities">The quantity definitions to append.</param>
+        /// <returns>This builder, for method chaining.</returns>
         public DefaultConfigurationBuilder WithAdditionalQuantities(IEnumerable<QuantityInfo> quantities)
         {
             _quantitiesSelector ??= new QuantitiesSelector(() => Quantity.DefaultProvider.Quantities);
@@ -131,6 +113,8 @@ public sealed class UnitsNetSetup
         /// <exception cref="System.InvalidOperationException">Thrown if the list of quantities to use is already specified.</exception>
         public DefaultConfigurationBuilder WithAdditionalQuantities(IEnumerable<QuantityInfo> quantities, Action<QuantitiesSelector> configureQuantities)
         {
+            if (configureQuantities is null) throw new ArgumentNullException(nameof(configureQuantities));
+
             _quantitiesSelector ??= new QuantitiesSelector(() => Quantity.DefaultProvider.Quantities);
             configureQuantities(_quantitiesSelector.WithAdditionalQuantities(quantities));
             return this;
@@ -166,7 +150,7 @@ public sealed class UnitsNetSetup
         /// </returns>
         public DefaultConfigurationBuilder WithConverterOptions(QuantityConverterBuildOptions converterBuildOptions)
         {
-            _quantityConverterOptions = converterBuildOptions;
+            _quantityConverterOptions = converterBuildOptions ?? throw new ArgumentNullException(nameof(converterBuildOptions));
             return this;
         }
 
@@ -176,13 +160,13 @@ public sealed class UnitsNetSetup
         {
             return _quantitiesSelector is null ? defaultConfiguration() : _quantitiesSelector.CreateOrDefault(defaultConfiguration);
         }
-        
+
         internal UnitsNetSetup Build()
         {
             QuantityInfoLookup quantitiesLookup = _quantitiesSelector is null
                 ? new QuantityInfoLookup(Quantity.DefaultProvider.Quantities)
                 : QuantityInfoLookup.Create(_quantitiesSelector);
-            
+
             var unitAbbreviations = new UnitAbbreviationsCache(quantitiesLookup);
             var formatter = new QuantityFormatter(unitAbbreviations);
             var unitParser = new UnitParser(unitAbbreviations);
@@ -190,6 +174,28 @@ public sealed class UnitsNetSetup
             var unitConverter = UnitConverter.Create(unitParser, _quantityConverterOptions);
             return new UnitsNetSetup(quantitiesLookup, unitAbbreviations, formatter, unitParser, quantityParser, unitConverter);
         }
+    }
+
+    private static UnitsNetSetup BuildDefault()
+    {
+        lock (DefaultConfigurationLock)
+        {
+            return _defaultConfigurationBuilder.Build();
+        }
+    }
+
+    /// <summary>
+    ///     Creates an isolated setup without changing <see cref="Default" />.
+    /// </summary>
+    /// <param name="configuration">Configures the quantities included in the setup.</param>
+    /// <returns>A configured UnitsNet setup.</returns>
+    public static UnitsNetSetup Create(Action<DefaultConfigurationBuilder> configuration)
+    {
+        if (configuration is null) throw new ArgumentNullException(nameof(configuration));
+
+        var builder = new DefaultConfigurationBuilder();
+        configuration(builder);
+        return builder.Build();
     }
 
     /// <summary>
@@ -209,64 +215,40 @@ public sealed class UnitsNetSetup
         where TQuantity : IQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
-        return ConfigurationBuilder.CreateQuantityInfoOrDefault(defaultConfiguration);
+        return _defaultConfigurationBuilder.CreateQuantityInfoOrDefault(defaultConfiguration);
     }
 
     /// <summary>
-    ///     Configures the default setup of UnitsNet, including quantities, units, unit abbreviations, and conversion functions.<br />
-    ///     <br />
-    ///     This method returns a <see cref="DefaultConfigurationBuilder"/> that allows for customization of the default configuration
-    ///     by specifying which quantities to use, adding additional quantities, and enabling or disabling the quantity converter feature.<br />
-    ///     <br />
-    ///     Note that once the default configuration is built, it cannot be changed.
+    ///     Configures and creates the global default setup before its first use.
     /// </summary>
-    /// <returns>
-    ///     A <see cref="DefaultConfigurationBuilder"/> instance for configuring the default setup.
-    /// </returns>
-    /// <exception cref="InvalidOperationException">
-    ///     Thrown if the default configuration has already been built.
-    /// </exception>
+    /// <param name="configuration">Configures the quantities included in the default setup.</param>
+    /// <returns>The configured global default setup.</returns>
+    /// <exception cref="InvalidOperationException">The default setup has already been created.</exception>
+    /// <seealso cref="Default" />
     public static UnitsNetSetup ConfigureDefaults(Action<DefaultConfigurationBuilder> configuration)
     {
-        if (DefaultConfiguration.IsValueCreated)
-        {
-            throw new InvalidOperationException("You cannot change the default configuration once it is build.");
-        }
+        if (configuration is null) throw new ArgumentNullException(nameof(configuration));
 
-        configuration(ConfigurationBuilder);
-        
-        if (DefaultConfiguration.IsValueCreated)
+        lock (DefaultConfigurationLock)
         {
-            throw new InvalidOperationException("You cannot change the default configuration once it is build.");
+            if (DefaultConfiguration.IsValueCreated)
+            {
+                throw new InvalidOperationException("The default configuration cannot be changed after it has been created.");
+            }
+
+            var builder = new DefaultConfigurationBuilder();
+            configuration(builder);
+
+            if (DefaultConfiguration.IsValueCreated)
+            {
+                throw new InvalidOperationException("The default configuration was created while it was being configured.");
+            }
+
+            _defaultConfigurationBuilder = builder;
+            return DefaultConfiguration.Value;
         }
-        
-        return DefaultConfiguration.Value;
     }
 
-    /// <summary>
-    ///     Creates a new instance of <see cref="UnitsNetSetup" />, independent of the <see cref="Default" /> configuration.
-    /// </summary>
-    /// <param name="configuration">
-    ///     An action that configures the <see cref="DefaultConfigurationBuilder" /> to set up quantities, units, unit
-    ///     abbreviations,
-    ///     and conversion functions.
-    /// </param>
-    /// <returns>
-    ///     A configured instance of <see cref="UnitsNetSetup" />.
-    /// </returns>
-    /// <remarks>
-    ///     This method allows for customization of the UnitsNet setup by specifying which quantities to use, adding additional
-    ///     quantities, and enabling or disabling the quantity converter feature.
-    /// </remarks>
-    public static UnitsNetSetup Create(Action<DefaultConfigurationBuilder> configuration)
-    {
-        var builder = new DefaultConfigurationBuilder();
-
-        configuration(builder);
-
-        return builder.Build();
-    }
-    
     private UnitsNetSetup(QuantityInfoLookup quantitiesLookup, UnitAbbreviationsCache unitAbbreviations, QuantityFormatter formatter, UnitParser unitParser,
         QuantityParser quantityParser, UnitConverter unitConverter)
     {
@@ -284,10 +266,13 @@ public sealed class UnitsNetSetup
     ///     provided.
     /// </summary>
     /// <remarks>
+    ///     Call <see cref="ConfigureDefaults" /> before first accessing this property to select a different quantity catalog.<br />
+    ///     <br />
     ///     Manipulating this instance, such as adding new units or changing default unit abbreviations, will affect most
     ///     usages of UnitsNet in the
     ///     current AppDomain since the typical use is via static members and not providing a setup instance.
     /// </remarks>
+    /// <seealso cref="ConfigureDefaults" />
     public static UnitsNetSetup Default => DefaultConfiguration.Value;
 
     /// <summary>
@@ -296,10 +281,11 @@ public sealed class UnitsNetSetup
     public UnitConverter UnitConverter { get; }
 
     /// <summary>
-    ///     Maps unit enums to unit abbreviation strings for one or more cultures, used by the <see cref="UnitParser"/>, <see cref="QuantityParser"/> and the <see cref="Formatter"/>.
+    ///     Maps unit enums to unit abbreviation strings for one or more cultures, used by ToString() and Parse() methods of
+    ///     quantities.
     /// </summary>
     public UnitAbbreviationsCache UnitAbbreviations { get; }
-    
+
     /// <summary>
     ///     Converts a quantity to string using the specified format strings and culture-specific format providers.
     /// </summary>

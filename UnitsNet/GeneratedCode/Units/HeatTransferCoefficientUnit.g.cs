@@ -26,6 +26,7 @@ namespace UnitsNet.Units
     public enum HeatTransferCoefficientUnit
     {
         BtuPerHourSquareFootDegreeFahrenheit = 11,
+        BtuPerSecondSquareInchDegreeFahrenheit = 4,
         CaloriePerHourSquareMeterDegreeCelsius = 5,
         KilocaloriePerHourSquareMeterDegreeCelsius = 8,
         WattPerSquareMeterCelsius = 2,

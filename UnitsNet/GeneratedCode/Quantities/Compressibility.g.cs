@@ -36,7 +36,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Compressibility :
-        IArithmeticQuantity<Compressibility, CompressibilityUnit>,
+        ILinearQuantity<Compressibility, CompressibilityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Compressibility, Compressibility, QuantityValue>,
         IComparisonOperators<Compressibility, Compressibility, bool>,

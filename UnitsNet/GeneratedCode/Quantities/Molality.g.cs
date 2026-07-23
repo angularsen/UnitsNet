@@ -39,7 +39,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Molality :
-        IArithmeticQuantity<Molality, MolalityUnit>,
+        ILinearQuantity<Molality, MolalityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Molality, Molality, QuantityValue>,
         IComparisonOperators<Molality, Molality, bool>,

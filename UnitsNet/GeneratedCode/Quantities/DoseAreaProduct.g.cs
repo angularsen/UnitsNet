@@ -39,7 +39,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct DoseAreaProduct :
-        IArithmeticQuantity<DoseAreaProduct, DoseAreaProductUnit>,
+        ILinearQuantity<DoseAreaProduct, DoseAreaProductUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<DoseAreaProduct, DoseAreaProduct, QuantityValue>,
         IComparisonOperators<DoseAreaProduct, DoseAreaProduct, bool>,

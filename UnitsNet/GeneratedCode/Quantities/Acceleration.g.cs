@@ -36,12 +36,14 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Acceleration :
-        IArithmeticQuantity<Acceleration, AccelerationUnit>,
+        ILinearQuantity<Acceleration, AccelerationUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Acceleration, Acceleration, QuantityValue>,
         IDivisionOperators<Acceleration, Jerk, Duration>,
         IMultiplyOperators<Acceleration, Mass, Force>,
+        IMultiplyOperators<Acceleration, LinearDensity, ForcePerLength>,
         IDivisionOperators<Acceleration, Duration, Jerk>,
+        IMultiplyOperators<Acceleration, AreaDensity, Pressure>,
         IMultiplyOperators<Acceleration, Density, SpecificWeight>,
         IMultiplyOperators<Acceleration, Duration, Speed>,
         IComparisonOperators<Acceleration, Acceleration, bool>,
@@ -684,10 +686,22 @@ namespace UnitsNet
             return Force.FromNewtons(acceleration.MetersPerSecondSquared * mass.Kilograms);
         }
 
+        /// <summary>Get <see cref="ForcePerLength"/> from <see cref="Acceleration"/> * <see cref="LinearDensity"/>.</summary>
+        public static ForcePerLength operator *(Acceleration acceleration, LinearDensity linearDensity)
+        {
+            return ForcePerLength.FromNewtonsPerMeter(acceleration.MetersPerSecondSquared * linearDensity.KilogramsPerMeter);
+        }
+
         /// <summary>Get <see cref="Jerk"/> from <see cref="Acceleration"/> / <see cref="Duration"/>.</summary>
         public static Jerk operator /(Acceleration acceleration, Duration duration)
         {
             return Jerk.FromMetersPerSecondCubed(acceleration.MetersPerSecondSquared / duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="Acceleration"/> * <see cref="AreaDensity"/>.</summary>
+        public static Pressure operator *(Acceleration acceleration, AreaDensity areaDensity)
+        {
+            return Pressure.FromPascals(acceleration.MetersPerSecondSquared * areaDensity.KilogramsPerSquareMeter);
         }
 
         /// <summary>Get <see cref="SpecificWeight"/> from <see cref="Acceleration"/> * <see cref="Density"/>.</summary>

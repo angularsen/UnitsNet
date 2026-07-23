@@ -36,7 +36,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct PowerDensity :
-        IArithmeticQuantity<PowerDensity, PowerDensityUnit>,
+        ILinearQuantity<PowerDensity, PowerDensityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<PowerDensity, PowerDensity, QuantityValue>,
         IComparisonOperators<PowerDensity, PowerDensity, bool>,
@@ -116,6 +116,12 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{PowerDensityUnit}"/> representing the default unit mappings for PowerDensity.</returns>
             public static IEnumerable<UnitDefinition<PowerDensityUnit>> GetDefaultMappings()
             {
+                yield return new (PowerDensityUnit.BtuPerSecondCubicFoot, "BtuPerSecondCubicFoot", "BtusPerSecondCubicFoot", BaseUnits.Undefined,
+                     new QuantityValue(884901456, 32970495394375)
+                );
+                yield return new (PowerDensityUnit.BtuPerSecondCubicInch, "BtuPerSecondCubicInch", "BtusPerSecondCubicInch", BaseUnits.Undefined,
+                     new QuantityValue(2048383, 131881981577500)
+                );
                 yield return new (PowerDensityUnit.DecawattPerCubicFoot, "DecawattPerCubicFoot", "DecawattsPerCubicFoot", BaseUnits.Undefined,
                      new QuantityValue(55306341, 19531250000)
                 );
@@ -347,6 +353,16 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Properties
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.BtuPerSecondCubicFoot"/>
+        /// </summary>
+        public QuantityValue BtusPerSecondCubicFoot => this.As(PowerDensityUnit.BtuPerSecondCubicFoot);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.BtuPerSecondCubicInch"/>
+        /// </summary>
+        public QuantityValue BtusPerSecondCubicInch => this.As(PowerDensityUnit.BtuPerSecondCubicInch);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="PowerDensityUnit.DecawattPerCubicFoot"/>
@@ -596,6 +612,22 @@ namespace UnitsNet
         #endregion
 
         #region Static Factory Methods
+
+        /// <summary>
+        ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.BtuPerSecondCubicFoot"/>.
+        /// </summary>
+        public static PowerDensity FromBtusPerSecondCubicFoot(QuantityValue value)
+        {
+            return new PowerDensity(value, PowerDensityUnit.BtuPerSecondCubicFoot);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.BtuPerSecondCubicInch"/>.
+        /// </summary>
+        public static PowerDensity FromBtusPerSecondCubicInch(QuantityValue value)
+        {
+            return new PowerDensity(value, PowerDensityUnit.BtuPerSecondCubicInch);
+        }
 
         /// <summary>
         ///     Creates a <see cref="PowerDensity"/> from <see cref="PowerDensityUnit.DecawattPerCubicFoot"/>.

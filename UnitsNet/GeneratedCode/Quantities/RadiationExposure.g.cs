@@ -36,7 +36,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct RadiationExposure :
-        IArithmeticQuantity<RadiationExposure, RadiationExposureUnit>,
+        ILinearQuantity<RadiationExposure, RadiationExposureUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<RadiationExposure, RadiationExposure, QuantityValue>,
         IComparisonOperators<RadiationExposure, RadiationExposure, bool>,

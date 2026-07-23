@@ -39,9 +39,10 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Density :
-        IArithmeticQuantity<Density, DensityUnit>,
+        ILinearQuantity<Density, DensityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Density, Density, QuantityValue>,
+        IMultiplyOperators<Density, Length, AreaDensity>,
         IMultiplyOperators<Density, KinematicViscosity, DynamicViscosity>,
         IMultiplyOperators<Density, Area, LinearDensity>,
         IMultiplyOperators<Density, Volume, Mass>,
@@ -1354,6 +1355,12 @@ namespace UnitsNet
         public SpecificVolume Inverse()
         {
             return UnitConverter.Default.ConvertTo(Value, Unit, SpecificVolume.Info);
+        }
+
+        /// <summary>Get <see cref="AreaDensity"/> from <see cref="Density"/> * <see cref="Length"/>.</summary>
+        public static AreaDensity operator *(Density density, Length length)
+        {
+            return AreaDensity.FromKilogramsPerSquareMeter(density.KilogramsPerCubicMeter * length.Meters);
         }
 
         /// <summary>Get <see cref="DynamicViscosity"/> from <see cref="Density"/> * <see cref="KinematicViscosity"/>.</summary>

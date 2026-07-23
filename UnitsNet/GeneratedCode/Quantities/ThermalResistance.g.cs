@@ -36,7 +36,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct ThermalResistance :
-        IArithmeticQuantity<ThermalResistance, ThermalResistanceUnit>,
+        ILinearQuantity<ThermalResistance, ThermalResistanceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ThermalResistance, ThermalResistance, QuantityValue>,
         IComparisonOperators<ThermalResistance, ThermalResistance, bool>,

@@ -39,7 +39,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct ElectricField :
-        IArithmeticQuantity<ElectricField, ElectricFieldUnit>,
+        ILinearQuantity<ElectricField, ElectricFieldUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricField, ElectricField, QuantityValue>,
         IComparisonOperators<ElectricField, ElectricField, bool>,

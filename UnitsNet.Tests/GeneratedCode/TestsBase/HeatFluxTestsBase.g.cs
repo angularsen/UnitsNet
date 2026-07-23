@@ -46,18 +46,25 @@ namespace UnitsNet.Tests
         protected abstract double BtusPerSecondSquareInchInOneWattPerSquareMeter { get; }
         protected abstract double CaloriesPerSecondSquareCentimeterInOneWattPerSquareMeter { get; }
         protected abstract double CentiwattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected abstract double CentiwattsPerSquareMillimeterInOneWattPerSquareMeter { get; }
         protected abstract double DeciwattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected abstract double DeciwattsPerSquareMillimeterInOneWattPerSquareMeter { get; }
         protected abstract double KilocaloriesPerHourSquareMeterInOneWattPerSquareMeter { get; }
         protected abstract double KilocaloriesPerSecondSquareCentimeterInOneWattPerSquareMeter { get; }
         protected abstract double KilowattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected abstract double KilowattsPerSquareMillimeterInOneWattPerSquareMeter { get; }
         protected abstract double MicrowattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected abstract double MicrowattsPerSquareMillimeterInOneWattPerSquareMeter { get; }
         protected abstract double MilliwattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected abstract double MilliwattsPerSquareMillimeterInOneWattPerSquareMeter { get; }
         protected abstract double NanowattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected abstract double NanowattsPerSquareMillimeterInOneWattPerSquareMeter { get; }
         protected abstract double PoundsForcePerFootSecondInOneWattPerSquareMeter { get; }
         protected abstract double PoundsPerSecondCubedInOneWattPerSquareMeter { get; }
         protected abstract double WattsPerSquareFootInOneWattPerSquareMeter { get; }
         protected abstract double WattsPerSquareInchInOneWattPerSquareMeter { get; }
         protected abstract double WattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected abstract double WattsPerSquareMillimeterInOneWattPerSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double BtusPerHourSquareFootTolerance { get { return 1e-5; } }
@@ -66,18 +73,25 @@ namespace UnitsNet.Tests
         protected virtual double BtusPerSecondSquareInchTolerance { get { return 1e-5; } }
         protected virtual double CaloriesPerSecondSquareCentimeterTolerance { get { return 1e-5; } }
         protected virtual double CentiwattsPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double CentiwattsPerSquareMillimeterTolerance { get { return 1e-5; } }
         protected virtual double DeciwattsPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double DeciwattsPerSquareMillimeterTolerance { get { return 1e-5; } }
         protected virtual double KilocaloriesPerHourSquareMeterTolerance { get { return 1e-5; } }
         protected virtual double KilocaloriesPerSecondSquareCentimeterTolerance { get { return 1e-5; } }
         protected virtual double KilowattsPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double KilowattsPerSquareMillimeterTolerance { get { return 1e-5; } }
         protected virtual double MicrowattsPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double MicrowattsPerSquareMillimeterTolerance { get { return 1e-5; } }
         protected virtual double MilliwattsPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double MilliwattsPerSquareMillimeterTolerance { get { return 1e-5; } }
         protected virtual double NanowattsPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double NanowattsPerSquareMillimeterTolerance { get { return 1e-5; } }
         protected virtual double PoundsForcePerFootSecondTolerance { get { return 1e-5; } }
         protected virtual double PoundsPerSecondCubedTolerance { get { return 1e-5; } }
         protected virtual double WattsPerSquareFootTolerance { get { return 1e-5; } }
         protected virtual double WattsPerSquareInchTolerance { get { return 1e-5; } }
         protected virtual double WattsPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double WattsPerSquareMillimeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(HeatFluxUnit unit)
@@ -90,18 +104,25 @@ namespace UnitsNet.Tests
                 HeatFluxUnit.BtuPerSecondSquareInch => (BtusPerSecondSquareInchInOneWattPerSquareMeter, BtusPerSecondSquareInchTolerance),
                 HeatFluxUnit.CaloriePerSecondSquareCentimeter => (CaloriesPerSecondSquareCentimeterInOneWattPerSquareMeter, CaloriesPerSecondSquareCentimeterTolerance),
                 HeatFluxUnit.CentiwattPerSquareMeter => (CentiwattsPerSquareMeterInOneWattPerSquareMeter, CentiwattsPerSquareMeterTolerance),
+                HeatFluxUnit.CentiwattPerSquareMillimeter => (CentiwattsPerSquareMillimeterInOneWattPerSquareMeter, CentiwattsPerSquareMillimeterTolerance),
                 HeatFluxUnit.DeciwattPerSquareMeter => (DeciwattsPerSquareMeterInOneWattPerSquareMeter, DeciwattsPerSquareMeterTolerance),
+                HeatFluxUnit.DeciwattPerSquareMillimeter => (DeciwattsPerSquareMillimeterInOneWattPerSquareMeter, DeciwattsPerSquareMillimeterTolerance),
                 HeatFluxUnit.KilocaloriePerHourSquareMeter => (KilocaloriesPerHourSquareMeterInOneWattPerSquareMeter, KilocaloriesPerHourSquareMeterTolerance),
                 HeatFluxUnit.KilocaloriePerSecondSquareCentimeter => (KilocaloriesPerSecondSquareCentimeterInOneWattPerSquareMeter, KilocaloriesPerSecondSquareCentimeterTolerance),
                 HeatFluxUnit.KilowattPerSquareMeter => (KilowattsPerSquareMeterInOneWattPerSquareMeter, KilowattsPerSquareMeterTolerance),
+                HeatFluxUnit.KilowattPerSquareMillimeter => (KilowattsPerSquareMillimeterInOneWattPerSquareMeter, KilowattsPerSquareMillimeterTolerance),
                 HeatFluxUnit.MicrowattPerSquareMeter => (MicrowattsPerSquareMeterInOneWattPerSquareMeter, MicrowattsPerSquareMeterTolerance),
+                HeatFluxUnit.MicrowattPerSquareMillimeter => (MicrowattsPerSquareMillimeterInOneWattPerSquareMeter, MicrowattsPerSquareMillimeterTolerance),
                 HeatFluxUnit.MilliwattPerSquareMeter => (MilliwattsPerSquareMeterInOneWattPerSquareMeter, MilliwattsPerSquareMeterTolerance),
+                HeatFluxUnit.MilliwattPerSquareMillimeter => (MilliwattsPerSquareMillimeterInOneWattPerSquareMeter, MilliwattsPerSquareMillimeterTolerance),
                 HeatFluxUnit.NanowattPerSquareMeter => (NanowattsPerSquareMeterInOneWattPerSquareMeter, NanowattsPerSquareMeterTolerance),
+                HeatFluxUnit.NanowattPerSquareMillimeter => (NanowattsPerSquareMillimeterInOneWattPerSquareMeter, NanowattsPerSquareMillimeterTolerance),
                 HeatFluxUnit.PoundForcePerFootSecond => (PoundsForcePerFootSecondInOneWattPerSquareMeter, PoundsForcePerFootSecondTolerance),
                 HeatFluxUnit.PoundPerSecondCubed => (PoundsPerSecondCubedInOneWattPerSquareMeter, PoundsPerSecondCubedTolerance),
                 HeatFluxUnit.WattPerSquareFoot => (WattsPerSquareFootInOneWattPerSquareMeter, WattsPerSquareFootTolerance),
                 HeatFluxUnit.WattPerSquareInch => (WattsPerSquareInchInOneWattPerSquareMeter, WattsPerSquareInchTolerance),
                 HeatFluxUnit.WattPerSquareMeter => (WattsPerSquareMeterInOneWattPerSquareMeter, WattsPerSquareMeterTolerance),
+                HeatFluxUnit.WattPerSquareMillimeter => (WattsPerSquareMillimeterInOneWattPerSquareMeter, WattsPerSquareMillimeterTolerance),
                 _ => throw new NotSupportedException()
             };
         }
@@ -114,18 +135,25 @@ namespace UnitsNet.Tests
             new object[] { HeatFluxUnit.BtuPerSecondSquareInch },
             new object[] { HeatFluxUnit.CaloriePerSecondSquareCentimeter },
             new object[] { HeatFluxUnit.CentiwattPerSquareMeter },
+            new object[] { HeatFluxUnit.CentiwattPerSquareMillimeter },
             new object[] { HeatFluxUnit.DeciwattPerSquareMeter },
+            new object[] { HeatFluxUnit.DeciwattPerSquareMillimeter },
             new object[] { HeatFluxUnit.KilocaloriePerHourSquareMeter },
             new object[] { HeatFluxUnit.KilocaloriePerSecondSquareCentimeter },
             new object[] { HeatFluxUnit.KilowattPerSquareMeter },
+            new object[] { HeatFluxUnit.KilowattPerSquareMillimeter },
             new object[] { HeatFluxUnit.MicrowattPerSquareMeter },
+            new object[] { HeatFluxUnit.MicrowattPerSquareMillimeter },
             new object[] { HeatFluxUnit.MilliwattPerSquareMeter },
+            new object[] { HeatFluxUnit.MilliwattPerSquareMillimeter },
             new object[] { HeatFluxUnit.NanowattPerSquareMeter },
+            new object[] { HeatFluxUnit.NanowattPerSquareMillimeter },
             new object[] { HeatFluxUnit.PoundForcePerFootSecond },
             new object[] { HeatFluxUnit.PoundPerSecondCubed },
             new object[] { HeatFluxUnit.WattPerSquareFoot },
             new object[] { HeatFluxUnit.WattPerSquareInch },
             new object[] { HeatFluxUnit.WattPerSquareMeter },
+            new object[] { HeatFluxUnit.WattPerSquareMillimeter },
         };
 
         [Fact]
@@ -217,18 +245,25 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(BtusPerSecondSquareInchInOneWattPerSquareMeter, wattpersquaremeter.BtusPerSecondSquareInch, BtusPerSecondSquareInchTolerance);
             AssertEx.EqualTolerance(CaloriesPerSecondSquareCentimeterInOneWattPerSquareMeter, wattpersquaremeter.CaloriesPerSecondSquareCentimeter, CaloriesPerSecondSquareCentimeterTolerance);
             AssertEx.EqualTolerance(CentiwattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.CentiwattsPerSquareMeter, CentiwattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(CentiwattsPerSquareMillimeterInOneWattPerSquareMeter, wattpersquaremeter.CentiwattsPerSquareMillimeter, CentiwattsPerSquareMillimeterTolerance);
             AssertEx.EqualTolerance(DeciwattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.DeciwattsPerSquareMeter, DeciwattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(DeciwattsPerSquareMillimeterInOneWattPerSquareMeter, wattpersquaremeter.DeciwattsPerSquareMillimeter, DeciwattsPerSquareMillimeterTolerance);
             AssertEx.EqualTolerance(KilocaloriesPerHourSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.KilocaloriesPerHourSquareMeter, KilocaloriesPerHourSquareMeterTolerance);
             AssertEx.EqualTolerance(KilocaloriesPerSecondSquareCentimeterInOneWattPerSquareMeter, wattpersquaremeter.KilocaloriesPerSecondSquareCentimeter, KilocaloriesPerSecondSquareCentimeterTolerance);
             AssertEx.EqualTolerance(KilowattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.KilowattsPerSquareMeter, KilowattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(KilowattsPerSquareMillimeterInOneWattPerSquareMeter, wattpersquaremeter.KilowattsPerSquareMillimeter, KilowattsPerSquareMillimeterTolerance);
             AssertEx.EqualTolerance(MicrowattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.MicrowattsPerSquareMeter, MicrowattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(MicrowattsPerSquareMillimeterInOneWattPerSquareMeter, wattpersquaremeter.MicrowattsPerSquareMillimeter, MicrowattsPerSquareMillimeterTolerance);
             AssertEx.EqualTolerance(MilliwattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.MilliwattsPerSquareMeter, MilliwattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(MilliwattsPerSquareMillimeterInOneWattPerSquareMeter, wattpersquaremeter.MilliwattsPerSquareMillimeter, MilliwattsPerSquareMillimeterTolerance);
             AssertEx.EqualTolerance(NanowattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.NanowattsPerSquareMeter, NanowattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(NanowattsPerSquareMillimeterInOneWattPerSquareMeter, wattpersquaremeter.NanowattsPerSquareMillimeter, NanowattsPerSquareMillimeterTolerance);
             AssertEx.EqualTolerance(PoundsForcePerFootSecondInOneWattPerSquareMeter, wattpersquaremeter.PoundsForcePerFootSecond, PoundsForcePerFootSecondTolerance);
             AssertEx.EqualTolerance(PoundsPerSecondCubedInOneWattPerSquareMeter, wattpersquaremeter.PoundsPerSecondCubed, PoundsPerSecondCubedTolerance);
             AssertEx.EqualTolerance(WattsPerSquareFootInOneWattPerSquareMeter, wattpersquaremeter.WattsPerSquareFoot, WattsPerSquareFootTolerance);
             AssertEx.EqualTolerance(WattsPerSquareInchInOneWattPerSquareMeter, wattpersquaremeter.WattsPerSquareInch, WattsPerSquareInchTolerance);
             AssertEx.EqualTolerance(WattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.WattsPerSquareMeter, WattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(WattsPerSquareMillimeterInOneWattPerSquareMeter, wattpersquaremeter.WattsPerSquareMillimeter, WattsPerSquareMillimeterTolerance);
         }
 
         [Fact]
@@ -270,18 +305,25 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(BtusPerSecondSquareInchInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.BtuPerSecondSquareInch), BtusPerSecondSquareInchTolerance);
             AssertEx.EqualTolerance(CaloriesPerSecondSquareCentimeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.CaloriePerSecondSquareCentimeter), CaloriesPerSecondSquareCentimeterTolerance);
             AssertEx.EqualTolerance(CentiwattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.CentiwattPerSquareMeter), CentiwattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(CentiwattsPerSquareMillimeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.CentiwattPerSquareMillimeter), CentiwattsPerSquareMillimeterTolerance);
             AssertEx.EqualTolerance(DeciwattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.DeciwattPerSquareMeter), DeciwattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(DeciwattsPerSquareMillimeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.DeciwattPerSquareMillimeter), DeciwattsPerSquareMillimeterTolerance);
             AssertEx.EqualTolerance(KilocaloriesPerHourSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.KilocaloriePerHourSquareMeter), KilocaloriesPerHourSquareMeterTolerance);
             AssertEx.EqualTolerance(KilocaloriesPerSecondSquareCentimeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.KilocaloriePerSecondSquareCentimeter), KilocaloriesPerSecondSquareCentimeterTolerance);
             AssertEx.EqualTolerance(KilowattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.KilowattPerSquareMeter), KilowattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(KilowattsPerSquareMillimeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.KilowattPerSquareMillimeter), KilowattsPerSquareMillimeterTolerance);
             AssertEx.EqualTolerance(MicrowattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.MicrowattPerSquareMeter), MicrowattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(MicrowattsPerSquareMillimeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.MicrowattPerSquareMillimeter), MicrowattsPerSquareMillimeterTolerance);
             AssertEx.EqualTolerance(MilliwattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.MilliwattPerSquareMeter), MilliwattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(MilliwattsPerSquareMillimeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.MilliwattPerSquareMillimeter), MilliwattsPerSquareMillimeterTolerance);
             AssertEx.EqualTolerance(NanowattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.NanowattPerSquareMeter), NanowattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(NanowattsPerSquareMillimeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.NanowattPerSquareMillimeter), NanowattsPerSquareMillimeterTolerance);
             AssertEx.EqualTolerance(PoundsForcePerFootSecondInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.PoundForcePerFootSecond), PoundsForcePerFootSecondTolerance);
             AssertEx.EqualTolerance(PoundsPerSecondCubedInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.PoundPerSecondCubed), PoundsPerSecondCubedTolerance);
             AssertEx.EqualTolerance(WattsPerSquareFootInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.WattPerSquareFoot), WattsPerSquareFootTolerance);
             AssertEx.EqualTolerance(WattsPerSquareInchInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.WattPerSquareInch), WattsPerSquareInchTolerance);
             AssertEx.EqualTolerance(WattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.WattPerSquareMeter), WattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(WattsPerSquareMillimeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.WattPerSquareMillimeter), WattsPerSquareMillimeterTolerance);
         }
 
         [Fact]
@@ -397,19 +439,26 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 BTU/(s·in²)", HeatFluxUnit.BtuPerSecondSquareInch, 4.2)]
         [InlineData("en-US", "4.2 cal/(s·cm²)", HeatFluxUnit.CaloriePerSecondSquareCentimeter, 4.2)]
         [InlineData("en-US", "4.2 cW/m²", HeatFluxUnit.CentiwattPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 cW/mm²", HeatFluxUnit.CentiwattPerSquareMillimeter, 4.2)]
         [InlineData("en-US", "4.2 dW/m²", HeatFluxUnit.DeciwattPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 dW/mm²", HeatFluxUnit.DeciwattPerSquareMillimeter, 4.2)]
         [InlineData("en-US", "4.2 kcal/(h·m²)", HeatFluxUnit.KilocaloriePerHourSquareMeter, 4.2)]
         [InlineData("en-US", "4.2 kcal/(s·cm²)", HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, 4.2)]
         [InlineData("en-US", "4.2 kW/m²", HeatFluxUnit.KilowattPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 kW/mm²", HeatFluxUnit.KilowattPerSquareMillimeter, 4.2)]
         [InlineData("en-US", "4.2 µW/m²", HeatFluxUnit.MicrowattPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 µW/mm²", HeatFluxUnit.MicrowattPerSquareMillimeter, 4.2)]
         [InlineData("en-US", "4.2 mW/m²", HeatFluxUnit.MilliwattPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 mW/mm²", HeatFluxUnit.MilliwattPerSquareMillimeter, 4.2)]
         [InlineData("en-US", "4.2 nW/m²", HeatFluxUnit.NanowattPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 nW/mm²", HeatFluxUnit.NanowattPerSquareMillimeter, 4.2)]
         [InlineData("en-US", "4.2 lbf/(ft·s)", HeatFluxUnit.PoundForcePerFootSecond, 4.2)]
         [InlineData("en-US", "4.2 lb/s³", HeatFluxUnit.PoundPerSecondCubed, 4.2)]
         [InlineData("en-US", "4.2 lbm/s³", HeatFluxUnit.PoundPerSecondCubed, 4.2)]
         [InlineData("en-US", "4.2 W/ft²", HeatFluxUnit.WattPerSquareFoot, 4.2)]
         [InlineData("en-US", "4.2 W/in²", HeatFluxUnit.WattPerSquareInch, 4.2)]
         [InlineData("en-US", "4.2 W/m²", HeatFluxUnit.WattPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 W/mm²", HeatFluxUnit.WattPerSquareMillimeter, 4.2)]
         public void Parse(string culture, string quantityString, HeatFluxUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
@@ -425,19 +474,26 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 BTU/(s·in²)", HeatFluxUnit.BtuPerSecondSquareInch, 4.2)]
         [InlineData("en-US", "4.2 cal/(s·cm²)", HeatFluxUnit.CaloriePerSecondSquareCentimeter, 4.2)]
         [InlineData("en-US", "4.2 cW/m²", HeatFluxUnit.CentiwattPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 cW/mm²", HeatFluxUnit.CentiwattPerSquareMillimeter, 4.2)]
         [InlineData("en-US", "4.2 dW/m²", HeatFluxUnit.DeciwattPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 dW/mm²", HeatFluxUnit.DeciwattPerSquareMillimeter, 4.2)]
         [InlineData("en-US", "4.2 kcal/(h·m²)", HeatFluxUnit.KilocaloriePerHourSquareMeter, 4.2)]
         [InlineData("en-US", "4.2 kcal/(s·cm²)", HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, 4.2)]
         [InlineData("en-US", "4.2 kW/m²", HeatFluxUnit.KilowattPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 kW/mm²", HeatFluxUnit.KilowattPerSquareMillimeter, 4.2)]
         [InlineData("en-US", "4.2 µW/m²", HeatFluxUnit.MicrowattPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 µW/mm²", HeatFluxUnit.MicrowattPerSquareMillimeter, 4.2)]
         [InlineData("en-US", "4.2 mW/m²", HeatFluxUnit.MilliwattPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 mW/mm²", HeatFluxUnit.MilliwattPerSquareMillimeter, 4.2)]
         [InlineData("en-US", "4.2 nW/m²", HeatFluxUnit.NanowattPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 nW/mm²", HeatFluxUnit.NanowattPerSquareMillimeter, 4.2)]
         [InlineData("en-US", "4.2 lbf/(ft·s)", HeatFluxUnit.PoundForcePerFootSecond, 4.2)]
         [InlineData("en-US", "4.2 lb/s³", HeatFluxUnit.PoundPerSecondCubed, 4.2)]
         [InlineData("en-US", "4.2 lbm/s³", HeatFluxUnit.PoundPerSecondCubed, 4.2)]
         [InlineData("en-US", "4.2 W/ft²", HeatFluxUnit.WattPerSquareFoot, 4.2)]
         [InlineData("en-US", "4.2 W/in²", HeatFluxUnit.WattPerSquareInch, 4.2)]
         [InlineData("en-US", "4.2 W/m²", HeatFluxUnit.WattPerSquareMeter, 4.2)]
+        [InlineData("en-US", "4.2 W/mm²", HeatFluxUnit.WattPerSquareMillimeter, 4.2)]
         public void TryParse(string culture, string quantityString, HeatFluxUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
@@ -453,19 +509,26 @@ namespace UnitsNet.Tests
         [InlineData("BTU/(s·in²)", HeatFluxUnit.BtuPerSecondSquareInch)]
         [InlineData("cal/(s·cm²)", HeatFluxUnit.CaloriePerSecondSquareCentimeter)]
         [InlineData("cW/m²", HeatFluxUnit.CentiwattPerSquareMeter)]
+        [InlineData("cW/mm²", HeatFluxUnit.CentiwattPerSquareMillimeter)]
         [InlineData("dW/m²", HeatFluxUnit.DeciwattPerSquareMeter)]
+        [InlineData("dW/mm²", HeatFluxUnit.DeciwattPerSquareMillimeter)]
         [InlineData("kcal/(h·m²)", HeatFluxUnit.KilocaloriePerHourSquareMeter)]
         [InlineData("kcal/(s·cm²)", HeatFluxUnit.KilocaloriePerSecondSquareCentimeter)]
         [InlineData("kW/m²", HeatFluxUnit.KilowattPerSquareMeter)]
+        [InlineData("kW/mm²", HeatFluxUnit.KilowattPerSquareMillimeter)]
         [InlineData("µW/m²", HeatFluxUnit.MicrowattPerSquareMeter)]
+        [InlineData("µW/mm²", HeatFluxUnit.MicrowattPerSquareMillimeter)]
         [InlineData("mW/m²", HeatFluxUnit.MilliwattPerSquareMeter)]
+        [InlineData("mW/mm²", HeatFluxUnit.MilliwattPerSquareMillimeter)]
         [InlineData("nW/m²", HeatFluxUnit.NanowattPerSquareMeter)]
+        [InlineData("nW/mm²", HeatFluxUnit.NanowattPerSquareMillimeter)]
         [InlineData("lbf/(ft·s)", HeatFluxUnit.PoundForcePerFootSecond)]
         [InlineData("lb/s³", HeatFluxUnit.PoundPerSecondCubed)]
         [InlineData("lbm/s³", HeatFluxUnit.PoundPerSecondCubed)]
         [InlineData("W/ft²", HeatFluxUnit.WattPerSquareFoot)]
         [InlineData("W/in²", HeatFluxUnit.WattPerSquareInch)]
         [InlineData("W/m²", HeatFluxUnit.WattPerSquareMeter)]
+        [InlineData("W/mm²", HeatFluxUnit.WattPerSquareMillimeter)]
         public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, HeatFluxUnit expectedUnit)
         {
             // Fallback culture "en-US" is always localized
@@ -481,19 +544,26 @@ namespace UnitsNet.Tests
         [InlineData("BTU/(s·in²)", HeatFluxUnit.BtuPerSecondSquareInch)]
         [InlineData("cal/(s·cm²)", HeatFluxUnit.CaloriePerSecondSquareCentimeter)]
         [InlineData("cW/m²", HeatFluxUnit.CentiwattPerSquareMeter)]
+        [InlineData("cW/mm²", HeatFluxUnit.CentiwattPerSquareMillimeter)]
         [InlineData("dW/m²", HeatFluxUnit.DeciwattPerSquareMeter)]
+        [InlineData("dW/mm²", HeatFluxUnit.DeciwattPerSquareMillimeter)]
         [InlineData("kcal/(h·m²)", HeatFluxUnit.KilocaloriePerHourSquareMeter)]
         [InlineData("kcal/(s·cm²)", HeatFluxUnit.KilocaloriePerSecondSquareCentimeter)]
         [InlineData("kW/m²", HeatFluxUnit.KilowattPerSquareMeter)]
+        [InlineData("kW/mm²", HeatFluxUnit.KilowattPerSquareMillimeter)]
         [InlineData("µW/m²", HeatFluxUnit.MicrowattPerSquareMeter)]
+        [InlineData("µW/mm²", HeatFluxUnit.MicrowattPerSquareMillimeter)]
         [InlineData("mW/m²", HeatFluxUnit.MilliwattPerSquareMeter)]
+        [InlineData("mW/mm²", HeatFluxUnit.MilliwattPerSquareMillimeter)]
         [InlineData("nW/m²", HeatFluxUnit.NanowattPerSquareMeter)]
+        [InlineData("nW/mm²", HeatFluxUnit.NanowattPerSquareMillimeter)]
         [InlineData("lbf/(ft·s)", HeatFluxUnit.PoundForcePerFootSecond)]
         [InlineData("lb/s³", HeatFluxUnit.PoundPerSecondCubed)]
         [InlineData("lbm/s³", HeatFluxUnit.PoundPerSecondCubed)]
         [InlineData("W/ft²", HeatFluxUnit.WattPerSquareFoot)]
         [InlineData("W/in²", HeatFluxUnit.WattPerSquareInch)]
         [InlineData("W/m²", HeatFluxUnit.WattPerSquareMeter)]
+        [InlineData("W/mm²", HeatFluxUnit.WattPerSquareMillimeter)]
         public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, HeatFluxUnit expectedUnit)
         {
             // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
@@ -509,19 +579,26 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "BTU/(s·in²)", HeatFluxUnit.BtuPerSecondSquareInch)]
         [InlineData("en-US", "cal/(s·cm²)", HeatFluxUnit.CaloriePerSecondSquareCentimeter)]
         [InlineData("en-US", "cW/m²", HeatFluxUnit.CentiwattPerSquareMeter)]
+        [InlineData("en-US", "cW/mm²", HeatFluxUnit.CentiwattPerSquareMillimeter)]
         [InlineData("en-US", "dW/m²", HeatFluxUnit.DeciwattPerSquareMeter)]
+        [InlineData("en-US", "dW/mm²", HeatFluxUnit.DeciwattPerSquareMillimeter)]
         [InlineData("en-US", "kcal/(h·m²)", HeatFluxUnit.KilocaloriePerHourSquareMeter)]
         [InlineData("en-US", "kcal/(s·cm²)", HeatFluxUnit.KilocaloriePerSecondSquareCentimeter)]
         [InlineData("en-US", "kW/m²", HeatFluxUnit.KilowattPerSquareMeter)]
+        [InlineData("en-US", "kW/mm²", HeatFluxUnit.KilowattPerSquareMillimeter)]
         [InlineData("en-US", "µW/m²", HeatFluxUnit.MicrowattPerSquareMeter)]
+        [InlineData("en-US", "µW/mm²", HeatFluxUnit.MicrowattPerSquareMillimeter)]
         [InlineData("en-US", "mW/m²", HeatFluxUnit.MilliwattPerSquareMeter)]
+        [InlineData("en-US", "mW/mm²", HeatFluxUnit.MilliwattPerSquareMillimeter)]
         [InlineData("en-US", "nW/m²", HeatFluxUnit.NanowattPerSquareMeter)]
+        [InlineData("en-US", "nW/mm²", HeatFluxUnit.NanowattPerSquareMillimeter)]
         [InlineData("en-US", "lbf/(ft·s)", HeatFluxUnit.PoundForcePerFootSecond)]
         [InlineData("en-US", "lb/s³", HeatFluxUnit.PoundPerSecondCubed)]
         [InlineData("en-US", "lbm/s³", HeatFluxUnit.PoundPerSecondCubed)]
         [InlineData("en-US", "W/ft²", HeatFluxUnit.WattPerSquareFoot)]
         [InlineData("en-US", "W/in²", HeatFluxUnit.WattPerSquareInch)]
         [InlineData("en-US", "W/m²", HeatFluxUnit.WattPerSquareMeter)]
+        [InlineData("en-US", "W/mm²", HeatFluxUnit.WattPerSquareMillimeter)]
         public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, HeatFluxUnit expectedUnit)
         {
             using var _ = new CultureScope(culture);
@@ -536,19 +613,26 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "BTU/(s·in²)", HeatFluxUnit.BtuPerSecondSquareInch)]
         [InlineData("en-US", "cal/(s·cm²)", HeatFluxUnit.CaloriePerSecondSquareCentimeter)]
         [InlineData("en-US", "cW/m²", HeatFluxUnit.CentiwattPerSquareMeter)]
+        [InlineData("en-US", "cW/mm²", HeatFluxUnit.CentiwattPerSquareMillimeter)]
         [InlineData("en-US", "dW/m²", HeatFluxUnit.DeciwattPerSquareMeter)]
+        [InlineData("en-US", "dW/mm²", HeatFluxUnit.DeciwattPerSquareMillimeter)]
         [InlineData("en-US", "kcal/(h·m²)", HeatFluxUnit.KilocaloriePerHourSquareMeter)]
         [InlineData("en-US", "kcal/(s·cm²)", HeatFluxUnit.KilocaloriePerSecondSquareCentimeter)]
         [InlineData("en-US", "kW/m²", HeatFluxUnit.KilowattPerSquareMeter)]
+        [InlineData("en-US", "kW/mm²", HeatFluxUnit.KilowattPerSquareMillimeter)]
         [InlineData("en-US", "µW/m²", HeatFluxUnit.MicrowattPerSquareMeter)]
+        [InlineData("en-US", "µW/mm²", HeatFluxUnit.MicrowattPerSquareMillimeter)]
         [InlineData("en-US", "mW/m²", HeatFluxUnit.MilliwattPerSquareMeter)]
+        [InlineData("en-US", "mW/mm²", HeatFluxUnit.MilliwattPerSquareMillimeter)]
         [InlineData("en-US", "nW/m²", HeatFluxUnit.NanowattPerSquareMeter)]
+        [InlineData("en-US", "nW/mm²", HeatFluxUnit.NanowattPerSquareMillimeter)]
         [InlineData("en-US", "lbf/(ft·s)", HeatFluxUnit.PoundForcePerFootSecond)]
         [InlineData("en-US", "lb/s³", HeatFluxUnit.PoundPerSecondCubed)]
         [InlineData("en-US", "lbm/s³", HeatFluxUnit.PoundPerSecondCubed)]
         [InlineData("en-US", "W/ft²", HeatFluxUnit.WattPerSquareFoot)]
         [InlineData("en-US", "W/in²", HeatFluxUnit.WattPerSquareInch)]
         [InlineData("en-US", "W/m²", HeatFluxUnit.WattPerSquareMeter)]
+        [InlineData("en-US", "W/mm²", HeatFluxUnit.WattPerSquareMillimeter)]
         public void ParseUnit_WithCulture(string culture, string abbreviation, HeatFluxUnit expectedUnit)
         {
             HeatFluxUnit parsedUnit = HeatFlux.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
@@ -562,19 +646,26 @@ namespace UnitsNet.Tests
         [InlineData("BTU/(s·in²)", HeatFluxUnit.BtuPerSecondSquareInch)]
         [InlineData("cal/(s·cm²)", HeatFluxUnit.CaloriePerSecondSquareCentimeter)]
         [InlineData("cW/m²", HeatFluxUnit.CentiwattPerSquareMeter)]
+        [InlineData("cW/mm²", HeatFluxUnit.CentiwattPerSquareMillimeter)]
         [InlineData("dW/m²", HeatFluxUnit.DeciwattPerSquareMeter)]
+        [InlineData("dW/mm²", HeatFluxUnit.DeciwattPerSquareMillimeter)]
         [InlineData("kcal/(h·m²)", HeatFluxUnit.KilocaloriePerHourSquareMeter)]
         [InlineData("kcal/(s·cm²)", HeatFluxUnit.KilocaloriePerSecondSquareCentimeter)]
         [InlineData("kW/m²", HeatFluxUnit.KilowattPerSquareMeter)]
+        [InlineData("kW/mm²", HeatFluxUnit.KilowattPerSquareMillimeter)]
         [InlineData("µW/m²", HeatFluxUnit.MicrowattPerSquareMeter)]
+        [InlineData("µW/mm²", HeatFluxUnit.MicrowattPerSquareMillimeter)]
         [InlineData("mW/m²", HeatFluxUnit.MilliwattPerSquareMeter)]
+        [InlineData("mW/mm²", HeatFluxUnit.MilliwattPerSquareMillimeter)]
         [InlineData("nW/m²", HeatFluxUnit.NanowattPerSquareMeter)]
+        [InlineData("nW/mm²", HeatFluxUnit.NanowattPerSquareMillimeter)]
         [InlineData("lbf/(ft·s)", HeatFluxUnit.PoundForcePerFootSecond)]
         [InlineData("lb/s³", HeatFluxUnit.PoundPerSecondCubed)]
         [InlineData("lbm/s³", HeatFluxUnit.PoundPerSecondCubed)]
         [InlineData("W/ft²", HeatFluxUnit.WattPerSquareFoot)]
         [InlineData("W/in²", HeatFluxUnit.WattPerSquareInch)]
         [InlineData("W/m²", HeatFluxUnit.WattPerSquareMeter)]
+        [InlineData("W/mm²", HeatFluxUnit.WattPerSquareMillimeter)]
         public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, HeatFluxUnit expectedUnit)
         {
             // Fallback culture "en-US" is always localized
@@ -590,19 +681,26 @@ namespace UnitsNet.Tests
         [InlineData("BTU/(s·in²)", HeatFluxUnit.BtuPerSecondSquareInch)]
         [InlineData("cal/(s·cm²)", HeatFluxUnit.CaloriePerSecondSquareCentimeter)]
         [InlineData("cW/m²", HeatFluxUnit.CentiwattPerSquareMeter)]
+        [InlineData("cW/mm²", HeatFluxUnit.CentiwattPerSquareMillimeter)]
         [InlineData("dW/m²", HeatFluxUnit.DeciwattPerSquareMeter)]
+        [InlineData("dW/mm²", HeatFluxUnit.DeciwattPerSquareMillimeter)]
         [InlineData("kcal/(h·m²)", HeatFluxUnit.KilocaloriePerHourSquareMeter)]
         [InlineData("kcal/(s·cm²)", HeatFluxUnit.KilocaloriePerSecondSquareCentimeter)]
         [InlineData("kW/m²", HeatFluxUnit.KilowattPerSquareMeter)]
+        [InlineData("kW/mm²", HeatFluxUnit.KilowattPerSquareMillimeter)]
         [InlineData("µW/m²", HeatFluxUnit.MicrowattPerSquareMeter)]
+        [InlineData("µW/mm²", HeatFluxUnit.MicrowattPerSquareMillimeter)]
         [InlineData("mW/m²", HeatFluxUnit.MilliwattPerSquareMeter)]
+        [InlineData("mW/mm²", HeatFluxUnit.MilliwattPerSquareMillimeter)]
         [InlineData("nW/m²", HeatFluxUnit.NanowattPerSquareMeter)]
+        [InlineData("nW/mm²", HeatFluxUnit.NanowattPerSquareMillimeter)]
         [InlineData("lbf/(ft·s)", HeatFluxUnit.PoundForcePerFootSecond)]
         [InlineData("lb/s³", HeatFluxUnit.PoundPerSecondCubed)]
         [InlineData("lbm/s³", HeatFluxUnit.PoundPerSecondCubed)]
         [InlineData("W/ft²", HeatFluxUnit.WattPerSquareFoot)]
         [InlineData("W/in²", HeatFluxUnit.WattPerSquareInch)]
         [InlineData("W/m²", HeatFluxUnit.WattPerSquareMeter)]
+        [InlineData("W/mm²", HeatFluxUnit.WattPerSquareMillimeter)]
         public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, HeatFluxUnit expectedUnit)
         {
             // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
@@ -618,19 +716,26 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "BTU/(s·in²)", HeatFluxUnit.BtuPerSecondSquareInch)]
         [InlineData("en-US", "cal/(s·cm²)", HeatFluxUnit.CaloriePerSecondSquareCentimeter)]
         [InlineData("en-US", "cW/m²", HeatFluxUnit.CentiwattPerSquareMeter)]
+        [InlineData("en-US", "cW/mm²", HeatFluxUnit.CentiwattPerSquareMillimeter)]
         [InlineData("en-US", "dW/m²", HeatFluxUnit.DeciwattPerSquareMeter)]
+        [InlineData("en-US", "dW/mm²", HeatFluxUnit.DeciwattPerSquareMillimeter)]
         [InlineData("en-US", "kcal/(h·m²)", HeatFluxUnit.KilocaloriePerHourSquareMeter)]
         [InlineData("en-US", "kcal/(s·cm²)", HeatFluxUnit.KilocaloriePerSecondSquareCentimeter)]
         [InlineData("en-US", "kW/m²", HeatFluxUnit.KilowattPerSquareMeter)]
+        [InlineData("en-US", "kW/mm²", HeatFluxUnit.KilowattPerSquareMillimeter)]
         [InlineData("en-US", "µW/m²", HeatFluxUnit.MicrowattPerSquareMeter)]
+        [InlineData("en-US", "µW/mm²", HeatFluxUnit.MicrowattPerSquareMillimeter)]
         [InlineData("en-US", "mW/m²", HeatFluxUnit.MilliwattPerSquareMeter)]
+        [InlineData("en-US", "mW/mm²", HeatFluxUnit.MilliwattPerSquareMillimeter)]
         [InlineData("en-US", "nW/m²", HeatFluxUnit.NanowattPerSquareMeter)]
+        [InlineData("en-US", "nW/mm²", HeatFluxUnit.NanowattPerSquareMillimeter)]
         [InlineData("en-US", "lbf/(ft·s)", HeatFluxUnit.PoundForcePerFootSecond)]
         [InlineData("en-US", "lb/s³", HeatFluxUnit.PoundPerSecondCubed)]
         [InlineData("en-US", "lbm/s³", HeatFluxUnit.PoundPerSecondCubed)]
         [InlineData("en-US", "W/ft²", HeatFluxUnit.WattPerSquareFoot)]
         [InlineData("en-US", "W/in²", HeatFluxUnit.WattPerSquareInch)]
         [InlineData("en-US", "W/m²", HeatFluxUnit.WattPerSquareMeter)]
+        [InlineData("en-US", "W/mm²", HeatFluxUnit.WattPerSquareMillimeter)]
         public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, HeatFluxUnit expectedUnit)
         {
             using var _ = new CultureScope(culture);
@@ -645,19 +750,26 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "BTU/(s·in²)", HeatFluxUnit.BtuPerSecondSquareInch)]
         [InlineData("en-US", "cal/(s·cm²)", HeatFluxUnit.CaloriePerSecondSquareCentimeter)]
         [InlineData("en-US", "cW/m²", HeatFluxUnit.CentiwattPerSquareMeter)]
+        [InlineData("en-US", "cW/mm²", HeatFluxUnit.CentiwattPerSquareMillimeter)]
         [InlineData("en-US", "dW/m²", HeatFluxUnit.DeciwattPerSquareMeter)]
+        [InlineData("en-US", "dW/mm²", HeatFluxUnit.DeciwattPerSquareMillimeter)]
         [InlineData("en-US", "kcal/(h·m²)", HeatFluxUnit.KilocaloriePerHourSquareMeter)]
         [InlineData("en-US", "kcal/(s·cm²)", HeatFluxUnit.KilocaloriePerSecondSquareCentimeter)]
         [InlineData("en-US", "kW/m²", HeatFluxUnit.KilowattPerSquareMeter)]
+        [InlineData("en-US", "kW/mm²", HeatFluxUnit.KilowattPerSquareMillimeter)]
         [InlineData("en-US", "µW/m²", HeatFluxUnit.MicrowattPerSquareMeter)]
+        [InlineData("en-US", "µW/mm²", HeatFluxUnit.MicrowattPerSquareMillimeter)]
         [InlineData("en-US", "mW/m²", HeatFluxUnit.MilliwattPerSquareMeter)]
+        [InlineData("en-US", "mW/mm²", HeatFluxUnit.MilliwattPerSquareMillimeter)]
         [InlineData("en-US", "nW/m²", HeatFluxUnit.NanowattPerSquareMeter)]
+        [InlineData("en-US", "nW/mm²", HeatFluxUnit.NanowattPerSquareMillimeter)]
         [InlineData("en-US", "lbf/(ft·s)", HeatFluxUnit.PoundForcePerFootSecond)]
         [InlineData("en-US", "lb/s³", HeatFluxUnit.PoundPerSecondCubed)]
         [InlineData("en-US", "lbm/s³", HeatFluxUnit.PoundPerSecondCubed)]
         [InlineData("en-US", "W/ft²", HeatFluxUnit.WattPerSquareFoot)]
         [InlineData("en-US", "W/in²", HeatFluxUnit.WattPerSquareInch)]
         [InlineData("en-US", "W/m²", HeatFluxUnit.WattPerSquareMeter)]
+        [InlineData("en-US", "W/mm²", HeatFluxUnit.WattPerSquareMillimeter)]
         public void TryParseUnit_WithCulture(string culture, string abbreviation, HeatFluxUnit expectedUnit)
         {
             Assert.True(HeatFlux.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out HeatFluxUnit parsedUnit));
@@ -671,18 +783,25 @@ namespace UnitsNet.Tests
         [InlineData("en-US", HeatFluxUnit.BtuPerSecondSquareInch, "BTU/(s·in²)")]
         [InlineData("en-US", HeatFluxUnit.CaloriePerSecondSquareCentimeter, "cal/(s·cm²)")]
         [InlineData("en-US", HeatFluxUnit.CentiwattPerSquareMeter, "cW/m²")]
+        [InlineData("en-US", HeatFluxUnit.CentiwattPerSquareMillimeter, "cW/mm²")]
         [InlineData("en-US", HeatFluxUnit.DeciwattPerSquareMeter, "dW/m²")]
+        [InlineData("en-US", HeatFluxUnit.DeciwattPerSquareMillimeter, "dW/mm²")]
         [InlineData("en-US", HeatFluxUnit.KilocaloriePerHourSquareMeter, "kcal/(h·m²)")]
         [InlineData("en-US", HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, "kcal/(s·cm²)")]
         [InlineData("en-US", HeatFluxUnit.KilowattPerSquareMeter, "kW/m²")]
+        [InlineData("en-US", HeatFluxUnit.KilowattPerSquareMillimeter, "kW/mm²")]
         [InlineData("en-US", HeatFluxUnit.MicrowattPerSquareMeter, "µW/m²")]
+        [InlineData("en-US", HeatFluxUnit.MicrowattPerSquareMillimeter, "µW/mm²")]
         [InlineData("en-US", HeatFluxUnit.MilliwattPerSquareMeter, "mW/m²")]
+        [InlineData("en-US", HeatFluxUnit.MilliwattPerSquareMillimeter, "mW/mm²")]
         [InlineData("en-US", HeatFluxUnit.NanowattPerSquareMeter, "nW/m²")]
+        [InlineData("en-US", HeatFluxUnit.NanowattPerSquareMillimeter, "nW/mm²")]
         [InlineData("en-US", HeatFluxUnit.PoundForcePerFootSecond, "lbf/(ft·s)")]
         [InlineData("en-US", HeatFluxUnit.PoundPerSecondCubed, "lb/s³")]
         [InlineData("en-US", HeatFluxUnit.WattPerSquareFoot, "W/ft²")]
         [InlineData("en-US", HeatFluxUnit.WattPerSquareInch, "W/in²")]
         [InlineData("en-US", HeatFluxUnit.WattPerSquareMeter, "W/m²")]
+        [InlineData("en-US", HeatFluxUnit.WattPerSquareMillimeter, "W/mm²")]
         public void GetAbbreviationForCulture(string culture, HeatFluxUnit unit, string expectedAbbreviation)
         {
             var defaultAbbreviation = HeatFlux.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
@@ -776,18 +895,25 @@ namespace UnitsNet.Tests
             Assert.Equal(3, HeatFlux.FromBtusPerSecondSquareInch(wattpersquaremeter.BtusPerSecondSquareInch).WattsPerSquareMeter);
             Assert.Equal(3, HeatFlux.FromCaloriesPerSecondSquareCentimeter(wattpersquaremeter.CaloriesPerSecondSquareCentimeter).WattsPerSquareMeter);
             Assert.Equal(3, HeatFlux.FromCentiwattsPerSquareMeter(wattpersquaremeter.CentiwattsPerSquareMeter).WattsPerSquareMeter);
+            Assert.Equal(3, HeatFlux.FromCentiwattsPerSquareMillimeter(wattpersquaremeter.CentiwattsPerSquareMillimeter).WattsPerSquareMeter);
             Assert.Equal(3, HeatFlux.FromDeciwattsPerSquareMeter(wattpersquaremeter.DeciwattsPerSquareMeter).WattsPerSquareMeter);
+            Assert.Equal(3, HeatFlux.FromDeciwattsPerSquareMillimeter(wattpersquaremeter.DeciwattsPerSquareMillimeter).WattsPerSquareMeter);
             Assert.Equal(3, HeatFlux.FromKilocaloriesPerHourSquareMeter(wattpersquaremeter.KilocaloriesPerHourSquareMeter).WattsPerSquareMeter);
             Assert.Equal(3, HeatFlux.FromKilocaloriesPerSecondSquareCentimeter(wattpersquaremeter.KilocaloriesPerSecondSquareCentimeter).WattsPerSquareMeter);
             Assert.Equal(3, HeatFlux.FromKilowattsPerSquareMeter(wattpersquaremeter.KilowattsPerSquareMeter).WattsPerSquareMeter);
+            Assert.Equal(3, HeatFlux.FromKilowattsPerSquareMillimeter(wattpersquaremeter.KilowattsPerSquareMillimeter).WattsPerSquareMeter);
             Assert.Equal(3, HeatFlux.FromMicrowattsPerSquareMeter(wattpersquaremeter.MicrowattsPerSquareMeter).WattsPerSquareMeter);
+            Assert.Equal(3, HeatFlux.FromMicrowattsPerSquareMillimeter(wattpersquaremeter.MicrowattsPerSquareMillimeter).WattsPerSquareMeter);
             Assert.Equal(3, HeatFlux.FromMilliwattsPerSquareMeter(wattpersquaremeter.MilliwattsPerSquareMeter).WattsPerSquareMeter);
+            Assert.Equal(3, HeatFlux.FromMilliwattsPerSquareMillimeter(wattpersquaremeter.MilliwattsPerSquareMillimeter).WattsPerSquareMeter);
             Assert.Equal(3, HeatFlux.FromNanowattsPerSquareMeter(wattpersquaremeter.NanowattsPerSquareMeter).WattsPerSquareMeter);
+            Assert.Equal(3, HeatFlux.FromNanowattsPerSquareMillimeter(wattpersquaremeter.NanowattsPerSquareMillimeter).WattsPerSquareMeter);
             Assert.Equal(3, HeatFlux.FromPoundsForcePerFootSecond(wattpersquaremeter.PoundsForcePerFootSecond).WattsPerSquareMeter);
             Assert.Equal(3, HeatFlux.FromPoundsPerSecondCubed(wattpersquaremeter.PoundsPerSecondCubed).WattsPerSquareMeter);
             Assert.Equal(3, HeatFlux.FromWattsPerSquareFoot(wattpersquaremeter.WattsPerSquareFoot).WattsPerSquareMeter);
             Assert.Equal(3, HeatFlux.FromWattsPerSquareInch(wattpersquaremeter.WattsPerSquareInch).WattsPerSquareMeter);
             Assert.Equal(3, HeatFlux.FromWattsPerSquareMeter(wattpersquaremeter.WattsPerSquareMeter).WattsPerSquareMeter);
+            Assert.Equal(3, HeatFlux.FromWattsPerSquareMillimeter(wattpersquaremeter.WattsPerSquareMillimeter).WattsPerSquareMeter);
         }
 
         [Fact]
@@ -960,18 +1086,25 @@ namespace UnitsNet.Tests
             Assert.Equal("1 BTU/(s·in²)", new HeatFlux(1, HeatFluxUnit.BtuPerSecondSquareInch).ToString());
             Assert.Equal("1 cal/(s·cm²)", new HeatFlux(1, HeatFluxUnit.CaloriePerSecondSquareCentimeter).ToString());
             Assert.Equal("1 cW/m²", new HeatFlux(1, HeatFluxUnit.CentiwattPerSquareMeter).ToString());
+            Assert.Equal("1 cW/mm²", new HeatFlux(1, HeatFluxUnit.CentiwattPerSquareMillimeter).ToString());
             Assert.Equal("1 dW/m²", new HeatFlux(1, HeatFluxUnit.DeciwattPerSquareMeter).ToString());
+            Assert.Equal("1 dW/mm²", new HeatFlux(1, HeatFluxUnit.DeciwattPerSquareMillimeter).ToString());
             Assert.Equal("1 kcal/(h·m²)", new HeatFlux(1, HeatFluxUnit.KilocaloriePerHourSquareMeter).ToString());
             Assert.Equal("1 kcal/(s·cm²)", new HeatFlux(1, HeatFluxUnit.KilocaloriePerSecondSquareCentimeter).ToString());
             Assert.Equal("1 kW/m²", new HeatFlux(1, HeatFluxUnit.KilowattPerSquareMeter).ToString());
+            Assert.Equal("1 kW/mm²", new HeatFlux(1, HeatFluxUnit.KilowattPerSquareMillimeter).ToString());
             Assert.Equal("1 µW/m²", new HeatFlux(1, HeatFluxUnit.MicrowattPerSquareMeter).ToString());
+            Assert.Equal("1 µW/mm²", new HeatFlux(1, HeatFluxUnit.MicrowattPerSquareMillimeter).ToString());
             Assert.Equal("1 mW/m²", new HeatFlux(1, HeatFluxUnit.MilliwattPerSquareMeter).ToString());
+            Assert.Equal("1 mW/mm²", new HeatFlux(1, HeatFluxUnit.MilliwattPerSquareMillimeter).ToString());
             Assert.Equal("1 nW/m²", new HeatFlux(1, HeatFluxUnit.NanowattPerSquareMeter).ToString());
+            Assert.Equal("1 nW/mm²", new HeatFlux(1, HeatFluxUnit.NanowattPerSquareMillimeter).ToString());
             Assert.Equal("1 lbf/(ft·s)", new HeatFlux(1, HeatFluxUnit.PoundForcePerFootSecond).ToString());
             Assert.Equal("1 lb/s³", new HeatFlux(1, HeatFluxUnit.PoundPerSecondCubed).ToString());
             Assert.Equal("1 W/ft²", new HeatFlux(1, HeatFluxUnit.WattPerSquareFoot).ToString());
             Assert.Equal("1 W/in²", new HeatFlux(1, HeatFluxUnit.WattPerSquareInch).ToString());
             Assert.Equal("1 W/m²", new HeatFlux(1, HeatFluxUnit.WattPerSquareMeter).ToString());
+            Assert.Equal("1 W/mm²", new HeatFlux(1, HeatFluxUnit.WattPerSquareMillimeter).ToString());
         }
 
         [Fact]
@@ -986,18 +1119,25 @@ namespace UnitsNet.Tests
             Assert.Equal("1 BTU/(s·in²)", new HeatFlux(1, HeatFluxUnit.BtuPerSecondSquareInch).ToString(swedishCulture));
             Assert.Equal("1 cal/(s·cm²)", new HeatFlux(1, HeatFluxUnit.CaloriePerSecondSquareCentimeter).ToString(swedishCulture));
             Assert.Equal("1 cW/m²", new HeatFlux(1, HeatFluxUnit.CentiwattPerSquareMeter).ToString(swedishCulture));
+            Assert.Equal("1 cW/mm²", new HeatFlux(1, HeatFluxUnit.CentiwattPerSquareMillimeter).ToString(swedishCulture));
             Assert.Equal("1 dW/m²", new HeatFlux(1, HeatFluxUnit.DeciwattPerSquareMeter).ToString(swedishCulture));
+            Assert.Equal("1 dW/mm²", new HeatFlux(1, HeatFluxUnit.DeciwattPerSquareMillimeter).ToString(swedishCulture));
             Assert.Equal("1 kcal/(h·m²)", new HeatFlux(1, HeatFluxUnit.KilocaloriePerHourSquareMeter).ToString(swedishCulture));
             Assert.Equal("1 kcal/(s·cm²)", new HeatFlux(1, HeatFluxUnit.KilocaloriePerSecondSquareCentimeter).ToString(swedishCulture));
             Assert.Equal("1 kW/m²", new HeatFlux(1, HeatFluxUnit.KilowattPerSquareMeter).ToString(swedishCulture));
+            Assert.Equal("1 kW/mm²", new HeatFlux(1, HeatFluxUnit.KilowattPerSquareMillimeter).ToString(swedishCulture));
             Assert.Equal("1 µW/m²", new HeatFlux(1, HeatFluxUnit.MicrowattPerSquareMeter).ToString(swedishCulture));
+            Assert.Equal("1 µW/mm²", new HeatFlux(1, HeatFluxUnit.MicrowattPerSquareMillimeter).ToString(swedishCulture));
             Assert.Equal("1 mW/m²", new HeatFlux(1, HeatFluxUnit.MilliwattPerSquareMeter).ToString(swedishCulture));
+            Assert.Equal("1 mW/mm²", new HeatFlux(1, HeatFluxUnit.MilliwattPerSquareMillimeter).ToString(swedishCulture));
             Assert.Equal("1 nW/m²", new HeatFlux(1, HeatFluxUnit.NanowattPerSquareMeter).ToString(swedishCulture));
+            Assert.Equal("1 nW/mm²", new HeatFlux(1, HeatFluxUnit.NanowattPerSquareMillimeter).ToString(swedishCulture));
             Assert.Equal("1 lbf/(ft·s)", new HeatFlux(1, HeatFluxUnit.PoundForcePerFootSecond).ToString(swedishCulture));
             Assert.Equal("1 lb/s³", new HeatFlux(1, HeatFluxUnit.PoundPerSecondCubed).ToString(swedishCulture));
             Assert.Equal("1 W/ft²", new HeatFlux(1, HeatFluxUnit.WattPerSquareFoot).ToString(swedishCulture));
             Assert.Equal("1 W/in²", new HeatFlux(1, HeatFluxUnit.WattPerSquareInch).ToString(swedishCulture));
             Assert.Equal("1 W/m²", new HeatFlux(1, HeatFluxUnit.WattPerSquareMeter).ToString(swedishCulture));
+            Assert.Equal("1 W/mm²", new HeatFlux(1, HeatFluxUnit.WattPerSquareMillimeter).ToString(swedishCulture));
         }
 
         [Fact]

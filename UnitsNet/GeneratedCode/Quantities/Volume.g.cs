@@ -36,7 +36,7 @@ namespace UnitsNet
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct Volume :
-        IArithmeticQuantity<Volume, VolumeUnit>,
+        ILinearQuantity<Volume, VolumeUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Volume, Volume, QuantityValue>,
         IMultiplyOperators<Volume, Molarity, AmountOfSubstance>,
@@ -45,6 +45,7 @@ namespace UnitsNet
         IMultiplyOperators<Volume, Length, AreaMomentOfInertia>,
         IDivisionOperators<Volume, VolumeFlow, Duration>,
         IMultiplyOperators<Volume, EnergyDensity, Energy>,
+        IMultiplyOperators<Volume, SpecificWeight, Force>,
         IMultiplyOperators<Volume, ReciprocalArea, Length>,
         IDivisionOperators<Volume, Area, Length>,
         IMultiplyOperators<Volume, Density, Mass>,
@@ -1370,6 +1371,12 @@ namespace UnitsNet
         public static Energy operator *(Volume volume, EnergyDensity energyDensity)
         {
             return Energy.FromJoules(volume.CubicMeters * energyDensity.JoulesPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="Force"/> from <see cref="Volume"/> * <see cref="SpecificWeight"/>.</summary>
+        public static Force operator *(Volume volume, SpecificWeight specificWeight)
+        {
+            return Force.FromNewtons(volume.CubicMeters * specificWeight.NewtonsPerCubicMeter);
         }
 
         /// <summary>Get <see cref="Length"/> from <see cref="Volume"/> * <see cref="ReciprocalArea"/>.</summary>
