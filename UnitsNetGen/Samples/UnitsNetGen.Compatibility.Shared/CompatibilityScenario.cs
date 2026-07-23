@@ -16,6 +16,16 @@ public static class CompatibilityScenario
             .ToUnit(TemperatureUnit.DegreeFahrenheit);
         Level combinedLevel = Level.FromDecibels(10) + Level.FromDecibels(10);
         Information payload = Information.FromKibibytes(2).ToUnit(InformationUnit.Bit);
+        Length total = UnitsNet.Core.QuantityMath.Sum(new[]
+        {
+            Length.FromKilometers(1),
+            Length.FromMeters(500),
+        });
+        Length average = UnitsNet.Core.QuantityMath.Average(new[]
+        {
+            Length.FromMeters(1),
+            Length.FromCentimeters(300),
+        });
 
         return string.Join(
             Environment.NewLine,
@@ -24,6 +34,8 @@ public static class CompatibilityScenario
             FormattableString.Invariant($"Temperature: {temperature.Value:R} {temperature.Unit}"),
             FormattableString.Invariant($"Level: {combinedLevel.Value:R} {combinedLevel.Unit}"),
             FormattableString.Invariant($"Information: {payload.Value:R} {payload.Unit}"),
+            FormattableString.Invariant($"Sum: {total.Value:R} {total.Unit}"),
+            FormattableString.Invariant($"Average: {average.Value:R} {average.Unit}"),
             DescribeCoreContract<Length, LengthUnit>(distance));
     }
 

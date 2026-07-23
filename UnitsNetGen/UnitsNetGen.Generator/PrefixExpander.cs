@@ -75,7 +75,8 @@ internal static class PrefixExpander
             distinct,
             quantity.SourcePath,
             quantity.IsLogarithmic,
-            quantity.LogarithmicScalingFactor);
+            quantity.LogarithmicScalingFactor,
+            affineOffsetType: quantity.AffineOffsetType);
     }
 
     private static string LowerFirst(string value)

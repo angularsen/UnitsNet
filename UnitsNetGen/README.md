@@ -5,10 +5,11 @@ time. It combines a small runtime with a Roslyn source generator and supports bo
 definitions and consumer-selected third-party definition packages.
 
 Generated quantities and modern UnitsNet v6 assets implement the shared self-typed
-`UnitsNet.Core.IQuantity<TSelf, TUnit, TValue>` contract. It exposes stored value and unit as
-instance data, with semantic identity, base unit, and construction on the quantity type. This
-enables generic source and data interoperation without claiming that concrete structs generated
-into different assemblies have the same CLR type.
+`UnitsNet.Core.IQuantity<TSelf, TUnit, TValue>` contract. It exposes stored value, unit, and
+conversion as instance behavior, with semantic identity, base unit, and construction on the
+quantity type. Linear, affine, and logarithmic capability interfaces mirror their different
+arithmetic semantics. This enables generic algorithms and source/data interoperation without
+claiming that concrete structs generated into different assemblies have the same CLR type.
 
 **Experimental:** UnitsNetGen's API and package format may change while the architecture is being
 explored.
@@ -54,6 +55,16 @@ profile's unit selection for the same quantity. Profiles can be consumer-defined
 
 The generated API includes strongly typed quantity structs and unit enums, parsing, formatting,
 conversion, arithmetic, and localized abbreviations.
+
+Shared Core algorithms operate on both UnitsNet and UnitsNetGen quantities:
+
+```csharp
+Length total = UnitsNet.Core.QuantityMath.Sum(new[]
+{
+    Length.FromKilometers(1),
+    Length.FromMeters(500),
+});
+```
 
 Generate the selected API in the established `UnitsNet` and `UnitsNet.Units` namespaces with
 `[UnitsNetModule("UnitsNet")]`. The compatibility samples compile the exact same linked consumer

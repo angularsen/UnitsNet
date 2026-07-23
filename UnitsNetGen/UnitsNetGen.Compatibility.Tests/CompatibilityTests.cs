@@ -184,6 +184,35 @@ public sealed class CompatibilityTests
             Generated::UnitsNet.Units.LengthUnit.Meter);
     }
 
+    [Fact]
+    public void BothImplementations_ImplementSharedCapabilityContracts()
+    {
+        AssertLinearCapabilities<Legacy::UnitsNet.Length, Legacy::UnitsNet.Units.LengthUnit>();
+        AssertLinearCapabilities<Generated::UnitsNet.Length, Generated::UnitsNet.Units.LengthUnit>();
+        AssertAffineCapabilities<Legacy::UnitsNet.Temperature, Legacy::UnitsNet.Units.TemperatureUnit>();
+        AssertAffineCapabilities<Generated::UnitsNet.Temperature, Generated::UnitsNet.Units.TemperatureUnit>();
+        AssertLogarithmicCapabilities<Legacy::UnitsNet.Level, Legacy::UnitsNet.Units.LevelUnit>();
+        AssertLogarithmicCapabilities<Generated::UnitsNet.Level, Generated::UnitsNet.Units.LevelUnit>();
+    }
+
+    [Fact]
+    public void QuantityMath_WorksAcrossBothImplementations()
+    {
+        Legacy::UnitsNet.Length legacy = UnitsNet.Core.QuantityMath.Average(new[]
+        {
+            Legacy::UnitsNet.Length.FromMeters(1),
+            Legacy::UnitsNet.Length.FromCentimeters(300),
+        });
+        Generated::UnitsNet.Length generated = UnitsNet.Core.QuantityMath.Average(new[]
+        {
+            Generated::UnitsNet.Length.FromMeters(1),
+            Generated::UnitsNet.Length.FromCentimeters(300),
+        });
+
+        Assert.Equal(legacy.Meters, generated.Meters, 10);
+        Assert.Equal(2, generated.Meters, 10);
+    }
+
     [Theory]
     [MemberData(nameof(QuantityApis))]
     public void GeneratedQuantity_ExposesCompatibleApiSubset(
@@ -197,6 +226,7 @@ public sealed class CompatibilityTests
             "Unit",
             "QuantityId",
             "BaseUnit",
+            "Zero",
             "From",
             "As",
             "ToUnit",
@@ -241,6 +271,29 @@ public sealed class CompatibilityTests
         UnitsNet.Core.IQuantity<TUnit, double> stored = quantity;
         Assert.Equal(2d, stored.Value);
         Assert.Equal(baseUnit, stored.Unit);
+        Assert.Equal(2d, quantity.As(baseUnit));
+    }
+
+    private static void AssertLinearCapabilities<TQuantity, TUnit>()
+        where TQuantity : UnitsNet.Core.ILinearQuantity<TQuantity, TUnit>
+        where TUnit : struct, Enum
+    {
+        Assert.Equal(TQuantity.Zero, UnitsNet.Core.QuantityMath.Sum(Array.Empty<TQuantity>()));
+    }
+
+    private static void AssertAffineCapabilities<TQuantity, TUnit>()
+        where TQuantity : UnitsNet.Core.IAffineQuantity<TQuantity, TUnit>
+        where TUnit : struct, Enum
+    {
+        Assert.Equal(TQuantity.BaseUnit, TQuantity.Zero.Unit);
+    }
+
+    private static void AssertLogarithmicCapabilities<TQuantity, TUnit>()
+        where TQuantity : UnitsNet.Core.ILogarithmicQuantity<TQuantity, TUnit>
+        where TUnit : struct, Enum
+    {
+        Assert.Equal(TQuantity.BaseUnit, TQuantity.Zero.Unit);
+        Assert.True(TQuantity.LogarithmicScalingFactor > 0);
     }
 
     private static HashSet<string> GetSurface(Type type, ISet<string> selectedNames)

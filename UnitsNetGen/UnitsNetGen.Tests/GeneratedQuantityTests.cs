@@ -153,6 +153,59 @@ public sealed class GeneratedQuantityTests
         Assert.Null(typeof(Length).GetProperty("UnitName", publicMembers));
     }
 
+    [Fact]
+    public void GeneratedQuantities_AdvertiseTheirArithmeticCapabilities()
+    {
+        AssertLinearCapability<Length, LengthUnit>();
+        AssertAffineCapability<Temperature, TemperatureUnit>();
+        AssertLogarithmicCapability<Level, LevelUnit>();
+        Assert.DoesNotContain(
+            typeof(Temperature).GetInterfaces(),
+            type => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(UnitsNet.Core.ILinearQuantity<>));
+        Assert.DoesNotContain(
+            typeof(Level).GetInterfaces(),
+            type => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(UnitsNet.Core.ILinearQuantity<>));
+    }
+
+    [Fact]
+    public void QuantityMath_SumsAndAveragesMixedUnits()
+    {
+        Length sum = UnitsNet.Core.QuantityMath.Sum(new[]
+        {
+            Length.FromKilometers(1),
+            Length.FromMeters(500),
+        });
+        Length targetedSum = UnitsNet.Core.QuantityMath.Sum(
+            new[] { Length.FromKilometers(1), Length.FromMeters(500) },
+            LengthUnit.Meter);
+        Length average = UnitsNet.Core.QuantityMath.Average(new[]
+        {
+            Length.FromMeters(1),
+            Length.FromCentimeters(300),
+        });
+        Length targetedAverage = UnitsNet.Core.QuantityMath.Average(
+            new[] { Length.FromMeters(1), Length.FromCentimeters(300) },
+            LengthUnit.Centimeter);
+
+        Assert.Equal(1.5, sum.Kilometers, 10);
+        Assert.Equal(1500, targetedSum.Meters, 10);
+        Assert.Equal(2, average.Meters, 10);
+        Assert.Equal(200, targetedAverage.Centimeters, 10);
+        Assert.Equal(Length.Zero, UnitsNet.Core.QuantityMath.Sum(Array.Empty<Length>()));
+    }
+
+    [Fact]
+    public void DefaultQuantity_UsesBaseUnitLikeUnitsNet()
+    {
+        Length value = default;
+
+        Assert.Equal(LengthUnit.Meter, value.Unit);
+        Assert.Equal(0, value.Meters);
+        Assert.Equal(Length.Zero, value);
+        Assert.Equal(Length.Zero.GetHashCode(), value.GetHashCode());
+        Assert.Equal("0 m", value.ToString(null, System.Globalization.CultureInfo.InvariantCulture));
+    }
+
     private static T Parse<T>(string text)
         where T : IParsable<T>
         => T.Parse(text, System.Globalization.CultureInfo.InvariantCulture);
@@ -165,4 +218,19 @@ public sealed class GeneratedQuantityTests
         where TQuantity : UnitsNet.Core.IQuantity<TQuantity, TUnit, double>
         where TUnit : struct, Enum
         => TQuantity.From(value, unit);
+
+    private static void AssertLinearCapability<TQuantity, TUnit>()
+        where TQuantity : UnitsNet.Core.ILinearQuantity<TQuantity, TUnit>
+        where TUnit : struct, Enum
+        => Assert.Equal(TQuantity.BaseUnit, TQuantity.Zero.Unit);
+
+    private static void AssertAffineCapability<TQuantity, TUnit>()
+        where TQuantity : UnitsNet.Core.IAffineQuantity<TQuantity, TUnit>
+        where TUnit : struct, Enum
+        => Assert.Equal(TQuantity.BaseUnit, TQuantity.Zero.Unit);
+
+    private static void AssertLogarithmicCapability<TQuantity, TUnit>()
+        where TQuantity : UnitsNet.Core.ILogarithmicQuantity<TQuantity, TUnit>
+        where TUnit : struct, Enum
+        => Assert.Equal(TQuantity.BaseUnit, TQuantity.Zero.Unit);
 }

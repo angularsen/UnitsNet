@@ -152,7 +152,7 @@ directly references it.
 
 - `UnitsNet.Core`: minimal modern value/unit contracts and a self-typed static contract shared by
   both implementations.
-- `UnitsNetGen`: the lean runtime and the new `IQuantity<TUnit>` contract.
+- `UnitsNetGen`: the lean conversion, parsing, formatting, and unit-metadata runtime.
 - `UnitsNetGen.Generator`: the incremental generator, marker bootstrap source, built-in catalog,
   diagnostics, and emitters.
 - `UnitsNetGen.Generator.Tests`: generator-driver coverage for diagnostics, stable output,
@@ -200,13 +200,28 @@ surfaces, enum names and stable values, runtime output, and shared Core contract
 `UnitsNet.Core.IQuantity<TValue>` exposes only the stored numeric value.
 `UnitsNet.Core.IQuantity<TUnit, TValue>` additionally exposes its strongly typed stored unit.
 `UnitsNet.Core.IQuantity<TSelf, TUnit, TValue>` adds static semantic identity, base unit, and
-construction. A generic library can therefore consume or create either implementation even though
-their concrete types differ.
+construction together with strongly typed conversion. A generic library can therefore consume,
+create, or convert either implementation even though their concrete types differ.
+
+The Core capability hierarchy adapts UnitsNet's proven modern generic design without carrying over
+`UnitKey`, quantity metadata, setup registries, or obsolete compatibility members:
+
+- `ILinearQuantity<TSelf, TUnit>` advertises conventional arithmetic and additive zero;
+- `IAffineQuantity<TSelf, TUnit>` identifies offset conversions without claiming conventional
+  same-quantity arithmetic;
+- `ILogarithmicQuantity<TSelf, TUnit>` identifies logarithmic arithmetic and scaling without
+  claiming conventional generic-math semantics.
+
+`QuantityMath.Sum` and `QuantityMath.Average` use those contracts for reusable mixed-unit linear
+algorithms shared by UnitsNet and UnitsNetGen. The capability layer remains `double`-based while
+numeric storage abstraction is evaluated separately.
 
 `QuantityId` belongs to the quantity type rather than each value instance. Base-unit conversion is
 derived behavior and is intentionally not part of the instance contract. Generated relationships
 and equality use internal conversion helpers; reusable public conversion behavior belongs in
-extensions backed by immutable definition metadata.
+the quantity contract and algorithms backed by immutable definition metadata. Internal base values
+are sufficient for relationships because all participating recipe quantities are generated into
+one consumer-owned assembly; independently compiled modules cannot acquire cross-module operators.
 
 UnitsNetGen deliberately does not emit substitute copies of legacy `UnitsNet.IQuantity` interfaces.
 Exact legacy interface identity would require moving those interfaces to a canonical assembly and
@@ -217,8 +232,8 @@ The experiment does not provide binary compatibility between concrete quantity s
 identity includes the defining assembly, so `UnitsNet.Length` from `UnitsNet.dll` and a type with
 the same full name generated into an application assembly are not assignment-compatible.
 Projects inside one application share its consumer-owned module. Independent applications exchange
-shared contracts
-or explicit serialized data instead of assuming their generated structs have the same identity.
+shared contracts or explicit serialized data instead of assuming their generated structs have the
+same identity.
 
 The `UnitsNet.Core` project is a separate signed assembly and prerelease package. Local packing
 gives Core and UnitsNetGen the same unique development version, packs them to the same output
@@ -307,8 +322,9 @@ it regardless of the consumer target. That analyzer target is an implementation 
 runtime support for generated quantity modules.
 
 On all supported runtime targets, generated quantities implement `IParsable<TSelf>` and applicable
-generic-math operator interfaces from `System.Numerics`. This enables generic parsing, addition,
-subtraction, scalar multiplication/division, and comparison.
+Core capability and generic-math interfaces. Linear quantities support conventional arithmetic and
+shared aggregation; affine quantities avoid same-quantity arithmetic; logarithmic quantities keep
+their explicit logarithmic behavior. All generated quantities support generic comparison.
 
 Further modern-target opportunities include allocation-free
 `ISpanParsable<TSelf>`/`ISpanFormattable` paths, UTF-8 parsing and formatting, and optionally
@@ -325,8 +341,9 @@ For each selected definition, the generator emits:
   properties;
 - static semantic identity and base-unit members through the self-typed Core contract;
 - `As()`, `ToUnit()`, `Parse()`, `TryParse()`, and `ToString()`;
-- equality, comparison, same-quantity addition/subtraction, and scalar multiplication/division;
-- modern .NET generic parsing and generic-math contracts;
+- default values normalized to zero in the base unit, matching UnitsNet;
+- arithmetic selected by the definition's linear, affine, or logarithmic semantics;
+- modern .NET generic parsing, comparison, and capability contracts;
 - localized unit metadata that delegates shared behavior to the runtime;
 - direct, validated conversion switches for affine and nonlinear conversions.
 

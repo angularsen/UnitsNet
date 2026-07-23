@@ -14,7 +14,8 @@ internal sealed class QuantityDefinition
         string? sourcePath = null,
         bool isLogarithmic = false,
         double logarithmicScalingFactor = 1,
-        string? semanticId = null)
+        string? semanticId = null,
+        string? affineOffsetType = null)
     {
         Name = name;
         TargetNamespace = targetNamespace;
@@ -24,6 +25,7 @@ internal sealed class QuantityDefinition
         IsLogarithmic = isLogarithmic;
         LogarithmicScalingFactor = logarithmicScalingFactor;
         SemanticId = semanticId ?? targetNamespace + "." + name;
+        AffineOffsetType = affineOffsetType;
     }
 
     public string Name { get; }
@@ -40,6 +42,10 @@ internal sealed class QuantityDefinition
 
     public double LogarithmicScalingFactor { get; }
 
+    public string? AffineOffsetType { get; }
+
+    public bool IsAffine => !string.IsNullOrWhiteSpace(AffineOffsetType);
+
     public string Id => SemanticId;
 
     public string SemanticId { get; }
@@ -53,7 +59,8 @@ internal sealed class QuantityDefinition
             SourcePath,
             IsLogarithmic,
             LogarithmicScalingFactor,
-            SemanticId);
+            SemanticId,
+            AffineOffsetType);
 
     public QuantityDefinition WithSemanticId(string semanticId)
         => new QuantityDefinition(
@@ -64,7 +71,8 @@ internal sealed class QuantityDefinition
             SourcePath,
             IsLogarithmic,
             LogarithmicScalingFactor,
-            semanticId);
+            semanticId,
+            AffineOffsetType);
 }
 
 internal sealed class UnitDefinition

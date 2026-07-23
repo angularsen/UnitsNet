@@ -111,6 +111,14 @@ keeps the broader SI relationship chain continuously buildable.
   - Document that independently generated application modules intentionally have different CLR type
     identities.
 
+- [x] **13. Share quantity capability contracts and algorithms**
+  - Adapt UnitsNet's modern linear, affine, and logarithmic interface split into the clean Core
+    contracts without legacy metadata or runtime setup dependencies.
+  - Add generic construction, conversion, and default `ToUnit` behavior to the self-typed contract.
+  - Reuse `Sum` and `Average` across UnitsNet and UnitsNetGen linear quantities.
+  - Classify generated arithmetic from logarithmic and affine definition metadata.
+  - Treat a default generated struct as zero in its base unit, matching UnitsNet behavior.
+
 ## Deferred
 
 - Restore and validate the full UnitsNet quantity catalog.

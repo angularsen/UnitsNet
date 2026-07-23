@@ -89,7 +89,8 @@ internal static class JsonDefinitionParser
                 units,
                 path,
                 isLogarithmic,
-                logarithmicScalingFactor);
+                logarithmicScalingFactor,
+                affineOffsetType: parsed.AffineOffsetType);
             return new JsonDefinitionResult(path, PrefixExpander.Expand(definition), null);
         }
         catch (JsonException exception)
@@ -150,6 +151,7 @@ internal static class JsonDefinitionParser
         public string? BaseUnit { get; set; }
         public string? Logarithmic { get; set; }
         public string? LogarithmicScalingFactor { get; set; }
+        public string? AffineOffsetType { get; set; }
         public JsonUnit[]? Units { get; set; }
     }
 

@@ -38,10 +38,12 @@ internal static class QuantityEmitter
 
         writer.Append("public enum ").Append(unitTypeName).AppendLine();
         writer.AppendLine("{");
+        IReadOnlyDictionary<string, int> definitionIndexes = quantity.Units
+            .Select((unit, index) => new { unit.SingularName, Index = index })
+            .ToDictionary(item => item.SingularName, item => item.Index, StringComparer.Ordinal);
         foreach (UnitDefinition unit in selection.Units)
         {
-            int definitionIndex = quantity.Units.ToList().FindIndex(candidate =>
-                string.Equals(candidate.SingularName, unit.SingularName, StringComparison.Ordinal));
+            int definitionIndex = definitionIndexes[unit.SingularName];
             int enumValue = BuiltInUnitEnumValues.TryGet(quantity.SemanticId, unit.SingularName, out int stableValue)
                 ? stableValue
                 : definitionIndex + 1;
@@ -58,19 +60,19 @@ internal static class QuantityEmitter
             writer.AppendLine("{");
         }
 
+        string capabilityInterface = quantity.IsLogarithmic
+            ? "global::UnitsNet.Core.ILogarithmicQuantity<"
+            : quantity.IsAffine
+                ? "global::UnitsNet.Core.IAffineQuantity<"
+                : "global::UnitsNet.Core.ILinearQuantity<";
         writer.Append("public readonly partial struct ").Append(quantity.Name)
-            .Append(" : global::UnitsNetGen.IQuantity<").Append(unitType).Append(">, ")
-            .Append("global::UnitsNet.Core.IQuantity<").Append(quantity.Name).Append(", ")
-            .Append(unitType).Append(", double>, ");
+            .Append(" : ").Append(capabilityInterface).Append(quantity.Name).Append(", ")
+            .Append(unitType).Append(">, ");
         writer
             .Append("global::System.IEquatable<").Append(quantity.Name).Append(">, ")
             .Append("global::System.IComparable<").Append(quantity.Name).AppendLine(">");
         writer.AppendLine("#if NET8_0_OR_GREATER");
         writer.Append("    , global::System.IParsable<").Append(quantity.Name).AppendLine(">");
-        writer.Append("    , global::System.Numerics.IAdditionOperators<").Append(quantity.Name).Append(", ").Append(quantity.Name).Append(", ").Append(quantity.Name).AppendLine(">");
-        writer.Append("    , global::System.Numerics.ISubtractionOperators<").Append(quantity.Name).Append(", ").Append(quantity.Name).Append(", ").Append(quantity.Name).AppendLine(">");
-        writer.Append("    , global::System.Numerics.IMultiplyOperators<").Append(quantity.Name).Append(", double, ").Append(quantity.Name).AppendLine(">");
-        writer.Append("    , global::System.Numerics.IDivisionOperators<").Append(quantity.Name).Append(", double, ").Append(quantity.Name).AppendLine(">");
         writer.Append("    , global::System.Numerics.IComparisonOperators<").Append(quantity.Name).Append(", ").Append(quantity.Name).AppendLine(", bool>");
         writer.AppendLine("#endif");
         writer.AppendLine("{");
@@ -89,10 +91,12 @@ internal static class QuantityEmitter
             .Append(unitType).AppendLine(" unit) => new(value, unit);");
         writer.AppendLine();
         writer.AppendLine("    public double Value => _value;");
-        writer.Append("    public ").Append(unitType).AppendLine(" Unit => _unit;");
+        writer.Append("    public ").Append(unitType).Append(" Unit => _unit.Equals(default(").Append(unitType)
+            .AppendLine(")) ? BaseUnit : _unit;");
         writer.Append("    public static global::UnitsNet.Core.QuantityId QuantityId { get; } = new global::UnitsNet.Core.QuantityId(\"")
             .Append(Escape(quantity.SemanticId)).AppendLine("\");");
         writer.Append("    public static ").Append(unitType).Append(" BaseUnit => ").Append(unitType).Append('.').Append(quantity.BaseUnit).AppendLine(";");
+        writer.Append("    public static ").Append(quantity.Name).AppendLine(" Zero { get; } = new(0, BaseUnit);");
         if (quantity.IsLogarithmic)
         {
             writer.Append("    public static double LogarithmicScalingFactor => ")
@@ -102,7 +106,7 @@ internal static class QuantityEmitter
 
         writer.Append("    public static global::System.Collections.Generic.IReadOnlyList<global::UnitsNetGen.UnitInfo<")
             .Append(unitType).AppendLine(">> UnitInfos => Metadata.Units;");
-        writer.AppendLine("    internal double BaseValue => global::UnitsNetGen.QuantityOperations.GetBaseValue(_value, _unit, Metadata);");
+        writer.AppendLine("    internal double BaseValue => global::UnitsNetGen.QuantityOperations.GetBaseValue(_value, Unit, Metadata);");
         writer.AppendLine();
 
         foreach (UnitDefinition unit in selection.Units)
@@ -114,7 +118,7 @@ internal static class QuantityEmitter
 
         writer.AppendLine();
         writer.Append("    public double As(").Append(unitType).AppendLine(" unit) =>");
-        writer.AppendLine("        global::UnitsNetGen.QuantityOperations.Convert(_value, _unit, unit, Metadata);");
+        writer.AppendLine("        global::UnitsNetGen.QuantityOperations.Convert(_value, Unit, unit, Metadata);");
         writer.AppendLine();
         writer.Append("    public ").Append(quantity.Name).Append(" ToUnit(").Append(unitType).AppendLine(" unit) => new(As(unit), unit);");
         writer.AppendLine();
@@ -159,20 +163,24 @@ internal static class QuantityEmitter
         writer.AppendLine("    public override int GetHashCode() => BaseValue.GetHashCode();");
         writer.AppendLine("    public override string ToString() => ToString(null, null);");
         writer.AppendLine("    public string ToString(string? format, global::System.IFormatProvider? formatProvider) =>");
-        writer.AppendLine("        global::UnitsNetGen.QuantityOperations.Format(_value, _unit, format, formatProvider, Metadata);");
+        writer.AppendLine("        global::UnitsNetGen.QuantityOperations.Format(_value, Unit, format, formatProvider, Metadata);");
         writer.AppendLine();
         if (quantity.IsLogarithmic)
         {
             EmitLogarithmicOperators(writer, quantity.Name, quantity.LogarithmicScalingFactor);
         }
-        else
+        else if (!quantity.IsAffine)
         {
+            writer.Append("    public static ").Append(quantity.Name).Append(" operator -(").Append(quantity.Name)
+                .AppendLine(" quantity) => new(-quantity.Value, quantity.Unit);");
             writer.Append("    public static ").Append(quantity.Name).Append(" operator +(").Append(quantity.Name).Append(" left, ").Append(quantity.Name)
                 .AppendLine(" right) => new(left.Value + right.As(left.Unit), left.Unit);");
             writer.Append("    public static ").Append(quantity.Name).Append(" operator -(").Append(quantity.Name).Append(" left, ").Append(quantity.Name)
                 .AppendLine(" right) => new(left.Value - right.As(left.Unit), left.Unit);");
             writer.Append("    public static ").Append(quantity.Name).Append(" operator *(").Append(quantity.Name)
                 .AppendLine(" quantity, double scalar) => new(quantity.Value * scalar, quantity.Unit);");
+            writer.Append("    public static ").Append(quantity.Name).Append(" operator *(double scalar, ").Append(quantity.Name)
+                .AppendLine(" quantity) => quantity * scalar;");
             writer.Append("    public static ").Append(quantity.Name).Append(" operator /(").Append(quantity.Name)
                 .AppendLine(" quantity, double scalar) => new(quantity.Value / scalar, quantity.Unit);");
         }
@@ -308,6 +316,8 @@ internal static class QuantityEmitter
         double logarithmicScalingFactor)
     {
         string scalingFactor = (10 * logarithmicScalingFactor).ToString("R", CultureInfo.InvariantCulture);
+        writer.Append("    public static ").Append(quantityName).Append(" operator -(").Append(quantityName)
+            .AppendLine(" quantity) => new(-quantity.Value, quantity.Unit);");
         writer.Append("    public static ").Append(quantityName).Append(" operator +(").Append(quantityName).Append(" left, ")
             .Append(quantityName).Append(" right) => new(").Append(scalingFactor)
             .Append(" * global::System.Math.Log10(global::System.Math.Pow(10, left.Value / ")
