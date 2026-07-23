@@ -99,6 +99,16 @@ public class QuantityInfoLookup
     /// </summary>
     public IReadOnlyList<QuantityInfo> Infos => _quantities;
 
+    internal static QuantityInfoLookup Create(IEnumerable<QuantityInfo> defaultQuantities, Action<QuantitiesSelector> configureQuantities)
+    {
+        if (defaultQuantities is null) throw new ArgumentNullException(nameof(defaultQuantities));
+        if (configureQuantities is null) throw new ArgumentNullException(nameof(configureQuantities));
+
+        var selector = new QuantitiesSelector(() => defaultQuantities);
+        configureQuantities(selector);
+        return new QuantityInfoLookup(selector.GetQuantityInfos());
+    }
+
     /// <summary>
     ///     Retrieves the <see cref="QuantityInfo" /> associated with the specified quantity type.
     /// </summary>
