@@ -14,6 +14,7 @@ namespace UnitsNet;
 /// </summary>
 public sealed class UnitsNetSetup
 {
+    // Lazy<T> synchronizes value creation; this lock also makes the builder swap and creation checks atomic with it.
     private static readonly object DefaultConfigurationLock = new();
     private static DefaultConfigurationBuilder _defaultConfigurationBuilder = new();
     private static readonly Lazy<UnitsNetSetup> DefaultConfiguration = new(BuildDefault);
@@ -124,6 +125,7 @@ public sealed class UnitsNetSetup
     /// <param name="configuration">Configures the quantities included in the default setup.</param>
     /// <returns>The configured global default setup.</returns>
     /// <exception cref="InvalidOperationException">The default setup has already been created.</exception>
+    /// <seealso cref="Default" />
     public static UnitsNetSetup ConfigureDefaults(Action<DefaultConfigurationBuilder> configuration)
     {
         if (configuration is null) throw new ArgumentNullException(nameof(configuration));
@@ -172,10 +174,13 @@ public sealed class UnitsNetSetup
     ///     provided.
     /// </summary>
     /// <remarks>
+    ///     Call <see cref="ConfigureDefaults" /> before first accessing this property to select a different quantity catalog.<br />
+    ///     <br />
     ///     Manipulating this instance, such as adding new units or changing default unit abbreviations, will affect most
     ///     usages of UnitsNet in the
     ///     current AppDomain since the typical use is via static members and not providing a setup instance.
     /// </remarks>
+    /// <seealso cref="ConfigureDefaults" />
     public static UnitsNetSetup Default => DefaultConfiguration.Value;
 
     /// <summary>

@@ -6,6 +6,8 @@ using Xunit;
 
 namespace UnitsNet.GlobalSetup.Tests;
 
+// This assembly intentionally contains a single test because UnitsNetSetup.Default is process-wide and cannot be reset.
+// Keep additional global-configuration scenarios isolated in separate test processes.
 public class UnitsNetSetupGlobalConfigurationTests
 {
     [Fact]
