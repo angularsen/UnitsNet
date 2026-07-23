@@ -19,6 +19,8 @@ namespace CodeGen.JsonTypes
         public Quantity ResultQuantity = null!;
         public Unit ResultUnit = null!;
 
+        public string DisambiguationString => $"{LeftQuantity.Name} {Operator} {RightQuantity.Name}";
+
         public string SortString => string.Concat(
             ResultQuantity.Name, ResultUnit.SingularName,
             LeftQuantity.Name, LeftUnit.SingularName, Operator,
