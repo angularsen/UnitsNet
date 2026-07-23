@@ -85,6 +85,27 @@ namespace UnitsNet
             return new UnitAbbreviationsCache();
         }
 
+        /// <summary>
+        ///     Creates a cache for the built-in quantities and any additions made by <paramref name="configureQuantities" />.
+        /// </summary>
+        /// <param name="configureQuantities">Configures the selected quantities.</param>
+        /// <returns>A cache mapped to the configured quantity selection.</returns>
+        public static UnitAbbreviationsCache CreateDefault(Action<QuantitiesSelector> configureQuantities)
+        {
+            return Create(Quantity.DefaultProvider.Quantities, configureQuantities);
+        }
+
+        /// <summary>
+        ///     Creates a cache for a configured selection based on <paramref name="defaultQuantities" />.
+        /// </summary>
+        /// <param name="defaultQuantities">The initial quantity definitions.</param>
+        /// <param name="configureQuantities">Configures the selected quantities.</param>
+        /// <returns>A cache mapped to the configured quantity selection.</returns>
+        public static UnitAbbreviationsCache Create(IEnumerable<QuantityInfo> defaultQuantities, Action<QuantitiesSelector> configureQuantities)
+        {
+            return new UnitAbbreviationsCache(QuantityInfoLookup.Create(defaultQuantities, configureQuantities));
+        }
+
         #region MapUnitToAbbreviation overloads
 
         /// <summary>

@@ -1,4 +1,6 @@
-﻿[![Build Status](https://dev.azure.com/unitsnet/Units.NET/_apis/build/status/UnitsNet?branchName=master)](https://dev.azure.com/unitsnet/Units.NET/_build/latest?definitionId=1&branchName=master)
+﻿[![CI Build](https://github.com/angularsen/UnitsNet/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/angularsen/UnitsNet/actions/workflows/ci.yml)
+[![Pull Requests](https://github.com/angularsen/UnitsNet/actions/workflows/pr.yml/badge.svg)](https://github.com/angularsen/UnitsNet/actions/workflows/pr.yml)
+[![.NET Framework 4.8](https://github.com/angularsen/UnitsNet/actions/workflows/net48-compatibility.yml/badge.svg)](https://github.com/angularsen/UnitsNet/actions/workflows/net48-compatibility.yml)
 [![codecov](https://codecov.io/gh/angularsen/UnitsNet/branch/master/graph/badge.svg)](https://codecov.io/gh/angularsen/UnitsNet)
 [![StandWithUkraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
 
@@ -476,11 +478,14 @@ Get the same strongly typed units on other platforms, based on the same [unit de
 
 ### Continuous Integration
 
-[Azure DevOps](https://dev.azure.com/unitsnet/Units.NET/) performs the following:
+[GitHub Actions](https://github.com/angularsen/UnitsNet/actions) performs the following for v6 on `master`:
 
-* Build and test all branches
-* Build and test pull requests, notifies on success or error
-* Deploy NuGets on master branch, if nuspec versions changed
+* The [CI workflow](https://github.com/angularsen/UnitsNet/actions/workflows/ci.yml) builds and tests pushes to `master` and publishes packages to [NuGet.org](https://www.nuget.org/packages/UnitsNet)
+* The [pull-request workflow](https://github.com/angularsen/UnitsNet/actions/workflows/pr.yml) builds and tests pull requests, with test results and code coverage
+* Linux CI builds every shipped target and runs the full test suite with coverage on .NET 10
+* The [.NET Framework 4.8 compatibility workflow](https://github.com/angularsen/UnitsNet/actions/workflows/net48-compatibility.yml) runs the complete test suite against the `netstandard2.0` assemblies on CLR4 for pull requests and pushes to `master`
+
+The [`maintenance/v5`](https://github.com/angularsen/UnitsNet/tree/maintenance/v5) branch remains on Azure DevOps because its nanoFramework build requires Visual Studio MSBuild and the nanoFramework MSBuild components.
 
 ### Who are Using UnitsNet?
 

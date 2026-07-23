@@ -37,7 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Pressure :
-        IArithmeticQuantity<Pressure, PressureUnit>,
+        ILinearQuantity<Pressure, PressureUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Pressure, Pressure, double>,
         IDivisionOperators<Pressure, AreaDensity, Acceleration>,

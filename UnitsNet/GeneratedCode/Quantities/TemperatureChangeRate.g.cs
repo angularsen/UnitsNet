@@ -37,7 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct TemperatureChangeRate :
-        IArithmeticQuantity<TemperatureChangeRate, TemperatureChangeRateUnit>,
+        ILinearQuantity<TemperatureChangeRate, TemperatureChangeRateUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<TemperatureChangeRate, TemperatureChangeRate, double>,
         IMultiplyOperators<TemperatureChangeRate, Duration, TemperatureDelta>,

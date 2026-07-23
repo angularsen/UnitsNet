@@ -37,7 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Jerk :
-        IArithmeticQuantity<Jerk, JerkUnit>,
+        ILinearQuantity<Jerk, JerkUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Jerk, Jerk, double>,
         IMultiplyOperators<Jerk, Duration, Acceleration>,

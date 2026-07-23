@@ -7,6 +7,7 @@
   "AmountOfSubstance.Mole = MolarFlow.MolePerSecond * Duration.Second",
   "AmountOfSubstance.Mole = Molarity.MolePerCubicMeter * Volume.CubicMeter",
   "Angle.Radian = RotationalSpeed.RadianPerSecond * Duration.Second",
+  "Area.SquareMeter = AreaPerLength.SquareMeterPerMeter * Length.Meter -- NoInferredDivision",
   "Area.SquareMeter = KinematicViscosity.SquareMeterPerSecond * Duration.Second -- NoInferredDivision",
   "Area.SquareMeter = Length.Meter * Length.Meter",
   "Area.SquareMeter = Volume.CubicMeter * ReciprocalLength.InverseMeter",

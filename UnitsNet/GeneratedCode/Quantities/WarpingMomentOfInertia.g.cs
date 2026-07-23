@@ -37,7 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct WarpingMomentOfInertia :
-        IArithmeticQuantity<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>,
+        ILinearQuantity<WarpingMomentOfInertia, WarpingMomentOfInertiaUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<WarpingMomentOfInertia, WarpingMomentOfInertia, double>,
         IComparisonOperators<WarpingMomentOfInertia, WarpingMomentOfInertia, bool>,

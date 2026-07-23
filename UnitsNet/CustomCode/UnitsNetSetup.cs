@@ -14,6 +14,84 @@ namespace UnitsNet;
 /// </summary>
 public sealed class UnitsNetSetup
 {
+    /// <summary>
+    ///     Builds a UnitsNet setup by selecting built-in or external quantity definitions.
+    /// </summary>
+    public sealed class DefaultConfigurationBuilder
+    {
+        private QuantitiesSelector? _quantitiesSelector;
+
+        /// <summary>
+        ///     Uses the specified quantities as the setup's base catalog.
+        /// </summary>
+        /// <param name="quantities">The quantity definitions to use.</param>
+        /// <returns>This builder, for method chaining.</returns>
+        public DefaultConfigurationBuilder WithQuantities(IEnumerable<QuantityInfo> quantities)
+        {
+            if (quantities is null) throw new ArgumentNullException(nameof(quantities));
+            return WithQuantities(() => quantities);
+        }
+
+        /// <summary>
+        ///     Uses quantities returned by <paramref name="quantities" /> as the setup's base catalog.
+        /// </summary>
+        /// <param name="quantities">Provides the quantity definitions to use.</param>
+        /// <returns>This builder, for method chaining.</returns>
+        public DefaultConfigurationBuilder WithQuantities(Func<IEnumerable<QuantityInfo>> quantities)
+        {
+            if (quantities is null) throw new ArgumentNullException(nameof(quantities));
+            if (_quantitiesSelector is not null) throw new InvalidOperationException("The base quantity selection is already configured.");
+
+            _quantitiesSelector = new QuantitiesSelector(quantities);
+            return this;
+        }
+
+        /// <summary>
+        ///     Uses the specified quantities as the setup's base catalog and configures that selection.
+        /// </summary>
+        /// <param name="quantities">The quantity definitions to use.</param>
+        /// <param name="configureQuantities">Configures the selected quantities.</param>
+        /// <returns>This builder, for method chaining.</returns>
+        public DefaultConfigurationBuilder WithQuantities(IEnumerable<QuantityInfo> quantities, Action<QuantitiesSelector> configureQuantities)
+        {
+            if (quantities is null) throw new ArgumentNullException(nameof(quantities));
+            return WithQuantities(() => quantities, configureQuantities);
+        }
+
+        /// <summary>
+        ///     Uses quantities returned by <paramref name="quantities" /> as the setup's base catalog and configures that selection.
+        /// </summary>
+        /// <param name="quantities">Provides the quantity definitions to use.</param>
+        /// <param name="configureQuantities">Configures the selected quantities.</param>
+        /// <returns>This builder, for method chaining.</returns>
+        public DefaultConfigurationBuilder WithQuantities(Func<IEnumerable<QuantityInfo>> quantities, Action<QuantitiesSelector> configureQuantities)
+        {
+            if (configureQuantities is null) throw new ArgumentNullException(nameof(configureQuantities));
+
+            WithQuantities(quantities);
+            configureQuantities(_quantitiesSelector!);
+            return this;
+        }
+
+        /// <summary>
+        ///     Appends external quantity definitions to the current selection.
+        /// </summary>
+        /// <param name="quantities">The quantity definitions to append.</param>
+        /// <returns>This builder, for method chaining.</returns>
+        public DefaultConfigurationBuilder WithAdditionalQuantities(IEnumerable<QuantityInfo> quantities)
+        {
+            _quantitiesSelector ??= new QuantitiesSelector(() => Quantity.DefaultProvider.Quantities);
+            _quantitiesSelector.WithAdditionalQuantities(quantities);
+            return this;
+        }
+
+        internal UnitsNetSetup Build()
+        {
+            IEnumerable<QuantityInfo> quantities = _quantitiesSelector?.GetQuantityInfos() ?? Quantity.DefaultProvider.Quantities;
+            return new UnitsNetSetup(quantities, UnitConverter.CreateDefault());
+        }
+    }
+
     static UnitsNetSetup()
     {
         IReadOnlyCollection<QuantityInfo> quantityInfos = Quantity.DefaultProvider.Quantities;
@@ -22,6 +100,20 @@ public sealed class UnitsNetSetup
         var unitConverter = UnitConverter.CreateDefault();
 
         Default = new UnitsNetSetup(quantityInfos, unitConverter);
+    }
+
+    /// <summary>
+    ///     Creates an isolated setup without changing <see cref="Default" />.
+    /// </summary>
+    /// <param name="configuration">Configures the quantities included in the setup.</param>
+    /// <returns>A configured UnitsNet setup.</returns>
+    public static UnitsNetSetup Create(Action<DefaultConfigurationBuilder> configuration)
+    {
+        if (configuration is null) throw new ArgumentNullException(nameof(configuration));
+
+        var builder = new DefaultConfigurationBuilder();
+        configuration(builder);
+        return builder.Build();
     }
 
     /// <summary>

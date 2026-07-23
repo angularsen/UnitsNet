@@ -1,0 +1,125 @@
+name: net48 Compatibility
+
+on:
+  # Remove `pull_request` for post-merge validation only, or remove `push` for PR validation only.
+  # Test and coverage behavior is identical for every enabled trigger.
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: net48-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  test:
+    name: ${{ github.event_name == 'pull_request' && 'PR net48 Build & Test' || 'CI net48 Build & Test' }}
+    runs-on: windows-latest
+    timeout-minutes: 45
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v7
+      with:
+        fetch-depth: 1
+        lfs: true
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v6
+      with:
+        dotnet-version: 10.0.x
+
+    - name: Restore .NET tools
+      run: dotnet tool restore
+
+    - name: Generate code
+      run: dotnet run --project CodeGen
+
+    - name: Run the complete net48 test suite with coverage
+      shell: pwsh
+      run: |
+        $testProjects = @(
+          'UnitsNet.Tests/UnitsNet.Tests.csproj',
+          'UnitsNet.NumberExtensions.Tests/UnitsNet.NumberExtensions.Tests.csproj',
+          'UnitsNet.NumberExtensions.CS14.Tests/UnitsNet.NumberExtensions.CS14.Tests.csproj',
+          'UnitsNet.Serialization.JsonNet.Tests/UnitsNet.Serialization.JsonNet.Tests.csproj'
+        )
+
+        New-Item -ItemType Directory -Force -Path Artifacts/Coverage | Out-Null
+
+        foreach ($testProject in $testProjects) {
+          $projectName = [IO.Path]::GetFileNameWithoutExtension($testProject)
+
+          $testArguments = @(
+            $testProject,
+            '--configuration', 'Release',
+            '--framework', 'net48',
+            '--logger', 'trx',
+            '--results-directory', 'Artifacts/TestResults',
+            '-p:ContinuousIntegrationBuild=true'
+          )
+
+          dotnet tool run dotCover -- cover-dotnet `
+            --TargetWorkingDir $PWD.Path `
+            --Output "Artifacts/Coverage/$projectName.coverage.xml" `
+            --ReportType DetailedXML `
+            --Filters '+:module=UnitsNet*;-:module=*Tests' `
+            --ReturnTargetExitCode `
+            -- test @testArguments
+
+          if ($LASTEXITCODE -ne 0) {
+            exit $LASTEXITCODE
+          }
+        }
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v7
+      with:
+        name: net48-test-results
+        path: Artifacts/TestResults/*.trx
+        if-no-files-found: ignore
+        retention-days: 30
+
+    # publish-net48-test-results.yml defines the "Publish net48 Test Results"
+    # workflow_run workflow that publishes these results with checks: write. Keeping that permission
+    # out of this workflow lets fork PRs execute contributor code with a read-only token.
+    - name: Upload workflow event
+      if: always()
+      uses: actions/upload-artifact@v7
+      with:
+        name: net48-event
+        path: ${{ github.event_path }}
+        retention-days: 30
+
+    - name: Upload coverage to Codecov
+      if: ${{ success() && hashFiles('Artifacts/Coverage/*.coverage.xml') != '' }}
+      uses: codecov/codecov-action@v6
+      with:
+        directory: Artifacts/Coverage
+        fail_ci_if_error: ${{ github.event_name != 'pull_request' }}
+        flags: net48
+        name: net48-clr4
+        plugins: noop
+        use_oidc: true
+
+    - name: Upload coverage reports
+      if: always()
+      uses: actions/upload-artifact@v7
+      with:
+        name: net48-coverage
+        path: Artifacts/Coverage/*.coverage.xml
+        if-no-files-found: ignore
+        retention-days: 30

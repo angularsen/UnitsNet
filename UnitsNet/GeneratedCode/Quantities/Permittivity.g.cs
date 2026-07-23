@@ -40,7 +40,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Permittivity :
-        IArithmeticQuantity<Permittivity, PermittivityUnit>,
+        ILinearQuantity<Permittivity, PermittivityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Permittivity, Permittivity, double>,
         IComparisonOperators<Permittivity, Permittivity, bool>,

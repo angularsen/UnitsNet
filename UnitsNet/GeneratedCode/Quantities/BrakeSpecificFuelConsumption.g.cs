@@ -37,7 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct BrakeSpecificFuelConsumption :
-        IArithmeticQuantity<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumptionUnit>,
+        ILinearQuantity<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumptionUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumption, double>,
         IMultiplyOperators<BrakeSpecificFuelConsumption, Power, MassFlow>,

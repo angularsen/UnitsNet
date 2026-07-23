@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.Linq;
+using UnitsNet.InternalHelpers;
 
 namespace UnitsNet;
 
@@ -26,7 +27,7 @@ public static class LogarithmicQuantityExtensions
 #if NET
         return double.RootN(number, n);
 #else
-        return Math.Pow(number, 1.0 / n);
+        return MathHelper.RootN(number, n);
 #endif
     }
 
