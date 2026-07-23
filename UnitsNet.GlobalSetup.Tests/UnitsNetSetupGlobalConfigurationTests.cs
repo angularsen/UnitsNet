@@ -18,6 +18,9 @@ public class UnitsNetSetupGlobalConfigurationTests
     [Fact]
     public void ConfigureDefaults_BeforeFirstUse_ConfiguresAndFreezesDefaultSetup()
     {
+        Assert.Equal("configuration",
+            Assert.Throws<ArgumentNullException>(() => UnitsNetSetup.ConfigureDefaults(null!)).ParamName);
+
         UnitsNetSetup configured = UnitsNetSetup.ConfigureDefaults(builder => builder.WithQuantities([Mass.Info]));
 
         Assert.Same(configured, UnitsNetSetup.Default);
