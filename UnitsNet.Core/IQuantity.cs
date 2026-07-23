@@ -38,4 +38,10 @@ public interface IQuantity<TSelf, TUnit, TValue> : IQuantity<TUnit, TValue>
 
     /// <summary>Creates a quantity with a value expressed in the specified unit.</summary>
     static abstract TSelf From(TValue value, TUnit unit);
+
+    /// <summary>Gets this quantity's value expressed in the specified unit.</summary>
+    TValue As(TUnit unit);
+
+    /// <summary>Converts this quantity to the specified unit.</summary>
+    TSelf ToUnit(TUnit unit) => TSelf.From(As(unit), unit);
 }
