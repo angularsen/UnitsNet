@@ -50,20 +50,17 @@ jobs:
     - name: Run the complete net48 test suite with coverage
       shell: pwsh
       run: |
-        $testProjects = @(
-          'UnitsNet.Tests/UnitsNet.Tests.csproj',
-          'UnitsNet.NumberExtensions.Tests/UnitsNet.NumberExtensions.Tests.csproj',
-          'UnitsNet.NumberExtensions.CS14.Tests/UnitsNet.NumberExtensions.CS14.Tests.csproj',
-          'UnitsNet.Serialization.JsonNet.Tests/UnitsNet.Serialization.JsonNet.Tests.csproj'
-        )
+        Import-Module ./Build/build-functions.psm1
+        $testProjects = @(Get-TestProjects -Framework 'net48')
+        if ($testProjects.Count -eq 0) {
+          throw 'No test projects targeting net48 were found.'
+        }
 
         New-Item -ItemType Directory -Force -Path Artifacts/Coverage | Out-Null
 
         foreach ($testProject in $testProjects) {
-          $projectName = [IO.Path]::GetFileNameWithoutExtension($testProject)
-
           $testArguments = @(
-            $testProject,
+            $testProject.FullName,
             '--configuration', 'Release',
             '--framework', 'net48',
             '--logger', 'trx',
@@ -73,7 +70,7 @@ jobs:
 
           dotnet tool run dotCover -- cover-dotnet `
             --TargetWorkingDir $PWD.Path `
-            --Output "Artifacts/Coverage/$projectName.coverage.xml" `
+            --Output "Artifacts/Coverage/$($testProject.BaseName).coverage.xml" `
             --ReportType DetailedXML `
             --Filters '+:module=UnitsNet*;-:module=*Tests' `
             --ReturnTargetExitCode `
