@@ -5,7 +5,12 @@ using Xunit;
 
 namespace UnitsNet.GlobalSetup.DefaultFirst.Tests;
 
-// This assembly intentionally contains a single test because UnitsNetSetup.Default is process-wide and cannot be reset.
+/// <summary>
+///     Tests configuring the process-wide default setup after first use.
+/// </summary>
+/// <remarks>
+///     This assembly intentionally contains a single test because <see cref="UnitsNetSetup.Default" /> cannot be reset.
+/// </remarks>
 public class UnitsNetSetupDefaultFirstTests
 {
     [Fact]

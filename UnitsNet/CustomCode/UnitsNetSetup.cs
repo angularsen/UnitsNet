@@ -14,7 +14,9 @@ namespace UnitsNet;
 /// </summary>
 public sealed class UnitsNetSetup
 {
-    // Lazy<T> synchronizes value creation; this lock also makes the builder swap and creation checks atomic with it.
+    /// <summary>
+    ///     Synchronizes the default builder swap and creation checks with the value creation already synchronized by <see cref="Lazy{T}" />.
+    /// </summary>
     private static readonly object DefaultConfigurationLock = new();
     private static DefaultConfigurationBuilder _defaultConfigurationBuilder = new();
     private static readonly Lazy<UnitsNetSetup> DefaultConfiguration = new(BuildDefault);
