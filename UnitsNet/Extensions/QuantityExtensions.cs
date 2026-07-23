@@ -78,12 +78,142 @@ public static class QuantityExtensions
 #endif
     }
 
-    /// <inheritdoc cref="IQuantity.As(UnitKey)" />
-    /// <remarks>This should be using UnitConverter.Default.ConvertValue(quantity, toUnit) </remarks>
+    private static IQuantity ConvertTo(this UnitConverter converter, IQuantity quantity, UnitKey toUnit)
+    {
+        if (quantity.UnitKey == toUnit)
+        {
+            return quantity;
+        }
+
+        var targetUnit = (Enum)toUnit;
+        Type quantityType = quantity.GetType();
+        if (converter.TryGetConversionFunction(quantityType, quantity.Unit, quantityType, targetUnit, out ConversionFunction? conversionFunction))
+        {
+            return conversionFunction(quantity);
+        }
+
+#pragma warning disable CS0618 // Type or member is obsolete
+        UnitKey baseUnit = quantity.QuantityInfo.BaseUnitInfo.UnitKey;
+#pragma warning restore CS0618 // Type or member is obsolete
+        if (quantity.UnitKey != baseUnit)
+        {
+            IQuantity quantityInBaseUnit = converter.ConvertTo(quantity, baseUnit);
+            return converter.ConvertTo(quantityInBaseUnit, toUnit);
+        }
+
+        throw new UnitNotFoundException($"Can't convert {quantity.Unit} to {targetUnit}.");
+    }
+
+    /// <summary>
+    ///     Converts a quantity value to the specified unit.
+    /// </summary>
+    /// <param name="converter">The converter to use.</param>
+    /// <param name="quantity">The quantity to convert.</param>
+    /// <param name="toUnit">The target unit.</param>
+    /// <returns>The converted value.</returns>
+    internal static double ConvertValue<TQuantity>(this UnitConverter converter, TQuantity quantity, UnitKey toUnit)
+        where TQuantity : IQuantity
+    {
+        return converter.ConvertTo(quantity, toUnit).Value;
+    }
+
+    /// <summary>
+    ///     Converts a quantity to the specified unit while preserving its concrete type.
+    /// </summary>
+    /// <param name="converter">The converter to use.</param>
+    /// <param name="quantity">The quantity to convert.</param>
+    /// <param name="toUnit">The target unit.</param>
+    /// <returns>The converted quantity.</returns>
+    internal static TQuantity ConvertToUnit<TQuantity>(this UnitConverter converter, TQuantity quantity, UnitKey toUnit)
+        where TQuantity : IQuantityOfType<TQuantity>
+    {
+        return (TQuantity)converter.ConvertTo(quantity, toUnit);
+    }
+
+    /// <summary>
+    ///     Gets the value of a quantity in the specified unit.
+    /// </summary>
     internal static double GetValue<TQuantity>(this TQuantity quantity, UnitKey toUnit)
         where TQuantity : IQuantity
     {
-        return quantity.As(toUnit);
+        return UnitConverter.Default.ConvertValue(quantity, toUnit);
+    }
+
+    /// <summary>
+    ///     Gets the value of a quantity in the specified unit.
+    /// </summary>
+    /// <typeparam name="TQuantity">The quantity type.</typeparam>
+    /// <typeparam name="TUnit">The unit enum type.</typeparam>
+    /// <param name="quantity">The quantity to convert.</param>
+    /// <param name="unit">The target unit.</param>
+    /// <returns>The converted value.</returns>
+    public static double As<TQuantity, TUnit>(this TQuantity quantity, TUnit unit)
+        where TQuantity : IQuantity<TQuantity, TUnit>
+        where TUnit : struct, Enum
+    {
+        return UnitConverter.Default.ConvertValue(quantity, UnitKey.ForUnit(unit));
+    }
+
+    /// <summary>
+    ///     Gets the value of a quantity in the specified unit.
+    /// </summary>
+    /// <param name="quantity">The quantity to convert.</param>
+    /// <param name="unit">The target unit.</param>
+    /// <returns>The converted value.</returns>
+    public static double As(this IQuantity quantity, UnitKey unit)
+    {
+        return UnitConverter.Default.ConvertValue(quantity, unit);
+    }
+
+    /// <summary>
+    ///     Converts a quantity to the specified unit while preserving its concrete type.
+    /// </summary>
+    /// <typeparam name="TQuantity">The quantity type.</typeparam>
+    /// <typeparam name="TUnit">The unit enum type.</typeparam>
+    /// <param name="quantity">The quantity to convert.</param>
+    /// <param name="unit">The target unit.</param>
+    /// <returns>The converted quantity.</returns>
+    public static TQuantity ToUnit<TQuantity, TUnit>(this TQuantity quantity, TUnit unit)
+        where TQuantity : IQuantity<TQuantity, TUnit>
+        where TUnit : struct, Enum
+    {
+        return quantity.ToUnit(unit, UnitConverter.Default);
+    }
+
+    /// <inheritdoc cref="ToUnit{TQuantity,TUnit}(TQuantity,TUnit)" />
+    /// <param name="quantity">The quantity to convert.</param>
+    /// <param name="unit">The target unit.</param>
+    /// <param name="unitConverter">The converter to use.</param>
+    public static TQuantity ToUnit<TQuantity, TUnit>(this TQuantity quantity, TUnit unit, UnitConverter unitConverter)
+        where TQuantity : IQuantity<TQuantity, TUnit>
+        where TUnit : struct, Enum
+    {
+        if (unitConverter is null) throw new ArgumentNullException(nameof(unitConverter));
+        return unitConverter.ConvertToUnit(quantity, UnitKey.ForUnit(unit));
+    }
+
+    /// <summary>
+    ///     Converts a quantity to the specified unit.
+    /// </summary>
+    /// <param name="quantity">The quantity to convert.</param>
+    /// <param name="unit">The target unit.</param>
+    /// <returns>The converted quantity.</returns>
+    public static IQuantity ToUnit(this IQuantity quantity, UnitKey unit)
+    {
+        return UnitConverter.Default.ConvertTo(quantity, unit);
+    }
+
+    /// <summary>
+    ///     Converts a quantity to the specified unit.
+    /// </summary>
+    /// <typeparam name="TUnit">The unit enum type.</typeparam>
+    /// <param name="quantity">The quantity to convert.</param>
+    /// <param name="unit">The target unit.</param>
+    /// <returns>The converted quantity.</returns>
+    public static IQuantity<TUnit> ToUnit<TUnit>(this IQuantity<TUnit> quantity, TUnit unit)
+        where TUnit : struct, Enum
+    {
+        return (IQuantity<TUnit>)UnitConverter.Default.ConvertTo(quantity, UnitKey.ForUnit(unit));
     }
 
     /// <summary>

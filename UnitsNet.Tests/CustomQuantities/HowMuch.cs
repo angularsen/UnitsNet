@@ -20,11 +20,6 @@ namespace UnitsNet.Tests.CustomQuantities
             return new HowMuch(value, unit);
         }
 
-        public double As(HowMuchUnit unit)
-        {
-            throw new NotImplementedException();
-        }
-
         public HowMuchUnit Unit { get; }
 
         public double Value { get; }
@@ -62,23 +57,6 @@ namespace UnitsNet.Tests.CustomQuantities
         UnitKey IQuantity.UnitKey
         {
             get => UnitKey.ForUnit(Unit);
-        }
-
-        public double As(Enum unit) => Convert.ToDouble(unit);
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<HowMuchUnit>());
-        }
-
-        public IQuantity ToUnit(Enum unit)
-        {
-            if (unit is HowMuchUnit howMuchUnit) return new HowMuch(As(unit), howMuchUnit);
-            throw new ArgumentException("Must be of type HowMuchUnit.", nameof(unit));
-        }
-
-        public IQuantity<HowMuchUnit> ToUnit(HowMuchUnit unit)
-        {
-            throw new NotImplementedException();
         }
 
         public override string ToString()
