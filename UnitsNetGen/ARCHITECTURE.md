@@ -413,7 +413,8 @@ selection, profile, conversion, localization, and relationship model as built-in
   culture-specific prefix convention from UnitsNet v6.
 - Definition packages contain recipes, not quantity structs. Independently generated application
   modules intentionally have distinct CLR type identities.
-- The supported application pattern uses one module marker in one consumer-owned units project.
+- The supported application pattern uses one module marker in one consumer-owned units project;
+  `UNG014` reports additional module markers before they can emit colliding types.
 - Canonical precompiled third-party modules and operators between independently compiled modules are
   outside this prototype's scope.
 

@@ -102,6 +102,14 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
         DiagnosticSeverity.Error,
         true);
 
+    private static readonly DiagnosticDescriptor MultipleModules = new DiagnosticDescriptor(
+        "UNG014",
+        "Multiple UnitsNetGen modules are not supported",
+        "Compilation defines multiple UnitsNetGen modules ({0}); compose selections into one module using include profiles",
+        "UnitsNetGen",
+        DiagnosticSeverity.Error,
+        true);
+
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         context.RegisterPostInitializationOutput(static output =>
@@ -127,20 +135,44 @@ public sealed class UnitsNetGenGenerator : IIncrementalGenerator
             .Select(static (input, cancellationToken) => QuantityRelationParser.Parse(input.Left, cancellationToken))
             .WithTrackingName("Relations");
 
-        IncrementalValuesProvider<((ModuleRequest Left, ImmutableArray<JsonDefinitionResult> Right) Left, ImmutableArray<RelationDefinitionResult> Right)> generationInputs =
-            modules.Combine(jsonDefinitions.Collect())
+        IncrementalValueProvider<((ImmutableArray<ModuleRequest> Left, ImmutableArray<JsonDefinitionResult> Right) Left, ImmutableArray<RelationDefinitionResult> Right)> generationInputs =
+            modules.Collect().Combine(jsonDefinitions.Collect())
                 .Combine(relationDefinitions.Collect())
                 .WithTrackingName("GenerationInputs");
         context.RegisterSourceOutput(
             generationInputs,
-            static (productionContext, input) => Emit(
+            static (productionContext, input) => EmitModules(
                 productionContext,
                 input.Left.Left,
                 input.Left.Right,
                 input.Right));
     }
 
-    private static void Emit(
+    private static void EmitModules(
+        SourceProductionContext context,
+        ImmutableArray<ModuleRequest> modules,
+        ImmutableArray<JsonDefinitionResult> jsonDefinitionResults,
+        ImmutableArray<RelationDefinitionResult> relationDefinitionResults)
+    {
+        if (modules.Length == 0)
+        {
+            return;
+        }
+
+        if (modules.Length > 1)
+        {
+            ModuleRequest[] ordered = modules.OrderBy(module => module.Name, StringComparer.Ordinal).ToArray();
+            context.ReportDiagnostic(Diagnostic.Create(
+                MultipleModules,
+                ordered[0].Location.ToLocation(),
+                string.Join(", ", ordered.Select(module => "'" + module.Name + "'"))));
+            return;
+        }
+
+        EmitModule(context, modules[0], jsonDefinitionResults, relationDefinitionResults);
+    }
+
+    private static void EmitModule(
         SourceProductionContext context,
         ModuleRequest module,
         ImmutableArray<JsonDefinitionResult> jsonDefinitionResults,
