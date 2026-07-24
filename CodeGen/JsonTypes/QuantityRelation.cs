@@ -19,17 +19,16 @@ namespace CodeGen.JsonTypes
         public Quantity ResultQuantity = null!;
         public Unit ResultUnit = null!;
 
-        public string SortString => ResultQuantity.Name + PrependDot(ResultUnit.SingularName)
-                                  + " = "
-                                  + LeftQuantity.Name + PrependDot(LeftUnit.SingularName)
-                                  + " " + Operator + " "
-                                  + RightQuantity.Name + PrependDot(RightUnit.SingularName);
+        public string DisambiguationString => $"{LeftQuantity.Name} {Operator} {RightQuantity.Name}";
+
+        public string SortString => string.Concat(
+            ResultQuantity.Name, ResultUnit.SingularName,
+            LeftQuantity.Name, LeftUnit.SingularName, Operator,
+            RightQuantity.Name, RightUnit.SingularName);
 
         public int CompareTo(QuantityRelation? other)
         {
-            return string.Compare(SortString, other?.SortString, StringComparison.Ordinal);
+            return string.Compare(SortString, other?.SortString, StringComparison.OrdinalIgnoreCase);
         }
-
-        private static string PrependDot(string? s) => s == null ? string.Empty : "." + s;
     }
 }

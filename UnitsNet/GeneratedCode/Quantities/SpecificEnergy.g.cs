@@ -43,12 +43,12 @@ namespace UnitsNet
         ILinearQuantity<SpecificEnergy, SpecificEnergyUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<SpecificEnergy, SpecificEnergy, double>,
+        IMultiplyOperators<SpecificEnergy, BrakeSpecificFuelConsumption, double>,
         IMultiplyOperators<SpecificEnergy, Mass, Energy>,
         IMultiplyOperators<SpecificEnergy, MassFlow, Power>,
         IDivisionOperators<SpecificEnergy, TemperatureDelta, SpecificEntropy>,
         IDivisionOperators<SpecificEnergy, Speed, Speed>,
         IDivisionOperators<SpecificEnergy, SpecificEntropy, TemperatureDelta>,
-        IMultiplyOperators<SpecificEnergy, BrakeSpecificFuelConsumption, double>,
         IComparisonOperators<SpecificEnergy, SpecificEnergy, bool>,
         IParsable<SpecificEnergy>,
 #endif
@@ -963,6 +963,12 @@ namespace UnitsNet
             return BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value / specificEnergy.JoulesPerKilogram);
         }
 
+        /// <summary>Get <see cref="double"/> from <see cref="SpecificEnergy"/> * <see cref="BrakeSpecificFuelConsumption"/>.</summary>
+        public static double operator *(SpecificEnergy specificEnergy, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
+        {
+            return specificEnergy.JoulesPerKilogram * brakeSpecificFuelConsumption.KilogramsPerJoule;
+        }
+
         /// <summary>Get <see cref="Energy"/> from <see cref="SpecificEnergy"/> * <see cref="Mass"/>.</summary>
         public static Energy operator *(SpecificEnergy specificEnergy, Mass mass)
         {
@@ -991,12 +997,6 @@ namespace UnitsNet
         public static TemperatureDelta operator /(SpecificEnergy specificEnergy, SpecificEntropy specificEntropy)
         {
             return TemperatureDelta.FromKelvins(specificEnergy.JoulesPerKilogram / specificEntropy.JoulesPerKilogramKelvin);
-        }
-
-        /// <summary>Get <see cref="double"/> from <see cref="SpecificEnergy"/> * <see cref="BrakeSpecificFuelConsumption"/>.</summary>
-        public static double operator *(SpecificEnergy specificEnergy, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
-        {
-            return specificEnergy.JoulesPerKilogram * brakeSpecificFuelConsumption.KilogramsPerJoule;
         }
 
         #endregion

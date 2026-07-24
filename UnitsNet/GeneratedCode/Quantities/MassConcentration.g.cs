@@ -45,8 +45,8 @@ namespace UnitsNet
         IDivisionOperators<MassConcentration, MassConcentration, double>,
         IDivisionOperators<MassConcentration, VolumeConcentration, Density>,
         IMultiplyOperators<MassConcentration, Volume, Mass>,
-        IDivisionOperators<MassConcentration, Molarity, MolarMass>,
         IDivisionOperators<MassConcentration, MolarMass, Molarity>,
+        IDivisionOperators<MassConcentration, Molarity, MolarMass>,
         IDivisionOperators<MassConcentration, Density, VolumeConcentration>,
         IComparisonOperators<MassConcentration, MassConcentration, bool>,
         IParsable<MassConcentration>,
@@ -1272,16 +1272,16 @@ namespace UnitsNet
             return Mass.FromKilograms(massConcentration.KilogramsPerCubicMeter * volume.CubicMeters);
         }
 
-        /// <summary>Get <see cref="MolarMass"/> from <see cref="MassConcentration"/> / <see cref="Molarity"/>.</summary>
-        public static MolarMass operator /(MassConcentration massConcentration, Molarity molarity)
-        {
-            return MolarMass.FromKilogramsPerMole(massConcentration.KilogramsPerCubicMeter / molarity.MolesPerCubicMeter);
-        }
-
         /// <summary>Get <see cref="Molarity"/> from <see cref="MassConcentration"/> / <see cref="MolarMass"/>.</summary>
         public static Molarity operator /(MassConcentration massConcentration, MolarMass molarMass)
         {
             return Molarity.FromMolesPerCubicMeter(massConcentration.KilogramsPerCubicMeter / molarMass.KilogramsPerMole);
+        }
+
+        /// <summary>Get <see cref="MolarMass"/> from <see cref="MassConcentration"/> / <see cref="Molarity"/>.</summary>
+        public static MolarMass operator /(MassConcentration massConcentration, Molarity molarity)
+        {
+            return MolarMass.FromKilogramsPerMole(massConcentration.KilogramsPerCubicMeter / molarity.MolesPerCubicMeter);
         }
 
         /// <summary>Get <see cref="VolumeConcentration"/> from <see cref="MassConcentration"/> / <see cref="Density"/>.</summary>

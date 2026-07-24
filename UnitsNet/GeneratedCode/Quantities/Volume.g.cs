@@ -41,9 +41,9 @@ namespace UnitsNet
 #if NET7_0_OR_GREATER
         IDivisionOperators<Volume, Volume, double>,
         IMultiplyOperators<Volume, Molarity, AmountOfSubstance>,
+        IMultiplyOperators<Volume, Length, AreaMomentOfInertia>,
         IMultiplyOperators<Volume, ReciprocalLength, Area>,
         IDivisionOperators<Volume, Length, Area>,
-        IMultiplyOperators<Volume, Length, AreaMomentOfInertia>,
         IDivisionOperators<Volume, VolumeFlow, Duration>,
         IMultiplyOperators<Volume, EnergyDensity, Energy>,
         IMultiplyOperators<Volume, SpecificWeight, Force>,
@@ -1368,6 +1368,12 @@ namespace UnitsNet
             return AmountOfSubstance.FromMoles(volume.CubicMeters * molarity.MolesPerCubicMeter);
         }
 
+        /// <summary>Get <see cref="AreaMomentOfInertia"/> from <see cref="Volume"/> * <see cref="Length"/>.</summary>
+        public static AreaMomentOfInertia operator *(Volume volume, Length length)
+        {
+            return AreaMomentOfInertia.FromMetersToTheFourth(volume.CubicMeters * length.Meters);
+        }
+
         /// <summary>Get <see cref="Area"/> from <see cref="Volume"/> * <see cref="ReciprocalLength"/>.</summary>
         public static Area operator *(Volume volume, ReciprocalLength reciprocalLength)
         {
@@ -1378,12 +1384,6 @@ namespace UnitsNet
         public static Area operator /(Volume volume, Length length)
         {
             return Area.FromSquareMeters(volume.CubicMeters / length.Meters);
-        }
-
-        /// <summary>Get <see cref="AreaMomentOfInertia"/> from <see cref="Volume"/> * <see cref="Length"/>.</summary>
-        public static AreaMomentOfInertia operator *(Volume volume, Length length)
-        {
-            return AreaMomentOfInertia.FromMetersToTheFourth(volume.CubicMeters * length.Meters);
         }
 
         /// <summary>Get <see cref="Duration"/> from <see cref="Volume"/> / <see cref="VolumeFlow"/>.</summary>
