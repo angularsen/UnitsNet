@@ -1,10 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
-using System;
 using System.Globalization;
-using UnitsNet.Units;
-using Xunit;
 
 namespace UnitsNet.Tests
 {
@@ -52,7 +49,7 @@ namespace UnitsNet.Tests
 
         protected override double ShacklesInOneMeter => 0.0364538;
 
-        protected override double NauticalMilesInOneMeter => 1.0/1852.0;
+        protected override double NauticalMilesInOneMeter => 1.0 / 1852.0;
 
         protected override double HandsInOneMeter => 9.8425196850393701;
 
@@ -267,6 +264,7 @@ namespace UnitsNet.Tests
         [InlineData(3, 2.6, 16, "3' - 2 5/8\"")]
         [InlineData(3, 2.6, 32, "3' - 2 19/32\"")]
         [InlineData(3, 2.6, 128, "3' - 2 77/128\"")]
+        [InlineData(3, 11.9988, 128, "4' - 0\"")]
         public static void ToArchitecturalString_ReturnsFormatted(double ft, double inch, int fractionDenominator, string expected)
         {
             var length = Length.FromFeetInches(ft, inch);
