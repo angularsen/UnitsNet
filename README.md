@@ -473,6 +473,7 @@ Get the same strongly typed units on other platforms, based on the same [unit de
 | JavaScript /<br>TypeScript | unitsnet-js            | [npm](https://www.npmjs.com/package/unitsnet-js)                             | [github](https://github.com/haimkastner/unitsnet-js)              | @haimkastner |
 | Python                     | unitsnet-py            | [pypi](https://pypi.org/project/unitsnet-py)                                 | [github](https://github.com/haimkastner/unitsnet-py)              | @haimkastner |
 | Golang                     | unitsnet-go            | [pkg.go.dev](https://pkg.go.dev/github.com/haimkastner/unitsnet-go)          | [github](https://github.com/haimkastner/unitsnet-go)              | @haimkastner |
+| C++                        | unitsnet-cpp           | [CPM.cmake](https://github.com/JeroenVandezande/unitsnet-cpp#add-with-cpmcmake) | [github](https://github.com/JeroenVandezande/unitsnet-cpp)      | @JeroenVandezande |
 | .NET nanoFramework         | nanoFramework.UnitsNet | [nuget](https://www.nuget.org/packages/nanoFramework.UnitsNet.Acceleration/) | [github](https://github.com/nanoframework/nanoFramework.UnitsNet) | @josesimoes  |
 
 
