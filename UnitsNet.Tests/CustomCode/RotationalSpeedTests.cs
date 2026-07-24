@@ -22,6 +22,8 @@ namespace UnitsNet.Tests
 
         protected override double RevolutionsPerMinuteInOneRadianPerSecond => 9.54929659;
 
+        protected override double MillirevolutionsPerMinuteInOneRadianPerSecond => 9549.29659;
+
         protected override double RevolutionsPerSecondInOneRadianPerSecond => 0.15915494;
 
         protected override double DegreesPerSecondInOneRadianPerSecond => 57.29577951308;

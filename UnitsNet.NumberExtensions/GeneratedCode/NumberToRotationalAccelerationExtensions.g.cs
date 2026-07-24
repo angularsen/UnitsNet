@@ -43,6 +43,17 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
             => RotationalAcceleration.FromDegreesPerSecondSquared(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="RotationalAcceleration.FromMillirevolutionsPerMinutePerSecond(double)" />
+        public static RotationalAcceleration MillirevolutionsPerMinutePerSecond<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => RotationalAcceleration.FromMillirevolutionsPerMinutePerSecond(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RotationalAcceleration.FromMillirevolutionsPerMinutePerSecond(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(double)" />
         public static RotationalAcceleration RadiansPerSecondSquared<T>(this T value)
             where T : notnull
