@@ -10,7 +10,7 @@ namespace UnitsNet;
 /// <inheritdoc cref="ILogarithmicQuantity{TSelf}"/>
 /// <typeparam name="TSelf">The type itself, for the CRT pattern.</typeparam>
 /// <typeparam name="TUnitType">The underlying unit enum type.</typeparam>
-public interface ILogarithmicQuantity<TSelf, TUnitType> : IQuantity<TSelf, TUnitType>, ILogarithmicQuantity<TSelf>
+public interface ILogarithmicQuantity<TSelf, TUnitType> : IArithmeticQuantity<TSelf, TUnitType>, ILogarithmicQuantity<TSelf>
     where TSelf : ILogarithmicQuantity<TSelf, TUnitType>
     where TUnitType : struct, Enum
 {
