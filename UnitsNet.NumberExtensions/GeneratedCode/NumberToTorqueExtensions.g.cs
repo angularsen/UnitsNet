@@ -241,6 +241,28 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
             => Torque.FromNewtonMillimeters(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Torque.FromOunceForceFeet(double)" />
+        public static Torque OunceForceFeet<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Torque.FromOunceForceFeet(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Torque.FromOunceForceFeet(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Torque.FromOunceForceInches(double)" />
+        public static Torque OunceForceInches<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Torque.FromOunceForceInches(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Torque.FromOunceForceInches(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Torque.FromPoundalFeet(double)" />
         public static Torque PoundalFeet<T>(this T value)
             where T : notnull

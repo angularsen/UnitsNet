@@ -57,6 +57,30 @@
       ]
     },
     {
+      "SingularName": "OunceForceFoot",
+      "PluralName": "OunceForceFeet",
+      "FromUnitToBaseFunc": "{x} * (4.4482216152605 / 16) * 0.3048",
+      "FromBaseToUnitFunc": "{x} / ((4.4482216152605 / 16) * 0.3048)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ozf·ft" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "OunceForceInch",
+      "PluralName": "OunceForceInches",
+      "FromUnitToBaseFunc": "{x} * (4.4482216152605 / 16) * 2.54e-2",
+      "FromBaseToUnitFunc": "{x} / ((4.4482216152605 / 16) * 2.54e-2)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ozf·in" ]
+        }
+      ]
+    },
+    {
       "SingularName": "PoundalFoot",
       "PluralName": "PoundalFeet",
       "FromUnitToBaseFunc": "{x} * 0.138254954376 * 0.3048",
