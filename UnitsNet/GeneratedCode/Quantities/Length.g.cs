@@ -40,11 +40,11 @@ namespace UnitsNet
         ILinearQuantity<Length, LengthUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Length, Length, double>,
+        IMultiplyOperators<Length, Density, AreaDensity>,
+        IMultiplyOperators<Length, Volume, AreaMomentOfInertia>,
         IMultiplyOperators<Length, AreaPerLength, Area>,
         IMultiplyOperators<Length, Length, Area>,
         IDivisionOperators<Length, ReciprocalLength, Area>,
-        IMultiplyOperators<Length, Density, AreaDensity>,
-        IMultiplyOperators<Length, Volume, AreaMomentOfInertia>,
         IDivisionOperators<Length, Speed, Duration>,
         IMultiplyOperators<Length, ForcePerLength, Force>,
         IMultiplyOperators<Length, Pressure, ForcePerLength>,
@@ -1168,6 +1168,18 @@ namespace UnitsNet
             return ReciprocalLength.FromInverseMeters(1 / Meters);
         }
 
+        /// <summary>Get <see cref="AreaDensity"/> from <see cref="Length"/> * <see cref="Density"/>.</summary>
+        public static AreaDensity operator *(Length length, Density density)
+        {
+            return AreaDensity.FromKilogramsPerSquareMeter(length.Meters * density.KilogramsPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="AreaMomentOfInertia"/> from <see cref="Length"/> * <see cref="Volume"/>.</summary>
+        public static AreaMomentOfInertia operator *(Length length, Volume volume)
+        {
+            return AreaMomentOfInertia.FromMetersToTheFourth(length.Meters * volume.CubicMeters);
+        }
+
         /// <summary>Get <see cref="Area"/> from <see cref="Length"/> * <see cref="AreaPerLength"/>.</summary>
         public static Area operator *(Length length, AreaPerLength areaPerLength)
         {
@@ -1184,18 +1196,6 @@ namespace UnitsNet
         public static Area operator /(Length length, ReciprocalLength reciprocalLength)
         {
             return Area.FromSquareMeters(length.Meters / reciprocalLength.InverseMeters);
-        }
-
-        /// <summary>Get <see cref="AreaDensity"/> from <see cref="Length"/> * <see cref="Density"/>.</summary>
-        public static AreaDensity operator *(Length length, Density density)
-        {
-            return AreaDensity.FromKilogramsPerSquareMeter(length.Meters * density.KilogramsPerCubicMeter);
-        }
-
-        /// <summary>Get <see cref="AreaMomentOfInertia"/> from <see cref="Length"/> * <see cref="Volume"/>.</summary>
-        public static AreaMomentOfInertia operator *(Length length, Volume volume)
-        {
-            return AreaMomentOfInertia.FromMetersToTheFourth(length.Meters * volume.CubicMeters);
         }
 
         /// <summary>Get <see cref="Duration"/> from <see cref="Length"/> / <see cref="Speed"/>.</summary>

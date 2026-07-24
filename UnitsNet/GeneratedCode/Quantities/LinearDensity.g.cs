@@ -43,8 +43,8 @@ namespace UnitsNet
         ILinearQuantity<LinearDensity, LinearDensityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<LinearDensity, LinearDensity, double>,
-        IDivisionOperators<LinearDensity, Density, Area>,
         IDivisionOperators<LinearDensity, Length, AreaDensity>,
+        IDivisionOperators<LinearDensity, Density, Area>,
         IDivisionOperators<LinearDensity, Area, Density>,
         IMultiplyOperators<LinearDensity, Acceleration, ForcePerLength>,
         IDivisionOperators<LinearDensity, AreaDensity, Length>,
@@ -765,16 +765,16 @@ namespace UnitsNet
 
         #region Relational Operators
 
-        /// <summary>Get <see cref="Area"/> from <see cref="LinearDensity"/> / <see cref="Density"/>.</summary>
-        public static Area operator /(LinearDensity linearDensity, Density density)
-        {
-            return Area.FromSquareMeters(linearDensity.KilogramsPerMeter / density.KilogramsPerCubicMeter);
-        }
-
         /// <summary>Get <see cref="AreaDensity"/> from <see cref="LinearDensity"/> / <see cref="Length"/>.</summary>
         public static AreaDensity operator /(LinearDensity linearDensity, Length length)
         {
             return AreaDensity.FromKilogramsPerSquareMeter(linearDensity.KilogramsPerMeter / length.Meters);
+        }
+
+        /// <summary>Get <see cref="Area"/> from <see cref="LinearDensity"/> / <see cref="Density"/>.</summary>
+        public static Area operator /(LinearDensity linearDensity, Density density)
+        {
+            return Area.FromSquareMeters(linearDensity.KilogramsPerMeter / density.KilogramsPerCubicMeter);
         }
 
         /// <summary>Get <see cref="Density"/> from <see cref="LinearDensity"/> / <see cref="Area"/>.</summary>

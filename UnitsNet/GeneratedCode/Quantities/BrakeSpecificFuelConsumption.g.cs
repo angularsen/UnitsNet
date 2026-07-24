@@ -40,8 +40,8 @@ namespace UnitsNet
         ILinearQuantity<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumptionUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumption, double>,
-        IMultiplyOperators<BrakeSpecificFuelConsumption, Power, MassFlow>,
         IMultiplyOperators<BrakeSpecificFuelConsumption, SpecificEnergy, double>,
+        IMultiplyOperators<BrakeSpecificFuelConsumption, Power, MassFlow>,
         IComparisonOperators<BrakeSpecificFuelConsumption, BrakeSpecificFuelConsumption, bool>,
         IParsable<BrakeSpecificFuelConsumption>,
 #endif
@@ -518,6 +518,12 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Get <see cref="double"/> from <see cref="BrakeSpecificFuelConsumption"/> * <see cref="SpecificEnergy"/>.</summary>
+        public static double operator *(BrakeSpecificFuelConsumption brakeSpecificFuelConsumption, SpecificEnergy specificEnergy)
+        {
+            return brakeSpecificFuelConsumption.KilogramsPerJoule * specificEnergy.JoulesPerKilogram;
+        }
+
         /// <summary>Get <see cref="MassFlow"/> from <see cref="BrakeSpecificFuelConsumption"/> * <see cref="Power"/>.</summary>
         public static MassFlow operator *(BrakeSpecificFuelConsumption brakeSpecificFuelConsumption, Power power)
         {
@@ -528,12 +534,6 @@ namespace UnitsNet
         public static SpecificEnergy operator /(double value, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
         {
             return SpecificEnergy.FromJoulesPerKilogram(value / brakeSpecificFuelConsumption.KilogramsPerJoule);
-        }
-
-        /// <summary>Get <see cref="double"/> from <see cref="BrakeSpecificFuelConsumption"/> * <see cref="SpecificEnergy"/>.</summary>
-        public static double operator *(BrakeSpecificFuelConsumption brakeSpecificFuelConsumption, SpecificEnergy specificEnergy)
-        {
-            return brakeSpecificFuelConsumption.KilogramsPerJoule * specificEnergy.JoulesPerKilogram;
         }
 
         #endregion
