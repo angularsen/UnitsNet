@@ -64,7 +64,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ozf·ft" ]
+          "Abbreviations": [ "ozf·ft", "oz·ft", "ozf-ft", "oz-ft" ]
         }
       ]
     },
@@ -76,7 +76,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ozf·in" ]
+          "Abbreviations": [ "ozf·in", "oz·in", "ozf-in", "oz-in", "in-oz" ]
         }
       ]
     },
@@ -101,7 +101,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lbf·in" ],
+          "Abbreviations": [ "lbf·in", "lb·in", "lbf-in", "lb-in", "in-lb" ],
           "AbbreviationsForPrefixes": { "Kilo": "kipf·in" }
         }
       ]
@@ -115,7 +115,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lbf·ft" ],
+          "Abbreviations": [ "lbf·ft", "lb·ft", "lbf-ft", "lb-ft", "ft-lb" ],
           "AbbreviationsForPrefixes": { "Kilo": "kipf·ft" }
         }
       ]
