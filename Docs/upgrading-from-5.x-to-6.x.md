@@ -40,9 +40,9 @@ If there is sufficient demand for supporting any number type like `float`, `deci
     - `FuelEfficiency.KilometersPerLiter`
     - `Speed.MetersPerMinute`
 - Moved 29 operator overloads for multiply or division to another type ([details](https://github.com/angularsen/UnitsNet/pull/1329#discussion_r1451794868)), e.g. `Energy op_Multiply(Duration, Power)` moved from `Power` to `Duration` #1329
-- Rename ambiguous prefixed cubic units #1617, #1645
+- Rename or remove ambiguous prefixed cubic units #1617, #1645, #1700
     - `SpecificVolumeUnit.MillicubicMeterPerKilogram` -> `SpecificVolumeUnit.CubicMillimeterPerKilogram`
-    - Remove `VolumeUnit.HectocubicMeter`
+    - Remove `VolumeUnit.HectocubicMeter`; use `VolumeUnit.CubicMeter` for 100 m³ values
     - `VolumeUnit.KilocubicMeter` -> `VolumeUnit.ThousandCubicMeter`
     - `VolumeUnit.HectocubicFoot` -> `VolumeUnit.HundredCubicFoot`
     - `VolumeUnit.KilocubicFoot` -> `VolumeUnit.ThousandCubicFoot`
@@ -58,8 +58,31 @@ If there is sufficient demand for supporting any number type like `float`, `deci
 - Calls to `.As()` and `.ToUnit()` through an `IQuantity` or `IQuantity<TUnitType>` reference now use the `QuantityExtensions` methods and `UnitConverter.Default`. They no longer dispatch to type-specific methods defined by a custom quantity. Custom quantities that need these calls to support conversion must register their conversion functions with `UnitConverter.Default`. #1696
 - Calling these extension methods with an incompatible unit type now throws `UnitNotFoundException` instead of `ArgumentException`. Code that catches `ArgumentException` around interface-based conversions may need to be updated. #1696
 - `SpecificVolume` abbreviation `mm³/kg` now parses as true cubic millimeters per kilogram (`1e-9 m³/kg`) instead of millesimal cubic meters per kilogram.
-- `Volume` abbreviations `hm³` and `km³` now parse unambiguously as true cubic hectometers and cubic kilometers. Thousand cubic meters uses `10³·m³`, with `kcm` and `Kcm` as aliases.
+- `Volume` abbreviations `hm³` and `km³` now parse unambiguously as true cubic hectometers and cubic kilometers.
+- Thousand cubic meters now formats as `10³·m³`, with `kcm` and `Kcm` as parsing aliases.
 - Count-style cubic-foot volume units now format as `Ccf`, `Mcf`, and `MMcf`.
+
+### Ambiguous prefixed cubic units
+
+Previous versions generated some cubic units from metric prefixes where the prefix applied to the generated unit name,
+but users would reasonably read the abbreviation as applying before cubing the length unit. For example, `km³` should
+mean `(1000 m)³`, not `1000 m³`.
+
+In v6, `hm³` and `km³` are reserved for the existing `CubicHectometer` and `CubicKilometer` units. The old
+`HectocubicMeter` API was removed. For 100 cubic meters, use `Volume.FromCubicMeters(100)` or
+`volume.As(VolumeUnit.CubicMeter)` instead.
+
+The old `KilocubicMeter` API represented 1000 cubic meters, which is a real count-style unit in some domains. It was
+renamed to `ThousandCubicMeter` and formats as `10³·m³`. It also accepts `kcm` and `Kcm` as aliases.
+
+For cubic feet, the generated prefix names were renamed to count-style names:
+
+- `HectocubicFoot` -> `HundredCubicFoot`, default abbreviation `Ccf`
+- `KilocubicFoot` -> `ThousandCubicFoot`, default abbreviation `Mcf`
+- `MegacubicFoot` -> `MillionCubicFoot`, default abbreviation `MMcf`
+
+The old generated cubic-foot abbreviations such as `hft³`, `kft³`, and `Mft³` are still accepted as aliases where they
+do not conflict with another unit.
 
 ### Description of different kinds of incompatible changes
 
