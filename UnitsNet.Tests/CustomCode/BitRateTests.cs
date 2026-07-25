@@ -22,6 +22,7 @@
 
 
 using System;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -72,5 +73,37 @@ namespace UnitsNet.Tests.CustomCode
         protected override double ExbibitsPerSecondInOneBitPerSecond => 8.67361738E-19;
         protected override double ExbibytesPerSecondInOneBitPerSecond => 1.0842021724855E-19;
         protected override double ExbioctetsPerSecondInOneBitPerSecond => 1.0842021724855E-19;
+
+        [Fact]
+        public void BitRateTimesDurationEqualsInformation()
+        {
+            Information information = BitRate.FromKilobitsPerSecond(10) * Duration.FromSeconds(3);
+
+            Assert.Equal(30000, information.Bits);
+        }
+
+        [Fact]
+        public void DurationTimesBitRateEqualsInformation()
+        {
+            Information information = Duration.FromMilliseconds(500) * BitRate.FromKilobitsPerSecond(10);
+
+            Assert.Equal(5000, information.Bits);
+        }
+
+        [Fact]
+        public void BitRateDividedByFrequencyEqualsInformation()
+        {
+            Information information = BitRate.FromKilobitsPerSecond(16) / Frequency.FromHertz(2);
+
+            Assert.Equal(8000, information.Bits);
+        }
+
+        [Fact]
+        public void BitRateDividedByInformationEqualsFrequency()
+        {
+            Frequency frequency = BitRate.FromKilobitsPerSecond(16) / Information.FromKilobytes(1);
+
+            Assert.Equal(2, frequency.Hertz);
+        }
     }
 }

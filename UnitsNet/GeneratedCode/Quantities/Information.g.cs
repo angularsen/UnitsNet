@@ -40,6 +40,9 @@ namespace UnitsNet
         ILinearQuantity<Information, InformationUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Information, Information, double>,
+        IMultiplyOperators<Information, Frequency, BitRate>,
+        IDivisionOperators<Information, Duration, BitRate>,
+        IDivisionOperators<Information, BitRate, Duration>,
         IComparisonOperators<Information, Information, bool>,
         IParsable<Information>,
 #endif
@@ -1072,6 +1075,28 @@ namespace UnitsNet
         public static double operator /(Information left, Information right)
         {
             return left.Bits / right.Bits;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="BitRate"/> from <see cref="Information"/> * <see cref="Frequency"/>.</summary>
+        public static BitRate operator *(Information information, Frequency frequency)
+        {
+            return BitRate.FromBitsPerSecond(information.Bits * frequency.PerSecond);
+        }
+
+        /// <summary>Get <see cref="BitRate"/> from <see cref="Information"/> / <see cref="Duration"/>.</summary>
+        public static BitRate operator /(Information information, Duration duration)
+        {
+            return BitRate.FromBitsPerSecond(information.Bits / duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="Information"/> / <see cref="BitRate"/>.</summary>
+        public static Duration operator /(Information information, BitRate bitRate)
+        {
+            return Duration.FromSeconds(information.Bits / bitRate.BitsPerSecond);
         }
 
         #endregion

@@ -40,6 +40,7 @@ namespace UnitsNet
         ILinearQuantity<Frequency, FrequencyUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Frequency, Frequency, double>,
+        IMultiplyOperators<Frequency, Information, BitRate>,
         IMultiplyOperators<Frequency, Energy, Power>,
         IComparisonOperators<Frequency, Frequency, bool>,
         IParsable<Frequency>,
@@ -660,6 +661,19 @@ namespace UnitsNet
         #endregion
 
         #region Relational Operators
+
+        /// <summary>Calculates the inverse of this quantity.</summary>
+        /// <returns>The corresponding inverse quantity, <see cref="Duration"/>.</returns>
+        public Duration Inverse()
+        {
+            return Duration.FromSeconds(1 / PerSecond);
+        }
+
+        /// <summary>Get <see cref="BitRate"/> from <see cref="Frequency"/> * <see cref="Information"/>.</summary>
+        public static BitRate operator *(Frequency frequency, Information information)
+        {
+            return BitRate.FromBitsPerSecond(frequency.PerSecond * information.Bits);
+        }
 
         /// <summary>Get <see cref="Power"/> from <see cref="Frequency"/> * <see cref="Energy"/>.</summary>
         public static Power operator *(Frequency frequency, Energy energy)
