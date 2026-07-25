@@ -263,3 +263,4 @@ Artifacts
 # Claude Code assistant
 .claude/settings.local.json
 .claude/worktrees/
+.DS_Store
