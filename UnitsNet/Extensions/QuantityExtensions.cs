@@ -78,6 +78,15 @@ public static class QuantityExtensions
 #endif
     }
 
+    /// <summary>
+    ///     Gets the value of a quantity in the specified unit.
+    /// </summary>
+    internal static double GetValue<TQuantity>(this TQuantity quantity, UnitKey toUnit)
+        where TQuantity : IQuantity
+    {
+        return UnitConverter.Default.ConvertValue(quantity, toUnit);
+    }
+
     private static IQuantity ConvertTo(this UnitConverter converter, IQuantity quantity, UnitKey toUnit)
     {
         if (quantity.UnitKey == toUnit)
@@ -133,15 +142,6 @@ public static class QuantityExtensions
     /// <summary>
     ///     Gets the value of a quantity in the specified unit.
     /// </summary>
-    internal static double GetValue<TQuantity>(this TQuantity quantity, UnitKey toUnit)
-        where TQuantity : IQuantity
-    {
-        return UnitConverter.Default.ConvertValue(quantity, toUnit);
-    }
-
-    /// <summary>
-    ///     Gets the value of a quantity in the specified unit.
-    /// </summary>
     /// <typeparam name="TQuantity">The quantity type.</typeparam>
     /// <typeparam name="TUnit">The unit enum type.</typeparam>
     /// <param name="quantity">The quantity to convert.</param>
@@ -155,14 +155,27 @@ public static class QuantityExtensions
     }
 
     /// <summary>
-    ///     Gets the value of a quantity in the specified unit.
+    ///     Converts the quantity to a value in the unit determined by the specified <see cref="UnitSystem" />.
+    ///     If multiple units are found for the given <see cref="UnitSystem" />, the first match will be used.
     /// </summary>
+    /// <typeparam name="TQuantity">The type of the quantity being converted.</typeparam>
     /// <param name="quantity">The quantity to convert.</param>
-    /// <param name="unit">The target unit.</param>
-    /// <returns>The converted value.</returns>
-    public static double As(this IQuantity quantity, UnitKey unit)
+    /// <param name="unitSystem">The <see cref="UnitSystem" /> to which the quantity value should be converted.</param>
+    /// <returns>The value of the quantity in the specified unit system.</returns>
+    /// <exception cref="ArgumentNullException">
+    ///     Thrown if <paramref name="unitSystem" /> is <c>null</c>.
+    /// </exception>
+    /// <exception cref="InvalidOperationException">
+    ///     Thrown if no matching unit is found for the given <see cref="UnitSystem" />.
+    /// </exception>
+    public static double As<TQuantity>(this TQuantity quantity, UnitSystem unitSystem)
+        where TQuantity : IQuantity
     {
-        return UnitConverter.Default.ConvertValue(quantity, unit);
+#if NET
+        return quantity.GetValue(quantity.GetQuantityInfo().GetDefaultUnit(unitSystem).UnitKey);
+#else
+        return quantity.GetValue(quantity.QuantityInfo.GetDefaultUnit(unitSystem).UnitKey);
+#endif
     }
 
     /// <summary>
@@ -188,56 +201,7 @@ public static class QuantityExtensions
         where TQuantity : IQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
-        if (unitConverter is null) throw new ArgumentNullException(nameof(unitConverter));
         return unitConverter.ConvertToUnit(quantity, UnitKey.ForUnit(unit));
-    }
-
-    /// <summary>
-    ///     Converts a quantity to the specified unit.
-    /// </summary>
-    /// <param name="quantity">The quantity to convert.</param>
-    /// <param name="unit">The target unit.</param>
-    /// <returns>The converted quantity.</returns>
-    public static IQuantity ToUnit(this IQuantity quantity, UnitKey unit)
-    {
-        return UnitConverter.Default.ConvertTo(quantity, unit);
-    }
-
-    /// <summary>
-    ///     Converts a quantity to the specified unit.
-    /// </summary>
-    /// <typeparam name="TUnit">The unit enum type.</typeparam>
-    /// <param name="quantity">The quantity to convert.</param>
-    /// <param name="unit">The target unit.</param>
-    /// <returns>The converted quantity.</returns>
-    public static IQuantity<TUnit> ToUnit<TUnit>(this IQuantity<TUnit> quantity, TUnit unit)
-        where TUnit : struct, Enum
-    {
-        return (IQuantity<TUnit>)UnitConverter.Default.ConvertTo(quantity, UnitKey.ForUnit(unit));
-    }
-
-    /// <summary>
-    ///     Converts the quantity to a value in the unit determined by the specified <see cref="UnitSystem" />.
-    ///     If multiple units are found for the given <see cref="UnitSystem" />, the first match will be used.
-    /// </summary>
-    /// <typeparam name="TQuantity">The type of the quantity being converted.</typeparam>
-    /// <param name="quantity">The quantity to convert.</param>
-    /// <param name="unitSystem">The <see cref="UnitSystem" /> to which the quantity value should be converted.</param>
-    /// <returns>The value of the quantity in the specified unit system.</returns>
-    /// <exception cref="ArgumentNullException">
-    ///     Thrown if <paramref name="unitSystem" /> is <c>null</c>.
-    /// </exception>
-    /// <exception cref="InvalidOperationException">
-    ///     Thrown if no matching unit is found for the given <see cref="UnitSystem" />.
-    /// </exception>
-    public static double As<TQuantity>(this TQuantity quantity, UnitSystem unitSystem)
-        where TQuantity : IQuantity
-    {
-#if NET
-        return quantity.GetValue(quantity.GetQuantityInfo().GetDefaultUnit(unitSystem).UnitKey);
-#else
-        return quantity.GetValue(quantity.QuantityInfo.GetDefaultUnit(unitSystem).UnitKey);
-#endif
     }
 
     /// <summary>
@@ -276,6 +240,28 @@ public static class QuantityExtensions
     }
 
     /// <summary>
+    ///     Gets the value of a quantity in the specified unit.
+    /// </summary>
+    /// <param name="quantity">The quantity to convert.</param>
+    /// <param name="unit">The target unit.</param>
+    /// <returns>The converted value.</returns>
+    public static double As(this IQuantity quantity, UnitKey unit)
+    {
+        return UnitConverter.Default.ConvertValue(quantity, unit);
+    }
+
+    /// <summary>
+    ///     Converts a quantity to the specified unit.
+    /// </summary>
+    /// <param name="quantity">The quantity to convert.</param>
+    /// <param name="unit">The target unit.</param>
+    /// <returns>The converted quantity.</returns>
+    public static IQuantity ToUnit(this IQuantity quantity, UnitKey unit)
+    {
+        return UnitConverter.Default.ConvertTo(quantity, unit);
+    }
+
+    /// <summary>
     ///     Converts the specified quantity to a new quantity with a unit determined by the given <see cref="UnitSystem" />.
     /// </summary>
     /// <param name="quantity">The quantity to convert.</param>
@@ -298,6 +284,19 @@ public static class QuantityExtensions
          QuantityInfo quantityInfo = quantity.QuantityInfo;
          UnitKey unitKey = quantityInfo.GetDefaultUnit(unitSystem).UnitKey;
          return quantityInfo.From(quantity.As(unitKey), unitKey);
+    }
+
+    /// <summary>
+    ///     Converts a quantity to the specified unit.
+    /// </summary>
+    /// <typeparam name="TUnit">The unit enum type.</typeparam>
+    /// <param name="quantity">The quantity to convert.</param>
+    /// <param name="unit">The target unit.</param>
+    /// <returns>The converted quantity.</returns>
+    public static IQuantity<TUnit> ToUnit<TUnit>(this IQuantity<TUnit> quantity, TUnit unit)
+        where TUnit : struct, Enum
+    {
+        return (IQuantity<TUnit>)UnitConverter.Default.ConvertTo(quantity, UnitKey.ForUnit(unit));
     }
 
     /// <summary>

@@ -49,6 +49,7 @@ If there is sufficient demand for supporting any number type like `float`, `deci
 ### Behavioral change
 
 - Calls to `.As()` and `.ToUnit()` through an `IQuantity` or `IQuantity<TUnitType>` reference now use the `QuantityExtensions` methods and `UnitConverter.Default`. They no longer dispatch to type-specific methods defined by a custom quantity. Custom quantities that need these calls to support conversion must register their conversion functions with `UnitConverter.Default`. #1696
+- Calling these extension methods with an incompatible unit type now throws `UnitNotFoundException` instead of `ArgumentException`. Code that catches `ArgumentException` around interface-based conversions may need to be updated. #1696
 
 ### Description of different kinds of incompatible changes
 
