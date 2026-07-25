@@ -101,20 +101,20 @@ namespace UnitsNet.Tests
             Assert.Equal(Volume.FromDeciusGallons(2), 2.DeciusGallons());
 
         [Fact]
-        public void NumberToHectocubicFeetTest() =>
-            Assert.Equal(Volume.FromHectocubicFeet(2), 2.HectocubicFeet());
-
-        [Fact]
-        public void NumberToHectocubicMetersTest() =>
-            Assert.Equal(Volume.FromHectocubicMeters(2), 2.HectocubicMeters());
-
-        [Fact]
         public void NumberToHectolitersTest() =>
             Assert.Equal(Volume.FromHectoliters(2), 2.Hectoliters());
 
         [Fact]
         public void NumberToHectousGallonsTest() =>
             Assert.Equal(Volume.FromHectousGallons(2), 2.HectousGallons());
+
+        [Fact]
+        public void NumberToHundredCubicFeetTest() =>
+            Assert.Equal(Volume.FromHundredCubicFeet(2), 2.HundredCubicFeet());
+
+        [Fact]
+        public void NumberToHundredCubicMetersTest() =>
+            Assert.Equal(Volume.FromHundredCubicMeters(2), 2.HundredCubicMeters());
 
         [Fact]
         public void NumberToImperialBeerBarrelsTest() =>
@@ -137,14 +137,6 @@ namespace UnitsNet.Tests
             Assert.Equal(Volume.FromImperialQuarts(2), 2.ImperialQuarts());
 
         [Fact]
-        public void NumberToKilocubicFeetTest() =>
-            Assert.Equal(Volume.FromKilocubicFeet(2), 2.KilocubicFeet());
-
-        [Fact]
-        public void NumberToKilocubicMetersTest() =>
-            Assert.Equal(Volume.FromKilocubicMeters(2), 2.KilocubicMeters());
-
-        [Fact]
         public void NumberToKiloimperialGallonsTest() =>
             Assert.Equal(Volume.FromKiloimperialGallons(2), 2.KiloimperialGallons());
 
@@ -159,10 +151,6 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToLitersTest() =>
             Assert.Equal(Volume.FromLiters(2), 2.Liters());
-
-        [Fact]
-        public void NumberToMegacubicFeetTest() =>
-            Assert.Equal(Volume.FromMegacubicFeet(2), 2.MegacubicFeet());
 
         [Fact]
         public void NumberToMegaimperialGallonsTest() =>
@@ -197,12 +185,24 @@ namespace UnitsNet.Tests
             Assert.Equal(Volume.FromMilliliters(2), 2.Milliliters());
 
         [Fact]
+        public void NumberToMillionCubicFeetTest() =>
+            Assert.Equal(Volume.FromMillionCubicFeet(2), 2.MillionCubicFeet());
+
+        [Fact]
         public void NumberToNanolitersTest() =>
             Assert.Equal(Volume.FromNanoliters(2), 2.Nanoliters());
 
         [Fact]
         public void NumberToOilBarrelsTest() =>
             Assert.Equal(Volume.FromOilBarrels(2), 2.OilBarrels());
+
+        [Fact]
+        public void NumberToThousandCubicFeetTest() =>
+            Assert.Equal(Volume.FromThousandCubicFeet(2), 2.ThousandCubicFeet());
+
+        [Fact]
+        public void NumberToThousandCubicMetersTest() =>
+            Assert.Equal(Volume.FromThousandCubicMeters(2), 2.ThousandCubicMeters());
 
         [Fact]
         public void NumberToUkTablespoonsTest() =>

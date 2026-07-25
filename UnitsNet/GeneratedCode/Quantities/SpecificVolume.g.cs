@@ -120,7 +120,7 @@ namespace UnitsNet
             {
                 yield return new (SpecificVolumeUnit.CubicFootPerPound, "CubicFootPerPound", "CubicFeetPerPound", new BaseUnits(length: LengthUnit.Foot, mass: MassUnit.Pound));
                 yield return new (SpecificVolumeUnit.CubicMeterPerKilogram, "CubicMeterPerKilogram", "CubicMetersPerKilogram", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
-                yield return new (SpecificVolumeUnit.MillicubicMeterPerKilogram, "MillicubicMeterPerKilogram", "MillicubicMetersPerKilogram", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram));
+                yield return new (SpecificVolumeUnit.CubicMillimeterPerKilogram, "CubicMillimeterPerKilogram", "CubicMillimetersPerKilogram", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram));
             }
         }
 
@@ -237,9 +237,9 @@ namespace UnitsNet
         public double CubicMetersPerKilogram => As(SpecificVolumeUnit.CubicMeterPerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="SpecificVolumeUnit.CubicMillimeterPerKilogram"/>
         /// </summary>
-        public double MillicubicMetersPerKilogram => As(SpecificVolumeUnit.MillicubicMeterPerKilogram);
+        public double CubicMillimetersPerKilogram => As(SpecificVolumeUnit.CubicMillimeterPerKilogram);
 
         #endregion
 
@@ -253,14 +253,14 @@ namespace UnitsNet
         {
             // Register in unit converter: SpecificVolumeUnit -> BaseUnit
             unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicFootPerPound, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => quantity.ToUnit(SpecificVolumeUnit.CubicMeterPerKilogram));
-            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => quantity.ToUnit(SpecificVolumeUnit.CubicMeterPerKilogram));
+            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMillimeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => quantity.ToUnit(SpecificVolumeUnit.CubicMeterPerKilogram));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram, quantity => quantity);
 
             // Register in unit converter: BaseUnit -> SpecificVolumeUnit
             unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicFootPerPound, quantity => quantity.ToUnit(SpecificVolumeUnit.CubicFootPerPound));
-            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.MillicubicMeterPerKilogram, quantity => quantity.ToUnit(SpecificVolumeUnit.MillicubicMeterPerKilogram));
+            unitConverter.SetConversionFunction<SpecificVolume>(SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicMillimeterPerKilogram, quantity => quantity.ToUnit(SpecificVolumeUnit.CubicMillimeterPerKilogram));
         }
 
         /// <summary>
@@ -305,11 +305,11 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>.
+        ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.CubicMillimeterPerKilogram"/>.
         /// </summary>
-        public static SpecificVolume FromMillicubicMetersPerKilogram(double value)
+        public static SpecificVolume FromCubicMillimetersPerKilogram(double value)
         {
-            return new SpecificVolume(value, SpecificVolumeUnit.MillicubicMeterPerKilogram);
+            return new SpecificVolume(value, SpecificVolumeUnit.CubicMillimeterPerKilogram);
         }
 
         /// <summary>
@@ -723,11 +723,11 @@ namespace UnitsNet
             {
                 // SpecificVolumeUnit -> BaseUnit
                 (SpecificVolumeUnit.CubicFootPerPound, SpecificVolumeUnit.CubicMeterPerKilogram) => new SpecificVolume(_value * 0.028316846592 / 0.45359237, SpecificVolumeUnit.CubicMeterPerKilogram),
-                (SpecificVolumeUnit.MillicubicMeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram) => new SpecificVolume((_value) * 1e-3d, SpecificVolumeUnit.CubicMeterPerKilogram),
+                (SpecificVolumeUnit.CubicMillimeterPerKilogram, SpecificVolumeUnit.CubicMeterPerKilogram) => new SpecificVolume(_value / 1e9, SpecificVolumeUnit.CubicMeterPerKilogram),
 
                 // BaseUnit -> SpecificVolumeUnit
                 (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicFootPerPound) => new SpecificVolume(_value * 0.45359237 / 0.028316846592, SpecificVolumeUnit.CubicFootPerPound),
-                (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.MillicubicMeterPerKilogram) => new SpecificVolume((_value) / 1e-3d, SpecificVolumeUnit.MillicubicMeterPerKilogram),
+                (SpecificVolumeUnit.CubicMeterPerKilogram, SpecificVolumeUnit.CubicMillimeterPerKilogram) => new SpecificVolume(_value * 1e9, SpecificVolumeUnit.CubicMillimeterPerKilogram),
 
                 _ => null
             };

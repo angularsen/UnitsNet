@@ -79,10 +79,10 @@ namespace UnitsNet.Units
         DecausGallon = 17,
         Deciliter = 18,
         DeciusGallon = 19,
-        HectocubicFoot = 20,
-        HectocubicMeter = 21,
         Hectoliter = 22,
         HectousGallon = 23,
+        HundredCubicFoot = 20,
+        HundredCubicMeter = 21,
 
         /// <summary>
         ///     Fluid barrels vary depending on what is being measured and where. In the UK a beer barrel is 36 imperial gallons (43 US gal; ~164 L).
@@ -113,13 +113,10 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Quart#Imperial_quart</remarks>
         ImperialQuart = 57,
-        KilocubicFoot = 28,
-        KilocubicMeter = 29,
         KiloimperialGallon = 30,
         Kiloliter = 31,
         KilousGallon = 32,
         Liter = 33,
-        MegacubicFoot = 34,
         MegaimperialGallon = 35,
         Megaliter = 36,
         MegausGallon = 37,
@@ -143,6 +140,7 @@ namespace UnitsNet.Units
         MetricTeaspoon = 39,
         Microliter = 40,
         Milliliter = 41,
+        MillionCubicFoot = 34,
         Nanoliter = 53,
 
         /// <summary>
@@ -150,6 +148,8 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Barrel_(unit)#Oil_barrel</remarks>
         OilBarrel = 42,
+        ThousandCubicFoot = 28,
+        ThousandCubicMeter = 29,
 
         /// <summary>
         ///     In nutrition labeling in the U.S. and the U.K., a tablespoon is defined as 15 ml (0.51 US fl oz). In Australia, the definition of the tablespoon is 20 ml (0.70 imp fl oz).

@@ -241,28 +241,6 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             => Volume.FromDeciusGallons(value.ToDouble(null));
 #endif
 
-        /// <inheritdoc cref="Volume.FromHectocubicFeet(double)" />
-        public static Volume HectocubicFeet<T>(this T value)
-            where T : notnull
-#if NET7_0_OR_GREATER
-            , INumber<T>
-            => Volume.FromHectocubicFeet(double.CreateChecked(value));
-#else
-            , IConvertible
-            => Volume.FromHectocubicFeet(value.ToDouble(null));
-#endif
-
-        /// <inheritdoc cref="Volume.FromHectocubicMeters(double)" />
-        public static Volume HectocubicMeters<T>(this T value)
-            where T : notnull
-#if NET7_0_OR_GREATER
-            , INumber<T>
-            => Volume.FromHectocubicMeters(double.CreateChecked(value));
-#else
-            , IConvertible
-            => Volume.FromHectocubicMeters(value.ToDouble(null));
-#endif
-
         /// <inheritdoc cref="Volume.FromHectoliters(double)" />
         public static Volume Hectoliters<T>(this T value)
             where T : notnull
@@ -283,6 +261,28 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
 #else
             , IConvertible
             => Volume.FromHectousGallons(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Volume.FromHundredCubicFeet(double)" />
+        public static Volume HundredCubicFeet<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Volume.FromHundredCubicFeet(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Volume.FromHundredCubicFeet(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Volume.FromHundredCubicMeters(double)" />
+        public static Volume HundredCubicMeters<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Volume.FromHundredCubicMeters(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Volume.FromHundredCubicMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double)" />
@@ -340,28 +340,6 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             => Volume.FromImperialQuarts(value.ToDouble(null));
 #endif
 
-        /// <inheritdoc cref="Volume.FromKilocubicFeet(double)" />
-        public static Volume KilocubicFeet<T>(this T value)
-            where T : notnull
-#if NET7_0_OR_GREATER
-            , INumber<T>
-            => Volume.FromKilocubicFeet(double.CreateChecked(value));
-#else
-            , IConvertible
-            => Volume.FromKilocubicFeet(value.ToDouble(null));
-#endif
-
-        /// <inheritdoc cref="Volume.FromKilocubicMeters(double)" />
-        public static Volume KilocubicMeters<T>(this T value)
-            where T : notnull
-#if NET7_0_OR_GREATER
-            , INumber<T>
-            => Volume.FromKilocubicMeters(double.CreateChecked(value));
-#else
-            , IConvertible
-            => Volume.FromKilocubicMeters(value.ToDouble(null));
-#endif
-
         /// <inheritdoc cref="Volume.FromKiloimperialGallons(double)" />
         public static Volume KiloimperialGallons<T>(this T value)
             where T : notnull
@@ -404,17 +382,6 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
 #else
             , IConvertible
             => Volume.FromLiters(value.ToDouble(null));
-#endif
-
-        /// <inheritdoc cref="Volume.FromMegacubicFeet(double)" />
-        public static Volume MegacubicFeet<T>(this T value)
-            where T : notnull
-#if NET7_0_OR_GREATER
-            , INumber<T>
-            => Volume.FromMegacubicFeet(double.CreateChecked(value));
-#else
-            , IConvertible
-            => Volume.FromMegacubicFeet(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromMegaimperialGallons(double)" />
@@ -505,6 +472,17 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             => Volume.FromMilliliters(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="Volume.FromMillionCubicFeet(double)" />
+        public static Volume MillionCubicFeet<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Volume.FromMillionCubicFeet(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Volume.FromMillionCubicFeet(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="Volume.FromNanoliters(double)" />
         public static Volume Nanoliters<T>(this T value)
             where T : notnull
@@ -525,6 +503,28 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
 #else
             , IConvertible
             => Volume.FromOilBarrels(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Volume.FromThousandCubicFeet(double)" />
+        public static Volume ThousandCubicFeet<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Volume.FromThousandCubicFeet(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Volume.FromThousandCubicFeet(value.ToDouble(null));
+#endif
+
+        /// <inheritdoc cref="Volume.FromThousandCubicMeters(double)" />
+        public static Volume ThousandCubicMeters<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => Volume.FromThousandCubicMeters(double.CreateChecked(value));
+#else
+            , IConvertible
+            => Volume.FromThousandCubicMeters(value.ToDouble(null));
 #endif
 
         /// <inheritdoc cref="Volume.FromUkTablespoons(double)" />

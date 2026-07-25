@@ -200,6 +200,12 @@ Accepted binary prefixes are:
 
 Do not also define a generated prefixed unit explicitly.
 
+Do not use `Prefixes` when the prefix would apply to only part of a powered or compound unit and change the meaning,
+or when it would create an abbreviation already used by another unit of the same quantity. Define explicit units
+instead. For example, define `CubicMillimeterPerKilogram` for `mm³/kg` instead of generating
+`MillicubicMeterPerKilogram`, and define `ThousandCubicMeter` with an abbreviation such as `10³·m³` when the intended
+unit is 1000 cubic meters rather than cubic kilometers.
+
 ## Localization object
 
 Each `Localization` entry configures abbreviations for one culture.

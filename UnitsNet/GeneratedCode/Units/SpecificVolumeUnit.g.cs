@@ -27,7 +27,7 @@ namespace UnitsNet.Units
     {
         CubicFootPerPound = 1,
         CubicMeterPerKilogram = 2,
-        MillicubicMeterPerKilogram = 3,
+        CubicMillimeterPerKilogram = 3,
     }
 
     #pragma warning restore 1591

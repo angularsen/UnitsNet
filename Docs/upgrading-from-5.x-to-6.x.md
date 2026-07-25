@@ -40,6 +40,13 @@ If there is sufficient demand for supporting any number type like `float`, `deci
     - `FuelEfficiency.KilometersPerLiter`
     - `Speed.MetersPerMinute`
 - Moved 29 operator overloads for multiply or division to another type ([details](https://github.com/angularsen/UnitsNet/pull/1329#discussion_r1451794868)), e.g. `Energy op_Multiply(Duration, Power)` moved from `Power` to `Duration` #1329
+- Rename ambiguous prefixed cubic units #1617, #1645
+    - `SpecificVolumeUnit.MillicubicMeterPerKilogram` -> `SpecificVolumeUnit.CubicMillimeterPerKilogram`
+    - `VolumeUnit.HectocubicMeter` -> `VolumeUnit.HundredCubicMeter`
+    - `VolumeUnit.KilocubicMeter` -> `VolumeUnit.ThousandCubicMeter`
+    - `VolumeUnit.HectocubicFoot` -> `VolumeUnit.HundredCubicFoot`
+    - `VolumeUnit.KilocubicFoot` -> `VolumeUnit.ThousandCubicFoot`
+    - `VolumeUnit.MegacubicFoot` -> `VolumeUnit.MillionCubicFoot`
 
 ### Source incompatible
 
@@ -50,6 +57,9 @@ If there is sufficient demand for supporting any number type like `float`, `deci
 
 - Calls to `.As()` and `.ToUnit()` through an `IQuantity` or `IQuantity<TUnitType>` reference now use the `QuantityExtensions` methods and `UnitConverter.Default`. They no longer dispatch to type-specific methods defined by a custom quantity. Custom quantities that need these calls to support conversion must register their conversion functions with `UnitConverter.Default`. #1696
 - Calling these extension methods with an incompatible unit type now throws `UnitNotFoundException` instead of `ArgumentException`. Code that catches `ArgumentException` around interface-based conversions may need to be updated. #1696
+- `SpecificVolume` abbreviation `mm³/kg` now parses as true cubic millimeters per kilogram (`1e-9 m³/kg`) instead of millesimal cubic meters per kilogram.
+- `Volume` abbreviations `hm³` and `km³` now parse unambiguously as true cubic hectometers and cubic kilometers. Hundred and thousand cubic meters use `10²·m³` and `10³·m³`.
+- Count-style cubic-foot volume units now format as `Ccf`, `Mcf`, and `MMcf`.
 
 ### Description of different kinds of incompatible changes
 

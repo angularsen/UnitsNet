@@ -16,11 +16,26 @@
       },
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [ "Milli" ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "m³/kg" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CubicMillimeterPerKilogram",
+      "PluralName": "CubicMillimetersPerKilogram",
+      "BaseUnits": {
+        "L": "Millimeter",
+        "M": "Kilogram"
+      },
+      "FromUnitToBaseFunc": "{x} / 1e9",
+      "FromBaseToUnitFunc": "{x} * 1e9",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mm³/kg" ]
         }
       ]
     },

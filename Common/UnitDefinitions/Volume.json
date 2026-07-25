@@ -31,7 +31,6 @@
       "PluralName": "CubicMeters",
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [ "Hecto", "Kilo" ],
       "BaseUnits": {
         "L": "Meter"
       },
@@ -43,6 +42,30 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "м³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "HundredCubicMeter",
+      "PluralName": "HundredCubicMeters",
+      "FromUnitToBaseFunc": "{x} * 1e2",
+      "FromBaseToUnitFunc": "{x} / 1e2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "10²·m³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ThousandCubicMeter",
+      "PluralName": "ThousandCubicMeters",
+      "FromUnitToBaseFunc": "{x} * 1e3",
+      "FromBaseToUnitFunc": "{x} / 1e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "10³·m³" ]
         }
       ]
     },
@@ -212,7 +235,6 @@
       "XmlDocRemarks": "https://en.wikipedia.org/wiki/Cubic_foot",
       "FromUnitToBaseFunc": "{x} * 0.028316846592",
       "FromBaseToUnitFunc": "{x} / 0.028316846592",
-      "Prefixes": [ "Hecto", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -221,6 +243,42 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "фут³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "HundredCubicFoot",
+      "PluralName": "HundredCubicFeet",
+      "FromUnitToBaseFunc": "{x} * 0.028316846592 * 1e2",
+      "FromBaseToUnitFunc": "{x} / (0.028316846592 * 1e2)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Ccf", "hft³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "ThousandCubicFoot",
+      "PluralName": "ThousandCubicFeet",
+      "FromUnitToBaseFunc": "{x} * 0.028316846592 * 1e3",
+      "FromBaseToUnitFunc": "{x} / (0.028316846592 * 1e3)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Mcf", "kcf", "kft³" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillionCubicFoot",
+      "PluralName": "MillionCubicFeet",
+      "FromUnitToBaseFunc": "{x} * 0.028316846592 * 1e6",
+      "FromBaseToUnitFunc": "{x} / (0.028316846592 * 1e6)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "MMcf", "Mft³" ]
         }
       ]
     },
