@@ -9,7 +9,6 @@
     <File Path=".editorconfig" />
     <File Path=".gitattributes" />
     <File Path=".gitignore" />
-    <File Path="azure-pipelines.yml" />
     <File Path="build.bat" />
     <File Path="clean.bat" />
     <File Path="CODE_OF_CONDUCT.md" />
@@ -44,6 +43,8 @@
   </Folder>
   <Project Path="CodeGen/CodeGen.csproj" />
   <Project Path="UnitsNet.Benchmark/UnitsNet.Benchmark.csproj" />
+  <Project Path="UnitsNet.GlobalSetup.DefaultFirst.Tests/UnitsNet.GlobalSetup.DefaultFirst.Tests.csproj" />
+  <Project Path="UnitsNet.GlobalSetup.Tests/UnitsNet.GlobalSetup.Tests.csproj" />
   <Project Path="UnitsNet.NumberExtensions.CS14.Tests\UnitsNet.NumberExtensions.CS14.Tests.csproj" Type="Classic C#" />
   <Project Path="UnitsNet.NumberExtensions.CS14\UnitsNet.NumberExtensions.CS14.csproj" Type="Classic C#" />
   <Project Path="UnitsNet.NumberExtensions.Tests/UnitsNet.NumberExtensions.Tests.csproj" />

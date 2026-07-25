@@ -37,7 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct AreaMomentOfInertia :
-        IArithmeticQuantity<AreaMomentOfInertia, AreaMomentOfInertiaUnit>,
+        ILinearQuantity<AreaMomentOfInertia, AreaMomentOfInertiaUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<AreaMomentOfInertia, AreaMomentOfInertia, double>,
         IDivisionOperators<AreaMomentOfInertia, Area, Area>,

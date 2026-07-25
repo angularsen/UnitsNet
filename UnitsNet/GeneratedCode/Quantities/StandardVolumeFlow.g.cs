@@ -37,7 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct StandardVolumeFlow :
-        IArithmeticQuantity<StandardVolumeFlow, StandardVolumeFlowUnit>,
+        ILinearQuantity<StandardVolumeFlow, StandardVolumeFlowUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<StandardVolumeFlow, StandardVolumeFlow, double>,
         IComparisonOperators<StandardVolumeFlow, StandardVolumeFlow, bool>,

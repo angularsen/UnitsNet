@@ -37,7 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct RotationalStiffnessPerLength :
-        IArithmeticQuantity<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit>,
+        ILinearQuantity<RotationalStiffnessPerLength, RotationalStiffnessPerLengthUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<RotationalStiffnessPerLength, RotationalStiffnessPerLength, double>,
         IMultiplyOperators<RotationalStiffnessPerLength, Length, RotationalStiffness>,

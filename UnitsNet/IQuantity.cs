@@ -183,6 +183,16 @@ namespace UnitsNet
         /// <returns>An instance of the quantity with the specified value and unit.</returns>
         static abstract TSelf From(double value, TUnitType unit);
 
+        /// <summary>
+        ///     Converts this quantity to the specified unit while preserving its concrete quantity type.
+        /// </summary>
+        /// <param name="unit">The unit value.</param>
+        /// <returns>A new <typeparamref name="TSelf" /> in the specified unit.</returns>
+        new TSelf ToUnit(TUnitType unit)
+        {
+            return TSelf.From(As(unit), unit);
+        }
+
         static TSelf IQuantityOfType<TSelf>.Create(double value, UnitKey unit) => TSelf.From(value, unit.ToUnit<TUnitType>());
 
         static QuantityInfo IQuantityOfType<TSelf>.Info => TSelf.Info;
@@ -196,7 +206,7 @@ namespace UnitsNet
 
         IQuantity<TUnitType> IQuantity<TUnitType>.ToUnit(TUnitType unit)
         {
-            return TSelf.From(As(unit), unit);
+            return ToUnit(unit);
         }
 #endif
 

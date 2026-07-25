@@ -44,6 +44,7 @@ public partial class Quantity
             Area.Info,
             AreaDensity.Info,
             AreaMomentOfInertia.Info,
+            AreaPerLength.Info,
             BitRate.Info,
             BrakeSpecificFuelConsumption.Info,
             CoefficientOfThermalExpansion.Info,
@@ -176,6 +177,7 @@ public partial class Quantity
             Area.RegisterDefaultConversions(unitConverter);
             AreaDensity.RegisterDefaultConversions(unitConverter);
             AreaMomentOfInertia.RegisterDefaultConversions(unitConverter);
+            AreaPerLength.RegisterDefaultConversions(unitConverter);
             BitRate.RegisterDefaultConversions(unitConverter);
             BrakeSpecificFuelConsumption.RegisterDefaultConversions(unitConverter);
             CoefficientOfThermalExpansion.RegisterDefaultConversions(unitConverter);

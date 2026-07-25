@@ -35,6 +35,60 @@ public class UnitParserTests
         Assert.NotEqual(UnitAbbreviationsCache.Default, unitParser.Abbreviations);
         Assert.Equal(UnitsNetSetup.Default.Quantities, unitParser.Quantities);
     }
+
+    [Fact]
+    public void CreateDefault_WithAdditionalQuantity_CreatesParserWithExtendedCatalog()
+    {
+        var unitParser = UnitParser.CreateDefault(selector => selector.WithAdditionalQuantities([HowMuch.Info]));
+
+        Assert.Contains(HowMuch.Info, unitParser.Quantities.Infos);
+    }
+
+    [Fact]
+    public void CreateDefault_WithConfiguredQuantityAndAbbreviation_ParsesExternalQuantityUnit()
+    {
+        var unitParser = UnitParser.CreateDefault(
+            selector => selector.WithAdditionalQuantities([HowMuch.Info]),
+            abbreviations => abbreviations.MapUnitToAbbreviation(HowMuchUnit.Some, "some"));
+
+        Assert.Equal(HowMuchUnit.Some, unitParser.Parse<HowMuchUnit>("some"));
+    }
+
+    [Fact]
+    public void Create_WithBaseAndAdditionalQuantities_CreatesParserWithSelectedCatalog()
+    {
+        var unitParser = UnitParser.Create([Mass.Info],
+            selector => selector.WithAdditionalQuantities([HowMuch.Info]));
+
+        Assert.Equal([Mass.Info, HowMuch.Info], unitParser.Quantities.Infos);
+    }
+
+    [Fact]
+    public void Create_WithConfiguredAbbreviation_ParsesExternalQuantityUnit()
+    {
+        var unitParser = UnitParser.Create([HowMuch.Info], _ => { },
+            abbreviations => abbreviations.MapUnitToAbbreviation(HowMuchUnit.Some, "some"));
+
+        Assert.Equal(HowMuchUnit.Some, unitParser.Parse<HowMuchUnit>("some"));
+    }
+
+    [Fact]
+    public void FactoryMethods_WithNullArguments_ThrowArgumentNullException()
+    {
+        Assert.Multiple(checks:
+        [
+            () => Assert.Equal("configureQuantities",
+                Assert.Throws<ArgumentNullException>(() => UnitParser.CreateDefault((Action<QuantitiesSelector>)null!)).ParamName),
+            () => Assert.Equal("configureAbbreviations",
+                Assert.Throws<ArgumentNullException>(() => UnitParser.CreateDefault(_ => { }, null!)).ParamName),
+            () => Assert.Equal("defaultQuantities",
+                Assert.Throws<ArgumentNullException>(() => UnitParser.Create(null!, _ => { })).ParamName),
+            () => Assert.Equal("configureQuantities",
+                Assert.Throws<ArgumentNullException>(() => UnitParser.Create([Mass.Info], null!)).ParamName),
+            () => Assert.Equal("configureAbbreviations",
+                Assert.Throws<ArgumentNullException>(() => UnitParser.Create([Mass.Info], _ => { }, null!)).ParamName)
+        ]);
+    }
         
     [Theory]
     [InlineData("m^^2", AreaUnit.SquareMeter)]

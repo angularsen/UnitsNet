@@ -16,11 +16,11 @@ namespace UnitsNet
         /// <summary>
         /// Creates an instance of a unit system with the specified base units.
         /// </summary>
-        /// <param name="baseUnits">The base units for the unit system.</param>
+        /// <param name="baseUnits">One or more base units that define the unit system.</param>
         public UnitSystem(BaseUnits baseUnits)
         {
             if (baseUnits is null) throw new ArgumentNullException(nameof(baseUnits));
-            if (!baseUnits.IsFullyDefined) throw new ArgumentException("A unit system must have all base units defined.", nameof(baseUnits));
+            if (baseUnits == BaseUnits.Undefined) throw new ArgumentException("A unit system must define at least one base unit.", nameof(baseUnits));
 
             BaseUnits = baseUnits;
         }

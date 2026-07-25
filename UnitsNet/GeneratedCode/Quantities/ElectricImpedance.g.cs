@@ -41,7 +41,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ElectricImpedance :
-        IArithmeticQuantity<ElectricImpedance, ElectricImpedanceUnit>,
+        ILinearQuantity<ElectricImpedance, ElectricImpedanceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricImpedance, ElectricImpedance, double>,
         IComparisonOperators<ElectricImpedance, ElectricImpedance, bool>,

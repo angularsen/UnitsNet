@@ -37,7 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct RelativeHumidity :
-        IArithmeticQuantity<RelativeHumidity, RelativeHumidityUnit>,
+        ILinearQuantity<RelativeHumidity, RelativeHumidityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<RelativeHumidity, RelativeHumidity, double>,
         IComparisonOperators<RelativeHumidity, RelativeHumidity, bool>,

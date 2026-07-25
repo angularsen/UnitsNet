@@ -40,7 +40,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct Irradiation :
-        IArithmeticQuantity<Irradiation, IrradiationUnit>,
+        ILinearQuantity<Irradiation, IrradiationUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Irradiation, Irradiation, double>,
         IComparisonOperators<Irradiation, Irradiation, bool>,

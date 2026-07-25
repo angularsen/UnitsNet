@@ -37,7 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct TemperatureGradient :
-        IArithmeticQuantity<TemperatureGradient, TemperatureGradientUnit>,
+        ILinearQuantity<TemperatureGradient, TemperatureGradientUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<TemperatureGradient, TemperatureGradient, double>,
         IMultiplyOperators<TemperatureGradient, Length, TemperatureDelta>,

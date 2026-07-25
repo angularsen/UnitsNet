@@ -40,7 +40,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ElectricApparentPower :
-        IArithmeticQuantity<ElectricApparentPower, ElectricApparentPowerUnit>,
+        ILinearQuantity<ElectricApparentPower, ElectricApparentPowerUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricApparentPower, ElectricApparentPower, double>,
         IComparisonOperators<ElectricApparentPower, ElectricApparentPower, bool>,

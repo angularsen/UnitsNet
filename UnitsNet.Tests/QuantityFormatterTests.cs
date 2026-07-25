@@ -196,5 +196,19 @@ namespace UnitsNet.Tests
             var actual = QuantityFormatter.Format(length, "G");
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData("A+0", "m")]
+        [InlineData("S+1", "123.3 m")]
+        public void Format_CustomSpecifierSuffix_ParsesUsingInvariantCulture(string format, string expected)
+        {
+            var culture = (CultureInfo)CultureInfo.InvariantCulture.Clone();
+            culture.NumberFormat.PositiveSign = "!";
+            using var cultureScope = new CultureScope(culture);
+
+            var length = Length.FromMeters(123.321);
+
+            Assert.Equal(expected, QuantityFormatter.Default.Format(length, format));
+        }
     }
 }

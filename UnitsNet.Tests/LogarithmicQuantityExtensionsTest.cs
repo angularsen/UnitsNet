@@ -1,11 +1,30 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using UnitsNet.InternalHelpers;
 
 namespace UnitsNet.Tests;
 
 public class LogarithmicQuantityExtensionsTest
 {
+    [Theory]
+    [InlineData(8, 3, 2)]
+    [InlineData(-8, 3, -2)]
+    [InlineData(-16, 2, double.NaN)]
+    public void MathHelper_RootN_ReturnsExpectedRoot(double number, int n, double expected)
+    {
+        double actual = MathHelper.RootN(number, n);
+
+        if (double.IsNaN(expected))
+        {
+            Assert.True(double.IsNaN(actual));
+        }
+        else
+        {
+            Assert.Equal(expected, actual, 12);
+        }
+    }
+
     [Theory]
     [InlineData(1, 2)]
     [InlineData(100, 110)]
@@ -530,7 +549,7 @@ public class LogarithmicQuantityExtensionsTest
         var quantity1 = new PowerRatio(value1, unit1);
         var quantity2 = new PowerRatio(value2, unit2);
         IEnumerable<PowerRatio> quantities = new List<PowerRatio> { quantity1, quantity2 };
-        var expectedValue = double.RootN(quantity1.Value + quantity2.As(unit1), 2);
+        var expectedValue = MathHelper.RootN(quantity1.Value + quantity2.As(unit1), 2);
 
         PowerRatio result = quantities.GeometricMean();
 
@@ -558,7 +577,7 @@ public class LogarithmicQuantityExtensionsTest
         var quantity1 = new PowerRatio(value1, unit1);
         var quantity2 = new PowerRatio(value2, unit2);
         IEnumerable<PowerRatio> quantities = new List<PowerRatio> { quantity1, quantity2 };
-        var expectedValue = double.RootN(quantity1.Value + quantity2.As(unit1), 2);
+        var expectedValue = MathHelper.RootN(quantity1.Value + quantity2.As(unit1), 2);
 
         PowerRatio result = quantities.GeometricMean(x => x);
 
@@ -586,7 +605,7 @@ public class LogarithmicQuantityExtensionsTest
         var quantity1 = new PowerRatio(value1, unit1);
         var quantity2 = new PowerRatio(value2, unit2);
         IEnumerable<PowerRatio> quantities = new List<PowerRatio> { quantity1, quantity2 };
-        var expectedValue = double.RootN(quantity1.Value + quantity2.As(unit1), 2);
+        var expectedValue = MathHelper.RootN(quantity1.Value + quantity2.As(unit1), 2);
 
         PowerRatio result = quantities.GeometricMean(x => x, unit1);
 

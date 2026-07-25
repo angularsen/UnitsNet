@@ -2036,5 +2036,13 @@
     "SquareMeterKelvinPerKilowatt": 5,
     "SquareMeterKelvinPerWatt": 4,
     "SquareMillimeterKelvinPerWatt": 13
+  },
+  "AreaPerLength": {
+    "SquareCentimeterPerMeter": 10,
+    "SquareFootPerFoot": 4,
+    "SquareInchPerFoot": 3,
+    "SquareInchPerInch": 7,
+    "SquareMeterPerMeter": 1,
+    "SquareMillimeterPerMeter": 5
   }
 }

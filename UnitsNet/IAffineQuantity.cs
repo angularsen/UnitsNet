@@ -15,8 +15,6 @@ namespace UnitsNet;
 /// <typeparam name="TOffset"></typeparam>
 public interface IAffineQuantity<TSelf, TUnitType, TOffset> : IQuantity<TSelf, TUnitType>, IAffineQuantity<TSelf, TOffset>
 #if NET7_0_OR_GREATER
-    , IAdditionOperators<TSelf, TOffset, TSelf>
-    , ISubtractionOperators<TSelf, TSelf, TOffset>
     where TOffset : IAdditiveIdentity<TOffset, TOffset>
 #endif
     where TSelf : IAffineQuantity<TSelf, TUnitType, TOffset>
@@ -32,6 +30,8 @@ public interface IAffineQuantity<TSelf, TUnitType, TOffset> : IQuantity<TSelf, T
 public interface IAffineQuantity<TSelf, TOffset> : IQuantityOfType<TSelf>
 #if NET7_0_OR_GREATER
     , IAdditiveIdentity<TSelf, TOffset>
+    , IAdditionOperators<TSelf, TOffset, TSelf>
+    , ISubtractionOperators<TSelf, TSelf, TOffset>
     where TOffset : IAdditiveIdentity<TOffset, TOffset>
 #endif
     where TSelf : IAffineQuantity<TSelf, TOffset>

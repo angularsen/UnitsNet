@@ -40,7 +40,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct MagneticField :
-        IArithmeticQuantity<MagneticField, MagneticFieldUnit>,
+        ILinearQuantity<MagneticField, MagneticFieldUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<MagneticField, MagneticField, double>,
         IComparisonOperators<MagneticField, MagneticField, bool>,

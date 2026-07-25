@@ -40,7 +40,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct SpecificWeight :
-        IArithmeticQuantity<SpecificWeight, SpecificWeightUnit>,
+        ILinearQuantity<SpecificWeight, SpecificWeightUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<SpecificWeight, SpecificWeight, double>,
         IDivisionOperators<SpecificWeight, Density, Acceleration>,

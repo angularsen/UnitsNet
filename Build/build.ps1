@@ -15,23 +15,34 @@
     Last modified: Jan 21, 2018
     #>
 [CmdletBinding()]
-Param()
+Param(
+  [switch] $SkipTests,
+  [switch] $SkipCoverage,
+  [switch] $SkipPack,
+  [switch] $SkipArchive
+)
 
 remove-module build-functions -ErrorAction SilentlyContinue
-import-module $PSScriptRoot\build-functions.psm1
+import-module (Join-Path $PSScriptRoot "build-functions.psm1")
 
 try {
-  & "$PSScriptRoot/init.ps1" # Ensure tools are downloaded
+  & "$PSScriptRoot/init.ps1" -SkipCoverageTools:($SkipTests -or $SkipCoverage)
 
   Remove-ArtifactsDir
   Update-GeneratedCode
 
   # Build main projects with dotnet CLI (cross-platform)
   Start-Build
-  Start-Tests
-  Start-PackNugets
+  if (-not $SkipTests) {
+    Start-Tests -SkipCoverage:$SkipCoverage
+  }
+  if (-not $SkipPack) {
+    Start-PackNugets
+  }
 
-  Compress-ArtifactsAsZip
+  if (-not $SkipArchive) {
+    Compress-ArtifactsAsZip
+  }
 }
 catch {
   $myError = $_.Exception.ToString()

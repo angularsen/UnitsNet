@@ -40,7 +40,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ElectricSurfaceChargeDensity :
-        IArithmeticQuantity<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>,
+        ILinearQuantity<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensity, double>,
         IComparisonOperators<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensity, bool>,

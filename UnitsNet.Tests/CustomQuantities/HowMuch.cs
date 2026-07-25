@@ -92,11 +92,7 @@ namespace UnitsNet.Tests.CustomQuantities
         }
 
 #if !NET
-
-        QuantityInfo IQuantity.QuantityInfo
-        {
-            get { return Info; }
-        }
+        IQuantityInstanceInfo<HowMuch> IQuantityOfType<HowMuch>.QuantityInfo => Info;
 
         Enum IQuantity.Unit => Unit;
 #endif

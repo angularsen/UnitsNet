@@ -103,21 +103,21 @@ namespace UnitsNet
 
         private void GenerateInterfaceExtensions()
         {
-            // generate the base interface (either IVectorQuantity, IAffineQuantity or ILogarithmicQuantity)
+            // generate ILogarithmicQuantity, IAffineQuantity or ILinearQuantity
             if (_quantity.Logarithmic)
             {
-                Writer.WL(@$"
+                Writer.WL($@"
         ILogarithmicQuantity<{_quantity.Name}, {_unitEnumName}>,");
             }
             else if (!string.IsNullOrEmpty(_quantity.AffineOffsetType))
             {
-                Writer.WL(@$"
+                Writer.WL($@"
         IAffineQuantity<{_quantity.Name}, {_unitEnumName}, {_quantity.AffineOffsetType}>,");
             }
-            else // the default quantity type implements the IVectorQuantity interface
+            else // the default quantity type implements the ILinearQuantity interface
             {
-                Writer.WL(@$"
-        IArithmeticQuantity<{_quantity.Name}, {_unitEnumName}>,");
+                Writer.WL($@"
+        ILinearQuantity<{_quantity.Name}, {_unitEnumName}>,");
             }
 
             Writer.WL(@"

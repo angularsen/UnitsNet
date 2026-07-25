@@ -37,7 +37,7 @@ namespace UnitsNet
     [DataContract]
     [DebuggerTypeProxy(typeof(QuantityDisplay))]
     public readonly partial struct ForceChangeRate :
-        IArithmeticQuantity<ForceChangeRate, ForceChangeRateUnit>,
+        ILinearQuantity<ForceChangeRate, ForceChangeRateUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ForceChangeRate, ForceChangeRate, double>,
         IMultiplyOperators<ForceChangeRate, Duration, Force>,
