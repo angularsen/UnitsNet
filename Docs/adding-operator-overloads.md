@@ -2,6 +2,9 @@
 
 There is a large number of operator overloads, to facilitate strongly typed computations such as `Speed speed = Length.FromMeters(100) / TimeSpan.FromSeconds(9)`.
 
+Operators that can be expressed as a multiplication, division, or inverse relation may be generated from
+`Common/UnitRelations.json`; see [Quantity relations](quantity-and-unit-definition-schema.md#quantity-relations).
+
 1. Put operator overload in `Length.extra.cs` if the **first parameter** is `Length`
 2. Add a short xmldoc summary as per the example below. You can add more descriptions if it is useful.
 3. Add a unit test case and place it in the equivalent file `LengthTests.cs`.

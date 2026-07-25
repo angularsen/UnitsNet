@@ -461,6 +461,7 @@ Read the wiki on [Serializing to JSON, XML and more](https://github.com/angulars
 ### Want To Contribute?
 
 * [Adding a New Unit](https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit) is fairly easy to do and we are happy to help.
+* See the [Quantity and Unit Definition Schema](Docs/quantity-and-unit-definition-schema.md) for a reference to the JSON definition format.
 * Want a new feature or to report a bug? [Create an issue](https://github.com/angularsen/UnitsNet/issues/new/choose) or start a [discussion](https://github.com/angularsen/UnitsNet/discussions).
 
 
