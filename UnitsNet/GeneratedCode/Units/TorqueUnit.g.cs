@@ -44,6 +44,8 @@ namespace UnitsNet.Units
         NewtonCentimeter = 17,
         NewtonMeter = 18,
         NewtonMillimeter = 19,
+        OunceForceFoot = 26,
+        OunceForceInch = 27,
         PoundalFoot = 20,
         PoundForceFoot = 21,
         PoundForceInch = 22,

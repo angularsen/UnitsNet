@@ -101,6 +101,14 @@ namespace UnitsNet.Tests
             Assert.Equal(Torque.FromNewtonMillimeters(2), 2.NewtonMillimeters);
 
         [Fact]
+        public void NumberToOunceForceFeetTest() =>
+            Assert.Equal(Torque.FromOunceForceFeet(2), 2.OunceForceFeet);
+
+        [Fact]
+        public void NumberToOunceForceInchesTest() =>
+            Assert.Equal(Torque.FromOunceForceInches(2), 2.OunceForceInches);
+
+        [Fact]
         public void NumberToPoundalFeetTest() =>
             Assert.Equal(Torque.FromPoundalFeet(2), 2.PoundalFeet);
 
