@@ -43,6 +43,9 @@ namespace UnitsNet
         ILinearQuantity<BitRate, BitRateUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<BitRate, BitRate, double>,
+        IDivisionOperators<BitRate, Information, Frequency>,
+        IMultiplyOperators<BitRate, Duration, Information>,
+        IDivisionOperators<BitRate, Frequency, Information>,
         IComparisonOperators<BitRate, BitRate, bool>,
         IParsable<BitRate>,
 #endif
@@ -1089,6 +1092,28 @@ namespace UnitsNet
         public static double operator /(BitRate left, BitRate right)
         {
             return left.BitsPerSecond / right.BitsPerSecond;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Frequency"/> from <see cref="BitRate"/> / <see cref="Information"/>.</summary>
+        public static Frequency operator /(BitRate bitRate, Information information)
+        {
+            return Frequency.FromPerSecond(bitRate.BitsPerSecond / information.Bits);
+        }
+
+        /// <summary>Get <see cref="Information"/> from <see cref="BitRate"/> * <see cref="Duration"/>.</summary>
+        public static Information operator *(BitRate bitRate, Duration duration)
+        {
+            return Information.FromBits(bitRate.BitsPerSecond * duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="Information"/> from <see cref="BitRate"/> / <see cref="Frequency"/>.</summary>
+        public static Information operator /(BitRate bitRate, Frequency frequency)
+        {
+            return Information.FromBits(bitRate.BitsPerSecond / frequency.PerSecond);
         }
 
         #endregion

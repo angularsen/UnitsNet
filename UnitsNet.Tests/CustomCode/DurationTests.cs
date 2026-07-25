@@ -242,5 +242,13 @@ namespace UnitsNet.Tests
             Force force = Duration.FromSeconds(10) * ForceChangeRate.FromNewtonsPerSecond(100);
             Assert.Equal(Force.FromNewtons(1000), force);
         }
+
+        [Fact]
+        public void DurationInverseEqualsFrequency()
+        {
+            Frequency frequency = Duration.FromMilliseconds(250).Inverse();
+
+            Assert.Equal(4, frequency.Hertz);
+        }
     }
 }
