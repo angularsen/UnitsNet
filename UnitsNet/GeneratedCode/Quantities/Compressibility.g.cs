@@ -768,20 +768,20 @@ namespace UnitsNet
             Compressibility? convertedOrNull = (Unit, unit) switch
             {
                 // CompressibilityUnit -> BaseUnit
-                (CompressibilityUnit.InverseAtmosphere, CompressibilityUnit.InversePascal) => new Compressibility(_value * 101325, CompressibilityUnit.InversePascal),
-                (CompressibilityUnit.InverseBar, CompressibilityUnit.InversePascal) => new Compressibility(_value * 1e5, CompressibilityUnit.InversePascal),
-                (CompressibilityUnit.InverseKilopascal, CompressibilityUnit.InversePascal) => new Compressibility(_value * 1e3, CompressibilityUnit.InversePascal),
-                (CompressibilityUnit.InverseMegapascal, CompressibilityUnit.InversePascal) => new Compressibility(_value * 1e6, CompressibilityUnit.InversePascal),
-                (CompressibilityUnit.InverseMillibar, CompressibilityUnit.InversePascal) => new Compressibility(_value * 100, CompressibilityUnit.InversePascal),
-                (CompressibilityUnit.InversePoundForcePerSquareInch, CompressibilityUnit.InversePascal) => new Compressibility(_value * 6.894757293168361e3, CompressibilityUnit.InversePascal),
+                (CompressibilityUnit.InverseAtmosphere, CompressibilityUnit.InversePascal) => new Compressibility(_value / 101325, CompressibilityUnit.InversePascal),
+                (CompressibilityUnit.InverseBar, CompressibilityUnit.InversePascal) => new Compressibility(_value / 1e5, CompressibilityUnit.InversePascal),
+                (CompressibilityUnit.InverseKilopascal, CompressibilityUnit.InversePascal) => new Compressibility(_value / 1e3, CompressibilityUnit.InversePascal),
+                (CompressibilityUnit.InverseMegapascal, CompressibilityUnit.InversePascal) => new Compressibility(_value / 1e6, CompressibilityUnit.InversePascal),
+                (CompressibilityUnit.InverseMillibar, CompressibilityUnit.InversePascal) => new Compressibility(_value / 100, CompressibilityUnit.InversePascal),
+                (CompressibilityUnit.InversePoundForcePerSquareInch, CompressibilityUnit.InversePascal) => new Compressibility(_value / 6.894757293168361e3, CompressibilityUnit.InversePascal),
 
                 // BaseUnit -> CompressibilityUnit
-                (CompressibilityUnit.InversePascal, CompressibilityUnit.InverseAtmosphere) => new Compressibility(_value / 101325, CompressibilityUnit.InverseAtmosphere),
-                (CompressibilityUnit.InversePascal, CompressibilityUnit.InverseBar) => new Compressibility(_value / 1e5, CompressibilityUnit.InverseBar),
-                (CompressibilityUnit.InversePascal, CompressibilityUnit.InverseKilopascal) => new Compressibility(_value / 1e3, CompressibilityUnit.InverseKilopascal),
-                (CompressibilityUnit.InversePascal, CompressibilityUnit.InverseMegapascal) => new Compressibility(_value / 1e6, CompressibilityUnit.InverseMegapascal),
-                (CompressibilityUnit.InversePascal, CompressibilityUnit.InverseMillibar) => new Compressibility(_value / 100, CompressibilityUnit.InverseMillibar),
-                (CompressibilityUnit.InversePascal, CompressibilityUnit.InversePoundForcePerSquareInch) => new Compressibility(_value / 6.894757293168361e3, CompressibilityUnit.InversePoundForcePerSquareInch),
+                (CompressibilityUnit.InversePascal, CompressibilityUnit.InverseAtmosphere) => new Compressibility(_value * 101325, CompressibilityUnit.InverseAtmosphere),
+                (CompressibilityUnit.InversePascal, CompressibilityUnit.InverseBar) => new Compressibility(_value * 1e5, CompressibilityUnit.InverseBar),
+                (CompressibilityUnit.InversePascal, CompressibilityUnit.InverseKilopascal) => new Compressibility(_value * 1e3, CompressibilityUnit.InverseKilopascal),
+                (CompressibilityUnit.InversePascal, CompressibilityUnit.InverseMegapascal) => new Compressibility(_value * 1e6, CompressibilityUnit.InverseMegapascal),
+                (CompressibilityUnit.InversePascal, CompressibilityUnit.InverseMillibar) => new Compressibility(_value * 100, CompressibilityUnit.InverseMillibar),
+                (CompressibilityUnit.InversePascal, CompressibilityUnit.InversePoundForcePerSquareInch) => new Compressibility(_value * 6.894757293168361e3, CompressibilityUnit.InversePoundForcePerSquareInch),
 
                 _ => null
             };
