@@ -1204,7 +1204,7 @@ namespace UnitsNet
             return ToUnit(unit).Value;
         }
 
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
+        /// <inheritdoc cref="QuantityExtensions.As(IQuantity, UnitKey)"/>
         public double As(UnitKey unitKey)
         {
             return As(unitKey.ToUnit<MassUnit>());
@@ -1343,30 +1343,6 @@ namespace UnitsNet
             converted = convertedOrNull.Value;
             return true;
         }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not MassUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is MassUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(MassUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<MassUnit> IQuantity<MassUnit>.ToUnit(MassUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 

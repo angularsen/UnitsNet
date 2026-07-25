@@ -629,7 +629,7 @@ namespace UnitsNet
             return ToUnit(unit).Value;
         }
 
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
+        /// <inheritdoc cref="QuantityExtensions.As(IQuantity, UnitKey)"/>
         public double As(UnitKey unitKey)
         {
             return As(unitKey.ToUnit<LuminousFluxUnit>());
@@ -708,30 +708,6 @@ namespace UnitsNet
             converted = convertedOrNull.Value;
             return true;
         }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not LuminousFluxUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminousFluxUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is LuminousFluxUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(LuminousFluxUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<LuminousFluxUnit> IQuantity<LuminousFluxUnit>.ToUnit(LuminousFluxUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
