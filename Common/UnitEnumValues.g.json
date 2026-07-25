@@ -1385,9 +1385,9 @@
     "PoundMassPerPoundForceHour": 4
   },
   "SpecificVolume": {
+    "CubicMillimeterPerKilogram": 3,
     "CubicFootPerPound": 1,
-    "CubicMeterPerKilogram": 2,
-    "MillicubicMeterPerKilogram": 3
+    "CubicMeterPerKilogram": 2
   },
   "SpecificWeight": {
     "KilogramForcePerCubicCentimeter": 1,
@@ -1589,21 +1589,20 @@
     "DecausGallon": 17,
     "Deciliter": 18,
     "DeciusGallon": 19,
-    "HectocubicFoot": 20,
-    "HectocubicMeter": 21,
+    "HundredCubicFoot": 20,
     "Hectoliter": 22,
     "HectousGallon": 23,
     "ImperialBeerBarrel": 24,
     "ImperialGallon": 25,
     "ImperialOunce": 26,
     "ImperialPint": 27,
-    "KilocubicFoot": 28,
-    "KilocubicMeter": 29,
+    "ThousandCubicFoot": 28,
+    "ThousandCubicMeter": 29,
     "KiloimperialGallon": 30,
     "Kiloliter": 31,
     "KilousGallon": 32,
     "Liter": 33,
-    "MegacubicFoot": 34,
+    "MillionCubicFoot": 34,
     "MegaimperialGallon": 35,
     "Megaliter": 36,
     "MegausGallon": 37,

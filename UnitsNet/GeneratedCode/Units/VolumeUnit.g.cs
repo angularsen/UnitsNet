@@ -79,10 +79,14 @@ namespace UnitsNet.Units
         DecausGallon = 17,
         Deciliter = 18,
         DeciusGallon = 19,
-        HectocubicFoot = 20,
-        HectocubicMeter = 21,
         Hectoliter = 22,
         HectousGallon = 23,
+
+        /// <summary>
+        ///     A count-style volume unit equal to 100 cubic feet, commonly abbreviated Ccf in natural gas and water utility billing.
+        /// </summary>
+        /// <remarks>Sources: https://www.eia.gov/tools/faqs/faq.php?id=45&amp;t=8, https://19january2017snapshot.epa.gov/www3/watersense/our_water/understanding_your_bill.html</remarks>
+        HundredCubicFoot = 20,
 
         /// <summary>
         ///     Fluid barrels vary depending on what is being measured and where. In the UK a beer barrel is 36 imperial gallons (43 US gal; ~164 L).
@@ -113,13 +117,10 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Quart#Imperial_quart</remarks>
         ImperialQuart = 57,
-        KilocubicFoot = 28,
-        KilocubicMeter = 29,
         KiloimperialGallon = 30,
         Kiloliter = 31,
         KilousGallon = 32,
         Liter = 33,
-        MegacubicFoot = 34,
         MegaimperialGallon = 35,
         Megaliter = 36,
         MegausGallon = 37,
@@ -143,6 +144,12 @@ namespace UnitsNet.Units
         MetricTeaspoon = 39,
         Microliter = 40,
         Milliliter = 41,
+
+        /// <summary>
+        ///     A count-style volume unit equal to 1,000,000 cubic feet, commonly abbreviated MMcf in natural gas reporting.
+        /// </summary>
+        /// <remarks>Sources: https://natural-resources.canada.ca/climate-change/conversion-factors-common-units-used-north-american-cooperation-energy-information</remarks>
+        MillionCubicFoot = 34,
         Nanoliter = 53,
 
         /// <summary>
@@ -150,6 +157,18 @@ namespace UnitsNet.Units
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Barrel_(unit)#Oil_barrel</remarks>
         OilBarrel = 42,
+
+        /// <summary>
+        ///     A count-style volume unit equal to 1000 cubic feet, commonly abbreviated Mcf in natural gas reporting.
+        /// </summary>
+        /// <remarks>Sources: https://www.eia.gov/tools/faqs/faq.php?id=45&amp;t=8, https://natural-resources.canada.ca/climate-change/conversion-factors-common-units-used-north-american-cooperation-energy-information</remarks>
+        ThousandCubicFoot = 28,
+
+        /// <summary>
+        ///     A count-style volume unit equal to 1000 cubic meters. This is distinct from CubicKilometer, which is (1000 m)³ or 1e9 cubic meters.
+        /// </summary>
+        /// <remarks>Sources: https://energystar.my.site.com/PortfolioManager/s/article/Is-there-a-list-of-valid-property-level-water-meter-types-and-unit-of-measure-combinations-1748913622052, https://www.census.gov/foreign-trade/guide/sec4.html, https://www.bipm.org/en/measurement-units/si-prefixes</remarks>
+        ThousandCubicMeter = 29,
 
         /// <summary>
         ///     In nutrition labeling in the U.S. and the U.K., a tablespoon is defined as 15 ml (0.51 US fl oz). In Australia, the definition of the tablespoon is 20 ml (0.70 imp fl oz).

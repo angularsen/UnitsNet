@@ -54,15 +54,15 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificVolume
             => SpecificVolume.FromCubicMetersPerKilogram(value.ToDouble(null));
 #endif
 
-        /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(double)" />
-        public static SpecificVolume MillicubicMetersPerKilogram<T>(this T value)
+        /// <inheritdoc cref="SpecificVolume.FromCubicMillimetersPerKilogram(double)" />
+        public static SpecificVolume CubicMillimetersPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => SpecificVolume.FromMillicubicMetersPerKilogram(double.CreateChecked(value));
+            => SpecificVolume.FromCubicMillimetersPerKilogram(double.CreateChecked(value));
 #else
             , IConvertible
-            => SpecificVolume.FromMillicubicMetersPerKilogram(value.ToDouble(null));
+            => SpecificVolume.FromCubicMillimetersPerKilogram(value.ToDouble(null));
 #endif
 
     }
