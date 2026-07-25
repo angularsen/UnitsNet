@@ -27,6 +27,11 @@ namespace UnitsNet.Units
     {
         CubicFootPerPound = 1,
         CubicMeterPerKilogram = 2,
+
+        /// <summary>
+        ///     A specific volume unit of cubic millimeters per kilogram. The millimeter prefix applies before cubing the length unit, so 1 mm³/kg = 1e-9 m³/kg.
+        /// </summary>
+        /// <remarks>Sources: https://www.bipm.org/en/measurement-units/si-prefixes, https://usma.org/wp-content/uploads/2015/06/Practical_Guide_to_the_SI.pdf</remarks>
         CubicMillimeterPerKilogram = 3,
     }
 

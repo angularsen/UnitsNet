@@ -48,6 +48,8 @@
     {
       "SingularName": "ThousandCubicMeter",
       "PluralName": "ThousandCubicMeters",
+      "XmlDocSummary": "A count-style volume unit equal to 1000 cubic meters. This is distinct from CubicKilometer, which is (1000 m)³ or 1e9 cubic meters.",
+      "XmlDocRemarks": "Sources: https://energystar.my.site.com/PortfolioManager/s/article/Is-there-a-list-of-valid-property-level-water-meter-types-and-unit-of-measure-combinations-1748913622052, https://www.census.gov/foreign-trade/guide/sec4.html, https://www.bipm.org/en/measurement-units/si-prefixes",
       "FromUnitToBaseFunc": "{x} * 1e3",
       "FromBaseToUnitFunc": "{x} / 1e3",
       "Localization": [
@@ -237,6 +239,8 @@
     {
       "SingularName": "HundredCubicFoot",
       "PluralName": "HundredCubicFeet",
+      "XmlDocSummary": "A count-style volume unit equal to 100 cubic feet, commonly abbreviated Ccf in natural gas and water utility billing.",
+      "XmlDocRemarks": "Sources: https://www.eia.gov/tools/faqs/faq.php?id=45&amp;t=8, https://19january2017snapshot.epa.gov/www3/watersense/our_water/understanding_your_bill.html",
       "FromUnitToBaseFunc": "{x} * 0.028316846592 * 1e2",
       "FromBaseToUnitFunc": "{x} / (0.028316846592 * 1e2)",
       "Localization": [
@@ -249,6 +253,8 @@
     {
       "SingularName": "ThousandCubicFoot",
       "PluralName": "ThousandCubicFeet",
+      "XmlDocSummary": "A count-style volume unit equal to 1000 cubic feet, commonly abbreviated Mcf in natural gas reporting.",
+      "XmlDocRemarks": "Sources: https://www.eia.gov/tools/faqs/faq.php?id=45&amp;t=8, https://natural-resources.canada.ca/climate-change/conversion-factors-common-units-used-north-american-cooperation-energy-information",
       "FromUnitToBaseFunc": "{x} * 0.028316846592 * 1e3",
       "FromBaseToUnitFunc": "{x} / (0.028316846592 * 1e3)",
       "Localization": [
@@ -261,6 +267,8 @@
     {
       "SingularName": "MillionCubicFoot",
       "PluralName": "MillionCubicFeet",
+      "XmlDocSummary": "A count-style volume unit equal to 1,000,000 cubic feet, commonly abbreviated MMcf in natural gas reporting.",
+      "XmlDocRemarks": "Sources: https://natural-resources.canada.ca/climate-change/conversion-factors-common-units-used-north-american-cooperation-energy-information",
       "FromUnitToBaseFunc": "{x} * 0.028316846592 * 1e6",
       "FromBaseToUnitFunc": "{x} / (0.028316846592 * 1e6)",
       "Localization": [
