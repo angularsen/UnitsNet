@@ -91,5 +91,37 @@ namespace UnitsNet.Tests
         {
             Assert.Equal(1000, Information.FromKilobytes(1).Bytes);
         }
+
+        [Fact]
+        public void InformationDividedByDurationEqualsBitRate()
+        {
+            BitRate bitRate = Information.FromKilobytes(3) / Duration.FromSeconds(2);
+
+            Assert.Equal(12000, bitRate.BitsPerSecond);
+        }
+
+        [Fact]
+        public void InformationDividedByBitRateEqualsDuration()
+        {
+            Duration duration = Information.FromMegabits(3) / BitRate.FromMegabitsPerSecond(2);
+
+            Assert.Equal(1.5, duration.Seconds.ToDouble());
+        }
+
+        [Fact]
+        public void InformationTimesFrequencyEqualsBitRate()
+        {
+            BitRate bitRate = Information.FromBytes(100) * Frequency.FromHertz(2);
+
+            Assert.Equal(1600, bitRate.BitsPerSecond);
+        }
+
+        [Fact]
+        public void FrequencyTimesInformationEqualsBitRate()
+        {
+            BitRate bitRate = Frequency.FromHertz(2) * Information.FromBytes(100);
+
+            Assert.Equal(1600, bitRate.BitsPerSecond);
+        }
     }
 }

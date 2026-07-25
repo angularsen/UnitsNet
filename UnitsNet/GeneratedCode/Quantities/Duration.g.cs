@@ -47,6 +47,7 @@ namespace UnitsNet
         IMultiplyOperators<Duration, ElectricCurrentGradient, ElectricCurrent>,
         IMultiplyOperators<Duration, Power, Energy>,
         IMultiplyOperators<Duration, ForceChangeRate, Force>,
+        IMultiplyOperators<Duration, BitRate, Information>,
         IMultiplyOperators<Duration, Speed, Length>,
         IMultiplyOperators<Duration, MassFlow, Mass>,
         IMultiplyOperators<Duration, PressureChangeRate, Pressure>,
@@ -666,6 +667,13 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Calculates the inverse of this quantity.</summary>
+        /// <returns>The corresponding inverse quantity, <see cref="Frequency"/>.</returns>
+        public Frequency Inverse()
+        {
+            return UnitConverter.Default.ConvertTo(Value, Unit, Frequency.Info);
+        }
+
         /// <summary>Get <see cref="Acceleration"/> from <see cref="Duration"/> * <see cref="Jerk"/>.</summary>
         public static Acceleration operator *(Duration duration, Jerk jerk)
         {
@@ -712,6 +720,12 @@ namespace UnitsNet
         public static Force operator *(Duration duration, ForceChangeRate forceChangeRate)
         {
             return Force.FromNewtons(duration.Seconds * forceChangeRate.NewtonsPerSecond);
+        }
+
+        /// <summary>Get <see cref="Information"/> from <see cref="Duration"/> * <see cref="BitRate"/>.</summary>
+        public static Information operator *(Duration duration, BitRate bitRate)
+        {
+            return Information.FromBits(duration.Seconds * bitRate.BitsPerSecond);
         }
 
         /// <summary>Get <see cref="Length"/> from <see cref="Duration"/> * <see cref="Speed"/>.</summary>

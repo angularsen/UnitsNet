@@ -117,23 +117,23 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<CompressibilityUnit>> GetDefaultMappings()
             {
                 yield return new (CompressibilityUnit.InverseAtmosphere, "InverseAtmosphere", "InverseAtmospheres", BaseUnits.Undefined,
-                     new QuantityValue(1, 101325)
+                     101325
                 );
                 yield return new (CompressibilityUnit.InverseBar, "InverseBar", "InverseBars", BaseUnits.Undefined,
-                     new QuantityValue(1, 100000)
+                     100000
                 );
                 yield return new (CompressibilityUnit.InverseKilopascal, "InverseKilopascal", "InverseKilopascals", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)
+                     1000
                 );
                 yield return new (CompressibilityUnit.InverseMegapascal, "InverseMegapascal", "InverseMegapascals", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000)
+                     1000000
                 );
                 yield return new (CompressibilityUnit.InverseMillibar, "InverseMillibar", "InverseMillibars", BaseUnits.Undefined,
-                     new QuantityValue(1, 100)
+                     100
                 );
                 yield return new (CompressibilityUnit.InversePascal, "InversePascal", "InversePascals", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
                 yield return new (CompressibilityUnit.InversePoundForcePerSquareInch, "InversePoundForcePerSquareInch", "InversePoundsForcePerSquareInch", BaseUnits.Undefined,
-                     new QuantityValue(1000000000000, 6894757293168361)
+                     new QuantityValue(6894757293168361, 1000000000000)
                 );
             }
         }

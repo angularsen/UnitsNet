@@ -18,19 +18,52 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using UnitsNet.Units;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class CompressibilityTests : CompressibilityTestsBase
     {
-        // Override properties in base class here
-
         protected override double InversePascalsInOneInversePascal => 1;
-        protected override double InverseMillibarsInOneInversePascal => 1e-2;
-        protected override double InverseKilopascalsInOneInversePascal => 1e-3;
-        protected override double InverseMegapascalsInOneInversePascal => 1e-6;
-        protected override double InverseBarsInOneInversePascal => 1e-5;
-        protected override double InversePoundsForcePerSquareInchInOneInversePascal => 1.450377377302092151542e-4;
-        protected override double InverseAtmospheresInOneInversePascal => 9.86923266716013e-6;
+        protected override double InverseMillibarsInOneInversePascal => 100;
+        protected override double InverseKilopascalsInOneInversePascal => 1e3;
+        protected override double InverseMegapascalsInOneInversePascal => 1e6;
+        protected override double InverseBarsInOneInversePascal => 1e5;
+        protected override double InversePoundsForcePerSquareInchInOneInversePascal => 6.894757293168361e3;
+        protected override double InverseAtmospheresInOneInversePascal => 101325;
+
+        [Fact]
+        public void InverseKilopascalToInversePoundForcePerSquareInch()
+        {
+            Compressibility compressibility = Compressibility.FromInverseKilopascals(1);
+
+            // 1 psi = 6.894757293168361 kPa, so 1 kPa^-1 = 6.894757293168361 psi^-1.
+            AssertEx.EqualTolerance(6.894757293168361, compressibility.InversePoundsForcePerSquareInch, 1e-12);
+        }
+
+        [Fact]
+        public void InversePoundForcePerSquareInchToInverseKilopascal()
+        {
+            Compressibility compressibility = Compressibility.FromInversePoundsForcePerSquareInch(1);
+
+            // 1 psi = 6.894757293168361 kPa, so 1 psi^-1 = 0.14503773773020923 kPa^-1.
+            AssertEx.EqualTolerance(0.14503773773020923, compressibility.InverseKilopascals, 1e-12);
+        }
+
+        [Theory]
+        [InlineData(CompressibilityUnit.InverseMillibar, 100)]
+        [InlineData(CompressibilityUnit.InverseKilopascal, 1e3)]
+        [InlineData(CompressibilityUnit.InverseMegapascal, 1e6)]
+        [InlineData(CompressibilityUnit.InverseBar, 1e5)]
+        [InlineData(CompressibilityUnit.InverseAtmosphere, 101325)]
+        [InlineData(CompressibilityUnit.InversePoundForcePerSquareInch, 6.894757293168361e3)]
+        public void OneInversePascalEqualsPressureFactorInInversePressureUnit(CompressibilityUnit unit, double expected)
+        {
+            Compressibility compressibility = Compressibility.FromInversePascals(1);
+
+            // If 1 target pressure unit equals N pascals, then 1 Pa^-1 equals N target-unit^-1.
+            AssertEx.EqualTolerance(expected, compressibility.As(unit), 1e-12);
+        }
     }
 }

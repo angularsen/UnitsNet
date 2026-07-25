@@ -9,16 +9,141 @@ namespace UnitsNet.Tests;
 public partial class IQuantityTests
 {
     [Fact]
-    public void As_GivenWrongUnitType_ThrowsArgumentException()
+    public void As_GivenWrongUnitType_ThrowsUnitNotFoundException()
     {
         Assert.All(Quantity.Infos.Select(x => x.Zero), quantity => { Assert.Throws<UnitNotFoundException>(() => quantity.As(ComparisonType.Absolute)); });
     }
 
     [Fact]
-    public void ToUnit_GivenWrongUnitType_ThrowsArgumentException()
+    public void ToUnit_GivenWrongUnitType_ThrowsUnitNotFoundException()
     {
         Assert.All(Quantity.Infos.Select(x => x.Zero),
             quantity => { Assert.Throws<UnitNotFoundException>(() => quantity.ToUnit(ComparisonType.Absolute)); });
+    }
+
+    [Fact]
+    public void As_InterfaceReferences_ReturnConvertedValue()
+    {
+        var mass = Mass.FromKilograms(1);
+        IQuantity quantity = mass;
+        IQuantity<MassUnit> typedQuantity = mass;
+
+        Assert.Equal(1000, quantity.As(MassUnit.Gram));
+        Assert.Equal(1000, typedQuantity.As(MassUnit.Gram));
+    }
+
+    [Fact]
+    public void ToUnit_IQuantityFromNonBaseUnit_ReturnsConvertedQuantity()
+    {
+        IQuantity quantity = Length.FromKilometers(1);
+
+        IQuantity convertedQuantity = quantity.ToUnit(LengthUnit.Centimeter);
+
+        Assert.Equal(100_000, convertedQuantity.Value);
+        Assert.Equal(LengthUnit.Centimeter, convertedQuantity.Unit);
+    }
+
+    [Fact]
+    public void ToUnit_GenericConstraintWithCustomConverter_UsesProvidedConverter()
+    {
+        QuantityInfo<Length, LengthUnit> customLengthInfo = Length.LengthInfo.CreateDefault(unitDefinitions =>
+            unitDefinitions.Configure(LengthUnit.Centimeter, definition => definition.WithConversionFactorFromBase(123)));
+        UnitConverter converter = UnitConverter.Create(new UnitParser([customLengthInfo]), new QuantityConverterBuildOptions());
+
+        Length convertedQuantity = ConvertToUnit(Length.FromMeters(1), LengthUnit.Centimeter, converter);
+
+        Assert.Equal(123, convertedQuantity.Value);
+        Assert.Equal(LengthUnit.Centimeter, convertedQuantity.Unit);
+
+        static TQuantity ConvertToUnit<TQuantity, TUnit>(TQuantity quantity, TUnit unit, UnitConverter unitConverter)
+            where TQuantity : IQuantity<TQuantity, TUnit>
+            where TUnit : struct, Enum
+        {
+            return quantity.ToUnit(unit, unitConverter);
+        }
+    }
+
+    [Fact]
+    public void As_GenericConstraintWithCustomConverter_UsesProvidedConverter()
+    {
+        QuantityInfo<Length, LengthUnit> customLengthInfo = Length.LengthInfo.CreateDefault(unitDefinitions =>
+            unitDefinitions.Configure(LengthUnit.Centimeter, definition => definition.WithConversionFactorFromBase(123)));
+        UnitConverter converter = UnitConverter.Create(new UnitParser([customLengthInfo]), new QuantityConverterBuildOptions());
+
+        QuantityValue convertedValue = ConvertValue(Length.FromMeters(1), LengthUnit.Centimeter, converter);
+
+        Assert.Equal(123, convertedValue.ToDouble());
+
+        static QuantityValue ConvertValue<TQuantity, TUnit>(TQuantity quantity, TUnit unit, UnitConverter unitConverter)
+            where TQuantity : IQuantity<TQuantity, TUnit>
+            where TUnit : struct, Enum
+        {
+            return quantity.As(unit, unitConverter);
+        }
+    }
+
+    [Fact]
+    public void ConversionExtensions_GenericConstraintWithNullConverter_ThrowsArgumentNullException()
+    {
+        var quantity = Length.FromMeters(1);
+
+        Assert.Throws<ArgumentNullException>(() => ConvertValue(quantity, LengthUnit.Centimeter, null!));
+        Assert.Throws<ArgumentNullException>(() => ConvertToUnit(quantity, LengthUnit.Centimeter, null!));
+
+        static QuantityValue ConvertValue<TQuantity, TUnit>(TQuantity quantity, TUnit unit, UnitConverter unitConverter)
+            where TQuantity : IQuantity<TQuantity, TUnit>
+            where TUnit : struct, Enum
+        {
+            return quantity.As(unit, unitConverter);
+        }
+
+        static TQuantity ConvertToUnit<TQuantity, TUnit>(TQuantity quantity, TUnit unit, UnitConverter unitConverter)
+            where TQuantity : IQuantity<TQuantity, TUnit>
+            where TUnit : struct, Enum
+        {
+            return quantity.ToUnit(unit, unitConverter);
+        }
+    }
+
+    [Fact]
+    public virtual void ToUnit_UnitSystem_SI_ReturnsQuantityInSIUnits()
+    {
+        var quantity = new Mass(1, Mass.BaseUnit);
+        MassUnit expectedUnit = Mass.Info.GetDefaultUnit(UnitSystem.SI);
+        var expectedValue = quantity.As(expectedUnit);
+
+        Assert.Multiple(() =>
+        {
+            IQuantity<MassUnit> quantityToConvert = quantity;
+
+            IQuantity<MassUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+            Assert.Equal(expectedUnit, convertedQuantity.Unit);
+            Assert.Equal(expectedValue, convertedQuantity.Value);
+        }, () =>
+        {
+            IQuantity quantityToConvert = quantity;
+
+            IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+            Assert.Equal(expectedUnit, convertedQuantity.Unit);
+            Assert.Equal(expectedValue, convertedQuantity.Value);
+        });
+    }
+
+    [Fact]
+    public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
+    {
+        UnitSystem nullUnitSystem = null!;
+        Assert.Multiple(() =>
+        {
+            IQuantity<MassUnit> quantity = new Mass(1, Mass.BaseUnit);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+        }, () =>
+        {
+            IQuantity quantity = new Mass(1, Mass.BaseUnit);
+            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+        });
     }
 
 #if NET

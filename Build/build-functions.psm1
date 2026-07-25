@@ -11,7 +11,7 @@ $reportGenerator = Join-Path $toolsDir $reportGeneratorName
 function Remove-ArtifactsDir {
   if (Test-Path $artifactsDir) {
     write-host -foreground blue "Clean up...`n"
-    rm $artifactsDir -Recurse -Force -ErrorAction Stop
+    Remove-Item -LiteralPath $artifactsDir -Recurse -Force -ErrorAction Stop
     write-host -foreground blue "Clean up...END`n"
   }
 }
@@ -129,14 +129,14 @@ function Compress-ArtifactsAsZip {
   $tempZipFile = Join-Path $root $zipFileName
   $zipFile = Join-Path $artifactsDir $zipFileName
 
-  rm $tempZipFile -ErrorAction Ignore
-  rm $zipFile -ErrorAction Ignore
+  Remove-Item -LiteralPath $tempZipFile -ErrorAction Ignore
+  Remove-Item -LiteralPath $zipFile -ErrorAction Ignore
 
   # Create zip file
   add-type -assembly "system.io.compression.filesystem"
   [IO.Compression.ZipFile]::CreateFromDirectory($artifactsDir, $tempZipFile)
 
-  mv $tempZipFile $zipFile
+  Move-Item -LiteralPath $tempZipFile -Destination $zipFile
   if (-not $?) { write-host -foreground red "Failed to move [$tempZipFile] to [$zipFileName]."; exit 1 }
 
   write-host -foreground blue "Zip artifacts...END`n"

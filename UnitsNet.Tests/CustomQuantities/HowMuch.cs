@@ -1,79 +1,79 @@
-﻿namespace UnitsNet.Tests.CustomQuantities;
+﻿using System;
+using UnitsNet.Units;
 
-/// <inheritdoc cref="IQuantity" />
-/// <summary>
-///     Example of a custom/third-party quantity implementation, for plugging in quantities and units at runtime.
-/// </summary>
-public readonly struct HowMuch : IQuantity<HowMuch, HowMuchUnit>
+namespace UnitsNet.Tests.CustomQuantities
 {
-    public HowMuch(QuantityValue value, HowMuchUnit unit)
+    /// <inheritdoc cref="IQuantity"/>
+    /// <summary>
+    /// Example of a custom/third-party quantity implementation, for plugging in quantities and units at runtime.
+    /// </summary>
+    public readonly struct HowMuch : IQuantity<HowMuch, HowMuchUnit>
     {
-        Unit = unit;
-        Value = value;
-    }
-
-    public static HowMuch From(QuantityValue value, HowMuchUnit unit)
-    {
-        return new HowMuch(value, unit);
-    }
-
-    public HowMuchUnit Unit { get; }
-
-    public QuantityValue Value { get; }
-    
-    public static QuantityInfo<HowMuch, HowMuchUnit> Info { get; } = new(
-        nameof(HowMuch),
-        HowMuchUnit.Some,
-        new UnitDefinition<HowMuchUnit>[]
+        public HowMuch(QuantityValue value, HowMuchUnit unit)
         {
-            new(HowMuchUnit.Some, "Some", BaseUnits.Undefined),
-            new(HowMuchUnit.ATon, "Tons", new BaseUnits(mass: MassUnit.Tonne), new QuantityValue(1, 10)),
-            new(HowMuchUnit.AShitTon, "ShitTons", BaseUnits.Undefined, new QuantityValue(1, 100))
-        },
-        new HowMuch(0, HowMuchUnit.Some),
-        new BaseDimensions(0, 1, 0, 0, 0, 0, 0),
-        From);
+            Unit = unit;
+            Value = value;
+        }
 
-    QuantityInfo<HowMuch, HowMuchUnit> IQuantity<HowMuch, HowMuchUnit>.QuantityInfo
-    {
-        get => Info;
-    }
+        public static HowMuch From(QuantityValue value, HowMuchUnit unit)
+        {
+            return new HowMuch(value, unit);
+        }
 
-    UnitKey IQuantity.UnitKey
-    {
-        get => UnitKey.ForUnit(Unit);
-    }
+        public HowMuchUnit Unit { get; }
 
-    public override string ToString()
-    {
-        return $"{Value} {Unit}";
-    }
+        public QuantityValue Value { get; }
 
-    public string ToString(string? format, IFormatProvider? formatProvider)
-    {
-        return $"HowMuch ({format}, {formatProvider})";
-    }
+        #region IQuantity
+        
+        public static QuantityInfo<HowMuch, HowMuchUnit> Info { get; } = new(
+            nameof(HowMuch),
+            HowMuchUnit.Some,
+            new UnitDefinition<HowMuchUnit>[]
+            {
+                new(HowMuchUnit.Some, "Some", BaseUnits.Undefined),
+                new(HowMuchUnit.ATon, "Tons", new BaseUnits(mass: MassUnit.Tonne), new QuantityValue(1, 10)),
+                new(HowMuchUnit.AShitTon, "ShitTons", BaseUnits.Undefined, new QuantityValue(1, 100))
+            },
+            new HowMuch(0, HowMuchUnit.Some),
+            new BaseDimensions(0, 1, 0, 0, 0, 0, 0),
+            From);
+
+        QuantityInfo<HowMuch, HowMuchUnit> IQuantity<HowMuch, HowMuchUnit>.QuantityInfo
+        {
+            get => Info;
+        }
+
+        QuantityInfo<HowMuchUnit> IQuantity<HowMuchUnit>.QuantityInfo
+        {
+            get => Info;
+        }
+
+        QuantityInfo IQuantity.QuantityInfo
+        {
+            get => Info;
+        }
+        
+        UnitKey IQuantity.UnitKey
+        {
+            get => UnitKey.ForUnit(Unit);
+        }
+
+        public override string ToString()
+        {
+            return $"{Value} {Unit}";
+        }
+
+        public string ToString(string? format, IFormatProvider? formatProvider)
+        {
+            return $"HowMuch ({format}, {formatProvider})";
+        }
 
 #if !NET
-    //  all the following methods have a default interface implementation for net8.0 and above
-    IQuantityInstanceInfo<HowMuch> IQuantityOfType<HowMuch>.QuantityInfo
-    {
-        get => Info;
-    }
+        IQuantityInstanceInfo<HowMuch> IQuantityOfType<HowMuch>.QuantityInfo => Info;
 
-    QuantityInfo<HowMuchUnit> IQuantity<HowMuchUnit>.QuantityInfo
-    {
-        get => Info;
-    }
-
-    QuantityInfo IQuantity.QuantityInfo
-    {
-        get => Info;
-    }
-
-    Enum IQuantity.Unit
-    {
-        get => Unit;
-    }
+        Enum IQuantity.Unit => Unit;
 #endif
+        #endregion
+    }
 }

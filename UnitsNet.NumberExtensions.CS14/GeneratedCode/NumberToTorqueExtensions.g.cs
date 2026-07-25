@@ -194,6 +194,22 @@ namespace UnitsNet.NumberExtensions.NumberToTorque
                 => Torque.FromNewtonMillimeters(value.ToQuantityValue());
 #endif
 
+            /// <inheritdoc cref="Torque.FromOunceForceFeet(QuantityValue)" />
+            public Torque OunceForceFeet
+#if NET7_0_OR_GREATER
+                => Torque.FromOunceForceFeet(QuantityValue.CreateChecked(value));
+#else
+                => Torque.FromOunceForceFeet(value.ToQuantityValue());
+#endif
+
+            /// <inheritdoc cref="Torque.FromOunceForceInches(QuantityValue)" />
+            public Torque OunceForceInches
+#if NET7_0_OR_GREATER
+                => Torque.FromOunceForceInches(QuantityValue.CreateChecked(value));
+#else
+                => Torque.FromOunceForceInches(value.ToQuantityValue());
+#endif
+
             /// <inheritdoc cref="Torque.FromPoundalFeet(QuantityValue)" />
             public Torque PoundalFeet
 #if NET7_0_OR_GREATER

@@ -178,6 +178,12 @@ namespace UnitsNet
                 yield return new (TorqueUnit.NewtonMillimeter, "NewtonMillimeter", "NewtonMillimeters", BaseUnits.Undefined,
                      1000
                 );
+                yield return new (TorqueUnit.OunceForceFoot, "OunceForceFoot", "OunceForceFeet", BaseUnits.Undefined,
+                     new QuantityValue(40000000000000000, 3389544870828501)
+                );
+                yield return new (TorqueUnit.OunceForceInch, "OunceForceInch", "OunceForceInches", BaseUnits.Undefined,
+                     new QuantityValue(160000000000000000, 1129848290276167)
+                );
                 yield return new (TorqueUnit.PoundalFoot, "PoundalFoot", "PoundalFeet", BaseUnits.Undefined,
                      new QuantityValue(156250000000000, 6584392202157)
                 );
@@ -394,6 +400,16 @@ namespace UnitsNet
         public QuantityValue NewtonMillimeters => this.As(TorqueUnit.NewtonMillimeter);
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TorqueUnit.OunceForceFoot"/>
+        /// </summary>
+        public QuantityValue OunceForceFeet => this.As(TorqueUnit.OunceForceFoot);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TorqueUnit.OunceForceInch"/>
+        /// </summary>
+        public QuantityValue OunceForceInches => this.As(TorqueUnit.OunceForceInch);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="TorqueUnit.PoundalFoot"/>
         /// </summary>
         public QuantityValue PoundalFeet => this.As(TorqueUnit.PoundalFoot);
@@ -602,6 +618,22 @@ namespace UnitsNet
         public static Torque FromNewtonMillimeters(QuantityValue value)
         {
             return new Torque(value, TorqueUnit.NewtonMillimeter);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.OunceForceFoot"/>.
+        /// </summary>
+        public static Torque FromOunceForceFeet(QuantityValue value)
+        {
+            return new Torque(value, TorqueUnit.OunceForceFoot);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Torque"/> from <see cref="TorqueUnit.OunceForceInch"/>.
+        /// </summary>
+        public static Torque FromOunceForceInches(QuantityValue value)
+        {
+            return new Torque(value, TorqueUnit.OunceForceInch);
         }
 
         /// <summary>

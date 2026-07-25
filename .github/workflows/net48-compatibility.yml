@@ -64,20 +64,36 @@ jobs:
         foreach ($testProject in $testProjects) {
           $projectName = [IO.Path]::GetFileNameWithoutExtension($testProject)
 
+          # Keep compiler servers outside dotCover's process tree. Roslyn's VBCSCompiler has a
+          # 10-minute idle timeout, which can otherwise delay coverage-session finalization.
+          Write-Host "Building $projectName at $([DateTime]::UtcNow.ToString('O'))"
+          dotnet build $testProject `
+            --configuration Release `
+            --framework net48 `
+            -p:ContinuousIntegrationBuild=true
+
+          if ($LASTEXITCODE -ne 0) {
+            exit $LASTEXITCODE
+          }
+
           $testArguments = @(
             $testProject,
             '--configuration', 'Release',
             '--framework', 'net48',
+            '--no-build',
+            '--no-restore',
             '--logger', 'trx',
-            '--results-directory', 'Artifacts/TestResults',
-            '-p:ContinuousIntegrationBuild=true'
+            '--results-directory', 'Artifacts/TestResults'
           )
 
+          Write-Host "Testing $projectName with coverage at $([DateTime]::UtcNow.ToString('O'))"
           dotnet tool run dotCover -- cover-dotnet `
             --TargetWorkingDir $PWD.Path `
             --Output "Artifacts/Coverage/$projectName.coverage.xml" `
             --ReportType DetailedXML `
             --Filters '+:module=UnitsNet*;-:module=*Tests' `
+            --ProcessFilters '-:VBCSCompiler*' `
+            --LogFile "Artifacts/Coverage/$projectName.dotcover.log" `
             --ReturnTargetExitCode `
             -- test @testArguments
 
@@ -123,5 +139,14 @@ jobs:
       with:
         name: net48-coverage
         path: Artifacts/Coverage/*.coverage.xml
+        if-no-files-found: ignore
+        retention-days: 30
+
+    - name: Upload dotCover logs
+      if: ${{ failure() || cancelled() }}
+      uses: actions/upload-artifact@v7
+      with:
+        name: net48-dotcover-logs
+        path: Artifacts/Coverage/*.dotcover.log
         if-no-files-found: ignore
         retention-days: 30
