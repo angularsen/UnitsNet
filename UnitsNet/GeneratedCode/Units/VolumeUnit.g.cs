@@ -82,7 +82,6 @@ namespace UnitsNet.Units
         Hectoliter = 22,
         HectousGallon = 23,
         HundredCubicFoot = 20,
-        HundredCubicMeter = 21,
 
         /// <summary>
         ///     Fluid barrels vary depending on what is being measured and where. In the UK a beer barrel is 36 imperial gallons (43 US gal; ~164 L).

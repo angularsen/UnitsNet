@@ -113,10 +113,6 @@ namespace UnitsNet.Tests
             Assert.Equal(Volume.FromHundredCubicFeet(2), 2.HundredCubicFeet());
 
         [Fact]
-        public void NumberToHundredCubicMetersTest() =>
-            Assert.Equal(Volume.FromHundredCubicMeters(2), 2.HundredCubicMeters());
-
-        [Fact]
         public void NumberToImperialBeerBarrelsTest() =>
             Assert.Equal(Volume.FromImperialBeerBarrels(2), 2.ImperialBeerBarrels());
 

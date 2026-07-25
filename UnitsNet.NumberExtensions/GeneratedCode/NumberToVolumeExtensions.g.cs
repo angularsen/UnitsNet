@@ -274,17 +274,6 @@ namespace UnitsNet.NumberExtensions.NumberToVolume
             => Volume.FromHundredCubicFeet(value.ToDouble(null));
 #endif
 
-        /// <inheritdoc cref="Volume.FromHundredCubicMeters(double)" />
-        public static Volume HundredCubicMeters<T>(this T value)
-            where T : notnull
-#if NET7_0_OR_GREATER
-            , INumber<T>
-            => Volume.FromHundredCubicMeters(double.CreateChecked(value));
-#else
-            , IConvertible
-            => Volume.FromHundredCubicMeters(value.ToDouble(null));
-#endif
-
         /// <inheritdoc cref="Volume.FromImperialBeerBarrels(double)" />
         public static Volume ImperialBeerBarrels<T>(this T value)
             where T : notnull

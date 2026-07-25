@@ -46,18 +46,6 @@
       ]
     },
     {
-      "SingularName": "HundredCubicMeter",
-      "PluralName": "HundredCubicMeters",
-      "FromUnitToBaseFunc": "{x} * 1e2",
-      "FromBaseToUnitFunc": "{x} / 1e2",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "10²·m³" ]
-        }
-      ]
-    },
-    {
       "SingularName": "ThousandCubicMeter",
       "PluralName": "ThousandCubicMeters",
       "FromUnitToBaseFunc": "{x} * 1e3",
@@ -65,7 +53,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "10³·m³" ]
+          "Abbreviations": [ "10³·m³", "kcm", "Kcm" ]
         }
       ]
     },

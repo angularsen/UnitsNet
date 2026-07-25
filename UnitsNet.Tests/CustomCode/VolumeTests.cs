@@ -38,7 +38,6 @@ namespace UnitsNet.Tests
         protected override double DecilitersInOneCubicMeter => 1E4;
         protected override double DeciusGallonsInOneCubicMeter => 2.6417217e+3;
         protected override double HundredCubicFeetInOneCubicMeter => 3.531472e-1;
-        protected override double HundredCubicMetersInOneCubicMeter => 0.01;
 
         protected override double HectolitersInOneCubicMeter => 1E1;
 

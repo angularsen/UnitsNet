@@ -153,7 +153,6 @@ namespace UnitsNet
                 yield return new (VolumeUnit.Hectoliter, "Hectoliter", "Hectoliters", BaseUnits.Undefined);
                 yield return new (VolumeUnit.HectousGallon, "HectousGallon", "HectousGallons", BaseUnits.Undefined);
                 yield return new (VolumeUnit.HundredCubicFoot, "HundredCubicFoot", "HundredCubicFeet", BaseUnits.Undefined);
-                yield return new (VolumeUnit.HundredCubicMeter, "HundredCubicMeter", "HundredCubicMeters", BaseUnits.Undefined);
                 yield return new (VolumeUnit.ImperialBeerBarrel, "ImperialBeerBarrel", "ImperialBeerBarrels", BaseUnits.Undefined);
                 yield return new (VolumeUnit.ImperialGallon, "ImperialGallon", "ImperialGallons", BaseUnits.Undefined);
                 yield return new (VolumeUnit.ImperialOunce, "ImperialOunce", "ImperialOunces", BaseUnits.Undefined);
@@ -402,11 +401,6 @@ namespace UnitsNet
         public double HundredCubicFeet => As(VolumeUnit.HundredCubicFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.HundredCubicMeter"/>
-        /// </summary>
-        public double HundredCubicMeters => As(VolumeUnit.HundredCubicMeter);
-
-        /// <summary>
         ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="VolumeUnit.ImperialBeerBarrel"/>
         /// </summary>
         public double ImperialBeerBarrels => As(VolumeUnit.ImperialBeerBarrel);
@@ -598,7 +592,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.Hectoliter, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.HectousGallon, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.HundredCubicFoot, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.HundredCubicMeter, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialBeerBarrel, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialGallon, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.ImperialOunce, VolumeUnit.CubicMeter, quantity => quantity.ToUnit(VolumeUnit.CubicMeter));
@@ -657,7 +650,6 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.Hectoliter, quantity => quantity.ToUnit(VolumeUnit.Hectoliter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.HectousGallon, quantity => quantity.ToUnit(VolumeUnit.HectousGallon));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.HundredCubicFoot, quantity => quantity.ToUnit(VolumeUnit.HundredCubicFoot));
-            unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.HundredCubicMeter, quantity => quantity.ToUnit(VolumeUnit.HundredCubicMeter));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialBeerBarrel, quantity => quantity.ToUnit(VolumeUnit.ImperialBeerBarrel));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialGallon, quantity => quantity.ToUnit(VolumeUnit.ImperialGallon));
             unitConverter.SetConversionFunction<Volume>(VolumeUnit.CubicMeter, VolumeUnit.ImperialOunce, quantity => quantity.ToUnit(VolumeUnit.ImperialOunce));
@@ -891,14 +883,6 @@ namespace UnitsNet
         public static Volume FromHundredCubicFeet(double value)
         {
             return new Volume(value, VolumeUnit.HundredCubicFoot);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.HundredCubicMeter"/>.
-        /// </summary>
-        public static Volume FromHundredCubicMeters(double value)
-        {
-            return new Volume(value, VolumeUnit.HundredCubicMeter);
         }
 
         /// <summary>
@@ -1659,7 +1643,6 @@ namespace UnitsNet
                 (VolumeUnit.Hectoliter, VolumeUnit.CubicMeter) => new Volume((_value / 1e3) * 1e2d, VolumeUnit.CubicMeter),
                 (VolumeUnit.HectousGallon, VolumeUnit.CubicMeter) => new Volume((_value * 0.003785411784) * 1e2d, VolumeUnit.CubicMeter),
                 (VolumeUnit.HundredCubicFoot, VolumeUnit.CubicMeter) => new Volume(_value * 0.028316846592 * 1e2, VolumeUnit.CubicMeter),
-                (VolumeUnit.HundredCubicMeter, VolumeUnit.CubicMeter) => new Volume(_value * 1e2, VolumeUnit.CubicMeter),
                 (VolumeUnit.ImperialBeerBarrel, VolumeUnit.CubicMeter) => new Volume(_value * 0.16365924, VolumeUnit.CubicMeter),
                 (VolumeUnit.ImperialGallon, VolumeUnit.CubicMeter) => new Volume(_value * 0.00454609, VolumeUnit.CubicMeter),
                 (VolumeUnit.ImperialOunce, VolumeUnit.CubicMeter) => new Volume(_value * 2.84130625e-5, VolumeUnit.CubicMeter),
@@ -1715,7 +1698,6 @@ namespace UnitsNet
                 (VolumeUnit.CubicMeter, VolumeUnit.Hectoliter) => new Volume((_value * 1e3) / 1e2d, VolumeUnit.Hectoliter),
                 (VolumeUnit.CubicMeter, VolumeUnit.HectousGallon) => new Volume((_value / 0.003785411784) / 1e2d, VolumeUnit.HectousGallon),
                 (VolumeUnit.CubicMeter, VolumeUnit.HundredCubicFoot) => new Volume(_value / (0.028316846592 * 1e2), VolumeUnit.HundredCubicFoot),
-                (VolumeUnit.CubicMeter, VolumeUnit.HundredCubicMeter) => new Volume(_value / 1e2, VolumeUnit.HundredCubicMeter),
                 (VolumeUnit.CubicMeter, VolumeUnit.ImperialBeerBarrel) => new Volume(_value / 0.16365924, VolumeUnit.ImperialBeerBarrel),
                 (VolumeUnit.CubicMeter, VolumeUnit.ImperialGallon) => new Volume(_value / 0.00454609, VolumeUnit.ImperialGallon),
                 (VolumeUnit.CubicMeter, VolumeUnit.ImperialOunce) => new Volume(_value / 2.84130625e-5, VolumeUnit.ImperialOunce),
