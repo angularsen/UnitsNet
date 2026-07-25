@@ -29,6 +29,7 @@ If there is sufficient demand for supporting any number type like `float`, `deci
     - Remove `IValueQuantity<out TValueType>`
     - Change `IQuantity<TSelf, TUnitType, out TValueType>` to `IQuantity<TSelf, TUnitType>`
     - Change `IArithmeticQuantity<TSelf, TUnitType, TValueType>` to `IArithmeticQuantity<TSelf, TUnitType>`
+- Move `IQuantity.As()` and `IQuantity.ToUnit()` from the quantity interfaces to `QuantityExtensions` #1696
 - Remove obsolete units #1372
     - `CoefficientOfThermalExpansion.InverseKelvin`, `InverseDegreeCelsius`, `InverseDegreeFahrenheit`
     - `HeatTransferCoefficient.BtuPerSquareFootDegreeFahrenheit`
@@ -43,10 +44,11 @@ If there is sufficient demand for supporting any number type like `float`, `deci
 ### Source incompatible
 
 - `IQuantity.UnitInfo` is now a interface default member on .NET5+, and may compete with any custom property implemented in third party quantities #1649
+- Custom quantities that explicitly implement `IQuantity.As()`, `IQuantity.ToUnit()`, `IQuantity<TUnitType>.As()` or `IQuantity<TUnitType>.ToUnit()` must remove those explicit interface implementations. The methods may remain as ordinary members if they are also part of the custom quantity's public API. #1696
 
 ### Behavioral change
 
-None.
+- Calls to `.As()` and `.ToUnit()` through an `IQuantity` or `IQuantity<TUnitType>` reference now use the `QuantityExtensions` methods and `UnitConverter.Default`. They no longer dispatch to type-specific methods defined by a custom quantity. Custom quantities that need these calls to support conversion must register their conversion functions with `UnitConverter.Default`. #1696
 
 ### Description of different kinds of incompatible changes
 
