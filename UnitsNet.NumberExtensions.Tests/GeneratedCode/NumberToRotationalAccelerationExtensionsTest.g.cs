@@ -29,6 +29,10 @@ namespace UnitsNet.Tests
             Assert.Equal(RotationalAcceleration.FromDegreesPerSecondSquared(2), 2.DegreesPerSecondSquared());
 
         [Fact]
+        public void NumberToMillirevolutionsPerMinutePerSecondTest() =>
+            Assert.Equal(RotationalAcceleration.FromMillirevolutionsPerMinutePerSecond(2), 2.MillirevolutionsPerMinutePerSecond());
+
+        [Fact]
         public void NumberToRadiansPerSecondSquaredTest() =>
             Assert.Equal(RotationalAcceleration.FromRadiansPerSecondSquared(2), 2.RadiansPerSecondSquared());
 

@@ -50,6 +50,14 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
                 => RotationalAcceleration.FromDegreesPerSecondSquared(value.ToDouble(null));
 #endif
 
+            /// <inheritdoc cref="RotationalAcceleration.FromMillirevolutionsPerMinutePerSecond(double)" />
+            public RotationalAcceleration MillirevolutionsPerMinutePerSecond
+#if NET7_0_OR_GREATER
+                => RotationalAcceleration.FromMillirevolutionsPerMinutePerSecond(double.CreateChecked(value));
+#else
+                => RotationalAcceleration.FromMillirevolutionsPerMinutePerSecond(value.ToDouble(null));
+#endif
+
             /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(double)" />
             public RotationalAcceleration RadiansPerSecondSquared
 #if NET7_0_OR_GREATER

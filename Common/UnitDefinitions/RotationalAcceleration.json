@@ -7,6 +7,30 @@
   },
   "Units": [
     {
+      "SingularName": "DegreePerSecondSquared",
+      "PluralName": "DegreesPerSecondSquared",
+      "FromUnitToBaseFunc": "(Math.PI / 180) * {x}",
+      "FromBaseToUnitFunc": "(180 / Math.PI) * {x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°/s²", "deg/s²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "MillirevolutionPerMinutePerSecond",
+      "PluralName": "MillirevolutionsPerMinutePerSecond",
+      "FromUnitToBaseFunc": "((2 * Math.PI) / 60) * {x} * 1e-3",
+      "FromBaseToUnitFunc": "(60 / (2 * Math.PI)) * {x} / 1e-3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mrpm/s" ]
+        }
+      ]
+    },
+    {
       "SingularName": "RadianPerSecondSquared",
       "PluralName": "RadiansPerSecondSquared",
       "BaseUnits": {
@@ -18,18 +42,6 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "rad/s²" ]
-        }
-      ]
-    },
-    {
-      "SingularName": "DegreePerSecondSquared",
-      "PluralName": "DegreesPerSecondSquared",
-      "FromUnitToBaseFunc": "(Math.PI / 180) * {x}",
-      "FromBaseToUnitFunc": "(180 / Math.PI) * {x}",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "°/s²", "deg/s²" ]
         }
       ]
     },

@@ -120,6 +120,17 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalSpeed
             => RotationalSpeed.FromMilliradiansPerSecond(value.ToDouble(null));
 #endif
 
+        /// <inheritdoc cref="RotationalSpeed.FromMillirevolutionsPerMinute(double)" />
+        public static RotationalSpeed MillirevolutionsPerMinute<T>(this T value)
+            where T : notnull
+#if NET7_0_OR_GREATER
+            , INumber<T>
+            => RotationalSpeed.FromMillirevolutionsPerMinute(double.CreateChecked(value));
+#else
+            , IConvertible
+            => RotationalSpeed.FromMillirevolutionsPerMinute(value.ToDouble(null));
+#endif
+
         /// <inheritdoc cref="RotationalSpeed.FromNanodegreesPerSecond(double)" />
         public static RotationalSpeed NanodegreesPerSecond<T>(this T value)
             where T : notnull
