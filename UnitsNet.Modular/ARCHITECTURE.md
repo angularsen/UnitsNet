@@ -380,12 +380,18 @@ generation they belong to. UnitsNet retains its existing explicitly controlled v
 UnitsNet.Modular and UnitsNet.Core advance together. Third-party definition packages have independent
 versions; the fictional sample remains at 1.x when packed directly.
 
-Create an annotated release tag on a green `master` commit and push it:
+Create an annotated release tag on a green `master` commit with the Modular bump script, then push
+the tag:
 
 ```powershell
-git tag -a UnitsNet.Modular/6.0.0-alpha.1 -m "UnitsNet.Modular 6.0.0-alpha.1"
-git push origin UnitsNet.Modular/6.0.0-alpha.1
+pwsh Build/bump-version-UnitsNet.Modular.ps1 -Bump suffix
+git push origin UnitsNet.Modular/6.0.0-alpha.2
 ```
+
+Use `minor` or `patch` instead of `suffix` to bump that numeric component and remove the prerelease
+suffix, matching the existing UnitsNet release scripts. After a stable release, `suffix` starts the
+next patch prerelease at `alpha.1`, matching MinVer's post-release version range. Pass `-WhatIf` to
+preview the tag without creating it.
 
 This single tag versions and publishes both packages. Do not create `UnitsNet.Core/*` release tags.
 

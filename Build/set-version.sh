@@ -1,5 +1,5 @@
 #!/bin/bash
-# Increments version of nugets UnitNets, UnitsNet.NumberExtensions.
+# Sets the version of UnitsNet and both UnitsNet.NumberExtensions packages.
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 set_version_script="$script_dir/set-version-UnitsNet.ps1"
 
