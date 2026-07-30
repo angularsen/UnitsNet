@@ -32,136 +32,136 @@ namespace UnitsNet.NumberExtensions.NumberToFrequency
     /// </summary>
     public static class NumberToFrequencyExtensions
     {
-        /// <inheritdoc cref="Frequency.FromBeatsPerMinute(double)" />
+        /// <inheritdoc cref="Frequency.FromBeatsPerMinute(QuantityValue)" />
         public static Frequency BeatsPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Frequency.FromBeatsPerMinute(double.CreateChecked(value));
+            => Frequency.FromBeatsPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Frequency.FromBeatsPerMinute(value.ToDouble(null));
+            => Frequency.FromBeatsPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Frequency.FromCyclesPerHour(double)" />
+        /// <inheritdoc cref="Frequency.FromCyclesPerHour(QuantityValue)" />
         public static Frequency CyclesPerHour<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Frequency.FromCyclesPerHour(double.CreateChecked(value));
+            => Frequency.FromCyclesPerHour(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Frequency.FromCyclesPerHour(value.ToDouble(null));
+            => Frequency.FromCyclesPerHour(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Frequency.FromCyclesPerMinute(double)" />
+        /// <inheritdoc cref="Frequency.FromCyclesPerMinute(QuantityValue)" />
         public static Frequency CyclesPerMinute<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Frequency.FromCyclesPerMinute(double.CreateChecked(value));
+            => Frequency.FromCyclesPerMinute(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Frequency.FromCyclesPerMinute(value.ToDouble(null));
+            => Frequency.FromCyclesPerMinute(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Frequency.FromGigahertz(double)" />
+        /// <inheritdoc cref="Frequency.FromGigahertz(QuantityValue)" />
         public static Frequency Gigahertz<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Frequency.FromGigahertz(double.CreateChecked(value));
+            => Frequency.FromGigahertz(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Frequency.FromGigahertz(value.ToDouble(null));
+            => Frequency.FromGigahertz(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Frequency.FromHertz(double)" />
+        /// <inheritdoc cref="Frequency.FromHertz(QuantityValue)" />
         public static Frequency Hertz<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Frequency.FromHertz(double.CreateChecked(value));
+            => Frequency.FromHertz(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Frequency.FromHertz(value.ToDouble(null));
+            => Frequency.FromHertz(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Frequency.FromKilohertz(double)" />
+        /// <inheritdoc cref="Frequency.FromKilohertz(QuantityValue)" />
         public static Frequency Kilohertz<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Frequency.FromKilohertz(double.CreateChecked(value));
+            => Frequency.FromKilohertz(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Frequency.FromKilohertz(value.ToDouble(null));
+            => Frequency.FromKilohertz(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Frequency.FromMegahertz(double)" />
+        /// <inheritdoc cref="Frequency.FromMegahertz(QuantityValue)" />
         public static Frequency Megahertz<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Frequency.FromMegahertz(double.CreateChecked(value));
+            => Frequency.FromMegahertz(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Frequency.FromMegahertz(value.ToDouble(null));
+            => Frequency.FromMegahertz(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Frequency.FromMicrohertz(double)" />
+        /// <inheritdoc cref="Frequency.FromMicrohertz(QuantityValue)" />
         public static Frequency Microhertz<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Frequency.FromMicrohertz(double.CreateChecked(value));
+            => Frequency.FromMicrohertz(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Frequency.FromMicrohertz(value.ToDouble(null));
+            => Frequency.FromMicrohertz(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Frequency.FromMillihertz(double)" />
+        /// <inheritdoc cref="Frequency.FromMillihertz(QuantityValue)" />
         public static Frequency Millihertz<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Frequency.FromMillihertz(double.CreateChecked(value));
+            => Frequency.FromMillihertz(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Frequency.FromMillihertz(value.ToDouble(null));
+            => Frequency.FromMillihertz(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Frequency.FromPerSecond(double)" />
+        /// <inheritdoc cref="Frequency.FromPerSecond(QuantityValue)" />
         public static Frequency PerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Frequency.FromPerSecond(double.CreateChecked(value));
+            => Frequency.FromPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Frequency.FromPerSecond(value.ToDouble(null));
+            => Frequency.FromPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Frequency.FromRadiansPerSecond(double)" />
+        /// <inheritdoc cref="Frequency.FromRadiansPerSecond(QuantityValue)" />
         public static Frequency RadiansPerSecond<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Frequency.FromRadiansPerSecond(double.CreateChecked(value));
+            => Frequency.FromRadiansPerSecond(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Frequency.FromRadiansPerSecond(value.ToDouble(null));
+            => Frequency.FromRadiansPerSecond(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Frequency.FromTerahertz(double)" />
+        /// <inheritdoc cref="Frequency.FromTerahertz(QuantityValue)" />
         public static Frequency Terahertz<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Frequency.FromTerahertz(double.CreateChecked(value));
+            => Frequency.FromTerahertz(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Frequency.FromTerahertz(value.ToDouble(null));
+            => Frequency.FromTerahertz(value.ToQuantityValue());
 #endif
 
     }

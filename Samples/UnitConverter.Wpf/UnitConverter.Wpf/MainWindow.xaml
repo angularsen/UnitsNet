@@ -7,15 +7,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:wpf="clr-namespace:UnitsNet.Samples.UnitConverter.Wpf"
     mc:Ignorable="d"
-    WindowStartupLocation="CenterScreen"
-    Title="UnitsNet - WPF unit converter sample app" Height="800" Width="800"
-    d:DesignHeight="600" d:DesignWidth="600"
+    Title="UnitsNet - WPF unit converter sample app" Height="600" Width="800"
     d:DataContext="{d:DesignInstance wpf:MainWindowDesignVm, IsDesignTimeCreatable=True}">
 
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="10" />
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="50" />
             <ColumnDefinition Width="1*" />
@@ -32,7 +29,7 @@
                  SelectionChanged="Selector_OnSelectionChanged" />
         </GroupBox>
 
-        <GroupBox Header="From" Grid.Row="0" Grid.Column="2">
+        <GroupBox Header="From" Grid.Row="0" Grid.Column="1">
             <Grid>
                 <ListBox
                  ItemsSource="{Binding Path=Units}"
@@ -41,7 +38,7 @@
             </Grid>
         </GroupBox>
 
-        <GroupBox Header="To" Grid.Row="0" Grid.Column="4">
+        <GroupBox Header="To" Grid.Row="0" Grid.Column="3">
             <Grid>
                 <ListBox
                  ItemsSource="{Binding Path=Units}"
@@ -50,21 +47,26 @@
             </Grid>
         </GroupBox>
 
-        <GroupBox Header="{Binding FromHeader}" Grid.Row="1" Grid.Column="2">
+
+        <WrapPanel Grid.Row="1" Grid.Column="0" Margin="10">
+            <!--Placeholder-->
+        </WrapPanel>
+
+        <GroupBox Header="{Binding FromHeader}" Grid.Row="1" Grid.Column="1">
             <TextBox FontSize="16" FontWeight="DemiBold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                     Text="{Binding FromValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                     Text="{Binding FromValue, StringFormat=G35, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </GroupBox>
 
-        <Grid Grid.Row="1" Grid.Column="3">
+        <Grid Grid.Row="1" Grid.Column="2">
             <Button Content="⇄" Style="{StaticResource MahApps.Styles.Button.Circle}"
                     Width="40" Height="40"
-                    FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0, 0, 0, 4"
+                    FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0, 0, 0,4"
                     Command="{Binding SwapCommand}"/>
         </Grid>
 
-        <GroupBox Header="{Binding ToHeader}" Grid.Row="1" Grid.Column="4">
+        <GroupBox Header="{Binding ToHeader}" Grid.Row="1" Grid.Column="3">
             <TextBox FontSize="16" FontWeight="DemiBold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                     Text="{Binding ToValue, Mode=OneWay}" IsReadOnly="true" />
+                     Text="{Binding ToValue, Mode=OneWay, StringFormat=G35}" IsReadOnly="true" />
         </GroupBox>
 
     </Grid>

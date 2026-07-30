@@ -774,7 +774,7 @@ public sealed class UnitParser
     /// <returns>An <see cref="IQuantity" /> object.</returns>
     /// <exception cref="UnitNotFoundException">Unit abbreviation is not known.</exception>
     /// <exception cref="AmbiguousUnitParseException">Multiple units found matching the given unit abbreviation.</exception>
-    internal IQuantity FromUnitAbbreviation(double value, string unitAbbreviation, IFormatProvider? formatProvider)
+    internal IQuantity FromUnitAbbreviation(QuantityValue value, string unitAbbreviation, IFormatProvider? formatProvider)
     {
         return GetUnitFromAbbreviation(unitAbbreviation, formatProvider).From(value);
     }

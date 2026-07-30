@@ -32,48 +32,48 @@ namespace UnitsNet.NumberExtensions.NumberToIlluminance
     /// </summary>
     public static class NumberToIlluminanceExtensions
     {
-        /// <inheritdoc cref="Illuminance.FromKilolux(double)" />
+        /// <inheritdoc cref="Illuminance.FromKilolux(QuantityValue)" />
         public static Illuminance Kilolux<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Illuminance.FromKilolux(double.CreateChecked(value));
+            => Illuminance.FromKilolux(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Illuminance.FromKilolux(value.ToDouble(null));
+            => Illuminance.FromKilolux(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Illuminance.FromLux(double)" />
+        /// <inheritdoc cref="Illuminance.FromLux(QuantityValue)" />
         public static Illuminance Lux<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Illuminance.FromLux(double.CreateChecked(value));
+            => Illuminance.FromLux(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Illuminance.FromLux(value.ToDouble(null));
+            => Illuminance.FromLux(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Illuminance.FromMegalux(double)" />
+        /// <inheritdoc cref="Illuminance.FromMegalux(QuantityValue)" />
         public static Illuminance Megalux<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Illuminance.FromMegalux(double.CreateChecked(value));
+            => Illuminance.FromMegalux(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Illuminance.FromMegalux(value.ToDouble(null));
+            => Illuminance.FromMegalux(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Illuminance.FromMillilux(double)" />
+        /// <inheritdoc cref="Illuminance.FromMillilux(QuantityValue)" />
         public static Illuminance Millilux<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Illuminance.FromMillilux(double.CreateChecked(value));
+            => Illuminance.FromMillilux(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Illuminance.FromMillilux(value.ToDouble(null));
+            => Illuminance.FromMillilux(value.ToQuantityValue());
 #endif
 
     }

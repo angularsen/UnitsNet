@@ -54,11 +54,7 @@ public class UnitKeyHashCodeBenchmarks
         int hashCode = 0;
         for (var i = 0; i < NbIterations; i++)
         {
-            if (UnitType == null)
-            {
-                hashCode += UnitValue;
-            }
-            else
+            if (UnitType != null)
             {
                 unchecked
                 {

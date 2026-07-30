@@ -42,140 +42,140 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificWeight
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="SpecificWeight.FromKilogramsForcePerCubicCentimeter(double)" />
+            /// <inheritdoc cref="SpecificWeight.FromKilogramsForcePerCubicCentimeter(QuantityValue)" />
             public SpecificWeight KilogramsForcePerCubicCentimeter
 #if NET7_0_OR_GREATER
-                => SpecificWeight.FromKilogramsForcePerCubicCentimeter(double.CreateChecked(value));
+                => SpecificWeight.FromKilogramsForcePerCubicCentimeter(QuantityValue.CreateChecked(value));
 #else
-                => SpecificWeight.FromKilogramsForcePerCubicCentimeter(value.ToDouble(null));
+                => SpecificWeight.FromKilogramsForcePerCubicCentimeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificWeight.FromKilogramsForcePerCubicMeter(double)" />
+            /// <inheritdoc cref="SpecificWeight.FromKilogramsForcePerCubicMeter(QuantityValue)" />
             public SpecificWeight KilogramsForcePerCubicMeter
 #if NET7_0_OR_GREATER
-                => SpecificWeight.FromKilogramsForcePerCubicMeter(double.CreateChecked(value));
+                => SpecificWeight.FromKilogramsForcePerCubicMeter(QuantityValue.CreateChecked(value));
 #else
-                => SpecificWeight.FromKilogramsForcePerCubicMeter(value.ToDouble(null));
+                => SpecificWeight.FromKilogramsForcePerCubicMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificWeight.FromKilogramsForcePerCubicMillimeter(double)" />
+            /// <inheritdoc cref="SpecificWeight.FromKilogramsForcePerCubicMillimeter(QuantityValue)" />
             public SpecificWeight KilogramsForcePerCubicMillimeter
 #if NET7_0_OR_GREATER
-                => SpecificWeight.FromKilogramsForcePerCubicMillimeter(double.CreateChecked(value));
+                => SpecificWeight.FromKilogramsForcePerCubicMillimeter(QuantityValue.CreateChecked(value));
 #else
-                => SpecificWeight.FromKilogramsForcePerCubicMillimeter(value.ToDouble(null));
+                => SpecificWeight.FromKilogramsForcePerCubicMillimeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificWeight.FromKilonewtonsPerCubicCentimeter(double)" />
+            /// <inheritdoc cref="SpecificWeight.FromKilonewtonsPerCubicCentimeter(QuantityValue)" />
             public SpecificWeight KilonewtonsPerCubicCentimeter
 #if NET7_0_OR_GREATER
-                => SpecificWeight.FromKilonewtonsPerCubicCentimeter(double.CreateChecked(value));
+                => SpecificWeight.FromKilonewtonsPerCubicCentimeter(QuantityValue.CreateChecked(value));
 #else
-                => SpecificWeight.FromKilonewtonsPerCubicCentimeter(value.ToDouble(null));
+                => SpecificWeight.FromKilonewtonsPerCubicCentimeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificWeight.FromKilonewtonsPerCubicMeter(double)" />
+            /// <inheritdoc cref="SpecificWeight.FromKilonewtonsPerCubicMeter(QuantityValue)" />
             public SpecificWeight KilonewtonsPerCubicMeter
 #if NET7_0_OR_GREATER
-                => SpecificWeight.FromKilonewtonsPerCubicMeter(double.CreateChecked(value));
+                => SpecificWeight.FromKilonewtonsPerCubicMeter(QuantityValue.CreateChecked(value));
 #else
-                => SpecificWeight.FromKilonewtonsPerCubicMeter(value.ToDouble(null));
+                => SpecificWeight.FromKilonewtonsPerCubicMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificWeight.FromKilonewtonsPerCubicMillimeter(double)" />
+            /// <inheritdoc cref="SpecificWeight.FromKilonewtonsPerCubicMillimeter(QuantityValue)" />
             public SpecificWeight KilonewtonsPerCubicMillimeter
 #if NET7_0_OR_GREATER
-                => SpecificWeight.FromKilonewtonsPerCubicMillimeter(double.CreateChecked(value));
+                => SpecificWeight.FromKilonewtonsPerCubicMillimeter(QuantityValue.CreateChecked(value));
 #else
-                => SpecificWeight.FromKilonewtonsPerCubicMillimeter(value.ToDouble(null));
+                => SpecificWeight.FromKilonewtonsPerCubicMillimeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificWeight.FromKilopoundsForcePerCubicFoot(double)" />
+            /// <inheritdoc cref="SpecificWeight.FromKilopoundsForcePerCubicFoot(QuantityValue)" />
             public SpecificWeight KilopoundsForcePerCubicFoot
 #if NET7_0_OR_GREATER
-                => SpecificWeight.FromKilopoundsForcePerCubicFoot(double.CreateChecked(value));
+                => SpecificWeight.FromKilopoundsForcePerCubicFoot(QuantityValue.CreateChecked(value));
 #else
-                => SpecificWeight.FromKilopoundsForcePerCubicFoot(value.ToDouble(null));
+                => SpecificWeight.FromKilopoundsForcePerCubicFoot(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificWeight.FromKilopoundsForcePerCubicInch(double)" />
+            /// <inheritdoc cref="SpecificWeight.FromKilopoundsForcePerCubicInch(QuantityValue)" />
             public SpecificWeight KilopoundsForcePerCubicInch
 #if NET7_0_OR_GREATER
-                => SpecificWeight.FromKilopoundsForcePerCubicInch(double.CreateChecked(value));
+                => SpecificWeight.FromKilopoundsForcePerCubicInch(QuantityValue.CreateChecked(value));
 #else
-                => SpecificWeight.FromKilopoundsForcePerCubicInch(value.ToDouble(null));
+                => SpecificWeight.FromKilopoundsForcePerCubicInch(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double)" />
+            /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(QuantityValue)" />
             public SpecificWeight MeganewtonsPerCubicMeter
 #if NET7_0_OR_GREATER
-                => SpecificWeight.FromMeganewtonsPerCubicMeter(double.CreateChecked(value));
+                => SpecificWeight.FromMeganewtonsPerCubicMeter(QuantityValue.CreateChecked(value));
 #else
-                => SpecificWeight.FromMeganewtonsPerCubicMeter(value.ToDouble(null));
+                => SpecificWeight.FromMeganewtonsPerCubicMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificWeight.FromNewtonsPerCubicCentimeter(double)" />
+            /// <inheritdoc cref="SpecificWeight.FromNewtonsPerCubicCentimeter(QuantityValue)" />
             public SpecificWeight NewtonsPerCubicCentimeter
 #if NET7_0_OR_GREATER
-                => SpecificWeight.FromNewtonsPerCubicCentimeter(double.CreateChecked(value));
+                => SpecificWeight.FromNewtonsPerCubicCentimeter(QuantityValue.CreateChecked(value));
 #else
-                => SpecificWeight.FromNewtonsPerCubicCentimeter(value.ToDouble(null));
+                => SpecificWeight.FromNewtonsPerCubicCentimeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificWeight.FromNewtonsPerCubicMeter(double)" />
+            /// <inheritdoc cref="SpecificWeight.FromNewtonsPerCubicMeter(QuantityValue)" />
             public SpecificWeight NewtonsPerCubicMeter
 #if NET7_0_OR_GREATER
-                => SpecificWeight.FromNewtonsPerCubicMeter(double.CreateChecked(value));
+                => SpecificWeight.FromNewtonsPerCubicMeter(QuantityValue.CreateChecked(value));
 #else
-                => SpecificWeight.FromNewtonsPerCubicMeter(value.ToDouble(null));
+                => SpecificWeight.FromNewtonsPerCubicMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificWeight.FromNewtonsPerCubicMillimeter(double)" />
+            /// <inheritdoc cref="SpecificWeight.FromNewtonsPerCubicMillimeter(QuantityValue)" />
             public SpecificWeight NewtonsPerCubicMillimeter
 #if NET7_0_OR_GREATER
-                => SpecificWeight.FromNewtonsPerCubicMillimeter(double.CreateChecked(value));
+                => SpecificWeight.FromNewtonsPerCubicMillimeter(QuantityValue.CreateChecked(value));
 #else
-                => SpecificWeight.FromNewtonsPerCubicMillimeter(value.ToDouble(null));
+                => SpecificWeight.FromNewtonsPerCubicMillimeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificWeight.FromPoundsForcePerCubicFoot(double)" />
+            /// <inheritdoc cref="SpecificWeight.FromPoundsForcePerCubicFoot(QuantityValue)" />
             public SpecificWeight PoundsForcePerCubicFoot
 #if NET7_0_OR_GREATER
-                => SpecificWeight.FromPoundsForcePerCubicFoot(double.CreateChecked(value));
+                => SpecificWeight.FromPoundsForcePerCubicFoot(QuantityValue.CreateChecked(value));
 #else
-                => SpecificWeight.FromPoundsForcePerCubicFoot(value.ToDouble(null));
+                => SpecificWeight.FromPoundsForcePerCubicFoot(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificWeight.FromPoundsForcePerCubicInch(double)" />
+            /// <inheritdoc cref="SpecificWeight.FromPoundsForcePerCubicInch(QuantityValue)" />
             public SpecificWeight PoundsForcePerCubicInch
 #if NET7_0_OR_GREATER
-                => SpecificWeight.FromPoundsForcePerCubicInch(double.CreateChecked(value));
+                => SpecificWeight.FromPoundsForcePerCubicInch(QuantityValue.CreateChecked(value));
 #else
-                => SpecificWeight.FromPoundsForcePerCubicInch(value.ToDouble(null));
+                => SpecificWeight.FromPoundsForcePerCubicInch(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificWeight.FromTonnesForcePerCubicCentimeter(double)" />
+            /// <inheritdoc cref="SpecificWeight.FromTonnesForcePerCubicCentimeter(QuantityValue)" />
             public SpecificWeight TonnesForcePerCubicCentimeter
 #if NET7_0_OR_GREATER
-                => SpecificWeight.FromTonnesForcePerCubicCentimeter(double.CreateChecked(value));
+                => SpecificWeight.FromTonnesForcePerCubicCentimeter(QuantityValue.CreateChecked(value));
 #else
-                => SpecificWeight.FromTonnesForcePerCubicCentimeter(value.ToDouble(null));
+                => SpecificWeight.FromTonnesForcePerCubicCentimeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificWeight.FromTonnesForcePerCubicMeter(double)" />
+            /// <inheritdoc cref="SpecificWeight.FromTonnesForcePerCubicMeter(QuantityValue)" />
             public SpecificWeight TonnesForcePerCubicMeter
 #if NET7_0_OR_GREATER
-                => SpecificWeight.FromTonnesForcePerCubicMeter(double.CreateChecked(value));
+                => SpecificWeight.FromTonnesForcePerCubicMeter(QuantityValue.CreateChecked(value));
 #else
-                => SpecificWeight.FromTonnesForcePerCubicMeter(value.ToDouble(null));
+                => SpecificWeight.FromTonnesForcePerCubicMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificWeight.FromTonnesForcePerCubicMillimeter(double)" />
+            /// <inheritdoc cref="SpecificWeight.FromTonnesForcePerCubicMillimeter(QuantityValue)" />
             public SpecificWeight TonnesForcePerCubicMillimeter
 #if NET7_0_OR_GREATER
-                => SpecificWeight.FromTonnesForcePerCubicMillimeter(double.CreateChecked(value));
+                => SpecificWeight.FromTonnesForcePerCubicMillimeter(QuantityValue.CreateChecked(value));
 #else
-                => SpecificWeight.FromTonnesForcePerCubicMillimeter(value.ToDouble(null));
+                => SpecificWeight.FromTonnesForcePerCubicMillimeter(value.ToQuantityValue());
 #endif
 
         }

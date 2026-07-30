@@ -32,103 +32,103 @@ namespace UnitsNet.NumberExtensions.NumberToVolumePerLength
     /// </summary>
     public static class NumberToVolumePerLengthExtensions
     {
-        /// <inheritdoc cref="VolumePerLength.FromCubicMetersPerMeter(double)" />
+        /// <inheritdoc cref="VolumePerLength.FromCubicMetersPerMeter(QuantityValue)" />
         public static VolumePerLength CubicMetersPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumePerLength.FromCubicMetersPerMeter(double.CreateChecked(value));
+            => VolumePerLength.FromCubicMetersPerMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumePerLength.FromCubicMetersPerMeter(value.ToDouble(null));
+            => VolumePerLength.FromCubicMetersPerMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumePerLength.FromCubicYardsPerFoot(double)" />
+        /// <inheritdoc cref="VolumePerLength.FromCubicYardsPerFoot(QuantityValue)" />
         public static VolumePerLength CubicYardsPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumePerLength.FromCubicYardsPerFoot(double.CreateChecked(value));
+            => VolumePerLength.FromCubicYardsPerFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumePerLength.FromCubicYardsPerFoot(value.ToDouble(null));
+            => VolumePerLength.FromCubicYardsPerFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumePerLength.FromCubicYardsPerUsSurveyFoot(double)" />
+        /// <inheritdoc cref="VolumePerLength.FromCubicYardsPerUsSurveyFoot(QuantityValue)" />
         public static VolumePerLength CubicYardsPerUsSurveyFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumePerLength.FromCubicYardsPerUsSurveyFoot(double.CreateChecked(value));
+            => VolumePerLength.FromCubicYardsPerUsSurveyFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumePerLength.FromCubicYardsPerUsSurveyFoot(value.ToDouble(null));
+            => VolumePerLength.FromCubicYardsPerUsSurveyFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumePerLength.FromImperialGallonsPerMile(double)" />
+        /// <inheritdoc cref="VolumePerLength.FromImperialGallonsPerMile(QuantityValue)" />
         public static VolumePerLength ImperialGallonsPerMile<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumePerLength.FromImperialGallonsPerMile(double.CreateChecked(value));
+            => VolumePerLength.FromImperialGallonsPerMile(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumePerLength.FromImperialGallonsPerMile(value.ToDouble(null));
+            => VolumePerLength.FromImperialGallonsPerMile(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumePerLength.FromLitersPerKilometer(double)" />
+        /// <inheritdoc cref="VolumePerLength.FromLitersPerKilometer(QuantityValue)" />
         public static VolumePerLength LitersPerKilometer<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumePerLength.FromLitersPerKilometer(double.CreateChecked(value));
+            => VolumePerLength.FromLitersPerKilometer(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumePerLength.FromLitersPerKilometer(value.ToDouble(null));
+            => VolumePerLength.FromLitersPerKilometer(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumePerLength.FromLitersPerMeter(double)" />
+        /// <inheritdoc cref="VolumePerLength.FromLitersPerMeter(QuantityValue)" />
         public static VolumePerLength LitersPerMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumePerLength.FromLitersPerMeter(double.CreateChecked(value));
+            => VolumePerLength.FromLitersPerMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumePerLength.FromLitersPerMeter(value.ToDouble(null));
+            => VolumePerLength.FromLitersPerMeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumePerLength.FromLitersPerMillimeter(double)" />
+        /// <inheritdoc cref="VolumePerLength.FromLitersPerMillimeter(QuantityValue)" />
         public static VolumePerLength LitersPerMillimeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumePerLength.FromLitersPerMillimeter(double.CreateChecked(value));
+            => VolumePerLength.FromLitersPerMillimeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumePerLength.FromLitersPerMillimeter(value.ToDouble(null));
+            => VolumePerLength.FromLitersPerMillimeter(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumePerLength.FromOilBarrelsPerFoot(double)" />
+        /// <inheritdoc cref="VolumePerLength.FromOilBarrelsPerFoot(QuantityValue)" />
         public static VolumePerLength OilBarrelsPerFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumePerLength.FromOilBarrelsPerFoot(double.CreateChecked(value));
+            => VolumePerLength.FromOilBarrelsPerFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumePerLength.FromOilBarrelsPerFoot(value.ToDouble(null));
+            => VolumePerLength.FromOilBarrelsPerFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumePerLength.FromUsGallonsPerMile(double)" />
+        /// <inheritdoc cref="VolumePerLength.FromUsGallonsPerMile(QuantityValue)" />
         public static VolumePerLength UsGallonsPerMile<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumePerLength.FromUsGallonsPerMile(double.CreateChecked(value));
+            => VolumePerLength.FromUsGallonsPerMile(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumePerLength.FromUsGallonsPerMile(value.ToDouble(null));
+            => VolumePerLength.FromUsGallonsPerMile(value.ToQuantityValue());
 #endif
 
     }

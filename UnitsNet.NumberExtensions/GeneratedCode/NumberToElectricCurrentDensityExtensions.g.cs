@@ -32,37 +32,37 @@ namespace UnitsNet.NumberExtensions.NumberToElectricCurrentDensity
     /// </summary>
     public static class NumberToElectricCurrentDensityExtensions
     {
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareFoot(double)" />
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareFoot(QuantityValue)" />
         public static ElectricCurrentDensity AmperesPerSquareFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrentDensity.FromAmperesPerSquareFoot(double.CreateChecked(value));
+            => ElectricCurrentDensity.FromAmperesPerSquareFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrentDensity.FromAmperesPerSquareFoot(value.ToDouble(null));
+            => ElectricCurrentDensity.FromAmperesPerSquareFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareInch(double)" />
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareInch(QuantityValue)" />
         public static ElectricCurrentDensity AmperesPerSquareInch<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrentDensity.FromAmperesPerSquareInch(double.CreateChecked(value));
+            => ElectricCurrentDensity.FromAmperesPerSquareInch(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrentDensity.FromAmperesPerSquareInch(value.ToDouble(null));
+            => ElectricCurrentDensity.FromAmperesPerSquareInch(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(double)" />
+        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(QuantityValue)" />
         public static ElectricCurrentDensity AmperesPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => ElectricCurrentDensity.FromAmperesPerSquareMeter(double.CreateChecked(value));
+            => ElectricCurrentDensity.FromAmperesPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => ElectricCurrentDensity.FromAmperesPerSquareMeter(value.ToDouble(null));
+            => ElectricCurrentDensity.FromAmperesPerSquareMeter(value.ToQuantityValue());
 #endif
 
     }

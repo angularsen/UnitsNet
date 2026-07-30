@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using Newtonsoft.Json;
@@ -12,7 +13,9 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 {
     public class AbbreviatedUnitsConverterTests : JsonNetSerializationTestsBase
     {
-        public AbbreviatedUnitsConverterTests() : base(new AbbreviatedUnitsConverter())
+        public AbbreviatedUnitsConverterTests()
+            : base(new AbbreviatedUnitsConverter(
+                new QuantityValueFormatOptions(QuantityValueSerializationFormat.DoublePrecision, QuantityValueDeserializationFormat.RoundedDouble)))
         {
         }
 
@@ -23,6 +26,18 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         {
             var quantity = new Mass(1.20, MassUnit.Milligram);
             var expectedJson = """{"Value":1.2,"Unit":"mg","Type":"Mass"}""";
+
+            var json = SerializeObject(quantity);
+
+            Assert.Equal(expectedJson, json);
+        }
+
+        [Fact]
+        public void DoublePrecision_SerializesWith17SignificantDigits()
+        {
+            QuantityValue value = QuantityValue.Parse("1.2345678901234567", CultureInfo.InvariantCulture);
+            var quantity = Mass.FromMilligrams(value);
+            const string expectedJson = """{"Value":1.2345678901234567,"Unit":"mg","Type":"Mass"}""";
 
             var json = SerializeObject(quantity);
 
@@ -72,7 +87,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 NonNullableFrequency = Frequency.FromHertz(10)
             };
 
-            string expectedJson = """{"NullableFrequency":{"Value":10.0,"Unit":"Hz","Type":"Frequency"},"NonNullableFrequency":{"Value":10.0,"Unit":"Hz","Type":"Frequency"}}""";
+            string expectedJson = """{"NullableFrequency":{"Value":10,"Unit":"Hz","Type":"Frequency"},"NonNullableFrequency":{"Value":10,"Unit":"Hz","Type":"Frequency"}}""";
 
             string json = SerializeObject(testObj);
 
@@ -87,7 +102,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 NonNullableFrequency = Frequency.FromHertz(10)
             };
 
-            string expectedJson = """{"NullableFrequency":null,"NonNullableFrequency":{"Value":10.0,"Unit":"Hz","Type":"Frequency"}}""";
+            string expectedJson = """{"NullableFrequency":null,"NonNullableFrequency":{"Value":10,"Unit":"Hz","Type":"Frequency"}}""";
 
             string json = SerializeObject(testObj);
 
@@ -123,6 +138,24 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             Assert.Throws<UnitNotFoundException>(() => SerializeObject(HowMuch.From(1, HowMuchUnit.Some)));
         }
 
+        [Fact]
+        public void Serializing_CustomQuantity_ReturnsTheExpectedResult()
+        {
+            // Arrange
+            var unitAbbreviationsCache = new UnitAbbreviationsCache([HowMuch.Info]);
+            unitAbbreviationsCache.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, CultureInfo.InvariantCulture, "s");
+            var settings = new JsonSerializerSettings { Converters = [new AbbreviatedUnitsConverter(new UnitParser(unitAbbreviationsCache))] };
+
+            var quantity = HowMuch.From(1.2, HowMuchUnit.Some);
+            const string expectedJson = """{"Value":1.2,"Unit":"s","Type":"HowMuch"}""";
+
+            // Act
+            var result = JsonConvert.SerializeObject(quantity, settings);
+
+            // Assert
+            Assert.Equal(expectedJson, result);
+        }
+
         #endregion
 
         #region Deserialization tests
@@ -134,7 +167,19 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             var quantity = DeserializeObject<IQuantity>(json);
             
-            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(1.2m, quantity.Value);
+            Assert.Equal(MassUnit.Milligram, quantity.Unit);
+        }
+
+        [Fact]
+        public void DoubleQuantity_DeserializedFromVeryPreciseValueAndAbbreviatedUnit()
+        {
+            var json = """{"Value":12345678901234567890.1234567890123456789,"Unit":"mg","Type":"Mass"}""";
+            var expectedValue = QuantityValue.FromDoubleRounded(1.234567890123456E+19);
+
+            var quantity = DeserializeObject<Mass>(json);
+
+            Assert.Equal(expectedValue, quantity.Value);
             Assert.Equal(MassUnit.Milligram, quantity.Unit);
         }
 
@@ -145,7 +190,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             var quantity = DeserializeObject<Mass>(json);
 
-            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(1.2m, quantity.Value);
             Assert.Equal(MassUnit.Milligram, quantity.Unit);
         }
 
@@ -156,16 +201,8 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             var quantity = DeserializeObject<IQuantity>(json);
 
-            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(1.2m, quantity.Value);
             Assert.Equal(MassUnit.EarthMass, quantity.Unit);
-        }
-
-        [Fact]
-        public void ThrowsAmbiguousUnitParseException_WhenDeserializingAmbiguousAbbreviation_WithoutQuantityType()
-        {
-            var json = """{"Value":1.2,"Unit":"mg"}""";
-
-            Assert.Throws<AmbiguousUnitParseException>(() => DeserializeObject<IQuantity>(json));
         }
 
         [Fact]
@@ -175,7 +212,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             var quantity = DeserializeObject<IQuantity>(json);
 
-            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(1.2m, quantity.Value);
             Assert.Equal(MassUnit.Milligram, quantity.Unit);
         }
 
@@ -187,8 +224,8 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             var megabar = DeserializeObject<IQuantity>(json);
             var millibar = DeserializeObject<IQuantity>(json.ToLower());
 
-            Assert.Equal(1.2, megabar.Value);
-            Assert.Equal(1.2, millibar.Value);
+            Assert.Equal(1.2m, megabar.Value);
+            Assert.Equal(1.2m, millibar.Value);
             Assert.Equal(PressureUnit.Megabar, megabar.Unit);
             Assert.Equal(PressureUnit.Millibar, millibar.Unit);
         }
@@ -200,8 +237,25 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             var quantity = DeserializeObject<IQuantity>(json);
 
-            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(1.2m, quantity.Value);
             Assert.Equal(MassUnit.Milligram, quantity.Unit);
+        }
+
+        [Fact]
+        public void Converter_WithAdditionalProperties_AndMissingMemberHandlingAsError_ThrowsJsonException()
+        {
+            var json = """{"Value":1.2,"Something":"Else","Unit":"mg","Type":"Mass"}""";
+            var options = new JsonSerializerSettings { Converters = [new AbbreviatedUnitsConverter()], MissingMemberHandling = MissingMemberHandling.Error};
+            
+            Assert.Throws<JsonException>(() => JsonConvert.DeserializeObject<Mass>(json, options));
+        }
+
+        [Fact]
+        public void Deserializing_FromUnknownQuantityType_ThrowsQuantityNotFoundException()
+        {
+            var json = """{"Value":1.2,"Unit":"mg","Type":"invalid"}""";
+
+            Assert.Throws<QuantityNotFoundException>(() => DeserializeObject<Mass>(json));
         }
 
         [Fact]
@@ -253,7 +307,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             var quantity = DeserializeObject<IQuantity>(json);
 
-            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(1.2m, quantity.Value);
             Assert.Equal(MassUnit.Milligram, quantity.Unit);
         }
 
@@ -264,7 +318,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             var quantity = DeserializeObject<Mass>(json);
 
-            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(1.2m, quantity.Value);
             Assert.Equal(MassUnit.Milligram, quantity.Unit);
         }
 
@@ -297,7 +351,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             var quantity = DeserializeObject<IQuantity>(json);
 
-            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(1.2m, quantity.Value);
             Assert.Equal(Mass.BaseUnit, quantity.Unit);
         }
 
@@ -308,7 +362,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             var quantity = DeserializeObject<Mass>(json);
 
-            Assert.Equal(1.2, quantity.Value);
+            Assert.Equal(1.2m, quantity.Value);
             Assert.Equal(Mass.BaseUnit, quantity.Unit);
         }
 
@@ -332,6 +386,38 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             Assert.Equal(0, quantity.Value);
             Assert.Equal(Mass.BaseUnit, quantity.Unit);
+        }
+        
+        [Fact]
+        public void Deserializing_CustomQuantity_ReturnsTheExpectedResult()
+        {
+            // Arrange
+            var unitAbbreviationsCache = new UnitAbbreviationsCache([HowMuch.Info]);
+            unitAbbreviationsCache.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, CultureInfo.InvariantCulture, "s");
+            var settings = new JsonSerializerSettings { Converters = [new AbbreviatedUnitsConverter(new UnitParser(unitAbbreviationsCache))] };
+
+            const string json = """{"Value":1.2,"Unit":"s","Type":"HowMuch"}""";
+            var expectedQuantity = HowMuch.From(1.2, HowMuchUnit.Some);
+
+            // Act
+            HowMuch result = JsonConvert.DeserializeObject<HowMuch>(json, settings);
+
+            // Assert
+            Assert.Equal(expectedQuantity, result);
+        }
+        
+        [Fact]
+        public void Deserializing_NullValue_ThrowsJsonSerializationException()
+        {
+            const string json = """{"Value":null,"Unit":"mg","Type":"Mass"}""";
+            Assert.Throws<JsonSerializationException>(() => DeserializeObject<Mass>(json));
+        }
+
+        [Fact]
+        public void Deserializing_EmptyValue_ThrowsJsonSerializationException()
+        {
+            const string json = """{"Value":"","Unit":"mg","Type":"Mass"}""";
+            Assert.Throws<JsonSerializationException>(() => DeserializeObject<Mass>(json));
         }
         
         #endregion

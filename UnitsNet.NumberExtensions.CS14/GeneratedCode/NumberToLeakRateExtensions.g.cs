@@ -42,36 +42,36 @@ namespace UnitsNet.NumberExtensions.NumberToLeakRate
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="LeakRate.FromAtmCubicCentimetersPerSecond(double)" />
+            /// <inheritdoc cref="LeakRate.FromAtmCubicCentimetersPerSecond(QuantityValue)" />
             public LeakRate AtmCubicCentimetersPerSecond
 #if NET7_0_OR_GREATER
-                => LeakRate.FromAtmCubicCentimetersPerSecond(double.CreateChecked(value));
+                => LeakRate.FromAtmCubicCentimetersPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => LeakRate.FromAtmCubicCentimetersPerSecond(value.ToDouble(null));
+                => LeakRate.FromAtmCubicCentimetersPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="LeakRate.FromMillibarLitersPerSecond(double)" />
+            /// <inheritdoc cref="LeakRate.FromMillibarLitersPerSecond(QuantityValue)" />
             public LeakRate MillibarLitersPerSecond
 #if NET7_0_OR_GREATER
-                => LeakRate.FromMillibarLitersPerSecond(double.CreateChecked(value));
+                => LeakRate.FromMillibarLitersPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => LeakRate.FromMillibarLitersPerSecond(value.ToDouble(null));
+                => LeakRate.FromMillibarLitersPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="LeakRate.FromPascalCubicMetersPerSecond(double)" />
+            /// <inheritdoc cref="LeakRate.FromPascalCubicMetersPerSecond(QuantityValue)" />
             public LeakRate PascalCubicMetersPerSecond
 #if NET7_0_OR_GREATER
-                => LeakRate.FromPascalCubicMetersPerSecond(double.CreateChecked(value));
+                => LeakRate.FromPascalCubicMetersPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => LeakRate.FromPascalCubicMetersPerSecond(value.ToDouble(null));
+                => LeakRate.FromPascalCubicMetersPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="LeakRate.FromTorrLitersPerSecond(double)" />
+            /// <inheritdoc cref="LeakRate.FromTorrLitersPerSecond(QuantityValue)" />
             public LeakRate TorrLitersPerSecond
 #if NET7_0_OR_GREATER
-                => LeakRate.FromTorrLitersPerSecond(double.CreateChecked(value));
+                => LeakRate.FromTorrLitersPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => LeakRate.FromTorrLitersPerSecond(value.ToDouble(null));
+                => LeakRate.FromTorrLitersPerSecond(value.ToQuantityValue());
 #endif
 
         }

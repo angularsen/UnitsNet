@@ -105,7 +105,7 @@ namespace UnitsNet.Tests
         {
             Duration duration = Information.FromMegabits(3) / BitRate.FromMegabitsPerSecond(2);
 
-            Assert.Equal(1.5, duration.Seconds);
+            Assert.Equal(1.5, duration.Seconds.ToDouble());
         }
 
         [Fact]

@@ -32,147 +32,147 @@ namespace UnitsNet.NumberExtensions.NumberToDuration
     /// </summary>
     public static class NumberToDurationExtensions
     {
-        /// <inheritdoc cref="Duration.FromDays(double)" />
+        /// <inheritdoc cref="Duration.FromDays(QuantityValue)" />
         public static Duration Days<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Duration.FromDays(double.CreateChecked(value));
+            => Duration.FromDays(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Duration.FromDays(value.ToDouble(null));
+            => Duration.FromDays(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Duration.FromHours(double)" />
+        /// <inheritdoc cref="Duration.FromHours(QuantityValue)" />
         public static Duration Hours<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Duration.FromHours(double.CreateChecked(value));
+            => Duration.FromHours(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Duration.FromHours(value.ToDouble(null));
+            => Duration.FromHours(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Duration.FromJulianYears(double)" />
+        /// <inheritdoc cref="Duration.FromJulianYears(QuantityValue)" />
         public static Duration JulianYears<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Duration.FromJulianYears(double.CreateChecked(value));
+            => Duration.FromJulianYears(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Duration.FromJulianYears(value.ToDouble(null));
+            => Duration.FromJulianYears(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Duration.FromMicroseconds(double)" />
+        /// <inheritdoc cref="Duration.FromMicroseconds(QuantityValue)" />
         public static Duration Microseconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Duration.FromMicroseconds(double.CreateChecked(value));
+            => Duration.FromMicroseconds(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Duration.FromMicroseconds(value.ToDouble(null));
+            => Duration.FromMicroseconds(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Duration.FromMilliseconds(double)" />
+        /// <inheritdoc cref="Duration.FromMilliseconds(QuantityValue)" />
         public static Duration Milliseconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Duration.FromMilliseconds(double.CreateChecked(value));
+            => Duration.FromMilliseconds(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Duration.FromMilliseconds(value.ToDouble(null));
+            => Duration.FromMilliseconds(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Duration.FromMinutes(double)" />
+        /// <inheritdoc cref="Duration.FromMinutes(QuantityValue)" />
         public static Duration Minutes<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Duration.FromMinutes(double.CreateChecked(value));
+            => Duration.FromMinutes(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Duration.FromMinutes(value.ToDouble(null));
+            => Duration.FromMinutes(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Duration.FromMonths30(double)" />
+        /// <inheritdoc cref="Duration.FromMonths30(QuantityValue)" />
         public static Duration Months30<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Duration.FromMonths30(double.CreateChecked(value));
+            => Duration.FromMonths30(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Duration.FromMonths30(value.ToDouble(null));
+            => Duration.FromMonths30(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Duration.FromNanoseconds(double)" />
+        /// <inheritdoc cref="Duration.FromNanoseconds(QuantityValue)" />
         public static Duration Nanoseconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Duration.FromNanoseconds(double.CreateChecked(value));
+            => Duration.FromNanoseconds(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Duration.FromNanoseconds(value.ToDouble(null));
+            => Duration.FromNanoseconds(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Duration.FromPicoseconds(double)" />
+        /// <inheritdoc cref="Duration.FromPicoseconds(QuantityValue)" />
         public static Duration Picoseconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Duration.FromPicoseconds(double.CreateChecked(value));
+            => Duration.FromPicoseconds(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Duration.FromPicoseconds(value.ToDouble(null));
+            => Duration.FromPicoseconds(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Duration.FromSeconds(double)" />
+        /// <inheritdoc cref="Duration.FromSeconds(QuantityValue)" />
         public static Duration Seconds<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Duration.FromSeconds(double.CreateChecked(value));
+            => Duration.FromSeconds(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Duration.FromSeconds(value.ToDouble(null));
+            => Duration.FromSeconds(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Duration.FromSols(double)" />
+        /// <inheritdoc cref="Duration.FromSols(QuantityValue)" />
         public static Duration Sols<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Duration.FromSols(double.CreateChecked(value));
+            => Duration.FromSols(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Duration.FromSols(value.ToDouble(null));
+            => Duration.FromSols(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Duration.FromWeeks(double)" />
+        /// <inheritdoc cref="Duration.FromWeeks(QuantityValue)" />
         public static Duration Weeks<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Duration.FromWeeks(double.CreateChecked(value));
+            => Duration.FromWeeks(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Duration.FromWeeks(value.ToDouble(null));
+            => Duration.FromWeeks(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="Duration.FromYears365(double)" />
+        /// <inheritdoc cref="Duration.FromYears365(QuantityValue)" />
         public static Duration Years365<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => Duration.FromYears365(double.CreateChecked(value));
+            => Duration.FromYears365(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => Duration.FromYears365(value.ToDouble(null));
+            => Duration.FromYears365(value.ToQuantityValue());
 #endif
 
     }

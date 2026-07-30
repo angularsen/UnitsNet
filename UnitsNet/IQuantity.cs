@@ -28,7 +28,7 @@ namespace UnitsNet
         /// <summary>
         ///     The value this quantity was constructed with. See also <see cref="Unit"/>.
         /// </summary>
-        double Value { get; }
+        QuantityValue Value { get; }
 
         /// <summary>
         ///     Gets the unique key for the unit type and its corresponding value.
@@ -46,7 +46,7 @@ namespace UnitsNet
     /// </summary>
     /// <example>
     ///     IQuantity{LengthUnit} length;
-    ///     double centimeters = length.As(LengthUnit.Centimeter); // Type safety on enum type
+    ///     QuantityValue centimeters = length.As(LengthUnit.Centimeter); // Type safety on enum type
     /// </example>
     /// <typeparam name="TUnitType">The unit type of the quantity.</typeparam>
     public interface IQuantity<TUnitType> : IQuantity
@@ -108,7 +108,7 @@ namespace UnitsNet
         /// <param name="value">The numerical value of the quantity.</param>
         /// <param name="unit">The unit of the quantity.</param>
         /// <returns>An instance of the quantity with the specified value and unit.</returns>
-        public static abstract TQuantity Create(double value, UnitKey unit);
+        public static abstract TQuantity Create(QuantityValue value, UnitKey unit);
 #else
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         new IQuantityInstanceInfo<TQuantity> QuantityInfo { get; }
@@ -140,9 +140,9 @@ namespace UnitsNet
         /// <param name="value">The numerical value of the quantity.</param>
         /// <param name="unit">The unit of the quantity.</param>
         /// <returns>An instance of the quantity with the specified value and unit.</returns>
-        static abstract TSelf From(double value, TUnitType unit);
+        static abstract TSelf From(QuantityValue value, TUnitType unit);
 
-        static TSelf IQuantityOfType<TSelf>.Create(double value, UnitKey unit) => TSelf.From(value, unit.ToUnit<TUnitType>());
+        static TSelf IQuantityOfType<TSelf>.Create(QuantityValue value, UnitKey unit) => TSelf.From(value, unit.ToUnit<TUnitType>());
 
         static QuantityInfo IQuantityOfType<TSelf>.Info => TSelf.Info;
 

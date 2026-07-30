@@ -1,14 +1,15 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using UnitsNet.Tests.CustomQuantities;
+
 namespace UnitsNet.Tests;
 
 public class AffineQuantityExtensionsTest
 {
     [Theory]
     [InlineData(25.0, 25.0, 0.1, true)] // Equal values
-    // [InlineData(25.0, 25.1, 0.1, true)] // Within tolerance (but fails due to rounding)
-    [InlineData(25.0, 25.1, 0.10001, true)] // Within tolerance
+    [InlineData(25.0, 25.1, 0.1, true)] // Within tolerance
     [InlineData(25.0, 25.2, 0.1, false)] // Outside tolerance
     [InlineData(25.0, 25.0, 0.0, true)] // Zero tolerance, equal values
     [InlineData(25.0, 25.1, 0.0, false)] // Zero tolerance, different values
@@ -56,8 +57,7 @@ public class AffineQuantityExtensionsTest
 
     [Theory]
     [InlineData(25.0, 25.0, 0.1, true)] // Equal values
-    // [InlineData(25.0, 25.1, 0.1, true)] // Within tolerance (but fails due to rounding)
-    [InlineData(25.0, 25.1, 0.10001, true)] // Within tolerance
+    [InlineData(25.0, 25.1, 0.1, true)] // Within tolerance
     [InlineData(25.0, 25.2, 0.1, false)] // Outside tolerance
     [InlineData(25.0, 25.0, 0.0, true)] // Zero tolerance, equal values
     [InlineData(25.0, 25.1, 0.0, false)] // Zero tolerance, different values
@@ -76,7 +76,7 @@ public class AffineQuantityExtensionsTest
     public void Equals_Temperature_IQuantity_WithDifferentType_ReturnsFalse()
     {
         var temperature1 = Temperature.FromDegreesCelsius(25.0);
-        IQuantity length = Length.From(1, LengthUnit.Meter);
+        IQuantity length = Length.From(QuantityValue.One, LengthUnit.Meter);
         var tolerance = TemperatureDelta.FromDegreesCelsius(1);
 
         var result = temperature1.Equals(length, tolerance);
@@ -90,10 +90,26 @@ public class AffineQuantityExtensionsTest
         var quantity = Temperature.FromDegreesCelsius(25.0);
         var tolerance = TemperatureDelta.FromDegreesCelsius(25.0);
 
+        // since 'other' is not a reference type, this ends up calling the IQuantity overload
         var result = quantity.Equals(null, tolerance);
 
         Assert.False(result);
     }
+
+#if NET
+    [Fact]
+    public void Equals_TQuantity_WithNullOther_ReturnsFalse()
+    {
+        var quantity = new ClassOfAffineQuantity(2, ClassOfAffineQuantityUnit.ATon);
+        var tolerance = new ClassOfLinearQuantity(0.1m, ClassOfLinearQuantityUnit.Some);
+        ClassOfAffineQuantity? nullOther = null;
+
+        // since 'other' is a reference type, this is calling the TQuantity overload
+        var result = quantity.Equals(nullOther, tolerance);
+
+        Assert.False(result);
+    }
+#endif
 
     [Fact]
     public void Equals_ThrowsArgumentOutOfRangeException_ForNegativeTolerance()
@@ -111,11 +127,12 @@ public class AffineQuantityExtensionsTest
     [InlineData(new[] { 25.0 }, 25.0)] // Single value
     public void Average_Temperature(double[] values, double expectedAverage)
     {
+        var expectedAverageValue = QuantityValue.FromDoubleRounded(expectedAverage);
         Temperature[] temperatures = Array.ConvertAll(values, value => Temperature.FromDegreesCelsius(value));
 
         Temperature result = temperatures.Average();
-        
-        Assert.Equal(expectedAverage, result.Value);
+
+        Assert.Equal(expectedAverageValue, result.Value);
         Assert.Equal(TemperatureUnit.DegreeCelsius, result.Unit);
     }
 
@@ -156,11 +173,12 @@ public class AffineQuantityExtensionsTest
     [InlineData(new[] { 77.0, 86.0, 95.0 }, TemperatureUnit.DegreeFahrenheit, 86.0)] // Average in Fahrenheit
     public void Average_Temperature_WithUnit(double[] values, TemperatureUnit unit, double expectedAverage)
     {
+        var expectedAverageValue = QuantityValue.FromDoubleRounded(expectedAverage);
         Temperature[] temperatures = Array.ConvertAll(values, value => Temperature.From(value, unit));
 
         Temperature result = temperatures.Average(unit);
 
-        Assert.Equal(expectedAverage, result.Value);
+        Assert.Equal(expectedAverageValue, result.Value);
         Assert.Equal(unit, result.Unit);
     }
     

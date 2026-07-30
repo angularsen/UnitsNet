@@ -17,7 +17,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
     public sealed class MainWindowVm : IMainWindowVm
     {
         private readonly ObservableCollection<UnitListItem> _units;
-        private double _fromValue;
+        private QuantityValue _fromValue;
 
         [CanBeNull] private UnitListItem _selectedFromUnit;
 
@@ -25,7 +25,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
 
         [CanBeNull] private UnitListItem _selectedToUnit;
 
-        private double _toValue;
+        private QuantityValue _toValue;
 
         public MainWindowVm()
         {
@@ -90,22 +90,24 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
 
         public string ToHeader => $"Result [{SelectedToUnit?.Abbreviation}]";
 
-        public double FromValue
+        public QuantityValue FromValue
         {
             get => _fromValue;
             set
             {
+                if (value == _fromValue) return;
                 _fromValue = value;
                 OnPropertyChanged();
                 UpdateResult();
             }
         }
 
-        public double ToValue
+        public QuantityValue ToValue
         {
             get => _toValue;
             private set
             {
+                if (value == _toValue) return;
                 _toValue = value;
                 OnPropertyChanged();
             }
@@ -116,7 +118,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
         private void Swap()
         {
             UnitListItem oldToUnit = SelectedToUnit;
-            var oldToValue = ToValue;
+            QuantityValue oldToValue = ToValue;
 
             // Setting these will change ToValue
             SelectedToUnit = SelectedFromUnit;
@@ -129,6 +131,11 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
         {
             if (SelectedFromUnit == null || SelectedToUnit == null) return;
 
+            // note: starting from v6 it is possible to store (and invoke here) a conversion expression
+            // ConvertValueDelegate _convertValueToUnit = UnitsNet.UnitConverter.Default.GetConversionFunction(SelectedFromUnit.UnitEnumValue, SelectedToUnit.UnitEnumValue);
+            // ToValue = _convertValueToUnit(FromValue);
+
+            // note: as of v6 this can be optimized by working directly with the IUntInfo (or it's UnitKey).
             ToValue = UnitsNet.UnitConverter.Convert(FromValue,
                 SelectedFromUnit.UnitEnumValue,
                 SelectedToUnit.UnitEnumValue);
@@ -139,11 +146,12 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
             QuantityInfo quantityInfo = Quantity.ByName[quantityName];
 
             _units.Clear();
+            // note: as of v6 approach this approach is not recommended as the unit info no longer stores the boxed version of the unit (as untyped Enum)
             foreach (Enum unitValue in quantityInfo.UnitInfos.Select(ui => ui.Value))
             {
-                _units.Add(new UnitListItem(unitValue));
+                _units.Add(new UnitListItem(unitValue)); // TODO see about simply passing the UnitInfo (or the UnitKey)
             }
-
+            
             SelectedFromUnit = _units.FirstOrDefault();
             SelectedToUnit = _units.Skip(1).FirstOrDefault() ?? SelectedFromUnit; // Try to pick a different to-unit
         }

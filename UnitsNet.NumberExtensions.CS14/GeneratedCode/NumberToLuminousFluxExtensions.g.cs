@@ -42,12 +42,12 @@ namespace UnitsNet.NumberExtensions.NumberToLuminousFlux
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="LuminousFlux.FromLumens(double)" />
+            /// <inheritdoc cref="LuminousFlux.FromLumens(QuantityValue)" />
             public LuminousFlux Lumens
 #if NET7_0_OR_GREATER
-                => LuminousFlux.FromLumens(double.CreateChecked(value));
+                => LuminousFlux.FromLumens(QuantityValue.CreateChecked(value));
 #else
-                => LuminousFlux.FromLumens(value.ToDouble(null));
+                => LuminousFlux.FromLumens(value.ToQuantityValue());
 #endif
 
         }

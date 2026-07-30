@@ -42,76 +42,76 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificEntropy
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="SpecificEntropy.FromBtusPerPoundFahrenheit(double)" />
+            /// <inheritdoc cref="SpecificEntropy.FromBtusPerPoundFahrenheit(QuantityValue)" />
             public SpecificEntropy BtusPerPoundFahrenheit
 #if NET7_0_OR_GREATER
-                => SpecificEntropy.FromBtusPerPoundFahrenheit(double.CreateChecked(value));
+                => SpecificEntropy.FromBtusPerPoundFahrenheit(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEntropy.FromBtusPerPoundFahrenheit(value.ToDouble(null));
+                => SpecificEntropy.FromBtusPerPoundFahrenheit(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEntropy.FromCaloriesPerGramKelvin(double)" />
+            /// <inheritdoc cref="SpecificEntropy.FromCaloriesPerGramKelvin(QuantityValue)" />
             public SpecificEntropy CaloriesPerGramKelvin
 #if NET7_0_OR_GREATER
-                => SpecificEntropy.FromCaloriesPerGramKelvin(double.CreateChecked(value));
+                => SpecificEntropy.FromCaloriesPerGramKelvin(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEntropy.FromCaloriesPerGramKelvin(value.ToDouble(null));
+                => SpecificEntropy.FromCaloriesPerGramKelvin(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(double)" />
+            /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(QuantityValue)" />
             public SpecificEntropy JoulesPerKilogramDegreeCelsius
 #if NET7_0_OR_GREATER
-                => SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(double.CreateChecked(value));
+                => SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(value.ToDouble(null));
+                => SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramKelvin(double)" />
+            /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramKelvin(QuantityValue)" />
             public SpecificEntropy JoulesPerKilogramKelvin
 #if NET7_0_OR_GREATER
-                => SpecificEntropy.FromJoulesPerKilogramKelvin(double.CreateChecked(value));
+                => SpecificEntropy.FromJoulesPerKilogramKelvin(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEntropy.FromJoulesPerKilogramKelvin(value.ToDouble(null));
+                => SpecificEntropy.FromJoulesPerKilogramKelvin(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEntropy.FromKilocaloriesPerGramKelvin(double)" />
+            /// <inheritdoc cref="SpecificEntropy.FromKilocaloriesPerGramKelvin(QuantityValue)" />
             public SpecificEntropy KilocaloriesPerGramKelvin
 #if NET7_0_OR_GREATER
-                => SpecificEntropy.FromKilocaloriesPerGramKelvin(double.CreateChecked(value));
+                => SpecificEntropy.FromKilocaloriesPerGramKelvin(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEntropy.FromKilocaloriesPerGramKelvin(value.ToDouble(null));
+                => SpecificEntropy.FromKilocaloriesPerGramKelvin(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(double)" />
+            /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(QuantityValue)" />
             public SpecificEntropy KilojoulesPerKilogramDegreeCelsius
 #if NET7_0_OR_GREATER
-                => SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(double.CreateChecked(value));
+                => SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(value.ToDouble(null));
+                => SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramKelvin(double)" />
+            /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramKelvin(QuantityValue)" />
             public SpecificEntropy KilojoulesPerKilogramKelvin
 #if NET7_0_OR_GREATER
-                => SpecificEntropy.FromKilojoulesPerKilogramKelvin(double.CreateChecked(value));
+                => SpecificEntropy.FromKilojoulesPerKilogramKelvin(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEntropy.FromKilojoulesPerKilogramKelvin(value.ToDouble(null));
+                => SpecificEntropy.FromKilojoulesPerKilogramKelvin(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(double)" />
+            /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(QuantityValue)" />
             public SpecificEntropy MegajoulesPerKilogramDegreeCelsius
 #if NET7_0_OR_GREATER
-                => SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(double.CreateChecked(value));
+                => SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(value.ToDouble(null));
+                => SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramKelvin(double)" />
+            /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramKelvin(QuantityValue)" />
             public SpecificEntropy MegajoulesPerKilogramKelvin
 #if NET7_0_OR_GREATER
-                => SpecificEntropy.FromMegajoulesPerKilogramKelvin(double.CreateChecked(value));
+                => SpecificEntropy.FromMegajoulesPerKilogramKelvin(QuantityValue.CreateChecked(value));
 #else
-                => SpecificEntropy.FromMegajoulesPerKilogramKelvin(value.ToDouble(null));
+                => SpecificEntropy.FromMegajoulesPerKilogramKelvin(value.ToQuantityValue());
 #endif
 
         }
