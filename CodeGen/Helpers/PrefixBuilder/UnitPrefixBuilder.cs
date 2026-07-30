@@ -51,6 +51,9 @@ internal class UnitPrefixBuilder
     /// <exception cref="System.Exception">
     ///     Thrown when an error occurs while processing a prefix for a unit, such as an invalid prefix or unit configuration.
     /// </exception>
+    /// <exception cref="UnitsNetCodeGenException">
+    ///     Thrown when prefixes are configured for a unit that looks like a powered unit.
+    /// </exception>
     /// <remarks>
     ///     This method iterates through the existing units of the specified <see cref="Quantity" /> and applies each defined
     ///     prefix to generate new prefixed units. It ensures that the singular and plural names, conversion functions,
@@ -60,30 +63,37 @@ internal class UnitPrefixBuilder
     {
         var unitsToAdd = new List<Unit>();
         foreach (Unit unit in quantity.Units)
-        foreach (Prefix prefix in unit.Prefixes)
         {
-            try
+            if (!unit.Prefixes.Any())
             {
-                ThrowIfPrefixesAreUnsafeForPoweredUnit(quantity, unit);
-
-                PrefixInfo prefixInfo = PrefixInfo.Entries[prefix];
-
-                unitsToAdd.Add(new Unit
-                {
-                    SingularName = $"{prefix}{unit.SingularName.ToCamelCase()}", // "Kilo" + "NewtonPerMeter" => "KilonewtonPerMeter"
-                    PluralName = $"{prefix}{unit.PluralName.ToCamelCase()}", // "Kilo" + "NewtonsPerMeter" => "KilonewtonsPerMeter"
-                    BaseUnits = GetPrefixedBaseUnits(quantity.BaseDimensions, unit.BaseUnits, prefixInfo),
-                    FromBaseToUnitFunc = $"({unit.FromBaseToUnitFunc}) / {prefixInfo.Factor}",
-                    FromUnitToBaseFunc = $"({unit.FromUnitToBaseFunc}) * {prefixInfo.Factor}",
-                    Localization = GetLocalizationForPrefixUnit(unit.Localization, prefixInfo),
-                    ObsoleteText = unit.ObsoleteText,
-                    SkipConversionGeneration = unit.SkipConversionGeneration,
-                    AllowAbbreviationLookup = unit.AllowAbbreviationLookup
-                });
+                continue;
             }
-            catch (Exception e)
+
+            ThrowIfPrefixesAreUnsafeForPoweredUnit(quantity, unit);
+
+            foreach (Prefix prefix in unit.Prefixes)
             {
-                throw new Exception($"Error parsing prefix {prefix} for unit {quantity.Name}.{unit.SingularName}.", e);
+                try
+                {
+                    PrefixInfo prefixInfo = PrefixInfo.Entries[prefix];
+
+                    unitsToAdd.Add(new Unit
+                    {
+                        SingularName = $"{prefix}{unit.SingularName.ToCamelCase()}", // "Kilo" + "NewtonPerMeter" => "KilonewtonPerMeter"
+                        PluralName = $"{prefix}{unit.PluralName.ToCamelCase()}", // "Kilo" + "NewtonsPerMeter" => "KilonewtonsPerMeter"
+                        BaseUnits = GetPrefixedBaseUnits(quantity.BaseDimensions, unit.BaseUnits, prefixInfo),
+                        FromBaseToUnitFunc = $"({unit.FromBaseToUnitFunc}) / {prefixInfo.Factor}",
+                        FromUnitToBaseFunc = $"({unit.FromUnitToBaseFunc}) * {prefixInfo.Factor}",
+                        Localization = GetLocalizationForPrefixUnit(unit.Localization, prefixInfo),
+                        ObsoleteText = unit.ObsoleteText,
+                        SkipConversionGeneration = unit.SkipConversionGeneration,
+                        AllowAbbreviationLookup = unit.AllowAbbreviationLookup
+                    });
+                }
+                catch (Exception e)
+                {
+                    throw new Exception($"Error parsing prefix {prefix} for unit {quantity.Name}.{unit.SingularName}.", e);
+                }
             }
         }
 
@@ -104,6 +114,7 @@ internal class UnitPrefixBuilder
 
     private static bool LooksLikePoweredUnit(Unit unit)
     {
+        // This intentionally checks naming conventions rather than dimensions, since valid derived units can have powered base dimensions.
         if (unit.SingularName.StartsWith("Square", StringComparison.Ordinal) ||
             unit.SingularName.StartsWith("Cubic", StringComparison.Ordinal))
         {
