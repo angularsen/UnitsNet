@@ -820,4 +820,3 @@ UnitsNet.Modular reports authoring problems at compile time:
 - [Custom definition package](https://github.com/angularsen/UnitsNet/tree/master/UnitsNet.Modular/Samples/DefinitionPackages/Fictional.Measurements.Definitions)
 - [Architecture](https://github.com/angularsen/UnitsNet/blob/master/UnitsNet.Modular/ARCHITECTURE.md)
 - [Migration notes](https://github.com/angularsen/UnitsNet/blob/master/UnitsNet.Modular/MIGRATION.md)
-- [Implementation progress](https://github.com/angularsen/UnitsNet/blob/master/UnitsNet.Modular/IMPLEMENTATION_PLAN.md)

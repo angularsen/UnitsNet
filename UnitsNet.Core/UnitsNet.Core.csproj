@@ -7,8 +7,10 @@
     <IsAotCompatible>true</IsAotCompatible>
     <RootNamespace>UnitsNet.Core</RootNamespace>
     <AssemblyName>UnitsNet.Core</AssemblyName>
-    <Version Condition="'$(UnitsNetCoreVersionOverride)' == ''">6.0.0-alpha.1</Version>
-    <Version Condition="'$(UnitsNetCoreVersionOverride)' != ''">$(UnitsNetCoreVersionOverride)</Version>
+    <MinVerTagPrefix>UnitsNet.Core/</MinVerTagPrefix>
+    <MinVerMinimumMajorMinor>6.0</MinVerMinimumMajorMinor>
+    <MinVerDefaultPreReleaseIdentifiers>alpha.0</MinVerDefaultPreReleaseIdentifiers>
+    <MinVerVersionOverride Condition="'$(UnitsNetCoreVersionOverride)' != '' and '$(MinVerVersionOverride)' == ''">$(UnitsNetCoreVersionOverride)</MinVerVersionOverride>
     <AssemblyVersion>6.0.0.0</AssemblyVersion>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>../UnitsNet.snk</AssemblyOriginatorKeyFile>
@@ -33,6 +35,9 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>unitsnet quantity units abstractions contracts interoperability</PackageTags>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MinVer" PrivateAssets="all" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="README.md" />
     <None Include="../Docs/Images/logo-32.png" Pack="true" PackagePath="logo-32.png" />

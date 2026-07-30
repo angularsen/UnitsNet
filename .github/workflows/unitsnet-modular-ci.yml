@@ -9,6 +9,7 @@ on:
     paths:
       - 'UnitsNet.Modular/**'
       - 'UnitsNet.Core/**'
+      # The compatibility suite compiles the current UnitsNet project to detect source/API drift.
       - 'UnitsNet/**'
       - 'Common/UnitDefinitions/**'
       - 'Common/UnitRelations.json'
@@ -26,6 +27,7 @@ on:
     paths:
       - 'UnitsNet.Modular/**'
       - 'UnitsNet.Core/**'
+      # The compatibility suite compiles the current UnitsNet project to detect source/API drift.
       - 'UnitsNet/**'
       - 'Common/UnitDefinitions/**'
       - 'Common/UnitRelations.json'
@@ -55,6 +57,7 @@ jobs:
   build-test-pack:
     name: Build, test, and pack
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
       - name: Checkout full history

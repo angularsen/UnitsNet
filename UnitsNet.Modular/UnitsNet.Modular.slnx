@@ -1,5 +1,4 @@
 <Solution>
-  <Project Path="../UnitsNet.Core/UnitsNet.Core.csproj" />
   <Project Path="UnitsNet.Modular/UnitsNet.Modular.csproj" />
   <Project Path="UnitsNet.Modular.Generator/UnitsNet.Modular.Generator.csproj" />
   <Project Path="UnitsNet.Modular.Generator.Tests/UnitsNet.Modular.Generator.Tests.csproj" />

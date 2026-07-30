@@ -365,12 +365,12 @@ and unprefixed tags are ignored. A release tag such as `UnitsNet.Modular/6.0.0-a
 alpha version with commit height. `UnitsNet.Modular.Generator` remains an internal, non-packable project
 because its generated code requires the runtime shipped in the combined package.
 
-UnitsNet, UnitsNet.Modular, and UnitsNet.Core share major version 6 to communicate the catalog generation
-they belong to, but their minor and patch versions can advance independently. UnitsNet retains its
-existing explicitly controlled version. UnitsNet.Modular uses its isolated MinVer tag prefix, while
-UnitsNet.Core starts at the explicitly controlled `6.0.0-alpha.1` and advances when its shared
-contracts change. Third-party definition packages have independent versions; the fictional sample
-remains at 1.x when packed directly.
+UnitsNet, UnitsNet.Modular, and UnitsNet.Core share major version 6 to communicate the catalog
+generation they belong to, but their minor and patch versions can advance independently. UnitsNet
+retains its existing explicitly controlled version. UnitsNet.Modular and UnitsNet.Core use the
+independent MinVer tag prefixes `UnitsNet.Modular/` and `UnitsNet.Core/`, respectively. Core advances
+when its shared contracts change. Third-party definition packages have independent versions; the
+fictional sample remains at 1.x when packed directly.
 
 The local package automation passes a timestamped `MinVerVersionOverride` so repeated packages
 containing uncommitted changes remain unique. The package includes complete NuGet metadata,
