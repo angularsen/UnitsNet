@@ -111,6 +111,22 @@ internal class UnitPrefixBuilder
         return unitsToAdd;
     }
 
+    /// <summary>
+    ///     Prevents automatic prefixes from being applied to units that appear to represent a directly powered unit.
+    /// </summary>
+    /// <param name="quantity">The quantity that defines the unit.</param>
+    /// <param name="unit">The unit configured with one or more automatic prefixes.</param>
+    /// <exception cref="UnitsNetCodeGenException">
+    ///     Thrown when the unit name starts with <c>Square</c> or <c>Cubic</c>, or when one of its abbreviations starts with
+    ///     a unit token raised to the second, third, or fourth power.
+    /// </exception>
+    /// <remarks>
+    ///     Mechanically prefixing a powered unit can produce a misleading abbreviation. For example, prefixing
+    ///     <c>CubicMeter</c> with <c>Kilo</c> produces <c>km³</c>, which means cubic kilometer rather than one thousand
+    ///     cubic meters. This guard uses unit names and <see cref="LeadingPoweredUnitAbbreviationRegex" /> as a focused
+    ///     heuristic. It intentionally does not inspect base dimensions, since valid derived units such as watt and joule
+    ///     have powered dimensions but can safely use automatic prefixes.
+    /// </remarks>
     private static void ThrowIfPrefixesAreUnsafeForPoweredUnit(Quantity quantity, Unit unit)
     {
         if (!LooksLikePoweredUnit(unit))
