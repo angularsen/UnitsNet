@@ -13,11 +13,7 @@ public readonly struct QuantityId : IEquatable<QuantityId>
     /// <summary>Initializes a semantic quantity identifier.</summary>
     public QuantityId(string value)
     {
-        ArgumentNullException.ThrowIfNull(value);
-        if (string.IsNullOrWhiteSpace(value))
-        {
-            throw new ArgumentException("A quantity identifier cannot be empty.", nameof(value));
-        }
+        ArgumentException.ThrowIfNullOrWhiteSpace(value);
 
         _value = value;
     }
