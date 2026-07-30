@@ -42,6 +42,7 @@ namespace UnitsNet
         ILinearQuantity<MagneticField, MagneticFieldUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<MagneticField, MagneticField, QuantityValue>,
+        IMultiplyOperators<MagneticField, Area, MagneticFlux>,
         IComparisonOperators<MagneticField, MagneticField, bool>,
         IParsable<MagneticField>,
 #endif
@@ -536,6 +537,16 @@ namespace UnitsNet
         public static QuantityValue operator /(MagneticField left, MagneticField right)
         {
             return left.Teslas / right.Teslas;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="MagneticFlux"/> from <see cref="MagneticField"/> * <see cref="Area"/>.</summary>
+        public static MagneticFlux operator *(MagneticField magneticField, Area area)
+        {
+            return MagneticFlux.FromWebers(magneticField.Teslas * area.SquareMeters);
         }
 
         #endregion

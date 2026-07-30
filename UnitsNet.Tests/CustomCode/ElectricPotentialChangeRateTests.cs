@@ -43,5 +43,18 @@ namespace UnitsNet.Tests.CustomCode
         protected override double VoltsPerMicrosecondInOneVoltPerSecond => 1e-06;
         protected override double VoltsPerMinuteInOneVoltPerSecond => 60;
         protected override double VoltsPerSecondInOneVoltPerSecond => 1;
+
+        [Fact]
+        public void ElectricPotentialChangeRateTimesDurationEqualsElectricPotential()
+        {
+            ElectricPotentialChangeRate changeRate = ElectricPotentialChangeRate.FromVoltsPerSecond(2);
+            Duration duration = Duration.FromSeconds(3);
+            ElectricPotential expected = ElectricPotential.FromVolts(6);
+
+            Assert.Equal(expected, changeRate * duration);
+            Assert.Equal(expected, duration * changeRate);
+            Assert.Equal(duration, expected / changeRate);
+            Assert.Equal(changeRate, expected / duration);
+        }
     }
 }

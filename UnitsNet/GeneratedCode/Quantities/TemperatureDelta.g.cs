@@ -41,11 +41,17 @@ namespace UnitsNet
         IDivisionOperators<TemperatureDelta, TemperatureDelta, QuantityValue>,
         IDivisionOperators<TemperatureDelta, TemperatureChangeRate, Duration>,
         IMultiplyOperators<TemperatureDelta, Entropy, Energy>,
+        IMultiplyOperators<TemperatureDelta, VolumetricHeatCapacity, EnergyDensity>,
+        IMultiplyOperators<TemperatureDelta, HeatTransferCoefficient, HeatFlux>,
+        IDivisionOperators<TemperatureDelta, ThermalInsulance, HeatFlux>,
         IDivisionOperators<TemperatureDelta, TemperatureGradient, Length>,
+        IDivisionOperators<TemperatureDelta, ThermalResistance, Power>,
         IMultiplyOperators<TemperatureDelta, CoefficientOfThermalExpansion, Ratio>,
         IMultiplyOperators<TemperatureDelta, SpecificEntropy, SpecificEnergy>,
         IDivisionOperators<TemperatureDelta, Duration, TemperatureChangeRate>,
         IDivisionOperators<TemperatureDelta, Length, TemperatureGradient>,
+        IDivisionOperators<TemperatureDelta, HeatFlux, ThermalInsulance>,
+        IDivisionOperators<TemperatureDelta, Power, ThermalResistance>,
         IComparisonOperators<TemperatureDelta, TemperatureDelta, bool>,
         IParsable<TemperatureDelta>,
 #endif
@@ -606,10 +612,34 @@ namespace UnitsNet
             return Energy.FromJoules(temperatureDelta.Kelvins * entropy.JoulesPerKelvin);
         }
 
+        /// <summary>Get <see cref="EnergyDensity"/> from <see cref="TemperatureDelta"/> * <see cref="VolumetricHeatCapacity"/>.</summary>
+        public static EnergyDensity operator *(TemperatureDelta temperatureDelta, VolumetricHeatCapacity volumetricHeatCapacity)
+        {
+            return EnergyDensity.FromJoulesPerCubicMeter(temperatureDelta.Kelvins * volumetricHeatCapacity.JoulesPerCubicMeterKelvin);
+        }
+
+        /// <summary>Get <see cref="HeatFlux"/> from <see cref="TemperatureDelta"/> * <see cref="HeatTransferCoefficient"/>.</summary>
+        public static HeatFlux operator *(TemperatureDelta temperatureDelta, HeatTransferCoefficient heatTransferCoefficient)
+        {
+            return HeatFlux.FromWattsPerSquareMeter(temperatureDelta.Kelvins * heatTransferCoefficient.WattsPerSquareMeterKelvin);
+        }
+
+        /// <summary>Get <see cref="HeatFlux"/> from <see cref="TemperatureDelta"/> / <see cref="ThermalInsulance"/>.</summary>
+        public static HeatFlux operator /(TemperatureDelta temperatureDelta, ThermalInsulance thermalInsulance)
+        {
+            return HeatFlux.FromWattsPerSquareMeter(temperatureDelta.Kelvins / thermalInsulance.SquareMeterKelvinsPerWatt);
+        }
+
         /// <summary>Get <see cref="Length"/> from <see cref="TemperatureDelta"/> / <see cref="TemperatureGradient"/>.</summary>
         public static Length operator /(TemperatureDelta temperatureDelta, TemperatureGradient temperatureGradient)
         {
             return Length.FromKilometers(temperatureDelta.DegreesCelsius / temperatureGradient.DegreesCelsiusPerKilometer);
+        }
+
+        /// <summary>Get <see cref="Power"/> from <see cref="TemperatureDelta"/> / <see cref="ThermalResistance"/>.</summary>
+        public static Power operator /(TemperatureDelta temperatureDelta, ThermalResistance thermalResistance)
+        {
+            return Power.FromWatts(temperatureDelta.Kelvins / thermalResistance.KelvinsPerWatt);
         }
 
         /// <summary>Get <see cref="Ratio"/> from <see cref="TemperatureDelta"/> * <see cref="CoefficientOfThermalExpansion"/>.</summary>
@@ -634,6 +664,18 @@ namespace UnitsNet
         public static TemperatureGradient operator /(TemperatureDelta temperatureDelta, Length length)
         {
             return TemperatureGradient.FromDegreesCelsiusPerKilometer(temperatureDelta.DegreesCelsius / length.Kilometers);
+        }
+
+        /// <summary>Get <see cref="ThermalInsulance"/> from <see cref="TemperatureDelta"/> / <see cref="HeatFlux"/>.</summary>
+        public static ThermalInsulance operator /(TemperatureDelta temperatureDelta, HeatFlux heatFlux)
+        {
+            return ThermalInsulance.FromSquareMeterKelvinsPerWatt(temperatureDelta.Kelvins / heatFlux.WattsPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="ThermalResistance"/> from <see cref="TemperatureDelta"/> / <see cref="Power"/>.</summary>
+        public static ThermalResistance operator /(TemperatureDelta temperatureDelta, Power power)
+        {
+            return ThermalResistance.FromKelvinsPerWatt(temperatureDelta.Kelvins / power.Watts);
         }
 
         #endregion

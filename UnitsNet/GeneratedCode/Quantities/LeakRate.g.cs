@@ -42,6 +42,8 @@ namespace UnitsNet
         ILinearQuantity<LeakRate, LeakRateUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<LeakRate, LeakRate, QuantityValue>,
+        IDivisionOperators<LeakRate, VolumeFlow, Pressure>,
+        IDivisionOperators<LeakRate, Pressure, VolumeFlow>,
         IComparisonOperators<LeakRate, LeakRate, bool>,
         IParsable<LeakRate>,
 #endif
@@ -504,6 +506,22 @@ namespace UnitsNet
         public static QuantityValue operator /(LeakRate left, LeakRate right)
         {
             return left.PascalCubicMetersPerSecond / right.PascalCubicMetersPerSecond;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="LeakRate"/> / <see cref="VolumeFlow"/>.</summary>
+        public static Pressure operator /(LeakRate leakRate, VolumeFlow volumeFlow)
+        {
+            return Pressure.FromPascals(leakRate.PascalCubicMetersPerSecond / volumeFlow.CubicMetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="VolumeFlow"/> from <see cref="LeakRate"/> / <see cref="Pressure"/>.</summary>
+        public static VolumeFlow operator /(LeakRate leakRate, Pressure pressure)
+        {
+            return VolumeFlow.FromCubicMetersPerSecond(leakRate.PascalCubicMetersPerSecond / pressure.Pascals);
         }
 
         #endregion

@@ -39,7 +39,10 @@ namespace UnitsNet
         ILinearQuantity<HeatFlux, HeatFluxUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<HeatFlux, HeatFlux, QuantityValue>,
+        IDivisionOperators<HeatFlux, TemperatureDelta, HeatTransferCoefficient>,
         IMultiplyOperators<HeatFlux, Area, Power>,
+        IMultiplyOperators<HeatFlux, ThermalInsulance, TemperatureDelta>,
+        IDivisionOperators<HeatFlux, HeatTransferCoefficient, TemperatureDelta>,
         IComparisonOperators<HeatFlux, HeatFlux, bool>,
         IParsable<HeatFlux>,
 #endif
@@ -844,10 +847,28 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Get <see cref="HeatTransferCoefficient"/> from <see cref="HeatFlux"/> / <see cref="TemperatureDelta"/>.</summary>
+        public static HeatTransferCoefficient operator /(HeatFlux heatFlux, TemperatureDelta temperatureDelta)
+        {
+            return HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(heatFlux.WattsPerSquareMeter / temperatureDelta.Kelvins);
+        }
+
         /// <summary>Get <see cref="Power"/> from <see cref="HeatFlux"/> * <see cref="Area"/>.</summary>
         public static Power operator *(HeatFlux heatFlux, Area area)
         {
             return Power.FromWatts(heatFlux.WattsPerSquareMeter * area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="HeatFlux"/> * <see cref="ThermalInsulance"/>.</summary>
+        public static TemperatureDelta operator *(HeatFlux heatFlux, ThermalInsulance thermalInsulance)
+        {
+            return TemperatureDelta.FromKelvins(heatFlux.WattsPerSquareMeter * thermalInsulance.SquareMeterKelvinsPerWatt);
+        }
+
+        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="HeatFlux"/> / <see cref="HeatTransferCoefficient"/>.</summary>
+        public static TemperatureDelta operator /(HeatFlux heatFlux, HeatTransferCoefficient heatTransferCoefficient)
+        {
+            return TemperatureDelta.FromKelvins(heatFlux.WattsPerSquareMeter / heatTransferCoefficient.WattsPerSquareMeterKelvin);
         }
 
         #endregion

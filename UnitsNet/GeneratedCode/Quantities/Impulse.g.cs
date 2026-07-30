@@ -39,6 +39,8 @@ namespace UnitsNet
         ILinearQuantity<Impulse, ImpulseUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Impulse, Impulse, QuantityValue>,
+        IDivisionOperators<Impulse, Force, Duration>,
+        IDivisionOperators<Impulse, Duration, Force>,
         IComparisonOperators<Impulse, Impulse, bool>,
         IParsable<Impulse>,
 #endif
@@ -645,6 +647,22 @@ namespace UnitsNet
         public static QuantityValue operator /(Impulse left, Impulse right)
         {
             return left.NewtonSeconds / right.NewtonSeconds;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="Impulse"/> / <see cref="Force"/>.</summary>
+        public static Duration operator /(Impulse impulse, Force force)
+        {
+            return Duration.FromSeconds(impulse.NewtonSeconds / force.Newtons);
+        }
+
+        /// <summary>Get <see cref="Force"/> from <see cref="Impulse"/> / <see cref="Duration"/>.</summary>
+        public static Force operator /(Impulse impulse, Duration duration)
+        {
+            return Force.FromNewtons(impulse.NewtonSeconds / duration.Seconds);
         }
 
         #endregion

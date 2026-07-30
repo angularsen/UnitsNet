@@ -42,15 +42,19 @@ namespace UnitsNet
         IDivisionOperators<Pressure, AreaDensity, Acceleration>,
         IDivisionOperators<Pressure, Acceleration, AreaDensity>,
         IDivisionOperators<Pressure, PressureChangeRate, Duration>,
+        IDivisionOperators<Pressure, VolumeFlow, FluidResistance>,
         IDivisionOperators<Pressure, ReciprocalArea, Force>,
         IMultiplyOperators<Pressure, Area, Force>,
         IMultiplyOperators<Pressure, Length, ForcePerLength>,
         IDivisionOperators<Pressure, ReciprocalLength, ForcePerLength>,
+        IMultiplyOperators<Pressure, VolumeFlow, LeakRate>,
         IDivisionOperators<Pressure, SpecificWeight, Length>,
         IDivisionOperators<Pressure, Duration, PressureChangeRate>,
+        IMultiplyOperators<Pressure, Compressibility, Ratio>,
         IDivisionOperators<Pressure, Force, ReciprocalArea>,
         IDivisionOperators<Pressure, ForcePerLength, ReciprocalLength>,
         IDivisionOperators<Pressure, Length, SpecificWeight>,
+        IDivisionOperators<Pressure, FluidResistance, VolumeFlow>,
         IComparisonOperators<Pressure, Pressure, bool>,
         IParsable<Pressure>,
 #endif
@@ -1273,6 +1277,12 @@ namespace UnitsNet
             return Duration.FromSeconds(pressure.Pascals / pressureChangeRate.PascalsPerSecond);
         }
 
+        /// <summary>Get <see cref="FluidResistance"/> from <see cref="Pressure"/> / <see cref="VolumeFlow"/>.</summary>
+        public static FluidResistance operator /(Pressure pressure, VolumeFlow volumeFlow)
+        {
+            return FluidResistance.FromPascalSecondsPerCubicMeter(pressure.Pascals / volumeFlow.CubicMetersPerSecond);
+        }
+
         /// <summary>Get <see cref="Force"/> from <see cref="Pressure"/> / <see cref="ReciprocalArea"/>.</summary>
         public static Force operator /(Pressure pressure, ReciprocalArea reciprocalArea)
         {
@@ -1297,6 +1307,12 @@ namespace UnitsNet
             return ForcePerLength.FromNewtonsPerMeter(pressure.NewtonsPerSquareMeter / reciprocalLength.InverseMeters);
         }
 
+        /// <summary>Get <see cref="LeakRate"/> from <see cref="Pressure"/> * <see cref="VolumeFlow"/>.</summary>
+        public static LeakRate operator *(Pressure pressure, VolumeFlow volumeFlow)
+        {
+            return LeakRate.FromPascalCubicMetersPerSecond(pressure.Pascals * volumeFlow.CubicMetersPerSecond);
+        }
+
         /// <summary>Get <see cref="Length"/> from <see cref="Pressure"/> / <see cref="SpecificWeight"/>.</summary>
         public static Length operator /(Pressure pressure, SpecificWeight specificWeight)
         {
@@ -1307,6 +1323,12 @@ namespace UnitsNet
         public static PressureChangeRate operator /(Pressure pressure, Duration duration)
         {
             return PressureChangeRate.FromPascalsPerSecond(pressure.Pascals / duration.Seconds);
+        }
+
+        /// <summary>Get <see cref="Ratio"/> from <see cref="Pressure"/> * <see cref="Compressibility"/>.</summary>
+        public static Ratio operator *(Pressure pressure, Compressibility compressibility)
+        {
+            return Ratio.FromDecimalFractions(pressure.Pascals * compressibility.InversePascals);
         }
 
         /// <summary>Get <see cref="ReciprocalArea"/> from <see cref="Pressure"/> / <see cref="Force"/>.</summary>
@@ -1325,6 +1347,12 @@ namespace UnitsNet
         public static SpecificWeight operator /(Pressure pressure, Length length)
         {
             return SpecificWeight.FromNewtonsPerCubicMeter(pressure.Pascals / length.Meters);
+        }
+
+        /// <summary>Get <see cref="VolumeFlow"/> from <see cref="Pressure"/> / <see cref="FluidResistance"/>.</summary>
+        public static VolumeFlow operator /(Pressure pressure, FluidResistance fluidResistance)
+        {
+            return VolumeFlow.FromCubicMetersPerSecond(pressure.Pascals / fluidResistance.PascalSecondsPerCubicMeter);
         }
 
         #endregion

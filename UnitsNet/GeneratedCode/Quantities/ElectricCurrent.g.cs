@@ -42,10 +42,14 @@ namespace UnitsNet
         ILinearQuantity<ElectricCurrent, ElectricCurrentUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricCurrent, ElectricCurrent, QuantityValue>,
+        IDivisionOperators<ElectricCurrent, ElectricCurrentDensity, Area>,
         IDivisionOperators<ElectricCurrent, ElectricCurrentGradient, Duration>,
         IMultiplyOperators<ElectricCurrent, Duration, ElectricCharge>,
+        IDivisionOperators<ElectricCurrent, ElectricPotential, ElectricConductance>,
+        IDivisionOperators<ElectricCurrent, Area, ElectricCurrentDensity>,
         IDivisionOperators<ElectricCurrent, Duration, ElectricCurrentGradient>,
         IMultiplyOperators<ElectricCurrent, ElectricResistance, ElectricPotential>,
+        IDivisionOperators<ElectricCurrent, ElectricConductance, ElectricPotential>,
         IMultiplyOperators<ElectricCurrent, ElectricPotential, Power>,
         IComparisonOperators<ElectricCurrent, ElectricCurrent, bool>,
         IParsable<ElectricCurrent>,
@@ -595,6 +599,12 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Get <see cref="Area"/> from <see cref="ElectricCurrent"/> / <see cref="ElectricCurrentDensity"/>.</summary>
+        public static Area operator /(ElectricCurrent electricCurrent, ElectricCurrentDensity electricCurrentDensity)
+        {
+            return Area.FromSquareMeters(electricCurrent.Amperes / electricCurrentDensity.AmperesPerSquareMeter);
+        }
+
         /// <summary>Get <see cref="Duration"/> from <see cref="ElectricCurrent"/> / <see cref="ElectricCurrentGradient"/>.</summary>
         public static Duration operator /(ElectricCurrent electricCurrent, ElectricCurrentGradient electricCurrentGradient)
         {
@@ -607,6 +617,18 @@ namespace UnitsNet
             return ElectricCharge.FromAmpereHours(electricCurrent.Amperes * duration.Hours);
         }
 
+        /// <summary>Get <see cref="ElectricConductance"/> from <see cref="ElectricCurrent"/> / <see cref="ElectricPotential"/>.</summary>
+        public static ElectricConductance operator /(ElectricCurrent electricCurrent, ElectricPotential electricPotential)
+        {
+            return ElectricConductance.FromSiemens(electricCurrent.Amperes / electricPotential.Volts);
+        }
+
+        /// <summary>Get <see cref="ElectricCurrentDensity"/> from <see cref="ElectricCurrent"/> / <see cref="Area"/>.</summary>
+        public static ElectricCurrentDensity operator /(ElectricCurrent electricCurrent, Area area)
+        {
+            return ElectricCurrentDensity.FromAmperesPerSquareMeter(electricCurrent.Amperes / area.SquareMeters);
+        }
+
         /// <summary>Get <see cref="ElectricCurrentGradient"/> from <see cref="ElectricCurrent"/> / <see cref="Duration"/>.</summary>
         public static ElectricCurrentGradient operator /(ElectricCurrent electricCurrent, Duration duration)
         {
@@ -617,6 +639,12 @@ namespace UnitsNet
         public static ElectricPotential operator *(ElectricCurrent electricCurrent, ElectricResistance electricResistance)
         {
             return ElectricPotential.FromVolts(electricCurrent.Amperes * electricResistance.Ohms);
+        }
+
+        /// <summary>Get <see cref="ElectricPotential"/> from <see cref="ElectricCurrent"/> / <see cref="ElectricConductance"/>.</summary>
+        public static ElectricPotential operator /(ElectricCurrent electricCurrent, ElectricConductance electricConductance)
+        {
+            return ElectricPotential.FromVolts(electricCurrent.Amperes / electricConductance.Siemens);
         }
 
         /// <summary>Get <see cref="Power"/> from <see cref="ElectricCurrent"/> * <see cref="ElectricPotential"/>.</summary>

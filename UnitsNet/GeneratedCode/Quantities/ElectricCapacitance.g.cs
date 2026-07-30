@@ -42,6 +42,7 @@ namespace UnitsNet
         ILinearQuantity<ElectricCapacitance, ElectricCapacitanceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricCapacitance, ElectricCapacitance, QuantityValue>,
+        IMultiplyOperators<ElectricCapacitance, ElectricPotential, ElectricCharge>,
         IComparisonOperators<ElectricCapacitance, ElectricCapacitance, bool>,
         IParsable<ElectricCapacitance>,
 #endif
@@ -552,6 +553,16 @@ namespace UnitsNet
         public static QuantityValue operator /(ElectricCapacitance left, ElectricCapacitance right)
         {
             return left.Farads / right.Farads;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="ElectricCharge"/> from <see cref="ElectricCapacitance"/> * <see cref="ElectricPotential"/>.</summary>
+        public static ElectricCharge operator *(ElectricCapacitance electricCapacitance, ElectricPotential electricPotential)
+        {
+            return ElectricCharge.FromCoulombs(electricCapacitance.Farads * electricPotential.Volts);
         }
 
         #endregion

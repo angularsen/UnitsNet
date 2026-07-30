@@ -39,6 +39,7 @@ namespace UnitsNet
         ILinearQuantity<HeatTransferCoefficient, HeatTransferCoefficientUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<HeatTransferCoefficient, HeatTransferCoefficient, QuantityValue>,
+        IMultiplyOperators<HeatTransferCoefficient, TemperatureDelta, HeatFlux>,
         IComparisonOperators<HeatTransferCoefficient, HeatTransferCoefficient, bool>,
         IParsable<HeatTransferCoefficient>,
 #endif
@@ -533,6 +534,16 @@ namespace UnitsNet
         public static QuantityValue operator /(HeatTransferCoefficient left, HeatTransferCoefficient right)
         {
             return left.WattsPerSquareMeterKelvin / right.WattsPerSquareMeterKelvin;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="HeatFlux"/> from <see cref="HeatTransferCoefficient"/> * <see cref="TemperatureDelta"/>.</summary>
+        public static HeatFlux operator *(HeatTransferCoefficient heatTransferCoefficient, TemperatureDelta temperatureDelta)
+        {
+            return HeatFlux.FromWattsPerSquareMeter(heatTransferCoefficient.WattsPerSquareMeterKelvin * temperatureDelta.Kelvins);
         }
 
         #endregion

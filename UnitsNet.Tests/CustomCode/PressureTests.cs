@@ -315,5 +315,18 @@ namespace UnitsNet.Tests
             Assert.Equal(LengthUnit.Foot, elevationFromPressure.Unit);
             Assert.Equal(129149.976945763m, elevationFromPressure.Value);
         }
+
+        [Fact]
+        public void PressureTimesVolumeFlowEqualsLeakRate()
+        {
+            Pressure pressure = Pressure.FromPascals(2);
+            VolumeFlow volumeFlow = VolumeFlow.FromCubicMetersPerSecond(3);
+            LeakRate expected = LeakRate.FromPascalCubicMetersPerSecond(6);
+
+            Assert.Equal(expected, pressure * volumeFlow);
+            Assert.Equal(expected, volumeFlow * pressure);
+            Assert.Equal(volumeFlow, expected / pressure);
+            Assert.Equal(pressure, expected / volumeFlow);
+        }
     }
 }

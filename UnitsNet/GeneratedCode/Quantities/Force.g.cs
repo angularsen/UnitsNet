@@ -45,6 +45,7 @@ namespace UnitsNet
         IDivisionOperators<Force, Duration, ForceChangeRate>,
         IMultiplyOperators<Force, ReciprocalLength, ForcePerLength>,
         IDivisionOperators<Force, Length, ForcePerLength>,
+        IMultiplyOperators<Force, Duration, Impulse>,
         IDivisionOperators<Force, ForcePerLength, Length>,
         IDivisionOperators<Force, Acceleration, Mass>,
         IMultiplyOperators<Force, Speed, Power>,
@@ -747,6 +748,12 @@ namespace UnitsNet
         public static ForcePerLength operator /(Force force, Length length)
         {
             return ForcePerLength.FromNewtonsPerMeter(force.Newtons / length.Meters);
+        }
+
+        /// <summary>Get <see cref="Impulse"/> from <see cref="Force"/> * <see cref="Duration"/>.</summary>
+        public static Impulse operator *(Force force, Duration duration)
+        {
+            return Impulse.FromNewtonSeconds(force.Newtons * duration.Seconds);
         }
 
         /// <summary>Get <see cref="Length"/> from <see cref="Force"/> / <see cref="ForcePerLength"/>.</summary>

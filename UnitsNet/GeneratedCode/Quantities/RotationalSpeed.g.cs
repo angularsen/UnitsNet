@@ -40,7 +40,9 @@ namespace UnitsNet
 #if NET7_0_OR_GREATER
         IDivisionOperators<RotationalSpeed, RotationalSpeed, QuantityValue>,
         IMultiplyOperators<RotationalSpeed, Duration, Angle>,
+        IDivisionOperators<RotationalSpeed, RotationalAcceleration, Duration>,
         IMultiplyOperators<RotationalSpeed, Torque, Power>,
+        IDivisionOperators<RotationalSpeed, Duration, RotationalAcceleration>,
         IComparisonOperators<RotationalSpeed, RotationalSpeed, bool>,
         IParsable<RotationalSpeed>,
 #endif
@@ -659,10 +661,22 @@ namespace UnitsNet
             return Angle.FromRadians(rotationalSpeed.RadiansPerSecond * duration.Seconds);
         }
 
+        /// <summary>Get <see cref="Duration"/> from <see cref="RotationalSpeed"/> / <see cref="RotationalAcceleration"/>.</summary>
+        public static Duration operator /(RotationalSpeed rotationalSpeed, RotationalAcceleration rotationalAcceleration)
+        {
+            return Duration.FromSeconds(rotationalSpeed.RadiansPerSecond / rotationalAcceleration.RadiansPerSecondSquared);
+        }
+
         /// <summary>Get <see cref="Power"/> from <see cref="RotationalSpeed"/> * <see cref="Torque"/>.</summary>
         public static Power operator *(RotationalSpeed rotationalSpeed, Torque torque)
         {
             return Power.FromWatts(rotationalSpeed.RadiansPerSecond * torque.NewtonMeters);
+        }
+
+        /// <summary>Get <see cref="RotationalAcceleration"/> from <see cref="RotationalSpeed"/> / <see cref="Duration"/>.</summary>
+        public static RotationalAcceleration operator /(RotationalSpeed rotationalSpeed, Duration duration)
+        {
+            return RotationalAcceleration.FromRadiansPerSecondSquared(rotationalSpeed.RadiansPerSecond / duration.Seconds);
         }
 
         #endregion

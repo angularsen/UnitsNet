@@ -39,6 +39,7 @@ namespace UnitsNet
         ILinearQuantity<Irradiance, IrradianceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Irradiance, Irradiance, QuantityValue>,
+        IMultiplyOperators<Irradiance, Duration, Irradiation>,
         IComparisonOperators<Irradiance, Irradiance, bool>,
         IParsable<Irradiance>,
 #endif
@@ -661,6 +662,16 @@ namespace UnitsNet
         public static QuantityValue operator /(Irradiance left, Irradiance right)
         {
             return left.WattsPerSquareMeter / right.WattsPerSquareMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Irradiation"/> from <see cref="Irradiance"/> * <see cref="Duration"/>.</summary>
+        public static Irradiation operator *(Irradiance irradiance, Duration duration)
+        {
+            return Irradiation.FromJoulesPerSquareMeter(irradiance.WattsPerSquareMeter * duration.Seconds);
         }
 
         #endregion

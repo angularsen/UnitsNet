@@ -52,5 +52,18 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MilliwattsPerInchInOneWattPerMeter => 2.5400e1;
         protected override double MilliwattsPerMeterInOneWattPerMeter => 1e3;
         protected override double MilliwattsPerMillimeterInOneWattPerMeter => 1;
+
+        [Fact]
+        public void LinearPowerDensityTimesLengthEqualsPower()
+        {
+            LinearPowerDensity linearPowerDensity = LinearPowerDensity.FromWattsPerMeter(2);
+            Length length = Length.FromMeters(3);
+            Power expected = Power.FromWatts(6);
+
+            Assert.Equal(expected, linearPowerDensity * length);
+            Assert.Equal(expected, length * linearPowerDensity);
+            Assert.Equal(length, expected / linearPowerDensity);
+            Assert.Equal(linearPowerDensity, expected / length);
+        }
     }
 }

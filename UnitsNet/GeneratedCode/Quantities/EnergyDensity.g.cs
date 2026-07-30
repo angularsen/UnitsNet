@@ -40,6 +40,8 @@ namespace UnitsNet
 #if NET7_0_OR_GREATER
         IDivisionOperators<EnergyDensity, EnergyDensity, QuantityValue>,
         IMultiplyOperators<EnergyDensity, Volume, Energy>,
+        IDivisionOperators<EnergyDensity, VolumetricHeatCapacity, TemperatureDelta>,
+        IDivisionOperators<EnergyDensity, TemperatureDelta, VolumetricHeatCapacity>,
         IComparisonOperators<EnergyDensity, EnergyDensity, bool>,
         IParsable<EnergyDensity>,
 #endif
@@ -640,6 +642,18 @@ namespace UnitsNet
         public static Energy operator *(EnergyDensity energyDensity, Volume volume)
         {
             return Energy.FromJoules(energyDensity.JoulesPerCubicMeter * volume.CubicMeters);
+        }
+
+        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="EnergyDensity"/> / <see cref="VolumetricHeatCapacity"/>.</summary>
+        public static TemperatureDelta operator /(EnergyDensity energyDensity, VolumetricHeatCapacity volumetricHeatCapacity)
+        {
+            return TemperatureDelta.FromKelvins(energyDensity.JoulesPerCubicMeter / volumetricHeatCapacity.JoulesPerCubicMeterKelvin);
+        }
+
+        /// <summary>Get <see cref="VolumetricHeatCapacity"/> from <see cref="EnergyDensity"/> / <see cref="TemperatureDelta"/>.</summary>
+        public static VolumetricHeatCapacity operator /(EnergyDensity energyDensity, TemperatureDelta temperatureDelta)
+        {
+            return VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(energyDensity.JoulesPerCubicMeter / temperatureDelta.Kelvins);
         }
 
         #endregion

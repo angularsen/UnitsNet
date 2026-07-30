@@ -39,6 +39,7 @@ namespace UnitsNet
         ILinearQuantity<Compressibility, CompressibilityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Compressibility, Compressibility, QuantityValue>,
+        IMultiplyOperators<Compressibility, Pressure, Ratio>,
         IComparisonOperators<Compressibility, Compressibility, bool>,
         IParsable<Compressibility>,
 #endif
@@ -549,6 +550,16 @@ namespace UnitsNet
         public static QuantityValue operator /(Compressibility left, Compressibility right)
         {
             return left.InversePascals / right.InversePascals;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Ratio"/> from <see cref="Compressibility"/> * <see cref="Pressure"/>.</summary>
+        public static Ratio operator *(Compressibility compressibility, Pressure pressure)
+        {
+            return Ratio.FromDecimalFractions(compressibility.InversePascals * pressure.Pascals);
         }
 
         #endregion

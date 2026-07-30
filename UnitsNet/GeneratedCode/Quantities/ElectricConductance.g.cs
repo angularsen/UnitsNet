@@ -42,6 +42,7 @@ namespace UnitsNet
         ILinearQuantity<ElectricConductance, ElectricConductanceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricConductance, ElectricConductance, QuantityValue>,
+        IMultiplyOperators<ElectricConductance, ElectricPotential, ElectricCurrent>,
         IComparisonOperators<ElectricConductance, ElectricConductance, bool>,
         IParsable<ElectricConductance>,
 #endif
@@ -696,6 +697,16 @@ namespace UnitsNet
         public static QuantityValue operator /(ElectricConductance left, ElectricConductance right)
         {
             return left.Siemens / right.Siemens;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="ElectricConductance"/> * <see cref="ElectricPotential"/>.</summary>
+        public static ElectricCurrent operator *(ElectricConductance electricConductance, ElectricPotential electricPotential)
+        {
+            return ElectricCurrent.FromAmperes(electricConductance.Siemens * electricPotential.Volts);
         }
 
         #endregion

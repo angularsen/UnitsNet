@@ -132,5 +132,18 @@ namespace UnitsNet.Tests
             var force = Force.FromGramsForce(1000);
             Assert.Equal(Force.FromKilogramsForce(1), force.ToUnit(ForceUnit.KilogramForce));
         }
+
+        [Fact]
+        public void ForceTimesDurationEqualsImpulse()
+        {
+            Force force = Force.FromNewtons(2);
+            Duration duration = Duration.FromSeconds(3);
+            Impulse expected = Impulse.FromNewtonSeconds(6);
+
+            Assert.Equal(expected, force * duration);
+            Assert.Equal(expected, duration * force);
+            Assert.Equal(duration, expected / force);
+            Assert.Equal(force, expected / duration);
+        }
     }
 }

@@ -44,6 +44,8 @@ namespace UnitsNet
         IDivisionOperators<LuminousFlux, LuminousFlux, QuantityValue>,
         IDivisionOperators<LuminousFlux, Illuminance, Area>,
         IDivisionOperators<LuminousFlux, Area, Illuminance>,
+        IDivisionOperators<LuminousFlux, SolidAngle, LuminousIntensity>,
+        IDivisionOperators<LuminousFlux, LuminousIntensity, SolidAngle>,
         IComparisonOperators<LuminousFlux, LuminousFlux, bool>,
         IParsable<LuminousFlux>,
 #endif
@@ -474,6 +476,18 @@ namespace UnitsNet
         public static Illuminance operator /(LuminousFlux luminousFlux, Area area)
         {
             return Illuminance.FromLux(luminousFlux.Lumens / area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="LuminousIntensity"/> from <see cref="LuminousFlux"/> / <see cref="SolidAngle"/>.</summary>
+        public static LuminousIntensity operator /(LuminousFlux luminousFlux, SolidAngle solidAngle)
+        {
+            return LuminousIntensity.FromCandela(luminousFlux.Lumens / solidAngle.Steradians);
+        }
+
+        /// <summary>Get <see cref="SolidAngle"/> from <see cref="LuminousFlux"/> / <see cref="LuminousIntensity"/>.</summary>
+        public static SolidAngle operator /(LuminousFlux luminousFlux, LuminousIntensity luminousIntensity)
+        {
+            return SolidAngle.FromSteradians(luminousFlux.Lumens / luminousIntensity.Candela);
         }
 
         #endregion

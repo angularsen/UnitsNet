@@ -42,6 +42,7 @@ namespace UnitsNet
         ILinearQuantity<LinearPowerDensity, LinearPowerDensityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<LinearPowerDensity, LinearPowerDensity, QuantityValue>,
+        IMultiplyOperators<LinearPowerDensity, Length, Power>,
         IComparisonOperators<LinearPowerDensity, LinearPowerDensity, bool>,
         IParsable<LinearPowerDensity>,
 #endif
@@ -840,6 +841,16 @@ namespace UnitsNet
         public static QuantityValue operator /(LinearPowerDensity left, LinearPowerDensity right)
         {
             return left.WattsPerMeter / right.WattsPerMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Power"/> from <see cref="LinearPowerDensity"/> * <see cref="Length"/>.</summary>
+        public static Power operator *(LinearPowerDensity linearPowerDensity, Length length)
+        {
+            return Power.FromWatts(linearPowerDensity.WattsPerMeter * length.Meters);
         }
 
         #endregion

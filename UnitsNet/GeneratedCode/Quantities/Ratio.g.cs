@@ -39,6 +39,10 @@ namespace UnitsNet
         ILinearQuantity<Ratio, RatioUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Ratio, Ratio, QuantityValue>,
+        IDivisionOperators<Ratio, Pressure, Compressibility>,
+        IDivisionOperators<Ratio, RatioChangeRate, Duration>,
+        IDivisionOperators<Ratio, Compressibility, Pressure>,
+        IDivisionOperators<Ratio, Duration, RatioChangeRate>,
         IComparisonOperators<Ratio, Ratio, bool>,
         IParsable<Ratio>,
 #endif
@@ -519,6 +523,34 @@ namespace UnitsNet
         public static QuantityValue operator /(Ratio left, Ratio right)
         {
             return left.DecimalFractions / right.DecimalFractions;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Compressibility"/> from <see cref="Ratio"/> / <see cref="Pressure"/>.</summary>
+        public static Compressibility operator /(Ratio ratio, Pressure pressure)
+        {
+            return Compressibility.FromInversePascals(ratio.DecimalFractions / pressure.Pascals);
+        }
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="Ratio"/> / <see cref="RatioChangeRate"/>.</summary>
+        public static Duration operator /(Ratio ratio, RatioChangeRate ratioChangeRate)
+        {
+            return Duration.FromSeconds(ratio.DecimalFractions / ratioChangeRate.DecimalFractionsPerSecond);
+        }
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="Ratio"/> / <see cref="Compressibility"/>.</summary>
+        public static Pressure operator /(Ratio ratio, Compressibility compressibility)
+        {
+            return Pressure.FromPascals(ratio.DecimalFractions / compressibility.InversePascals);
+        }
+
+        /// <summary>Get <see cref="RatioChangeRate"/> from <see cref="Ratio"/> / <see cref="Duration"/>.</summary>
+        public static RatioChangeRate operator /(Ratio ratio, Duration duration)
+        {
+            return RatioChangeRate.FromDecimalFractionsPerSecond(ratio.DecimalFractions / duration.Seconds);
         }
 
         #endregion

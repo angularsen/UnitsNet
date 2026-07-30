@@ -65,5 +65,18 @@ namespace UnitsNet.Tests.CustomCode
             // If 1 target pressure unit equals N pascals, then 1 Pa^-1 equals N target-unit^-1.
             AssertEx.EqualTolerance(expected, compressibility.As(unit), 1e-12);
         }
+
+        [Fact]
+        public void CompressibilityTimesPressureEqualsRatio()
+        {
+            Compressibility compressibility = Compressibility.FromInversePascals(2);
+            Pressure pressure = Pressure.FromPascals(3);
+            Ratio expected = Ratio.FromDecimalFractions(6);
+
+            Assert.Equal(expected, compressibility * pressure);
+            Assert.Equal(expected, pressure * compressibility);
+            Assert.Equal(pressure, expected / compressibility);
+            Assert.Equal(compressibility, expected / pressure);
+        }
     }
 }

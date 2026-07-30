@@ -30,5 +30,18 @@ namespace UnitsNet.Tests.CustomCode
         protected override double AmperesPerSquareMeterInOneAmperePerSquareMeter => 1;
         protected override double AmperesPerSquareInchInOneAmperePerSquareMeter => 6.4516e-4;
         protected override double AmperesPerSquareFootInOneAmperePerSquareMeter => 9.290304e-2;
+
+        [Fact]
+        public void ElectricCurrentDensityTimesAreaEqualsElectricCurrent()
+        {
+            ElectricCurrentDensity currentDensity = ElectricCurrentDensity.FromAmperesPerSquareMeter(2);
+            Area area = Area.FromSquareMeters(3);
+            ElectricCurrent expected = ElectricCurrent.FromAmperes(6);
+
+            Assert.Equal(expected, currentDensity * area);
+            Assert.Equal(expected, area * currentDensity);
+            Assert.Equal(area, expected / currentDensity);
+            Assert.Equal(currentDensity, expected / area);
+        }
     }
 }

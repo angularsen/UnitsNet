@@ -42,6 +42,7 @@ namespace UnitsNet
         ILinearQuantity<ElectricField, ElectricFieldUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricField, ElectricField, QuantityValue>,
+        IMultiplyOperators<ElectricField, Length, ElectricPotential>,
         IComparisonOperators<ElectricField, ElectricField, bool>,
         IParsable<ElectricField>,
 #endif
@@ -456,6 +457,16 @@ namespace UnitsNet
         public static QuantityValue operator /(ElectricField left, ElectricField right)
         {
             return left.VoltsPerMeter / right.VoltsPerMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="ElectricPotential"/> from <see cref="ElectricField"/> * <see cref="Length"/>.</summary>
+        public static ElectricPotential operator *(ElectricField electricField, Length length)
+        {
+            return ElectricPotential.FromVolts(electricField.VoltsPerMeter * length.Meters);
         }
 
         #endregion

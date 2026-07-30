@@ -34,6 +34,19 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double JoulesPerCubicMeterDegreeCelsiusInOneJoulePerCubicMeterKelvin => 1;
         protected override double KilojoulesPerCubicMeterDegreeCelsiusInOneJoulePerCubicMeterKelvin => 1E-3;
-        protected override double MegajoulesPerCubicMeterDegreeCelsiusInOneJoulePerCubicMeterKelvin => 1E-6;        
+        protected override double MegajoulesPerCubicMeterDegreeCelsiusInOneJoulePerCubicMeterKelvin => 1E-6;
+
+        [Fact]
+        public void VolumetricHeatCapacityTimesTemperatureDeltaEqualsEnergyDensity()
+        {
+            VolumetricHeatCapacity volumetricHeatCapacity = VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(2);
+            TemperatureDelta temperatureDelta = TemperatureDelta.FromKelvins(3);
+            EnergyDensity expected = EnergyDensity.FromJoulesPerCubicMeter(6);
+
+            Assert.Equal(expected, volumetricHeatCapacity * temperatureDelta);
+            Assert.Equal(expected, temperatureDelta * volumetricHeatCapacity);
+            Assert.Equal(temperatureDelta, expected / volumetricHeatCapacity);
+            Assert.Equal(volumetricHeatCapacity, expected / temperatureDelta);
+        }
     }
 }

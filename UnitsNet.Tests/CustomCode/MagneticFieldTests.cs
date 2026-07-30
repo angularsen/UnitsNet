@@ -33,5 +33,18 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MilliteslasInOneTesla => 1e3;
         protected override double GaussesInOneTesla => 1e4;
         protected override double MilligaussesInOneTesla => 1e7;
+
+        [Fact]
+        public void MagneticFieldTimesAreaEqualsMagneticFlux()
+        {
+            MagneticField magneticField = MagneticField.FromTeslas(2);
+            Area area = Area.FromSquareMeters(3);
+            MagneticFlux expected = MagneticFlux.FromWebers(6);
+
+            Assert.Equal(expected, magneticField * area);
+            Assert.Equal(expected, area * magneticField);
+            Assert.Equal(area, expected / magneticField);
+            Assert.Equal(magneticField, expected / area);
+        }
     }
 }

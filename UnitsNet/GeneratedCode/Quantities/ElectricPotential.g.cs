@@ -42,9 +42,15 @@ namespace UnitsNet
         ILinearQuantity<ElectricPotential, ElectricPotentialUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricPotential, ElectricPotential, QuantityValue>,
+        IDivisionOperators<ElectricPotential, ElectricPotentialChangeRate, Duration>,
+        IMultiplyOperators<ElectricPotential, ElectricCapacitance, ElectricCharge>,
+        IMultiplyOperators<ElectricPotential, ElectricConductance, ElectricCurrent>,
         IDivisionOperators<ElectricPotential, ElectricResistance, ElectricCurrent>,
+        IDivisionOperators<ElectricPotential, Length, ElectricField>,
+        IDivisionOperators<ElectricPotential, Duration, ElectricPotentialChangeRate>,
         IDivisionOperators<ElectricPotential, ElectricCurrent, ElectricResistance>,
         IMultiplyOperators<ElectricPotential, ElectricCharge, Energy>,
+        IDivisionOperators<ElectricPotential, ElectricField, Length>,
         IMultiplyOperators<ElectricPotential, ElectricCurrent, Power>,
         IComparisonOperators<ElectricPotential, ElectricPotential, bool>,
         IParsable<ElectricPotential>,
@@ -546,10 +552,40 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Get <see cref="Duration"/> from <see cref="ElectricPotential"/> / <see cref="ElectricPotentialChangeRate"/>.</summary>
+        public static Duration operator /(ElectricPotential electricPotential, ElectricPotentialChangeRate electricPotentialChangeRate)
+        {
+            return Duration.FromSeconds(electricPotential.Volts / electricPotentialChangeRate.VoltsPerSecond);
+        }
+
+        /// <summary>Get <see cref="ElectricCharge"/> from <see cref="ElectricPotential"/> * <see cref="ElectricCapacitance"/>.</summary>
+        public static ElectricCharge operator *(ElectricPotential electricPotential, ElectricCapacitance electricCapacitance)
+        {
+            return ElectricCharge.FromCoulombs(electricPotential.Volts * electricCapacitance.Farads);
+        }
+
+        /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="ElectricPotential"/> * <see cref="ElectricConductance"/>.</summary>
+        public static ElectricCurrent operator *(ElectricPotential electricPotential, ElectricConductance electricConductance)
+        {
+            return ElectricCurrent.FromAmperes(electricPotential.Volts * electricConductance.Siemens);
+        }
+
         /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="ElectricPotential"/> / <see cref="ElectricResistance"/>.</summary>
         public static ElectricCurrent operator /(ElectricPotential electricPotential, ElectricResistance electricResistance)
         {
             return ElectricCurrent.FromAmperes(electricPotential.Volts / electricResistance.Ohms);
+        }
+
+        /// <summary>Get <see cref="ElectricField"/> from <see cref="ElectricPotential"/> / <see cref="Length"/>.</summary>
+        public static ElectricField operator /(ElectricPotential electricPotential, Length length)
+        {
+            return ElectricField.FromVoltsPerMeter(electricPotential.Volts / length.Meters);
+        }
+
+        /// <summary>Get <see cref="ElectricPotentialChangeRate"/> from <see cref="ElectricPotential"/> / <see cref="Duration"/>.</summary>
+        public static ElectricPotentialChangeRate operator /(ElectricPotential electricPotential, Duration duration)
+        {
+            return ElectricPotentialChangeRate.FromVoltsPerSecond(electricPotential.Volts / duration.Seconds);
         }
 
         /// <summary>Get <see cref="ElectricResistance"/> from <see cref="ElectricPotential"/> / <see cref="ElectricCurrent"/>.</summary>
@@ -562,6 +598,12 @@ namespace UnitsNet
         public static Energy operator *(ElectricPotential electricPotential, ElectricCharge electricCharge)
         {
             return Energy.FromJoules(electricPotential.Volts * electricCharge.Coulombs);
+        }
+
+        /// <summary>Get <see cref="Length"/> from <see cref="ElectricPotential"/> / <see cref="ElectricField"/>.</summary>
+        public static Length operator /(ElectricPotential electricPotential, ElectricField electricField)
+        {
+            return Length.FromMeters(electricPotential.Volts / electricField.VoltsPerMeter);
         }
 
         /// <summary>Get <see cref="Power"/> from <see cref="ElectricPotential"/> * <see cref="ElectricCurrent"/>.</summary>

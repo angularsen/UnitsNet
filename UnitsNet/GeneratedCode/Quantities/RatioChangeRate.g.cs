@@ -39,6 +39,7 @@ namespace UnitsNet
         ILinearQuantity<RatioChangeRate, RatioChangeRateUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<RatioChangeRate, RatioChangeRate, QuantityValue>,
+        IMultiplyOperators<RatioChangeRate, Duration, Ratio>,
         IComparisonOperators<RatioChangeRate, RatioChangeRate, bool>,
         IParsable<RatioChangeRate>,
 #endif
@@ -469,6 +470,16 @@ namespace UnitsNet
         public static QuantityValue operator /(RatioChangeRate left, RatioChangeRate right)
         {
             return left.DecimalFractionsPerSecond / right.DecimalFractionsPerSecond;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Ratio"/> from <see cref="RatioChangeRate"/> * <see cref="Duration"/>.</summary>
+        public static Ratio operator *(RatioChangeRate ratioChangeRate, Duration duration)
+        {
+            return Ratio.FromDecimalFractions(ratioChangeRate.DecimalFractionsPerSecond * duration.Seconds);
         }
 
         #endregion

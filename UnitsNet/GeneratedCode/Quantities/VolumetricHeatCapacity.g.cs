@@ -42,6 +42,7 @@ namespace UnitsNet
         ILinearQuantity<VolumetricHeatCapacity, VolumetricHeatCapacityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<VolumetricHeatCapacity, VolumetricHeatCapacity, QuantityValue>,
+        IMultiplyOperators<VolumetricHeatCapacity, TemperatureDelta, EnergyDensity>,
         IComparisonOperators<VolumetricHeatCapacity, VolumetricHeatCapacity, bool>,
         IParsable<VolumetricHeatCapacity>,
 #endif
@@ -584,6 +585,16 @@ namespace UnitsNet
         public static QuantityValue operator /(VolumetricHeatCapacity left, VolumetricHeatCapacity right)
         {
             return left.JoulesPerCubicMeterKelvin / right.JoulesPerCubicMeterKelvin;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="EnergyDensity"/> from <see cref="VolumetricHeatCapacity"/> * <see cref="TemperatureDelta"/>.</summary>
+        public static EnergyDensity operator *(VolumetricHeatCapacity volumetricHeatCapacity, TemperatureDelta temperatureDelta)
+        {
+            return EnergyDensity.FromJoulesPerCubicMeter(volumetricHeatCapacity.JoulesPerCubicMeterKelvin * temperatureDelta.Kelvins);
         }
 
         #endregion

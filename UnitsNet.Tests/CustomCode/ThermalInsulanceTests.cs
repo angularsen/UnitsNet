@@ -46,5 +46,18 @@ namespace UnitsNet.Tests.CustomCode
        {
            base.BaseUnit_HasSIBase();
        } 
+
+       [Fact]
+       public void ThermalInsulanceTimesHeatFluxEqualsTemperatureDelta()
+       {
+           ThermalInsulance thermalInsulance = ThermalInsulance.FromSquareMeterKelvinsPerWatt(2);
+           HeatFlux heatFlux = HeatFlux.FromWattsPerSquareMeter(3);
+           TemperatureDelta expected = TemperatureDelta.FromKelvins(6);
+
+           Assert.Equal(expected, thermalInsulance * heatFlux);
+           Assert.Equal(expected, heatFlux * thermalInsulance);
+           Assert.Equal(heatFlux, expected / thermalInsulance);
+           Assert.Equal(thermalInsulance, expected / heatFlux);
+       }
     }
 }

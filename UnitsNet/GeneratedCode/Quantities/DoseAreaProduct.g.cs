@@ -42,6 +42,8 @@ namespace UnitsNet
         ILinearQuantity<DoseAreaProduct, DoseAreaProductUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<DoseAreaProduct, DoseAreaProduct, QuantityValue>,
+        IDivisionOperators<DoseAreaProduct, Area, AbsorbedDoseOfIonizingRadiation>,
+        IDivisionOperators<DoseAreaProduct, AbsorbedDoseOfIonizingRadiation, Area>,
         IComparisonOperators<DoseAreaProduct, DoseAreaProduct, bool>,
         IParsable<DoseAreaProduct>,
 #endif
@@ -840,6 +842,22 @@ namespace UnitsNet
         public static QuantityValue operator /(DoseAreaProduct left, DoseAreaProduct right)
         {
             return left.GraySquareMeters / right.GraySquareMeters;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="AbsorbedDoseOfIonizingRadiation"/> from <see cref="DoseAreaProduct"/> / <see cref="Area"/>.</summary>
+        public static AbsorbedDoseOfIonizingRadiation operator /(DoseAreaProduct doseAreaProduct, Area area)
+        {
+            return AbsorbedDoseOfIonizingRadiation.FromGrays(doseAreaProduct.GraySquareMeters / area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="Area"/> from <see cref="DoseAreaProduct"/> / <see cref="AbsorbedDoseOfIonizingRadiation"/>.</summary>
+        public static Area operator /(DoseAreaProduct doseAreaProduct, AbsorbedDoseOfIonizingRadiation absorbedDoseOfIonizingRadiation)
+        {
+            return Area.FromSquareMeters(doseAreaProduct.GraySquareMeters / absorbedDoseOfIonizingRadiation.Grays);
         }
 
         #endregion

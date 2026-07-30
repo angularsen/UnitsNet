@@ -39,6 +39,7 @@ namespace UnitsNet
         ILinearQuantity<RotationalAcceleration, RotationalAccelerationUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<RotationalAcceleration, RotationalAcceleration, QuantityValue>,
+        IMultiplyOperators<RotationalAcceleration, Duration, RotationalSpeed>,
         IComparisonOperators<RotationalAcceleration, RotationalAcceleration, bool>,
         IParsable<RotationalAcceleration>,
 #endif
@@ -501,6 +502,16 @@ namespace UnitsNet
         public static QuantityValue operator /(RotationalAcceleration left, RotationalAcceleration right)
         {
             return left.RadiansPerSecondSquared / right.RadiansPerSecondSquared;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="RotationalSpeed"/> from <see cref="RotationalAcceleration"/> * <see cref="Duration"/>.</summary>
+        public static RotationalSpeed operator *(RotationalAcceleration rotationalAcceleration, Duration duration)
+        {
+            return RotationalSpeed.FromRadiansPerSecond(rotationalAcceleration.RadiansPerSecondSquared * duration.Seconds);
         }
 
         #endregion
