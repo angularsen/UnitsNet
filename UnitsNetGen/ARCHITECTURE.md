@@ -168,7 +168,7 @@ directly references it.
   incrementality, and all relationship shapes.
 - `UnitsNetGen.Tests`: generated API and runtime behavior tests.
 - `UnitsNetGen.Compatibility.Tests`: linked-output, full-catalog public API, enum, conversion,
-  parsing, formatting, behavior, registry, and shared-contract comparisons.
+  parsing, formatting, behavior, and registry comparisons against unchanged UnitsNet.
 - `Samples/UnitsNetGen.AllSi.Sample`: the SI quantity chain from Length and Duration through Speed,
   Acceleration, Force, Pressure, Energy, and Power.
 - `Samples/UnitsNetGen.Representative.Sample`: a varied catalog selection and conditional

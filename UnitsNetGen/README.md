@@ -67,7 +67,8 @@ conversion, arithmetic, localized abbreviations, base dimensions, and familiar c
 extensions. `AllQuantities` currently selects all 129 definitions in the UnitsNet catalog.
 
 Generated extension methods give ordinary consumer code the familiar API while delegating to
-shared Core algorithms that operate on both UnitsNet and UnitsNetGen quantities:
+shared Core algorithms. The separate UnitsNet integration branch verifies that the same algorithms
+can operate on UnitsNet v6 quantities:
 
 ```csharp
 Length total = new[]

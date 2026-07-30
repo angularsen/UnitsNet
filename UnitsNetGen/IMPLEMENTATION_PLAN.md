@@ -7,6 +7,8 @@ keeps the broader SI relationship chain continuously buildable.
 ## Branches
 
 - Steps 0–5: `agl/unitsnetgen-poc`
+- UnitsNet v6 adoption of `UnitsNet.Core`: `agl/unitsnetgen-poc-unitsnet-integration`, stacked on
+  `agl/unitsnetgen-poc`
 - Steps 6–7: a numeric/interoperability branch created from the completed step-5 commit
 
 ## Progress

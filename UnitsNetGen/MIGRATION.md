@@ -44,7 +44,7 @@ QuantityRegistry registry = UnitsNetGenRegistry.Instance;
 | `QuantityInfo` / `UnitInfo` metadata | `IQuantityDescriptor` / `UnitDescriptor` | Supported as immutable metadata |
 | Dynamic formatting through `IQuantity` | `descriptor.Format(value, format, provider)` | Supported with concrete-type validation |
 | System.Text.Json converters | `UnitsNetGenRegistry.JsonConverter` | Supported without assembly scanning |
-| Generic quantity algorithms | `UnitsNet.Core.IQuantity<...>` capability contracts | Supported across both implementations |
+| Generic quantity algorithms | `UnitsNet.Core.IQuantity<...>` capability contracts | Supported by generated quantities; UnitsNet adoption is a separate integration |
 | `UnitKey` | A unit enum in-process; semantic quantity ID plus invariant unit name across boundaries | Deliberately changed |
 | `UnitSystem` / `BaseUnits` | `UnitsNetGen.UnitSystem` / `UnitsNetGen.BaseUnits` | Supported as immutable selected-module policy |
 | `UnitsNetSetup` quantity selection | Module interfaces, profiles, and definition packages | Compile-time replacement |
