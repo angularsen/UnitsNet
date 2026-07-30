@@ -363,19 +363,29 @@ executing the consumer.
 
 ## Versioning and CI
 
-The combined `UnitsNet.Modular` package uses MinVer with the tag prefix `UnitsNet.Modular/`, a minimum version
-of `6.0`, and `alpha.0` as the default prerelease identifiers. Existing `UnitsNet/*`, `JsonNet/*`,
-and unprefixed tags are ignored. A release tag such as `UnitsNet.Modular/6.0.0-alpha.1` or
-`UnitsNet.Modular/6.0.0` becomes the exact package version. Untagged builds receive a MinVer-generated
-alpha version with commit height. `UnitsNet.Modular.Generator` remains an internal, non-packable project
-because its generated code requires the runtime shipped in the combined package.
+The combined `UnitsNet.Modular` package and its `UnitsNet.Core` dependency share one MinVer release
+stream with the tag prefix `UnitsNet.Modular/`, a minimum version of `6.0`, and `alpha.0` as the
+default prerelease identifiers. Existing `UnitsNet/*`, `JsonNet/*`, and unprefixed tags are ignored.
+A release tag such as `UnitsNet.Modular/6.0.0-alpha.1` or `UnitsNet.Modular/6.0.0` becomes the exact
+version of both packages. Untagged builds give both packages the same MinVer-generated alpha version
+with commit height. Keeping their versions in lockstep makes the package dependency and release
+process explicit while Core is shipped as part of the Modular product. `UnitsNet.Modular.Generator`
+remains an internal, non-packable project because its generated code requires the runtime shipped in
+the combined package.
 
 UnitsNet, UnitsNet.Modular, and UnitsNet.Core share major version 6 to communicate the catalog
-generation they belong to, but their minor and patch versions can advance independently. UnitsNet
-retains its existing explicitly controlled version. UnitsNet.Modular and UnitsNet.Core use the
-independent MinVer tag prefixes `UnitsNet.Modular/` and `UnitsNet.Core/`, respectively. Core advances
-when its shared contracts change. Third-party definition packages have independent versions; the
-fictional sample remains at 1.x when packed directly.
+generation they belong to. UnitsNet retains its existing explicitly controlled version, while
+UnitsNet.Modular and UnitsNet.Core advance together. Third-party definition packages have independent
+versions; the fictional sample remains at 1.x when packed directly.
+
+Create an annotated release tag on a green `master` commit and push it:
+
+```powershell
+git tag -a UnitsNet.Modular/6.0.0-alpha.1 -m "UnitsNet.Modular 6.0.0-alpha.1"
+git push origin UnitsNet.Modular/6.0.0-alpha.1
+```
+
+This single tag versions and publishes both packages. Do not create `UnitsNet.Core/*` release tags.
 
 The local package automation passes a timestamped `MinVerVersionOverride` so repeated packages
 containing uncommitted changes remain unique. The package includes complete NuGet metadata,
@@ -389,11 +399,12 @@ publishing artifacts.
 
 The separate `UnitsNet.Modular CI` workflow uses full Git history, builds and tests `UnitsNet.Modular.slnx`,
 runs the minimal NuGet consumer with an isolated package cache, packs the combined package with its
-MinVer version, and uploads it as a workflow artifact. Upstream pushes to `master` publish the
-MinVer-generated alpha packages to NuGet.org, while `UnitsNet.Modular/*` tag pushes publish the exact
-tagged version. A manual run can opt into publishing when run from either of those refs. NuGet.org
-trusted publishing must authorize the `angularsen/UnitsNet` repository, the
-`unitsnet-modular-ci.yml` workflow, and the `Publish` environment.
+MinVer version, and uploads it as a workflow artifact. Upstream pushes to `master` stop there.
+`UnitsNet.Modular/*` tag pushes additionally publish the exact tagged version to NuGet.org, and a
+manual run from such a tag can opt into publishing for recovery. Before uploading or publishing, CI
+verifies that both package filenames contain the exact version declared by the tag. NuGet.org trusted
+publishing must authorize the `angularsen/UnitsNet` repository, the `unitsnet-modular-ci.yml`
+workflow, and the `Publish` environment.
 
 ## Analyzer dependency plumbing
 
