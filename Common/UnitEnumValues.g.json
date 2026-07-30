@@ -1055,7 +1055,8 @@
     "NanogramPerMole": 11,
     "PoundPerMole": 12,
     "KiloGramPerKiloMole": 20,
-    "KilogramPerKilomole": 15
+    "KilogramPerKilomole": 15,
+    "PoundPerPoundMole": 24
   },
   "Permeability": {
     "HenryPerMeter": 1

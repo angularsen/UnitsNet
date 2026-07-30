@@ -11,3 +11,4 @@ MicrogramsPerMole=µg/mol
 MilligramsPerMole=mg/mol
 NanogramsPerMole=ng/mol
 PoundsPerMole=lb/mol
+PoundsPerPoundMole=lb/lbmol,lbm/lbmol

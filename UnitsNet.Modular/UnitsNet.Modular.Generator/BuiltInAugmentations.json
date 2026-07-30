@@ -1,0 +1,137 @@
+{
+  "UnitsNet.AmplitudeRatio": [
+    {
+      "Kind": "AmplitudeRatioElectricPotential",
+      "RequiredQuantities": [ "UnitsNet.ElectricPotential" ]
+    },
+    {
+      "Kind": "AmplitudeRatioPowerRatio",
+      "RequiredQuantities": [ "UnitsNet.PowerRatio", "UnitsNet.ElectricResistance" ]
+    }
+  ],
+  "UnitsNet.AmountOfSubstance": [
+    {
+      "Kind": "AmountOfSubstanceParticles"
+    },
+    {
+      "Kind": "AmountOfSubstanceMass",
+      "RequiredQuantities": [ "UnitsNet.Mass", "UnitsNet.MolarMass" ]
+    }
+  ],
+  "UnitsNet.Area": [
+    {
+      "Kind": "AreaCircle",
+      "RequiredQuantities": [ "UnitsNet.Length" ]
+    }
+  ],
+  "UnitsNet.Duration": [
+    {
+      "Kind": "DurationTimeSpan"
+    }
+  ],
+  "UnitsNet.ElectricApparentPower": [
+    {
+      "Kind": "ElectricApparentPowerDivision",
+      "RequiredQuantities": [ "UnitsNet.ElectricPotential", "UnitsNet.ElectricCurrent" ]
+    }
+  ],
+  "UnitsNet.ElectricPotential": [
+    {
+      "Kind": "ElectricPotentialAmplitudeRatio",
+      "RequiredQuantities": [ "UnitsNet.AmplitudeRatio" ]
+    }
+  ],
+  "UnitsNet.EnergyDensity": [
+    {
+      "Kind": "EnergyDensityCombustionEnergy",
+      "RequiredQuantities": [ "UnitsNet.Energy", "UnitsNet.Volume", "UnitsNet.Ratio" ]
+    }
+  ],
+  "UnitsNet.Force": [
+    {
+      "Kind": "ForcePressureArea",
+      "RequiredQuantities": [ "UnitsNet.Pressure", "UnitsNet.Area" ]
+    },
+    {
+      "Kind": "ForceMassAcceleration",
+      "RequiredQuantities": [ "UnitsNet.Mass", "UnitsNet.Acceleration" ]
+    }
+  ],
+  "UnitsNet.Level": [
+    {
+      "Kind": "LevelRatio"
+    }
+  ],
+  "UnitsNet.Length": [
+    {
+      "Kind": "LengthFeetInches",
+      "RequiredUnits": [ "Foot", "Inch" ]
+    }
+  ],
+  "UnitsNet.Mass": [
+    {
+      "Kind": "MassGravitationalForce",
+      "RequiredQuantities": [ "UnitsNet.Force" ]
+    },
+    {
+      "Kind": "MassStonePounds",
+      "RequiredUnits": [ "Stone", "Pound" ]
+    }
+  ],
+  "UnitsNet.MassFraction": [
+    {
+      "Kind": "MassFractionMass",
+      "RequiredQuantities": [ "UnitsNet.Mass" ]
+    }
+  ],
+  "UnitsNet.MassConcentration": [
+    {
+      "Kind": "MassConcentrationMolarity",
+      "RequiredQuantities": [ "UnitsNet.Molarity", "UnitsNet.MolarMass" ]
+    },
+    {
+      "Kind": "MassConcentrationVolumeConcentration",
+      "RequiredQuantities": [ "UnitsNet.VolumeConcentration", "UnitsNet.Density" ]
+    }
+  ],
+  "UnitsNet.Molarity": [
+    {
+      "Kind": "MolarityMassConcentration",
+      "RequiredQuantities": [ "UnitsNet.MassConcentration", "UnitsNet.MolarMass" ]
+    },
+    {
+      "Kind": "MolarityVolumeConcentration",
+      "RequiredQuantities": [ "UnitsNet.VolumeConcentration", "UnitsNet.Density", "UnitsNet.MolarMass" ]
+    }
+  ],
+  "UnitsNet.Power": [
+    {
+      "Kind": "PowerPowerRatio",
+      "RequiredQuantities": [ "UnitsNet.PowerRatio" ]
+    }
+  ],
+  "UnitsNet.PowerRatio": [
+    {
+      "Kind": "PowerRatioPower",
+      "RequiredQuantities": [ "UnitsNet.Power" ]
+    },
+    {
+      "Kind": "PowerRatioAmplitudeRatio",
+      "RequiredQuantities": [ "UnitsNet.AmplitudeRatio", "UnitsNet.ElectricResistance" ]
+    }
+  ],
+  "UnitsNet.VolumeConcentration": [
+    {
+      "Kind": "VolumeConcentrationMassConcentration",
+      "RequiredQuantities": [ "UnitsNet.MassConcentration", "UnitsNet.Density" ]
+    },
+    {
+      "Kind": "VolumeConcentrationMolarity",
+      "RequiredQuantities": [ "UnitsNet.Molarity", "UnitsNet.Density", "UnitsNet.MolarMass" ]
+    },
+    {
+      "Kind": "VolumeConcentrationVolumes",
+      "RequiredQuantities": [ "UnitsNet.Volume" ]
+    }
+  ]
+}

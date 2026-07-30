@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)Generated</CompilerGeneratedFilesOutputPath>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+
+    <!-- The canonical consumer uses only locally packed packages, never a published fallback. -->
+    <UnitsNetModularSampleUsePackagedAnalyzer>true</UnitsNetModularSampleUsePackagedAnalyzer>
+  </PropertyGroup>
+
+  <!-- Repository-only automation that packs the runtime and definition recipe before restore. -->
+  <Import Project="../../UnitsNet.Modular.LocalPackages.targets" />
+
+  <PropertyGroup>
+    <RestoreSources>$(UnitsNetModularSampleLocalFeed)</RestoreSources>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="UnitsNet.Modular" Version="$(UnitsNetModularSampleLocalVersion)" />
+    <PackageReference Include="Fictional.Measurements.Definitions"
+                      Version="$(UnitsNetModularSampleLocalVersion)" />
+  </ItemGroup>
+
+  <!-- Register the sample recipe as an additional repository-local package produced in dependency order. -->
+  <ItemGroup>
+    <UnitsNetModularSampleAdditionalLocalPackageProject
+        Include="../../DefinitionPackages/Fictional.Measurements.Definitions/Fictional.Measurements.Definitions.csproj" />
+    <UnitsNetModularSampleAdditionalLocalPackageInput
+        Include="../../DefinitionPackages/Fictional.Measurements.Definitions/**/*"
+        Exclude="../../DefinitionPackages/Fictional.Measurements.Definitions/bin/**/*;../../DefinitionPackages/Fictional.Measurements.Definitions/obj/**/*" />
+  </ItemGroup>
+</Project>
