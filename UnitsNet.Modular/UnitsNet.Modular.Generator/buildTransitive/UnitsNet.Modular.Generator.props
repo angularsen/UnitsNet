@@ -1,0 +1,6 @@
+<Project>
+  <ItemGroup>
+    <CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="UnitsNetDefinition" />
+    <CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="UnitsNetRelation" />
+  </ItemGroup>
+</Project>

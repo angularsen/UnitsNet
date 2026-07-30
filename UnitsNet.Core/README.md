@@ -1,6 +1,6 @@
 # UnitsNet.Core
 
-`UnitsNet.Core` contains experimental quantity contracts used by UnitsNetGen during the
+`UnitsNet.Core` contains experimental quantity contracts used by UnitsNet.Modular during the
 source-generation proof of concept. The contracts are designed so UnitsNet v6 can adopt them later,
 but the standalone prototype does not change or add a dependency to the existing UnitsNet package.
 
@@ -17,7 +17,7 @@ subtract a named linear offset and produce that offset when two values are subtr
 quantities identify their distinct scaling and arithmetic semantics without claiming conventional
 generic math. `QuantityMath` provides shared `Sum` and `Average` algorithms for linear quantities,
 while `AffineQuantityMath.Average` averages affine values in an explicit target unit. The algorithms
-work for generated UnitsNetGen quantities. A separate integration experiment validates the same
+work for generated UnitsNet.Modular quantities. A separate integration experiment validates the same
 algorithms against UnitsNet v6 quantities.
 
 The capability layer is intentionally `double`-based for this POC. Generic numeric storage remains
