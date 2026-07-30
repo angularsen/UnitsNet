@@ -374,8 +374,29 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
         }
 
         IReadOnlyList<QuantityRelation> expandedRelations = QuantityRelationParser.Expand(relationDefinitions);
+        QuantityDefinition[] knownDefinitions = BuiltInCatalog.Names
+            .Select(name =>
+            {
+                BuiltInCatalog.TryGet(name, out QuantityDefinition definition);
+                return definition;
+            })
+            .Concat(jsonDefinitions.Values)
+            .GroupBy(definition => definition.SemanticId, StringComparer.Ordinal)
+            .Select(group => group.First())
+            .ToArray();
+        ISet<string> knownSemanticIds = new HashSet<string>(
+            knownDefinitions.Select(definition => definition.SemanticId),
+            StringComparer.Ordinal);
+        IReadOnlyDictionary<string, int> knownNameCounts = knownDefinitions
+            .GroupBy(definition => definition.Name, StringComparer.Ordinal)
+            .ToDictionary(group => group.Key, group => group.Count(), StringComparer.Ordinal);
         IReadOnlyDictionary<string, IReadOnlyList<EmittedQuantityRelation>> relationshipsByOwner =
-            QuantityRelationPlanner.Plan(selections, expandedRelations, out IReadOnlyList<string> relationErrors);
+            QuantityRelationPlanner.Plan(
+                selections,
+                expandedRelations,
+                knownSemanticIds,
+                knownNameCounts,
+                out IReadOnlyList<string> relationErrors);
         foreach (string error in relationErrors)
         {
             context.ReportDiagnostic(Diagnostic.Create(InvalidRelationSet, moduleLocation, error));

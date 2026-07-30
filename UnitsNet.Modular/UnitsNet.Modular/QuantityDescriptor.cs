@@ -100,7 +100,9 @@ public sealed record UnitDescriptor(
     IReadOnlyList<UnitLocalization> Localizations);
 
 /// <summary>Strongly typed implementation of a generated quantity descriptor.</summary>
-public sealed class QuantityDescriptor<TQuantity, TUnit> : IQuantityDescriptor
+public sealed class QuantityDescriptor<TQuantity, TUnit> :
+    IQuantityDescriptor,
+    IQuantityMetadata<TUnit>
     where TQuantity : struct, IQuantity<TQuantity, TUnit, double>, IParsable<TQuantity>
     where TUnit : struct, Enum
 {
@@ -173,21 +175,13 @@ public sealed class QuantityDescriptor<TQuantity, TUnit> : IQuantityDescriptor
     public bool TryGetUnit(UnitSystem? unitSystem, out UnitDescriptor? unit)
     {
         unit = null;
-        if (unitSystem is null)
+        if (!QuantityOperations.TryGetUnit(unitSystem, this, out TUnit selected))
         {
             return false;
         }
 
-        if (BaseDimensions.IsDimensionless())
-        {
-            unit = Units.First(candidate =>
-                string.Equals(candidate.Name, BaseUnitName, StringComparison.Ordinal));
-            return true;
-        }
-
-        unit = Units
-            .OrderBy(candidate => candidate.SingularName, StringComparer.Ordinal)
-            .FirstOrDefault(candidate => candidate.BaseUnits.IsSubsetOf(unitSystem.BaseUnits));
+        int selectedValue = System.Convert.ToInt32(selected);
+        unit = Units.First(candidate => candidate.Value == selectedValue);
         return unit is not null;
     }
 
@@ -313,17 +307,15 @@ public sealed class QuantityDescriptor<TQuantity, TUnit> : IQuantityDescriptor
     }
 
     private bool TryParseUnit(string? name, out TUnit unit)
-    {
-        if (Enum.TryParse(name, ignoreCase: true, out TUnit parsed) &&
-            _typedUnits.Any(candidate => EqualityComparer<TUnit>.Default.Equals(candidate.Unit, parsed)))
-        {
-            unit = parsed;
-            return true;
-        }
+        => QuantityOperations.TryParseUnit(name, null, this, out unit);
 
-        unit = default;
-        return false;
-    }
+    IReadOnlyList<UnitInfo<TUnit>> IQuantityMetadata<TUnit>.Units => _typedUnits;
+
+    double IQuantityMetadata<TUnit>.ToBase(double value, TUnit unit) =>
+        TQuantity.Convert(value, unit, BaseUnit);
+
+    double IQuantityMetadata<TUnit>.FromBase(double value, TUnit unit) =>
+        TQuantity.Convert(value, BaseUnit, unit);
 
     private static TQuantity RequireQuantity(IQuantity<double> quantity) =>
         quantity is TQuantity typed

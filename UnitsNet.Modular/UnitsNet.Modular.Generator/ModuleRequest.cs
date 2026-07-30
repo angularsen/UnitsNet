@@ -131,5 +131,13 @@ internal sealed class ModuleRequestComparer : IEqualityComparer<ModuleRequest>
         string.Equals(x.Location.Path, y.Location.Path, StringComparison.Ordinal) &&
         x.Location.SourceSpan.Equals(y.Location.SourceSpan);
 
-    public int GetHashCode(ModuleRequest obj) => obj.Fingerprint.GetHashCode();
+    public int GetHashCode(ModuleRequest obj)
+    {
+        unchecked
+        {
+            int hash = StringComparer.Ordinal.GetHashCode(obj.Fingerprint);
+            hash = (hash * 397) ^ StringComparer.Ordinal.GetHashCode(obj.Location.Path ?? string.Empty);
+            return (hash * 397) ^ obj.Location.SourceSpan.GetHashCode();
+        }
+    }
 }

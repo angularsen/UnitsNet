@@ -147,4 +147,29 @@ public sealed class RelationshipGeneratorTests
         Assert.DoesNotContain("LengthUnit.Foot", width, StringComparison.Ordinal);
         Assert.DoesNotContain("AreaLikeUnit.SquareFoot", width, StringComparison.Ordinal);
     }
+
+    [Fact]
+    public void UnknownRelationQuantity_ReportsDiagnosticInsteadOfSilentlyDroppingRelation()
+    {
+        GeneratorTestHost.TestRun run = GeneratorTestHost.Run(
+            """
+            using UnitsNet.Modular;
+
+            [UnitsNetModule]
+            internal interface Module : IInclude<UnitsNet.Modular.BuiltIns.Length>;
+            """,
+            ("Unknown.unitsnet.relations.json", """
+                [
+                  {
+                    "result": { "quantity": "UnitsNet.Length", "unit": "Meter" },
+                    "left": { "quantity": "ThirdParty.DoesNotExist", "unit": "Value" },
+                    "operator": "*",
+                    "right": { "quantity": "UnitsNet.Length", "unit": "Meter" }
+                  }
+                ]
+                """));
+
+        Diagnostic diagnostic = Assert.Single(run.Result.Diagnostics, item => item.Id == "UNM011");
+        Assert.Contains("Quantity ID 'ThirdParty.DoesNotExist' is unknown", diagnostic.GetMessage(), StringComparison.Ordinal);
+    }
 }

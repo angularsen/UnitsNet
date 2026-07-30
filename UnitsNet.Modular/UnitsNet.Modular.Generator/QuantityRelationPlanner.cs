@@ -11,6 +11,8 @@ internal static class QuantityRelationPlanner
     public static IReadOnlyDictionary<string, IReadOnlyList<EmittedQuantityRelation>> Plan(
         IReadOnlyList<QuantitySelection> selections,
         IReadOnlyList<QuantityRelation> relations,
+        ISet<string> knownSemanticIds,
+        IReadOnlyDictionary<string, int> knownNameCounts,
         out IReadOnlyList<string> errors)
     {
         var bySemanticId = selections.ToDictionary(
@@ -28,6 +30,8 @@ internal static class QuantityRelationPlanner
                 relation.Left,
                 bySemanticId,
                 byName,
+                knownSemanticIds,
+                knownNameCounts,
                 out QuantitySelection? left,
                 out UnitDefinition? leftUnit,
                 out string? leftError);
@@ -35,6 +39,8 @@ internal static class QuantityRelationPlanner
                 relation.Right,
                 bySemanticId,
                 byName,
+                knownSemanticIds,
+                knownNameCounts,
                 out QuantitySelection? right,
                 out UnitDefinition? rightUnit,
                 out string? rightError);
@@ -51,6 +57,8 @@ internal static class QuantityRelationPlanner
                     relation.Result,
                     bySemanticId,
                     byName,
+                    knownSemanticIds,
+                    knownNameCounts,
                     out result,
                     out resultUnit,
                     out string? resultError))
@@ -141,7 +149,7 @@ internal static class QuantityRelationPlanner
             ownedRelations.Add(relation);
         }
 
-        errors = planningErrors;
+        errors = planningErrors.Distinct(StringComparer.Ordinal).ToArray();
         return planned.ToDictionary(
             item => item.Key,
             item => (IReadOnlyList<EmittedQuantityRelation>)item.Value,
@@ -152,6 +160,8 @@ internal static class QuantityRelationPlanner
         RelationEndpoint endpoint,
         IReadOnlyDictionary<string, QuantitySelection> bySemanticId,
         IReadOnlyDictionary<string, QuantitySelection[]> byName,
+        ISet<string> knownSemanticIds,
+        IReadOnlyDictionary<string, int> knownNameCounts,
         out QuantitySelection? selection,
         out UnitDefinition? unit,
         out string? error)
@@ -168,6 +178,11 @@ internal static class QuantityRelationPlanner
         {
             if (!bySemanticId.TryGetValue(endpoint.Quantity, out selection))
             {
+                if (!knownSemanticIds.Contains(endpoint.Quantity))
+                {
+                    error = $"Quantity ID '{endpoint.Quantity}' is unknown.";
+                }
+
                 return false;
             }
         }
@@ -175,6 +190,15 @@ internal static class QuantityRelationPlanner
         {
             if (!byName.TryGetValue(endpoint.Quantity, out QuantitySelection[]? matches))
             {
+                if (!knownNameCounts.TryGetValue(endpoint.Quantity, out int count))
+                {
+                    error = $"Quantity name '{endpoint.Quantity}' is unknown.";
+                }
+                else if (count != 1)
+                {
+                    error = $"Quantity name '{endpoint.Quantity}' is ambiguous; use its semantic ID.";
+                }
+
                 return false;
             }
 

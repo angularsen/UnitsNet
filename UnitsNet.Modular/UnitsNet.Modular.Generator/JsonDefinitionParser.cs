@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text.Json;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace UnitsNet.Modular.Generator;
 
@@ -39,12 +40,31 @@ internal static class JsonDefinitionParser
                 return Error(path, json, "Name and BaseUnit are required.");
             }
 
+            if (!IsIdentifier(parsed.Name!))
+            {
+                return Error(path, json, $"Quantity name '{parsed.Name}' is not a valid C# identifier.");
+            }
+
+            string targetNamespace = string.IsNullOrWhiteSpace(parsed.Namespace) ? "UnitsNet" : parsed.Namespace!;
+            if (!targetNamespace.Split('.').All(IsIdentifier))
+            {
+                return Error(path, json, $"Namespace '{targetNamespace}' is not a valid C# namespace.");
+            }
+
             var units = new List<UnitDefinition>();
             foreach (JsonUnit unit in parsed.Units ?? Array.Empty<JsonUnit>())
             {
                 if (string.IsNullOrWhiteSpace(unit.SingularName) || string.IsNullOrWhiteSpace(unit.PluralName))
                 {
                     return Error(path, json, "Every unit requires SingularName and PluralName.");
+                }
+
+                if (!IsIdentifier(unit.SingularName!) || !IsIdentifier(unit.PluralName!))
+                {
+                    return Error(
+                        path,
+                        json,
+                        $"Unit names '{unit.SingularName}' and '{unit.PluralName}' must be valid C# identifiers.");
                 }
 
                 if (!ConversionExpression.TryNormalize(unit.FromUnitToBaseFunc, out string toBase, out string toBaseError))
@@ -74,7 +94,29 @@ internal static class JsonDefinitionParser
                     unit.Prefixes ?? Array.Empty<string>()));
             }
 
-            string targetNamespace = string.IsNullOrWhiteSpace(parsed.Namespace) ? "UnitsNet" : parsed.Namespace!;
+            string? duplicateSingularName = units
+                .GroupBy(unit => unit.SingularName, StringComparer.Ordinal)
+                .FirstOrDefault(group => group.Count() > 1)
+                ?.Key;
+            if (duplicateSingularName is not null)
+            {
+                return Error(path, json, $"Unit SingularName '{duplicateSingularName}' is duplicated.");
+            }
+
+            string? duplicatePluralName = units
+                .GroupBy(unit => unit.PluralName, StringComparer.Ordinal)
+                .FirstOrDefault(group => group.Count() > 1)
+                ?.Key;
+            if (duplicatePluralName is not null)
+            {
+                return Error(path, json, $"Unit PluralName '{duplicatePluralName}' is duplicated.");
+            }
+
+            if (!IsIdentifier(parsed.BaseUnit!))
+            {
+                return Error(path, json, $"BaseUnit '{parsed.BaseUnit}' is not a valid C# identifier.");
+            }
+
             bool isLogarithmic = bool.TryParse(parsed.Logarithmic, out bool logarithmic) && logarithmic;
             double logarithmicScalingFactor = double.TryParse(
                 parsed.LogarithmicScalingFactor,
@@ -111,6 +153,11 @@ internal static class JsonDefinitionParser
             return Error(path, json, exception.Message);
         }
     }
+
+    private static bool IsIdentifier(string value) =>
+        SyntaxFacts.IsValidIdentifier(value) &&
+        SyntaxFacts.GetKeywordKind(value) == SyntaxKind.None &&
+        SyntaxFacts.GetContextualKeywordKind(value) == SyntaxKind.None;
 
     private static IReadOnlyDictionary<string, IReadOnlyList<string>> ParsePrefixAbbreviations(
         IDictionary<string, JsonElement>? values)

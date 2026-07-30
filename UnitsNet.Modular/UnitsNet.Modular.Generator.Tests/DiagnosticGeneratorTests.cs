@@ -169,4 +169,65 @@ public sealed class DiagnosticGeneratorTests
         Assert.Contains("Unknown prefix 'Imaginary'", diagnostic.GetMessage(), StringComparison.Ordinal);
         Assert.DoesNotContain(run.Result.Diagnostics, item => item.Id == "CS8785");
     }
+
+    [Fact]
+    public void DuplicateUnitName_ReportsDefinitionDiagnosticWithoutCompilerCollision()
+    {
+        GeneratorTestHost.TestRun run = GeneratorTestHost.Run(
+            """
+            using UnitsNet.Modular;
+
+            [QuantityDefinition("Sample.Widget")]
+            internal interface WidgetDefinition;
+
+            [UnitsNetModule]
+            internal interface Module : IInclude<WidgetDefinition>;
+            """,
+            ("Widget.unitsnet.json", """
+                {
+                  "Name": "Widget",
+                  "Namespace": "Sample",
+                  "BaseUnit": "Value",
+                  "Units": [
+                    { "SingularName": "Value", "PluralName": "Values", "FromUnitToBaseFunc": "{x}", "FromBaseToUnitFunc": "{x}" },
+                    { "SingularName": "Value", "PluralName": "OtherValues", "FromUnitToBaseFunc": "{x}", "FromBaseToUnitFunc": "{x}" }
+                  ]
+                }
+                """));
+
+        Diagnostic diagnostic = Assert.Single(run.Result.Diagnostics, item => item.Id == "UNM004");
+        Assert.Contains("SingularName 'Value' is duplicated", diagnostic.GetMessage(), StringComparison.Ordinal);
+        Assert.DoesNotContain(
+            run.Compilation.GetDiagnostics(),
+            item => item.Id is "CS0101" or "CS0102" or "CS0111");
+    }
+
+    [Fact]
+    public void InvalidCSharpIdentifier_ReportsDefinitionDiagnostic()
+    {
+        GeneratorTestHost.TestRun run = GeneratorTestHost.Run(
+            """
+            using UnitsNet.Modular;
+
+            [QuantityDefinition("Sample.Bad-Widget")]
+            internal interface WidgetDefinition;
+
+            [UnitsNetModule]
+            internal interface Module : IInclude<WidgetDefinition>;
+            """,
+            ("Widget.unitsnet.json", """
+                {
+                  "Name": "Bad-Widget",
+                  "Namespace": "Sample",
+                  "BaseUnit": "Value",
+                  "Units": [
+                    { "SingularName": "Value", "PluralName": "Values", "FromUnitToBaseFunc": "{x}", "FromBaseToUnitFunc": "{x}" }
+                  ]
+                }
+                """));
+
+        Diagnostic diagnostic = Assert.Single(run.Result.Diagnostics, item => item.Id == "UNM004");
+        Assert.Contains("not a valid C# identifier", diagnostic.GetMessage(), StringComparison.Ordinal);
+        Assert.DoesNotContain(run.Result.Diagnostics, item => item.Id == "CS8785");
+    }
 }

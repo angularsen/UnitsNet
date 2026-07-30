@@ -85,7 +85,9 @@ internal static class PrefixExpander
                 units.Add(new UnitDefinition(
                     prefix.Name + LowerFirst(unit.SingularName),
                     prefix.Name + LowerFirst(unit.PluralName),
-                    $"({unit.FromUnitToBaseExpression}) * {factor}",
+                    ConversionExpression.Substitute(
+                        unit.FromUnitToBaseExpression,
+                        $"x * {factor}"),
                     $"({unit.FromBaseToUnitExpression}) / {factor}",
                     baseUnits,
                     localizations));
