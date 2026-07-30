@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Text.RegularExpressions;
+using CodeGen.Exceptions;
 using CodeGen.JsonTypes;
 
 namespace CodeGen.Helpers.PrefixBuilder;
@@ -18,6 +20,10 @@ namespace CodeGen.Helpers.PrefixBuilder;
 /// </remarks>
 internal class UnitPrefixBuilder
 {
+    private static readonly Regex LeadingPoweredUnitAbbreviationRegex = new(
+        @"^[^\s/·*()\-\d]+(?:[²³⁴]|\^[234])",
+        RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
     private readonly BaseUnitPrefixes _prefixes;
 
     /// <summary>
@@ -58,6 +64,8 @@ internal class UnitPrefixBuilder
         {
             try
             {
+                ThrowIfPrefixesAreUnsafeForPoweredUnit(quantity, unit);
+
                 PrefixInfo prefixInfo = PrefixInfo.Entries[prefix];
 
                 unitsToAdd.Add(new Unit
@@ -80,6 +88,31 @@ internal class UnitPrefixBuilder
         }
 
         return unitsToAdd;
+    }
+
+    private static void ThrowIfPrefixesAreUnsafeForPoweredUnit(Quantity quantity, Unit unit)
+    {
+        if (!LooksLikePoweredUnit(unit))
+        {
+            return;
+        }
+
+        throw new UnitsNetCodeGenException(
+            $"Prefixes cannot be used on {quantity.Name}.{unit.SingularName} because it looks like a powered unit. " +
+            "Define explicit units instead, such as CubicKilometer for km³ or ThousandCubicMeter for 1000 m³.");
+    }
+
+    private static bool LooksLikePoweredUnit(Unit unit)
+    {
+        if (unit.SingularName.StartsWith("Square", StringComparison.Ordinal) ||
+            unit.SingularName.StartsWith("Cubic", StringComparison.Ordinal))
+        {
+            return true;
+        }
+
+        return unit.Localization
+            .SelectMany(localization => localization.Abbreviations)
+            .Any(abbreviation => LeadingPoweredUnitAbbreviationRegex.IsMatch(abbreviation));
     }
 
     /// <summary>
