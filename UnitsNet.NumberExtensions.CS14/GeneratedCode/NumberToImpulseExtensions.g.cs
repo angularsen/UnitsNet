@@ -42,108 +42,108 @@ namespace UnitsNet.NumberExtensions.NumberToImpulse
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Impulse.FromCentinewtonSeconds(double)" />
+            /// <inheritdoc cref="Impulse.FromCentinewtonSeconds(QuantityValue)" />
             public Impulse CentinewtonSeconds
 #if NET7_0_OR_GREATER
-                => Impulse.FromCentinewtonSeconds(double.CreateChecked(value));
+                => Impulse.FromCentinewtonSeconds(QuantityValue.CreateChecked(value));
 #else
-                => Impulse.FromCentinewtonSeconds(value.ToDouble(null));
+                => Impulse.FromCentinewtonSeconds(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Impulse.FromDecanewtonSeconds(double)" />
+            /// <inheritdoc cref="Impulse.FromDecanewtonSeconds(QuantityValue)" />
             public Impulse DecanewtonSeconds
 #if NET7_0_OR_GREATER
-                => Impulse.FromDecanewtonSeconds(double.CreateChecked(value));
+                => Impulse.FromDecanewtonSeconds(QuantityValue.CreateChecked(value));
 #else
-                => Impulse.FromDecanewtonSeconds(value.ToDouble(null));
+                => Impulse.FromDecanewtonSeconds(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Impulse.FromDecinewtonSeconds(double)" />
+            /// <inheritdoc cref="Impulse.FromDecinewtonSeconds(QuantityValue)" />
             public Impulse DecinewtonSeconds
 #if NET7_0_OR_GREATER
-                => Impulse.FromDecinewtonSeconds(double.CreateChecked(value));
+                => Impulse.FromDecinewtonSeconds(QuantityValue.CreateChecked(value));
 #else
-                => Impulse.FromDecinewtonSeconds(value.ToDouble(null));
+                => Impulse.FromDecinewtonSeconds(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Impulse.FromKilogramMetersPerSecond(double)" />
+            /// <inheritdoc cref="Impulse.FromKilogramMetersPerSecond(QuantityValue)" />
             public Impulse KilogramMetersPerSecond
 #if NET7_0_OR_GREATER
-                => Impulse.FromKilogramMetersPerSecond(double.CreateChecked(value));
+                => Impulse.FromKilogramMetersPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => Impulse.FromKilogramMetersPerSecond(value.ToDouble(null));
+                => Impulse.FromKilogramMetersPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Impulse.FromKilonewtonSeconds(double)" />
+            /// <inheritdoc cref="Impulse.FromKilonewtonSeconds(QuantityValue)" />
             public Impulse KilonewtonSeconds
 #if NET7_0_OR_GREATER
-                => Impulse.FromKilonewtonSeconds(double.CreateChecked(value));
+                => Impulse.FromKilonewtonSeconds(QuantityValue.CreateChecked(value));
 #else
-                => Impulse.FromKilonewtonSeconds(value.ToDouble(null));
+                => Impulse.FromKilonewtonSeconds(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Impulse.FromMeganewtonSeconds(double)" />
+            /// <inheritdoc cref="Impulse.FromMeganewtonSeconds(QuantityValue)" />
             public Impulse MeganewtonSeconds
 #if NET7_0_OR_GREATER
-                => Impulse.FromMeganewtonSeconds(double.CreateChecked(value));
+                => Impulse.FromMeganewtonSeconds(QuantityValue.CreateChecked(value));
 #else
-                => Impulse.FromMeganewtonSeconds(value.ToDouble(null));
+                => Impulse.FromMeganewtonSeconds(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Impulse.FromMicronewtonSeconds(double)" />
+            /// <inheritdoc cref="Impulse.FromMicronewtonSeconds(QuantityValue)" />
             public Impulse MicronewtonSeconds
 #if NET7_0_OR_GREATER
-                => Impulse.FromMicronewtonSeconds(double.CreateChecked(value));
+                => Impulse.FromMicronewtonSeconds(QuantityValue.CreateChecked(value));
 #else
-                => Impulse.FromMicronewtonSeconds(value.ToDouble(null));
+                => Impulse.FromMicronewtonSeconds(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Impulse.FromMillinewtonSeconds(double)" />
+            /// <inheritdoc cref="Impulse.FromMillinewtonSeconds(QuantityValue)" />
             public Impulse MillinewtonSeconds
 #if NET7_0_OR_GREATER
-                => Impulse.FromMillinewtonSeconds(double.CreateChecked(value));
+                => Impulse.FromMillinewtonSeconds(QuantityValue.CreateChecked(value));
 #else
-                => Impulse.FromMillinewtonSeconds(value.ToDouble(null));
+                => Impulse.FromMillinewtonSeconds(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Impulse.FromNanonewtonSeconds(double)" />
+            /// <inheritdoc cref="Impulse.FromNanonewtonSeconds(QuantityValue)" />
             public Impulse NanonewtonSeconds
 #if NET7_0_OR_GREATER
-                => Impulse.FromNanonewtonSeconds(double.CreateChecked(value));
+                => Impulse.FromNanonewtonSeconds(QuantityValue.CreateChecked(value));
 #else
-                => Impulse.FromNanonewtonSeconds(value.ToDouble(null));
+                => Impulse.FromNanonewtonSeconds(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Impulse.FromNewtonSeconds(double)" />
+            /// <inheritdoc cref="Impulse.FromNewtonSeconds(QuantityValue)" />
             public Impulse NewtonSeconds
 #if NET7_0_OR_GREATER
-                => Impulse.FromNewtonSeconds(double.CreateChecked(value));
+                => Impulse.FromNewtonSeconds(QuantityValue.CreateChecked(value));
 #else
-                => Impulse.FromNewtonSeconds(value.ToDouble(null));
+                => Impulse.FromNewtonSeconds(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Impulse.FromPoundFeetPerSecond(double)" />
+            /// <inheritdoc cref="Impulse.FromPoundFeetPerSecond(QuantityValue)" />
             public Impulse PoundFeetPerSecond
 #if NET7_0_OR_GREATER
-                => Impulse.FromPoundFeetPerSecond(double.CreateChecked(value));
+                => Impulse.FromPoundFeetPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => Impulse.FromPoundFeetPerSecond(value.ToDouble(null));
+                => Impulse.FromPoundFeetPerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Impulse.FromPoundForceSeconds(double)" />
+            /// <inheritdoc cref="Impulse.FromPoundForceSeconds(QuantityValue)" />
             public Impulse PoundForceSeconds
 #if NET7_0_OR_GREATER
-                => Impulse.FromPoundForceSeconds(double.CreateChecked(value));
+                => Impulse.FromPoundForceSeconds(QuantityValue.CreateChecked(value));
 #else
-                => Impulse.FromPoundForceSeconds(value.ToDouble(null));
+                => Impulse.FromPoundForceSeconds(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Impulse.FromSlugFeetPerSecond(double)" />
+            /// <inheritdoc cref="Impulse.FromSlugFeetPerSecond(QuantityValue)" />
             public Impulse SlugFeetPerSecond
 #if NET7_0_OR_GREATER
-                => Impulse.FromSlugFeetPerSecond(double.CreateChecked(value));
+                => Impulse.FromSlugFeetPerSecond(QuantityValue.CreateChecked(value));
 #else
-                => Impulse.FromSlugFeetPerSecond(value.ToDouble(null));
+                => Impulse.FromSlugFeetPerSecond(value.ToQuantityValue());
 #endif
 
         }

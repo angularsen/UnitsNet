@@ -46,10 +46,11 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(2.0, 0.5)]
         public static void InverseReturnsLength(double value, double expected)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             var inverseLength = new ReciprocalLength(value, ReciprocalLengthUnit.InverseMeter);
             var length = inverseLength.Inverse();
 
-            Assert.Equal(expected, length.Meters);
+            Assert.Equal(expectedValue, length.Meters);
         }
 
         [Fact]

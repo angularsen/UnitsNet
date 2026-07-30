@@ -154,12 +154,13 @@ namespace UnitsNet
             if (attribute?.UnitType != null)
             {
 #pragma warning disable CS0618 // IQuantity.QuantityInfo is obsolete on .NET 5+; use it here so consumers can author custom quantities (e.g. HowMuch in tests) without registering them in UnitsNetSetup.Default.
-                string converterQuantityName = default(TQuantity).QuantityInfo.Name;
-                string attributeQuantityName = Quantity.From(1, attribute.UnitType).QuantityInfo.Name;
+                Type declaredUnitType = attribute.UnitType.GetType();
+                QuantityInfo quantityInfo = default(TQuantity).QuantityInfo;
 #pragma warning restore CS0618
-                if (converterQuantityName != attributeQuantityName)
+                if (declaredUnitType != quantityInfo.UnitType)
                 {
-                    throw new ArgumentException($"The {attribute.GetType()}'s UnitType [{attribute.UnitType}] is not compatible with the converter's quantity [{converterQuantityName}].");
+                    throw new ArgumentException(
+                        $"The {attribute.GetType()}'s UnitType [{declaredUnitType}] is not compatible with the converter's quantity [{quantityInfo.Name}].");
                 }
             }
 
@@ -167,36 +168,48 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Converts the given object, when it is of type <see cref="string"/> to the type of this converter, using the specified context and culture information.
+        ///     Converts the given object, when it is of type <see cref="string" /> to the type of this converter, using the
+        ///     specified context and culture information.
         /// </summary>
         /// <param name="context">An System.ComponentModel.ITypeDescriptorContext that provides a format context.</param>
         /// <param name="culture">The System.Globalization.CultureInfo to use as the current culture.</param>
         /// <param name="value">The System.Object to convert.</param>
-        /// <returns>An <see cref="IQuantity"/> object.</returns>
+        /// <returns>An <see cref="IQuantity" /> object.</returns>
+        /// <exception cref="ArgumentException">
+        ///     Thrown when the unit defined by the <see cref="DefaultUnitAttribute" /> is not is not compatible with the
+        ///     converter's quantity.
+        /// </exception>
+        /// <exception cref="QuantityNotFoundException">
+        ///     Thrown when the specified quantity type is not registered in the current configuration.
+        /// </exception>
+        /// <exception cref="UnitNotFoundException">Unit value is not a known unit enum type.</exception>
         /// <exception cref="System.NotSupportedException">The conversion cannot be performed.</exception>
-        /// <exception cref="ArgumentException">Unit value is not a know unit enum type.</exception>
         public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value)
         {
             if (value is string stringValue && !string.IsNullOrEmpty(stringValue))
             {
                 IQuantity? quantity = null;
 
-                if (double.TryParse(stringValue, NumberStyles.Any, culture, out double dvalue))
+                if (QuantityValue.TryParse(stringValue, NumberStyles.Any, culture, out QuantityValue quantityValue))
                 {
-                    var defaultUnit = GetAttribute<DefaultUnitAttribute>(context) ?? new DefaultUnitAttribute(default(TQuantity).Unit);
-                    if(defaultUnit.UnitType != null)
-                        quantity = Quantity.From(dvalue, defaultUnit.UnitType);
+                    DefaultUnitAttribute defaultUnit = GetAttribute<DefaultUnitAttribute>(context) ?? new DefaultUnitAttribute(default(TQuantity).Unit);
+                    if (defaultUnit.UnitType != null)
+                    {
+                        quantity = Quantity.From(quantityValue, defaultUnit.UnitType);
+                    }
                 }
                 else
                 {
                     quantity = Quantity.Parse(culture, typeof(TQuantity), stringValue);
                 }
 
-                if( quantity != null)
+                if (quantity != null)
                 {
                     ConvertToUnitAttribute? convertToUnit = GetAttribute<ConvertToUnitAttribute>(context);
-                    if (convertToUnit != null && convertToUnit.UnitType != null)
-                        quantity = quantity.ToUnit(convertToUnit.UnitType);
+                    if (convertToUnit?.UnitType is {} targetUnit)
+                    {
+                        quantity = UnitConverter.Default.ConvertTo(quantity, targetUnit);
+                    }
 
                     return quantity;
                 }
@@ -241,7 +254,7 @@ namespace UnitsNet
                 return quantity.ToString(displayAsUnit.Format, culture);
             }
 
-            return quantity.ToUnit(displayAsUnit.UnitType).ToString(displayAsUnit.Format, culture);
+            return UnitConverter.Default.ConvertTo(quantity, displayAsUnit.UnitType).ToString(displayAsUnit.Format, culture);
         }
     }
 }

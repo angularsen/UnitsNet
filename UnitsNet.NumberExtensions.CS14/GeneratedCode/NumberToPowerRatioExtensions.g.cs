@@ -42,20 +42,20 @@ namespace UnitsNet.NumberExtensions.NumberToPowerRatio
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="PowerRatio.FromDecibelMilliwatts(double)" />
+            /// <inheritdoc cref="PowerRatio.FromDecibelMilliwatts(QuantityValue)" />
             public PowerRatio DecibelMilliwatts
 #if NET7_0_OR_GREATER
-                => PowerRatio.FromDecibelMilliwatts(double.CreateChecked(value));
+                => PowerRatio.FromDecibelMilliwatts(QuantityValue.CreateChecked(value));
 #else
-                => PowerRatio.FromDecibelMilliwatts(value.ToDouble(null));
+                => PowerRatio.FromDecibelMilliwatts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="PowerRatio.FromDecibelWatts(double)" />
+            /// <inheritdoc cref="PowerRatio.FromDecibelWatts(QuantityValue)" />
             public PowerRatio DecibelWatts
 #if NET7_0_OR_GREATER
-                => PowerRatio.FromDecibelWatts(double.CreateChecked(value));
+                => PowerRatio.FromDecibelWatts(QuantityValue.CreateChecked(value));
 #else
-                => PowerRatio.FromDecibelWatts(value.ToDouble(null));
+                => PowerRatio.FromDecibelWatts(value.ToQuantityValue());
 #endif
 
         }

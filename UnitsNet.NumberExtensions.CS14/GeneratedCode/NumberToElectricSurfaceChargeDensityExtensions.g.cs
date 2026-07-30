@@ -42,28 +42,28 @@ namespace UnitsNet.NumberExtensions.NumberToElectricSurfaceChargeDensity
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(double)" />
+            /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(QuantityValue)" />
             public ElectricSurfaceChargeDensity CoulombsPerSquareCentimeter
 #if NET7_0_OR_GREATER
-                => ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(double.CreateChecked(value));
+                => ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(QuantityValue.CreateChecked(value));
 #else
-                => ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(value.ToDouble(null));
+                => ElectricSurfaceChargeDensity.FromCoulombsPerSquareCentimeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(double)" />
+            /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(QuantityValue)" />
             public ElectricSurfaceChargeDensity CoulombsPerSquareInch
 #if NET7_0_OR_GREATER
-                => ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(double.CreateChecked(value));
+                => ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(QuantityValue.CreateChecked(value));
 #else
-                => ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(value.ToDouble(null));
+                => ElectricSurfaceChargeDensity.FromCoulombsPerSquareInch(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(double)" />
+            /// <inheritdoc cref="ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(QuantityValue)" />
             public ElectricSurfaceChargeDensity CoulombsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(double.CreateChecked(value));
+                => ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
-                => ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(value.ToDouble(null));
+                => ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(value.ToQuantityValue());
 #endif
 
         }

@@ -4,7 +4,7 @@
 - [UnitsNet.Serialization.JsonNet with Json.NET (Newtonsoft)](#unitsnetserializationjsonnet-with-jsonnet-newtonsoft)
 - [DataContractSerializer for XML](#datacontractserializer-for-xml)
 - [DataContractJsonSerializer for JSON (not recommended)](#datacontractjsonserializer-for-json-not-recommended)
-- [System.Text.Json (not yet implemented)](#systemtextjson-not-yet-implemented)
+- [UnitsNet.Serialization.SystemTextJson](#unitsnetserializationsystemtextjson)
 - [Protobuf and other `[DataContract]` compatible serializers](#protobuf-and-other-datacontract-compatible-serializers)
 - [Backwards compatibility](#backwards-compatibility)
 
@@ -81,14 +81,49 @@ If you need to support deserializing into properties/fields of type `IComparable
 jsonSerializerSettings.Converters.Add(new UnitsNetIComparableJsonConverter());
 ```
 
+### Choosing a `QuantityValue` format
+
+`AbbreviatedUnitsConverter` uses `DecimalPrecision` when writing and `ExactNumber` when reading by default. Configure the
+value representation explicitly when exact round-tripping or compatibility with an existing `double`-based payload is
+required:
+
+```c#
+var valueFormats = new QuantityValueFormatOptions(
+    QuantityValueSerializationFormat.RoundTrip,
+    QuantityValueDeserializationFormat.RoundTrip);
+
+jsonSerializerSettings.Converters.Add(new AbbreviatedUnitsConverter(valueFormats));
+```
+
+Available serialization formats are decimal precision (up to 29 significant digits), double precision, exact
+round-tripping and a custom converter. `ExactNumber` reads every digit of a JSON number directly into its numeric
+`QuantityValue`; it does not retain the original spelling of the token. Deserialization can alternatively recover
+conventional rounded `double` values, read the round-trip representation or use a custom converter.
+
 ## DataContractSerializer for XML
 
 All quantities and the `IQuantity` interface have `[DataContract]` annotations and can be serialized by the built-in XML [DataContractSerializer](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.serialization.datacontractserializer).
 
+Because `QuantityValue` is fraction-backed, configure the supplied surrogate provider to avoid exposing the internal
+`BigInteger` representation of its numerator and denominator:
+
+```c#
+using System.Runtime.Serialization;
+using UnitsNet.Serialization;
+
+var serializer = new DataContractSerializer(typeof(Power));
+serializer.SetSerializationSurrogateProvider(QuantityValueSurrogateSerializationProvider.Instance);
+```
+
+The compact representation stores the exact numerator and denominator:
+
 ```xml
 <Power xmlns="http://schemas.datacontract.org/2004/07/UnitsNet"
        xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
-    <Value>1.20</Value>
+    <Value>
+        <N>12</N>
+        <D>10</D>
+    </Value>
     <Unit>Milliwatt</Unit>
 </Power>
 ```
@@ -111,7 +146,10 @@ new Foo { Quantity = new Information(1.20m, InformationUnit.Exabyte) };
 <Foo xmlns="http://schemas.datacontract.org/2004/07/UnitsNet.Tests.Serialization"
                      xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
     <Quantity i:type="a:Information" xmlns:a="http://schemas.datacontract.org/2004/07/UnitsNet">
-        <a:Value>1.20</a:Value>
+        <a:Value>
+            <a:N>12</a:N>
+            <a:D>10</a:D>
+        </a:Value>
         <a:Unit>Exabyte</a:Unit>
     </Quantity>
 </Foo>
@@ -134,11 +172,44 @@ Schema:
 }
 ```
 
-## System.Text.Json (not yet implemented)
+## UnitsNet.Serialization.SystemTextJson
 
-See
-- [WIP: Add serialization support for System.Text.Json #905](https://github.com/angularsen/UnitsNet/pull/905)
-- [Add serialization support for System.Text.Json (Attempt #2) #966](https://github.com/angularsen/UnitsNet/pull/966)
+Install the `UnitsNet.Serialization.SystemTextJson` package and register converters for the value, unit and quantity
+representations you want. For concrete quantity types, this example writes readable decimal values and unit
+abbreviations:
+
+```c#
+using System.Text.Json;
+using UnitsNet.Serialization.SystemTextJson;
+using UnitsNet.Serialization.SystemTextJson.Unit;
+using UnitsNet.Serialization.SystemTextJson.Value;
+
+var options = new JsonSerializerOptions();
+options.Converters.Add(new QuantityValueDecimalNotationConverter());
+options.Converters.Add(new AbbreviatedUnitConverter());
+options.Converters.Add(new JsonQuantityConverter());
+
+string json = JsonSerializer.Serialize(Mass.FromGrams(4.2), options);
+Mass mass = JsonSerializer.Deserialize<Mass>(json, options);
+// {"Value":4.2,"Unit":"g"}
+```
+
+To serialize properties declared as `IQuantity`, use an interface converter. The payload includes the quantity type so it
+can be reconstructed:
+
+```c#
+var options = new JsonSerializerOptions();
+options.Converters.Add(new QuantityValueDecimalNotationConverter());
+options.Converters.Add(new AbbreviatedInterfaceQuantityWithAvailableValueConverter());
+
+string json = JsonSerializer.Serialize<IQuantity>(Length.FromMeters(10), options);
+IQuantity quantity = JsonSerializer.Deserialize<IQuantity>(json, options);
+// {"Value":10,"Unit":"m","Type":"Length"}
+```
+
+For exact round-tripping, use `QuantityValueMixedNotationConverter`. It emits finite values as decimal numbers and
+non-terminating values such as one third as fractional strings. Other converters provide fractional-object, decimal and
+`double` representations.
 
 ## Protobuf and other `[DataContract]` compatible serializers
 

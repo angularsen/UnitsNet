@@ -42,12 +42,12 @@ namespace UnitsNet.NumberExtensions.NumberToVitaminA
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="VitaminA.FromInternationalUnits(double)" />
+            /// <inheritdoc cref="VitaminA.FromInternationalUnits(QuantityValue)" />
             public VitaminA InternationalUnits
 #if NET7_0_OR_GREATER
-                => VitaminA.FromInternationalUnits(double.CreateChecked(value));
+                => VitaminA.FromInternationalUnits(QuantityValue.CreateChecked(value));
 #else
-                => VitaminA.FromInternationalUnits(value.ToDouble(null));
+                => VitaminA.FromInternationalUnits(value.ToQuantityValue());
 #endif
 
         }

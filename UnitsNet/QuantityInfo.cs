@@ -107,7 +107,7 @@ public abstract class QuantityInfo : IQuantityInfo
     /// <returns>An instance of <see cref="IQuantity" /> representing the specified value and unit.</returns>
     /// <exception cref="ArgumentNullException">Thrown when <paramref name="unitKey" /> is null.</exception>
     /// <exception cref="ArgumentException">Thrown when <paramref name="unitKey" /> is not a valid unit for this quantity.</exception>
-    internal abstract IQuantity From(double value, UnitKey unitKey);
+    internal abstract IQuantity From(QuantityValue value, UnitKey unitKey);
 
     /// <inheritdoc />
     public override string ToString()
@@ -190,13 +190,13 @@ public abstract class QuantityInfo<TUnit> : QuantityInfo
     }
 
     /// <inheritdoc cref="QuantityInfo.From" />
-    public IQuantity<TUnit> From(double value, TUnit unit)
+    public IQuantity<TUnit> From(QuantityValue value, TUnit unit)
     {
         return CreateGenericQuantity(value, unit);
     }
 
-    /// <inheritdoc cref="From(double,TUnit)" />
-    protected internal abstract IQuantity<TUnit> CreateGenericQuantity(double value, TUnit unit);
+    /// <inheritdoc cref="From(UnitsNet.QuantityValue,TUnit)" />
+    protected internal abstract IQuantity<TUnit> CreateGenericQuantity(QuantityValue value, TUnit unit);
 
     #endregion
 
@@ -233,7 +233,7 @@ public abstract class QuantityInfo<TUnit> : QuantityInfo
     }
 
     /// <inheritdoc />
-    internal override IQuantity From(double value, UnitKey unitKey)
+    internal override IQuantity From(QuantityValue value, UnitKey unitKey)
     {
         return From(value, unitKey.ToUnit<TUnit>());
     }
@@ -303,13 +303,13 @@ public abstract class QuantityInfoBase<TQuantity, TUnit, TUnitInfo> : QuantityIn
     /// <param name="value">The numerical value of the quantity.</param>
     /// <param name="unit">The unit of the quantity.</param>
     /// <returns>An instance of <typeparamref name="TQuantity" /> representing the specified value and unit.</returns>
-    public new TQuantity From(double value, TUnit unit)
+    public new TQuantity From(QuantityValue value, TUnit unit)
     {
         return FromDelegate(value, unit);
     }
 
     /// <inheritdoc />
-    TQuantity IQuantityInstanceInfo<TQuantity>.Create(double value, UnitKey unitKey)
+    TQuantity IQuantityInstanceInfo<TQuantity>.Create(QuantityValue value, UnitKey unitKey)
     {
         return From(value, unitKey.ToUnit<TUnit>());
     }
@@ -343,7 +343,7 @@ public abstract class QuantityInfoBase<TQuantity, TUnit, TUnitInfo> : QuantityIn
     }
 
     /// <inheritdoc />
-    protected internal override IQuantity<TUnit> CreateGenericQuantity(double value, TUnit unit)
+    protected internal override IQuantity<TUnit> CreateGenericQuantity(QuantityValue value, TUnit unit)
     {
         return From(value, unit);
     }
@@ -361,7 +361,7 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private readonly Dictionary<TUnit, UnitInfo<TQuantity, TUnit>> _unitMappings;
-
+    
 #if NET
 
     /// <summary>
@@ -400,12 +400,12 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
     /// </exception>
     public QuantityInfo(string name, TUnit baseUnit, IEnumerable<IUnitDefinition<TUnit>> unitMappings, BaseDimensions baseDimensions,
         ResourceManager? unitAbbreviations = null)
-        : this(name, baseUnit, unitMappings, TQuantity.From(0, baseUnit), baseDimensions, TQuantity.From, unitAbbreviations)
+        : this(name, baseUnit, unitMappings, TQuantity.From(QuantityValue.Zero, baseUnit), baseDimensions, TQuantity.From, unitAbbreviations)
     {
     }
 
 #endif
-
+    
     /// <summary>
     ///     Initializes a new instance of the <see cref="QuantityInfo{TQuantity, TUnit}" /> class using the default quantity
     ///     name.
@@ -444,7 +444,7 @@ public class QuantityInfo<TQuantity, TUnit> : QuantityInfoBase<TQuantity, TUnit,
     /// </exception>
     public QuantityInfo(string name, TUnit baseUnit, IEnumerable<IUnitDefinition<TUnit>> unitMappings, BaseDimensions baseDimensions,
         QuantityFromDelegate<TQuantity, TUnit> fromDelegate, ResourceManager? unitAbbreviations = null)
-        : this(name, baseUnit, unitMappings, fromDelegate(0, baseUnit), baseDimensions, fromDelegate, unitAbbreviations)
+        : this(name, baseUnit, unitMappings, fromDelegate(QuantityValue.Zero, baseUnit), baseDimensions, fromDelegate, unitAbbreviations)
     {
     }
 

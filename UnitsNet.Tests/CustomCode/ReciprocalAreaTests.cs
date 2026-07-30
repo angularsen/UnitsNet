@@ -45,10 +45,11 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData(2.0, 0.5)]
         public void InverseReturnsArea(double value, double expected)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             var inverseArea = new ReciprocalArea(value, ReciprocalAreaUnit.InverseSquareMeter);
             var area = inverseArea.Inverse();
 
-            Assert.Equal(expected, area.SquareMeters);
+            Assert.Equal(expectedValue, area.SquareMeters);
         }
 
         [Fact]
@@ -62,7 +63,7 @@ namespace UnitsNet.Tests.CustomCode
         public void ReciprocalAreaTimesAreaEqualsRatio()
         {
             Ratio ratio = ReciprocalArea.FromInverseSquareMeters(10) * Area.FromSquareMeters(0.5);
-            Assert.Equal(5.0, ratio.Value);
+            Assert.Equal(5, ratio.Value);
         }
 
         [Fact]

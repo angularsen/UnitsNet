@@ -71,8 +71,9 @@ namespace UnitsNet.Tests
         [InlineData("1m", 1, Units.LengthUnit.Meter)]
         [InlineData("1", 1, Units.LengthUnit.Meter)]
         [InlineData("1km", 1, Units.LengthUnit.Kilometer)]
-        public void ConvertFrom_GivenQuantityStringAndContextWithNoAttributes_ReturnsQuantityWithBaseUnitIfNotSpecified(string str, double expectedValue, Enum expectedUnit)
+        public void ConvertFrom_GivenQuantityStringAndContextWithNoAttributes_ReturnsQuantityWithBaseUnitIfNotSpecified(string str, double expected, Enum expectedUnit)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[] { });
 
@@ -87,8 +88,9 @@ namespace UnitsNet.Tests
         [InlineData("1m", 1, Units.LengthUnit.Meter)]
         [InlineData("1", 1, Units.LengthUnit.Centimeter)]
         [InlineData("1km", 1, Units.LengthUnit.Kilometer)]
-        public void ConvertFrom_GivenQuantityStringAndContextWithDefaultUnitAttribute_ReturnsQuantityWithGivenDefaultUnitIfNotSpecified(string str, double expectedValue, Enum expectedUnit)
+        public void ConvertFrom_GivenQuantityStringAndContextWithDefaultUnitAttribute_ReturnsQuantityWithGivenDefaultUnitIfNotSpecified(string str, double expected, Enum expectedUnit)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
             {
@@ -106,8 +108,9 @@ namespace UnitsNet.Tests
         [InlineData("1m", 1, Units.LengthUnit.Meter)]
         [InlineData("1", 0.01, Units.LengthUnit.Meter)]
         [InlineData("1km", 1000, Units.LengthUnit.Meter)]
-        public void ConvertFrom_GivenQuantityStringAndContextWithDefaultUnitAndConvertToUnitAttributes_ReturnsQuantityConvertedToUnit(string str, double expectedValue, Enum expectedUnit)
+        public void ConvertFrom_GivenQuantityStringAndContextWithDefaultUnitAndConvertToUnitAttributes_ReturnsQuantityConvertedToUnit(string str, double expected, Enum expectedUnit)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             var converter = new QuantityTypeConverter<Length>();
             ITypeDescriptorContext context = new TypeDescriptorContext("SomeMemberName", new Attribute[]
             {
@@ -127,9 +130,10 @@ namespace UnitsNet.Tests
         [InlineData(double.NaN)]
         [InlineData(double.PositiveInfinity)]
         [InlineData(double.NegativeInfinity)]
-        public void ConvertFrom_GivenQuantityStringAndNullCulture_ReturnsQuantityConvertedToUnit(double expectedValue)
+        public void ConvertFrom_GivenQuantityStringAndNullCulture_ReturnsQuantityConvertedToUnit(double expected)
         {
-            var str = expectedValue.ToString(CultureInfo.CurrentCulture) + "mm";
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
+            var str = expected.ToString(CultureInfo.CurrentCulture) + "mm";
             var converter = new QuantityTypeConverter<Length>();
 
             var convertedValue = (Length)converter.ConvertFrom(null, null, str)!;

@@ -44,7 +44,8 @@ function Start-Tests {
     "UnitsNet.GlobalSetup.Tests/UnitsNet.GlobalSetup.Tests.csproj",
     "UnitsNet.NumberExtensions.Tests/UnitsNet.NumberExtensions.Tests.csproj",
     "UnitsNet.NumberExtensions.CS14.Tests/UnitsNet.NumberExtensions.CS14.Tests.csproj",
-    "UnitsNet.Serialization.JsonNet.Tests/UnitsNet.Serialization.JsonNet.Tests.csproj"
+    "UnitsNet.Serialization.JsonNet.Tests/UnitsNet.Serialization.JsonNet.Tests.csproj",
+    "UnitsNet.Serialization.SystemTextJson.Tests/UnitsNet.Serialization.SystemTextJson.Tests.csproj"
     )
 
   # Parent dir must exist before xunit tries to write files to it
@@ -102,6 +103,7 @@ function Start-PackNugets {
   $projectPaths = @(
     "UnitsNet/UnitsNet.csproj",
     "UnitsNet.Serialization.JsonNet/UnitsNet.Serialization.JsonNet.csproj",
+    "UnitsNet.Serialization.SystemTextJson/UnitsNet.Serialization.SystemTextJson.csproj",
     "UnitsNet.NumberExtensions/UnitsNet.NumberExtensions.csproj",
     "UnitsNet.NumberExtensions.CS14/UnitsNet.NumberExtensions.CS14.csproj"
     )

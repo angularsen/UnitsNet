@@ -2,7 +2,6 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.Linq;
-using UnitsNet.InternalHelpers;
 
 namespace UnitsNet;
 
@@ -12,25 +11,6 @@ namespace UnitsNet;
 /// </summary>
 public static class LogarithmicQuantityExtensions
 {
-    internal static double ToLinearSpace(this double logValue, double scalingFactor)
-    {
-        return Math.Pow(10, logValue / scalingFactor);
-    }
-
-    internal static double ToLogSpace(this double value, double scalingFactor)
-    {
-        return scalingFactor * Math.Log10(value);
-    }
-
-    private static double RootN(double number, int n)
-    {
-#if NET
-        return double.RootN(number, n);
-#else
-        return MathHelper.RootN(number, n);
-#endif
-    }
-
     /// <inheritdoc cref="EqualsAbsolute{TQuantity,TOther,TTolerance}" />
     public static bool Equals<TQuantity, TOther, TTolerance>(this TQuantity quantity, TOther? other, TTolerance tolerance)
         where TQuantity : ILogarithmicQuantity<TQuantity>
@@ -87,9 +67,9 @@ public static class LogarithmicQuantityExtensions
     {
         UnitKey quantityUnit = quantity.UnitKey;
 #if NET
-        var scalingFactor = TQuantity.LogarithmicScalingFactor;
+        QuantityValue scalingFactor = TQuantity.LogarithmicScalingFactor;
 #else
-        var scalingFactor = quantity.LogarithmicScalingFactor;
+        QuantityValue scalingFactor = quantity.LogarithmicScalingFactor;
 #endif
         var valueInLinearSpace = quantity.Value.ToLinearSpace(scalingFactor);
         var otherValueInLinearSpace = other.GetValue(quantityUnit).ToLinearSpace(scalingFactor);
@@ -102,13 +82,14 @@ public static class LogarithmicQuantityExtensions
     /// </summary>
     /// <typeparam name="TQuantity">The type of the logarithmic quantity.</typeparam>
     /// <param name="quantities">The sequence of logarithmic quantities to sum.</param>
+    /// <param name="significantDigits">The number of significant digits to retain in the result. Default is 15.</param>
     /// <returns>The sum of the logarithmic quantities in the unit of the first element in the sequence.</returns>
     /// <exception cref="InvalidOperationException">Thrown when the sequence is empty.</exception>
     /// <remarks>
     ///     When the sequence is not empty, each quantity is converted to linear space (in the unit of the first element),
     ///     summed, and then the result is converted back to logarithmic space using the same unit.
     /// </remarks>
-    public static TQuantity Sum<TQuantity>(this IEnumerable<TQuantity> quantities)
+    public static TQuantity Sum<TQuantity>(this IEnumerable<TQuantity> quantities, byte significantDigits = 15)
         where TQuantity : ILogarithmicQuantity<TQuantity>
     {
         if (quantities is null)
@@ -124,9 +105,9 @@ public static class LogarithmicQuantityExtensions
 
         TQuantity firstQuantity = enumerator.Current!;
 #if NET
-        var logarithmicScalingFactor = TQuantity.LogarithmicScalingFactor;
+        QuantityValue logarithmicScalingFactor = TQuantity.LogarithmicScalingFactor;
 #else
-        var logarithmicScalingFactor = firstQuantity.LogarithmicScalingFactor;
+        QuantityValue logarithmicScalingFactor = firstQuantity.LogarithmicScalingFactor;
 #endif
         UnitKey resultUnit = firstQuantity.UnitKey;
         var resultValue = firstQuantity.Value.ToLinearSpace(logarithmicScalingFactor);
@@ -135,9 +116,9 @@ public static class LogarithmicQuantityExtensions
             resultValue += enumerator.Current!.GetValue(resultUnit).ToLinearSpace(logarithmicScalingFactor);
         }
 #if NET
-        return TQuantity.Create(resultValue.ToLogSpace(logarithmicScalingFactor), resultUnit);
+        return TQuantity.Create(resultValue.ToLogSpace(logarithmicScalingFactor, significantDigits), resultUnit);
 #else
-        return firstQuantity.QuantityInfo.Create(resultValue.ToLogSpace(logarithmicScalingFactor), resultUnit);
+        return firstQuantity.QuantityInfo.Create(resultValue.ToLogSpace(logarithmicScalingFactor, significantDigits), resultUnit);
 #endif
     }
 
@@ -150,16 +131,17 @@ public static class LogarithmicQuantityExtensions
     /// <typeparam name="TQuantity">The type of the quantity elements in the source sequence.</typeparam>
     /// <param name="source">A sequence of quantities to calculate the sum of.</param>
     /// <param name="selector">A function to transform each element of the source sequence into a quantity.</param>
+    /// <param name="significantDigits">The number of significant digits to retain in the result. Default is 15.</param>
     /// <returns>The sum of the logarithmic quantities in the unit of the first element in the sequence.</returns>
     /// <exception cref="InvalidOperationException">Thrown when the sequence is empty.</exception>
     /// <remarks>
     ///     When the sequence is not empty, each quantity is converted to linear space (in the unit of the first element),
     ///     summed, and then the result is converted back to logarithmic space using the same unit.
     /// </remarks>
-    public static TQuantity Sum<TSource, TQuantity>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector)
+    public static TQuantity Sum<TSource, TQuantity>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, byte significantDigits = 15)
         where TQuantity : ILogarithmicQuantity<TQuantity>
     {
-        return source.Select(selector).Sum();
+        return source.Select(selector).Sum(significantDigits);
     }
 
     /// <summary>
@@ -170,13 +152,14 @@ public static class LogarithmicQuantityExtensions
     /// <typeparam name="TUnit">The unit type of the logarithmic quantity.</typeparam>
     /// <param name="quantities">The sequence of logarithmic quantities to sum.</param>
     /// <param name="targetUnit">The unit in which to express the sum.</param>
+    /// <param name="significantDigits">The number of significant digits to retain in the result. Default is 15.</param>
     /// <returns>The sum of the logarithmic quantities in the specified unit.</returns>
     /// <exception cref="InvalidOperationException">Thrown when the sequence is empty.</exception>
     /// <remarks>
     ///     This method converts each logarithmic quantity to linear space, sums them, and then converts the result back to
     ///     logarithmic space.
     /// </remarks>
-    public static TQuantity Sum<TQuantity, TUnit>(this IEnumerable<TQuantity> quantities, TUnit targetUnit)
+    public static TQuantity Sum<TQuantity, TUnit>(this IEnumerable<TQuantity> quantities, TUnit targetUnit, byte significantDigits = 15)
         where TQuantity : ILogarithmicQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
@@ -194,9 +177,9 @@ public static class LogarithmicQuantityExtensions
         var unitKey = UnitKey.ForUnit(targetUnit);
         TQuantity firstQuantity = enumerator.Current!;
 #if NET
-        var logarithmicScalingFactor = TQuantity.LogarithmicScalingFactor;
+        QuantityValue logarithmicScalingFactor = TQuantity.LogarithmicScalingFactor;
 #else
-        var logarithmicScalingFactor = firstQuantity.LogarithmicScalingFactor;
+        QuantityValue logarithmicScalingFactor = firstQuantity.LogarithmicScalingFactor;
 #endif
         var sumInLinearSpace = firstQuantity.GetValue(unitKey).ToLinearSpace(logarithmicScalingFactor);
         while (enumerator.MoveNext())
@@ -205,9 +188,9 @@ public static class LogarithmicQuantityExtensions
         }
 
 #if NET
-        return TQuantity.From(sumInLinearSpace.ToLogSpace(logarithmicScalingFactor), targetUnit);
+        return TQuantity.From(sumInLinearSpace.ToLogSpace(logarithmicScalingFactor, significantDigits), targetUnit);
 #else
-        return firstQuantity.QuantityInfo.From(sumInLinearSpace.ToLogSpace(logarithmicScalingFactor), targetUnit);
+        return firstQuantity.QuantityInfo.From(sumInLinearSpace.ToLogSpace(logarithmicScalingFactor, significantDigits), targetUnit);
 #endif
     }
 
@@ -222,17 +205,19 @@ public static class LogarithmicQuantityExtensions
     /// <param name="source">A sequence of quantities to calculate the sum of.</param>
     /// <param name="selector">A function to transform each element of the source sequence into a quantity.</param>
     /// <param name="targetUnit">The desired unit type for the resulting quantity</param>
+    /// <param name="significantDigits">The number of significant digits to retain in the result. Default is 15.</param>
     /// <returns>The sum of the projected quantities in the specified unit.</returns>
     /// <exception cref="ArgumentNullException">Thrown if the source or selector is null.</exception>
     /// <remarks>
     ///     This method converts each logarithmic quantity to linear space, sums them, and then converts the result back to
     ///     logarithmic space.
     /// </remarks>
-    public static TQuantity Sum<TSource, TQuantity, TUnit>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnit targetUnit)
+    public static TQuantity Sum<TSource, TQuantity, TUnit>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnit targetUnit,
+        byte significantDigits = 15)
         where TQuantity : ILogarithmicQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
-        return source.Select(selector).Sum(targetUnit);
+        return source.Select(selector).Sum(targetUnit, significantDigits);
     }
 
     /// <summary>
@@ -240,13 +225,14 @@ public static class LogarithmicQuantityExtensions
     /// </summary>
     /// <typeparam name="TQuantity">The type of the logarithmic quantity.</typeparam>
     /// <param name="quantities">The sequence of logarithmic quantities to average.</param>
+    /// <param name="significantDigits">The number of significant digits to retain in the result. Default is 15.</param>
     /// <returns>The average of the logarithmic quantities in the unit of the first element in the sequence.</returns>
     /// <exception cref="InvalidOperationException">Thrown when the sequence is empty.</exception>
     /// <remarks>
     ///     When the sequence is not empty, each quantity is converted to linear space (in the unit of the first element),
     ///     averaged, and then the result is converted back to logarithmic space using the same unit.
     /// </remarks>
-    public static TQuantity ArithmeticMean<TQuantity>(this IEnumerable<TQuantity> quantities)
+    public static TQuantity ArithmeticMean<TQuantity>(this IEnumerable<TQuantity> quantities, byte significantDigits = 15)
         where TQuantity : ILogarithmicQuantity<TQuantity>
     {
         if (quantities is null)
@@ -262,9 +248,9 @@ public static class LogarithmicQuantityExtensions
 
         TQuantity firstQuantity = enumerator.Current!;
 #if NET
-        var logarithmicScalingFactor = TQuantity.LogarithmicScalingFactor;
+        QuantityValue logarithmicScalingFactor = TQuantity.LogarithmicScalingFactor;
 #else
-        var logarithmicScalingFactor = firstQuantity.LogarithmicScalingFactor;
+        QuantityValue logarithmicScalingFactor = firstQuantity.LogarithmicScalingFactor;
 #endif
         UnitKey resultUnit = firstQuantity.UnitKey;
         var sumInLinearSpace = firstQuantity.Value.ToLinearSpace(logarithmicScalingFactor);
@@ -277,9 +263,9 @@ public static class LogarithmicQuantityExtensions
 
         var avgInLinearSpace = sumInLinearSpace / nbQuantities;
 #if NET
-        return TQuantity.Create(avgInLinearSpace.ToLogSpace(logarithmicScalingFactor), resultUnit);
+        return TQuantity.Create(avgInLinearSpace.ToLogSpace(logarithmicScalingFactor, significantDigits), resultUnit);
 #else
-        return firstQuantity.QuantityInfo.Create(avgInLinearSpace.ToLogSpace(logarithmicScalingFactor), resultUnit);
+        return firstQuantity.QuantityInfo.Create(avgInLinearSpace.ToLogSpace(logarithmicScalingFactor, significantDigits), resultUnit);
 #endif
     }
 
@@ -291,16 +277,17 @@ public static class LogarithmicQuantityExtensions
     /// <typeparam name="TQuantity">The type of the quantity elements in the source sequence.</typeparam>
     /// <param name="source">A sequence of quantities to calculate the sum of.</param>
     /// <param name="selector">A function to transform each element of the source sequence into a quantity.</param>
+    /// <param name="significantDigits">The number of significant digits to retain in the result. Default is 15.</param>
     /// <returns>The average of the logarithmic quantities in the unit of the first element in the sequence.</returns>
     /// <exception cref="InvalidOperationException">Thrown when the sequence is empty.</exception>
     /// <remarks>
     ///     When the sequence is not empty, each quantity is converted to linear space (in the unit of the first element),
     ///     averaged, and then the result is converted back to logarithmic space using the same unit.
     /// </remarks>
-    public static TQuantity ArithmeticMean<TSource, TQuantity>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector)
+    public static TQuantity ArithmeticMean<TSource, TQuantity>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, byte significantDigits = 15)
         where TQuantity : ILogarithmicQuantity<TQuantity>
     {
-        return ArithmeticMean(source.Select(selector));
+        return source.Select(selector).ArithmeticMean(significantDigits);
     }
 
     /// <summary>
@@ -310,13 +297,14 @@ public static class LogarithmicQuantityExtensions
     /// <typeparam name="TUnit">The unit type of the logarithmic quantity.</typeparam>
     /// <param name="quantities">The sequence of logarithmic quantities to sum.</param>
     /// <param name="unit">The unit in which to express the sum.</param>
+    /// <param name="significantDigits">The number of significant digits to retain in the result. Default is 15.</param>
     /// <returns>The arithmetic mean of the logarithmic quantities in the specified unit.</returns>
     /// <exception cref="InvalidOperationException">Thrown when the sequence is empty.</exception>
     /// <remarks>
     ///     When the sequence is not empty, each quantity is converted to linear space (in the specified unit),
     ///     averaged, and then the result is converted back to logarithmic space using the same unit.
     /// </remarks>
-    public static TQuantity ArithmeticMean<TQuantity, TUnit>(this IEnumerable<TQuantity> quantities, TUnit unit)
+    public static TQuantity ArithmeticMean<TQuantity, TUnit>(this IEnumerable<TQuantity> quantities, TUnit unit, byte significantDigits = 15)
         where TQuantity : ILogarithmicQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
@@ -334,9 +322,9 @@ public static class LogarithmicQuantityExtensions
         var unitKey = UnitKey.ForUnit(unit);
         TQuantity firstQuantity = enumerator.Current!;
 #if NET
-        var logarithmicScalingFactor = TQuantity.LogarithmicScalingFactor;
+        QuantityValue logarithmicScalingFactor = TQuantity.LogarithmicScalingFactor;
 #else
-        var logarithmicScalingFactor = firstQuantity.LogarithmicScalingFactor;
+        QuantityValue logarithmicScalingFactor = firstQuantity.LogarithmicScalingFactor;
 #endif
         var sumInLinearSpace = firstQuantity.GetValue(unitKey).ToLinearSpace(logarithmicScalingFactor);
         var nbQuantities = 1;
@@ -348,9 +336,9 @@ public static class LogarithmicQuantityExtensions
 
         var avgInLinearSpace = sumInLinearSpace / nbQuantities;
 #if NET
-        return TQuantity.From(avgInLinearSpace.ToLogSpace(logarithmicScalingFactor), unit);
+        return TQuantity.From(avgInLinearSpace.ToLogSpace(logarithmicScalingFactor, significantDigits), unit);
 #else
-        return firstQuantity.QuantityInfo.From(avgInLinearSpace.ToLogSpace(logarithmicScalingFactor), unit);
+        return firstQuantity.QuantityInfo.From(avgInLinearSpace.ToLogSpace(logarithmicScalingFactor, significantDigits), unit);
 #endif
     }
 
@@ -365,17 +353,19 @@ public static class LogarithmicQuantityExtensions
     /// <param name="source">A sequence of quantities to calculate the sum of.</param>
     /// <param name="selector">A function to transform each element of the source sequence into a quantity.</param>
     /// <param name="targetUnit">The desired unit type for the resulting quantity.</param>
+    /// <param name="significantDigits">The number of significant digits to retain in the result. Default is 15.</param>
     /// <returns>The arithmetic mean of the logarithmic quantities in the specified unit.</returns>
     /// <exception cref="InvalidOperationException">Thrown when the sequence is empty.</exception>
     /// <remarks>
     ///     When the sequence is not empty, each quantity is converted to linear space (in the specified unit),
     ///     averaged, and then the result is converted back to logarithmic space using the same unit.
     /// </remarks>
-    public static TQuantity ArithmeticMean<TSource, TQuantity, TUnit>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnit targetUnit)
+    public static TQuantity ArithmeticMean<TSource, TQuantity, TUnit>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnit targetUnit,
+        byte significantDigits = 15)
         where TQuantity : ILogarithmicQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
-        return ArithmeticMean(source.Select(selector), targetUnit);
+        return source.Select(selector).ArithmeticMean(targetUnit, significantDigits);
     }
 
     /// <summary>
@@ -383,13 +373,17 @@ public static class LogarithmicQuantityExtensions
     /// </summary>
     /// <typeparam name="TQuantity">The type of the logarithmic quantity.</typeparam>
     /// <param name="quantities">The sequence of logarithmic quantities to average.</param>
+    /// <param name="accuracy">
+    ///     The accuracy for the square root calculation, expressed as number of significant digits. Default
+    ///     is 15.
+    /// </param>
     /// <returns>The geometric mean of the logarithmic quantities in the unit of the first element in the sequence.</returns>
     /// <exception cref="InvalidOperationException">Thrown when the sequence is empty.</exception>
     /// <remarks>
     ///     When the sequence is not empty, calculates the n-th root of the product of the quantities, which for the
     ///     logarithmic quantities is equal to the sum the values, converted in unit of the first element.
     /// </remarks>
-    public static TQuantity GeometricMean<TQuantity>(this IEnumerable<TQuantity> quantities)
+    public static TQuantity GeometricMean<TQuantity>(this IEnumerable<TQuantity> quantities, int accuracy = 15)
         where TQuantity : ILogarithmicQuantity<TQuantity>
     {
         if (quantities is null)
@@ -405,7 +399,7 @@ public static class LogarithmicQuantityExtensions
 
         TQuantity firstQuantity = enumerator.Current!;
         UnitKey resultUnit = firstQuantity.UnitKey;
-        var sumInLogSpace = firstQuantity.Value;
+        QuantityValue sumInLogSpace = firstQuantity.Value;
         var nbQuantities = 1;
         while (enumerator.MoveNext())
         {
@@ -413,7 +407,7 @@ public static class LogarithmicQuantityExtensions
             nbQuantities++;
         }
 
-        var geometricMean = RootN(sumInLogSpace, nbQuantities);
+        var geometricMean = QuantityValue.RootN(sumInLogSpace, nbQuantities, accuracy);
 #if NET
         return TQuantity.Create(geometricMean, resultUnit);
 #else
@@ -430,17 +424,19 @@ public static class LogarithmicQuantityExtensions
     /// <typeparam name="TQuantity">The type of the quantity elements in the source sequence.</typeparam>
     /// <param name="source">A sequence of quantities to calculate the sum of.</param>
     /// <param name="selector">A function to transform each element of the source sequence into a quantity.</param>
+    /// <param name="accuracy">The number of significant digits to retain in the result. Default is 15.</param>
     /// <returns>The geometric mean of the logarithmic quantities in the unit of the first element in the sequence.</returns>
     /// <exception cref="InvalidOperationException">Thrown when the sequence is empty.</exception>
     /// <remarks>
     ///     When the sequence is not empty, calculates the n-th root of the product of the quantities, which for the
     ///     logarithmic quantities is equal to the sum the values, converted in unit of the first element.
     /// </remarks>
-    public static TQuantity GeometricMean<TSource, TQuantity>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector)
+    public static TQuantity GeometricMean<TSource, TQuantity>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, int accuracy = 15)
         where TQuantity : ILogarithmicQuantity<TQuantity>
     {
-        return source.Select(selector).GeometricMean();
+        return source.Select(selector).GeometricMean(accuracy);
     }
+
 
     /// <summary>
     ///     Computes the geometric mean of a sequence of logarithmic quantities, such as PowerRatio and AmplitudeRatio, using
@@ -450,13 +446,14 @@ public static class LogarithmicQuantityExtensions
     /// <typeparam name="TUnit">The type of the unit of the quantities.</typeparam>
     /// <param name="quantities">The sequence of logarithmic quantities to average.</param>
     /// <param name="targetUnit">The desired unit type for the resulting quantity.</param>
+    /// <param name="accuracy">The number of decimal places of accuracy for the square root calculation. Default is 15.</param>
     /// <returns>The geometric mean of the logarithmic quantities in the unit of the first element in the sequence.</returns>
     /// <exception cref="InvalidOperationException">Thrown when the sequence is empty.</exception>
     /// <remarks>
     ///     When the sequence is not empty, calculates the n-th root of the product of the quantities, which for the
     ///     logarithmic quantities is equal to the sum the values, converted in unit of the first element.
     /// </remarks>
-    public static TQuantity GeometricMean<TQuantity, TUnit>(this IEnumerable<TQuantity> quantities, TUnit targetUnit)
+    public static TQuantity GeometricMean<TQuantity, TUnit>(this IEnumerable<TQuantity> quantities, TUnit targetUnit, int accuracy = 15)
         where TQuantity : ILogarithmicQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
@@ -473,7 +470,7 @@ public static class LogarithmicQuantityExtensions
 
         var unitKey = UnitKey.ForUnit(targetUnit);
         TQuantity firstQuantity = enumerator.Current!;
-        var sumInLogSpace = firstQuantity.GetValue(unitKey);
+        QuantityValue sumInLogSpace = firstQuantity.GetValue(unitKey);
         var nbQuantities = 1;
         while (enumerator.MoveNext())
         {
@@ -481,7 +478,7 @@ public static class LogarithmicQuantityExtensions
             nbQuantities++;
         }
 
-        var geometricMean = RootN(sumInLogSpace, nbQuantities);
+        var geometricMean = QuantityValue.RootN(sumInLogSpace, nbQuantities, accuracy);
 #if NET
         return TQuantity.From(geometricMean, unitKey.ToUnit<TUnit>());
 #else
@@ -500,16 +497,18 @@ public static class LogarithmicQuantityExtensions
     /// <param name="source">A sequence of quantities to calculate the sum of.</param>
     /// <param name="selector">A function to transform each element of the source sequence into a quantity.</param>
     /// <param name="targetUnit">The desired unit type for the resulting quantity.</param>
+    /// <param name="accuracy">The number of decimal places of accuracy for the square root calculation. Default is 15.</param>
     /// <returns>The arithmetic mean of the logarithmic quantities in the specified unit.</returns>
     /// <exception cref="InvalidOperationException">Thrown when the sequence is empty.</exception>
     /// <remarks>
     ///     When the sequence is not empty, calculates the n-th root of the product of the quantities, which for the
     ///     logarithmic quantities is equal to the sum the values, converted in unit of the first element.
     /// </remarks>
-    public static TQuantity GeometricMean<TSource, TQuantity, TUnit>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnit targetUnit)
+    public static TQuantity GeometricMean<TSource, TQuantity, TUnit>(this IEnumerable<TSource> source, Func<TSource, TQuantity> selector, TUnit targetUnit,
+        int accuracy = 15)
         where TQuantity : ILogarithmicQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
     {
-        return source.Select(selector).GeometricMean(targetUnit);
+        return source.Select(selector).GeometricMean(targetUnit, accuracy);
     }
 }
