@@ -26,7 +26,7 @@ internal static class ConfigureWithCustomQuantities
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
     [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly struct HowMuch(QuantityValue value, HowMuchUnit unit) :
-        IArithmeticQuantity<HowMuch, HowMuchUnit>,
+        ILinearQuantity<HowMuch, HowMuchUnit>,
         IEquatable<HowMuch>, IComparable<HowMuch>, IComparisonOperators<HowMuch, HowMuch, bool>,
         IParsable<HowMuch>
     {
