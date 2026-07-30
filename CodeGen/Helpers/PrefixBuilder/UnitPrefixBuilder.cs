@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Text.RegularExpressions;
+using CodeGen.Exceptions;
 using CodeGen.JsonTypes;
 
 namespace CodeGen.Helpers.PrefixBuilder;
@@ -18,6 +20,21 @@ namespace CodeGen.Helpers.PrefixBuilder;
 /// </remarks>
 internal class UnitPrefixBuilder
 {
+    /// <summary>
+    ///     Matches abbreviations whose leading unit token is raised to the second, third, or fourth power using a
+    ///     superscript or caret, such as <c>m²</c>, <c>ft³/s</c>, or <c>m^4</c>.
+    /// </summary>
+    /// <remarks>
+    ///     This is intentionally not a general unit-expression parser. It does not match a power in a denominator or later
+    ///     compound term (<c>kg/m³</c>, <c>m/s²</c>, or <c>N·m²</c>), a leading numeric scale factor
+    ///     (<c>10³·m³</c>), parenthesized or implicit powers, or powers other than two through four. These cases do not put
+    ///     a metric prefix directly before an explicitly powered leading unit token, or are outside the scope of this
+    ///     heuristic. Unit names starting with <c>Square</c> or <c>Cubic</c> are checked separately.
+    /// </remarks>
+    private static readonly Regex LeadingPoweredUnitAbbreviationRegex = new(
+        @"^[^\s/·*()\-\d]+(?:[²³⁴]|\^[234])",
+        RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
     private readonly BaseUnitPrefixes _prefixes;
 
     /// <summary>
@@ -45,6 +62,9 @@ internal class UnitPrefixBuilder
     /// <exception cref="System.Exception">
     ///     Thrown when an error occurs while processing a prefix for a unit, such as an invalid prefix or unit configuration.
     /// </exception>
+    /// <exception cref="UnitsNetCodeGenException">
+    ///     Thrown when prefixes are configured for a unit that looks like a powered unit.
+    /// </exception>
     /// <remarks>
     ///     This method iterates through the existing units of the specified <see cref="Quantity" /> and applies each defined
     ///     prefix to generate new prefixed units. It ensures that the singular and plural names, conversion functions,
@@ -54,32 +74,84 @@ internal class UnitPrefixBuilder
     {
         var unitsToAdd = new List<Unit>();
         foreach (Unit unit in quantity.Units)
-        foreach (Prefix prefix in unit.Prefixes)
         {
-            try
+            if (!unit.Prefixes.Any())
             {
-                PrefixInfo prefixInfo = PrefixInfo.Entries[prefix];
-
-                unitsToAdd.Add(new Unit
-                {
-                    SingularName = $"{prefix}{unit.SingularName.ToCamelCase()}", // "Kilo" + "NewtonPerMeter" => "KilonewtonPerMeter"
-                    PluralName = $"{prefix}{unit.PluralName.ToCamelCase()}", // "Kilo" + "NewtonsPerMeter" => "KilonewtonsPerMeter"
-                    BaseUnits = GetPrefixedBaseUnits(quantity.BaseDimensions, unit.BaseUnits, prefixInfo),
-                    FromBaseToUnitFunc = $"({unit.FromBaseToUnitFunc}) / {prefixInfo.Factor}",
-                    FromUnitToBaseFunc = $"({unit.FromUnitToBaseFunc}) * {prefixInfo.Factor}",
-                    Localization = GetLocalizationForPrefixUnit(unit.Localization, prefixInfo),
-                    ObsoleteText = unit.ObsoleteText,
-                    SkipConversionGeneration = unit.SkipConversionGeneration,
-                    AllowAbbreviationLookup = unit.AllowAbbreviationLookup
-                });
+                continue;
             }
-            catch (Exception e)
+
+            ThrowIfPrefixesAreUnsafeForPoweredUnit(quantity, unit);
+
+            foreach (Prefix prefix in unit.Prefixes)
             {
-                throw new Exception($"Error parsing prefix {prefix} for unit {quantity.Name}.{unit.SingularName}.", e);
+                try
+                {
+                    PrefixInfo prefixInfo = PrefixInfo.Entries[prefix];
+
+                    unitsToAdd.Add(new Unit
+                    {
+                        SingularName = $"{prefix}{unit.SingularName.ToCamelCase()}", // "Kilo" + "NewtonPerMeter" => "KilonewtonPerMeter"
+                        PluralName = $"{prefix}{unit.PluralName.ToCamelCase()}", // "Kilo" + "NewtonsPerMeter" => "KilonewtonsPerMeter"
+                        BaseUnits = GetPrefixedBaseUnits(quantity.BaseDimensions, unit.BaseUnits, prefixInfo),
+                        FromBaseToUnitFunc = $"({unit.FromBaseToUnitFunc}) / {prefixInfo.Factor}",
+                        FromUnitToBaseFunc = $"({unit.FromUnitToBaseFunc}) * {prefixInfo.Factor}",
+                        Localization = GetLocalizationForPrefixUnit(unit.Localization, prefixInfo),
+                        ObsoleteText = unit.ObsoleteText,
+                        SkipConversionGeneration = unit.SkipConversionGeneration,
+                        AllowAbbreviationLookup = unit.AllowAbbreviationLookup
+                    });
+                }
+                catch (Exception e)
+                {
+                    throw new Exception($"Error parsing prefix {prefix} for unit {quantity.Name}.{unit.SingularName}.", e);
+                }
             }
         }
 
         return unitsToAdd;
+    }
+
+    /// <summary>
+    ///     Prevents automatic prefixes from being applied to units that appear to represent a directly powered unit.
+    /// </summary>
+    /// <param name="quantity">The quantity that defines the unit.</param>
+    /// <param name="unit">The unit configured with one or more automatic prefixes.</param>
+    /// <exception cref="UnitsNetCodeGenException">
+    ///     Thrown when the unit name starts with <c>Square</c> or <c>Cubic</c>, or when one of its abbreviations starts with
+    ///     a unit token raised to the second, third, or fourth power.
+    /// </exception>
+    /// <remarks>
+    ///     Mechanically prefixing a powered unit can produce a misleading abbreviation. For example, prefixing
+    ///     <c>CubicMeter</c> with <c>Kilo</c> produces <c>km³</c>, which means cubic kilometer rather than one thousand
+    ///     cubic meters. This guard uses unit names and <see cref="LeadingPoweredUnitAbbreviationRegex" /> as a focused
+    ///     heuristic. It intentionally does not inspect base dimensions, since valid derived units such as watt and joule
+    ///     have powered dimensions but can safely use automatic prefixes.
+    /// </remarks>
+    private static void ThrowIfPrefixesAreUnsafeForPoweredUnit(Quantity quantity, Unit unit)
+    {
+        if (!LooksLikePoweredUnit(unit))
+        {
+            return;
+        }
+
+        throw new UnitsNetCodeGenException(
+            $"Prefixes cannot be used on {quantity.Name}.{unit.SingularName} because it looks like a powered unit. " +
+            "Define explicit units instead, such as CubicKilometer for km³ or ThousandCubicMeter for 1000 m³.");
+    }
+
+    private static bool LooksLikePoweredUnit(Unit unit)
+    {
+        // This intentionally checks naming conventions rather than dimensions, since derived units such as Watt, Joule,
+        // and Ohm have powered base dimensions and safely support prefixes.
+        if (unit.SingularName.StartsWith("Square", StringComparison.Ordinal) ||
+            unit.SingularName.StartsWith("Cubic", StringComparison.Ordinal))
+        {
+            return true;
+        }
+
+        return unit.Localization
+            .SelectMany(localization => localization.Abbreviations)
+            .Any(abbreviation => LeadingPoweredUnitAbbreviationRegex.IsMatch(abbreviation));
     }
 
     /// <summary>
