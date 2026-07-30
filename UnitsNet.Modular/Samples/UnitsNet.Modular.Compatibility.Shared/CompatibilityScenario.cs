@@ -33,15 +33,15 @@ public static class CompatibilityScenario
 
         return string.Join(
             Environment.NewLine,
-            FormattableString.Invariant($"Length: {distance.Value:R} {distance.Unit}"),
-            FormattableString.Invariant($"Area: {area.Value:R} {area.Unit}"),
-            FormattableString.Invariant($"Temperature: {temperature.Value:R} {temperature.Unit}"),
-            FormattableString.Invariant($"Temperature range: {temperatureRange.Value:R} {temperatureRange.Unit}"),
-            FormattableString.Invariant($"Temperature midpoint: {midpoint.Value:R} {midpoint.Unit}"),
-            FormattableString.Invariant($"Level: {combinedLevel.Value:R} {combinedLevel.Unit}"),
-            FormattableString.Invariant($"Information: {payload.Value:R} {payload.Unit}"),
-            FormattableString.Invariant($"Sum: {total.Value:R} {total.Unit}"),
-            FormattableString.Invariant($"Average: {average.Value:R} {average.Unit}"));
+            FormattableString.Invariant($"Length: {distance.Value:G15} {distance.Unit}"),
+            FormattableString.Invariant($"Area: {area.Value:G15} {area.Unit}"),
+            FormattableString.Invariant($"Temperature: {temperature.Value:G15} {temperature.Unit}"),
+            FormattableString.Invariant($"Temperature range: {temperatureRange.Value:G15} {temperatureRange.Unit}"),
+            FormattableString.Invariant($"Temperature midpoint: {midpoint.Value:G15} {midpoint.Unit}"),
+            FormattableString.Invariant($"Level: {combinedLevel.Value:G15} {combinedLevel.Unit}"),
+            FormattableString.Invariant($"Information: {payload.Value:G15} {payload.Unit}"),
+            FormattableString.Invariant($"Sum: {total.Value:G15} {total.Unit}"),
+            FormattableString.Invariant($"Average: {average.Value:G15} {average.Unit}"));
     }
 
     public static Length ParseLength(string text) =>

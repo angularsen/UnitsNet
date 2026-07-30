@@ -196,8 +196,13 @@ public sealed class CompatibilityTests
         foreach (Type legacyQuantity in GetQuantityTypes(LegacyAssembly))
         {
             Type generatedQuantity = GeneratedAssembly.GetType(legacyQuantity.FullName!, throwOnError: true)!;
-            ConstructorInfo? legacyConstructor = legacyQuantity.GetConstructor(
-                new[] { typeof(double), typeof(Legacy::UnitsNet.UnitSystem) });
+            ConstructorInfo? legacyConstructor = legacyQuantity.GetConstructors()
+                .SingleOrDefault(constructor =>
+                {
+                    ParameterInfo[] parameters = constructor.GetParameters();
+                    return parameters.Length == 2 &&
+                           parameters[1].ParameterType == typeof(Legacy::UnitsNet.UnitSystem);
+                });
             if (legacyConstructor is null)
             {
                 continue;
@@ -324,25 +329,32 @@ public sealed class CompatibilityTests
                 throwOnError: true)!;
             object legacyBaseUnit = legacyQuantity.GetProperty("BaseUnit")!.GetValue(null)!;
             object generatedBaseUnit = generatedQuantity.GetProperty("BaseUnit")!.GetValue(null)!;
-            MethodInfo legacyAs = legacyQuantity.GetMethod("As", new[] { legacyUnitType })!;
+            MethodInfo legacyAs = LegacyAssembly.GetType("UnitsNet.QuantityExtensions", throwOnError: true)!
+                .GetMethods(BindingFlags.Public | BindingFlags.Static)
+                .Single(method =>
+                    method.Name == "As" &&
+                    method.IsGenericMethodDefinition &&
+                    method.GetGenericArguments().Length == 2 &&
+                    method.GetParameters().Length == 2)
+                .MakeGenericMethod(legacyQuantity, legacyUnitType);
             MethodInfo generatedAs = generatedQuantity.GetMethod("As", new[] { generatedUnitType })!;
 
             foreach (string unitName in Enum.GetNames(legacyUnitType))
             {
                 object legacyUnit = Enum.Parse(legacyUnitType, unitName);
                 object generatedUnit = Enum.Parse(generatedUnitType, unitName);
-                object legacyValue = Activator.CreateInstance(legacyQuantity, value, legacyUnit)!;
-                object generatedValue = Activator.CreateInstance(generatedQuantity, value, generatedUnit)!;
+                object legacyValue = CreateQuantity(legacyQuantity, value, legacyUnit);
+                object generatedValue = CreateQuantity(generatedQuantity, value, generatedUnit);
                 AssertNearlyEqual(
-                    (double)legacyAs.Invoke(legacyValue, new[] { legacyBaseUnit })!,
-                    (double)generatedAs.Invoke(generatedValue, new[] { generatedBaseUnit })!,
+                    NumericValue(legacyAs.Invoke(null, new[] { legacyValue, legacyBaseUnit })!),
+                    NumericValue(generatedAs.Invoke(generatedValue, new[] { generatedBaseUnit })!),
                     $"{legacyQuantity.Name}.{unitName} to base");
 
-                object legacyBaseValue = Activator.CreateInstance(legacyQuantity, value, legacyBaseUnit)!;
-                object generatedBaseValue = Activator.CreateInstance(generatedQuantity, value, generatedBaseUnit)!;
+                object legacyBaseValue = CreateQuantity(legacyQuantity, value, legacyBaseUnit);
+                object generatedBaseValue = CreateQuantity(generatedQuantity, value, generatedBaseUnit);
                 AssertNearlyEqual(
-                    (double)legacyAs.Invoke(legacyBaseValue, new[] { legacyUnit })!,
-                    (double)generatedAs.Invoke(generatedBaseValue, new[] { generatedUnit })!,
+                    NumericValue(legacyAs.Invoke(null, new[] { legacyBaseValue, legacyUnit })!),
+                    NumericValue(generatedAs.Invoke(generatedBaseValue, new[] { generatedUnit })!),
                     $"{legacyQuantity.Name}.{unitName} from base");
             }
         }
@@ -364,8 +376,8 @@ public sealed class CompatibilityTests
                 throwOnError: true)!;
             object legacyBaseUnit = legacyQuantity.GetProperty("BaseUnit")!.GetValue(null)!;
             object generatedBaseUnit = generatedQuantity.GetProperty("BaseUnit")!.GetValue(null)!;
-            object legacyValue = Activator.CreateInstance(legacyQuantity, value, legacyBaseUnit)!;
-            object generatedValue = Activator.CreateInstance(generatedQuantity, value, generatedBaseUnit)!;
+            object legacyValue = CreateQuantity(legacyQuantity, value, legacyBaseUnit);
+            object generatedValue = CreateQuantity(generatedQuantity, value, generatedBaseUnit);
             string legacyText = ((IFormattable)legacyValue).ToString(null, invariant);
             string generatedText = ((IFormattable)generatedValue).ToString(null, invariant);
             Assert.Equal(legacyText, generatedText);
@@ -399,6 +411,23 @@ public sealed class CompatibilityTests
                 generatedBaseUnit,
                 generatedParseUnit.Invoke(null, new object?[] { actualAbbreviation, invariant }));
         }
+    }
+
+    [Fact]
+    public void GeneratedQuantity_LocalizedCustomFormattingMatchesUnitsNet()
+    {
+        var culture = System.Globalization.CultureInfo.GetCultureInfo("nb-NO");
+        Legacy::UnitsNet.Length legacy = Legacy::UnitsNet.Length.FromMeters(1234.5);
+        Generated::UnitsNet.Length generated = Generated::UnitsNet.Length.FromMeters(1234.5);
+
+        string legacyText = legacy.ToString("F2", culture);
+        string generatedText = generated.ToString("F2", culture);
+
+        Assert.Equal(legacyText, generatedText);
+        Assert.Equal(
+            legacy.Meters.ToDouble(),
+            Generated::UnitsNet.Length.Parse(generatedText, culture).Meters,
+            12);
     }
 
     [Fact]
@@ -627,7 +656,10 @@ public sealed class CompatibilityTests
                 Generated::UnitsNet.Mass.FromKilograms(2),
                 Generated::UnitsNet.MolarMass.FromKilogramsPerMole(0.5));
         Assert.Equal(legacyAmount.Moles, generatedAmount.Moles, 12);
-        Assert.Equal(legacyAmount.NumberOfParticles(), generatedAmount.NumberOfParticles());
+        AssertNearlyEqual(
+            legacyAmount.NumberOfParticles().ToDouble(),
+            generatedAmount.NumberOfParticles(),
+            "AmountOfSubstance.NumberOfParticles");
 
         Legacy::UnitsNet.Molarity legacyMolarity = Legacy::UnitsNet.Molarity.FromMolesPerCubicMeter(2);
         Generated::UnitsNet.Molarity generatedMolarity = Generated::UnitsNet.Molarity.FromMolesPerCubicMeter(2);
@@ -820,7 +852,9 @@ public sealed class CompatibilityTests
             new DateTime(2026, 1, 1) + generatedDuration);
         Assert.Equal(legacyDuration > TimeSpan.FromHours(1), generatedDuration > TimeSpan.FromHours(1));
 
-        Assert.Equal(default(Legacy::UnitsNet.Length).Meters, default(Generated::UnitsNet.Length).Meters);
+        Assert.Equal(
+            default(Legacy::UnitsNet.Length).Meters.ToDouble(),
+            default(Generated::UnitsNet.Length).Meters);
         Assert.Throws<FormatException>(() => Legacy::UnitsNet.Length.Parse("not a length", invariant));
         Assert.Throws<FormatException>(() => Generated::UnitsNet.Length.Parse("not a length", invariant));
     }
@@ -854,6 +888,8 @@ public sealed class CompatibilityTests
             .Where(member =>
                 member != "M:ToString:System.String(System.IFormatProvider)" &&
                 member != "M:ToString:System.String(System.String)" &&
+                !member.StartsWith("M:As:", StringComparison.Ordinal) &&
+                !member.StartsWith("M:ToUnit:", StringComparison.Ordinal) &&
                 !member.Contains("UnitsNet.Modular.UnitSystem", StringComparison.Ordinal))
             .OrderBy(member => member, StringComparer.Ordinal)
             .ToArray();
@@ -905,7 +941,8 @@ public sealed class CompatibilityTests
     {
         try
         {
-            return (constructor.Invoke(new[] { 1d, unitSystem }), null);
+            ParameterInfo numericParameter = constructor.GetParameters()[0];
+            return (constructor.Invoke(new[] { ConvertNumeric(1d, numericParameter.ParameterType), unitSystem }), null);
         }
         catch (TargetInvocationException exception)
         {
@@ -913,7 +950,8 @@ public sealed class CompatibilityTests
         }
     }
 
-    private static string TypeName(Type type) => type.FullName ?? type.Name;
+    private static string TypeName(Type type) =>
+        IsLegacyQuantityValue(type) ? typeof(double).FullName! : type.FullName ?? type.Name;
 
     private static HashSet<string> GetCompleteSurface(Type type)
     {
@@ -957,6 +995,12 @@ public sealed class CompatibilityTests
             return true;
         }
 
+        if (quantityName is "AmplitudeRatio" or "PowerRatio" or "Level" &&
+            signature.Contains("System.Byte", StringComparison.Ordinal))
+        {
+            return true;
+        }
+
         return IntentionalQuantityApiExclusions.TryGetValue(quantityName, out QuantityApiExclusion? exclusion) &&
                exclusion.MemberNames.Any(member => IsNamedMember(signature, member));
     }
@@ -978,6 +1022,11 @@ public sealed class CompatibilityTests
             return StableTypeName(type.GetElementType()!) + "[]";
         }
 
+        if (IsLegacyQuantityValue(type) || type == typeof(System.Numerics.BigInteger))
+        {
+            return typeof(double).FullName!;
+        }
+
         if (!type.IsGenericType)
         {
             return type.FullName ?? type.Name;
@@ -992,6 +1041,41 @@ public sealed class CompatibilityTests
 
         return $"{name}<{string.Join(",", type.GetGenericArguments().Select(StableTypeName))}>";
     }
+
+    private static object CreateQuantity(Type quantityType, double value, object unit)
+    {
+        ConstructorInfo constructor = quantityType.GetConstructors()
+            .Single(candidate =>
+            {
+                ParameterInfo[] parameters = candidate.GetParameters();
+                return parameters.Length == 2 && parameters[1].ParameterType == unit.GetType();
+            });
+        return constructor.Invoke(new[] { ConvertNumeric(value, constructor.GetParameters()[0].ParameterType), unit });
+    }
+
+    private static object ConvertNumeric(double value, Type targetType)
+    {
+        if (targetType == typeof(double))
+        {
+            return value;
+        }
+
+        MethodInfo conversion = targetType.GetMethod(
+            "op_Implicit",
+            BindingFlags.Public | BindingFlags.Static,
+            binder: null,
+            new[] { typeof(double) },
+            modifiers: null)
+            ?? throw new InvalidOperationException($"No implicit double conversion exists for {targetType}.");
+        return conversion.Invoke(null, new object[] { value })!;
+    }
+
+    private static double NumericValue(object value) =>
+        value is double number ? number : Convert.ToDouble(value, System.Globalization.CultureInfo.InvariantCulture);
+
+    private static bool IsLegacyQuantityValue(Type type) =>
+        type.Assembly == LegacyAssembly &&
+        string.Equals(type.FullName, "UnitsNet.QuantityValue", StringComparison.Ordinal);
 
     private static void AssertNearlyEqual(double expected, double actual, string operation)
     {

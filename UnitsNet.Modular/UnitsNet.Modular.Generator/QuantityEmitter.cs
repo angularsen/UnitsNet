@@ -235,9 +235,9 @@ internal static class QuantityEmitter
         writer.Append("    public int CompareTo(object? obj) => obj is ").Append(quantity.Name)
             .AppendLine(" other ? CompareTo(other) : throw new global::System.ArgumentException(\"Object must be the same quantity type.\", nameof(obj));");
         writer.Append("    public bool Equals(").Append(quantity.Name)
-            .AppendLine(" other) => Value.Equals(other.Value) && Unit.Equals(other.Unit);");
+            .AppendLine(" other) => BaseValue.Equals(other.BaseValue);");
         writer.Append("    public override bool Equals(object? obj) => obj is ").Append(quantity.Name).AppendLine(" other && Equals(other);");
-        writer.AppendLine("    public override int GetHashCode() => global::System.HashCode.Combine(Value, Unit);");
+        writer.AppendLine("    public override int GetHashCode() => BaseValue.GetHashCode();");
         writer.AppendLine("    public override string ToString() => ToString(null, null);");
         writer.AppendLine("    public string ToString(global::System.IFormatProvider? formatProvider) => ToString(null, formatProvider);");
         writer.AppendLine("    public string ToString(string? format) => ToString(format, null);");

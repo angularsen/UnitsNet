@@ -11,6 +11,8 @@ namespace UnitsNet.Modular.Generator;
 internal static class QuantityRelationParser
 {
     private const string NoInferredDivision = "NoInferredDivision";
+    private const string Scalar = "double";
+    private const string CatalogScalar = "QuantityValue";
 
     private static readonly JsonSerializerOptions SerializerOptions = new JsonSerializerOptions
     {
@@ -164,9 +166,14 @@ internal static class QuantityRelationParser
 
     private static RelationEndpoint ParseEndpoint(string text, string relationString)
     {
-        if (text is "1" or "double")
+        if (text == "1")
         {
             return new RelationEndpoint(text, null);
+        }
+
+        if (text is Scalar or CatalogScalar)
+        {
+            return new RelationEndpoint(Scalar, null);
         }
 
         string[] segments = text.Split('.');
@@ -209,16 +216,19 @@ internal static class QuantityRelationParser
             throw new FormatException($"Relation at index {index} has no {role} quantity ID.");
         }
 
-        if (endpoint.Quantity is not ("1" or "double") && string.IsNullOrWhiteSpace(endpoint.Unit))
+        if (endpoint.Quantity is not ("1" or Scalar or CatalogScalar) &&
+            string.IsNullOrWhiteSpace(endpoint.Unit))
         {
             throw new FormatException($"Relation at index {index} has no {role} unit.");
         }
 
-        return new RelationEndpoint(endpoint.Quantity!, endpoint.Unit);
+        return new RelationEndpoint(
+            endpoint.Quantity == CatalogScalar ? Scalar : endpoint.Quantity!,
+            endpoint.Unit);
     }
 
     private static RelationEndpoint Qualify(RelationEndpoint endpoint, string quantityNamespace) =>
-        endpoint.Quantity is "1" or "double" || endpoint.Quantity.Contains('.')
+        endpoint.Quantity is "1" or Scalar || endpoint.Quantity.Contains('.')
             ? endpoint
             : new RelationEndpoint(quantityNamespace + "." + endpoint.Quantity, endpoint.Unit);
 
