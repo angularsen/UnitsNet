@@ -44,15 +44,22 @@ namespace UnitsNet
         IMultiplyOperators<Duration, MolarFlow, AmountOfSubstance>,
         IMultiplyOperators<Duration, RotationalSpeed, Angle>,
         IMultiplyOperators<Duration, KinematicViscosity, Area>,
+        IMultiplyOperators<Duration, ElectricApparentPower, ElectricApparentEnergy>,
         IMultiplyOperators<Duration, ElectricCurrent, ElectricCharge>,
         IMultiplyOperators<Duration, ElectricCurrentGradient, ElectricCurrent>,
+        IMultiplyOperators<Duration, ElectricPotentialChangeRate, ElectricPotential>,
+        IMultiplyOperators<Duration, ElectricReactivePower, ElectricReactiveEnergy>,
         IMultiplyOperators<Duration, Power, Energy>,
         IMultiplyOperators<Duration, ForceChangeRate, Force>,
+        IMultiplyOperators<Duration, Force, Impulse>,
         IMultiplyOperators<Duration, BitRate, Information>,
+        IMultiplyOperators<Duration, Irradiance, Irradiation>,
         IMultiplyOperators<Duration, Speed, Length>,
         IMultiplyOperators<Duration, MassFlow, Mass>,
         IMultiplyOperators<Duration, PressureChangeRate, Pressure>,
         IMultiplyOperators<Duration, RadiationEquivalentDoseRate, RadiationEquivalentDose>,
+        IMultiplyOperators<Duration, RatioChangeRate, Ratio>,
+        IMultiplyOperators<Duration, RotationalAcceleration, RotationalSpeed>,
         IMultiplyOperators<Duration, Acceleration, Speed>,
         IMultiplyOperators<Duration, TemperatureChangeRate, TemperatureDelta>,
         IMultiplyOperators<Duration, VolumeFlow, Volume>,
@@ -723,6 +730,12 @@ namespace UnitsNet
             return Area.FromSquareMeters(duration.Seconds * kinematicViscosity.SquareMetersPerSecond);
         }
 
+        /// <summary>Get <see cref="ElectricApparentEnergy"/> from <see cref="Duration"/> * <see cref="ElectricApparentPower"/>.</summary>
+        public static ElectricApparentEnergy operator *(Duration duration, ElectricApparentPower electricApparentPower)
+        {
+            return ElectricApparentEnergy.FromVoltampereHours(duration.Hours * electricApparentPower.Voltamperes);
+        }
+
         /// <summary>Get <see cref="ElectricCharge"/> from <see cref="Duration"/> * <see cref="ElectricCurrent"/>.</summary>
         public static ElectricCharge operator *(Duration duration, ElectricCurrent electricCurrent)
         {
@@ -733,6 +746,18 @@ namespace UnitsNet
         public static ElectricCurrent operator *(Duration duration, ElectricCurrentGradient electricCurrentGradient)
         {
             return ElectricCurrent.FromAmperes(duration.Seconds * electricCurrentGradient.AmperesPerSecond);
+        }
+
+        /// <summary>Get <see cref="ElectricPotential"/> from <see cref="Duration"/> * <see cref="ElectricPotentialChangeRate"/>.</summary>
+        public static ElectricPotential operator *(Duration duration, ElectricPotentialChangeRate electricPotentialChangeRate)
+        {
+            return ElectricPotential.FromVolts(duration.Seconds * electricPotentialChangeRate.VoltsPerSecond);
+        }
+
+        /// <summary>Get <see cref="ElectricReactiveEnergy"/> from <see cref="Duration"/> * <see cref="ElectricReactivePower"/>.</summary>
+        public static ElectricReactiveEnergy operator *(Duration duration, ElectricReactivePower electricReactivePower)
+        {
+            return ElectricReactiveEnergy.FromVoltampereReactiveHours(duration.Hours * electricReactivePower.VoltamperesReactive);
         }
 
         /// <summary>Get <see cref="Energy"/> from <see cref="Duration"/> * <see cref="Power"/>.</summary>
@@ -747,10 +772,22 @@ namespace UnitsNet
             return Force.FromNewtons(duration.Seconds * forceChangeRate.NewtonsPerSecond);
         }
 
+        /// <summary>Get <see cref="Impulse"/> from <see cref="Duration"/> * <see cref="Force"/>.</summary>
+        public static Impulse operator *(Duration duration, Force force)
+        {
+            return Impulse.FromNewtonSeconds(duration.Seconds * force.Newtons);
+        }
+
         /// <summary>Get <see cref="Information"/> from <see cref="Duration"/> * <see cref="BitRate"/>.</summary>
         public static Information operator *(Duration duration, BitRate bitRate)
         {
             return Information.FromBits(duration.Seconds * bitRate.BitsPerSecond);
+        }
+
+        /// <summary>Get <see cref="Irradiation"/> from <see cref="Duration"/> * <see cref="Irradiance"/>.</summary>
+        public static Irradiation operator *(Duration duration, Irradiance irradiance)
+        {
+            return Irradiation.FromJoulesPerSquareMeter(duration.Seconds * irradiance.WattsPerSquareMeter);
         }
 
         /// <summary>Get <see cref="Length"/> from <see cref="Duration"/> * <see cref="Speed"/>.</summary>
@@ -775,6 +812,18 @@ namespace UnitsNet
         public static RadiationEquivalentDose operator *(Duration duration, RadiationEquivalentDoseRate radiationEquivalentDoseRate)
         {
             return RadiationEquivalentDose.FromSieverts(duration.Hours * radiationEquivalentDoseRate.SievertsPerHour);
+        }
+
+        /// <summary>Get <see cref="Ratio"/> from <see cref="Duration"/> * <see cref="RatioChangeRate"/>.</summary>
+        public static Ratio operator *(Duration duration, RatioChangeRate ratioChangeRate)
+        {
+            return Ratio.FromDecimalFractions(duration.Seconds * ratioChangeRate.DecimalFractionsPerSecond);
+        }
+
+        /// <summary>Get <see cref="RotationalSpeed"/> from <see cref="Duration"/> * <see cref="RotationalAcceleration"/>.</summary>
+        public static RotationalSpeed operator *(Duration duration, RotationalAcceleration rotationalAcceleration)
+        {
+            return RotationalSpeed.FromRadiansPerSecond(duration.Seconds * rotationalAcceleration.RadiansPerSecondSquared);
         }
 
         /// <summary>Get <see cref="Speed"/> from <see cref="Duration"/> * <see cref="Acceleration"/>.</summary>

@@ -54,5 +54,18 @@ namespace UnitsNet.Tests.CustomCode
         protected override double WattsPerSquareCentimeterInOneWattPerSquareMeter => 1e-4;
 
         protected override double WattsPerSquareMeterInOneWattPerSquareMeter => 1;
+
+        [Fact]
+        public void IrradianceTimesDurationEqualsIrradiation()
+        {
+            Irradiance irradiance = Irradiance.FromWattsPerSquareMeter(2);
+            Duration duration = Duration.FromSeconds(3);
+            Irradiation expected = Irradiation.FromJoulesPerSquareMeter(6);
+
+            Assert.Equal(expected, irradiance * duration);
+            Assert.Equal(expected, duration * irradiance);
+            Assert.Equal(duration, expected / irradiance);
+            Assert.Equal(irradiance, expected / duration);
+        }
     }
 }

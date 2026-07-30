@@ -40,6 +40,7 @@ namespace UnitsNet
         ILinearQuantity<ElectricPotentialChangeRate, ElectricPotentialChangeRateUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricPotentialChangeRate, ElectricPotentialChangeRate, double>,
+        IMultiplyOperators<ElectricPotentialChangeRate, Duration, ElectricPotential>,
         IComparisonOperators<ElectricPotentialChangeRate, ElectricPotentialChangeRate, bool>,
         IParsable<ElectricPotentialChangeRate>,
 #endif
@@ -782,6 +783,16 @@ namespace UnitsNet
         public static double operator /(ElectricPotentialChangeRate left, ElectricPotentialChangeRate right)
         {
             return left.VoltsPerSecond / right.VoltsPerSecond;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="ElectricPotential"/> from <see cref="ElectricPotentialChangeRate"/> * <see cref="Duration"/>.</summary>
+        public static ElectricPotential operator *(ElectricPotentialChangeRate electricPotentialChangeRate, Duration duration)
+        {
+            return ElectricPotential.FromVolts(electricPotentialChangeRate.VoltsPerSecond * duration.Seconds);
         }
 
         #endregion

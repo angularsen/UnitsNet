@@ -40,6 +40,7 @@ namespace UnitsNet
         ILinearQuantity<VolumePerLength, VolumePerLengthUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<VolumePerLength, VolumePerLength, double>,
+        IMultiplyOperators<VolumePerLength, Length, Volume>,
         IComparisonOperators<VolumePerLength, VolumePerLength, bool>,
         IParsable<VolumePerLength>,
 #endif
@@ -606,6 +607,16 @@ namespace UnitsNet
         public static double operator /(VolumePerLength left, VolumePerLength right)
         {
             return left.CubicMetersPerMeter / right.CubicMetersPerMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Volume"/> from <see cref="VolumePerLength"/> * <see cref="Length"/>.</summary>
+        public static Volume operator *(VolumePerLength volumePerLength, Length length)
+        {
+            return Volume.FromCubicMeters(volumePerLength.CubicMetersPerMeter * length.Meters);
         }
 
         #endregion

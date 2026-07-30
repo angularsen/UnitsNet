@@ -40,6 +40,7 @@ namespace UnitsNet
         ILinearQuantity<ThermalInsulance, ThermalInsulanceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ThermalInsulance, ThermalInsulance, double>,
+        IMultiplyOperators<ThermalInsulance, HeatFlux, TemperatureDelta>,
         IComparisonOperators<ThermalInsulance, ThermalInsulance, bool>,
         IParsable<ThermalInsulance>,
 #endif
@@ -574,6 +575,16 @@ namespace UnitsNet
         public static double operator /(ThermalInsulance left, ThermalInsulance right)
         {
             return left.SquareMeterKelvinsPerKilowatt / right.SquareMeterKelvinsPerKilowatt;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="ThermalInsulance"/> * <see cref="HeatFlux"/>.</summary>
+        public static TemperatureDelta operator *(ThermalInsulance thermalInsulance, HeatFlux heatFlux)
+        {
+            return TemperatureDelta.FromKelvins(thermalInsulance.SquareMeterKelvinsPerWatt * heatFlux.WattsPerSquareMeter);
         }
 
         #endregion

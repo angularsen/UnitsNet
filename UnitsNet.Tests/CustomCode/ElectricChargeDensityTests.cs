@@ -28,5 +28,18 @@ namespace UnitsNet.Tests.CustomCode
     public class ElectricChargeDensityTests : ElectricChargeDensityTestsBase
     {
         protected override double CoulombsPerCubicMeterInOneCoulombPerCubicMeter => 1;
+
+        [Fact]
+        public void ElectricChargeDensityTimesVolumeEqualsElectricCharge()
+        {
+            ElectricChargeDensity chargeDensity = ElectricChargeDensity.FromCoulombsPerCubicMeter(2);
+            Volume volume = Volume.FromCubicMeters(3);
+            ElectricCharge expected = ElectricCharge.FromCoulombs(6);
+
+            Assert.Equal(expected, chargeDensity * volume);
+            Assert.Equal(expected, volume * chargeDensity);
+            Assert.Equal(volume, expected / chargeDensity);
+            Assert.Equal(chargeDensity, expected / volume);
+        }
     }
 }

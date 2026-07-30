@@ -40,6 +40,7 @@ namespace UnitsNet
         ILinearQuantity<PowerDensity, PowerDensityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<PowerDensity, PowerDensity, double>,
+        IMultiplyOperators<PowerDensity, Volume, Power>,
         IComparisonOperators<PowerDensity, PowerDensity, bool>,
         IParsable<PowerDensity>,
 #endif
@@ -1198,6 +1199,16 @@ namespace UnitsNet
         public static double operator /(PowerDensity left, PowerDensity right)
         {
             return left.WattsPerCubicMeter / right.WattsPerCubicMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Power"/> from <see cref="PowerDensity"/> * <see cref="Volume"/>.</summary>
+        public static Power operator *(PowerDensity powerDensity, Volume volume)
+        {
+            return Power.FromWatts(powerDensity.WattsPerCubicMeter * volume.CubicMeters);
         }
 
         #endregion

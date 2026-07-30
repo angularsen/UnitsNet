@@ -46,11 +46,13 @@ namespace UnitsNet
         IMultiplyOperators<Length, Density, AreaDensity>,
         IMultiplyOperators<Length, Volume, AreaMomentOfInertia>,
         IDivisionOperators<Length, Speed, Duration>,
+        IMultiplyOperators<Length, ElectricField, ElectricPotential>,
         IMultiplyOperators<Length, ForcePerLength, Force>,
         IMultiplyOperators<Length, Pressure, ForcePerLength>,
         IMultiplyOperators<Length, Speed, KinematicViscosity>,
         IMultiplyOperators<Length, AreaDensity, LinearDensity>,
         IMultiplyOperators<Length, LinearDensity, Mass>,
+        IMultiplyOperators<Length, LinearPowerDensity, Power>,
         IMultiplyOperators<Length, SpecificWeight, Pressure>,
         IDivisionOperators<Length, Volume, ReciprocalArea>,
         IMultiplyOperators<Length, ReciprocalArea, ReciprocalLength>,
@@ -60,6 +62,7 @@ namespace UnitsNet
         IMultiplyOperators<Length, TemperatureGradient, TemperatureDelta>,
         IMultiplyOperators<Length, Force, Torque>,
         IMultiplyOperators<Length, Area, Volume>,
+        IMultiplyOperators<Length, VolumePerLength, Volume>,
         IDivisionOperators<Length, ReciprocalArea, Volume>,
         IComparisonOperators<Length, Length, bool>,
         IParsable<Length>,
@@ -1204,6 +1207,12 @@ namespace UnitsNet
             return Duration.FromSeconds(length.Meters / speed.MetersPerSecond);
         }
 
+        /// <summary>Get <see cref="ElectricPotential"/> from <see cref="Length"/> * <see cref="ElectricField"/>.</summary>
+        public static ElectricPotential operator *(Length length, ElectricField electricField)
+        {
+            return ElectricPotential.FromVolts(length.Meters * electricField.VoltsPerMeter);
+        }
+
         /// <summary>Get <see cref="Force"/> from <see cref="Length"/> * <see cref="ForcePerLength"/>.</summary>
         public static Force operator *(Length length, ForcePerLength forcePerLength)
         {
@@ -1232,6 +1241,12 @@ namespace UnitsNet
         public static Mass operator *(Length length, LinearDensity linearDensity)
         {
             return Mass.FromKilograms(length.Meters * linearDensity.KilogramsPerMeter);
+        }
+
+        /// <summary>Get <see cref="Power"/> from <see cref="Length"/> * <see cref="LinearPowerDensity"/>.</summary>
+        public static Power operator *(Length length, LinearPowerDensity linearPowerDensity)
+        {
+            return Power.FromWatts(length.Meters * linearPowerDensity.WattsPerMeter);
         }
 
         /// <summary>Get <see cref="Pressure"/> from <see cref="Length"/> * <see cref="SpecificWeight"/>.</summary>
@@ -1286,6 +1301,12 @@ namespace UnitsNet
         public static Volume operator *(Length length, Area area)
         {
             return Volume.FromCubicMeters(length.Meters * area.SquareMeters);
+        }
+
+        /// <summary>Get <see cref="Volume"/> from <see cref="Length"/> * <see cref="VolumePerLength"/>.</summary>
+        public static Volume operator *(Length length, VolumePerLength volumePerLength)
+        {
+            return Volume.FromCubicMeters(length.Meters * volumePerLength.CubicMetersPerMeter);
         }
 
         /// <summary>Get <see cref="Volume"/> from <see cref="Length"/> / <see cref="ReciprocalArea"/>.</summary>

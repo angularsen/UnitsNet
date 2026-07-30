@@ -43,6 +43,7 @@ namespace UnitsNet
         ILinearQuantity<FluidResistance, FluidResistanceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<FluidResistance, FluidResistance, double>,
+        IMultiplyOperators<FluidResistance, VolumeFlow, Pressure>,
         IComparisonOperators<FluidResistance, FluidResistance, bool>,
         IParsable<FluidResistance>,
 #endif
@@ -769,6 +770,16 @@ namespace UnitsNet
         public static double operator /(FluidResistance left, FluidResistance right)
         {
             return left.PascalSecondsPerCubicMeter / right.PascalSecondsPerCubicMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="FluidResistance"/> * <see cref="VolumeFlow"/>.</summary>
+        public static Pressure operator *(FluidResistance fluidResistance, VolumeFlow volumeFlow)
+        {
+            return Pressure.FromPascals(fluidResistance.PascalSecondsPerCubicMeter * volumeFlow.CubicMetersPerSecond);
         }
 
         #endregion

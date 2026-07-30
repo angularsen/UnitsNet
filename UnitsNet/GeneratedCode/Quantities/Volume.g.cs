@@ -45,6 +45,7 @@ namespace UnitsNet
         IDivisionOperators<Volume, Length, Area>,
         IMultiplyOperators<Volume, Length, AreaMomentOfInertia>,
         IDivisionOperators<Volume, VolumeFlow, Duration>,
+        IMultiplyOperators<Volume, ElectricChargeDensity, ElectricCharge>,
         IMultiplyOperators<Volume, EnergyDensity, Energy>,
         IMultiplyOperators<Volume, SpecificWeight, Force>,
         IMultiplyOperators<Volume, ReciprocalArea, Length>,
@@ -52,6 +53,7 @@ namespace UnitsNet
         IMultiplyOperators<Volume, Density, Mass>,
         IMultiplyOperators<Volume, MassConcentration, Mass>,
         IDivisionOperators<Volume, SpecificVolume, Mass>,
+        IMultiplyOperators<Volume, PowerDensity, Power>,
         IDivisionOperators<Volume, Mass, SpecificVolume>,
         IDivisionOperators<Volume, Duration, VolumeFlow>,
         IComparisonOperators<Volume, Volume, bool>,
@@ -1376,6 +1378,12 @@ namespace UnitsNet
             return Duration.FromSeconds(volume.CubicMeters / volumeFlow.CubicMetersPerSecond);
         }
 
+        /// <summary>Get <see cref="ElectricCharge"/> from <see cref="Volume"/> * <see cref="ElectricChargeDensity"/>.</summary>
+        public static ElectricCharge operator *(Volume volume, ElectricChargeDensity electricChargeDensity)
+        {
+            return ElectricCharge.FromCoulombs(volume.CubicMeters * electricChargeDensity.CoulombsPerCubicMeter);
+        }
+
         /// <summary>Get <see cref="Energy"/> from <see cref="Volume"/> * <see cref="EnergyDensity"/>.</summary>
         public static Energy operator *(Volume volume, EnergyDensity energyDensity)
         {
@@ -1416,6 +1424,12 @@ namespace UnitsNet
         public static Mass operator /(Volume volume, SpecificVolume specificVolume)
         {
             return Mass.FromKilograms(volume.CubicMeters / specificVolume.CubicMetersPerKilogram);
+        }
+
+        /// <summary>Get <see cref="Power"/> from <see cref="Volume"/> * <see cref="PowerDensity"/>.</summary>
+        public static Power operator *(Volume volume, PowerDensity powerDensity)
+        {
+            return Power.FromWatts(volume.CubicMeters * powerDensity.WattsPerCubicMeter);
         }
 
         /// <summary>Get <see cref="SpecificVolume"/> from <see cref="Volume"/> / <see cref="Mass"/>.</summary>

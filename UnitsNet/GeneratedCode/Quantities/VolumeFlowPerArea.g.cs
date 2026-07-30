@@ -40,6 +40,7 @@ namespace UnitsNet
         ILinearQuantity<VolumeFlowPerArea, VolumeFlowPerAreaUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<VolumeFlowPerArea, VolumeFlowPerArea, double>,
+        IMultiplyOperators<VolumeFlowPerArea, Area, VolumeFlow>,
         IComparisonOperators<VolumeFlowPerArea, VolumeFlowPerArea, bool>,
         IParsable<VolumeFlowPerArea>,
 #endif
@@ -494,6 +495,16 @@ namespace UnitsNet
         public static double operator /(VolumeFlowPerArea left, VolumeFlowPerArea right)
         {
             return left.CubicMetersPerSecondPerSquareMeter / right.CubicMetersPerSecondPerSquareMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="VolumeFlow"/> from <see cref="VolumeFlowPerArea"/> * <see cref="Area"/>.</summary>
+        public static VolumeFlow operator *(VolumeFlowPerArea volumeFlowPerArea, Area area)
+        {
+            return VolumeFlow.FromCubicMetersPerSecond(volumeFlowPerArea.CubicMetersPerSecondPerSquareMeter * area.SquareMeters);
         }
 
         #endregion

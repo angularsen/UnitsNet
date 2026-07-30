@@ -43,6 +43,7 @@ namespace UnitsNet
         ILinearQuantity<ElectricReactivePower, ElectricReactivePowerUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricReactivePower, ElectricReactivePower, double>,
+        IMultiplyOperators<ElectricReactivePower, Duration, ElectricReactiveEnergy>,
         IComparisonOperators<ElectricReactivePower, ElectricReactivePower, bool>,
         IParsable<ElectricReactivePower>,
 #endif
@@ -529,6 +530,16 @@ namespace UnitsNet
         public static double operator /(ElectricReactivePower left, ElectricReactivePower right)
         {
             return left.VoltamperesReactive / right.VoltamperesReactive;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="ElectricReactiveEnergy"/> from <see cref="ElectricReactivePower"/> * <see cref="Duration"/>.</summary>
+        public static ElectricReactiveEnergy operator *(ElectricReactivePower electricReactivePower, Duration duration)
+        {
+            return ElectricReactiveEnergy.FromVoltampereReactiveHours(electricReactivePower.VoltamperesReactive * duration.Hours);
         }
 
         #endregion

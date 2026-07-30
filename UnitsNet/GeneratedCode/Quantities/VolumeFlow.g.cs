@@ -41,8 +41,10 @@ namespace UnitsNet
 #if NET7_0_OR_GREATER
         IDivisionOperators<VolumeFlow, VolumeFlow, double>,
         IDivisionOperators<VolumeFlow, Speed, Area>,
+        IMultiplyOperators<VolumeFlow, Pressure, LeakRate>,
         IMultiplyOperators<VolumeFlow, Density, MassFlow>,
         IMultiplyOperators<VolumeFlow, Molarity, MolarFlow>,
+        IMultiplyOperators<VolumeFlow, FluidResistance, Pressure>,
         IDivisionOperators<VolumeFlow, Area, Speed>,
         IMultiplyOperators<VolumeFlow, Duration, Volume>,
         IComparisonOperators<VolumeFlow, VolumeFlow, bool>,
@@ -1679,6 +1681,12 @@ namespace UnitsNet
             return Area.FromSquareMeters(volumeFlow.CubicMetersPerSecond / speed.MetersPerSecond);
         }
 
+        /// <summary>Get <see cref="LeakRate"/> from <see cref="VolumeFlow"/> * <see cref="Pressure"/>.</summary>
+        public static LeakRate operator *(VolumeFlow volumeFlow, Pressure pressure)
+        {
+            return LeakRate.FromPascalCubicMetersPerSecond(volumeFlow.CubicMetersPerSecond * pressure.Pascals);
+        }
+
         /// <summary>Get <see cref="MassFlow"/> from <see cref="VolumeFlow"/> * <see cref="Density"/>.</summary>
         public static MassFlow operator *(VolumeFlow volumeFlow, Density density)
         {
@@ -1689,6 +1697,12 @@ namespace UnitsNet
         public static MolarFlow operator *(VolumeFlow volumeFlow, Molarity molarity)
         {
             return MolarFlow.FromMolesPerSecond(volumeFlow.CubicMetersPerSecond * molarity.MolesPerCubicMeter);
+        }
+
+        /// <summary>Get <see cref="Pressure"/> from <see cref="VolumeFlow"/> * <see cref="FluidResistance"/>.</summary>
+        public static Pressure operator *(VolumeFlow volumeFlow, FluidResistance fluidResistance)
+        {
+            return Pressure.FromPascals(volumeFlow.CubicMetersPerSecond * fluidResistance.PascalSecondsPerCubicMeter);
         }
 
         /// <summary>Get <see cref="Speed"/> from <see cref="VolumeFlow"/> / <see cref="Area"/>.</summary>

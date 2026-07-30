@@ -40,6 +40,7 @@ namespace UnitsNet
         ILinearQuantity<ThermalResistance, ThermalResistanceUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ThermalResistance, ThermalResistance, double>,
+        IMultiplyOperators<ThermalResistance, Power, TemperatureDelta>,
         IComparisonOperators<ThermalResistance, ThermalResistance, bool>,
         IParsable<ThermalResistance>,
 #endif
@@ -494,6 +495,16 @@ namespace UnitsNet
         public static double operator /(ThermalResistance left, ThermalResistance right)
         {
             return left.KelvinsPerWatt / right.KelvinsPerWatt;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="ThermalResistance"/> * <see cref="Power"/>.</summary>
+        public static TemperatureDelta operator *(ThermalResistance thermalResistance, Power power)
+        {
+            return TemperatureDelta.FromKelvins(thermalResistance.KelvinsPerWatt * power.Watts);
         }
 
         #endregion

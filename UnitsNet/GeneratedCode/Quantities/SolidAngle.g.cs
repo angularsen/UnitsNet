@@ -43,6 +43,7 @@ namespace UnitsNet
         ILinearQuantity<SolidAngle, SolidAngleUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<SolidAngle, SolidAngle, double>,
+        IMultiplyOperators<SolidAngle, LuminousIntensity, LuminousFlux>,
         IComparisonOperators<SolidAngle, SolidAngle, bool>,
         IParsable<SolidAngle>,
 #endif
@@ -467,6 +468,16 @@ namespace UnitsNet
         public static double operator /(SolidAngle left, SolidAngle right)
         {
             return left.Steradians / right.Steradians;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="LuminousFlux"/> from <see cref="SolidAngle"/> * <see cref="LuminousIntensity"/>.</summary>
+        public static LuminousFlux operator *(SolidAngle solidAngle, LuminousIntensity luminousIntensity)
+        {
+            return LuminousFlux.FromLumens(solidAngle.Steradians * luminousIntensity.Candela);
         }
 
         #endregion

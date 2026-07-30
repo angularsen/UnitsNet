@@ -41,6 +41,9 @@ namespace UnitsNet
 #if NET7_0_OR_GREATER
         IDivisionOperators<Area, Area, double>,
         IMultiplyOperators<Area, Area, AreaMomentOfInertia>,
+        IMultiplyOperators<Area, AbsorbedDoseOfIonizingRadiation, DoseAreaProduct>,
+        IMultiplyOperators<Area, ElectricSurfaceChargeDensity, ElectricCharge>,
+        IMultiplyOperators<Area, ElectricCurrentDensity, ElectricCurrent>,
         IMultiplyOperators<Area, Pressure, Force>,
         IMultiplyOperators<Area, SpecificWeight, ForcePerLength>,
         IMultiplyOperators<Area, ReciprocalLength, Length>,
@@ -48,6 +51,7 @@ namespace UnitsNet
         IMultiplyOperators<Area, Density, LinearDensity>,
         IMultiplyOperators<Area, Illuminance, LuminousFlux>,
         IMultiplyOperators<Area, Luminance, LuminousIntensity>,
+        IMultiplyOperators<Area, MagneticField, MagneticFlux>,
         IMultiplyOperators<Area, AreaDensity, Mass>,
         IMultiplyOperators<Area, MassFlux, MassFlow>,
         IMultiplyOperators<Area, HeatFlux, Power>,
@@ -57,6 +61,7 @@ namespace UnitsNet
         IMultiplyOperators<Area, Length, Volume>,
         IDivisionOperators<Area, ReciprocalLength, Volume>,
         IMultiplyOperators<Area, Speed, VolumeFlow>,
+        IMultiplyOperators<Area, VolumeFlowPerArea, VolumeFlow>,
         IComparisonOperators<Area, Area, bool>,
         IParsable<Area>,
 #endif
@@ -722,6 +727,24 @@ namespace UnitsNet
             return AreaMomentOfInertia.FromMetersToTheFourth(left.SquareMeters * right.SquareMeters);
         }
 
+        /// <summary>Get <see cref="DoseAreaProduct"/> from <see cref="Area"/> * <see cref="AbsorbedDoseOfIonizingRadiation"/>.</summary>
+        public static DoseAreaProduct operator *(Area area, AbsorbedDoseOfIonizingRadiation absorbedDoseOfIonizingRadiation)
+        {
+            return DoseAreaProduct.FromGraySquareMeters(area.SquareMeters * absorbedDoseOfIonizingRadiation.Grays);
+        }
+
+        /// <summary>Get <see cref="ElectricCharge"/> from <see cref="Area"/> * <see cref="ElectricSurfaceChargeDensity"/>.</summary>
+        public static ElectricCharge operator *(Area area, ElectricSurfaceChargeDensity electricSurfaceChargeDensity)
+        {
+            return ElectricCharge.FromCoulombs(area.SquareMeters * electricSurfaceChargeDensity.CoulombsPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="Area"/> * <see cref="ElectricCurrentDensity"/>.</summary>
+        public static ElectricCurrent operator *(Area area, ElectricCurrentDensity electricCurrentDensity)
+        {
+            return ElectricCurrent.FromAmperes(area.SquareMeters * electricCurrentDensity.AmperesPerSquareMeter);
+        }
+
         /// <summary>Get <see cref="Force"/> from <see cref="Area"/> * <see cref="Pressure"/>.</summary>
         public static Force operator *(Area area, Pressure pressure)
         {
@@ -762,6 +785,12 @@ namespace UnitsNet
         public static LuminousIntensity operator *(Area area, Luminance luminance)
         {
             return LuminousIntensity.FromCandela(area.SquareMeters * luminance.CandelasPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="MagneticFlux"/> from <see cref="Area"/> * <see cref="MagneticField"/>.</summary>
+        public static MagneticFlux operator *(Area area, MagneticField magneticField)
+        {
+            return MagneticFlux.FromWebers(area.SquareMeters * magneticField.Teslas);
         }
 
         /// <summary>Get <see cref="Mass"/> from <see cref="Area"/> * <see cref="AreaDensity"/>.</summary>
@@ -816,6 +845,12 @@ namespace UnitsNet
         public static VolumeFlow operator *(Area area, Speed speed)
         {
             return VolumeFlow.FromCubicMetersPerSecond(area.SquareMeters * speed.MetersPerSecond);
+        }
+
+        /// <summary>Get <see cref="VolumeFlow"/> from <see cref="Area"/> * <see cref="VolumeFlowPerArea"/>.</summary>
+        public static VolumeFlow operator *(Area area, VolumeFlowPerArea volumeFlowPerArea)
+        {
+            return VolumeFlow.FromCubicMetersPerSecond(area.SquareMeters * volumeFlowPerArea.CubicMetersPerSecondPerSquareMeter);
         }
 
         #endregion

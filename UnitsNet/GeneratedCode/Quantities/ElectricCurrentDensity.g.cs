@@ -43,6 +43,7 @@ namespace UnitsNet
         ILinearQuantity<ElectricCurrentDensity, ElectricCurrentDensityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricCurrentDensity, ElectricCurrentDensity, double>,
+        IMultiplyOperators<ElectricCurrentDensity, Area, ElectricCurrent>,
         IComparisonOperators<ElectricCurrentDensity, ElectricCurrentDensity, bool>,
         IParsable<ElectricCurrentDensity>,
 #endif
@@ -513,6 +514,16 @@ namespace UnitsNet
         public static double operator /(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
             return left.AmperesPerSquareMeter / right.AmperesPerSquareMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="ElectricCurrentDensity"/> * <see cref="Area"/>.</summary>
+        public static ElectricCurrent operator *(ElectricCurrentDensity electricCurrentDensity, Area area)
+        {
+            return ElectricCurrent.FromAmperes(electricCurrentDensity.AmperesPerSquareMeter * area.SquareMeters);
         }
 
         #endregion

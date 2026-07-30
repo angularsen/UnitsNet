@@ -45,5 +45,16 @@ namespace UnitsNet.Tests.CustomCode
 
         // https://www.wolframalpha.com/input?i=1.0000000000000000+cubic+meter+per+meter+to+imperial+gallon+per+mile
         protected override double ImperialGallonsPerMileInOneCubicMeterPerMeter => 3.540061899346471e5;
+
+        [Fact]
+        public void VolumePerLengthTimesLengthEqualsVolume()
+        {
+            VolumePerLength volumePerLength = VolumePerLength.FromCubicMetersPerMeter(2);
+            Length length = Length.FromMeters(3);
+            Volume expected = Volume.FromCubicMeters(6);
+
+            Assert.Equal(expected, volumePerLength * length);
+            Assert.Equal(expected, length * volumePerLength);
+        }
     }
 }

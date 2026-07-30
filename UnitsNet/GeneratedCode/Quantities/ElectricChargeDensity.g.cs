@@ -43,6 +43,7 @@ namespace UnitsNet
         ILinearQuantity<ElectricChargeDensity, ElectricChargeDensityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricChargeDensity, ElectricChargeDensity, double>,
+        IMultiplyOperators<ElectricChargeDensity, Volume, ElectricCharge>,
         IComparisonOperators<ElectricChargeDensity, ElectricChargeDensity, bool>,
         IParsable<ElectricChargeDensity>,
 #endif
@@ -481,6 +482,16 @@ namespace UnitsNet
         public static double operator /(ElectricChargeDensity left, ElectricChargeDensity right)
         {
             return left.CoulombsPerCubicMeter / right.CoulombsPerCubicMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="ElectricCharge"/> from <see cref="ElectricChargeDensity"/> * <see cref="Volume"/>.</summary>
+        public static ElectricCharge operator *(ElectricChargeDensity electricChargeDensity, Volume volume)
+        {
+            return ElectricCharge.FromCoulombs(electricChargeDensity.CoulombsPerCubicMeter * volume.CubicMeters);
         }
 
         #endregion

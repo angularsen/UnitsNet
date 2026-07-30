@@ -61,5 +61,18 @@ namespace UnitsNet.Tests
             Energy j = ElectricPotential.FromVolts(potential) * ElectricCharge.FromCoulombs(current);
             Assert.Equal(expected, j.Joules);
         }
+
+        [Fact]
+        public void ElectricPotentialTimesElectricConductanceEqualsElectricCurrent()
+        {
+            ElectricPotential potential = ElectricPotential.FromVolts(2);
+            ElectricConductance conductance = ElectricConductance.FromSiemens(3);
+            ElectricCurrent expected = ElectricCurrent.FromAmperes(6);
+
+            Assert.Equal(expected, potential * conductance);
+            Assert.Equal(expected, conductance * potential);
+            Assert.Equal(conductance, expected / potential);
+            Assert.Equal(potential, expected / conductance);
+        }
     }
 }

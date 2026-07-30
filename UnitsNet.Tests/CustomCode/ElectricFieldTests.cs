@@ -28,5 +28,18 @@ namespace UnitsNet.Tests.CustomCode
     public class ElectricFieldTests : ElectricFieldTestsBase
     {
         protected override double VoltsPerMeterInOneVoltPerMeter => 1;
+
+        [Fact]
+        public void ElectricFieldTimesLengthEqualsElectricPotential()
+        {
+            ElectricField electricField = ElectricField.FromVoltsPerMeter(2);
+            Length length = Length.FromMeters(3);
+            ElectricPotential expected = ElectricPotential.FromVolts(6);
+
+            Assert.Equal(expected, electricField * length);
+            Assert.Equal(expected, length * electricField);
+            Assert.Equal(length, expected / electricField);
+            Assert.Equal(electricField, expected / length);
+        }
     }
 }

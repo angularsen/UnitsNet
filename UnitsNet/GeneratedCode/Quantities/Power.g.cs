@@ -48,12 +48,17 @@ namespace UnitsNet
         IDivisionOperators<Power, Speed, Force>,
         IDivisionOperators<Power, Energy, Frequency>,
         IDivisionOperators<Power, Area, HeatFlux>,
+        IDivisionOperators<Power, LinearPowerDensity, Length>,
+        IDivisionOperators<Power, Length, LinearPowerDensity>,
         IMultiplyOperators<Power, BrakeSpecificFuelConsumption, MassFlow>,
         IDivisionOperators<Power, SpecificEnergy, MassFlow>,
+        IDivisionOperators<Power, Volume, PowerDensity>,
         IDivisionOperators<Power, Torque, RotationalSpeed>,
         IDivisionOperators<Power, MassFlow, SpecificEnergy>,
         IDivisionOperators<Power, Force, Speed>,
+        IMultiplyOperators<Power, ThermalResistance, TemperatureDelta>,
         IDivisionOperators<Power, RotationalSpeed, Torque>,
+        IDivisionOperators<Power, PowerDensity, Volume>,
         IComparisonOperators<Power, Power, bool>,
         IParsable<Power>,
 #endif
@@ -962,6 +967,18 @@ namespace UnitsNet
             return HeatFlux.FromWattsPerSquareMeter(power.Watts / area.SquareMeters);
         }
 
+        /// <summary>Get <see cref="Length"/> from <see cref="Power"/> / <see cref="LinearPowerDensity"/>.</summary>
+        public static Length operator /(Power power, LinearPowerDensity linearPowerDensity)
+        {
+            return Length.FromMeters(power.Watts / linearPowerDensity.WattsPerMeter);
+        }
+
+        /// <summary>Get <see cref="LinearPowerDensity"/> from <see cref="Power"/> / <see cref="Length"/>.</summary>
+        public static LinearPowerDensity operator /(Power power, Length length)
+        {
+            return LinearPowerDensity.FromWattsPerMeter(power.Watts / length.Meters);
+        }
+
         /// <summary>Get <see cref="MassFlow"/> from <see cref="Power"/> * <see cref="BrakeSpecificFuelConsumption"/>.</summary>
         public static MassFlow operator *(Power power, BrakeSpecificFuelConsumption brakeSpecificFuelConsumption)
         {
@@ -972,6 +989,12 @@ namespace UnitsNet
         public static MassFlow operator /(Power power, SpecificEnergy specificEnergy)
         {
             return MassFlow.FromKilogramsPerSecond(power.Watts / specificEnergy.JoulesPerKilogram);
+        }
+
+        /// <summary>Get <see cref="PowerDensity"/> from <see cref="Power"/> / <see cref="Volume"/>.</summary>
+        public static PowerDensity operator /(Power power, Volume volume)
+        {
+            return PowerDensity.FromWattsPerCubicMeter(power.Watts / volume.CubicMeters);
         }
 
         /// <summary>Get <see cref="RotationalSpeed"/> from <see cref="Power"/> / <see cref="Torque"/>.</summary>
@@ -992,10 +1015,22 @@ namespace UnitsNet
             return Speed.FromMetersPerSecond(power.Watts / force.Newtons);
         }
 
+        /// <summary>Get <see cref="TemperatureDelta"/> from <see cref="Power"/> * <see cref="ThermalResistance"/>.</summary>
+        public static TemperatureDelta operator *(Power power, ThermalResistance thermalResistance)
+        {
+            return TemperatureDelta.FromKelvins(power.Watts * thermalResistance.KelvinsPerWatt);
+        }
+
         /// <summary>Get <see cref="Torque"/> from <see cref="Power"/> / <see cref="RotationalSpeed"/>.</summary>
         public static Torque operator /(Power power, RotationalSpeed rotationalSpeed)
         {
             return Torque.FromNewtonMeters(power.Watts / rotationalSpeed.RadiansPerSecond);
+        }
+
+        /// <summary>Get <see cref="Volume"/> from <see cref="Power"/> / <see cref="PowerDensity"/>.</summary>
+        public static Volume operator /(Power power, PowerDensity powerDensity)
+        {
+            return Volume.FromCubicMeters(power.Watts / powerDensity.WattsPerCubicMeter);
         }
 
         #endregion

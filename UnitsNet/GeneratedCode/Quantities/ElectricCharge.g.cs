@@ -43,9 +43,15 @@ namespace UnitsNet
         ILinearQuantity<ElectricCharge, ElectricChargeUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricCharge, ElectricCharge, double>,
+        IDivisionOperators<ElectricCharge, ElectricSurfaceChargeDensity, Area>,
         IDivisionOperators<ElectricCharge, ElectricCurrent, Duration>,
+        IDivisionOperators<ElectricCharge, ElectricPotential, ElectricCapacitance>,
+        IDivisionOperators<ElectricCharge, Volume, ElectricChargeDensity>,
         IDivisionOperators<ElectricCharge, Duration, ElectricCurrent>,
+        IDivisionOperators<ElectricCharge, ElectricCapacitance, ElectricPotential>,
+        IDivisionOperators<ElectricCharge, Area, ElectricSurfaceChargeDensity>,
         IMultiplyOperators<ElectricCharge, ElectricPotential, Energy>,
+        IDivisionOperators<ElectricCharge, ElectricChargeDensity, Volume>,
         IComparisonOperators<ElectricCharge, ElectricCharge, bool>,
         IParsable<ElectricCharge>,
 #endif
@@ -650,10 +656,28 @@ namespace UnitsNet
 
         #region Relational Operators
 
+        /// <summary>Get <see cref="Area"/> from <see cref="ElectricCharge"/> / <see cref="ElectricSurfaceChargeDensity"/>.</summary>
+        public static Area operator /(ElectricCharge electricCharge, ElectricSurfaceChargeDensity electricSurfaceChargeDensity)
+        {
+            return Area.FromSquareMeters(electricCharge.Coulombs / electricSurfaceChargeDensity.CoulombsPerSquareMeter);
+        }
+
         /// <summary>Get <see cref="Duration"/> from <see cref="ElectricCharge"/> / <see cref="ElectricCurrent"/>.</summary>
         public static Duration operator /(ElectricCharge electricCharge, ElectricCurrent electricCurrent)
         {
             return Duration.FromHours(electricCharge.AmpereHours / electricCurrent.Amperes);
+        }
+
+        /// <summary>Get <see cref="ElectricCapacitance"/> from <see cref="ElectricCharge"/> / <see cref="ElectricPotential"/>.</summary>
+        public static ElectricCapacitance operator /(ElectricCharge electricCharge, ElectricPotential electricPotential)
+        {
+            return ElectricCapacitance.FromFarads(electricCharge.Coulombs / electricPotential.Volts);
+        }
+
+        /// <summary>Get <see cref="ElectricChargeDensity"/> from <see cref="ElectricCharge"/> / <see cref="Volume"/>.</summary>
+        public static ElectricChargeDensity operator /(ElectricCharge electricCharge, Volume volume)
+        {
+            return ElectricChargeDensity.FromCoulombsPerCubicMeter(electricCharge.Coulombs / volume.CubicMeters);
         }
 
         /// <summary>Get <see cref="ElectricCurrent"/> from <see cref="ElectricCharge"/> / <see cref="Duration"/>.</summary>
@@ -662,10 +686,28 @@ namespace UnitsNet
             return ElectricCurrent.FromAmperes(electricCharge.AmpereHours / duration.Hours);
         }
 
+        /// <summary>Get <see cref="ElectricPotential"/> from <see cref="ElectricCharge"/> / <see cref="ElectricCapacitance"/>.</summary>
+        public static ElectricPotential operator /(ElectricCharge electricCharge, ElectricCapacitance electricCapacitance)
+        {
+            return ElectricPotential.FromVolts(electricCharge.Coulombs / electricCapacitance.Farads);
+        }
+
+        /// <summary>Get <see cref="ElectricSurfaceChargeDensity"/> from <see cref="ElectricCharge"/> / <see cref="Area"/>.</summary>
+        public static ElectricSurfaceChargeDensity operator /(ElectricCharge electricCharge, Area area)
+        {
+            return ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(electricCharge.Coulombs / area.SquareMeters);
+        }
+
         /// <summary>Get <see cref="Energy"/> from <see cref="ElectricCharge"/> * <see cref="ElectricPotential"/>.</summary>
         public static Energy operator *(ElectricCharge electricCharge, ElectricPotential electricPotential)
         {
             return Energy.FromJoules(electricCharge.Coulombs * electricPotential.Volts);
+        }
+
+        /// <summary>Get <see cref="Volume"/> from <see cref="ElectricCharge"/> / <see cref="ElectricChargeDensity"/>.</summary>
+        public static Volume operator /(ElectricCharge electricCharge, ElectricChargeDensity electricChargeDensity)
+        {
+            return Volume.FromCubicMeters(electricCharge.Coulombs / electricChargeDensity.CoulombsPerCubicMeter);
         }
 
         #endregion

@@ -27,5 +27,16 @@ namespace UnitsNet.Tests.CustomCode
         protected override double CubicFeetPerMinutePerSquareFootInOneCubicMeterPerSecondPerSquareMeter => 196.850394;
 
         protected override double CubicMetersPerSecondPerSquareMeterInOneCubicMeterPerSecondPerSquareMeter =>  1;
+
+        [Fact]
+        public void VolumeFlowPerAreaTimesAreaEqualsVolumeFlow()
+        {
+            VolumeFlowPerArea volumeFlowPerArea = VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(2);
+            Area area = Area.FromSquareMeters(3);
+            VolumeFlow expected = VolumeFlow.FromCubicMetersPerSecond(6);
+
+            Assert.Equal(expected, volumeFlowPerArea * area);
+            Assert.Equal(expected, area * volumeFlowPerArea);
+        }
     }
 }

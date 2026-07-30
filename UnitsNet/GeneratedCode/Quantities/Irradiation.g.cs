@@ -43,6 +43,8 @@ namespace UnitsNet
         ILinearQuantity<Irradiation, IrradiationUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<Irradiation, Irradiation, double>,
+        IDivisionOperators<Irradiation, Irradiance, Duration>,
+        IDivisionOperators<Irradiation, Duration, Irradiance>,
         IComparisonOperators<Irradiation, Irradiation, bool>,
         IParsable<Irradiation>,
 #endif
@@ -609,6 +611,22 @@ namespace UnitsNet
         public static double operator /(Irradiation left, Irradiation right)
         {
             return left.JoulesPerSquareMeter / right.JoulesPerSquareMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="Irradiation"/> / <see cref="Irradiance"/>.</summary>
+        public static Duration operator /(Irradiation irradiation, Irradiance irradiance)
+        {
+            return Duration.FromSeconds(irradiation.JoulesPerSquareMeter / irradiance.WattsPerSquareMeter);
+        }
+
+        /// <summary>Get <see cref="Irradiance"/> from <see cref="Irradiation"/> / <see cref="Duration"/>.</summary>
+        public static Irradiance operator /(Irradiation irradiation, Duration duration)
+        {
+            return Irradiance.FromWattsPerSquareMeter(irradiation.JoulesPerSquareMeter / duration.Seconds);
         }
 
         #endregion

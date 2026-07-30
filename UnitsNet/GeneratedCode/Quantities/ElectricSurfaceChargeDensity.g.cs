@@ -43,6 +43,7 @@ namespace UnitsNet
         ILinearQuantity<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensityUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensity, double>,
+        IMultiplyOperators<ElectricSurfaceChargeDensity, Area, ElectricCharge>,
         IComparisonOperators<ElectricSurfaceChargeDensity, ElectricSurfaceChargeDensity, bool>,
         IParsable<ElectricSurfaceChargeDensity>,
 #endif
@@ -513,6 +514,16 @@ namespace UnitsNet
         public static double operator /(ElectricSurfaceChargeDensity left, ElectricSurfaceChargeDensity right)
         {
             return left.CoulombsPerSquareMeter / right.CoulombsPerSquareMeter;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="ElectricCharge"/> from <see cref="ElectricSurfaceChargeDensity"/> * <see cref="Area"/>.</summary>
+        public static ElectricCharge operator *(ElectricSurfaceChargeDensity electricSurfaceChargeDensity, Area area)
+        {
+            return ElectricCharge.FromCoulombs(electricSurfaceChargeDensity.CoulombsPerSquareMeter * area.SquareMeters);
         }
 
         #endregion

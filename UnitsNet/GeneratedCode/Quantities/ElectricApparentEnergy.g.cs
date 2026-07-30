@@ -40,6 +40,8 @@ namespace UnitsNet
         ILinearQuantity<ElectricApparentEnergy, ElectricApparentEnergyUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<ElectricApparentEnergy, ElectricApparentEnergy, double>,
+        IDivisionOperators<ElectricApparentEnergy, ElectricApparentPower, Duration>,
+        IDivisionOperators<ElectricApparentEnergy, Duration, ElectricApparentPower>,
         IComparisonOperators<ElectricApparentEnergy, ElectricApparentEnergy, bool>,
         IParsable<ElectricApparentEnergy>,
 #endif
@@ -510,6 +512,22 @@ namespace UnitsNet
         public static double operator /(ElectricApparentEnergy left, ElectricApparentEnergy right)
         {
             return left.VoltampereHours / right.VoltampereHours;
+        }
+
+        #endregion
+
+        #region Relational Operators
+
+        /// <summary>Get <see cref="Duration"/> from <see cref="ElectricApparentEnergy"/> / <see cref="ElectricApparentPower"/>.</summary>
+        public static Duration operator /(ElectricApparentEnergy electricApparentEnergy, ElectricApparentPower electricApparentPower)
+        {
+            return Duration.FromHours(electricApparentEnergy.VoltampereHours / electricApparentPower.Voltamperes);
+        }
+
+        /// <summary>Get <see cref="ElectricApparentPower"/> from <see cref="ElectricApparentEnergy"/> / <see cref="Duration"/>.</summary>
+        public static ElectricApparentPower operator /(ElectricApparentEnergy electricApparentEnergy, Duration duration)
+        {
+            return ElectricApparentPower.FromVoltamperes(electricApparentEnergy.VoltampereHours / duration.Hours);
         }
 
         #endregion
