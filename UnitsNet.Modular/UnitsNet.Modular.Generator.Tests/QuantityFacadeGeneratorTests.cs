@@ -52,10 +52,10 @@ public sealed class QuantityFacadeGeneratorTests
             namespace Application.Units;
 
             [QuantitySpec("UnitsNet.Length")]
-            internal interface DistanceRecipe;
+            internal interface DistanceSpec;
 
             [UnitsNetModule]
-            internal interface Module : IInclude<DistanceRecipe>;
+            internal interface Module : IInclude<DistanceSpec>;
             """);
 
         Assert.DoesNotContain(run.Result.Diagnostics, diagnostic => diagnostic.Severity == DiagnosticSeverity.Error);

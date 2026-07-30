@@ -44,10 +44,10 @@ source emitted during post-initialization.
 
 ## Developer experience
 
-Authoring types use role-specific suffixes: quantity recipes are `*Spec`, reusable unit filters are
-`*UnitSet`, and reusable selection groups are `*Profile`. This keeps an input such as `LengthSpec`
-visually distinct from the generated `Length` quantity and `LengthUnit` enum. Each built-in or
-custom spec identifies its definition through `[QuantitySpec]`; the generator does not infer
+Authoring types use role-specific suffixes: quantity specifications are `*Spec`, reusable unit
+filters are `*UnitSet`, and reusable selection groups are `*Profile`. This keeps an input such as
+`LengthSpec` visually distinct from the generated `Length` quantity and `LengthUnit` enum. Each
+built-in or custom spec identifies its definition through `[QuantitySpec]`; the generator does not infer
 identity from the spec's namespace or type name.
 
 Select every unit for a built-in quantity by inheriting `IInclude<TQuantitySpec>`:
@@ -66,7 +66,7 @@ internal interface EngineeringUnits :
 }
 ```
 
-Built-in recipes generate a source-compatible concrete surface by default: quantities use
+Built-in specs generate a source-compatible concrete surface by default: quantities use
 `UnitsNet` and unit enums use `UnitsNet.Units`:
 
 ```csharp
@@ -204,7 +204,7 @@ directly references it.
 Feature and compatibility samples use project references because they exercise generated behavior
 inside this repository. `UnitsNet.Modular.NuGet.Sample` and `ConsumerOwned.Units` deliberately cross the
 local package boundary: the former covers a minimal consumer-owned definition, while the latter
-composes a separately packed definition recipe into a shared application assembly.
+composes separately packed quantity specs into a shared application assembly.
 
 The compatibility test project uses aliased references to compare both implementations' selected
 public API and unit names without introducing concrete-type ambiguity. It compares against the
@@ -226,12 +226,12 @@ accepted difference is categorized in the test: legacy mutable metadata and setu
 part of the clean architecture, or a remaining quantity-specific handwritten UnitsNet API.
 `Duration`/`TimeSpan` interoperability, `Area` circle construction, relation-backed mechanics and
 chemistry helpers, concentration conversions, apparent-power division, and combustion energy are
-represented as explicit built-in recipe augmentations rather than silent exceptions. This also
+represented as explicit built-in API augmentations rather than silent exceptions. This also
 covers immutable dBV/dBW reference conversions, scalar compound-unit construction, and the
 `FeetInches`, `StonePounds`, and `ReferencePressure` companion types. The generator reads
 augmentation and companion kinds plus quantity and unit dependencies from immutable embedded data;
 dependent APIs are emitted only when all participating quantities and constituent units are
-selected. Companion types remain an explicit opt-in recipe with a dedicated emitter; their presence
+selected. Companion types remain an explicit opt-in with a dedicated emitter; their presence
 is never inferred from a quantity or its units. This inventory is a migration tool, not a claim that
 every legacy API belongs in the final architecture.
 
@@ -272,9 +272,9 @@ evaluated separately.
 derived behavior and is intentionally not stored on each instance. Generated relationships and
 equality use internal conversion helpers; reusable public conversion behavior belongs in the
 self-typed quantity contract and is backed by immutable definition metadata. There is no global
-conversion registry: compile-time definition recipes generate the selected converters directly
-into the consumer-owned assembly. Internal base values are sufficient for relationships because
-all participating recipe quantities are generated into that assembly; independently compiled
+conversion registry: compile-time specs and definition metadata generate the selected converters
+directly into the consumer-owned assembly. Internal base values are sufficient for relationships
+because all participating quantities are generated into that assembly; independently compiled
 modules cannot acquire cross-module operators.
 
 Semantic IDs are namespace-qualified (`Namespace.Name`) and definition-package authors should use
@@ -332,7 +332,7 @@ The package-facing samples import one repository-only MSBuild target that increm
 changed UnitsNet.Modular or generator sources before restore, then refreshes their floating
 `6.0.0-local.dev.*` dependencies before compilation. `ConsumerOwned.Units` registers the fictional
 definition provider as an additional package, so the automation packs the runtime first and the
-definition recipe second with the same unique version. Restore is restricted to the shared
+definition-spec package second with the same unique version. Restore is restricted to the shared
 `Artifacts/Nugets` development feed and can never fall back to a published package.
 
 The dependency can also be invoked explicitly:
@@ -543,7 +543,7 @@ catalog request.
 - Regex/glob patterns filter expanded unit names, not abbreviations.
 - Prefix expansion uses a common SI/binary prefix table; it does not yet reproduce every
   culture-specific prefix convention from UnitsNet v6.
-- Definition packages contain recipes, not quantity structs. Independently generated application
+- Definition packages contain specs, not quantity structs. Independently generated application
   modules intentionally have distinct CLR type identities.
 - The supported application pattern uses one module marker in one consumer-owned units project;
   `UNM014` reports additional module markers before they can emit colliding types.

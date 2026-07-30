@@ -119,7 +119,7 @@ MyApplication.slnx
 
 ```mermaid
 flowchart LR
-    BuiltIns["UnitsNet.Modular built-in recipes"]
+    BuiltIns["UnitsNet.Modular built-in specs"]
     ThirdParty["Third-party definition packages"]
     Units["MyApplication.Units<br/>selection + generation"]
     Assembly["MyApplication.Units.dll<br/>generated quantity types"]
@@ -133,7 +133,7 @@ flowchart LR
 
 This is the recommended setup. A generated public type belongs to the assembly into which it is
 generated. Generating `Length` independently in two assemblies creates two different CLR types,
-even when both came from the same recipe. One application-owned generation boundary gives all
+even when both came from the same spec. One application-owned generation boundary gives all
 application projects the same type identity.
 
 ### Full catalog with UnitsNet-style namespaces
@@ -155,7 +155,7 @@ types from `UnitsNet.dll`.
 
 ### Third-party quantities
 
-A third-party definition package supplies recipes rather than precompiled quantity structs. The
+A third-party definition package supplies specs rather than precompiled quantity structs. The
 consumer references the package, selects its public quantity specs in the application units
 project, and generates the third-party and built-in quantities together:
 
@@ -286,13 +286,14 @@ they produce:
 
 | Suffix | Purpose | Example |
 |---|---|---|
-| `Spec` | Selects one built-in or custom quantity recipe | `LengthSpec`, `HowMuchSpec` |
+| `Spec` | Identifies one built-in or custom quantity specification | `LengthSpec`, `HowMuchSpec` |
 | `UnitSet` | Selects a reusable subset of a spec's units | `MetricLengthUnitSet` |
 | `Profile` | Composes several specs and unit sets | `MechanicsProfile` |
 
 The module interface names the consumer-owned generation boundary and can use an application-oriented
-name such as `ApplicationUnits`. These authoring names do not flow into the generated API:
-`LengthSpec` still produces `Length` and `LengthUnit`.
+name such as `ApplicationUnits`. The `*Spec` suffix is the authoring convention for the corresponding
+generated quantity and unit enum: `LengthSpec` specifies the `Length` quantity and its
+`LengthUnit` enum.
 
 ### Module declaration
 
@@ -341,7 +342,7 @@ IInclude<UnitsNet.Modular.BuiltIns.LengthSpec, MetricLengthUnitSet>
 ```
 
 Built-in spec names add the `Spec` suffix to quantity definition names in the UnitsNet catalog, so
-the `Length` recipe is selected with `UnitsNet.Modular.BuiltIns.LengthSpec`. The specs are generated
+the `Length` specification is selected with `UnitsNet.Modular.BuiltIns.LengthSpec`. The specs are generated
 by the analyzer in `UnitsNet.Modular.BuiltIns`; generated quantities retain their familiar names,
 such as `Length` and `LengthUnit`. Built-in and custom specs both declare their stable semantic ID
 with `[QuantitySpec]`; the namespace and `Spec` suffix are naming conventions, not lookup
@@ -653,7 +654,7 @@ Structured relations use stable semantic quantity IDs and invariant unit names:
 ]
 ```
 
-Only multiplication recipes are declared. The generator:
+Only multiplication relations are declared. The generator:
 
 - emits both operand orders when the operands are different;
 - infers the corresponding division operator;
@@ -676,9 +677,8 @@ IDs remain unambiguous across namespaces.
 
 ## Publish a definition package
 
-A definition package is a recipe package. It contains public quantity specs, JSON definitions,
-relationships, and an MSBuild props file, but does not generate or ship the resulting quantity
-structs.
+A definition package distributes public quantity specs, JSON definitions, relationships, and an
+MSBuild props file, but does not generate or ship the resulting quantity structs.
 
 ```text
 Acme.Measurements.Definitions
@@ -824,7 +824,7 @@ UnitsNet.Modular reports authoring problems at compile time:
   supported; definitions and generated metadata are immutable.
 - Quantity and unit selection happens at compile time.
 - Source compatibility with common UnitsNet APIs is a goal; binary compatibility is not.
-- Definition packages ship recipes. Generated types in different assemblies have different CLR
+- Definition packages ship specs. Generated types in different assemblies have different CLR
   identities.
 - Unit filters match expanded invariant unit names, not localized abbreviations.
 - The System.Text.Json integration is a proof of concept; applications own persisted-contract

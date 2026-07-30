@@ -61,8 +61,8 @@ QuantityRegistry registry = GeneratedQuantityRegistry.Instance;
 | `UnitKey` | A unit enum in-process; semantic quantity ID plus invariant unit name across boundaries | Deliberately changed |
 | `UnitSystem` / `BaseUnits` | `UnitsNet.Modular.UnitSystem` / `UnitsNet.Modular.BaseUnits` | Supported as immutable selected-module policy |
 | `UnitsNetSetup` quantity selection | Module interfaces, profiles, and definition packages | Compile-time replacement |
-| Runtime abbreviation mutation | Localization in definition recipes | Runtime mutation unsupported |
-| Runtime conversion registration | Definition conversion expressions and relation recipes | Runtime mutation unsupported |
+| Runtime abbreviation mutation | Localization in definition metadata | Runtime mutation unsupported |
+| Runtime conversion registration | Definition conversion expressions and relation definitions | Runtime mutation unsupported |
 | Global `Quantity.FromUnitAbbreviation(...)` | Parse through a known quantity or present units from its descriptor | Deliberately unsupported |
 | Legacy `UnitsNet.IQuantity` identity | `UnitsNet.Core.IQuantity<double>` | Deliberately changed |
 

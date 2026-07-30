@@ -12,7 +12,7 @@
     <UnitsNetModularSampleUsePackagedAnalyzer>true</UnitsNetModularSampleUsePackagedAnalyzer>
   </PropertyGroup>
 
-  <!-- Repository-only automation that packs the runtime and definition recipe before restore. -->
+  <!-- Repository-only automation that packs the runtime and definition specs before restore. -->
   <Import Project="../../UnitsNet.Modular.LocalPackages.targets" />
 
   <PropertyGroup>
@@ -24,7 +24,7 @@
                       Version="$(UnitsNetModularSampleLocalVersion)" />
   </ItemGroup>
 
-  <!-- Register the sample recipe as an additional repository-local package produced in dependency order. -->
+  <!-- Register the sample specs as an additional repository-local package produced in dependency order. -->
   <ItemGroup>
     <UnitsNetModularSampleAdditionalLocalPackageProject
         Include="../../DefinitionPackages/Fictional.Measurements.Definitions/Fictional.Measurements.Definitions.csproj" />
