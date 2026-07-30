@@ -1,5 +1,6 @@
 ﻿$root = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $artifactsDir = Join-Path $root "Artifacts"
+$localNuGetFeedDir = Join-Path $artifactsDir "Nugets"
 $nugetOutDir = Join-Path $artifactsDir "NuGet"
 $logsDir = Join-Path $artifactsDir "Logs"
 $testReportDir = Join-Path $artifactsDir "TestResults"
@@ -14,6 +15,10 @@ function Remove-ArtifactsDir {
     Remove-Item -LiteralPath $artifactsDir -Recurse -Force -ErrorAction Stop
     write-host -foreground blue "Clean up...END`n"
   }
+
+  # NuGet.Config always includes this repository-local source, so it must exist before restore.
+  New-Item -ItemType Directory -Force $localNuGetFeedDir 1> $null
+  Set-Content -LiteralPath (Join-Path $localNuGetFeedDir ".gitkeep") -Value ""
 }
 
 function Update-GeneratedCode {
