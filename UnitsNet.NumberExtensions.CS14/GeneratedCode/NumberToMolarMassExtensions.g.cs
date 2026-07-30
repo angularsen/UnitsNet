@@ -146,6 +146,14 @@ namespace UnitsNet.NumberExtensions.NumberToMolarMass
                 => MolarMass.FromPoundsPerMole(value.ToQuantityValue());
 #endif
 
+            /// <inheritdoc cref="MolarMass.FromPoundsPerPoundMole(QuantityValue)" />
+            public MolarMass PoundsPerPoundMole
+#if NET7_0_OR_GREATER
+                => MolarMass.FromPoundsPerPoundMole(QuantityValue.CreateChecked(value));
+#else
+                => MolarMass.FromPoundsPerPoundMole(value.ToQuantityValue());
+#endif
+
         }
     }
 }

@@ -156,6 +156,9 @@ namespace UnitsNet
                 yield return new (MolarMassUnit.PoundPerMole, "PoundPerMole", "PoundsPerMole", new BaseUnits(mass: MassUnit.Pound, amount: AmountOfSubstanceUnit.Mole),
                      new QuantityValue(100000000, 45359237)
                 );
+                yield return new (MolarMassUnit.PoundPerPoundMole, "PoundPerPoundMole", "PoundsPerPoundMole", new BaseUnits(mass: MassUnit.Pound, amount: AmountOfSubstanceUnit.PoundMole),
+                     1000
+                );
             }
         }
 
@@ -323,6 +326,11 @@ namespace UnitsNet
         /// </summary>
         public QuantityValue PoundsPerMole => this.As(MolarMassUnit.PoundPerMole);
 
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="MolarMassUnit.PoundPerPoundMole"/>
+        /// </summary>
+        public QuantityValue PoundsPerPoundMole => this.As(MolarMassUnit.PoundPerPoundMole);
+
         #endregion
 
         #region Static Methods
@@ -454,6 +462,14 @@ namespace UnitsNet
         public static MolarMass FromPoundsPerMole(QuantityValue value)
         {
             return new MolarMass(value, MolarMassUnit.PoundPerMole);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.PoundPerPoundMole"/>.
+        /// </summary>
+        public static MolarMass FromPoundsPerPoundMole(QuantityValue value)
+        {
+            return new MolarMass(value, MolarMassUnit.PoundPerPoundMole);
         }
 
         /// <summary>

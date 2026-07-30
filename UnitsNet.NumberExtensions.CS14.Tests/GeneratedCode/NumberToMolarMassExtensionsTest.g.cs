@@ -76,5 +76,9 @@ namespace UnitsNet.Tests
         public void NumberToPoundsPerMoleTest() =>
             Assert.Equal(MolarMass.FromPoundsPerMole(2), 2.PoundsPerMole);
 
+        [Fact]
+        public void NumberToPoundsPerPoundMoleTest() =>
+            Assert.Equal(MolarMass.FromPoundsPerPoundMole(2), 2.PoundsPerPoundMole);
+
     }
 }
