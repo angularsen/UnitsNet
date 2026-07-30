@@ -264,6 +264,28 @@ Linear quantities provide `Sum()` and `Average()` overloads, including selector 
 forms. Affine quantities provide meaningful averages. Logarithmic quantities provide `Sum()`,
 `ArithmeticMean()`, and `GeometricMean()` with logarithmic semantics.
 
+### Inspect immutable metadata
+
+Each generated quantity exposes one strongly typed, immutable metadata object. The quantity's
+convenience properties and the generated discovery registry forward to that same instance:
+
+```csharp
+QuantityInfo<Length, LengthUnit> info = Length.Info;
+UnitInfo<LengthUnit> kilometer = info[LengthUnit.Kilometer];
+
+Length value = info.From(1.5, kilometer.Unit);
+string abbreviation = kilometer.GetDefaultAbbreviation(CultureInfo.InvariantCulture);
+
+Debug.Assert(ReferenceEquals(info.UnitInfos, Length.UnitInfos));
+Debug.Assert(ReferenceEquals(info, value.QuantityInfo));
+Debug.Assert(ReferenceEquals(info, Quantity.Registry.Get(typeof(Length))));
+```
+
+`UnitInfo<TUnit>.Unit` and `SingularName` are the preferred descriptive members. `Value` and `Name`
+are hidden source-compatibility aliases for existing UnitsNet code. Unlike the legacy mutable
+metadata model, generated metadata does not expose configurable conversion expressions or global
+registration.
+
 ### Use an immutable unit system
 
 `UnitSystem` and `BaseUnits` describe a preferred set of constituent units without changing global

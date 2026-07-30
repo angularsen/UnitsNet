@@ -23,14 +23,7 @@ internal static class ModuleEmitter
         {
             QuantityDefinition quantity = selection.Definition;
             string quantityType = QuantityType(quantity);
-            string unitType = UnitType(quantity);
-            writer.Append("                new global::UnitsNet.Modular.QuantityDescriptor<")
-                .Append(quantityType).Append(", ").Append(unitType).Append(">(").AppendLine();
-            writer.Append("                    ").Append(quantityType).AppendLine(".QuantityId,");
-            writer.Append("                    \"").Append(Escape(quantity.Name)).AppendLine("\",");
-            writer.Append("                    ").Append(quantityType).AppendLine(".BaseUnit,");
-            writer.Append("                    ").Append(quantityType).AppendLine(".BaseDimensions,");
-            writer.Append("                    ").Append(quantityType).AppendLine(".UnitInfos),");
+            writer.Append("                ").Append(quantityType).AppendLine(".Info,");
         }
 
         writer.AppendLine("            });");

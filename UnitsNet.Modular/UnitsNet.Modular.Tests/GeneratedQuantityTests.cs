@@ -165,7 +165,7 @@ public sealed class GeneratedQuantityTests
         Type[] contractTypes =
         {
             typeof(UnitsNet.Modular.IQuantityDescriptor),
-            typeof(UnitsNet.Modular.QuantityDescriptor<Length, LengthUnit>),
+            typeof(QuantityInfo<Length, LengthUnit>),
             typeof(UnitsNet.Modular.QuantityRegistry),
             typeof(Quantity),
         };
@@ -203,6 +203,54 @@ public sealed class GeneratedQuantityTests
 
         static bool IsObject(Type type) =>
             (type.IsByRef ? type.GetElementType() : type) == typeof(object);
+    }
+
+    [Fact]
+    public void GeneratedQuantity_MetadataIsSharedAndSourceCompatible()
+    {
+        UnitsNet.Modular.IQuantityDescriptor descriptor =
+            global::UnitsNet.Modular.Generated.GeneratedQuantityRegistry.Instance.Get(typeof(Length));
+        Length value = Length.FromKilometers(1.5);
+        UnitInfo<LengthUnit> kilometer = Length.Info[LengthUnit.Kilometer];
+
+        Assert.Same(Length.Info, descriptor);
+        Assert.Same(Length.Info, value.QuantityInfo);
+        Assert.Same(Length.Info.UnitInfos, Length.UnitInfos);
+        Assert.Same(Length.Info.Units, Length.Units);
+        Assert.Equal(Length.Info.BaseUnit, Length.BaseUnit);
+        Assert.Equal(Length.Info.BaseDimensions, Length.BaseDimensions);
+        Assert.Equal(Length.Info.Zero, Length.Zero);
+        Assert.Equal(LengthUnit.Meter, Length.Info.BaseUnitInfo.Unit);
+        Assert.Equal(LengthUnit.Kilometer, kilometer.Unit);
+        Assert.Equal(LengthUnit.Kilometer, kilometer.Value);
+        Assert.Equal(kilometer.SingularName, kilometer.Name);
+        Assert.Equal(kilometer.SingularName, kilometer.ToString());
+        Assert.Equal(value, Length.Info.From(1.5, LengthUnit.Kilometer));
+        Assert.True(Length.Info.TryGetUnitInfo(LengthUnit.Kilometer, out UnitInfo<LengthUnit>? found));
+        Assert.Same(kilometer, found);
+        Assert.Same(
+            kilometer,
+            Length.Info.GetUnitInfoFor(new UnitsNet.Modular.BaseUnits(length: "Kilometer")));
+        Assert.Same(Length.Info.BaseUnitInfo, Length.Info.GetUnit(UnitsNet.Modular.UnitSystem.SI));
+        Assert.Throws<NotSupportedException>(
+            () => ((IList<UnitInfo<LengthUnit>>)Length.Info.UnitInfos).Add(kilometer));
+
+        Assert.Equal(
+            System.ComponentModel.EditorBrowsableState.Never,
+            typeof(UnitInfo<LengthUnit>)
+                .GetProperty(nameof(UnitInfo<LengthUnit>.Value))!
+                .GetCustomAttributes(typeof(System.ComponentModel.EditorBrowsableAttribute), inherit: false)
+                .Cast<System.ComponentModel.EditorBrowsableAttribute>()
+                .Single()
+                .State);
+        Assert.Equal(
+            System.ComponentModel.EditorBrowsableState.Never,
+            typeof(UnitInfo<LengthUnit>)
+                .GetProperty(nameof(UnitInfo<LengthUnit>.Name))!
+                .GetCustomAttributes(typeof(System.ComponentModel.EditorBrowsableAttribute), inherit: false)
+                .Cast<System.ComponentModel.EditorBrowsableAttribute>()
+                .Single()
+                .State);
     }
 
     [Fact]

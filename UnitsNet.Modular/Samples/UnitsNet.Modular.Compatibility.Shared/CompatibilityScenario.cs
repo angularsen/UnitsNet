@@ -30,6 +30,12 @@ public static class CompatibilityScenario
             Length.FromMeters(1),
             Length.FromCentimeters(300),
         }.Average();
+        var kilometerInfo = Length.Info[LengthUnit.Kilometer];
+        Length metadataDistance = Length.Info.From(1.5, kilometerInfo.Value);
+        if (!ReferenceEquals(Length.Info, metadataDistance.QuantityInfo))
+        {
+            throw new InvalidOperationException("Quantity metadata should be shared.");
+        }
 
         return string.Join(
             Environment.NewLine,
@@ -41,7 +47,9 @@ public static class CompatibilityScenario
             FormattableString.Invariant($"Level: {combinedLevel.Value:G15} {combinedLevel.Unit}"),
             FormattableString.Invariant($"Information: {payload.Value:G15} {payload.Unit}"),
             FormattableString.Invariant($"Sum: {total.Value:G15} {total.Unit}"),
-            FormattableString.Invariant($"Average: {average.Value:G15} {average.Unit}"));
+            FormattableString.Invariant($"Average: {average.Value:G15} {average.Unit}"),
+            FormattableString.Invariant(
+                $"Metadata: {metadataDistance.Value:G15} {kilometerInfo.Name}"));
     }
 
     public static Length ParseLength(string text) =>

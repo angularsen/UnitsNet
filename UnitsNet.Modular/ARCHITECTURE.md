@@ -251,7 +251,7 @@ generated implementation. A future UnitsNet integration can implement the same c
 its concrete types differ.
 
 The Core capability hierarchy adapts UnitsNet's proven modern generic design without carrying over
-`UnitKey`, quantity metadata, setup registries, or obsolete compatibility members:
+`UnitKey`, mutable quantity metadata, setup registries, or obsolete compatibility members:
 
 - `ILinearQuantity<TSelf, TUnit>` advertises conventional arithmetic and additive zero;
 - `IAffineQuantity<TSelf, TUnit, TOffset>` identifies offset conversions and expresses differences
@@ -283,10 +283,13 @@ boundaries without adding vendor state to each quantity value.
 
 Each module does have an immutable generated **discovery registry**. It describes only that
 module's selected quantities and supports lookup by semantic ID, quantity name, or generated CLR
-type. Descriptors expose units, abbreviations, base dimensions, construction, conversion, parsing,
-formatting data, and stored value/unit access. Frozen dictionaries make lookup immutable after
-module initialization. This registry is not a source of conversion policy and is not a replacement
-for the old mutable `UnitsNetSetup` model.
+type. Each generated quantity exposes its strongly typed `QuantityInfo<TQuantity, TUnit>` through
+`Info`; its static metadata properties and instance `QuantityInfo` property forward to that object.
+The same object implements the type-erased descriptor contract used by the registry, so there is no
+parallel quantity-metadata graph. Descriptors expose units, abbreviations, base dimensions,
+construction, conversion, parsing, formatting data, and stored value/unit access. Frozen
+dictionaries make lookup immutable after module initialization. This registry is not a source of
+conversion policy and is not a replacement for the old mutable `UnitsNetSetup` model.
 
 The same descriptors back a generated System.Text.Json converter factory. Its quantity dispatch is
 emitted as direct type checks and generic converter construction, with no runtime

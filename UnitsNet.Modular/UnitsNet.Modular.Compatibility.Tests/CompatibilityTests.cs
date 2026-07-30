@@ -984,9 +984,7 @@ public sealed class CompatibilityTests
 
     private static bool IsDocumentedCompatibilityDifference(string quantityName, string signature)
     {
-        if (signature.StartsWith("P:Info:", StringComparison.Ordinal) ||
-            signature.StartsWith("P:QuantityInfo:", StringComparison.Ordinal) ||
-            signature.StartsWith("P:DefaultConversionFunctions:", StringComparison.Ordinal) ||
+        if (signature.StartsWith("P:DefaultConversionFunctions:", StringComparison.Ordinal) ||
             signature.StartsWith("P:BaseDimensions:", StringComparison.Ordinal) ||
             signature.Contains("(UnitsNet.UnitKey)", StringComparison.Ordinal) ||
             signature.Contains("UnitsNet.UnitConverter", StringComparison.Ordinal) ||

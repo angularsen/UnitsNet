@@ -54,7 +54,7 @@ QuantityRegistry registry = GeneratedQuantityRegistry.Instance;
 | `Quantity.Parse(type, text)` | Same facade call | Returns Core quantity contract |
 | `Quantity.TryParse(...)` | Same facade call | Returns Core quantity contract |
 | `Quantity.GetQuantitiesWithBaseDimensions(...)` | Same facade call or `registry.FindByBaseDimensions(...)` | Supported, selected module only |
-| `QuantityInfo` / `UnitInfo` metadata | `IQuantityDescriptor` / `UnitDescriptor` | Supported as immutable metadata |
+| `QuantityInfo` / `UnitInfo` metadata | `QuantityInfo<TQuantity, TUnit>` / `UnitInfo<TUnit>`; `IQuantityDescriptor` / `UnitDescriptor` when type-erased | Supported as immutable metadata |
 | Dynamic formatting through `IQuantity` | `descriptor.Format(value, format, provider)` | Supported with concrete-type validation |
 | System.Text.Json converters | `GeneratedQuantityRegistry.JsonConverter` | Supported without assembly scanning |
 | Generic quantity algorithms | `UnitsNet.Core.IQuantity<...>` capability contracts | Supported by generated quantities; UnitsNet adoption is a separate integration |

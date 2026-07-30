@@ -1,6 +1,9 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
-namespace UnitsNet.Modular;
+using System.ComponentModel;
+using UnitsNet.Modular;
+
+namespace UnitsNet;
 
 /// <summary>Runtime metadata for one generated unit.</summary>
 public sealed class UnitInfo<TUnit>
@@ -30,6 +33,20 @@ public sealed class UnitInfo<TUnit>
 
     /// <summary>Gets the singular English name.</summary>
     public string SingularName { get; }
+
+    /// <summary>
+    /// Gets the generated unit enum value.
+    /// This is a source-compatibility alias for <see cref="Unit"/>.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public TUnit Value => Unit;
+
+    /// <summary>
+    /// Gets the singular English name.
+    /// This is a source-compatibility alias for <see cref="SingularName"/>.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public string Name => SingularName;
 
     /// <summary>Gets the plural English name.</summary>
     public string PluralName { get; }
@@ -70,4 +87,7 @@ public sealed class UnitInfo<TUnit>
     /// <summary>Gets the preferred abbreviation using the requested culture and fallback rules.</summary>
     public string GetDefaultAbbreviation(System.Globalization.CultureInfo? culture)
         => GetAbbreviations(culture).FirstOrDefault() ?? string.Empty;
+
+    /// <inheritdoc />
+    public override string ToString() => SingularName;
 }
