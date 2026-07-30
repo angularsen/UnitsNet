@@ -59,22 +59,18 @@ namespace UnitsNet.Tests
         protected abstract double DecausGallonsInOneCubicMeter { get; }
         protected abstract double DecilitersInOneCubicMeter { get; }
         protected abstract double DeciusGallonsInOneCubicMeter { get; }
-        protected abstract double HectocubicFeetInOneCubicMeter { get; }
-        protected abstract double HectocubicMetersInOneCubicMeter { get; }
         protected abstract double HectolitersInOneCubicMeter { get; }
         protected abstract double HectousGallonsInOneCubicMeter { get; }
+        protected abstract double HundredCubicFeetInOneCubicMeter { get; }
         protected abstract double ImperialBeerBarrelsInOneCubicMeter { get; }
         protected abstract double ImperialGallonsInOneCubicMeter { get; }
         protected abstract double ImperialOuncesInOneCubicMeter { get; }
         protected abstract double ImperialPintsInOneCubicMeter { get; }
         protected abstract double ImperialQuartsInOneCubicMeter { get; }
-        protected abstract double KilocubicFeetInOneCubicMeter { get; }
-        protected abstract double KilocubicMetersInOneCubicMeter { get; }
         protected abstract double KiloimperialGallonsInOneCubicMeter { get; }
         protected abstract double KilolitersInOneCubicMeter { get; }
         protected abstract double KilousGallonsInOneCubicMeter { get; }
         protected abstract double LitersInOneCubicMeter { get; }
-        protected abstract double MegacubicFeetInOneCubicMeter { get; }
         protected abstract double MegaimperialGallonsInOneCubicMeter { get; }
         protected abstract double MegalitersInOneCubicMeter { get; }
         protected abstract double MegausGallonsInOneCubicMeter { get; }
@@ -83,8 +79,11 @@ namespace UnitsNet.Tests
         protected abstract double MetricTeaspoonsInOneCubicMeter { get; }
         protected abstract double MicrolitersInOneCubicMeter { get; }
         protected abstract double MillilitersInOneCubicMeter { get; }
+        protected abstract double MillionCubicFeetInOneCubicMeter { get; }
         protected abstract double NanolitersInOneCubicMeter { get; }
         protected abstract double OilBarrelsInOneCubicMeter { get; }
+        protected abstract double ThousandCubicFeetInOneCubicMeter { get; }
+        protected abstract double ThousandCubicMetersInOneCubicMeter { get; }
         protected abstract double UkTablespoonsInOneCubicMeter { get; }
         protected abstract double UsBeerBarrelsInOneCubicMeter { get; }
         protected abstract double UsCustomaryCupsInOneCubicMeter { get; }
@@ -116,22 +115,18 @@ namespace UnitsNet.Tests
         protected virtual double DecausGallonsTolerance { get { return 1e-5; } }
         protected virtual double DecilitersTolerance { get { return 1e-5; } }
         protected virtual double DeciusGallonsTolerance { get { return 1e-5; } }
-        protected virtual double HectocubicFeetTolerance { get { return 1e-5; } }
-        protected virtual double HectocubicMetersTolerance { get { return 1e-5; } }
         protected virtual double HectolitersTolerance { get { return 1e-5; } }
         protected virtual double HectousGallonsTolerance { get { return 1e-5; } }
+        protected virtual double HundredCubicFeetTolerance { get { return 1e-5; } }
         protected virtual double ImperialBeerBarrelsTolerance { get { return 1e-5; } }
         protected virtual double ImperialGallonsTolerance { get { return 1e-5; } }
         protected virtual double ImperialOuncesTolerance { get { return 1e-5; } }
         protected virtual double ImperialPintsTolerance { get { return 1e-5; } }
         protected virtual double ImperialQuartsTolerance { get { return 1e-5; } }
-        protected virtual double KilocubicFeetTolerance { get { return 1e-5; } }
-        protected virtual double KilocubicMetersTolerance { get { return 1e-5; } }
         protected virtual double KiloimperialGallonsTolerance { get { return 1e-5; } }
         protected virtual double KilolitersTolerance { get { return 1e-5; } }
         protected virtual double KilousGallonsTolerance { get { return 1e-5; } }
         protected virtual double LitersTolerance { get { return 1e-5; } }
-        protected virtual double MegacubicFeetTolerance { get { return 1e-5; } }
         protected virtual double MegaimperialGallonsTolerance { get { return 1e-5; } }
         protected virtual double MegalitersTolerance { get { return 1e-5; } }
         protected virtual double MegausGallonsTolerance { get { return 1e-5; } }
@@ -140,8 +135,11 @@ namespace UnitsNet.Tests
         protected virtual double MetricTeaspoonsTolerance { get { return 1e-5; } }
         protected virtual double MicrolitersTolerance { get { return 1e-5; } }
         protected virtual double MillilitersTolerance { get { return 1e-5; } }
+        protected virtual double MillionCubicFeetTolerance { get { return 1e-5; } }
         protected virtual double NanolitersTolerance { get { return 1e-5; } }
         protected virtual double OilBarrelsTolerance { get { return 1e-5; } }
+        protected virtual double ThousandCubicFeetTolerance { get { return 1e-5; } }
+        protected virtual double ThousandCubicMetersTolerance { get { return 1e-5; } }
         protected virtual double UkTablespoonsTolerance { get { return 1e-5; } }
         protected virtual double UsBeerBarrelsTolerance { get { return 1e-5; } }
         protected virtual double UsCustomaryCupsTolerance { get { return 1e-5; } }
@@ -177,22 +175,18 @@ namespace UnitsNet.Tests
                 VolumeUnit.DecausGallon => (DecausGallonsInOneCubicMeter, DecausGallonsTolerance),
                 VolumeUnit.Deciliter => (DecilitersInOneCubicMeter, DecilitersTolerance),
                 VolumeUnit.DeciusGallon => (DeciusGallonsInOneCubicMeter, DeciusGallonsTolerance),
-                VolumeUnit.HectocubicFoot => (HectocubicFeetInOneCubicMeter, HectocubicFeetTolerance),
-                VolumeUnit.HectocubicMeter => (HectocubicMetersInOneCubicMeter, HectocubicMetersTolerance),
                 VolumeUnit.Hectoliter => (HectolitersInOneCubicMeter, HectolitersTolerance),
                 VolumeUnit.HectousGallon => (HectousGallonsInOneCubicMeter, HectousGallonsTolerance),
+                VolumeUnit.HundredCubicFoot => (HundredCubicFeetInOneCubicMeter, HundredCubicFeetTolerance),
                 VolumeUnit.ImperialBeerBarrel => (ImperialBeerBarrelsInOneCubicMeter, ImperialBeerBarrelsTolerance),
                 VolumeUnit.ImperialGallon => (ImperialGallonsInOneCubicMeter, ImperialGallonsTolerance),
                 VolumeUnit.ImperialOunce => (ImperialOuncesInOneCubicMeter, ImperialOuncesTolerance),
                 VolumeUnit.ImperialPint => (ImperialPintsInOneCubicMeter, ImperialPintsTolerance),
                 VolumeUnit.ImperialQuart => (ImperialQuartsInOneCubicMeter, ImperialQuartsTolerance),
-                VolumeUnit.KilocubicFoot => (KilocubicFeetInOneCubicMeter, KilocubicFeetTolerance),
-                VolumeUnit.KilocubicMeter => (KilocubicMetersInOneCubicMeter, KilocubicMetersTolerance),
                 VolumeUnit.KiloimperialGallon => (KiloimperialGallonsInOneCubicMeter, KiloimperialGallonsTolerance),
                 VolumeUnit.Kiloliter => (KilolitersInOneCubicMeter, KilolitersTolerance),
                 VolumeUnit.KilousGallon => (KilousGallonsInOneCubicMeter, KilousGallonsTolerance),
                 VolumeUnit.Liter => (LitersInOneCubicMeter, LitersTolerance),
-                VolumeUnit.MegacubicFoot => (MegacubicFeetInOneCubicMeter, MegacubicFeetTolerance),
                 VolumeUnit.MegaimperialGallon => (MegaimperialGallonsInOneCubicMeter, MegaimperialGallonsTolerance),
                 VolumeUnit.Megaliter => (MegalitersInOneCubicMeter, MegalitersTolerance),
                 VolumeUnit.MegausGallon => (MegausGallonsInOneCubicMeter, MegausGallonsTolerance),
@@ -201,8 +195,11 @@ namespace UnitsNet.Tests
                 VolumeUnit.MetricTeaspoon => (MetricTeaspoonsInOneCubicMeter, MetricTeaspoonsTolerance),
                 VolumeUnit.Microliter => (MicrolitersInOneCubicMeter, MicrolitersTolerance),
                 VolumeUnit.Milliliter => (MillilitersInOneCubicMeter, MillilitersTolerance),
+                VolumeUnit.MillionCubicFoot => (MillionCubicFeetInOneCubicMeter, MillionCubicFeetTolerance),
                 VolumeUnit.Nanoliter => (NanolitersInOneCubicMeter, NanolitersTolerance),
                 VolumeUnit.OilBarrel => (OilBarrelsInOneCubicMeter, OilBarrelsTolerance),
+                VolumeUnit.ThousandCubicFoot => (ThousandCubicFeetInOneCubicMeter, ThousandCubicFeetTolerance),
+                VolumeUnit.ThousandCubicMeter => (ThousandCubicMetersInOneCubicMeter, ThousandCubicMetersTolerance),
                 VolumeUnit.UkTablespoon => (UkTablespoonsInOneCubicMeter, UkTablespoonsTolerance),
                 VolumeUnit.UsBeerBarrel => (UsBeerBarrelsInOneCubicMeter, UsBeerBarrelsTolerance),
                 VolumeUnit.UsCustomaryCup => (UsCustomaryCupsInOneCubicMeter, UsCustomaryCupsTolerance),
@@ -238,22 +235,18 @@ namespace UnitsNet.Tests
             new object[] { VolumeUnit.DecausGallon },
             new object[] { VolumeUnit.Deciliter },
             new object[] { VolumeUnit.DeciusGallon },
-            new object[] { VolumeUnit.HectocubicFoot },
-            new object[] { VolumeUnit.HectocubicMeter },
             new object[] { VolumeUnit.Hectoliter },
             new object[] { VolumeUnit.HectousGallon },
+            new object[] { VolumeUnit.HundredCubicFoot },
             new object[] { VolumeUnit.ImperialBeerBarrel },
             new object[] { VolumeUnit.ImperialGallon },
             new object[] { VolumeUnit.ImperialOunce },
             new object[] { VolumeUnit.ImperialPint },
             new object[] { VolumeUnit.ImperialQuart },
-            new object[] { VolumeUnit.KilocubicFoot },
-            new object[] { VolumeUnit.KilocubicMeter },
             new object[] { VolumeUnit.KiloimperialGallon },
             new object[] { VolumeUnit.Kiloliter },
             new object[] { VolumeUnit.KilousGallon },
             new object[] { VolumeUnit.Liter },
-            new object[] { VolumeUnit.MegacubicFoot },
             new object[] { VolumeUnit.MegaimperialGallon },
             new object[] { VolumeUnit.Megaliter },
             new object[] { VolumeUnit.MegausGallon },
@@ -262,8 +255,11 @@ namespace UnitsNet.Tests
             new object[] { VolumeUnit.MetricTeaspoon },
             new object[] { VolumeUnit.Microliter },
             new object[] { VolumeUnit.Milliliter },
+            new object[] { VolumeUnit.MillionCubicFoot },
             new object[] { VolumeUnit.Nanoliter },
             new object[] { VolumeUnit.OilBarrel },
+            new object[] { VolumeUnit.ThousandCubicFoot },
+            new object[] { VolumeUnit.ThousandCubicMeter },
             new object[] { VolumeUnit.UkTablespoon },
             new object[] { VolumeUnit.UsBeerBarrel },
             new object[] { VolumeUnit.UsCustomaryCup },
@@ -378,22 +374,18 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DecausGallonsInOneCubicMeter, cubicmeter.DecausGallons, DecausGallonsTolerance);
             AssertEx.EqualTolerance(DecilitersInOneCubicMeter, cubicmeter.Deciliters, DecilitersTolerance);
             AssertEx.EqualTolerance(DeciusGallonsInOneCubicMeter, cubicmeter.DeciusGallons, DeciusGallonsTolerance);
-            AssertEx.EqualTolerance(HectocubicFeetInOneCubicMeter, cubicmeter.HectocubicFeet, HectocubicFeetTolerance);
-            AssertEx.EqualTolerance(HectocubicMetersInOneCubicMeter, cubicmeter.HectocubicMeters, HectocubicMetersTolerance);
             AssertEx.EqualTolerance(HectolitersInOneCubicMeter, cubicmeter.Hectoliters, HectolitersTolerance);
             AssertEx.EqualTolerance(HectousGallonsInOneCubicMeter, cubicmeter.HectousGallons, HectousGallonsTolerance);
+            AssertEx.EqualTolerance(HundredCubicFeetInOneCubicMeter, cubicmeter.HundredCubicFeet, HundredCubicFeetTolerance);
             AssertEx.EqualTolerance(ImperialBeerBarrelsInOneCubicMeter, cubicmeter.ImperialBeerBarrels, ImperialBeerBarrelsTolerance);
             AssertEx.EqualTolerance(ImperialGallonsInOneCubicMeter, cubicmeter.ImperialGallons, ImperialGallonsTolerance);
             AssertEx.EqualTolerance(ImperialOuncesInOneCubicMeter, cubicmeter.ImperialOunces, ImperialOuncesTolerance);
             AssertEx.EqualTolerance(ImperialPintsInOneCubicMeter, cubicmeter.ImperialPints, ImperialPintsTolerance);
             AssertEx.EqualTolerance(ImperialQuartsInOneCubicMeter, cubicmeter.ImperialQuarts, ImperialQuartsTolerance);
-            AssertEx.EqualTolerance(KilocubicFeetInOneCubicMeter, cubicmeter.KilocubicFeet, KilocubicFeetTolerance);
-            AssertEx.EqualTolerance(KilocubicMetersInOneCubicMeter, cubicmeter.KilocubicMeters, KilocubicMetersTolerance);
             AssertEx.EqualTolerance(KiloimperialGallonsInOneCubicMeter, cubicmeter.KiloimperialGallons, KiloimperialGallonsTolerance);
             AssertEx.EqualTolerance(KilolitersInOneCubicMeter, cubicmeter.Kiloliters, KilolitersTolerance);
             AssertEx.EqualTolerance(KilousGallonsInOneCubicMeter, cubicmeter.KilousGallons, KilousGallonsTolerance);
             AssertEx.EqualTolerance(LitersInOneCubicMeter, cubicmeter.Liters, LitersTolerance);
-            AssertEx.EqualTolerance(MegacubicFeetInOneCubicMeter, cubicmeter.MegacubicFeet, MegacubicFeetTolerance);
             AssertEx.EqualTolerance(MegaimperialGallonsInOneCubicMeter, cubicmeter.MegaimperialGallons, MegaimperialGallonsTolerance);
             AssertEx.EqualTolerance(MegalitersInOneCubicMeter, cubicmeter.Megaliters, MegalitersTolerance);
             AssertEx.EqualTolerance(MegausGallonsInOneCubicMeter, cubicmeter.MegausGallons, MegausGallonsTolerance);
@@ -402,8 +394,11 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MetricTeaspoonsInOneCubicMeter, cubicmeter.MetricTeaspoons, MetricTeaspoonsTolerance);
             AssertEx.EqualTolerance(MicrolitersInOneCubicMeter, cubicmeter.Microliters, MicrolitersTolerance);
             AssertEx.EqualTolerance(MillilitersInOneCubicMeter, cubicmeter.Milliliters, MillilitersTolerance);
+            AssertEx.EqualTolerance(MillionCubicFeetInOneCubicMeter, cubicmeter.MillionCubicFeet, MillionCubicFeetTolerance);
             AssertEx.EqualTolerance(NanolitersInOneCubicMeter, cubicmeter.Nanoliters, NanolitersTolerance);
             AssertEx.EqualTolerance(OilBarrelsInOneCubicMeter, cubicmeter.OilBarrels, OilBarrelsTolerance);
+            AssertEx.EqualTolerance(ThousandCubicFeetInOneCubicMeter, cubicmeter.ThousandCubicFeet, ThousandCubicFeetTolerance);
+            AssertEx.EqualTolerance(ThousandCubicMetersInOneCubicMeter, cubicmeter.ThousandCubicMeters, ThousandCubicMetersTolerance);
             AssertEx.EqualTolerance(UkTablespoonsInOneCubicMeter, cubicmeter.UkTablespoons, UkTablespoonsTolerance);
             AssertEx.EqualTolerance(UsBeerBarrelsInOneCubicMeter, cubicmeter.UsBeerBarrels, UsBeerBarrelsTolerance);
             AssertEx.EqualTolerance(UsCustomaryCupsInOneCubicMeter, cubicmeter.UsCustomaryCups, UsCustomaryCupsTolerance);
@@ -468,22 +463,18 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DecausGallonsInOneCubicMeter, cubicmeter.As(VolumeUnit.DecausGallon), DecausGallonsTolerance);
             AssertEx.EqualTolerance(DecilitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Deciliter), DecilitersTolerance);
             AssertEx.EqualTolerance(DeciusGallonsInOneCubicMeter, cubicmeter.As(VolumeUnit.DeciusGallon), DeciusGallonsTolerance);
-            AssertEx.EqualTolerance(HectocubicFeetInOneCubicMeter, cubicmeter.As(VolumeUnit.HectocubicFoot), HectocubicFeetTolerance);
-            AssertEx.EqualTolerance(HectocubicMetersInOneCubicMeter, cubicmeter.As(VolumeUnit.HectocubicMeter), HectocubicMetersTolerance);
             AssertEx.EqualTolerance(HectolitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Hectoliter), HectolitersTolerance);
             AssertEx.EqualTolerance(HectousGallonsInOneCubicMeter, cubicmeter.As(VolumeUnit.HectousGallon), HectousGallonsTolerance);
+            AssertEx.EqualTolerance(HundredCubicFeetInOneCubicMeter, cubicmeter.As(VolumeUnit.HundredCubicFoot), HundredCubicFeetTolerance);
             AssertEx.EqualTolerance(ImperialBeerBarrelsInOneCubicMeter, cubicmeter.As(VolumeUnit.ImperialBeerBarrel), ImperialBeerBarrelsTolerance);
             AssertEx.EqualTolerance(ImperialGallonsInOneCubicMeter, cubicmeter.As(VolumeUnit.ImperialGallon), ImperialGallonsTolerance);
             AssertEx.EqualTolerance(ImperialOuncesInOneCubicMeter, cubicmeter.As(VolumeUnit.ImperialOunce), ImperialOuncesTolerance);
             AssertEx.EqualTolerance(ImperialPintsInOneCubicMeter, cubicmeter.As(VolumeUnit.ImperialPint), ImperialPintsTolerance);
             AssertEx.EqualTolerance(ImperialQuartsInOneCubicMeter, cubicmeter.As(VolumeUnit.ImperialQuart), ImperialQuartsTolerance);
-            AssertEx.EqualTolerance(KilocubicFeetInOneCubicMeter, cubicmeter.As(VolumeUnit.KilocubicFoot), KilocubicFeetTolerance);
-            AssertEx.EqualTolerance(KilocubicMetersInOneCubicMeter, cubicmeter.As(VolumeUnit.KilocubicMeter), KilocubicMetersTolerance);
             AssertEx.EqualTolerance(KiloimperialGallonsInOneCubicMeter, cubicmeter.As(VolumeUnit.KiloimperialGallon), KiloimperialGallonsTolerance);
             AssertEx.EqualTolerance(KilolitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Kiloliter), KilolitersTolerance);
             AssertEx.EqualTolerance(KilousGallonsInOneCubicMeter, cubicmeter.As(VolumeUnit.KilousGallon), KilousGallonsTolerance);
             AssertEx.EqualTolerance(LitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Liter), LitersTolerance);
-            AssertEx.EqualTolerance(MegacubicFeetInOneCubicMeter, cubicmeter.As(VolumeUnit.MegacubicFoot), MegacubicFeetTolerance);
             AssertEx.EqualTolerance(MegaimperialGallonsInOneCubicMeter, cubicmeter.As(VolumeUnit.MegaimperialGallon), MegaimperialGallonsTolerance);
             AssertEx.EqualTolerance(MegalitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Megaliter), MegalitersTolerance);
             AssertEx.EqualTolerance(MegausGallonsInOneCubicMeter, cubicmeter.As(VolumeUnit.MegausGallon), MegausGallonsTolerance);
@@ -492,8 +483,11 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MetricTeaspoonsInOneCubicMeter, cubicmeter.As(VolumeUnit.MetricTeaspoon), MetricTeaspoonsTolerance);
             AssertEx.EqualTolerance(MicrolitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Microliter), MicrolitersTolerance);
             AssertEx.EqualTolerance(MillilitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Milliliter), MillilitersTolerance);
+            AssertEx.EqualTolerance(MillionCubicFeetInOneCubicMeter, cubicmeter.As(VolumeUnit.MillionCubicFoot), MillionCubicFeetTolerance);
             AssertEx.EqualTolerance(NanolitersInOneCubicMeter, cubicmeter.As(VolumeUnit.Nanoliter), NanolitersTolerance);
             AssertEx.EqualTolerance(OilBarrelsInOneCubicMeter, cubicmeter.As(VolumeUnit.OilBarrel), OilBarrelsTolerance);
+            AssertEx.EqualTolerance(ThousandCubicFeetInOneCubicMeter, cubicmeter.As(VolumeUnit.ThousandCubicFoot), ThousandCubicFeetTolerance);
+            AssertEx.EqualTolerance(ThousandCubicMetersInOneCubicMeter, cubicmeter.As(VolumeUnit.ThousandCubicMeter), ThousandCubicMetersTolerance);
             AssertEx.EqualTolerance(UkTablespoonsInOneCubicMeter, cubicmeter.As(VolumeUnit.UkTablespoon), UkTablespoonsTolerance);
             AssertEx.EqualTolerance(UsBeerBarrelsInOneCubicMeter, cubicmeter.As(VolumeUnit.UsBeerBarrel), UsBeerBarrelsTolerance);
             AssertEx.EqualTolerance(UsCustomaryCupsInOneCubicMeter, cubicmeter.As(VolumeUnit.UsCustomaryCup), UsCustomaryCupsTolerance);
@@ -624,7 +618,9 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 cm³", VolumeUnit.CubicCentimeter, 4.2)]
         [InlineData("en-US", "4.2 dm³", VolumeUnit.CubicDecimeter, 4.2)]
         [InlineData("en-US", "4.2 ft³", VolumeUnit.CubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 hm³", VolumeUnit.CubicHectometer, 4.2)]
         [InlineData("en-US", "4.2 in³", VolumeUnit.CubicInch, 4.2)]
+        [InlineData("en-US", "4.2 km³", VolumeUnit.CubicKilometer, 4.2)]
         [InlineData("en-US", "4.2 m³", VolumeUnit.CubicMeter, 4.2)]
         [InlineData("en-US", "4.2 µm³", VolumeUnit.CubicMicrometer, 4.2)]
         [InlineData("en-US", "4.2 mi³", VolumeUnit.CubicMile, 4.2)]
@@ -634,9 +630,10 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 dagal (U.S.)", VolumeUnit.DecausGallon, 4.2)]
         [InlineData("en-US", "4.2 dl", VolumeUnit.Deciliter, 4.2)]
         [InlineData("en-US", "4.2 dgal (U.S.)", VolumeUnit.DeciusGallon, 4.2)]
-        [InlineData("en-US", "4.2 hft³", VolumeUnit.HectocubicFoot, 4.2)]
         [InlineData("en-US", "4.2 hl", VolumeUnit.Hectoliter, 4.2)]
         [InlineData("en-US", "4.2 hgal (U.S.)", VolumeUnit.HectousGallon, 4.2)]
+        [InlineData("en-US", "4.2 Ccf", VolumeUnit.HundredCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 hft³", VolumeUnit.HundredCubicFoot, 4.2)]
         [InlineData("en-US", "4.2 bl (imp.)", VolumeUnit.ImperialBeerBarrel, 4.2)]
         [InlineData("en-US", "4.2 gal (imp.)", VolumeUnit.ImperialGallon, 4.2)]
         [InlineData("en-US", "4.2 oz (imp.)", VolumeUnit.ImperialOunce, 4.2)]
@@ -645,12 +642,10 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 pt", VolumeUnit.ImperialPint, 4.2)]
         [InlineData("en-US", "4.2 p", VolumeUnit.ImperialPint, 4.2)]
         [InlineData("en-US", "4.2 qt (imp.)", VolumeUnit.ImperialQuart, 4.2)]
-        [InlineData("en-US", "4.2 kft³", VolumeUnit.KilocubicFoot, 4.2)]
         [InlineData("en-US", "4.2 kgal (imp.)", VolumeUnit.KiloimperialGallon, 4.2)]
         [InlineData("en-US", "4.2 kl", VolumeUnit.Kiloliter, 4.2)]
         [InlineData("en-US", "4.2 kgal (U.S.)", VolumeUnit.KilousGallon, 4.2)]
         [InlineData("en-US", "4.2 l", VolumeUnit.Liter, 4.2)]
-        [InlineData("en-US", "4.2 Mft³", VolumeUnit.MegacubicFoot, 4.2)]
         [InlineData("en-US", "4.2 Mgal (imp.)", VolumeUnit.MegaimperialGallon, 4.2)]
         [InlineData("en-US", "4.2 Ml", VolumeUnit.Megaliter, 4.2)]
         [InlineData("en-US", "4.2 Mgal (U.S.)", VolumeUnit.MegausGallon, 4.2)]
@@ -671,8 +666,16 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 teaspoon", VolumeUnit.MetricTeaspoon, 4.2)]
         [InlineData("en-US", "4.2 µl", VolumeUnit.Microliter, 4.2)]
         [InlineData("en-US", "4.2 ml", VolumeUnit.Milliliter, 4.2)]
+        [InlineData("en-US", "4.2 MMcf", VolumeUnit.MillionCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 Mft³", VolumeUnit.MillionCubicFoot, 4.2)]
         [InlineData("en-US", "4.2 nl", VolumeUnit.Nanoliter, 4.2)]
         [InlineData("en-US", "4.2 bbl", VolumeUnit.OilBarrel, 4.2)]
+        [InlineData("en-US", "4.2 Mcf", VolumeUnit.ThousandCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 kcf", VolumeUnit.ThousandCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 kft³", VolumeUnit.ThousandCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 10³·m³", VolumeUnit.ThousandCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 kcm", VolumeUnit.ThousandCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 Kcm", VolumeUnit.ThousandCubicMeter, 4.2)]
         [InlineData("en-US", "4.2 tablespoon (U.K.)", VolumeUnit.UkTablespoon, 4.2)]
         [InlineData("en-US", "4.2 bl (U.S.)", VolumeUnit.UsBeerBarrel, 4.2)]
         [InlineData("en-US", "4.2 cup (U.S. customary)", VolumeUnit.UsCustomaryCup, 4.2)]
@@ -690,7 +693,9 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 см³", VolumeUnit.CubicCentimeter, 4.2)]
         [InlineData("ru-RU", "4,2 дм³", VolumeUnit.CubicDecimeter, 4.2)]
         [InlineData("ru-RU", "4,2 фут³", VolumeUnit.CubicFoot, 4.2)]
+        [InlineData("ru-RU", "4,2 гм³", VolumeUnit.CubicHectometer, 4.2)]
         [InlineData("ru-RU", "4,2 дюйм³", VolumeUnit.CubicInch, 4.2)]
+        [InlineData("ru-RU", "4,2 км³", VolumeUnit.CubicKilometer, 4.2)]
         [InlineData("ru-RU", "4,2 м³", VolumeUnit.CubicMeter, 4.2)]
         [InlineData("ru-RU", "4,2 мкм³", VolumeUnit.CubicMicrometer, 4.2)]
         [InlineData("ru-RU", "4,2 миля³", VolumeUnit.CubicMile, 4.2)]
@@ -700,17 +705,14 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 даАмериканский галлон", VolumeUnit.DecausGallon, 4.2)]
         [InlineData("ru-RU", "4,2 дл", VolumeUnit.Deciliter, 4.2)]
         [InlineData("ru-RU", "4,2 дАмериканский галлон", VolumeUnit.DeciusGallon, 4.2)]
-        [InlineData("ru-RU", "4,2 гфут³", VolumeUnit.HectocubicFoot, 4.2)]
         [InlineData("ru-RU", "4,2 гл", VolumeUnit.Hectoliter, 4.2)]
         [InlineData("ru-RU", "4,2 гАмериканский галлон", VolumeUnit.HectousGallon, 4.2)]
         [InlineData("ru-RU", "4,2 Английский галлон", VolumeUnit.ImperialGallon, 4.2)]
         [InlineData("ru-RU", "4,2 Английская унция", VolumeUnit.ImperialOunce, 4.2)]
-        [InlineData("ru-RU", "4,2 кфут³", VolumeUnit.KilocubicFoot, 4.2)]
         [InlineData("ru-RU", "4,2 кАнглийский галлон", VolumeUnit.KiloimperialGallon, 4.2)]
         [InlineData("ru-RU", "4,2 кл", VolumeUnit.Kiloliter, 4.2)]
         [InlineData("ru-RU", "4,2 кАмериканский галлон", VolumeUnit.KilousGallon, 4.2)]
         [InlineData("ru-RU", "4,2 л", VolumeUnit.Liter, 4.2)]
-        [InlineData("ru-RU", "4,2 Мфут³", VolumeUnit.MegacubicFoot, 4.2)]
         [InlineData("ru-RU", "4,2 МАнглийский галлон", VolumeUnit.MegaimperialGallon, 4.2)]
         [InlineData("ru-RU", "4,2 Мл", VolumeUnit.Megaliter, 4.2)]
         [InlineData("ru-RU", "4,2 МАмериканский галлон", VolumeUnit.MegausGallon, 4.2)]
@@ -728,16 +730,6 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("en-US", "1 hm³")] // [CubicHectometer, HectocubicMeter] 
-        [InlineData("en-US", "1 km³")] // [CubicKilometer, KilocubicMeter] 
-        [InlineData("ru-RU", "1 гм³")] // [CubicHectometer, HectocubicMeter] 
-        [InlineData("ru-RU", "1 км³")] // [CubicKilometer, KilocubicMeter] 
-        public void ParseWithAmbiguousAbbreviation(string culture, string quantityString)
-        {
-            Assert.Throws<AmbiguousUnitParseException>(() => Volume.Parse(quantityString, CultureInfo.GetCultureInfo(culture)));
-        }
-
-        [Theory]
         [InlineData("en-US", "4.2 ac-ft", VolumeUnit.AcreFoot, 4.2)]
         [InlineData("en-US", "4.2 acre-foot", VolumeUnit.AcreFoot, 4.2)]
         [InlineData("en-US", "4.2 acre-feet", VolumeUnit.AcreFoot, 4.2)]
@@ -749,7 +741,9 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 cm³", VolumeUnit.CubicCentimeter, 4.2)]
         [InlineData("en-US", "4.2 dm³", VolumeUnit.CubicDecimeter, 4.2)]
         [InlineData("en-US", "4.2 ft³", VolumeUnit.CubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 hm³", VolumeUnit.CubicHectometer, 4.2)]
         [InlineData("en-US", "4.2 in³", VolumeUnit.CubicInch, 4.2)]
+        [InlineData("en-US", "4.2 km³", VolumeUnit.CubicKilometer, 4.2)]
         [InlineData("en-US", "4.2 m³", VolumeUnit.CubicMeter, 4.2)]
         [InlineData("en-US", "4.2 µm³", VolumeUnit.CubicMicrometer, 4.2)]
         [InlineData("en-US", "4.2 mi³", VolumeUnit.CubicMile, 4.2)]
@@ -759,9 +753,10 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 dagal (U.S.)", VolumeUnit.DecausGallon, 4.2)]
         [InlineData("en-US", "4.2 dl", VolumeUnit.Deciliter, 4.2)]
         [InlineData("en-US", "4.2 dgal (U.S.)", VolumeUnit.DeciusGallon, 4.2)]
-        [InlineData("en-US", "4.2 hft³", VolumeUnit.HectocubicFoot, 4.2)]
         [InlineData("en-US", "4.2 hl", VolumeUnit.Hectoliter, 4.2)]
         [InlineData("en-US", "4.2 hgal (U.S.)", VolumeUnit.HectousGallon, 4.2)]
+        [InlineData("en-US", "4.2 Ccf", VolumeUnit.HundredCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 hft³", VolumeUnit.HundredCubicFoot, 4.2)]
         [InlineData("en-US", "4.2 bl (imp.)", VolumeUnit.ImperialBeerBarrel, 4.2)]
         [InlineData("en-US", "4.2 gal (imp.)", VolumeUnit.ImperialGallon, 4.2)]
         [InlineData("en-US", "4.2 oz (imp.)", VolumeUnit.ImperialOunce, 4.2)]
@@ -770,12 +765,10 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 pt", VolumeUnit.ImperialPint, 4.2)]
         [InlineData("en-US", "4.2 p", VolumeUnit.ImperialPint, 4.2)]
         [InlineData("en-US", "4.2 qt (imp.)", VolumeUnit.ImperialQuart, 4.2)]
-        [InlineData("en-US", "4.2 kft³", VolumeUnit.KilocubicFoot, 4.2)]
         [InlineData("en-US", "4.2 kgal (imp.)", VolumeUnit.KiloimperialGallon, 4.2)]
         [InlineData("en-US", "4.2 kl", VolumeUnit.Kiloliter, 4.2)]
         [InlineData("en-US", "4.2 kgal (U.S.)", VolumeUnit.KilousGallon, 4.2)]
         [InlineData("en-US", "4.2 l", VolumeUnit.Liter, 4.2)]
-        [InlineData("en-US", "4.2 Mft³", VolumeUnit.MegacubicFoot, 4.2)]
         [InlineData("en-US", "4.2 Mgal (imp.)", VolumeUnit.MegaimperialGallon, 4.2)]
         [InlineData("en-US", "4.2 Ml", VolumeUnit.Megaliter, 4.2)]
         [InlineData("en-US", "4.2 Mgal (U.S.)", VolumeUnit.MegausGallon, 4.2)]
@@ -796,8 +789,16 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 teaspoon", VolumeUnit.MetricTeaspoon, 4.2)]
         [InlineData("en-US", "4.2 µl", VolumeUnit.Microliter, 4.2)]
         [InlineData("en-US", "4.2 ml", VolumeUnit.Milliliter, 4.2)]
+        [InlineData("en-US", "4.2 MMcf", VolumeUnit.MillionCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 Mft³", VolumeUnit.MillionCubicFoot, 4.2)]
         [InlineData("en-US", "4.2 nl", VolumeUnit.Nanoliter, 4.2)]
         [InlineData("en-US", "4.2 bbl", VolumeUnit.OilBarrel, 4.2)]
+        [InlineData("en-US", "4.2 Mcf", VolumeUnit.ThousandCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 kcf", VolumeUnit.ThousandCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 kft³", VolumeUnit.ThousandCubicFoot, 4.2)]
+        [InlineData("en-US", "4.2 10³·m³", VolumeUnit.ThousandCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 kcm", VolumeUnit.ThousandCubicMeter, 4.2)]
+        [InlineData("en-US", "4.2 Kcm", VolumeUnit.ThousandCubicMeter, 4.2)]
         [InlineData("en-US", "4.2 tablespoon (U.K.)", VolumeUnit.UkTablespoon, 4.2)]
         [InlineData("en-US", "4.2 bl (U.S.)", VolumeUnit.UsBeerBarrel, 4.2)]
         [InlineData("en-US", "4.2 cup (U.S. customary)", VolumeUnit.UsCustomaryCup, 4.2)]
@@ -815,7 +816,9 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 см³", VolumeUnit.CubicCentimeter, 4.2)]
         [InlineData("ru-RU", "4,2 дм³", VolumeUnit.CubicDecimeter, 4.2)]
         [InlineData("ru-RU", "4,2 фут³", VolumeUnit.CubicFoot, 4.2)]
+        [InlineData("ru-RU", "4,2 гм³", VolumeUnit.CubicHectometer, 4.2)]
         [InlineData("ru-RU", "4,2 дюйм³", VolumeUnit.CubicInch, 4.2)]
+        [InlineData("ru-RU", "4,2 км³", VolumeUnit.CubicKilometer, 4.2)]
         [InlineData("ru-RU", "4,2 м³", VolumeUnit.CubicMeter, 4.2)]
         [InlineData("ru-RU", "4,2 мкм³", VolumeUnit.CubicMicrometer, 4.2)]
         [InlineData("ru-RU", "4,2 миля³", VolumeUnit.CubicMile, 4.2)]
@@ -825,17 +828,14 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 даАмериканский галлон", VolumeUnit.DecausGallon, 4.2)]
         [InlineData("ru-RU", "4,2 дл", VolumeUnit.Deciliter, 4.2)]
         [InlineData("ru-RU", "4,2 дАмериканский галлон", VolumeUnit.DeciusGallon, 4.2)]
-        [InlineData("ru-RU", "4,2 гфут³", VolumeUnit.HectocubicFoot, 4.2)]
         [InlineData("ru-RU", "4,2 гл", VolumeUnit.Hectoliter, 4.2)]
         [InlineData("ru-RU", "4,2 гАмериканский галлон", VolumeUnit.HectousGallon, 4.2)]
         [InlineData("ru-RU", "4,2 Английский галлон", VolumeUnit.ImperialGallon, 4.2)]
         [InlineData("ru-RU", "4,2 Английская унция", VolumeUnit.ImperialOunce, 4.2)]
-        [InlineData("ru-RU", "4,2 кфут³", VolumeUnit.KilocubicFoot, 4.2)]
         [InlineData("ru-RU", "4,2 кАнглийский галлон", VolumeUnit.KiloimperialGallon, 4.2)]
         [InlineData("ru-RU", "4,2 кл", VolumeUnit.Kiloliter, 4.2)]
         [InlineData("ru-RU", "4,2 кАмериканский галлон", VolumeUnit.KilousGallon, 4.2)]
         [InlineData("ru-RU", "4,2 л", VolumeUnit.Liter, 4.2)]
-        [InlineData("ru-RU", "4,2 Мфут³", VolumeUnit.MegacubicFoot, 4.2)]
         [InlineData("ru-RU", "4,2 МАнглийский галлон", VolumeUnit.MegaimperialGallon, 4.2)]
         [InlineData("ru-RU", "4,2 Мл", VolumeUnit.Megaliter, 4.2)]
         [InlineData("ru-RU", "4,2 МАмериканский галлон", VolumeUnit.MegausGallon, 4.2)]
@@ -853,16 +853,6 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("en-US", "1 hm³")] // [CubicHectometer, HectocubicMeter] 
-        [InlineData("en-US", "1 km³")] // [CubicKilometer, KilocubicMeter] 
-        [InlineData("ru-RU", "1 гм³")] // [CubicHectometer, HectocubicMeter] 
-        [InlineData("ru-RU", "1 км³")] // [CubicKilometer, KilocubicMeter] 
-        public void TryParseWithAmbiguousAbbreviation(string culture, string quantityString)
-        {
-            Assert.False(Volume.TryParse(quantityString, CultureInfo.GetCultureInfo(culture), out _));
-        }
-
-        [Theory]
         [InlineData("ac-ft", VolumeUnit.AcreFoot)]
         [InlineData("acre-foot", VolumeUnit.AcreFoot)]
         [InlineData("acre-feet", VolumeUnit.AcreFoot)]
@@ -874,7 +864,9 @@ namespace UnitsNet.Tests
         [InlineData("cm³", VolumeUnit.CubicCentimeter)]
         [InlineData("dm³", VolumeUnit.CubicDecimeter)]
         [InlineData("ft³", VolumeUnit.CubicFoot)]
+        [InlineData("hm³", VolumeUnit.CubicHectometer)]
         [InlineData("in³", VolumeUnit.CubicInch)]
+        [InlineData("km³", VolumeUnit.CubicKilometer)]
         [InlineData("m³", VolumeUnit.CubicMeter)]
         [InlineData("µm³", VolumeUnit.CubicMicrometer)]
         [InlineData("mi³", VolumeUnit.CubicMile)]
@@ -884,9 +876,10 @@ namespace UnitsNet.Tests
         [InlineData("dagal (U.S.)", VolumeUnit.DecausGallon)]
         [InlineData("dl", VolumeUnit.Deciliter)]
         [InlineData("dgal (U.S.)", VolumeUnit.DeciusGallon)]
-        [InlineData("hft³", VolumeUnit.HectocubicFoot)]
         [InlineData("hl", VolumeUnit.Hectoliter)]
         [InlineData("hgal (U.S.)", VolumeUnit.HectousGallon)]
+        [InlineData("Ccf", VolumeUnit.HundredCubicFoot)]
+        [InlineData("hft³", VolumeUnit.HundredCubicFoot)]
         [InlineData("bl (imp.)", VolumeUnit.ImperialBeerBarrel)]
         [InlineData("gal (imp.)", VolumeUnit.ImperialGallon)]
         [InlineData("oz (imp.)", VolumeUnit.ImperialOunce)]
@@ -895,12 +888,10 @@ namespace UnitsNet.Tests
         [InlineData("pt", VolumeUnit.ImperialPint)]
         [InlineData("p", VolumeUnit.ImperialPint)]
         [InlineData("qt (imp.)", VolumeUnit.ImperialQuart)]
-        [InlineData("kft³", VolumeUnit.KilocubicFoot)]
         [InlineData("kgal (imp.)", VolumeUnit.KiloimperialGallon)]
         [InlineData("kl", VolumeUnit.Kiloliter)]
         [InlineData("kgal (U.S.)", VolumeUnit.KilousGallon)]
         [InlineData("l", VolumeUnit.Liter)]
-        [InlineData("Mft³", VolumeUnit.MegacubicFoot)]
         [InlineData("Mgal (imp.)", VolumeUnit.MegaimperialGallon)]
         [InlineData("Ml", VolumeUnit.Megaliter)]
         [InlineData("Mgal (U.S.)", VolumeUnit.MegausGallon)]
@@ -921,8 +912,16 @@ namespace UnitsNet.Tests
         [InlineData("teaspoon", VolumeUnit.MetricTeaspoon)]
         [InlineData("µl", VolumeUnit.Microliter)]
         [InlineData("ml", VolumeUnit.Milliliter)]
+        [InlineData("MMcf", VolumeUnit.MillionCubicFoot)]
+        [InlineData("Mft³", VolumeUnit.MillionCubicFoot)]
         [InlineData("nl", VolumeUnit.Nanoliter)]
         [InlineData("bbl", VolumeUnit.OilBarrel)]
+        [InlineData("Mcf", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("kcf", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("kft³", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("10³·m³", VolumeUnit.ThousandCubicMeter)]
+        [InlineData("kcm", VolumeUnit.ThousandCubicMeter)]
+        [InlineData("Kcm", VolumeUnit.ThousandCubicMeter)]
         [InlineData("tablespoon (U.K.)", VolumeUnit.UkTablespoon)]
         [InlineData("bl (U.S.)", VolumeUnit.UsBeerBarrel)]
         [InlineData("cup (U.S. customary)", VolumeUnit.UsCustomaryCup)]
@@ -953,7 +952,9 @@ namespace UnitsNet.Tests
         [InlineData("cm³", VolumeUnit.CubicCentimeter)]
         [InlineData("dm³", VolumeUnit.CubicDecimeter)]
         [InlineData("ft³", VolumeUnit.CubicFoot)]
+        [InlineData("hm³", VolumeUnit.CubicHectometer)]
         [InlineData("in³", VolumeUnit.CubicInch)]
+        [InlineData("km³", VolumeUnit.CubicKilometer)]
         [InlineData("m³", VolumeUnit.CubicMeter)]
         [InlineData("µm³", VolumeUnit.CubicMicrometer)]
         [InlineData("mi³", VolumeUnit.CubicMile)]
@@ -963,9 +964,10 @@ namespace UnitsNet.Tests
         [InlineData("dagal (U.S.)", VolumeUnit.DecausGallon)]
         [InlineData("dl", VolumeUnit.Deciliter)]
         [InlineData("dgal (U.S.)", VolumeUnit.DeciusGallon)]
-        [InlineData("hft³", VolumeUnit.HectocubicFoot)]
         [InlineData("hl", VolumeUnit.Hectoliter)]
         [InlineData("hgal (U.S.)", VolumeUnit.HectousGallon)]
+        [InlineData("Ccf", VolumeUnit.HundredCubicFoot)]
+        [InlineData("hft³", VolumeUnit.HundredCubicFoot)]
         [InlineData("bl (imp.)", VolumeUnit.ImperialBeerBarrel)]
         [InlineData("gal (imp.)", VolumeUnit.ImperialGallon)]
         [InlineData("oz (imp.)", VolumeUnit.ImperialOunce)]
@@ -974,12 +976,10 @@ namespace UnitsNet.Tests
         [InlineData("pt", VolumeUnit.ImperialPint)]
         [InlineData("p", VolumeUnit.ImperialPint)]
         [InlineData("qt (imp.)", VolumeUnit.ImperialQuart)]
-        [InlineData("kft³", VolumeUnit.KilocubicFoot)]
         [InlineData("kgal (imp.)", VolumeUnit.KiloimperialGallon)]
         [InlineData("kl", VolumeUnit.Kiloliter)]
         [InlineData("kgal (U.S.)", VolumeUnit.KilousGallon)]
         [InlineData("l", VolumeUnit.Liter)]
-        [InlineData("Mft³", VolumeUnit.MegacubicFoot)]
         [InlineData("Mgal (imp.)", VolumeUnit.MegaimperialGallon)]
         [InlineData("Ml", VolumeUnit.Megaliter)]
         [InlineData("Mgal (U.S.)", VolumeUnit.MegausGallon)]
@@ -1000,8 +1000,16 @@ namespace UnitsNet.Tests
         [InlineData("teaspoon", VolumeUnit.MetricTeaspoon)]
         [InlineData("µl", VolumeUnit.Microliter)]
         [InlineData("ml", VolumeUnit.Milliliter)]
+        [InlineData("MMcf", VolumeUnit.MillionCubicFoot)]
+        [InlineData("Mft³", VolumeUnit.MillionCubicFoot)]
         [InlineData("nl", VolumeUnit.Nanoliter)]
         [InlineData("bbl", VolumeUnit.OilBarrel)]
+        [InlineData("Mcf", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("kcf", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("kft³", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("10³·m³", VolumeUnit.ThousandCubicMeter)]
+        [InlineData("kcm", VolumeUnit.ThousandCubicMeter)]
+        [InlineData("Kcm", VolumeUnit.ThousandCubicMeter)]
         [InlineData("tablespoon (U.K.)", VolumeUnit.UkTablespoon)]
         [InlineData("bl (U.S.)", VolumeUnit.UsBeerBarrel)]
         [InlineData("cup (U.S. customary)", VolumeUnit.UsCustomaryCup)]
@@ -1032,7 +1040,9 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "cm³", VolumeUnit.CubicCentimeter)]
         [InlineData("en-US", "dm³", VolumeUnit.CubicDecimeter)]
         [InlineData("en-US", "ft³", VolumeUnit.CubicFoot)]
+        [InlineData("en-US", "hm³", VolumeUnit.CubicHectometer)]
         [InlineData("en-US", "in³", VolumeUnit.CubicInch)]
+        [InlineData("en-US", "km³", VolumeUnit.CubicKilometer)]
         [InlineData("en-US", "m³", VolumeUnit.CubicMeter)]
         [InlineData("en-US", "µm³", VolumeUnit.CubicMicrometer)]
         [InlineData("en-US", "mi³", VolumeUnit.CubicMile)]
@@ -1042,9 +1052,10 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "dagal (U.S.)", VolumeUnit.DecausGallon)]
         [InlineData("en-US", "dl", VolumeUnit.Deciliter)]
         [InlineData("en-US", "dgal (U.S.)", VolumeUnit.DeciusGallon)]
-        [InlineData("en-US", "hft³", VolumeUnit.HectocubicFoot)]
         [InlineData("en-US", "hl", VolumeUnit.Hectoliter)]
         [InlineData("en-US", "hgal (U.S.)", VolumeUnit.HectousGallon)]
+        [InlineData("en-US", "Ccf", VolumeUnit.HundredCubicFoot)]
+        [InlineData("en-US", "hft³", VolumeUnit.HundredCubicFoot)]
         [InlineData("en-US", "bl (imp.)", VolumeUnit.ImperialBeerBarrel)]
         [InlineData("en-US", "gal (imp.)", VolumeUnit.ImperialGallon)]
         [InlineData("en-US", "oz (imp.)", VolumeUnit.ImperialOunce)]
@@ -1053,12 +1064,10 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "pt", VolumeUnit.ImperialPint)]
         [InlineData("en-US", "p", VolumeUnit.ImperialPint)]
         [InlineData("en-US", "qt (imp.)", VolumeUnit.ImperialQuart)]
-        [InlineData("en-US", "kft³", VolumeUnit.KilocubicFoot)]
         [InlineData("en-US", "kgal (imp.)", VolumeUnit.KiloimperialGallon)]
         [InlineData("en-US", "kl", VolumeUnit.Kiloliter)]
         [InlineData("en-US", "kgal (U.S.)", VolumeUnit.KilousGallon)]
         [InlineData("en-US", "l", VolumeUnit.Liter)]
-        [InlineData("en-US", "Mft³", VolumeUnit.MegacubicFoot)]
         [InlineData("en-US", "Mgal (imp.)", VolumeUnit.MegaimperialGallon)]
         [InlineData("en-US", "Ml", VolumeUnit.Megaliter)]
         [InlineData("en-US", "Mgal (U.S.)", VolumeUnit.MegausGallon)]
@@ -1079,8 +1088,16 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "teaspoon", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "µl", VolumeUnit.Microliter)]
         [InlineData("en-US", "ml", VolumeUnit.Milliliter)]
+        [InlineData("en-US", "MMcf", VolumeUnit.MillionCubicFoot)]
+        [InlineData("en-US", "Mft³", VolumeUnit.MillionCubicFoot)]
         [InlineData("en-US", "nl", VolumeUnit.Nanoliter)]
         [InlineData("en-US", "bbl", VolumeUnit.OilBarrel)]
+        [InlineData("en-US", "Mcf", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("en-US", "kcf", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("en-US", "kft³", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("en-US", "10³·m³", VolumeUnit.ThousandCubicMeter)]
+        [InlineData("en-US", "kcm", VolumeUnit.ThousandCubicMeter)]
+        [InlineData("en-US", "Kcm", VolumeUnit.ThousandCubicMeter)]
         [InlineData("en-US", "tablespoon (U.K.)", VolumeUnit.UkTablespoon)]
         [InlineData("en-US", "bl (U.S.)", VolumeUnit.UsBeerBarrel)]
         [InlineData("en-US", "cup (U.S. customary)", VolumeUnit.UsCustomaryCup)]
@@ -1098,7 +1115,9 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "см³", VolumeUnit.CubicCentimeter)]
         [InlineData("ru-RU", "дм³", VolumeUnit.CubicDecimeter)]
         [InlineData("ru-RU", "фут³", VolumeUnit.CubicFoot)]
+        [InlineData("ru-RU", "гм³", VolumeUnit.CubicHectometer)]
         [InlineData("ru-RU", "дюйм³", VolumeUnit.CubicInch)]
+        [InlineData("ru-RU", "км³", VolumeUnit.CubicKilometer)]
         [InlineData("ru-RU", "м³", VolumeUnit.CubicMeter)]
         [InlineData("ru-RU", "мкм³", VolumeUnit.CubicMicrometer)]
         [InlineData("ru-RU", "миля³", VolumeUnit.CubicMile)]
@@ -1108,17 +1127,14 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "даАмериканский галлон", VolumeUnit.DecausGallon)]
         [InlineData("ru-RU", "дл", VolumeUnit.Deciliter)]
         [InlineData("ru-RU", "дАмериканский галлон", VolumeUnit.DeciusGallon)]
-        [InlineData("ru-RU", "гфут³", VolumeUnit.HectocubicFoot)]
         [InlineData("ru-RU", "гл", VolumeUnit.Hectoliter)]
         [InlineData("ru-RU", "гАмериканский галлон", VolumeUnit.HectousGallon)]
         [InlineData("ru-RU", "Английский галлон", VolumeUnit.ImperialGallon)]
         [InlineData("ru-RU", "Английская унция", VolumeUnit.ImperialOunce)]
-        [InlineData("ru-RU", "кфут³", VolumeUnit.KilocubicFoot)]
         [InlineData("ru-RU", "кАнглийский галлон", VolumeUnit.KiloimperialGallon)]
         [InlineData("ru-RU", "кл", VolumeUnit.Kiloliter)]
         [InlineData("ru-RU", "кАмериканский галлон", VolumeUnit.KilousGallon)]
         [InlineData("ru-RU", "л", VolumeUnit.Liter)]
-        [InlineData("ru-RU", "Мфут³", VolumeUnit.MegacubicFoot)]
         [InlineData("ru-RU", "МАнглийский галлон", VolumeUnit.MegaimperialGallon)]
         [InlineData("ru-RU", "Мл", VolumeUnit.Megaliter)]
         [InlineData("ru-RU", "МАмериканский галлон", VolumeUnit.MegausGallon)]
@@ -1146,7 +1162,9 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "cm³", VolumeUnit.CubicCentimeter)]
         [InlineData("en-US", "dm³", VolumeUnit.CubicDecimeter)]
         [InlineData("en-US", "ft³", VolumeUnit.CubicFoot)]
+        [InlineData("en-US", "hm³", VolumeUnit.CubicHectometer)]
         [InlineData("en-US", "in³", VolumeUnit.CubicInch)]
+        [InlineData("en-US", "km³", VolumeUnit.CubicKilometer)]
         [InlineData("en-US", "m³", VolumeUnit.CubicMeter)]
         [InlineData("en-US", "µm³", VolumeUnit.CubicMicrometer)]
         [InlineData("en-US", "mi³", VolumeUnit.CubicMile)]
@@ -1156,9 +1174,10 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "dagal (U.S.)", VolumeUnit.DecausGallon)]
         [InlineData("en-US", "dl", VolumeUnit.Deciliter)]
         [InlineData("en-US", "dgal (U.S.)", VolumeUnit.DeciusGallon)]
-        [InlineData("en-US", "hft³", VolumeUnit.HectocubicFoot)]
         [InlineData("en-US", "hl", VolumeUnit.Hectoliter)]
         [InlineData("en-US", "hgal (U.S.)", VolumeUnit.HectousGallon)]
+        [InlineData("en-US", "Ccf", VolumeUnit.HundredCubicFoot)]
+        [InlineData("en-US", "hft³", VolumeUnit.HundredCubicFoot)]
         [InlineData("en-US", "bl (imp.)", VolumeUnit.ImperialBeerBarrel)]
         [InlineData("en-US", "gal (imp.)", VolumeUnit.ImperialGallon)]
         [InlineData("en-US", "oz (imp.)", VolumeUnit.ImperialOunce)]
@@ -1167,12 +1186,10 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "pt", VolumeUnit.ImperialPint)]
         [InlineData("en-US", "p", VolumeUnit.ImperialPint)]
         [InlineData("en-US", "qt (imp.)", VolumeUnit.ImperialQuart)]
-        [InlineData("en-US", "kft³", VolumeUnit.KilocubicFoot)]
         [InlineData("en-US", "kgal (imp.)", VolumeUnit.KiloimperialGallon)]
         [InlineData("en-US", "kl", VolumeUnit.Kiloliter)]
         [InlineData("en-US", "kgal (U.S.)", VolumeUnit.KilousGallon)]
         [InlineData("en-US", "l", VolumeUnit.Liter)]
-        [InlineData("en-US", "Mft³", VolumeUnit.MegacubicFoot)]
         [InlineData("en-US", "Mgal (imp.)", VolumeUnit.MegaimperialGallon)]
         [InlineData("en-US", "Ml", VolumeUnit.Megaliter)]
         [InlineData("en-US", "Mgal (U.S.)", VolumeUnit.MegausGallon)]
@@ -1193,8 +1210,16 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "teaspoon", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "µl", VolumeUnit.Microliter)]
         [InlineData("en-US", "ml", VolumeUnit.Milliliter)]
+        [InlineData("en-US", "MMcf", VolumeUnit.MillionCubicFoot)]
+        [InlineData("en-US", "Mft³", VolumeUnit.MillionCubicFoot)]
         [InlineData("en-US", "nl", VolumeUnit.Nanoliter)]
         [InlineData("en-US", "bbl", VolumeUnit.OilBarrel)]
+        [InlineData("en-US", "Mcf", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("en-US", "kcf", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("en-US", "kft³", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("en-US", "10³·m³", VolumeUnit.ThousandCubicMeter)]
+        [InlineData("en-US", "kcm", VolumeUnit.ThousandCubicMeter)]
+        [InlineData("en-US", "Kcm", VolumeUnit.ThousandCubicMeter)]
         [InlineData("en-US", "tablespoon (U.K.)", VolumeUnit.UkTablespoon)]
         [InlineData("en-US", "bl (U.S.)", VolumeUnit.UsBeerBarrel)]
         [InlineData("en-US", "cup (U.S. customary)", VolumeUnit.UsCustomaryCup)]
@@ -1212,7 +1237,9 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "см³", VolumeUnit.CubicCentimeter)]
         [InlineData("ru-RU", "дм³", VolumeUnit.CubicDecimeter)]
         [InlineData("ru-RU", "фут³", VolumeUnit.CubicFoot)]
+        [InlineData("ru-RU", "гм³", VolumeUnit.CubicHectometer)]
         [InlineData("ru-RU", "дюйм³", VolumeUnit.CubicInch)]
+        [InlineData("ru-RU", "км³", VolumeUnit.CubicKilometer)]
         [InlineData("ru-RU", "м³", VolumeUnit.CubicMeter)]
         [InlineData("ru-RU", "мкм³", VolumeUnit.CubicMicrometer)]
         [InlineData("ru-RU", "миля³", VolumeUnit.CubicMile)]
@@ -1222,17 +1249,14 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "даАмериканский галлон", VolumeUnit.DecausGallon)]
         [InlineData("ru-RU", "дл", VolumeUnit.Deciliter)]
         [InlineData("ru-RU", "дАмериканский галлон", VolumeUnit.DeciusGallon)]
-        [InlineData("ru-RU", "гфут³", VolumeUnit.HectocubicFoot)]
         [InlineData("ru-RU", "гл", VolumeUnit.Hectoliter)]
         [InlineData("ru-RU", "гАмериканский галлон", VolumeUnit.HectousGallon)]
         [InlineData("ru-RU", "Английский галлон", VolumeUnit.ImperialGallon)]
         [InlineData("ru-RU", "Английская унция", VolumeUnit.ImperialOunce)]
-        [InlineData("ru-RU", "кфут³", VolumeUnit.KilocubicFoot)]
         [InlineData("ru-RU", "кАнглийский галлон", VolumeUnit.KiloimperialGallon)]
         [InlineData("ru-RU", "кл", VolumeUnit.Kiloliter)]
         [InlineData("ru-RU", "кАмериканский галлон", VolumeUnit.KilousGallon)]
         [InlineData("ru-RU", "л", VolumeUnit.Liter)]
-        [InlineData("ru-RU", "Мфут³", VolumeUnit.MegacubicFoot)]
         [InlineData("ru-RU", "МАнглийский галлон", VolumeUnit.MegaimperialGallon)]
         [InlineData("ru-RU", "Мл", VolumeUnit.Megaliter)]
         [InlineData("ru-RU", "МАмериканский галлон", VolumeUnit.MegausGallon)]
@@ -1248,16 +1272,6 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
-        [InlineData("en-US", "hm³")] // [CubicHectometer, HectocubicMeter]
-        [InlineData("en-US", "km³")] // [CubicKilometer, KilocubicMeter]
-        [InlineData("ru-RU", "гм³")] // [CubicHectometer, HectocubicMeter]
-        [InlineData("ru-RU", "км³")] // [CubicKilometer, KilocubicMeter]
-        public void ParseUnitWithAmbiguousAbbreviation(string culture, string abbreviation)
-        {
-            Assert.Throws<AmbiguousUnitParseException>(() => Volume.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture)));
-        }
-
-        [Theory]
         [InlineData("ac-ft", VolumeUnit.AcreFoot)]
         [InlineData("acre-foot", VolumeUnit.AcreFoot)]
         [InlineData("acre-feet", VolumeUnit.AcreFoot)]
@@ -1269,7 +1283,9 @@ namespace UnitsNet.Tests
         [InlineData("cm³", VolumeUnit.CubicCentimeter)]
         [InlineData("dm³", VolumeUnit.CubicDecimeter)]
         [InlineData("ft³", VolumeUnit.CubicFoot)]
+        [InlineData("hm³", VolumeUnit.CubicHectometer)]
         [InlineData("in³", VolumeUnit.CubicInch)]
+        [InlineData("km³", VolumeUnit.CubicKilometer)]
         [InlineData("m³", VolumeUnit.CubicMeter)]
         [InlineData("µm³", VolumeUnit.CubicMicrometer)]
         [InlineData("mi³", VolumeUnit.CubicMile)]
@@ -1279,9 +1295,10 @@ namespace UnitsNet.Tests
         [InlineData("dagal (U.S.)", VolumeUnit.DecausGallon)]
         [InlineData("dl", VolumeUnit.Deciliter)]
         [InlineData("dgal (U.S.)", VolumeUnit.DeciusGallon)]
-        [InlineData("hft³", VolumeUnit.HectocubicFoot)]
         [InlineData("hl", VolumeUnit.Hectoliter)]
         [InlineData("hgal (U.S.)", VolumeUnit.HectousGallon)]
+        [InlineData("Ccf", VolumeUnit.HundredCubicFoot)]
+        [InlineData("hft³", VolumeUnit.HundredCubicFoot)]
         [InlineData("bl (imp.)", VolumeUnit.ImperialBeerBarrel)]
         [InlineData("gal (imp.)", VolumeUnit.ImperialGallon)]
         [InlineData("oz (imp.)", VolumeUnit.ImperialOunce)]
@@ -1290,12 +1307,10 @@ namespace UnitsNet.Tests
         [InlineData("pt", VolumeUnit.ImperialPint)]
         [InlineData("p", VolumeUnit.ImperialPint)]
         [InlineData("qt (imp.)", VolumeUnit.ImperialQuart)]
-        [InlineData("kft³", VolumeUnit.KilocubicFoot)]
         [InlineData("kgal (imp.)", VolumeUnit.KiloimperialGallon)]
         [InlineData("kl", VolumeUnit.Kiloliter)]
         [InlineData("kgal (U.S.)", VolumeUnit.KilousGallon)]
         [InlineData("l", VolumeUnit.Liter)]
-        [InlineData("Mft³", VolumeUnit.MegacubicFoot)]
         [InlineData("Mgal (imp.)", VolumeUnit.MegaimperialGallon)]
         [InlineData("Ml", VolumeUnit.Megaliter)]
         [InlineData("Mgal (U.S.)", VolumeUnit.MegausGallon)]
@@ -1316,8 +1331,16 @@ namespace UnitsNet.Tests
         [InlineData("teaspoon", VolumeUnit.MetricTeaspoon)]
         [InlineData("µl", VolumeUnit.Microliter)]
         [InlineData("ml", VolumeUnit.Milliliter)]
+        [InlineData("MMcf", VolumeUnit.MillionCubicFoot)]
+        [InlineData("Mft³", VolumeUnit.MillionCubicFoot)]
         [InlineData("nl", VolumeUnit.Nanoliter)]
         [InlineData("bbl", VolumeUnit.OilBarrel)]
+        [InlineData("Mcf", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("kcf", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("kft³", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("10³·m³", VolumeUnit.ThousandCubicMeter)]
+        [InlineData("kcm", VolumeUnit.ThousandCubicMeter)]
+        [InlineData("Kcm", VolumeUnit.ThousandCubicMeter)]
         [InlineData("tablespoon (U.K.)", VolumeUnit.UkTablespoon)]
         [InlineData("bl (U.S.)", VolumeUnit.UsBeerBarrel)]
         [InlineData("cup (U.S. customary)", VolumeUnit.UsCustomaryCup)]
@@ -1348,7 +1371,9 @@ namespace UnitsNet.Tests
         [InlineData("cm³", VolumeUnit.CubicCentimeter)]
         [InlineData("dm³", VolumeUnit.CubicDecimeter)]
         [InlineData("ft³", VolumeUnit.CubicFoot)]
+        [InlineData("hm³", VolumeUnit.CubicHectometer)]
         [InlineData("in³", VolumeUnit.CubicInch)]
+        [InlineData("km³", VolumeUnit.CubicKilometer)]
         [InlineData("m³", VolumeUnit.CubicMeter)]
         [InlineData("µm³", VolumeUnit.CubicMicrometer)]
         [InlineData("mi³", VolumeUnit.CubicMile)]
@@ -1358,9 +1383,10 @@ namespace UnitsNet.Tests
         [InlineData("dagal (U.S.)", VolumeUnit.DecausGallon)]
         [InlineData("dl", VolumeUnit.Deciliter)]
         [InlineData("dgal (U.S.)", VolumeUnit.DeciusGallon)]
-        [InlineData("hft³", VolumeUnit.HectocubicFoot)]
         [InlineData("hl", VolumeUnit.Hectoliter)]
         [InlineData("hgal (U.S.)", VolumeUnit.HectousGallon)]
+        [InlineData("Ccf", VolumeUnit.HundredCubicFoot)]
+        [InlineData("hft³", VolumeUnit.HundredCubicFoot)]
         [InlineData("bl (imp.)", VolumeUnit.ImperialBeerBarrel)]
         [InlineData("gal (imp.)", VolumeUnit.ImperialGallon)]
         [InlineData("oz (imp.)", VolumeUnit.ImperialOunce)]
@@ -1369,12 +1395,10 @@ namespace UnitsNet.Tests
         [InlineData("pt", VolumeUnit.ImperialPint)]
         [InlineData("p", VolumeUnit.ImperialPint)]
         [InlineData("qt (imp.)", VolumeUnit.ImperialQuart)]
-        [InlineData("kft³", VolumeUnit.KilocubicFoot)]
         [InlineData("kgal (imp.)", VolumeUnit.KiloimperialGallon)]
         [InlineData("kl", VolumeUnit.Kiloliter)]
         [InlineData("kgal (U.S.)", VolumeUnit.KilousGallon)]
         [InlineData("l", VolumeUnit.Liter)]
-        [InlineData("Mft³", VolumeUnit.MegacubicFoot)]
         [InlineData("Mgal (imp.)", VolumeUnit.MegaimperialGallon)]
         [InlineData("Ml", VolumeUnit.Megaliter)]
         [InlineData("Mgal (U.S.)", VolumeUnit.MegausGallon)]
@@ -1395,8 +1419,16 @@ namespace UnitsNet.Tests
         [InlineData("teaspoon", VolumeUnit.MetricTeaspoon)]
         [InlineData("µl", VolumeUnit.Microliter)]
         [InlineData("ml", VolumeUnit.Milliliter)]
+        [InlineData("MMcf", VolumeUnit.MillionCubicFoot)]
+        [InlineData("Mft³", VolumeUnit.MillionCubicFoot)]
         [InlineData("nl", VolumeUnit.Nanoliter)]
         [InlineData("bbl", VolumeUnit.OilBarrel)]
+        [InlineData("Mcf", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("kcf", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("kft³", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("10³·m³", VolumeUnit.ThousandCubicMeter)]
+        [InlineData("kcm", VolumeUnit.ThousandCubicMeter)]
+        [InlineData("Kcm", VolumeUnit.ThousandCubicMeter)]
         [InlineData("tablespoon (U.K.)", VolumeUnit.UkTablespoon)]
         [InlineData("bl (U.S.)", VolumeUnit.UsBeerBarrel)]
         [InlineData("cup (U.S. customary)", VolumeUnit.UsCustomaryCup)]
@@ -1427,7 +1459,9 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "cm³", VolumeUnit.CubicCentimeter)]
         [InlineData("en-US", "dm³", VolumeUnit.CubicDecimeter)]
         [InlineData("en-US", "ft³", VolumeUnit.CubicFoot)]
+        [InlineData("en-US", "hm³", VolumeUnit.CubicHectometer)]
         [InlineData("en-US", "in³", VolumeUnit.CubicInch)]
+        [InlineData("en-US", "km³", VolumeUnit.CubicKilometer)]
         [InlineData("en-US", "m³", VolumeUnit.CubicMeter)]
         [InlineData("en-US", "µm³", VolumeUnit.CubicMicrometer)]
         [InlineData("en-US", "mi³", VolumeUnit.CubicMile)]
@@ -1437,9 +1471,10 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "dagal (U.S.)", VolumeUnit.DecausGallon)]
         [InlineData("en-US", "dl", VolumeUnit.Deciliter)]
         [InlineData("en-US", "dgal (U.S.)", VolumeUnit.DeciusGallon)]
-        [InlineData("en-US", "hft³", VolumeUnit.HectocubicFoot)]
         [InlineData("en-US", "hl", VolumeUnit.Hectoliter)]
         [InlineData("en-US", "hgal (U.S.)", VolumeUnit.HectousGallon)]
+        [InlineData("en-US", "Ccf", VolumeUnit.HundredCubicFoot)]
+        [InlineData("en-US", "hft³", VolumeUnit.HundredCubicFoot)]
         [InlineData("en-US", "bl (imp.)", VolumeUnit.ImperialBeerBarrel)]
         [InlineData("en-US", "gal (imp.)", VolumeUnit.ImperialGallon)]
         [InlineData("en-US", "oz (imp.)", VolumeUnit.ImperialOunce)]
@@ -1448,12 +1483,10 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "pt", VolumeUnit.ImperialPint)]
         [InlineData("en-US", "p", VolumeUnit.ImperialPint)]
         [InlineData("en-US", "qt (imp.)", VolumeUnit.ImperialQuart)]
-        [InlineData("en-US", "kft³", VolumeUnit.KilocubicFoot)]
         [InlineData("en-US", "kgal (imp.)", VolumeUnit.KiloimperialGallon)]
         [InlineData("en-US", "kl", VolumeUnit.Kiloliter)]
         [InlineData("en-US", "kgal (U.S.)", VolumeUnit.KilousGallon)]
         [InlineData("en-US", "l", VolumeUnit.Liter)]
-        [InlineData("en-US", "Mft³", VolumeUnit.MegacubicFoot)]
         [InlineData("en-US", "Mgal (imp.)", VolumeUnit.MegaimperialGallon)]
         [InlineData("en-US", "Ml", VolumeUnit.Megaliter)]
         [InlineData("en-US", "Mgal (U.S.)", VolumeUnit.MegausGallon)]
@@ -1474,8 +1507,16 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "teaspoon", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "µl", VolumeUnit.Microliter)]
         [InlineData("en-US", "ml", VolumeUnit.Milliliter)]
+        [InlineData("en-US", "MMcf", VolumeUnit.MillionCubicFoot)]
+        [InlineData("en-US", "Mft³", VolumeUnit.MillionCubicFoot)]
         [InlineData("en-US", "nl", VolumeUnit.Nanoliter)]
         [InlineData("en-US", "bbl", VolumeUnit.OilBarrel)]
+        [InlineData("en-US", "Mcf", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("en-US", "kcf", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("en-US", "kft³", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("en-US", "10³·m³", VolumeUnit.ThousandCubicMeter)]
+        [InlineData("en-US", "kcm", VolumeUnit.ThousandCubicMeter)]
+        [InlineData("en-US", "Kcm", VolumeUnit.ThousandCubicMeter)]
         [InlineData("en-US", "tablespoon (U.K.)", VolumeUnit.UkTablespoon)]
         [InlineData("en-US", "bl (U.S.)", VolumeUnit.UsBeerBarrel)]
         [InlineData("en-US", "cup (U.S. customary)", VolumeUnit.UsCustomaryCup)]
@@ -1493,7 +1534,9 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "см³", VolumeUnit.CubicCentimeter)]
         [InlineData("ru-RU", "дм³", VolumeUnit.CubicDecimeter)]
         [InlineData("ru-RU", "фут³", VolumeUnit.CubicFoot)]
+        [InlineData("ru-RU", "гм³", VolumeUnit.CubicHectometer)]
         [InlineData("ru-RU", "дюйм³", VolumeUnit.CubicInch)]
+        [InlineData("ru-RU", "км³", VolumeUnit.CubicKilometer)]
         [InlineData("ru-RU", "м³", VolumeUnit.CubicMeter)]
         [InlineData("ru-RU", "мкм³", VolumeUnit.CubicMicrometer)]
         [InlineData("ru-RU", "миля³", VolumeUnit.CubicMile)]
@@ -1503,17 +1546,14 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "даАмериканский галлон", VolumeUnit.DecausGallon)]
         [InlineData("ru-RU", "дл", VolumeUnit.Deciliter)]
         [InlineData("ru-RU", "дАмериканский галлон", VolumeUnit.DeciusGallon)]
-        [InlineData("ru-RU", "гфут³", VolumeUnit.HectocubicFoot)]
         [InlineData("ru-RU", "гл", VolumeUnit.Hectoliter)]
         [InlineData("ru-RU", "гАмериканский галлон", VolumeUnit.HectousGallon)]
         [InlineData("ru-RU", "Английский галлон", VolumeUnit.ImperialGallon)]
         [InlineData("ru-RU", "Английская унция", VolumeUnit.ImperialOunce)]
-        [InlineData("ru-RU", "кфут³", VolumeUnit.KilocubicFoot)]
         [InlineData("ru-RU", "кАнглийский галлон", VolumeUnit.KiloimperialGallon)]
         [InlineData("ru-RU", "кл", VolumeUnit.Kiloliter)]
         [InlineData("ru-RU", "кАмериканский галлон", VolumeUnit.KilousGallon)]
         [InlineData("ru-RU", "л", VolumeUnit.Liter)]
-        [InlineData("ru-RU", "Мфут³", VolumeUnit.MegacubicFoot)]
         [InlineData("ru-RU", "МАнглийский галлон", VolumeUnit.MegaimperialGallon)]
         [InlineData("ru-RU", "Мл", VolumeUnit.Megaliter)]
         [InlineData("ru-RU", "МАмериканский галлон", VolumeUnit.MegausGallon)]
@@ -1541,7 +1581,9 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "cm³", VolumeUnit.CubicCentimeter)]
         [InlineData("en-US", "dm³", VolumeUnit.CubicDecimeter)]
         [InlineData("en-US", "ft³", VolumeUnit.CubicFoot)]
+        [InlineData("en-US", "hm³", VolumeUnit.CubicHectometer)]
         [InlineData("en-US", "in³", VolumeUnit.CubicInch)]
+        [InlineData("en-US", "km³", VolumeUnit.CubicKilometer)]
         [InlineData("en-US", "m³", VolumeUnit.CubicMeter)]
         [InlineData("en-US", "µm³", VolumeUnit.CubicMicrometer)]
         [InlineData("en-US", "mi³", VolumeUnit.CubicMile)]
@@ -1551,9 +1593,10 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "dagal (U.S.)", VolumeUnit.DecausGallon)]
         [InlineData("en-US", "dl", VolumeUnit.Deciliter)]
         [InlineData("en-US", "dgal (U.S.)", VolumeUnit.DeciusGallon)]
-        [InlineData("en-US", "hft³", VolumeUnit.HectocubicFoot)]
         [InlineData("en-US", "hl", VolumeUnit.Hectoliter)]
         [InlineData("en-US", "hgal (U.S.)", VolumeUnit.HectousGallon)]
+        [InlineData("en-US", "Ccf", VolumeUnit.HundredCubicFoot)]
+        [InlineData("en-US", "hft³", VolumeUnit.HundredCubicFoot)]
         [InlineData("en-US", "bl (imp.)", VolumeUnit.ImperialBeerBarrel)]
         [InlineData("en-US", "gal (imp.)", VolumeUnit.ImperialGallon)]
         [InlineData("en-US", "oz (imp.)", VolumeUnit.ImperialOunce)]
@@ -1562,12 +1605,10 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "pt", VolumeUnit.ImperialPint)]
         [InlineData("en-US", "p", VolumeUnit.ImperialPint)]
         [InlineData("en-US", "qt (imp.)", VolumeUnit.ImperialQuart)]
-        [InlineData("en-US", "kft³", VolumeUnit.KilocubicFoot)]
         [InlineData("en-US", "kgal (imp.)", VolumeUnit.KiloimperialGallon)]
         [InlineData("en-US", "kl", VolumeUnit.Kiloliter)]
         [InlineData("en-US", "kgal (U.S.)", VolumeUnit.KilousGallon)]
         [InlineData("en-US", "l", VolumeUnit.Liter)]
-        [InlineData("en-US", "Mft³", VolumeUnit.MegacubicFoot)]
         [InlineData("en-US", "Mgal (imp.)", VolumeUnit.MegaimperialGallon)]
         [InlineData("en-US", "Ml", VolumeUnit.Megaliter)]
         [InlineData("en-US", "Mgal (U.S.)", VolumeUnit.MegausGallon)]
@@ -1588,8 +1629,16 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "teaspoon", VolumeUnit.MetricTeaspoon)]
         [InlineData("en-US", "µl", VolumeUnit.Microliter)]
         [InlineData("en-US", "ml", VolumeUnit.Milliliter)]
+        [InlineData("en-US", "MMcf", VolumeUnit.MillionCubicFoot)]
+        [InlineData("en-US", "Mft³", VolumeUnit.MillionCubicFoot)]
         [InlineData("en-US", "nl", VolumeUnit.Nanoliter)]
         [InlineData("en-US", "bbl", VolumeUnit.OilBarrel)]
+        [InlineData("en-US", "Mcf", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("en-US", "kcf", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("en-US", "kft³", VolumeUnit.ThousandCubicFoot)]
+        [InlineData("en-US", "10³·m³", VolumeUnit.ThousandCubicMeter)]
+        [InlineData("en-US", "kcm", VolumeUnit.ThousandCubicMeter)]
+        [InlineData("en-US", "Kcm", VolumeUnit.ThousandCubicMeter)]
         [InlineData("en-US", "tablespoon (U.K.)", VolumeUnit.UkTablespoon)]
         [InlineData("en-US", "bl (U.S.)", VolumeUnit.UsBeerBarrel)]
         [InlineData("en-US", "cup (U.S. customary)", VolumeUnit.UsCustomaryCup)]
@@ -1607,7 +1656,9 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "см³", VolumeUnit.CubicCentimeter)]
         [InlineData("ru-RU", "дм³", VolumeUnit.CubicDecimeter)]
         [InlineData("ru-RU", "фут³", VolumeUnit.CubicFoot)]
+        [InlineData("ru-RU", "гм³", VolumeUnit.CubicHectometer)]
         [InlineData("ru-RU", "дюйм³", VolumeUnit.CubicInch)]
+        [InlineData("ru-RU", "км³", VolumeUnit.CubicKilometer)]
         [InlineData("ru-RU", "м³", VolumeUnit.CubicMeter)]
         [InlineData("ru-RU", "мкм³", VolumeUnit.CubicMicrometer)]
         [InlineData("ru-RU", "миля³", VolumeUnit.CubicMile)]
@@ -1617,17 +1668,14 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "даАмериканский галлон", VolumeUnit.DecausGallon)]
         [InlineData("ru-RU", "дл", VolumeUnit.Deciliter)]
         [InlineData("ru-RU", "дАмериканский галлон", VolumeUnit.DeciusGallon)]
-        [InlineData("ru-RU", "гфут³", VolumeUnit.HectocubicFoot)]
         [InlineData("ru-RU", "гл", VolumeUnit.Hectoliter)]
         [InlineData("ru-RU", "гАмериканский галлон", VolumeUnit.HectousGallon)]
         [InlineData("ru-RU", "Английский галлон", VolumeUnit.ImperialGallon)]
         [InlineData("ru-RU", "Английская унция", VolumeUnit.ImperialOunce)]
-        [InlineData("ru-RU", "кфут³", VolumeUnit.KilocubicFoot)]
         [InlineData("ru-RU", "кАнглийский галлон", VolumeUnit.KiloimperialGallon)]
         [InlineData("ru-RU", "кл", VolumeUnit.Kiloliter)]
         [InlineData("ru-RU", "кАмериканский галлон", VolumeUnit.KilousGallon)]
         [InlineData("ru-RU", "л", VolumeUnit.Liter)]
-        [InlineData("ru-RU", "Мфут³", VolumeUnit.MegacubicFoot)]
         [InlineData("ru-RU", "МАнглийский галлон", VolumeUnit.MegaimperialGallon)]
         [InlineData("ru-RU", "Мл", VolumeUnit.Megaliter)]
         [InlineData("ru-RU", "МАмериканский галлон", VolumeUnit.MegausGallon)]
@@ -1640,16 +1688,6 @@ namespace UnitsNet.Tests
         {
             Assert.True(Volume.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out VolumeUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
-        }
-
-        [Theory]
-        [InlineData("en-US", "hm³")] // [CubicHectometer, HectocubicMeter]
-        [InlineData("en-US", "km³")] // [CubicKilometer, KilocubicMeter]
-        [InlineData("ru-RU", "гм³")] // [CubicHectometer, HectocubicMeter]
-        [InlineData("ru-RU", "км³")] // [CubicKilometer, KilocubicMeter]
-        public void TryParseUnitWithAmbiguousAbbreviation(string culture, string abbreviation)
-        {
-            Assert.False(Volume.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out _));
         }
 
         [Theory]
@@ -1672,22 +1710,18 @@ namespace UnitsNet.Tests
         [InlineData("en-US", VolumeUnit.DecausGallon, "dagal (U.S.)")]
         [InlineData("en-US", VolumeUnit.Deciliter, "dl")]
         [InlineData("en-US", VolumeUnit.DeciusGallon, "dgal (U.S.)")]
-        [InlineData("en-US", VolumeUnit.HectocubicFoot, "hft³")]
-        [InlineData("en-US", VolumeUnit.HectocubicMeter, "hm³")]
         [InlineData("en-US", VolumeUnit.Hectoliter, "hl")]
         [InlineData("en-US", VolumeUnit.HectousGallon, "hgal (U.S.)")]
+        [InlineData("en-US", VolumeUnit.HundredCubicFoot, "Ccf")]
         [InlineData("en-US", VolumeUnit.ImperialBeerBarrel, "bl (imp.)")]
         [InlineData("en-US", VolumeUnit.ImperialGallon, "gal (imp.)")]
         [InlineData("en-US", VolumeUnit.ImperialOunce, "oz (imp.)")]
         [InlineData("en-US", VolumeUnit.ImperialPint, "pt (imp.)")]
         [InlineData("en-US", VolumeUnit.ImperialQuart, "qt (imp.)")]
-        [InlineData("en-US", VolumeUnit.KilocubicFoot, "kft³")]
-        [InlineData("en-US", VolumeUnit.KilocubicMeter, "km³")]
         [InlineData("en-US", VolumeUnit.KiloimperialGallon, "kgal (imp.)")]
         [InlineData("en-US", VolumeUnit.Kiloliter, "kl")]
         [InlineData("en-US", VolumeUnit.KilousGallon, "kgal (U.S.)")]
         [InlineData("en-US", VolumeUnit.Liter, "l")]
-        [InlineData("en-US", VolumeUnit.MegacubicFoot, "Mft³")]
         [InlineData("en-US", VolumeUnit.MegaimperialGallon, "Mgal (imp.)")]
         [InlineData("en-US", VolumeUnit.Megaliter, "Ml")]
         [InlineData("en-US", VolumeUnit.MegausGallon, "Mgal (U.S.)")]
@@ -1696,8 +1730,11 @@ namespace UnitsNet.Tests
         [InlineData("en-US", VolumeUnit.MetricTeaspoon, "tsp")]
         [InlineData("en-US", VolumeUnit.Microliter, "µl")]
         [InlineData("en-US", VolumeUnit.Milliliter, "ml")]
+        [InlineData("en-US", VolumeUnit.MillionCubicFoot, "MMcf")]
         [InlineData("en-US", VolumeUnit.Nanoliter, "nl")]
         [InlineData("en-US", VolumeUnit.OilBarrel, "bbl")]
+        [InlineData("en-US", VolumeUnit.ThousandCubicFoot, "Mcf")]
+        [InlineData("en-US", VolumeUnit.ThousandCubicMeter, "10³·m³")]
         [InlineData("en-US", VolumeUnit.UkTablespoon, "tablespoon (U.K.)")]
         [InlineData("en-US", VolumeUnit.UsBeerBarrel, "bl (U.S.)")]
         [InlineData("en-US", VolumeUnit.UsCustomaryCup, "cup (U.S. customary)")]
@@ -1725,19 +1762,14 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", VolumeUnit.DecausGallon, "даАмериканский галлон")]
         [InlineData("ru-RU", VolumeUnit.Deciliter, "дл")]
         [InlineData("ru-RU", VolumeUnit.DeciusGallon, "дАмериканский галлон")]
-        [InlineData("ru-RU", VolumeUnit.HectocubicFoot, "гфут³")]
-        [InlineData("ru-RU", VolumeUnit.HectocubicMeter, "гм³")]
         [InlineData("ru-RU", VolumeUnit.Hectoliter, "гл")]
         [InlineData("ru-RU", VolumeUnit.HectousGallon, "гАмериканский галлон")]
         [InlineData("ru-RU", VolumeUnit.ImperialGallon, "Английский галлон")]
         [InlineData("ru-RU", VolumeUnit.ImperialOunce, "Английская унция")]
-        [InlineData("ru-RU", VolumeUnit.KilocubicFoot, "кфут³")]
-        [InlineData("ru-RU", VolumeUnit.KilocubicMeter, "км³")]
         [InlineData("ru-RU", VolumeUnit.KiloimperialGallon, "кАнглийский галлон")]
         [InlineData("ru-RU", VolumeUnit.Kiloliter, "кл")]
         [InlineData("ru-RU", VolumeUnit.KilousGallon, "кАмериканский галлон")]
         [InlineData("ru-RU", VolumeUnit.Liter, "л")]
-        [InlineData("ru-RU", VolumeUnit.MegacubicFoot, "Мфут³")]
         [InlineData("ru-RU", VolumeUnit.MegaimperialGallon, "МАнглийский галлон")]
         [InlineData("ru-RU", VolumeUnit.Megaliter, "Мл")]
         [InlineData("ru-RU", VolumeUnit.MegausGallon, "МАмериканский галлон")]
@@ -1852,22 +1884,18 @@ namespace UnitsNet.Tests
             Assert.Equal(3, Volume.FromDecausGallons(cubicmeter.DecausGallons).CubicMeters);
             Assert.Equal(3, Volume.FromDeciliters(cubicmeter.Deciliters).CubicMeters);
             Assert.Equal(3, Volume.FromDeciusGallons(cubicmeter.DeciusGallons).CubicMeters);
-            Assert.Equal(3, Volume.FromHectocubicFeet(cubicmeter.HectocubicFeet).CubicMeters);
-            Assert.Equal(3, Volume.FromHectocubicMeters(cubicmeter.HectocubicMeters).CubicMeters);
             Assert.Equal(3, Volume.FromHectoliters(cubicmeter.Hectoliters).CubicMeters);
             Assert.Equal(3, Volume.FromHectousGallons(cubicmeter.HectousGallons).CubicMeters);
+            Assert.Equal(3, Volume.FromHundredCubicFeet(cubicmeter.HundredCubicFeet).CubicMeters);
             Assert.Equal(3, Volume.FromImperialBeerBarrels(cubicmeter.ImperialBeerBarrels).CubicMeters);
             Assert.Equal(3, Volume.FromImperialGallons(cubicmeter.ImperialGallons).CubicMeters);
             Assert.Equal(3, Volume.FromImperialOunces(cubicmeter.ImperialOunces).CubicMeters);
             Assert.Equal(3, Volume.FromImperialPints(cubicmeter.ImperialPints).CubicMeters);
             Assert.Equal(3, Volume.FromImperialQuarts(cubicmeter.ImperialQuarts).CubicMeters);
-            Assert.Equal(3, Volume.FromKilocubicFeet(cubicmeter.KilocubicFeet).CubicMeters);
-            Assert.Equal(3, Volume.FromKilocubicMeters(cubicmeter.KilocubicMeters).CubicMeters);
             Assert.Equal(3, Volume.FromKiloimperialGallons(cubicmeter.KiloimperialGallons).CubicMeters);
             Assert.Equal(3, Volume.FromKiloliters(cubicmeter.Kiloliters).CubicMeters);
             Assert.Equal(3, Volume.FromKilousGallons(cubicmeter.KilousGallons).CubicMeters);
             Assert.Equal(3, Volume.FromLiters(cubicmeter.Liters).CubicMeters);
-            Assert.Equal(3, Volume.FromMegacubicFeet(cubicmeter.MegacubicFeet).CubicMeters);
             Assert.Equal(3, Volume.FromMegaimperialGallons(cubicmeter.MegaimperialGallons).CubicMeters);
             Assert.Equal(3, Volume.FromMegaliters(cubicmeter.Megaliters).CubicMeters);
             Assert.Equal(3, Volume.FromMegausGallons(cubicmeter.MegausGallons).CubicMeters);
@@ -1876,8 +1904,11 @@ namespace UnitsNet.Tests
             Assert.Equal(3, Volume.FromMetricTeaspoons(cubicmeter.MetricTeaspoons).CubicMeters);
             Assert.Equal(3, Volume.FromMicroliters(cubicmeter.Microliters).CubicMeters);
             Assert.Equal(3, Volume.FromMilliliters(cubicmeter.Milliliters).CubicMeters);
+            Assert.Equal(3, Volume.FromMillionCubicFeet(cubicmeter.MillionCubicFeet).CubicMeters);
             Assert.Equal(3, Volume.FromNanoliters(cubicmeter.Nanoliters).CubicMeters);
             Assert.Equal(3, Volume.FromOilBarrels(cubicmeter.OilBarrels).CubicMeters);
+            Assert.Equal(3, Volume.FromThousandCubicFeet(cubicmeter.ThousandCubicFeet).CubicMeters);
+            Assert.Equal(3, Volume.FromThousandCubicMeters(cubicmeter.ThousandCubicMeters).CubicMeters);
             Assert.Equal(3, Volume.FromUkTablespoons(cubicmeter.UkTablespoons).CubicMeters);
             Assert.Equal(3, Volume.FromUsBeerBarrels(cubicmeter.UsBeerBarrels).CubicMeters);
             Assert.Equal(3, Volume.FromUsCustomaryCups(cubicmeter.UsCustomaryCups).CubicMeters);
@@ -2073,22 +2104,18 @@ namespace UnitsNet.Tests
             Assert.Equal("1 dagal (U.S.)", new Volume(1, VolumeUnit.DecausGallon).ToString());
             Assert.Equal("1 dl", new Volume(1, VolumeUnit.Deciliter).ToString());
             Assert.Equal("1 dgal (U.S.)", new Volume(1, VolumeUnit.DeciusGallon).ToString());
-            Assert.Equal("1 hft³", new Volume(1, VolumeUnit.HectocubicFoot).ToString());
-            Assert.Equal("1 hm³", new Volume(1, VolumeUnit.HectocubicMeter).ToString());
             Assert.Equal("1 hl", new Volume(1, VolumeUnit.Hectoliter).ToString());
             Assert.Equal("1 hgal (U.S.)", new Volume(1, VolumeUnit.HectousGallon).ToString());
+            Assert.Equal("1 Ccf", new Volume(1, VolumeUnit.HundredCubicFoot).ToString());
             Assert.Equal("1 bl (imp.)", new Volume(1, VolumeUnit.ImperialBeerBarrel).ToString());
             Assert.Equal("1 gal (imp.)", new Volume(1, VolumeUnit.ImperialGallon).ToString());
             Assert.Equal("1 oz (imp.)", new Volume(1, VolumeUnit.ImperialOunce).ToString());
             Assert.Equal("1 pt (imp.)", new Volume(1, VolumeUnit.ImperialPint).ToString());
             Assert.Equal("1 qt (imp.)", new Volume(1, VolumeUnit.ImperialQuart).ToString());
-            Assert.Equal("1 kft³", new Volume(1, VolumeUnit.KilocubicFoot).ToString());
-            Assert.Equal("1 km³", new Volume(1, VolumeUnit.KilocubicMeter).ToString());
             Assert.Equal("1 kgal (imp.)", new Volume(1, VolumeUnit.KiloimperialGallon).ToString());
             Assert.Equal("1 kl", new Volume(1, VolumeUnit.Kiloliter).ToString());
             Assert.Equal("1 kgal (U.S.)", new Volume(1, VolumeUnit.KilousGallon).ToString());
             Assert.Equal("1 l", new Volume(1, VolumeUnit.Liter).ToString());
-            Assert.Equal("1 Mft³", new Volume(1, VolumeUnit.MegacubicFoot).ToString());
             Assert.Equal("1 Mgal (imp.)", new Volume(1, VolumeUnit.MegaimperialGallon).ToString());
             Assert.Equal("1 Ml", new Volume(1, VolumeUnit.Megaliter).ToString());
             Assert.Equal("1 Mgal (U.S.)", new Volume(1, VolumeUnit.MegausGallon).ToString());
@@ -2097,8 +2124,11 @@ namespace UnitsNet.Tests
             Assert.Equal("1 tsp", new Volume(1, VolumeUnit.MetricTeaspoon).ToString());
             Assert.Equal("1 µl", new Volume(1, VolumeUnit.Microliter).ToString());
             Assert.Equal("1 ml", new Volume(1, VolumeUnit.Milliliter).ToString());
+            Assert.Equal("1 MMcf", new Volume(1, VolumeUnit.MillionCubicFoot).ToString());
             Assert.Equal("1 nl", new Volume(1, VolumeUnit.Nanoliter).ToString());
             Assert.Equal("1 bbl", new Volume(1, VolumeUnit.OilBarrel).ToString());
+            Assert.Equal("1 Mcf", new Volume(1, VolumeUnit.ThousandCubicFoot).ToString());
+            Assert.Equal("1 10³·m³", new Volume(1, VolumeUnit.ThousandCubicMeter).ToString());
             Assert.Equal("1 tablespoon (U.K.)", new Volume(1, VolumeUnit.UkTablespoon).ToString());
             Assert.Equal("1 bl (U.S.)", new Volume(1, VolumeUnit.UsBeerBarrel).ToString());
             Assert.Equal("1 cup (U.S. customary)", new Volume(1, VolumeUnit.UsCustomaryCup).ToString());
@@ -2136,22 +2166,18 @@ namespace UnitsNet.Tests
             Assert.Equal("1 dagal (U.S.)", new Volume(1, VolumeUnit.DecausGallon).ToString(swedishCulture));
             Assert.Equal("1 dl", new Volume(1, VolumeUnit.Deciliter).ToString(swedishCulture));
             Assert.Equal("1 dgal (U.S.)", new Volume(1, VolumeUnit.DeciusGallon).ToString(swedishCulture));
-            Assert.Equal("1 hft³", new Volume(1, VolumeUnit.HectocubicFoot).ToString(swedishCulture));
-            Assert.Equal("1 hm³", new Volume(1, VolumeUnit.HectocubicMeter).ToString(swedishCulture));
             Assert.Equal("1 hl", new Volume(1, VolumeUnit.Hectoliter).ToString(swedishCulture));
             Assert.Equal("1 hgal (U.S.)", new Volume(1, VolumeUnit.HectousGallon).ToString(swedishCulture));
+            Assert.Equal("1 Ccf", new Volume(1, VolumeUnit.HundredCubicFoot).ToString(swedishCulture));
             Assert.Equal("1 bl (imp.)", new Volume(1, VolumeUnit.ImperialBeerBarrel).ToString(swedishCulture));
             Assert.Equal("1 gal (imp.)", new Volume(1, VolumeUnit.ImperialGallon).ToString(swedishCulture));
             Assert.Equal("1 oz (imp.)", new Volume(1, VolumeUnit.ImperialOunce).ToString(swedishCulture));
             Assert.Equal("1 pt (imp.)", new Volume(1, VolumeUnit.ImperialPint).ToString(swedishCulture));
             Assert.Equal("1 qt (imp.)", new Volume(1, VolumeUnit.ImperialQuart).ToString(swedishCulture));
-            Assert.Equal("1 kft³", new Volume(1, VolumeUnit.KilocubicFoot).ToString(swedishCulture));
-            Assert.Equal("1 km³", new Volume(1, VolumeUnit.KilocubicMeter).ToString(swedishCulture));
             Assert.Equal("1 kgal (imp.)", new Volume(1, VolumeUnit.KiloimperialGallon).ToString(swedishCulture));
             Assert.Equal("1 kl", new Volume(1, VolumeUnit.Kiloliter).ToString(swedishCulture));
             Assert.Equal("1 kgal (U.S.)", new Volume(1, VolumeUnit.KilousGallon).ToString(swedishCulture));
             Assert.Equal("1 l", new Volume(1, VolumeUnit.Liter).ToString(swedishCulture));
-            Assert.Equal("1 Mft³", new Volume(1, VolumeUnit.MegacubicFoot).ToString(swedishCulture));
             Assert.Equal("1 Mgal (imp.)", new Volume(1, VolumeUnit.MegaimperialGallon).ToString(swedishCulture));
             Assert.Equal("1 Ml", new Volume(1, VolumeUnit.Megaliter).ToString(swedishCulture));
             Assert.Equal("1 Mgal (U.S.)", new Volume(1, VolumeUnit.MegausGallon).ToString(swedishCulture));
@@ -2160,8 +2186,11 @@ namespace UnitsNet.Tests
             Assert.Equal("1 tsp", new Volume(1, VolumeUnit.MetricTeaspoon).ToString(swedishCulture));
             Assert.Equal("1 µl", new Volume(1, VolumeUnit.Microliter).ToString(swedishCulture));
             Assert.Equal("1 ml", new Volume(1, VolumeUnit.Milliliter).ToString(swedishCulture));
+            Assert.Equal("1 MMcf", new Volume(1, VolumeUnit.MillionCubicFoot).ToString(swedishCulture));
             Assert.Equal("1 nl", new Volume(1, VolumeUnit.Nanoliter).ToString(swedishCulture));
             Assert.Equal("1 bbl", new Volume(1, VolumeUnit.OilBarrel).ToString(swedishCulture));
+            Assert.Equal("1 Mcf", new Volume(1, VolumeUnit.ThousandCubicFoot).ToString(swedishCulture));
+            Assert.Equal("1 10³·m³", new Volume(1, VolumeUnit.ThousandCubicMeter).ToString(swedishCulture));
             Assert.Equal("1 tablespoon (U.K.)", new Volume(1, VolumeUnit.UkTablespoon).ToString(swedishCulture));
             Assert.Equal("1 bl (U.S.)", new Volume(1, VolumeUnit.UsBeerBarrel).ToString(swedishCulture));
             Assert.Equal("1 cup (U.S. customary)", new Volume(1, VolumeUnit.UsCustomaryCup).ToString(swedishCulture));

@@ -42,12 +42,12 @@ namespace UnitsNet.Tests
     {
         protected abstract double CubicFeetPerPoundInOneCubicMeterPerKilogram { get; }
         protected abstract double CubicMetersPerKilogramInOneCubicMeterPerKilogram { get; }
-        protected abstract double MillicubicMetersPerKilogramInOneCubicMeterPerKilogram { get; }
+        protected abstract double CubicMillimetersPerKilogramInOneCubicMeterPerKilogram { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CubicFeetPerPoundTolerance { get { return 1e-5; } }
         protected virtual double CubicMetersPerKilogramTolerance { get { return 1e-5; } }
-        protected virtual double MillicubicMetersPerKilogramTolerance { get { return 1e-5; } }
+        protected virtual double CubicMillimetersPerKilogramTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(SpecificVolumeUnit unit)
@@ -56,7 +56,7 @@ namespace UnitsNet.Tests
             {
                 SpecificVolumeUnit.CubicFootPerPound => (CubicFeetPerPoundInOneCubicMeterPerKilogram, CubicFeetPerPoundTolerance),
                 SpecificVolumeUnit.CubicMeterPerKilogram => (CubicMetersPerKilogramInOneCubicMeterPerKilogram, CubicMetersPerKilogramTolerance),
-                SpecificVolumeUnit.MillicubicMeterPerKilogram => (MillicubicMetersPerKilogramInOneCubicMeterPerKilogram, MillicubicMetersPerKilogramTolerance),
+                SpecificVolumeUnit.CubicMillimeterPerKilogram => (CubicMillimetersPerKilogramInOneCubicMeterPerKilogram, CubicMillimetersPerKilogramTolerance),
                 _ => throw new NotSupportedException()
             };
         }
@@ -65,7 +65,7 @@ namespace UnitsNet.Tests
         {
             new object[] { SpecificVolumeUnit.CubicFootPerPound },
             new object[] { SpecificVolumeUnit.CubicMeterPerKilogram },
-            new object[] { SpecificVolumeUnit.MillicubicMeterPerKilogram },
+            new object[] { SpecificVolumeUnit.CubicMillimeterPerKilogram },
         };
 
         [Fact]
@@ -153,7 +153,7 @@ namespace UnitsNet.Tests
             SpecificVolume cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
             AssertEx.EqualTolerance(CubicFeetPerPoundInOneCubicMeterPerKilogram, cubicmeterperkilogram.CubicFeetPerPound, CubicFeetPerPoundTolerance);
             AssertEx.EqualTolerance(CubicMetersPerKilogramInOneCubicMeterPerKilogram, cubicmeterperkilogram.CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
-            AssertEx.EqualTolerance(MillicubicMetersPerKilogramInOneCubicMeterPerKilogram, cubicmeterperkilogram.MillicubicMetersPerKilogram, MillicubicMetersPerKilogramTolerance);
+            AssertEx.EqualTolerance(CubicMillimetersPerKilogramInOneCubicMeterPerKilogram, cubicmeterperkilogram.CubicMillimetersPerKilogram, CubicMillimetersPerKilogramTolerance);
         }
 
         [Fact]
@@ -191,7 +191,7 @@ namespace UnitsNet.Tests
             var cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
             AssertEx.EqualTolerance(CubicFeetPerPoundInOneCubicMeterPerKilogram, cubicmeterperkilogram.As(SpecificVolumeUnit.CubicFootPerPound), CubicFeetPerPoundTolerance);
             AssertEx.EqualTolerance(CubicMetersPerKilogramInOneCubicMeterPerKilogram, cubicmeterperkilogram.As(SpecificVolumeUnit.CubicMeterPerKilogram), CubicMetersPerKilogramTolerance);
-            AssertEx.EqualTolerance(MillicubicMetersPerKilogramInOneCubicMeterPerKilogram, cubicmeterperkilogram.As(SpecificVolumeUnit.MillicubicMeterPerKilogram), MillicubicMetersPerKilogramTolerance);
+            AssertEx.EqualTolerance(CubicMillimetersPerKilogramInOneCubicMeterPerKilogram, cubicmeterperkilogram.As(SpecificVolumeUnit.CubicMillimeterPerKilogram), CubicMillimetersPerKilogramTolerance);
         }
 
         [Fact]
@@ -303,7 +303,7 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("en-US", "4.2 ft³/lb", SpecificVolumeUnit.CubicFootPerPound, 4.2)]
         [InlineData("en-US", "4.2 m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram, 4.2)]
-        [InlineData("en-US", "4.2 mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram, 4.2)]
+        [InlineData("en-US", "4.2 mm³/kg", SpecificVolumeUnit.CubicMillimeterPerKilogram, 4.2)]
         public void Parse(string culture, string quantityString, SpecificVolumeUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
@@ -315,7 +315,7 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("en-US", "4.2 ft³/lb", SpecificVolumeUnit.CubicFootPerPound, 4.2)]
         [InlineData("en-US", "4.2 m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram, 4.2)]
-        [InlineData("en-US", "4.2 mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram, 4.2)]
+        [InlineData("en-US", "4.2 mm³/kg", SpecificVolumeUnit.CubicMillimeterPerKilogram, 4.2)]
         public void TryParse(string culture, string quantityString, SpecificVolumeUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
@@ -327,7 +327,7 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("ft³/lb", SpecificVolumeUnit.CubicFootPerPound)]
         [InlineData("m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram)]
-        [InlineData("mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        [InlineData("mm³/kg", SpecificVolumeUnit.CubicMillimeterPerKilogram)]
         public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, SpecificVolumeUnit expectedUnit)
         {
             // Fallback culture "en-US" is always localized
@@ -339,7 +339,7 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("ft³/lb", SpecificVolumeUnit.CubicFootPerPound)]
         [InlineData("m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram)]
-        [InlineData("mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        [InlineData("mm³/kg", SpecificVolumeUnit.CubicMillimeterPerKilogram)]
         public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, SpecificVolumeUnit expectedUnit)
         {
             // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
@@ -351,7 +351,7 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("en-US", "ft³/lb", SpecificVolumeUnit.CubicFootPerPound)]
         [InlineData("en-US", "m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram)]
-        [InlineData("en-US", "mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        [InlineData("en-US", "mm³/kg", SpecificVolumeUnit.CubicMillimeterPerKilogram)]
         public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, SpecificVolumeUnit expectedUnit)
         {
             using var _ = new CultureScope(culture);
@@ -362,7 +362,7 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("en-US", "ft³/lb", SpecificVolumeUnit.CubicFootPerPound)]
         [InlineData("en-US", "m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram)]
-        [InlineData("en-US", "mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        [InlineData("en-US", "mm³/kg", SpecificVolumeUnit.CubicMillimeterPerKilogram)]
         public void ParseUnit_WithCulture(string culture, string abbreviation, SpecificVolumeUnit expectedUnit)
         {
             SpecificVolumeUnit parsedUnit = SpecificVolume.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
@@ -372,7 +372,7 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("ft³/lb", SpecificVolumeUnit.CubicFootPerPound)]
         [InlineData("m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram)]
-        [InlineData("mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        [InlineData("mm³/kg", SpecificVolumeUnit.CubicMillimeterPerKilogram)]
         public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, SpecificVolumeUnit expectedUnit)
         {
             // Fallback culture "en-US" is always localized
@@ -384,7 +384,7 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("ft³/lb", SpecificVolumeUnit.CubicFootPerPound)]
         [InlineData("m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram)]
-        [InlineData("mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        [InlineData("mm³/kg", SpecificVolumeUnit.CubicMillimeterPerKilogram)]
         public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, SpecificVolumeUnit expectedUnit)
         {
             // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
@@ -396,7 +396,7 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("en-US", "ft³/lb", SpecificVolumeUnit.CubicFootPerPound)]
         [InlineData("en-US", "m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram)]
-        [InlineData("en-US", "mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        [InlineData("en-US", "mm³/kg", SpecificVolumeUnit.CubicMillimeterPerKilogram)]
         public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, SpecificVolumeUnit expectedUnit)
         {
             using var _ = new CultureScope(culture);
@@ -407,7 +407,7 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("en-US", "ft³/lb", SpecificVolumeUnit.CubicFootPerPound)]
         [InlineData("en-US", "m³/kg", SpecificVolumeUnit.CubicMeterPerKilogram)]
-        [InlineData("en-US", "mm³/kg", SpecificVolumeUnit.MillicubicMeterPerKilogram)]
+        [InlineData("en-US", "mm³/kg", SpecificVolumeUnit.CubicMillimeterPerKilogram)]
         public void TryParseUnit_WithCulture(string culture, string abbreviation, SpecificVolumeUnit expectedUnit)
         {
             Assert.True(SpecificVolume.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out SpecificVolumeUnit parsedUnit));
@@ -417,7 +417,7 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData("en-US", SpecificVolumeUnit.CubicFootPerPound, "ft³/lb")]
         [InlineData("en-US", SpecificVolumeUnit.CubicMeterPerKilogram, "m³/kg")]
-        [InlineData("en-US", SpecificVolumeUnit.MillicubicMeterPerKilogram, "mm³/kg")]
+        [InlineData("en-US", SpecificVolumeUnit.CubicMillimeterPerKilogram, "mm³/kg")]
         public void GetAbbreviationForCulture(string culture, SpecificVolumeUnit unit, string expectedAbbreviation)
         {
             var defaultAbbreviation = SpecificVolume.GetAbbreviation(unit, CultureInfo.GetCultureInfo(culture));
@@ -507,7 +507,7 @@ namespace UnitsNet.Tests
             SpecificVolume cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(3);
             Assert.Equal(3, SpecificVolume.FromCubicFeetPerPound(cubicmeterperkilogram.CubicFeetPerPound).CubicMetersPerKilogram);
             Assert.Equal(3, SpecificVolume.FromCubicMetersPerKilogram(cubicmeterperkilogram.CubicMetersPerKilogram).CubicMetersPerKilogram);
-            Assert.Equal(3, SpecificVolume.FromMillicubicMetersPerKilogram(cubicmeterperkilogram.MillicubicMetersPerKilogram).CubicMetersPerKilogram);
+            Assert.Equal(3, SpecificVolume.FromCubicMillimetersPerKilogram(cubicmeterperkilogram.CubicMillimetersPerKilogram).CubicMetersPerKilogram);
         }
 
         [Fact]
@@ -676,7 +676,7 @@ namespace UnitsNet.Tests
             using var _ = new CultureScope("en-US");
             Assert.Equal("1 ft³/lb", new SpecificVolume(1, SpecificVolumeUnit.CubicFootPerPound).ToString());
             Assert.Equal("1 m³/kg", new SpecificVolume(1, SpecificVolumeUnit.CubicMeterPerKilogram).ToString());
-            Assert.Equal("1 mm³/kg", new SpecificVolume(1, SpecificVolumeUnit.MillicubicMeterPerKilogram).ToString());
+            Assert.Equal("1 mm³/kg", new SpecificVolume(1, SpecificVolumeUnit.CubicMillimeterPerKilogram).ToString());
         }
 
         [Fact]
@@ -687,7 +687,7 @@ namespace UnitsNet.Tests
 
             Assert.Equal("1 ft³/lb", new SpecificVolume(1, SpecificVolumeUnit.CubicFootPerPound).ToString(swedishCulture));
             Assert.Equal("1 m³/kg", new SpecificVolume(1, SpecificVolumeUnit.CubicMeterPerKilogram).ToString(swedishCulture));
-            Assert.Equal("1 mm³/kg", new SpecificVolume(1, SpecificVolumeUnit.MillicubicMeterPerKilogram).ToString(swedishCulture));
+            Assert.Equal("1 mm³/kg", new SpecificVolume(1, SpecificVolumeUnit.CubicMillimeterPerKilogram).ToString(swedishCulture));
         }
 
         [Fact]

@@ -58,12 +58,12 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificVolume
                 => SpecificVolume.FromCubicMetersPerKilogram(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(QuantityValue)" />
-            public SpecificVolume MillicubicMetersPerKilogram
+            /// <inheritdoc cref="SpecificVolume.FromCubicMillimetersPerKilogram(QuantityValue)" />
+            public SpecificVolume CubicMillimetersPerKilogram
 #if NET7_0_OR_GREATER
-                => SpecificVolume.FromMillicubicMetersPerKilogram(QuantityValue.CreateChecked(value));
+                => SpecificVolume.FromCubicMillimetersPerKilogram(QuantityValue.CreateChecked(value));
 #else
-                => SpecificVolume.FromMillicubicMetersPerKilogram(value.ToQuantityValue());
+                => SpecificVolume.FromCubicMillimetersPerKilogram(value.ToQuantityValue());
 #endif
 
         }

@@ -121,8 +121,8 @@ namespace UnitsNet
                      new QuantityValue(28349523125, 1769802912)
                 );
                 yield return new (SpecificVolumeUnit.CubicMeterPerKilogram, "CubicMeterPerKilogram", "CubicMetersPerKilogram", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram));
-                yield return new (SpecificVolumeUnit.MillicubicMeterPerKilogram, "MillicubicMeterPerKilogram", "MillicubicMetersPerKilogram", new BaseUnits(length: LengthUnit.Decimeter, mass: MassUnit.Kilogram),
-                     1000
+                yield return new (SpecificVolumeUnit.CubicMillimeterPerKilogram, "CubicMillimeterPerKilogram", "CubicMillimetersPerKilogram", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram),
+                     1000000000
                 );
             }
         }
@@ -237,9 +237,9 @@ namespace UnitsNet
         public QuantityValue CubicMetersPerKilogram => this.As(SpecificVolumeUnit.CubicMeterPerKilogram);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="SpecificVolumeUnit.CubicMillimeterPerKilogram"/>
         /// </summary>
-        public QuantityValue MillicubicMetersPerKilogram => this.As(SpecificVolumeUnit.MillicubicMeterPerKilogram);
+        public QuantityValue CubicMillimetersPerKilogram => this.As(SpecificVolumeUnit.CubicMillimeterPerKilogram);
 
         #endregion
 
@@ -287,11 +287,11 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.MillicubicMeterPerKilogram"/>.
+        ///     Creates a <see cref="SpecificVolume"/> from <see cref="SpecificVolumeUnit.CubicMillimeterPerKilogram"/>.
         /// </summary>
-        public static SpecificVolume FromMillicubicMetersPerKilogram(QuantityValue value)
+        public static SpecificVolume FromCubicMillimetersPerKilogram(QuantityValue value)
         {
-            return new SpecificVolume(value, SpecificVolumeUnit.MillicubicMeterPerKilogram);
+            return new SpecificVolume(value, SpecificVolumeUnit.CubicMillimeterPerKilogram);
         }
 
         /// <summary>

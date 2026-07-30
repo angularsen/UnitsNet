@@ -6,6 +6,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+.temp/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -263,3 +264,4 @@ Artifacts
 # Claude Code assistant
 .claude/settings.local.json
 .claude/worktrees/
+.DS_Store

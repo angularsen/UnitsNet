@@ -33,8 +33,8 @@ namespace UnitsNet.Tests
             Assert.Equal(SpecificVolume.FromCubicMetersPerKilogram(2), 2.CubicMetersPerKilogram());
 
         [Fact]
-        public void NumberToMillicubicMetersPerKilogramTest() =>
-            Assert.Equal(SpecificVolume.FromMillicubicMetersPerKilogram(2), 2.MillicubicMetersPerKilogram());
+        public void NumberToCubicMillimetersPerKilogramTest() =>
+            Assert.Equal(SpecificVolume.FromCubicMillimetersPerKilogram(2), 2.CubicMillimetersPerKilogram());
 
     }
 }

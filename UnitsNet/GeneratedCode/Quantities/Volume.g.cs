@@ -185,17 +185,14 @@ namespace UnitsNet
                 yield return new (VolumeUnit.DeciusGallon, "DeciusGallon", "DeciusGallons", BaseUnits.Undefined,
                      new QuantityValue(1250000000000, 473176473)
                 );
-                yield return new (VolumeUnit.HectocubicFoot, "HectocubicFoot", "HectocubicFeet", BaseUnits.Undefined,
-                     new QuantityValue(19531250, 55306341)
-                );
-                yield return new (VolumeUnit.HectocubicMeter, "HectocubicMeter", "HectocubicMeters", BaseUnits.Undefined,
-                     new QuantityValue(1, 100)
-                );
                 yield return new (VolumeUnit.Hectoliter, "Hectoliter", "Hectoliters", BaseUnits.Undefined,
                      10
                 );
                 yield return new (VolumeUnit.HectousGallon, "HectousGallon", "HectousGallons", BaseUnits.Undefined,
                      new QuantityValue(1250000000, 473176473)
+                );
+                yield return new (VolumeUnit.HundredCubicFoot, "HundredCubicFoot", "HundredCubicFeet", BaseUnits.Undefined,
+                     new QuantityValue(19531250, 55306341)
                 );
                 yield return new (VolumeUnit.ImperialBeerBarrel, "ImperialBeerBarrel", "ImperialBeerBarrels", BaseUnits.Undefined,
                      new QuantityValue(25000000, 4091481)
@@ -212,12 +209,6 @@ namespace UnitsNet
                 yield return new (VolumeUnit.ImperialQuart, "ImperialQuart", "ImperialQuarts", BaseUnits.Undefined,
                      new QuantityValue(400000000, 454609)
                 );
-                yield return new (VolumeUnit.KilocubicFoot, "KilocubicFoot", "KilocubicFeet", BaseUnits.Undefined,
-                     new QuantityValue(1953125, 55306341)
-                );
-                yield return new (VolumeUnit.KilocubicMeter, "KilocubicMeter", "KilocubicMeters", new BaseUnits(length: LengthUnit.Decameter),
-                     new QuantityValue(1, 1000)
-                );
                 yield return new (VolumeUnit.KiloimperialGallon, "KiloimperialGallon", "KiloimperialGallons", BaseUnits.Undefined,
                      new QuantityValue(100000, 454609)
                 );
@@ -229,9 +220,6 @@ namespace UnitsNet
                 );
                 yield return new (VolumeUnit.Liter, "Liter", "Liters", new BaseUnits(length: LengthUnit.Decimeter),
                      1000
-                );
-                yield return new (VolumeUnit.MegacubicFoot, "MegacubicFoot", "MegacubicFeet", BaseUnits.Undefined,
-                     new QuantityValue(15625, 442450728)
                 );
                 yield return new (VolumeUnit.MegaimperialGallon, "MegaimperialGallon", "MegaimperialGallons", BaseUnits.Undefined,
                      new QuantityValue(100, 454609)
@@ -257,11 +245,20 @@ namespace UnitsNet
                 yield return new (VolumeUnit.Milliliter, "Milliliter", "Milliliters", new BaseUnits(length: LengthUnit.Centimeter),
                      1000000
                 );
+                yield return new (VolumeUnit.MillionCubicFoot, "MillionCubicFoot", "MillionCubicFeet", BaseUnits.Undefined,
+                     new QuantityValue(15625, 442450728)
+                );
                 yield return new (VolumeUnit.Nanoliter, "Nanoliter", "Nanoliters", BaseUnits.Undefined,
                      1000000000000
                 );
                 yield return new (VolumeUnit.OilBarrel, "OilBarrel", "OilBarrels", BaseUnits.Undefined,
                      new QuantityValue(62500000000, 9936705933)
+                );
+                yield return new (VolumeUnit.ThousandCubicFoot, "ThousandCubicFoot", "ThousandCubicFeet", BaseUnits.Undefined,
+                     new QuantityValue(1953125, 55306341)
+                );
+                yield return new (VolumeUnit.ThousandCubicMeter, "ThousandCubicMeter", "ThousandCubicMeters", BaseUnits.Undefined,
+                     new QuantityValue(1, 1000)
                 );
                 yield return new (VolumeUnit.UkTablespoon, "UkTablespoon", "UkTablespoons", BaseUnits.Undefined,
                      new QuantityValue(200000, 3)
@@ -491,16 +488,6 @@ namespace UnitsNet
         public QuantityValue DeciusGallons => this.As(VolumeUnit.DeciusGallon);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.HectocubicFoot"/>
-        /// </summary>
-        public QuantityValue HectocubicFeet => this.As(VolumeUnit.HectocubicFoot);
-
-        /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.HectocubicMeter"/>
-        /// </summary>
-        public QuantityValue HectocubicMeters => this.As(VolumeUnit.HectocubicMeter);
-
-        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.Hectoliter"/>
         /// </summary>
         public QuantityValue Hectoliters => this.As(VolumeUnit.Hectoliter);
@@ -509,6 +496,11 @@ namespace UnitsNet
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.HectousGallon"/>
         /// </summary>
         public QuantityValue HectousGallons => this.As(VolumeUnit.HectousGallon);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.HundredCubicFoot"/>
+        /// </summary>
+        public QuantityValue HundredCubicFeet => this.As(VolumeUnit.HundredCubicFoot);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.ImperialBeerBarrel"/>
@@ -536,16 +528,6 @@ namespace UnitsNet
         public QuantityValue ImperialQuarts => this.As(VolumeUnit.ImperialQuart);
 
         /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.KilocubicFoot"/>
-        /// </summary>
-        public QuantityValue KilocubicFeet => this.As(VolumeUnit.KilocubicFoot);
-
-        /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.KilocubicMeter"/>
-        /// </summary>
-        public QuantityValue KilocubicMeters => this.As(VolumeUnit.KilocubicMeter);
-
-        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.KiloimperialGallon"/>
         /// </summary>
         public QuantityValue KiloimperialGallons => this.As(VolumeUnit.KiloimperialGallon);
@@ -564,11 +546,6 @@ namespace UnitsNet
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.Liter"/>
         /// </summary>
         public QuantityValue Liters => this.As(VolumeUnit.Liter);
-
-        /// <summary>
-        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.MegacubicFoot"/>
-        /// </summary>
-        public QuantityValue MegacubicFeet => this.As(VolumeUnit.MegacubicFoot);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.MegaimperialGallon"/>
@@ -611,6 +588,11 @@ namespace UnitsNet
         public QuantityValue Milliliters => this.As(VolumeUnit.Milliliter);
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.MillionCubicFoot"/>
+        /// </summary>
+        public QuantityValue MillionCubicFeet => this.As(VolumeUnit.MillionCubicFoot);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.Nanoliter"/>
         /// </summary>
         public QuantityValue Nanoliters => this.As(VolumeUnit.Nanoliter);
@@ -619,6 +601,16 @@ namespace UnitsNet
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.OilBarrel"/>
         /// </summary>
         public QuantityValue OilBarrels => this.As(VolumeUnit.OilBarrel);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.ThousandCubicFoot"/>
+        /// </summary>
+        public QuantityValue ThousandCubicFeet => this.As(VolumeUnit.ThousandCubicFoot);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.ThousandCubicMeter"/>
+        /// </summary>
+        public QuantityValue ThousandCubicMeters => this.As(VolumeUnit.ThousandCubicMeter);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeUnit.UkTablespoon"/>
@@ -852,22 +844,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.HectocubicFoot"/>.
-        /// </summary>
-        public static Volume FromHectocubicFeet(QuantityValue value)
-        {
-            return new Volume(value, VolumeUnit.HectocubicFoot);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.HectocubicMeter"/>.
-        /// </summary>
-        public static Volume FromHectocubicMeters(QuantityValue value)
-        {
-            return new Volume(value, VolumeUnit.HectocubicMeter);
-        }
-
-        /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Hectoliter"/>.
         /// </summary>
         public static Volume FromHectoliters(QuantityValue value)
@@ -881,6 +857,14 @@ namespace UnitsNet
         public static Volume FromHectousGallons(QuantityValue value)
         {
             return new Volume(value, VolumeUnit.HectousGallon);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.HundredCubicFoot"/>.
+        /// </summary>
+        public static Volume FromHundredCubicFeet(QuantityValue value)
+        {
+            return new Volume(value, VolumeUnit.HundredCubicFoot);
         }
 
         /// <summary>
@@ -924,22 +908,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KilocubicFoot"/>.
-        /// </summary>
-        public static Volume FromKilocubicFeet(QuantityValue value)
-        {
-            return new Volume(value, VolumeUnit.KilocubicFoot);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KilocubicMeter"/>.
-        /// </summary>
-        public static Volume FromKilocubicMeters(QuantityValue value)
-        {
-            return new Volume(value, VolumeUnit.KilocubicMeter);
-        }
-
-        /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.KiloimperialGallon"/>.
         /// </summary>
         public static Volume FromKiloimperialGallons(QuantityValue value)
@@ -969,14 +937,6 @@ namespace UnitsNet
         public static Volume FromLiters(QuantityValue value)
         {
             return new Volume(value, VolumeUnit.Liter);
-        }
-
-        /// <summary>
-        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MegacubicFoot"/>.
-        /// </summary>
-        public static Volume FromMegacubicFeet(QuantityValue value)
-        {
-            return new Volume(value, VolumeUnit.MegacubicFoot);
         }
 
         /// <summary>
@@ -1044,6 +1004,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.MillionCubicFoot"/>.
+        /// </summary>
+        public static Volume FromMillionCubicFeet(QuantityValue value)
+        {
+            return new Volume(value, VolumeUnit.MillionCubicFoot);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.Nanoliter"/>.
         /// </summary>
         public static Volume FromNanoliters(QuantityValue value)
@@ -1057,6 +1025,22 @@ namespace UnitsNet
         public static Volume FromOilBarrels(QuantityValue value)
         {
             return new Volume(value, VolumeUnit.OilBarrel);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ThousandCubicFoot"/>.
+        /// </summary>
+        public static Volume FromThousandCubicFeet(QuantityValue value)
+        {
+            return new Volume(value, VolumeUnit.ThousandCubicFoot);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="Volume"/> from <see cref="VolumeUnit.ThousandCubicMeter"/>.
+        /// </summary>
+        public static Volume FromThousandCubicMeters(QuantityValue value)
+        {
+            return new Volume(value, VolumeUnit.ThousandCubicMeter);
         }
 
         /// <summary>
