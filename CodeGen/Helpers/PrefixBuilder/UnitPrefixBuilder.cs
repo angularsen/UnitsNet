@@ -20,6 +20,17 @@ namespace CodeGen.Helpers.PrefixBuilder;
 /// </remarks>
 internal class UnitPrefixBuilder
 {
+    /// <summary>
+    ///     Matches abbreviations whose leading unit token is raised to the second, third, or fourth power using a
+    ///     superscript or caret, such as <c>m²</c>, <c>ft³/s</c>, or <c>m^4</c>.
+    /// </summary>
+    /// <remarks>
+    ///     This is intentionally not a general unit-expression parser. It does not match a power in a denominator or later
+    ///     compound term (<c>kg/m³</c>, <c>m/s²</c>, or <c>N·m²</c>), a leading numeric scale factor
+    ///     (<c>10³·m³</c>), parenthesized or implicit powers, or powers other than two through four. These cases do not put
+    ///     a metric prefix directly before an explicitly powered leading unit token, or are outside the scope of this
+    ///     heuristic. Unit names starting with <c>Square</c> or <c>Cubic</c> are checked separately.
+    /// </remarks>
     private static readonly Regex LeadingPoweredUnitAbbreviationRegex = new(
         @"^[^\s/·*()\-\d]+(?:[²³⁴]|\^[234])",
         RegexOptions.Compiled | RegexOptions.CultureInvariant);
