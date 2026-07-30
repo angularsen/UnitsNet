@@ -16,7 +16,7 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
 {
     private const string ModuleAttribute = "UnitsNet.Modular.UnitsNetModuleAttribute";
     private const string UnitSetAttribute = "UnitsNet.Modular.UnitSetAttribute";
-    private const string QuantityAttribute = "UnitsNet.Modular.QuantityDefinitionAttribute";
+    private const string QuantitySpecAttribute = "UnitsNet.Modular.QuantitySpecAttribute";
     private const string GenerationNamespace = "UnitsNet.Modular";
     private const string IncludeName = "IInclude";
     private const string IncludeProfileName = "IIncludeProfile";
@@ -520,10 +520,10 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
             return null;
         }
 
-        AttributeData? definitionAttribute = spec.GetAttributes()
-            .FirstOrDefault(attribute => AttributeName(attribute) == QuantityAttribute);
-        string? semanticId = definitionAttribute?.ConstructorArguments.Length == 1
-            ? definitionAttribute.ConstructorArguments[0].Value as string
+        AttributeData? specAttribute = spec.GetAttributes()
+            .FirstOrDefault(attribute => AttributeName(attribute) == QuantitySpecAttribute);
+        string? semanticId = specAttribute?.ConstructorArguments.Length == 1
+            ? specAttribute.ConstructorArguments[0].Value as string
             : null;
         IReadOnlyList<string>? patterns = arguments.Length == 2
             ? GetUnitSetPatterns(arguments[1])

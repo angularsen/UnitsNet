@@ -4,7 +4,7 @@ using UnitsNet.Modular;
 
 namespace Fictional.Measurements;
 
-[QuantityDefinition("Fictional.Measurements.HowMuch")]
+[QuantitySpec("Fictional.Measurements.HowMuch")]
 public interface HowMuchSpec
 {
 }

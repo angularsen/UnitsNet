@@ -34,7 +34,7 @@ public sealed class StableEnumGeneratorTests
             """
             using UnitsNet.Modular;
 
-            [QuantityDefinition("Example.Widget")]
+            [QuantitySpec("Example.Widget")]
             internal interface WidgetSpec;
 
             [UnitSet("Base", "Third")]

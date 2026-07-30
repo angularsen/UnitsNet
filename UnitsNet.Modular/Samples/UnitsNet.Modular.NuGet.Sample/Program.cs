@@ -8,7 +8,7 @@ using Catalog = UnitsNet.Modular.BuiltIns;
 
 namespace UnitsNet.Modular.NuGet.Sample;
 
-[QuantityDefinition("NuGetConsumer.Measurements.HowMuch")]
+[QuantitySpec("NuGetConsumer.Measurements.HowMuch")]
 internal interface HowMuchSpec;
 
 [UnitsNetModule]

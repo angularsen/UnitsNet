@@ -12,10 +12,10 @@ public sealed class IncrementalityGeneratorTests
     private const string CustomModule = """
         using UnitsNet.Modular;
 
-        [QuantityDefinition("Sample.Distance")]
+        [QuantitySpec("Sample.Distance")]
         internal interface DistanceSpec;
 
-        [QuantityDefinition("Sample.Weight")]
+        [QuantitySpec("Sample.Weight")]
         internal interface WeightSpec;
 
         [UnitsNetModule]

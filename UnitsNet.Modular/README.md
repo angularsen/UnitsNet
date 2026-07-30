@@ -344,7 +344,7 @@ Built-in spec names add the `Spec` suffix to quantity definition names in the Un
 the `Length` recipe is selected with `UnitsNet.Modular.BuiltIns.LengthSpec`. The specs are generated
 by the analyzer in `UnitsNet.Modular.BuiltIns`; generated quantities retain their familiar names,
 such as `Length` and `LengthUnit`. Built-in and custom specs both declare their stable semantic ID
-with `[QuantityDefinition]`; the namespace and `Spec` suffix are naming conventions, not lookup
+with `[QuantitySpec]`; the namespace and `Spec` suffix are naming conventions, not lookup
 rules.
 
 ### Use profiles
@@ -483,7 +483,7 @@ using UnitsNet.Modular;
 
 namespace Fictional.Measurements.Definitions;
 
-[QuantityDefinition("Fictional.Measurements.HowMuch")]
+[QuantitySpec("Fictional.Measurements.HowMuch")]
 public interface HowMuchSpec;
 ```
 
@@ -721,7 +721,7 @@ The props file contributes those files directly to the referencing consumer's co
 ```
 
 Quantity specs should be public so the consumer can select them. Keep their
-`[QuantityDefinition]` IDs stable once published.
+`[QuantitySpec]` semantic IDs stable once published.
 
 An organization can instead publish one canonical compiled units assembly for several controlled
 applications. That is a deployment choice, not the primary composition model. Independently
