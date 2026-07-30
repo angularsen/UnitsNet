@@ -20,12 +20,19 @@ internal static class BuiltInCatalog
             pair => pair.Key,
             pair => PrefixExpander.Expand(pair.Value, BaseUnitPrefixes),
             StringComparer.Ordinal);
+    private static readonly IReadOnlyDictionary<string, QuantityDefinition> DefinitionsBySemanticId =
+        Definitions.Values.ToDictionary(
+            definition => definition.SemanticId,
+            StringComparer.Ordinal);
 
     public static IReadOnlyList<string> Names { get; } =
         Definitions.Keys.OrderBy(name => name, StringComparer.Ordinal).ToArray();
 
-    public static bool TryGet(string name, out QuantityDefinition definition)
+    public static bool TryGetByName(string name, out QuantityDefinition definition)
         => Definitions.TryGetValue(name, out definition!);
+
+    public static bool TryGetBySemanticId(string semanticId, out QuantityDefinition definition)
+        => DefinitionsBySemanticId.TryGetValue(semanticId, out definition!);
 
     public static PrefixExpander.BaseUnitPrefixCatalog CreateBaseUnitPrefixes(
         IEnumerable<QuantityDefinition> additionalDefinitions) =>

@@ -32,7 +32,10 @@ internal static class BootstrapSource
         writer.AppendLine("{");
         foreach (string quantityName in BuiltInCatalog.Names)
         {
-            writer.Append("    internal sealed class ").Append(quantityName).AppendLine("Spec { }");
+            writer.Append("    [global::UnitsNet.Modular.QuantityDefinition(\"UnitsNet.")
+                .Append(quantityName)
+                .AppendLine("\")]");
+            writer.Append("    internal interface ").Append(quantityName).AppendLine("Spec { }");
         }
 
         writer.AppendLine("}");

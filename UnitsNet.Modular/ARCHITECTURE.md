@@ -46,7 +46,9 @@ source emitted during post-initialization.
 
 Authoring types use role-specific suffixes: quantity recipes are `*Spec`, reusable unit filters are
 `*UnitSet`, and reusable selection groups are `*Profile`. This keeps an input such as `LengthSpec`
-visually distinct from the generated `Length` quantity and `LengthUnit` enum.
+visually distinct from the generated `Length` quantity and `LengthUnit` enum. Each built-in or
+custom spec identifies its definition through `[QuantityDefinition]`; the generator does not infer
+identity from the spec's namespace or type name.
 
 Select every unit for a built-in quantity by inheriting `IInclude<TQuantitySpec>`:
 

@@ -343,7 +343,9 @@ IInclude<UnitsNet.Modular.BuiltIns.LengthSpec, MetricLengthUnitSet>
 Built-in spec names add the `Spec` suffix to quantity definition names in the UnitsNet catalog, so
 the `Length` recipe is selected with `UnitsNet.Modular.BuiltIns.LengthSpec`. The specs are generated
 by the analyzer in `UnitsNet.Modular.BuiltIns`; generated quantities retain their familiar names,
-such as `Length` and `LengthUnit`.
+such as `Length` and `LengthUnit`. Built-in and custom specs both declare their stable semantic ID
+with `[QuantityDefinition]`; the namespace and `Spec` suffix are naming conventions, not lookup
+rules.
 
 ### Use profiles
 
