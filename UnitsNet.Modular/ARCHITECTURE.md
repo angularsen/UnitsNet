@@ -389,7 +389,11 @@ publishing artifacts.
 
 The separate `UnitsNet.Modular CI` workflow uses full Git history, builds and tests `UnitsNet.Modular.slnx`,
 runs the minimal NuGet consumer with an isolated package cache, packs the combined package with its
-MinVer version, and uploads it as a workflow artifact. It does not publish to NuGet.org.
+MinVer version, and uploads it as a workflow artifact. Upstream pushes to `master` publish the
+MinVer-generated alpha packages to NuGet.org, while `UnitsNet.Modular/*` tag pushes publish the exact
+tagged version. A manual run can opt into publishing when run from either of those refs. NuGet.org
+trusted publishing must authorize the `angularsen/UnitsNet` repository, the
+`unitsnet-modular-ci.yml` workflow, and the `Publish` environment.
 
 ## Analyzer dependency plumbing
 

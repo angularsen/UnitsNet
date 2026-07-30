@@ -40,13 +40,20 @@ on:
       - 'global.json'
       - '.github/workflows/unitsnet-modular-ci.yml'
   workflow_dispatch:
+    inputs:
+      publish_nuget:
+        description: Publish to nuget.org (master or UnitsNet.Modular/* tag only)
+        required: true
+        default: false
+        type: boolean
 
 permissions:
   contents: read
 
 concurrency:
   group: unitsnet-modular-ci-${{ github.ref }}
-  cancel-in-progress: true
+  # Never interrupt a master or release-tag run while it may be publishing immutable packages.
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' && !startsWith(github.ref, 'refs/tags/UnitsNet.Modular/') }}
 
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true
@@ -107,3 +114,41 @@ jobs:
             Artifacts/UnitsNet.Modular.CI/*.snupkg
           if-no-files-found: error
           retention-days: 14
+
+  publish-nuget:
+    name: Publish NuGet packages
+    needs: build-test-pack
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: >-
+      github.repository_owner == 'angularsen' &&
+      (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/UnitsNet.Modular/')) &&
+      (github.event_name == 'push' || inputs.publish_nuget)
+    environment: Publish
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Download NuGet packages
+        uses: actions/download-artifact@v8
+        with:
+          name: unitsnet-modular-packages-${{ github.sha }}
+          path: nugets
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Log in to NuGet with trusted publishing
+        uses: NuGet/login@v1
+        id: nuget-login
+        with:
+          user: angularsen
+
+      - name: Push to nuget.org
+        env:
+          NUGET_API_KEY: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
+        run: dotnet nuget push "**/*.nupkg" --skip-duplicate --api-key "$NUGET_API_KEY" --source https://api.nuget.org/v3/index.json
+        working-directory: nugets
