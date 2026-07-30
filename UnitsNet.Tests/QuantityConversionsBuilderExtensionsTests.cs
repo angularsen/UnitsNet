@@ -162,16 +162,26 @@ public class QuantityConversionsBuilderExtensionsTests
         Assert.All(fromQuantityInfo.UnitInfos, fromUnit =>
         {
             var conversionKey = new QuantityConversionKey(fromUnit.UnitKey, toQuantityInfo.UnitType);
-            if (fromUnit.BaseUnits != BaseUnits.Undefined)
+            UnitInfo[] matchingTargetUnits = toQuantityInfo.UnitInfos
+                .Where(targetUnit => targetUnit.BaseUnits == fromUnit.BaseUnits)
+                .ToArray();
+            if (fromUnit.BaseUnits != BaseUnits.Undefined && matchingTargetUnits.Length > 0)
             {
-                Assert.All(UnitInfo.GetUnitsWithBase(toQuantityInfo.UnitInfos, fromUnit.BaseUnits), targetUnit =>
-                {
-                    QuantityValue valueToConvert = 123.45m;
-                    QuantityValue expectedValue = toQuantityInfo.ConvertFrom(valueToConvert, fromUnit).As(targetUnit.Value);
-                    Assert.Contains(conversionKey, conversionExpressions);
-                    Assert.Equal(targetUnit.UnitKey, conversionExpressions[conversionKey].TargetUnit);
-                    Assert.Equal(expectedValue, conversionExpressions[conversionKey].Convert(valueToConvert));
-                });
+                QuantityValue valueToConvert = 123.45m;
+                Assert.Contains(conversionKey, conversionExpressions);
+
+                QuantityConversionFunction conversionFunction = conversionExpressions[conversionKey];
+                // Base-only caching stores one cross-quantity conversion per source unit and target quantity type,
+                // using one compatible target unit as an anchor. Conversions to other target units are completed
+                // afterwards by regular within-quantity conversion. For example, Hertz and PerSecond both declare
+                // Second as their underlying time unit in BaseUnits, but the (DurationUnit.Second, Frequency) cache
+                // key can only target one of them. PerSecond remains reachable through Hertz, so the selected anchor
+                // only needs to be one of the compatible target units.
+                Assert.Contains(conversionFunction.TargetUnit, matchingTargetUnits.Select(targetUnit => targetUnit.UnitKey));
+
+                UnitInfo targetUnit = matchingTargetUnits.Single(unit => unit.UnitKey == conversionFunction.TargetUnit);
+                QuantityValue expectedValue = toQuantityInfo.ConvertFrom(valueToConvert, fromUnit).As(targetUnit.Value);
+                Assert.Equal(expectedValue, conversionFunction.Convert(valueToConvert));
             }
             else
             {
