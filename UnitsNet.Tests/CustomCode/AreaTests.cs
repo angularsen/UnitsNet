@@ -73,9 +73,9 @@ namespace UnitsNet.Tests
         {
             Length diameter = Length.FromMeters(diameterMeters);
 
-            double actual = Area.FromCircleDiameter(diameter).SquareMeters;
+            QuantityValue actual = Area.FromCircleDiameter(diameter).SquareMeters;
 
-            Assert.Equal(expected, actual);
+            AssertEx.EqualTolerance(expected, actual, SquareMetersTolerance);
         }
 
         [Theory]
@@ -87,9 +87,9 @@ namespace UnitsNet.Tests
         {
             Length radius = Length.FromMeters(radiusMeters);
 
-            double actual = Area.FromCircleRadius(radius).SquareMeters;
+            QuantityValue actual = Area.FromCircleRadius(radius).SquareMeters;
 
-            Assert.Equal(expected, actual);
+            AssertEx.EqualTolerance(expected, actual, SquareMetersTolerance);
         }
 
         [Fact]
@@ -110,7 +110,7 @@ namespace UnitsNet.Tests
         public void As_GivenSIUnitSystem_ReturnsSIValue()
         {
             var squareInches = new Area(2.0, AreaUnit.SquareInch);
-            Assert.Equal(0.00129032, squareInches.As(UnitSystem.SI));
+            Assert.Equal(0.00129032m, squareInches.As(UnitSystem.SI));
         }
 
         [Fact]
@@ -120,7 +120,7 @@ namespace UnitsNet.Tests
 
             var inSI = squareInches.ToUnit(UnitSystem.SI);
 
-            Assert.Equal(0.00129032, inSI.Value);
+            Assert.Equal(0.00129032m, inSI.Value);
             Assert.Equal(AreaUnit.SquareMeter, inSI.Unit);
         }
 
@@ -132,16 +132,17 @@ namespace UnitsNet.Tests
         [InlineData(2.0, 0.5)]
         public void InverseReturnsReciprocalArea(double value, double expected)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             var area = new Area(value, AreaUnit.SquareMeter);
             var inverseArea = area.Inverse();
-            Assert.Equal(expected, inverseArea.InverseSquareMeters);
+            Assert.Equal(expectedValue, inverseArea.InverseSquareMeters);
         }
 
         [Fact]
         public void AreaTimesReciprocalAreaEqualsRatio()
         {
             Ratio ratio = Area.FromSquareMeters(0.5) * ReciprocalArea.FromInverseSquareMeters(10);
-            Assert.Equal(5.0, ratio.Value);
+            Assert.Equal(5.0m, ratio.Value);
         }
 
         [Fact]

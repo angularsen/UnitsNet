@@ -42,84 +42,84 @@ namespace UnitsNet.NumberExtensions.NumberToLuminance
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Luminance.FromCandelasPerSquareFoot(double)" />
+            /// <inheritdoc cref="Luminance.FromCandelasPerSquareFoot(QuantityValue)" />
             public Luminance CandelasPerSquareFoot
 #if NET7_0_OR_GREATER
-                => Luminance.FromCandelasPerSquareFoot(double.CreateChecked(value));
+                => Luminance.FromCandelasPerSquareFoot(QuantityValue.CreateChecked(value));
 #else
-                => Luminance.FromCandelasPerSquareFoot(value.ToDouble(null));
+                => Luminance.FromCandelasPerSquareFoot(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminance.FromCandelasPerSquareInch(double)" />
+            /// <inheritdoc cref="Luminance.FromCandelasPerSquareInch(QuantityValue)" />
             public Luminance CandelasPerSquareInch
 #if NET7_0_OR_GREATER
-                => Luminance.FromCandelasPerSquareInch(double.CreateChecked(value));
+                => Luminance.FromCandelasPerSquareInch(QuantityValue.CreateChecked(value));
 #else
-                => Luminance.FromCandelasPerSquareInch(value.ToDouble(null));
+                => Luminance.FromCandelasPerSquareInch(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminance.FromCandelasPerSquareMeter(double)" />
+            /// <inheritdoc cref="Luminance.FromCandelasPerSquareMeter(QuantityValue)" />
             public Luminance CandelasPerSquareMeter
 #if NET7_0_OR_GREATER
-                => Luminance.FromCandelasPerSquareMeter(double.CreateChecked(value));
+                => Luminance.FromCandelasPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
-                => Luminance.FromCandelasPerSquareMeter(value.ToDouble(null));
+                => Luminance.FromCandelasPerSquareMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminance.FromCenticandelasPerSquareMeter(double)" />
+            /// <inheritdoc cref="Luminance.FromCenticandelasPerSquareMeter(QuantityValue)" />
             public Luminance CenticandelasPerSquareMeter
 #if NET7_0_OR_GREATER
-                => Luminance.FromCenticandelasPerSquareMeter(double.CreateChecked(value));
+                => Luminance.FromCenticandelasPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
-                => Luminance.FromCenticandelasPerSquareMeter(value.ToDouble(null));
+                => Luminance.FromCenticandelasPerSquareMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminance.FromDecicandelasPerSquareMeter(double)" />
+            /// <inheritdoc cref="Luminance.FromDecicandelasPerSquareMeter(QuantityValue)" />
             public Luminance DecicandelasPerSquareMeter
 #if NET7_0_OR_GREATER
-                => Luminance.FromDecicandelasPerSquareMeter(double.CreateChecked(value));
+                => Luminance.FromDecicandelasPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
-                => Luminance.FromDecicandelasPerSquareMeter(value.ToDouble(null));
+                => Luminance.FromDecicandelasPerSquareMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminance.FromKilocandelasPerSquareMeter(double)" />
+            /// <inheritdoc cref="Luminance.FromKilocandelasPerSquareMeter(QuantityValue)" />
             public Luminance KilocandelasPerSquareMeter
 #if NET7_0_OR_GREATER
-                => Luminance.FromKilocandelasPerSquareMeter(double.CreateChecked(value));
+                => Luminance.FromKilocandelasPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
-                => Luminance.FromKilocandelasPerSquareMeter(value.ToDouble(null));
+                => Luminance.FromKilocandelasPerSquareMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminance.FromMicrocandelasPerSquareMeter(double)" />
+            /// <inheritdoc cref="Luminance.FromMicrocandelasPerSquareMeter(QuantityValue)" />
             public Luminance MicrocandelasPerSquareMeter
 #if NET7_0_OR_GREATER
-                => Luminance.FromMicrocandelasPerSquareMeter(double.CreateChecked(value));
+                => Luminance.FromMicrocandelasPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
-                => Luminance.FromMicrocandelasPerSquareMeter(value.ToDouble(null));
+                => Luminance.FromMicrocandelasPerSquareMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminance.FromMillicandelasPerSquareMeter(double)" />
+            /// <inheritdoc cref="Luminance.FromMillicandelasPerSquareMeter(QuantityValue)" />
             public Luminance MillicandelasPerSquareMeter
 #if NET7_0_OR_GREATER
-                => Luminance.FromMillicandelasPerSquareMeter(double.CreateChecked(value));
+                => Luminance.FromMillicandelasPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
-                => Luminance.FromMillicandelasPerSquareMeter(value.ToDouble(null));
+                => Luminance.FromMillicandelasPerSquareMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminance.FromNanocandelasPerSquareMeter(double)" />
+            /// <inheritdoc cref="Luminance.FromNanocandelasPerSquareMeter(QuantityValue)" />
             public Luminance NanocandelasPerSquareMeter
 #if NET7_0_OR_GREATER
-                => Luminance.FromNanocandelasPerSquareMeter(double.CreateChecked(value));
+                => Luminance.FromNanocandelasPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
-                => Luminance.FromNanocandelasPerSquareMeter(value.ToDouble(null));
+                => Luminance.FromNanocandelasPerSquareMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Luminance.FromNits(double)" />
+            /// <inheritdoc cref="Luminance.FromNits(QuantityValue)" />
             public Luminance Nits
 #if NET7_0_OR_GREATER
-                => Luminance.FromNits(double.CreateChecked(value));
+                => Luminance.FromNits(QuantityValue.CreateChecked(value));
 #else
-                => Luminance.FromNits(value.ToDouble(null));
+                => Luminance.FromNits(value.ToQuantityValue());
 #endif
 
         }

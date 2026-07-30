@@ -42,44 +42,44 @@ namespace UnitsNet.NumberExtensions.NumberToAreaDensity
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="AreaDensity.FromGramsPerSquareMeter(double)" />
+            /// <inheritdoc cref="AreaDensity.FromGramsPerSquareMeter(QuantityValue)" />
             public AreaDensity GramsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => AreaDensity.FromGramsPerSquareMeter(double.CreateChecked(value));
+                => AreaDensity.FromGramsPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
-                => AreaDensity.FromGramsPerSquareMeter(value.ToDouble(null));
+                => AreaDensity.FromGramsPerSquareMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(double)" />
+            /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(QuantityValue)" />
             public AreaDensity KilogramsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => AreaDensity.FromKilogramsPerSquareMeter(double.CreateChecked(value));
+                => AreaDensity.FromKilogramsPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
-                => AreaDensity.FromKilogramsPerSquareMeter(value.ToDouble(null));
+                => AreaDensity.FromKilogramsPerSquareMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AreaDensity.FromMilligramsPerSquareMeter(double)" />
+            /// <inheritdoc cref="AreaDensity.FromMilligramsPerSquareMeter(QuantityValue)" />
             public AreaDensity MilligramsPerSquareMeter
 #if NET7_0_OR_GREATER
-                => AreaDensity.FromMilligramsPerSquareMeter(double.CreateChecked(value));
+                => AreaDensity.FromMilligramsPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
-                => AreaDensity.FromMilligramsPerSquareMeter(value.ToDouble(null));
+                => AreaDensity.FromMilligramsPerSquareMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AreaDensity.FromPoundsPerSquareFoot(double)" />
+            /// <inheritdoc cref="AreaDensity.FromPoundsPerSquareFoot(QuantityValue)" />
             public AreaDensity PoundsPerSquareFoot
 #if NET7_0_OR_GREATER
-                => AreaDensity.FromPoundsPerSquareFoot(double.CreateChecked(value));
+                => AreaDensity.FromPoundsPerSquareFoot(QuantityValue.CreateChecked(value));
 #else
-                => AreaDensity.FromPoundsPerSquareFoot(value.ToDouble(null));
+                => AreaDensity.FromPoundsPerSquareFoot(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AreaDensity.FromPoundsPerThousandSquareFeet(double)" />
+            /// <inheritdoc cref="AreaDensity.FromPoundsPerThousandSquareFeet(QuantityValue)" />
             public AreaDensity PoundsPerThousandSquareFeet
 #if NET7_0_OR_GREATER
-                => AreaDensity.FromPoundsPerThousandSquareFeet(double.CreateChecked(value));
+                => AreaDensity.FromPoundsPerThousandSquareFeet(QuantityValue.CreateChecked(value));
 #else
-                => AreaDensity.FromPoundsPerThousandSquareFeet(value.ToDouble(null));
+                => AreaDensity.FromPoundsPerThousandSquareFeet(value.ToQuantityValue());
 #endif
 
         }

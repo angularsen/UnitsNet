@@ -11,13 +11,30 @@ namespace UnitsNet.Benchmark.Conversions.FromUnit;
 public class QuantityFromUnitBenchmarks
 {
     private static readonly Enum[] BaseUnits = Quantity.Infos.Select(x => x.BaseUnitInfo.Value).ToArray();
+    
+    private static readonly UnitKey[] BaseUnitKeys = Quantity.Infos.Select(x => x.BaseUnitInfo.UnitKey).ToArray();
+
+    [GlobalSetup]
+    public void Setup()
+    {
+        Quantity.From(1, Mass.BaseUnit);
+    }
 
     [Benchmark(Baseline = true)]
     public void QuantityFromUnit()
     {
         foreach (Enum baseUnit in BaseUnits)
         {
-            IQuantity quantity = Quantity.From(1, baseUnit);
+            IQuantity quantity = Quantity.From(QuantityValue.One, baseUnit);
+        }
+    }
+
+    [Benchmark]
+    public void QuantityFromUnitKey()
+    {
+        foreach (UnitKey baseUnit in BaseUnitKeys)
+        {
+            IQuantity quantity = Quantity.From(QuantityValue.One, baseUnit);
         }
     }
 
@@ -26,7 +43,7 @@ public class QuantityFromUnitBenchmarks
     {
         foreach (Enum baseUnit in BaseUnits)
         {
-            var success = Quantity.TryFrom(1, baseUnit, out _);
+            var success = Quantity.TryFrom(QuantityValue.One, baseUnit, out _);
         }
     }
 }

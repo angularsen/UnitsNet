@@ -37,7 +37,7 @@ namespace UnitsNet.Tests
         {
             Duration duration = Frequency.FromHertz(2).Inverse();
 
-            Assert.Equal(0.5, duration.Seconds);
+            Assert.Equal(0.5, duration.Seconds.ToDouble());
         }
     }
 }

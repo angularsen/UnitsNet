@@ -32,103 +32,103 @@ namespace UnitsNet.NumberExtensions.NumberToVolumetricHeatCapacity
     /// </summary>
     public static class NumberToVolumetricHeatCapacityExtensions
     {
-        /// <inheritdoc cref="VolumetricHeatCapacity.FromBtusPerCubicFootDegreeFahrenheit(double)" />
+        /// <inheritdoc cref="VolumetricHeatCapacity.FromBtusPerCubicFootDegreeFahrenheit(QuantityValue)" />
         public static VolumetricHeatCapacity BtusPerCubicFootDegreeFahrenheit<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumetricHeatCapacity.FromBtusPerCubicFootDegreeFahrenheit(double.CreateChecked(value));
+            => VolumetricHeatCapacity.FromBtusPerCubicFootDegreeFahrenheit(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumetricHeatCapacity.FromBtusPerCubicFootDegreeFahrenheit(value.ToDouble(null));
+            => VolumetricHeatCapacity.FromBtusPerCubicFootDegreeFahrenheit(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumetricHeatCapacity.FromCaloriesPerCubicCentimeterDegreeCelsius(double)" />
+        /// <inheritdoc cref="VolumetricHeatCapacity.FromCaloriesPerCubicCentimeterDegreeCelsius(QuantityValue)" />
         public static VolumetricHeatCapacity CaloriesPerCubicCentimeterDegreeCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumetricHeatCapacity.FromCaloriesPerCubicCentimeterDegreeCelsius(double.CreateChecked(value));
+            => VolumetricHeatCapacity.FromCaloriesPerCubicCentimeterDegreeCelsius(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumetricHeatCapacity.FromCaloriesPerCubicCentimeterDegreeCelsius(value.ToDouble(null));
+            => VolumetricHeatCapacity.FromCaloriesPerCubicCentimeterDegreeCelsius(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumetricHeatCapacity.FromJoulesPerCubicMeterDegreeCelsius(double)" />
+        /// <inheritdoc cref="VolumetricHeatCapacity.FromJoulesPerCubicMeterDegreeCelsius(QuantityValue)" />
         public static VolumetricHeatCapacity JoulesPerCubicMeterDegreeCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumetricHeatCapacity.FromJoulesPerCubicMeterDegreeCelsius(double.CreateChecked(value));
+            => VolumetricHeatCapacity.FromJoulesPerCubicMeterDegreeCelsius(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumetricHeatCapacity.FromJoulesPerCubicMeterDegreeCelsius(value.ToDouble(null));
+            => VolumetricHeatCapacity.FromJoulesPerCubicMeterDegreeCelsius(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(double)" />
+        /// <inheritdoc cref="VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(QuantityValue)" />
         public static VolumetricHeatCapacity JoulesPerCubicMeterKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(double.CreateChecked(value));
+            => VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(value.ToDouble(null));
+            => VolumetricHeatCapacity.FromJoulesPerCubicMeterKelvin(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumetricHeatCapacity.FromKilocaloriesPerCubicCentimeterDegreeCelsius(double)" />
+        /// <inheritdoc cref="VolumetricHeatCapacity.FromKilocaloriesPerCubicCentimeterDegreeCelsius(QuantityValue)" />
         public static VolumetricHeatCapacity KilocaloriesPerCubicCentimeterDegreeCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumetricHeatCapacity.FromKilocaloriesPerCubicCentimeterDegreeCelsius(double.CreateChecked(value));
+            => VolumetricHeatCapacity.FromKilocaloriesPerCubicCentimeterDegreeCelsius(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumetricHeatCapacity.FromKilocaloriesPerCubicCentimeterDegreeCelsius(value.ToDouble(null));
+            => VolumetricHeatCapacity.FromKilocaloriesPerCubicCentimeterDegreeCelsius(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumetricHeatCapacity.FromKilojoulesPerCubicMeterDegreeCelsius(double)" />
+        /// <inheritdoc cref="VolumetricHeatCapacity.FromKilojoulesPerCubicMeterDegreeCelsius(QuantityValue)" />
         public static VolumetricHeatCapacity KilojoulesPerCubicMeterDegreeCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumetricHeatCapacity.FromKilojoulesPerCubicMeterDegreeCelsius(double.CreateChecked(value));
+            => VolumetricHeatCapacity.FromKilojoulesPerCubicMeterDegreeCelsius(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumetricHeatCapacity.FromKilojoulesPerCubicMeterDegreeCelsius(value.ToDouble(null));
+            => VolumetricHeatCapacity.FromKilojoulesPerCubicMeterDegreeCelsius(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumetricHeatCapacity.FromKilojoulesPerCubicMeterKelvin(double)" />
+        /// <inheritdoc cref="VolumetricHeatCapacity.FromKilojoulesPerCubicMeterKelvin(QuantityValue)" />
         public static VolumetricHeatCapacity KilojoulesPerCubicMeterKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumetricHeatCapacity.FromKilojoulesPerCubicMeterKelvin(double.CreateChecked(value));
+            => VolumetricHeatCapacity.FromKilojoulesPerCubicMeterKelvin(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumetricHeatCapacity.FromKilojoulesPerCubicMeterKelvin(value.ToDouble(null));
+            => VolumetricHeatCapacity.FromKilojoulesPerCubicMeterKelvin(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumetricHeatCapacity.FromMegajoulesPerCubicMeterDegreeCelsius(double)" />
+        /// <inheritdoc cref="VolumetricHeatCapacity.FromMegajoulesPerCubicMeterDegreeCelsius(QuantityValue)" />
         public static VolumetricHeatCapacity MegajoulesPerCubicMeterDegreeCelsius<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumetricHeatCapacity.FromMegajoulesPerCubicMeterDegreeCelsius(double.CreateChecked(value));
+            => VolumetricHeatCapacity.FromMegajoulesPerCubicMeterDegreeCelsius(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumetricHeatCapacity.FromMegajoulesPerCubicMeterDegreeCelsius(value.ToDouble(null));
+            => VolumetricHeatCapacity.FromMegajoulesPerCubicMeterDegreeCelsius(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumetricHeatCapacity.FromMegajoulesPerCubicMeterKelvin(double)" />
+        /// <inheritdoc cref="VolumetricHeatCapacity.FromMegajoulesPerCubicMeterKelvin(QuantityValue)" />
         public static VolumetricHeatCapacity MegajoulesPerCubicMeterKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumetricHeatCapacity.FromMegajoulesPerCubicMeterKelvin(double.CreateChecked(value));
+            => VolumetricHeatCapacity.FromMegajoulesPerCubicMeterKelvin(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumetricHeatCapacity.FromMegajoulesPerCubicMeterKelvin(value.ToDouble(null));
+            => VolumetricHeatCapacity.FromMegajoulesPerCubicMeterKelvin(value.ToQuantityValue());
 #endif
 
     }

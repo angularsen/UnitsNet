@@ -273,18 +273,15 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
         private class ThrowingQuantity : IQuantity
         {
-            public ThrowingQuantity(double value, HowMuchUnit unit)
+            public ThrowingQuantity(QuantityValue value, HowMuchUnit unit)
             {
                 throw new UnitsNetException("Thrown from registered quantity constructor.");
             }
 
             public QuantityInfo QuantityInfo => throw new NotImplementedException();
             public Enum Unit => throw new NotImplementedException();
-            public double Value => throw new NotImplementedException();
+            public QuantityValue Value => throw new NotImplementedException();
             public UnitKey UnitKey => throw new NotImplementedException();
-            public double As(Enum unit) => throw new NotImplementedException();
-            public double As(UnitKey unitKey) => throw new NotImplementedException();
-            public IQuantity ToUnit(Enum unit) => throw new NotImplementedException();
             public string ToString(string format, IFormatProvider formatProvider) => throw new NotImplementedException();
         }
     }

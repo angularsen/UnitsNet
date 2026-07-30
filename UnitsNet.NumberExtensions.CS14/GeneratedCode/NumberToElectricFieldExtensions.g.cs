@@ -42,12 +42,12 @@ namespace UnitsNet.NumberExtensions.NumberToElectricField
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="ElectricField.FromVoltsPerMeter(double)" />
+            /// <inheritdoc cref="ElectricField.FromVoltsPerMeter(QuantityValue)" />
             public ElectricField VoltsPerMeter
 #if NET7_0_OR_GREATER
-                => ElectricField.FromVoltsPerMeter(double.CreateChecked(value));
+                => ElectricField.FromVoltsPerMeter(QuantityValue.CreateChecked(value));
 #else
-                => ElectricField.FromVoltsPerMeter(value.ToDouble(null));
+                => ElectricField.FromVoltsPerMeter(value.ToQuantityValue());
 #endif
 
         }
