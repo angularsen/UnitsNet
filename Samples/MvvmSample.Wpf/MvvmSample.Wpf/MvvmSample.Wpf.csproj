@@ -21,11 +21,7 @@
     <Reference Include="System.Transactions" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(Configuration)' != 'Official'">
-    <PackageReference Include="UnitsNet" VersionOverride="6.0.0-pre103" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(Configuration)' == 'Official'">
+  <ItemGroup>
     <PackageReference Include="UnitsNet" />
   </ItemGroup>
 </Project>
