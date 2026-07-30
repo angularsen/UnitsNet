@@ -7,7 +7,8 @@
     <IsAotCompatible>true</IsAotCompatible>
     <RootNamespace>UnitsNet.Core</RootNamespace>
     <AssemblyName>UnitsNet.Core</AssemblyName>
-    <MinVerTagPrefix>UnitsNet.Core/</MinVerTagPrefix>
+    <!-- Core ships as part of Modular and intentionally shares its release tag and package version. -->
+    <MinVerTagPrefix>UnitsNet.Modular/</MinVerTagPrefix>
     <MinVerMinimumMajorMinor>6.0</MinVerMinimumMajorMinor>
     <MinVerDefaultPreReleaseIdentifiers>alpha.0</MinVerDefaultPreReleaseIdentifiers>
     <MinVerVersionOverride Condition="'$(UnitsNetCoreVersionOverride)' != '' and '$(MinVerVersionOverride)' == ''">$(UnitsNetCoreVersionOverride)</MinVerVersionOverride>
