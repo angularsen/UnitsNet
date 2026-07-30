@@ -1,0 +1,109 @@
+name: UnitsNet.Modular CI
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - 'UnitsNet.Modular/*'
+    paths:
+      - 'UnitsNet.Modular/**'
+      - 'UnitsNet.Core/**'
+      # The compatibility suite compiles the current UnitsNet project to detect source/API drift.
+      - 'UnitsNet/**'
+      - 'Common/UnitDefinitions/**'
+      - 'Common/UnitRelations.json'
+      - 'Common/UnitEnumValues.g.json'
+      - 'UnitsNet.Modular.slnx'
+      - 'Directory.Build.props'
+      - 'Directory.Packages.props'
+      - 'NuGet.Config'
+      - 'NullableAttributes.cs'
+      - 'global.json'
+      - '.github/workflows/unitsnet-modular-ci.yml'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'UnitsNet.Modular/**'
+      - 'UnitsNet.Core/**'
+      # The compatibility suite compiles the current UnitsNet project to detect source/API drift.
+      - 'UnitsNet/**'
+      - 'Common/UnitDefinitions/**'
+      - 'Common/UnitRelations.json'
+      - 'Common/UnitEnumValues.g.json'
+      - 'UnitsNet.Modular.slnx'
+      - 'Directory.Build.props'
+      - 'Directory.Packages.props'
+      - 'NuGet.Config'
+      - 'NullableAttributes.cs'
+      - 'global.json'
+      - '.github/workflows/unitsnet-modular-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: unitsnet-modular-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  DOTNET_NOLOGO: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+
+jobs:
+  build-test-pack:
+    name: Build, test, and pack
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: dotnet restore UnitsNet.Modular.slnx -p:UnitsNetModularSampleUpdateLocalPackagesOnBuild=true
+
+      - name: Build
+        run: dotnet build UnitsNet.Modular.slnx --configuration Release --no-restore --no-incremental -p:UnitsNetModularSampleUpdateLocalPackagesOnBuild=true
+
+      - name: Test
+        run: dotnet test UnitsNet.Modular.slnx --configuration Release --no-build -p:UnitsNetModularSampleUpdateLocalPackagesOnBuild=false
+
+      - name: Native AOT smoke test
+        run: |
+          dotnet publish UnitsNet.Modular/Samples/UnitsNet.Modular.Lean.Sample/UnitsNet.Modular.Lean.Sample.csproj \
+            --configuration Release \
+            --framework net10.0 \
+            --runtime linux-x64 \
+            --self-contained true \
+            -p:PublishAot=true \
+            -p:UnitsNetModularSampleUpdateLocalPackagesOnBuild=false \
+            --output Artifacts/UnitsNet.Modular.AotSmoke
+          ./Artifacts/UnitsNet.Modular.AotSmoke/UnitsNet.Modular.Lean.Sample
+
+      - name: Run isolated NuGet consumer
+        shell: pwsh
+        run: ./UnitsNet.Modular/Samples/UnitsNet.Modular.NuGet.Sample/run.ps1
+
+      - name: Pack
+        run: dotnet pack UnitsNet.Modular/UnitsNet.Modular/UnitsNet.Modular.csproj --configuration Release --no-build --output Artifacts/UnitsNet.Modular.CI -p:UnitsNetModularPackForPublish=true
+
+      - name: Upload packages
+        uses: actions/upload-artifact@v7
+        with:
+          name: unitsnet-modular-packages-${{ github.sha }}
+          path: |
+            Artifacts/UnitsNet.Modular.CI/*.nupkg
+            Artifacts/UnitsNet.Modular.CI/*.snupkg
+          if-no-files-found: error
+          retention-days: 14

@@ -1,0 +1,15 @@
+<Project>
+  <!-- Preserve the UnitsNet.Modular and repository-wide build settings from the nearest parent file. -->
+  <Import Project="../../Directory.Build.props" />
+
+  <PropertyGroup>
+    <!--
+      The runnable projects only reference ConsumerOwned.Units transitively, but their restore
+      graphs must still re-evaluate the floating local package versions during the Debug workflow.
+    -->
+    <UnitsNetModularSampleUpdateLocalPackagesOnBuild
+        Condition="'$(UnitsNetModularSampleUpdateLocalPackagesOnBuild)' == '' and '$(Configuration)' == 'Debug'">true</UnitsNetModularSampleUpdateLocalPackagesOnBuild>
+    <UnitsNetModularSampleUpdateLocalPackagesOnBuild
+        Condition="'$(UnitsNetModularSampleUpdateLocalPackagesOnBuild)' == ''">false</UnitsNetModularSampleUpdateLocalPackagesOnBuild>
+  </PropertyGroup>
+</Project>

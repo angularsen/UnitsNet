@@ -265,3 +265,10 @@ Artifacts
 .claude/settings.local.json
 .claude/worktrees/
 .DS_Store
+
+# Keep the shared repository-local NuGet feed present on clean checkouts.
+!Artifacts/
+Artifacts/*
+!Artifacts/Nugets/
+Artifacts/Nugets/*
+!Artifacts/Nugets/.gitkeep
