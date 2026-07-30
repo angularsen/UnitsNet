@@ -14,7 +14,7 @@ public sealed class RelationshipGeneratorTests
             """
             using UnitsNet.Modular;
 
-            [QuantityDefinition("UnitsNet.ReciprocalLength")]
+            [QuantitySpec("UnitsNet.ReciprocalLength")]
             internal interface ReciprocalLengthSpec;
 
             [UnitsNetModule("UnitsNet.Modular")]
@@ -84,10 +84,10 @@ public sealed class RelationshipGeneratorTests
             """
             using UnitsNet.Modular;
 
-            [QuantityDefinition("Fictional.Width")]
+            [QuantitySpec("Fictional.Width")]
             internal interface WidthSpec;
 
-            [QuantityDefinition("Fictional.AreaLike")]
+            [QuantitySpec("Fictional.AreaLike")]
             internal interface AreaLikeSpec;
 
             [UnitSet("Meter")]

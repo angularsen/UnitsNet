@@ -10,7 +10,7 @@ internal interface ByteUnitSet
 {
 }
 
-[QuantityDefinition("Fictional.Measurements.HowMuch")]
+[QuantitySpec("Fictional.Measurements.HowMuch")]
 internal interface HowMuchSpec
 {
 }

@@ -14,7 +14,7 @@ public sealed class PrefixGeneratorTests
             """
             using UnitsNet.Modular;
 
-            [QuantityDefinition("Sample.Widget")]
+            [QuantitySpec("Sample.Widget")]
             internal interface WidgetSpec;
 
             [UnitsNetModule]

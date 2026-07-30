@@ -51,7 +51,7 @@ public sealed class QuantityFacadeGeneratorTests
 
             namespace Application.Units;
 
-            [QuantityDefinition("UnitsNet.Length")]
+            [QuantitySpec("UnitsNet.Length")]
             internal interface DistanceRecipe;
 
             [UnitsNetModule]
@@ -94,7 +94,7 @@ public sealed class QuantityFacadeGeneratorTests
 
             namespace Application.Units;
 
-            [QuantityDefinition("Fictional.Widget")]
+            [QuantitySpec("Fictional.Widget")]
             internal interface WidgetSpec;
 
             [UnitsNetModule]

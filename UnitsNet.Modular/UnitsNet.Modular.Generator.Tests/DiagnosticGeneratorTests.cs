@@ -86,10 +86,10 @@ public sealed class DiagnosticGeneratorTests
             """
             using UnitsNet.Modular;
 
-            [QuantityDefinition("First.Widget")]
+            [QuantitySpec("First.Widget")]
             internal interface FirstWidgetSpec;
 
-            [QuantityDefinition("Second.Widget")]
+            [QuantitySpec("Second.Widget")]
             internal interface SecondWidgetSpec;
 
             [UnitsNetModule("Application.Units")]
@@ -111,7 +111,7 @@ public sealed class DiagnosticGeneratorTests
             """
             using UnitsNet.Modular;
 
-            [QuantityDefinition("Sample.Widget")]
+            [QuantitySpec("Sample.Widget")]
             internal interface WidgetSpec;
 
             [UnitsNetModule]
@@ -142,7 +142,7 @@ public sealed class DiagnosticGeneratorTests
             """
             using UnitsNet.Modular;
 
-            [QuantityDefinition("Sample.Widget")]
+            [QuantitySpec("Sample.Widget")]
             internal interface WidgetSpec;
 
             [UnitsNetModule]
@@ -177,7 +177,7 @@ public sealed class DiagnosticGeneratorTests
             """
             using UnitsNet.Modular;
 
-            [QuantityDefinition("Sample.Widget")]
+            [QuantitySpec("Sample.Widget")]
             internal interface WidgetSpec;
 
             [UnitsNetModule]
@@ -209,7 +209,7 @@ public sealed class DiagnosticGeneratorTests
             """
             using UnitsNet.Modular;
 
-            [QuantityDefinition("Sample.Bad-Widget")]
+            [QuantitySpec("Sample.Bad-Widget")]
             internal interface WidgetSpec;
 
             [UnitsNetModule]

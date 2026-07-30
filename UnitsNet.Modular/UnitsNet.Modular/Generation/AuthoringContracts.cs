@@ -31,13 +31,13 @@ public sealed class UnitSetAttribute : Attribute
 
 /// <summary>Binds a quantity spec to a stable semantic quantity ID.</summary>
 [AttributeUsage(AttributeTargets.Interface)]
-public sealed class QuantityDefinitionAttribute : Attribute
+public sealed class QuantitySpecAttribute : Attribute
 {
-    /// <summary>Creates a binding to the semantic quantity ID <paramref name="id" />.</summary>
-    public QuantityDefinitionAttribute(string id) => Id = id;
+    /// <summary>Creates a binding to the semantic quantity ID <paramref name="semanticId" />.</summary>
+    public QuantitySpecAttribute(string semanticId) => SemanticId = semanticId;
 
     /// <summary>Gets the stable semantic quantity ID.</summary>
-    public string Id { get; }
+    public string SemanticId { get; }
 }
 
 /// <summary>Selects all units from a quantity spec.</summary>
