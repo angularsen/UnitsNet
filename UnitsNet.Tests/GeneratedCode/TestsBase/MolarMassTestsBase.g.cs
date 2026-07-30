@@ -53,6 +53,7 @@ namespace UnitsNet.Tests
         protected abstract double MilligramsPerMoleInOneKilogramPerMole { get; }
         protected abstract double NanogramsPerMoleInOneKilogramPerMole { get; }
         protected abstract double PoundsPerMoleInOneKilogramPerMole { get; }
+        protected abstract double PoundsPerPoundMoleInOneKilogramPerMole { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentigramsPerMoleTolerance { get { return 1e-5; } }
@@ -68,6 +69,7 @@ namespace UnitsNet.Tests
         protected virtual double MilligramsPerMoleTolerance { get { return 1e-5; } }
         protected virtual double NanogramsPerMoleTolerance { get { return 1e-5; } }
         protected virtual double PoundsPerMoleTolerance { get { return 1e-5; } }
+        protected virtual double PoundsPerPoundMoleTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         protected (double UnitsInBaseUnit, double Tolerence) GetConversionFactor(MolarMassUnit unit)
@@ -87,6 +89,7 @@ namespace UnitsNet.Tests
                 MolarMassUnit.MilligramPerMole => (MilligramsPerMoleInOneKilogramPerMole, MilligramsPerMoleTolerance),
                 MolarMassUnit.NanogramPerMole => (NanogramsPerMoleInOneKilogramPerMole, NanogramsPerMoleTolerance),
                 MolarMassUnit.PoundPerMole => (PoundsPerMoleInOneKilogramPerMole, PoundsPerMoleTolerance),
+                MolarMassUnit.PoundPerPoundMole => (PoundsPerPoundMoleInOneKilogramPerMole, PoundsPerPoundMoleTolerance),
                 _ => throw new NotSupportedException()
             };
         }
@@ -106,6 +109,7 @@ namespace UnitsNet.Tests
             new object[] { MolarMassUnit.MilligramPerMole },
             new object[] { MolarMassUnit.NanogramPerMole },
             new object[] { MolarMassUnit.PoundPerMole },
+            new object[] { MolarMassUnit.PoundPerPoundMole },
         };
 
         [Fact]
@@ -190,6 +194,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MilligramsPerMoleInOneKilogramPerMole, kilogrampermole.MilligramsPerMole, MilligramsPerMoleTolerance);
             AssertEx.EqualTolerance(NanogramsPerMoleInOneKilogramPerMole, kilogrampermole.NanogramsPerMole, NanogramsPerMoleTolerance);
             AssertEx.EqualTolerance(PoundsPerMoleInOneKilogramPerMole, kilogrampermole.PoundsPerMole, PoundsPerMoleTolerance);
+            AssertEx.EqualTolerance(PoundsPerPoundMoleInOneKilogramPerMole, kilogrampermole.PoundsPerPoundMole, PoundsPerPoundMoleTolerance);
         }
 
         [Fact]
@@ -238,6 +243,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MilligramsPerMoleInOneKilogramPerMole, kilogrampermole.As(MolarMassUnit.MilligramPerMole), MilligramsPerMoleTolerance);
             AssertEx.EqualTolerance(NanogramsPerMoleInOneKilogramPerMole, kilogrampermole.As(MolarMassUnit.NanogramPerMole), NanogramsPerMoleTolerance);
             AssertEx.EqualTolerance(PoundsPerMoleInOneKilogramPerMole, kilogrampermole.As(MolarMassUnit.PoundPerMole), PoundsPerMoleTolerance);
+            AssertEx.EqualTolerance(PoundsPerPoundMoleInOneKilogramPerMole, kilogrampermole.As(MolarMassUnit.PoundPerPoundMole), PoundsPerPoundMoleTolerance);
         }
 
         [Fact]
@@ -317,6 +323,8 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 mg/mol", MolarMassUnit.MilligramPerMole, 4.2)]
         [InlineData("en-US", "4.2 ng/mol", MolarMassUnit.NanogramPerMole, 4.2)]
         [InlineData("en-US", "4.2 lb/mol", MolarMassUnit.PoundPerMole, 4.2)]
+        [InlineData("en-US", "4.2 lb/lbmol", MolarMassUnit.PoundPerPoundMole, 4.2)]
+        [InlineData("en-US", "4.2 lbm/lbmol", MolarMassUnit.PoundPerPoundMole, 4.2)]
         [InlineData("ru-RU", "4,2 сг/моль", MolarMassUnit.CentigramPerMole, 4.2)]
         [InlineData("ru-RU", "4,2 даг/моль", MolarMassUnit.DecagramPerMole, 4.2)]
         [InlineData("ru-RU", "4,2 дг/моль", MolarMassUnit.DecigramPerMole, 4.2)]
@@ -351,6 +359,8 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 mg/mol", MolarMassUnit.MilligramPerMole, 4.2)]
         [InlineData("en-US", "4.2 ng/mol", MolarMassUnit.NanogramPerMole, 4.2)]
         [InlineData("en-US", "4.2 lb/mol", MolarMassUnit.PoundPerMole, 4.2)]
+        [InlineData("en-US", "4.2 lb/lbmol", MolarMassUnit.PoundPerPoundMole, 4.2)]
+        [InlineData("en-US", "4.2 lbm/lbmol", MolarMassUnit.PoundPerPoundMole, 4.2)]
         [InlineData("ru-RU", "4,2 сг/моль", MolarMassUnit.CentigramPerMole, 4.2)]
         [InlineData("ru-RU", "4,2 даг/моль", MolarMassUnit.DecagramPerMole, 4.2)]
         [InlineData("ru-RU", "4,2 дг/моль", MolarMassUnit.DecigramPerMole, 4.2)]
@@ -385,6 +395,8 @@ namespace UnitsNet.Tests
         [InlineData("mg/mol", MolarMassUnit.MilligramPerMole)]
         [InlineData("ng/mol", MolarMassUnit.NanogramPerMole)]
         [InlineData("lb/mol", MolarMassUnit.PoundPerMole)]
+        [InlineData("lb/lbmol", MolarMassUnit.PoundPerPoundMole)]
+        [InlineData("lbm/lbmol", MolarMassUnit.PoundPerPoundMole)]
         public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MolarMassUnit expectedUnit)
         {
             // Fallback culture "en-US" is always localized
@@ -407,6 +419,8 @@ namespace UnitsNet.Tests
         [InlineData("mg/mol", MolarMassUnit.MilligramPerMole)]
         [InlineData("ng/mol", MolarMassUnit.NanogramPerMole)]
         [InlineData("lb/mol", MolarMassUnit.PoundPerMole)]
+        [InlineData("lb/lbmol", MolarMassUnit.PoundPerPoundMole)]
+        [InlineData("lbm/lbmol", MolarMassUnit.PoundPerPoundMole)]
         public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MolarMassUnit expectedUnit)
         {
             // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
@@ -429,6 +443,8 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "mg/mol", MolarMassUnit.MilligramPerMole)]
         [InlineData("en-US", "ng/mol", MolarMassUnit.NanogramPerMole)]
         [InlineData("en-US", "lb/mol", MolarMassUnit.PoundPerMole)]
+        [InlineData("en-US", "lb/lbmol", MolarMassUnit.PoundPerPoundMole)]
+        [InlineData("en-US", "lbm/lbmol", MolarMassUnit.PoundPerPoundMole)]
         [InlineData("ru-RU", "сг/моль", MolarMassUnit.CentigramPerMole)]
         [InlineData("ru-RU", "даг/моль", MolarMassUnit.DecagramPerMole)]
         [InlineData("ru-RU", "дг/моль", MolarMassUnit.DecigramPerMole)]
@@ -462,6 +478,8 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "mg/mol", MolarMassUnit.MilligramPerMole)]
         [InlineData("en-US", "ng/mol", MolarMassUnit.NanogramPerMole)]
         [InlineData("en-US", "lb/mol", MolarMassUnit.PoundPerMole)]
+        [InlineData("en-US", "lb/lbmol", MolarMassUnit.PoundPerPoundMole)]
+        [InlineData("en-US", "lbm/lbmol", MolarMassUnit.PoundPerPoundMole)]
         [InlineData("ru-RU", "сг/моль", MolarMassUnit.CentigramPerMole)]
         [InlineData("ru-RU", "даг/моль", MolarMassUnit.DecagramPerMole)]
         [InlineData("ru-RU", "дг/моль", MolarMassUnit.DecigramPerMole)]
@@ -494,6 +512,8 @@ namespace UnitsNet.Tests
         [InlineData("mg/mol", MolarMassUnit.MilligramPerMole)]
         [InlineData("ng/mol", MolarMassUnit.NanogramPerMole)]
         [InlineData("lb/mol", MolarMassUnit.PoundPerMole)]
+        [InlineData("lb/lbmol", MolarMassUnit.PoundPerPoundMole)]
+        [InlineData("lbm/lbmol", MolarMassUnit.PoundPerPoundMole)]
         public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, MolarMassUnit expectedUnit)
         {
             // Fallback culture "en-US" is always localized
@@ -516,6 +536,8 @@ namespace UnitsNet.Tests
         [InlineData("mg/mol", MolarMassUnit.MilligramPerMole)]
         [InlineData("ng/mol", MolarMassUnit.NanogramPerMole)]
         [InlineData("lb/mol", MolarMassUnit.PoundPerMole)]
+        [InlineData("lb/lbmol", MolarMassUnit.PoundPerPoundMole)]
+        [InlineData("lbm/lbmol", MolarMassUnit.PoundPerPoundMole)]
         public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, MolarMassUnit expectedUnit)
         {
             // Currently, no abbreviations are localized for Icelandic, so it should fall back to "en-US" when parsing.
@@ -538,6 +560,8 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "mg/mol", MolarMassUnit.MilligramPerMole)]
         [InlineData("en-US", "ng/mol", MolarMassUnit.NanogramPerMole)]
         [InlineData("en-US", "lb/mol", MolarMassUnit.PoundPerMole)]
+        [InlineData("en-US", "lb/lbmol", MolarMassUnit.PoundPerPoundMole)]
+        [InlineData("en-US", "lbm/lbmol", MolarMassUnit.PoundPerPoundMole)]
         [InlineData("ru-RU", "сг/моль", MolarMassUnit.CentigramPerMole)]
         [InlineData("ru-RU", "даг/моль", MolarMassUnit.DecagramPerMole)]
         [InlineData("ru-RU", "дг/моль", MolarMassUnit.DecigramPerMole)]
@@ -571,6 +595,8 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "mg/mol", MolarMassUnit.MilligramPerMole)]
         [InlineData("en-US", "ng/mol", MolarMassUnit.NanogramPerMole)]
         [InlineData("en-US", "lb/mol", MolarMassUnit.PoundPerMole)]
+        [InlineData("en-US", "lb/lbmol", MolarMassUnit.PoundPerPoundMole)]
+        [InlineData("en-US", "lbm/lbmol", MolarMassUnit.PoundPerPoundMole)]
         [InlineData("ru-RU", "сг/моль", MolarMassUnit.CentigramPerMole)]
         [InlineData("ru-RU", "даг/моль", MolarMassUnit.DecagramPerMole)]
         [InlineData("ru-RU", "дг/моль", MolarMassUnit.DecigramPerMole)]
@@ -603,6 +629,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", MolarMassUnit.MilligramPerMole, "mg/mol")]
         [InlineData("en-US", MolarMassUnit.NanogramPerMole, "ng/mol")]
         [InlineData("en-US", MolarMassUnit.PoundPerMole, "lb/mol")]
+        [InlineData("en-US", MolarMassUnit.PoundPerPoundMole, "lb/lbmol")]
         [InlineData("ru-RU", MolarMassUnit.CentigramPerMole, "сг/моль")]
         [InlineData("ru-RU", MolarMassUnit.DecagramPerMole, "даг/моль")]
         [InlineData("ru-RU", MolarMassUnit.DecigramPerMole, "дг/моль")]
@@ -712,6 +739,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, MolarMass.FromMilligramsPerMole(kilogrampermole.MilligramsPerMole).KilogramsPerMole, MilligramsPerMoleTolerance);
             AssertEx.EqualTolerance(1, MolarMass.FromNanogramsPerMole(kilogrampermole.NanogramsPerMole).KilogramsPerMole, NanogramsPerMoleTolerance);
             AssertEx.EqualTolerance(1, MolarMass.FromPoundsPerMole(kilogrampermole.PoundsPerMole).KilogramsPerMole, PoundsPerMoleTolerance);
+            AssertEx.EqualTolerance(1, MolarMass.FromPoundsPerPoundMole(kilogrampermole.PoundsPerPoundMole).KilogramsPerMole, PoundsPerPoundMoleTolerance);
         }
 
         [Fact]
@@ -881,6 +909,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 mg/mol", new MolarMass(1, MolarMassUnit.MilligramPerMole).ToString());
             Assert.Equal("1 ng/mol", new MolarMass(1, MolarMassUnit.NanogramPerMole).ToString());
             Assert.Equal("1 lb/mol", new MolarMass(1, MolarMassUnit.PoundPerMole).ToString());
+            Assert.Equal("1 lb/lbmol", new MolarMass(1, MolarMassUnit.PoundPerPoundMole).ToString());
         }
 
         [Fact]
@@ -902,6 +931,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 mg/mol", new MolarMass(1, MolarMassUnit.MilligramPerMole).ToString(swedishCulture));
             Assert.Equal("1 ng/mol", new MolarMass(1, MolarMassUnit.NanogramPerMole).ToString(swedishCulture));
             Assert.Equal("1 lb/mol", new MolarMass(1, MolarMassUnit.PoundPerMole).ToString(swedishCulture));
+            Assert.Equal("1 lb/lbmol", new MolarMass(1, MolarMassUnit.PoundPerPoundMole).ToString(swedishCulture));
         }
 
         [Fact]

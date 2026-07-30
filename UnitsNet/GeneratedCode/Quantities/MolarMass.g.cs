@@ -133,6 +133,7 @@ namespace UnitsNet
                 yield return new (MolarMassUnit.MilligramPerMole, "MilligramPerMole", "MilligramsPerMole", new BaseUnits(mass: MassUnit.Milligram, amount: AmountOfSubstanceUnit.Mole));
                 yield return new (MolarMassUnit.NanogramPerMole, "NanogramPerMole", "NanogramsPerMole", new BaseUnits(mass: MassUnit.Nanogram, amount: AmountOfSubstanceUnit.Mole));
                 yield return new (MolarMassUnit.PoundPerMole, "PoundPerMole", "PoundsPerMole", new BaseUnits(mass: MassUnit.Pound, amount: AmountOfSubstanceUnit.Mole));
+                yield return new (MolarMassUnit.PoundPerPoundMole, "PoundPerPoundMole", "PoundsPerPoundMole", new BaseUnits(mass: MassUnit.Pound, amount: AmountOfSubstanceUnit.PoundMole));
             }
         }
 
@@ -303,6 +304,11 @@ namespace UnitsNet
         /// </summary>
         public double PoundsPerMole => As(MolarMassUnit.PoundPerMole);
 
+        /// <summary>
+        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="MolarMassUnit.PoundPerPoundMole"/>
+        /// </summary>
+        public double PoundsPerPoundMole => As(MolarMassUnit.PoundPerPoundMole);
+
         #endregion
 
         #region Static Methods
@@ -326,6 +332,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.MilligramPerMole, MolarMassUnit.KilogramPerMole, quantity => quantity.ToUnit(MolarMassUnit.KilogramPerMole));
             unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.NanogramPerMole, MolarMassUnit.KilogramPerMole, quantity => quantity.ToUnit(MolarMassUnit.KilogramPerMole));
             unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.PoundPerMole, MolarMassUnit.KilogramPerMole, quantity => quantity.ToUnit(MolarMassUnit.KilogramPerMole));
+            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.PoundPerPoundMole, MolarMassUnit.KilogramPerMole, quantity => quantity.ToUnit(MolarMassUnit.KilogramPerMole));
 
             // Register in unit converter: BaseUnit <-> BaseUnit
             unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.KilogramPerMole, quantity => quantity);
@@ -343,6 +350,7 @@ namespace UnitsNet
             unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.MilligramPerMole, quantity => quantity.ToUnit(MolarMassUnit.MilligramPerMole));
             unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.NanogramPerMole, quantity => quantity.ToUnit(MolarMassUnit.NanogramPerMole));
             unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.PoundPerMole, quantity => quantity.ToUnit(MolarMassUnit.PoundPerMole));
+            unitConverter.SetConversionFunction<MolarMass>(MolarMassUnit.KilogramPerMole, MolarMassUnit.PoundPerPoundMole, quantity => quantity.ToUnit(MolarMassUnit.PoundPerPoundMole));
         }
 
         /// <summary>
@@ -472,6 +480,14 @@ namespace UnitsNet
         public static MolarMass FromPoundsPerMole(double value)
         {
             return new MolarMass(value, MolarMassUnit.PoundPerMole);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="MolarMass"/> from <see cref="MolarMassUnit.PoundPerPoundMole"/>.
+        /// </summary>
+        public static MolarMass FromPoundsPerPoundMole(double value)
+        {
+            return new MolarMass(value, MolarMassUnit.PoundPerPoundMole);
         }
 
         /// <summary>
@@ -901,6 +917,7 @@ namespace UnitsNet
                 (MolarMassUnit.MilligramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((_value / 1e3) * 1e-3d, MolarMassUnit.KilogramPerMole),
                 (MolarMassUnit.NanogramPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass((_value / 1e3) * 1e-9d, MolarMassUnit.KilogramPerMole),
                 (MolarMassUnit.PoundPerMole, MolarMassUnit.KilogramPerMole) => new MolarMass(_value * 0.45359237, MolarMassUnit.KilogramPerMole),
+                (MolarMassUnit.PoundPerPoundMole, MolarMassUnit.KilogramPerMole) => new MolarMass(_value / 1e3, MolarMassUnit.KilogramPerMole),
 
                 // BaseUnit -> MolarMassUnit
                 (MolarMassUnit.KilogramPerMole, MolarMassUnit.CentigramPerMole) => new MolarMass((_value * 1e3) / 1e-2d, MolarMassUnit.CentigramPerMole),
@@ -915,6 +932,7 @@ namespace UnitsNet
                 (MolarMassUnit.KilogramPerMole, MolarMassUnit.MilligramPerMole) => new MolarMass((_value * 1e3) / 1e-3d, MolarMassUnit.MilligramPerMole),
                 (MolarMassUnit.KilogramPerMole, MolarMassUnit.NanogramPerMole) => new MolarMass((_value * 1e3) / 1e-9d, MolarMassUnit.NanogramPerMole),
                 (MolarMassUnit.KilogramPerMole, MolarMassUnit.PoundPerMole) => new MolarMass(_value / 0.45359237, MolarMassUnit.PoundPerMole),
+                (MolarMassUnit.KilogramPerMole, MolarMassUnit.PoundPerPoundMole) => new MolarMass(_value * 1e3, MolarMassUnit.PoundPerPoundMole),
 
                 _ => null
             };
