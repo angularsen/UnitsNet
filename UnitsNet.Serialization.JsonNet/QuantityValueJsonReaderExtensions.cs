@@ -18,8 +18,8 @@ internal static class QuantityValueJsonReaderExtensions
                 return reader.ReadExactNumber();
             case QuantityValueDeserializationFormat.RoundedDouble:
                 return reader.ReadValueFromDouble();
-            case QuantityValueDeserializationFormat.RoundTripping:
-                return reader.ReadValueRoundTripping();
+            case QuantityValueDeserializationFormat.RoundTrip:
+                return reader.ReadValueRoundTrip();
             case QuantityValueDeserializationFormat.Custom:
             default:
                 reader.Read();
@@ -49,7 +49,7 @@ internal static class QuantityValueJsonReaderExtensions
         return QuantityValue.FromDoubleRounded(doubleValue.Value);
     }
 
-    public static QuantityValue ReadValueRoundTripping(this JsonReader reader)
+    public static QuantityValue ReadValueRoundTrip(this JsonReader reader)
     {
         var valueString = reader.ReadAsString();
         if (valueString == null)

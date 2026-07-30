@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Globalization;
 using System.Text;
 
 namespace UnitsNet;
@@ -363,11 +364,12 @@ public readonly record struct ConversionExpression
     public override string ToString()
     {
         var x = NestedFunction is null ? "x" : "g(x)";
+        var coefficient = Coefficient.ToString(CultureInfo.InvariantCulture);
         var firstTerm = Exponent switch
         {
-            1 => Coefficient == QuantityValue.One ? x : Coefficient == -1 ? $"-{x}" : $"{Coefficient} * {x}",
-            -1 => Coefficient == QuantityValue.One ? $"1 / {x}" : Coefficient == -1 ? $"-1 / {x}" : $"{Coefficient} / {x}",
-            _ => Coefficient == QuantityValue.One ? $"{x}^{Exponent}" : Coefficient == -1 ? $"-{x}^{Exponent}" : $"{Coefficient} * {x}^{Exponent}"
+            1 => Coefficient == QuantityValue.One ? x : Coefficient == -1 ? $"-{x}" : $"{coefficient} * {x}",
+            -1 => Coefficient == QuantityValue.One ? $"1 / {x}" : Coefficient == -1 ? $"-1 / {x}" : $"{coefficient} / {x}",
+            _ => Coefficient == QuantityValue.One ? $"{x}^{Exponent}" : Coefficient == -1 ? $"-{x}^{Exponent}" : $"{coefficient} * {x}^{Exponent}"
         };
 
         if (ConstantTerm == QuantityValue.Zero)
@@ -375,7 +377,10 @@ public readonly record struct ConversionExpression
             return firstTerm;
         }
 
-        return ConstantTerm > 0 ? firstTerm + " + " + ConstantTerm : firstTerm + " - " + -ConstantTerm;
+        QuantityValue absoluteConstantTerm = QuantityValue.Abs(ConstantTerm);
+        return ConstantTerm > 0
+            ? firstTerm + " + " + absoluteConstantTerm.ToString(CultureInfo.InvariantCulture)
+            : firstTerm + " - " + absoluteConstantTerm.ToString(CultureInfo.InvariantCulture);
     }
 
     private bool PrintMembers(StringBuilder builder)

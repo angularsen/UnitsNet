@@ -1437,7 +1437,7 @@ public partial class QuantityValueTests
         }
 
         [Fact]
-        public void ToString_WithTheRoundTrippingFormat_ReturnsTheDoubleRepresentation()
+        public void ToString_WithTheRoundTripFormat_ReturnsTheDoubleRepresentation()
         {
             QuantityValue value = 123.456m;
             var expectedValue = value.ToDouble().ToString("R");

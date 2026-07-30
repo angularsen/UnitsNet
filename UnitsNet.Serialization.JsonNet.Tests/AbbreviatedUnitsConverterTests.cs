@@ -33,6 +33,18 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         }
 
         [Fact]
+        public void DoublePrecision_SerializesWith17SignificantDigits()
+        {
+            QuantityValue value = QuantityValue.Parse("1.2345678901234567", CultureInfo.InvariantCulture);
+            var quantity = Mass.FromMilligrams(value);
+            const string expectedJson = """{"Value":1.2345678901234567,"Unit":"mg","Type":"Mass"}""";
+
+            var json = SerializeObject(quantity);
+
+            Assert.Equal(expectedJson, json);
+        }
+
+        [Fact]
         public void InterfaceObject_IncludesTypeInformation()
         {
             var testObject = new TestInterfaceObject { Quantity = new Information(1.2, InformationUnit.Exabyte) };

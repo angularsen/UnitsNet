@@ -15,7 +15,7 @@
     <PackageLicenseExpression>MIT-0</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>unit units measurement json System.Text.Json serialize deserialize serialization deserialization</PackageTags>
-    <PackageReleaseNotes>Upgrade JSON.NET to 12.0.3. Support arrays.</PackageReleaseNotes>
+    <PackageReleaseNotes>Initial release with quantity, unit, and QuantityValue converters.</PackageReleaseNotes>
     <IsAotCompatible Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">true</IsAotCompatible>
   </PropertyGroup>
 

@@ -11,11 +11,11 @@ using Xunit;
 
 namespace UnitsNet.Serialization.JsonNet.Tests;
 
-public class AbbreviatedUnitsConverterWithRoundTrippingFormatOptionsTests : JsonNetSerializationTestsBase
+public class AbbreviatedUnitsConverterWithRoundTripFormatOptionsTests : JsonNetSerializationTestsBase
 {
-    public AbbreviatedUnitsConverterWithRoundTrippingFormatOptionsTests()
+    public AbbreviatedUnitsConverterWithRoundTripFormatOptionsTests()
         : base(new AbbreviatedUnitsConverter(
-            new QuantityValueFormatOptions(QuantityValueSerializationFormat.RoundTripping, QuantityValueDeserializationFormat.RoundTripping)))
+            new QuantityValueFormatOptions(QuantityValueSerializationFormat.RoundTrip, QuantityValueDeserializationFormat.RoundTrip)))
     {
     }
 

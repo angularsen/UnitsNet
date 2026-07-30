@@ -389,7 +389,8 @@ public partial class QuantityValueTests
 
             var result = QuantityValue.RootN(quantityValue, root);
 #if NET
-            Assert.Equal(double.RootN(number, root), result.ToDouble(), 15);
+            // The platform implementation of double.RootN can differ by a few units in the last place.
+            Assert.Equal(double.RootN(number, root), result.ToDouble(), tolerance: 1e-14);
 #endif
             Assert.Equal(expectedValue, result.ToDouble(), 15);
         }

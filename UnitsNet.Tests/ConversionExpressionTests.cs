@@ -1,6 +1,7 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System.Globalization;
 using System.Text;
 using Xunit;
 
@@ -420,6 +421,23 @@ namespace UnitsNet.Tests
             var expression = new ConversionExpression(coefficient, null, exponent, constantTerm);
             var result = expression.ToString();
             Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void ToString_WithNonInvariantCurrentCulture_UsesInvariantNotation()
+        {
+            CultureInfo previousCulture = CultureInfo.CurrentCulture;
+            try
+            {
+                CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("nb-NO");
+                var expression = new ConversionExpression(-2.5, null, 1, -2.5);
+
+                Assert.Equal("-2.5 * x - 2.5", expression.ToString());
+            }
+            finally
+            {
+                CultureInfo.CurrentCulture = previousCulture;
+            }
         }
 
         [Fact]

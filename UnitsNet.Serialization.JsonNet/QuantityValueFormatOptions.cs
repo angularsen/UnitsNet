@@ -48,7 +48,7 @@ public enum QuantityValueSerializationFormat
     ///     This format is ideal for scenarios where the exact representation of a value is required for round-trip
     ///     serialization and deserialization.
     /// </remarks>
-    RoundTripping,
+    RoundTrip,
 
     /// <summary>
     ///     Relies on the presence of a custom converter for the <see cref="QuantityValue" />.
@@ -65,15 +65,20 @@ public enum QuantityValueSerializationFormat
 public enum QuantityValueDeserializationFormat
 {
     /// <summary>
-    ///     Deserializes the quantity value as exact number in decimal notation.
+    ///     Deserializes the numeric value of a JSON number exactly, without converting through <see cref="double" /> or
+    ///     <see cref="decimal" />.
     /// </summary>
+    /// <remarks>
+    ///     Every digit is parsed directly into a <see cref="QuantityValue" />. The original textual representation is not
+    ///     retained, so equivalent JSON numbers such as <c>1.2300e2</c> and <c>123</c> produce the same numeric value.
+    /// </remarks>
     ExactNumber,
-    
+
     /// <summary>
     ///     Deserializes the quantity value as a double precision number, which is then rounded to 15 significant digits.
     /// </summary>
     RoundedDouble,
-    
+
     /// <summary>
     ///     Represents a serialization format that ensures the exact value of a quantity is preserved during serialization and
     ///     deserialization.
@@ -89,7 +94,7 @@ public enum QuantityValueDeserializationFormat
     ///     This format is ideal for scenarios where the exact representation of a value is required for round-trip
     ///     serialization and deserialization.
     /// </remarks>
-    RoundTripping,
+    RoundTrip,
 
     /// <summary>
     ///     Relies on the presence of a custom converter for the <see cref="QuantityValue" />.

@@ -23,8 +23,8 @@ internal static class QuantityValueJsonWriterExtensions
             case QuantityValueSerializationFormat.DecimalPrecision:
                 writer.WriteValueWithDecimalPrecision(value);
                 break;
-            case QuantityValueSerializationFormat.RoundTripping:
-                writer.WriteValueRoundTripping(value);
+            case QuantityValueSerializationFormat.RoundTrip:
+                writer.WriteValueRoundTrip(value);
                 break;
             case QuantityValueSerializationFormat.Custom:
             default:
@@ -35,7 +35,7 @@ internal static class QuantityValueJsonWriterExtensions
 
     public static void WriteValueWithDoublePrecision(this JsonWriter writer, QuantityValue value)
     {
-        writer.WriteRawValue(value.ToString(CultureInfo.InvariantCulture));
+        writer.WriteRawValue(value.ToString("G17", CultureInfo.InvariantCulture));
     }
 
     public static void WriteValueWithDecimalPrecision(this JsonWriter writer, QuantityValue value)
@@ -43,7 +43,7 @@ internal static class QuantityValueJsonWriterExtensions
         writer.WriteRawValue(value.ToString("G29", CultureInfo.InvariantCulture));
     }
 
-    public static void WriteValueRoundTripping(this JsonWriter writer, QuantityValue value)
+    public static void WriteValueRoundTrip(this JsonWriter writer, QuantityValue value)
     {
         (BigInteger numerator, BigInteger denominator) = QuantityValue.Reduce(value);
         // TODO see about using exponential notation
