@@ -23,6 +23,40 @@ public sealed class GeneratedQuantityTests
         Assert.Equal(amount, JsonSerializer.Deserialize<HowMuch>(JsonSerializer.Serialize(amount, options), options));
     }
 
+    [Theory]
+    [InlineData("null")]
+    [InlineData("{}")]
+    [InlineData("""{"Value":1.5}""")]
+    [InlineData("""{"Value":1.5,"Unit":"Missing"}""")]
+    public void GeneratedRegistry_SystemTextJsonRejectsInvalidQuantityShapes(string json)
+    {
+        var options = new JsonSerializerOptions();
+        options.Converters.Add(global::UnitsNet.Modular.Generated.GeneratedQuantityRegistry.JsonConverter);
+
+        Assert.Throws<JsonException>(() => JsonSerializer.Deserialize<Length>(json, options));
+    }
+
+    [Fact]
+    public void GeneratedRegistry_SystemTextJsonDoesNotGuessPolymorphicQuantityTypes()
+    {
+        var options = new JsonSerializerOptions();
+        options.Converters.Add(global::UnitsNet.Modular.Generated.GeneratedQuantityRegistry.JsonConverter);
+
+        Assert.Throws<NotSupportedException>(
+            () => JsonSerializer.Deserialize<UnitsNet.Core.IQuantity<double>>(
+                """{"Value":1.5,"Unit":"Kilometer"}""",
+                options));
+    }
+
+    [Fact]
+    public void SystemTextJsonWithoutGeneratedConverterDoesNotUseTheStableStringUnitShape()
+    {
+        string json = JsonSerializer.Serialize(Length.FromKilometers(1.5));
+        using JsonDocument document = JsonDocument.Parse(json);
+
+        Assert.Equal(JsonValueKind.Number, document.RootElement.GetProperty("Unit").ValueKind);
+    }
+
     [Fact]
     public void GeneratedRegistry_SupportsCommonDynamicMigrationWorkflows()
     {
@@ -411,6 +445,14 @@ public sealed class GeneratedQuantityTests
     }
 
     [Fact]
+    public void QuantityId_RequiresANonEmptyValue()
+    {
+        Assert.Throws<ArgumentNullException>(() => new UnitsNet.Core.QuantityId(null!));
+        Assert.Throws<ArgumentException>(() => new UnitsNet.Core.QuantityId(" "));
+        Assert.Equal("Sample.Distance", new UnitsNet.Core.QuantityId("Sample.Distance").Value);
+    }
+
+    [Fact]
     public void GeneratedQuantities_AdvertiseTheirArithmeticCapabilities()
     {
         AssertLinearCapability<Length, LengthUnit>();
@@ -423,6 +465,27 @@ public sealed class GeneratedQuantityTests
         Assert.DoesNotContain(
             typeof(Level).GetInterfaces(),
             type => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(UnitsNet.Core.ILinearQuantity<>));
+    }
+
+    [Theory]
+    [InlineData(0d)]
+    [InlineData(double.NaN)]
+    [InlineData(double.PositiveInfinity)]
+    [InlineData(double.NegativeInfinity)]
+    public void LinearQuantity_ConversionPreservesZeroAndNonFiniteValues(double meters)
+    {
+        double kilometers = Length.FromMeters(meters).Kilometers;
+        double roundTrip = Length.FromKilometers(kilometers).Meters;
+
+        if (double.IsNaN(meters))
+        {
+            Assert.True(double.IsNaN(kilometers));
+            Assert.True(double.IsNaN(roundTrip));
+            return;
+        }
+
+        Assert.Equal(meters / 1000d, kilometers);
+        Assert.Equal(meters, roundTrip);
     }
 
     [Fact]
@@ -541,7 +604,9 @@ public sealed class GeneratedQuantityTests
         where TQuantity : UnitsNet.Core.IAffineQuantity<TQuantity, TUnit, TOffset>
         where TUnit : struct, Enum
         where TOffset : UnitsNet.Core.ILinearQuantity<TOffset>
-        => Assert.Equal(TQuantity.BaseUnit, TQuantity.Zero.Unit);
+        => Assert.Contains(
+            typeof(UnitsNet.Core.IAffineQuantity<TQuantity, TUnit, TOffset>),
+            typeof(TQuantity).GetInterfaces());
 
     private static TQuantity AddOffset<TQuantity, TUnit, TOffset>(TQuantity quantity, TOffset offset)
         where TQuantity : UnitsNet.Core.IAffineQuantity<TQuantity, TUnit, TOffset>

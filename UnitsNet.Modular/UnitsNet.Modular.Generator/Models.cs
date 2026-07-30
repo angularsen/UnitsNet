@@ -1,6 +1,8 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace UnitsNet.Modular.Generator;
 
@@ -342,11 +344,20 @@ internal sealed class QuantitySelection
 
 internal sealed class JsonDefinitionResult
 {
-    public JsonDefinitionResult(string path, QuantityDefinition? definition, string? error)
+    public JsonDefinitionResult(
+        string path,
+        QuantityDefinition? definition,
+        string? error,
+        string content,
+        int errorLine = 0,
+        int errorColumn = 0)
     {
         Path = path;
         Definition = definition;
         Error = error;
+        ContentFingerprint = AdditionalFileFingerprint.Create(content);
+        ErrorLine = errorLine;
+        ErrorColumn = errorColumn;
     }
 
     public string Path { get; }
@@ -354,6 +365,33 @@ internal sealed class JsonDefinitionResult
     public QuantityDefinition? Definition { get; }
 
     public string? Error { get; }
+
+    public string ContentFingerprint { get; }
+
+    public int ErrorLine { get; }
+
+    public int ErrorColumn { get; }
+}
+
+internal sealed class JsonDefinitionResultComparer : IEqualityComparer<JsonDefinitionResult>
+{
+    public static JsonDefinitionResultComparer Instance { get; } = new JsonDefinitionResultComparer();
+
+    public bool Equals(JsonDefinitionResult? x, JsonDefinitionResult? y) =>
+        ReferenceEquals(x, y) ||
+        (x is not null &&
+         y is not null &&
+         string.Equals(x.Path, y.Path, StringComparison.Ordinal) &&
+         string.Equals(x.ContentFingerprint, y.ContentFingerprint, StringComparison.Ordinal));
+
+    public int GetHashCode(JsonDefinitionResult obj)
+    {
+        unchecked
+        {
+            return (StringComparer.Ordinal.GetHashCode(obj.Path) * 397) ^
+                   StringComparer.Ordinal.GetHashCode(obj.ContentFingerprint);
+        }
+    }
 }
 
 internal sealed class QuantityRelationDefinition
@@ -436,11 +474,17 @@ internal sealed class RelationDefinitionResult
     public RelationDefinitionResult(
         string path,
         IReadOnlyList<QuantityRelationDefinition>? definitions,
-        string? error)
+        string? error,
+        string content,
+        int errorLine = 0,
+        int errorColumn = 0)
     {
         Path = path;
         Definitions = definitions;
         Error = error;
+        ContentFingerprint = AdditionalFileFingerprint.Create(content);
+        ErrorLine = errorLine;
+        ErrorColumn = errorColumn;
     }
 
     public string Path { get; }
@@ -448,6 +492,42 @@ internal sealed class RelationDefinitionResult
     public IReadOnlyList<QuantityRelationDefinition>? Definitions { get; }
 
     public string? Error { get; }
+
+    public string ContentFingerprint { get; }
+
+    public int ErrorLine { get; }
+
+    public int ErrorColumn { get; }
+}
+
+internal sealed class RelationDefinitionResultComparer : IEqualityComparer<RelationDefinitionResult>
+{
+    public static RelationDefinitionResultComparer Instance { get; } = new RelationDefinitionResultComparer();
+
+    public bool Equals(RelationDefinitionResult? x, RelationDefinitionResult? y) =>
+        ReferenceEquals(x, y) ||
+        (x is not null &&
+         y is not null &&
+         string.Equals(x.Path, y.Path, StringComparison.Ordinal) &&
+         string.Equals(x.ContentFingerprint, y.ContentFingerprint, StringComparison.Ordinal));
+
+    public int GetHashCode(RelationDefinitionResult obj)
+    {
+        unchecked
+        {
+            return (StringComparer.Ordinal.GetHashCode(obj.Path) * 397) ^
+                   StringComparer.Ordinal.GetHashCode(obj.ContentFingerprint);
+        }
+    }
+}
+
+internal static class AdditionalFileFingerprint
+{
+    public static string Create(string content)
+    {
+        using SHA256 algorithm = SHA256.Create();
+        return Convert.ToBase64String(algorithm.ComputeHash(Encoding.UTF8.GetBytes(content)));
+    }
 }
 
 internal sealed class EmittedQuantityRelation

@@ -9,6 +9,18 @@ Built-in definitions preserve `using UnitsNet;` and `using UnitsNet.Units;` sour
 Specify an application namespace with `[UnitsNetModule("MyApplication.Units")]` when a separate
 generated namespace is preferable.
 
+The POC's clean-slate capability contracts live in `UnitsNet.Core`, while current UnitsNet
+interfaces live in `UnitsNet`. Migration code that imports both namespaces can therefore encounter
+ambiguous short interface names. Ordinary concrete quantity code does not need
+`using UnitsNet.Core;`. Generic migration code should use an alias until a later UnitsNet
+integration decides whether the legacy and Core contract sets converge:
+
+```csharp
+using CoreQuantity = UnitsNet.Core.IQuantity<double>;
+
+CoreQuantity value = Length.FromMeters(1);
+```
+
 With an explicit target namespace, `Quantity` is generated into that namespace. Otherwise, a module
 that includes built-ins places it in `UnitsNet`; a custom-only module places it in the namespace
 containing the module interface. Since one generated assembly has one module, each code owner
@@ -31,7 +43,7 @@ QuantityRegistry registry = GeneratedQuantityRegistry.Instance;
 | `Quantity.Infos` | `Quantity.Infos` or `registry.Quantities` | Supported with immutable descriptors |
 | `Quantity.ByName[name]` | `Quantity.ByName[name]` or `registry.Get(name)` | Supported, case-insensitive name |
 | Lookup by quantity type | `registry.Get(typeof(Length))` | Supported |
-| Stable cross-boundary identity | `registry.Get(new QuantityId("UnitsNet.Length"))` | Supported |
+| Stable cross-boundary identity | `registry.Get(new QuantityId("UnitsNet.Length"))` | Supported; use namespace-qualified IDs |
 | Lookup from a unit enum type | `registry.GetByUnitType(typeof(LengthUnit))` | Supported |
 | `Quantity.From(value, quantityName, unitName)` | Same facade call | Returns Core quantity contract |
 | `Quantity.From(value, unitEnum)` | Same facade call | Returns Core quantity contract |

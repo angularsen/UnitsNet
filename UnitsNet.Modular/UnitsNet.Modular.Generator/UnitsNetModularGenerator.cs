@@ -135,12 +135,14 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
             .Combine(context.AnalyzerConfigOptionsProvider)
             .Where(static input => IsJsonDefinition(input.Left, input.Right))
             .Select(static (input, cancellationToken) => JsonDefinitionParser.Parse(input.Left, cancellationToken))
+            .WithComparer(JsonDefinitionResultComparer.Instance)
             .WithTrackingName("Definitions");
 
         IncrementalValuesProvider<RelationDefinitionResult> relationDefinitions = context.AdditionalTextsProvider
             .Combine(context.AnalyzerConfigOptionsProvider)
             .Where(static input => IsRelationDefinition(input.Left, input.Right))
             .Select(static (input, cancellationToken) => QuantityRelationParser.Parse(input.Left, cancellationToken))
+            .WithComparer(RelationDefinitionResultComparer.Instance)
             .WithTrackingName("Relations");
 
         IncrementalValueProvider<((ImmutableArray<ModuleRequest> Left, ImmutableArray<JsonDefinitionResult> Right) Left, ImmutableArray<RelationDefinitionResult> Right)> generationInputs =
@@ -191,7 +193,11 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
         {
             if (result.Error is not null)
             {
-                context.ReportDiagnostic(Diagnostic.Create(InvalidJsonDefinition, FileLocation(result.Path), result.Path, result.Error));
+                context.ReportDiagnostic(Diagnostic.Create(
+                    InvalidJsonDefinition,
+                    FileLocation(result.Path, result.ErrorLine, result.ErrorColumn),
+                    result.Path,
+                    result.Error));
                 continue;
             }
 
@@ -210,8 +216,23 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
             BuiltInCatalog.CreateBaseUnitPrefixes(jsonDefinitions.Values);
         foreach (string definitionId in jsonDefinitions.Keys.ToArray())
         {
-            jsonDefinitions[definitionId] =
-                PrefixExpander.Expand(jsonDefinitions[definitionId], baseUnitPrefixes);
+            QuantityDefinition definition = jsonDefinitions[definitionId];
+            if (PrefixExpander.TryExpand(
+                    definition,
+                    baseUnitPrefixes,
+                    out QuantityDefinition? expanded,
+                    out string? error))
+            {
+                jsonDefinitions[definitionId] = expanded!;
+                continue;
+            }
+
+            context.ReportDiagnostic(Diagnostic.Create(
+                InvalidJsonDefinition,
+                FileLocation(definition.SourcePath ?? string.Empty),
+                definition.SourcePath ?? string.Empty,
+                error));
+            jsonDefinitions.Remove(definitionId);
         }
 
         var requests = new Dictionary<string, SelectionRequest>(StringComparer.Ordinal);
@@ -343,7 +364,7 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
             {
                 context.ReportDiagnostic(Diagnostic.Create(
                     InvalidRelationDefinition,
-                    FileLocation(result.Path),
+                    FileLocation(result.Path, result.ErrorLine, result.ErrorColumn),
                     result.Path,
                     result.Error));
                 continue;
@@ -630,12 +651,14 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
         string.Equals(left.SemanticId, right.SemanticId, StringComparison.Ordinal) &&
         string.Equals(left.SourcePath, right.SourcePath, StringComparison.Ordinal);
 
-    private static Location FileLocation(string path) => string.IsNullOrWhiteSpace(path)
+    private static Location FileLocation(string path, int line = 0, int column = 0) => string.IsNullOrWhiteSpace(path)
         ? Location.None
         : Location.Create(
             path,
             new TextSpan(0, 0),
-            new LinePositionSpan(new LinePosition(0, 0), new LinePosition(0, 0)));
+            new LinePositionSpan(
+                new LinePosition(Math.Max(0, line), Math.Max(0, column)),
+                new LinePosition(Math.Max(0, line), Math.Max(0, column))));
 
     private static bool IsJsonDefinition(AdditionalText file, AnalyzerConfigOptionsProvider optionsProvider)
     {

@@ -476,7 +476,9 @@ internal interface ApplicationUnits : IInclude<HowMuchDefinition>;
 ```
 
 The marker ID must match `Namespace.Name` in the JSON definition. If `Namespace` is omitted, it
-defaults to `UnitsNet`.
+defaults to `UnitsNet`. Treat this semantic ID as a package-boundary identifier: use a namespace
+you own so independently authored definition packages cannot describe unrelated quantities with
+the same identity.
 
 ### Quantity definition JSON
 
@@ -770,7 +772,11 @@ The shape is:
 ```
 
 Applications own the compatibility and versioning of serialized contracts. Semantic quantity IDs
-and invariant unit names are the recommended boundary between independently compiled modules.
+and invariant unit names are the recommended boundary between independently compiled modules. The
+generated converter handles selected concrete quantity types. Deserializing a polymorphic
+`IQuantity<double>` directly is deliberately unsupported because the serialized shape does not
+carry a CLR type or semantic quantity ID; resolve a descriptor by semantic ID at that boundary
+instead.
 
 ## Diagnostics
 

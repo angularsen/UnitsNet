@@ -807,7 +807,7 @@ namespace UnitsNet
         public static double operator /({_quantity.Name} left, {_quantity.Name} right)
         {{
             // Logarithmic division = subtraction
-            return System.Convert.ToDouble(left.Value - right.ToUnit(left.Unit).Value);
+            return Convert.ToDouble(left.Value - right.ToUnit(left.Unit).Value);
         }}
 
         #endregion

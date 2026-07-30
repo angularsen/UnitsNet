@@ -141,6 +141,11 @@ public static class LogarithmicQuantityMath
     }
 
     /// <summary>Compares logarithmic quantities with a logarithmic absolute tolerance.</summary>
+    /// <remarks>
+    /// The comparison converts all values to linear space and is therefore approximate. Avoid a
+    /// zero logarithmic tolerance: it maps to one in linear space rather than to zero. Prefer the
+    /// quantity's normal equality operation when no tolerance is required.
+    /// </remarks>
     public static bool Equals<TQuantity, TUnit>(
         TQuantity quantity,
         TQuantity other,

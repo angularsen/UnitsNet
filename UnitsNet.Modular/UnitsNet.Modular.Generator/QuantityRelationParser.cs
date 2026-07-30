@@ -40,7 +40,7 @@ internal static class QuantityRelationParser
                 });
             if (document.RootElement.ValueKind != JsonValueKind.Array)
             {
-                return Error(path, "The file did not contain a relation array.");
+                return Error(path, json, "The file did not contain a relation array.");
             }
 
             var definitions = new List<QuantityRelationDefinition>();
@@ -64,17 +64,22 @@ internal static class QuantityRelationParser
                 index++;
             }
 
-            return new RelationDefinitionResult(path, definitions, null);
+            return new RelationDefinitionResult(path, definitions, null, json);
         }
         catch (JsonException exception)
         {
-            long line = exception.LineNumber.GetValueOrDefault() + 1;
-            long position = exception.BytePositionInLine.GetValueOrDefault();
-            return Error(path, $"JSON line {line}, byte position {position}: {exception.Message}");
+            int line = checked((int)exception.LineNumber.GetValueOrDefault());
+            int position = checked((int)exception.BytePositionInLine.GetValueOrDefault());
+            return Error(
+                path,
+                json,
+                $"JSON line {line + 1}, byte position {position}: {exception.Message}",
+                line,
+                position);
         }
         catch (Exception exception)
         {
-            return Error(path, exception.Message);
+            return Error(path, json, exception.Message);
         }
     }
 
@@ -237,6 +242,11 @@ internal static class QuantityRelationParser
         public string? Unit { get; set; }
     }
 
-    private static RelationDefinitionResult Error(string path, string error)
-        => new RelationDefinitionResult(path, null, error);
+    private static RelationDefinitionResult Error(
+        string path,
+        string json,
+        string error,
+        int errorLine = 0,
+        int errorColumn = 0) =>
+        new RelationDefinitionResult(path, null, error, json, errorLine, errorColumn);
 }

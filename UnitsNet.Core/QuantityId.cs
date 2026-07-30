@@ -2,7 +2,10 @@
 
 namespace UnitsNet.Core;
 
-/// <summary>Identifies a quantity independently of its concrete generated CLR type.</summary>
+/// <summary>
+/// Identifies a quantity independently of its concrete generated CLR type.
+/// Use a globally unique, namespace-qualified value for identities shared across package boundaries.
+/// </summary>
 public readonly struct QuantityId : IEquatable<QuantityId>
 {
     private readonly string? _value;
@@ -10,6 +13,7 @@ public readonly struct QuantityId : IEquatable<QuantityId>
     /// <summary>Initializes a semantic quantity identifier.</summary>
     public QuantityId(string value)
     {
+        ArgumentNullException.ThrowIfNull(value);
         if (string.IsNullOrWhiteSpace(value))
         {
             throw new ArgumentException("A quantity identifier cannot be empty.", nameof(value));

@@ -31,12 +31,12 @@ internal static class JsonDefinitionParser
             JsonQuantity? parsed = JsonSerializer.Deserialize<JsonQuantity>(json, SerializerOptions);
             if (parsed is null)
             {
-                return Error(path, "The file did not contain a quantity definition.");
+                return Error(path, json, "The file did not contain a quantity definition.");
             }
 
             if (string.IsNullOrWhiteSpace(parsed.Name) || string.IsNullOrWhiteSpace(parsed.BaseUnit))
             {
-                return Error(path, "Name and BaseUnit are required.");
+                return Error(path, json, "Name and BaseUnit are required.");
             }
 
             var units = new List<UnitDefinition>();
@@ -44,17 +44,17 @@ internal static class JsonDefinitionParser
             {
                 if (string.IsNullOrWhiteSpace(unit.SingularName) || string.IsNullOrWhiteSpace(unit.PluralName))
                 {
-                    return Error(path, "Every unit requires SingularName and PluralName.");
+                    return Error(path, json, "Every unit requires SingularName and PluralName.");
                 }
 
                 if (!ConversionExpression.TryNormalize(unit.FromUnitToBaseFunc, out string toBase, out string toBaseError))
                 {
-                    return Error(path, $"{unit.SingularName}.FromUnitToBaseFunc: {toBaseError}");
+                    return Error(path, json, $"{unit.SingularName}.FromUnitToBaseFunc: {toBaseError}");
                 }
 
                 if (!ConversionExpression.TryNormalize(unit.FromBaseToUnitFunc, out string fromBase, out string fromBaseError))
                 {
-                    return Error(path, $"{unit.SingularName}.FromBaseToUnitFunc: {fromBaseError}");
+                    return Error(path, json, $"{unit.SingularName}.FromBaseToUnitFunc: {fromBaseError}");
                 }
 
                 UnitLocalizationDefinition[] localizations = (unit.Localization ?? Array.Empty<JsonLocalization>())
@@ -93,17 +93,22 @@ internal static class JsonDefinitionParser
                 logarithmicScalingFactor,
                 affineOffsetType: parsed.AffineOffsetType,
                 baseDimensions: ParseBaseDimensions(parsed.BaseDimensions));
-            return new JsonDefinitionResult(path, PrefixExpander.Expand(definition), null);
+            return new JsonDefinitionResult(path, definition, null, json);
         }
         catch (JsonException exception)
         {
-            long line = exception.LineNumber.GetValueOrDefault() + 1;
-            long position = exception.BytePositionInLine.GetValueOrDefault();
-            return Error(path, $"JSON line {line}, byte position {position}: {exception.Message}");
+            int line = checked((int)exception.LineNumber.GetValueOrDefault());
+            int position = checked((int)exception.BytePositionInLine.GetValueOrDefault());
+            return Error(
+                path,
+                json,
+                $"JSON line {line + 1}, byte position {position}: {exception.Message}",
+                line,
+                position);
         }
         catch (Exception exception)
         {
-            return Error(path, exception.Message);
+            return Error(path, json, exception.Message);
         }
     }
 
@@ -172,7 +177,13 @@ internal static class JsonDefinitionParser
             Get("J"));
     }
 
-    private static JsonDefinitionResult Error(string path, string error) => new JsonDefinitionResult(path, null, error);
+    private static JsonDefinitionResult Error(
+        string path,
+        string json,
+        string error,
+        int errorLine = 0,
+        int errorColumn = 0) =>
+        new JsonDefinitionResult(path, null, error, json, errorLine, errorColumn);
 
     private sealed class JsonQuantity
     {

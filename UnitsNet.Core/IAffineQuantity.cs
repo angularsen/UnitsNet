@@ -12,8 +12,6 @@ namespace UnitsNet.Core;
 public interface IAffineQuantity<TSelf>
     where TSelf : IAffineQuantity<TSelf>
 {
-    /// <summary>Gets zero expressed in the quantity's base unit.</summary>
-    static abstract TSelf Zero { get; }
 }
 
 /// <summary>An affine quantity whose arithmetic is expressed through a linear offset quantity.</summary>

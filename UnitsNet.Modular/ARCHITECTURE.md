@@ -270,6 +270,10 @@ into the consumer-owned assembly. Internal base values are sufficient for relati
 all participating recipe quantities are generated into that assembly; independently compiled
 modules cannot acquire cross-module operators.
 
+Semantic IDs are namespace-qualified (`Namespace.Name`) and definition-package authors should use
+a namespace they own. This makes IDs stable and globally meaningful at registry and serialization
+boundaries without adding vendor state to each quantity value.
+
 Each module does have an immutable generated **discovery registry**. It describes only that
 module's selected quantities and supports lookup by semantic ID, quantity name, or generated CLR
 type. Descriptors expose units, abbreviations, base dimensions, construction, conversion, parsing,

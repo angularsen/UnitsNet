@@ -103,4 +103,70 @@ public sealed class DiagnosticGeneratorTests
         Assert.Equal(LocationKind.ExternalFile, diagnostic.Location.Kind);
         Assert.Equal("Test.cs", diagnostic.Location.GetLineSpan().Path);
     }
+
+    [Fact]
+    public void MalformedJson_ReportsTheJsonErrorLocation()
+    {
+        GeneratorTestHost.TestRun run = GeneratorTestHost.Run(
+            """
+            using UnitsNet.Modular;
+
+            [QuantityDefinition("Sample.Widget")]
+            internal interface WidgetDefinition;
+
+            [UnitsNetModule]
+            internal interface Module : IInclude<WidgetDefinition>;
+            """,
+            ("Widget.unitsnet.json", """
+                {
+                  "Name": "Widget",
+                  "Namespace": "Sample",
+                  "BaseUnit": "Value",
+                  "Units": [
+                    invalid
+                  ]
+                }
+                """));
+
+        Diagnostic diagnostic = Assert.Single(run.Result.Diagnostics, item => item.Id == "UNM004");
+        FileLinePositionSpan span = diagnostic.Location.GetLineSpan();
+        Assert.Equal("Widget.unitsnet.json", span.Path);
+        Assert.Equal(5, span.StartLinePosition.Line);
+        Assert.True(span.StartLinePosition.Character > 0);
+    }
+
+    [Fact]
+    public void UnknownPrefix_ReportsInvalidDefinitionInsteadOfCrashingGenerator()
+    {
+        GeneratorTestHost.TestRun run = GeneratorTestHost.Run(
+            """
+            using UnitsNet.Modular;
+
+            [QuantityDefinition("Sample.Widget")]
+            internal interface WidgetDefinition;
+
+            [UnitsNetModule]
+            internal interface Module : IInclude<WidgetDefinition>;
+            """,
+            ("Widget.unitsnet.json", """
+                {
+                  "Name": "Widget",
+                  "Namespace": "Sample",
+                  "BaseUnit": "Value",
+                  "Units": [
+                    {
+                      "SingularName": "Value",
+                      "PluralName": "Values",
+                      "FromUnitToBaseFunc": "{x}",
+                      "FromBaseToUnitFunc": "{x}",
+                      "Prefixes": [ "Imaginary" ]
+                    }
+                  ]
+                }
+                """));
+
+        Diagnostic diagnostic = Assert.Single(run.Result.Diagnostics, item => item.Id == "UNM004");
+        Assert.Contains("Unknown prefix 'Imaginary'", diagnostic.GetMessage(), StringComparison.Ordinal);
+        Assert.DoesNotContain(run.Result.Diagnostics, item => item.Id == "CS8785");
+    }
 }

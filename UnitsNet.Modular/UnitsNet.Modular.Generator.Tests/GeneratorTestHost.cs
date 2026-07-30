@@ -41,16 +41,24 @@ internal static class GeneratorTestHost
     }
 
     public static GeneratorDriver CreateDriver(params (string Path, string Text)[] additionalFiles)
+        => CreateDriver(CreateAdditionalTexts(additionalFiles));
+
+    public static GeneratorDriver CreateDriver(ImmutableArray<AdditionalText> additionalTexts)
     {
-        ImmutableArray<AdditionalText> texts = additionalFiles
-            .Select(file => (AdditionalText)new InMemoryAdditionalText(file.Path, file.Text))
-            .ToImmutableArray();
         return CSharpGeneratorDriver.Create(
             new[] { new UnitsNetModularGenerator().AsSourceGenerator() },
-            texts,
+            additionalTexts,
             ParseOptions,
             optionsProvider: null,
             new GeneratorDriverOptions(IncrementalGeneratorOutputKind.None, trackIncrementalGeneratorSteps: true));
+    }
+
+    public static ImmutableArray<AdditionalText> CreateAdditionalTexts(
+        params (string Path, string Text)[] additionalFiles)
+    {
+        return additionalFiles
+            .Select(file => (AdditionalText)new InMemoryAdditionalText(file.Path, file.Text))
+            .ToImmutableArray();
     }
 
     private static CSharpParseOptions ParseOptions { get; } =

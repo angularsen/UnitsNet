@@ -1,5 +1,6 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
+using System.Collections.Immutable;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Xunit;
@@ -8,6 +9,51 @@ namespace UnitsNet.Modular.Generator.Tests;
 
 public sealed class IncrementalityGeneratorTests
 {
+    private const string CustomModule = """
+        using UnitsNet.Modular;
+
+        [QuantityDefinition("Sample.Distance")]
+        internal interface DistanceDefinition;
+
+        [QuantityDefinition("Sample.Weight")]
+        internal interface WeightDefinition;
+
+        [UnitsNetModule]
+        internal interface Module : IInclude<DistanceDefinition>, IInclude<WeightDefinition>;
+        """;
+
+    private const string DistanceDefinition = """
+        {
+          "Name": "Distance",
+          "Namespace": "Sample",
+          "BaseUnit": "Meter",
+          "Units": [
+            {
+              "SingularName": "Meter",
+              "PluralName": "Meters",
+              "FromUnitToBaseFunc": "{x}",
+              "FromBaseToUnitFunc": "{x}"
+            }
+          ]
+        }
+        """;
+
+    private const string WeightDefinition = """
+        {
+          "Name": "Weight",
+          "Namespace": "Sample",
+          "BaseUnit": "Gram",
+          "Units": [
+            {
+              "SingularName": "Gram",
+              "PluralName": "Grams",
+              "FromUnitToBaseFunc": "{x}",
+              "FromBaseToUnitFunc": "{x}"
+            }
+          ]
+        }
+        """;
+
     [Fact]
     public void UnchangedModule_IsCachedAcrossEquivalentCompilations()
     {
@@ -39,4 +85,53 @@ public sealed class IncrementalityGeneratorTests
             generationSteps.SelectMany(step => step.Outputs),
             output => Assert.Equal(IncrementalStepRunReason.Cached, output.Reason));
     }
+
+    [Fact]
+    public void EquivalentAdditionalTextInstances_AreUnchangedByContent()
+    {
+        ImmutableArray<AdditionalText> firstFiles = GeneratorTestHost.CreateAdditionalTexts(
+            ("Distance.unitsnet.json", DistanceDefinition),
+            ("Weight.unitsnet.json", WeightDefinition));
+        GeneratorDriver driver = GeneratorTestHost.CreateDriver(firstFiles)
+            .RunGenerators(GeneratorTestHost.CreateCompilation(CustomModule));
+        ImmutableArray<AdditionalText> equivalentFiles = GeneratorTestHost.CreateAdditionalTexts(
+            ("Distance.unitsnet.json", DistanceDefinition),
+            ("Weight.unitsnet.json", WeightDefinition));
+
+        driver = driver
+            .ReplaceAdditionalTexts(equivalentFiles)
+            .RunGenerators(GeneratorTestHost.CreateCompilation(CustomModule));
+
+        Assert.All(
+            DefinitionOutputs(driver),
+            output => Assert.Equal(IncrementalStepRunReason.Unchanged, output.Reason));
+    }
+
+    [Fact]
+    public void ChangedDefinition_DoesNotInvalidateUnchangedDefinitionParsing()
+    {
+        ImmutableArray<AdditionalText> firstFiles = GeneratorTestHost.CreateAdditionalTexts(
+            ("Distance.unitsnet.json", DistanceDefinition),
+            ("Weight.unitsnet.json", WeightDefinition));
+        GeneratorDriver driver = GeneratorTestHost.CreateDriver(firstFiles)
+            .RunGenerators(GeneratorTestHost.CreateCompilation(CustomModule));
+        ImmutableArray<AdditionalText> changedFiles = GeneratorTestHost.CreateAdditionalTexts(
+            ("Distance.unitsnet.json", DistanceDefinition.Replace("\"Meters\"", "\"Metres\"", StringComparison.Ordinal)),
+            ("Weight.unitsnet.json", WeightDefinition));
+
+        driver = driver
+            .ReplaceAdditionalTexts(changedFiles)
+            .RunGenerators(GeneratorTestHost.CreateCompilation(CustomModule));
+
+        Assert.Collection(
+            DefinitionOutputs(driver),
+            output => Assert.Equal(IncrementalStepRunReason.Modified, output.Reason),
+            output => Assert.Equal(IncrementalStepRunReason.Unchanged, output.Reason));
+    }
+
+    private static (object Value, IncrementalStepRunReason Reason)[] DefinitionOutputs(GeneratorDriver driver) =>
+        driver.GetRunResult().Results
+            .SelectMany(generator => generator.TrackedSteps["Definitions"])
+            .SelectMany(step => step.Outputs)
+            .ToArray();
 }

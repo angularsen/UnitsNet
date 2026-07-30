@@ -49,7 +49,8 @@ internal static class QuantityEmitter
             int enumValue = BuiltInUnitEnumValues.TryGet(quantity.SemanticId, unit.SingularName, out int stableValue)
                 ? stableValue
                 : definitionIndex + 1;
-            writer.Append("    ").Append(unit.SingularName).Append(" = ").Append(enumValue).AppendLine(",");
+            writer.Append("    ").Append(unit.SingularName).Append(" = ")
+                .Append(enumValue.ToString(CultureInfo.InvariantCulture)).AppendLine(",");
         }
 
         writer.AppendLine("}");
@@ -139,13 +140,13 @@ internal static class QuantityEmitter
         writer.AppendLine("    });");
         BaseDimensionsDefinition dimensions = quantity.BaseDimensions;
         writer.AppendLine("    public static global::UnitsNet.Modular.BaseDimensions BaseDimensions { get; } = new(");
-        writer.Append("        ").Append(dimensions.Length).Append(", ")
-            .Append(dimensions.Mass).Append(", ")
-            .Append(dimensions.Time).Append(", ")
-            .Append(dimensions.Current).Append(", ")
-            .Append(dimensions.Temperature).Append(", ")
-            .Append(dimensions.Amount).Append(", ")
-            .Append(dimensions.LuminousIntensity).AppendLine(");");
+        writer.Append("        ").Append(dimensions.Length.ToString(CultureInfo.InvariantCulture)).Append(", ")
+            .Append(dimensions.Mass.ToString(CultureInfo.InvariantCulture)).Append(", ")
+            .Append(dimensions.Time.ToString(CultureInfo.InvariantCulture)).Append(", ")
+            .Append(dimensions.Current.ToString(CultureInfo.InvariantCulture)).Append(", ")
+            .Append(dimensions.Temperature.ToString(CultureInfo.InvariantCulture)).Append(", ")
+            .Append(dimensions.Amount.ToString(CultureInfo.InvariantCulture)).Append(", ")
+            .Append(dimensions.LuminousIntensity.ToString(CultureInfo.InvariantCulture)).AppendLine(");");
         writer.AppendLine("    internal double BaseValue => global::UnitsNet.Modular.QuantityOperations.GetBaseValue(_value, Unit, Metadata);");
         writer.AppendLine();
 

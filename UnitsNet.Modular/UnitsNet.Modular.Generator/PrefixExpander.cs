@@ -38,6 +38,20 @@ internal static class PrefixExpander
         QuantityDefinition quantity,
         BaseUnitPrefixCatalog? baseUnitPrefixes = null)
     {
+        if (TryExpand(quantity, baseUnitPrefixes, out QuantityDefinition? expanded, out string? error))
+        {
+            return expanded!;
+        }
+
+        throw new InvalidOperationException(error);
+    }
+
+    public static bool TryExpand(
+        QuantityDefinition quantity,
+        BaseUnitPrefixCatalog? baseUnitPrefixes,
+        out QuantityDefinition? expanded,
+        out string? error)
+    {
         var units = new List<UnitDefinition>(quantity.Units);
         foreach (UnitDefinition unit in quantity.Units)
         {
@@ -45,7 +59,9 @@ internal static class PrefixExpander
             {
                 if (!Prefixes.TryGetValue(prefixName, out PrefixInfo? prefix))
                 {
-                    throw new InvalidOperationException($"Unknown prefix '{prefixName}' in {quantity.Id}.{unit.SingularName}.");
+                    expanded = null;
+                    error = $"Unknown prefix '{prefixName}' in {quantity.Id}.{unit.SingularName}.";
+                    return false;
                 }
 
                 string factor = prefix.Factor.ToString("R", CultureInfo.InvariantCulture);
@@ -80,7 +96,7 @@ internal static class PrefixExpander
             .GroupBy(unit => unit.SingularName, StringComparer.Ordinal)
             .Select(group => group.Last())
             .ToArray();
-        return new QuantityDefinition(
+        expanded = new QuantityDefinition(
             quantity.Name,
             quantity.TargetNamespace,
             quantity.BaseUnit,
@@ -92,6 +108,8 @@ internal static class PrefixExpander
             quantity.AffineOffsetType,
             quantity.BaseDimensions,
             quantity.Augmentations);
+        error = null;
+        return true;
     }
 
     private static string LowerFirst(string value)
