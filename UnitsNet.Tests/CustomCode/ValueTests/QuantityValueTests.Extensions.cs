@@ -1,10 +1,8 @@
-﻿using JetBrains.Annotations;
 
 namespace UnitsNet.Tests;
 
 public partial class QuantityValueTests
 {
-    [TestSubject(typeof(QuantityValueExtensions))]
     public class ExtensionTests
     {
         [Fact]

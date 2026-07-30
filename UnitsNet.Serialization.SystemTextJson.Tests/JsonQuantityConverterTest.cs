@@ -1,9 +1,8 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using JetBrains.Annotations;
 using UnitsNet.Serialization.SystemTextJson.Unit;
 using UnitsNet.Serialization.SystemTextJson.Value;
 using UnitsNet.Units;
@@ -14,8 +13,6 @@ public sealed class TestObject
     public Mass? NullableMass { get; set; }
     public Mass NonNullableMass { get; set; }
 }
-
-[TestSubject(typeof(JsonQuantityConverter<,>))]
 public class JsonQuantityConverterTest
 {
     [Fact]

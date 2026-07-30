@@ -1,11 +1,9 @@
-﻿using System.Numerics;
-using JetBrains.Annotations;
+using System.Numerics;
 
 namespace UnitsNet.Tests;
 
 public partial class QuantityValueTests
 {
-    [TestSubject(typeof(QuantityValue.QuantityValueDebugView))]
     public class DebugViewTests
     {
         [Theory]

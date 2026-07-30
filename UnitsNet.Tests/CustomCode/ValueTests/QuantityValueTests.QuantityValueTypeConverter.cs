@@ -1,12 +1,10 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Numerics;
-using JetBrains.Annotations;
 
 namespace UnitsNet.Tests;
 
 public partial class QuantityValueTests
 {
-    [TestSubject(typeof(QuantityValueTypeConverter))]
     public class TypeConverterTests
     {
         [Theory]

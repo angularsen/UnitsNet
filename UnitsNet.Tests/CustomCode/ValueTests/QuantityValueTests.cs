@@ -1,15 +1,12 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Numerics;
-using JetBrains.Annotations;
 using Xunit.Abstractions;
 
 namespace UnitsNet.Tests;
-
-[TestSubject(typeof(QuantityValue))]
 public static partial class QuantityValueTests
 {
     public class QuantityValueData : IXunitSerializable

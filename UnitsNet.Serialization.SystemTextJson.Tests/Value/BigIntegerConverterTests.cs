@@ -1,13 +1,10 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Numerics;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using JetBrains.Annotations;
 using UnitsNet.Serialization.SystemTextJson.Value;
 
 namespace UnitsNet.Serialization.SystemTextJson.Tests.Value;
-
-[TestSubject(typeof(BigIntegerConverter))]
 public class BigIntegerConverterTests
 {
     private static JsonSerializerOptions CreateOptions()
