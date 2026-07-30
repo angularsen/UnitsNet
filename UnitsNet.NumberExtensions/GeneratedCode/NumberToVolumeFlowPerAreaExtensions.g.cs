@@ -32,26 +32,26 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlowPerArea
     /// </summary>
     public static class NumberToVolumeFlowPerAreaExtensions
     {
-        /// <inheritdoc cref="VolumeFlowPerArea.FromCubicFeetPerMinutePerSquareFoot(double)" />
+        /// <inheritdoc cref="VolumeFlowPerArea.FromCubicFeetPerMinutePerSquareFoot(QuantityValue)" />
         public static VolumeFlowPerArea CubicFeetPerMinutePerSquareFoot<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlowPerArea.FromCubicFeetPerMinutePerSquareFoot(double.CreateChecked(value));
+            => VolumeFlowPerArea.FromCubicFeetPerMinutePerSquareFoot(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlowPerArea.FromCubicFeetPerMinutePerSquareFoot(value.ToDouble(null));
+            => VolumeFlowPerArea.FromCubicFeetPerMinutePerSquareFoot(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(double)" />
+        /// <inheritdoc cref="VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(QuantityValue)" />
         public static VolumeFlowPerArea CubicMetersPerSecondPerSquareMeter<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(double.CreateChecked(value));
+            => VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(value.ToDouble(null));
+            => VolumeFlowPerArea.FromCubicMetersPerSecondPerSquareMeter(value.ToQuantityValue());
 #endif
 
     }

@@ -12,14 +12,14 @@ namespace UnitsNet
         /// <summary>Get circle area from a diameter.</summary>
         public static Area FromCircleDiameter(Length diameter)
         {
-            var radius = Length.FromMeters(diameter.Meters / 2d);
+            var radius = Length.FromMeters(diameter.Meters / 2);
             return FromCircleRadius(radius);
         }
 
         /// <summary>Get circle area from a radius.</summary>
         public static Area FromCircleRadius(Length radius)
         {
-            return FromSquareMeters(Math.PI * radius.Meters * radius.Meters);
+            return FromSquareMeters(QuantityValue.PI * radius.Meters * radius.Meters);
         }
 
         #endregion

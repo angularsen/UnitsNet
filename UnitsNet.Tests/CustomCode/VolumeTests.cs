@@ -120,10 +120,10 @@ namespace UnitsNet.Tests
         [InlineData(1e9, "km³")]
         public void ConvertByAbbreviation_CubicMetersToTrueCubicPrefixedUnits(double cubicMeters, string abbreviation)
         {
-            bool converted = UnitConverter.TryConvertByAbbreviation(cubicMeters, "Volume", "m³", abbreviation, out double result);
+            bool converted = UnitConverter.TryConvertByAbbreviation(cubicMeters, "Volume", "m³", abbreviation, out QuantityValue result);
 
             Assert.True(converted);
-            Assert.Equal(1, result);
+            Assert.Equal(QuantityValue.One, result);
         }
 
         [Fact]

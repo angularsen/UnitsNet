@@ -26,8 +26,8 @@ public interface IArithmeticQuantity<TSelf>
 #if NET7_0_OR_GREATER
     : IAdditionOperators<TSelf, TSelf, TSelf>
     , ISubtractionOperators<TSelf, TSelf, TSelf>
-    , IMultiplyOperators<TSelf, double, TSelf>
-    , IDivisionOperators<TSelf, double, TSelf>
+    , IMultiplyOperators<TSelf, QuantityValue, TSelf>
+    , IDivisionOperators<TSelf, QuantityValue, TSelf>
     , IUnaryNegationOperators<TSelf, TSelf>
 #endif
     where TSelf : IArithmeticQuantity<TSelf>

@@ -38,10 +38,10 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public static void ConvertByAbbreviation_CubicMetersPerKilogramToCubicMillimetersPerKilogram()
         {
-            bool converted = UnitConverter.TryConvertByAbbreviation(1e-9, "SpecificVolume", "m³/kg", "mm³/kg", out double result);
+            bool converted = UnitConverter.TryConvertByAbbreviation(1e-9, "SpecificVolume", "m³/kg", "mm³/kg", out QuantityValue result);
 
             Assert.True(converted);
-            Assert.Equal(1, result);
+            Assert.Equal(QuantityValue.One, result);
         }
 
         [Fact]

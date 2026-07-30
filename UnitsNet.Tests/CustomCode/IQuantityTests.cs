@@ -1,6 +1,8 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using System.Numerics;
+
 namespace UnitsNet.Tests;
 
 // ReSharper disable once InconsistentNaming
@@ -44,16 +46,56 @@ public partial class IQuantityTests
     [Fact]
     public void ToUnit_GenericConstraintWithCustomConverter_UsesProvidedConverter()
     {
-        var converter = new UnitConverter();
-        converter.SetConversionFunction<Length>(
-            LengthUnit.Meter,
-            LengthUnit.Centimeter,
-            _ => Length.FromCentimeters(123));
+        QuantityInfo<Length, LengthUnit> customLengthInfo = Length.LengthInfo.CreateDefault(unitDefinitions =>
+            unitDefinitions.Configure(LengthUnit.Centimeter, definition => definition.WithConversionFactorFromBase(123)));
+        UnitConverter converter = UnitConverter.Create(new UnitParser([customLengthInfo]), new QuantityConverterBuildOptions());
 
         Length convertedQuantity = ConvertToUnit(Length.FromMeters(1), LengthUnit.Centimeter, converter);
 
         Assert.Equal(123, convertedQuantity.Value);
         Assert.Equal(LengthUnit.Centimeter, convertedQuantity.Unit);
+
+        static TQuantity ConvertToUnit<TQuantity, TUnit>(TQuantity quantity, TUnit unit, UnitConverter unitConverter)
+            where TQuantity : IQuantity<TQuantity, TUnit>
+            where TUnit : struct, Enum
+        {
+            return quantity.ToUnit(unit, unitConverter);
+        }
+    }
+
+    [Fact]
+    public void As_GenericConstraintWithCustomConverter_UsesProvidedConverter()
+    {
+        QuantityInfo<Length, LengthUnit> customLengthInfo = Length.LengthInfo.CreateDefault(unitDefinitions =>
+            unitDefinitions.Configure(LengthUnit.Centimeter, definition => definition.WithConversionFactorFromBase(123)));
+        UnitConverter converter = UnitConverter.Create(new UnitParser([customLengthInfo]), new QuantityConverterBuildOptions());
+
+        QuantityValue convertedValue = ConvertValue(Length.FromMeters(1), LengthUnit.Centimeter, converter);
+
+        Assert.Equal(123, convertedValue.ToDouble());
+
+        static QuantityValue ConvertValue<TQuantity, TUnit>(TQuantity quantity, TUnit unit, UnitConverter unitConverter)
+            where TQuantity : IQuantity<TQuantity, TUnit>
+            where TUnit : struct, Enum
+        {
+            return quantity.As(unit, unitConverter);
+        }
+    }
+
+    [Fact]
+    public void ConversionExtensions_GenericConstraintWithNullConverter_ThrowsArgumentNullException()
+    {
+        var quantity = Length.FromMeters(1);
+
+        Assert.Throws<ArgumentNullException>(() => ConvertValue(quantity, LengthUnit.Centimeter, null!));
+        Assert.Throws<ArgumentNullException>(() => ConvertToUnit(quantity, LengthUnit.Centimeter, null!));
+
+        static QuantityValue ConvertValue<TQuantity, TUnit>(TQuantity quantity, TUnit unit, UnitConverter unitConverter)
+            where TQuantity : IQuantity<TQuantity, TUnit>
+            where TUnit : struct, Enum
+        {
+            return quantity.As(unit, unitConverter);
+        }
 
         static TQuantity ConvertToUnit<TQuantity, TUnit>(TQuantity quantity, TUnit unit, UnitConverter unitConverter)
             where TQuantity : IQuantity<TQuantity, TUnit>
@@ -103,6 +145,48 @@ public partial class IQuantityTests
             Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
         });
     }
+
+#if NET
+
+    [Fact]
+    public void ILinearQuantity_AdditiveIdentity_ReturnsZero()
+    {
+        AssertThat_ILinearQuantity_AdditiveIdentity_ReturnsZero<Mass>();
+    }
+
+    private static void AssertThat_ILinearQuantity_AdditiveIdentity_ReturnsZero<TQuantity>()
+        where TQuantity : ILinearQuantity<TQuantity>
+    {
+        Assert.Equal(TQuantity.Zero, TQuantity.AdditiveIdentity);
+    }
+
+    private static void AssertThat_IAffineQuantity_AdditiveIdentity_ReturnsTheZeroOffset<TQuantity, TOffset>()
+        where TQuantity : IAffineQuantity<TQuantity, TOffset>
+        where TOffset : IAdditiveIdentity<TOffset, TOffset>
+    {
+        Assert.Equal(TOffset.AdditiveIdentity, TQuantity.AdditiveIdentity);
+    }
+
+    [Fact]
+    public void ILogarithmicQuantity_MultiplicativeIdentity_ReturnsZero()
+    {
+        AssertThat_ILogarithmicQuantity_MultiplicativeIdentity_ReturnsZero<PowerRatio>();
+    }
+
+    private static void AssertThat_ILogarithmicQuantity_MultiplicativeIdentity_ReturnsZero<TQuantity>()
+        where TQuantity : ILogarithmicQuantity<TQuantity>
+    {
+        Assert.Equal(TQuantity.Zero, TQuantity.MultiplicativeIdentity);
+    }
+
+    [Fact]
+    public void IAffineQuantity_AdditiveIdentity_ReturnsTheZeroOffset()
+    {
+        AssertThat_ILinearQuantity_AdditiveIdentity_ReturnsZero<TemperatureDelta>();
+        AssertThat_IAffineQuantity_AdditiveIdentity_ReturnsTheZeroOffset<Temperature, TemperatureDelta>();
+    }
+
+#endif
 
     [Fact]
     public void GetUnitInfo_ReturnsUnitInfoForQuantityUnit()

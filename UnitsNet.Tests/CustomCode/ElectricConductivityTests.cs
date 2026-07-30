@@ -44,10 +44,11 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData( 2.0, 0.5 )]
         public static void InverseTest( double value, double expected )
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             var unit = new ElectricConductivity( value, ElectricConductivityUnit.SiemensPerMeter );
             var inverse = unit.Inverse();
 
-            Assert.Equal( expected, inverse.OhmMeters );
+            Assert.Equal(expectedValue, inverse.OhmMeters );
         }
     }
 }

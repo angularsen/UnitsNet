@@ -206,6 +206,16 @@ instead. For example, define `CubicMillimeterPerKilogram` for `mm³/kg` instead 
 `MillicubicMeterPerKilogram`, and define `ThousandCubicMeter` with an abbreviation such as `10³·m³` when the intended
 unit is 1000 cubic meters rather than cubic kilometers.
 
+CodeGen fails when `Prefixes` is used on a unit that looks like the powered unit itself, such as a unit name starting
+with `Square` or `Cubic`, or an abbreviation starting with `m²`, `m³`, `ft³`, or similar powered unit symbols. For
+example, generating `Kilo` from `SquareMeter` would produce `km²`, which means one square kilometer (`1e6 m²`), not
+one thousand square meters. Generating it from `CubicMeter` would produce `km³`, which means one cubic kilometer
+(`1e9 m³`), not one thousand cubic meters.
+
+This is a naming and abbreviation heuristic, not a dimensional-analysis check. Derived units such as `Watt`, `Joule`,
+and `Ohm` have powered SI base dimensions, but can safely use `Prefixes` because their own abbreviations are not
+powered unit symbols. They produce unambiguous units such as `MW`, `MJ`, and `MΩ`.
+
 ## Localization object
 
 Each `Localization` entry configures abbreviations for one culture.

@@ -39,9 +39,10 @@ namespace UnitsNet.Tests
         [InlineData(100, 20)]
         public void ExpectPowerConvertedCorrectly(double power, double expected)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             Power p = Power.FromWatts(power);
             var actual = PowerRatio.FromPower(p).DecibelWatts;
-            Assert.Equal(expected, actual);
+            Assert.Equal(expectedValue, actual);
         }
 
         [Theory]
@@ -52,9 +53,10 @@ namespace UnitsNet.Tests
         [InlineData(20, 100)]
         public void ExpectPowerRatioConvertedCorrectly(double powerRatio, double expected)
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             PowerRatio pr = PowerRatio.FromDecibelWatts(powerRatio);
             var actual = pr.ToPower().Watts;
-            Assert.Equal(expected, actual);
+            Assert.Equal(expectedValue, actual);
         }
 
         // http://www.maximintegrated.com/en/app-notes/index.mvp/id/808
@@ -68,8 +70,9 @@ namespace UnitsNet.Tests
         {
             PowerRatio powerRatio = PowerRatio.FromDecibelMilliwatts(dBmW);
 
-            double actual = Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(50)).DecibelMillivolts, 2);
-            Assert.Equal(expected, actual);
+            QuantityValue actual = powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(50)).DecibelMillivolts;
+
+            AssertEx.EqualTolerance(expected, actual, 1e-2m, ComparisonType.Absolute);
         }
 
         [Theory]
@@ -81,8 +84,9 @@ namespace UnitsNet.Tests
         {
             PowerRatio powerRatio = PowerRatio.FromDecibelMilliwatts(dBmW);
 
-            double actual = Math.Round(powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(75)).DecibelMillivolts, 2);
-            Assert.Equal(expected, actual);
+            QuantityValue actual = powerRatio.ToAmplitudeRatio(ElectricResistance.FromOhms(75)).DecibelMillivolts;
+
+            AssertEx.EqualTolerance(expected, actual, 1e-2m, ComparisonType.Absolute);
         }
     }
 }

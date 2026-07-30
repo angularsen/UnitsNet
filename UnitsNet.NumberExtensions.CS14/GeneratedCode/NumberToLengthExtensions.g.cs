@@ -42,340 +42,340 @@ namespace UnitsNet.NumberExtensions.NumberToLength
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Length.FromAngstroms(double)" />
+            /// <inheritdoc cref="Length.FromAngstroms(QuantityValue)" />
             public Length Angstroms
 #if NET7_0_OR_GREATER
-                => Length.FromAngstroms(double.CreateChecked(value));
+                => Length.FromAngstroms(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromAngstroms(value.ToDouble(null));
+                => Length.FromAngstroms(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromAstronomicalUnits(double)" />
+            /// <inheritdoc cref="Length.FromAstronomicalUnits(QuantityValue)" />
             public Length AstronomicalUnits
 #if NET7_0_OR_GREATER
-                => Length.FromAstronomicalUnits(double.CreateChecked(value));
+                => Length.FromAstronomicalUnits(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromAstronomicalUnits(value.ToDouble(null));
+                => Length.FromAstronomicalUnits(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromCentimeters(double)" />
+            /// <inheritdoc cref="Length.FromCentimeters(QuantityValue)" />
             public Length Centimeters
 #if NET7_0_OR_GREATER
-                => Length.FromCentimeters(double.CreateChecked(value));
+                => Length.FromCentimeters(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromCentimeters(value.ToDouble(null));
+                => Length.FromCentimeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromChains(double)" />
+            /// <inheritdoc cref="Length.FromChains(QuantityValue)" />
             public Length Chains
 #if NET7_0_OR_GREATER
-                => Length.FromChains(double.CreateChecked(value));
+                => Length.FromChains(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromChains(value.ToDouble(null));
+                => Length.FromChains(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromDataMiles(double)" />
+            /// <inheritdoc cref="Length.FromDataMiles(QuantityValue)" />
             public Length DataMiles
 #if NET7_0_OR_GREATER
-                => Length.FromDataMiles(double.CreateChecked(value));
+                => Length.FromDataMiles(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromDataMiles(value.ToDouble(null));
+                => Length.FromDataMiles(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromDecameters(double)" />
+            /// <inheritdoc cref="Length.FromDecameters(QuantityValue)" />
             public Length Decameters
 #if NET7_0_OR_GREATER
-                => Length.FromDecameters(double.CreateChecked(value));
+                => Length.FromDecameters(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromDecameters(value.ToDouble(null));
+                => Length.FromDecameters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromDecimeters(double)" />
+            /// <inheritdoc cref="Length.FromDecimeters(QuantityValue)" />
             public Length Decimeters
 #if NET7_0_OR_GREATER
-                => Length.FromDecimeters(double.CreateChecked(value));
+                => Length.FromDecimeters(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromDecimeters(value.ToDouble(null));
+                => Length.FromDecimeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromDtpPicas(double)" />
+            /// <inheritdoc cref="Length.FromDtpPicas(QuantityValue)" />
             public Length DtpPicas
 #if NET7_0_OR_GREATER
-                => Length.FromDtpPicas(double.CreateChecked(value));
+                => Length.FromDtpPicas(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromDtpPicas(value.ToDouble(null));
+                => Length.FromDtpPicas(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromDtpPoints(double)" />
+            /// <inheritdoc cref="Length.FromDtpPoints(QuantityValue)" />
             public Length DtpPoints
 #if NET7_0_OR_GREATER
-                => Length.FromDtpPoints(double.CreateChecked(value));
+                => Length.FromDtpPoints(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromDtpPoints(value.ToDouble(null));
+                => Length.FromDtpPoints(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromFathoms(double)" />
+            /// <inheritdoc cref="Length.FromFathoms(QuantityValue)" />
             public Length Fathoms
 #if NET7_0_OR_GREATER
-                => Length.FromFathoms(double.CreateChecked(value));
+                => Length.FromFathoms(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromFathoms(value.ToDouble(null));
+                => Length.FromFathoms(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromFemtometers(double)" />
+            /// <inheritdoc cref="Length.FromFemtometers(QuantityValue)" />
             public Length Femtometers
 #if NET7_0_OR_GREATER
-                => Length.FromFemtometers(double.CreateChecked(value));
+                => Length.FromFemtometers(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromFemtometers(value.ToDouble(null));
+                => Length.FromFemtometers(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromFeet(double)" />
+            /// <inheritdoc cref="Length.FromFeet(QuantityValue)" />
             public Length Feet
 #if NET7_0_OR_GREATER
-                => Length.FromFeet(double.CreateChecked(value));
+                => Length.FromFeet(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromFeet(value.ToDouble(null));
+                => Length.FromFeet(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromGigameters(double)" />
+            /// <inheritdoc cref="Length.FromGigameters(QuantityValue)" />
             public Length Gigameters
 #if NET7_0_OR_GREATER
-                => Length.FromGigameters(double.CreateChecked(value));
+                => Length.FromGigameters(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromGigameters(value.ToDouble(null));
+                => Length.FromGigameters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromHands(double)" />
+            /// <inheritdoc cref="Length.FromHands(QuantityValue)" />
             public Length Hands
 #if NET7_0_OR_GREATER
-                => Length.FromHands(double.CreateChecked(value));
+                => Length.FromHands(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromHands(value.ToDouble(null));
+                => Length.FromHands(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromHectometers(double)" />
+            /// <inheritdoc cref="Length.FromHectometers(QuantityValue)" />
             public Length Hectometers
 #if NET7_0_OR_GREATER
-                => Length.FromHectometers(double.CreateChecked(value));
+                => Length.FromHectometers(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromHectometers(value.ToDouble(null));
+                => Length.FromHectometers(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromInches(double)" />
+            /// <inheritdoc cref="Length.FromInches(QuantityValue)" />
             public Length Inches
 #if NET7_0_OR_GREATER
-                => Length.FromInches(double.CreateChecked(value));
+                => Length.FromInches(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromInches(value.ToDouble(null));
+                => Length.FromInches(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromKilofeet(double)" />
+            /// <inheritdoc cref="Length.FromKilofeet(QuantityValue)" />
             public Length Kilofeet
 #if NET7_0_OR_GREATER
-                => Length.FromKilofeet(double.CreateChecked(value));
+                => Length.FromKilofeet(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromKilofeet(value.ToDouble(null));
+                => Length.FromKilofeet(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromKilolightYears(double)" />
+            /// <inheritdoc cref="Length.FromKilolightYears(QuantityValue)" />
             public Length KilolightYears
 #if NET7_0_OR_GREATER
-                => Length.FromKilolightYears(double.CreateChecked(value));
+                => Length.FromKilolightYears(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromKilolightYears(value.ToDouble(null));
+                => Length.FromKilolightYears(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromKilometers(double)" />
+            /// <inheritdoc cref="Length.FromKilometers(QuantityValue)" />
             public Length Kilometers
 #if NET7_0_OR_GREATER
-                => Length.FromKilometers(double.CreateChecked(value));
+                => Length.FromKilometers(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromKilometers(value.ToDouble(null));
+                => Length.FromKilometers(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromKiloparsecs(double)" />
+            /// <inheritdoc cref="Length.FromKiloparsecs(QuantityValue)" />
             public Length Kiloparsecs
 #if NET7_0_OR_GREATER
-                => Length.FromKiloparsecs(double.CreateChecked(value));
+                => Length.FromKiloparsecs(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromKiloparsecs(value.ToDouble(null));
+                => Length.FromKiloparsecs(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromKiloyards(double)" />
+            /// <inheritdoc cref="Length.FromKiloyards(QuantityValue)" />
             public Length Kiloyards
 #if NET7_0_OR_GREATER
-                => Length.FromKiloyards(double.CreateChecked(value));
+                => Length.FromKiloyards(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromKiloyards(value.ToDouble(null));
+                => Length.FromKiloyards(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromLightYears(double)" />
+            /// <inheritdoc cref="Length.FromLightYears(QuantityValue)" />
             public Length LightYears
 #if NET7_0_OR_GREATER
-                => Length.FromLightYears(double.CreateChecked(value));
+                => Length.FromLightYears(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromLightYears(value.ToDouble(null));
+                => Length.FromLightYears(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromMegalightYears(double)" />
+            /// <inheritdoc cref="Length.FromMegalightYears(QuantityValue)" />
             public Length MegalightYears
 #if NET7_0_OR_GREATER
-                => Length.FromMegalightYears(double.CreateChecked(value));
+                => Length.FromMegalightYears(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromMegalightYears(value.ToDouble(null));
+                => Length.FromMegalightYears(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromMegameters(double)" />
+            /// <inheritdoc cref="Length.FromMegameters(QuantityValue)" />
             public Length Megameters
 #if NET7_0_OR_GREATER
-                => Length.FromMegameters(double.CreateChecked(value));
+                => Length.FromMegameters(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromMegameters(value.ToDouble(null));
+                => Length.FromMegameters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromMegaparsecs(double)" />
+            /// <inheritdoc cref="Length.FromMegaparsecs(QuantityValue)" />
             public Length Megaparsecs
 #if NET7_0_OR_GREATER
-                => Length.FromMegaparsecs(double.CreateChecked(value));
+                => Length.FromMegaparsecs(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromMegaparsecs(value.ToDouble(null));
+                => Length.FromMegaparsecs(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromMeters(double)" />
+            /// <inheritdoc cref="Length.FromMeters(QuantityValue)" />
             public Length Meters
 #if NET7_0_OR_GREATER
-                => Length.FromMeters(double.CreateChecked(value));
+                => Length.FromMeters(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromMeters(value.ToDouble(null));
+                => Length.FromMeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromMicroinches(double)" />
+            /// <inheritdoc cref="Length.FromMicroinches(QuantityValue)" />
             public Length Microinches
 #if NET7_0_OR_GREATER
-                => Length.FromMicroinches(double.CreateChecked(value));
+                => Length.FromMicroinches(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromMicroinches(value.ToDouble(null));
+                => Length.FromMicroinches(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromMicrometers(double)" />
+            /// <inheritdoc cref="Length.FromMicrometers(QuantityValue)" />
             public Length Micrometers
 #if NET7_0_OR_GREATER
-                => Length.FromMicrometers(double.CreateChecked(value));
+                => Length.FromMicrometers(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromMicrometers(value.ToDouble(null));
+                => Length.FromMicrometers(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromMils(double)" />
+            /// <inheritdoc cref="Length.FromMils(QuantityValue)" />
             public Length Mils
 #if NET7_0_OR_GREATER
-                => Length.FromMils(double.CreateChecked(value));
+                => Length.FromMils(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromMils(value.ToDouble(null));
+                => Length.FromMils(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromMiles(double)" />
+            /// <inheritdoc cref="Length.FromMiles(QuantityValue)" />
             public Length Miles
 #if NET7_0_OR_GREATER
-                => Length.FromMiles(double.CreateChecked(value));
+                => Length.FromMiles(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromMiles(value.ToDouble(null));
+                => Length.FromMiles(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromMillimeters(double)" />
+            /// <inheritdoc cref="Length.FromMillimeters(QuantityValue)" />
             public Length Millimeters
 #if NET7_0_OR_GREATER
-                => Length.FromMillimeters(double.CreateChecked(value));
+                => Length.FromMillimeters(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromMillimeters(value.ToDouble(null));
+                => Length.FromMillimeters(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromNanometers(double)" />
+            /// <inheritdoc cref="Length.FromNanometers(QuantityValue)" />
             public Length Nanometers
 #if NET7_0_OR_GREATER
-                => Length.FromNanometers(double.CreateChecked(value));
+                => Length.FromNanometers(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromNanometers(value.ToDouble(null));
+                => Length.FromNanometers(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromNauticalMiles(double)" />
+            /// <inheritdoc cref="Length.FromNauticalMiles(QuantityValue)" />
             public Length NauticalMiles
 #if NET7_0_OR_GREATER
-                => Length.FromNauticalMiles(double.CreateChecked(value));
+                => Length.FromNauticalMiles(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromNauticalMiles(value.ToDouble(null));
+                => Length.FromNauticalMiles(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromParsecs(double)" />
+            /// <inheritdoc cref="Length.FromParsecs(QuantityValue)" />
             public Length Parsecs
 #if NET7_0_OR_GREATER
-                => Length.FromParsecs(double.CreateChecked(value));
+                => Length.FromParsecs(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromParsecs(value.ToDouble(null));
+                => Length.FromParsecs(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromPicometers(double)" />
+            /// <inheritdoc cref="Length.FromPicometers(QuantityValue)" />
             public Length Picometers
 #if NET7_0_OR_GREATER
-                => Length.FromPicometers(double.CreateChecked(value));
+                => Length.FromPicometers(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromPicometers(value.ToDouble(null));
+                => Length.FromPicometers(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromPrinterPicas(double)" />
+            /// <inheritdoc cref="Length.FromPrinterPicas(QuantityValue)" />
             public Length PrinterPicas
 #if NET7_0_OR_GREATER
-                => Length.FromPrinterPicas(double.CreateChecked(value));
+                => Length.FromPrinterPicas(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromPrinterPicas(value.ToDouble(null));
+                => Length.FromPrinterPicas(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromPrinterPoints(double)" />
+            /// <inheritdoc cref="Length.FromPrinterPoints(QuantityValue)" />
             public Length PrinterPoints
 #if NET7_0_OR_GREATER
-                => Length.FromPrinterPoints(double.CreateChecked(value));
+                => Length.FromPrinterPoints(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromPrinterPoints(value.ToDouble(null));
+                => Length.FromPrinterPoints(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromShackles(double)" />
+            /// <inheritdoc cref="Length.FromShackles(QuantityValue)" />
             public Length Shackles
 #if NET7_0_OR_GREATER
-                => Length.FromShackles(double.CreateChecked(value));
+                => Length.FromShackles(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromShackles(value.ToDouble(null));
+                => Length.FromShackles(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromSolarRadiuses(double)" />
+            /// <inheritdoc cref="Length.FromSolarRadiuses(QuantityValue)" />
             public Length SolarRadiuses
 #if NET7_0_OR_GREATER
-                => Length.FromSolarRadiuses(double.CreateChecked(value));
+                => Length.FromSolarRadiuses(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromSolarRadiuses(value.ToDouble(null));
+                => Length.FromSolarRadiuses(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromTwips(double)" />
+            /// <inheritdoc cref="Length.FromTwips(QuantityValue)" />
             public Length Twips
 #if NET7_0_OR_GREATER
-                => Length.FromTwips(double.CreateChecked(value));
+                => Length.FromTwips(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromTwips(value.ToDouble(null));
+                => Length.FromTwips(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromUsSurveyFeet(double)" />
+            /// <inheritdoc cref="Length.FromUsSurveyFeet(QuantityValue)" />
             public Length UsSurveyFeet
 #if NET7_0_OR_GREATER
-                => Length.FromUsSurveyFeet(double.CreateChecked(value));
+                => Length.FromUsSurveyFeet(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromUsSurveyFeet(value.ToDouble(null));
+                => Length.FromUsSurveyFeet(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Length.FromYards(double)" />
+            /// <inheritdoc cref="Length.FromYards(QuantityValue)" />
             public Length Yards
 #if NET7_0_OR_GREATER
-                => Length.FromYards(double.CreateChecked(value));
+                => Length.FromYards(QuantityValue.CreateChecked(value));
 #else
-                => Length.FromYards(value.ToDouble(null));
+                => Length.FromYards(value.ToQuantityValue());
 #endif
 
         }
