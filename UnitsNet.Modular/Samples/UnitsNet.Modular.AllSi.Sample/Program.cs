@@ -2,8 +2,8 @@
 
 using UnitsNet;
 using UnitsNet.Modular;
+using UnitsNet.Modular.Profiles;
 using UnitsNet.Units;
-using AllSiProfile = UnitsNet.Modular.Profiles.AllSi;
 
 namespace UnitsNet.Modular.AllSi.Sample;
 

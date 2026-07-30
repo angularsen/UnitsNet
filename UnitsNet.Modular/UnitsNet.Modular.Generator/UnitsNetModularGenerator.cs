@@ -19,6 +19,7 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
     private const string QuantityAttribute = "UnitsNet.Modular.QuantityDefinitionAttribute";
     private const string GenerationNamespace = "UnitsNet.Modular";
     private const string BuiltInsNamespace = "UnitsNet.Modular.BuiltIns";
+    private const string BuiltInSpecSuffix = "Spec";
     private const string IncludeName = "IInclude";
     private const string IncludeProfileName = "IIncludeProfile";
 
@@ -88,7 +89,7 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
 
     private static readonly DiagnosticDescriptor MissingUnitSet = new DiagnosticDescriptor(
         "UNM012",
-        "Unit-set marker is invalid",
+        "Unit set is invalid",
         "Unit-set type selected for quantity '{0}' has no UnitSet attribute or no patterns",
         "UnitsNet.Modular",
         DiagnosticSeverity.Error,
@@ -121,7 +122,7 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         context.RegisterPostInitializationOutput(static output =>
-            output.AddSource("UnitsNet.Modular.Markers.g.cs", SourceText.From(BootstrapSource.Text, System.Text.Encoding.UTF8)));
+            output.AddSource("UnitsNet.Modular.Specs.g.cs", SourceText.From(BootstrapSource.Text, System.Text.Encoding.UTF8)));
 
         IncrementalValuesProvider<ModuleRequest> modules = context.SyntaxProvider
             .ForAttributeWithMetadataName(
@@ -242,7 +243,7 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
             QuantityDefinition? definition = ResolveDefinition(selection, jsonDefinitions);
             if (definition is null)
             {
-                context.ReportDiagnostic(Diagnostic.Create(MissingDefinition, moduleLocation, selection.MarkerName));
+                context.ReportDiagnostic(Diagnostic.Create(MissingDefinition, moduleLocation, selection.SpecName));
                 continue;
             }
 
@@ -521,8 +522,9 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
             return null;
         }
 
-        string? builtInName = marker.ContainingNamespace.ToDisplayString() == BuiltInsNamespace
-            ? marker.Name
+        string? builtInName = marker.ContainingNamespace.ToDisplayString() == BuiltInsNamespace &&
+                              marker.Name.EndsWith(BuiltInSpecSuffix, StringComparison.Ordinal)
+            ? marker.Name.Substring(0, marker.Name.Length - BuiltInSpecSuffix.Length)
             : null;
         AttributeData? definitionAttribute = marker.GetAttributes()
             .FirstOrDefault(attribute => AttributeName(attribute) == QuantityAttribute);
@@ -542,7 +544,7 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
     }
 
     private static string SelectionIdentity(ModuleSelection selection) =>
-        selection.SemanticId ?? selection.MarkerName;
+        selection.SemanticId ?? selection.SpecName;
 
     private static IEnumerable<INamedTypeSymbol> GetProfileIncludes(INamedTypeSymbol module)
     {

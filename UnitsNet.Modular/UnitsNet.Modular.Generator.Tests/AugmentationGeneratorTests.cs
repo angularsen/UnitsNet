@@ -15,8 +15,8 @@ public sealed class AugmentationGeneratorTests
 
             [UnitsNetModule]
             internal interface Module :
-                IInclude<UnitsNet.Modular.BuiltIns.Area>,
-                IInclude<UnitsNet.Modular.BuiltIns.Length>;
+                IInclude<UnitsNet.Modular.BuiltIns.AreaSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.LengthSpec>;
             """);
 
         Assert.DoesNotContain(run.Result.Diagnostics, diagnostic => diagnostic.Severity == DiagnosticSeverity.Error);
@@ -38,7 +38,7 @@ public sealed class AugmentationGeneratorTests
             using UnitsNet.Modular;
 
             [UnitsNetModule]
-            internal interface Module : IInclude<UnitsNet.Modular.BuiltIns.Area>;
+            internal interface Module : IInclude<UnitsNet.Modular.BuiltIns.AreaSpec>;
             """);
 
         Assert.DoesNotContain(run.Result.Diagnostics, diagnostic => diagnostic.Severity == DiagnosticSeverity.Error);
@@ -56,12 +56,12 @@ public sealed class AugmentationGeneratorTests
 
             [UnitsNetModule]
             internal interface Module :
-                IInclude<UnitsNet.Modular.BuiltIns.Acceleration>,
-                IInclude<UnitsNet.Modular.BuiltIns.Area>,
-                IInclude<UnitsNet.Modular.BuiltIns.Force>,
-                IInclude<UnitsNet.Modular.BuiltIns.Mass>,
-                IInclude<UnitsNet.Modular.BuiltIns.MassFraction>,
-                IInclude<UnitsNet.Modular.BuiltIns.Pressure>;
+                IInclude<UnitsNet.Modular.BuiltIns.AccelerationSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.AreaSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.ForceSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.MassSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.MassFractionSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.PressureSpec>;
             """);
 
         Assert.DoesNotContain(run.Result.Diagnostics, diagnostic => diagnostic.Severity == DiagnosticSeverity.Error);
@@ -83,14 +83,14 @@ public sealed class AugmentationGeneratorTests
 
             [UnitsNetModule]
             internal interface Module :
-                IInclude<UnitsNet.Modular.BuiltIns.AmountOfSubstance>,
-                IInclude<UnitsNet.Modular.BuiltIns.Density>,
-                IInclude<UnitsNet.Modular.BuiltIns.Mass>,
-                IInclude<UnitsNet.Modular.BuiltIns.MassConcentration>,
-                IInclude<UnitsNet.Modular.BuiltIns.Molarity>,
-                IInclude<UnitsNet.Modular.BuiltIns.MolarMass>,
-                IInclude<UnitsNet.Modular.BuiltIns.Volume>,
-                IInclude<UnitsNet.Modular.BuiltIns.VolumeConcentration>;
+                IInclude<UnitsNet.Modular.BuiltIns.AmountOfSubstanceSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.DensitySpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.MassSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.MassConcentrationSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.MolaritySpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.MolarMassSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.VolumeSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.VolumeConcentrationSpec>;
             """);
 
         Assert.DoesNotContain(run.Result.Diagnostics, diagnostic => diagnostic.Severity == DiagnosticSeverity.Error);
@@ -113,13 +113,13 @@ public sealed class AugmentationGeneratorTests
 
             [UnitsNetModule]
             internal interface Module :
-                IInclude<UnitsNet.Modular.BuiltIns.ElectricApparentPower>,
-                IInclude<UnitsNet.Modular.BuiltIns.ElectricCurrent>,
-                IInclude<UnitsNet.Modular.BuiltIns.ElectricPotential>,
-                IInclude<UnitsNet.Modular.BuiltIns.Energy>,
-                IInclude<UnitsNet.Modular.BuiltIns.EnergyDensity>,
-                IInclude<UnitsNet.Modular.BuiltIns.Ratio>,
-                IInclude<UnitsNet.Modular.BuiltIns.Volume>;
+                IInclude<UnitsNet.Modular.BuiltIns.ElectricApparentPowerSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.ElectricCurrentSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.ElectricPotentialSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.EnergySpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.EnergyDensitySpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.RatioSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.VolumeSpec>;
             """);
 
         Assert.DoesNotContain(run.Result.Diagnostics, diagnostic => diagnostic.Severity == DiagnosticSeverity.Error);
@@ -140,12 +140,12 @@ public sealed class AugmentationGeneratorTests
 
             [UnitsNetModule]
             internal interface Module :
-                IInclude<UnitsNet.Modular.BuiltIns.AmplitudeRatio>,
-                IInclude<UnitsNet.Modular.BuiltIns.ElectricPotential>,
-                IInclude<UnitsNet.Modular.BuiltIns.ElectricResistance>,
-                IInclude<UnitsNet.Modular.BuiltIns.Level>,
-                IInclude<UnitsNet.Modular.BuiltIns.Power>,
-                IInclude<UnitsNet.Modular.BuiltIns.PowerRatio>;
+                IInclude<UnitsNet.Modular.BuiltIns.AmplitudeRatioSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.ElectricPotentialSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.ElectricResistanceSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.LevelSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.PowerSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.PowerRatioSpec>;
             """);
 
         Assert.DoesNotContain(run.Result.Diagnostics, diagnostic => diagnostic.Severity == DiagnosticSeverity.Error);
@@ -168,9 +168,9 @@ public sealed class AugmentationGeneratorTests
 
             [UnitsNetModule]
             internal interface Module :
-                IInclude<UnitsNet.Modular.BuiltIns.Length>,
-                IInclude<UnitsNet.Modular.BuiltIns.Mass>,
-                IInclude<UnitsNet.Modular.BuiltIns.Pressure>;
+                IInclude<UnitsNet.Modular.BuiltIns.LengthSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.MassSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.PressureSpec>;
             """);
 
         Assert.DoesNotContain(run.Result.Diagnostics, diagnostic => diagnostic.Severity == DiagnosticSeverity.Error);
@@ -193,15 +193,15 @@ public sealed class AugmentationGeneratorTests
             using UnitsNet.Modular;
 
             [UnitSet("regex:^Meter$")]
-            internal interface MeterOnly;
+            internal interface MeterOnlyUnitSet;
 
             [UnitSet("regex:^Kilogram$")]
-            internal interface KilogramOnly;
+            internal interface KilogramOnlyUnitSet;
 
             [UnitsNetModule]
             internal interface Module :
-                IInclude<UnitsNet.Modular.BuiltIns.Length, MeterOnly>,
-                IInclude<UnitsNet.Modular.BuiltIns.Mass, KilogramOnly>;
+                IInclude<UnitsNet.Modular.BuiltIns.LengthSpec, MeterOnlyUnitSet>,
+                IInclude<UnitsNet.Modular.BuiltIns.MassSpec, KilogramOnlyUnitSet>;
             """);
 
         Assert.DoesNotContain(run.Result.Diagnostics, diagnostic => diagnostic.Severity == DiagnosticSeverity.Error);

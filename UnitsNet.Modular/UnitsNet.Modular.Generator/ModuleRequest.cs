@@ -49,14 +49,14 @@ internal sealed class ModuleRequest
 internal sealed class ModuleSelection
 {
     public ModuleSelection(
-        string markerName,
+        string specName,
         string? builtInName,
         string? definitionId,
         ImmutableArray<string> patterns,
         bool hasUnitSet,
         bool isDirect)
     {
-        MarkerName = markerName;
+        SpecName = specName;
         BuiltInName = builtInName;
         DefinitionId = definitionId;
         Patterns = patterns;
@@ -64,7 +64,7 @@ internal sealed class ModuleSelection
         IsDirect = isDirect;
         Fingerprint = string.Join(
             "|",
-            markerName,
+            specName,
             builtInName ?? string.Empty,
             definitionId ?? string.Empty,
             hasUnitSet,
@@ -72,7 +72,7 @@ internal sealed class ModuleSelection
             string.Join("\u001f", patterns));
     }
 
-    public string MarkerName { get; }
+    public string SpecName { get; }
 
     public string? BuiltInName { get; }
 

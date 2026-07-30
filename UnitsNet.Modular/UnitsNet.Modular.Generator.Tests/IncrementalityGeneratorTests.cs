@@ -13,16 +13,16 @@ public sealed class IncrementalityGeneratorTests
         using UnitsNet.Modular;
 
         [QuantityDefinition("Sample.Distance")]
-        internal interface DistanceDefinition;
+        internal interface DistanceSpec;
 
         [QuantityDefinition("Sample.Weight")]
-        internal interface WeightDefinition;
+        internal interface WeightSpec;
 
         [UnitsNetModule]
-        internal interface Module : IInclude<DistanceDefinition>, IInclude<WeightDefinition>;
+        internal interface Module : IInclude<DistanceSpec>, IInclude<WeightSpec>;
         """;
 
-    private const string DistanceDefinition = """
+    private const string DistanceSpec = """
         {
           "Name": "Distance",
           "Namespace": "Sample",
@@ -38,7 +38,7 @@ public sealed class IncrementalityGeneratorTests
         }
         """;
 
-    private const string WeightDefinition = """
+    private const string WeightSpec = """
         {
           "Name": "Weight",
           "Namespace": "Sample",
@@ -61,7 +61,7 @@ public sealed class IncrementalityGeneratorTests
             using UnitsNet.Modular;
 
             [UnitsNetModule]
-            internal interface Module : IIncludeProfile<UnitsNet.Modular.Profiles.AllQuantities>;
+            internal interface Module : IIncludeProfile<UnitsNet.Modular.Profiles.AllQuantitiesProfile>;
             """;
         CSharpCompilation first = GeneratorTestHost.CreateCompilation(source);
         GeneratorDriver driver = GeneratorTestHost.CreateDriver().RunGenerators(first);
@@ -90,13 +90,13 @@ public sealed class IncrementalityGeneratorTests
     public void EquivalentAdditionalTextInstances_AreUnchangedByContent()
     {
         ImmutableArray<AdditionalText> firstFiles = GeneratorTestHost.CreateAdditionalTexts(
-            ("Distance.unitsnet.json", DistanceDefinition),
-            ("Weight.unitsnet.json", WeightDefinition));
+            ("Distance.unitsnet.json", DistanceSpec),
+            ("Weight.unitsnet.json", WeightSpec));
         GeneratorDriver driver = GeneratorTestHost.CreateDriver(firstFiles)
             .RunGenerators(GeneratorTestHost.CreateCompilation(CustomModule));
         ImmutableArray<AdditionalText> equivalentFiles = GeneratorTestHost.CreateAdditionalTexts(
-            ("Distance.unitsnet.json", DistanceDefinition),
-            ("Weight.unitsnet.json", WeightDefinition));
+            ("Distance.unitsnet.json", DistanceSpec),
+            ("Weight.unitsnet.json", WeightSpec));
 
         driver = driver
             .ReplaceAdditionalTexts(equivalentFiles)
@@ -111,13 +111,13 @@ public sealed class IncrementalityGeneratorTests
     public void ChangedDefinition_DoesNotInvalidateUnchangedDefinitionParsing()
     {
         ImmutableArray<AdditionalText> firstFiles = GeneratorTestHost.CreateAdditionalTexts(
-            ("Distance.unitsnet.json", DistanceDefinition),
-            ("Weight.unitsnet.json", WeightDefinition));
+            ("Distance.unitsnet.json", DistanceSpec),
+            ("Weight.unitsnet.json", WeightSpec));
         GeneratorDriver driver = GeneratorTestHost.CreateDriver(firstFiles)
             .RunGenerators(GeneratorTestHost.CreateCompilation(CustomModule));
         ImmutableArray<AdditionalText> changedFiles = GeneratorTestHost.CreateAdditionalTexts(
-            ("Distance.unitsnet.json", DistanceDefinition.Replace("\"Meters\"", "\"Metres\"", StringComparison.Ordinal)),
-            ("Weight.unitsnet.json", WeightDefinition));
+            ("Distance.unitsnet.json", DistanceSpec.Replace("\"Meters\"", "\"Metres\"", StringComparison.Ordinal)),
+            ("Weight.unitsnet.json", WeightSpec));
 
         driver = driver
             .ReplaceAdditionalTexts(changedFiles)

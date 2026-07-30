@@ -15,10 +15,10 @@ public sealed class PrefixGeneratorTests
             using UnitsNet.Modular;
 
             [QuantityDefinition("Sample.Widget")]
-            internal interface WidgetDefinition;
+            internal interface WidgetSpec;
 
             [UnitsNetModule]
-            internal interface Module : IInclude<WidgetDefinition>;
+            internal interface Module : IInclude<WidgetSpec>;
             """,
             ("Widget.unitsnet.json", """
                 {

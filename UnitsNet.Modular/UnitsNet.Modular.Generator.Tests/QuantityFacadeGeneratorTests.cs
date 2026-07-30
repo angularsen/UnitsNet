@@ -16,7 +16,7 @@ public sealed class QuantityFacadeGeneratorTests
             namespace Application.Units;
 
             [UnitsNetModule]
-            internal interface Module : IInclude<UnitsNet.Modular.BuiltIns.Length>;
+            internal interface Module : IInclude<UnitsNet.Modular.BuiltIns.LengthSpec>;
 
             internal static class Consumer
             {
@@ -52,7 +52,7 @@ public sealed class QuantityFacadeGeneratorTests
             namespace Application.Units;
 
             [UnitsNetModule("Application.Generated")]
-            internal interface Module : IInclude<UnitsNet.Modular.BuiltIns.Length>;
+            internal interface Module : IInclude<UnitsNet.Modular.BuiltIns.LengthSpec>;
             """);
 
         Assert.DoesNotContain(run.Result.Diagnostics, diagnostic => diagnostic.Severity == DiagnosticSeverity.Error);
@@ -72,10 +72,10 @@ public sealed class QuantityFacadeGeneratorTests
             namespace Application.Units;
 
             [QuantityDefinition("Fictional.Widget")]
-            internal interface WidgetDefinition;
+            internal interface WidgetSpec;
 
             [UnitsNetModule]
-            internal interface Module : IInclude<WidgetDefinition>;
+            internal interface Module : IInclude<WidgetSpec>;
             """,
             ("Widget.unitsnet.json", """
                 {

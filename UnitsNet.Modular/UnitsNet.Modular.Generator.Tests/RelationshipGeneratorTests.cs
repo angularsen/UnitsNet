@@ -15,12 +15,12 @@ public sealed class RelationshipGeneratorTests
             using UnitsNet.Modular;
 
             [QuantityDefinition("UnitsNet.ReciprocalLength")]
-            internal interface ReciprocalLengthDefinition;
+            internal interface ReciprocalLengthSpec;
 
             [UnitsNetModule("UnitsNet.Modular")]
             internal interface Module :
-                IInclude<UnitsNet.Modular.BuiltIns.Length>,
-                IInclude<ReciprocalLengthDefinition>;
+                IInclude<UnitsNet.Modular.BuiltIns.LengthSpec>,
+                IInclude<ReciprocalLengthSpec>;
             """,
             ("ReciprocalLength.unitsnet.json", """
                 {
@@ -61,9 +61,9 @@ public sealed class RelationshipGeneratorTests
 
             [UnitsNetModule]
             internal interface Module :
-                IInclude<UnitsNet.Modular.BuiltIns.Mass>,
-                IInclude<UnitsNet.Modular.BuiltIns.Acceleration>,
-                IInclude<UnitsNet.Modular.BuiltIns.Force>;
+                IInclude<UnitsNet.Modular.BuiltIns.MassSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.AccelerationSpec>,
+                IInclude<UnitsNet.Modular.BuiltIns.ForceSpec>;
             """);
 
         string generated = string.Join("\n", run.Result.GeneratedTrees.Select(tree => tree.ToString()));
@@ -85,22 +85,22 @@ public sealed class RelationshipGeneratorTests
             using UnitsNet.Modular;
 
             [QuantityDefinition("Fictional.Width")]
-            internal interface WidthDefinition;
+            internal interface WidthSpec;
 
             [QuantityDefinition("Fictional.AreaLike")]
-            internal interface AreaLikeDefinition;
+            internal interface AreaLikeSpec;
 
             [UnitSet("Meter")]
-            internal interface MeterOnly;
+            internal interface MeterOnlyUnitSet;
 
             [UnitSet("SquareMeter")]
-            internal interface SquareMeterOnly;
+            internal interface SquareMeterOnlyUnitSet;
 
             [UnitsNetModule]
             internal interface Module :
-                IInclude<UnitsNet.Modular.BuiltIns.Length, MeterOnly>,
-                IInclude<WidthDefinition, MeterOnly>,
-                IInclude<AreaLikeDefinition, SquareMeterOnly>;
+                IInclude<UnitsNet.Modular.BuiltIns.LengthSpec, MeterOnlyUnitSet>,
+                IInclude<WidthSpec, MeterOnlyUnitSet>,
+                IInclude<AreaLikeSpec, SquareMeterOnlyUnitSet>;
             """,
             ("Width.unitsnet.json", """
                 {
@@ -156,7 +156,7 @@ public sealed class RelationshipGeneratorTests
             using UnitsNet.Modular;
 
             [UnitsNetModule]
-            internal interface Module : IInclude<UnitsNet.Modular.BuiltIns.Length>;
+            internal interface Module : IInclude<UnitsNet.Modular.BuiltIns.LengthSpec>;
             """,
             ("Unknown.unitsnet.relations.json", """
                 [

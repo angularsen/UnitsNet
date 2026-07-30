@@ -14,10 +14,10 @@ public sealed class DiagnosticGeneratorTests
             using UnitsNet.Modular;
 
             [UnitsNetModule]
-            internal interface FirstModule : IInclude<UnitsNet.Modular.BuiltIns.Length>;
+            internal interface FirstModule : IInclude<UnitsNet.Modular.BuiltIns.LengthSpec>;
 
             [UnitsNetModule]
-            internal interface SecondModule : IInclude<UnitsNet.Modular.BuiltIns.Length>;
+            internal interface SecondModule : IInclude<UnitsNet.Modular.BuiltIns.LengthSpec>;
             """);
 
         Diagnostic diagnostic = Assert.Single(run.Result.Diagnostics, item => item.Id == "UNM014");
@@ -40,7 +40,7 @@ public sealed class DiagnosticGeneratorTests
             using UnitsNet.Modular;
 
             [UnitsNetModule]
-            internal interface Module : IInclude<UnitsNet.Modular.BuiltIns.Temperature>;
+            internal interface Module : IInclude<UnitsNet.Modular.BuiltIns.TemperatureSpec>;
             """);
 
         Diagnostic diagnostic = Assert.Single(run.Result.Diagnostics, item => item.Id == "UNM015");
@@ -64,7 +64,7 @@ public sealed class DiagnosticGeneratorTests
             internal interface MissingUnitSet;
 
             [UnitsNetModule]
-            internal interface Module : IInclude<UnitsNet.Modular.BuiltIns.Length, MissingUnitSet>;
+            internal interface Module : IInclude<UnitsNet.Modular.BuiltIns.LengthSpec, MissingUnitSet>;
             """);
 
         Diagnostic diagnostic = Assert.Single(run.Result.Diagnostics, item => item.Id == "UNM012");
@@ -87,13 +87,13 @@ public sealed class DiagnosticGeneratorTests
             using UnitsNet.Modular;
 
             [QuantityDefinition("First.Widget")]
-            internal interface FirstWidget;
+            internal interface FirstWidgetSpec;
 
             [QuantityDefinition("Second.Widget")]
-            internal interface SecondWidget;
+            internal interface SecondWidgetSpec;
 
             [UnitsNetModule("Application.Units")]
-            internal interface Module : IInclude<FirstWidget>, IInclude<SecondWidget>;
+            internal interface Module : IInclude<FirstWidgetSpec>, IInclude<SecondWidgetSpec>;
             """,
             ("First.unitsnet.json", "{ \"Name\": \"Widget\", \"Namespace\": \"First\", " + unit + " }"),
             ("Second.unitsnet.json", "{ \"Name\": \"Widget\", \"Namespace\": \"Second\", " + unit + " }"));
@@ -112,10 +112,10 @@ public sealed class DiagnosticGeneratorTests
             using UnitsNet.Modular;
 
             [QuantityDefinition("Sample.Widget")]
-            internal interface WidgetDefinition;
+            internal interface WidgetSpec;
 
             [UnitsNetModule]
-            internal interface Module : IInclude<WidgetDefinition>;
+            internal interface Module : IInclude<WidgetSpec>;
             """,
             ("Widget.unitsnet.json", """
                 {
@@ -143,10 +143,10 @@ public sealed class DiagnosticGeneratorTests
             using UnitsNet.Modular;
 
             [QuantityDefinition("Sample.Widget")]
-            internal interface WidgetDefinition;
+            internal interface WidgetSpec;
 
             [UnitsNetModule]
-            internal interface Module : IInclude<WidgetDefinition>;
+            internal interface Module : IInclude<WidgetSpec>;
             """,
             ("Widget.unitsnet.json", """
                 {
@@ -178,10 +178,10 @@ public sealed class DiagnosticGeneratorTests
             using UnitsNet.Modular;
 
             [QuantityDefinition("Sample.Widget")]
-            internal interface WidgetDefinition;
+            internal interface WidgetSpec;
 
             [UnitsNetModule]
-            internal interface Module : IInclude<WidgetDefinition>;
+            internal interface Module : IInclude<WidgetSpec>;
             """,
             ("Widget.unitsnet.json", """
                 {
@@ -210,10 +210,10 @@ public sealed class DiagnosticGeneratorTests
             using UnitsNet.Modular;
 
             [QuantityDefinition("Sample.Bad-Widget")]
-            internal interface WidgetDefinition;
+            internal interface WidgetSpec;
 
             [UnitsNetModule]
-            internal interface Module : IInclude<WidgetDefinition>;
+            internal interface Module : IInclude<WidgetSpec>;
             """,
             ("Widget.unitsnet.json", """
                 {

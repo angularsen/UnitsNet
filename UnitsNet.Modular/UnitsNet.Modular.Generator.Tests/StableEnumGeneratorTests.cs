@@ -13,10 +13,10 @@ public sealed class StableEnumGeneratorTests
             using UnitsNet.Modular;
 
             [UnitSet("Meter", "Millimeter", "Megameter")]
-            internal interface SelectedUnits;
+            internal interface SelectedUnitSet;
 
             [UnitsNetModule]
-            internal interface Module : IInclude<UnitsNet.Modular.BuiltIns.Length, SelectedUnits>;
+            internal interface Module : IInclude<UnitsNet.Modular.BuiltIns.LengthSpec, SelectedUnitSet>;
             """);
 
         string generated = Assert.Single(
@@ -35,13 +35,13 @@ public sealed class StableEnumGeneratorTests
             using UnitsNet.Modular;
 
             [QuantityDefinition("Example.Widget")]
-            internal interface WidgetDefinition;
+            internal interface WidgetSpec;
 
             [UnitSet("Base", "Third")]
-            internal interface SelectedUnits;
+            internal interface SelectedUnitSet;
 
             [UnitsNetModule]
-            internal interface Module : IInclude<WidgetDefinition, SelectedUnits>;
+            internal interface Module : IInclude<WidgetSpec, SelectedUnitSet>;
             """,
             ("Widget.unitsnet.json", """
                 {

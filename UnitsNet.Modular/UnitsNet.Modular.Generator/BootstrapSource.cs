@@ -32,16 +32,16 @@ internal static class BootstrapSource
         writer.AppendLine("{");
         foreach (string quantityName in BuiltInCatalog.Names)
         {
-            writer.Append("    internal sealed class ").Append(quantityName).AppendLine(" { }");
+            writer.Append("    internal sealed class ").Append(quantityName).AppendLine("Spec { }");
         }
 
         writer.AppendLine("}");
         writer.AppendLine();
         writer.AppendLine("namespace UnitsNet.Modular.Profiles");
         writer.AppendLine("{");
-        EmitProfile(writer, "AllSi", AllSiQuantities);
+        EmitProfile(writer, "AllSiProfile", AllSiQuantities);
         writer.AppendLine();
-        EmitProfile(writer, "AllQuantities", BuiltInCatalog.Names);
+        EmitProfile(writer, "AllQuantitiesProfile", BuiltInCatalog.Names);
         writer.AppendLine("}");
         return writer.ToString();
     }
@@ -53,6 +53,7 @@ internal static class BootstrapSource
         {
             writer.Append("        global::UnitsNet.Modular.IInclude<global::UnitsNet.Modular.BuiltIns.")
                 .Append(quantityNames[index])
+                .Append("Spec")
                 .Append('>');
             writer.AppendLine(index == quantityNames.Count - 1 ? string.Empty : ",");
         }

@@ -29,24 +29,24 @@ public sealed class UnitSetAttribute : Attribute
     public string[] Patterns { get; }
 }
 
-/// <summary>Binds a public marker type from a definition package to a semantic quantity ID.</summary>
+/// <summary>Binds a public quantity spec from a definition package to a semantic quantity ID.</summary>
 [AttributeUsage(AttributeTargets.Interface)]
 public sealed class QuantityDefinitionAttribute : Attribute
 {
-    /// <summary>Creates a definition marker for <paramref name="id" />.</summary>
+    /// <summary>Creates a quantity spec for <paramref name="id" />.</summary>
     public QuantityDefinitionAttribute(string id) => Id = id;
 
     /// <summary>Gets the stable semantic quantity ID.</summary>
     public string Id { get; }
 }
 
-/// <summary>Selects all units from a quantity definition.</summary>
-public interface IInclude<TQuantityDefinition>
+/// <summary>Selects all units from a quantity spec.</summary>
+public interface IInclude<TQuantitySpec>
 {
 }
 
-/// <summary>Selects units matching <typeparamref name="TUnitSet" /> from a quantity definition.</summary>
-public interface IInclude<TQuantityDefinition, TUnitSet>
+/// <summary>Selects units matching <typeparamref name="TUnitSet" /> from a quantity spec.</summary>
+public interface IInclude<TQuantitySpec, TUnitSet>
 {
 }
 
