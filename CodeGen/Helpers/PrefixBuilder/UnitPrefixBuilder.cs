@@ -141,7 +141,8 @@ internal class UnitPrefixBuilder
 
     private static bool LooksLikePoweredUnit(Unit unit)
     {
-        // This intentionally checks naming conventions rather than dimensions, since valid derived units can have powered base dimensions.
+        // This intentionally checks naming conventions rather than dimensions, since derived units such as Watt, Joule,
+        // and Ohm have powered base dimensions and safely support prefixes.
         if (unit.SingularName.StartsWith("Square", StringComparison.Ordinal) ||
             unit.SingularName.StartsWith("Cubic", StringComparison.Ordinal))
         {
