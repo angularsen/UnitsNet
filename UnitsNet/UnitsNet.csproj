@@ -62,6 +62,10 @@
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" />
   </ItemGroup>
 
+  <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0'">
+    <ProjectReference Include="../UnitsNet.Core/UnitsNet.Core.csproj" />
+  </ItemGroup>
+
   <ItemGroup>
     <Using Include="System" />
     <Using Include="System.Collections.Generic" />

@@ -41,9 +41,16 @@ public static class CompatibilityScenario
             FormattableString.Invariant($"Level: {combinedLevel.Value:G15} {combinedLevel.Unit}"),
             FormattableString.Invariant($"Information: {payload.Value:G15} {payload.Unit}"),
             FormattableString.Invariant($"Sum: {total.Value:G15} {total.Unit}"),
-            FormattableString.Invariant($"Average: {average.Value:G15} {average.Unit}"));
+            FormattableString.Invariant($"Average: {average.Value:G15} {average.Unit}"),
+            DescribeCoreContract<Length, LengthUnit>(distance));
     }
 
     public static Length ParseLength(string text) =>
         Length.Parse(text, CultureInfo.InvariantCulture);
+
+    private static string DescribeCoreContract<TQuantity, TUnit>(TQuantity quantity)
+        where TQuantity : UnitsNet.Core.IQuantity<TQuantity, TUnit, double>
+        where TUnit : struct, Enum =>
+        FormattableString.Invariant(
+            $"Core: {TQuantity.QuantityId}={quantity.Value:G15} {quantity.Unit}");
 }
