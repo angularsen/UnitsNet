@@ -225,6 +225,12 @@ selected. Companion types remain an explicit opt-in recipe with a dedicated emit
 is never inferred from a quantity or its units. This inventory is a migration tool, not a claim that
 every legacy API belongs in the final architecture.
 
+Two handwritten APIs remain intentionally excluded. `Length.ParseFeetInches` and
+`TryParseFeetInches` depend on a specialized text grammar, while `Pressure.FromElevation` and
+`ToElevation` implement an empirical atmosphere model rather than unit conversion. The
+compatibility suite requires every exclusion to identify an existing UnitsNet member and provide a
+non-empty rationale, so stale exclusions fail the test.
+
 `UnitsNet.Core.IQuantity<TValue>` exposes only the stored numeric value.
 `UnitsNet.Core.IQuantity<TUnit, TValue>` additionally exposes its strongly typed stored unit.
 `UnitsNet.Core.IQuantity<TSelf, TUnit, TValue>` adds static semantic identity, base unit,
@@ -310,7 +316,7 @@ in the NuGet cache while keeping the real-consumer samples and CI artifacts self
 
 The package-facing samples import one repository-only MSBuild target that incrementally packs
 changed UnitsNetGen or generator sources before restore, then refreshes their floating
-`1.0.0-local.dev.*` dependencies before compilation. `ConsumerOwned.Units` registers the fictional
+`6.0.0-local.dev.*` dependencies before compilation. `ConsumerOwned.Units` registers the fictional
 definition provider as an additional package, so the automation packs the runtime first and the
 definition recipe second with the same unique version. Restore is restricted to the shared
 `Artifacts/Nugets` development feed and can never fall back to a published package.
@@ -331,7 +337,7 @@ The older singular property and target names remain aliases for existing local c
 shared `Artifacts/Nugets` path. The repository-level `NuGet.Config` exposes it to solution-wide IDE
 package tooling, and generated packages remain gitignored. The UnitsNetGen package project supports
 a plain `dotnet pack UnitsNetGen/UnitsNetGen/UnitsNetGen.csproj`, which creates a unique
-`1.0.0-local.dev.*` package in that feed for the real-consumer samples. The dedicated `dev`
+`6.0.0-local.dev.*` package in that feed for the real-consumer samples. The dedicated `dev`
 identifier prevents another local prerelease label from shadowing the floating dependency. Local
 development versions are prereleases, so enable prerelease packages and refresh the feed in the IDE
 after packing. Pass
@@ -346,11 +352,18 @@ executing the consumer.
 ## Versioning and CI
 
 The combined `UnitsNetGen` package uses MinVer with the tag prefix `UnitsNetGen/`, a minimum version
-of `1.0`, and `alpha.0` as the default prerelease identifiers. Existing `UnitsNet/*`, `JsonNet/*`,
-and unprefixed tags are ignored. A release tag such as `UnitsNetGen/1.0.0-alpha.1` or
-`UnitsNetGen/1.0.0` becomes the exact package version. Untagged builds receive a MinVer-generated
+of `6.0`, and `alpha.0` as the default prerelease identifiers. Existing `UnitsNet/*`, `JsonNet/*`,
+and unprefixed tags are ignored. A release tag such as `UnitsNetGen/6.0.0-alpha.1` or
+`UnitsNetGen/6.0.0` becomes the exact package version. Untagged builds receive a MinVer-generated
 alpha version with commit height. `UnitsNetGen.Generator` remains an internal, non-packable project
 because its generated code requires the runtime shipped in the combined package.
+
+UnitsNet, UnitsNetGen, and UnitsNet.Core share major version 6 to communicate the catalog generation
+they belong to, but their minor and patch versions can advance independently. UnitsNet retains its
+existing explicitly controlled version. UnitsNetGen uses its isolated MinVer tag prefix, while
+UnitsNet.Core starts at the explicitly controlled `6.0.0-alpha.1` and advances when its shared
+contracts change. Third-party definition packages have independent versions; the fictional sample
+remains at 1.x when packed directly.
 
 The local package automation passes a timestamped `MinVerVersionOverride` so repeated packages
 containing uncommitted changes remain unique. The package includes complete NuGet metadata,

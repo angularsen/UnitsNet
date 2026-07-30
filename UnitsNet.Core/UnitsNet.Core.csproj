@@ -7,9 +7,9 @@
     <IsAotCompatible>true</IsAotCompatible>
     <RootNamespace>UnitsNet.Core</RootNamespace>
     <AssemblyName>UnitsNet.Core</AssemblyName>
-    <Version Condition="'$(UnitsNetCoreVersionOverride)' == ''">1.0.0-alpha.1</Version>
+    <Version Condition="'$(UnitsNetCoreVersionOverride)' == ''">6.0.0-alpha.1</Version>
     <Version Condition="'$(UnitsNetCoreVersionOverride)' != ''">$(UnitsNetCoreVersionOverride)</Version>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>../UnitsNet.snk</AssemblyOriginatorKeyFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>

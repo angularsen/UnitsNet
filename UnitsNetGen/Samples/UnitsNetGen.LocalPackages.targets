@@ -9,7 +9,7 @@
     <UnitsNetGenSampleLocalFeed
         Condition="'$(UnitsNetGenSampleLocalFeed)' == ''">$(RepositoryLocalNuGetFeed)</UnitsNetGenSampleLocalFeed>
     <UnitsNetGenSampleLocalVersion
-        Condition="'$(UnitsNetGenSampleLocalVersion)' == ''">1.0.0-local.dev.*</UnitsNetGenSampleLocalVersion>
+        Condition="'$(UnitsNetGenSampleLocalVersion)' == ''">6.0.0-local.dev.*</UnitsNetGenSampleLocalVersion>
 
     <!-- Retain the original singular switch as a compatibility alias for existing commands. -->
     <UnitsNetGenSampleUpdateLocalPackagesOnBuild
@@ -26,7 +26,7 @@
     <_UnitsNetGenSourceProject>$(_UnitsNetGenSourceRoot)UnitsNetGen\UnitsNetGen.csproj</_UnitsNetGenSourceProject>
     <_UnitsNetGenSampleLocalPackStamp>$(UnitsNetGenSampleLocalFeed)\.$(MSBuildProjectName).local-pack.stamp</_UnitsNetGenSampleLocalPackStamp>
     <!-- MinVer cannot distinguish uncommitted edits, so local packages use a unique override. -->
-    <_UnitsNetGenSampleLocalPackageVersion>1.0.0-local.dev.$([System.DateTime]::UtcNow.ToString('yyyyMMddHHmmssfff'))</_UnitsNetGenSampleLocalPackageVersion>
+    <_UnitsNetGenSampleLocalPackageVersion>6.0.0-local.dev.$([System.DateTime]::UtcNow.ToString('yyyyMMddHHmmssfff'))</_UnitsNetGenSampleLocalPackageVersion>
   </PropertyGroup>
 
   <ItemGroup>

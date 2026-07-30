@@ -11,7 +11,7 @@
   -->
   <PropertyGroup>
     <MinVerTagPrefix>UnitsNetGen/</MinVerTagPrefix>
-    <MinVerMinimumMajorMinor>1.0</MinVerMinimumMajorMinor>
+    <MinVerMinimumMajorMinor>6.0</MinVerMinimumMajorMinor>
     <MinVerDefaultPreReleaseIdentifiers>alpha.0</MinVerDefaultPreReleaseIdentifiers>
   </PropertyGroup>
 
