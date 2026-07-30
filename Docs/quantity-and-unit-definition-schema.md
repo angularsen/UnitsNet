@@ -206,6 +206,9 @@ instead. For example, define `CubicMillimeterPerKilogram` for `mm³/kg` instead 
 `MillicubicMeterPerKilogram`, and define `ThousandCubicMeter` with an abbreviation such as `10³·m³` when the intended
 unit is 1000 cubic meters rather than cubic kilometers.
 
+CodeGen fails when `Prefixes` is used on a unit that looks like the powered unit itself, such as a unit name starting
+with `Square` or `Cubic`, or an abbreviation starting with `m²`, `m³`, `ft³`, or similar powered unit symbols.
+
 ## Localization object
 
 Each `Localization` entry configures abbreviations for one culture.
