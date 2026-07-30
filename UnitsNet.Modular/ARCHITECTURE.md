@@ -22,7 +22,7 @@ the current
 
 The idea is viable if the unit of composition is a **consumer-owned module assembly**:
 
-1. A module declares an interface that selects quantity definitions.
+1. A module declares an interface that selects quantity specs.
 2. One incremental generator resolves the selection and emits only the selected quantity and unit
    types into that module.
 3. The application's domain, persistence, UI, and service projects reference that assembly normally.
@@ -33,18 +33,22 @@ CLR types. An application should therefore generate its quantities once in a sha
 library, then reference that library everywhere else in the application.
 
 Third parties publish **definition packages**, not compiled quantity structs. A definition package
-contains JSON definitions, localizations, relationships, and small public definition markers. The
+contains JSON definitions, localizations, relationships, and small public quantity specs. The
 consumer remains responsible for selecting and compiling those definitions into its module.
 
 Roslyn generators are additive and unordered; a generator cannot consume another generator's output
 in the same compilation. Consequently, UnitsNet.Modular uses one generator for built-in and custom
-definitions. Stable public authoring contracts live in the UnitsNet.Modular runtime so definition-marker
-assemblies can reference one identity. Built-in catalog markers and profiles are internal bootstrap
+definitions. Stable public authoring contracts live in the UnitsNet.Modular runtime so definition-package
+assemblies can reference one identity. Built-in catalog specs and profiles are internal bootstrap
 source emitted during post-initialization.
 
 ## Developer experience
 
-Select every unit for a built-in quantity by inheriting `IInclude<TDefinition>`:
+Authoring types use role-specific suffixes: quantity recipes are `*Spec`, reusable unit filters are
+`*UnitSet`, and reusable selection groups are `*Profile`. This keeps an input such as `LengthSpec`
+visually distinct from the generated `Length` quantity and `LengthUnit` enum.
+
+Select every unit for a built-in quantity by inheriting `IInclude<TQuantitySpec>`:
 
 ```csharp
 using UnitsNet.Modular.BuiltIns;
@@ -52,10 +56,10 @@ using UnitsNet.Modular;
 
 [UnitsNetModule]
 internal interface EngineeringUnits :
-    IInclude<Length>,
-    IInclude<Temperature>,
-    IInclude<TemperatureDelta>,
-    IInclude<Information>
+    IInclude<LengthSpec>,
+    IInclude<TemperatureSpec>,
+    IInclude<TemperatureDeltaSpec>,
+    IInclude<InformationSpec>
 {
 }
 ```
@@ -66,9 +70,9 @@ Built-in recipes generate a source-compatible concrete surface by default: quant
 ```csharp
 [UnitsNetModule]
 internal interface CompatibilityUnits :
-    IInclude<Length>,
-    IInclude<Temperature>,
-    IInclude<TemperatureDelta>;
+    IInclude<LengthSpec>,
+    IInclude<TemperatureSpec>,
+    IInclude<TemperatureDeltaSpec>;
 ```
 
 An explicit module target namespace remains available for side-by-side experiments or applications
@@ -78,11 +82,11 @@ Select units with a regular expression by defining a named unit set:
 
 ```csharp
 [UnitSet("regex:.*Meter$")]
-internal interface MeterUnits;
+internal interface MeterUnitSet;
 
 [UnitsNetModule]
 internal interface LeanUnits :
-    IInclude<Length, MeterUnits>
+    IInclude<LengthSpec, MeterUnitSet>
 {
 }
 ```
@@ -100,13 +104,14 @@ using UnitsNet.Modular.Profiles;
 
 [UnitsNetModule]
 internal interface ApplicationUnits :
-    IIncludeProfile<AllQuantities>,
-    IInclude<HowMuchDefinition>;
+    IIncludeProfile<AllQuantitiesProfile>,
+    IInclude<HowMuchSpec>;
 ```
 
-`AllQuantities` contains the built-in catalog, while `AllSi` selects the SI relationship sample.
+`AllQuantitiesProfile` contains the built-in catalog, while `AllSiProfile` selects the SI
+relationship sample.
 Consumers can define profiles from
-`IInclude<TDefinition>` and nest them through `IIncludeProfile<TProfile>`. Profile selections are
+`IInclude<TQuantitySpec>` and nest them through `IIncludeProfile<TProfile>`. Profile selections are
 defaults: direct selections on the module override a profile's unit selection for the same quantity.
 The recommended application architecture has one module marker in its shared units project. Profiles
 and direct includes compose the complete generated surface at that boundary.
@@ -134,7 +139,7 @@ Rider, ignore custom build actions before running their design-time Roslyn host.
 The JSON shape follows the existing UnitsNet quantity definitions and adds an optional `Namespace`
 for stable third-party identity; it defaults to `UnitsNet`, allowing files such as the existing
 `Length.json` to be consumed unchanged. It supports localized abbreviations, prefix expansion, and
-`FromUnitToBaseFunc`/`FromBaseToUnitFunc` expressions. A minimal marker binds type-safe module
+`FromUnitToBaseFunc`/`FromBaseToUnitFunc` expressions. A minimal quantity spec binds type-safe module
 selection to the JSON's logical `Namespace.Name` ID:
 
 ```csharp
@@ -143,10 +148,10 @@ namespace Fictional;
 using UnitsNet.Modular;
 
 [QuantityDefinition("Fictional.Measurements.HowMuch")]
-public interface HowMuchDefinition;
+public interface HowMuchSpec;
 
 [UnitsNetModule]
-internal interface FictionalUnits : IInclude<HowMuchDefinition>;
+internal interface FictionalUnits : IInclude<HowMuchSpec>;
 ```
 
 Definitions are read with `System.Text.Json`. Its .NET Standard support assemblies are bundled
@@ -155,7 +160,7 @@ Conversion expressions are parsed as C# expressions and restricted to numeric li
 arithmetic operators, parentheses, `Math.PI`, `Math.E`, and an allowlist of numeric `Math`
 functions.
 The generator emits the validated expressions directly into conversion switches; it does not compile
-expressions or use reflection at runtime. A definition package contains public marker types and JSON
+expressions or use reflection at runtime. A definition package contains public quantity specs and JSON
 definitions while the module that selects them owns the generated runtime types. Its package-local
 `build/*.props` file exposes the JSON as compiler `AdditionalFiles` only to the project that
 directly references it.
@@ -165,7 +170,7 @@ directly references it.
 - `UnitsNet.Core`: minimal modern value/unit contracts and a self-typed static contract used by
   generated quantities, with UnitsNet adoption explored separately.
 - `UnitsNet.Modular`: the lean conversion, parsing, formatting, and unit-metadata runtime.
-- `UnitsNet.Modular.Generator`: the incremental generator, marker bootstrap source, built-in catalog,
+- `UnitsNet.Modular.Generator`: the incremental generator, spec bootstrap source, built-in catalog,
   diagnostics, and emitters.
 - `UnitsNet.Modular.Generator.Tests`: generator-driver coverage for diagnostics, stable output,
   incrementality, and all relationship shapes.
@@ -185,7 +190,7 @@ directly references it.
 - `Samples/UnitsNet.Modular.NuGet.Sample`: an isolated real-consumer scenario using only a locally packed
   `PackageReference` and consumer-owned JSON.
 - `Samples/DefinitionPackages/Fictional.Measurements.Definitions`: a packable definition-only NuGet
-  containing markers, JSON definitions, localization, and structured relationships.
+  containing quantity specs, JSON definitions, localization, and structured relationships.
 - `Samples/ConsumerOwned/ConsumerOwned.Units`: the package-facing application-owned generation
   boundary. It consumes locally packed runtime and definition packages.
 - `Samples/ConsumerOwned/ConsumerOwned.Units.ProjectReferences`: a maintainer-facing twin that
@@ -490,8 +495,8 @@ The catalog model is designed for all UnitsNet quantity and unit definitions. De
 the UnitsNet JSON catalog and cover linear, affine, and logarithmic behavior; SI, non-SI,
 decimal-prefix, and binary-prefix units; localized abbreviations; and cross-quantity relationships.
 
-`AllQuantities` selects all 129 built-in definitions directly from the repository catalog, without
-a second handwritten name inventory. `AllSi` exercises the complete SI
+`AllQuantitiesProfile` selects all 129 built-in definitions directly from the repository catalog,
+without a second handwritten name inventory. `AllSiProfile` exercises the complete SI
 relationship chain in a focused sample, while the representative sample provides a faster varied
 selection for day-to-day generator iteration. JSON-backed third-party definitions participate in
 the same

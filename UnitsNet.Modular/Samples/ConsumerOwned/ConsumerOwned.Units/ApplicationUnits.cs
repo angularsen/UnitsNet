@@ -7,6 +7,6 @@ namespace ConsumerOwned.Units;
 
 [UnitsNetModule]
 internal interface ApplicationUnits :
-    IInclude<UnitsNet.Modular.BuiltIns.Length>,
-    IInclude<HowMuchDefinition>,
-    IInclude<HowMuchDistanceDefinition>;
+    IInclude<UnitsNet.Modular.BuiltIns.LengthSpec>,
+    IInclude<HowMuchSpec>,
+    IInclude<HowMuchDistanceSpec>;

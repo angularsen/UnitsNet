@@ -9,10 +9,10 @@ using Catalog = UnitsNet.Modular.BuiltIns;
 namespace UnitsNet.Modular.NuGet.Sample;
 
 [QuantityDefinition("NuGetConsumer.Measurements.HowMuch")]
-internal interface HowMuchDefinition;
+internal interface HowMuchSpec;
 
 [UnitsNetModule]
-internal interface ConsumerUnits : IInclude<Catalog.Length>, IInclude<HowMuchDefinition>;
+internal interface ConsumerUnits : IInclude<Catalog.LengthSpec>, IInclude<HowMuchSpec>;
 
 internal static class Program
 {

@@ -14,7 +14,7 @@ public sealed class FullCatalogGeneratorTests
         using UnitsNet.Modular.Profiles;
 
         [UnitsNetModule]
-        internal interface FullCatalogModule : IIncludeProfile<AllQuantities>;
+        internal interface FullCatalogModule : IIncludeProfile<AllQuantitiesProfile>;
         """;
 
     private readonly ITestOutputHelper _output;

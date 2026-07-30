@@ -9,12 +9,12 @@ namespace UnitsNet.Modular.Representative.Sample;
 
 [UnitsNetModule]
 internal interface RepresentativeUnits :
-    IInclude<Catalog.Length>,
-    IInclude<Catalog.Area>,
-    IInclude<Catalog.Temperature>,
-    IInclude<Catalog.TemperatureDelta>,
-    IInclude<Catalog.Level>,
-    IInclude<Catalog.Information>
+    IInclude<Catalog.LengthSpec>,
+    IInclude<Catalog.AreaSpec>,
+    IInclude<Catalog.TemperatureSpec>,
+    IInclude<Catalog.TemperatureDeltaSpec>,
+    IInclude<Catalog.LevelSpec>,
+    IInclude<Catalog.InformationSpec>
 {
 }
 

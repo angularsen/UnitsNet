@@ -19,6 +19,7 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
     private const string QuantityAttribute = "UnitsNet.Modular.QuantityDefinitionAttribute";
     private const string GenerationNamespace = "UnitsNet.Modular";
     private const string BuiltInsNamespace = "UnitsNet.Modular.BuiltIns";
+    private const string BuiltInSpecSuffix = "Spec";
     private const string IncludeName = "IInclude";
     private const string IncludeProfileName = "IIncludeProfile";
 
@@ -88,7 +89,7 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
 
     private static readonly DiagnosticDescriptor MissingUnitSet = new DiagnosticDescriptor(
         "UNM012",
-        "Unit-set marker is invalid",
+        "Unit set is invalid",
         "Unit-set type selected for quantity '{0}' has no UnitSet attribute or no patterns",
         "UnitsNet.Modular",
         DiagnosticSeverity.Error,
@@ -121,7 +122,7 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         context.RegisterPostInitializationOutput(static output =>
-            output.AddSource("UnitsNet.Modular.Markers.g.cs", SourceText.From(BootstrapSource.Text, System.Text.Encoding.UTF8)));
+            output.AddSource("UnitsNet.Modular.Specs.g.cs", SourceText.From(BootstrapSource.Text, System.Text.Encoding.UTF8)));
 
         IncrementalValuesProvider<ModuleRequest> modules = context.SyntaxProvider
             .ForAttributeWithMetadataName(
@@ -242,7 +243,7 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
             QuantityDefinition? definition = ResolveDefinition(selection, jsonDefinitions);
             if (definition is null)
             {
-                context.ReportDiagnostic(Diagnostic.Create(MissingDefinition, moduleLocation, selection.MarkerName));
+                context.ReportDiagnostic(Diagnostic.Create(MissingDefinition, moduleLocation, selection.SpecName));
                 continue;
             }
 
@@ -516,15 +517,16 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
     private static ModuleSelection? CreateModuleSelection(INamedTypeSymbol include, bool isDirect)
     {
         ImmutableArray<ITypeSymbol> arguments = include.TypeArguments;
-        if (arguments.Length is < 1 or > 2 || arguments[0] is not INamedTypeSymbol marker)
+        if (arguments.Length is < 1 or > 2 || arguments[0] is not INamedTypeSymbol spec)
         {
             return null;
         }
 
-        string? builtInName = marker.ContainingNamespace.ToDisplayString() == BuiltInsNamespace
-            ? marker.Name
+        string? builtInName = spec.ContainingNamespace.ToDisplayString() == BuiltInsNamespace &&
+                              spec.Name.EndsWith(BuiltInSpecSuffix, StringComparison.Ordinal)
+            ? spec.Name.Substring(0, spec.Name.Length - BuiltInSpecSuffix.Length)
             : null;
-        AttributeData? definitionAttribute = marker.GetAttributes()
+        AttributeData? definitionAttribute = spec.GetAttributes()
             .FirstOrDefault(attribute => AttributeName(attribute) == QuantityAttribute);
         string? definitionId = definitionAttribute?.ConstructorArguments.Length == 1
             ? definitionAttribute.ConstructorArguments[0].Value as string
@@ -533,7 +535,7 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
             ? GetUnitSetPatterns(arguments[1])
             : Array.Empty<string>();
         return new ModuleSelection(
-            marker.ToDisplayString(),
+            spec.ToDisplayString(),
             builtInName,
             definitionId,
             (patterns ?? Array.Empty<string>()).OrderBy(value => value, StringComparer.Ordinal).ToImmutableArray(),
@@ -542,7 +544,7 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
     }
 
     private static string SelectionIdentity(ModuleSelection selection) =>
-        selection.SemanticId ?? selection.MarkerName;
+        selection.SemanticId ?? selection.SpecName;
 
     private static IEnumerable<INamedTypeSymbol> GetProfileIncludes(INamedTypeSymbol module)
     {

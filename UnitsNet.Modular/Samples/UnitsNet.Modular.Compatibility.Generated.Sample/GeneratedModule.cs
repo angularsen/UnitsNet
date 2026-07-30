@@ -6,6 +6,6 @@ using UnitsNet.Modular.Profiles;
 namespace UnitsNet.Modular.Compatibility;
 
 [UnitsNetModule]
-internal interface CompatibilityUnits : IIncludeProfile<AllQuantities>
+internal interface CompatibilityUnits : IIncludeProfile<AllQuantitiesProfile>
 {
 }

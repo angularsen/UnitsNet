@@ -8,19 +8,19 @@ using Catalog = UnitsNet.Modular.BuiltIns;
 namespace UnitsNet.Modular.Lean.Sample;
 
 [UnitSet("regex:.*Meter$")]
-internal interface MeterUnits
+internal interface MeterUnitSet
 {
 }
 
 [UnitSet("regex:.*Byte$")]
-internal interface ByteUnits
+internal interface ByteUnitSet
 {
 }
 
 [UnitsNetModule]
 internal interface LeanUnits :
-    IInclude<Catalog.Length, MeterUnits>,
-    IInclude<Catalog.Information, ByteUnits>
+    IInclude<Catalog.LengthSpec, MeterUnitSet>,
+    IInclude<Catalog.InformationSpec, ByteUnitSet>
 {
 }
 

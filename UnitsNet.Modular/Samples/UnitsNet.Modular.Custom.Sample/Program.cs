@@ -5,12 +5,12 @@ using UnitsNet.Modular;
 namespace Fictional.Measurements;
 
 [QuantityDefinition("Fictional.Measurements.HowMuch")]
-public interface HowMuchDefinition
+public interface HowMuchSpec
 {
 }
 
 [UnitsNetModule]
-internal interface FictionalUnits : IInclude<HowMuchDefinition>
+internal interface FictionalUnits : IInclude<HowMuchSpec>
 {
 }
 
