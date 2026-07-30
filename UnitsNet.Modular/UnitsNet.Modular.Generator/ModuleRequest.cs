@@ -35,7 +35,9 @@ internal sealed class ModuleRequest
     public string FacadeNamespace =>
         !string.IsNullOrWhiteSpace(TargetNamespace)
             ? TargetNamespace!
-            : Selections.Any(selection => selection.BuiltInName is not null)
+            : Selections.Any(
+                selection => selection.SemanticId is not null &&
+                             BuiltInCatalog.TryGetBySemanticId(selection.SemanticId, out _))
                 ? "UnitsNet"
                 : OwnerNamespace;
 
@@ -50,23 +52,20 @@ internal sealed class ModuleSelection
 {
     public ModuleSelection(
         string specName,
-        string? builtInName,
-        string? definitionId,
+        string? semanticId,
         ImmutableArray<string> patterns,
         bool hasUnitSet,
         bool isDirect)
     {
         SpecName = specName;
-        BuiltInName = builtInName;
-        DefinitionId = definitionId;
+        SemanticId = semanticId;
         Patterns = patterns;
         HasUnitSet = hasUnitSet;
         IsDirect = isDirect;
         Fingerprint = string.Join(
             "|",
             specName,
-            builtInName ?? string.Empty,
-            definitionId ?? string.Empty,
+            semanticId ?? string.Empty,
             hasUnitSet,
             isDirect,
             string.Join("\u001f", patterns));
@@ -74,9 +73,7 @@ internal sealed class ModuleSelection
 
     public string SpecName { get; }
 
-    public string? BuiltInName { get; }
-
-    public string? DefinitionId { get; }
+    public string? SemanticId { get; }
 
     public ImmutableArray<string> Patterns { get; }
 
@@ -85,8 +82,6 @@ internal sealed class ModuleSelection
     public bool IsDirect { get; }
 
     public string Fingerprint { get; }
-
-    public string? SemanticId => BuiltInName is null ? DefinitionId : "UnitsNet." + BuiltInName;
 }
 
 internal readonly struct SourceLocation

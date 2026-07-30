@@ -29,11 +29,11 @@ public sealed class UnitSetAttribute : Attribute
     public string[] Patterns { get; }
 }
 
-/// <summary>Binds a public quantity spec from a definition package to a semantic quantity ID.</summary>
+/// <summary>Binds a quantity spec to a stable semantic quantity ID.</summary>
 [AttributeUsage(AttributeTargets.Interface)]
 public sealed class QuantityDefinitionAttribute : Attribute
 {
-    /// <summary>Creates a quantity spec for <paramref name="id" />.</summary>
+    /// <summary>Creates a binding to the semantic quantity ID <paramref name="id" />.</summary>
     public QuantityDefinitionAttribute(string id) => Id = id;
 
     /// <summary>Gets the stable semantic quantity ID.</summary>

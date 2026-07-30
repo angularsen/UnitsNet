@@ -18,8 +18,6 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
     private const string UnitSetAttribute = "UnitsNet.Modular.UnitSetAttribute";
     private const string QuantityAttribute = "UnitsNet.Modular.QuantityDefinitionAttribute";
     private const string GenerationNamespace = "UnitsNet.Modular";
-    private const string BuiltInsNamespace = "UnitsNet.Modular.BuiltIns";
-    private const string BuiltInSpecSuffix = "Spec";
     private const string IncludeName = "IInclude";
     private const string IncludeProfileName = "IIncludeProfile";
 
@@ -378,7 +376,7 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
         QuantityDefinition[] knownDefinitions = BuiltInCatalog.Names
             .Select(name =>
             {
-                BuiltInCatalog.TryGet(name, out QuantityDefinition definition);
+                BuiltInCatalog.TryGetByName(name, out QuantityDefinition definition);
                 return definition;
             })
             .Concat(jsonDefinitions.Values)
@@ -522,13 +520,9 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
             return null;
         }
 
-        string? builtInName = spec.ContainingNamespace.ToDisplayString() == BuiltInsNamespace &&
-                              spec.Name.EndsWith(BuiltInSpecSuffix, StringComparison.Ordinal)
-            ? spec.Name.Substring(0, spec.Name.Length - BuiltInSpecSuffix.Length)
-            : null;
         AttributeData? definitionAttribute = spec.GetAttributes()
             .FirstOrDefault(attribute => AttributeName(attribute) == QuantityAttribute);
-        string? definitionId = definitionAttribute?.ConstructorArguments.Length == 1
+        string? semanticId = definitionAttribute?.ConstructorArguments.Length == 1
             ? definitionAttribute.ConstructorArguments[0].Value as string
             : null;
         IReadOnlyList<string>? patterns = arguments.Length == 2
@@ -536,8 +530,7 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
             : Array.Empty<string>();
         return new ModuleSelection(
             spec.ToDisplayString(),
-            builtInName,
-            definitionId,
+            semanticId,
             (patterns ?? Array.Empty<string>()).OrderBy(value => value, StringComparer.Ordinal).ToImmutableArray(),
             arguments.Length == 1 || patterns is not null,
             isDirect);
@@ -599,14 +592,14 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
         ModuleSelection selection,
         IReadOnlyDictionary<string, QuantityDefinition> jsonDefinitions)
     {
-        if (selection.BuiltInName is not null &&
-            BuiltInCatalog.TryGet(selection.BuiltInName, out QuantityDefinition builtIn))
+        if (selection.SemanticId is not null &&
+            BuiltInCatalog.TryGetBySemanticId(selection.SemanticId, out QuantityDefinition builtIn))
         {
             return builtIn;
         }
 
-        return selection.DefinitionId is not null &&
-               jsonDefinitions.TryGetValue(selection.DefinitionId, out QuantityDefinition definition)
+        return selection.SemanticId is not null &&
+               jsonDefinitions.TryGetValue(selection.SemanticId, out QuantityDefinition definition)
             ? definition
             : null;
     }

@@ -44,6 +44,29 @@ public sealed class QuantityFacadeGeneratorTests
     }
 
     [Fact]
+    public void AttributedSpecOutsideBuiltInNamespace_ResolvesBuiltInBySemanticId()
+    {
+        GeneratorTestHost.TestRun run = GeneratorTestHost.Run("""
+            using UnitsNet.Modular;
+
+            namespace Application.Units;
+
+            [QuantityDefinition("UnitsNet.Length")]
+            internal interface DistanceRecipe;
+
+            [UnitsNetModule]
+            internal interface Module : IInclude<DistanceRecipe>;
+            """);
+
+        Assert.DoesNotContain(run.Result.Diagnostics, diagnostic => diagnostic.Severity == DiagnosticSeverity.Error);
+        Assert.DoesNotContain(run.Compilation.GetDiagnostics(), diagnostic => diagnostic.Severity == DiagnosticSeverity.Error);
+        Assert.Contains(
+            run.Result.Results.SelectMany(result => result.GeneratedSources),
+            source => source.HintName.EndsWith("_Length.g.cs", StringComparison.Ordinal));
+        Assert.Contains("namespace UnitsNet", GetFacade(run), StringComparison.Ordinal);
+    }
+
+    [Fact]
     public void NamespaceOverride_EmitsQuantityFacadeInRequestedNamespace()
     {
         GeneratorTestHost.TestRun run = GeneratorTestHost.Run("""
