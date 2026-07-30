@@ -517,16 +517,16 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
     private static ModuleSelection? CreateModuleSelection(INamedTypeSymbol include, bool isDirect)
     {
         ImmutableArray<ITypeSymbol> arguments = include.TypeArguments;
-        if (arguments.Length is < 1 or > 2 || arguments[0] is not INamedTypeSymbol marker)
+        if (arguments.Length is < 1 or > 2 || arguments[0] is not INamedTypeSymbol spec)
         {
             return null;
         }
 
-        string? builtInName = marker.ContainingNamespace.ToDisplayString() == BuiltInsNamespace &&
-                              marker.Name.EndsWith(BuiltInSpecSuffix, StringComparison.Ordinal)
-            ? marker.Name.Substring(0, marker.Name.Length - BuiltInSpecSuffix.Length)
+        string? builtInName = spec.ContainingNamespace.ToDisplayString() == BuiltInsNamespace &&
+                              spec.Name.EndsWith(BuiltInSpecSuffix, StringComparison.Ordinal)
+            ? spec.Name.Substring(0, spec.Name.Length - BuiltInSpecSuffix.Length)
             : null;
-        AttributeData? definitionAttribute = marker.GetAttributes()
+        AttributeData? definitionAttribute = spec.GetAttributes()
             .FirstOrDefault(attribute => AttributeName(attribute) == QuantityAttribute);
         string? definitionId = definitionAttribute?.ConstructorArguments.Length == 1
             ? definitionAttribute.ConstructorArguments[0].Value as string
@@ -535,7 +535,7 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
             ? GetUnitSetPatterns(arguments[1])
             : Array.Empty<string>();
         return new ModuleSelection(
-            marker.ToDisplayString(),
+            spec.ToDisplayString(),
             builtInName,
             definitionId,
             (patterns ?? Array.Empty<string>()).OrderBy(value => value, StringComparer.Ordinal).ToImmutableArray(),
