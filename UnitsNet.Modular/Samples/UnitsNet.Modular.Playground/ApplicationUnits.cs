@@ -15,9 +15,15 @@ internal interface PlaygroundDurationUnits;
 [UnitSet("MeterPerSecond", "KilometerPerHour", "MilePerHour")]
 internal interface PlaygroundSpeedUnits;
 
-// The semantic ID connects this authoring type to GameScore.unitsnet.json.
-[QuantitySpec("UnitsNet.Modular.Playground.GameScore")]
-internal interface GameScoreSpec;
+[UnitSet("Joule", "KilowattHour")]
+internal interface PlaygroundEnergyUnits;
+
+[UnitSet("Watt", "Kilowatt")]
+internal interface PlaygroundPowerUnits;
+
+// The semantic ID connects this authoring type to ParcelCount.unitsnet.json.
+[QuantitySpec("UnitsNet.Modular.Playground.ParcelCount")]
+internal interface ParcelCountSpec;
 
 // Add or remove selections here, then rebuild. Only these quantities are generated.
 [UnitsNetModule]
@@ -25,4 +31,6 @@ internal interface PlaygroundUnits :
     IInclude<Catalog.LengthSpec, PlaygroundLengthUnits>,
     IInclude<Catalog.DurationSpec, PlaygroundDurationUnits>,
     IInclude<Catalog.SpeedSpec, PlaygroundSpeedUnits>,
-    IInclude<GameScoreSpec>;
+    IInclude<Catalog.EnergySpec, PlaygroundEnergyUnits>,
+    IInclude<Catalog.PowerSpec, PlaygroundPowerUnits>,
+    IInclude<ParcelCountSpec>;

@@ -11,7 +11,7 @@
     <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)Generated</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <AdditionalFiles Include="GameScore.unitsnet.json"
+    <AdditionalFiles Include="ParcelCount.unitsnet.json"
                      UnitsNetDefinition="true" />
   </ItemGroup>
   <ItemGroup>
