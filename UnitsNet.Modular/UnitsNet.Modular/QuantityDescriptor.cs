@@ -6,6 +6,11 @@ using UnitsNet.Core;
 namespace UnitsNet.Modular;
 
 /// <summary>Non-generic metadata and operations for one quantity in a generated module.</summary>
+/// <remarks>
+/// This type-erased contract supports registry workflows where the concrete generated quantity is
+/// not known statically. Strongly typed code should prefer the quantity type and its static
+/// <c>Info</c> property.
+/// </remarks>
 public interface IQuantityDescriptor
 {
     /// <summary>Gets the stable semantic quantity identity.</summary>

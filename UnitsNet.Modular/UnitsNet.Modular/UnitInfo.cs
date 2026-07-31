@@ -5,7 +5,11 @@ using UnitsNet.Modular;
 
 namespace UnitsNet;
 
-/// <summary>Runtime metadata for one generated unit.</summary>
+/// <summary>Immutable runtime metadata for one generated unit.</summary>
+/// <remarks>
+/// Use <see cref="Value" /> when a generated API requires the strongly typed enum value. Names,
+/// constituent base units, and localized abbreviations remain descriptive metadata on this object.
+/// </remarks>
 public sealed class UnitInfo<TUnit>
     where TUnit : struct, Enum
 {
@@ -21,25 +25,18 @@ public sealed class UnitInfo<TUnit>
         ArgumentNullException.ThrowIfNull(pluralName);
         ArgumentNullException.ThrowIfNull(baseUnits);
         ArgumentNullException.ThrowIfNull(localizations);
-        Unit = unit;
+        Value = unit;
         SingularName = singularName;
         PluralName = pluralName;
         BaseUnits = baseUnits;
         Localizations = Array.AsReadOnly((UnitLocalization[])localizations.Clone());
     }
 
-    /// <summary>Gets the generated unit enum value.</summary>
-    public TUnit Unit { get; }
+    /// <summary>Gets the generated unit enum value represented by this metadata.</summary>
+    public TUnit Value { get; }
 
     /// <summary>Gets the singular English name.</summary>
     public string SingularName { get; }
-
-    /// <summary>
-    /// Gets the generated unit enum value.
-    /// This is a source-compatibility alias for <see cref="Unit"/>.
-    /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public TUnit Value => Unit;
 
     /// <summary>
     /// Gets the singular English name.

@@ -32,7 +32,8 @@ public sealed class QuantityFacadeGeneratorTests
                         info[global::UnitsNet.Units.LengthUnit.Meter];
                     _ = meter.Value;
                     _ = meter.Name;
-                    _ = length.QuantityInfo;
+                    _ = info.BaseUnit.Value;
+                    _ = info.Units;
                     _ = global::UnitsNet.Quantity.From(1, "Length", unitSystem);
                     _ = global::UnitsNet.Quantity.TryFrom(1, "Length", unitSystem, out _);
                 }

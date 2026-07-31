@@ -242,9 +242,11 @@ public sealed class CompatibilityTests
                     unit => (string)unit.GetType().GetProperty("Name")!.GetValue(unit)!,
                     unit => unit.GetType().GetProperty("BaseUnits")!.GetValue(unit)!.ToString()!,
                     StringComparer.Ordinal);
-            var generatedUnits = ((System.Collections.IEnumerable)generatedQuantity
-                    .GetProperty("UnitInfos")!
-                    .GetValue(null)!)
+            object generatedInfo = generatedQuantity.GetProperty("Info")!.GetValue(null)!;
+            var generatedUnits = ((System.Collections.IEnumerable)generatedInfo
+                    .GetType()
+                    .GetProperty("Units")!
+                    .GetValue(generatedInfo)!)
                 .Cast<object>()
                 .ToDictionary(
                     unit => (string)unit.GetType().GetProperty("SingularName")!.GetValue(unit)!,
@@ -328,7 +330,7 @@ public sealed class CompatibilityTests
                 $"UnitsNet.Units.{generatedQuantity.Name}Unit",
                 throwOnError: true)!;
             object legacyBaseUnit = legacyQuantity.GetProperty("BaseUnit")!.GetValue(null)!;
-            object generatedBaseUnit = generatedQuantity.GetProperty("BaseUnit")!.GetValue(null)!;
+            object generatedBaseUnit = GetGeneratedBaseUnit(generatedQuantity);
             MethodInfo legacyAs = LegacyAssembly.GetType("UnitsNet.QuantityExtensions", throwOnError: true)!
                 .GetMethods(BindingFlags.Public | BindingFlags.Static)
                 .Single(method =>
@@ -375,7 +377,7 @@ public sealed class CompatibilityTests
                 $"UnitsNet.Units.{generatedQuantity.Name}Unit",
                 throwOnError: true)!;
             object legacyBaseUnit = legacyQuantity.GetProperty("BaseUnit")!.GetValue(null)!;
-            object generatedBaseUnit = generatedQuantity.GetProperty("BaseUnit")!.GetValue(null)!;
+            object generatedBaseUnit = GetGeneratedBaseUnit(generatedQuantity);
             object legacyValue = CreateQuantity(legacyQuantity, value, legacyBaseUnit);
             object generatedValue = CreateQuantity(generatedQuantity, value, generatedBaseUnit);
             string legacyText = ((IFormattable)legacyValue).ToString(null, invariant);
@@ -522,7 +524,7 @@ public sealed class CompatibilityTests
             .OrderBy(name => name, StringComparer.Ordinal)
             .ToArray();
         string[] generatedDimensionMatches = registry
-            .FindByBaseDimensions(Generated::UnitsNet.Length.BaseDimensions)
+            .FindByBaseDimensions(Generated::UnitsNet.Length.Info.BaseDimensions)
             .Select(quantity => quantity.Name)
             .OrderBy(name => name, StringComparer.Ordinal)
             .ToArray();
@@ -986,6 +988,9 @@ public sealed class CompatibilityTests
     {
         if (signature.StartsWith("P:DefaultConversionFunctions:", StringComparison.Ordinal) ||
             signature.StartsWith("P:BaseDimensions:", StringComparison.Ordinal) ||
+            signature.StartsWith("P:BaseUnit:", StringComparison.Ordinal) ||
+            signature.StartsWith("P:QuantityInfo:", StringComparison.Ordinal) ||
+            signature.StartsWith("P:Units:", StringComparison.Ordinal) ||
             signature.Contains("(UnitsNet.UnitKey)", StringComparison.Ordinal) ||
             signature.Contains("UnitsNet.UnitConverter", StringComparison.Ordinal) ||
             signature.Contains("UnitsNet.UnitSystem", StringComparison.Ordinal))
@@ -1049,6 +1054,13 @@ public sealed class CompatibilityTests
                 return parameters.Length == 2 && parameters[1].ParameterType == unit.GetType();
             });
         return constructor.Invoke(new[] { ConvertNumeric(value, constructor.GetParameters()[0].ParameterType), unit });
+    }
+
+    private static object GetGeneratedBaseUnit(Type quantityType)
+    {
+        object info = quantityType.GetProperty("Info")!.GetValue(null)!;
+        object baseUnit = info.GetType().GetProperty("BaseUnit")!.GetValue(info)!;
+        return baseUnit.GetType().GetProperty("Value")!.GetValue(baseUnit)!;
     }
 
     private static object ConvertNumeric(double value, Type targetType)

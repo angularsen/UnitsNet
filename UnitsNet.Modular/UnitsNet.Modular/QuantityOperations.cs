@@ -1,12 +1,18 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
 using System.Collections.Concurrent;
+using System.ComponentModel;
 using System.Globalization;
 using UnitsNet;
 
 namespace UnitsNet.Modular;
 
 /// <summary>Shared conversion, parsing, and formatting behavior for generated quantities.</summary>
+/// <remarks>
+/// This type is public so generated code can reuse the implementation across consumer assemblies.
+/// It is generator infrastructure; applications should use the generated quantity APIs instead.
+/// </remarks>
+[EditorBrowsable(EditorBrowsableState.Never)]
 public static class QuantityOperations
 {
     /// <summary>Converts a value between two generated units.</summary>
@@ -83,7 +89,7 @@ public static class QuantityOperations
     {
         foreach (UnitInfo<TUnit> candidate in metadata.Units)
         {
-            if (EqualityComparer<TUnit>.Default.Equals(candidate.Unit, unit))
+            if (EqualityComparer<TUnit>.Default.Equals(candidate.Value, unit))
             {
                 return candidate;
             }
@@ -132,7 +138,7 @@ public static class QuantityOperations
         {
             if (candidate.BaseUnits.IsSubsetOf(unitSystem.BaseUnits))
             {
-                unit = candidate.Unit;
+                unit = candidate.Value;
                 return true;
             }
         }
@@ -249,11 +255,11 @@ public static class QuantityOperations
             metadata.Units
                 .SelectMany(unit =>
                     unit.GetAbbreviations(culture)
-                        .Select(abbreviation => new SuffixCandidate<TUnit>(abbreviation, unit.Unit, true))
+                        .Select(abbreviation => new SuffixCandidate<TUnit>(abbreviation, unit.Value, true))
                         .Concat(new[]
                         {
-                            new SuffixCandidate<TUnit>(unit.SingularName, unit.Unit, false),
-                            new SuffixCandidate<TUnit>(unit.PluralName, unit.Unit, false),
+                            new SuffixCandidate<TUnit>(unit.SingularName, unit.Value, false),
+                            new SuffixCandidate<TUnit>(unit.PluralName, unit.Value, false),
                         }))
                 .Where(candidate => candidate.Suffix.Length > 0)
                 .OrderByDescending(candidate => candidate.Suffix.Length)

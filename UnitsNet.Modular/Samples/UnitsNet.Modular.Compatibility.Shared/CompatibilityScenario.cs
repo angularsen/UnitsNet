@@ -31,11 +31,7 @@ public static class CompatibilityScenario
             Length.FromCentimeters(300),
         }.Average();
         var kilometerInfo = Length.Info[LengthUnit.Kilometer];
-        Length metadataDistance = Length.Info.From(1.5, kilometerInfo.Value);
-        if (!ReferenceEquals(Length.Info, metadataDistance.QuantityInfo))
-        {
-            throw new InvalidOperationException("Quantity metadata should be shared.");
-        }
+        Length metadataDistance = Length.From(1.5, kilometerInfo.Value);
 
         return string.Join(
             Environment.NewLine,

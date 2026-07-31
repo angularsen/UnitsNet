@@ -1,6 +1,7 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
 using System.Collections.Frozen;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using UnitsNet.Core;
 using UnitsNet.Modular;
@@ -8,8 +9,13 @@ using UnitsNet.Modular;
 namespace UnitsNet;
 
 /// <summary>
-/// Provides immutable, strongly typed metadata for one generated quantity.
+/// Provides the canonical immutable runtime description of one generated quantity.
 /// </summary>
+/// <remarks>
+/// Generated quantity types expose one instance through their static <c>Info</c> property, and the
+/// generated discovery registry stores that same instance. Value operations remain on the quantity
+/// type; this object describes its identity, units, dimensions, and unit-system selection.
+/// </remarks>
 /// <typeparam name="TQuantity">The generated quantity type.</typeparam>
 /// <typeparam name="TUnit">The generated unit enum type.</typeparam>
 public sealed class QuantityInfo<TQuantity, TUnit> : IQuantityDescriptor
@@ -22,6 +28,8 @@ public sealed class QuantityInfo<TQuantity, TUnit> : IQuantityDescriptor
     private readonly IReadOnlyList<UnitDescriptor> _unitDescriptors;
 
     /// <summary>Creates immutable metadata from generated quantity metadata.</summary>
+    /// <remarks>This constructor is public only so generated code can initialize its static <c>Info</c>.</remarks>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public QuantityInfo(QuantityId id, IQuantityMetadata<TUnit> metadata)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(id.Value, nameof(id));
@@ -39,24 +47,22 @@ public sealed class QuantityInfo<TQuantity, TUnit> : IQuantityDescriptor
         _metadata = metadata;
         Id = id;
         Name = metadata.Name;
-        BaseUnit = metadata.BaseUnit;
         BaseDimensions = metadata.BaseDimensions;
-        UnitInfos = Array.AsReadOnly(unitInfos);
-        _unitInfosByValue = unitInfos.ToFrozenDictionary(unit => unit.Unit);
-        Units = Array.AsReadOnly(unitInfos.Select(unit => unit.Unit).ToArray());
+        Units = Array.AsReadOnly(unitInfos);
+        _unitInfosByValue = unitInfos.ToFrozenDictionary(unit => unit.Value);
 
-        if (!_unitInfosByValue.TryGetValue(BaseUnit, out UnitInfo<TUnit>? baseUnitInfo))
+        if (!_unitInfosByValue.TryGetValue(metadata.BaseUnit, out UnitInfo<TUnit>? baseUnitInfo))
         {
             throw new ArgumentException(
-                $"No unit metadata was supplied for the base unit '{BaseUnit}'.",
+                $"No unit metadata was supplied for the base unit '{metadata.BaseUnit}'.",
                 nameof(metadata));
         }
 
-        BaseUnitInfo = baseUnitInfo;
+        BaseUnit = baseUnitInfo;
         UnitDescriptor[] descriptors = unitInfos
             .Select(unit => new UnitDescriptor(
-                unit.Unit.ToString(),
-                System.Convert.ToInt32(unit.Unit),
+                unit.Value.ToString(),
+                System.Convert.ToInt32(unit.Value),
                 unit.SingularName,
                 unit.PluralName,
                 unit.BaseUnits,
@@ -64,8 +70,8 @@ public sealed class QuantityInfo<TQuantity, TUnit> : IQuantityDescriptor
             .ToArray();
         _unitDescriptors = Array.AsReadOnly(descriptors);
         _unitDescriptorsByValue = unitInfos
-            .Select((unit, index) => (unit.Unit, Descriptor: descriptors[index]))
-            .ToFrozenDictionary(pair => pair.Unit, pair => pair.Descriptor);
+            .Select((unit, index) => (unit.Value, Descriptor: descriptors[index]))
+            .ToFrozenDictionary(pair => pair.Value, pair => pair.Descriptor);
     }
 
     /// <summary>Gets the stable semantic quantity identity.</summary>
@@ -80,23 +86,28 @@ public sealed class QuantityInfo<TQuantity, TUnit> : IQuantityDescriptor
     /// <summary>Gets the generated unit-enum CLR type.</summary>
     public Type UnitType => typeof(TUnit);
 
-    /// <summary>Gets the unit through which conversions are performed.</summary>
-    public TUnit BaseUnit { get; }
-
     /// <summary>Gets metadata for the unit through which conversions are performed.</summary>
-    public UnitInfo<TUnit> BaseUnitInfo { get; }
+    public UnitInfo<TUnit> BaseUnit { get; }
+
+    /// <summary>
+    /// Gets metadata for the unit through which conversions are performed.
+    /// This is a source-compatibility alias for <see cref="BaseUnit" />.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public UnitInfo<TUnit> BaseUnitInfo => BaseUnit;
 
     /// <summary>Gets the quantity's SI base dimensions.</summary>
     public BaseDimensions BaseDimensions { get; }
 
     /// <summary>Gets immutable metadata for all generated units of this quantity.</summary>
-    public IReadOnlyList<UnitInfo<TUnit>> UnitInfos { get; }
+    public IReadOnlyList<UnitInfo<TUnit>> Units { get; }
 
-    /// <summary>Gets all generated unit enum values for this quantity.</summary>
-    public IReadOnlyCollection<TUnit> Units { get; }
-
-    /// <summary>Gets zero expressed in the quantity's base unit.</summary>
-    public TQuantity Zero => TQuantity.From(0, BaseUnit);
+    /// <summary>
+    /// Gets immutable metadata for all generated units of this quantity.
+    /// This is a source-compatibility alias for <see cref="Units" />.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public IReadOnlyList<UnitInfo<TUnit>> UnitInfos => Units;
 
     /// <summary>Gets metadata for a generated unit.</summary>
     public UnitInfo<TUnit> this[TUnit unit] =>
@@ -131,7 +142,7 @@ public sealed class QuantityInfo<TQuantity, TUnit> : IQuantityDescriptor
     public IEnumerable<UnitInfo<TUnit>> GetUnitInfosFor(BaseUnits baseUnits)
     {
         ArgumentNullException.ThrowIfNull(baseUnits);
-        return UnitInfos.Where(unit => unit.BaseUnits.IsSubsetOf(baseUnits));
+        return Units.Where(unit => unit.BaseUnits.IsSubsetOf(baseUnits));
     }
 
     /// <summary>Gets the generated unit selected by an immutable unit-system policy.</summary>
@@ -150,25 +161,18 @@ public sealed class QuantityInfo<TQuantity, TUnit> : IQuantityDescriptor
         return false;
     }
 
-    /// <summary>Creates the quantity from a numeric value and generated unit.</summary>
-    public TQuantity From(double value, TUnit unit) => TQuantity.From(value, unit);
-
-    /// <summary>Creates the quantity using an immutable unit-system policy.</summary>
-    public TQuantity From(double value, UnitSystem unitSystem) =>
-        TQuantity.From(value, GetUnit(unitSystem).Unit);
-
-    string IQuantityDescriptor.BaseUnitName => BaseUnit.ToString();
+    string IQuantityDescriptor.BaseUnitName => BaseUnit.Value.ToString();
 
     IReadOnlyList<UnitDescriptor> IQuantityDescriptor.Units => _unitDescriptors;
 
     UnitDescriptor IQuantityDescriptor.GetUnit(UnitSystem unitSystem) =>
-        _unitDescriptorsByValue[GetUnit(unitSystem).Unit];
+        _unitDescriptorsByValue[GetUnit(unitSystem).Value];
 
     bool IQuantityDescriptor.TryGetUnit(UnitSystem? unitSystem, out UnitDescriptor? unit)
     {
         if (TryGetUnit(unitSystem, out UnitInfo<TUnit>? selected))
         {
-            unit = _unitDescriptorsByValue[selected.Unit];
+            unit = _unitDescriptorsByValue[selected.Value];
             return true;
         }
 
@@ -177,10 +181,10 @@ public sealed class QuantityInfo<TQuantity, TUnit> : IQuantityDescriptor
     }
 
     IQuantity<double> IQuantityDescriptor.Create(double value, string unitName) =>
-        From(value, ParseUnit(unitName));
+        TQuantity.From(value, ParseUnit(unitName));
 
     IQuantity<double> IQuantityDescriptor.Create(double value, UnitSystem unitSystem) =>
-        From(value, unitSystem);
+        TQuantity.From(value, GetUnit(unitSystem).Value);
 
     bool IQuantityDescriptor.TryCreate(
         double value,
@@ -189,7 +193,7 @@ public sealed class QuantityInfo<TQuantity, TUnit> : IQuantityDescriptor
     {
         if (TryParseUnit(unitName, out TUnit unit))
         {
-            quantity = From(value, unit);
+            quantity = TQuantity.From(value, unit);
             return true;
         }
 
@@ -204,7 +208,7 @@ public sealed class QuantityInfo<TQuantity, TUnit> : IQuantityDescriptor
     {
         if (TryGetUnit(unitSystem, out UnitInfo<TUnit>? unit))
         {
-            quantity = From(value, unit.Unit);
+            quantity = TQuantity.From(value, unit.Value);
             return true;
         }
 
@@ -233,7 +237,7 @@ public sealed class QuantityInfo<TQuantity, TUnit> : IQuantityDescriptor
     }
 
     double IQuantityDescriptor.Convert(double value, string fromUnitName, UnitSystem unitSystem) =>
-        TQuantity.Convert(value, ParseUnit(fromUnitName), GetUnit(unitSystem).Unit);
+        TQuantity.Convert(value, ParseUnit(fromUnitName), GetUnit(unitSystem).Value);
 
     bool IQuantityDescriptor.TryConvert(
         double value,
@@ -244,7 +248,7 @@ public sealed class QuantityInfo<TQuantity, TUnit> : IQuantityDescriptor
         if (TryParseUnit(fromUnitName, out TUnit fromUnit) &&
             TryGetUnit(unitSystem, out UnitInfo<TUnit>? toUnit))
         {
-            convertedValue = TQuantity.Convert(value, fromUnit, toUnit.Unit);
+            convertedValue = TQuantity.Convert(value, fromUnit, toUnit.Value);
             return true;
         }
 

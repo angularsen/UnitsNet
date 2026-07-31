@@ -7,6 +7,7 @@ namespace UnitsNet.Core;
 /// <summary>A quantity that supports same-quantity arithmetic with a <see cref="double" /> scalar.</summary>
 /// <typeparam name="TSelf">The concrete quantity type.</typeparam>
 public interface IArithmeticQuantity<TSelf> :
+    IQuantity<double>,
     IAdditionOperators<TSelf, TSelf, TSelf>,
     ISubtractionOperators<TSelf, TSelf, TSelf>,
     IMultiplyOperators<TSelf, double, TSelf>,

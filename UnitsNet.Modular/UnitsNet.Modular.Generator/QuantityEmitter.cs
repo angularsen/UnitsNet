@@ -63,7 +63,9 @@ internal static class QuantityEmitter
             writer.AppendLine("{");
         }
 
-        writer.Append("public readonly partial struct ").Append(quantity.Name).Append(" : ");
+        writer.Append("public readonly partial struct ").Append(quantity.Name).Append(" : ")
+            .Append("global::UnitsNet.Modular.IModularQuantity<").Append(quantity.Name).Append(", ")
+            .Append(unitType).Append(">, ");
         if (quantity.IsAffine)
         {
             writer.Append("global::UnitsNet.Core.IAffineQuantity<").Append(quantity.Name).Append(", ")
@@ -115,17 +117,13 @@ internal static class QuantityEmitter
         writer.AppendLine("        global::UnitsNet.Modular.QuantityOperations.Convert(value, fromUnit, toUnit, Metadata);");
         writer.AppendLine();
         writer.AppendLine("    public double Value => _value;");
-        writer.Append("    public ").Append(unitType).AppendLine(" Unit => _unit == default ? BaseUnit : _unit;");
+        writer.Append("    public ").Append(unitType).AppendLine(" Unit => _unit == default ? Info.BaseUnit.Value : _unit;");
         writer.Append("    public static global::UnitsNet.QuantityInfo<").Append(quantity.Name).Append(", ")
             .Append(unitType).Append("> Info { get; } = new(")
             .Append("new global::UnitsNet.Core.QuantityId(\"").Append(Escape(quantity.SemanticId))
             .AppendLine("\"), Metadata);");
-        writer.AppendLine("    public static global::UnitsNet.Core.QuantityId QuantityId => Info.Id;");
-        writer.Append("    public static ").Append(unitType).AppendLine(" BaseUnit => Info.BaseUnit;");
-        writer.Append("    public static ").Append(quantity.Name).AppendLine(" Zero => Info.Zero;");
-        writer.AppendLine("    [global::System.Text.Json.Serialization.JsonIgnore]");
-        writer.Append("    public global::UnitsNet.QuantityInfo<").Append(quantity.Name).Append(", ")
-            .Append(unitType).AppendLine("> QuantityInfo => Info;");
+        writer.Append("    internal static ").Append(unitType).AppendLine(" BaseUnit => Info.BaseUnit.Value;");
+        writer.Append("    public static ").Append(quantity.Name).AppendLine(" Zero => From(0, Info.BaseUnit.Value);");
         if (quantity.IsLogarithmic)
         {
             writer.Append("    public static double LogarithmicScalingFactor => ")
@@ -133,11 +131,6 @@ internal static class QuantityEmitter
                 .AppendLine(";");
         }
 
-        writer.Append("    public static global::System.Collections.Generic.IReadOnlyList<global::UnitsNet.UnitInfo<")
-            .Append(unitType).AppendLine(">> UnitInfos => Info.UnitInfos;");
-        writer.Append("    public static global::System.Collections.Generic.IReadOnlyCollection<").Append(unitType)
-            .AppendLine("> Units => Info.Units;");
-        writer.AppendLine("    public static global::UnitsNet.Modular.BaseDimensions BaseDimensions => Info.BaseDimensions;");
         writer.AppendLine("    internal double BaseValue => global::UnitsNet.Modular.QuantityOperations.GetBaseValue(_value, Unit, Metadata);");
         writer.AppendLine();
 
@@ -508,12 +501,12 @@ internal static class QuantityEmitter
         string offsetBaseUnit = UnitType(offset.Definition) + "." + offset.Definition.BaseUnit;
         writer.Append("    public static ").Append(quantityType).Append(" operator +(").Append(quantityType)
             .Append(" left, ").Append(offsetType).AppendLine(" right) =>")
-            .Append("        new(left.BaseValue + right.BaseValue, BaseUnit);").AppendLine();
+            .Append("        new(left.BaseValue + right.BaseValue, Info.BaseUnit.Value);").AppendLine();
         writer.Append("    public static ").Append(quantityType).Append(" operator +(").Append(offsetType)
             .Append(" left, ").Append(quantityType).AppendLine(" right) => right + left;");
         writer.Append("    public static ").Append(quantityType).Append(" operator -(").Append(quantityType)
             .Append(" left, ").Append(offsetType).AppendLine(" right) =>")
-            .Append("        new(left.BaseValue - right.BaseValue, BaseUnit);").AppendLine();
+            .Append("        new(left.BaseValue - right.BaseValue, Info.BaseUnit.Value);").AppendLine();
         writer.Append("    public static ").Append(offsetType).Append(" operator -(").Append(quantityType)
             .Append(" left, ").Append(quantityType).AppendLine(" right) =>")
             .Append("        new(left.BaseValue - right.BaseValue, ").Append(offsetBaseUnit).AppendLine(");");

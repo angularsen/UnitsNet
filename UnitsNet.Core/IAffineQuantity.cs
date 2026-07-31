@@ -9,7 +9,7 @@ namespace UnitsNet.Core;
 /// same-quantity arithmetic semantics.
 /// </summary>
 /// <typeparam name="TSelf">The concrete quantity type.</typeparam>
-public interface IAffineQuantity<TSelf>
+public interface IAffineQuantity<TSelf> : IQuantity<double>
     where TSelf : IAffineQuantity<TSelf>
 {
 }

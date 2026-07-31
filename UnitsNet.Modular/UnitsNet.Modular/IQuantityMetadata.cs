@@ -1,10 +1,17 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
+using System.ComponentModel;
 using UnitsNet;
 
 namespace UnitsNet.Modular;
 
 /// <summary>Metadata supplied by generated code to shared quantity operations.</summary>
+/// <remarks>
+/// This contract is public so generated code can call into <c>UnitsNet.Modular</c> from a
+/// consumer assembly. It is generator infrastructure and is not intended to be implemented or
+/// consumed directly by applications.
+/// </remarks>
+[EditorBrowsable(EditorBrowsableState.Never)]
 public interface IQuantityMetadata<TUnit>
     where TUnit : struct, Enum
 {

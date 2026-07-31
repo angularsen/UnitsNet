@@ -241,14 +241,13 @@ Two handwritten APIs remain intentionally excluded. `Length.ParseFeetInches` and
 compatibility suite requires every exclusion to identify an existing UnitsNet member and provide a
 non-empty rationale, so stale exclusions fail the test.
 
-`UnitsNet.Core.IQuantity<TValue>` exposes only the stored numeric value.
-`UnitsNet.Core.IQuantity<TUnit, TValue>` additionally exposes its strongly typed stored unit.
-`UnitsNet.Core.IQuantity<TSelf, TUnit, TValue>` adds static semantic identity, base unit,
-construction, and a static conversion primitive. Its default instance behavior composes these
-members, while concrete quantities still expose generated `As()` and `ToUnit()` methods for normal
-strongly typed use. A generic library can therefore consume, create, or convert either
-generated implementation. A future UnitsNet integration can implement the same contract even though
-its concrete types differ.
+`UnitsNet.Core.IQuantity<TValue>` exposes the stored numeric value and a type-erased enum unit.
+`UnitsNet.Core.IQuantity<TUnit, TValue>` refines that unit to its concrete enum type.
+`UnitsNet.Core.IQuantity<TSelf, TUnit, TValue>` adds only the static construction and conversion
+primitives needed to implement reusable `As()` and `ToUnit()` behavior. Semantic identity, base-unit
+selection, dimensions, and localization are Modular metadata concerns rather than requirements for
+every quantity implementation. A generic library can therefore consume, create, or convert either
+generated implementation without depending on the discovery model.
 
 The Core capability hierarchy adapts UnitsNet's proven modern generic design without carrying over
 `UnitKey`, mutable quantity metadata, setup registries, or obsolete compatibility members:
@@ -268,14 +267,14 @@ does not need generic call syntax. A separate integration branch validates these
 UnitsNet v6. The capability layer remains `double`-based while numeric storage abstraction is
 evaluated separately.
 
-`QuantityId` belongs to the quantity type rather than each value instance. Base-unit conversion is
-derived behavior and is intentionally not stored on each instance. Generated relationships and
-equality use internal conversion helpers; reusable public conversion behavior belongs in the
-self-typed quantity contract and is backed by immutable definition metadata. There is no global
-conversion registry: compile-time specs and definition metadata generate the selected converters
-directly into the consumer-owned assembly. Internal base values are sufficient for relationships
-because all participating quantities are generated into that assembly; independently compiled
-modules cannot acquire cross-module operators.
+`QuantityId` belongs to the canonical `Info` object rather than each value instance or the minimal
+Core contract. Base-unit conversion is derived behavior and is intentionally not stored on each
+instance. Generated relationships and equality use internal conversion helpers; reusable public
+conversion behavior belongs in the self-typed quantity contract and is backed by immutable
+definition metadata. There is no global conversion registry: compile-time specs and definition
+metadata generate the selected converters directly into the consumer-owned assembly. Internal base
+values are sufficient for relationships because all participating quantities are generated into
+that assembly; independently compiled modules cannot acquire cross-module operators.
 
 Semantic IDs are namespace-qualified (`Namespace.Name`) and definition-package authors should use
 a namespace they own. This makes IDs stable and globally meaningful at registry and serialization
@@ -283,13 +282,28 @@ boundaries without adding vendor state to each quantity value.
 
 Each module does have an immutable generated **discovery registry**. It describes only that
 module's selected quantities and supports lookup by semantic ID, quantity name, or generated CLR
-type. Each generated quantity exposes its strongly typed `QuantityInfo<TQuantity, TUnit>` through
-`Info`; its static metadata properties and instance `QuantityInfo` property forward to that object.
-The same object implements the type-erased descriptor contract used by the registry, so there is no
-parallel quantity-metadata graph. Descriptors expose units, abbreviations, base dimensions,
-construction, conversion, parsing, formatting data, and stored value/unit access. Frozen
-dictionaries make lookup immutable after module initialization. This registry is not a source of
-conversion policy and is not a replacement for the old mutable `UnitsNetSetup` model.
+type. Each generated quantity exposes its canonical strongly typed
+`QuantityInfo<TQuantity, TUnit>` through static `Info`; quantity instances do not duplicate or carry
+metadata. `Info` owns the stable ID, name, base-unit metadata, generated unit metadata, and base
+dimensions. `Info.BaseUnit` and every item in `Info.Units` are `UnitInfo<TUnit>` objects, whose
+`Value` property returns the actual enum value. This avoids parallel raw-enum and metadata
+collections. Common value behavior such as `Value`, `Unit`, `Zero`, `From`, `Convert`, `As`,
+`ToUnit`, parsing, and formatting remains on the quantity type.
+
+The same `Info` object implements the type-erased `IQuantityDescriptor` contract used by the
+registry, so there is no parallel quantity-metadata graph. The descriptor exists for heterogeneous
+runtime workflows where the quantity type is not statically known; it exposes units,
+abbreviations, base dimensions, construction, conversion, parsing, formatting data, and stored
+value/unit access. Frozen dictionaries make lookup immutable after module initialization. This
+registry is not a source of conversion policy and is not a replacement for the old mutable
+`UnitsNetSetup` model.
+
+`BaseDimensions` and the base unit are deliberately available through `Info` only: both are central
+to generated conversion and discovery but uncommon in ordinary strongly typed application code.
+`BaseUnitInfo` and `UnitInfos` are hidden source-compatibility aliases on `QuantityInfo`; new code
+uses `BaseUnit` and `Units`. Public contracts needed only so generated code can call the runtime,
+such as `IQuantityMetadata<TUnit>` and `QuantityOperations`, are hidden from IntelliSense and
+documented as generator infrastructure.
 
 The same descriptors back a generated System.Text.Json converter factory. Its quantity dispatch is
 emitted as direct type checks and generic converter construction, with no runtime
@@ -465,7 +479,8 @@ For each selected definition, the generator emits:
 - an immutable strongly typed quantity struct;
 - typed `FromXxx()` factories, a generic `From(value, unit)` factory, and `.Xxx` conversion
   properties;
-- static semantic identity and base-unit members through the self-typed Core contract;
+- static canonical `Info` metadata through the Modular contract, including semantic identity and
+  base-unit information;
 - `As()`, `ToUnit()`, `Parse()`, `TryParse()`, and `ToString()`;
 - default values normalized to zero in the base unit, matching UnitsNet;
 - arithmetic selected by the definition's linear, affine, or logarithmic semantics;

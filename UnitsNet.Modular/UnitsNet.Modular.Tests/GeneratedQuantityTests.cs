@@ -64,7 +64,7 @@ public sealed class GeneratedQuantityTests
         var invariant = System.Globalization.CultureInfo.InvariantCulture;
 
         Assert.Same(registry.Get("Length"), registry.Get(typeof(Length)));
-        Assert.Same(registry.Get("Length"), registry.Get(Length.QuantityId));
+        Assert.Same(registry.Get("Length"), registry.Get(Length.Info.Id));
         Assert.Same(registry.Get("Length"), registry.GetByUnitType(typeof(LengthUnit)));
 
         var byName = Assert.IsType<Length>(registry.Create(3, "Length", "Centimeter"));
@@ -115,11 +115,11 @@ public sealed class GeneratedQuantityTests
         UnitsNet.Modular.QuantityRegistry registry = global::UnitsNet.Modular.Generated.GeneratedQuantityRegistry.Instance;
 
         IReadOnlyList<UnitsNet.Modular.IQuantityDescriptor> matches =
-            registry.FindByBaseDimensions(Length.BaseDimensions);
+            registry.FindByBaseDimensions(Length.Info.BaseDimensions);
 
         Assert.Contains(matches, descriptor => descriptor.QuantityType == typeof(Length));
         Assert.DoesNotContain(matches, descriptor => descriptor.QuantityType == typeof(Area));
-        Assert.All(matches, descriptor => Assert.Equal(Length.BaseDimensions, descriptor.BaseDimensions));
+        Assert.All(matches, descriptor => Assert.Equal(Length.Info.BaseDimensions, descriptor.BaseDimensions));
         Assert.Throws<NotSupportedException>(
             () => ((IList<UnitsNet.Modular.IQuantityDescriptor>)matches).Add(registry.Get("Area")));
     }
@@ -155,7 +155,7 @@ public sealed class GeneratedQuantityTests
         Assert.False(Quantity.TryFrom(2, "Missing", "Meter", out _));
         Assert.False(Quantity.TryParse(typeof(DateTime), "2 km", out _));
         Assert.Contains(
-            Quantity.GetQuantitiesWithBaseDimensions(Length.BaseDimensions),
+            Quantity.GetQuantitiesWithBaseDimensions(Length.Info.BaseDimensions),
             descriptor => descriptor.QuantityType == typeof(Length));
     }
 
@@ -206,7 +206,7 @@ public sealed class GeneratedQuantityTests
     }
 
     [Fact]
-    public void GeneratedQuantity_MetadataIsSharedAndSourceCompatible()
+    public void GeneratedQuantity_InfoIsCanonicalAndImmutable()
     {
         UnitsNet.Modular.IQuantityDescriptor descriptor =
             global::UnitsNet.Modular.Generated.GeneratedQuantityRegistry.Instance.Get(typeof(Length));
@@ -214,35 +214,22 @@ public sealed class GeneratedQuantityTests
         UnitInfo<LengthUnit> kilometer = Length.Info[LengthUnit.Kilometer];
 
         Assert.Same(Length.Info, descriptor);
-        Assert.Same(Length.Info, value.QuantityInfo);
-        Assert.Same(Length.Info.UnitInfos, Length.UnitInfos);
-        Assert.Same(Length.Info.Units, Length.Units);
-        Assert.Equal(Length.Info.BaseUnit, Length.BaseUnit);
-        Assert.Equal(Length.Info.BaseDimensions, Length.BaseDimensions);
-        Assert.Equal(Length.Info.Zero, Length.Zero);
-        Assert.Equal(LengthUnit.Meter, Length.Info.BaseUnitInfo.Unit);
-        Assert.Equal(LengthUnit.Kilometer, kilometer.Unit);
+        Assert.Same(Length.Info.Units, Length.Info.UnitInfos);
+        Assert.Same(Length.Info.BaseUnit, Length.Info.BaseUnitInfo);
+        Assert.Equal(LengthUnit.Meter, Length.Info.BaseUnit.Value);
         Assert.Equal(LengthUnit.Kilometer, kilometer.Value);
         Assert.Equal(kilometer.SingularName, kilometer.Name);
         Assert.Equal(kilometer.SingularName, kilometer.ToString());
-        Assert.Equal(value, Length.Info.From(1.5, LengthUnit.Kilometer));
+        Assert.Equal(value, Length.From(1.5, kilometer.Value));
         Assert.True(Length.Info.TryGetUnitInfo(LengthUnit.Kilometer, out UnitInfo<LengthUnit>? found));
         Assert.Same(kilometer, found);
         Assert.Same(
             kilometer,
             Length.Info.GetUnitInfoFor(new UnitsNet.Modular.BaseUnits(length: "Kilometer")));
-        Assert.Same(Length.Info.BaseUnitInfo, Length.Info.GetUnit(UnitsNet.Modular.UnitSystem.SI));
+        Assert.Same(Length.Info.BaseUnit, Length.Info.GetUnit(UnitsNet.Modular.UnitSystem.SI));
         Assert.Throws<NotSupportedException>(
-            () => ((IList<UnitInfo<LengthUnit>>)Length.Info.UnitInfos).Add(kilometer));
+            () => ((IList<UnitInfo<LengthUnit>>)Length.Info.Units).Add(kilometer));
 
-        Assert.Equal(
-            System.ComponentModel.EditorBrowsableState.Never,
-            typeof(UnitInfo<LengthUnit>)
-                .GetProperty(nameof(UnitInfo<LengthUnit>.Value))!
-                .GetCustomAttributes(typeof(System.ComponentModel.EditorBrowsableAttribute), inherit: false)
-                .Cast<System.ComponentModel.EditorBrowsableAttribute>()
-                .Single()
-                .State);
         Assert.Equal(
             System.ComponentModel.EditorBrowsableState.Never,
             typeof(UnitInfo<LengthUnit>)
@@ -251,6 +238,37 @@ public sealed class GeneratedQuantityTests
                 .Cast<System.ComponentModel.EditorBrowsableAttribute>()
                 .Single()
                 .State);
+    }
+
+    [Fact]
+    public void GeneratedQuantity_DoesNotDuplicateDescriptiveMetadata()
+    {
+        const System.Reflection.BindingFlags publicMembers =
+            System.Reflection.BindingFlags.Public |
+            System.Reflection.BindingFlags.Instance |
+            System.Reflection.BindingFlags.Static;
+
+        Assert.NotNull(typeof(Length).GetProperty(nameof(Length.Info), publicMembers));
+        Assert.Null(typeof(Length).GetProperty("QuantityId", publicMembers));
+        Assert.Null(typeof(Length).GetProperty("BaseUnit", publicMembers));
+        Assert.Null(typeof(Length).GetProperty("BaseDimensions", publicMembers));
+        Assert.Null(typeof(Length).GetProperty("Units", publicMembers));
+        Assert.Null(typeof(Length).GetProperty("UnitInfos", publicMembers));
+        Assert.Null(typeof(Length).GetProperty("QuantityInfo", publicMembers));
+
+        AssertHidden(typeof(UnitsNet.Modular.IQuantityMetadata<>));
+        AssertHidden(typeof(UnitsNet.Modular.QuantityOperations));
+        AssertHidden(typeof(QuantityInfo<Length, LengthUnit>).GetConstructors().Single());
+        AssertHidden(typeof(QuantityInfo<Length, LengthUnit>).GetProperty("BaseUnitInfo")!);
+        AssertHidden(typeof(QuantityInfo<Length, LengthUnit>).GetProperty("UnitInfos")!);
+
+        static void AssertHidden(System.Reflection.MemberInfo member) =>
+            Assert.Equal(
+                System.ComponentModel.EditorBrowsableState.Never,
+                member.GetCustomAttributes(typeof(System.ComponentModel.EditorBrowsableAttribute), inherit: false)
+                    .Cast<System.ComponentModel.EditorBrowsableAttribute>()
+                    .Single()
+                    .State);
     }
 
     [Fact]
@@ -288,7 +306,7 @@ public sealed class GeneratedQuantityTests
         Assert.Equal(LengthUnit.Meter, new Length(2, UnitsNet.Modular.UnitSystem.SI).Unit);
         Assert.Equal(LengthUnit.Meter, Length.From(2, UnitsNet.Modular.UnitSystem.SI).Unit);
         Assert.Equal(ForceUnit.Newton, new Force(2, UnitsNet.Modular.UnitSystem.SI).Unit);
-        Assert.Equal(Information.BaseUnit, new Information(2, UnitsNet.Modular.UnitSystem.SI).Unit);
+        Assert.Equal(Information.Info.BaseUnit.Value, new Information(2, UnitsNet.Modular.UnitSystem.SI).Unit);
         Assert.Equal(LengthUnit.Foot, new Length(2, imperialLength).Unit);
         Assert.Equal(1000, Length.FromKilometers(1).As(UnitsNet.Modular.UnitSystem.SI), 10);
         Assert.Equal(LengthUnit.Meter, Length.FromKilometers(1).ToUnit(UnitsNet.Modular.UnitSystem.SI).Unit);
@@ -474,13 +492,15 @@ public sealed class GeneratedQuantityTests
     [Fact]
     public void GeneratedQuantity_ImplementsMinimalSelfTypedCoreContract()
     {
-        Assert.Equal(new UnitsNet.Core.QuantityId("UnitsNet.Length"), Length.QuantityId);
-        Assert.Equal(LengthUnit.Meter, Length.BaseUnit);
+        Assert.Equal(new UnitsNet.Core.QuantityId("UnitsNet.Length"), Length.Info.Id);
+        Assert.Equal(LengthUnit.Meter, Length.Info.BaseUnit.Value);
 
         Length length = Create<Length, LengthUnit>(2, LengthUnit.Meter);
         UnitsNet.Core.IQuantity<LengthUnit, double> stored = length;
+        UnitsNet.Core.IQuantity<double> erased = length;
         Assert.Equal(2d, stored.Value);
         Assert.Equal(LengthUnit.Meter, stored.Unit);
+        Assert.Equal(LengthUnit.Meter, erased.Unit);
         Assert.Equal(1000, ConvertValue<Length, LengthUnit>(1, LengthUnit.Kilometer, LengthUnit.Meter), 10);
         Assert.Equal(1000, Length.FromKilometers(1).As(LengthUnit.Meter), 10);
 
@@ -644,9 +664,12 @@ public sealed class GeneratedQuantityTests
         => TQuantity.Convert(value, fromUnit, toUnit);
 
     private static void AssertLinearCapability<TQuantity, TUnit>()
-        where TQuantity : UnitsNet.Core.ILinearQuantity<TQuantity, TUnit>
+        where TQuantity : struct,
+            UnitsNet.Core.ILinearQuantity<TQuantity, TUnit>,
+            UnitsNet.Modular.IModularQuantity<TQuantity, TUnit>,
+            IParsable<TQuantity>
         where TUnit : struct, Enum
-        => Assert.Equal(TQuantity.BaseUnit, TQuantity.Zero.Unit);
+        => Assert.Equal(TQuantity.Info.BaseUnit.Value, TQuantity.Zero.Unit);
 
     private static void AssertAffineCapability<TQuantity, TUnit, TOffset>()
         where TQuantity : UnitsNet.Core.IAffineQuantity<TQuantity, TUnit, TOffset>
@@ -669,9 +692,12 @@ public sealed class GeneratedQuantityTests
         => left - right;
 
     private static void AssertLogarithmicCapability<TQuantity, TUnit>()
-        where TQuantity : UnitsNet.Core.ILogarithmicQuantity<TQuantity, TUnit>
+        where TQuantity : struct,
+            UnitsNet.Core.ILogarithmicQuantity<TQuantity, TUnit>,
+            UnitsNet.Modular.IModularQuantity<TQuantity, TUnit>,
+            IParsable<TQuantity>
         where TUnit : struct, Enum
-        => Assert.Equal(TQuantity.BaseUnit, TQuantity.Zero.Unit);
+        => Assert.Equal(TQuantity.Info.BaseUnit.Value, TQuantity.Zero.Unit);
 
     private sealed class NonMaterializableCollection<T>(params T[] values) : ICollection<T>
     {

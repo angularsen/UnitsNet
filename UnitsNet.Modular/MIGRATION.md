@@ -154,7 +154,7 @@ Find the selected quantities that share dimensions:
 
 ```csharp
 IReadOnlyList<IQuantityDescriptor> distances =
-    registry.FindByBaseDimensions(Length.BaseDimensions);
+    registry.FindByBaseDimensions(Length.Info.BaseDimensions);
 ```
 
 ## Why the facade stays thin

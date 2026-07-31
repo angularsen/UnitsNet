@@ -4,7 +4,7 @@ namespace UnitsNet.Core;
 
 /// <summary>A logarithmic quantity with logarithmic arithmetic semantics.</summary>
 /// <typeparam name="TSelf">The concrete quantity type.</typeparam>
-public interface ILogarithmicQuantity<TSelf>
+public interface ILogarithmicQuantity<TSelf> : IArithmeticQuantity<TSelf>
     where TSelf : ILogarithmicQuantity<TSelf>
 {
     /// <summary>Gets the factor used to map between logarithmic and linear space.</summary>

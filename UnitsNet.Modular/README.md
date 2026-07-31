@@ -266,25 +266,28 @@ forms. Affine quantities provide meaningful averages. Logarithmic quantities pro
 
 ### Inspect immutable metadata
 
-Each generated quantity exposes one strongly typed, immutable metadata object. The quantity's
-convenience properties and the generated discovery registry forward to that same instance:
+Each generated quantity exposes one strongly typed, immutable metadata object. Less-common
+discovery data lives there instead of being duplicated across the quantity API, and the generated
+registry stores that exact same instance:
 
 ```csharp
 QuantityInfo<Length, LengthUnit> info = Length.Info;
 UnitInfo<LengthUnit> kilometer = info[LengthUnit.Kilometer];
 
-Length value = info.From(1.5, kilometer.Unit);
+Length value = Length.From(1.5, kilometer.Value);
 string abbreviation = kilometer.GetDefaultAbbreviation(CultureInfo.InvariantCulture);
 
-Debug.Assert(ReferenceEquals(info.UnitInfos, Length.UnitInfos));
-Debug.Assert(ReferenceEquals(info, value.QuantityInfo));
+Debug.Assert(info.BaseUnit.Value == LengthUnit.Meter);
+Debug.Assert(info.Units.Contains(kilometer));
 Debug.Assert(ReferenceEquals(info, Quantity.Registry.Get(typeof(Length))));
 ```
 
-`UnitInfo<TUnit>.Unit` and `SingularName` are the preferred descriptive members. `Value` and `Name`
-are hidden source-compatibility aliases for existing UnitsNet code. Unlike the legacy mutable
-metadata model, generated metadata does not expose configurable conversion expressions or global
-registration.
+The quantity type owns common value behavior (`Value`, `Unit`, `Zero`, `From`, `Convert`, `As`,
+`ToUnit`, parsing, and formatting). `Info` owns identity, base-unit metadata, the immutable `Units`
+collection, and base dimensions. `UnitInfo<TUnit>.Value` is the represented enum value;
+`SingularName` and `PluralName` describe it. `BaseUnitInfo`, `UnitInfos`, and `UnitInfo.Name` are
+hidden source-compatibility aliases. Unlike the legacy mutable metadata model, generated metadata
+does not expose configurable conversion expressions or global registration.
 
 ### Use an immutable unit system
 

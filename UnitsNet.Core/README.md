@@ -5,11 +5,12 @@ source-generation proof of concept. The contracts are designed so UnitsNet v6 ca
 but the standalone prototype does not change or add a dependency to the existing UnitsNet package.
 
 The package deliberately contains no quantity catalog, parser registry, or generated quantity
-types. Its minimal instance contracts expose stored values and strongly typed units. Its modern
-self-typed contract exposes semantic identity, base unit, construction, and conversion without
-requiring independently generated structs to have the same CLR identity. Its static `Convert`
-primitive enables generic conversion without a global registry, while generated instance `As` and
-`ToUnit` members retain the natural strongly typed API.
+types. Its minimal instance contracts expose stored values and type-erased or strongly typed units.
+Its modern self-typed contract exposes only construction and conversion primitives, without
+requiring independently generated structs to have the same CLR identity or metadata model. Its
+static `Convert` primitive enables generic conversion without a global registry, while default and
+generated instance `As` and `ToUnit` members retain the natural strongly typed API. Semantic IDs,
+base units, dimensions, and localizations remain outside Core.
 
 Capability interfaces distinguish linear, affine, and logarithmic quantities. Linear quantities
 advertise conventional generic-math operators and an additive zero; affine quantities add and
