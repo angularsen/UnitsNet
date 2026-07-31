@@ -7,6 +7,7 @@ on:
     tags:
       - 'UnitsNet.Modular/*'
     paths:
+      - '.devcontainer/unitsnet-modular/**'
       - 'UnitsNet.Modular/**'
       - 'UnitsNet.Core/**'
       # The compatibility suite compiles the current UnitsNet project to detect source/API drift.
@@ -25,6 +26,7 @@ on:
     branches:
       - master
     paths:
+      - '.devcontainer/unitsnet-modular/**'
       - 'UnitsNet.Modular/**'
       - 'UnitsNet.Core/**'
       # The compatibility suite compiles the current UnitsNet project to detect source/API drift.
