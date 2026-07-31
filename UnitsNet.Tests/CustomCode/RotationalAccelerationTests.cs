@@ -31,5 +31,18 @@ namespace UnitsNet.Tests.CustomCode
         protected override double RadiansPerSecondSquaredInOneRadianPerSecondSquared => 1;
         protected override double RevolutionsPerMinutePerSecondInOneRadianPerSecondSquared => 9.549296586;
         protected override double RevolutionsPerSecondSquaredInOneRadianPerSecondSquared=> 0.159154943091895;
+
+        [Fact]
+        public void RotationalAccelerationTimesDurationEqualsRotationalSpeed()
+        {
+            RotationalAcceleration acceleration = RotationalAcceleration.FromRadiansPerSecondSquared(2);
+            Duration duration = Duration.FromSeconds(3);
+            RotationalSpeed expected = RotationalSpeed.FromRadiansPerSecond(6);
+
+            Assert.Equal(expected, acceleration * duration);
+            Assert.Equal(expected, duration * acceleration);
+            Assert.Equal(duration, expected / acceleration);
+            Assert.Equal(acceleration, expected / duration);
+        }
     }
 }

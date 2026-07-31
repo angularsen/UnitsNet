@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "ConfigureCachingOptions": {
+      "commandName": "Project",
+      "commandLineArgs": "CachingOptions WithSpecificQuantitiesAndUnitsAsFrozen"
+    },
+    "ConfigureCustomQuantities": {
+      "commandName": "Project",
+      "commandLineArgs": "CustomQuantities"
+    },
+    "ConfigureCustomConversions": {
+      "commandName": "Project",
+      "commandLineArgs": "CustomConversions"
+    }
+  }
+}

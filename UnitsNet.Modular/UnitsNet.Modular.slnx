@@ -1,0 +1,21 @@
+<Solution>
+  <Project Path="UnitsNet.Modular/UnitsNet.Modular.csproj" />
+  <Project Path="UnitsNet.Modular.Generator/UnitsNet.Modular.Generator.csproj" />
+  <Project Path="UnitsNet.Modular.Generator.Tests/UnitsNet.Modular.Generator.Tests.csproj" />
+  <Project Path="UnitsNet.Modular.Tests/UnitsNet.Modular.Tests.csproj" />
+  <Project Path="UnitsNet.Modular.Compatibility.Tests/UnitsNet.Modular.Compatibility.Tests.csproj" />
+  <Folder Name="/Samples/">
+    <Project Path="Samples/DefinitionPackages/Fictional.Measurements.Definitions/Fictional.Measurements.Definitions.csproj" />
+    <Project Path="Samples/ConsumerOwned/ConsumerOwned.Units/ConsumerOwned.Units.csproj" />
+    <Project Path="Samples/ConsumerOwned/ConsumerOwned.Units.ProjectReferences/ConsumerOwned.Units.ProjectReferences.csproj" />
+    <Project Path="Samples/ConsumerOwned/ConsumerOwned.Domain/ConsumerOwned.Domain.csproj" />
+    <Project Path="Samples/ConsumerOwned/ConsumerOwned.Reporting/ConsumerOwned.Reporting.csproj" />
+    <Project Path="Samples/UnitsNet.Modular.AllSi.Sample/UnitsNet.Modular.AllSi.Sample.csproj" />
+    <Project Path="Samples/UnitsNet.Modular.Representative.Sample/UnitsNet.Modular.Representative.Sample.csproj" />
+    <Project Path="Samples/UnitsNet.Modular.Lean.Sample/UnitsNet.Modular.Lean.Sample.csproj" />
+    <Project Path="Samples/UnitsNet.Modular.Custom.Sample/UnitsNet.Modular.Custom.Sample.csproj" />
+    <Project Path="Samples/UnitsNet.Modular.Playground/UnitsNet.Modular.Playground.csproj" />
+    <Project Path="Samples/UnitsNet.Modular.Compatibility.UnitsNet.Sample/UnitsNet.Modular.Compatibility.UnitsNet.Sample.csproj" />
+    <Project Path="Samples/UnitsNet.Modular.Compatibility.Generated.Sample/UnitsNet.Modular.Compatibility.Generated.Sample.csproj" />
+  </Folder>
+</Solution>

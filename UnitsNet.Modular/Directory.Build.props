@@ -1,0 +1,20 @@
+<Project>
+  <!-- Preserve repository-wide build settings when this nearer props file is discovered. -->
+  <Import Project="../Directory.Build.props" />
+
+  <!-- Register analyzer-config metadata before IDE design-time builds capture the project model. -->
+  <Import Project="UnitsNet.Modular.Generator/buildTransitive/UnitsNet.Modular.Generator.props" />
+
+  <!-- UnitsNet.Core imports this explicitly because it is a sibling of this directory. -->
+  <Import Project="UnitsNet.Modular.Versioning.props" />
+
+  <!-- Reproducible portable symbols with Source Link are part of the package quality contract. -->
+  <PropertyGroup>
+    <DebugType>portable</DebugType>
+    <Deterministic>true</Deterministic>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+    <!-- Only the combined runtime + generator project is a public package. -->
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+</Project>

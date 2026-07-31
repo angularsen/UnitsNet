@@ -44,5 +44,18 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PascalSecondsPerLiterInOnePascalSecondPerCubicMeter => 1e-3; // Pa·s/l
         protected override double PascalSecondsPerMilliliterInOnePascalSecondPerCubicMeter => 1e-6; // Pa·s/ml
         protected override double WoodUnitsInOnePascalSecondPerCubicMeter => 1.25010625903202e-7; // WU
+
+        [Fact]
+        public void FluidResistanceTimesVolumeFlowEqualsPressure()
+        {
+            FluidResistance fluidResistance = FluidResistance.FromPascalSecondsPerCubicMeter(2);
+            VolumeFlow volumeFlow = VolumeFlow.FromCubicMetersPerSecond(3);
+            Pressure expected = Pressure.FromPascals(6);
+
+            Assert.Equal(expected, fluidResistance * volumeFlow);
+            Assert.Equal(expected, volumeFlow * fluidResistance);
+            Assert.Equal(volumeFlow, expected / fluidResistance);
+            Assert.Equal(fluidResistance, expected / volumeFlow);
+        }
     }
 }

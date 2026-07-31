@@ -146,6 +146,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AreaPerLengthInfo_CreateWithCustomUnitInfos()
+        {
+            AreaPerLengthUnit[] expectedUnits = [AreaPerLengthUnit.SquareMeterPerMeter];
+
+            AreaPerLength.AreaPerLengthInfo quantityInfo = AreaPerLength.AreaPerLengthInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("AreaPerLength", quantityInfo.Name);
+            Assert.Equal(AreaPerLength.Zero, quantityInfo.Zero);
+            Assert.Equal(AreaPerLength.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void SquareMeterPerMeterToAreaPerLengthUnits()
         {
             AreaPerLength squaremeterpermeter = AreaPerLength.FromSquareMetersPerMeter(1);
@@ -239,26 +253,69 @@ namespace UnitsNet.Tests
             var expectedUnit = AreaPerLength.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            AreaPerLength convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                AreaPerLength quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                AreaPerLength convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<AreaPerLengthUnit> quantityToConvert = quantity;
+
+                IQuantity<AreaPerLengthUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new AreaPerLength(value: 1, unit: AreaPerLength.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new AreaPerLength(value: 1, unit: AreaPerLength.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<AreaPerLengthUnit> quantity = new AreaPerLength(value: 1, unit: AreaPerLength.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new AreaPerLength(value: 1, unit: AreaPerLength.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new AreaPerLength(value: 1, unit: AreaPerLength.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new AreaPerLength(value: 1, unit: AreaPerLength.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<AreaPerLengthUnit> quantity = new AreaPerLength(value: 1, unit: AreaPerLength.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new AreaPerLength(value: 1, unit: AreaPerLength.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -268,7 +325,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 in²/in", AreaPerLengthUnit.SquareInchPerInch, 4.2)]
         [InlineData("en-US", "4.2 m²/m", AreaPerLengthUnit.SquareMeterPerMeter, 4.2)]
         [InlineData("en-US", "4.2 mm²/m", AreaPerLengthUnit.SquareMillimeterPerMeter, 4.2)]
-        public void Parse(string culture, string quantityString, AreaPerLengthUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, AreaPerLengthUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = AreaPerLength.Parse(quantityString);
@@ -283,7 +340,7 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 in²/in", AreaPerLengthUnit.SquareInchPerInch, 4.2)]
         [InlineData("en-US", "4.2 m²/m", AreaPerLengthUnit.SquareMeterPerMeter, 4.2)]
         [InlineData("en-US", "4.2 mm²/m", AreaPerLengthUnit.SquareMillimeterPerMeter, 4.2)]
-        public void TryParse(string culture, string quantityString, AreaPerLengthUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, AreaPerLengthUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(AreaPerLength.TryParse(quantityString, out AreaPerLength parsed));
@@ -461,6 +518,7 @@ namespace UnitsNet.Tests
                 var quantity = AreaPerLength.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -484,37 +542,39 @@ namespace UnitsNet.Tests
                 IQuantity<AreaPerLengthUnit> quantityToConvert = quantity;
                 IQuantity<AreaPerLengthUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            AreaPerLength squaremeterpermeter = AreaPerLength.FromSquareMetersPerMeter(1);
-            AssertEx.EqualTolerance(1, AreaPerLength.FromSquareCentimetersPerMeter(squaremeterpermeter.SquareCentimetersPerMeter).SquareMetersPerMeter, SquareCentimetersPerMeterTolerance);
-            AssertEx.EqualTolerance(1, AreaPerLength.FromSquareFeetPerFoot(squaremeterpermeter.SquareFeetPerFoot).SquareMetersPerMeter, SquareFeetPerFootTolerance);
-            AssertEx.EqualTolerance(1, AreaPerLength.FromSquareInchesPerFoot(squaremeterpermeter.SquareInchesPerFoot).SquareMetersPerMeter, SquareInchesPerFootTolerance);
-            AssertEx.EqualTolerance(1, AreaPerLength.FromSquareInchesPerInch(squaremeterpermeter.SquareInchesPerInch).SquareMetersPerMeter, SquareInchesPerInchTolerance);
-            AssertEx.EqualTolerance(1, AreaPerLength.FromSquareMetersPerMeter(squaremeterpermeter.SquareMetersPerMeter).SquareMetersPerMeter, SquareMetersPerMeterTolerance);
-            AssertEx.EqualTolerance(1, AreaPerLength.FromSquareMillimetersPerMeter(squaremeterpermeter.SquareMillimetersPerMeter).SquareMetersPerMeter, SquareMillimetersPerMeterTolerance);
+            AreaPerLength squaremeterpermeter = AreaPerLength.FromSquareMetersPerMeter(3);
+            Assert.Equal(3, AreaPerLength.FromSquareCentimetersPerMeter(squaremeterpermeter.SquareCentimetersPerMeter).SquareMetersPerMeter);
+            Assert.Equal(3, AreaPerLength.FromSquareFeetPerFoot(squaremeterpermeter.SquareFeetPerFoot).SquareMetersPerMeter);
+            Assert.Equal(3, AreaPerLength.FromSquareInchesPerFoot(squaremeterpermeter.SquareInchesPerFoot).SquareMetersPerMeter);
+            Assert.Equal(3, AreaPerLength.FromSquareInchesPerInch(squaremeterpermeter.SquareInchesPerInch).SquareMetersPerMeter);
+            Assert.Equal(3, AreaPerLength.FromSquareMetersPerMeter(squaremeterpermeter.SquareMetersPerMeter).SquareMetersPerMeter);
+            Assert.Equal(3, AreaPerLength.FromSquareMillimetersPerMeter(squaremeterpermeter.SquareMillimetersPerMeter).SquareMetersPerMeter);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             AreaPerLength v = AreaPerLength.FromSquareMetersPerMeter(1);
-            AssertEx.EqualTolerance(-1, -v.SquareMetersPerMeter, SquareMetersPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (AreaPerLength.FromSquareMetersPerMeter(3)-v).SquareMetersPerMeter, SquareMetersPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (v + v).SquareMetersPerMeter, SquareMetersPerMeterTolerance);
-            AssertEx.EqualTolerance(10, (v*10).SquareMetersPerMeter, SquareMetersPerMeterTolerance);
-            AssertEx.EqualTolerance(10, (10*v).SquareMetersPerMeter, SquareMetersPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (AreaPerLength.FromSquareMetersPerMeter(10)/5).SquareMetersPerMeter, SquareMetersPerMeterTolerance);
-            AssertEx.EqualTolerance(2, AreaPerLength.FromSquareMetersPerMeter(10)/AreaPerLength.FromSquareMetersPerMeter(5), SquareMetersPerMeterTolerance);
+            Assert.Equal(-1, -v.SquareMetersPerMeter);
+            Assert.Equal(2, (AreaPerLength.FromSquareMetersPerMeter(3) - v).SquareMetersPerMeter);
+            Assert.Equal(2, (v + v).SquareMetersPerMeter);
+            Assert.Equal(10, (v * 10).SquareMetersPerMeter);
+            Assert.Equal(10, (10 * v).SquareMetersPerMeter);
+            Assert.Equal(2, (AreaPerLength.FromSquareMetersPerMeter(10) / 5).SquareMetersPerMeter);
+            Assert.Equal(2, AreaPerLength.FromSquareMetersPerMeter(10) / AreaPerLength.FromSquareMetersPerMeter(5));
         }
 
         [Fact]
@@ -560,8 +620,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, AreaPerLengthUnit.SquareMeterPerMeter, 1, AreaPerLengthUnit.SquareMeterPerMeter, true)]  // Same value and unit.
         [InlineData(1, AreaPerLengthUnit.SquareMeterPerMeter, 2, AreaPerLengthUnit.SquareMeterPerMeter, false)] // Different value.
-        [InlineData(2, AreaPerLengthUnit.SquareMeterPerMeter, 1, AreaPerLengthUnit.SquareCentimeterPerMeter, false)] // Different value and unit.
-        [InlineData(1, AreaPerLengthUnit.SquareMeterPerMeter, 1, AreaPerLengthUnit.SquareCentimeterPerMeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, AreaPerLengthUnit unitA, double valueB, AreaPerLengthUnit unitB, bool expectEqual)
         {
             var a = new AreaPerLength(valueA, unitA);
@@ -621,8 +679,8 @@ namespace UnitsNet.Tests
             var quantity = AreaPerLength.FromSquareMetersPerMeter(firstValue);
             var otherQuantity = AreaPerLength.FromSquareMetersPerMeter(secondValue);
             AreaPerLength maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, AreaPerLength.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -652,6 +710,18 @@ namespace UnitsNet.Tests
         public void BaseDimensionsShouldNeverBeNull()
         {
             Assert.False(AreaPerLength.BaseDimensions is null);
+        }
+
+        [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(AreaPerLength.Info.Units, AreaPerLength.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, AreaPerLength.DefaultConversionFunctions);
         }
 
         [Fact]
@@ -726,7 +796,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = AreaPerLength.FromSquareMetersPerMeter(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(AreaPerLength), quantity.As(AreaPerLength.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

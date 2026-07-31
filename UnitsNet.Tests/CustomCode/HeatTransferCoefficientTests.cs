@@ -33,5 +33,18 @@ namespace UnitsNet.Tests.CustomCode
         protected override double BtusPerSecondSquareInchDegreeFahrenheitInOneWattPerSquareMeterKelvin => 3.3971871852296651e-7;
         protected override double KilocaloriesPerHourSquareMeterDegreeCelsiusInOneWattPerSquareMeterKelvin => 0.8604206500956023;
         protected override double CaloriesPerHourSquareMeterDegreeCelsiusInOneWattPerSquareMeterKelvin => 860.4206500956023;
+
+        [Fact]
+        public void HeatTransferCoefficientTimesTemperatureDeltaEqualsHeatFlux()
+        {
+            HeatTransferCoefficient heatTransferCoefficient = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(2);
+            TemperatureDelta temperatureDelta = TemperatureDelta.FromKelvins(3);
+            HeatFlux expected = HeatFlux.FromWattsPerSquareMeter(6);
+
+            Assert.Equal(expected, heatTransferCoefficient * temperatureDelta);
+            Assert.Equal(expected, temperatureDelta * heatTransferCoefficient);
+            Assert.Equal(temperatureDelta, expected / heatTransferCoefficient);
+            Assert.Equal(heatTransferCoefficient, expected / temperatureDelta);
+        }
     }
 }

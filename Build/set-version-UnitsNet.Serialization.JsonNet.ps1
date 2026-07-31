@@ -1,5 +1,5 @@
 <# .SYNOPSIS
-  Updates the version of all UnitsNet.Serialiation.JsonNet projects.
+  Updates the version of all UnitsNet serialization projects.
 .DESCRIPTION
   Updates the <Version> property of the .csproj project files.
 .PARAMETER set
@@ -48,11 +48,25 @@ Import-Module "$PSScriptRoot\set-version.psm1"
 
 $root = Resolve-Path "$PSScriptRoot\.."
 $paramSet = $PsCmdlet.ParameterSetName
-$projFile = "$root\UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj"
+$projectFiles = @(
+  "$root\UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj",
+  "$root\UnitsNet.Serialization.SystemTextJson\UnitsNet.Serialization.SystemTextJson.csproj"
+)
 
 # Use project version as base when bumping major/minor/patch
-$newVersion = Get-NewProjectVersion $projFile $paramSet $setVersion $bumpVersion
+$newVersion = Get-NewProjectVersion $projectFiles[0] $paramSet $setVersion $bumpVersion
 
-Set-ProjectVersion $projFile $newVersion
+# Reset and stash any other local changes.
+$didStash = Invoke-StashPush
+
+foreach ($projectFile in $projectFiles) {
+  Set-ProjectVersion $projectFile $newVersion
+}
+
 Invoke-CommitVersionBump "JsonNet" $newVersion
 Invoke-TagVersionBump "JsonNet" $newVersion
+
+# Restore any local changes.
+if ($didStash) {
+  Invoke-StashPop
+}

@@ -42,84 +42,84 @@ namespace UnitsNet.NumberExtensions.NumberToTemperature
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Temperature.FromDegreesCelsius(double)" />
+            /// <inheritdoc cref="Temperature.FromDegreesCelsius(QuantityValue)" />
             public Temperature DegreesCelsius
 #if NET7_0_OR_GREATER
-                => Temperature.FromDegreesCelsius(double.CreateChecked(value));
+                => Temperature.FromDegreesCelsius(QuantityValue.CreateChecked(value));
 #else
-                => Temperature.FromDegreesCelsius(value.ToDouble(null));
+                => Temperature.FromDegreesCelsius(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Temperature.FromDegreesDelisle(double)" />
+            /// <inheritdoc cref="Temperature.FromDegreesDelisle(QuantityValue)" />
             public Temperature DegreesDelisle
 #if NET7_0_OR_GREATER
-                => Temperature.FromDegreesDelisle(double.CreateChecked(value));
+                => Temperature.FromDegreesDelisle(QuantityValue.CreateChecked(value));
 #else
-                => Temperature.FromDegreesDelisle(value.ToDouble(null));
+                => Temperature.FromDegreesDelisle(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Temperature.FromDegreesFahrenheit(double)" />
+            /// <inheritdoc cref="Temperature.FromDegreesFahrenheit(QuantityValue)" />
             public Temperature DegreesFahrenheit
 #if NET7_0_OR_GREATER
-                => Temperature.FromDegreesFahrenheit(double.CreateChecked(value));
+                => Temperature.FromDegreesFahrenheit(QuantityValue.CreateChecked(value));
 #else
-                => Temperature.FromDegreesFahrenheit(value.ToDouble(null));
+                => Temperature.FromDegreesFahrenheit(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Temperature.FromDegreesNewton(double)" />
+            /// <inheritdoc cref="Temperature.FromDegreesNewton(QuantityValue)" />
             public Temperature DegreesNewton
 #if NET7_0_OR_GREATER
-                => Temperature.FromDegreesNewton(double.CreateChecked(value));
+                => Temperature.FromDegreesNewton(QuantityValue.CreateChecked(value));
 #else
-                => Temperature.FromDegreesNewton(value.ToDouble(null));
+                => Temperature.FromDegreesNewton(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Temperature.FromDegreesRankine(double)" />
+            /// <inheritdoc cref="Temperature.FromDegreesRankine(QuantityValue)" />
             public Temperature DegreesRankine
 #if NET7_0_OR_GREATER
-                => Temperature.FromDegreesRankine(double.CreateChecked(value));
+                => Temperature.FromDegreesRankine(QuantityValue.CreateChecked(value));
 #else
-                => Temperature.FromDegreesRankine(value.ToDouble(null));
+                => Temperature.FromDegreesRankine(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Temperature.FromDegreesReaumur(double)" />
+            /// <inheritdoc cref="Temperature.FromDegreesReaumur(QuantityValue)" />
             public Temperature DegreesReaumur
 #if NET7_0_OR_GREATER
-                => Temperature.FromDegreesReaumur(double.CreateChecked(value));
+                => Temperature.FromDegreesReaumur(QuantityValue.CreateChecked(value));
 #else
-                => Temperature.FromDegreesReaumur(value.ToDouble(null));
+                => Temperature.FromDegreesReaumur(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Temperature.FromDegreesRoemer(double)" />
+            /// <inheritdoc cref="Temperature.FromDegreesRoemer(QuantityValue)" />
             public Temperature DegreesRoemer
 #if NET7_0_OR_GREATER
-                => Temperature.FromDegreesRoemer(double.CreateChecked(value));
+                => Temperature.FromDegreesRoemer(QuantityValue.CreateChecked(value));
 #else
-                => Temperature.FromDegreesRoemer(value.ToDouble(null));
+                => Temperature.FromDegreesRoemer(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Temperature.FromKelvins(double)" />
+            /// <inheritdoc cref="Temperature.FromKelvins(QuantityValue)" />
             public Temperature Kelvins
 #if NET7_0_OR_GREATER
-                => Temperature.FromKelvins(double.CreateChecked(value));
+                => Temperature.FromKelvins(QuantityValue.CreateChecked(value));
 #else
-                => Temperature.FromKelvins(value.ToDouble(null));
+                => Temperature.FromKelvins(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Temperature.FromMillidegreesCelsius(double)" />
+            /// <inheritdoc cref="Temperature.FromMillidegreesCelsius(QuantityValue)" />
             public Temperature MillidegreesCelsius
 #if NET7_0_OR_GREATER
-                => Temperature.FromMillidegreesCelsius(double.CreateChecked(value));
+                => Temperature.FromMillidegreesCelsius(QuantityValue.CreateChecked(value));
 #else
-                => Temperature.FromMillidegreesCelsius(value.ToDouble(null));
+                => Temperature.FromMillidegreesCelsius(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Temperature.FromSolarTemperatures(double)" />
+            /// <inheritdoc cref="Temperature.FromSolarTemperatures(QuantityValue)" />
             public Temperature SolarTemperatures
 #if NET7_0_OR_GREATER
-                => Temperature.FromSolarTemperatures(double.CreateChecked(value));
+                => Temperature.FromSolarTemperatures(QuantityValue.CreateChecked(value));
 #else
-                => Temperature.FromSolarTemperatures(value.ToDouble(null));
+                => Temperature.FromSolarTemperatures(value.ToQuantityValue());
 #endif
 
         }

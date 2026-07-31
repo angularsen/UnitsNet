@@ -1,0 +1,77 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>UnitsNet.Modular</RootNamespace>
+    <IsPackable>true</IsPackable>
+    <IsAotCompatible>true</IsAotCompatible>
+
+    <!--
+      The repository's local-package workflow passes a unique development version explicitly.
+      Ordinary local builds use the stable version from Directory.Build.props, while CI and
+      release preparation opt into the MinVer-derived publish version.
+    -->
+    <UnitsNetModularLocalFeed Condition="'$(UnitsNetModularLocalFeed)' == ''">$(RepositoryLocalNuGetFeed)</UnitsNetModularLocalFeed>
+    <UnitsNetCoreVersionOverride Condition="'$(UnitsNetModularPackForPublish)' != 'true' and '$(UnitsNetCoreVersionOverride)' == ''">$(Version)</UnitsNetCoreVersionOverride>
+    <PackageOutputPath Condition="'$(UnitsNetModularPackForPublish)' != 'true' and '$(PackageOutputPath)' == ''">$(UnitsNetModularLocalFeed)</PackageOutputPath>
+
+    <PackageId>UnitsNet.Modular</PackageId>
+    <Title>UnitsNet Modular</Title>
+    <Description>Generate lean, strongly typed quantities and units at compile time from built-in or custom definitions.</Description>
+    <Authors>Andreas Gullberg Larsen</Authors>
+    <Copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).</Copyright>
+    <PackageProjectUrl>https://github.com/angularsen/UnitsNet/tree/master/UnitsNet.Modular</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/angularsen/UnitsNet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <PackageLicenseExpression>MIT-0</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageIcon>logo-32.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>unitsnet unit units quantity quantities measurement source-generator code-generation modular conversion parsing</PackageTags>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <!-- Build-only source directory for analyzer dependency files copied into the combined NuGet package. -->
+    <_UnitsNetModularAnalyzerDependencyDirectory>$(MSBuildThisFileDirectory)../../Artifacts/UnitsNet.Modular.Generator/netstandard2.0/</_UnitsNetModularAnalyzerDependencyDirectory>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MinVer" PrivateAssets="all" />
+    <ProjectReference Include="../../UnitsNet.Core/UnitsNet.Core.csproj" />
+    <ProjectReference Include="..\UnitsNet.Modular.Generator\UnitsNet.Modular.Generator.csproj"
+                      PrivateAssets="all"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+  <Target Name="PackUnitsNetCore"
+          BeforeTargets="GenerateNuspec"
+          Condition="'$(TargetFramework)' == ''">
+    <MSBuild Projects="../../UnitsNet.Core/UnitsNet.Core.csproj"
+             Targets="Pack"
+             BuildInParallel="false"
+             Properties="Configuration=$(Configuration);PackageOutputPath=$(PackageOutputPath);NoBuild=true;UnitsNetCoreVersionOverride=$(UnitsNetCoreVersionOverride)" />
+  </Target>
+  <ItemGroup>
+    <None Include="../../Artifacts/UnitsNet.Modular.Generator/netstandard2.0/UnitsNet.Modular.Generator.dll"
+          Pack="true"
+          PackagePath="analyzers/dotnet/cs" />
+    <None Include="$(_UnitsNetModularAnalyzerDependencyDirectory)Microsoft.Bcl.AsyncInterfaces.dll;$(_UnitsNetModularAnalyzerDependencyDirectory)System.Buffers.dll;$(_UnitsNetModularAnalyzerDependencyDirectory)System.IO.Pipelines.dll;$(_UnitsNetModularAnalyzerDependencyDirectory)System.Memory.dll;$(_UnitsNetModularAnalyzerDependencyDirectory)System.Numerics.Vectors.dll;$(_UnitsNetModularAnalyzerDependencyDirectory)System.Runtime.CompilerServices.Unsafe.dll;$(_UnitsNetModularAnalyzerDependencyDirectory)System.Text.Encodings.Web.dll;$(_UnitsNetModularAnalyzerDependencyDirectory)System.Text.Json.dll;$(_UnitsNetModularAnalyzerDependencyDirectory)System.Threading.Tasks.Extensions.dll"
+          Pack="true"
+          PackagePath="analyzers/dotnet/cs"
+          Visible="false" />
+    <None Include="../UnitsNet.Modular.Generator/buildTransitive/UnitsNet.Modular.Generator.props"
+          Pack="true"
+          PackagePath="buildTransitive/UnitsNet.Modular.props" />
+    <None Include="../UnitsNet.Modular.Generator/buildTransitive/UnitsNet.Modular.Generator.targets"
+          Pack="true"
+          PackagePath="buildTransitive/UnitsNet.Modular.targets" />
+    <None Include="../README.md" Pack="true" PackagePath="README.md" />
+    <None Include="../THIRD-PARTY-NOTICES.md" Pack="true" PackagePath="THIRD-PARTY-NOTICES.md" />
+    <None Include="$(NuGetPackageRoot)/system.text.json/$(SystemTextJsonVersion)/THIRD-PARTY-NOTICES.TXT"
+          Pack="true"
+          PackagePath="DOTNET-THIRD-PARTY-NOTICES.TXT" />
+    <None Include="../../Docs/Images/logo-32.png" Pack="true" PackagePath="logo-32.png" />
+  </ItemGroup>
+</Project>

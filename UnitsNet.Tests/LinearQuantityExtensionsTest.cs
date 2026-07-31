@@ -1,14 +1,15 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
+using UnitsNet.Tests.CustomQuantities;
+
 namespace UnitsNet.Tests;
 
 public class LinearQuantityExtensionsTest
 {
     [Theory]
     [InlineData(2.0, 2.0, 0.1, true)]
-    // [InlineData(2.0, 2.1, 0.1, true)] // should be equal but fails due to rounding
-    [InlineData(2.0, 2.1, 0.10001, true)]
+    [InlineData(2.0, 2.1, 0.1, true)]
     [InlineData(2.0, 2.2, 0.1, false)]
     [InlineData(2.0, 2.0, 0.0, true)]
     [InlineData(2.0, 2.1, 0.0, false)]
@@ -23,7 +24,7 @@ public class LinearQuantityExtensionsTest
         Assert.Equal(expected, result);
     }
 
-    [Fact(Skip = "Fails due to rounding")]
+    [Fact]
     public void Equals_WithToleranceAtTheLimit_ReturnsTrue()
     {
         var quantity = Length.FromMeters(1);
@@ -46,8 +47,7 @@ public class LinearQuantityExtensionsTest
 
     [Theory]
     [InlineData(2.0, 2.0, 0.1, true)]
-    // [InlineData(2.0, 2.1, 0.1, true)]  // should be equal but fails due to rounding
-    [InlineData(2.0, 2.1, 0.10001, true)] 
+    [InlineData(2.0, 2.1, 0.1, true)]
     [InlineData(2.0, 2.2, 0.1, false)]
     [InlineData(2.0, 2.0, 0.0, true)]
     [InlineData(2.0, 2.1, 0.0, false)]
@@ -68,12 +68,26 @@ public class LinearQuantityExtensionsTest
         var quantity = Length.FromMeters(2.0);
         var tolerance = Length.FromMeters(0.1);
 
+        // since 'other' is not a reference type, this ends up calling the IQuantity overload
         var result = quantity.Equals(null, tolerance);
 
         Assert.False(result);
     }
-    
-    [Fact(Skip = "Currently throws a StackOverflowException")]
+
+    [Fact]
+    public void Equals_TQuantity_WithNullOther_ReturnsFalse()
+    {
+        var quantity = new ClassOfLinearQuantity(2, ClassOfLinearQuantityUnit.ATon);
+        var tolerance = new ClassOfLinearQuantity(0.1m, ClassOfLinearQuantityUnit.Some);
+        ClassOfLinearQuantity? nullOther = null;
+
+        // since 'other' is a reference type, this is calling the TQuantity overload
+        var result = quantity.Equals(nullOther, tolerance);
+
+        Assert.False(result);
+    }
+
+    [Fact]
     public void Equals_TQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
     {
         var quantity = Length.FromMeters(1);
@@ -83,7 +97,7 @@ public class LinearQuantityExtensionsTest
         Assert.Throws<UnitNotFoundException>(() => quantity.Equals(quantity, invalidQuantity));
     }
 
-    [Fact(Skip = "Currently throws a StackOverflowException")]
+    [Fact]
     public void Equals_IQuantity_WithUnknownUnits_ThrowsUnitNotFoundException()
     {
         var quantity = Length.FromMeters(1);

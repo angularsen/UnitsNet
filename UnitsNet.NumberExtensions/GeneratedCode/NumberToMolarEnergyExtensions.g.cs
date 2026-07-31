@@ -32,37 +32,37 @@ namespace UnitsNet.NumberExtensions.NumberToMolarEnergy
     /// </summary>
     public static class NumberToMolarEnergyExtensions
     {
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(double)" />
+        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(QuantityValue)" />
         public static MolarEnergy JoulesPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MolarEnergy.FromJoulesPerMole(double.CreateChecked(value));
+            => MolarEnergy.FromJoulesPerMole(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MolarEnergy.FromJoulesPerMole(value.ToDouble(null));
+            => MolarEnergy.FromJoulesPerMole(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(double)" />
+        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(QuantityValue)" />
         public static MolarEnergy KilojoulesPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MolarEnergy.FromKilojoulesPerMole(double.CreateChecked(value));
+            => MolarEnergy.FromKilojoulesPerMole(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MolarEnergy.FromKilojoulesPerMole(value.ToDouble(null));
+            => MolarEnergy.FromKilojoulesPerMole(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(double)" />
+        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(QuantityValue)" />
         public static MolarEnergy MegajoulesPerMole<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MolarEnergy.FromMegajoulesPerMole(double.CreateChecked(value));
+            => MolarEnergy.FromMegajoulesPerMole(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MolarEnergy.FromMegajoulesPerMole(value.ToDouble(null));
+            => MolarEnergy.FromMegajoulesPerMole(value.ToQuantityValue());
 #endif
 
     }

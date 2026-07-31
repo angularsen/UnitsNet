@@ -59,6 +59,8 @@ namespace UnitsNet.Tests
         protected abstract double NewtonCentimetersInOneNewtonMeter { get; }
         protected abstract double NewtonMetersInOneNewtonMeter { get; }
         protected abstract double NewtonMillimetersInOneNewtonMeter { get; }
+        protected abstract double OunceForceFeetInOneNewtonMeter { get; }
+        protected abstract double OunceForceInchesInOneNewtonMeter { get; }
         protected abstract double PoundalFeetInOneNewtonMeter { get; }
         protected abstract double PoundForceFeetInOneNewtonMeter { get; }
         protected abstract double PoundForceInchesInOneNewtonMeter { get; }
@@ -86,6 +88,8 @@ namespace UnitsNet.Tests
         protected virtual double NewtonCentimetersTolerance { get { return 1e-5; } }
         protected virtual double NewtonMetersTolerance { get { return 1e-5; } }
         protected virtual double NewtonMillimetersTolerance { get { return 1e-5; } }
+        protected virtual double OunceForceFeetTolerance { get { return 1e-5; } }
+        protected virtual double OunceForceInchesTolerance { get { return 1e-5; } }
         protected virtual double PoundalFeetTolerance { get { return 1e-5; } }
         protected virtual double PoundForceFeetTolerance { get { return 1e-5; } }
         protected virtual double PoundForceInchesTolerance { get { return 1e-5; } }
@@ -117,6 +121,8 @@ namespace UnitsNet.Tests
                 TorqueUnit.NewtonCentimeter => (NewtonCentimetersInOneNewtonMeter, NewtonCentimetersTolerance),
                 TorqueUnit.NewtonMeter => (NewtonMetersInOneNewtonMeter, NewtonMetersTolerance),
                 TorqueUnit.NewtonMillimeter => (NewtonMillimetersInOneNewtonMeter, NewtonMillimetersTolerance),
+                TorqueUnit.OunceForceFoot => (OunceForceFeetInOneNewtonMeter, OunceForceFeetTolerance),
+                TorqueUnit.OunceForceInch => (OunceForceInchesInOneNewtonMeter, OunceForceInchesTolerance),
                 TorqueUnit.PoundalFoot => (PoundalFeetInOneNewtonMeter, PoundalFeetTolerance),
                 TorqueUnit.PoundForceFoot => (PoundForceFeetInOneNewtonMeter, PoundForceFeetTolerance),
                 TorqueUnit.PoundForceInch => (PoundForceInchesInOneNewtonMeter, PoundForceInchesTolerance),
@@ -148,6 +154,8 @@ namespace UnitsNet.Tests
             new object[] { TorqueUnit.NewtonCentimeter },
             new object[] { TorqueUnit.NewtonMeter },
             new object[] { TorqueUnit.NewtonMillimeter },
+            new object[] { TorqueUnit.OunceForceFoot },
+            new object[] { TorqueUnit.OunceForceInch },
             new object[] { TorqueUnit.PoundalFoot },
             new object[] { TorqueUnit.PoundForceFoot },
             new object[] { TorqueUnit.PoundForceInch },
@@ -222,6 +230,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void TorqueInfo_CreateWithCustomUnitInfos()
+        {
+            TorqueUnit[] expectedUnits = [TorqueUnit.NewtonMeter];
+
+            Torque.TorqueInfo quantityInfo = Torque.TorqueInfo.CreateDefault(mappings => mappings.SelectUnits(expectedUnits));
+
+            Assert.Equal("Torque", quantityInfo.Name);
+            Assert.Equal(Torque.Zero, quantityInfo.Zero);
+            Assert.Equal(Torque.BaseUnit, quantityInfo.BaseUnitInfo.Value);
+            Assert.Equal(expectedUnits, quantityInfo.Units);
+            Assert.Equal(expectedUnits, quantityInfo.UnitInfos.Select(x => x.Value));
+        }
+
+        [Fact]
         public void NewtonMeterToTorqueUnits()
         {
             Torque newtonmeter = Torque.FromNewtonMeters(1);
@@ -244,6 +266,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(NewtonCentimetersInOneNewtonMeter, newtonmeter.NewtonCentimeters, NewtonCentimetersTolerance);
             AssertEx.EqualTolerance(NewtonMetersInOneNewtonMeter, newtonmeter.NewtonMeters, NewtonMetersTolerance);
             AssertEx.EqualTolerance(NewtonMillimetersInOneNewtonMeter, newtonmeter.NewtonMillimeters, NewtonMillimetersTolerance);
+            AssertEx.EqualTolerance(OunceForceFeetInOneNewtonMeter, newtonmeter.OunceForceFeet, OunceForceFeetTolerance);
+            AssertEx.EqualTolerance(OunceForceInchesInOneNewtonMeter, newtonmeter.OunceForceInches, OunceForceInchesTolerance);
             AssertEx.EqualTolerance(PoundalFeetInOneNewtonMeter, newtonmeter.PoundalFeet, PoundalFeetTolerance);
             AssertEx.EqualTolerance(PoundForceFeetInOneNewtonMeter, newtonmeter.PoundForceFeet, PoundForceFeetTolerance);
             AssertEx.EqualTolerance(PoundForceInchesInOneNewtonMeter, newtonmeter.PoundForceInches, PoundForceInchesTolerance);
@@ -304,6 +328,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(NewtonCentimetersInOneNewtonMeter, newtonmeter.As(TorqueUnit.NewtonCentimeter), NewtonCentimetersTolerance);
             AssertEx.EqualTolerance(NewtonMetersInOneNewtonMeter, newtonmeter.As(TorqueUnit.NewtonMeter), NewtonMetersTolerance);
             AssertEx.EqualTolerance(NewtonMillimetersInOneNewtonMeter, newtonmeter.As(TorqueUnit.NewtonMillimeter), NewtonMillimetersTolerance);
+            AssertEx.EqualTolerance(OunceForceFeetInOneNewtonMeter, newtonmeter.As(TorqueUnit.OunceForceFoot), OunceForceFeetTolerance);
+            AssertEx.EqualTolerance(OunceForceInchesInOneNewtonMeter, newtonmeter.As(TorqueUnit.OunceForceInch), OunceForceInchesTolerance);
             AssertEx.EqualTolerance(PoundalFeetInOneNewtonMeter, newtonmeter.As(TorqueUnit.PoundalFoot), PoundalFeetTolerance);
             AssertEx.EqualTolerance(PoundForceFeetInOneNewtonMeter, newtonmeter.As(TorqueUnit.PoundForceFoot), PoundForceFeetTolerance);
             AssertEx.EqualTolerance(PoundForceInchesInOneNewtonMeter, newtonmeter.As(TorqueUnit.PoundForceInch), PoundForceInchesTolerance);
@@ -353,26 +379,69 @@ namespace UnitsNet.Tests
             var expectedUnit = Torque.Info.GetDefaultUnit(UnitSystem.SI);
             var expectedValue = quantity.As(expectedUnit);
 
-            Torque convertedQuantity = quantity.ToUnit(UnitSystem.SI);
+            Assert.Multiple(() =>
+            {
+                Torque quantityToConvert = quantity;
 
-            Assert.Equal(expectedUnit, convertedQuantity.Unit);
-            Assert.Equal(expectedValue, convertedQuantity.Value);
+                Torque convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity<TorqueUnit> quantityToConvert = quantity;
+
+                IQuantity<TorqueUnit> convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            }, () =>
+            {
+                IQuantity quantityToConvert = quantity;
+
+                IQuantity convertedQuantity = quantityToConvert.ToUnit(UnitSystem.SI);
+
+                Assert.Equal(expectedUnit, convertedQuantity.Unit);
+                Assert.Equal(expectedValue, convertedQuantity.Value);
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentNullExceptionIfNull()
         {
             UnitSystem nullUnitSystem = null!;
-            var quantity = new Torque(value: 1, unit: Torque.BaseUnit);
-            Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Torque(value: 1, unit: Torque.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity<TorqueUnit> quantity = new Torque(value: 1, unit: Torque.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Torque(value: 1, unit: Torque.BaseUnit);
+                Assert.Throws<ArgumentNullException>(() => quantity.ToUnit(nullUnitSystem));
+            });
         }
 
         [Fact]
         public void ToUnit_UnitSystem_ThrowsArgumentExceptionIfNotSupported()
         {
             var unsupportedUnitSystem = new UnitSystem(UnsupportedBaseUnits);
-            var quantity = new Torque(value: 1, unit: Torque.BaseUnit);
-            Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            Assert.Multiple(() =>
+            {
+                var quantity = new Torque(value: 1, unit: Torque.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity<TorqueUnit> quantity = new Torque(value: 1, unit: Torque.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            }, () =>
+            {
+                IQuantity quantity = new Torque(value: 1, unit: Torque.BaseUnit);
+                Assert.Throws<ArgumentException>(() => quantity.ToUnit(unsupportedUnitSystem));
+            });
         }
 
         [Theory]
@@ -391,20 +460,45 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 MN·m", TorqueUnit.MeganewtonMeter, 4.2)]
         [InlineData("en-US", "4.2 MN·mm", TorqueUnit.MeganewtonMillimeter, 4.2)]
         [InlineData("en-US", "4.2 Mlbf·ft", TorqueUnit.MegapoundForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 Mlb·ft", TorqueUnit.MegapoundForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 Mlbf-ft", TorqueUnit.MegapoundForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 Mlb-ft", TorqueUnit.MegapoundForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 Mft-lb", TorqueUnit.MegapoundForceFoot, 4.2)]
         [InlineData("en-US", "4.2 Mlbf·in", TorqueUnit.MegapoundForceInch, 4.2)]
+        [InlineData("en-US", "4.2 Mlb·in", TorqueUnit.MegapoundForceInch, 4.2)]
+        [InlineData("en-US", "4.2 Mlbf-in", TorqueUnit.MegapoundForceInch, 4.2)]
+        [InlineData("en-US", "4.2 Mlb-in", TorqueUnit.MegapoundForceInch, 4.2)]
+        [InlineData("en-US", "4.2 Min-lb", TorqueUnit.MegapoundForceInch, 4.2)]
         [InlineData("en-US", "4.2 N·cm", TorqueUnit.NewtonCentimeter, 4.2)]
         [InlineData("en-US", "4.2 N·m", TorqueUnit.NewtonMeter, 4.2)]
         [InlineData("en-US", "4.2 N·mm", TorqueUnit.NewtonMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 ozf·ft", TorqueUnit.OunceForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 oz·ft", TorqueUnit.OunceForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 ozf-ft", TorqueUnit.OunceForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 oz-ft", TorqueUnit.OunceForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 ozf·in", TorqueUnit.OunceForceInch, 4.2)]
+        [InlineData("en-US", "4.2 oz·in", TorqueUnit.OunceForceInch, 4.2)]
+        [InlineData("en-US", "4.2 ozf-in", TorqueUnit.OunceForceInch, 4.2)]
+        [InlineData("en-US", "4.2 oz-in", TorqueUnit.OunceForceInch, 4.2)]
+        [InlineData("en-US", "4.2 in-oz", TorqueUnit.OunceForceInch, 4.2)]
         [InlineData("en-US", "4.2 pdl·ft", TorqueUnit.PoundalFoot, 4.2)]
         [InlineData("en-US", "4.2 lbf·ft", TorqueUnit.PoundForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 lb·ft", TorqueUnit.PoundForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 lbf-ft", TorqueUnit.PoundForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 lb-ft", TorqueUnit.PoundForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 ft-lb", TorqueUnit.PoundForceFoot, 4.2)]
         [InlineData("en-US", "4.2 lbf·in", TorqueUnit.PoundForceInch, 4.2)]
+        [InlineData("en-US", "4.2 lb·in", TorqueUnit.PoundForceInch, 4.2)]
+        [InlineData("en-US", "4.2 lbf-in", TorqueUnit.PoundForceInch, 4.2)]
+        [InlineData("en-US", "4.2 lb-in", TorqueUnit.PoundForceInch, 4.2)]
+        [InlineData("en-US", "4.2 in-lb", TorqueUnit.PoundForceInch, 4.2)]
         [InlineData("en-US", "4.2 tf·cm", TorqueUnit.TonneForceCentimeter, 4.2)]
         [InlineData("en-US", "4.2 tf·m", TorqueUnit.TonneForceMeter, 4.2)]
         [InlineData("en-US", "4.2 tf·mm", TorqueUnit.TonneForceMillimeter, 4.2)]
         [InlineData("ru-RU", "4,2 кН·м", TorqueUnit.KilonewtonMeter, 4.2)]
         [InlineData("ru-RU", "4,2 МН·м", TorqueUnit.MeganewtonMeter, 4.2)]
         [InlineData("ru-RU", "4,2 Н·м", TorqueUnit.NewtonMeter, 4.2)]
-        public void Parse(string culture, string quantityString, TorqueUnit expectedUnit, double expectedValue)
+        public void Parse(string culture, string quantityString, TorqueUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             var parsed = Torque.Parse(quantityString);
@@ -428,20 +522,45 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 MN·m", TorqueUnit.MeganewtonMeter, 4.2)]
         [InlineData("en-US", "4.2 MN·mm", TorqueUnit.MeganewtonMillimeter, 4.2)]
         [InlineData("en-US", "4.2 Mlbf·ft", TorqueUnit.MegapoundForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 Mlb·ft", TorqueUnit.MegapoundForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 Mlbf-ft", TorqueUnit.MegapoundForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 Mlb-ft", TorqueUnit.MegapoundForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 Mft-lb", TorqueUnit.MegapoundForceFoot, 4.2)]
         [InlineData("en-US", "4.2 Mlbf·in", TorqueUnit.MegapoundForceInch, 4.2)]
+        [InlineData("en-US", "4.2 Mlb·in", TorqueUnit.MegapoundForceInch, 4.2)]
+        [InlineData("en-US", "4.2 Mlbf-in", TorqueUnit.MegapoundForceInch, 4.2)]
+        [InlineData("en-US", "4.2 Mlb-in", TorqueUnit.MegapoundForceInch, 4.2)]
+        [InlineData("en-US", "4.2 Min-lb", TorqueUnit.MegapoundForceInch, 4.2)]
         [InlineData("en-US", "4.2 N·cm", TorqueUnit.NewtonCentimeter, 4.2)]
         [InlineData("en-US", "4.2 N·m", TorqueUnit.NewtonMeter, 4.2)]
         [InlineData("en-US", "4.2 N·mm", TorqueUnit.NewtonMillimeter, 4.2)]
+        [InlineData("en-US", "4.2 ozf·ft", TorqueUnit.OunceForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 oz·ft", TorqueUnit.OunceForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 ozf-ft", TorqueUnit.OunceForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 oz-ft", TorqueUnit.OunceForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 ozf·in", TorqueUnit.OunceForceInch, 4.2)]
+        [InlineData("en-US", "4.2 oz·in", TorqueUnit.OunceForceInch, 4.2)]
+        [InlineData("en-US", "4.2 ozf-in", TorqueUnit.OunceForceInch, 4.2)]
+        [InlineData("en-US", "4.2 oz-in", TorqueUnit.OunceForceInch, 4.2)]
+        [InlineData("en-US", "4.2 in-oz", TorqueUnit.OunceForceInch, 4.2)]
         [InlineData("en-US", "4.2 pdl·ft", TorqueUnit.PoundalFoot, 4.2)]
         [InlineData("en-US", "4.2 lbf·ft", TorqueUnit.PoundForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 lb·ft", TorqueUnit.PoundForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 lbf-ft", TorqueUnit.PoundForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 lb-ft", TorqueUnit.PoundForceFoot, 4.2)]
+        [InlineData("en-US", "4.2 ft-lb", TorqueUnit.PoundForceFoot, 4.2)]
         [InlineData("en-US", "4.2 lbf·in", TorqueUnit.PoundForceInch, 4.2)]
+        [InlineData("en-US", "4.2 lb·in", TorqueUnit.PoundForceInch, 4.2)]
+        [InlineData("en-US", "4.2 lbf-in", TorqueUnit.PoundForceInch, 4.2)]
+        [InlineData("en-US", "4.2 lb-in", TorqueUnit.PoundForceInch, 4.2)]
+        [InlineData("en-US", "4.2 in-lb", TorqueUnit.PoundForceInch, 4.2)]
         [InlineData("en-US", "4.2 tf·cm", TorqueUnit.TonneForceCentimeter, 4.2)]
         [InlineData("en-US", "4.2 tf·m", TorqueUnit.TonneForceMeter, 4.2)]
         [InlineData("en-US", "4.2 tf·mm", TorqueUnit.TonneForceMillimeter, 4.2)]
         [InlineData("ru-RU", "4,2 кН·м", TorqueUnit.KilonewtonMeter, 4.2)]
         [InlineData("ru-RU", "4,2 МН·м", TorqueUnit.MeganewtonMeter, 4.2)]
         [InlineData("ru-RU", "4,2 Н·м", TorqueUnit.NewtonMeter, 4.2)]
-        public void TryParse(string culture, string quantityString, TorqueUnit expectedUnit, double expectedValue)
+        public void TryParse(string culture, string quantityString, TorqueUnit expectedUnit, decimal expectedValue)
         {
             using var _ = new CultureScope(culture);
             Assert.True(Torque.TryParse(quantityString, out Torque parsed));
@@ -465,13 +584,38 @@ namespace UnitsNet.Tests
         [InlineData("MN·m", TorqueUnit.MeganewtonMeter)]
         [InlineData("MN·mm", TorqueUnit.MeganewtonMillimeter)]
         [InlineData("Mlbf·ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("Mlb·ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("Mlbf-ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("Mlb-ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("Mft-lb", TorqueUnit.MegapoundForceFoot)]
         [InlineData("Mlbf·in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("Mlb·in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("Mlbf-in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("Mlb-in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("Min-lb", TorqueUnit.MegapoundForceInch)]
         [InlineData("N·cm", TorqueUnit.NewtonCentimeter)]
         [InlineData("N·m", TorqueUnit.NewtonMeter)]
         [InlineData("N·mm", TorqueUnit.NewtonMillimeter)]
+        [InlineData("ozf·ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("oz·ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("ozf-ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("oz-ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("ozf·in", TorqueUnit.OunceForceInch)]
+        [InlineData("oz·in", TorqueUnit.OunceForceInch)]
+        [InlineData("ozf-in", TorqueUnit.OunceForceInch)]
+        [InlineData("oz-in", TorqueUnit.OunceForceInch)]
+        [InlineData("in-oz", TorqueUnit.OunceForceInch)]
         [InlineData("pdl·ft", TorqueUnit.PoundalFoot)]
         [InlineData("lbf·ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("lb·ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("lbf-ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("lb-ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("ft-lb", TorqueUnit.PoundForceFoot)]
         [InlineData("lbf·in", TorqueUnit.PoundForceInch)]
+        [InlineData("lb·in", TorqueUnit.PoundForceInch)]
+        [InlineData("lbf-in", TorqueUnit.PoundForceInch)]
+        [InlineData("lb-in", TorqueUnit.PoundForceInch)]
+        [InlineData("in-lb", TorqueUnit.PoundForceInch)]
         [InlineData("tf·cm", TorqueUnit.TonneForceCentimeter)]
         [InlineData("tf·m", TorqueUnit.TonneForceMeter)]
         [InlineData("tf·mm", TorqueUnit.TonneForceMillimeter)]
@@ -499,13 +643,38 @@ namespace UnitsNet.Tests
         [InlineData("MN·m", TorqueUnit.MeganewtonMeter)]
         [InlineData("MN·mm", TorqueUnit.MeganewtonMillimeter)]
         [InlineData("Mlbf·ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("Mlb·ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("Mlbf-ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("Mlb-ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("Mft-lb", TorqueUnit.MegapoundForceFoot)]
         [InlineData("Mlbf·in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("Mlb·in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("Mlbf-in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("Mlb-in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("Min-lb", TorqueUnit.MegapoundForceInch)]
         [InlineData("N·cm", TorqueUnit.NewtonCentimeter)]
         [InlineData("N·m", TorqueUnit.NewtonMeter)]
         [InlineData("N·mm", TorqueUnit.NewtonMillimeter)]
+        [InlineData("ozf·ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("oz·ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("ozf-ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("oz-ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("ozf·in", TorqueUnit.OunceForceInch)]
+        [InlineData("oz·in", TorqueUnit.OunceForceInch)]
+        [InlineData("ozf-in", TorqueUnit.OunceForceInch)]
+        [InlineData("oz-in", TorqueUnit.OunceForceInch)]
+        [InlineData("in-oz", TorqueUnit.OunceForceInch)]
         [InlineData("pdl·ft", TorqueUnit.PoundalFoot)]
         [InlineData("lbf·ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("lb·ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("lbf-ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("lb-ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("ft-lb", TorqueUnit.PoundForceFoot)]
         [InlineData("lbf·in", TorqueUnit.PoundForceInch)]
+        [InlineData("lb·in", TorqueUnit.PoundForceInch)]
+        [InlineData("lbf-in", TorqueUnit.PoundForceInch)]
+        [InlineData("lb-in", TorqueUnit.PoundForceInch)]
+        [InlineData("in-lb", TorqueUnit.PoundForceInch)]
         [InlineData("tf·cm", TorqueUnit.TonneForceCentimeter)]
         [InlineData("tf·m", TorqueUnit.TonneForceMeter)]
         [InlineData("tf·mm", TorqueUnit.TonneForceMillimeter)]
@@ -533,13 +702,38 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "MN·m", TorqueUnit.MeganewtonMeter)]
         [InlineData("en-US", "MN·mm", TorqueUnit.MeganewtonMillimeter)]
         [InlineData("en-US", "Mlbf·ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("en-US", "Mlb·ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("en-US", "Mlbf-ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("en-US", "Mlb-ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("en-US", "Mft-lb", TorqueUnit.MegapoundForceFoot)]
         [InlineData("en-US", "Mlbf·in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("en-US", "Mlb·in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("en-US", "Mlbf-in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("en-US", "Mlb-in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("en-US", "Min-lb", TorqueUnit.MegapoundForceInch)]
         [InlineData("en-US", "N·cm", TorqueUnit.NewtonCentimeter)]
         [InlineData("en-US", "N·m", TorqueUnit.NewtonMeter)]
         [InlineData("en-US", "N·mm", TorqueUnit.NewtonMillimeter)]
+        [InlineData("en-US", "ozf·ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("en-US", "oz·ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("en-US", "ozf-ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("en-US", "oz-ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("en-US", "ozf·in", TorqueUnit.OunceForceInch)]
+        [InlineData("en-US", "oz·in", TorqueUnit.OunceForceInch)]
+        [InlineData("en-US", "ozf-in", TorqueUnit.OunceForceInch)]
+        [InlineData("en-US", "oz-in", TorqueUnit.OunceForceInch)]
+        [InlineData("en-US", "in-oz", TorqueUnit.OunceForceInch)]
         [InlineData("en-US", "pdl·ft", TorqueUnit.PoundalFoot)]
         [InlineData("en-US", "lbf·ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("en-US", "lb·ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("en-US", "lbf-ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("en-US", "lb-ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("en-US", "ft-lb", TorqueUnit.PoundForceFoot)]
         [InlineData("en-US", "lbf·in", TorqueUnit.PoundForceInch)]
+        [InlineData("en-US", "lb·in", TorqueUnit.PoundForceInch)]
+        [InlineData("en-US", "lbf-in", TorqueUnit.PoundForceInch)]
+        [InlineData("en-US", "lb-in", TorqueUnit.PoundForceInch)]
+        [InlineData("en-US", "in-lb", TorqueUnit.PoundForceInch)]
         [InlineData("en-US", "tf·cm", TorqueUnit.TonneForceCentimeter)]
         [InlineData("en-US", "tf·m", TorqueUnit.TonneForceMeter)]
         [InlineData("en-US", "tf·mm", TorqueUnit.TonneForceMillimeter)]
@@ -569,13 +763,38 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "MN·m", TorqueUnit.MeganewtonMeter)]
         [InlineData("en-US", "MN·mm", TorqueUnit.MeganewtonMillimeter)]
         [InlineData("en-US", "Mlbf·ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("en-US", "Mlb·ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("en-US", "Mlbf-ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("en-US", "Mlb-ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("en-US", "Mft-lb", TorqueUnit.MegapoundForceFoot)]
         [InlineData("en-US", "Mlbf·in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("en-US", "Mlb·in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("en-US", "Mlbf-in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("en-US", "Mlb-in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("en-US", "Min-lb", TorqueUnit.MegapoundForceInch)]
         [InlineData("en-US", "N·cm", TorqueUnit.NewtonCentimeter)]
         [InlineData("en-US", "N·m", TorqueUnit.NewtonMeter)]
         [InlineData("en-US", "N·mm", TorqueUnit.NewtonMillimeter)]
+        [InlineData("en-US", "ozf·ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("en-US", "oz·ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("en-US", "ozf-ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("en-US", "oz-ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("en-US", "ozf·in", TorqueUnit.OunceForceInch)]
+        [InlineData("en-US", "oz·in", TorqueUnit.OunceForceInch)]
+        [InlineData("en-US", "ozf-in", TorqueUnit.OunceForceInch)]
+        [InlineData("en-US", "oz-in", TorqueUnit.OunceForceInch)]
+        [InlineData("en-US", "in-oz", TorqueUnit.OunceForceInch)]
         [InlineData("en-US", "pdl·ft", TorqueUnit.PoundalFoot)]
         [InlineData("en-US", "lbf·ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("en-US", "lb·ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("en-US", "lbf-ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("en-US", "lb-ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("en-US", "ft-lb", TorqueUnit.PoundForceFoot)]
         [InlineData("en-US", "lbf·in", TorqueUnit.PoundForceInch)]
+        [InlineData("en-US", "lb·in", TorqueUnit.PoundForceInch)]
+        [InlineData("en-US", "lbf-in", TorqueUnit.PoundForceInch)]
+        [InlineData("en-US", "lb-in", TorqueUnit.PoundForceInch)]
+        [InlineData("en-US", "in-lb", TorqueUnit.PoundForceInch)]
         [InlineData("en-US", "tf·cm", TorqueUnit.TonneForceCentimeter)]
         [InlineData("en-US", "tf·m", TorqueUnit.TonneForceMeter)]
         [InlineData("en-US", "tf·mm", TorqueUnit.TonneForceMillimeter)]
@@ -604,13 +823,38 @@ namespace UnitsNet.Tests
         [InlineData("MN·m", TorqueUnit.MeganewtonMeter)]
         [InlineData("MN·mm", TorqueUnit.MeganewtonMillimeter)]
         [InlineData("Mlbf·ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("Mlb·ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("Mlbf-ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("Mlb-ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("Mft-lb", TorqueUnit.MegapoundForceFoot)]
         [InlineData("Mlbf·in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("Mlb·in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("Mlbf-in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("Mlb-in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("Min-lb", TorqueUnit.MegapoundForceInch)]
         [InlineData("N·cm", TorqueUnit.NewtonCentimeter)]
         [InlineData("N·m", TorqueUnit.NewtonMeter)]
         [InlineData("N·mm", TorqueUnit.NewtonMillimeter)]
+        [InlineData("ozf·ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("oz·ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("ozf-ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("oz-ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("ozf·in", TorqueUnit.OunceForceInch)]
+        [InlineData("oz·in", TorqueUnit.OunceForceInch)]
+        [InlineData("ozf-in", TorqueUnit.OunceForceInch)]
+        [InlineData("oz-in", TorqueUnit.OunceForceInch)]
+        [InlineData("in-oz", TorqueUnit.OunceForceInch)]
         [InlineData("pdl·ft", TorqueUnit.PoundalFoot)]
         [InlineData("lbf·ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("lb·ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("lbf-ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("lb-ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("ft-lb", TorqueUnit.PoundForceFoot)]
         [InlineData("lbf·in", TorqueUnit.PoundForceInch)]
+        [InlineData("lb·in", TorqueUnit.PoundForceInch)]
+        [InlineData("lbf-in", TorqueUnit.PoundForceInch)]
+        [InlineData("lb-in", TorqueUnit.PoundForceInch)]
+        [InlineData("in-lb", TorqueUnit.PoundForceInch)]
         [InlineData("tf·cm", TorqueUnit.TonneForceCentimeter)]
         [InlineData("tf·m", TorqueUnit.TonneForceMeter)]
         [InlineData("tf·mm", TorqueUnit.TonneForceMillimeter)]
@@ -638,13 +882,38 @@ namespace UnitsNet.Tests
         [InlineData("MN·m", TorqueUnit.MeganewtonMeter)]
         [InlineData("MN·mm", TorqueUnit.MeganewtonMillimeter)]
         [InlineData("Mlbf·ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("Mlb·ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("Mlbf-ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("Mlb-ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("Mft-lb", TorqueUnit.MegapoundForceFoot)]
         [InlineData("Mlbf·in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("Mlb·in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("Mlbf-in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("Mlb-in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("Min-lb", TorqueUnit.MegapoundForceInch)]
         [InlineData("N·cm", TorqueUnit.NewtonCentimeter)]
         [InlineData("N·m", TorqueUnit.NewtonMeter)]
         [InlineData("N·mm", TorqueUnit.NewtonMillimeter)]
+        [InlineData("ozf·ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("oz·ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("ozf-ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("oz-ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("ozf·in", TorqueUnit.OunceForceInch)]
+        [InlineData("oz·in", TorqueUnit.OunceForceInch)]
+        [InlineData("ozf-in", TorqueUnit.OunceForceInch)]
+        [InlineData("oz-in", TorqueUnit.OunceForceInch)]
+        [InlineData("in-oz", TorqueUnit.OunceForceInch)]
         [InlineData("pdl·ft", TorqueUnit.PoundalFoot)]
         [InlineData("lbf·ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("lb·ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("lbf-ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("lb-ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("ft-lb", TorqueUnit.PoundForceFoot)]
         [InlineData("lbf·in", TorqueUnit.PoundForceInch)]
+        [InlineData("lb·in", TorqueUnit.PoundForceInch)]
+        [InlineData("lbf-in", TorqueUnit.PoundForceInch)]
+        [InlineData("lb-in", TorqueUnit.PoundForceInch)]
+        [InlineData("in-lb", TorqueUnit.PoundForceInch)]
         [InlineData("tf·cm", TorqueUnit.TonneForceCentimeter)]
         [InlineData("tf·m", TorqueUnit.TonneForceMeter)]
         [InlineData("tf·mm", TorqueUnit.TonneForceMillimeter)]
@@ -672,13 +941,38 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "MN·m", TorqueUnit.MeganewtonMeter)]
         [InlineData("en-US", "MN·mm", TorqueUnit.MeganewtonMillimeter)]
         [InlineData("en-US", "Mlbf·ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("en-US", "Mlb·ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("en-US", "Mlbf-ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("en-US", "Mlb-ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("en-US", "Mft-lb", TorqueUnit.MegapoundForceFoot)]
         [InlineData("en-US", "Mlbf·in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("en-US", "Mlb·in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("en-US", "Mlbf-in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("en-US", "Mlb-in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("en-US", "Min-lb", TorqueUnit.MegapoundForceInch)]
         [InlineData("en-US", "N·cm", TorqueUnit.NewtonCentimeter)]
         [InlineData("en-US", "N·m", TorqueUnit.NewtonMeter)]
         [InlineData("en-US", "N·mm", TorqueUnit.NewtonMillimeter)]
+        [InlineData("en-US", "ozf·ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("en-US", "oz·ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("en-US", "ozf-ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("en-US", "oz-ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("en-US", "ozf·in", TorqueUnit.OunceForceInch)]
+        [InlineData("en-US", "oz·in", TorqueUnit.OunceForceInch)]
+        [InlineData("en-US", "ozf-in", TorqueUnit.OunceForceInch)]
+        [InlineData("en-US", "oz-in", TorqueUnit.OunceForceInch)]
+        [InlineData("en-US", "in-oz", TorqueUnit.OunceForceInch)]
         [InlineData("en-US", "pdl·ft", TorqueUnit.PoundalFoot)]
         [InlineData("en-US", "lbf·ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("en-US", "lb·ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("en-US", "lbf-ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("en-US", "lb-ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("en-US", "ft-lb", TorqueUnit.PoundForceFoot)]
         [InlineData("en-US", "lbf·in", TorqueUnit.PoundForceInch)]
+        [InlineData("en-US", "lb·in", TorqueUnit.PoundForceInch)]
+        [InlineData("en-US", "lbf-in", TorqueUnit.PoundForceInch)]
+        [InlineData("en-US", "lb-in", TorqueUnit.PoundForceInch)]
+        [InlineData("en-US", "in-lb", TorqueUnit.PoundForceInch)]
         [InlineData("en-US", "tf·cm", TorqueUnit.TonneForceCentimeter)]
         [InlineData("en-US", "tf·m", TorqueUnit.TonneForceMeter)]
         [InlineData("en-US", "tf·mm", TorqueUnit.TonneForceMillimeter)]
@@ -708,13 +1002,38 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "MN·m", TorqueUnit.MeganewtonMeter)]
         [InlineData("en-US", "MN·mm", TorqueUnit.MeganewtonMillimeter)]
         [InlineData("en-US", "Mlbf·ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("en-US", "Mlb·ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("en-US", "Mlbf-ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("en-US", "Mlb-ft", TorqueUnit.MegapoundForceFoot)]
+        [InlineData("en-US", "Mft-lb", TorqueUnit.MegapoundForceFoot)]
         [InlineData("en-US", "Mlbf·in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("en-US", "Mlb·in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("en-US", "Mlbf-in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("en-US", "Mlb-in", TorqueUnit.MegapoundForceInch)]
+        [InlineData("en-US", "Min-lb", TorqueUnit.MegapoundForceInch)]
         [InlineData("en-US", "N·cm", TorqueUnit.NewtonCentimeter)]
         [InlineData("en-US", "N·m", TorqueUnit.NewtonMeter)]
         [InlineData("en-US", "N·mm", TorqueUnit.NewtonMillimeter)]
+        [InlineData("en-US", "ozf·ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("en-US", "oz·ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("en-US", "ozf-ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("en-US", "oz-ft", TorqueUnit.OunceForceFoot)]
+        [InlineData("en-US", "ozf·in", TorqueUnit.OunceForceInch)]
+        [InlineData("en-US", "oz·in", TorqueUnit.OunceForceInch)]
+        [InlineData("en-US", "ozf-in", TorqueUnit.OunceForceInch)]
+        [InlineData("en-US", "oz-in", TorqueUnit.OunceForceInch)]
+        [InlineData("en-US", "in-oz", TorqueUnit.OunceForceInch)]
         [InlineData("en-US", "pdl·ft", TorqueUnit.PoundalFoot)]
         [InlineData("en-US", "lbf·ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("en-US", "lb·ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("en-US", "lbf-ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("en-US", "lb-ft", TorqueUnit.PoundForceFoot)]
+        [InlineData("en-US", "ft-lb", TorqueUnit.PoundForceFoot)]
         [InlineData("en-US", "lbf·in", TorqueUnit.PoundForceInch)]
+        [InlineData("en-US", "lb·in", TorqueUnit.PoundForceInch)]
+        [InlineData("en-US", "lbf-in", TorqueUnit.PoundForceInch)]
+        [InlineData("en-US", "lb-in", TorqueUnit.PoundForceInch)]
+        [InlineData("en-US", "in-lb", TorqueUnit.PoundForceInch)]
         [InlineData("en-US", "tf·cm", TorqueUnit.TonneForceCentimeter)]
         [InlineData("en-US", "tf·m", TorqueUnit.TonneForceMeter)]
         [InlineData("en-US", "tf·mm", TorqueUnit.TonneForceMillimeter)]
@@ -747,6 +1066,8 @@ namespace UnitsNet.Tests
         [InlineData("en-US", TorqueUnit.NewtonCentimeter, "N·cm")]
         [InlineData("en-US", TorqueUnit.NewtonMeter, "N·m")]
         [InlineData("en-US", TorqueUnit.NewtonMillimeter, "N·mm")]
+        [InlineData("en-US", TorqueUnit.OunceForceFoot, "ozf·ft")]
+        [InlineData("en-US", TorqueUnit.OunceForceInch, "ozf·in")]
         [InlineData("en-US", TorqueUnit.PoundalFoot, "pdl·ft")]
         [InlineData("en-US", TorqueUnit.PoundForceFoot, "lbf·ft")]
         [InlineData("en-US", TorqueUnit.PoundForceInch, "lbf·in")]
@@ -805,6 +1126,7 @@ namespace UnitsNet.Tests
                 var quantity = Torque.From(3.0, fromUnit);
                 var converted = quantity.ToUnit(unit);
                 Assert.Equal(converted.Unit, unit);
+                Assert.Equal(quantity, converted);
             });
         }
 
@@ -828,56 +1150,60 @@ namespace UnitsNet.Tests
                 IQuantity<TorqueUnit> quantityToConvert = quantity;
                 IQuantity<TorqueUnit> convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             }, () =>
             {
                 IQuantity quantityToConvert = quantity;
                 IQuantity convertedQuantity = quantityToConvert.ToUnit(unit);
                 Assert.Equal(unit, convertedQuantity.Unit);
+                Assert.Equal(expectedQuantity, convertedQuantity);
             });
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            Torque newtonmeter = Torque.FromNewtonMeters(1);
-            AssertEx.EqualTolerance(1, Torque.FromGramForceCentimeters(newtonmeter.GramForceCentimeters).NewtonMeters, GramForceCentimetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromGramForceMeters(newtonmeter.GramForceMeters).NewtonMeters, GramForceMetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromGramForceMillimeters(newtonmeter.GramForceMillimeters).NewtonMeters, GramForceMillimetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromKilogramForceCentimeters(newtonmeter.KilogramForceCentimeters).NewtonMeters, KilogramForceCentimetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromKilogramForceMeters(newtonmeter.KilogramForceMeters).NewtonMeters, KilogramForceMetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromKilogramForceMillimeters(newtonmeter.KilogramForceMillimeters).NewtonMeters, KilogramForceMillimetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromKilonewtonCentimeters(newtonmeter.KilonewtonCentimeters).NewtonMeters, KilonewtonCentimetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromKilonewtonMeters(newtonmeter.KilonewtonMeters).NewtonMeters, KilonewtonMetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromKilonewtonMillimeters(newtonmeter.KilonewtonMillimeters).NewtonMeters, KilonewtonMillimetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromKilopoundForceFeet(newtonmeter.KilopoundForceFeet).NewtonMeters, KilopoundForceFeetTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromKilopoundForceInches(newtonmeter.KilopoundForceInches).NewtonMeters, KilopoundForceInchesTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromMeganewtonCentimeters(newtonmeter.MeganewtonCentimeters).NewtonMeters, MeganewtonCentimetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromMeganewtonMeters(newtonmeter.MeganewtonMeters).NewtonMeters, MeganewtonMetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromMeganewtonMillimeters(newtonmeter.MeganewtonMillimeters).NewtonMeters, MeganewtonMillimetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromMegapoundForceFeet(newtonmeter.MegapoundForceFeet).NewtonMeters, MegapoundForceFeetTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromMegapoundForceInches(newtonmeter.MegapoundForceInches).NewtonMeters, MegapoundForceInchesTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromNewtonCentimeters(newtonmeter.NewtonCentimeters).NewtonMeters, NewtonCentimetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromNewtonMeters(newtonmeter.NewtonMeters).NewtonMeters, NewtonMetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromNewtonMillimeters(newtonmeter.NewtonMillimeters).NewtonMeters, NewtonMillimetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromPoundalFeet(newtonmeter.PoundalFeet).NewtonMeters, PoundalFeetTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromPoundForceFeet(newtonmeter.PoundForceFeet).NewtonMeters, PoundForceFeetTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromPoundForceInches(newtonmeter.PoundForceInches).NewtonMeters, PoundForceInchesTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromTonneForceCentimeters(newtonmeter.TonneForceCentimeters).NewtonMeters, TonneForceCentimetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromTonneForceMeters(newtonmeter.TonneForceMeters).NewtonMeters, TonneForceMetersTolerance);
-            AssertEx.EqualTolerance(1, Torque.FromTonneForceMillimeters(newtonmeter.TonneForceMillimeters).NewtonMeters, TonneForceMillimetersTolerance);
+            Torque newtonmeter = Torque.FromNewtonMeters(3);
+            Assert.Equal(3, Torque.FromGramForceCentimeters(newtonmeter.GramForceCentimeters).NewtonMeters);
+            Assert.Equal(3, Torque.FromGramForceMeters(newtonmeter.GramForceMeters).NewtonMeters);
+            Assert.Equal(3, Torque.FromGramForceMillimeters(newtonmeter.GramForceMillimeters).NewtonMeters);
+            Assert.Equal(3, Torque.FromKilogramForceCentimeters(newtonmeter.KilogramForceCentimeters).NewtonMeters);
+            Assert.Equal(3, Torque.FromKilogramForceMeters(newtonmeter.KilogramForceMeters).NewtonMeters);
+            Assert.Equal(3, Torque.FromKilogramForceMillimeters(newtonmeter.KilogramForceMillimeters).NewtonMeters);
+            Assert.Equal(3, Torque.FromKilonewtonCentimeters(newtonmeter.KilonewtonCentimeters).NewtonMeters);
+            Assert.Equal(3, Torque.FromKilonewtonMeters(newtonmeter.KilonewtonMeters).NewtonMeters);
+            Assert.Equal(3, Torque.FromKilonewtonMillimeters(newtonmeter.KilonewtonMillimeters).NewtonMeters);
+            Assert.Equal(3, Torque.FromKilopoundForceFeet(newtonmeter.KilopoundForceFeet).NewtonMeters);
+            Assert.Equal(3, Torque.FromKilopoundForceInches(newtonmeter.KilopoundForceInches).NewtonMeters);
+            Assert.Equal(3, Torque.FromMeganewtonCentimeters(newtonmeter.MeganewtonCentimeters).NewtonMeters);
+            Assert.Equal(3, Torque.FromMeganewtonMeters(newtonmeter.MeganewtonMeters).NewtonMeters);
+            Assert.Equal(3, Torque.FromMeganewtonMillimeters(newtonmeter.MeganewtonMillimeters).NewtonMeters);
+            Assert.Equal(3, Torque.FromMegapoundForceFeet(newtonmeter.MegapoundForceFeet).NewtonMeters);
+            Assert.Equal(3, Torque.FromMegapoundForceInches(newtonmeter.MegapoundForceInches).NewtonMeters);
+            Assert.Equal(3, Torque.FromNewtonCentimeters(newtonmeter.NewtonCentimeters).NewtonMeters);
+            Assert.Equal(3, Torque.FromNewtonMeters(newtonmeter.NewtonMeters).NewtonMeters);
+            Assert.Equal(3, Torque.FromNewtonMillimeters(newtonmeter.NewtonMillimeters).NewtonMeters);
+            Assert.Equal(3, Torque.FromOunceForceFeet(newtonmeter.OunceForceFeet).NewtonMeters);
+            Assert.Equal(3, Torque.FromOunceForceInches(newtonmeter.OunceForceInches).NewtonMeters);
+            Assert.Equal(3, Torque.FromPoundalFeet(newtonmeter.PoundalFeet).NewtonMeters);
+            Assert.Equal(3, Torque.FromPoundForceFeet(newtonmeter.PoundForceFeet).NewtonMeters);
+            Assert.Equal(3, Torque.FromPoundForceInches(newtonmeter.PoundForceInches).NewtonMeters);
+            Assert.Equal(3, Torque.FromTonneForceCentimeters(newtonmeter.TonneForceCentimeters).NewtonMeters);
+            Assert.Equal(3, Torque.FromTonneForceMeters(newtonmeter.TonneForceMeters).NewtonMeters);
+            Assert.Equal(3, Torque.FromTonneForceMillimeters(newtonmeter.TonneForceMillimeters).NewtonMeters);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
             Torque v = Torque.FromNewtonMeters(1);
-            AssertEx.EqualTolerance(-1, -v.NewtonMeters, NewtonMetersTolerance);
-            AssertEx.EqualTolerance(2, (Torque.FromNewtonMeters(3)-v).NewtonMeters, NewtonMetersTolerance);
-            AssertEx.EqualTolerance(2, (v + v).NewtonMeters, NewtonMetersTolerance);
-            AssertEx.EqualTolerance(10, (v*10).NewtonMeters, NewtonMetersTolerance);
-            AssertEx.EqualTolerance(10, (10*v).NewtonMeters, NewtonMetersTolerance);
-            AssertEx.EqualTolerance(2, (Torque.FromNewtonMeters(10)/5).NewtonMeters, NewtonMetersTolerance);
-            AssertEx.EqualTolerance(2, Torque.FromNewtonMeters(10)/Torque.FromNewtonMeters(5), NewtonMetersTolerance);
+            Assert.Equal(-1, -v.NewtonMeters);
+            Assert.Equal(2, (Torque.FromNewtonMeters(3) - v).NewtonMeters);
+            Assert.Equal(2, (v + v).NewtonMeters);
+            Assert.Equal(10, (v * 10).NewtonMeters);
+            Assert.Equal(10, (10 * v).NewtonMeters);
+            Assert.Equal(2, (Torque.FromNewtonMeters(10) / 5).NewtonMeters);
+            Assert.Equal(2, Torque.FromNewtonMeters(10) / Torque.FromNewtonMeters(5));
         }
 
         [Fact]
@@ -923,8 +1249,6 @@ namespace UnitsNet.Tests
         [Theory]
         [InlineData(1, TorqueUnit.NewtonMeter, 1, TorqueUnit.NewtonMeter, true)]  // Same value and unit.
         [InlineData(1, TorqueUnit.NewtonMeter, 2, TorqueUnit.NewtonMeter, false)] // Different value.
-        [InlineData(2, TorqueUnit.NewtonMeter, 1, TorqueUnit.GramForceCentimeter, false)] // Different value and unit.
-        [InlineData(1, TorqueUnit.NewtonMeter, 1, TorqueUnit.GramForceCentimeter, false)] // Different unit.
         public void Equals_ReturnsTrue_IfValueAndUnitAreEqual(double valueA, TorqueUnit unitA, double valueB, TorqueUnit unitB, bool expectEqual)
         {
             var a = new Torque(valueA, unitA);
@@ -984,8 +1308,8 @@ namespace UnitsNet.Tests
             var quantity = Torque.FromNewtonMeters(firstValue);
             var otherQuantity = Torque.FromNewtonMeters(secondValue);
             Torque maxTolerance = quantity > otherQuantity ? quantity - otherQuantity : otherQuantity - quantity;
-            var largerTolerance = maxTolerance * 1.1;
-            var smallerTolerance = maxTolerance / 1.1;
+            var largerTolerance = maxTolerance * 1.1m;
+            var smallerTolerance = maxTolerance / 1.1m;
             Assert.True(quantity.Equals(quantity, Torque.Zero));
             Assert.True(quantity.Equals(quantity, maxTolerance));
             Assert.True(quantity.Equals(otherQuantity, maxTolerance));
@@ -1018,6 +1342,18 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Units_ReturnsTheQuantityInfoUnits()
+        {
+            Assert.Equal(Torque.Info.Units, Torque.Units);
+        }
+
+        [Fact]
+        public void DefaultConversionFunctions_ReturnsTheDefaultUnitConverter()
+        {
+            Assert.Equal(UnitConverter.Default, Torque.DefaultConversionFunctions);
+        }
+
+        [Fact]
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
             using var _ = new CultureScope("en-US");
@@ -1040,6 +1376,8 @@ namespace UnitsNet.Tests
             Assert.Equal("1 N·cm", new Torque(1, TorqueUnit.NewtonCentimeter).ToString());
             Assert.Equal("1 N·m", new Torque(1, TorqueUnit.NewtonMeter).ToString());
             Assert.Equal("1 N·mm", new Torque(1, TorqueUnit.NewtonMillimeter).ToString());
+            Assert.Equal("1 ozf·ft", new Torque(1, TorqueUnit.OunceForceFoot).ToString());
+            Assert.Equal("1 ozf·in", new Torque(1, TorqueUnit.OunceForceInch).ToString());
             Assert.Equal("1 pdl·ft", new Torque(1, TorqueUnit.PoundalFoot).ToString());
             Assert.Equal("1 lbf·ft", new Torque(1, TorqueUnit.PoundForceFoot).ToString());
             Assert.Equal("1 lbf·in", new Torque(1, TorqueUnit.PoundForceInch).ToString());
@@ -1073,6 +1411,8 @@ namespace UnitsNet.Tests
             Assert.Equal("1 N·cm", new Torque(1, TorqueUnit.NewtonCentimeter).ToString(swedishCulture));
             Assert.Equal("1 N·m", new Torque(1, TorqueUnit.NewtonMeter).ToString(swedishCulture));
             Assert.Equal("1 N·mm", new Torque(1, TorqueUnit.NewtonMillimeter).ToString(swedishCulture));
+            Assert.Equal("1 ozf·ft", new Torque(1, TorqueUnit.OunceForceFoot).ToString(swedishCulture));
+            Assert.Equal("1 ozf·in", new Torque(1, TorqueUnit.OunceForceInch).ToString(swedishCulture));
             Assert.Equal("1 pdl·ft", new Torque(1, TorqueUnit.PoundalFoot).ToString(swedishCulture));
             Assert.Equal("1 lbf·ft", new Torque(1, TorqueUnit.PoundForceFoot).ToString(swedishCulture));
             Assert.Equal("1 lbf·in", new Torque(1, TorqueUnit.PoundForceInch).ToString(swedishCulture));
@@ -1127,7 +1467,8 @@ namespace UnitsNet.Tests
         public void GetHashCode_Equals()
         {
             var quantity = Torque.FromNewtonMeters(1.0);
-            Assert.Equal(Comparison.GetHashCode(quantity.Unit, quantity.Value), quantity.GetHashCode());
+            var expected = Comparison.GetHashCode(typeof(Torque), quantity.As(Torque.BaseUnit));
+            Assert.Equal(expected, quantity.GetHashCode());
         }
 
         [Theory]

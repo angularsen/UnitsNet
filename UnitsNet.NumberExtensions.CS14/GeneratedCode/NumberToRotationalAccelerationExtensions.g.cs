@@ -42,36 +42,36 @@ namespace UnitsNet.NumberExtensions.NumberToRotationalAcceleration
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(double)" />
+            /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(QuantityValue)" />
             public RotationalAcceleration DegreesPerSecondSquared
 #if NET7_0_OR_GREATER
-                => RotationalAcceleration.FromDegreesPerSecondSquared(double.CreateChecked(value));
+                => RotationalAcceleration.FromDegreesPerSecondSquared(QuantityValue.CreateChecked(value));
 #else
-                => RotationalAcceleration.FromDegreesPerSecondSquared(value.ToDouble(null));
+                => RotationalAcceleration.FromDegreesPerSecondSquared(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(double)" />
+            /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(QuantityValue)" />
             public RotationalAcceleration RadiansPerSecondSquared
 #if NET7_0_OR_GREATER
-                => RotationalAcceleration.FromRadiansPerSecondSquared(double.CreateChecked(value));
+                => RotationalAcceleration.FromRadiansPerSecondSquared(QuantityValue.CreateChecked(value));
 #else
-                => RotationalAcceleration.FromRadiansPerSecondSquared(value.ToDouble(null));
+                => RotationalAcceleration.FromRadiansPerSecondSquared(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double)" />
+            /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(QuantityValue)" />
             public RotationalAcceleration RevolutionsPerMinutePerSecond
 #if NET7_0_OR_GREATER
-                => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double.CreateChecked(value));
+                => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(QuantityValue.CreateChecked(value));
 #else
-                => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value.ToDouble(null));
+                => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerSecondSquared(double)" />
+            /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerSecondSquared(QuantityValue)" />
             public RotationalAcceleration RevolutionsPerSecondSquared
 #if NET7_0_OR_GREATER
-                => RotationalAcceleration.FromRevolutionsPerSecondSquared(double.CreateChecked(value));
+                => RotationalAcceleration.FromRevolutionsPerSecondSquared(QuantityValue.CreateChecked(value));
 #else
-                => RotationalAcceleration.FromRevolutionsPerSecondSquared(value.ToDouble(null));
+                => RotationalAcceleration.FromRevolutionsPerSecondSquared(value.ToQuantityValue());
 #endif
 
         }

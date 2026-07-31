@@ -41,5 +41,18 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PicograysInOneGray => 1E+12;
         protected override double RadsInOneGray => 100;
         protected override double TeragraysInOneGray => 1E-12;
+
+        [Fact]
+        public void AbsorbedDoseOfIonizingRadiationTimesAreaEqualsDoseAreaProduct()
+        {
+            AbsorbedDoseOfIonizingRadiation dose = AbsorbedDoseOfIonizingRadiation.FromGrays(2);
+            Area area = Area.FromSquareMeters(3);
+            DoseAreaProduct expected = DoseAreaProduct.FromGraySquareMeters(6);
+
+            Assert.Equal(expected, dose * area);
+            Assert.Equal(expected, area * dose);
+            Assert.Equal(area, expected / dose);
+            Assert.Equal(dose, expected / area);
+        }
     }
 }

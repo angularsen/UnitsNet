@@ -53,6 +53,7 @@ Ok, enough of that. Let's move on!
 ## Quick Summary of Steps
 
 Units.NET uses [CodeGen](https://github.com/angularsen/UnitsNet/tree/master/CodeGen), a C# command line app that reads [JSON files with quantity and unit definitions](https://github.com/angularsen/UnitsNet/tree/master/Common/UnitDefinitions) and generates C# code.
+See the [Quantity and Unit Definition Schema](quantity-and-unit-definition-schema.md) for a field-by-field reference.
 
 To add a quantity or a unit:
 
@@ -68,6 +69,7 @@ Not too difficult. Below are the detailed steps.
 
 * Place in [Common/UnitDefinitions](https://github.com/angularsen/UnitsNet/tree/master/Common/UnitDefinitions)
 * See [Length.json](https://github.com/angularsen/UnitsNet/tree/master/Common/UnitDefinitions/Length.json) as an example.
+* Use the [Quantity and Unit Definition Schema](quantity-and-unit-definition-schema.md) as the reference for supported properties and values.
 * Use reliable references, such as [UN/ECE Recommendation No. 21](https://unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20_rev3_Annex2e.pdf), Google, Wolfram Alpha or online converters.
 
 #### Conversion function conventions
@@ -105,7 +107,7 @@ The [7 SI base units](https://en.wikipedia.org/wiki/SI_base_unit#Seven_SI_base_u
 - `M` - Mass
 - `T` - Time
 - `I` - ElectricCurrent
-- `Theta` - Temperature
+- `Θ` - Temperature
 - `N` - AmountOfSubstance
 - `J` - LuminousIntensity
 
@@ -211,6 +213,7 @@ git push
 ## Logarithmic Units
 
 Units.NET supports logarithmic units by adding `Logarithmic` and `LogarithmicScalingFactor` (optional) properties.
+See [Logarithmic quantities](quantity-and-unit-definition-schema.md#logarithmic-quantities) for the exact conversion model and examples.
 
 * `LogarithmicScalingFactor` is used to provide a scaling factor in the logarithmic conversion. For example, a scaling factor of `2` is required when implementing the ratio of the squares of two field amplitude quantities such as voltage. In most cases `LogarithmicScalingFactor` will be `1`.
 

@@ -1,0 +1,19 @@
+{
+  "UnitsNet.Length": [
+    {
+      "Kind": "FeetInches",
+      "RequiredUnits": [ "Foot", "Inch" ]
+    }
+  ],
+  "UnitsNet.Mass": [
+    {
+      "Kind": "StonePounds",
+      "RequiredUnits": [ "Stone", "Pound" ]
+    }
+  ],
+  "UnitsNet.Pressure": [
+    {
+      "Kind": "ReferencePressure"
+    }
+  ]
+}

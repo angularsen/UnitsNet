@@ -42,124 +42,124 @@ namespace UnitsNet.NumberExtensions.NumberToAngle
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="Angle.FromArcminutes(double)" />
+            /// <inheritdoc cref="Angle.FromArcminutes(QuantityValue)" />
             public Angle Arcminutes
 #if NET7_0_OR_GREATER
-                => Angle.FromArcminutes(double.CreateChecked(value));
+                => Angle.FromArcminutes(QuantityValue.CreateChecked(value));
 #else
-                => Angle.FromArcminutes(value.ToDouble(null));
+                => Angle.FromArcminutes(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Angle.FromArcseconds(double)" />
+            /// <inheritdoc cref="Angle.FromArcseconds(QuantityValue)" />
             public Angle Arcseconds
 #if NET7_0_OR_GREATER
-                => Angle.FromArcseconds(double.CreateChecked(value));
+                => Angle.FromArcseconds(QuantityValue.CreateChecked(value));
 #else
-                => Angle.FromArcseconds(value.ToDouble(null));
+                => Angle.FromArcseconds(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Angle.FromCentiradians(double)" />
+            /// <inheritdoc cref="Angle.FromCentiradians(QuantityValue)" />
             public Angle Centiradians
 #if NET7_0_OR_GREATER
-                => Angle.FromCentiradians(double.CreateChecked(value));
+                => Angle.FromCentiradians(QuantityValue.CreateChecked(value));
 #else
-                => Angle.FromCentiradians(value.ToDouble(null));
+                => Angle.FromCentiradians(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Angle.FromDeciradians(double)" />
+            /// <inheritdoc cref="Angle.FromDeciradians(QuantityValue)" />
             public Angle Deciradians
 #if NET7_0_OR_GREATER
-                => Angle.FromDeciradians(double.CreateChecked(value));
+                => Angle.FromDeciradians(QuantityValue.CreateChecked(value));
 #else
-                => Angle.FromDeciradians(value.ToDouble(null));
+                => Angle.FromDeciradians(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Angle.FromDegrees(double)" />
+            /// <inheritdoc cref="Angle.FromDegrees(QuantityValue)" />
             public Angle Degrees
 #if NET7_0_OR_GREATER
-                => Angle.FromDegrees(double.CreateChecked(value));
+                => Angle.FromDegrees(QuantityValue.CreateChecked(value));
 #else
-                => Angle.FromDegrees(value.ToDouble(null));
+                => Angle.FromDegrees(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Angle.FromGradians(double)" />
+            /// <inheritdoc cref="Angle.FromGradians(QuantityValue)" />
             public Angle Gradians
 #if NET7_0_OR_GREATER
-                => Angle.FromGradians(double.CreateChecked(value));
+                => Angle.FromGradians(QuantityValue.CreateChecked(value));
 #else
-                => Angle.FromGradians(value.ToDouble(null));
+                => Angle.FromGradians(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Angle.FromMicrodegrees(double)" />
+            /// <inheritdoc cref="Angle.FromMicrodegrees(QuantityValue)" />
             public Angle Microdegrees
 #if NET7_0_OR_GREATER
-                => Angle.FromMicrodegrees(double.CreateChecked(value));
+                => Angle.FromMicrodegrees(QuantityValue.CreateChecked(value));
 #else
-                => Angle.FromMicrodegrees(value.ToDouble(null));
+                => Angle.FromMicrodegrees(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Angle.FromMicroradians(double)" />
+            /// <inheritdoc cref="Angle.FromMicroradians(QuantityValue)" />
             public Angle Microradians
 #if NET7_0_OR_GREATER
-                => Angle.FromMicroradians(double.CreateChecked(value));
+                => Angle.FromMicroradians(QuantityValue.CreateChecked(value));
 #else
-                => Angle.FromMicroradians(value.ToDouble(null));
+                => Angle.FromMicroradians(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Angle.FromMillidegrees(double)" />
+            /// <inheritdoc cref="Angle.FromMillidegrees(QuantityValue)" />
             public Angle Millidegrees
 #if NET7_0_OR_GREATER
-                => Angle.FromMillidegrees(double.CreateChecked(value));
+                => Angle.FromMillidegrees(QuantityValue.CreateChecked(value));
 #else
-                => Angle.FromMillidegrees(value.ToDouble(null));
+                => Angle.FromMillidegrees(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Angle.FromMilliradians(double)" />
+            /// <inheritdoc cref="Angle.FromMilliradians(QuantityValue)" />
             public Angle Milliradians
 #if NET7_0_OR_GREATER
-                => Angle.FromMilliradians(double.CreateChecked(value));
+                => Angle.FromMilliradians(QuantityValue.CreateChecked(value));
 #else
-                => Angle.FromMilliradians(value.ToDouble(null));
+                => Angle.FromMilliradians(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Angle.FromNanodegrees(double)" />
+            /// <inheritdoc cref="Angle.FromNanodegrees(QuantityValue)" />
             public Angle Nanodegrees
 #if NET7_0_OR_GREATER
-                => Angle.FromNanodegrees(double.CreateChecked(value));
+                => Angle.FromNanodegrees(QuantityValue.CreateChecked(value));
 #else
-                => Angle.FromNanodegrees(value.ToDouble(null));
+                => Angle.FromNanodegrees(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Angle.FromNanoradians(double)" />
+            /// <inheritdoc cref="Angle.FromNanoradians(QuantityValue)" />
             public Angle Nanoradians
 #if NET7_0_OR_GREATER
-                => Angle.FromNanoradians(double.CreateChecked(value));
+                => Angle.FromNanoradians(QuantityValue.CreateChecked(value));
 #else
-                => Angle.FromNanoradians(value.ToDouble(null));
+                => Angle.FromNanoradians(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Angle.FromNatoMils(double)" />
+            /// <inheritdoc cref="Angle.FromNatoMils(QuantityValue)" />
             public Angle NatoMils
 #if NET7_0_OR_GREATER
-                => Angle.FromNatoMils(double.CreateChecked(value));
+                => Angle.FromNatoMils(QuantityValue.CreateChecked(value));
 #else
-                => Angle.FromNatoMils(value.ToDouble(null));
+                => Angle.FromNatoMils(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Angle.FromRadians(double)" />
+            /// <inheritdoc cref="Angle.FromRadians(QuantityValue)" />
             public Angle Radians
 #if NET7_0_OR_GREATER
-                => Angle.FromRadians(double.CreateChecked(value));
+                => Angle.FromRadians(QuantityValue.CreateChecked(value));
 #else
-                => Angle.FromRadians(value.ToDouble(null));
+                => Angle.FromRadians(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="Angle.FromRevolutions(double)" />
+            /// <inheritdoc cref="Angle.FromRevolutions(QuantityValue)" />
             public Angle Revolutions
 #if NET7_0_OR_GREATER
-                => Angle.FromRevolutions(double.CreateChecked(value));
+                => Angle.FromRevolutions(QuantityValue.CreateChecked(value));
 #else
-                => Angle.FromRevolutions(value.ToDouble(null));
+                => Angle.FromRevolutions(value.ToQuantityValue());
 #endif
 
         }

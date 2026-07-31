@@ -32,10 +32,32 @@ namespace UnitsNet.Tests.CustomCode
        protected override double SquareMeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt => 0.001;
        protected override double SquareMillimeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt => 1000;
 
+       // TODO see about changing the base unit
+       
+       // protected override double HourSquareFeetDegreesFahrenheitPerBtuInOneSquareMeterKelvinPerWatt => 5.678263337;
+       // protected override double SquareCentimeterHourDegreesCelsiusPerKilocalorieInOneSquareMeterKelvinPerWatt => 418.68;
+       // protected override double SquareCentimeterKelvinsPerWattInOneSquareMeterKelvinPerWatt => 1e4;
+       // protected override double SquareMeterDegreesCelsiusPerWattInOneSquareMeterKelvinPerWatt => 1;
+       // protected override double SquareMeterKelvinsPerKilowattInOneSquareMeterKelvinPerWatt => 1e-3;
+       // protected override double SquareMeterKelvinsPerWattInOneSquareMeterKelvinPerWatt => 1;
+       
        [Fact(Skip = "See about changing the BaseUnit to SquareMeterKelvinPerWatt")]
        public override void BaseUnit_HasSIBase()
        {
            base.BaseUnit_HasSIBase();
        } 
+
+       [Fact]
+       public void ThermalInsulanceTimesHeatFluxEqualsTemperatureDelta()
+       {
+           ThermalInsulance thermalInsulance = ThermalInsulance.FromSquareMeterKelvinsPerWatt(2);
+           HeatFlux heatFlux = HeatFlux.FromWattsPerSquareMeter(3);
+           TemperatureDelta expected = TemperatureDelta.FromKelvins(6);
+
+           Assert.Equal(expected, thermalInsulance * heatFlux);
+           Assert.Equal(expected, heatFlux * thermalInsulance);
+           Assert.Equal(heatFlux, expected / thermalInsulance);
+           Assert.Equal(thermalInsulance, expected / heatFlux);
+       }
     }
 }

@@ -26,5 +26,18 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KelvinsPerWattInOneKelvinPerWatt => 1;
 
         protected override double DegreesCelsiusPerWattInOneKelvinPerWatt => 1;
+
+        [Fact]
+        public void ThermalResistanceTimesPowerEqualsTemperatureDelta()
+        {
+            ThermalResistance thermalResistance = ThermalResistance.FromKelvinsPerWatt(2);
+            Power power = Power.FromWatts(3);
+            TemperatureDelta expected = TemperatureDelta.FromKelvins(6);
+
+            Assert.Equal(expected, thermalResistance * power);
+            Assert.Equal(expected, power * thermalResistance);
+            Assert.Equal(power, expected / thermalResistance);
+            Assert.Equal(thermalResistance, expected / power);
+        }
     }
 }

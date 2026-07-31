@@ -35,5 +35,18 @@ namespace UnitsNet.Tests.CustomCode
         {
             Assert.All(LuminousIntensity.Info.UnitInfos, unitInfo => Assert.Equal(new BaseUnits(luminousIntensity: unitInfo.Value), unitInfo.BaseUnits));
         }
+
+        [Fact]
+        public void LuminousIntensityTimesSolidAngleEqualsLuminousFlux()
+        {
+            LuminousIntensity luminousIntensity = LuminousIntensity.FromCandela(2);
+            SolidAngle solidAngle = SolidAngle.FromSteradians(3);
+            LuminousFlux expected = LuminousFlux.FromLumens(6);
+
+            Assert.Equal(expected, luminousIntensity * solidAngle);
+            Assert.Equal(expected, solidAngle * luminousIntensity);
+            Assert.Equal(solidAngle, expected / luminousIntensity);
+            Assert.Equal(luminousIntensity, expected / solidAngle);
+        }
     }
 }

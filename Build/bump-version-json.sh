@@ -1,5 +1,5 @@
 #!/bin/bash
-# Increments version of nuget UnitNets.Serialization.JsonNet.
+# Increments the version of both UnitsNet serialization packages.
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 set_version_script="$script_dir/set-version-UnitsNet.Serialization.JsonNet.ps1"
 

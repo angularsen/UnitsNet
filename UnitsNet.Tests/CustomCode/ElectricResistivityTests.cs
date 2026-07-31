@@ -65,10 +65,11 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData( 2.0, 0.5 )]
         public static void InverseTest( double value, double expected )
         {
+            var expectedValue = QuantityValue.FromDoubleRounded(expected);
             var unit = new ElectricResistivity( value, ElectricResistivityUnit.OhmMeter );
             var inverse = unit.Inverse();
 
-            Assert.Equal( expected, inverse.SiemensPerMeter );
+            Assert.Equal(expectedValue, inverse.SiemensPerMeter );
         }
     }
 }

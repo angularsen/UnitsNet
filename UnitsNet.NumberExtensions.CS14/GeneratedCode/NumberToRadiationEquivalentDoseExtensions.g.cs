@@ -42,52 +42,52 @@ namespace UnitsNet.NumberExtensions.NumberToRadiationEquivalentDose
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="RadiationEquivalentDose.FromMicrosieverts(double)" />
+            /// <inheritdoc cref="RadiationEquivalentDose.FromMicrosieverts(QuantityValue)" />
             public RadiationEquivalentDose Microsieverts
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDose.FromMicrosieverts(double.CreateChecked(value));
+                => RadiationEquivalentDose.FromMicrosieverts(QuantityValue.CreateChecked(value));
 #else
-                => RadiationEquivalentDose.FromMicrosieverts(value.ToDouble(null));
+                => RadiationEquivalentDose.FromMicrosieverts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="RadiationEquivalentDose.FromMilliroentgensEquivalentMan(double)" />
+            /// <inheritdoc cref="RadiationEquivalentDose.FromMilliroentgensEquivalentMan(QuantityValue)" />
             public RadiationEquivalentDose MilliroentgensEquivalentMan
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDose.FromMilliroentgensEquivalentMan(double.CreateChecked(value));
+                => RadiationEquivalentDose.FromMilliroentgensEquivalentMan(QuantityValue.CreateChecked(value));
 #else
-                => RadiationEquivalentDose.FromMilliroentgensEquivalentMan(value.ToDouble(null));
+                => RadiationEquivalentDose.FromMilliroentgensEquivalentMan(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="RadiationEquivalentDose.FromMillisieverts(double)" />
+            /// <inheritdoc cref="RadiationEquivalentDose.FromMillisieverts(QuantityValue)" />
             public RadiationEquivalentDose Millisieverts
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDose.FromMillisieverts(double.CreateChecked(value));
+                => RadiationEquivalentDose.FromMillisieverts(QuantityValue.CreateChecked(value));
 #else
-                => RadiationEquivalentDose.FromMillisieverts(value.ToDouble(null));
+                => RadiationEquivalentDose.FromMillisieverts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="RadiationEquivalentDose.FromNanosieverts(double)" />
+            /// <inheritdoc cref="RadiationEquivalentDose.FromNanosieverts(QuantityValue)" />
             public RadiationEquivalentDose Nanosieverts
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDose.FromNanosieverts(double.CreateChecked(value));
+                => RadiationEquivalentDose.FromNanosieverts(QuantityValue.CreateChecked(value));
 #else
-                => RadiationEquivalentDose.FromNanosieverts(value.ToDouble(null));
+                => RadiationEquivalentDose.FromNanosieverts(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="RadiationEquivalentDose.FromRoentgensEquivalentMan(double)" />
+            /// <inheritdoc cref="RadiationEquivalentDose.FromRoentgensEquivalentMan(QuantityValue)" />
             public RadiationEquivalentDose RoentgensEquivalentMan
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDose.FromRoentgensEquivalentMan(double.CreateChecked(value));
+                => RadiationEquivalentDose.FromRoentgensEquivalentMan(QuantityValue.CreateChecked(value));
 #else
-                => RadiationEquivalentDose.FromRoentgensEquivalentMan(value.ToDouble(null));
+                => RadiationEquivalentDose.FromRoentgensEquivalentMan(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="RadiationEquivalentDose.FromSieverts(double)" />
+            /// <inheritdoc cref="RadiationEquivalentDose.FromSieverts(QuantityValue)" />
             public RadiationEquivalentDose Sieverts
 #if NET7_0_OR_GREATER
-                => RadiationEquivalentDose.FromSieverts(double.CreateChecked(value));
+                => RadiationEquivalentDose.FromSieverts(QuantityValue.CreateChecked(value));
 #else
-                => RadiationEquivalentDose.FromSieverts(value.ToDouble(null));
+                => RadiationEquivalentDose.FromSieverts(value.ToQuantityValue());
 #endif
 
         }

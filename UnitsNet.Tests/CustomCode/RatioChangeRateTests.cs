@@ -25,5 +25,18 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override double DecimalFractionsPerSecondInOneDecimalFractionPerSecond => 1;
         protected override double PercentsPerSecondInOneDecimalFractionPerSecond => 100;
+
+        [Fact]
+        public void RatioChangeRateTimesDurationEqualsRatio()
+        {
+            RatioChangeRate changeRate = RatioChangeRate.FromDecimalFractionsPerSecond(2);
+            Duration duration = Duration.FromSeconds(3);
+            Ratio expected = Ratio.FromDecimalFractions(6);
+
+            Assert.Equal(expected, changeRate * duration);
+            Assert.Equal(expected, duration * changeRate);
+            Assert.Equal(duration, expected / changeRate);
+            Assert.Equal(changeRate, expected / duration);
+        }
     }
 }

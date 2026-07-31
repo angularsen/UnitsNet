@@ -32,37 +32,37 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificVolume
     /// </summary>
     public static class NumberToSpecificVolumeExtensions
     {
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(double)" />
+        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(QuantityValue)" />
         public static SpecificVolume CubicFeetPerPound<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => SpecificVolume.FromCubicFeetPerPound(double.CreateChecked(value));
+            => SpecificVolume.FromCubicFeetPerPound(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => SpecificVolume.FromCubicFeetPerPound(value.ToDouble(null));
+            => SpecificVolume.FromCubicFeetPerPound(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(double)" />
+        /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(QuantityValue)" />
         public static SpecificVolume CubicMetersPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => SpecificVolume.FromCubicMetersPerKilogram(double.CreateChecked(value));
+            => SpecificVolume.FromCubicMetersPerKilogram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => SpecificVolume.FromCubicMetersPerKilogram(value.ToDouble(null));
+            => SpecificVolume.FromCubicMetersPerKilogram(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(double)" />
-        public static SpecificVolume MillicubicMetersPerKilogram<T>(this T value)
+        /// <inheritdoc cref="SpecificVolume.FromCubicMillimetersPerKilogram(QuantityValue)" />
+        public static SpecificVolume CubicMillimetersPerKilogram<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => SpecificVolume.FromMillicubicMetersPerKilogram(double.CreateChecked(value));
+            => SpecificVolume.FromCubicMillimetersPerKilogram(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => SpecificVolume.FromMillicubicMetersPerKilogram(value.ToDouble(null));
+            => SpecificVolume.FromCubicMillimetersPerKilogram(value.ToQuantityValue());
 #endif
 
     }

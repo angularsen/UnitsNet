@@ -57,6 +57,30 @@
       ]
     },
     {
+      "SingularName": "OunceForceFoot",
+      "PluralName": "OunceForceFeet",
+      "FromUnitToBaseFunc": "{x} * (4.4482216152605 / 16) * 0.3048",
+      "FromBaseToUnitFunc": "{x} / ((4.4482216152605 / 16) * 0.3048)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ozf·ft", "oz·ft", "ozf-ft", "oz-ft" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "OunceForceInch",
+      "PluralName": "OunceForceInches",
+      "FromUnitToBaseFunc": "{x} * (4.4482216152605 / 16) * 2.54e-2",
+      "FromBaseToUnitFunc": "{x} / ((4.4482216152605 / 16) * 2.54e-2)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ozf·in", "oz·in", "ozf-in", "oz-in", "in-oz" ]
+        }
+      ]
+    },
+    {
       "SingularName": "PoundalFoot",
       "PluralName": "PoundalFeet",
       "FromUnitToBaseFunc": "{x} * 0.138254954376 * 0.3048",
@@ -77,7 +101,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lbf·in" ],
+          "Abbreviations": [ "lbf·in", "lb·in", "lbf-in", "lb-in", "in-lb" ],
           "AbbreviationsForPrefixes": { "Kilo": "kipf·in" }
         }
       ]
@@ -91,7 +115,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lbf·ft" ],
+          "Abbreviations": [ "lbf·ft", "lb·ft", "lbf-ft", "lb-ft", "ft-lb" ],
           "AbbreviationsForPrefixes": { "Kilo": "kipf·ft" }
         }
       ]
