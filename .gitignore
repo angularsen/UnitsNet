@@ -24,7 +24,8 @@ bld/
 [Ll]og/
 
 # VS Code dir
-.vscode/
+.vscode/*
+!.vscode/launch.json
 
 # Visual Studio 2015 cache/options directory
 .vs/
