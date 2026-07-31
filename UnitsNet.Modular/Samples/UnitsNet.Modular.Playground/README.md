@@ -4,9 +4,13 @@ This small console app runs the real UnitsNet.Modular source generator from the 
 checkout. The generated quantity structs and unit enums become part of this app at build time; no
 generated C# is checked in.
 
-## Run it
+## Run it from VS Code
 
-The Codespace builds the project once while it is being created. Open a terminal and run:
+The Codespace builds the project once while it is being created. Open `Program.cs`, then press `F5`
+to debug or `Ctrl+F5` to run without the debugger. If VS Code asks for a profile, choose
+**UnitsNet.Modular playground**. Output appears in the integrated terminal.
+
+You can also open a terminal and run:
 
 ```shell
 dotnet run

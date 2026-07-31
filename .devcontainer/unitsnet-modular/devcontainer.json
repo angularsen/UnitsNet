@@ -9,6 +9,7 @@
       ],
       "settings": {
         "dotnet.defaultSolution": "UnitsNet.Modular/Samples/UnitsNet.Modular.Playground/UnitsNet.Modular.Playground.csproj",
+        "csharp.debug.console": "integratedTerminal",
         "terminal.integrated.cwd": "${workspaceFolder}/UnitsNet.Modular/Samples/UnitsNet.Modular.Playground"
       }
     },
@@ -18,6 +19,7 @@
         "UnitsNet.Modular/Samples/UnitsNet.Modular.Playground/ApplicationUnits.cs",
         "UnitsNet.Modular/Samples/UnitsNet.Modular.Playground/GameScore.unitsnet.json",
         "UnitsNet.Modular/Samples/UnitsNet.Modular.Playground/Program.cs",
+        "UnitsNet.Modular/Samples/UnitsNet.Modular.Playground/Properties/launchSettings.json",
         "UnitsNet.Modular/Samples/UnitsNet.Modular.Playground/UnitsNet.Modular.Playground.csproj"
       ]
     }
