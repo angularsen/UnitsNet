@@ -31,7 +31,7 @@ public interface IAffineQuantity<TSelf, TOffset> :
 /// <typeparam name="TUnit">The unit enum type.</typeparam>
 /// <typeparam name="TOffset">The linear quantity type representing differences.</typeparam>
 public interface IAffineQuantity<TSelf, TUnit, TOffset> :
-    IQuantity<TSelf, TUnit, double>,
+    IQuantity<TSelf, TUnit>,
     IAffineQuantity<TSelf, TOffset>
     where TSelf : IAffineQuantity<TSelf, TUnit, TOffset>
     where TUnit : struct, Enum

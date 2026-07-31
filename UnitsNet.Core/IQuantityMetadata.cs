@@ -33,3 +33,19 @@ public interface IQuantityMetadata<TUnit>
     /// <summary>Converts a value from the base unit to the specified unit.</summary>
     double FromBase(double value, TUnit unit);
 }
+
+/// <summary>Generated parsing operations supplied to immutable quantity metadata.</summary>
+/// <remarks>
+/// This contract is public so generated code can call into <c>UnitsNet.Core</c> from a consumer
+/// assembly. It is generator infrastructure and is not intended for direct application use.
+/// </remarks>
+[EditorBrowsable(EditorBrowsableState.Never)]
+public interface IQuantityMetadata<TQuantity, TUnit> : IQuantityMetadata<TUnit>
+    where TUnit : struct, Enum
+{
+    /// <summary>Parses a generated quantity.</summary>
+    TQuantity Parse(string text, IFormatProvider? formatProvider);
+
+    /// <summary>Attempts to parse a generated quantity.</summary>
+    bool TryParse(string? text, IFormatProvider? formatProvider, out TQuantity quantity);
+}

@@ -63,9 +63,7 @@ internal static class QuantityEmitter
             writer.AppendLine("{");
         }
 
-        writer.Append("public readonly partial struct ").Append(quantity.Name).Append(" : ")
-            .Append("global::UnitsNet.Modular.IModularQuantity<").Append(quantity.Name).Append(", ")
-            .Append(unitType).Append(">, ");
+        writer.Append("public readonly partial struct ").Append(quantity.Name).Append(" : ");
         if (quantity.IsAffine)
         {
             writer.Append("global::UnitsNet.Core.IAffineQuantity<").Append(quantity.Name).Append(", ")
@@ -265,7 +263,8 @@ internal static class QuantityEmitter
         EmitRelationships(writer, relationships);
 
         writer.AppendLine();
-        writer.Append("    private sealed class QuantityMetadata : global::UnitsNet.Modular.IQuantityMetadata<").Append(unitType).AppendLine(">");
+        writer.Append("    private sealed class QuantityMetadata : global::UnitsNet.Modular.IQuantityMetadata<")
+            .Append(quantity.Name).Append(", ").Append(unitType).AppendLine(">");
         writer.AppendLine("    {");
         writer.Append("        private static readonly global::UnitsNet.UnitInfo<").Append(unitType).AppendLine(">[] AllUnits =");
         writer.AppendLine("        {");
@@ -326,6 +325,13 @@ internal static class QuantityEmitter
 
         writer.AppendLine("            _ => throw new global::System.ArgumentOutOfRangeException(nameof(unit), unit, null),");
         writer.AppendLine("        };");
+        writer.AppendLine();
+        writer.Append("        public ").Append(quantity.Name)
+            .AppendLine(" Parse(string text, global::System.IFormatProvider? formatProvider) =>");
+        writer.Append("            ").Append(quantity.Name).AppendLine(".Parse(text, formatProvider);");
+        writer.Append("        public bool TryParse(string? text, global::System.IFormatProvider? formatProvider, out ")
+            .Append(quantity.Name).AppendLine(" quantity) =>");
+        writer.Append("            ").Append(quantity.Name).AppendLine(".TryParse(text, formatProvider, out quantity);");
         writer.AppendLine("    }");
         writer.AppendLine("}");
         if (unitsNetCompatibility)

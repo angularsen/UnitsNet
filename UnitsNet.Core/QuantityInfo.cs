@@ -19,10 +19,10 @@ namespace UnitsNet;
 /// <typeparam name="TQuantity">The generated quantity type.</typeparam>
 /// <typeparam name="TUnit">The generated unit enum type.</typeparam>
 public sealed class QuantityInfo<TQuantity, TUnit> : IQuantityDescriptor
-    where TQuantity : struct, IQuantity<TQuantity, TUnit, double>, IParsable<TQuantity>
+    where TQuantity : IQuantity<TQuantity, TUnit, double>
     where TUnit : struct, Enum
 {
-    private readonly IQuantityMetadata<TUnit> _metadata;
+    private readonly IQuantityMetadata<TQuantity, TUnit> _metadata;
     private readonly FrozenDictionary<TUnit, UnitInfo<TUnit>> _unitInfosByValue;
     private readonly FrozenDictionary<TUnit, UnitDescriptor> _unitDescriptorsByValue;
     private readonly IReadOnlyList<UnitDescriptor> _unitDescriptors;
@@ -30,7 +30,7 @@ public sealed class QuantityInfo<TQuantity, TUnit> : IQuantityDescriptor
     /// <summary>Creates immutable metadata from generated quantity metadata.</summary>
     /// <remarks>This constructor is public only so generated code can initialize its static <c>Info</c>.</remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public QuantityInfo(QuantityId id, IQuantityMetadata<TUnit> metadata)
+    public QuantityInfo(QuantityId id, IQuantityMetadata<TQuantity, TUnit> metadata)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(id.Value, nameof(id));
         ArgumentNullException.ThrowIfNull(metadata);
@@ -257,14 +257,14 @@ public sealed class QuantityInfo<TQuantity, TUnit> : IQuantityDescriptor
     }
 
     IQuantity<double> IQuantityDescriptor.Parse(string text, IFormatProvider? formatProvider) =>
-        TQuantity.Parse(text, formatProvider);
+        _metadata.Parse(text, formatProvider);
 
     bool IQuantityDescriptor.TryParse(
         string? text,
         IFormatProvider? formatProvider,
         [NotNullWhen(true)] out IQuantity<double>? quantity)
     {
-        if (TQuantity.TryParse(text, formatProvider, out TQuantity parsed))
+        if (_metadata.TryParse(text, formatProvider, out TQuantity parsed))
         {
             quantity = parsed;
             return true;

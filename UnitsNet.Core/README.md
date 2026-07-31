@@ -1,16 +1,20 @@
 # UnitsNet.Core
 
-`UnitsNet.Core` contains experimental quantity contracts used by UnitsNet.Modular during the
-source-generation proof of concept. The contracts are designed so UnitsNet v6 can adopt them later,
-but the standalone prototype does not change or add a dependency to the existing UnitsNet package.
+`UnitsNet.Core` contains the contracts and immutable runtime foundation used by UnitsNet.Modular
+during the source-generation proof of concept. The contracts are designed so UnitsNet v6 can adopt
+them later, but the standalone prototype does not change or add a dependency to the existing
+UnitsNet package.
 
-The package deliberately contains no quantity catalog, parser registry, or generated quantity
-types. Its minimal instance contracts expose stored values and type-erased or strongly typed units.
-Its modern self-typed contract exposes only construction and conversion primitives, without
-requiring independently generated structs to have the same CLR identity or metadata model. Its
-static `Convert` primitive enables generic conversion without a global registry, while default and
-generated instance `As` and `ToUnit` members retain the natural strongly typed API. Semantic IDs,
-base units, dimensions, and localizations remain outside Core.
+The package deliberately contains no quantity catalog or generated quantity types. Its minimal
+instance contract exposes a stored value and type-erased unit. The numeric-value-type self-typed
+contract adds a strongly typed unit plus construction and conversion primitives. The
+`IQuantity<TSelf, TUnit>` composite used by generated `double` quantities also requires their static
+canonical `Info` object. This keeps identity, base-unit, dimension, and localization metadata off
+each quantity instance while making it available to generic code through the same Core contract.
+
+Core also owns the immutable metadata and shared conversion, parsing, and formatting foundation.
+UnitsNet.Modular adds module registries, serialization integration, and source-generator packaging;
+it does not define a second quantity interface.
 
 Capability interfaces distinguish linear, affine, and logarithmic quantities. Linear quantities
 advertise conventional generic-math operators and an additive zero; affine quantities add and

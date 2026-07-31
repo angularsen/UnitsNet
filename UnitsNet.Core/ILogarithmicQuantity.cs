@@ -18,7 +18,7 @@ public interface ILogarithmicQuantity<TSelf> : IArithmeticQuantity<TSelf>
 /// <typeparam name="TSelf">The concrete quantity type.</typeparam>
 /// <typeparam name="TUnit">The unit enum type.</typeparam>
 public interface ILogarithmicQuantity<TSelf, TUnit> :
-    IQuantity<TSelf, TUnit, double>,
+    IQuantity<TSelf, TUnit>,
     ILogarithmicQuantity<TSelf>
     where TSelf : ILogarithmicQuantity<TSelf, TUnit>
     where TUnit : struct, Enum

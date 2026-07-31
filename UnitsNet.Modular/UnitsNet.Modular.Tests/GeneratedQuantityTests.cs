@@ -496,7 +496,7 @@ public sealed class GeneratedQuantityTests
         Assert.Equal(LengthUnit.Meter, Length.Info.BaseUnit.Value);
 
         Length length = Create<Length, LengthUnit>(2, LengthUnit.Meter);
-        UnitsNet.Core.IQuantity<LengthUnit, double> stored = length;
+        UnitsNet.Core.IQuantity<Length, LengthUnit> stored = length;
         UnitsNet.Core.IQuantity<double> erased = length;
         Assert.Equal(2d, stored.Value);
         Assert.Equal(LengthUnit.Meter, stored.Unit);
@@ -664,10 +664,7 @@ public sealed class GeneratedQuantityTests
         => TQuantity.Convert(value, fromUnit, toUnit);
 
     private static void AssertLinearCapability<TQuantity, TUnit>()
-        where TQuantity : struct,
-            UnitsNet.Core.ILinearQuantity<TQuantity, TUnit>,
-            UnitsNet.Modular.IModularQuantity<TQuantity, TUnit>,
-            IParsable<TQuantity>
+        where TQuantity : UnitsNet.Core.ILinearQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
         => Assert.Equal(TQuantity.Info.BaseUnit.Value, TQuantity.Zero.Unit);
 
@@ -692,10 +689,7 @@ public sealed class GeneratedQuantityTests
         => left - right;
 
     private static void AssertLogarithmicCapability<TQuantity, TUnit>()
-        where TQuantity : struct,
-            UnitsNet.Core.ILogarithmicQuantity<TQuantity, TUnit>,
-            UnitsNet.Modular.IModularQuantity<TQuantity, TUnit>,
-            IParsable<TQuantity>
+        where TQuantity : UnitsNet.Core.ILogarithmicQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
         => Assert.Equal(TQuantity.Info.BaseUnit.Value, TQuantity.Zero.Unit);
 

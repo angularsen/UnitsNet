@@ -23,7 +23,7 @@
     <IsPackable>true</IsPackable>
     <PackageId>UnitsNet.Core</PackageId>
     <Title>UnitsNet.Core</Title>
-    <Description>Shared quantity contracts for UnitsNet and generated quantity modules.</Description>
+    <Description>Shared quantity contracts and immutable runtime metadata for generated quantity modules.</Description>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).</Copyright>
     <PackageProjectUrl>https://github.com/angularsen/UnitsNet/tree/master/UnitsNet.Core</PackageProjectUrl>
@@ -34,7 +34,7 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageIcon>logo-32.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageTags>unitsnet quantity units abstractions contracts interoperability</PackageTags>
+    <PackageTags>unitsnet quantity units abstractions contracts metadata conversion parsing interoperability</PackageTags>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MinVer" PrivateAssets="all" />

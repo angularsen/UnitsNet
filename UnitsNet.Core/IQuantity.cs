@@ -1,5 +1,7 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
+using UnitsNet;
+
 namespace UnitsNet.Core;
 
 /// <summary>A minimal, type-erased quantity value contract.</summary>
@@ -16,28 +18,21 @@ public interface IQuantity<out TValue> : IFormattable
     Enum Unit { get; }
 }
 
-/// <summary>A quantity contract whose concrete unit enum is known.</summary>
-/// <typeparam name="TUnit">The unit enum type.</typeparam>
-/// <typeparam name="TValue">The numeric storage type.</typeparam>
-public interface IQuantity<out TUnit, out TValue> : IQuantity<TValue>
-    where TUnit : struct, Enum
-{
-    /// <summary>Gets the unit in which <see cref="IQuantity{TValue}.Value" /> is expressed.</summary>
-    new TUnit Unit { get; }
-
-    Enum IQuantity<TValue>.Unit => Unit;
-}
-
 /// <summary>
 /// A self-typed quantity contract with construction and conversion primitives.
 /// </summary>
 /// <typeparam name="TSelf">The concrete quantity type.</typeparam>
 /// <typeparam name="TUnit">The unit enum type.</typeparam>
 /// <typeparam name="TValue">The numeric storage type.</typeparam>
-public interface IQuantity<TSelf, TUnit, TValue> : IQuantity<TUnit, TValue>
+public interface IQuantity<TSelf, TUnit, TValue> : IQuantity<TValue>
     where TSelf : IQuantity<TSelf, TUnit, TValue>
     where TUnit : struct, Enum
 {
+    /// <summary>Gets the unit in which <see cref="IQuantity{TValue}.Value" /> is expressed.</summary>
+    new TUnit Unit { get; }
+
+    Enum IQuantity<TValue>.Unit => Unit;
+
     /// <summary>Creates a quantity with a value expressed in the specified unit.</summary>
     static abstract TSelf From(TValue value, TUnit unit);
 
@@ -49,4 +44,17 @@ public interface IQuantity<TSelf, TUnit, TValue> : IQuantity<TUnit, TValue>
 
     /// <summary>Converts this quantity to the specified unit.</summary>
     TSelf ToUnit(TUnit unit) => TSelf.From(As(unit), unit);
+}
+
+/// <summary>
+/// A self-typed generated quantity with immutable metadata, construction, and conversion primitives.
+/// </summary>
+/// <typeparam name="TSelf">The concrete generated quantity type.</typeparam>
+/// <typeparam name="TUnit">The generated unit enum type.</typeparam>
+public interface IQuantity<TSelf, TUnit> : IQuantity<TSelf, TUnit, double>
+    where TSelf : IQuantity<TSelf, TUnit>
+    where TUnit : struct, Enum
+{
+    /// <summary>Gets the canonical immutable description of this generated quantity type.</summary>
+    static abstract QuantityInfo<TSelf, TUnit> Info { get; }
 }

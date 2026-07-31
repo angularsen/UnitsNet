@@ -169,9 +169,10 @@ directly references it.
 
 ## Projects
 
-- `UnitsNet.Core`: minimal modern value/unit contracts and a self-typed static contract used by
-  generated quantities, with UnitsNet adoption explored separately.
-- `UnitsNet.Modular`: the lean conversion, parsing, formatting, and unit-metadata runtime.
+- `UnitsNet.Core`: modern quantity contracts plus the immutable metadata, conversion, parsing, and
+  formatting foundation shared by generated quantities.
+- `UnitsNet.Modular`: module discovery, registry behavior, serialization integration, and packaging
+  for the source generator.
 - `UnitsNet.Modular.Generator`: the incremental generator, spec bootstrap source, built-in catalog,
   diagnostics, and emitters.
 - `UnitsNet.Modular.Generator.Tests`: generator-driver coverage for diagnostics, stable output,
@@ -242,12 +243,13 @@ compatibility suite requires every exclusion to identify an existing UnitsNet me
 non-empty rationale, so stale exclusions fail the test.
 
 `UnitsNet.Core.IQuantity<TValue>` exposes the stored numeric value and a type-erased enum unit.
-`UnitsNet.Core.IQuantity<TUnit, TValue>` refines that unit to its concrete enum type.
 `UnitsNet.Core.IQuantity<TSelf, TUnit, TValue>` adds only the static construction and conversion
-primitives needed to implement reusable `As()` and `ToUnit()` behavior. Semantic identity, base-unit
-selection, dimensions, and localization are Modular metadata concerns rather than requirements for
-every quantity implementation. A generic library can therefore consume, create, or convert either
-generated implementation without depending on the discovery model.
+primitives needed to implement reusable `As()` and `ToUnit()` behavior, while refining the stored
+unit to its concrete enum type. The `double`-based `IQuantity<TSelf, TUnit>` composite adds the
+static canonical `Info` metadata required from every generated quantity. This follows the familiar
+UnitsNet self-type/unit shape without putting metadata on each quantity instance. A generic library
+can therefore consume, create, convert, or inspect either generated implementation through one Core
+contract.
 
 The Core capability hierarchy adapts UnitsNet's proven modern generic design without carrying over
 `UnitKey`, mutable quantity metadata, setup registries, or obsolete compatibility members:
@@ -267,8 +269,8 @@ does not need generic call syntax. A separate integration branch validates these
 UnitsNet v6. The capability layer remains `double`-based while numeric storage abstraction is
 evaluated separately.
 
-`QuantityId` belongs to the canonical `Info` object rather than each value instance or the minimal
-Core contract. Base-unit conversion is derived behavior and is intentionally not stored on each
+`QuantityId` belongs to the canonical `Info` object rather than each value instance. Base-unit
+conversion is derived behavior and is intentionally not stored on each
 instance. Generated relationships and equality use internal conversion helpers; reusable public
 conversion behavior belongs in the self-typed quantity contract and is backed by immutable
 definition metadata. There is no global conversion registry: compile-time specs and definition
@@ -479,8 +481,8 @@ For each selected definition, the generator emits:
 - an immutable strongly typed quantity struct;
 - typed `FromXxx()` factories, a generic `From(value, unit)` factory, and `.Xxx` conversion
   properties;
-- static canonical `Info` metadata through the Modular contract, including semantic identity and
-  base-unit information;
+- static canonical `Info` metadata through the Core self-typed contract, including semantic
+  identity and base-unit information;
 - `As()`, `ToUnit()`, `Parse()`, `TryParse()`, and `ToString()`;
 - default values normalized to zero in the base unit, matching UnitsNet;
 - arithmetic selected by the definition's linear, affine, or logarithmic semantics;
