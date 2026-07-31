@@ -8,11 +8,10 @@
     <RootNamespace>UnitsNet.Core</RootNamespace>
     <AssemblyName>UnitsNet.Core</AssemblyName>
     <!-- Core ships as part of Modular and intentionally shares its release tag and package version. -->
-    <MinVerTagPrefix>UnitsNet.Modular/</MinVerTagPrefix>
-    <MinVerMinimumMajorMinor>6.0</MinVerMinimumMajorMinor>
-    <MinVerDefaultPreReleaseIdentifiers>alpha.0</MinVerDefaultPreReleaseIdentifiers>
     <MinVerVersionOverride Condition="'$(UnitsNetCoreVersionOverride)' != '' and '$(MinVerVersionOverride)' == ''">$(UnitsNetCoreVersionOverride)</MinVerVersionOverride>
-    <AssemblyVersion>6.0.0.0</AssemblyVersion>
+  </PropertyGroup>
+  <Import Project="../UnitsNet.Modular/UnitsNet.Modular.Versioning.props" />
+  <PropertyGroup>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>../UnitsNet.snk</AssemblyOriginatorKeyFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>

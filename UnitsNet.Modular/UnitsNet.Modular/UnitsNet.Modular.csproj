@@ -9,14 +9,12 @@
     <IsAotCompatible>true</IsAotCompatible>
 
     <!--
-      A normal developer pack feeds the real-consumer sample with a unique local prerelease.
-      CI and release preparation opt into the MinVer-derived publish version explicitly.
+      The repository's local-package workflow passes a unique development version explicitly.
+      Ordinary local builds use the stable version from Directory.Build.props, while CI and
+      release preparation opt into the MinVer-derived publish version.
     -->
-    <UnitsNetModularPackForPublish Condition="'$(UnitsNetModularPackForPublish)' == '' and '$(GITHUB_ACTIONS)' == 'true'">true</UnitsNetModularPackForPublish>
-    <UnitsNetModularPackForPublish Condition="'$(UnitsNetModularPackForPublish)' == ''">false</UnitsNetModularPackForPublish>
     <UnitsNetModularLocalFeed Condition="'$(UnitsNetModularLocalFeed)' == ''">$(RepositoryLocalNuGetFeed)</UnitsNetModularLocalFeed>
-    <MinVerVersionOverride Condition="'$(UnitsNetModularPackForPublish)' != 'true' and '$(MinVerVersionOverride)' == ''">6.0.0-local.dev.$([System.DateTime]::UtcNow.ToString('yyyyMMddHHmmssfff'))</MinVerVersionOverride>
-    <UnitsNetCoreVersionOverride Condition="'$(UnitsNetModularPackForPublish)' != 'true' and '$(UnitsNetCoreVersionOverride)' == ''">$(MinVerVersionOverride)</UnitsNetCoreVersionOverride>
+    <UnitsNetCoreVersionOverride Condition="'$(UnitsNetModularPackForPublish)' != 'true' and '$(UnitsNetCoreVersionOverride)' == ''">$(Version)</UnitsNetCoreVersionOverride>
     <PackageOutputPath Condition="'$(UnitsNetModularPackForPublish)' != 'true' and '$(PackageOutputPath)' == ''">$(UnitsNetModularLocalFeed)</PackageOutputPath>
 
     <PackageId>UnitsNet.Modular</PackageId>
@@ -42,8 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MinVer" PrivateAssets="all" />
-    <ProjectReference Include="../../UnitsNet.Core/UnitsNet.Core.csproj"
-                      AdditionalProperties="UnitsNetCoreVersionOverride=$(UnitsNetCoreVersionOverride)" />
+    <ProjectReference Include="../../UnitsNet.Core/UnitsNet.Core.csproj" />
     <ProjectReference Include="..\UnitsNet.Modular.Generator\UnitsNet.Modular.Generator.csproj"
                       PrivateAssets="all"
                       ReferenceOutputAssembly="false" />
