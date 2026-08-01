@@ -304,8 +304,10 @@ registry is not a source of conversion policy and is not a replacement for the o
 to generated conversion and discovery but uncommon in ordinary strongly typed application code.
 `BaseUnitInfo` and `UnitInfos` are hidden source-compatibility aliases on `QuantityInfo`; new code
 uses `BaseUnit` and `Units`. Public contracts needed only so generated code can call the runtime,
-such as `IQuantityMetadata<TUnit>` and `QuantityOperations`, are hidden from IntelliSense and
-documented as generator infrastructure.
+such as `UnitsNet.Modular.SourceGen.IQuantityMetadata<TUnit>` and
+`UnitsNet.Modular.SourceGen.QuantityOperations`, live in the clearly separated `SourceGen`
+namespace, are hidden from IntelliSense, and are documented as generator infrastructure. Consumer
+code should use the generated quantity API instead.
 
 The same descriptors back a generated System.Text.Json converter factory. Its quantity dispatch is
 emitted as direct type checks and generic converter construction, with no runtime

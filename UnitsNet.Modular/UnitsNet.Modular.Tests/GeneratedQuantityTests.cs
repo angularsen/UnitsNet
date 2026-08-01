@@ -4,6 +4,7 @@ using System.Text.Json;
 using Fictional.Measurements;
 using UnitsNet;
 using UnitsNet.Modular.Generated;
+using UnitsNet.Modular.SourceGen;
 using UnitsNet.Units;
 using Xunit;
 

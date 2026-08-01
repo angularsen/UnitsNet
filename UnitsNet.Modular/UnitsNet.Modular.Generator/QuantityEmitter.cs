@@ -98,11 +98,11 @@ internal static class QuantityEmitter
         writer.AppendLine("    {");
         writer.AppendLine("        _value = value;");
         writer.AppendLine("        _unit = unit;");
-        writer.AppendLine("        _ = global::UnitsNet.Modular.QuantityOperations.GetBaseValue(value, unit, Metadata);");
+        writer.AppendLine("        _ = global::UnitsNet.Modular.SourceGen.QuantityOperations.GetBaseValue(value, unit, Metadata);");
         writer.AppendLine("    }");
         writer.Append("    public ").Append(quantity.Name)
             .AppendLine("(double value, global::UnitsNet.Modular.UnitSystem unitSystem)");
-        writer.AppendLine("        : this(value, global::UnitsNet.Modular.QuantityOperations.GetUnit(unitSystem, Metadata))");
+        writer.AppendLine("        : this(value, global::UnitsNet.Modular.SourceGen.QuantityOperations.GetUnit(unitSystem, Metadata))");
         writer.AppendLine("    {");
         writer.AppendLine("    }");
         writer.AppendLine();
@@ -112,7 +112,7 @@ internal static class QuantityEmitter
             .AppendLine(" From(double value, global::UnitsNet.Modular.UnitSystem unitSystem) => new(value, unitSystem);");
         writer.Append("    public static double Convert(double value, ").Append(unitType).Append(" fromUnit, ")
             .Append(unitType).AppendLine(" toUnit) =>");
-        writer.AppendLine("        global::UnitsNet.Modular.QuantityOperations.Convert(value, fromUnit, toUnit, Metadata);");
+        writer.AppendLine("        global::UnitsNet.Modular.SourceGen.QuantityOperations.Convert(value, fromUnit, toUnit, Metadata);");
         writer.AppendLine();
         writer.AppendLine("    public double Value => _value;");
         writer.Append("    public ").Append(unitType).AppendLine(" Unit => _unit == default ? Info.BaseUnit.Value : _unit;");
@@ -129,7 +129,7 @@ internal static class QuantityEmitter
                 .AppendLine(";");
         }
 
-        writer.AppendLine("    internal double BaseValue => global::UnitsNet.Modular.QuantityOperations.GetBaseValue(_value, Unit, Metadata);");
+        writer.AppendLine("    internal double BaseValue => global::UnitsNet.Modular.SourceGen.QuantityOperations.GetBaseValue(_value, Unit, Metadata);");
         writer.AppendLine();
 
         foreach (UnitDefinition unit in selection.Units)
@@ -143,13 +143,13 @@ internal static class QuantityEmitter
         writer.Append("    public double As(").Append(unitType).AppendLine(" unit) =>");
         writer.AppendLine("        Convert(_value, Unit, unit);");
         writer.AppendLine("    public double As(global::UnitsNet.Modular.UnitSystem unitSystem) =>");
-        writer.AppendLine("        As(global::UnitsNet.Modular.QuantityOperations.GetUnit(unitSystem, Metadata));");
+        writer.AppendLine("        As(global::UnitsNet.Modular.SourceGen.QuantityOperations.GetUnit(unitSystem, Metadata));");
         writer.AppendLine();
         writer.Append("    public ").Append(quantity.Name).Append(" ToUnit(").Append(unitType).AppendLine(" unit) => new(As(unit), unit);");
         writer.Append("    public ").Append(quantity.Name)
             .AppendLine(" ToUnit(global::UnitsNet.Modular.UnitSystem unitSystem)");
         writer.AppendLine("    {");
-        writer.AppendLine("        var unit = global::UnitsNet.Modular.QuantityOperations.GetUnit(unitSystem, Metadata);");
+        writer.AppendLine("        var unit = global::UnitsNet.Modular.SourceGen.QuantityOperations.GetUnit(unitSystem, Metadata);");
         writer.Append("        return new ").Append(quantity.Name).AppendLine("(As(unit), unit);");
         writer.AppendLine("    }");
         writer.AppendLine();
@@ -157,12 +157,12 @@ internal static class QuantityEmitter
         writer.AppendLine("        GetAbbreviation(unit, null);");
         writer.Append("    public static string GetAbbreviation(").Append(unitType)
             .AppendLine(" unit, global::System.IFormatProvider? formatProvider) =>");
-        writer.AppendLine("        global::UnitsNet.Modular.QuantityOperations.GetAbbreviation(unit, formatProvider, Metadata);");
+        writer.AppendLine("        global::UnitsNet.Modular.SourceGen.QuantityOperations.GetAbbreviation(unit, formatProvider, Metadata);");
         writer.AppendLine();
         writer.Append("    public static ").Append(quantity.Name).AppendLine(" Parse(string text) => Parse(text, null);");
         writer.Append("    public static ").Append(quantity.Name).AppendLine(" Parse(string text, global::System.IFormatProvider? formatProvider)");
         writer.AppendLine("    {");
-        writer.AppendLine("        if (!global::UnitsNet.Modular.QuantityOperations.TryParse(text, formatProvider, Metadata, out double value, out var unit))");
+        writer.AppendLine("        if (!global::UnitsNet.Modular.SourceGen.QuantityOperations.TryParse(text, formatProvider, Metadata, out double value, out var unit))");
         writer.AppendLine("        {");
         writer.Append("            throw new global::System.FormatException(\"Could not parse ").Append(Escape(quantity.Name)).AppendLine(".\");");
         writer.AppendLine("        }");
@@ -172,7 +172,7 @@ internal static class QuantityEmitter
         writer.AppendLine();
         writer.Append("    public static bool TryParse(string? text, out ").Append(quantity.Name).AppendLine(" quantity)");
         writer.AppendLine("    {");
-        writer.AppendLine("        if (global::UnitsNet.Modular.QuantityOperations.TryParse(text, null, Metadata, out double value, out var unit))");
+        writer.AppendLine("        if (global::UnitsNet.Modular.SourceGen.QuantityOperations.TryParse(text, null, Metadata, out double value, out var unit))");
         writer.AppendLine("        {");
         writer.Append("            quantity = new ").Append(quantity.Name).AppendLine("(value, unit);");
         writer.AppendLine("            return true;");
@@ -184,7 +184,7 @@ internal static class QuantityEmitter
         writer.AppendLine("#if NET8_0_OR_GREATER");
         writer.Append("    public static bool TryParse(string? text, global::System.IFormatProvider? formatProvider, out ").Append(quantity.Name).AppendLine(" quantity)");
         writer.AppendLine("    {");
-        writer.AppendLine("        if (global::UnitsNet.Modular.QuantityOperations.TryParse(text, formatProvider, Metadata, out double value, out var unit))");
+        writer.AppendLine("        if (global::UnitsNet.Modular.SourceGen.QuantityOperations.TryParse(text, formatProvider, Metadata, out double value, out var unit))");
         writer.AppendLine("        {");
         writer.Append("            quantity = new ").Append(quantity.Name).AppendLine("(value, unit);");
         writer.AppendLine("            return true;");
@@ -211,7 +211,7 @@ internal static class QuantityEmitter
             .AppendLine(" unit) => TryParseUnit(text, null, out unit);");
         writer.Append("    public static bool TryParseUnit(string? text, global::System.IFormatProvider? formatProvider, out ")
             .Append(unitType).AppendLine(" unit) =>");
-        writer.AppendLine("        global::UnitsNet.Modular.QuantityOperations.TryParseUnit(text, formatProvider, Metadata, out unit);");
+        writer.AppendLine("        global::UnitsNet.Modular.SourceGen.QuantityOperations.TryParseUnit(text, formatProvider, Metadata, out unit);");
         writer.AppendLine();
         writer.Append("    public int CompareTo(").Append(quantity.Name).AppendLine(" other) => BaseValue.CompareTo(other.BaseValue);");
         writer.Append("    public int CompareTo(object? obj) => obj is ").Append(quantity.Name)
@@ -224,7 +224,7 @@ internal static class QuantityEmitter
         writer.AppendLine("    public string ToString(global::System.IFormatProvider? formatProvider) => ToString(null, formatProvider);");
         writer.AppendLine("    public string ToString(string? format) => ToString(format, null);");
         writer.AppendLine("    public string ToString(string? format, global::System.IFormatProvider? formatProvider) =>");
-        writer.AppendLine("        global::UnitsNet.Modular.QuantityOperations.Format(_value, Unit, format, formatProvider, Metadata);");
+        writer.AppendLine("        global::UnitsNet.Modular.SourceGen.QuantityOperations.Format(_value, Unit, format, formatProvider, Metadata);");
         writer.AppendLine();
         if (quantity.IsLogarithmic)
         {
@@ -263,7 +263,7 @@ internal static class QuantityEmitter
         EmitRelationships(writer, relationships);
 
         writer.AppendLine();
-        writer.Append("    private sealed class QuantityMetadata : global::UnitsNet.Modular.IQuantityMetadata<")
+        writer.Append("    private sealed class QuantityMetadata : global::UnitsNet.Modular.SourceGen.IQuantityMetadata<")
             .Append(quantity.Name).Append(", ").Append(unitType).AppendLine(">");
         writer.AppendLine("    {");
         writer.Append("        private static readonly global::UnitsNet.UnitInfo<").Append(unitType).AppendLine(">[] AllUnits =");

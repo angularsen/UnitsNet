@@ -3,7 +3,7 @@
 using System.ComponentModel;
 using UnitsNet;
 
-namespace UnitsNet.Modular;
+namespace UnitsNet.Modular.SourceGen;
 
 /// <summary>Metadata supplied by generated code to shared quantity operations.</summary>
 /// <remarks>

@@ -6,6 +6,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Text;
+using UnitsNet.Modular.SourceGen;
 
 namespace UnitsNet.Modular.Generator.Tests;
 

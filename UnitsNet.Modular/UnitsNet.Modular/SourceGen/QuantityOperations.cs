@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Globalization;
 using UnitsNet;
 
-namespace UnitsNet.Modular;
+namespace UnitsNet.Modular.SourceGen;
 
 /// <summary>Shared conversion, parsing, and formatting behavior for generated quantities.</summary>
 /// <remarks>
