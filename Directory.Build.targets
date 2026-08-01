@@ -1,0 +1,7 @@
+<!-- Licensed under MIT No Attribution, see LICENSE file at the root. -->
+<Project>
+  <!-- Nullable flow-analysis attributes are built in on modern .NET targets. -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' or '$(TargetFrameworkIdentifier)' == '.NETFramework'">
+    <Compile Include="$(MSBuildThisFileDirectory)NullableAttributes.cs" />
+  </ItemGroup>
+</Project>

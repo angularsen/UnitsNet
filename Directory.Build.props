@@ -31,9 +31,4 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)/NullableAttributes.cs" />
-  </ItemGroup>
-
 </Project>
