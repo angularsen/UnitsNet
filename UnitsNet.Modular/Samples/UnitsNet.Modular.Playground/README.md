@@ -1,8 +1,19 @@
 # UnitsNet.Modular playground
 
-This small console app runs the real UnitsNet.Modular source generator from the current repository
-checkout. The generated quantity structs and unit enums become part of this app at build time; no
-generated C# is checked in.
+This console app runs the real UnitsNet.Modular source generator from the current repository
+checkout. It plans a day for an electric delivery van using mixed-unit route inputs, a parcel
+manifest, driving estimates, and a charging stop. The generated quantity structs and unit enums
+become part of this app at build time; no generated C# is checked in.
+
+The scenario is split into readable sections that exercise:
+
+- parsing and defensive `TryParse` at input boundaries;
+- numeric conversion, `As`, `ToUnit`, and formatted `ToString` output;
+- arithmetic and collection aggregation across mixed units;
+- generated `Length / Duration = Speed` and `Power * Duration = Energy` relationships;
+- an application-specific `ParcelCount` generated from JSON;
+- the selected-module registry and the legacy-shaped `Quantity` facade;
+- explicit immutable `UnitSystem` policy and generated System.Text.Json support.
 
 ## Run it from VS Code
 
@@ -24,7 +35,7 @@ Start with any of these:
 
 1. In `ApplicationUnits.cs`, add or remove a built-in `IInclude<...>` quantity selection.
 2. Change a `[UnitSet]` list and see which enum members remain available after rebuilding.
-3. In `GameScore.unitsnet.json`, add a unit or change a conversion expression.
+3. In `ParcelCount.unitsnet.json`, add a unit or change a conversion expression.
 4. In `Program.cs`, use the generated types, conversions, parsing, formatting, or operators.
 
 The project enables `EmitCompilerGeneratedFiles`, so after a build you can also inspect the emitted

@@ -1,18 +1,18 @@
 {
-  "Name": "GameScore",
+  "Name": "ParcelCount",
   "Namespace": "UnitsNet.Modular.Playground",
-  "BaseUnit": "Point",
+  "BaseUnit": "Parcel",
   "BaseDimensions": {},
   "Units": [
     {
-      "SingularName": "Point",
-      "PluralName": "Points",
+      "SingularName": "Parcel",
+      "PluralName": "Parcels",
       "FromUnitToBaseFunc": "{x}",
       "FromBaseToUnitFunc": "{x}",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "pt" ]
+          "Abbreviations": [ "pkg" ]
         }
       ]
     },
