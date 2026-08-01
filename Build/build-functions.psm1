@@ -9,6 +9,9 @@ $toolsDir = Join-Path $root ".tools"
 $reportGeneratorName = if ([System.Environment]::OSVersion.Platform -eq [PlatformID]::Win32NT) { "reportgenerator.exe" } else { "reportgenerator" }
 $reportGenerator = Join-Path $toolsDir $reportGeneratorName
 
+Import-Module (Join-Path $PSScriptRoot "test-projects.psm1") -Force
+$testProjectPaths = @(Get-TestProjectPaths)
+
 function Remove-ArtifactsDir {
   if (Test-Path $artifactsDir) {
     write-host -foreground blue "Clean up...`n"
@@ -43,16 +46,6 @@ function Start-Tests {
     [switch] $SkipCoverage
   )
 
-  $projectPaths = @(
-    "UnitsNet.Tests/UnitsNet.Tests.csproj",
-    "UnitsNet.GlobalSetup.DefaultFirst.Tests/UnitsNet.GlobalSetup.DefaultFirst.Tests.csproj",
-    "UnitsNet.GlobalSetup.Tests/UnitsNet.GlobalSetup.Tests.csproj",
-    "UnitsNet.NumberExtensions.Tests/UnitsNet.NumberExtensions.Tests.csproj",
-    "UnitsNet.NumberExtensions.CS14.Tests/UnitsNet.NumberExtensions.CS14.Tests.csproj",
-    "UnitsNet.Serialization.JsonNet.Tests/UnitsNet.Serialization.JsonNet.Tests.csproj",
-    "UnitsNet.Serialization.SystemTextJson.Tests/UnitsNet.Serialization.SystemTextJson.Tests.csproj"
-    )
-
   # Parent dir must exist before xunit tries to write files to it
   new-item -type directory -force $testReportDir 1> $null
   if (-not $SkipCoverage) {
@@ -60,7 +53,7 @@ function Start-Tests {
   }
 
   write-host -foreground blue "Run tests...`n---"
-  foreach ($projectPath in $projectPaths) {
+  foreach ($projectPath in $testProjectPaths) {
     $projectFileNameNoEx = [System.IO.Path]::GetFileNameWithoutExtension($projectPath)
     $coverageReportFile = Join-Path $testCoverageDir "${projectFileNameNoEx}.coverage.xml"
     $projectDir = Join-Path $root ([System.IO.Path]::GetDirectoryName($projectPath))
