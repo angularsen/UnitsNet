@@ -201,12 +201,10 @@ UnitsNet.Modular.IQuantity<double> distance =
     Quantity.From(1.5, "Length", "Kilometer");
 ```
 
-Migration code that temporarily references both contract namespaces should use an alias:
+When migration code imports both contract namespaces, qualify the Modular contract explicitly:
 
 ```csharp
-using ModularQuantity = UnitsNet.Modular.IQuantity<double>;
-
-ModularQuantity distance = Length.FromMeters(1);
+UnitsNet.Modular.IQuantity<double> distance = Length.FromMeters(1);
 ```
 
 ### Global conversion
@@ -292,14 +290,12 @@ and display and may be shared by unrelated quantities.
 
 ### Unit-system policy
 
-The two `UnitSystem` types are intentionally different. Make the choice explicit during migration:
+The two `UnitSystem` types are intentionally different. Qualify the Modular policy during migration:
 
 ```csharp
-using ModularUnitSystem = UnitsNet.Modular.UnitSystem;
-
-Length distance = Length.From(1.5, ModularUnitSystem.SI);
-double meters = Length.FromKilometers(1.5).As(ModularUnitSystem.SI);
-Length normalized = Length.FromFeet(3).ToUnit(ModularUnitSystem.SI);
+Length distance = Length.From(1.5, UnitsNet.Modular.UnitSystem.SI);
+double meters = Length.FromKilometers(1.5).As(UnitsNet.Modular.UnitSystem.SI);
+Length normalized = Length.FromFeet(3).ToUnit(UnitsNet.Modular.UnitSystem.SI);
 ```
 
 To define an application policy, use invariant constituent unit names:

@@ -7,7 +7,7 @@ namespace UnitsNet.Modular.Serialization;
 
 /// <summary>Serializes one generated quantity using its immutable module descriptor.</summary>
 public sealed class QuantityJsonConverter<TQuantity> : JsonConverter<TQuantity>
-    where TQuantity : struct, UnitsNet.Modular.IQuantity<double>
+    where TQuantity : struct, IQuantity<double>
 {
     private readonly IQuantityDescriptor _descriptor;
 

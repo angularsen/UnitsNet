@@ -301,9 +301,11 @@ does not expose configurable conversion expressions or global registration.
 state:
 
 ```csharp
-Length length = Length.From(1.5, UnitsNet.Modular.UnitSystem.SI);
-double meters = Length.FromKilometers(1.5).As(UnitsNet.Modular.UnitSystem.SI);
-Length normalized = length.ToUnit(UnitsNet.Modular.UnitSystem.SI);
+using UnitsNet.Modular;
+
+Length length = Length.From(1.5, UnitSystem.SI);
+double meters = Length.FromKilometers(1.5).As(UnitSystem.SI);
+Length normalized = length.ToUnit(UnitSystem.SI);
 ```
 
 Resolution considers only units selected into the current module.
@@ -766,9 +768,9 @@ Every module receives one immutable registry containing only its selected quanti
 using UnitsNet.Modular;
 using UnitsNet.Modular.Generated;
 
-UnitsNet.Modular.QuantityRegistry registry = GeneratedQuantityRegistry.Instance;
+QuantityRegistry registry = GeneratedQuantityRegistry.Instance;
 
-UnitsNet.Modular.IQuantityDescriptor length = registry.Get("Length");
+IQuantityDescriptor length = registry.Get("Length");
 IQuantity<double> parsed = length.Parse("1.5 km");
 double meters = length.Convert(1.5, "Kilometer", "Meter");
 
@@ -787,10 +789,12 @@ When a module includes built-ins, the generator emits the source-compatible `Qua
 `UnitsNet`:
 
 ```csharp
-UnitsNet.Modular.IQuantity<double> value =
+using UnitsNet.Modular;
+
+IQuantity<double> value =
     UnitsNet.Quantity.From(1.5, "Length", "Kilometer");
 
-UnitsNet.Modular.IQuantity<double> parsed =
+IQuantity<double> parsed =
     UnitsNet.Quantity.Parse(typeof(Length), "1.5 km");
 ```
 

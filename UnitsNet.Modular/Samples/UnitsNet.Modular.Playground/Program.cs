@@ -6,7 +6,6 @@ using UnitsNet;
 using UnitsNet.Modular;
 using UnitsNet.Modular.Generated;
 using UnitsNet.Units;
-using ModularQuantity = UnitsNet.Modular.IQuantity<double>;
 
 namespace UnitsNet.Modular.Playground;
 
@@ -99,7 +98,7 @@ internal static class Program
         // UnitsNet, the facade is scoped to the selected module and returns IQuantity<double> from
         // UnitsNet.Modular. The modular registry exposes that selected catalog without global mutation.
         PrintSection("Use the modular dynamic API");
-        ModularQuantity configuredDistance = Quantity.From(15, "Length", "Mile");
+        IQuantity<double> configuredDistance = Quantity.From(15, "Length", "Mile");
         QuantityRegistry registry = GeneratedQuantityRegistry.Instance;
         IQuantityDescriptor lengthDescriptor = registry.Get("Length");
         double configuredKilometers = registry.Convert(15, "Length", "Mile", "Kilometer");

@@ -7,7 +7,6 @@
     <RootNamespace>UnitsNet.Modular</RootNamespace>
     <IsPackable>true</IsPackable>
     <IsAotCompatible>true</IsAotCompatible>
-    <AssemblyVersion>6.0.0.0</AssemblyVersion>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>../../UnitsNet.snk</AssemblyOriginatorKeyFile>
 

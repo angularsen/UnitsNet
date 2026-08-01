@@ -27,8 +27,7 @@ internal static class GeneratorTestHost
             .Select(path => MetadataReference.CreateFromFile(path))
             .Concat(new[]
             {
-                MetadataReference.CreateFromFile(typeof(UnitsNet.Modular.QuantityOperations).Assembly.Location),
-                MetadataReference.CreateFromFile(typeof(UnitsNet.Modular.IQuantity<>).Assembly.Location),
+                MetadataReference.CreateFromFile(typeof(QuantityOperations).Assembly.Location),
             })
             .GroupBy(reference => reference.Display, StringComparer.OrdinalIgnoreCase)
             .Select(group => group.First())
