@@ -15,8 +15,8 @@ namespace CodeGen.Helpers
             Dictionary<string, string> replacements)
         {
             var tempFilename = $"{sourceFile.FullName}.edited";
-            using (StreamReader input = sourceFile.OpenText())
-            using (var output = new StreamWriter(tempFilename))
+            using (StreamReader input = CodeGenFile.OpenText(sourceFile.FullName))
+            using (var output = CodeGenFile.CreateText(tempFilename))
             {
                 while (input.ReadLine() is { } line)
                 {

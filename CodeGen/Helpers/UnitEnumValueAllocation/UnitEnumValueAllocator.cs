@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.Json;
 using CodeGen.Exceptions;
 using CodeGen.JsonTypes;
+using CodeGen.Helpers;
 using Serilog;
 
 namespace CodeGen.Helpers.UnitEnumValueAllocation
@@ -150,7 +151,7 @@ Conflicts:
 ");
 
             fileContentStringBuilder.AppendLine(JsonSerializer.Serialize(_quantityNameToUnitEnumValues, JsonOptions));
-            File.WriteAllText(_jsonFile, fileContentStringBuilder.ToString());
+            CodeGenFile.WriteAllText(_jsonFile, fileContentStringBuilder.ToString());
         }
 
         /// <summary>
@@ -162,7 +163,7 @@ Conflicts:
         {
             if (File.Exists(jsonFile))
             {
-                return JsonSerializer.Deserialize<QuantityNameToUnitEnumValues>(File.ReadAllText(jsonFile), JsonOptions)
+                return JsonSerializer.Deserialize<QuantityNameToUnitEnumValues>(CodeGenFile.ReadAllText(jsonFile), JsonOptions)
                        ?? throw new InvalidOperationException($"Failed to deserialize file: {jsonFile}");
             }
 
