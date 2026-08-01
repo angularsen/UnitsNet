@@ -9,7 +9,7 @@ $toolsDir = Join-Path $root ".tools"
 $reportGeneratorName = if ([System.Environment]::OSVersion.Platform -eq [PlatformID]::Win32NT) { "reportgenerator.exe" } else { "reportgenerator" }
 $reportGenerator = Join-Path $toolsDir $reportGeneratorName
 
-$mainTestProjectPaths = @(
+$testProjectPaths = @(
   "UnitsNet.Tests/UnitsNet.Tests.csproj",
   "UnitsNet.GlobalSetup.DefaultFirst.Tests/UnitsNet.GlobalSetup.DefaultFirst.Tests.csproj",
   "UnitsNet.GlobalSetup.Tests/UnitsNet.GlobalSetup.Tests.csproj",
@@ -53,8 +53,6 @@ function Start-Tests {
     [switch] $SkipCoverage
   )
 
-  $projectPaths = $mainTestProjectPaths
-
   # Parent dir must exist before xunit tries to write files to it
   new-item -type directory -force $testReportDir 1> $null
   if (-not $SkipCoverage) {
@@ -62,7 +60,7 @@ function Start-Tests {
   }
 
   write-host -foreground blue "Run tests...`n---"
-  foreach ($projectPath in $projectPaths) {
+  foreach ($projectPath in $testProjectPaths) {
     $projectFileNameNoEx = [System.IO.Path]::GetFileNameWithoutExtension($projectPath)
     $coverageReportFile = Join-Path $testCoverageDir "${projectFileNameNoEx}.coverage.xml"
     $projectDir = Join-Path $root ([System.IO.Path]::GetDirectoryName($projectPath))
@@ -149,4 +147,4 @@ function Compress-ArtifactsAsZip {
   write-host -foreground blue "Zip artifacts...END`n"
 }
 
-export-modulemember -function Remove-ArtifactsDir, Update-GeneratedCode, Start-Build, Start-Tests, Start-PackNugets, Compress-ArtifactsAsZip
+export-modulemember -function Remove-ArtifactsDir, Update-GeneratedCode, Start-Build, Start-Tests, Start-PackNugets, Compress-ArtifactsAsZip -Variable testProjectPaths
