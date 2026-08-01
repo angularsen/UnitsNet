@@ -1,4 +1,4 @@
-﻿using UnitsNet.Units;
+using UnitsNet.Units;
 
 namespace UnitsNet;
 

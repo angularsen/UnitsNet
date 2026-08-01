@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 #if NET8_0_OR_GREATER
 using System.Collections.Frozen;
 using QuantityByTypeLookupDictionary = System.Collections.Frozen.FrozenDictionary<System.Type, UnitsNet.QuantityInfo>;

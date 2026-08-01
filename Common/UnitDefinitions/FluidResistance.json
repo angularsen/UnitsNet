@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "FluidResistance",
   "BaseUnit": "PascalSecondPerCubicMeter",
   "XmlDocSummary": "Fluid Resistance is a force acting opposite to the relative motion of any object moving with respect to a surrounding fluid. Fluid Resistance is sometimes referred to as drag or fluid friction.",

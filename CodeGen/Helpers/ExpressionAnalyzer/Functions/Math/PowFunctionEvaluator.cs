@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using CodeGen.Helpers.ExpressionAnalyzer.Expressions;
 using Fractions;

@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "Radioactivity",
   "BaseUnit": "Becquerel",
   "XmlDocSummary": "Amount of ionizing radiation released when an element spontaneously emits energy as a result of the radioactive decay of an unstable atom per unit time.",

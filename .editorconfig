@@ -8,13 +8,13 @@ root = true
 [*]
 indent_style = space
 trim_trailing_whitespace = true
+charset = utf-8
 # (Please don't specify an indent_size here; that has too many unintended consequences.)
 
 # Code files
 [*.{cs,csx,vb,vbx}]
 indent_size = 4
 insert_final_newline = true
-charset = utf-8-bom
 
 [*.{cmd,bat}]
 indent_size = 2
@@ -25,7 +25,6 @@ insert_final_newline = false
 indent_size = 2
 end_of_line = crlf
 insert_final_newline = true
-charset = utf-8-bom
 
 # Xml project files
 [*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj}]

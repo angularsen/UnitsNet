@@ -1,4 +1,4 @@
-﻿using Fractions;
+using Fractions;
 
 namespace CodeGen.Helpers.ExpressionAnalyzer.Functions.Math.Trigonometry;
 

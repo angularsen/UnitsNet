@@ -1,4 +1,4 @@
-﻿using UnitsNet;
+using UnitsNet;
 using UnitsNet.Units;
 using static System.Console;
 using static UnitsNet.Units.LengthUnit;

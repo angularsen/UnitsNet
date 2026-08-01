@@ -1,4 +1,4 @@
-﻿[![CI Build](https://github.com/angularsen/UnitsNet/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/angularsen/UnitsNet/actions/workflows/ci.yml)
+[![CI Build](https://github.com/angularsen/UnitsNet/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/angularsen/UnitsNet/actions/workflows/ci.yml)
 [![Pull Requests](https://github.com/angularsen/UnitsNet/actions/workflows/pr.yml/badge.svg)](https://github.com/angularsen/UnitsNet/actions/workflows/pr.yml)
 [![.NET Framework 4.8](https://github.com/angularsen/UnitsNet/actions/workflows/net48-compatibility.yml/badge.svg)](https://github.com/angularsen/UnitsNet/actions/workflows/net48-compatibility.yml)
 [![codecov](https://codecov.io/gh/angularsen/UnitsNet/branch/master/graph/badge.svg)](https://codecov.io/gh/angularsen/UnitsNet)

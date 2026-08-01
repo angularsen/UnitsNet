@@ -1,4 +1,4 @@
-﻿# Don't allow using undeclared variables
+# Don't allow using undeclared variables
 Param(
   [switch] $SkipCoverageTools
 )

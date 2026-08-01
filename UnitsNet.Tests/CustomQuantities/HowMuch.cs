@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnitsNet.Units;
 
 namespace UnitsNet.Tests.CustomQuantities

@@ -1,4 +1,4 @@
-﻿## Unit Converter WPF Sample App
+## Unit Converter WPF Sample App
 
 This is a simple sample showing how UnitsNet can be used to create a generic unit converter, using all the quantities and units available in the UnitsNet library.
 

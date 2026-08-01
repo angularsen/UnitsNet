@@ -1,4 +1,4 @@
-﻿using System.Runtime.Serialization;
+using System.Runtime.Serialization;
 using UnitsNet.Units;
 
 namespace UnitsNet.Tests.Serialization.Xml
