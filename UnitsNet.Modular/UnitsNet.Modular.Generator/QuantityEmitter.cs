@@ -10,6 +10,10 @@ namespace UnitsNet.Modular.Generator;
 
 internal static class QuantityEmitter
 {
+    private const string NumericFormatStringSyntaxAttribute =
+        "global::System.Diagnostics.CodeAnalysis.StringSyntax(" +
+        "global::System.Diagnostics.CodeAnalysis.StringSyntaxAttribute.NumericFormat)";
+
     public static string Emit(
         QuantitySelection selection,
         IReadOnlyList<EmittedQuantityRelation> relationships,
@@ -222,8 +226,13 @@ internal static class QuantityEmitter
         writer.AppendLine("    public override int GetHashCode() => BaseValue.GetHashCode();");
         writer.AppendLine("    public override string ToString() => ToString(null, null);");
         writer.AppendLine("    public string ToString(global::System.IFormatProvider? formatProvider) => ToString(null, formatProvider);");
-        writer.AppendLine("    public string ToString(string? format) => ToString(format, null);");
-        writer.AppendLine("    public string ToString(string? format, global::System.IFormatProvider? formatProvider) =>");
+        writer.AppendLine("    public string ToString(");
+        writer.Append("        [").Append(NumericFormatStringSyntaxAttribute).AppendLine("]");
+        writer.AppendLine("        string? format) => ToString(format, null);");
+        writer.AppendLine("    public string ToString(");
+        writer.Append("        [").Append(NumericFormatStringSyntaxAttribute).AppendLine("]");
+        writer.AppendLine("        string? format,");
+        writer.AppendLine("        global::System.IFormatProvider? formatProvider) =>");
         writer.AppendLine("        global::UnitsNet.Modular.SourceGen.QuantityOperations.Format(_value, Unit, format, formatProvider, Metadata);");
         writer.AppendLine();
         if (quantity.IsLogarithmic)
