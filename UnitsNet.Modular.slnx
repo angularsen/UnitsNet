@@ -1,20 +1,80 @@
 <Solution>
+  <Configurations>
+    <Platform Name="ProjectReferences" />
+    <Platform Name="LocalPackages" />
+    <Platform Name="PublishedPackages" />
+  </Configurations>
   <Project Path="UnitsNet.Modular/UnitsNet.Modular/UnitsNet.Modular.csproj" />
   <Project Path="UnitsNet.Modular/UnitsNet.Modular.Generator/UnitsNet.Modular.Generator.csproj" />
   <Project Path="UnitsNet.Modular/UnitsNet.Modular.Generator.Tests/UnitsNet.Modular.Generator.Tests.csproj" />
   <Project Path="UnitsNet.Modular/UnitsNet.Modular.Tests/UnitsNet.Modular.Tests.csproj" />
+  <Folder Name="/_Files/">
+    <File Path="UnitsNet.Modular/ARCHITECTURE.md" />
+    <File Path="UnitsNet.Modular/Directory.Build.props" />
+    <File Path="UnitsNet.Modular/Directory.Build.targets" />
+    <File Path="UnitsNet.Modular/Directory.Packages.props" />
+    <File Path="UnitsNet.Modular/MIGRATION.md" />
+    <File Path="UnitsNet.Modular/README.md" />
+    <File Path="UnitsNet.Modular/THIRD-PARTY-NOTICES.md" />
+    <File Path="UnitsNet.Modular/UnitsNet.Modular.Versioning.props" />
+  </Folder>
   <Project Path="UnitsNet.Modular/UnitsNet.Modular.Compatibility.Tests/UnitsNet.Modular.Compatibility.Tests.csproj" />
   <Folder Name="/Samples/">
-    <Project Path="UnitsNet.Modular/Samples/DefinitionPackages/Fictional.Measurements.Definitions/Fictional.Measurements.Definitions.csproj" />
-    <Project Path="UnitsNet.Modular/Samples/ConsumerOwned/ConsumerOwned.Units/ConsumerOwned.Units.csproj" />
-    <Project Path="UnitsNet.Modular/Samples/ConsumerOwned/ConsumerOwned.Units.ProjectReferences/ConsumerOwned.Units.ProjectReferences.csproj" />
-    <Project Path="UnitsNet.Modular/Samples/ConsumerOwned/ConsumerOwned.Domain/ConsumerOwned.Domain.csproj" />
-    <Project Path="UnitsNet.Modular/Samples/ConsumerOwned/ConsumerOwned.Reporting/ConsumerOwned.Reporting.csproj" />
-    <Project Path="UnitsNet.Modular/Samples/UnitsNet.Modular.AllSi.Sample/UnitsNet.Modular.AllSi.Sample.csproj" />
-    <Project Path="UnitsNet.Modular/Samples/UnitsNet.Modular.Representative.Sample/UnitsNet.Modular.Representative.Sample.csproj" />
-    <Project Path="UnitsNet.Modular/Samples/UnitsNet.Modular.Lean.Sample/UnitsNet.Modular.Lean.Sample.csproj" />
-    <Project Path="UnitsNet.Modular/Samples/UnitsNet.Modular.Custom.Sample/UnitsNet.Modular.Custom.Sample.csproj" />
-    <Project Path="UnitsNet.Modular/Samples/UnitsNet.Modular.Compatibility.UnitsNet.Sample/UnitsNet.Modular.Compatibility.UnitsNet.Sample.csproj" />
-    <Project Path="UnitsNet.Modular/Samples/UnitsNet.Modular.Compatibility.Generated.Sample/UnitsNet.Modular.Compatibility.Generated.Sample.csproj" />
+    <File Path="UnitsNet.Modular/Samples/README.md" />
+    <Project Path="UnitsNet.Modular/Samples/GettingStartedSample/GettingStartedSample.csproj">
+      <Platform Solution="*|ProjectReferences" Project="ProjectReferences" />
+      <Platform Solution="*|LocalPackages" Project="LocalPackages" />
+      <Platform Solution="*|PublishedPackages" Project="PublishedPackages" />
+    </Project>
+    <Project Path="UnitsNet.Modular/Samples/QuantitySelectionSample/QuantitySelectionSample.csproj">
+      <Platform Solution="*|ProjectReferences" Project="ProjectReferences" />
+      <Platform Solution="*|LocalPackages" Project="LocalPackages" />
+      <Platform Solution="*|PublishedPackages" Project="PublishedPackages" />
+    </Project>
+    <Project Path="UnitsNet.Modular/Samples/CustomQuantitySample/CustomQuantitySample.csproj">
+      <Platform Solution="*|ProjectReferences" Project="ProjectReferences" />
+      <Platform Solution="*|LocalPackages" Project="LocalPackages" />
+      <Platform Solution="*|PublishedPackages" Project="PublishedPackages" />
+    </Project>
+    <Project Path="UnitsNet.Modular/Samples/ModularPlayground/ModularPlayground.csproj">
+      <Platform Solution="*|ProjectReferences" Project="ProjectReferences" />
+      <Platform Solution="*|LocalPackages" Project="LocalPackages" />
+      <Platform Solution="*|PublishedPackages" Project="PublishedPackages" />
+    </Project>
+  </Folder>
+  <Folder Name="/Samples/Profiles/">
+    <Project Path="UnitsNet.Modular/Samples/Profiles/AllSiProfileSample/AllSiProfileSample.csproj">
+      <Platform Solution="*|ProjectReferences" Project="ProjectReferences" />
+      <Platform Solution="*|LocalPackages" Project="LocalPackages" />
+      <Platform Solution="*|PublishedPackages" Project="PublishedPackages" />
+    </Project>
+  </Folder>
+  <Folder Name="/Samples/Shared Units Library/">
+    <Project Path="UnitsNet.Modular/Samples/SharedUnitsLibrarySample/SharedUnitsLibrarySample.Units/SharedUnitsLibrarySample.Units.csproj">
+      <Platform Solution="*|ProjectReferences" Project="ProjectReferences" />
+      <Platform Solution="*|LocalPackages" Project="LocalPackages" />
+      <Platform Solution="*|PublishedPackages" Project="PublishedPackages" />
+    </Project>
+    <Project Path="UnitsNet.Modular/Samples/SharedUnitsLibrarySample/SharedUnitsLibrarySample.Domain/SharedUnitsLibrarySample.Domain.csproj">
+      <Platform Solution="*|ProjectReferences" Project="ProjectReferences" />
+      <Platform Solution="*|LocalPackages" Project="LocalPackages" />
+      <Platform Solution="*|PublishedPackages" Project="PublishedPackages" />
+    </Project>
+    <Project Path="UnitsNet.Modular/Samples/SharedUnitsLibrarySample/SharedUnitsLibrarySample.App/SharedUnitsLibrarySample.App.csproj">
+      <Platform Solution="*|ProjectReferences" Project="ProjectReferences" />
+      <Platform Solution="*|LocalPackages" Project="LocalPackages" />
+      <Platform Solution="*|PublishedPackages" Project="PublishedPackages" />
+    </Project>
+    <Project Path="UnitsNet.Modular/Samples/SharedUnitsLibrarySample/Fictional.Measurements.Definitions/Fictional.Measurements.Definitions.csproj">
+      <Platform Solution="*|ProjectReferences" Project="ProjectReferences" />
+      <Platform Solution="*|LocalPackages" Project="LocalPackages" />
+      <Platform Solution="*|PublishedPackages" Project="PublishedPackages" />
+    </Project>
+    <File Path="UnitsNet.Modular/Samples/SharedUnitsLibrarySample/README.md" />
+  </Folder>
+  <Folder Name="/Tests/" />
+  <Folder Name="/Tests/Compatibility fixtures/">
+    <Project Path="UnitsNet.Modular/UnitsNet.Modular.Compatibility.Tests/Fixtures/Generated/UnitsNet.Modular.Compatibility.GeneratedFixture.csproj" />
+    <Project Path="UnitsNet.Modular/UnitsNet.Modular.Compatibility.Tests/Fixtures/Legacy/UnitsNet.Modular.Compatibility.LegacyFixture.csproj" />
   </Folder>
 </Solution>

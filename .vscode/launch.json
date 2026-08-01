@@ -2,10 +2,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "C#: UnitsNet.Modular.Playground",
+      "name": "C#: ModularPlayground",
       "type": "dotnet",
       "request": "launch",
-      "projectPath": "${workspaceFolder}/UnitsNet.Modular/Samples/UnitsNet.Modular.Playground/UnitsNet.Modular.Playground.csproj"
+      "projectPath": "${workspaceFolder}/UnitsNet.Modular/Samples/ModularPlayground/ModularPlayground.csproj"
     }
   ]
 }

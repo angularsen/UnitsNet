@@ -1,0 +1,14 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="Release" />
+    <Platform Name="ProjectReferences" />
+    <Platform Name="LocalPackages" />
+    <Platform Name="PublishedPackages" />
+  </Configurations>
+  <Project Path="ModularPlayground.csproj">
+    <Platform Solution="*|ProjectReferences" Project="ProjectReferences" />
+    <Platform Solution="*|LocalPackages" Project="LocalPackages" />
+    <Platform Solution="*|PublishedPackages" Project="PublishedPackages" />
+  </Project>
+</Solution>

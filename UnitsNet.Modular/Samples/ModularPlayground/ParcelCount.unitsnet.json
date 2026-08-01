@@ -1,0 +1,44 @@
+{
+  "Name": "ParcelCount",
+  "Namespace": "UnitsNet.Modular.Samples.Playground",
+  "BaseUnit": "Parcel",
+  "BaseDimensions": {},
+  "Units": [
+    {
+      "SingularName": "Parcel",
+      "PluralName": "Parcels",
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "pkg" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Dozen",
+      "PluralName": "Dozens",
+      "FromUnitToBaseFunc": "{x} * 12",
+      "FromBaseToUnitFunc": "{x} / 12",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "doz" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Gross",
+      "PluralName": "Gross",
+      "FromUnitToBaseFunc": "{x} * 144",
+      "FromBaseToUnitFunc": "{x} / 144",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "gr" ]
+        }
+      ]
+    }
+  ]
+}

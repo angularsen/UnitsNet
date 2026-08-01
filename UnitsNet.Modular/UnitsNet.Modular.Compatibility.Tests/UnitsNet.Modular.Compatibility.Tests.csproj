@@ -12,10 +12,14 @@
     <PackageReference Include="xunit.runner.visualstudio" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="../Samples/UnitsNet.Modular.Compatibility.Generated.Sample/UnitsNet.Modular.Compatibility.Generated.Sample.csproj">
+    <!-- Fixture sources compile only into their aliased legacy and generated assemblies. -->
+    <Compile Remove="Fixtures/**/*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Fixtures/Generated/UnitsNet.Modular.Compatibility.GeneratedFixture.csproj">
       <Aliases>Generated</Aliases>
     </ProjectReference>
-    <ProjectReference Include="../Samples/UnitsNet.Modular.Compatibility.UnitsNet.Sample/UnitsNet.Modular.Compatibility.UnitsNet.Sample.csproj">
+    <ProjectReference Include="Fixtures/Legacy/UnitsNet.Modular.Compatibility.LegacyFixture.csproj">
       <Aliases>LegacyScenario</Aliases>
     </ProjectReference>
     <ProjectReference Include="../../UnitsNet/UnitsNet.csproj">

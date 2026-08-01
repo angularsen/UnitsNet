@@ -10,6 +10,14 @@
 
   <!-- Reproducible portable symbols with Source Link are part of the package quality contract. -->
   <PropertyGroup>
+    <!--
+      The Modular solution uses its platform selector for sample dependency modes. Keep every
+      managed project architecture-neutral while Rider and Visual Studio show the three modes
+      beside the ordinary Debug and Release configurations.
+    -->
+    <Platforms>ProjectReferences;LocalPackages;PublishedPackages</Platforms>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+
     <DebugType>portable</DebugType>
     <Deterministic>true</Deterministic>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>

@@ -1,0 +1,31 @@
+<!-- Licensed under MIT No Attribution, see LICENSE file at the root. -->
+<Project>
+  <!-- Continue the repository and UnitsNet.Modular build settings from the nearest parent file. -->
+  <Import Project="../Directory.Build.props" />
+
+  <PropertyGroup>
+    <!-- Direct project builds without a solution platform retain the contributor-friendly mode. -->
+    <UnitsNetModularSampleDependencyMode
+        Condition="'$(Platform)' == '' or '$(Platform)' == 'AnyCPU'">ProjectReferences</UnitsNetModularSampleDependencyMode>
+    <UnitsNetModularSampleDependencyMode
+        Condition="'$(UnitsNetModularSampleDependencyMode)' == ''">$(Platform)</UnitsNetModularSampleDependencyMode>
+
+    <!-- PackageReference versions are intentionally controlled by this sample infrastructure. -->
+    <CentralPackageFloatingVersionsEnabled>true</CentralPackageFloatingVersionsEnabled>
+    <UnitsNetModularSampleUsePackagedAnalyzer
+        Condition="'$(UnitsNetModularSampleDependencyMode)' != 'ProjectReferences'">true</UnitsNetModularSampleUsePackagedAnalyzer>
+
+    <RestoreSources
+        Condition="'$(UnitsNetModularSampleDependencyMode)' == 'LocalPackages'">$(RepositoryLocalNuGetFeed)</RestoreSources>
+    <RestoreSources
+        Condition="'$(UnitsNetModularSampleDependencyMode)' == 'PublishedPackages'">https://api.nuget.org/v3/index.json</RestoreSources>
+
+    <!--
+      Keep the conventional obj root excluded from source globs. The SDK appends the custom
+      platform to intermediate paths, while NuGet restore and final outputs are isolated here.
+    -->
+    <BaseIntermediateOutputPath>obj/</BaseIntermediateOutputPath>
+    <MSBuildProjectExtensionsPath>obj/$(UnitsNetModularSampleDependencyMode)/</MSBuildProjectExtensionsPath>
+    <OutputPath>$(MSBuildThisFileDirectory)..\..\Artifacts\$(MSBuildProjectName)\$(UnitsNetModularSampleDependencyMode)</OutputPath>
+  </PropertyGroup>
+</Project>

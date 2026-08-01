@@ -1,0 +1,36 @@
+<!-- Licensed under MIT No Attribution, see LICENSE file at the root. -->
+<Project>
+  <!-- Continue the analyzer dependency plumbing from UnitsNet.Modular. -->
+  <Import Project="../Directory.Build.targets" />
+
+  <PropertyGroup Condition="'$(EmitCompilerGeneratedFiles)' == 'true'">
+    <CompilerGeneratedFilesOutputPath>$(MSBuildProjectDirectory)/obj/$(UnitsNetModularSampleDependencyMode)/$(Configuration)/$(TargetFramework)/Generated</CompilerGeneratedFilesOutputPath>
+  </PropertyGroup>
+
+  <Import Project="UnitsNet.Modular.LocalPackages.targets"
+          Condition="'$(UsesUnitsNetModular)' == 'true' and '$(UnitsNetModularSampleDependencyMode)' == 'LocalPackages'" />
+
+  <ItemGroup Condition="'$(UsesUnitsNetModular)' == 'true' and '$(UnitsNetModularSampleDependencyMode)' == 'ProjectReferences'">
+    <ProjectReference Include="$(MSBuildThisFileDirectory)..\UnitsNet.Modular\UnitsNet.Modular.csproj" />
+    <ProjectReference Include="$(MSBuildThisFileDirectory)..\UnitsNet.Modular.Generator\UnitsNet.Modular.Generator.csproj"
+                      OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UsesUnitsNetModular)' == 'true' and '$(UnitsNetModularSampleDependencyMode)' == 'LocalPackages'">
+    <PackageVersion Update="UnitsNet.Modular" Version="$(UnitsNetModularSampleLocalVersion)" />
+    <PackageReference Include="UnitsNet.Modular" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UsesUnitsNetModular)' == 'true' and '$(UnitsNetModularSampleDependencyMode)' == 'PublishedPackages'">
+    <PackageReference Include="UnitsNet.Modular" />
+  </ItemGroup>
+
+  <Target Name="ValidateUnitsNetModularSampleDependencyMode"
+          BeforeTargets="PrepareForBuild;CollectPackageReferences;AssignProjectConfiguration"
+          Condition="'$(UnitsNetModularSampleDependencyMode)' != 'ProjectReferences' and
+                     '$(UnitsNetModularSampleDependencyMode)' != 'LocalPackages' and
+                     '$(UnitsNetModularSampleDependencyMode)' != 'PublishedPackages'">
+    <Error Text="Unsupported UnitsNet.Modular sample platform '$(Platform)'. Choose ProjectReferences, LocalPackages, or PublishedPackages." />
+  </Target>
+</Project>

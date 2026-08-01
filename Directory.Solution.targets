@@ -1,0 +1,18 @@
+<!-- Licensed under MIT No Attribution, see LICENSE file at the root. -->
+<Project>
+  <!--
+    A solution restore evaluates package-facing samples in parallel. Bootstrap the shared local
+    feed once so their per-project restore hooks observe completed package stamps instead of
+    launching concurrent dotnet pack processes.
+  -->
+  <Target Name="PrepareUnitsNetModularLocalPackagesForSolution"
+          BeforeTargets="_GenerateRestoreGraph;Restore"
+          Condition="'$(Platform)' == 'LocalPackages'">
+    <Message Importance="high" Text="Preparing the repository-local UnitsNet.Modular packages..." />
+    <MSBuild
+        Projects="$(MSBuildThisFileDirectory)UnitsNet.Modular/Samples/SharedUnitsLibrarySample/SharedUnitsLibrarySample.Units/SharedUnitsLibrarySample.Units.csproj"
+        Targets="_PackLocalUnitsNetModularPackages"
+        BuildInParallel="false"
+        Properties="Configuration=$(Configuration);Platform=LocalPackages;UnitsNetModularSampleUpdateLocalPackagesOnBuild=true" />
+  </Target>
+</Project>
