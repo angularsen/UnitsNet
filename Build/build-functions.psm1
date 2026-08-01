@@ -9,15 +9,7 @@ $toolsDir = Join-Path $root ".tools"
 $reportGeneratorName = if ([System.Environment]::OSVersion.Platform -eq [PlatformID]::Win32NT) { "reportgenerator.exe" } else { "reportgenerator" }
 $reportGenerator = Join-Path $toolsDir $reportGeneratorName
 
-$testProjectPaths = @(
-  "UnitsNet.Tests/UnitsNet.Tests.csproj",
-  "UnitsNet.GlobalSetup.DefaultFirst.Tests/UnitsNet.GlobalSetup.DefaultFirst.Tests.csproj",
-  "UnitsNet.GlobalSetup.Tests/UnitsNet.GlobalSetup.Tests.csproj",
-  "UnitsNet.NumberExtensions.Tests/UnitsNet.NumberExtensions.Tests.csproj",
-  "UnitsNet.NumberExtensions.CS14.Tests/UnitsNet.NumberExtensions.CS14.Tests.csproj",
-  "UnitsNet.Serialization.JsonNet.Tests/UnitsNet.Serialization.JsonNet.Tests.csproj",
-  "UnitsNet.Serialization.SystemTextJson.Tests/UnitsNet.Serialization.SystemTextJson.Tests.csproj"
-)
+. (Join-Path $PSScriptRoot "test-projects.ps1")
 
 function Remove-ArtifactsDir {
   if (Test-Path $artifactsDir) {
@@ -147,4 +139,4 @@ function Compress-ArtifactsAsZip {
   write-host -foreground blue "Zip artifacts...END`n"
 }
 
-export-modulemember -function Remove-ArtifactsDir, Update-GeneratedCode, Start-Build, Start-Tests, Start-PackNugets, Compress-ArtifactsAsZip -Variable testProjectPaths
+export-modulemember -function Remove-ArtifactsDir, Update-GeneratedCode, Start-Build, Start-Tests, Start-PackNugets, Compress-ArtifactsAsZip

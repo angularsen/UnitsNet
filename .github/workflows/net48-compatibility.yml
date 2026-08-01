@@ -50,7 +50,7 @@ jobs:
     - name: Run the complete net48 test suite with coverage
       shell: pwsh
       run: |
-        Import-Module ./Build/build-functions.psm1
+        . ./Build/test-projects.ps1
 
         New-Item -ItemType Directory -Force -Path Artifacts/Coverage | Out-Null
 
