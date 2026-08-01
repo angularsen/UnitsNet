@@ -1,9 +1,6 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 
 namespace UnitsNet.Modular.Generator;
 

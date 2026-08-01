@@ -1,9 +1,6 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text.Json;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -19,7 +16,7 @@ internal static class JsonDefinitionParser
         ReadCommentHandling = JsonCommentHandling.Skip,
     };
 
-    public static JsonDefinitionResult Parse(AdditionalText file, System.Threading.CancellationToken cancellationToken)
+    public static JsonDefinitionResult Parse(AdditionalText file, CancellationToken cancellationToken)
     {
         string json = file.GetText(cancellationToken)?.ToString() ?? string.Empty;
         return Parse(json, file.Path);

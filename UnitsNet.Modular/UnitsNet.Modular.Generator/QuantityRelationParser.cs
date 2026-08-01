@@ -1,8 +1,5 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json;
 using Microsoft.CodeAnalysis;
 
@@ -23,7 +20,7 @@ internal static class QuantityRelationParser
 
     public static RelationDefinitionResult Parse(
         AdditionalText file,
-        System.Threading.CancellationToken cancellationToken)
+        CancellationToken cancellationToken)
     {
         string json = file.GetText(cancellationToken)?.ToString() ?? string.Empty;
         return Parse(json, file.Path);

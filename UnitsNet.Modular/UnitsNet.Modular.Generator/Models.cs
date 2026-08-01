@@ -1,6 +1,5 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
-using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 

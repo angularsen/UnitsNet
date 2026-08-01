@@ -6,6 +6,8 @@ extern alias LegacyScenario;
 
 using System.Reflection;
 using Xunit;
+using GeneratedCompatibilityScenario = Generated::UnitsNet.Modular.Compatibility.CompatibilityScenario;
+using LegacyCompatibilityScenario = LegacyScenario::UnitsNet.Modular.Compatibility.CompatibilityScenario;
 
 namespace UnitsNet.Modular.Compatibility.Tests;
 
@@ -145,8 +147,8 @@ public sealed class CompatibilityTests
     [Fact]
     public void LinkedConsumer_ProducesSameOutput()
     {
-        string legacy = LegacyScenario::UnitsNet.Modular.Compatibility.CompatibilityScenario.Run();
-        string generated = Generated::UnitsNet.Modular.Compatibility.CompatibilityScenario.Run();
+        string legacy = LegacyCompatibilityScenario.Run();
+        string generated = GeneratedCompatibilityScenario.Run();
 
         Assert.Equal(legacy, generated);
     }

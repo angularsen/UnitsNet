@@ -1,6 +1,5 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
-using UnitsNet.Modular;
 using Catalog = UnitsNet.Modular.BuiltIns;
 
 namespace UnitsNet.Modular.Tests;

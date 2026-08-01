@@ -1,7 +1,6 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
 using System.ComponentModel;
-using UnitsNet;
 
 namespace UnitsNet.Modular.SourceGen;
 

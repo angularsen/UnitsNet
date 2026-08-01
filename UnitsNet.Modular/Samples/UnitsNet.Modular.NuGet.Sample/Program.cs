@@ -1,8 +1,6 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
 using NuGetConsumer.Measurements;
-using UnitsNet;
-using UnitsNet.Modular;
 using UnitsNet.Units;
 using Catalog = UnitsNet.Modular.BuiltIns;
 

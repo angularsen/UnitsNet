@@ -61,7 +61,7 @@ public sealed class QuantityInfo<TQuantity, TUnit> : IQuantityDescriptor
         UnitDescriptor[] descriptors = unitInfos
             .Select(unit => new UnitDescriptor(
                 unit.Value.ToString(),
-                System.Convert.ToInt32(unit.Value),
+                Convert.ToInt32(unit.Value),
                 unit.SingularName,
                 unit.PluralName,
                 unit.BaseUnits,

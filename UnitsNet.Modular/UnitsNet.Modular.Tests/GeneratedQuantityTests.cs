@@ -2,7 +2,6 @@
 
 using System.Text.Json;
 using Fictional.Measurements;
-using UnitsNet;
 using UnitsNet.Units;
 using Xunit;
 
@@ -256,9 +255,9 @@ public sealed class GeneratedQuantityTests
         Assert.Null(typeof(Length).GetProperty("UnitInfos", publicMembers));
         Assert.Null(typeof(Length).GetProperty("QuantityInfo", publicMembers));
 
-        AssertHidden(typeof(global::UnitsNet.Modular.SourceGen.IQuantityMetadata<>));
-        AssertHidden(typeof(global::UnitsNet.Modular.SourceGen.QuantityOperations));
-        AssertHidden(typeof(global::UnitsNet.Modular.SourceGen.QuantityJsonConverter<>));
+        AssertHidden(typeof(SourceGen.IQuantityMetadata<>));
+        AssertHidden(typeof(SourceGen.QuantityOperations));
+        AssertHidden(typeof(SourceGen.QuantityJsonConverter<>));
         AssertHidden(typeof(QuantityInfo<Length, LengthUnit>).GetConstructors().Single());
         AssertHidden(typeof(QuantityInfo<Length, LengthUnit>).GetProperty("BaseUnitInfo")!);
         AssertHidden(typeof(QuantityInfo<Length, LengthUnit>).GetProperty("UnitInfos")!);
@@ -284,10 +283,10 @@ public sealed class GeneratedQuantityTests
         Assert.Equal("UnitsNet", typeof(QuantityRegistry).Namespace);
         Assert.Equal(
             "UnitsNet.Modular.SourceGen",
-            typeof(global::UnitsNet.Modular.SourceGen.IQuantityMetadata<>).Namespace);
+            typeof(SourceGen.IQuantityMetadata<>).Namespace);
         Assert.Equal(
             "UnitsNet.Modular.SourceGen",
-            typeof(global::UnitsNet.Modular.SourceGen.QuantityOperations).Namespace);
+            typeof(SourceGen.QuantityOperations).Namespace);
     }
 
     [Fact]

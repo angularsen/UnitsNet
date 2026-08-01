@@ -1,7 +1,5 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
-using UnitsNet;
-
 namespace UnitsNet;
 
 /// <summary>A minimal, type-erased quantity value contract.</summary>

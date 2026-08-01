@@ -1,8 +1,5 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Reflection;
 
 namespace UnitsNet.Modular.Generator;

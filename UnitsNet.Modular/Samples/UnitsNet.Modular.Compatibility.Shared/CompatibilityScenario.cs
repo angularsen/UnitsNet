@@ -1,7 +1,6 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
 using System.Globalization;
-using UnitsNet;
 using UnitsNet.Units;
 
 namespace UnitsNet.Modular.Compatibility;
