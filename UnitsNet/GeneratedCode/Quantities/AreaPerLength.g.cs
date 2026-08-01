@@ -20,9 +20,7 @@
 using System.Globalization;
 using System.Resources;
 using System.Runtime.Serialization;
-#if NET
-using System.Numerics;
-#endif
+using UnitsNet.Debug;
 
 #nullable enable
 
@@ -35,11 +33,12 @@ namespace UnitsNet
     ///     The magnitude of area per unit length, typically used in structural engineering to specify distributed reinforcement.
     /// </summary>
     [DataContract]
-    [DebuggerTypeProxy(typeof(QuantityDisplay))]
+    [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
+    [DebuggerTypeProxy(typeof(QuantityDebugProxy))]
     public readonly partial struct AreaPerLength :
         ILinearQuantity<AreaPerLength, AreaPerLengthUnit>,
 #if NET7_0_OR_GREATER
-        IDivisionOperators<AreaPerLength, AreaPerLength, double>,
+        IDivisionOperators<AreaPerLength, AreaPerLength, QuantityValue>,
         IMultiplyOperators<AreaPerLength, Length, Area>,
         IComparisonOperators<AreaPerLength, AreaPerLength, bool>,
         IParsable<AreaPerLength>,
@@ -53,7 +52,7 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         [DataMember(Name = "Value", Order = 1)]
-        private readonly double _value;
+        private readonly QuantityValue _value;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -103,7 +102,7 @@ namespace UnitsNet
             }
 
             /// <summary>
-            ///     The <see cref="BaseDimensions" /> for <see cref="AreaPerLength"/> is [L].
+            ///     The <see cref="BaseDimensions" /> for <see cref="AreaPerLength"/> is L.
             /// </summary>
             public static BaseDimensions DefaultBaseDimensions { get; } = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
 
@@ -118,20 +117,28 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{AreaPerLengthUnit}"/> representing the default unit mappings for AreaPerLength.</returns>
             public static IEnumerable<UnitDefinition<AreaPerLengthUnit>> GetDefaultMappings()
             {
-                yield return new (AreaPerLengthUnit.SquareCentimeterPerMeter, "SquareCentimeterPerMeter", "SquareCentimetersPerMeter", BaseUnits.Undefined);
-                yield return new (AreaPerLengthUnit.SquareFootPerFoot, "SquareFootPerFoot", "SquareFeetPerFoot", BaseUnits.Undefined);
-                yield return new (AreaPerLengthUnit.SquareInchPerFoot, "SquareInchPerFoot", "SquareInchesPerFoot", BaseUnits.Undefined);
-                yield return new (AreaPerLengthUnit.SquareInchPerInch, "SquareInchPerInch", "SquareInchesPerInch", BaseUnits.Undefined);
+                yield return new (AreaPerLengthUnit.SquareCentimeterPerMeter, "SquareCentimeterPerMeter", "SquareCentimetersPerMeter", BaseUnits.Undefined,
+                     10000
+                );
+                yield return new (AreaPerLengthUnit.SquareFootPerFoot, "SquareFootPerFoot", "SquareFeetPerFoot", BaseUnits.Undefined,
+                     new QuantityValue(1250, 381)
+                );
+                yield return new (AreaPerLengthUnit.SquareInchPerFoot, "SquareInchPerFoot", "SquareInchesPerFoot", BaseUnits.Undefined,
+                     new QuantityValue(60000, 127)
+                );
+                yield return new (AreaPerLengthUnit.SquareInchPerInch, "SquareInchPerInch", "SquareInchesPerInch", BaseUnits.Undefined,
+                     new QuantityValue(5000, 127)
+                );
                 yield return new (AreaPerLengthUnit.SquareMeterPerMeter, "SquareMeterPerMeter", "SquareMetersPerMeter", new BaseUnits(length: LengthUnit.Meter));
-                yield return new (AreaPerLengthUnit.SquareMillimeterPerMeter, "SquareMillimeterPerMeter", "SquareMillimetersPerMeter", BaseUnits.Undefined);
+                yield return new (AreaPerLengthUnit.SquareMillimeterPerMeter, "SquareMillimeterPerMeter", "SquareMillimetersPerMeter", BaseUnits.Undefined,
+                     1000000
+                );
             }
         }
 
         static AreaPerLength()
         {
-            Info = AreaPerLengthInfo.CreateDefault();
-            DefaultConversionFunctions = new UnitConverter();
-            RegisterDefaultConversions(DefaultConversionFunctions);
+            Info = UnitsNetSetup.CreateQuantityInfo(AreaPerLengthInfo.CreateDefault);
         }
 
         /// <summary>
@@ -139,7 +146,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">The numeric value to construct this quantity with.</param>
         /// <param name="unit">The unit representation to construct this quantity with.</param>
-        public AreaPerLength(double value, AreaPerLengthUnit unit)
+        public AreaPerLength(QuantityValue value, AreaPerLengthUnit unit)
         {
             _value = value;
             _unit = unit;
@@ -153,7 +160,7 @@ namespace UnitsNet
         /// <param name="unitSystem">The unit system to create the quantity with.</param>
         /// <exception cref="ArgumentNullException">The given <see cref="UnitSystem"/> is null.</exception>
         /// <exception cref="ArgumentException">No unit was found for the given <see cref="UnitSystem"/>.</exception>
-        public AreaPerLength(double value, UnitSystem unitSystem)
+        public AreaPerLength(QuantityValue value, UnitSystem unitSystem)
         {
             _value = value;
             _unit = Info.GetDefaultUnit(unitSystem);
@@ -164,7 +171,8 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="UnitConverter" /> containing the default generated conversion functions for <see cref="AreaPerLength" /> instances.
         /// </summary>
-        public static UnitConverter DefaultConversionFunctions { get; }
+        [Obsolete("Replaced by UnitConverter.Default")]
+        public static UnitConverter DefaultConversionFunctions => UnitConverter.Default;
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         public static QuantityInfo<AreaPerLength, AreaPerLengthUnit> Info { get; }
@@ -193,10 +201,8 @@ namespace UnitsNet
 
         #region Properties
 
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => _value;
+        /// <inheritdoc />
+        public QuantityValue Value => _value;
 
         /// <inheritdoc />
         public AreaPerLengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
@@ -230,62 +236,38 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaPerLengthUnit.SquareCentimeterPerMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaPerLengthUnit.SquareCentimeterPerMeter"/>
         /// </summary>
-        public double SquareCentimetersPerMeter => As(AreaPerLengthUnit.SquareCentimeterPerMeter);
+        public QuantityValue SquareCentimetersPerMeter => this.As(AreaPerLengthUnit.SquareCentimeterPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaPerLengthUnit.SquareFootPerFoot"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaPerLengthUnit.SquareFootPerFoot"/>
         /// </summary>
-        public double SquareFeetPerFoot => As(AreaPerLengthUnit.SquareFootPerFoot);
+        public QuantityValue SquareFeetPerFoot => this.As(AreaPerLengthUnit.SquareFootPerFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaPerLengthUnit.SquareInchPerFoot"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaPerLengthUnit.SquareInchPerFoot"/>
         /// </summary>
-        public double SquareInchesPerFoot => As(AreaPerLengthUnit.SquareInchPerFoot);
+        public QuantityValue SquareInchesPerFoot => this.As(AreaPerLengthUnit.SquareInchPerFoot);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaPerLengthUnit.SquareInchPerInch"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaPerLengthUnit.SquareInchPerInch"/>
         /// </summary>
-        public double SquareInchesPerInch => As(AreaPerLengthUnit.SquareInchPerInch);
+        public QuantityValue SquareInchesPerInch => this.As(AreaPerLengthUnit.SquareInchPerInch);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaPerLengthUnit.SquareMeterPerMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaPerLengthUnit.SquareMeterPerMeter"/>
         /// </summary>
-        public double SquareMetersPerMeter => As(AreaPerLengthUnit.SquareMeterPerMeter);
+        public QuantityValue SquareMetersPerMeter => this.As(AreaPerLengthUnit.SquareMeterPerMeter);
 
         /// <summary>
-        ///     Gets a <see cref="double"/> value of this quantity converted into <see cref="AreaPerLengthUnit.SquareMillimeterPerMeter"/>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="AreaPerLengthUnit.SquareMillimeterPerMeter"/>
         /// </summary>
-        public double SquareMillimetersPerMeter => As(AreaPerLengthUnit.SquareMillimeterPerMeter);
+        public QuantityValue SquareMillimetersPerMeter => this.As(AreaPerLengthUnit.SquareMillimeterPerMeter);
 
         #endregion
 
         #region Static Methods
-
-        /// <summary>
-        /// Registers the default conversion functions in the given <see cref="UnitConverter"/> instance.
-        /// </summary>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to register the default conversion functions in.</param>
-        internal static void RegisterDefaultConversions(UnitConverter unitConverter)
-        {
-            // Register in unit converter: AreaPerLengthUnit -> BaseUnit
-            unitConverter.SetConversionFunction<AreaPerLength>(AreaPerLengthUnit.SquareCentimeterPerMeter, AreaPerLengthUnit.SquareMeterPerMeter, quantity => quantity.ToUnit(AreaPerLengthUnit.SquareMeterPerMeter));
-            unitConverter.SetConversionFunction<AreaPerLength>(AreaPerLengthUnit.SquareFootPerFoot, AreaPerLengthUnit.SquareMeterPerMeter, quantity => quantity.ToUnit(AreaPerLengthUnit.SquareMeterPerMeter));
-            unitConverter.SetConversionFunction<AreaPerLength>(AreaPerLengthUnit.SquareInchPerFoot, AreaPerLengthUnit.SquareMeterPerMeter, quantity => quantity.ToUnit(AreaPerLengthUnit.SquareMeterPerMeter));
-            unitConverter.SetConversionFunction<AreaPerLength>(AreaPerLengthUnit.SquareInchPerInch, AreaPerLengthUnit.SquareMeterPerMeter, quantity => quantity.ToUnit(AreaPerLengthUnit.SquareMeterPerMeter));
-            unitConverter.SetConversionFunction<AreaPerLength>(AreaPerLengthUnit.SquareMillimeterPerMeter, AreaPerLengthUnit.SquareMeterPerMeter, quantity => quantity.ToUnit(AreaPerLengthUnit.SquareMeterPerMeter));
-
-            // Register in unit converter: BaseUnit <-> BaseUnit
-            unitConverter.SetConversionFunction<AreaPerLength>(AreaPerLengthUnit.SquareMeterPerMeter, AreaPerLengthUnit.SquareMeterPerMeter, quantity => quantity);
-
-            // Register in unit converter: BaseUnit -> AreaPerLengthUnit
-            unitConverter.SetConversionFunction<AreaPerLength>(AreaPerLengthUnit.SquareMeterPerMeter, AreaPerLengthUnit.SquareCentimeterPerMeter, quantity => quantity.ToUnit(AreaPerLengthUnit.SquareCentimeterPerMeter));
-            unitConverter.SetConversionFunction<AreaPerLength>(AreaPerLengthUnit.SquareMeterPerMeter, AreaPerLengthUnit.SquareFootPerFoot, quantity => quantity.ToUnit(AreaPerLengthUnit.SquareFootPerFoot));
-            unitConverter.SetConversionFunction<AreaPerLength>(AreaPerLengthUnit.SquareMeterPerMeter, AreaPerLengthUnit.SquareInchPerFoot, quantity => quantity.ToUnit(AreaPerLengthUnit.SquareInchPerFoot));
-            unitConverter.SetConversionFunction<AreaPerLength>(AreaPerLengthUnit.SquareMeterPerMeter, AreaPerLengthUnit.SquareInchPerInch, quantity => quantity.ToUnit(AreaPerLengthUnit.SquareInchPerInch));
-            unitConverter.SetConversionFunction<AreaPerLength>(AreaPerLengthUnit.SquareMeterPerMeter, AreaPerLengthUnit.SquareMillimeterPerMeter, quantity => quantity.ToUnit(AreaPerLengthUnit.SquareMillimeterPerMeter));
-        }
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -315,7 +297,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaPerLength"/> from <see cref="AreaPerLengthUnit.SquareCentimeterPerMeter"/>.
         /// </summary>
-        public static AreaPerLength FromSquareCentimetersPerMeter(double value)
+        public static AreaPerLength FromSquareCentimetersPerMeter(QuantityValue value)
         {
             return new AreaPerLength(value, AreaPerLengthUnit.SquareCentimeterPerMeter);
         }
@@ -323,7 +305,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaPerLength"/> from <see cref="AreaPerLengthUnit.SquareFootPerFoot"/>.
         /// </summary>
-        public static AreaPerLength FromSquareFeetPerFoot(double value)
+        public static AreaPerLength FromSquareFeetPerFoot(QuantityValue value)
         {
             return new AreaPerLength(value, AreaPerLengthUnit.SquareFootPerFoot);
         }
@@ -331,7 +313,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaPerLength"/> from <see cref="AreaPerLengthUnit.SquareInchPerFoot"/>.
         /// </summary>
-        public static AreaPerLength FromSquareInchesPerFoot(double value)
+        public static AreaPerLength FromSquareInchesPerFoot(QuantityValue value)
         {
             return new AreaPerLength(value, AreaPerLengthUnit.SquareInchPerFoot);
         }
@@ -339,7 +321,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaPerLength"/> from <see cref="AreaPerLengthUnit.SquareInchPerInch"/>.
         /// </summary>
-        public static AreaPerLength FromSquareInchesPerInch(double value)
+        public static AreaPerLength FromSquareInchesPerInch(QuantityValue value)
         {
             return new AreaPerLength(value, AreaPerLengthUnit.SquareInchPerInch);
         }
@@ -347,7 +329,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaPerLength"/> from <see cref="AreaPerLengthUnit.SquareMeterPerMeter"/>.
         /// </summary>
-        public static AreaPerLength FromSquareMetersPerMeter(double value)
+        public static AreaPerLength FromSquareMetersPerMeter(QuantityValue value)
         {
             return new AreaPerLength(value, AreaPerLengthUnit.SquareMeterPerMeter);
         }
@@ -355,7 +337,7 @@ namespace UnitsNet
         /// <summary>
         ///     Creates a <see cref="AreaPerLength"/> from <see cref="AreaPerLengthUnit.SquareMillimeterPerMeter"/>.
         /// </summary>
-        public static AreaPerLength FromSquareMillimetersPerMeter(double value)
+        public static AreaPerLength FromSquareMillimetersPerMeter(QuantityValue value)
         {
             return new AreaPerLength(value, AreaPerLengthUnit.SquareMillimeterPerMeter);
         }
@@ -366,7 +348,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AreaPerLength unit value.</returns>
-        public static AreaPerLength From(double value, AreaPerLengthUnit fromUnit)
+        public static AreaPerLength From(QuantityValue value, AreaPerLengthUnit fromUnit)
         {
             return new AreaPerLength(value, fromUnit);
         }
@@ -427,10 +409,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static AreaPerLength Parse(string str, IFormatProvider? provider)
         {
-            return UnitsNetSetup.Default.QuantityParser.Parse<AreaPerLength, AreaPerLengthUnit>(
-                str,
-                provider,
-                From);
+            return QuantityParser.Default.Parse<AreaPerLength, AreaPerLengthUnit>(str, provider, From);
         }
 
         /// <summary>
@@ -458,11 +437,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParse([NotNullWhen(true)]string? str, IFormatProvider? provider, out AreaPerLength result)
         {
-            return UnitsNetSetup.Default.QuantityParser.TryParse<AreaPerLength, AreaPerLengthUnit>(
-                str,
-                provider,
-                From,
-                out result);
+            return QuantityParser.Default.TryParse<AreaPerLength, AreaPerLengthUnit>(str, provider, From, out result);
         }
 
         /// <summary>
@@ -483,7 +458,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
@@ -494,7 +469,7 @@ namespace UnitsNet
             return UnitParser.Default.Parse(str, Info.UnitInfos, provider).Value;
         }
 
-        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider,out UnitsNet.Units.AreaPerLengthUnit)"/>
+        /// <inheritdoc cref="TryParseUnit(string,IFormatProvider?,out UnitsNet.Units.AreaPerLengthUnit)"/>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, out AreaPerLengthUnit unit)
         {
             return TryParseUnit(str, null, out unit);
@@ -509,7 +484,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.TryParseUnit("m", CultureInfo.GetCultureInfo("en-US"));
         /// </example>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
+        /// <param name="provider">Format to use when parsing the unit. Defaults to <see cref="CultureInfo.CurrentCulture" /> if null.</param>
         public static bool TryParseUnit([NotNullWhen(true)]string? str, IFormatProvider? provider, out AreaPerLengthUnit unit)
         {
             return UnitParser.Default.TryParse(str, Info, provider, out unit);
@@ -528,35 +503,35 @@ namespace UnitsNet
         /// <summary>Get <see cref="AreaPerLength"/> from adding two <see cref="AreaPerLength"/>.</summary>
         public static AreaPerLength operator +(AreaPerLength left, AreaPerLength right)
         {
-            return new AreaPerLength(left.Value + right.ToUnit(left.Unit).Value, left.Unit);
+            return new AreaPerLength(left.Value + right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="AreaPerLength"/> from subtracting two <see cref="AreaPerLength"/>.</summary>
         public static AreaPerLength operator -(AreaPerLength left, AreaPerLength right)
         {
-            return new AreaPerLength(left.Value - right.ToUnit(left.Unit).Value, left.Unit);
+            return new AreaPerLength(left.Value - right.As(left.Unit), left.Unit);
         }
 
         /// <summary>Get <see cref="AreaPerLength"/> from multiplying value and <see cref="AreaPerLength"/>.</summary>
-        public static AreaPerLength operator *(double left, AreaPerLength right)
+        public static AreaPerLength operator *(QuantityValue left, AreaPerLength right)
         {
             return new AreaPerLength(left * right.Value, right.Unit);
         }
 
         /// <summary>Get <see cref="AreaPerLength"/> from multiplying value and <see cref="AreaPerLength"/>.</summary>
-        public static AreaPerLength operator *(AreaPerLength left, double right)
+        public static AreaPerLength operator *(AreaPerLength left, QuantityValue right)
         {
             return new AreaPerLength(left.Value * right, left.Unit);
         }
 
         /// <summary>Get <see cref="AreaPerLength"/> from dividing <see cref="AreaPerLength"/> by value.</summary>
-        public static AreaPerLength operator /(AreaPerLength left, double right)
+        public static AreaPerLength operator /(AreaPerLength left, QuantityValue right)
         {
             return new AreaPerLength(left.Value / right, left.Unit);
         }
 
         /// <summary>Get ratio value from dividing <see cref="AreaPerLength"/> by <see cref="AreaPerLength"/>.</summary>
-        public static double operator /(AreaPerLength left, AreaPerLength right)
+        public static QuantityValue operator /(AreaPerLength left, AreaPerLength right)
         {
             return left.SquareMetersPerMeter / right.SquareMetersPerMeter;
         }
@@ -578,65 +553,84 @@ namespace UnitsNet
         /// <summary>Returns true if less or equal to.</summary>
         public static bool operator <=(AreaPerLength left, AreaPerLength right)
         {
-            return left.Value <= right.ToUnit(left.Unit).Value;
+            return left.Value <= right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than or equal to.</summary>
         public static bool operator >=(AreaPerLength left, AreaPerLength right)
         {
-            return left.Value >= right.ToUnit(left.Unit).Value;
+            return left.Value >= right.As(left.Unit);
         }
 
         /// <summary>Returns true if less than.</summary>
         public static bool operator <(AreaPerLength left, AreaPerLength right)
         {
-            return left.Value < right.ToUnit(left.Unit).Value;
+            return left.Value < right.As(left.Unit);
         }
 
         /// <summary>Returns true if greater than.</summary>
         public static bool operator >(AreaPerLength left, AreaPerLength right)
         {
-            return left.Value > right.ToUnit(left.Unit).Value;
+            return left.Value > right.As(left.Unit);
         }
 
-        // We use obsolete attribute to communicate the preferred equality members to use.
-        // CS0809: Obsolete member 'memberA' overrides non-obsolete member 'memberB'.
-        #pragma warning disable CS0809
-
-        /// <summary>Indicates strict equality of two <see cref="AreaPerLength"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(AreaPerLength other, AreaPerLength tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>
+        ///     Determines whether two <see cref="AreaPerLength"/> instances are equal.
+        /// </summary>
+        /// <remarks>
+        ///     Equality is evaluated in a unit-aware manner. The right-hand operand is converted to the unit of the left-hand
+        ///     operand and then the underlying numeric values are compared.
+        ///     This means two quantities with numerically equal values but different units will be considered equal.
+        ///     The operator delegates to <see cref="Equals(AreaPerLength)"/>, which implements this conversion-and-compare logic.
+        /// </remarks>
         public static bool operator ==(AreaPerLength left, AreaPerLength right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>Indicates strict inequality of two <see cref="AreaPerLength"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("For null checks, use `x is null` syntax to not invoke overloads. For equality checks, use Equals(AreaPerLength other, AreaPerLength tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>
+        ///     Determines whether two <see cref="AreaPerLength"/> instances are not equal.
+        /// </summary>
+        /// <remarks>
+        ///     This operator is the logical negation of <see cref="operator ==(AreaPerLength,AreaPerLength)"/>.
+        ///     See that operator (and <see cref="Equals(AreaPerLength)"/>) for details on how equality is evaluated
+        ///     (i.e., by converting one operand to the other's unit and comparing their numeric values).
+        /// </remarks>
         public static bool operator !=(AreaPerLength left, AreaPerLength right)
         {
             return !(left == right);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="AreaPerLength"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(AreaPerLength other, AreaPerLength tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>
+        ///     Determines whether the specified object is equal to the current <see cref="AreaPerLength"/> instance.
+        /// </summary>
+        /// <remarks>
+        ///     Returns <c>false</c> if <paramref name="obj"/> is <c>null</c> or not a <see cref="AreaPerLength"/>.
+        ///     When <paramref name="obj"/> is a <see cref="AreaPerLength"/>, this method delegates to
+        ///     <see cref="Equals(AreaPerLength)"/>, which performs a unit-aware comparison by converting the other
+        ///     instance to this instance's unit before comparing numeric values.
+        /// </remarks>
         public override bool Equals(object? obj)
         {
-            if (obj is null || !(obj is AreaPerLength otherQuantity))
+            if (obj is not AreaPerLength otherQuantity)
                 return false;
 
             return Equals(otherQuantity);
         }
 
         /// <inheritdoc />
-        /// <summary>Indicates strict equality of two <see cref="AreaPerLength"/> quantities, where both <see cref="Value" /> and <see cref="Unit" /> are exactly equal.</summary>
-        [Obsolete("Use Equals(AreaPerLength other, AreaPerLength tolerance) instead, to check equality across units and to specify the max tolerance for rounding errors due to floating-point arithmetic when converting between units.")]
+        /// <summary>
+        ///     Determines whether the current instance is equal to another <see cref="AreaPerLength"/> instance.
+        /// </summary>
+        /// <remarks>
+        ///     Comparison is performed by converting <paramref name="other"/> to this instance's unit and then comparing the underlying numeric values.
+        ///     This makes two quantities equal even when their units differ, provided the converted numeric values are equal.
+        /// </remarks>
         public bool Equals(AreaPerLength other)
         {
-            return new { Value, Unit }.Equals(new { other.Value, other.Unit });
+            return _value.Equals(other.As(this.Unit));
         }
-
-        #pragma warning restore CS0809
 
         /// <summary>
         ///     Returns the hash code for this instance.
@@ -644,31 +638,26 @@ namespace UnitsNet
         /// <returns>A hash code for the current AreaPerLength.</returns>
         public override int GetHashCode()
         {
-            return Comparison.GetHashCode(Unit, Value);
+            return Comparison.GetHashCode(typeof(AreaPerLength), this.As(BaseUnit));
         }
 
-        /// <summary>Compares the current <see cref="AreaPerLength"/> with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <inheritdoc  cref="CompareTo(AreaPerLength)" />
         /// <param name="obj">An object to compare with this instance.</param>
         /// <exception cref="T:System.ArgumentException">
         ///    <paramref name="obj" /> is not the same type as this instance.
         /// </exception>
-        /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
-        ///     <list type="table">
-        ///         <listheader><term> Value</term><description> Meaning</description></listheader>
-        ///         <item><term> Less than zero</term><description> This instance precedes <paramref name="obj" /> in the sort order.</description></item>
-        ///         <item><term> Zero</term><description> This instance occurs in the same position in the sort order as <paramref name="obj" />.</description></item>
-        ///         <item><term> Greater than zero</term><description> This instance follows <paramref name="obj" /> in the sort order.</description></item>
-        ///     </list>
-        /// </returns>
         public int CompareTo(object? obj)
         {
-            if (obj is null) throw new ArgumentNullException(nameof(obj));
-            if (!(obj is AreaPerLength otherQuantity)) throw new ArgumentException("Expected type AreaPerLength.", nameof(obj));
+            if (obj is not AreaPerLength otherQuantity)
+                throw obj is null ? new ArgumentNullException(nameof(obj)) : ExceptionHelper.CreateArgumentException<AreaPerLength>(obj, nameof(obj));
 
             return CompareTo(otherQuantity);
         }
 
-        /// <summary>Compares the current <see cref="AreaPerLength"/> with another <see cref="AreaPerLength"/> and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other when converted to the same unit.</summary>
+        /// <summary>
+        ///     Compares the current <see cref="AreaPerLength"/> with another <see cref="AreaPerLength"/> and returns an integer that indicates
+        ///     whether the current instance precedes, follows, or occurs in the same position in the sort order as the other quantity, when converted to the same unit.
+        /// </summary>
         /// <param name="other">A quantity to compare with this instance.</param>
         /// <returns>A value that indicates the relative order of the quantities being compared. The return value has these meanings:
         ///     <list type="table">
@@ -680,138 +669,8 @@ namespace UnitsNet
         /// </returns>
         public int CompareTo(AreaPerLength other)
         {
-            return _value.CompareTo(other.ToUnit(this.Unit).Value);
+            return _value.CompareTo(other.As(this.Unit));
         }
-
-        #endregion
-
-        #region Conversion Methods
-
-        /// <summary>
-        ///     Convert to the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <returns>Value converted to the specified unit.</returns>
-        public double As(AreaPerLengthUnit unit)
-        {
-            if (Unit == unit)
-                return Value;
-
-            return ToUnit(unit).Value;
-        }
-
-        /// <inheritdoc cref="IQuantity.As(UnitKey)"/>
-        public double As(UnitKey unitKey)
-        {
-            return As(unitKey.ToUnit<AreaPerLengthUnit>());
-        }
-
-        /// <summary>
-        ///     Converts this AreaPerLength to another AreaPerLength with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <returns>A AreaPerLength with the specified unit.</returns>
-        public AreaPerLength ToUnit(AreaPerLengthUnit unit)
-        {
-            return ToUnit(unit, DefaultConversionFunctions);
-        }
-
-        /// <summary>
-        ///     Converts this <see cref="AreaPerLength"/> to another <see cref="AreaPerLength"/> using the given <paramref name="unitConverter"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="unitConverter">The <see cref="UnitConverter"/> to use for the conversion.</param>
-        /// <returns>A AreaPerLength with the specified unit.</returns>
-        public AreaPerLength ToUnit(AreaPerLengthUnit unit, UnitConverter unitConverter)
-        {
-            if (TryToUnit(unit, out var converted))
-            {
-                // Try to convert using the auto-generated conversion methods.
-                return converted!.Value;
-            }
-            else if (unitConverter.TryGetConversionFunction((typeof(AreaPerLength), Unit, typeof(AreaPerLength), unit), out var conversionFunction))
-            {
-                // See if the unit converter has an extensibility conversion registered.
-                return (AreaPerLength)conversionFunction(this);
-            }
-            else if (Unit != BaseUnit)
-            {
-                // Conversion to requested unit NOT found. Try to convert to BaseUnit, and then from BaseUnit to requested unit.
-                var inBaseUnits = ToUnit(BaseUnit);
-                return inBaseUnits.ToUnit(unit);
-            }
-            else
-            {
-                // No possible conversion
-                throw new UnitNotFoundException($"Can't convert {Unit} to {unit}.");
-            }
-        }
-
-        /// <summary>
-        ///     Attempts to convert this <see cref="AreaPerLength"/> to another <see cref="AreaPerLength"/> with the unit representation <paramref name="unit" />.
-        /// </summary>
-        /// <param name="unit">The unit to convert to.</param>
-        /// <param name="converted">The converted <see cref="AreaPerLength"/> in <paramref name="unit"/>, if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        private bool TryToUnit(AreaPerLengthUnit unit, [NotNullWhen(true)] out AreaPerLength? converted)
-        {
-            if (Unit == unit)
-            {
-                converted = this;
-                return true;
-            }
-
-            AreaPerLength? convertedOrNull = (Unit, unit) switch
-            {
-                // AreaPerLengthUnit -> BaseUnit
-                (AreaPerLengthUnit.SquareCentimeterPerMeter, AreaPerLengthUnit.SquareMeterPerMeter) => new AreaPerLength(_value * 1e-4, AreaPerLengthUnit.SquareMeterPerMeter),
-                (AreaPerLengthUnit.SquareFootPerFoot, AreaPerLengthUnit.SquareMeterPerMeter) => new AreaPerLength(_value * 0.09290304 / 0.3048, AreaPerLengthUnit.SquareMeterPerMeter),
-                (AreaPerLengthUnit.SquareInchPerFoot, AreaPerLengthUnit.SquareMeterPerMeter) => new AreaPerLength(_value * 0.00064516 / 0.3048, AreaPerLengthUnit.SquareMeterPerMeter),
-                (AreaPerLengthUnit.SquareInchPerInch, AreaPerLengthUnit.SquareMeterPerMeter) => new AreaPerLength(_value * 0.00064516 / 0.0254, AreaPerLengthUnit.SquareMeterPerMeter),
-                (AreaPerLengthUnit.SquareMillimeterPerMeter, AreaPerLengthUnit.SquareMeterPerMeter) => new AreaPerLength(_value * 1e-6, AreaPerLengthUnit.SquareMeterPerMeter),
-
-                // BaseUnit -> AreaPerLengthUnit
-                (AreaPerLengthUnit.SquareMeterPerMeter, AreaPerLengthUnit.SquareCentimeterPerMeter) => new AreaPerLength(_value / 1e-4, AreaPerLengthUnit.SquareCentimeterPerMeter),
-                (AreaPerLengthUnit.SquareMeterPerMeter, AreaPerLengthUnit.SquareFootPerFoot) => new AreaPerLength(_value * 0.3048 / 0.09290304, AreaPerLengthUnit.SquareFootPerFoot),
-                (AreaPerLengthUnit.SquareMeterPerMeter, AreaPerLengthUnit.SquareInchPerFoot) => new AreaPerLength(_value * 0.3048 / 0.00064516, AreaPerLengthUnit.SquareInchPerFoot),
-                (AreaPerLengthUnit.SquareMeterPerMeter, AreaPerLengthUnit.SquareInchPerInch) => new AreaPerLength(_value * 0.0254 / 0.00064516, AreaPerLengthUnit.SquareInchPerInch),
-                (AreaPerLengthUnit.SquareMeterPerMeter, AreaPerLengthUnit.SquareMillimeterPerMeter) => new AreaPerLength(_value / 1e-6, AreaPerLengthUnit.SquareMillimeterPerMeter),
-
-                _ => null
-            };
-
-            if (convertedOrNull is null)
-            {
-                converted = default;
-                return false;
-            }
-
-            converted = convertedOrNull.Value;
-            return true;
-        }
-
-        #region Explicit implementations
-
-        double IQuantity.As(Enum unit)
-        {
-            if (unit is not AreaPerLengthUnit typedUnit)
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaPerLengthUnit)} is supported.", nameof(unit));
-
-            return As(typedUnit);
-        }
-
-        /// <inheritdoc />
-        IQuantity IQuantity.ToUnit(Enum unit)
-        {
-            if (!(unit is AreaPerLengthUnit typedUnit))
-                throw new ArgumentException($"The given unit is of type {unit.GetType()}. Only {typeof(AreaPerLengthUnit)} is supported.", nameof(unit));
-
-            return ToUnit(typedUnit, DefaultConversionFunctions);
-        }
-
-        /// <inheritdoc />
-        IQuantity<AreaPerLengthUnit> IQuantity<AreaPerLengthUnit>.ToUnit(AreaPerLengthUnit unit) => ToUnit(unit);
-
-        #endregion
 
         #endregion
 
@@ -826,7 +685,7 @@ namespace UnitsNet
             return ToString(null, null);
         }
 
-        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string?, IFormatProvider?)"/>
+        /// <inheritdoc cref="QuantityFormatter.Format{TQuantity}(TQuantity, string, IFormatProvider)"/>
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>

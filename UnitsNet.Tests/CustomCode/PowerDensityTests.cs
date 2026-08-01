@@ -77,5 +77,18 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double BtusPerSecondCubicInchInOneWattPerCubicMeter => 1.5531939811e-8;
         protected override double BtusPerSecondCubicFootInOneWattPerCubicMeter => 2.6839191993e-5;
+
+        [Fact]
+        public void PowerDensityTimesVolumeEqualsPower()
+        {
+            PowerDensity powerDensity = PowerDensity.FromWattsPerCubicMeter(2);
+            Volume volume = Volume.FromCubicMeters(3);
+            Power expected = Power.FromWatts(6);
+
+            Assert.Equal(expected, powerDensity * volume);
+            Assert.Equal(expected, volume * powerDensity);
+            Assert.Equal(volume, expected / powerDensity);
+            Assert.Equal(powerDensity, expected / volume);
+        }
     }
 }

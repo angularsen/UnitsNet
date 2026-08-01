@@ -25,8 +25,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EmptyOrNullFormatStringEqualsGFormat()
         {
-            Assert.Equal(MyLength.ToString("G"), MyLength.ToString(string.Empty));
-            Assert.Equal(MyLength.ToString("G"), MyLength.ToString(format: null));
+            Assert.Equal(MyLength.ToString("G"), MyLength.ToString(format: string.Empty));
+            Assert.Equal(MyLength.ToString("G"), MyLength.ToString(format: null!));
         }
 
         [Fact]
@@ -51,14 +51,14 @@ namespace UnitsNet.Tests
         {
             Assert.Throws<FormatException>(() => MyLength.ToString("z"));
         }
-
+        
         // The default, parameterless ToString() method represents the result with all significant digits, without a group separator.
         [Theory]
-#if NET
-        [InlineData(double.MinValue, "-1.7976931348623157E+308 m")]
-#else
+        #if NET
+        [InlineData(double.MinValue, "-1.797693134862315E+308 m")]
+        #else
         [InlineData(double.MinValue, "-1.79769313486232E+308 m")]
-#endif
+        #endif
         [InlineData(-0.819999999999, "-0.819999999999 m")]
         [InlineData(-0.111234, "-0.111234 m")]
         [InlineData(-0.1, "-0.1 m")]
@@ -70,16 +70,17 @@ namespace UnitsNet.Tests
         [InlineData(0.1, "0.1 m")]
         [InlineData(0.111234, "0.111234 m")]
         [InlineData(0.819999999999, "0.819999999999 m")]
-#if NET
-        [InlineData(double.MaxValue, "1.7976931348623157E+308 m")]
-#else
+        #if NET
+        [InlineData(double.MaxValue, "1.797693134862315E+308 m")]
+        #else
         [InlineData(double.MaxValue, "1.79769313486232E+308 m")]
-#endif
+        #endif
         public void DefaultToStringFormatting(double value, string expected)
         {
             string actual = Length.FromMeters(value).ToString(AmericanCulture);
             Assert.Equal(expected, actual);
         }
+
         [Theory]
         [InlineData("de-DE")]
         [InlineData("da-DK")]
@@ -173,7 +174,7 @@ namespace UnitsNet.Tests
         {
             CultureInfo culture = CultureInfo.GetCultureInfo(cultureName);
             string gs = culture.NumberFormat.NumberGroupSeparator;
-
+            
             // Feet/Inch and Stone/Pound combinations are only used (customarily) in the US, UK and maybe Ireland - all English speaking countries.
             // FeetInches returns a whole number of feet, with the remainder expressed (rounded) in inches. Same for StonePounds.
             Assert.Equal($"3{gs}333 st 7 lb", Mass.FromStonePounds(3333, 7).StonePounds.ToString(culture));
@@ -196,12 +197,12 @@ namespace UnitsNet.Tests
         {
             CultureInfo culture = CultureInfo.GetCultureInfo(cultureName);
             string gs = culture.NumberFormat.NumberGroupSeparator;
-
+            
             // Feet/Inch and Stone/Pound combinations are only used (customarily) in the US, UK and maybe Ireland - all English speaking countries.
             // FeetInches returns a whole number of feet, with the remainder expressed (rounded) in inches. Same for StonePounds.
             Assert.Equal($"3{gs}333 st 7 lb", Mass.FromStonePounds(3333, 7).StonePounds.ToString(culture));
         }
-
+        
         // Due to rounding, the values will result in the same string representation regardless of the number of significant digits (up to a certain point)
         [Theory]
         [InlineData(-0.819999999999, "S", "-0.819999999999 m")]
@@ -217,6 +218,7 @@ namespace UnitsNet.Tests
         [InlineData(0.00299999999, "s4", "0.003 m")]
         [InlineData(0.0003000001, "s2", "3e-04 m")]
         [InlineData(0.0003000001, "s4", "3e-04 m")]
+        [InlineData(0.0003000001, "S4", "3E-04 m")]
         public void ToString_SFormat_RoundsToSignificantDigitsAfterRadix(double value,
             string significantDigitsAfterRadixFormatString, string expected)
         {
@@ -323,6 +325,5 @@ namespace UnitsNet.Tests
             Assert.Equal("1 Н·м", Torque.FromNewtonMeters(1).ToUnit(TorqueUnit.NewtonMeter).ToString(RussianCulture));
             Assert.Equal("1 м³", Volume.FromCubicMeters(1).ToUnit(VolumeUnit.CubicMeter).ToString(RussianCulture));
         }
-
     }
 }

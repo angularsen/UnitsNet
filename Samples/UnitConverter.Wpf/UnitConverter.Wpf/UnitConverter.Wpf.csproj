@@ -6,6 +6,8 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <Configurations>Debug;Release;Official</Configurations>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>logo-512.ico</ApplicationIcon>
@@ -22,6 +24,7 @@
   <ItemGroup>
     <PackageReference Include="MahApps.Metro" />
   </ItemGroup>
+  
 
   <ItemGroup>
     <PackageReference Include="UnitsNet" />

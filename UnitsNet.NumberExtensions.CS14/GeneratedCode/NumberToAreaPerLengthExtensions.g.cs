@@ -42,52 +42,52 @@ namespace UnitsNet.NumberExtensions.NumberToAreaPerLength
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="AreaPerLength.FromSquareCentimetersPerMeter(double)" />
+            /// <inheritdoc cref="AreaPerLength.FromSquareCentimetersPerMeter(QuantityValue)" />
             public AreaPerLength SquareCentimetersPerMeter
 #if NET7_0_OR_GREATER
-                => AreaPerLength.FromSquareCentimetersPerMeter(double.CreateChecked(value));
+                => AreaPerLength.FromSquareCentimetersPerMeter(QuantityValue.CreateChecked(value));
 #else
-                => AreaPerLength.FromSquareCentimetersPerMeter(value.ToDouble(null));
+                => AreaPerLength.FromSquareCentimetersPerMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AreaPerLength.FromSquareFeetPerFoot(double)" />
+            /// <inheritdoc cref="AreaPerLength.FromSquareFeetPerFoot(QuantityValue)" />
             public AreaPerLength SquareFeetPerFoot
 #if NET7_0_OR_GREATER
-                => AreaPerLength.FromSquareFeetPerFoot(double.CreateChecked(value));
+                => AreaPerLength.FromSquareFeetPerFoot(QuantityValue.CreateChecked(value));
 #else
-                => AreaPerLength.FromSquareFeetPerFoot(value.ToDouble(null));
+                => AreaPerLength.FromSquareFeetPerFoot(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AreaPerLength.FromSquareInchesPerFoot(double)" />
+            /// <inheritdoc cref="AreaPerLength.FromSquareInchesPerFoot(QuantityValue)" />
             public AreaPerLength SquareInchesPerFoot
 #if NET7_0_OR_GREATER
-                => AreaPerLength.FromSquareInchesPerFoot(double.CreateChecked(value));
+                => AreaPerLength.FromSquareInchesPerFoot(QuantityValue.CreateChecked(value));
 #else
-                => AreaPerLength.FromSquareInchesPerFoot(value.ToDouble(null));
+                => AreaPerLength.FromSquareInchesPerFoot(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AreaPerLength.FromSquareInchesPerInch(double)" />
+            /// <inheritdoc cref="AreaPerLength.FromSquareInchesPerInch(QuantityValue)" />
             public AreaPerLength SquareInchesPerInch
 #if NET7_0_OR_GREATER
-                => AreaPerLength.FromSquareInchesPerInch(double.CreateChecked(value));
+                => AreaPerLength.FromSquareInchesPerInch(QuantityValue.CreateChecked(value));
 #else
-                => AreaPerLength.FromSquareInchesPerInch(value.ToDouble(null));
+                => AreaPerLength.FromSquareInchesPerInch(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AreaPerLength.FromSquareMetersPerMeter(double)" />
+            /// <inheritdoc cref="AreaPerLength.FromSquareMetersPerMeter(QuantityValue)" />
             public AreaPerLength SquareMetersPerMeter
 #if NET7_0_OR_GREATER
-                => AreaPerLength.FromSquareMetersPerMeter(double.CreateChecked(value));
+                => AreaPerLength.FromSquareMetersPerMeter(QuantityValue.CreateChecked(value));
 #else
-                => AreaPerLength.FromSquareMetersPerMeter(value.ToDouble(null));
+                => AreaPerLength.FromSquareMetersPerMeter(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="AreaPerLength.FromSquareMillimetersPerMeter(double)" />
+            /// <inheritdoc cref="AreaPerLength.FromSquareMillimetersPerMeter(QuantityValue)" />
             public AreaPerLength SquareMillimetersPerMeter
 #if NET7_0_OR_GREATER
-                => AreaPerLength.FromSquareMillimetersPerMeter(double.CreateChecked(value));
+                => AreaPerLength.FromSquareMillimetersPerMeter(QuantityValue.CreateChecked(value));
 #else
-                => AreaPerLength.FromSquareMillimetersPerMeter(value.ToDouble(null));
+                => AreaPerLength.FromSquareMillimetersPerMeter(value.ToQuantityValue());
 #endif
 
         }

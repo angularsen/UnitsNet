@@ -41,7 +41,31 @@ namespace UnitsNet.Tests.CustomCode
         protected override double NanogramsPerMoleTolerance => 1e-3;
         protected override double NanogramsPerMoleInOneKilogramPerMole => 1e12;
         protected override double PoundsPerMoleInOneKilogramPerMole => 2.2046226218487757;
+        protected override double PoundsPerPoundMoleInOneKilogramPerMole => 1e3;
         protected override double KilogramsPerKilomoleInOneKilogramPerMole => 1e3;
+
+        [Fact]
+        public void PoundPerPoundMoleMatchesKilogramPerKilomole()
+        {
+            // Engineering Toolbox lists air molecular weight as 28.966 in kg/kmol, g/mol, and lb/lbmol.
+            const double airMolecularWeight = 28.966;
+
+            MolarMass molarMass = MolarMass.FromPoundsPerPoundMole(airMolecularWeight);
+
+            Assert.Equal(airMolecularWeight, molarMass.KilogramsPerKilomole, precision: 12);
+        }
+
+        [Fact]
+        public void PoundPerPoundMoleIsDistinctFromPoundPerMole()
+        {
+            const double value = 1;
+
+            MolarMass poundPerPoundMole = MolarMass.FromPoundsPerPoundMole(value);
+            MolarMass poundPerMole = MolarMass.FromPoundsPerMole(value);
+
+            Assert.Equal(value, poundPerPoundMole.KilogramsPerKilomole, precision: 12);
+            Assert.True(poundPerMole.KilogramsPerKilomole > poundPerPoundMole.KilogramsPerKilomole);
+        }
 
         [Fact]
         public void MolarMassTimesAmountOfSubstanceEqualsMass()

@@ -42,28 +42,28 @@ namespace UnitsNet.NumberExtensions.NumberToSpecificVolume
             , IConvertible
 #endif
         {
-            /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(double)" />
+            /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(QuantityValue)" />
             public SpecificVolume CubicFeetPerPound
 #if NET7_0_OR_GREATER
-                => SpecificVolume.FromCubicFeetPerPound(double.CreateChecked(value));
+                => SpecificVolume.FromCubicFeetPerPound(QuantityValue.CreateChecked(value));
 #else
-                => SpecificVolume.FromCubicFeetPerPound(value.ToDouble(null));
+                => SpecificVolume.FromCubicFeetPerPound(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(double)" />
+            /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(QuantityValue)" />
             public SpecificVolume CubicMetersPerKilogram
 #if NET7_0_OR_GREATER
-                => SpecificVolume.FromCubicMetersPerKilogram(double.CreateChecked(value));
+                => SpecificVolume.FromCubicMetersPerKilogram(QuantityValue.CreateChecked(value));
 #else
-                => SpecificVolume.FromCubicMetersPerKilogram(value.ToDouble(null));
+                => SpecificVolume.FromCubicMetersPerKilogram(value.ToQuantityValue());
 #endif
 
-            /// <inheritdoc cref="SpecificVolume.FromMillicubicMetersPerKilogram(double)" />
-            public SpecificVolume MillicubicMetersPerKilogram
+            /// <inheritdoc cref="SpecificVolume.FromCubicMillimetersPerKilogram(QuantityValue)" />
+            public SpecificVolume CubicMillimetersPerKilogram
 #if NET7_0_OR_GREATER
-                => SpecificVolume.FromMillicubicMetersPerKilogram(double.CreateChecked(value));
+                => SpecificVolume.FromCubicMillimetersPerKilogram(QuantityValue.CreateChecked(value));
 #else
-                => SpecificVolume.FromMillicubicMetersPerKilogram(value.ToDouble(null));
+                => SpecificVolume.FromCubicMillimetersPerKilogram(value.ToQuantityValue());
 #endif
 
         }

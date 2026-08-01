@@ -31,5 +31,18 @@ namespace UnitsNet.Tests.CustomCode
         protected override double CoulombsPerSquareCentimeterInOneCoulombPerSquareMeter => 1.0e-4;
 
         protected override double CoulombsPerSquareInchInOneCoulombPerSquareMeter => 6.4516e-4;
+
+        [Fact]
+        public void ElectricSurfaceChargeDensityTimesAreaEqualsElectricCharge()
+        {
+            ElectricSurfaceChargeDensity chargeDensity = ElectricSurfaceChargeDensity.FromCoulombsPerSquareMeter(2);
+            Area area = Area.FromSquareMeters(3);
+            ElectricCharge expected = ElectricCharge.FromCoulombs(6);
+
+            Assert.Equal(expected, chargeDensity * area);
+            Assert.Equal(expected, area * chargeDensity);
+            Assert.Equal(area, expected / chargeDensity);
+            Assert.Equal(chargeDensity, expected / area);
+        }
     }
 }

@@ -1,10 +1,10 @@
 @echo off
-rem This scripts increases the version of nugets: UnitsNet.Serialization.JsonNet.
+rem This script increases the version of both UnitsNet serialization packages.
 rem The change is committed and tagged locally, but must be pushed to origin/master to take effect.
 rem Only contributors with write access can perform this directly to master, others must perform via pull request.
 
 SET scriptdir=%~dp0
-echo Bump version UnitsNet.Serialization.JsonNet nuget:
+echo Bump version UnitsNet serialization packages:
 echo.
 echo 1:   minor    4.90.0 to 4.91.0
 echo 2:   patch    4.90.0 to 4.90.1

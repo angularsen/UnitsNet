@@ -4,6 +4,7 @@ Units.NET was not designed for high-precision, but rather a tool of convenience 
 
 - A base unit is chosen for all quantities
   - SI base unit is preferred where available, such as `LengthUnit.Meter` and `VolumeUnit.CubicMeter`.
+  - See the [`BaseUnit` schema reference](quantity-and-unit-definition-schema.md#quantity-object) for how it is declared.
   - `MassUnit.Gram` was chosen to better support SI prefixes like `kilo`, `mega` etc.
 - The value is typically represented by a `double` value (64-bit)
 - Conversions go via the base unit.

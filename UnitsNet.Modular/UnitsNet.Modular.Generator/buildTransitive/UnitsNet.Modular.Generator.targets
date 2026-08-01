@@ -1,0 +1,11 @@
+<Project>
+  <!--
+    Compatibility aliases for consumers that prefer domain-specific item names.
+    Native AdditionalFiles items are recommended because some IDE project models do not pass
+    custom build actions to their design-time Roslyn host.
+  -->
+  <ItemGroup>
+    <AdditionalFiles Include="@(UnitsNetDefinition)" UnitsNetDefinition="true" />
+    <AdditionalFiles Include="@(UnitsNetRelation)" UnitsNetRelation="true" />
+  </ItemGroup>
+</Project>

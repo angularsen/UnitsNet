@@ -1,0 +1,264 @@
+// Licensed under MIT No Attribution, see LICENSE file at the root.
+
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text.Json;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+
+namespace UnitsNet.Modular.Generator;
+
+internal static class JsonDefinitionParser
+{
+    private static readonly JsonSerializerOptions SerializerOptions = new JsonSerializerOptions
+    {
+        AllowTrailingCommas = true,
+        PropertyNameCaseInsensitive = true,
+        ReadCommentHandling = JsonCommentHandling.Skip,
+    };
+
+    public static JsonDefinitionResult Parse(AdditionalText file, System.Threading.CancellationToken cancellationToken)
+    {
+        string json = file.GetText(cancellationToken)?.ToString() ?? string.Empty;
+        return Parse(json, file.Path);
+    }
+
+    public static JsonDefinitionResult Parse(string json, string path)
+    {
+        try
+        {
+            JsonQuantity? parsed = JsonSerializer.Deserialize<JsonQuantity>(json, SerializerOptions);
+            if (parsed is null)
+            {
+                return Error(path, json, "The file did not contain a quantity definition.");
+            }
+
+            if (string.IsNullOrWhiteSpace(parsed.Name) || string.IsNullOrWhiteSpace(parsed.BaseUnit))
+            {
+                return Error(path, json, "Name and BaseUnit are required.");
+            }
+
+            if (!IsIdentifier(parsed.Name!))
+            {
+                return Error(path, json, $"Quantity name '{parsed.Name}' is not a valid C# identifier.");
+            }
+
+            string targetNamespace = string.IsNullOrWhiteSpace(parsed.Namespace) ? "UnitsNet" : parsed.Namespace!;
+            if (!targetNamespace.Split('.').All(IsIdentifier))
+            {
+                return Error(path, json, $"Namespace '{targetNamespace}' is not a valid C# namespace.");
+            }
+
+            var units = new List<UnitDefinition>();
+            foreach (JsonUnit unit in parsed.Units ?? Array.Empty<JsonUnit>())
+            {
+                if (string.IsNullOrWhiteSpace(unit.SingularName) || string.IsNullOrWhiteSpace(unit.PluralName))
+                {
+                    return Error(path, json, "Every unit requires SingularName and PluralName.");
+                }
+
+                if (!IsIdentifier(unit.SingularName!) || !IsIdentifier(unit.PluralName!))
+                {
+                    return Error(
+                        path,
+                        json,
+                        $"Unit names '{unit.SingularName}' and '{unit.PluralName}' must be valid C# identifiers.");
+                }
+
+                if (!ConversionExpression.TryNormalize(unit.FromUnitToBaseFunc, out string toBase, out string toBaseError))
+                {
+                    return Error(path, json, $"{unit.SingularName}.FromUnitToBaseFunc: {toBaseError}");
+                }
+
+                if (!ConversionExpression.TryNormalize(unit.FromBaseToUnitFunc, out string fromBase, out string fromBaseError))
+                {
+                    return Error(path, json, $"{unit.SingularName}.FromBaseToUnitFunc: {fromBaseError}");
+                }
+
+                UnitLocalizationDefinition[] localizations = (unit.Localization ?? Array.Empty<JsonLocalization>())
+                    .Select(localization => new UnitLocalizationDefinition(
+                        localization.Culture ?? string.Empty,
+                        localization.Abbreviations ?? Array.Empty<string>(),
+                        ParsePrefixAbbreviations(localization.AbbreviationsForPrefixes)))
+                    .ToArray();
+
+                units.Add(new UnitDefinition(
+                    unit.SingularName!,
+                    unit.PluralName!,
+                    toBase,
+                    fromBase,
+                    ParseBaseUnits(unit.BaseUnits),
+                    localizations,
+                    unit.Prefixes ?? Array.Empty<string>()));
+            }
+
+            string? duplicateSingularName = units
+                .GroupBy(unit => unit.SingularName, StringComparer.Ordinal)
+                .FirstOrDefault(group => group.Count() > 1)
+                ?.Key;
+            if (duplicateSingularName is not null)
+            {
+                return Error(path, json, $"Unit SingularName '{duplicateSingularName}' is duplicated.");
+            }
+
+            string? duplicatePluralName = units
+                .GroupBy(unit => unit.PluralName, StringComparer.Ordinal)
+                .FirstOrDefault(group => group.Count() > 1)
+                ?.Key;
+            if (duplicatePluralName is not null)
+            {
+                return Error(path, json, $"Unit PluralName '{duplicatePluralName}' is duplicated.");
+            }
+
+            if (!IsIdentifier(parsed.BaseUnit!))
+            {
+                return Error(path, json, $"BaseUnit '{parsed.BaseUnit}' is not a valid C# identifier.");
+            }
+
+            bool isLogarithmic = bool.TryParse(parsed.Logarithmic, out bool logarithmic) && logarithmic;
+            double logarithmicScalingFactor = double.TryParse(
+                parsed.LogarithmicScalingFactor,
+                NumberStyles.Float,
+                CultureInfo.InvariantCulture,
+                out double scalingFactor)
+                    ? scalingFactor
+                    : 1;
+            var definition = new QuantityDefinition(
+                parsed.Name!,
+                targetNamespace,
+                parsed.BaseUnit!,
+                units,
+                path,
+                isLogarithmic,
+                logarithmicScalingFactor,
+                affineOffsetType: parsed.AffineOffsetType,
+                baseDimensions: ParseBaseDimensions(parsed.BaseDimensions));
+            return new JsonDefinitionResult(path, definition, null, json);
+        }
+        catch (JsonException exception)
+        {
+            int line = checked((int)exception.LineNumber.GetValueOrDefault());
+            int position = checked((int)exception.BytePositionInLine.GetValueOrDefault());
+            return Error(
+                path,
+                json,
+                $"JSON line {line + 1}, byte position {position}: {exception.Message}",
+                line,
+                position);
+        }
+        catch (Exception exception)
+        {
+            return Error(path, json, exception.Message);
+        }
+    }
+
+    private static bool IsIdentifier(string value) =>
+        SyntaxFacts.IsValidIdentifier(value) &&
+        SyntaxFacts.GetKeywordKind(value) == SyntaxKind.None &&
+        SyntaxFacts.GetContextualKeywordKind(value) == SyntaxKind.None;
+
+    private static IReadOnlyDictionary<string, IReadOnlyList<string>> ParsePrefixAbbreviations(
+        IDictionary<string, JsonElement>? values)
+    {
+        var result = new Dictionary<string, IReadOnlyList<string>>(StringComparer.Ordinal);
+        if (values is null)
+        {
+            return result;
+        }
+
+        foreach (KeyValuePair<string, JsonElement> value in values)
+        {
+            string[] abbreviations;
+            if (value.Value.ValueKind == JsonValueKind.Array)
+            {
+                abbreviations = value.Value.EnumerateArray().Select(ReadAbbreviation).ToArray();
+            }
+            else
+            {
+                abbreviations = new[] { ReadAbbreviation(value.Value) };
+            }
+
+            result[value.Key] = abbreviations;
+        }
+
+        return result;
+    }
+
+    private static string ReadAbbreviation(JsonElement value)
+    {
+        if (value.ValueKind != JsonValueKind.String)
+        {
+            throw new JsonException("Prefix abbreviations must be strings or arrays of strings.");
+        }
+
+        return value.GetString() ?? string.Empty;
+    }
+
+    private static BaseDimensionsDefinition ParseBaseDimensions(IReadOnlyDictionary<string, int>? dimensions)
+    {
+        int Get(string symbol) =>
+            dimensions is not null && dimensions.TryGetValue(symbol, out int value) ? value : 0;
+        return new BaseDimensionsDefinition(
+            Get("L"),
+            Get("M"),
+            Get("T"),
+            Get("I"),
+            Get("Θ"),
+            Get("N"),
+            Get("J"));
+    }
+
+    private static BaseUnitsDefinition ParseBaseUnits(IReadOnlyDictionary<string, string>? units)
+    {
+        string? Get(string symbol) =>
+            units is not null && units.TryGetValue(symbol, out string? value) ? value : null;
+        return new BaseUnitsDefinition(
+            Get("L"),
+            Get("M"),
+            Get("T"),
+            Get("I"),
+            Get("Θ"),
+            Get("N"),
+            Get("J"));
+    }
+
+    private static JsonDefinitionResult Error(
+        string path,
+        string json,
+        string error,
+        int errorLine = 0,
+        int errorColumn = 0) =>
+        new JsonDefinitionResult(path, null, error, json, errorLine, errorColumn);
+
+    private sealed class JsonQuantity
+    {
+        public string? Name { get; set; }
+        public string? Namespace { get; set; }
+        public string? BaseUnit { get; set; }
+        public string? Logarithmic { get; set; }
+        public string? LogarithmicScalingFactor { get; set; }
+        public string? AffineOffsetType { get; set; }
+        public Dictionary<string, int>? BaseDimensions { get; set; }
+        public JsonUnit[]? Units { get; set; }
+    }
+
+    private sealed class JsonUnit
+    {
+        public string? SingularName { get; set; }
+        public string? PluralName { get; set; }
+        public string? FromUnitToBaseFunc { get; set; }
+        public string? FromBaseToUnitFunc { get; set; }
+        public Dictionary<string, string>? BaseUnits { get; set; }
+        public string[]? Prefixes { get; set; }
+        public JsonLocalization[]? Localization { get; set; }
+    }
+
+    private sealed class JsonLocalization
+    {
+        public string? Culture { get; set; }
+        public string[]? Abbreviations { get; set; }
+        public Dictionary<string, JsonElement>? AbbreviationsForPrefixes { get; set; }
+    }
+}

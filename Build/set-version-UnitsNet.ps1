@@ -51,18 +51,22 @@ Import-Module "$PSScriptRoot\set-version.psm1"
 
 $root = Resolve-Path "$PSScriptRoot\.."
 $paramSet = $PsCmdlet.ParameterSetName
-$projFile = "$root\UnitsNet\UnitsNet.csproj"
-$numberExtensionsProjFile = "$root\UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj"
+$projectFiles = @(
+  "$root\UnitsNet\UnitsNet.csproj",
+  "$root\UnitsNet.NumberExtensions\UnitsNet.NumberExtensions.csproj",
+  "$root\UnitsNet.NumberExtensions.CS14\UnitsNet.NumberExtensions.CS14.csproj"
+)
 
-# Use UnitsNet.Common.props version as base if bumping major/minor/patch
-$newVersion = Get-NewProjectVersion $projFile $paramSet $setVersion $bumpVersion
+# Use UnitsNet version as base if bumping major/minor/patch
+$newVersion = Get-NewProjectVersion $projectFiles[0] $paramSet $setVersion $bumpVersion
 
 # Reset and stash any other local changes.
 $didStash = Invoke-StashPush
 
 # Update project files
-Set-ProjectVersion $projFile $newVersion
-Set-ProjectVersion $numberExtensionsProjFile $newVersion
+foreach ($projectFile in $projectFiles) {
+  Set-ProjectVersion $projectFile $newVersion
+}
 
 # Git commit and tag
 Invoke-CommitVersionBump @("UnitsNet") $newVersion

@@ -47,6 +47,7 @@
     {
       "SingularName": "PoundPerMole",
       "PluralName": "PoundsPerMole",
+      "XmlDocSummary": "Pound mass per SI mole. This is distinct from PoundPerPoundMole, where the denominator is the pound-mole amount of substance unit.",
       "BaseUnits": {
         "M": "Pound",
         "N": "Mole"
@@ -62,6 +63,24 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "фунт/моль" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerPoundMole",
+      "PluralName": "PoundsPerPoundMole",
+      "XmlDocSummary": "Pound mass per pound-mole. This is numerically equal to kilograms per kilomole and distinct from PoundPerMole, where the denominator is the SI mole.",
+      "XmlDocRemarks": "Sources: https://www.engineeringtoolbox.com/molecular-weight-gas-vapor-d_1156.html, https://www.engineeringtoolbox.com/unit-converter-d_185.html",
+      "BaseUnits": {
+        "M": "Pound",
+        "N": "PoundMole"
+      },
+      "FromUnitToBaseFunc": "{x} / 1e3",
+      "FromBaseToUnitFunc": "{x} * 1e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/lbmol", "lbm/lbmol" ]
         }
       ]
     }

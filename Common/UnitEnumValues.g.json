@@ -1055,7 +1055,8 @@
     "NanogramPerMole": 11,
     "PoundPerMole": 12,
     "KiloGramPerKiloMole": 20,
-    "KilogramPerKilomole": 15
+    "KilogramPerKilomole": 15,
+    "PoundPerPoundMole": 24
   },
   "Permeability": {
     "HenryPerMeter": 1
@@ -1385,9 +1386,9 @@
     "PoundMassPerPoundForceHour": 4
   },
   "SpecificVolume": {
+    "CubicMillimeterPerKilogram": 3,
     "CubicFootPerPound": 1,
-    "CubicMeterPerKilogram": 2,
-    "MillicubicMeterPerKilogram": 3
+    "CubicMeterPerKilogram": 2
   },
   "SpecificWeight": {
     "KilogramForcePerCubicCentimeter": 1,
@@ -1536,7 +1537,9 @@
     "PoundForceInch": 22,
     "TonneForceCentimeter": 23,
     "TonneForceMeter": 24,
-    "TonneForceMillimeter": 25
+    "TonneForceMillimeter": 25,
+    "OunceForceFoot": 26,
+    "OunceForceInch": 27
   },
   "TorquePerLength": {
     "KilogramForceCentimeterPerMeter": 1,
@@ -1587,21 +1590,20 @@
     "DecausGallon": 17,
     "Deciliter": 18,
     "DeciusGallon": 19,
-    "HectocubicFoot": 20,
-    "HectocubicMeter": 21,
+    "HundredCubicFoot": 20,
     "Hectoliter": 22,
     "HectousGallon": 23,
     "ImperialBeerBarrel": 24,
     "ImperialGallon": 25,
     "ImperialOunce": 26,
     "ImperialPint": 27,
-    "KilocubicFoot": 28,
-    "KilocubicMeter": 29,
+    "ThousandCubicFoot": 28,
+    "ThousandCubicMeter": 29,
     "KiloimperialGallon": 30,
     "Kiloliter": 31,
     "KilousGallon": 32,
     "Liter": 33,
-    "MegacubicFoot": 34,
+    "MillionCubicFoot": 34,
     "MegaimperialGallon": 35,
     "Megaliter": 36,
     "MegausGallon": 37,

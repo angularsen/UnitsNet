@@ -71,85 +71,86 @@ function Set-NuspecVersion([string] $file, [string] $version) {
 function Get-BumpedProjectVersion([string] $projectPath, [string] $bumpVersion) {
   [xml]$projectXml = Get-Content -Path $projectPath
 
-  $old = Get-ProjectVersionAndSuffix $projectXml
+  $oldSemVer = [string]($projectXml.Project.PropertyGroup.Version)[0]
+
+  return Get-BumpedSemanticVersion $oldSemVer $bumpVersion
+}
+
+function Get-BumpedSemanticVersion(
+  [string] $semanticVersion,
+  [string] $bumpVersion,
+  [string] $defaultPreReleaseIdentifiers = "alpha000") {
+  $match = [regex]::Match(
+    $semanticVersion,
+    '^(?<major>0|[1-9][0-9]*)\.(?<minor>0|[1-9][0-9]*)\.(?<patch>0|[1-9][0-9]*)(?:-(?<prerelease>[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+(?<metadata>[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?$')
+
+  if (!$match.Success) {
+    throw "Unable to parse semantic version '$semanticVersion'."
+  }
+
+  $preRelease = $match.Groups["prerelease"].Value
+  foreach ($identifier in $preRelease.Split(".", [StringSplitOptions]::RemoveEmptyEntries)) {
+    if ($identifier -match '^[0-9]+$' -and $identifier.Length -gt 1 -and $identifier.StartsWith("0")) {
+      throw "Numeric prerelease identifier '$identifier' in '$semanticVersion' must not contain leading zeroes."
+    }
+  }
+
+  $major = [long]$match.Groups["major"].Value
+  $minor = [long]$match.Groups["minor"].Value
+  $patch = [long]$match.Groups["patch"].Value
 
   switch ($bumpVersion) {
     "major" {
-      $newVersion = BumpMajor $old.Version
-      $newSuffix = ""
+      return "$($major + 1).0.0"
     }
     "minor" {
-      $newVersion = BumpMinor $old.Version
-      $newSuffix = ""
+      return "$major.$($minor + 1).0"
     }
     "patch" {
-      $newVersion = BumpPatch $old.Version
-      $newSuffix = ""
+      return "$major.$minor.$($patch + 1)"
     }
     "suffix" {
-      $newVersion = $old.Version
-      $newSuffix = BumpSuffix $old.Suffix
+      $newSuffix = BumpSuffix $(if ($preRelease) { "-$preRelease" } else { "" }) $defaultPreReleaseIdentifiers
+      return "$major.$minor.$patch$newSuffix"
     }
     default {
       throw "Unrecognized 'bumpVersion' argument: $bumpVersion"
     }
   }
-
-  $newSemVer = $newVersion.ToString() + $newSuffix
-  return $newSemVer
 }
 
-function BumpMajor ([Version] $oldVersion) {
-  return New-Object System.Version -ArgumentList ($oldVersion.Major+1), 0, 0
-}
-
-function BumpMinor([Version] $oldVersion) {
-  return New-Object System.Version -ArgumentList $oldVersion.Major, ($oldVersion.Minor+1), 0
-}
-
-function BumpPatch([Version] $oldVersion) {
-  return New-Object System.Version -ArgumentList $oldVersion.Major, $oldVersion.Minor, ($oldVersion.Build+1);
-}
-
-function BumpSuffix([string] $oldSuffix) {
+function BumpSuffix(
+  [string] $oldSuffix,
+  [string] $defaultPreReleaseIdentifiers = "alpha000") {
   $oldSuffix = $oldSuffix.Trim()
 
-  # A suffix is a dash '-', then a sequcence of word characters followed by an optional number
-  # Example:
-  # ""      => "-alpha001"
-  # "-beta" => "-beta001"
-  # "-beta1"=> "-beta002"
-  $match = [regex]::Match($oldSuffix, '^-([a-zA-Z]+)(\d+)?$');
-  $oldSuffix = $match.Groups[1].Value
-  if (!$oldSuffix) {
-    $oldSuffix = "alpha"
+  $preRelease = $oldSuffix.TrimStart("-")
+  if (!$preRelease) {
+    $preRelease = $defaultPreReleaseIdentifiers
   }
 
-  $numberGroup = $match.Groups[2]
+  $identifiers = [Collections.Generic.List[string]]::new()
+  $identifiers.AddRange([string[]]$preRelease.Split("."))
+  $lastIdentifierIndex = $identifiers.Count - 1
+  $lastIdentifier = $identifiers[$lastIdentifierIndex]
 
-  $number = if ($numberGroup.Success) { 1+$match.Groups[2].Value } else { 1 }
-
-  # Use 3 digits for the number "-alpha003", for 999 releases lexically sorted.
-  return [string]::Format("-{0}{1:D3}", $oldSuffix, $number)
-}
-
-# Returns object with properties: Version, Suffix
-function Get-ProjectVersionAndSuffix([xml] $projectXml) {
-
-  # Split "1.2.3-alpha" into ["1.2.3", "alpha"]
-  # Split "1.2.3" into ["1.2.3"]
-  $oldSemVer = $($projectXml.Project.PropertyGroup.Version)[0]
-
-  $oldSemVerParts = $oldSemVer.Split('-')
-  $oldVersion = $null
-  if (-not [Version]::TryParse($oldSemVerParts[0], [ref] $oldVersion)) { throw "Unable to parse old version." }
-
-  $oldSuffix = if ($oldSemVerParts.Length -eq 2) { "-" + $oldSemVerParts[1]} else { "" }
-  return [PSCustomObject]@{
-    PSTypeName = "VersionAndSuffix"
-    Version = $oldVersion
-    Suffix = $oldSuffix
+  if ($lastIdentifier -match '^[0-9]+$') {
+    $identifiers[$lastIdentifierIndex] = ([long]$lastIdentifier + 1).ToString()
   }
+  elseif ($lastIdentifier -match '^(?<prefix>.*?)(?<number>[0-9]+)$') {
+    $numberWidth = $Matches["number"].Length
+    $number = [long]$Matches["number"] + 1
+    $identifiers[$lastIdentifierIndex] = $Matches["prefix"] + $number.ToString("D$numberWidth")
+  }
+  elseif ($identifiers.Count -eq 1) {
+    # Preserve the repository's existing alpha001/beta001 suffix convention.
+    $identifiers[0] += "001"
+  }
+  else {
+    $identifiers.Add("1")
+  }
+
+  return "-" + [string]::Join(".", $identifiers)
 }
 
 function Resolve-Error ($ErrorRecord=$Error[0])
@@ -169,6 +170,7 @@ function Resolve-Error ($ErrorRecord=$Error[0])
 }
 
 export-modulemember -function Get-NewProjectVersion,
+  Get-BumpedSemanticVersion,
   Invoke-CommitVersionBump,
   Invoke-TagVersionBump,
   Set-ProjectVersion,

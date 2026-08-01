@@ -2,7 +2,6 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,24 +14,39 @@ public static class BenchmarkHelpers
         return random.GetItems(abbreviations.GetAllUnitAbbreviationsForQuantity(typeof(TQuantity)).ToArray(), nbAbbreviations);
     }
     
-    public static (TQuantity Quantity, TUnit Unit)[] GetRandomConversions<TQuantity, TUnit>(this Random random, double value, TUnit[] options,
+    public static (TUnit FromUnit, TUnit ToUnit)[] GetRandomConversions<TUnit>(this Random random, IEnumerable<TUnit> options, int nbConversions)
+    {
+        var choices = options.ToArray();
+        return random.GetItems(choices, nbConversions).Zip(random.GetItems(choices, nbConversions), (fromUnit, toUnit) => (fromUnit, toUnit)).ToArray();
+    }
+    
+    public static (TQuantity Quantity, TUnit Unit)[] GetRandomConversions<TQuantity, TUnit>(this Random random, QuantityValue value, IEnumerable<TUnit> options,
         int nbConversions)
         where TQuantity : IQuantity<TUnit>
         where TUnit : struct, Enum
     {
-        var quantities = GetRandomQuantities<TQuantity, TUnit>(random, value, options, nbConversions);
+        return GetRandomConversions<TQuantity, TUnit>(random, value, options.ToArray(), nbConversions);
+    }
+    
+    public static (TQuantity Quantity, TUnit Unit)[] GetRandomConversions<TQuantity, TUnit>(this Random random, QuantityValue value, TUnit[] options,
+        int nbConversions)
+        where TQuantity : IQuantity<TUnit>
+        where TUnit : struct, Enum
+    {
+        IEnumerable<TQuantity> quantities = random.GetRandomQuantities<TQuantity, TUnit>(value, options, nbConversions);
         TUnit[] units = random.GetItems(options, nbConversions);
         return quantities.Zip(units, (quantity, unit) => (quantity, unit)).ToArray();
     }
-
-    public static IEnumerable<TQuantity> GetRandomQuantities<TQuantity, TUnit>(this Random random, double value, TUnit[] units, int nbQuantities)
-        where TQuantity : IQuantity<TUnit> where TUnit : struct, Enum
+    
+    public static IEnumerable<TQuantity> GetRandomQuantities<TQuantity, TUnit>(this Random random, QuantityValue value, TUnit[] units, int nbQuantities)
+        where TQuantity : IQuantity<TUnit>
+        where TUnit : struct, Enum
     {
         IEnumerable<TQuantity> quantities = random.GetItems(units, nbQuantities).Select(unit => (TQuantity)Quantity.From(value, unit));
         return quantities;
     }
-
-#if !NET
+    
+    #if !NET
     /// <summary>Creates an array populated with items chosen at random from the provided set of choices.</summary>
     /// <param name="random">The random number generator used to select items.</param>
     /// <param name="choices">The items to use to populate the array.</param>

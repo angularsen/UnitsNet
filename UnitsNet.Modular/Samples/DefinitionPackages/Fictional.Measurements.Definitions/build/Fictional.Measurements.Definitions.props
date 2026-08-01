@@ -1,0 +1,9 @@
+<Project>
+  <!-- Definition packages contribute compile-time data only to the project that references them. -->
+  <ItemGroup>
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)definitions/*.unitsnet.json"
+                     UnitsNetDefinition="true" />
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)definitions/*.unitsnet.relations.json"
+                     UnitsNetRelation="true" />
+  </ItemGroup>
+</Project>

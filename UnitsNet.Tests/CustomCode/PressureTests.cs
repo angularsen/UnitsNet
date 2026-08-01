@@ -304,16 +304,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void PressureFromElevation_ConvertsWithRounding()
         {
-            var pressureFromElevation = Pressure.FromElevation(new Length(129149.9769457631, LengthUnit.Foot));
-            Assert.Equal(1, pressureFromElevation.Pascals, PascalsTolerance);
+            var pressureFromElevation = Pressure.FromElevation(new Length(129149.9769457631m, LengthUnit.Foot), significantDigits: 13);
+            Assert.Equal(1, pressureFromElevation.Pascals);
         }
 
         [Fact]
         public void ElevationFromPressure_ConvertsWithRounding()
         {
-            Length elevationFromPressure = Pressure.FromPascals(1).ToElevation();
+            Length elevationFromPressure = Pressure.FromPascals(1).ToElevation(significantDigits: 15);
             Assert.Equal(LengthUnit.Foot, elevationFromPressure.Unit);
-            Assert.Equal(129149.976945763, elevationFromPressure.Value, 9);
+            Assert.Equal(129149.976945763m, elevationFromPressure.Value);
+        }
+
+        [Fact]
+        public void PressureTimesVolumeFlowEqualsLeakRate()
+        {
+            Pressure pressure = Pressure.FromPascals(2);
+            VolumeFlow volumeFlow = VolumeFlow.FromCubicMetersPerSecond(3);
+            LeakRate expected = LeakRate.FromPascalCubicMetersPerSecond(6);
+
+            Assert.Equal(expected, pressure * volumeFlow);
+            Assert.Equal(expected, volumeFlow * pressure);
+            Assert.Equal(volumeFlow, expected / pressure);
+            Assert.Equal(pressure, expected / volumeFlow);
         }
     }
 }

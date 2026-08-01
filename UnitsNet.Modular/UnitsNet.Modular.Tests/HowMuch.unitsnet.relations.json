@@ -1,0 +1,3 @@
+[
+  "HowMuch.Lots = HowMuch.Some * HowMuch.Some -- NoInferredDivision"
+]

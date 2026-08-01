@@ -30,7 +30,19 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double CubicFeetPerPoundInOneCubicMeterPerKilogram => 16.01846353;
 
-        protected override double MillicubicMetersPerKilogramInOneCubicMeterPerKilogram => 1e3;
+        protected override double CubicMillimetersPerKilogramInOneCubicMeterPerKilogram => 1e9;
+
+        /// <summary>
+        /// https://www.bipm.org/en/measurement-units/si-prefixes
+        /// </summary>
+        [Fact]
+        public static void ConvertByAbbreviation_CubicMetersPerKilogramToCubicMillimetersPerKilogram()
+        {
+            bool converted = UnitConverter.TryConvertByAbbreviation(1e-9, "SpecificVolume", "m³/kg", "mm³/kg", out QuantityValue result);
+
+            Assert.True(converted);
+            Assert.Equal(QuantityValue.One, result);
+        }
 
         [Fact]
         public static void SpecificVolumeTimesMassEqualsVolume()

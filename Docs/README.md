@@ -3,6 +3,7 @@
 ## Contributing
 
 - [Adding a New Quantity or Unit](adding-a-new-unit.md) — step-by-step guide for adding quantities and units
+- [Quantity and Unit Definition Schema](quantity-and-unit-definition-schema.md) — field reference for quantity and unit JSON definitions
 - [Adding Operator Overloads](adding-operator-overloads.md) — how to add strongly-typed arithmetic operators
 - [Precision](precision.md) — how conversions work and their precision limits
 

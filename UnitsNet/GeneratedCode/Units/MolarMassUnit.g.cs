@@ -37,7 +37,17 @@ namespace UnitsNet.Units
         MicrogramPerMole = 9,
         MilligramPerMole = 10,
         NanogramPerMole = 11,
+
+        /// <summary>
+        ///     Pound mass per SI mole. This is distinct from PoundPerPoundMole, where the denominator is the pound-mole amount of substance unit.
+        /// </summary>
         PoundPerMole = 12,
+
+        /// <summary>
+        ///     Pound mass per pound-mole. This is numerically equal to kilograms per kilomole and distinct from PoundPerMole, where the denominator is the SI mole.
+        /// </summary>
+        /// <remarks>Sources: https://www.engineeringtoolbox.com/molecular-weight-gas-vapor-d_1156.html, https://www.engineeringtoolbox.com/unit-converter-d_185.html</remarks>
+        PoundPerPoundMole = 24,
     }
 
     #pragma warning restore 1591

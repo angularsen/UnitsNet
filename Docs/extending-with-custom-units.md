@@ -51,7 +51,7 @@ Units.NET roughly consists of these parts:
 * Quantities like `Length` and `Force`
 * Unit enum values like `LengthUnit.Meter` and `ForceUnit.Newton`
 * `UnitAbbreviationsCache`, `UnitParser`, `QuantityParser` and `UnitConverter` for parsing and converting quantities and units
-* JSON files for defining units, conversion functions and abbreviations
+* [JSON files for defining units, conversion functions and abbreviations](quantity-and-unit-definition-schema.md)
 * `CodeGen` console app to generate C# code based on JSON files
 
 ## Example: Custom quantity `HowMuch` with units `HowMuchUnit`

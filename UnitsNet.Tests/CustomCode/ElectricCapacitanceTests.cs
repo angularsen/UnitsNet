@@ -36,5 +36,18 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KilofaradsInOneFarad => 1e-3;
 
         protected override double MegafaradsInOneFarad => 1e-6;
+
+        [Fact]
+        public void ElectricCapacitanceTimesElectricPotentialEqualsElectricCharge()
+        {
+            ElectricCapacitance capacitance = ElectricCapacitance.FromFarads(2);
+            ElectricPotential potential = ElectricPotential.FromVolts(3);
+            ElectricCharge expected = ElectricCharge.FromCoulombs(6);
+
+            Assert.Equal(expected, capacitance * potential);
+            Assert.Equal(expected, potential * capacitance);
+            Assert.Equal(potential, expected / capacitance);
+            Assert.Equal(capacitance, expected / potential);
+        }
     }
 }

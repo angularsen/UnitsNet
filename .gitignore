@@ -6,6 +6,7 @@
 *.user
 *.userosscache
 *.sln.docstates
+.temp/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -23,7 +24,8 @@ bld/
 [Ll]og/
 
 # VS Code dir
-.vscode/
+.vscode/*
+!.vscode/launch.json
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -263,3 +265,11 @@ Artifacts
 # Claude Code assistant
 .claude/settings.local.json
 .claude/worktrees/
+.DS_Store
+
+# Keep the shared repository-local NuGet feed present on clean checkouts.
+!Artifacts/
+Artifacts/*
+!Artifacts/Nugets/
+Artifacts/Nugets/*
+!Artifacts/Nugets/.gitkeep

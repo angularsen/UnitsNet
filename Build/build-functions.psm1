@@ -1,5 +1,6 @@
 ﻿$root = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $artifactsDir = Join-Path $root "Artifacts"
+$localNuGetFeedDir = Join-Path $artifactsDir "Nugets"
 $nugetOutDir = Join-Path $artifactsDir "NuGet"
 $logsDir = Join-Path $artifactsDir "Logs"
 $testReportDir = Join-Path $artifactsDir "TestResults"
@@ -8,12 +9,33 @@ $toolsDir = Join-Path $root ".tools"
 $reportGeneratorName = if ([System.Environment]::OSVersion.Platform -eq [PlatformID]::Win32NT) { "reportgenerator.exe" } else { "reportgenerator" }
 $reportGenerator = Join-Path $toolsDir $reportGeneratorName
 
+$mainTestProjectPaths = @(
+  "UnitsNet.Tests/UnitsNet.Tests.csproj",
+  "UnitsNet.GlobalSetup.DefaultFirst.Tests/UnitsNet.GlobalSetup.DefaultFirst.Tests.csproj",
+  "UnitsNet.GlobalSetup.Tests/UnitsNet.GlobalSetup.Tests.csproj",
+  "UnitsNet.NumberExtensions.Tests/UnitsNet.NumberExtensions.Tests.csproj",
+  "UnitsNet.NumberExtensions.CS14.Tests/UnitsNet.NumberExtensions.CS14.Tests.csproj",
+  "UnitsNet.Serialization.JsonNet.Tests/UnitsNet.Serialization.JsonNet.Tests.csproj",
+  "UnitsNet.Serialization.SystemTextJson.Tests/UnitsNet.Serialization.SystemTextJson.Tests.csproj"
+)
+
+$knownTestProjectPaths = @(
+  $mainTestProjectPaths
+  "UnitsNet.Modular/UnitsNet.Modular.Tests/UnitsNet.Modular.Tests.csproj",
+  "UnitsNet.Modular/UnitsNet.Modular.Generator.Tests/UnitsNet.Modular.Generator.Tests.csproj",
+  "UnitsNet.Modular/UnitsNet.Modular.Compatibility.Tests/UnitsNet.Modular.Compatibility.Tests.csproj"
+)
+
 function Remove-ArtifactsDir {
   if (Test-Path $artifactsDir) {
     write-host -foreground blue "Clean up...`n"
-    rm $artifactsDir -Recurse -Force -ErrorAction Stop
+    Remove-Item -LiteralPath $artifactsDir -Recurse -Force -ErrorAction Stop
     write-host -foreground blue "Clean up...END`n"
   }
+
+  # NuGet.Config always includes this repository-local source, so it must exist before restore.
+  New-Item -ItemType Directory -Force $localNuGetFeedDir 1> $null
+  Set-Content -LiteralPath (Join-Path $localNuGetFeedDir ".gitkeep") -Value ""
 }
 
 function Update-GeneratedCode {
@@ -33,25 +55,56 @@ function Start-Build {
   write-host -foreground blue "Start-Build...END`n"
 }
 
-function Get-TestProjects {
+function ConvertTo-RepoRelativePath {
   Param(
     [Parameter(Mandatory)]
-    [string] $Framework
+    [string] $Path
   )
 
-  $testProjects = Get-ChildItem -Path $root -Recurse -Filter "*.Tests.csproj" -File | Sort-Object FullName
-  foreach ($testProject in $testProjects) {
-    $propertiesJson = & dotnet msbuild $testProject.FullName `
-      -getProperty:TargetFrameworks,TargetFramework `
-      -nologo
-    if ($lastexitcode -ne 0) { throw "Failed to read target frameworks from $($testProject.FullName)." }
+  $fullPath = if ([IO.Path]::IsPathRooted($Path)) {
+    [IO.Path]::GetFullPath($Path)
+  }
+  else {
+    [IO.Path]::GetFullPath((Join-Path $root $Path))
+  }
 
-    $properties = $propertiesJson | ConvertFrom-Json
-    $targetFrameworks = @($properties.Properties.TargetFrameworks -split ';') + $properties.Properties.TargetFramework
-    if ($targetFrameworks -contains $Framework) {
-      $testProject
+  $normalizedRoot = ([IO.Path]::GetFullPath($root)).TrimEnd([char[]]@('\', '/'))
+  if (-not $fullPath.StartsWith($normalizedRoot + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
+    throw "Path '$Path' is not under repository root '$root'."
+  }
+
+  return $fullPath.Substring($normalizedRoot.Length + 1).Replace('\', '/')
+}
+
+function Assert-TestProjectsAreListed {
+  $expected = @($knownTestProjectPaths | ForEach-Object { ConvertTo-RepoRelativePath $_ } | Sort-Object -Unique)
+  $actual = @(Get-ChildItem -Path $root -Recurse -Filter "*.Tests.csproj" -File |
+    ForEach-Object { ConvertTo-RepoRelativePath $_.FullName } |
+    Sort-Object -Unique)
+
+  $missing = @($expected | Where-Object { -not (Test-Path (Join-Path $root $_)) })
+  $unlisted = @($actual | Where-Object { $expected -notcontains $_ })
+
+  if ($missing.Count -eq 0 -and $unlisted.Count -eq 0) {
+    return
+  }
+
+  $message = @("Test project list is out of date.")
+  if ($missing.Count -gt 0) {
+    $message += "Listed test projects were not found:"
+    foreach ($testProject in $missing) {
+      $message += "  - $testProject"
     }
   }
+
+  if ($unlisted.Count -gt 0) {
+    $message += "Unlisted test projects were found:"
+    foreach ($testProject in $unlisted) {
+      $message += "  - $testProject"
+    }
+  }
+
+  throw ($message -join [Environment]::NewLine)
 }
 
 function Start-Tests {
@@ -59,8 +112,8 @@ function Start-Tests {
     [switch] $SkipCoverage
   )
 
-  $testProjects = @(Get-TestProjects -Framework "net10.0")
-  if ($testProjects.Count -eq 0) { throw "No test projects targeting net10.0 were found." }
+  Assert-TestProjectsAreListed
+  $projectPaths = $mainTestProjectPaths
 
   # Parent dir must exist before xunit tries to write files to it
   new-item -type directory -force $testReportDir 1> $null
@@ -69,9 +122,10 @@ function Start-Tests {
   }
 
   write-host -foreground blue "Run tests...`n---"
-  foreach ($testProject in $testProjects) {
-    $coverageReportFile = Join-Path $testCoverageDir "$($testProject.BaseName).coverage.xml"
-    $projectDir = $testProject.DirectoryName
+  foreach ($projectPath in $projectPaths) {
+    $projectFileNameNoEx = [System.IO.Path]::GetFileNameWithoutExtension($projectPath)
+    $coverageReportFile = Join-Path $testCoverageDir "${projectFileNameNoEx}.coverage.xml"
+    $projectDir = Join-Path $root ([System.IO.Path]::GetDirectoryName($projectPath))
 
     # dotnet commands (xunit, dotcover) must run in same dir as project
     push-location $projectDir
@@ -116,6 +170,7 @@ function Start-PackNugets {
   $projectPaths = @(
     "UnitsNet/UnitsNet.csproj",
     "UnitsNet.Serialization.JsonNet/UnitsNet.Serialization.JsonNet.csproj",
+    "UnitsNet.Serialization.SystemTextJson/UnitsNet.Serialization.SystemTextJson.csproj",
     "UnitsNet.NumberExtensions/UnitsNet.NumberExtensions.csproj",
     "UnitsNet.NumberExtensions.CS14/UnitsNet.NumberExtensions.CS14.csproj"
     )
@@ -141,17 +196,17 @@ function Compress-ArtifactsAsZip {
   $tempZipFile = Join-Path $root $zipFileName
   $zipFile = Join-Path $artifactsDir $zipFileName
 
-  rm $tempZipFile -ErrorAction Ignore
-  rm $zipFile -ErrorAction Ignore
+  Remove-Item -LiteralPath $tempZipFile -ErrorAction Ignore
+  Remove-Item -LiteralPath $zipFile -ErrorAction Ignore
 
   # Create zip file
   add-type -assembly "system.io.compression.filesystem"
   [IO.Compression.ZipFile]::CreateFromDirectory($artifactsDir, $tempZipFile)
 
-  mv $tempZipFile $zipFile
+  Move-Item -LiteralPath $tempZipFile -Destination $zipFile
   if (-not $?) { write-host -foreground red "Failed to move [$tempZipFile] to [$zipFileName]."; exit 1 }
 
   write-host -foreground blue "Zip artifacts...END`n"
 }
 
-export-modulemember -function Remove-ArtifactsDir, Update-GeneratedCode, Start-Build, Get-TestProjects, Start-Tests, Start-PackNugets, Compress-ArtifactsAsZip
+export-modulemember -function Remove-ArtifactsDir, Update-GeneratedCode, Start-Build, Assert-TestProjectsAreListed, Start-Tests, Start-PackNugets, Compress-ArtifactsAsZip

@@ -115,7 +115,7 @@ namespace UnitsNet.Tests
             Assertion(3, MolarEntropyUnit.MegajoulePerMoleKelvin, Quantity.From(3, MolarEntropyUnit.MegajoulePerMoleKelvin));
             Assertion(3, MolarFlowUnit.PoundMolePerSecond, Quantity.From(3, MolarFlowUnit.PoundMolePerSecond));
             Assertion(3, MolarityUnit.PoundMolePerCubicFoot, Quantity.From(3, MolarityUnit.PoundMolePerCubicFoot));
-            Assertion(3, MolarMassUnit.PoundPerMole, Quantity.From(3, MolarMassUnit.PoundPerMole));
+            Assertion(3, MolarMassUnit.PoundPerPoundMole, Quantity.From(3, MolarMassUnit.PoundPerPoundMole));
             Assertion(3, PermeabilityUnit.HenryPerMeter, Quantity.From(3, PermeabilityUnit.HenryPerMeter));
             Assertion(3, PermittivityUnit.FaradPerMeter, Quantity.From(3, PermittivityUnit.FaradPerMeter));
             Assertion(3, PorousMediumPermeabilityUnit.SquareMeter, Quantity.From(3, PorousMediumPermeabilityUnit.SquareMeter));
@@ -142,7 +142,7 @@ namespace UnitsNet.Tests
             Assertion(3, SpecificEnergyUnit.WattHourPerPound, Quantity.From(3, SpecificEnergyUnit.WattHourPerPound));
             Assertion(3, SpecificEntropyUnit.MegajoulePerKilogramKelvin, Quantity.From(3, SpecificEntropyUnit.MegajoulePerKilogramKelvin));
             Assertion(3, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour, Quantity.From(3, SpecificFuelConsumptionUnit.PoundMassPerPoundForceHour));
-            Assertion(3, SpecificVolumeUnit.MillicubicMeterPerKilogram, Quantity.From(3, SpecificVolumeUnit.MillicubicMeterPerKilogram));
+            Assertion(3, SpecificVolumeUnit.CubicMillimeterPerKilogram, Quantity.From(3, SpecificVolumeUnit.CubicMillimeterPerKilogram));
             Assertion(3, SpecificWeightUnit.TonneForcePerCubicMillimeter, Quantity.From(3, SpecificWeightUnit.TonneForcePerCubicMillimeter));
             Assertion(3, SpeedUnit.YardPerSecond, Quantity.From(3, SpeedUnit.YardPerSecond));
             Assertion(3, StandardVolumeFlowUnit.StandardLiterPerMinute, Quantity.From(3, StandardVolumeFlowUnit.StandardLiterPerMinute));

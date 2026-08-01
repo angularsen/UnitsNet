@@ -32,37 +32,37 @@ namespace UnitsNet.NumberExtensions.NumberToMolarEntropy
     /// </summary>
     public static class NumberToMolarEntropyExtensions
     {
-        /// <inheritdoc cref="MolarEntropy.FromJoulesPerMoleKelvin(double)" />
+        /// <inheritdoc cref="MolarEntropy.FromJoulesPerMoleKelvin(QuantityValue)" />
         public static MolarEntropy JoulesPerMoleKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MolarEntropy.FromJoulesPerMoleKelvin(double.CreateChecked(value));
+            => MolarEntropy.FromJoulesPerMoleKelvin(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MolarEntropy.FromJoulesPerMoleKelvin(value.ToDouble(null));
+            => MolarEntropy.FromJoulesPerMoleKelvin(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MolarEntropy.FromKilojoulesPerMoleKelvin(double)" />
+        /// <inheritdoc cref="MolarEntropy.FromKilojoulesPerMoleKelvin(QuantityValue)" />
         public static MolarEntropy KilojoulesPerMoleKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MolarEntropy.FromKilojoulesPerMoleKelvin(double.CreateChecked(value));
+            => MolarEntropy.FromKilojoulesPerMoleKelvin(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MolarEntropy.FromKilojoulesPerMoleKelvin(value.ToDouble(null));
+            => MolarEntropy.FromKilojoulesPerMoleKelvin(value.ToQuantityValue());
 #endif
 
-        /// <inheritdoc cref="MolarEntropy.FromMegajoulesPerMoleKelvin(double)" />
+        /// <inheritdoc cref="MolarEntropy.FromMegajoulesPerMoleKelvin(QuantityValue)" />
         public static MolarEntropy MegajoulesPerMoleKelvin<T>(this T value)
             where T : notnull
 #if NET7_0_OR_GREATER
             , INumber<T>
-            => MolarEntropy.FromMegajoulesPerMoleKelvin(double.CreateChecked(value));
+            => MolarEntropy.FromMegajoulesPerMoleKelvin(QuantityValue.CreateChecked(value));
 #else
             , IConvertible
-            => MolarEntropy.FromMegajoulesPerMoleKelvin(value.ToDouble(null));
+            => MolarEntropy.FromMegajoulesPerMoleKelvin(value.ToQuantityValue());
 #endif
 
     }

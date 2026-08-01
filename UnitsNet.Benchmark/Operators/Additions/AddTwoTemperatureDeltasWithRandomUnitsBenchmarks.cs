@@ -14,18 +14,26 @@ namespace UnitsNet.Benchmark.Operators.Additions;
 [SimpleJob(RuntimeMoniker.Net80)]
 public class AddTwoTemperatureDeltasWithRandomUnitsBenchmarks
 {
-    private static readonly double LeftValue = 1.23;
-    private static readonly double RightValue = 4.56;
+    private static readonly QuantityValue LeftValue = 1.23;
+    private static readonly QuantityValue RightValue = 4.56;
 
     private readonly Random _random = new(42);
     private (TemperatureDelta left, TemperatureDelta right)[] _operands;
 
-    [Params(1_000)]
+    [Params(1000)]
     public int NbOperations { get; set; }
+    
+    [Params(true, false)]
+    public bool Frozen { get; set; }
+
+    [ParamsAllValues]
+    public ConversionCachingMode CachingMode { get; set; }
 
     [GlobalSetup]
     public void PrepareQuantities()
     {
+        UnitsNetSetup.ConfigureDefaults(builder => builder.WithConverterOptions(new QuantityConverterBuildOptions(Frozen, CachingMode)));
+        
         _operands = _random.GetRandomQuantities<TemperatureDelta, TemperatureDeltaUnit>(LeftValue, TemperatureDelta.Units.ToArray(), NbOperations)
             .Zip(_random.GetRandomQuantities<TemperatureDelta, TemperatureDeltaUnit>(RightValue, TemperatureDelta.Units.ToArray(), NbOperations),
                 (left, right) => (left, right))

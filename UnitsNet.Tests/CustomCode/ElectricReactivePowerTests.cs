@@ -30,5 +30,18 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MegavoltamperesReactiveInOneVoltampereReactive => 1E-6;
 
         protected override double GigavoltamperesReactiveInOneVoltampereReactive => 1E-9;
+
+        [Fact]
+        public void ElectricReactivePowerTimesDurationEqualsElectricReactiveEnergy()
+        {
+            ElectricReactivePower reactivePower = ElectricReactivePower.FromVoltamperesReactive(2);
+            Duration duration = Duration.FromHours(3);
+            ElectricReactiveEnergy expected = ElectricReactiveEnergy.FromVoltampereReactiveHours(6);
+
+            Assert.Equal(expected, reactivePower * duration);
+            Assert.Equal(expected, duration * reactivePower);
+            Assert.Equal(duration, expected / reactivePower);
+            Assert.Equal(reactivePower, expected / duration);
+        }
     }
 }

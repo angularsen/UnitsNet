@@ -34,5 +34,18 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MicrovoltamperesInOneVoltampere => 1E6;
 
         protected override double MillivoltamperesInOneVoltampere => 1E3;
+
+        [Fact]
+        public void ElectricApparentPowerTimesDurationEqualsElectricApparentEnergy()
+        {
+            ElectricApparentPower apparentPower = ElectricApparentPower.FromVoltamperes(2);
+            Duration duration = Duration.FromHours(3);
+            ElectricApparentEnergy expected = ElectricApparentEnergy.FromVoltampereHours(6);
+
+            Assert.Equal(expected, apparentPower * duration);
+            Assert.Equal(expected, duration * apparentPower);
+            Assert.Equal(duration, expected / apparentPower);
+            Assert.Equal(apparentPower, expected / duration);
+        }
     }
 }
