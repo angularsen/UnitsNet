@@ -50,7 +50,7 @@ jobs:
     - name: Run the complete net48 test suite with coverage
       shell: pwsh
       run: |
-        Import-Module ./Build/test-projects.psm1
+        Import-Module ./Build/test-projects.psm1 -Force
         $testProjectPaths = @(Get-TestProjectPaths)
 
         New-Item -ItemType Directory -Force -Path Artifacts/Coverage | Out-Null

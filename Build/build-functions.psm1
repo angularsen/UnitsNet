@@ -9,7 +9,7 @@ $toolsDir = Join-Path $root ".tools"
 $reportGeneratorName = if ([System.Environment]::OSVersion.Platform -eq [PlatformID]::Win32NT) { "reportgenerator.exe" } else { "reportgenerator" }
 $reportGenerator = Join-Path $toolsDir $reportGeneratorName
 
-Import-Module (Join-Path $PSScriptRoot "test-projects.psm1")
+Import-Module (Join-Path $PSScriptRoot "test-projects.psm1") -Force
 $testProjectPaths = @(Get-TestProjectPaths)
 
 function Remove-ArtifactsDir {
