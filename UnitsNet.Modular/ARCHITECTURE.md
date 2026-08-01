@@ -209,6 +209,8 @@ directly references it.
 - `Samples/UnitsNet.Modular.Compatibility.Generated.Sample`: the exact same linked consumer source using
   generated quantities.
 - `Samples/UnitsNet.Modular.Custom.Sample`: a fictional `HowMuch` quantity in its own namespace.
+- `Samples/UnitsNet.Modular.GettingStarted.Sample`: the package-based two-file quick start with
+  Length, Duration, Speed, and their generated relationship.
 - `Samples/UnitsNet.Modular.NuGet.Sample`: an isolated real-consumer scenario using only a locally packed
   `PackageReference` and consumer-owned JSON.
 - `Samples/DefinitionPackages/Fictional.Measurements.Definitions`: a packable definition-only NuGet
@@ -222,9 +224,11 @@ directly references it.
   consumers sharing the exact generated CLR types from `ConsumerOwned.Units`.
 
 Feature and compatibility samples use project references because they exercise generated behavior
-inside this repository. `UnitsNet.Modular.NuGet.Sample` and `ConsumerOwned.Units` deliberately cross the
-local package boundary: the former covers a minimal consumer-owned definition, while the latter
-composes separately packed quantity specs into a shared application assembly.
+inside this repository. `UnitsNet.Modular.GettingStarted.Sample`,
+`UnitsNet.Modular.NuGet.Sample`, and `ConsumerOwned.Units` deliberately cross the local package
+boundary: the first mirrors the documentation quick start, the second covers a minimal
+consumer-owned definition, and the last composes separately packed quantity specs into a shared
+application assembly.
 
 The compatibility test project uses aliased references to compare both implementations' selected
 public API and unit names without introducing concrete-type ambiguity. It compares against the
@@ -400,10 +404,15 @@ after packing. Pass
 `-p:UnitsNetModularPackForPublish=true` to create the MinVer-derived publish version instead; CI sets
 this explicitly.
 
-Run `pwsh UnitsNet.Modular/Samples/UnitsNet.Modular.NuGet.Sample/run.ps1` from the repository root for the
-clean-room check. The script provides an isolated package cache and disables repository
-`Directory.Build.*` imports; the sample build dependency performs the pack and restore before
-executing the consumer.
+Run either package-facing sample from the repository root:
+
+```powershell
+pwsh UnitsNet.Modular/Samples/UnitsNet.Modular.GettingStarted.Sample/run.ps1
+pwsh UnitsNet.Modular/Samples/UnitsNet.Modular.NuGet.Sample/run.ps1
+```
+
+Each script provides an isolated package cache and disables repository `Directory.Build.*` imports;
+the sample build dependency performs the pack and restore before executing the consumer.
 
 ## Versioning and CI
 

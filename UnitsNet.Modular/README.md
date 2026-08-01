@@ -44,6 +44,7 @@ definition files, and keeps generated C# available for inspection.
 - [Publish a definition package](#publish-a-definition-package)
 - [Dynamic lookup and serialization](#dynamic-lookup-and-serialization)
 - [Diagnostics](#diagnostics)
+- [Troubleshooting](#troubleshooting)
 - [Current scope and limitations](#current-scope-and-limitations)
 
 ## Install
@@ -76,12 +77,12 @@ identities. Replace one package with the other at a generation boundary instead 
 
 ## Quick start
 
-Declare one module interface and select the built-in quantities to generate:
+Add these two files to the project that references `UnitsNet.Modular`.
+
+`ApplicationUnits.cs` declares the generation boundary and selects the built-in quantities:
 
 ```csharp
-using UnitsNet;
 using UnitsNet.Modular;
-using UnitsNet.Units;
 using Catalog = UnitsNet.Modular.BuiltIns;
 
 namespace MyApplication.Units;
@@ -93,21 +94,29 @@ internal interface ApplicationUnits :
     IInclude<Catalog.SpeedSpec>;
 ```
 
-Build the project. UnitsNet.Modular generates `Length`, `Duration`, `Speed`, their unit enums, and the
-relationships between them into the familiar `UnitsNet` and `UnitsNet.Units` namespaces.
+`Program.cs` uses the generated API:
 
 ```csharp
+using UnitsNet;
+using UnitsNet.Units;
+
 Length route = Length.FromKilometers(1.2);
 Length remaining = Length.Parse("500 m");
 Length total = route + remaining;
 Speed pace = total / Duration.FromMinutes(2);
 
-Console.WriteLine(total.ToUnit(LengthUnit.Meter)); // 1700 m
-Console.WriteLine(pace);
+Console.WriteLine($"Total: {total.ToUnit(LengthUnit.Meter):F0}");
+Console.WriteLine($"Pace: {pace:F1}");
 ```
 
-Only selected quantities are generated. Each selected quantity includes all its units unless a
-unit set filters them.
+Build the project. The source generator sees `ApplicationUnits`, then emits `Length`, `Duration`,
+`Speed`, and their unit enums into the consumer project's assembly. Because every participant is
+selected, it also emits the `Length / Duration = Speed` relationship used above.
+
+The `*Spec` interfaces are compile-time selections, not the generated quantities themselves. Each
+selected quantity includes all its units unless a unit set filters them. The project containing the
+module owns the generated CLR types, so other projects should reference that project rather than
+declare another module.
 
 ## Choose a project structure
 
@@ -868,6 +877,54 @@ UnitsNet.Modular reports authoring problems at compile time:
 | `UNM015` | An affine quantity's offset quantity is not selected |
 | `UNM016` | The module project also references the incompatible legacy `UnitsNet` assembly |
 
+Each diagnostic links to the relevant configuration documentation from IDEs that display analyzer
+help links.
+
+## Troubleshooting
+
+### A generated quantity type is not found
+
+Confirm that the project either declares a single `[UnitsNetModule]` or references the
+consumer-owned units project that does. Select the quantity with `IInclude<TSpec>` or a profile,
+then build the module project. Check the build output for `UNM` diagnostics; the generator does not
+emit a quantity that was not selected.
+
+If the build succeeds but editor completion remains stale, inspect the IDE's source-generator node
+to confirm that quantity sources were emitted. Rebuild and reload the project or solution to refresh
+the design-time Roslyn host. This can be necessary after changing analyzer packages or
+`AdditionalFiles` inputs even though command-line builds already see the generated code.
+
+### A custom JSON definition is ignored
+
+Use Roslyn's native `AdditionalFiles` item so command-line and design-time builds receive the same
+input:
+
+```xml
+<ItemGroup>
+  <AdditionalFiles Include="Definitions/*.unitsnet.json" />
+</ItemGroup>
+```
+
+The definition's `Namespace.Name` must match the semantic ID on `[QuantitySpec]`, and the spec must
+also be selected by the module. See [Add custom quantities](#add-custom-quantities).
+
+### A relationship operator is missing
+
+Relationships are emitted only when every participating quantity is selected. For example,
+`Length / Duration` requires `LengthSpec`, `DurationSpec`, and `SpeedSpec`. Add the missing result or
+operand quantity and rebuild.
+
+### A filtered base unit is still generated
+
+This is intentional. Every selected quantity keeps its base unit as a conversion anchor even when a
+unit-set pattern does not match it.
+
+### The project reports `UNM016`
+
+`UnitsNet` and `UnitsNet.Modular` are alternative implementations and cannot be referenced together
+in the module project. Remove the legacy package reference or move the generated quantities behind a
+separate assembly boundary. See the [migration guide](MIGRATION.md) for compatibility options.
+
 ## Current scope and limitations
 
 - UnitsNet.Modular is a design probe, not yet a committed replacement for UnitsNet.
@@ -888,8 +945,15 @@ UnitsNet.Modular reports authoring problems at compile time:
 
 ## Samples and design documents
 
-- [Samples](https://github.com/angularsen/UnitsNet/tree/master/UnitsNet.Modular/Samples)
-- [Consumer-owned package and project-reference scenarios](https://github.com/angularsen/UnitsNet/tree/master/UnitsNet.Modular/Samples/ConsumerOwned)
-- [Custom definition package](https://github.com/angularsen/UnitsNet/tree/master/UnitsNet.Modular/Samples/DefinitionPackages/Fictional.Measurements.Definitions)
-- [Architecture](https://github.com/angularsen/UnitsNet/blob/master/UnitsNet.Modular/ARCHITECTURE.md)
-- [Migration notes](https://github.com/angularsen/UnitsNet/blob/master/UnitsNet.Modular/MIGRATION.md)
+| Start here | Scenario |
+|---|---|
+| [Getting started](Samples/UnitsNet.Modular.GettingStarted.Sample) | Minimal package-based `Length`, `Duration`, and `Speed` application matching the quick start |
+| [Lean selection](Samples/UnitsNet.Modular.Lean.Sample) | Select individual quantities and filter their units |
+| [Custom quantity](Samples/UnitsNet.Modular.Custom.Sample) | Generate an application-owned quantity from JSON |
+| [Playground](Samples/UnitsNet.Modular.Playground) | Explore relationships, aggregation, metadata, serialization, and custom definitions |
+| [Consumer-owned units](Samples/ConsumerOwned) | Share one generated quantity assembly across several projects |
+| [Definition package](Samples/DefinitionPackages/Fictional.Measurements.Definitions) | Publish reusable specs and definitions without compiled quantity structs |
+| [Compatibility pair](Samples/UnitsNet.Modular.Compatibility.Shared) | Compile the same consumer source against UnitsNet and UnitsNet.Modular |
+
+For design rationale and compatibility details, continue with
+[Architecture](ARCHITECTURE.md) and [Migration notes](MIGRATION.md).

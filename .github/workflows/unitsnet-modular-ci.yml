@@ -98,7 +98,11 @@ jobs:
             --output Artifacts/UnitsNet.Modular.AotSmoke
           ./Artifacts/UnitsNet.Modular.AotSmoke/UnitsNet.Modular.Lean.Sample
 
-      - name: Run isolated NuGet consumer
+      - name: Run getting-started NuGet consumer
+        shell: pwsh
+        run: ./UnitsNet.Modular/Samples/UnitsNet.Modular.GettingStarted.Sample/run.ps1
+
+      - name: Run custom-definition NuGet consumer
         shell: pwsh
         run: ./UnitsNet.Modular/Samples/UnitsNet.Modular.NuGet.Sample/run.ps1
 
