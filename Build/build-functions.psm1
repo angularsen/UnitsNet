@@ -10,6 +10,7 @@ $reportGeneratorName = if ([System.Environment]::OSVersion.Platform -eq [Platfor
 $reportGenerator = Join-Path $toolsDir $reportGeneratorName
 
 . (Join-Path $PSScriptRoot "test-projects.ps1")
+$testProjectPaths = @(Get-TestProjectPaths)
 
 function Remove-ArtifactsDir {
   if (Test-Path $artifactsDir) {

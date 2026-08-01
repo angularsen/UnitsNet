@@ -51,6 +51,7 @@ jobs:
       shell: pwsh
       run: |
         . ./Build/test-projects.ps1
+        $testProjectPaths = @(Get-TestProjectPaths)
 
         New-Item -ItemType Directory -Force -Path Artifacts/Coverage | Out-Null
 
