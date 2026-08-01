@@ -63,19 +63,3 @@ IReadOnlyList<string> abbreviations = UnitsNetSetup.Default.UnitAbbreviations
     .GetUnitAbbreviations(LengthUnit.Foot, CultureInfo.InvariantCulture);
 // "ft", "'", "′"
 ```
-
-## v6 quantity-format cleanup
-
-UnitsNet v6 accepts numeric format strings only. The remaining proprietary quantity formats were
-removed together with the formats already retired during the v6 redesign:
-
-| Removed format | Replacement |
-|---|---|
-| `A`, `A0`, `A1`, ... | `Length.GetAbbreviation(unit)` or `UnitAbbreviationsCache.GetUnitAbbreviations(unit)` |
-| `S`, `S2`, ... | An explicit numeric format such as `G3`, `F2`, `N2`, `E2`, or `0.##` |
-| `U` | The quantity's `Unit` property |
-| `V` | The quantity's `Value` property, optionally formatted separately |
-| `Q` | Static quantity metadata such as `Length.Info.Name` |
-
-This keeps formatting compatible with standard .NET tooling and enables IDE assistance through
-`StringSyntaxAttribute.NumericFormat`.
