@@ -267,7 +267,7 @@ behavior supplying the default abbreviation.
 
 ### Aggregate
 
-Generated extension methods delegate reusable algorithms to `UnitsNet.Modular`:
+Generated extension methods delegate reusable algorithms to the `UnitsNet` runtime:
 
 ```csharp
 Length sum = new[]
@@ -783,10 +783,9 @@ Every module receives one immutable registry containing only its selected quanti
 
 ```csharp
 using UnitsNet;
-using UnitsNet.Modular;
 using UnitsNet.Modular.Generated;
 
-QuantityRegistry registry = GeneratedQuantityRegistry.Instance;
+var registry = GeneratedQuantityRegistry.Instance;
 
 IQuantityDescriptor length = registry.Get("Length");
 IQuantity<double> parsed = length.Parse("1.5 km");

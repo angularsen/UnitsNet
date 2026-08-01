@@ -3,7 +3,6 @@
 using System.Globalization;
 using System.Text.Json;
 using UnitsNet;
-using UnitsNet.Modular;
 using UnitsNet.Modular.Generated;
 using UnitsNet.Units;
 
@@ -95,11 +94,11 @@ internal static class Program
 
         // APIs illustrated: the legacy-shaped Quantity facade, modular registry, and UnitSystem policy.
         // Quantity.From(...) keeps a familiar call shape for configuration-driven code. Unlike legacy
-        // UnitsNet, the facade is scoped to the selected module and returns IQuantity<double> from
-        // UnitsNet.Modular. The modular registry exposes that selected catalog without global mutation.
+        // UnitsNet, the facade is scoped to the selected module and returns UnitsNet.IQuantity<double>.
+        // The modular registry exposes that selected catalog without global mutation.
         PrintSection("Use the modular dynamic API");
         IQuantity<double> configuredDistance = Quantity.From(15, "Length", "Mile");
-        QuantityRegistry registry = GeneratedQuantityRegistry.Instance;
+        var registry = GeneratedQuantityRegistry.Instance;
         IQuantityDescriptor lengthDescriptor = registry.Get("Length");
         double configuredKilometers = registry.Convert(15, "Length", "Mile", "Kilometer");
 

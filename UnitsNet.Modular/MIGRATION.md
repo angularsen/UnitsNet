@@ -216,11 +216,10 @@ Replace dynamic conversion by name with the registry:
 QuantityValue meters = UnitConverter.ConvertByName(
     1.5, "Length", "Kilometer", "Meter");
 
-// UnitsNet.Modular
-using UnitsNet.Modular;
+// UnitsNet.Modular package
 using UnitsNet.Modular.Generated;
 
-QuantityRegistry registry = GeneratedQuantityRegistry.Instance;
+var registry = GeneratedQuantityRegistry.Instance;
 double meters = registry.Convert(
     1.5,
     "Length",
@@ -244,7 +243,7 @@ The registry also supports enum-based conversion when both units belong to one s
 Replace mutable/global metadata assumptions with a descriptor from the selected module:
 
 ```csharp
-using UnitsNet.Modular;
+using UnitsNet;
 using UnitsNet.Modular.Generated;
 
 IQuantityDescriptor descriptor =
