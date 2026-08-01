@@ -66,7 +66,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double CubicMetersPerSecondInOneCubicMeterPerSecond => 1;
 
         protected override double CubicMillimetersPerSecondInOneCubicMeterPerSecond => 1e9;
-
+        
         protected override double CubicMillimetersPerMinuteInOneCubicMeterPerSecond => 6e10;
 
         protected override double CubicYardsPerDayInOneCubicMeterPerSecond => 1.13007e5;
