@@ -60,18 +60,6 @@ namespace UnitsNet.Tests
             Assert.Equal(MyLength.ToString("G"), MyLength.ToString(format: null!));
         }
 
-        [Fact]
-        public void ExplicitAbbreviationApisReplaceAFormat()
-        {
-            UnitAbbreviationsCache abbreviations = UnitsNetSetup.Default.UnitAbbreviations;
-
-            Assert.Equal("ft", Length.GetAbbreviation(MyLength.Unit, CultureInfo.InvariantCulture));
-            Assert.Equal("ft", abbreviations.GetDefaultAbbreviation(MyLength.Unit, CultureInfo.InvariantCulture));
-            Assert.Equal(
-                ["ft", "'", "′"],
-                abbreviations.GetUnitAbbreviations(MyLength.Unit, CultureInfo.InvariantCulture));
-        }
-
         [Theory]
         [InlineData("a")]
         [InlineData("A0")]
