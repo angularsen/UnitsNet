@@ -1,4 +1,4 @@
-﻿<#
+<#
 .SYNOPSIS
     Build, run tests and pack nugets for all Units.NET projects.
 .DESCRIPTION

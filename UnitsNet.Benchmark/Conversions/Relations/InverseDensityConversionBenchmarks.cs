@@ -1,4 +1,4 @@
-﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Attributes;
 using UnitsNet.Units;
 
 namespace UnitsNet.Benchmark.Conversions.Relations;

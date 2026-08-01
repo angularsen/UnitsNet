@@ -1,4 +1,4 @@
-﻿namespace UnitsNet;
+namespace UnitsNet;
 
 internal static class ConvertibleExtensions
 {

@@ -1,4 +1,4 @@
-﻿namespace UnitsNet;
+namespace UnitsNet;
 
 /// <summary>
 ///     Extension methods for common math operations.

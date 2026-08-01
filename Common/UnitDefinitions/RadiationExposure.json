@@ -1,4 +1,4 @@
-﻿{
+{
   "Name": "RadiationExposure",
   "BaseUnit": "CoulombPerKilogram",
   "XmlDocSummary": "Radiation exposure is a measure of the ionization of air due to ionizing radiation from photons.",

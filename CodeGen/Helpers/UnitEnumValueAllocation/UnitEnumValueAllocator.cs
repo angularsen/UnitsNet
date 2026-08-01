@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.Json;
 using CodeGen.Exceptions;
 using CodeGen.JsonTypes;
+using CodeGen.Helpers;
 using Serilog;
 
 namespace CodeGen.Helpers.UnitEnumValueAllocation
@@ -150,7 +151,7 @@ Conflicts:
 ");
 
             fileContentStringBuilder.AppendLine(JsonSerializer.Serialize(_quantityNameToUnitEnumValues, JsonOptions));
-            File.WriteAllText(_jsonFile, fileContentStringBuilder.ToString());
+            CodeGenFile.WriteAllText(_jsonFile, fileContentStringBuilder.ToString());
         }
 
         /// <summary>
@@ -162,7 +163,7 @@ Conflicts:
         {
             if (File.Exists(jsonFile))
             {
-                return JsonSerializer.Deserialize<QuantityNameToUnitEnumValues>(File.ReadAllText(jsonFile), JsonOptions)
+                return JsonSerializer.Deserialize<QuantityNameToUnitEnumValues>(CodeGenFile.ReadAllText(jsonFile), JsonOptions)
                        ?? throw new InvalidOperationException($"Failed to deserialize file: {jsonFile}");
             }
 

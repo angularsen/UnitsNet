@@ -1,4 +1,4 @@
-﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
+// Licensed under MIT No Attribution, see LICENSE file at the root.
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
@@ -7,6 +7,7 @@ using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using CodeGen.Exceptions;
+using CodeGen.Helpers;
 using CodeGen.JsonTypes;
 using Newtonsoft.Json;
 
@@ -133,7 +134,7 @@ namespace CodeGen.Generators
 
             try
             {
-                var text = File.ReadAllText(relationsFileName);
+                var text = CodeGenFile.ReadAllText(relationsFileName);
 
                 // Explicitly sort to keep the file consistent.
                 var relationStrings = JsonConvert.DeserializeObject<List<string>>(text)
@@ -142,7 +143,7 @@ namespace CodeGen.Generators
                 var parsedRelations = relationStrings.Select(relationString => ParseRelation(relationString, quantities)).ToList();
 
                 // File parsed successfully, save it back to disk in the sorted state.
-                File.WriteAllText(relationsFileName, JsonConvert.SerializeObject(relationStrings, Formatting.Indented));
+                CodeGenFile.WriteAllText(relationsFileName, JsonConvert.SerializeObject(relationStrings, Formatting.Indented));
 
                 return parsedRelations;
             }
