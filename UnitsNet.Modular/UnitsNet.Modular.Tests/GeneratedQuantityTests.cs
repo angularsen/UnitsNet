@@ -3,8 +3,6 @@
 using System.Text.Json;
 using Fictional.Measurements;
 using UnitsNet;
-using UnitsNet.Modular.Generated;
-using UnitsNet.Modular.SourceGen;
 using UnitsNet.Units;
 using Xunit;
 
@@ -258,9 +256,9 @@ public sealed class GeneratedQuantityTests
         Assert.Null(typeof(Length).GetProperty("UnitInfos", publicMembers));
         Assert.Null(typeof(Length).GetProperty("QuantityInfo", publicMembers));
 
-        AssertHidden(typeof(IQuantityMetadata<>));
-        AssertHidden(typeof(QuantityOperations));
-        AssertHidden(typeof(QuantityJsonConverter<>));
+        AssertHidden(typeof(global::UnitsNet.Modular.SourceGen.IQuantityMetadata<>));
+        AssertHidden(typeof(global::UnitsNet.Modular.SourceGen.QuantityOperations));
+        AssertHidden(typeof(global::UnitsNet.Modular.SourceGen.QuantityJsonConverter<>));
         AssertHidden(typeof(QuantityInfo<Length, LengthUnit>).GetConstructors().Single());
         AssertHidden(typeof(QuantityInfo<Length, LengthUnit>).GetProperty("BaseUnitInfo")!);
         AssertHidden(typeof(QuantityInfo<Length, LengthUnit>).GetProperty("UnitInfos")!);
@@ -281,10 +279,15 @@ public sealed class GeneratedQuantityTests
         Assert.Equal("UnitsNet", typeof(QuantityId).Namespace);
         Assert.Equal("UnitsNet", typeof(QuantityInfo<,>).Namespace);
         Assert.Equal("UnitsNet", typeof(UnitSystem).Namespace);
+        Assert.Equal("UnitsNet", typeof(GeneratedQuantityRegistry).Namespace);
         Assert.Equal("UnitsNet.Modular", typeof(UnitsNetModuleAttribute).Namespace);
-        Assert.Equal("UnitsNet.Modular", typeof(QuantityRegistry).Namespace);
-        Assert.Equal("UnitsNet.Modular.SourceGen", typeof(IQuantityMetadata<>).Namespace);
-        Assert.Equal("UnitsNet.Modular.SourceGen", typeof(QuantityOperations).Namespace);
+        Assert.Equal("UnitsNet", typeof(QuantityRegistry).Namespace);
+        Assert.Equal(
+            "UnitsNet.Modular.SourceGen",
+            typeof(global::UnitsNet.Modular.SourceGen.IQuantityMetadata<>).Namespace);
+        Assert.Equal(
+            "UnitsNet.Modular.SourceGen",
+            typeof(global::UnitsNet.Modular.SourceGen.QuantityOperations).Namespace);
     }
 
     [Fact]

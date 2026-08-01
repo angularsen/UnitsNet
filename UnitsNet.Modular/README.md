@@ -62,12 +62,12 @@ separate runtime, contracts, or analyzer package is required.
 
 The package and assembly are named `UnitsNet.Modular`, but general quantity concepts use the
 familiar `UnitsNet` namespace. Generated built-in quantities, quantity contracts, metadata,
-unit-system policy, and reusable quantity math therefore stay close to source-compatible with
-UnitsNet. Built-in unit enums use `UnitsNet.Units`.
+unit-system policy, reusable quantity math, and the immutable generated registry therefore stay
+close to source-compatible with UnitsNet. Built-in unit enums use `UnitsNet.Units`.
 
 Only APIs that compose or describe a consumer-owned module use `UnitsNet.Modular`: module
-attributes, specs, profiles, selection contracts, and the immutable selected-module registry.
-Public implementation types called only by emitted source live under
+attributes, specs, profiles, and selection contracts. Public implementation types called only by
+emitted source live under
 `UnitsNet.Modular.SourceGen`, are hidden from IntelliSense, and are not intended for direct use.
 
 The `UnitsNet` and `UnitsNet.Modular` packages cannot be referenced together in the same consumer
@@ -783,7 +783,6 @@ Every module receives one immutable registry containing only its selected quanti
 
 ```csharp
 using UnitsNet;
-using UnitsNet.Modular.Generated;
 
 var registry = GeneratedQuantityRegistry.Instance;
 
@@ -824,7 +823,7 @@ Register the generated, AOT-safe converter factory:
 
 ```csharp
 using System.Text.Json;
-using UnitsNet.Modular.Generated;
+using UnitsNet;
 
 var options = new JsonSerializerOptions();
 options.Converters.Add(GeneratedQuantityRegistry.JsonConverter);

@@ -125,7 +125,7 @@ module's generated System.Text.Json converter instead of relying on runtime disc
 
 ```csharp
 using System.Text.Json;
-using UnitsNet.Modular.Generated;
+using UnitsNet;
 
 var options = new JsonSerializerOptions();
 options.Converters.Add(GeneratedQuantityRegistry.JsonConverter);
@@ -217,7 +217,7 @@ QuantityValue meters = UnitConverter.ConvertByName(
     1.5, "Length", "Kilometer", "Meter");
 
 // UnitsNet.Modular package
-using UnitsNet.Modular.Generated;
+using UnitsNet;
 
 var registry = GeneratedQuantityRegistry.Instance;
 double meters = registry.Convert(
@@ -244,7 +244,6 @@ Replace mutable/global metadata assumptions with a descriptor from the selected 
 
 ```csharp
 using UnitsNet;
-using UnitsNet.Modular.Generated;
 
 IQuantityDescriptor descriptor =
     GeneratedQuantityRegistry.Instance.Get("Length");

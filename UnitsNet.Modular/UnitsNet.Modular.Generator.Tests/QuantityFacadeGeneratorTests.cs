@@ -48,7 +48,7 @@ public sealed class QuantityFacadeGeneratorTests
         Assert.Contains("public static partial class Quantity", facade, StringComparison.Ordinal);
         Assert.Contains("global::UnitsNet.IQuantity<double> From(", facade, StringComparison.Ordinal);
         Assert.Contains("global::UnitsNet.UnitSystem unitSystem", facade, StringComparison.Ordinal);
-        Assert.Contains("global::UnitsNet.Modular.QuantityRegistry Registry", facade, StringComparison.Ordinal);
+        Assert.Contains("global::UnitsNet.QuantityRegistry Registry", facade, StringComparison.Ordinal);
     }
 
     [Fact]

@@ -50,10 +50,10 @@ namespace is `UnitsNet`. Namespace ownership follows the role of each type:
 
 - general quantity contracts, metadata, unit-system policy, and quantity math use `UnitsNet`;
 - built-in unit enums use `UnitsNet.Units`;
-- module authoring contracts and the selected-module registry use `UnitsNet.Modular`;
+- module authoring contracts use `UnitsNet.Modular`;
 - built-in specs and reusable profiles use `UnitsNet.Modular.BuiltIns` and
   `UnitsNet.Modular.Profiles`;
-- the generated module registry uses `UnitsNet.Modular.Generated`; and
+- the immutable registry and generated module singleton use `UnitsNet`; and
 - public implementation types referenced only by emitted code use
   `UnitsNet.Modular.SourceGen` and are hidden from IntelliSense.
 

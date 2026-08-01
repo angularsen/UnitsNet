@@ -435,7 +435,7 @@ public sealed class CompatibilityTests
     [Fact]
     public void GeneratedRegistry_DescribesAndOperatesOnTheConsumerOwnedCatalog()
     {
-        QuantityRegistry registry = Generated::UnitsNet.Modular.Generated.GeneratedQuantityRegistry.Instance;
+        QuantityRegistry registry = Generated::UnitsNet.GeneratedQuantityRegistry.Instance;
 
         Assert.Equal(129, registry.Quantities.Count);
         IQuantityDescriptor length = registry.Get(new QuantityId("UnitsNet.Length"));
@@ -476,7 +476,7 @@ public sealed class CompatibilityTests
     [Fact]
     public void GeneratedRegistry_ReplacesCommonLegacyDynamicWorkflows()
     {
-        QuantityRegistry registry = Generated::UnitsNet.Modular.Generated.GeneratedQuantityRegistry.Instance;
+        QuantityRegistry registry = Generated::UnitsNet.GeneratedQuantityRegistry.Instance;
         var invariant = System.Globalization.CultureInfo.InvariantCulture;
 
         var legacyCreated = Assert.IsType<Legacy::UnitsNet.Length>(

@@ -3,7 +3,6 @@
 using System.Globalization;
 using System.Text.Json;
 using UnitsNet;
-using UnitsNet.Modular.Generated;
 using UnitsNet.Units;
 
 namespace UnitsNet.Modular.Playground;
