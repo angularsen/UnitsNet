@@ -2,8 +2,7 @@
   Creates an annotated UnitsNet.Modular release tag with a bumped version.
 .DESCRIPTION
   Finds the nearest reachable UnitsNet.Modular/* tag, bumps its minor, patch, or prerelease suffix,
-  and creates an annotated tag on HEAD. MinVer uses that tag to version both UnitsNet.Modular and
-  UnitsNet.Core.
+  and creates an annotated tag on HEAD. MinVer uses that tag to version UnitsNet.Modular.
 
   Minor and patch bumps remove any prerelease suffix, matching the existing UnitsNet version scripts.
   A suffix bump increments the final numeric prerelease identifier, for example alpha.1 to alpha.2.

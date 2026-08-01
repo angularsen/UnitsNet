@@ -117,6 +117,14 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
         DiagnosticSeverity.Error,
         true);
 
+    private static readonly DiagnosticDescriptor LegacyUnitsNetReference = new DiagnosticDescriptor(
+        "UNM016",
+        "UnitsNet and UnitsNet.Modular cannot be referenced together",
+        "Remove the legacy UnitsNet package reference; a UnitsNet.Modular module generates its own UnitsNet quantity types and contracts",
+        "UnitsNet.Modular",
+        DiagnosticSeverity.Error,
+        true);
+
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         context.RegisterPostInitializationOutput(static output =>
@@ -126,7 +134,9 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
             .ForAttributeWithMetadataName(
                 ModuleAttribute,
                 static (node, _) => node is Microsoft.CodeAnalysis.CSharp.Syntax.InterfaceDeclarationSyntax,
-                static (attributeContext, _) => CreateModuleRequest((INamedTypeSymbol)attributeContext.TargetSymbol))
+                static (attributeContext, _) => CreateModuleRequest(
+                    (INamedTypeSymbol)attributeContext.TargetSymbol,
+                    attributeContext.SemanticModel.Compilation))
             .WithComparer(ModuleRequestComparer.Instance)
             .WithTrackingName("Modules");
 
@@ -175,6 +185,14 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
                 MultipleModules,
                 ordered[0].Location.ToLocation(),
                 string.Join(", ", ordered.Select(module => "'" + module.Name + "'"))));
+            return;
+        }
+
+        if (modules[0].ReferencesLegacyUnitsNet)
+        {
+            context.ReportDiagnostic(Diagnostic.Create(
+                LegacyUnitsNetReference,
+                modules[0].Location.ToLocation()));
             return;
         }
 
@@ -479,7 +497,7 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
                definition.ContainingNamespace.ToDisplayString() == GenerationNamespace;
     }
 
-    private static ModuleRequest CreateModuleRequest(INamedTypeSymbol module)
+    private static ModuleRequest CreateModuleRequest(INamedTypeSymbol module, Compilation compilation)
     {
         string? targetNamespace = GetModuleTargetNamespace(module);
         ModuleSelection[] direct = module.Interfaces
@@ -509,6 +527,8 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
                 : module.ContainingNamespace.ToDisplayString(),
             targetNamespace,
             selections,
+            compilation.ReferencedAssemblyNames.Any(
+                identity => string.Equals(identity.Name, "UnitsNet", StringComparison.OrdinalIgnoreCase)),
             SourceLocation.From(module.Locations.FirstOrDefault()));
     }
 

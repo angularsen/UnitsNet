@@ -34,6 +34,7 @@ definition files, and keeps generated C# available for inspection.
 ## Contents
 
 - [Install](#install)
+- [Namespaces](#namespaces)
 - [Quick start](#quick-start)
 - [Choose a project structure](#choose-a-project-structure)
 - [Use generated quantities](#use-generated-quantities)
@@ -54,8 +55,24 @@ will own the generated quantities:
 dotnet add package UnitsNet.Modular --prerelease
 ```
 
-The package includes the runtime and source generator and brings in `UnitsNet.Core`, which contains
-the shared quantity contracts. No separate analyzer package is required.
+The package includes the runtime, quantity contracts, metadata types, and source generator. No
+separate runtime, contracts, or analyzer package is required.
+
+## Namespaces
+
+The package and assembly are named `UnitsNet.Modular`, but general quantity concepts use the
+familiar `UnitsNet` namespace. Generated built-in quantities, quantity contracts, metadata,
+unit-system policy, reusable quantity math, and the immutable generated registry therefore stay
+close to source-compatible with UnitsNet. Built-in unit enums use `UnitsNet.Units`.
+
+Only APIs that compose or describe a consumer-owned module use `UnitsNet.Modular`: module
+attributes, specs, profiles, and selection contracts. Public implementation types called only by
+emitted source live under
+`UnitsNet.Modular.SourceGen`, are hidden from IntelliSense, and are not intended for direct use.
+
+The `UnitsNet` and `UnitsNet.Modular` packages cannot be referenced together in the same consumer
+project. Their similarly named quantity contracts and generated types have different assembly
+identities. Replace one package with the other at a generation boundary instead of mixing them.
 
 ## Quick start
 
@@ -250,7 +267,7 @@ behavior supplying the default abbreviation.
 
 ### Aggregate
 
-Generated extension methods delegate reusable algorithms to `UnitsNet.Core`:
+Generated extension methods delegate reusable algorithms to the `UnitsNet` runtime:
 
 ```csharp
 Length sum = new[]
@@ -270,15 +287,42 @@ Linear quantities provide `Sum()` and `Average()` overloads, including selector 
 forms. Affine quantities provide meaningful averages. Logarithmic quantities provide `Sum()`,
 `ArithmeticMean()`, and `GeometricMean()` with logarithmic semantics.
 
+### Inspect immutable metadata
+
+Each generated quantity exposes one strongly typed, immutable metadata object. Less-common
+discovery data lives there instead of being duplicated across the quantity API, and the generated
+registry stores that exact same instance:
+
+```csharp
+QuantityInfo<Length, LengthUnit> info = Length.Info;
+UnitInfo<LengthUnit> kilometer = info[LengthUnit.Kilometer];
+
+Length value = Length.From(1.5, kilometer.Value);
+string abbreviation = kilometer.GetDefaultAbbreviation(CultureInfo.InvariantCulture);
+
+Debug.Assert(info.BaseUnit.Value == LengthUnit.Meter);
+Debug.Assert(info.Units.Contains(kilometer));
+Debug.Assert(ReferenceEquals(info, Quantity.Registry.Get(typeof(Length))));
+```
+
+The quantity type owns common value behavior (`Value`, `Unit`, `Zero`, `From`, `Convert`, `As`,
+`ToUnit`, parsing, and formatting). `Info` owns identity, base-unit metadata, the immutable `Units`
+collection, and base dimensions. `UnitInfo<TUnit>.Value` is the represented enum value;
+`SingularName` and `PluralName` describe it. `BaseUnitInfo`, `UnitInfos`, and `UnitInfo.Name` are
+hidden source-compatibility aliases. Unlike the legacy mutable metadata model, generated metadata
+does not expose configurable conversion expressions or global registration.
+
 ### Use an immutable unit system
 
 `UnitSystem` and `BaseUnits` describe a preferred set of constituent units without changing global
 state:
 
 ```csharp
-Length length = Length.From(1.5, UnitsNet.Modular.UnitSystem.SI);
-double meters = Length.FromKilometers(1.5).As(UnitsNet.Modular.UnitSystem.SI);
-Length normalized = length.ToUnit(UnitsNet.Modular.UnitSystem.SI);
+using UnitsNet;
+
+Length length = Length.From(1.5, UnitSystem.SI);
+double meters = Length.FromKilometers(1.5).As(UnitSystem.SI);
+Length normalized = length.ToUnit(UnitSystem.SI);
 ```
 
 Resolution considers only units selected into the current module.
@@ -738,12 +782,11 @@ compiled modules do not share type identity or automatically gain cross-module o
 Every module receives one immutable registry containing only its selected quantities:
 
 ```csharp
-using UnitsNet.Core;
-using UnitsNet.Modular.Generated;
+using UnitsNet;
 
-UnitsNet.Modular.QuantityRegistry registry = GeneratedQuantityRegistry.Instance;
+var registry = GeneratedQuantityRegistry.Instance;
 
-UnitsNet.Modular.IQuantityDescriptor length = registry.Get("Length");
+IQuantityDescriptor length = registry.Get("Length");
 IQuantity<double> parsed = length.Parse("1.5 km");
 double meters = length.Convert(1.5, "Kilometer", "Meter");
 
@@ -762,10 +805,12 @@ When a module includes built-ins, the generator emits the source-compatible `Qua
 `UnitsNet`:
 
 ```csharp
-UnitsNet.Core.IQuantity<double> value =
+using UnitsNet;
+
+IQuantity<double> value =
     UnitsNet.Quantity.From(1.5, "Length", "Kilometer");
 
-UnitsNet.Core.IQuantity<double> parsed =
+IQuantity<double> parsed =
     UnitsNet.Quantity.Parse(typeof(Length), "1.5 km");
 ```
 
@@ -778,7 +823,7 @@ Register the generated, AOT-safe converter factory:
 
 ```csharp
 using System.Text.Json;
-using UnitsNet.Modular.Generated;
+using UnitsNet;
 
 var options = new JsonSerializerOptions();
 options.Converters.Add(GeneratedQuantityRegistry.JsonConverter);
@@ -821,6 +866,7 @@ UnitsNet.Modular reports authoring problems at compile time:
 | `UNM013` | Definitions collide after applying the target namespace |
 | `UNM014` | A compilation declares more than one module |
 | `UNM015` | An affine quantity's offset quantity is not selected |
+| `UNM016` | The module project also references the incompatible legacy `UnitsNet` assembly |
 
 ## Current scope and limitations
 
@@ -830,6 +876,8 @@ UnitsNet.Modular reports authoring problems at compile time:
   supported; definitions and generated metadata are immutable.
 - Quantity and unit selection happens at compile time.
 - Source compatibility with common UnitsNet APIs is a goal; binary compatibility is not.
+- The `UnitsNet` and `UnitsNet.Modular` packages are alternative implementations and cannot be
+  referenced together in one consumer project.
 - Definition packages ship specs. Generated types in different assemblies have different CLR
   identities.
 - Unit filters match expanded invariant unit names, not localized abbreviations.

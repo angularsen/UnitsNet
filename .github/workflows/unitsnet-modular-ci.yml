@@ -9,7 +9,6 @@ on:
     paths:
       - '.devcontainer/unitsnet-modular/**'
       - 'UnitsNet.Modular/**'
-      - 'UnitsNet.Core/**'
       # The compatibility suite compiles the current UnitsNet project to detect source/API drift.
       - 'UnitsNet/**'
       - 'Common/UnitDefinitions/**'
@@ -28,7 +27,6 @@ on:
     paths:
       - '.devcontainer/unitsnet-modular/**'
       - 'UnitsNet.Modular/**'
-      - 'UnitsNet.Core/**'
       # The compatibility suite compiles the current UnitsNet project to detect source/API drift.
       - 'UnitsNet/**'
       - 'Common/UnitDefinitions/**'
@@ -118,11 +116,9 @@ jobs:
 
           $expectedVersion = $env:GITHUB_REF.Substring($tagRefPrefix.Length)
           $packageDirectory = 'Artifacts/UnitsNet.Modular.CI'
-          foreach ($packageId in @('UnitsNet.Modular', 'UnitsNet.Core')) {
-            $packagePath = Join-Path $packageDirectory "$packageId.$expectedVersion.nupkg"
-            if (-not (Test-Path -LiteralPath $packagePath -PathType Leaf)) {
-              throw "Expected tagged package was not produced: $packagePath"
-            }
+          $packagePath = Join-Path $packageDirectory "UnitsNet.Modular.$expectedVersion.nupkg"
+          if (-not (Test-Path -LiteralPath $packagePath -PathType Leaf)) {
+            throw "Expected tagged package was not produced: $packagePath"
           }
 
       - name: Upload packages

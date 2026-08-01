@@ -1,12 +1,35 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Xunit;
 
 namespace UnitsNet.Modular.Generator.Tests;
 
 public sealed class DiagnosticGeneratorTests
 {
+    [Fact]
+    public void LegacyUnitsNetReference_ReportsUnsupportedCombination()
+    {
+        CSharpCompilation legacyCompilation = GeneratorTestHost.CreateCompilation(
+                "namespace UnitsNet; public sealed class LegacyRuntimeMarker;")
+            .WithAssemblyName("UnitsNet");
+        using var stream = new MemoryStream();
+        Assert.True(legacyCompilation.Emit(stream).Success);
+
+        GeneratorTestHost.TestRun run = GeneratorTestHost.Run(
+            """
+            using UnitsNet.Modular;
+
+            [UnitsNetModule]
+            internal interface Module : IInclude<UnitsNet.Modular.BuiltIns.LengthSpec>;
+            """,
+            new[] { MetadataReference.CreateFromImage(stream.ToArray()) });
+
+        Diagnostic diagnostic = Assert.Single(run.Result.Diagnostics, item => item.Id == "UNM016");
+        Assert.Contains("Remove the legacy UnitsNet package reference", diagnostic.GetMessage(), StringComparison.Ordinal);
+    }
+
     [Fact]
     public void MultipleModules_ReportActionableDiagnosticWithoutCollidingGeneratedTypes()
     {

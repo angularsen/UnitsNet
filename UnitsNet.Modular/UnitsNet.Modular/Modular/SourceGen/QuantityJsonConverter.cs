@@ -1,13 +1,20 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
+using System.ComponentModel;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using UnitsNet;
 
-namespace UnitsNet.Modular.Serialization;
+namespace UnitsNet.Modular.SourceGen;
 
 /// <summary>Serializes one generated quantity using its immutable module descriptor.</summary>
+/// <remarks>
+/// This type is public so generated code can reuse it across consumer assemblies. Applications
+/// should configure serialization through the generated module API instead.
+/// </remarks>
+[EditorBrowsable(EditorBrowsableState.Never)]
 public sealed class QuantityJsonConverter<TQuantity> : JsonConverter<TQuantity>
-    where TQuantity : struct, UnitsNet.Core.IQuantity<double>
+    where TQuantity : struct, IQuantity<double>
 {
     private readonly IQuantityDescriptor _descriptor;
 

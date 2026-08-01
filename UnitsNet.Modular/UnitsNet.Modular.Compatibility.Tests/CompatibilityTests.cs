@@ -189,7 +189,7 @@ public sealed class CompatibilityTests
         Type generatedUnitSystemType = GeneratedAssembly
             .GetReferencedAssemblies()
             .Select(Assembly.Load)
-            .Select(assembly => assembly.GetType("UnitsNet.Modular.UnitSystem"))
+            .Select(assembly => assembly.GetType("UnitsNet.UnitSystem"))
             .First(type => type is not null)!;
         object generatedSi = generatedUnitSystemType.GetProperty("SI")!.GetValue(null)!;
 
@@ -242,9 +242,11 @@ public sealed class CompatibilityTests
                     unit => (string)unit.GetType().GetProperty("Name")!.GetValue(unit)!,
                     unit => unit.GetType().GetProperty("BaseUnits")!.GetValue(unit)!.ToString()!,
                     StringComparer.Ordinal);
-            var generatedUnits = ((System.Collections.IEnumerable)generatedQuantity
-                    .GetProperty("UnitInfos")!
-                    .GetValue(null)!)
+            object generatedInfo = generatedQuantity.GetProperty("Info")!.GetValue(null)!;
+            var generatedUnits = ((System.Collections.IEnumerable)generatedInfo
+                    .GetType()
+                    .GetProperty("Units")!
+                    .GetValue(generatedInfo)!)
                 .Cast<object>()
                 .ToDictionary(
                     unit => (string)unit.GetType().GetProperty("SingularName")!.GetValue(unit)!,
@@ -328,7 +330,7 @@ public sealed class CompatibilityTests
                 $"UnitsNet.Units.{generatedQuantity.Name}Unit",
                 throwOnError: true)!;
             object legacyBaseUnit = legacyQuantity.GetProperty("BaseUnit")!.GetValue(null)!;
-            object generatedBaseUnit = generatedQuantity.GetProperty("BaseUnit")!.GetValue(null)!;
+            object generatedBaseUnit = GetGeneratedBaseUnit(generatedQuantity);
             MethodInfo legacyAs = LegacyAssembly.GetType("UnitsNet.QuantityExtensions", throwOnError: true)!
                 .GetMethods(BindingFlags.Public | BindingFlags.Static)
                 .Single(method =>
@@ -375,7 +377,7 @@ public sealed class CompatibilityTests
                 $"UnitsNet.Units.{generatedQuantity.Name}Unit",
                 throwOnError: true)!;
             object legacyBaseUnit = legacyQuantity.GetProperty("BaseUnit")!.GetValue(null)!;
-            object generatedBaseUnit = generatedQuantity.GetProperty("BaseUnit")!.GetValue(null)!;
+            object generatedBaseUnit = GetGeneratedBaseUnit(generatedQuantity);
             object legacyValue = CreateQuantity(legacyQuantity, value, legacyBaseUnit);
             object generatedValue = CreateQuantity(generatedQuantity, value, generatedBaseUnit);
             string legacyText = ((IFormattable)legacyValue).ToString(null, invariant);
@@ -433,10 +435,10 @@ public sealed class CompatibilityTests
     [Fact]
     public void GeneratedRegistry_DescribesAndOperatesOnTheConsumerOwnedCatalog()
     {
-        UnitsNet.Modular.QuantityRegistry registry = Generated::UnitsNet.Modular.Generated.GeneratedQuantityRegistry.Instance;
+        QuantityRegistry registry = Generated::UnitsNet.GeneratedQuantityRegistry.Instance;
 
         Assert.Equal(129, registry.Quantities.Count);
-        UnitsNet.Modular.IQuantityDescriptor length = registry.Get(new UnitsNet.Core.QuantityId("UnitsNet.Length"));
+        IQuantityDescriptor length = registry.Get(new QuantityId("UnitsNet.Length"));
         Assert.Same(length, registry.Get("length"));
         Assert.Same(length, registry.Get(typeof(Generated::UnitsNet.Length)));
         Assert.Equal("Meter", length.BaseUnitName);
@@ -450,7 +452,7 @@ public sealed class CompatibilityTests
 
         foreach (Type generatedType in GetQuantityTypes(GeneratedAssembly))
         {
-            UnitsNet.Modular.IQuantityDescriptor descriptor = registry.Get(generatedType);
+            IQuantityDescriptor descriptor = registry.Get(generatedType);
             Type legacyType = LegacyAssembly.GetType(generatedType.FullName!, throwOnError: true)!;
             object legacyDimensions = legacyType.GetProperty("BaseDimensions")!.GetValue(null)!;
             Assert.Equal(
@@ -474,7 +476,7 @@ public sealed class CompatibilityTests
     [Fact]
     public void GeneratedRegistry_ReplacesCommonLegacyDynamicWorkflows()
     {
-        UnitsNet.Modular.QuantityRegistry registry = Generated::UnitsNet.Modular.Generated.GeneratedQuantityRegistry.Instance;
+        QuantityRegistry registry = Generated::UnitsNet.GeneratedQuantityRegistry.Instance;
         var invariant = System.Globalization.CultureInfo.InvariantCulture;
 
         var legacyCreated = Assert.IsType<Legacy::UnitsNet.Length>(
@@ -522,7 +524,7 @@ public sealed class CompatibilityTests
             .OrderBy(name => name, StringComparer.Ordinal)
             .ToArray();
         string[] generatedDimensionMatches = registry
-            .FindByBaseDimensions(Generated::UnitsNet.Length.BaseDimensions)
+            .FindByBaseDimensions(Generated::UnitsNet.Length.Info.BaseDimensions)
             .Select(quantity => quantity.Name)
             .OrderBy(name => name, StringComparer.Ordinal)
             .ToArray();
@@ -536,17 +538,17 @@ public sealed class CompatibilityTests
 
         Legacy::UnitsNet.IQuantity legacyByName =
             Legacy::UnitsNet.Quantity.From(1.5, "Length", "Kilometer");
-        UnitsNet.Core.IQuantity<double> generatedByName =
+        IQuantity<double> generatedByName =
             Generated::UnitsNet.Quantity.From(1.5, "Length", "Kilometer");
         Legacy::UnitsNet.IQuantity legacyByUnit =
             Legacy::UnitsNet.Quantity.From(1.5, Legacy::UnitsNet.Units.LengthUnit.Kilometer);
-        UnitsNet.Core.IQuantity<double> generatedByUnit =
+        IQuantity<double> generatedByUnit =
             Generated::UnitsNet.Quantity.From(
                 1.5,
                 Generated::UnitsNet.Units.LengthUnit.Kilometer);
         Legacy::UnitsNet.IQuantity legacyParsed =
             Legacy::UnitsNet.Quantity.Parse(invariant, typeof(Legacy::UnitsNet.Length), "1.5 km");
-        UnitsNet.Core.IQuantity<double> generatedParsed =
+        IQuantity<double> generatedParsed =
             Generated::UnitsNet.Quantity.Parse(
                 invariant,
                 typeof(Generated::UnitsNet.Length),
@@ -575,7 +577,7 @@ public sealed class CompatibilityTests
                 2,
                 "Length",
                 "Meter",
-                out UnitsNet.Core.IQuantity<double>? generated));
+                out IQuantity<double>? generated));
         Assert.IsType<Generated::UnitsNet.Length>(generated);
     }
 
@@ -890,7 +892,7 @@ public sealed class CompatibilityTests
                 member != "M:ToString:System.String(System.String)" &&
                 !member.StartsWith("M:As:", StringComparison.Ordinal) &&
                 !member.StartsWith("M:ToUnit:", StringComparison.Ordinal) &&
-                !member.Contains("UnitsNet.Modular.UnitSystem", StringComparison.Ordinal))
+                !member.Contains("UnitsNet.UnitSystem", StringComparison.Ordinal))
             .OrderBy(member => member, StringComparer.Ordinal)
             .ToArray();
         Assert.True(
@@ -984,10 +986,11 @@ public sealed class CompatibilityTests
 
     private static bool IsDocumentedCompatibilityDifference(string quantityName, string signature)
     {
-        if (signature.StartsWith("P:Info:", StringComparison.Ordinal) ||
-            signature.StartsWith("P:QuantityInfo:", StringComparison.Ordinal) ||
-            signature.StartsWith("P:DefaultConversionFunctions:", StringComparison.Ordinal) ||
+        if (signature.StartsWith("P:DefaultConversionFunctions:", StringComparison.Ordinal) ||
             signature.StartsWith("P:BaseDimensions:", StringComparison.Ordinal) ||
+            signature.StartsWith("P:BaseUnit:", StringComparison.Ordinal) ||
+            signature.StartsWith("P:QuantityInfo:", StringComparison.Ordinal) ||
+            signature.StartsWith("P:Units:", StringComparison.Ordinal) ||
             signature.Contains("(UnitsNet.UnitKey)", StringComparison.Ordinal) ||
             signature.Contains("UnitsNet.UnitConverter", StringComparison.Ordinal) ||
             signature.Contains("UnitsNet.UnitSystem", StringComparison.Ordinal))
@@ -1051,6 +1054,13 @@ public sealed class CompatibilityTests
                 return parameters.Length == 2 && parameters[1].ParameterType == unit.GetType();
             });
         return constructor.Invoke(new[] { ConvertNumeric(value, constructor.GetParameters()[0].ParameterType), unit });
+    }
+
+    private static object GetGeneratedBaseUnit(Type quantityType)
+    {
+        object info = quantityType.GetProperty("Info")!.GetValue(null)!;
+        object baseUnit = info.GetType().GetProperty("BaseUnit")!.GetValue(info)!;
+        return baseUnit.GetType().GetProperty("Value")!.GetValue(baseUnit)!;
     }
 
     private static object ConvertNumeric(double value, Type targetType)

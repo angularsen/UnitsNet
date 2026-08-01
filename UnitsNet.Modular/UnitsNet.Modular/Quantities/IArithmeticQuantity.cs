@@ -2,11 +2,12 @@
 
 using System.Numerics;
 
-namespace UnitsNet.Core;
+namespace UnitsNet;
 
 /// <summary>A quantity that supports same-quantity arithmetic with a <see cref="double" /> scalar.</summary>
 /// <typeparam name="TSelf">The concrete quantity type.</typeparam>
 public interface IArithmeticQuantity<TSelf> :
+    IQuantity<double>,
     IAdditionOperators<TSelf, TSelf, TSelf>,
     ISubtractionOperators<TSelf, TSelf, TSelf>,
     IMultiplyOperators<TSelf, double, TSelf>,
@@ -20,7 +21,7 @@ public interface IArithmeticQuantity<TSelf> :
 /// <typeparam name="TSelf">The concrete quantity type.</typeparam>
 /// <typeparam name="TUnit">The unit enum type.</typeparam>
 public interface IArithmeticQuantity<TSelf, TUnit> :
-    IQuantity<TSelf, TUnit, double>,
+    IQuantity<TSelf, TUnit>,
     IArithmeticQuantity<TSelf>
     where TSelf : IArithmeticQuantity<TSelf, TUnit>
     where TUnit : struct, Enum

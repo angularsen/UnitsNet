@@ -1,6 +1,6 @@
 ﻿// Licensed under MIT No Attribution, see LICENSE file at the root.
 
-namespace UnitsNet.Core;
+namespace UnitsNet;
 
 /// <summary>Reusable algorithms for quantities with logarithmic arithmetic semantics.</summary>
 public static class LogarithmicQuantityMath

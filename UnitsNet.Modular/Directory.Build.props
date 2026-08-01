@@ -5,7 +5,7 @@
   <!-- Register analyzer-config metadata before IDE design-time builds capture the project model. -->
   <Import Project="UnitsNet.Modular.Generator/buildTransitive/UnitsNet.Modular.Generator.props" />
 
-  <!-- UnitsNet.Core imports this explicitly because it is a sibling of this directory. -->
+  <!-- Shared versioning policy for the Modular runtime and bundled generator. -->
   <Import Project="UnitsNet.Modular.Versioning.props" />
 
   <!-- Reproducible portable symbols with Source Link are part of the package quality contract. -->

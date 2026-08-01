@@ -1,6 +1,6 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
-namespace UnitsNet.Modular;
+namespace UnitsNet;
 
 /// <summary>
 /// Identifies the invariant unit names chosen for the seven SI base dimensions.

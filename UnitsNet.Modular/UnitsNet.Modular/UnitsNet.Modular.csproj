@@ -4,17 +4,18 @@
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>UnitsNet.Modular</RootNamespace>
+    <RootNamespace>UnitsNet</RootNamespace>
     <IsPackable>true</IsPackable>
     <IsAotCompatible>true</IsAotCompatible>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../../UnitsNet.snk</AssemblyOriginatorKeyFile>
 
     <!--
       The repository's local-package workflow passes a unique development version explicitly.
-      Ordinary local builds use the stable version from Directory.Build.props, while CI and
+      Ordinary local builds use the stable version from the shared versioning props, while CI and
       release preparation opt into the MinVer-derived publish version.
     -->
     <UnitsNetModularLocalFeed Condition="'$(UnitsNetModularLocalFeed)' == ''">$(RepositoryLocalNuGetFeed)</UnitsNetModularLocalFeed>
-    <UnitsNetCoreVersionOverride Condition="'$(UnitsNetModularPackForPublish)' != 'true' and '$(UnitsNetCoreVersionOverride)' == ''">$(Version)</UnitsNetCoreVersionOverride>
     <PackageOutputPath Condition="'$(UnitsNetModularPackForPublish)' != 'true' and '$(PackageOutputPath)' == ''">$(UnitsNetModularLocalFeed)</PackageOutputPath>
 
     <PackageId>UnitsNet.Modular</PackageId>
@@ -40,19 +41,10 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MinVer" PrivateAssets="all" />
-    <ProjectReference Include="../../UnitsNet.Core/UnitsNet.Core.csproj" />
     <ProjectReference Include="..\UnitsNet.Modular.Generator\UnitsNet.Modular.Generator.csproj"
                       PrivateAssets="all"
                       ReferenceOutputAssembly="false" />
   </ItemGroup>
-  <Target Name="PackUnitsNetCore"
-          BeforeTargets="GenerateNuspec"
-          Condition="'$(TargetFramework)' == ''">
-    <MSBuild Projects="../../UnitsNet.Core/UnitsNet.Core.csproj"
-             Targets="Pack"
-             BuildInParallel="false"
-             Properties="Configuration=$(Configuration);PackageOutputPath=$(PackageOutputPath);NoBuild=true;UnitsNetCoreVersionOverride=$(UnitsNetCoreVersionOverride)" />
-  </Target>
   <ItemGroup>
     <None Include="../../Artifacts/UnitsNet.Modular.Generator/netstandard2.0/UnitsNet.Modular.Generator.dll"
           Pack="true"

@@ -20,6 +20,7 @@ public sealed class UnitsNetModuleAttribute : Attribute
 
 /// <summary>Declares glob or regular-expression patterns used to select public units.</summary>
 [AttributeUsage(AttributeTargets.Interface)]
+[CLSCompliant(false)]
 public sealed class UnitSetAttribute : Attribute
 {
     /// <summary>Creates a reusable unit selection.</summary>

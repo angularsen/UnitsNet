@@ -1,9 +1,8 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
 using System.Collections.Frozen;
-using UnitsNet.Core;
 
-namespace UnitsNet.Modular;
+namespace UnitsNet;
 
 /// <summary>An immutable registry of the quantities selected into one consumer-owned module.</summary>
 public sealed class QuantityRegistry

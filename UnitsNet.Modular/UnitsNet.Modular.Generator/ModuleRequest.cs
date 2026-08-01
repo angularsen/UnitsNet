@@ -13,16 +13,18 @@ internal sealed class ModuleRequest
         string ownerNamespace,
         string? targetNamespace,
         ImmutableArray<ModuleSelection> selections,
+        bool referencesLegacyUnitsNet,
         SourceLocation location)
     {
         Name = name;
         OwnerNamespace = ownerNamespace;
         TargetNamespace = targetNamespace;
         Selections = selections;
+        ReferencesLegacyUnitsNet = referencesLegacyUnitsNet;
         Location = location;
         Fingerprint = string.Join(
             "\n",
-            new[] { name, ownerNamespace, targetNamespace ?? string.Empty }
+            new[] { name, ownerNamespace, targetNamespace ?? string.Empty, referencesLegacyUnitsNet.ToString() }
                 .Concat(selections.Select(selection => selection.Fingerprint)));
     }
 
@@ -42,6 +44,8 @@ internal sealed class ModuleRequest
                 : OwnerNamespace;
 
     public ImmutableArray<ModuleSelection> Selections { get; }
+
+    public bool ReferencesLegacyUnitsNet { get; }
 
     public SourceLocation Location { get; }
 

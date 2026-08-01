@@ -20,12 +20,20 @@ public sealed class QuantityFacadeGeneratorTests
 
             internal static class Consumer
             {
-                public static void Use(UnitsNet.Modular.UnitSystem unitSystem)
+                public static void Use(global::UnitsNet.UnitSystem unitSystem)
                 {
                     var length = new global::UnitsNet.Length(1, unitSystem);
                     _ = global::UnitsNet.Length.From(1, unitSystem);
                     _ = length.As(unitSystem);
                     _ = length.ToUnit(unitSystem);
+                    global::UnitsNet.QuantityInfo<global::UnitsNet.Length, global::UnitsNet.Units.LengthUnit> info =
+                        global::UnitsNet.Length.Info;
+                    global::UnitsNet.UnitInfo<global::UnitsNet.Units.LengthUnit> meter =
+                        info[global::UnitsNet.Units.LengthUnit.Meter];
+                    _ = meter.Value;
+                    _ = meter.Name;
+                    _ = info.BaseUnit.Value;
+                    _ = info.Units;
                     _ = global::UnitsNet.Quantity.From(1, "Length", unitSystem);
                     _ = global::UnitsNet.Quantity.TryFrom(1, "Length", unitSystem, out _);
                 }
@@ -38,9 +46,9 @@ public sealed class QuantityFacadeGeneratorTests
         Assert.Contains("namespace UnitsNet", facade, StringComparison.Ordinal);
         Assert.DoesNotContain("namespace Application.Units", facade, StringComparison.Ordinal);
         Assert.Contains("public static partial class Quantity", facade, StringComparison.Ordinal);
-        Assert.Contains("global::UnitsNet.Core.IQuantity<double> From(", facade, StringComparison.Ordinal);
-        Assert.Contains("global::UnitsNet.Modular.UnitSystem unitSystem", facade, StringComparison.Ordinal);
-        Assert.Contains("global::UnitsNet.Modular.QuantityRegistry Registry", facade, StringComparison.Ordinal);
+        Assert.Contains("global::UnitsNet.IQuantity<double> From(", facade, StringComparison.Ordinal);
+        Assert.Contains("global::UnitsNet.UnitSystem unitSystem", facade, StringComparison.Ordinal);
+        Assert.Contains("global::UnitsNet.QuantityRegistry Registry", facade, StringComparison.Ordinal);
     }
 
     [Fact]

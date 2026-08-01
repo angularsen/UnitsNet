@@ -2,14 +2,14 @@
 
 using System.Numerics;
 
-namespace UnitsNet.Core;
+namespace UnitsNet;
 
 /// <summary>
 /// A quantity whose unit conversions may include an offset and therefore do not have conventional
 /// same-quantity arithmetic semantics.
 /// </summary>
 /// <typeparam name="TSelf">The concrete quantity type.</typeparam>
-public interface IAffineQuantity<TSelf>
+public interface IAffineQuantity<TSelf> : IQuantity<double>
     where TSelf : IAffineQuantity<TSelf>
 {
 }
@@ -31,7 +31,7 @@ public interface IAffineQuantity<TSelf, TOffset> :
 /// <typeparam name="TUnit">The unit enum type.</typeparam>
 /// <typeparam name="TOffset">The linear quantity type representing differences.</typeparam>
 public interface IAffineQuantity<TSelf, TUnit, TOffset> :
-    IQuantity<TSelf, TUnit, double>,
+    IQuantity<TSelf, TUnit>,
     IAffineQuantity<TSelf, TOffset>
     where TSelf : IAffineQuantity<TSelf, TUnit, TOffset>
     where TUnit : struct, Enum
