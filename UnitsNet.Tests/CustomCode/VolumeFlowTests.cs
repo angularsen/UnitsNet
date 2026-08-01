@@ -53,6 +53,10 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double CubicFeetPerSecondInOneCubicMeterPerSecond => 35.314666721489;
 
+        protected override double CubicInchesPerMinuteInOneCubicMeterPerSecond => 3661424.645683937;
+
+        protected override double CubicInchesPerSecondInOneCubicMeterPerSecond => 61023.74409473228;
+
         protected override double CubicMetersPerDayInOneCubicMeterPerSecond => 8.64e4;
 
         protected override double CubicMetersPerHourInOneCubicMeterPerSecond => 3.6e3;
@@ -62,6 +66,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double CubicMetersPerSecondInOneCubicMeterPerSecond => 1;
 
         protected override double CubicMillimetersPerSecondInOneCubicMeterPerSecond => 1e9;
+
+        protected override double CubicMillimetersPerMinuteInOneCubicMeterPerSecond => 6e10;
 
         protected override double CubicYardsPerDayInOneCubicMeterPerSecond => 1.13007e5;
 

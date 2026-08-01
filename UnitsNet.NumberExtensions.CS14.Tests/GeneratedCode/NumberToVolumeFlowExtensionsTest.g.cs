@@ -77,6 +77,14 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeFlow.FromCubicFeetPerSecond(2), 2.CubicFeetPerSecond);
 
         [Fact]
+        public void NumberToCubicInchesPerMinuteTest() =>
+            Assert.Equal(VolumeFlow.FromCubicInchesPerMinute(2), 2.CubicInchesPerMinute);
+
+        [Fact]
+        public void NumberToCubicInchesPerSecondTest() =>
+            Assert.Equal(VolumeFlow.FromCubicInchesPerSecond(2), 2.CubicInchesPerSecond);
+
+        [Fact]
         public void NumberToCubicMetersPerDayTest() =>
             Assert.Equal(VolumeFlow.FromCubicMetersPerDay(2), 2.CubicMetersPerDay);
 
@@ -91,6 +99,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void NumberToCubicMetersPerSecondTest() =>
             Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(2), 2.CubicMetersPerSecond);
+
+        [Fact]
+        public void NumberToCubicMillimetersPerMinuteTest() =>
+            Assert.Equal(VolumeFlow.FromCubicMillimetersPerMinute(2), 2.CubicMillimetersPerMinute);
 
         [Fact]
         public void NumberToCubicMillimetersPerSecondTest() =>
