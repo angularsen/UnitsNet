@@ -158,6 +158,22 @@ public sealed class AugmentationGeneratorTests
         Assert.Contains("Level(double quantity, double reference)", generated, StringComparison.Ordinal);
         Assert.Contains("PowerRatio(global::UnitsNet.Power power)", generated, StringComparison.Ordinal);
         Assert.Contains("ToAmplitudeRatio(global::UnitsNet.ElectricResistance impedance)", generated, StringComparison.Ordinal);
+        Assert.Contains(
+            "Performs logarithmic multiplication by adding the scalar to the stored logarithmic value.",
+            generated,
+            StringComparison.Ordinal);
+        Assert.Contains(
+            "Performs commutative logarithmic multiplication by adding the scalar to the stored logarithmic value.",
+            generated,
+            StringComparison.Ordinal);
+        Assert.Contains(
+            "Performs logarithmic division by subtracting the scalar from the stored logarithmic value.",
+            generated,
+            StringComparison.Ordinal);
+        Assert.Contains(
+            "Returns the logarithmic difference between two quantities expressed in the left operand's unit.",
+            generated,
+            StringComparison.Ordinal);
     }
 
     [Fact]

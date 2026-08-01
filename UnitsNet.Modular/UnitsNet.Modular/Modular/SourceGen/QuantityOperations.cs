@@ -18,11 +18,7 @@ public static class QuantityOperations
     /// <summary>Converts a value between two generated units.</summary>
     public static double Convert<TUnit>(double value, TUnit fromUnit, TUnit toUnit, IQuantityMetadata<TUnit> metadata)
         where TUnit : struct, Enum
-    {
-        _ = GetUnitInfo(fromUnit, metadata);
-        _ = GetUnitInfo(toUnit, metadata);
-        return metadata.FromBase(metadata.ToBase(value, fromUnit), toUnit);
-    }
+        => metadata.FromBase(metadata.ToBase(value, fromUnit), toUnit);
 
     /// <summary>Attempts to parse a numeric value and generated unit name or abbreviation.</summary>
     public static bool TryParse<TUnit>(
@@ -78,10 +74,7 @@ public static class QuantityOperations
     /// <summary>Converts a value to the quantity's base unit.</summary>
     public static double GetBaseValue<TUnit>(double value, TUnit unit, IQuantityMetadata<TUnit> metadata)
         where TUnit : struct, Enum
-    {
-        _ = GetUnitInfo(unit, metadata);
-        return metadata.ToBase(value, unit);
-    }
+        => metadata.ToBase(value, unit);
 
     /// <summary>Gets metadata for a generated unit.</summary>
     public static UnitInfo<TUnit> GetUnitInfo<TUnit>(TUnit unit, IQuantityMetadata<TUnit> metadata)
@@ -132,9 +125,7 @@ public static class QuantityOperations
             return true;
         }
 
-        foreach (UnitInfo<TUnit> candidate in metadata.Units.OrderBy(
-                     candidate => candidate.SingularName,
-                     StringComparer.Ordinal))
+        foreach (UnitInfo<TUnit> candidate in UnitSystemCandidateCache<TUnit>.Get(metadata))
         {
             if (candidate.BaseUnits.IsSubsetOf(unitSystem.BaseUnits))
             {
@@ -265,5 +256,18 @@ public static class QuantityOperations
                 .OrderByDescending(candidate => candidate.Suffix.Length)
                 .ThenBy(candidate => candidate.Suffix, StringComparer.Ordinal)
                 .ToArray();
+    }
+
+    private static class UnitSystemCandidateCache<TUnit>
+        where TUnit : struct, Enum
+    {
+        private static readonly ConcurrentDictionary<IQuantityMetadata<TUnit>, UnitInfo<TUnit>[]> Cache = new();
+
+        public static UnitInfo<TUnit>[] Get(IQuantityMetadata<TUnit> metadata) =>
+            Cache.GetOrAdd(
+                metadata,
+                static current => current.Units
+                    .OrderBy(candidate => candidate.SingularName, StringComparer.Ordinal)
+                    .ToArray());
     }
 }

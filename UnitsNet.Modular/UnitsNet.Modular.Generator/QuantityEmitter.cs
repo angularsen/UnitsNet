@@ -312,7 +312,8 @@ internal static class QuantityEmitter
                 .Append(unit.FromUnitToBaseExpression).AppendLine(",");
         }
 
-        writer.AppendLine("            _ => throw new global::System.ArgumentOutOfRangeException(nameof(unit), unit, null),");
+        writer.Append("            _ => throw new global::System.ArgumentOutOfRangeException(nameof(unit), unit, \"Unit is not generated for ")
+            .Append(Escape(quantity.Name)).AppendLine(".\"),");
         writer.AppendLine("        };");
         writer.AppendLine();
         writer.Append("        public double FromBase(double x, ").Append(unitType).AppendLine(" unit) => unit switch");
@@ -323,7 +324,8 @@ internal static class QuantityEmitter
                 .Append(unit.FromBaseToUnitExpression).AppendLine(",");
         }
 
-        writer.AppendLine("            _ => throw new global::System.ArgumentOutOfRangeException(nameof(unit), unit, null),");
+        writer.Append("            _ => throw new global::System.ArgumentOutOfRangeException(nameof(unit), unit, \"Unit is not generated for ")
+            .Append(Escape(quantity.Name)).AppendLine(".\"),");
         writer.AppendLine("        };");
         writer.AppendLine();
         writer.Append("        public ").Append(quantity.Name)
@@ -487,12 +489,16 @@ internal static class QuantityEmitter
             .Append(scalingFactor)
             .Append(") - global::System.Math.Pow(10, right.As(left.Unit) / ")
             .Append(scalingFactor).AppendLine(")), left.Unit);");
+        writer.AppendLine("    /// <summary>Performs logarithmic multiplication by adding the scalar to the stored logarithmic value.</summary>");
         writer.Append("    public static ").Append(quantityName).Append(" operator *(").Append(quantityName)
             .AppendLine(" quantity, double scalar) => new(quantity.Value + scalar, quantity.Unit);");
+        writer.AppendLine("    /// <summary>Performs commutative logarithmic multiplication by adding the scalar to the stored logarithmic value.</summary>");
         writer.Append("    public static ").Append(quantityName).Append(" operator *(").Append("double scalar, ")
             .Append(quantityName).AppendLine(" quantity) => quantity * scalar;");
+        writer.AppendLine("    /// <summary>Performs logarithmic division by subtracting the scalar from the stored logarithmic value.</summary>");
         writer.Append("    public static ").Append(quantityName).Append(" operator /(").Append(quantityName)
             .AppendLine(" quantity, double scalar) => new(quantity.Value - scalar, quantity.Unit);");
+        writer.AppendLine("    /// <summary>Returns the logarithmic difference between two quantities expressed in the left operand's unit.</summary>");
         writer.Append("    public static double operator /(").Append(quantityName).Append(" left, ").Append(quantityName)
             .AppendLine(" right) => left.Value - right.As(left.Unit);");
     }

@@ -382,6 +382,27 @@ public sealed class GeneratedQuantityTests
     }
 
     [Fact]
+    public void GeneratedConversion_InvalidUnitsRetainFriendlyExceptionsWithoutMetadataPrevalidation()
+    {
+        var invalidUnit = (LengthUnit)999;
+        Length distance = Length.FromMeters(1);
+
+        AssertInvalidUnit(() => { _ = new Length(1, invalidUnit); });
+        AssertInvalidUnit(() => { _ = distance.As(invalidUnit); });
+        AssertInvalidUnit(() => { _ = Length.Convert(1, invalidUnit, LengthUnit.Meter); });
+        AssertInvalidUnit(() => { _ = Length.Convert(1, LengthUnit.Meter, invalidUnit); });
+
+        void AssertInvalidUnit(Action action)
+        {
+            ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>(action);
+
+            Assert.Equal("unit", exception.ParamName);
+            Assert.Equal(invalidUnit, Assert.IsType<LengthUnit>(exception.ActualValue));
+            Assert.Contains("Unit is not generated for Length.", exception.Message, StringComparison.Ordinal);
+        }
+    }
+
+    [Fact]
     public void UnitPattern_ExcludesNonMatchingUnit()
     {
         string[] names = Enum.GetNames<InformationUnit>();
