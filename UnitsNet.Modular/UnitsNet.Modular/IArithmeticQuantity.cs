@@ -2,7 +2,7 @@
 
 using System.Numerics;
 
-namespace UnitsNet.Core;
+namespace UnitsNet.Modular;
 
 /// <summary>A quantity that supports same-quantity arithmetic with a <see cref="double" /> scalar.</summary>
 /// <typeparam name="TSelf">The concrete quantity type.</typeparam>

@@ -43,7 +43,7 @@ public sealed class GeneratedQuantityTests
         options.Converters.Add(global::UnitsNet.Modular.Generated.GeneratedQuantityRegistry.JsonConverter);
 
         Assert.Throws<NotSupportedException>(
-            () => JsonSerializer.Deserialize<UnitsNet.Core.IQuantity<double>>(
+            () => JsonSerializer.Deserialize<UnitsNet.Modular.IQuantity<double>>(
                 """{"Value":1.5,"Unit":"Kilometer"}""",
                 options));
     }
@@ -85,7 +85,7 @@ public sealed class GeneratedQuantityTests
                 2,
                 "Length",
                 "Meter",
-                out UnitsNet.Core.IQuantity<double>? created));
+                out UnitsNet.Modular.IQuantity<double>? created));
         Assert.IsType<Length>(created);
         Assert.True(registry.TryCreate(2, LengthUnit.Meter, out created));
         Assert.IsType<Length>(created);
@@ -98,7 +98,7 @@ public sealed class GeneratedQuantityTests
                 typeof(Length),
                 "2 km",
                 invariant,
-                out UnitsNet.Core.IQuantity<double>? parsedValue));
+                out UnitsNet.Modular.IQuantity<double>? parsedValue));
         Assert.IsType<Length>(parsedValue);
 
         Assert.False(registry.TryCreate(2, "Missing", "Meter", out _));
@@ -134,23 +134,23 @@ public sealed class GeneratedQuantityTests
         Assert.Same(Quantity.Registry.Get("Length"), Quantity.ByName["length"]);
         Assert.Contains(Quantity.Infos, descriptor => descriptor.QuantityType == typeof(Length));
 
-        UnitsNet.Core.IQuantity<double> byName = Quantity.From(1.5, "Length", "Kilometer");
-        UnitsNet.Core.IQuantity<double> bySystem =
+        UnitsNet.Modular.IQuantity<double> byName = Quantity.From(1.5, "Length", "Kilometer");
+        UnitsNet.Modular.IQuantity<double> bySystem =
             Quantity.From(1.5, "Length", UnitsNet.Modular.UnitSystem.SI);
-        UnitsNet.Core.IQuantity<double> byUnit = Quantity.From(1.5, LengthUnit.Kilometer);
-        UnitsNet.Core.IQuantity<double> parsed = Quantity.Parse(invariant, typeof(Length), "1.5 km");
+        UnitsNet.Modular.IQuantity<double> byUnit = Quantity.From(1.5, LengthUnit.Kilometer);
+        UnitsNet.Modular.IQuantity<double> parsed = Quantity.Parse(invariant, typeof(Length), "1.5 km");
 
         Assert.Equal(1500, Assert.IsType<Length>(byName).Meters, 10);
         Assert.Equal(1.5, Assert.IsType<Length>(bySystem).Meters, 10);
         Assert.Equal(1500, Assert.IsType<Length>(byUnit).Meters, 10);
         Assert.Equal(1500, Assert.IsType<Length>(parsed).Meters, 10);
-        Assert.True(Quantity.TryFrom(2, "Length", "Meter", out UnitsNet.Core.IQuantity<double>? created));
+        Assert.True(Quantity.TryFrom(2, "Length", "Meter", out UnitsNet.Modular.IQuantity<double>? created));
         Assert.IsType<Length>(created);
         Assert.True(Quantity.TryFrom(2, "Length", UnitsNet.Modular.UnitSystem.SI, out created));
         Assert.IsType<Length>(created);
         Assert.True(Quantity.TryFrom(2, LengthUnit.Meter, out created));
         Assert.IsType<Length>(created);
-        Assert.True(Quantity.TryParse(typeof(Length), "2 km", out UnitsNet.Core.IQuantity<double>? parsedValue));
+        Assert.True(Quantity.TryParse(typeof(Length), "2 km", out UnitsNet.Modular.IQuantity<double>? parsedValue));
         Assert.IsType<Length>(parsedValue);
         Assert.False(Quantity.TryFrom(2, "Missing", "Meter", out _));
         Assert.False(Quantity.TryParse(typeof(DateTime), "2 km", out _));
@@ -323,7 +323,7 @@ public sealed class GeneratedQuantityTests
                 2,
                 "Length",
                 UnitsNet.Modular.UnitSystem.SI,
-                out UnitsNet.Core.IQuantity<double>? created));
+                out UnitsNet.Modular.IQuantity<double>? created));
         Assert.IsType<Length>(created);
         Assert.True(
             registry.TryConvert(
@@ -490,14 +490,14 @@ public sealed class GeneratedQuantityTests
     }
 
     [Fact]
-    public void GeneratedQuantity_ImplementsMinimalSelfTypedCoreContract()
+    public void GeneratedQuantity_ImplementsMinimalSelfTypedModularContract()
     {
-        Assert.Equal(new UnitsNet.Core.QuantityId("UnitsNet.Length"), Length.Info.Id);
+        Assert.Equal(new UnitsNet.Modular.QuantityId("UnitsNet.Length"), Length.Info.Id);
         Assert.Equal(LengthUnit.Meter, Length.Info.BaseUnit.Value);
 
         Length length = Create<Length, LengthUnit>(2, LengthUnit.Meter);
-        UnitsNet.Core.IQuantity<Length, LengthUnit> stored = length;
-        UnitsNet.Core.IQuantity<double> erased = length;
+        UnitsNet.Modular.IQuantity<Length, LengthUnit> stored = length;
+        UnitsNet.Modular.IQuantity<double> erased = length;
         Assert.Equal(2d, stored.Value);
         Assert.Equal(LengthUnit.Meter, stored.Unit);
         Assert.Equal(LengthUnit.Meter, erased.Unit);
@@ -515,9 +515,9 @@ public sealed class GeneratedQuantityTests
     [Fact]
     public void QuantityId_RequiresANonEmptyValue()
     {
-        Assert.Throws<ArgumentNullException>(() => new UnitsNet.Core.QuantityId(null!));
-        Assert.Throws<ArgumentException>(() => new UnitsNet.Core.QuantityId(" "));
-        Assert.Equal("Sample.Distance", new UnitsNet.Core.QuantityId("Sample.Distance").Value);
+        Assert.Throws<ArgumentNullException>(() => new UnitsNet.Modular.QuantityId(null!));
+        Assert.Throws<ArgumentException>(() => new UnitsNet.Modular.QuantityId(" "));
+        Assert.Equal("Sample.Distance", new UnitsNet.Modular.QuantityId("Sample.Distance").Value);
     }
 
     [Fact]
@@ -529,10 +529,10 @@ public sealed class GeneratedQuantityTests
         AssertLogarithmicCapability<Level, LevelUnit>();
         Assert.DoesNotContain(
             typeof(Temperature).GetInterfaces(),
-            type => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(UnitsNet.Core.ILinearQuantity<>));
+            type => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(UnitsNet.Modular.ILinearQuantity<>));
         Assert.DoesNotContain(
             typeof(Level).GetInterfaces(),
-            type => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(UnitsNet.Core.ILinearQuantity<>));
+            type => type.IsGenericType && type.GetGenericTypeDefinition() == typeof(UnitsNet.Modular.ILinearQuantity<>));
     }
 
     [Theory]
@@ -609,20 +609,20 @@ public sealed class GeneratedQuantityTests
     [Fact]
     public void QuantityMath_SumsAndAveragesMixedUnits()
     {
-        Length sum = UnitsNet.Core.QuantityMath.Sum(new[]
+        Length sum = UnitsNet.Modular.QuantityMath.Sum(new[]
         {
             Length.FromKilometers(1),
             Length.FromMeters(500),
         });
-        Length targetedSum = UnitsNet.Core.QuantityMath.Sum(
+        Length targetedSum = UnitsNet.Modular.QuantityMath.Sum(
             new[] { Length.FromKilometers(1), Length.FromMeters(500) },
             LengthUnit.Meter);
-        Length average = UnitsNet.Core.QuantityMath.Average(new[]
+        Length average = UnitsNet.Modular.QuantityMath.Average(new[]
         {
             Length.FromMeters(1),
             Length.FromCentimeters(300),
         });
-        Length targetedAverage = UnitsNet.Core.QuantityMath.Average(
+        Length targetedAverage = UnitsNet.Modular.QuantityMath.Average(
             new[] { Length.FromMeters(1), Length.FromCentimeters(300) },
             LengthUnit.Centimeter);
 
@@ -630,7 +630,7 @@ public sealed class GeneratedQuantityTests
         Assert.Equal(1500, targetedSum.Meters, 10);
         Assert.Equal(2, average.Meters, 10);
         Assert.Equal(200, targetedAverage.Centimeters, 10);
-        Assert.Equal(Length.Zero, UnitsNet.Core.QuantityMath.Sum(Array.Empty<Length>()));
+        Assert.Equal(Length.Zero, UnitsNet.Modular.QuantityMath.Sum(Array.Empty<Length>()));
     }
 
     [Fact]
@@ -654,42 +654,42 @@ public sealed class GeneratedQuantityTests
         => left + right;
 
     private static TQuantity Create<TQuantity, TUnit>(double value, TUnit unit)
-        where TQuantity : UnitsNet.Core.IQuantity<TQuantity, TUnit, double>
+        where TQuantity : UnitsNet.Modular.IQuantity<TQuantity, TUnit, double>
         where TUnit : struct, Enum
         => TQuantity.From(value, unit);
 
     private static double ConvertValue<TQuantity, TUnit>(double value, TUnit fromUnit, TUnit toUnit)
-        where TQuantity : UnitsNet.Core.IQuantity<TQuantity, TUnit, double>
+        where TQuantity : UnitsNet.Modular.IQuantity<TQuantity, TUnit, double>
         where TUnit : struct, Enum
         => TQuantity.Convert(value, fromUnit, toUnit);
 
     private static void AssertLinearCapability<TQuantity, TUnit>()
-        where TQuantity : UnitsNet.Core.ILinearQuantity<TQuantity, TUnit>
+        where TQuantity : UnitsNet.Modular.ILinearQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
         => Assert.Equal(TQuantity.Info.BaseUnit.Value, TQuantity.Zero.Unit);
 
     private static void AssertAffineCapability<TQuantity, TUnit, TOffset>()
-        where TQuantity : UnitsNet.Core.IAffineQuantity<TQuantity, TUnit, TOffset>
+        where TQuantity : UnitsNet.Modular.IAffineQuantity<TQuantity, TUnit, TOffset>
         where TUnit : struct, Enum
-        where TOffset : UnitsNet.Core.ILinearQuantity<TOffset>
+        where TOffset : UnitsNet.Modular.ILinearQuantity<TOffset>
         => Assert.Contains(
-            typeof(UnitsNet.Core.IAffineQuantity<TQuantity, TUnit, TOffset>),
+            typeof(UnitsNet.Modular.IAffineQuantity<TQuantity, TUnit, TOffset>),
             typeof(TQuantity).GetInterfaces());
 
     private static TQuantity AddOffset<TQuantity, TUnit, TOffset>(TQuantity quantity, TOffset offset)
-        where TQuantity : UnitsNet.Core.IAffineQuantity<TQuantity, TUnit, TOffset>
+        where TQuantity : UnitsNet.Modular.IAffineQuantity<TQuantity, TUnit, TOffset>
         where TUnit : struct, Enum
-        where TOffset : UnitsNet.Core.ILinearQuantity<TOffset>
+        where TOffset : UnitsNet.Modular.ILinearQuantity<TOffset>
         => quantity + offset;
 
     private static TOffset Difference<TQuantity, TUnit, TOffset>(TQuantity left, TQuantity right)
-        where TQuantity : UnitsNet.Core.IAffineQuantity<TQuantity, TUnit, TOffset>
+        where TQuantity : UnitsNet.Modular.IAffineQuantity<TQuantity, TUnit, TOffset>
         where TUnit : struct, Enum
-        where TOffset : UnitsNet.Core.ILinearQuantity<TOffset>
+        where TOffset : UnitsNet.Modular.ILinearQuantity<TOffset>
         => left - right;
 
     private static void AssertLogarithmicCapability<TQuantity, TUnit>()
-        where TQuantity : UnitsNet.Core.ILogarithmicQuantity<TQuantity, TUnit>
+        where TQuantity : UnitsNet.Modular.ILogarithmicQuantity<TQuantity, TUnit>
         where TUnit : struct, Enum
         => Assert.Equal(TQuantity.Info.BaseUnit.Value, TQuantity.Zero.Unit);
 

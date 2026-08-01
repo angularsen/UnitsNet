@@ -1,6 +1,6 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
-namespace UnitsNet.Core;
+namespace UnitsNet.Modular;
 
 /// <summary>A logarithmic quantity with logarithmic arithmetic semantics.</summary>
 /// <typeparam name="TSelf">The concrete quantity type.</typeparam>

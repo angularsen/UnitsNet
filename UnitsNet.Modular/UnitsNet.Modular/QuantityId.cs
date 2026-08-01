@@ -1,6 +1,6 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
-namespace UnitsNet.Core;
+namespace UnitsNet.Modular;
 
 /// <summary>
 /// Identifies a quantity independently of its concrete generated CLR type.

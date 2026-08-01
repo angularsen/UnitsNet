@@ -438,7 +438,7 @@ public sealed class CompatibilityTests
         UnitsNet.Modular.QuantityRegistry registry = Generated::UnitsNet.Modular.Generated.GeneratedQuantityRegistry.Instance;
 
         Assert.Equal(129, registry.Quantities.Count);
-        UnitsNet.Modular.IQuantityDescriptor length = registry.Get(new UnitsNet.Core.QuantityId("UnitsNet.Length"));
+        UnitsNet.Modular.IQuantityDescriptor length = registry.Get(new UnitsNet.Modular.QuantityId("UnitsNet.Length"));
         Assert.Same(length, registry.Get("length"));
         Assert.Same(length, registry.Get(typeof(Generated::UnitsNet.Length)));
         Assert.Equal("Meter", length.BaseUnitName);
@@ -538,17 +538,17 @@ public sealed class CompatibilityTests
 
         Legacy::UnitsNet.IQuantity legacyByName =
             Legacy::UnitsNet.Quantity.From(1.5, "Length", "Kilometer");
-        UnitsNet.Core.IQuantity<double> generatedByName =
+        UnitsNet.Modular.IQuantity<double> generatedByName =
             Generated::UnitsNet.Quantity.From(1.5, "Length", "Kilometer");
         Legacy::UnitsNet.IQuantity legacyByUnit =
             Legacy::UnitsNet.Quantity.From(1.5, Legacy::UnitsNet.Units.LengthUnit.Kilometer);
-        UnitsNet.Core.IQuantity<double> generatedByUnit =
+        UnitsNet.Modular.IQuantity<double> generatedByUnit =
             Generated::UnitsNet.Quantity.From(
                 1.5,
                 Generated::UnitsNet.Units.LengthUnit.Kilometer);
         Legacy::UnitsNet.IQuantity legacyParsed =
             Legacy::UnitsNet.Quantity.Parse(invariant, typeof(Legacy::UnitsNet.Length), "1.5 km");
-        UnitsNet.Core.IQuantity<double> generatedParsed =
+        UnitsNet.Modular.IQuantity<double> generatedParsed =
             Generated::UnitsNet.Quantity.Parse(
                 invariant,
                 typeof(Generated::UnitsNet.Length),
@@ -577,7 +577,7 @@ public sealed class CompatibilityTests
                 2,
                 "Length",
                 "Meter",
-                out UnitsNet.Core.IQuantity<double>? generated));
+                out UnitsNet.Modular.IQuantity<double>? generated));
         Assert.IsType<Generated::UnitsNet.Length>(generated);
     }
 

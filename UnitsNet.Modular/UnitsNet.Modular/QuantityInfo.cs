@@ -3,7 +3,6 @@
 using System.Collections.Frozen;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
-using UnitsNet.Core;
 using UnitsNet.Modular;
 
 namespace UnitsNet;

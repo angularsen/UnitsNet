@@ -2,7 +2,7 @@
 
 using System.Numerics;
 
-namespace UnitsNet.Core;
+namespace UnitsNet.Modular;
 
 /// <summary>
 /// A quantity whose unit conversions may include an offset and therefore do not have conventional

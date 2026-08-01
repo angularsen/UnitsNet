@@ -31,8 +31,6 @@
                                    Exclude="$(_UnitsNetModularSourceRoot)UnitsNet.Modular\bin\**;$(_UnitsNetModularSourceRoot)UnitsNet.Modular\obj\**" />
     <_UnitsNetModularLocalPackageInput Include="$(_UnitsNetModularSourceRoot)UnitsNet.Modular.Generator\**\*"
                                    Exclude="$(_UnitsNetModularSourceRoot)UnitsNet.Modular.Generator\bin\**;$(_UnitsNetModularSourceRoot)UnitsNet.Modular.Generator\obj\**" />
-    <_UnitsNetModularLocalPackageInput Include="$(_UnitsNetModularSourceRoot)..\UnitsNet.Core\**\*"
-                                   Exclude="$(_UnitsNetModularSourceRoot)..\UnitsNet.Core\bin\**;$(_UnitsNetModularSourceRoot)..\UnitsNet.Core\obj\**" />
     <_UnitsNetModularLocalPackageInput Include="$(MSBuildThisFileFullPath)" />
     <_UnitsNetModularLocalPackageInput Include="$(_UnitsNetModularSourceRoot)ARCHITECTURE.md" />
     <_UnitsNetModularLocalPackageInput Include="$(_UnitsNetModularSourceRoot)README.md" />
@@ -48,7 +46,7 @@
           Inputs="@(_UnitsNetModularLocalPackageInput);@(UnitsNetModularSampleAdditionalLocalPackageInput)"
           Outputs="$(_UnitsNetModularSampleLocalPackStamp)">
     <Message Importance="high" Text="Packing the latest local UnitsNet.Modular package..." />
-    <Exec Command="dotnet pack &quot;$(_UnitsNetModularSourceProject)&quot; --configuration Release --output &quot;$(UnitsNetModularSampleLocalFeed)&quot; -p:MinVerVersionOverride=$(_UnitsNetModularSampleLocalPackageVersion) -p:UnitsNetCoreVersionOverride=$(_UnitsNetModularSampleLocalPackageVersion)" />
+    <Exec Command="dotnet pack &quot;$(_UnitsNetModularSourceProject)&quot; --configuration Release --output &quot;$(UnitsNetModularSampleLocalFeed)&quot; -p:MinVerVersionOverride=$(_UnitsNetModularSampleLocalPackageVersion)" />
 
     <Message Condition="'@(UnitsNetModularSampleAdditionalLocalPackageProject)' != ''"
              Importance="high"

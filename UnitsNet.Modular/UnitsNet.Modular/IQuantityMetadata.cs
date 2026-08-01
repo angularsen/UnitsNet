@@ -36,7 +36,7 @@ public interface IQuantityMetadata<TUnit>
 
 /// <summary>Generated parsing operations supplied to immutable quantity metadata.</summary>
 /// <remarks>
-/// This contract is public so generated code can call into <c>UnitsNet.Core</c> from a consumer
+/// This contract is public so generated code can call into <c>UnitsNet.Modular</c> from a consumer
 /// assembly. It is generator infrastructure and is not intended for direct application use.
 /// </remarks>
 [EditorBrowsable(EditorBrowsableState.Never)]

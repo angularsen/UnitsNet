@@ -66,14 +66,14 @@ internal static class QuantityEmitter
         writer.Append("public readonly partial struct ").Append(quantity.Name).Append(" : ");
         if (quantity.IsAffine)
         {
-            writer.Append("global::UnitsNet.Core.IAffineQuantity<").Append(quantity.Name).Append(", ")
+            writer.Append("global::UnitsNet.Modular.IAffineQuantity<").Append(quantity.Name).Append(", ")
                 .Append(unitType).Append(", ").Append(QuantityType(affineOffset!.Definition)).Append(">, ");
         }
         else
         {
             string capabilityInterface = quantity.IsLogarithmic
-                ? "global::UnitsNet.Core.ILogarithmicQuantity<"
-                : "global::UnitsNet.Core.ILinearQuantity<";
+                ? "global::UnitsNet.Modular.ILogarithmicQuantity<"
+                : "global::UnitsNet.Modular.ILinearQuantity<";
             writer.Append(capabilityInterface).Append(quantity.Name).Append(", ").Append(unitType).Append(">, ");
         }
         writer
@@ -118,7 +118,7 @@ internal static class QuantityEmitter
         writer.Append("    public ").Append(unitType).AppendLine(" Unit => _unit == default ? Info.BaseUnit.Value : _unit;");
         writer.Append("    public static global::UnitsNet.QuantityInfo<").Append(quantity.Name).Append(", ")
             .Append(unitType).Append("> Info { get; } = new(")
-            .Append("new global::UnitsNet.Core.QuantityId(\"").Append(Escape(quantity.SemanticId))
+            .Append("new global::UnitsNet.Modular.QuantityId(\"").Append(Escape(quantity.SemanticId))
             .AppendLine("\"), Metadata);");
         writer.Append("    internal static ").Append(unitType).AppendLine(" BaseUnit => Info.BaseUnit.Value;");
         writer.Append("    public static ").Append(quantity.Name).AppendLine(" Zero => From(0, Info.BaseUnit.Value);");
