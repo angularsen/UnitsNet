@@ -68,10 +68,9 @@ as binary floating point lose precision.
   strings only; see [String formatting](string-formatting.md).
     - Replace `A`, `A0`, `A1`, ... with a generated `GetAbbreviation()` method or
       `UnitAbbreviationsCache.GetUnitAbbreviations()`.
-    - The `S` format, which was removed in v5 but briefly returned in a v6 prerelease through `QuantityValue`, remains
-      removed. Use an explicit numeric format such as `G3`, `F2`, `N2`, `E2`, or `0.##`.
-    - Continue replacing the v6-removed `U`, `V`, and `Q` formats with the `Unit` property, the `Value` property, and
-      static quantity metadata such as `Length.Info.Name`, respectively.
+    - Replace `S`, `S2`, ... with an explicit numeric format such as `G3`, `F2`, `N2`, `E2`, or `0.##`.
+    - Replace `U`, `V`, and `Q` with the `Unit` property, the `Value` property, and static quantity metadata such as
+      `Length.Info.Name`, respectively.
 - Exact rational conversions and arithmetic may produce results that differ from the previous `double` implementation in the least significant digits. Precision can be lost when a `QuantityValue` is converted to `double`; perform that conversion only at boundaries where floating-point behavior is required. #1544
 - Calls to `.As()` and `.ToUnit()` through an `IQuantity` or `IQuantity<TUnitType>` reference now use the `QuantityExtensions` methods and `UnitConverter.Default`. They no longer dispatch to type-specific methods defined by a custom quantity. Custom quantities that need these calls to support conversion must register their conversion functions with `UnitConverter.Default`. #1696
 - Calling these extension methods with an incompatible unit type now throws `UnitNotFoundException` instead of `ArgumentException`. Code that catches `ArgumentException` around interface-based conversions may need to be updated. #1696
