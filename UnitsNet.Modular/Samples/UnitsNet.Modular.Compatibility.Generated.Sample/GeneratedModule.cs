@@ -5,6 +5,4 @@ using UnitsNet.Modular.Profiles;
 namespace UnitsNet.Modular.Compatibility;
 
 [UnitsNetModule]
-internal interface CompatibilityUnits : IIncludeProfile<AllQuantitiesProfile>
-{
-}
+internal interface CompatibilityUnits : IIncludeProfile<AllQuantitiesProfile>;

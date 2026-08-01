@@ -1,8 +1,5 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
-namespace UnitsNet.Modular.Compatibility;
+using UnitsNet.Modular.Compatibility;
 
-internal static class Program
-{
-    public static void Main() => Console.WriteLine(CompatibilityScenario.Run());
-}
+Console.WriteLine(CompatibilityScenario.Run());
