@@ -79,9 +79,7 @@ identities. Replace one package with the other at a generation boundary instead 
 Declare one module interface and select the built-in quantities to generate:
 
 ```csharp
-using UnitsNet;
 using UnitsNet.Modular;
-using UnitsNet.Units;
 using Catalog = UnitsNet.Modular.BuiltIns;
 
 namespace MyApplication.Units;
@@ -246,7 +244,9 @@ Temperature adjusted = freezing + TemperatureDelta.FromDegreesCelsius(2);
 ```
 
 Selecting an affine quantity without its offset quantity produces diagnostic `UNM015`.
-Logarithmic quantities retain logarithmic arithmetic instead of being treated as linear values.
+Logarithmic quantities currently mirror UnitsNet's logarithmic arithmetic. The exact operator and
+named-method surface remains under evaluation in
+[issue #1569](https://github.com/angularsen/UnitsNet/issues/1569).
 
 ### Parse, format, and localize
 
@@ -355,9 +355,9 @@ internal interface ApplicationUnits :
     IInclude<UnitsNet.Modular.BuiltIns.LengthSpec>;
 ```
 
-A compilation can contain one module marker. Compose a larger selection with profiles rather than
-declaring multiple modules. `UNM014` reports multiple module markers before they emit colliding
-types.
+A compilation can contain one module declaration. Compose a larger selection with profiles rather
+than declaring multiple modules. `UNM014` reports multiple module declarations before they emit
+colliding types.
 
 Without a target namespace, each definition keeps its declared namespace:
 
@@ -660,8 +660,8 @@ Examples:
 
 ```json
 {
-  "FromUnitToBaseFunc": "({x} * 9 / 5) + 32",
-  "FromBaseToUnitFunc": "({x} - 32) * 5 / 9"
+  "FromUnitToBaseFunc": "({x} - 32) * 5 / 9",
+  "FromBaseToUnitFunc": "({x} * 9 / 5) + 32"
 }
 ```
 
@@ -732,7 +732,7 @@ MSBuild props file, but does not generate or ship the resulting quantity structs
 
 ```text
 Acme.Measurements.Definitions
-├── DefinitionMarkers.cs
+├── QuantitySpecs.cs
 ├── Definitions
 │   ├── WidgetCount.unitsnet.json
 │   └── Acme.unitsnet.relations.json
@@ -808,10 +808,10 @@ When a module includes built-ins, the generator emits the source-compatible `Qua
 using UnitsNet;
 
 IQuantity<double> value =
-    UnitsNet.Quantity.From(1.5, "Length", "Kilometer");
+    Quantity.From(1.5, "Length", "Kilometer");
 
 IQuantity<double> parsed =
-    UnitsNet.Quantity.Parse(typeof(Length), "1.5 km");
+    Quantity.Parse(typeof(Length), "1.5 km");
 ```
 
 A custom-only module places its facade in the module interface's namespace unless the
@@ -883,6 +883,7 @@ UnitsNet.Modular reports authoring problems at compile time:
 - Unit filters match expanded invariant unit names, not localized abbreviations.
 - The System.Text.Json integration is a proof of concept; applications own persisted-contract
   versioning.
+- The logarithmic operator and named-method surface is still being evaluated.
 - Specialized `Length.ParseFeetInches` parsing and `Pressure` elevation modeling are currently
   explicit compatibility exclusions.
 

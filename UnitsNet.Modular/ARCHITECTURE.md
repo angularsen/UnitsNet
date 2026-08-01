@@ -17,7 +17,9 @@ The experiment is inspired by
 [the modular-package experiment](https://github.com/angularsen/UnitsNet/pull/1181),
 [the source-generator discussion](https://github.com/angularsen/UnitsNet/issues/902), and
 the current
-[Roslyn source-generator model](https://github.com/dotnet/roslyn/blob/main/docs/features/source-generators.cookbook.md).
+[Roslyn source-generator model][roslyn-source-generators].
+
+[roslyn-source-generators]: https://github.com/dotnet/roslyn/blob/main/docs/features/source-generators.cookbook.md
 
 ## Feasibility conclusions
 
@@ -73,8 +75,8 @@ identity from the spec's namespace or type name.
 Select every unit for a built-in quantity by inheriting `IInclude<TQuantitySpec>`:
 
 ```csharp
-using UnitsNet.Modular.BuiltIns;
 using UnitsNet.Modular;
+using UnitsNet.Modular.BuiltIns;
 
 [UnitsNetModule]
 internal interface EngineeringUnits :
@@ -122,6 +124,7 @@ units.
 Quantity profiles compose reusable catalog selections:
 
 ```csharp
+using UnitsNet.Modular;
 using UnitsNet.Modular.Profiles;
 
 [UnitsNetModule]
@@ -135,8 +138,8 @@ relationship sample.
 Consumers can define profiles from
 `IInclude<TQuantitySpec>` and nest them through `IIncludeProfile<TProfile>`. Profile selections are
 defaults: direct selections on the module override a profile's unit selection for the same quantity.
-The recommended application architecture has one module marker in its shared units project. Profiles
-and direct includes compose the complete generated surface at that boundary.
+The recommended application architecture has one module declaration in its shared units project.
+Profiles and direct includes compose the complete generated surface at that boundary.
 
 Custom quantities use JSON definition files. Consumers should include them with Roslyn's native
 `AdditionalFiles` item:
@@ -165,9 +168,9 @@ for stable third-party identity; it defaults to `UnitsNet`, allowing files such 
 selection to the JSON's logical `Namespace.Name` ID:
 
 ```csharp
-namespace Fictional;
-
 using UnitsNet.Modular;
+
+namespace Fictional;
 
 [QuantitySpec("Fictional.Measurements.HowMuch")]
 public interface HowMuchSpec;
@@ -177,8 +180,8 @@ internal interface FictionalUnits : IInclude<HowMuchSpec>;
 ```
 
 Definitions are read with `System.Text.Json`. Its .NET Standard support assemblies are bundled
-privately beside the analyzer, while the generated/runtime library has no JSON-library dependency.
-Conversion expressions are parsed as C# expressions and restricted to numeric literals, `x`,
+privately beside the analyzer, while the runtime has no external JSON package dependency.
+Conversion expressions are parsed as C# expressions and restricted to numeric literals, `{x}`,
 arithmetic operators, parentheses, `Math.PI`, `Math.E`, and an allowlist of numeric `Math`
 functions.
 The generator emits the validated expressions directly into conversion switches; it does not compile
@@ -284,7 +287,7 @@ algorithms over generated quantities. `AffineQuantityMath.Average` averages affi
 explicit target unit. `LogarithmicQuantityMath` supplies logarithmic sum and mean semantics.
 Generated concrete extension methods expose these algorithms as `Sum`, `Average`,
 `ArithmeticMean`, `GeometricMean`, `Abs`, and tolerance-aware `Equals`, so normal application code
-does not need generic call syntax. A separate integration branch validates these algorithms with
+does not need generic call syntax. The compatibility suite validates these algorithms against
 UnitsNet v6. The capability layer remains `double`-based while numeric storage abstraction is
 evaluated separately.
 
@@ -425,8 +428,10 @@ the tag:
 
 ```powershell
 pwsh Build/bump-version-UnitsNet.Modular.ps1 -Bump suffix
-git push origin UnitsNet.Modular/6.0.0-alpha.2
 ```
+
+The script prints the exact `git push origin ...` command for the new tag; run that command to
+start the release workflow.
 
 Use `minor` or `patch` instead of `suffix` to bump that numeric component and remove the prerelease
 suffix, matching the existing UnitsNet release scripts. After a stable release, `suffix` starts the
@@ -480,8 +485,9 @@ runtime support for generated quantity modules.
 On all supported runtime targets, generated quantities implement `IParsable<TSelf>` and applicable
 Modular capability and generic-math interfaces. Linear quantities support conventional arithmetic and
 shared aggregation; affine quantities add or subtract linear offsets and produce an offset when
-subtracted from one another; logarithmic quantities keep their explicit logarithmic behavior. All
-generated quantities support generic comparison.
+subtracted from one another; logarithmic quantities currently mirror UnitsNet's logarithmic
+behavior while their final operator and named-method surface is evaluated separately. All generated
+quantities support generic comparison.
 
 The Modular runtime project enables the .NET AOT compatibility analyzers. CI publishes and runs
 the lean sample with Native AOT on Linux. The generator remains a managed build-time analyzer and
@@ -563,8 +569,7 @@ decimal-prefix, and binary-prefix units; localized abbreviations; and cross-quan
 without a second handwritten name inventory. `AllSiProfile` exercises the complete SI
 relationship chain in a focused sample, while the representative sample provides a faster varied
 selection for day-to-day generator iteration. JSON-backed third-party definitions participate in
-the same
-selection, profile, conversion, localization, and relationship model as built-ins.
+the same selection, profile, conversion, localization, and relationship model as built-ins.
 
 The full-catalog generator gate emits 132 source files (129 quantities plus module sources) and
 about 3.16 million source characters in roughly 0.63 seconds on the development machine used for
@@ -586,8 +591,8 @@ catalog request.
   culture-specific prefix convention from UnitsNet v6.
 - Definition packages contain specs, not quantity structs. Independently generated application
   modules intentionally have distinct CLR type identities.
-- The supported application pattern uses one module marker in one consumer-owned units project;
-  `UNM014` reports additional module markers before they can emit colliding types.
+- The supported application pattern uses one module declaration in one consumer-owned units
+  project; `UNM014` reports additional module declarations before they can emit colliding types.
 - Canonical precompiled third-party modules and operators between independently compiled modules are
   outside this prototype's scope.
 - Legacy mutable setup, runtime registration, global defaults, and exact legacy interface identity

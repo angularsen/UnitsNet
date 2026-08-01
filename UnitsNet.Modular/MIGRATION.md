@@ -162,6 +162,10 @@ Here, **source-compatible** means the same consumer source compiles against Unit
 | Aggregation | `values.Sum()`, `values.Average()`, logarithmic aggregation helpers | Generated extensions delegate to reusable `UnitsNet` algorithms. |
 | Built-in companion APIs | `FeetInches`, `StonePounds`, `ReferencePressure`, `Duration`/`TimeSpan` helpers | Included when their owning built-in quantities are selected. |
 
+The current alpha mirrors UnitsNet's logarithmic operators, but that part of source compatibility
+is provisional while [issue #1569](https://github.com/angularsen/UnitsNet/issues/1569) evaluates a
+clearer named-method API.
+
 ## Quick reference: incompatible or changed APIs
 
 These APIs are not source-compatible even when the full catalog is generated.

@@ -1,6 +1,7 @@
 # Third-party notices
 
-The UnitsNet.Modular source generator redistributes the following .NET Runtime components so Roslyn can load its private `System.Text.Json` dependency without consumer configuration:
+The UnitsNet.Modular source generator redistributes the following .NET Runtime components so
+Roslyn can load its private `System.Text.Json` dependency without consumer configuration:
 
 - Microsoft.Bcl.AsyncInterfaces
 - System.Buffers
