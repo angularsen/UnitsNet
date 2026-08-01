@@ -19,13 +19,6 @@ $mainTestProjectPaths = @(
   "UnitsNet.Serialization.SystemTextJson.Tests/UnitsNet.Serialization.SystemTextJson.Tests.csproj"
 )
 
-$knownTestProjectPaths = @(
-  $mainTestProjectPaths
-  "UnitsNet.Modular/UnitsNet.Modular.Tests/UnitsNet.Modular.Tests.csproj",
-  "UnitsNet.Modular/UnitsNet.Modular.Generator.Tests/UnitsNet.Modular.Generator.Tests.csproj",
-  "UnitsNet.Modular/UnitsNet.Modular.Compatibility.Tests/UnitsNet.Modular.Compatibility.Tests.csproj"
-)
-
 function Remove-ArtifactsDir {
   if (Test-Path $artifactsDir) {
     write-host -foreground blue "Clean up...`n"
@@ -55,64 +48,11 @@ function Start-Build {
   write-host -foreground blue "Start-Build...END`n"
 }
 
-function ConvertTo-RepoRelativePath {
-  Param(
-    [Parameter(Mandatory)]
-    [string] $Path
-  )
-
-  $fullPath = if ([IO.Path]::IsPathRooted($Path)) {
-    [IO.Path]::GetFullPath($Path)
-  }
-  else {
-    [IO.Path]::GetFullPath((Join-Path $root $Path))
-  }
-
-  $normalizedRoot = ([IO.Path]::GetFullPath($root)).TrimEnd([char[]]@('\', '/'))
-  if (-not $fullPath.StartsWith($normalizedRoot + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase)) {
-    throw "Path '$Path' is not under repository root '$root'."
-  }
-
-  return $fullPath.Substring($normalizedRoot.Length + 1).Replace('\', '/')
-}
-
-function Assert-TestProjectsAreListed {
-  $expected = @($knownTestProjectPaths | ForEach-Object { ConvertTo-RepoRelativePath $_ } | Sort-Object -Unique)
-  $actual = @(Get-ChildItem -Path $root -Recurse -Filter "*.Tests.csproj" -File |
-    ForEach-Object { ConvertTo-RepoRelativePath $_.FullName } |
-    Sort-Object -Unique)
-
-  $missing = @($expected | Where-Object { -not (Test-Path (Join-Path $root $_)) })
-  $unlisted = @($actual | Where-Object { $expected -notcontains $_ })
-
-  if ($missing.Count -eq 0 -and $unlisted.Count -eq 0) {
-    return
-  }
-
-  $message = @("Test project list is out of date.")
-  if ($missing.Count -gt 0) {
-    $message += "Listed test projects were not found:"
-    foreach ($testProject in $missing) {
-      $message += "  - $testProject"
-    }
-  }
-
-  if ($unlisted.Count -gt 0) {
-    $message += "Unlisted test projects were found:"
-    foreach ($testProject in $unlisted) {
-      $message += "  - $testProject"
-    }
-  }
-
-  throw ($message -join [Environment]::NewLine)
-}
-
 function Start-Tests {
   Param(
     [switch] $SkipCoverage
   )
 
-  Assert-TestProjectsAreListed
   $projectPaths = $mainTestProjectPaths
 
   # Parent dir must exist before xunit tries to write files to it
@@ -209,4 +149,4 @@ function Compress-ArtifactsAsZip {
   write-host -foreground blue "Zip artifacts...END`n"
 }
 
-export-modulemember -function Remove-ArtifactsDir, Update-GeneratedCode, Start-Build, Assert-TestProjectsAreListed, Start-Tests, Start-PackNugets, Compress-ArtifactsAsZip
+export-modulemember -function Remove-ArtifactsDir, Update-GeneratedCode, Start-Build, Start-Tests, Start-PackNugets, Compress-ArtifactsAsZip

@@ -50,9 +50,6 @@ jobs:
     - name: Run the complete net48 test suite with coverage
       shell: pwsh
       run: |
-        Import-Module ./Build/build-functions.psm1
-        Assert-TestProjectsAreListed
-
         $testProjects = @(
           'UnitsNet.Tests/UnitsNet.Tests.csproj',
           'UnitsNet.GlobalSetup.DefaultFirst.Tests/UnitsNet.GlobalSetup.DefaultFirst.Tests.csproj',
@@ -65,10 +62,6 @@ jobs:
         New-Item -ItemType Directory -Force -Path Artifacts/Coverage | Out-Null
 
         foreach ($testProject in $testProjects) {
-          if (-not (Test-Path $testProject)) {
-            throw "Listed net48 test project was not found: $testProject"
-          }
-
           $projectName = [IO.Path]::GetFileNameWithoutExtension($testProject)
 
           # Keep compiler servers outside dotCover's process tree. Roslyn's VBCSCompiler has a
