@@ -9,3 +9,5 @@ function Get-TestProjectPaths {
     "UnitsNet.Serialization.SystemTextJson.Tests/UnitsNet.Serialization.SystemTextJson.Tests.csproj"
   )
 }
+
+Export-ModuleMember -Function Get-TestProjectPaths
