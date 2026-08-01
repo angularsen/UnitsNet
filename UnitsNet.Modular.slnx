@@ -4,6 +4,7 @@
     <Platform Name="LocalPackages" />
     <Platform Name="PublishedPackages" />
   </Configurations>
+  <!-- Core and test projects remain AnyCPU; only samples map dependency-mode platforms. -->
   <Project Path="UnitsNet.Modular/UnitsNet.Modular/UnitsNet.Modular.csproj" />
   <Project Path="UnitsNet.Modular/UnitsNet.Modular.Generator/UnitsNet.Modular.Generator.csproj" />
   <Project Path="UnitsNet.Modular/UnitsNet.Modular.Generator.Tests/UnitsNet.Modular.Generator.Tests.csproj" />

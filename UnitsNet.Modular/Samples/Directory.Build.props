@@ -4,6 +4,9 @@
   <Import Project="../Directory.Build.props" />
 
   <PropertyGroup>
+    <!-- Rider and Visual Studio show these beside the ordinary Debug and Release configurations. -->
+    <Platforms>ProjectReferences;LocalPackages;PublishedPackages</Platforms>
+
     <!-- Direct project builds without a solution platform retain the contributor-friendly mode. -->
     <UnitsNetModularSampleDependencyMode
         Condition="'$(Platform)' == '' or '$(Platform)' == 'AnyCPU'">ProjectReferences</UnitsNetModularSampleDependencyMode>

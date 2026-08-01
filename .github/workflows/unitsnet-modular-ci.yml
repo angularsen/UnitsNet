@@ -102,12 +102,13 @@ jobs:
         shell: pwsh
         run: ./UnitsNet.Modular/Samples/GettingStartedSample/run.ps1
 
-      - name: Run custom-definition NuGet consumer
+      - name: Run custom-definition NuGet consumer with isolated cache
         run: >-
           dotnet run
           --project UnitsNet.Modular/Samples/CustomQuantitySample/CustomQuantitySample.csproj
           --configuration Debug
           -p:Platform=LocalPackages
+          -p:RestorePackagesPath=${{ runner.temp }}/unitsnet-modular-custom-packages-${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: Run published-package consumer
         run: >-
