@@ -1,4 +1,4 @@
-﻿// Workaround for nullable annotations when multitargeting against netstandard2.0 or .NET versions lower than .NET Core 3.0, which do not support it out of the box.
+// Workaround for nullable annotations when multitargeting against netstandard2.0 or .NET versions lower than .NET Core 3.0, which do not support it out of the box.
 // https://www.meziantou.net/how-to-use-nullable-reference-types-in-dotnet-standard-2-0-and-dotnet-.htm
 
 // https://github.com/dotnet/runtime/blob/527f9ae88a0ee216b44d556f9bdc84037fe0ebda/src/libraries/System.Private.CoreLib/src/System/Diagnostics/CodeAnalysis/NullableAttributes.cs

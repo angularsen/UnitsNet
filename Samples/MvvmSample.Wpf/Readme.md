@@ -1,4 +1,4 @@
-﻿## WPF MVVM Sample
+## WPF MVVM Sample
 
 This is a simple sample showing how UnitsNet can be used to create a WPF MVVM application. I have used this strategy in a few simple engineering apps and thought I would share it as a sample to see if others might offer improvements.
 

@@ -1,4 +1,4 @@
-﻿using Prism.Mvvm;
+using Prism.Mvvm;
 using UnitsNet;
 using WpfMVVMSample.Settings;
 

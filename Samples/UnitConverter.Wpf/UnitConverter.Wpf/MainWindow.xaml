@@ -1,4 +1,4 @@
-﻿<controls:MetroWindow
+<controls:MetroWindow
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     x:Class="UnitsNet.Samples.UnitConverter.Wpf.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

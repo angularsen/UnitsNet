@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using CodeGen.Helpers.ExpressionAnalyzer.Expressions;
 
 namespace CodeGen.Helpers.ExpressionAnalyzer.Functions;

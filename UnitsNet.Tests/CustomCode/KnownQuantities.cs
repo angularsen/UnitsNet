@@ -1,4 +1,4 @@
-﻿namespace UnitsNet.Tests
+namespace UnitsNet.Tests
 {
     public static class KnownQuantities
     {

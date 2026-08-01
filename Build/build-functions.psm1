@@ -1,4 +1,4 @@
-﻿$root = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
+$root = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 $artifactsDir = Join-Path $root "Artifacts"
 $localNuGetFeedDir = Join-Path $artifactsDir "Nugets"
 $nugetOutDir = Join-Path $artifactsDir "NuGet"
