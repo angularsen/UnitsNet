@@ -5,7 +5,7 @@ using System.Text.Json;
 using UnitsNet;
 using UnitsNet.Units;
 
-namespace UnitsNet.Modular.Samples.Playground;
+namespace ModularPlayground;
 
 internal static class Program
 {

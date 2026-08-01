@@ -5,7 +5,7 @@ using UnitsNet.Modular;
 using UnitsNet.Units;
 using Catalog = UnitsNet.Modular.BuiltIns;
 
-namespace UnitsNet.Modular.Samples.QuantitySelection;
+namespace QuantitySelectionSample;
 
 [UnitSet("regex:.*Meter$")]
 internal interface MeterUnitSet

@@ -3,7 +3,7 @@
 using UnitsNet.Modular;
 using Catalog = UnitsNet.Modular.BuiltIns;
 
-namespace UnitsNet.Modular.Samples.Playground;
+namespace ModularPlayground;
 
 // Change these lists and rebuild to control exactly which unit enum members are generated.
 [UnitSet("Meter", "Kilometer", "Mile")]
@@ -22,7 +22,7 @@ internal interface PlaygroundEnergyUnits;
 internal interface PlaygroundPowerUnits;
 
 // The semantic ID connects this authoring type to ParcelCount.unitsnet.json.
-[QuantitySpec("UnitsNet.Modular.Samples.Playground.ParcelCount")]
+[QuantitySpec("ModularPlayground.ParcelCount")]
 internal interface ParcelCountSpec;
 
 // Add or remove selections here, then rebuild. Only these quantities are generated.

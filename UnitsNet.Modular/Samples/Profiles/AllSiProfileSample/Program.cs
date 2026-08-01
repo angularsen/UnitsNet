@@ -5,7 +5,7 @@ using UnitsNet.Modular;
 using UnitsNet.Modular.Profiles;
 using UnitsNet.Units;
 
-namespace UnitsNet.Modular.Samples.Profiles.AllSi;
+namespace AllSiProfileSample;
 
 [UnitsNetModule]
 internal interface AllSiUnits : IIncludeProfile<AllSiProfile>

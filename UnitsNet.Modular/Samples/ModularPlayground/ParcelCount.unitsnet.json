@@ -1,6 +1,6 @@
 {
   "Name": "ParcelCount",
-  "Namespace": "UnitsNet.Modular.Samples.Playground",
+  "Namespace": "ModularPlayground",
   "BaseUnit": "Parcel",
   "BaseDimensions": {},
   "Units": [
