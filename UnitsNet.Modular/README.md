@@ -48,8 +48,8 @@ will own the generated quantities:
 dotnet add package UnitsNet.Modular --prerelease
 ```
 
-The package includes the runtime and source generator and brings in `UnitsNet.Core`, which contains
-the shared quantity contracts. No separate analyzer package is required.
+The package includes the runtime, quantity contracts, metadata types, and source generator. No
+separate runtime, contracts, or analyzer package is required.
 
 ## Quick start
 
@@ -244,7 +244,7 @@ behavior supplying the default abbreviation.
 
 ### Aggregate
 
-Generated extension methods delegate reusable algorithms to `UnitsNet.Core`:
+Generated extension methods delegate reusable algorithms to `UnitsNet.Modular`:
 
 ```csharp
 Length sum = new[]
@@ -757,7 +757,7 @@ compiled modules do not share type identity or automatically gain cross-module o
 Every module receives one immutable registry containing only its selected quantities:
 
 ```csharp
-using UnitsNet.Core;
+using UnitsNet.Modular;
 using UnitsNet.Modular.Generated;
 
 UnitsNet.Modular.QuantityRegistry registry = GeneratedQuantityRegistry.Instance;
@@ -781,10 +781,10 @@ When a module includes built-ins, the generator emits the source-compatible `Qua
 `UnitsNet`:
 
 ```csharp
-UnitsNet.Core.IQuantity<double> value =
+UnitsNet.Modular.IQuantity<double> value =
     UnitsNet.Quantity.From(1.5, "Length", "Kilometer");
 
-UnitsNet.Core.IQuantity<double> parsed =
+UnitsNet.Modular.IQuantity<double> parsed =
     UnitsNet.Quantity.Parse(typeof(Length), "1.5 km");
 ```
 

@@ -8,9 +8,10 @@ structs keep the strongly typed API and share a small runtime for conversion, pa
 formatting.
 
 The generator, runtime, and generated types do not reuse the existing UnitsNet runtime or
-code-generation model. UnitsNet.Modular uses the small `UnitsNet.Core` contract assembly. The contracts
-are designed for possible adoption by UnitsNet, but that integration is kept separate from the
-standalone proof of concept.
+code-generation model. The small runtime and its clean-slate quantity contracts live together in
+the `UnitsNet.Modular` assembly. A future investigation may identify contracts worth sharing with
+UnitsNet, but the proof of concept does not introduce a separate abstraction package before that
+boundary has demonstrated value.
 
 The experiment is inspired by
 [the modular-package experiment](https://github.com/angularsen/UnitsNet/pull/1181),
@@ -169,10 +170,9 @@ directly references it.
 
 ## Projects
 
-- `UnitsNet.Core`: modern quantity contracts plus the immutable metadata, conversion, parsing, and
-  formatting foundation shared by generated quantities.
-- `UnitsNet.Modular`: module discovery, registry behavior, serialization integration, and packaging
-  for the source generator.
+- `UnitsNet.Modular`: modern quantity contracts, immutable metadata, conversion, parsing,
+  formatting, module discovery, registry behavior, serialization integration, and source-generator
+  packaging.
 - `UnitsNet.Modular.Generator`: the incremental generator, spec bootstrap source, built-in catalog,
   diagnostics, and emitters.
 - `UnitsNet.Modular.Generator.Tests`: generator-driver coverage for diagnostics, stable output,
@@ -209,9 +209,9 @@ composes separately packed quantity specs into a shared application assembly.
 
 The compatibility test project uses aliased references to compare both implementations' selected
 public API and unit names without introducing concrete-type ambiguity. It compares against the
-unchanged UnitsNet project; Core contract adoption by UnitsNet is tested only on the separate
-integration branch. The projects live in their own solution and do not participate in the existing
-UnitsNet solution.
+unchanged UnitsNet project. Whether any contracts can genuinely be shared with UnitsNet remains a
+separate investigation. The projects live in their own solution and do not participate in the
+existing UnitsNet solution.
 
 ## Compatibility boundaries
 
@@ -242,16 +242,16 @@ Two handwritten APIs remain intentionally excluded. `Length.ParseFeetInches` and
 compatibility suite requires every exclusion to identify an existing UnitsNet member and provide a
 non-empty rationale, so stale exclusions fail the test.
 
-`UnitsNet.Core.IQuantity<TValue>` exposes the stored numeric value and a type-erased enum unit.
-`UnitsNet.Core.IQuantity<TSelf, TUnit, TValue>` adds only the static construction and conversion
+`UnitsNet.Modular.IQuantity<TValue>` exposes the stored numeric value and a type-erased enum unit.
+`UnitsNet.Modular.IQuantity<TSelf, TUnit, TValue>` adds only the static construction and conversion
 primitives needed to implement reusable `As()` and `ToUnit()` behavior, while refining the stored
 unit to its concrete enum type. The `double`-based `IQuantity<TSelf, TUnit>` composite adds the
 static canonical `Info` metadata required from every generated quantity. This follows the familiar
 UnitsNet self-type/unit shape without putting metadata on each quantity instance. A generic library
-can therefore consume, create, convert, or inspect either generated implementation through one Core
+can therefore consume, create, convert, or inspect generated implementations through one Modular
 contract.
 
-The Core capability hierarchy adapts UnitsNet's proven modern generic design without carrying over
+The capability hierarchy adapts UnitsNet's proven modern generic design without carrying over
 `UnitKey`, mutable quantity metadata, setup registries, or obsolete compatibility members:
 
 - `ILinearQuantity<TSelf, TUnit>` advertises conventional arithmetic and additive zero;
@@ -320,7 +320,7 @@ compatibility and the clean shared contracts.
 
 The legacy compatibility review concluded that common read-only dynamic workflows belong on the
 immutable module registry, with a thin owner-scoped `Quantity` facade for familiar static call
-shapes. The facade returns `UnitsNet.Core.IQuantity<double>` and delegates to its exposed
+shapes. The facade returns `UnitsNet.Modular.IQuantity<double>` and delegates to its exposed
 `Quantity.Registry`; it does not introduce a second catalog. Construction, type-directed parsing,
 metadata discovery, and non-throwing input paths are tested against their UnitsNet counterparts.
 
@@ -342,10 +342,11 @@ Projects inside one application share its consumer-owned module. Independent app
 shared contracts or explicit serialized data instead of assuming their generated structs have the
 same identity.
 
-The `UnitsNet.Core` project is a separate signed assembly and prerelease package. Local packing
-gives Core and UnitsNet.Modular the same unique development version, packs them to the same output
-directory, and records Core as a package dependency. This avoids stale same-version Core packages
-in the NuGet cache while keeping the real-consumer samples and CI artifacts self-contained.
+The runtime, contracts, metadata, and bundled generator ship as one signed `UnitsNet.Modular`
+assembly/package boundary. This keeps installation and local development simple while the
+architecture is still being evaluated. A separate contracts package should be extracted only if a
+future legacy/modular integration finds a genuinely shared interface set or another independently
+versioned consumer of the runtime contracts.
 
 The package-facing samples import one repository-only MSBuild target that incrementally packs
 changed UnitsNet.Modular or generator sources before restore, then refreshes their floating
@@ -384,20 +385,18 @@ executing the consumer.
 
 ## Versioning and CI
 
-The combined `UnitsNet.Modular` package and its `UnitsNet.Core` dependency share one MinVer release
-stream with the tag prefix `UnitsNet.Modular/`, a minimum version of `6.0`, and `alpha.0` as the
-default prerelease identifiers. Existing `UnitsNet/*`, `JsonNet/*`, and unprefixed tags are ignored.
-A release tag such as `UnitsNet.Modular/6.0.0-alpha.1` or `UnitsNet.Modular/6.0.0` becomes the exact
-version of both packages. Untagged builds give both packages the same MinVer-generated alpha version
-with commit height. Keeping their versions in lockstep makes the package dependency and release
-process explicit while Core is shipped as part of the Modular product. `UnitsNet.Modular.Generator`
-remains an internal, non-packable project because its generated code requires the runtime shipped in
-the combined package.
+The `UnitsNet.Modular` package has one MinVer release stream with the tag prefix
+`UnitsNet.Modular/`, a minimum version of `6.0`, and `alpha.0` as the default prerelease identifiers.
+Existing `UnitsNet/*`, `JsonNet/*`, and unprefixed tags are ignored. A release tag such as
+`UnitsNet.Modular/6.0.0-alpha.1` or `UnitsNet.Modular/6.0.0` becomes the exact package version.
+Untagged builds receive a MinVer-generated alpha version with commit height.
+`UnitsNet.Modular.Generator` remains an internal, non-packable project because the analyzer and its
+private dependencies are bundled into the Modular package.
 
-UnitsNet, UnitsNet.Modular, and UnitsNet.Core share major version 6 to communicate the catalog
-generation they belong to. UnitsNet retains its existing explicitly controlled version, while
-UnitsNet.Modular and UnitsNet.Core advance together. Third-party definition packages have independent
-versions; the fictional sample remains at 1.x when packed directly.
+UnitsNet and UnitsNet.Modular share major version 6 to communicate the catalog generation they
+belong to. UnitsNet retains its existing explicitly controlled version, while UnitsNet.Modular
+advances independently. Third-party definition packages have independent versions; the fictional
+sample remains at 1.x when packed directly.
 
 Create an annotated release tag on a green `master` commit with the Modular bump script, then push
 the tag:
@@ -412,7 +411,7 @@ suffix, matching the existing UnitsNet release scripts. After a stable release, 
 next patch prerelease at `alpha.1`, matching MinVer's post-release version range. Pass `-WhatIf` to
 preview the tag without creating it.
 
-This single tag versions and publishes both packages. Do not create `UnitsNet.Core/*` release tags.
+This tag versions and publishes the UnitsNet.Modular package.
 
 The local package automation passes a timestamped `MinVerVersionOverride` so repeated packages
 containing uncommitted changes remain unique. The package includes complete NuGet metadata,
@@ -429,7 +428,7 @@ runs the minimal NuGet consumer with an isolated package cache, packs the combin
 MinVer version, and uploads it as a workflow artifact. Upstream pushes to `master` stop there.
 `UnitsNet.Modular/*` tag pushes additionally publish the exact tagged version to NuGet.org, and a
 manual run from such a tag can opt into publishing for recovery. Before uploading or publishing, CI
-verifies that both package filenames contain the exact version declared by the tag. NuGet.org trusted
+verifies that the package filename contains the exact version declared by the tag. NuGet.org trusted
 publishing must authorize the `angularsen/UnitsNet` repository, the `unitsnet-modular-ci.yml`
 workflow, and the `Publish` environment.
 
@@ -448,21 +447,21 @@ files; it is not a consumer-facing MSBuild property or API.
 
 ## Framework targets
 
-The `UnitsNet.Modular` runtime and `UnitsNet.Core` supply assets for .NET 8, 9, and 10. The standalone
-prototype does not modify any UnitsNet target or make UnitsNet reference Core. Modern UnitsNet v6
-adoption is maintained as a separate integration experiment.
+The `UnitsNet.Modular` runtime supplies assets for .NET 8, 9, and 10. The standalone prototype does
+not modify any UnitsNet target or make UnitsNet reference the Modular contracts. Possible modern
+UnitsNet v6 adoption remains a separate integration investigation.
 
 The generator remains a `netstandard2.0` analyzer solely so current compiler and IDE hosts can load
 it regardless of the consumer target. That analyzer target is an implementation constraint, not
 runtime support for generated quantity modules.
 
 On all supported runtime targets, generated quantities implement `IParsable<TSelf>` and applicable
-Core capability and generic-math interfaces. Linear quantities support conventional arithmetic and
+Modular capability and generic-math interfaces. Linear quantities support conventional arithmetic and
 shared aggregation; affine quantities add or subtract linear offsets and produce an offset when
 subtracted from one another; logarithmic quantities keep their explicit logarithmic behavior. All
 generated quantities support generic comparison.
 
-The runtime and Core projects enable the .NET AOT compatibility analyzers. CI publishes and runs
+The Modular runtime project enables the .NET AOT compatibility analyzers. CI publishes and runs
 the lean sample with Native AOT on Linux. The generator remains a managed build-time analyzer and
 explicitly does not inherit an application's publish, runtime identifier, trimming, or
 self-contained settings. The lean generated consumer targets .NET 8, 9, and 10 so the normal build
@@ -481,7 +480,7 @@ For each selected definition, the generator emits:
 - an immutable strongly typed quantity struct;
 - typed `FromXxx()` factories, a generic `From(value, unit)` factory, and `.Xxx` conversion
   properties;
-- static canonical `Info` metadata through the Core self-typed contract, including semantic
+- static canonical `Info` metadata through the Modular self-typed contract, including semantic
   identity and base-unit information;
 - `As()`, `ToUnit()`, `Parse()`, `TryParse()`, and `ToString()`;
 - default values normalized to zero in the base unit, matching UnitsNet;
