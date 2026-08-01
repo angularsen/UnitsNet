@@ -58,6 +58,22 @@ jobs:
             Use the repository's CLAUDE.md for guidance on style and conventions.
             Be constructive and helpful in your feedback, keep it concise.
 
+            Make the review outcome and every bullet point easy to scan:
+            - Start with exactly one of these headings:
+              - `## ✅ Review: No actionable findings`
+              - `## ⚠️ Review: Non-blocking findings`
+              - `## ❌ Review: Blocking findings`
+            - Prefix every section heading with an emoji that summarizes its most severe bullet,
+              for example `### ✅ Test coverage`, `### ⚠️ Breaking changes`, or `### ❌ Code quality & correctness`.
+            - For both the overall review and each section, use ❌ if it contains any defects or blocking issues,
+              otherwise ⚠️ if it contains any non-blocking concerns, questions, or suggestions, otherwise ✅.
+            - Prefix every feedback bullet with exactly one status emoji:
+              - ✅ for a positive verification or something that is correct as-is
+              - ⚠️ for a non-blocking concern, question, or suggestion
+              - ❌ for a defect or blocking issue that should be fixed
+            - Keep each bullet to one status. If a point contains both positive and negative feedback, split it into separate bullets.
+            - When a section has no findings, either omit it or write `✅ No concerns identified.`
+
             Use `gh pr comment` with your Bash tool to leave your review as a comment on the PR.
 
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
