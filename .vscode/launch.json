@@ -1,0 +1,11 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C#: UnitsNet.Modular.Playground",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/UnitsNet.Modular/Samples/UnitsNet.Modular.Playground/UnitsNet.Modular.Playground.csproj"
+    }
+  ]
+}

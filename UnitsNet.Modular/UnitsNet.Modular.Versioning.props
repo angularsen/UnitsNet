@@ -1,0 +1,27 @@
+<!-- Licensed under MIT No Attribution, see LICENSE file at the root. -->
+<Project>
+  <!--
+    Shared versioning policy for the Modular runtime and bundled generator.
+    Keep ordinary local builds incremental and avoid spawning MinVer once per target framework.
+    The local-package target passes a unique override explicitly when it packs, while CI/release
+    builds continue to let MinVer derive the version. A timestamp here would change generated
+    assembly metadata on every evaluation and force all downstream samples to compile again.
+  -->
+  <PropertyGroup Condition="'$(MSBuildProjectName)' == 'UnitsNet.Modular' or
+                            '$(MSBuildProjectName)' == 'UnitsNet.Modular.Generator'">
+    <UnitsNetModularPackForPublish
+        Condition="'$(UnitsNetModularPackForPublish)' == '' and '$(GITHUB_ACTIONS)' == 'true'">true</UnitsNetModularPackForPublish>
+    <UnitsNetModularPackForPublish
+        Condition="'$(UnitsNetModularPackForPublish)' == ''">false</UnitsNetModularPackForPublish>
+    <MinVerTagPrefix>UnitsNet.Modular/</MinVerTagPrefix>
+    <MinVerMinimumMajorMinor>6.0</MinVerMinimumMajorMinor>
+    <MinVerDefaultPreReleaseIdentifiers>alpha.0</MinVerDefaultPreReleaseIdentifiers>
+    <MinVerSkip
+        Condition="'$(UnitsNetModularPackForPublish)' != 'true' and '$(MinVerVersionOverride)' == ''">true</MinVerSkip>
+    <Version Condition="'$(MinVerSkip)' == 'true'">6.0.0-local.dev</Version>
+    <PackageVersion Condition="'$(MinVerSkip)' == 'true'">$(Version)</PackageVersion>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <FileVersion Condition="'$(MinVerSkip)' == 'true'">6.0.0.0</FileVersion>
+    <InformationalVersion Condition="'$(MinVerSkip)' == 'true'">$(Version)</InformationalVersion>
+  </PropertyGroup>
+</Project>

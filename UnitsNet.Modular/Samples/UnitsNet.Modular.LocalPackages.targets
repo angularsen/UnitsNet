@@ -53,6 +53,10 @@
              Text="Packing local definition package %(UnitsNetModularSampleAdditionalLocalPackageProject.Identity)..." />
     <Exec Condition="'@(UnitsNetModularSampleAdditionalLocalPackageProject)' != ''"
           Command="dotnet pack &quot;%(UnitsNetModularSampleAdditionalLocalPackageProject.Identity)&quot; --configuration Release --output &quot;$(UnitsNetModularSampleLocalFeed)&quot; -p:MinVerVersionOverride=$(_UnitsNetModularSampleLocalPackageVersion) -p:PackageVersion=$(_UnitsNetModularSampleLocalPackageVersion)" />
+    <PropertyGroup>
+      <!-- Only force the consuming project's assets to refresh when this invocation packed. -->
+      <_UnitsNetModularSamplePackagesUpdated>true</_UnitsNetModularSamplePackagesUpdated>
+    </PropertyGroup>
     <Touch Files="$(_UnitsNetModularSampleLocalPackStamp)" AlwaysCreate="true" />
   </Target>
 
@@ -66,7 +70,7 @@
   <Target Name="UpdateLocalUnitsNetModularPackages"
           BeforeTargets="PrepareForBuild"
           DependsOnTargets="_PackLocalUnitsNetModularPackages"
-          Condition="'$(UnitsNetModularSampleUpdateLocalPackagesOnBuild)' == 'true' and '$(DesignTimeBuild)' != 'true' and '$(GITHUB_ACTIONS)' != 'true'">
+          Condition="'$(UnitsNetModularSampleUpdateLocalPackagesOnBuild)' == 'true' and '$(_UnitsNetModularSamplePackagesUpdated)' == 'true' and '$(DesignTimeBuild)' != 'true' and '$(GITHUB_ACTIONS)' != 'true'">
     <Message Importance="high" Text="Resolving the latest local UnitsNet.Modular packages..." />
     <MSBuild Projects="$(MSBuildProjectFullPath)"
              Targets="Restore"

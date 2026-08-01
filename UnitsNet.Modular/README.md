@@ -1,6 +1,7 @@
 # UnitsNet Modular
 
 [![UnitsNet.Modular CI](https://github.com/angularsen/UnitsNet/actions/workflows/unitsnet-modular-ci.yml/badge.svg)](https://github.com/angularsen/UnitsNet/actions/workflows/unitsnet-modular-ci.yml)
+[![Open the playground in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/angularsen/UnitsNet?devcontainer_path=.devcontainer%2Funitsnet-modular%2Fdevcontainer.json&quickstart=1)
 
 Generate only the strongly typed quantities and units your application needs.
 
@@ -24,6 +25,11 @@ the complete catalog:
 
 > **Experimental:** UnitsNet.Modular is an alpha proof of concept. Its API, package structure, and
 > compatibility guarantees may change as the architecture is evaluated.
+
+Want to try it without installing anything? Open the browser-based
+[UnitsNet.Modular playground](https://codespaces.new/angularsen/UnitsNet?devcontainer_path=.devcontainer%2Funitsnet-modular%2Fdevcontainer.json&quickstart=1).
+It builds a focused sample with the real source generator, opens the quantity selection and custom
+definition files, and keeps generated C# available for inspection.
 
 ## Contents
 

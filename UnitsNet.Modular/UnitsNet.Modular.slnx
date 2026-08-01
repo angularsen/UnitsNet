@@ -14,6 +14,7 @@
     <Project Path="Samples/UnitsNet.Modular.Representative.Sample/UnitsNet.Modular.Representative.Sample.csproj" />
     <Project Path="Samples/UnitsNet.Modular.Lean.Sample/UnitsNet.Modular.Lean.Sample.csproj" />
     <Project Path="Samples/UnitsNet.Modular.Custom.Sample/UnitsNet.Modular.Custom.Sample.csproj" />
+    <Project Path="Samples/UnitsNet.Modular.Playground/UnitsNet.Modular.Playground.csproj" />
     <Project Path="Samples/UnitsNet.Modular.Compatibility.UnitsNet.Sample/UnitsNet.Modular.Compatibility.UnitsNet.Sample.csproj" />
     <Project Path="Samples/UnitsNet.Modular.Compatibility.Generated.Sample/UnitsNet.Modular.Compatibility.Generated.Sample.csproj" />
   </Folder>

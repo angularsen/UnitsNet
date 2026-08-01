@@ -12,13 +12,11 @@
     <AssemblyOriginatorKeyFile>../../UnitsNet.snk</AssemblyOriginatorKeyFile>
 
     <!--
-      A normal developer pack feeds the real-consumer sample with a unique local prerelease.
-      CI and release preparation opt into the MinVer-derived publish version explicitly.
+      The repository's local-package workflow passes a unique development version explicitly.
+      Ordinary local builds use the stable version from the shared versioning props, while CI and
+      release preparation opt into the MinVer-derived publish version.
     -->
-    <UnitsNetModularPackForPublish Condition="'$(UnitsNetModularPackForPublish)' == '' and '$(GITHUB_ACTIONS)' == 'true'">true</UnitsNetModularPackForPublish>
-    <UnitsNetModularPackForPublish Condition="'$(UnitsNetModularPackForPublish)' == ''">false</UnitsNetModularPackForPublish>
     <UnitsNetModularLocalFeed Condition="'$(UnitsNetModularLocalFeed)' == ''">$(RepositoryLocalNuGetFeed)</UnitsNetModularLocalFeed>
-    <MinVerVersionOverride Condition="'$(UnitsNetModularPackForPublish)' != 'true' and '$(MinVerVersionOverride)' == ''">6.0.0-local.dev.$([System.DateTime]::UtcNow.ToString('yyyyMMddHHmmssfff'))</MinVerVersionOverride>
     <PackageOutputPath Condition="'$(UnitsNetModularPackForPublish)' != 'true' and '$(PackageOutputPath)' == ''">$(UnitsNetModularLocalFeed)</PackageOutputPath>
 
     <PackageId>UnitsNet.Modular</PackageId>

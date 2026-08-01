@@ -5,15 +5,8 @@
   <!-- Register analyzer-config metadata before IDE design-time builds capture the project model. -->
   <Import Project="UnitsNet.Modular.Generator/buildTransitive/UnitsNet.Modular.Generator.props" />
 
-  <!--
-    MinVer versions both the public runtime and its bundled generator. The prefix isolates their
-    versions from the existing UnitsNet/* and JsonNet/* tags in this monorepo.
-  -->
-  <PropertyGroup>
-    <MinVerTagPrefix>UnitsNet.Modular/</MinVerTagPrefix>
-    <MinVerMinimumMajorMinor>6.0</MinVerMinimumMajorMinor>
-    <MinVerDefaultPreReleaseIdentifiers>alpha.0</MinVerDefaultPreReleaseIdentifiers>
-  </PropertyGroup>
+  <!-- Shared versioning policy for the Modular runtime and bundled generator. -->
+  <Import Project="UnitsNet.Modular.Versioning.props" />
 
   <!-- Reproducible portable symbols with Source Link are part of the package quality contract. -->
   <PropertyGroup>
