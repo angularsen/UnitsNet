@@ -89,6 +89,7 @@ public interface IQuantityDescriptor
     /// <summary>Formats a generated quantity after validating its concrete type.</summary>
     string Format(
         IQuantity<double> quantity,
+        [System.Diagnostics.CodeAnalysis.StringSyntax(System.Diagnostics.CodeAnalysis.StringSyntaxAttribute.NumericFormat)]
         string? format = null,
         IFormatProvider? formatProvider = null);
 }
