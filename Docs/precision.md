@@ -11,7 +11,23 @@ Units.NET was not designed for high-precision, but rather a tool of convenience 
   - Centimeter => Meter => Kilometer
   - As a result, most conversions have a rounding error. The error is larger for units that are way larger or way smaller than the base unit.
   - A rounding error of `1e-5` is accepted for round-trip conversion of most units in the library. In many use cases this is sufficient, but for others this may not be acceptable.
-  - There is support for [custom conversion functions](https://github.com/angularsen/UnitsNet#convert-between-units-of-custom-quantity) between unit A to unit B, typically to add 3rd party units. This can also be used to improve the precision for specific conversions since it no longer converts via the base unit.
+  - In v6, unit conversion definitions can be customized before the converter is built. This can be used to override a built-in conversion factor or add conversion functions for custom quantities.
+
+## Overriding built-in unit conversions
+
+Built-in unit definitions can be customized through `UnitsNetSetup.ConfigureDefaults()` before the default setup is used:
+
+```csharp
+UnitsNetSetup.ConfigureDefaults(builder => builder.ConfigureQuantity(() =>
+    Pressure.PressureInfo.CreateDefault(units =>
+        units.Configure(PressureUnit.InchOfWaterColumn, unit =>
+            unit.WithConversionFactorFromBase(999)))));
+
+var pressure = Pressure.FromPascals(1);
+double value = pressure.As(PressureUnit.InchOfWaterColumn); // 999
+```
+
+For isolated conversions, create a custom `QuantityInfo` and pass it to a custom `UnitConverter` instead of changing the global defaults. See `Samples/UnitsNetSetup.Configuration/ConfigureWithCustomConversions.cs` for a complete example.
 
 ## Test precision
 
