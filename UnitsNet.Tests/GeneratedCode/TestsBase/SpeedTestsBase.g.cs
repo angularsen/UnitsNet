@@ -1518,26 +1518,6 @@ namespace UnitsNet.Tests
             Assert.Equal("1 yd/s", new Speed(1, SpeedUnit.YardPerSecond).ToString(swedishCulture));
         }
 
-        [Fact]
-        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
-        {
-            var _ = new CultureScope(CultureInfo.InvariantCulture);
-            Assert.Equal("0.1 m/s", new Speed(0.123456, SpeedUnit.MeterPerSecond).ToString("s1"));
-            Assert.Equal("0.12 m/s", new Speed(0.123456, SpeedUnit.MeterPerSecond).ToString("s2"));
-            Assert.Equal("0.123 m/s", new Speed(0.123456, SpeedUnit.MeterPerSecond).ToString("s3"));
-            Assert.Equal("0.1235 m/s", new Speed(0.123456, SpeedUnit.MeterPerSecond).ToString("s4"));
-        }
-
-        [Fact]
-        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
-        {
-            var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 m/s", new Speed(0.123456, SpeedUnit.MeterPerSecond).ToString("s1", culture));
-            Assert.Equal("0.12 m/s", new Speed(0.123456, SpeedUnit.MeterPerSecond).ToString("s2", culture));
-            Assert.Equal("0.123 m/s", new Speed(0.123456, SpeedUnit.MeterPerSecond).ToString("s3", culture));
-            Assert.Equal("0.1235 m/s", new Speed(0.123456, SpeedUnit.MeterPerSecond).ToString("s4", culture));
-        }
-
         [Theory]
         [InlineData(null)]
         [InlineData("en-US")]

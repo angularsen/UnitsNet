@@ -61,6 +61,7 @@ namespace UnitsNet
         /// <summary>
         /// The formatting used when the quantity is converted to string. See <see cref="QuantityFormatter"/> for more information about the supported formats.
         /// </summary>
+        [StringSyntax(StringSyntaxAttribute.NumericFormat)]
         public string Format { get; set; }
 
         /// <summary>
@@ -68,7 +69,9 @@ namespace UnitsNet
         /// </summary>
         /// <param name="unitType">The unit the quantity should be displayed in</param>
         /// <param name="format">Formatting string passed to the <see cref="IFormattable.ToString(string?,System.IFormatProvider?)"/> </param>
-        public DisplayAsUnitAttribute(object? unitType, string format = "G") : base(unitType)
+        public DisplayAsUnitAttribute(
+            object? unitType,
+            [StringSyntax(StringSyntaxAttribute.NumericFormat)] string format = "G") : base(unitType)
         {
             Format = format;
         }

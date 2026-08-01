@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using Xunit.Abstractions;
@@ -1171,208 +1171,30 @@ public partial class QuantityValueTests
         }
 
 
-        /// <summary>
-        ///     The significant digits after radix ("S") format specifier converts a number to a string that preserves the
-        ///     precision of the Fraction object with a variable number of digits after the radix point.
-        /// </summary>
-        public class SignificantDigitsAfterTheRadixFormatTests
+        public class RemovedQuantitySpecificFormatTests
         {
             [Theory]
-            [ClassData(typeof(NormalValueCases))]
-            public void ToString_WithNormalValues(ValueFormatPair testCase, string expected)
+            [InlineData("S")]
+            [InlineData("s2")]
+            [InlineData("S+4")]
+            public void ToString_ThrowsWithMigrationGuidance(string format)
             {
-                var (value, format) = testCase;
-                var result = value.ToString(format, CultureInfo.InvariantCulture);
-                Assert.Equal(expected, result);
+                FormatException exception = Assert.Throws<FormatException>(
+                    () => QuantityValue.One.ToString(format, CultureInfo.InvariantCulture));
+
+                Assert.Contains("no longer supported", exception.Message, StringComparison.Ordinal);
             }
 
-            [Theory]
-            [ClassData(typeof(SmallAbsoluteValueCases))]
-            public void ToString_WithSmallAbsoluteValue(ValueFormatPair testCase, string expected)
-            {
-                var (value, format) = testCase;
-                var result = value.ToString(format, CultureInfo.InvariantCulture);
-                Assert.Equal(expected, result);
-            }
-
-            [Theory]
-            [ClassData(typeof(LargePositiveValueCases))]
-            public void ToString_WithLargePositiveValue(ValueFormatPair testCase, string expected)
-            {
-                var (value, format) = testCase;
-                var result = value.ToString(format, CultureInfo.InvariantCulture);
-                Assert.Equal(expected, result);
-            }
-
-            [Theory]
-            [ClassData(typeof(LargeNegativeValueCases))]
-            public void ToString_LargeNegativeValue(ValueFormatPair testCase, string expected)
-            {
-                var (value, format) = testCase;
-                var result = value.ToString(format, CultureInfo.InvariantCulture);
-                Assert.Equal(expected, result);
-            }
-
-            [Fact]
-            public void ToString_WithVeryLargePositiveNumber()
-            {
-                var value = new QuantityValue(1234 * BigInteger.Pow(10, 1000));
-
-                var actualValue = value.ToString("s", CultureInfo.InvariantCulture);
-
-                Assert.Equal("1.23e+1003", actualValue);
-            }
-
-            [Fact]
-            public void ToString_WithVerySmallPositiveNumber()
-            {
-                var value = new QuantityValue(1234, BigInteger.Pow(10, 1004));
-
-                var actualValue = value.ToString("s", CultureInfo.InvariantCulture);
-
-                Assert.Equal("1.23e-1001", actualValue);
-            }
-            
 #if NET
             [Fact]
-            public void TryFormat_Zero_WithValidSpanLength_ReturnsTrue()
+            public void TryFormat_ThrowsWithMigrationGuidance()
             {
-                QuantityValue value = 0;
-                var destination = new Span<char>(new char[1]);
-                var result = value.TryFormat(destination, out var charsWritten, "S", CultureInfo.InvariantCulture);
-                Assert.True(result);
-                Assert.Equal(1, charsWritten);
-                Assert.Equal("0", destination[Range.EndAt(charsWritten)]);
-            }
-            
-            [Fact]
-            public void TryFormat_NegativeNumber_WithValidSpanLength_ReturnsTrue()
-            {
-                QuantityValue value = -4.2;
-                var destination = new Span<char>(new char[4]);
-                var result = value.TryFormat(destination, out var charsWritten, "S", CultureInfo.InvariantCulture);
-                Assert.True(result);
-                Assert.Equal(4, charsWritten);
-                Assert.Equal("-4.2", destination[Range.EndAt(charsWritten)]);
-            }
+                FormatException exception = Assert.Throws<FormatException>(
+                    () => QuantityValue.One.TryFormat(new char[16], out _, "S2", CultureInfo.InvariantCulture));
 
-            [Theory]
-            [InlineData(-1, "S0", 0)]
-            [InlineData(1, "S0", 0)]
-            [InlineData(0.1, "S1", 2)]
-            [InlineData(0.0001, "S4", 0)] // "1E-04"
-            [InlineData(0.0001, "S4", 4)] // "1E-04"
-            [InlineData(1e6, "S4", 0)] // "1E+06"
-            [InlineData(1e6, "S4", 4)] // "1E+06"
-            public void TryFormat_WithInvalidSpanLength_ReturnsFalse(decimal decimalValue, string format, int testLength)
-            {
-                QuantityValue value= decimalValue;
-                var destination = new Span<char>(new char[testLength]);
-                var result = value.TryFormat(destination, out var charsWritten, format, CultureInfo.InvariantCulture);
-                Assert.False(result);
-                // Assert.Equal(0, charsWritten); // TODO should we make sure that nothing was written?
+                Assert.Contains("no longer supported", exception.Message, StringComparison.Ordinal);
             }
 #endif
-
-            /// <summary>
-            ///     Values with exponent in the interval [-3 ≤ e ≤ 5] are formatted using the decimal point notation (no extra digits).
-            /// </summary>
-            public sealed class NormalValueCases : TheoryData<ValueFormatPair, string>
-            {
-                public NormalValueCases()
-                {
-                    foreach (var format in new[] { "S2", "s2" })
-                    {
-                        // from -1000000 to -1
-                        Add(new ValueFormatPair(-999999.99m, format), "-999,999.99");
-                        Add(new ValueFormatPair(-111000, format), "-111,000");
-                        Add(new ValueFormatPair(-11000, format), "-11,000");
-                        Add(new ValueFormatPair(-1000, format), "-1,000");
-                        Add(new ValueFormatPair(-999.99m, format), "-999.99");
-                        Add(new ValueFormatPair(-2.001234m, format), "-2"); 
-                        Add(new ValueFormatPair(-1.1m, format), "-1.1");
-                        Add(new ValueFormatPair(-1, format), "-1");
-                        // from -1 to 0
-                        Add(new ValueFormatPair(-0.1m, format), "-0.1");
-                        Add(new ValueFormatPair(-0.01m, format), "-0.01");
-                        Add(new ValueFormatPair(-0.001m, format), "-0.001");
-                        // from 0 to 1
-                        Add(new ValueFormatPair(0, format), "0");
-                        Add(new ValueFormatPair(0.001m, format), "0.001");
-                        Add(new ValueFormatPair(0.01m, format), "0.01");
-                        Add(new ValueFormatPair(0.1m, format), "0.1");
-                        // from 1 to 1000000
-                        Add(new ValueFormatPair(1, format), "1");
-                        Add(new ValueFormatPair(1.1m, format), "1.1");
-                        Add(new ValueFormatPair(2.001234m, format), "2"); 
-                        Add(new ValueFormatPair(999.99m, format), "999.99");
-                        Add(new ValueFormatPair(1000, format), "1,000");
-                        Add(new ValueFormatPair(11000, format), "11,000");
-                        Add(new ValueFormatPair(111000, format), "111,000");
-                        Add(new ValueFormatPair(999999.99m, format), "999,999.99");
-                    }
-                }
-            }
-
-            /// <summary>
-            ///     Values with exponent in the interval [-inf ≤ e ≤ -4] are formatted in scientific notation.
-            /// </summary>
-            public sealed class SmallAbsoluteValueCases : TheoryData<ValueFormatPair, string>
-            {
-                public SmallAbsoluteValueCases()
-                {
-                    // uppercase letter
-                    Add(new ValueFormatPair(1.99e-4m, "S2"), "1.99E-04");
-                    Add(new ValueFormatPair(-1.99e-4m, "S2"), "-1.99E-04");
-                    Add(new ValueFormatPair(0.0000111m, "S2"), "1.11E-05");
-                    Add(new ValueFormatPair(-0.0000111m, "S2"), "-1.11E-05");
-                    Add(new ValueFormatPair(1.23e-120, "S2"), "1.23E-120");
-                    Add(new ValueFormatPair(-1.23e-120, "S2"), "-1.23E-120");
-                    // lowercase letter
-                    Add(new ValueFormatPair(1.99e-4m, "s2"), "1.99e-04");
-                    Add(new ValueFormatPair(-1.99e-4m, "s2"), "-1.99e-04");
-                    Add(new ValueFormatPair(0.0000111m, "s2"), "1.11e-05");
-                    Add(new ValueFormatPair(-0.0000111m, "s2"), "-1.11e-05");
-                    Add(new ValueFormatPair(1.23e-120, "s2"), "1.23e-120");
-                    Add(new ValueFormatPair(-1.23e-120, "s2"), "-1.23e-120");
-                }
-            }
-
-            /// <summary>
-            ///     Any value in the interval [1e+06 ≤ x ≤ +inf] is formatted in scientific notation.
-            /// </summary>
-            public sealed class LargePositiveValueCases : TheoryData<ValueFormatPair, string>
-            {
-                public LargePositiveValueCases()
-                {
-                    // from 1E+6 to +inf (uppercase)
-                    Add(new ValueFormatPair(1000000, "S2"), "1E+06");
-                    Add(new ValueFormatPair(11100000, "S2"), "1.11E+07");
-                    Add(new ValueFormatPair(double.MaxValue, "S2"), "1.8E+308");
-                    // from 1e+6 to +inf (lowercase)
-                    Add(new ValueFormatPair(1000000, "s2"), "1e+06");
-                    Add(new ValueFormatPair(11100000, "s2"), "1.11e+07");
-                    Add(new ValueFormatPair(double.MaxValue, "s2"), "1.8e+308");
-                }
-            }
-
-            /// <summary>
-            ///     Any value in the interval [-inf ≤ x ≤ 1e-04] is formatted in scientific notation.
-            /// </summary>
-            public sealed class LargeNegativeValueCases : TheoryData<ValueFormatPair, string>
-            {
-                public LargeNegativeValueCases()
-                {
-                    // from -inf up to -1E+6 (uppercase)
-                    Add(new ValueFormatPair(double.MinValue, "S2"), "-1.8E+308");
-                    Add(new ValueFormatPair(-11100000, "S2"), "-1.11E+07");
-                    Add(new ValueFormatPair(-1000000, "S2"), "-1E+06");
-                    // from -inf up to -1e+6 (lowercase)
-                    Add(new ValueFormatPair(double.MinValue, "s2"), "-1.8e+308");
-                    Add(new ValueFormatPair(-11100000, "s2"), "-1.11e+07");
-                    Add(new ValueFormatPair(-1000000, "s2"), "-1e+06");
-                }
-            }
         }
 
         public class CustomFormatTests

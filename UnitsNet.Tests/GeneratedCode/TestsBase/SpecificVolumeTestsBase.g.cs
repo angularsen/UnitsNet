@@ -690,26 +690,6 @@ namespace UnitsNet.Tests
             Assert.Equal("1 mm³/kg", new SpecificVolume(1, SpecificVolumeUnit.CubicMillimeterPerKilogram).ToString(swedishCulture));
         }
 
-        [Fact]
-        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
-        {
-            var _ = new CultureScope(CultureInfo.InvariantCulture);
-            Assert.Equal("0.1 m³/kg", new SpecificVolume(0.123456, SpecificVolumeUnit.CubicMeterPerKilogram).ToString("s1"));
-            Assert.Equal("0.12 m³/kg", new SpecificVolume(0.123456, SpecificVolumeUnit.CubicMeterPerKilogram).ToString("s2"));
-            Assert.Equal("0.123 m³/kg", new SpecificVolume(0.123456, SpecificVolumeUnit.CubicMeterPerKilogram).ToString("s3"));
-            Assert.Equal("0.1235 m³/kg", new SpecificVolume(0.123456, SpecificVolumeUnit.CubicMeterPerKilogram).ToString("s4"));
-        }
-
-        [Fact]
-        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
-        {
-            var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 m³/kg", new SpecificVolume(0.123456, SpecificVolumeUnit.CubicMeterPerKilogram).ToString("s1", culture));
-            Assert.Equal("0.12 m³/kg", new SpecificVolume(0.123456, SpecificVolumeUnit.CubicMeterPerKilogram).ToString("s2", culture));
-            Assert.Equal("0.123 m³/kg", new SpecificVolume(0.123456, SpecificVolumeUnit.CubicMeterPerKilogram).ToString("s3", culture));
-            Assert.Equal("0.1235 m³/kg", new SpecificVolume(0.123456, SpecificVolumeUnit.CubicMeterPerKilogram).ToString("s4", culture));
-        }
-
         [Theory]
         [InlineData(null)]
         [InlineData("en-US")]

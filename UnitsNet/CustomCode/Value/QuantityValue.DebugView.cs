@@ -29,7 +29,7 @@ public partial struct QuantityValue
 
             public string GeneralFormat => _value.ToString("G", _currentCulture);
 
-            public string ShortFormat => _value.ToString("S", _currentCulture);
+            public string ShortFormat => _value.ToString("G6", _currentCulture);
 
             public string SimplifiedFraction
             {

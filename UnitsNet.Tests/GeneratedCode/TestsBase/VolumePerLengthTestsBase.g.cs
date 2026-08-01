@@ -810,26 +810,6 @@ namespace UnitsNet.Tests
             Assert.Equal("1 gal (U.S.)/mi", new VolumePerLength(1, VolumePerLengthUnit.UsGallonPerMile).ToString(swedishCulture));
         }
 
-        [Fact]
-        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
-        {
-            var _ = new CultureScope(CultureInfo.InvariantCulture);
-            Assert.Equal("0.1 m³/m", new VolumePerLength(0.123456, VolumePerLengthUnit.CubicMeterPerMeter).ToString("s1"));
-            Assert.Equal("0.12 m³/m", new VolumePerLength(0.123456, VolumePerLengthUnit.CubicMeterPerMeter).ToString("s2"));
-            Assert.Equal("0.123 m³/m", new VolumePerLength(0.123456, VolumePerLengthUnit.CubicMeterPerMeter).ToString("s3"));
-            Assert.Equal("0.1235 m³/m", new VolumePerLength(0.123456, VolumePerLengthUnit.CubicMeterPerMeter).ToString("s4"));
-        }
-
-        [Fact]
-        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
-        {
-            var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 m³/m", new VolumePerLength(0.123456, VolumePerLengthUnit.CubicMeterPerMeter).ToString("s1", culture));
-            Assert.Equal("0.12 m³/m", new VolumePerLength(0.123456, VolumePerLengthUnit.CubicMeterPerMeter).ToString("s2", culture));
-            Assert.Equal("0.123 m³/m", new VolumePerLength(0.123456, VolumePerLengthUnit.CubicMeterPerMeter).ToString("s3", culture));
-            Assert.Equal("0.1235 m³/m", new VolumePerLength(0.123456, VolumePerLengthUnit.CubicMeterPerMeter).ToString("s4", culture));
-        }
-
         [Theory]
         [InlineData(null)]
         [InlineData("en-US")]

@@ -2023,26 +2023,6 @@ namespace UnitsNet.Tests
             Assert.Equal("1 torr", new Pressure(1, PressureUnit.Torr).ToString(swedishCulture));
         }
 
-        [Fact]
-        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
-        {
-            var _ = new CultureScope(CultureInfo.InvariantCulture);
-            Assert.Equal("0.1 Pa", new Pressure(0.123456, PressureUnit.Pascal).ToString("s1"));
-            Assert.Equal("0.12 Pa", new Pressure(0.123456, PressureUnit.Pascal).ToString("s2"));
-            Assert.Equal("0.123 Pa", new Pressure(0.123456, PressureUnit.Pascal).ToString("s3"));
-            Assert.Equal("0.1235 Pa", new Pressure(0.123456, PressureUnit.Pascal).ToString("s4"));
-        }
-
-        [Fact]
-        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
-        {
-            var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 Pa", new Pressure(0.123456, PressureUnit.Pascal).ToString("s1", culture));
-            Assert.Equal("0.12 Pa", new Pressure(0.123456, PressureUnit.Pascal).ToString("s2", culture));
-            Assert.Equal("0.123 Pa", new Pressure(0.123456, PressureUnit.Pascal).ToString("s3", culture));
-            Assert.Equal("0.1235 Pa", new Pressure(0.123456, PressureUnit.Pascal).ToString("s4", culture));
-        }
-
         [Theory]
         [InlineData(null)]
         [InlineData("en-US")]

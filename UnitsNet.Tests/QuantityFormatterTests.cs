@@ -95,7 +95,7 @@ namespace UnitsNet.Tests
         {
             var length = Length.FromMeters(123456789.987654321);
 
-            var expected = string.Format(CultureInfo.CurrentCulture, $"{{0:{format}}} {{1:a}}", length.Value, length);
+            var expected = $"{length.Value.ToString(format, CultureInfo.CurrentCulture)} {Length.GetAbbreviation(length.Unit)}";
             Assert.Equal(expected, QuantityFormatter.Default.Format(length, format));
         }
 
@@ -106,6 +106,10 @@ namespace UnitsNet.Tests
         [InlineData("v")]
         [InlineData("Q")]
         [InlineData("q")]
+        [InlineData("A")]
+        [InlineData("a0")]
+        [InlineData("S")]
+        [InlineData("s2")]
         [InlineData("C")]
         [InlineData("C0")]
         [InlineData("C1")]
@@ -173,7 +177,7 @@ namespace UnitsNet.Tests
         {
             var length = Length.FromMeters(123456789.987654321);
 
-            var expected = string.Format(CultureInfo.CurrentCulture, $"{{0:{format}}} {{1:a}}", length.Value, length);
+            var expected = $"{length.Value.ToString(format, CultureInfo.CurrentCulture)} {Length.GetAbbreviation(length.Unit)}";
             Assert.Equal(expected, QuantityFormatter.Default.Format(length, format));
         }
 
@@ -197,18 +201,5 @@ namespace UnitsNet.Tests
             Assert.Equal(expected, actual);
         }
 
-        [Theory]
-        [InlineData("A+0", "m")]
-        [InlineData("S+1", "123.3 m")]
-        public void Format_CustomSpecifierSuffix_ParsesUsingInvariantCulture(string format, string expected)
-        {
-            var culture = (CultureInfo)CultureInfo.InvariantCulture.Clone();
-            culture.NumberFormat.PositiveSign = "!";
-            using var cultureScope = new CultureScope(culture);
-
-            var length = Length.FromMeters(123.321);
-
-            Assert.Equal(expected, QuantityFormatter.Default.Format(length, format));
-        }
     }
 }

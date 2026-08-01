@@ -810,26 +810,6 @@ namespace UnitsNet.Tests
             Assert.Equal("1 slm", new StandardVolumeFlow(1, StandardVolumeFlowUnit.StandardLiterPerMinute).ToString(swedishCulture));
         }
 
-        [Fact]
-        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
-        {
-            var _ = new CultureScope(CultureInfo.InvariantCulture);
-            Assert.Equal("0.1 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s1"));
-            Assert.Equal("0.12 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s2"));
-            Assert.Equal("0.123 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s3"));
-            Assert.Equal("0.1235 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s4"));
-        }
-
-        [Fact]
-        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
-        {
-            var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s1", culture));
-            Assert.Equal("0.12 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s2", culture));
-            Assert.Equal("0.123 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s3", culture));
-            Assert.Equal("0.1235 Sm³/s", new StandardVolumeFlow(0.123456, StandardVolumeFlowUnit.StandardCubicMeterPerSecond).ToString("s4", culture));
-        }
-
         [Theory]
         [InlineData(null)]
         [InlineData("en-US")]

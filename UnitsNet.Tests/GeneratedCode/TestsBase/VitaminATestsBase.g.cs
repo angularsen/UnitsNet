@@ -590,26 +590,6 @@ namespace UnitsNet.Tests
             Assert.Equal("1 IU", new VitaminA(1, VitaminAUnit.InternationalUnit).ToString(swedishCulture));
         }
 
-        [Fact]
-        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
-        {
-            var _ = new CultureScope(CultureInfo.InvariantCulture);
-            Assert.Equal("0.1 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s1"));
-            Assert.Equal("0.12 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s2"));
-            Assert.Equal("0.123 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s3"));
-            Assert.Equal("0.1235 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s4"));
-        }
-
-        [Fact]
-        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
-        {
-            var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s1", culture));
-            Assert.Equal("0.12 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s2", culture));
-            Assert.Equal("0.123 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s3", culture));
-            Assert.Equal("0.1235 IU", new VitaminA(0.123456, VitaminAUnit.InternationalUnit).ToString("s4", culture));
-        }
-
         [Theory]
         [InlineData(null)]
         [InlineData("en-US")]

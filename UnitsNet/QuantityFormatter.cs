@@ -2,7 +2,6 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 
 namespace UnitsNet;
@@ -34,7 +33,9 @@ public class QuantityFormatter
 
     /// <inheritdoc cref="Format{TUnitType}(UnitsNet.IQuantity{TUnitType},string,IFormatProvider)" />
     [Obsolete("Consider switching to one of the more performant instance methods available on QuantityFormatter.Default.")]
-    public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string format)
+    public static string Format<TUnitType>(
+        IQuantity<TUnitType> quantity,
+        [StringSyntax(StringSyntaxAttribute.NumericFormat)] string format)
         where TUnitType : struct, Enum
     {
         return Format(quantity, format, CultureInfo.CurrentCulture);
@@ -42,7 +43,10 @@ public class QuantityFormatter
 
     /// <inheritdoc cref="Format{TQuantity}(TQuantity,string,IFormatProvider)" />
     [Obsolete("Consider switching to one of the more performant instance methods available on QuantityFormatter.Default.")]
-    public static string Format<TUnitType>(IQuantity<TUnitType> quantity, string? format, IFormatProvider? formatProvider)
+    public static string Format<TUnitType>(
+        IQuantity<TUnitType> quantity,
+        [StringSyntax(StringSyntaxAttribute.NumericFormat)] string? format,
+        IFormatProvider? formatProvider)
         where TUnitType : struct, Enum
     {
         return Default.Format(quantity, format, formatProvider);
@@ -58,48 +62,14 @@ public class QuantityFormatter
     ///     <see cref="CultureInfo.CurrentCulture" /> if null.
     /// </param>
     /// <remarks>
-    ///     The valid format strings are as follows:
-    ///     <list type="bullet">
-    ///         <item>
-    ///             <term>A standard numeric format string.</term>
-    ///             <description>
-    ///                 Any of the
-    ///                 <see
-    ///                     href="https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings#standard-format-specifiers">
-    ///                     Standard format specifiers
-    ///                 </see>
-    ///                 .
-    ///             </description>
-    ///         </item>
-    ///         <item>
-    ///             <term>"A" or "a".</term>
-    ///             <description>The default unit abbreviation for <see cref="IQuantity{TUnitType}.Unit" />, such as "m".</description>
-    ///         </item>
-    ///         <item>
-    ///             <term>"A0", "A1", ..., "An" or "a0", "a1", ..., "an".</term>
-    ///             <description>
-    ///                 The n-th unit abbreviation for the <see cref="IQuantity{TUnitType}.Unit" />. "a0" is the same as "a".
-    ///                 <para>
-    ///                     A <see cref="FormatException" /> will be thrown if the requested abbreviation index does not
-    ///                     exist.
-    ///                 </para>
-    ///             </description>
-    ///         </item>
-    ///         <item>
-    ///             <term>"S" or "s".</term>
-    ///             <description>
-    ///                 The value with 2 significant digits after the radix followed by the unit abbreviation, such as
-    ///                 "1.23 m".
-    ///             </description>
-    ///         </item>
-    ///         <item>
-    ///             <term>"S0", "S1", ..., "Sn" or "s0", "s1", ..., "sn".</term>
-    ///             <description>
-    ///                 The value with n significant digits after the radix followed by the unit abbreviation. "S2"
-    ///                 and "s2" is the same as "s".
-    ///             </description>
-    ///         </item>
-    ///     </list>
+    ///     The format is applied to the numeric value and the localized unit abbreviation is appended. Use a
+    ///     <see href="https://learn.microsoft.com/dotnet/standard/base-types/standard-numeric-format-strings">
+    ///         standard numeric format string
+    ///     </see>
+    ///     or a
+    ///     <see href="https://learn.microsoft.com/dotnet/standard/base-types/custom-numeric-format-strings">
+    ///         custom numeric format string
+    ///     </see>.
     ///     For more information about the formatter, see the
     ///     <see href="https://github.com/angularsen/UnitsNet?tab=readme-ov-file#culture-and-localization">
     ///         QuantityFormatter
@@ -109,7 +79,10 @@ public class QuantityFormatter
     /// </remarks>
     /// <returns>The string representation.</returns>
     /// <exception cref="FormatException">Thrown when the format specifier is invalid.</exception>
-    public string Format<TQuantity>(TQuantity quantity, string? format = null, IFormatProvider? formatProvider = null)
+    public string Format<TQuantity>(
+        TQuantity quantity,
+        [StringSyntax(StringSyntaxAttribute.NumericFormat)] string? format = null,
+        IFormatProvider? formatProvider = null)
         where TQuantity : IQuantity
     {
         formatProvider ??= CultureInfo.CurrentCulture;
@@ -121,18 +94,12 @@ public class QuantityFormatter
         {
             switch (format[0])
             {
-                case 'S':
-                {
-                    format = "S15";
-                    break;
-                }
-                case 's':
-                {
-                    format = "s15";
-                    break;
-                }
                 case 'A' or 'a':
-                    return _unitAbbreviations.GetDefaultAbbreviation(quantity.UnitKey, formatProvider);
+                    throw new FormatException(
+                        $"The \"{format}\" abbreviation format is no longer supported; use the generated quantity's GetAbbreviation method or UnitAbbreviationsCache.");
+                case 'S' or 's':
+                    throw new FormatException(
+                        $"The \"{format}\" significant-digits format is no longer supported; use a standard or custom numeric format string.");
                 case 'U' or 'u':
                     throw new FormatException($"The \"{format}\" format is no longer supported: consider using the Unit property.");
                 case 'V' or 'v':
@@ -150,33 +117,23 @@ public class QuantityFormatter
             switch (format[0])
             {
 #if NET
-                case 'A' or 'a' when int.TryParse(format.AsSpan(1), CultureInfo.InvariantCulture, out var abbreviationIndex):
-                {
-                    IReadOnlyList<string> abbreviations = _unitAbbreviations.GetUnitAbbreviations(quantity.UnitKey, formatProvider);
-
-                    if (abbreviationIndex >= abbreviations.Count)
-                    {
-                        throw new FormatException($"The \"{format}\" format string is invalid because the index is out of range.");
-                    }
-
-                    return abbreviations[abbreviationIndex];
-                }
+                case 'A' or 'a' when int.TryParse(format.AsSpan(1), CultureInfo.InvariantCulture, out _):
+                    throw new FormatException(
+                        $"The \"{format}\" abbreviation format is no longer supported; use UnitAbbreviationsCache.GetUnitAbbreviations.");
+                case 'S' or 's' when int.TryParse(format.AsSpan(1), CultureInfo.InvariantCulture, out _):
+                    throw new FormatException(
+                        $"The \"{format}\" significant-digits format is no longer supported; use a standard or custom numeric format string.");
                 case 'C' or 'c' when int.TryParse(format.AsSpan(1), CultureInfo.InvariantCulture, out _):
                     throw new FormatException($"The \"{format}\" (currency) format is not supported.");
                 case 'P' or 'p' when int.TryParse(format.AsSpan(1), CultureInfo.InvariantCulture, out _):
                     throw new FormatException($"The \"{format}\" (percent) format is not supported.");
 #else
-                case 'A' or 'a' when int.TryParse(format.Substring(1), NumberStyles.Integer, CultureInfo.InvariantCulture, out var abbreviationIndex):
-                {
-                    IReadOnlyList<string> abbreviations = _unitAbbreviations.GetUnitAbbreviations(quantity.UnitKey, formatProvider);
-
-                    if (abbreviationIndex >= abbreviations.Count)
-                    {
-                        throw new FormatException($"The \"{format}\" format string is invalid because the index is out of range.");
-                    }
-
-                    return abbreviations[abbreviationIndex];
-                }
+                case 'A' or 'a' when int.TryParse(format.Substring(1), NumberStyles.Integer, CultureInfo.InvariantCulture, out _):
+                    throw new FormatException(
+                        $"The \"{format}\" abbreviation format is no longer supported; use UnitAbbreviationsCache.GetUnitAbbreviations.");
+                case 'S' or 's' when int.TryParse(format.Substring(1), NumberStyles.Integer, CultureInfo.InvariantCulture, out _):
+                    throw new FormatException(
+                        $"The \"{format}\" significant-digits format is no longer supported; use a standard or custom numeric format string.");
                 case 'C' or 'c' when int.TryParse(format.Substring(1), NumberStyles.Integer, CultureInfo.InvariantCulture, out _):
                     throw new FormatException($"The \"{format}\" (currency) format is not supported.");
                 case 'P' or 'p' when int.TryParse(format.Substring(1), NumberStyles.Integer, CultureInfo.InvariantCulture, out _):

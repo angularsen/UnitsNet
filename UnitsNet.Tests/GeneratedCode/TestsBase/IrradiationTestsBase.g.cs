@@ -810,26 +810,6 @@ namespace UnitsNet.Tests
             Assert.Equal("1 Wh/m²", new Irradiation(1, IrradiationUnit.WattHourPerSquareMeter).ToString(swedishCulture));
         }
 
-        [Fact]
-        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
-        {
-            var _ = new CultureScope(CultureInfo.InvariantCulture);
-            Assert.Equal("0.1 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s1"));
-            Assert.Equal("0.12 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s2"));
-            Assert.Equal("0.123 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s3"));
-            Assert.Equal("0.1235 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s4"));
-        }
-
-        [Fact]
-        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
-        {
-            var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s1", culture));
-            Assert.Equal("0.12 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s2", culture));
-            Assert.Equal("0.123 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s3", culture));
-            Assert.Equal("0.1235 J/m²", new Irradiation(0.123456, IrradiationUnit.JoulePerSquareMeter).ToString("s4", culture));
-        }
-
         [Theory]
         [InlineData(null)]
         [InlineData("en-US")]

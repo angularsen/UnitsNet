@@ -1255,26 +1255,6 @@ namespace UnitsNet.Tests
             Writer.WL($@"
         }}
 
-        [Fact]
-        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
-        {{
-            var _ = new CultureScope(CultureInfo.InvariantCulture);
-            Assert.Equal(""0.1{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456, {_baseUnitFullName}).ToString(""s1""));
-            Assert.Equal(""0.12{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456, {_baseUnitFullName}).ToString(""s2""));
-            Assert.Equal(""0.123{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456, {_baseUnitFullName}).ToString(""s3""));
-            Assert.Equal(""0.1235{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456, {_baseUnitFullName}).ToString(""s4""));
-        }}
-
-        [Fact]
-        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
-        {{
-            var culture = CultureInfo.InvariantCulture;
-            Assert.Equal(""0.1{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456, {_baseUnitFullName}).ToString(""s1"", culture));
-            Assert.Equal(""0.12{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456, {_baseUnitFullName}).ToString(""s2"", culture));
-            Assert.Equal(""0.123{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456, {_baseUnitFullName}).ToString(""s3"", culture));
-            Assert.Equal(""0.1235{_baseUnitEnglishAbbreviation}"", new {_quantity.Name}(0.123456, {_baseUnitFullName}).ToString(""s4"", culture));
-        }}
-
         [Theory]
         [InlineData(null)]
         [InlineData(""en-US"")]
