@@ -2,7 +2,7 @@
 
 using UnitsNet;
 
-namespace UnitsNet.Modular;
+namespace UnitsNet;
 
 /// <summary>A minimal, type-erased quantity value contract.</summary>
 /// <typeparam name="TValue">The numeric storage type.</typeparam>

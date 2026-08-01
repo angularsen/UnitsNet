@@ -1,6 +1,7 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
 using System.Collections.Frozen;
+using UnitsNet;
 
 namespace UnitsNet.Modular;
 

@@ -1,8 +1,6 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
-using UnitsNet;
-
-namespace UnitsNet.Modular;
+namespace UnitsNet;
 
 /// <summary>Non-generic metadata and operations for one quantity in a generated module.</summary>
 /// <remarks>

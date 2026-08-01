@@ -260,6 +260,7 @@ public sealed class GeneratedQuantityTests
 
         AssertHidden(typeof(IQuantityMetadata<>));
         AssertHidden(typeof(QuantityOperations));
+        AssertHidden(typeof(QuantityJsonConverter<>));
         AssertHidden(typeof(QuantityInfo<Length, LengthUnit>).GetConstructors().Single());
         AssertHidden(typeof(QuantityInfo<Length, LengthUnit>).GetProperty("BaseUnitInfo")!);
         AssertHidden(typeof(QuantityInfo<Length, LengthUnit>).GetProperty("UnitInfos")!);
@@ -271,6 +272,19 @@ public sealed class GeneratedQuantityTests
                     .Cast<System.ComponentModel.EditorBrowsableAttribute>()
                     .Single()
                     .State);
+    }
+
+    [Fact]
+    public void RuntimeNamespaces_SeparateQuantityConceptsFromModuleInfrastructure()
+    {
+        Assert.Equal("UnitsNet", typeof(IQuantity<>).Namespace);
+        Assert.Equal("UnitsNet", typeof(QuantityId).Namespace);
+        Assert.Equal("UnitsNet", typeof(QuantityInfo<,>).Namespace);
+        Assert.Equal("UnitsNet", typeof(UnitSystem).Namespace);
+        Assert.Equal("UnitsNet.Modular", typeof(UnitsNetModuleAttribute).Namespace);
+        Assert.Equal("UnitsNet.Modular", typeof(QuantityRegistry).Namespace);
+        Assert.Equal("UnitsNet.Modular.SourceGen", typeof(IQuantityMetadata<>).Namespace);
+        Assert.Equal("UnitsNet.Modular.SourceGen", typeof(QuantityOperations).Namespace);
     }
 
     [Fact]

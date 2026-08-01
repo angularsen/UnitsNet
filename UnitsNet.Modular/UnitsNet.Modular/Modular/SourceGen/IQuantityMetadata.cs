@@ -7,9 +7,9 @@ namespace UnitsNet.Modular.SourceGen;
 
 /// <summary>Metadata supplied by generated code to shared quantity operations.</summary>
 /// <remarks>
-/// This contract is public so generated code can call into <c>UnitsNet.Modular</c> from a
-/// consumer assembly. It is generator infrastructure and is not intended to be implemented or
-/// consumed directly by applications.
+/// This contract is public so emitted code can call the runtime from a consumer assembly. It is
+/// source-generator infrastructure and is not intended to be implemented or consumed directly by
+/// applications.
 /// </remarks>
 [EditorBrowsable(EditorBrowsableState.Never)]
 public interface IQuantityMetadata<TUnit>
@@ -36,8 +36,8 @@ public interface IQuantityMetadata<TUnit>
 
 /// <summary>Generated parsing operations supplied to immutable quantity metadata.</summary>
 /// <remarks>
-/// This contract is public so generated code can call into <c>UnitsNet.Modular</c> from a consumer
-/// assembly. It is generator infrastructure and is not intended for direct application use.
+/// This contract is public so emitted code can call the runtime from a consumer assembly. It is
+/// source-generator infrastructure and is not intended for direct application use.
 /// </remarks>
 [EditorBrowsable(EditorBrowsableState.Never)]
 public interface IQuantityMetadata<TQuantity, TUnit> : IQuantityMetadata<TUnit>

@@ -66,14 +66,14 @@ internal static class QuantityEmitter
         writer.Append("public readonly partial struct ").Append(quantity.Name).Append(" : ");
         if (quantity.IsAffine)
         {
-            writer.Append("global::UnitsNet.Modular.IAffineQuantity<").Append(quantity.Name).Append(", ")
+            writer.Append("global::UnitsNet.IAffineQuantity<").Append(quantity.Name).Append(", ")
                 .Append(unitType).Append(", ").Append(QuantityType(affineOffset!.Definition)).Append(">, ");
         }
         else
         {
             string capabilityInterface = quantity.IsLogarithmic
-                ? "global::UnitsNet.Modular.ILogarithmicQuantity<"
-                : "global::UnitsNet.Modular.ILinearQuantity<";
+                ? "global::UnitsNet.ILogarithmicQuantity<"
+                : "global::UnitsNet.ILinearQuantity<";
             writer.Append(capabilityInterface).Append(quantity.Name).Append(", ").Append(unitType).Append(">, ");
         }
         writer
@@ -101,7 +101,7 @@ internal static class QuantityEmitter
         writer.AppendLine("        _ = global::UnitsNet.Modular.SourceGen.QuantityOperations.GetBaseValue(value, unit, Metadata);");
         writer.AppendLine("    }");
         writer.Append("    public ").Append(quantity.Name)
-            .AppendLine("(double value, global::UnitsNet.Modular.UnitSystem unitSystem)");
+            .AppendLine("(double value, global::UnitsNet.UnitSystem unitSystem)");
         writer.AppendLine("        : this(value, global::UnitsNet.Modular.SourceGen.QuantityOperations.GetUnit(unitSystem, Metadata))");
         writer.AppendLine("    {");
         writer.AppendLine("    }");
@@ -109,7 +109,7 @@ internal static class QuantityEmitter
         writer.Append("    public static ").Append(quantity.Name).Append(" From(double value, ")
             .Append(unitType).AppendLine(" unit) => new(value, unit);");
         writer.Append("    public static ").Append(quantity.Name)
-            .AppendLine(" From(double value, global::UnitsNet.Modular.UnitSystem unitSystem) => new(value, unitSystem);");
+            .AppendLine(" From(double value, global::UnitsNet.UnitSystem unitSystem) => new(value, unitSystem);");
         writer.Append("    public static double Convert(double value, ").Append(unitType).Append(" fromUnit, ")
             .Append(unitType).AppendLine(" toUnit) =>");
         writer.AppendLine("        global::UnitsNet.Modular.SourceGen.QuantityOperations.Convert(value, fromUnit, toUnit, Metadata);");
@@ -118,7 +118,7 @@ internal static class QuantityEmitter
         writer.Append("    public ").Append(unitType).AppendLine(" Unit => _unit == default ? Info.BaseUnit.Value : _unit;");
         writer.Append("    public static global::UnitsNet.QuantityInfo<").Append(quantity.Name).Append(", ")
             .Append(unitType).Append("> Info { get; } = new(")
-            .Append("new global::UnitsNet.Modular.QuantityId(\"").Append(Escape(quantity.SemanticId))
+            .Append("new global::UnitsNet.QuantityId(\"").Append(Escape(quantity.SemanticId))
             .AppendLine("\"), Metadata);");
         writer.Append("    internal static ").Append(unitType).AppendLine(" BaseUnit => Info.BaseUnit.Value;");
         writer.Append("    public static ").Append(quantity.Name).AppendLine(" Zero => From(0, Info.BaseUnit.Value);");
@@ -142,12 +142,12 @@ internal static class QuantityEmitter
         writer.AppendLine();
         writer.Append("    public double As(").Append(unitType).AppendLine(" unit) =>");
         writer.AppendLine("        Convert(_value, Unit, unit);");
-        writer.AppendLine("    public double As(global::UnitsNet.Modular.UnitSystem unitSystem) =>");
+        writer.AppendLine("    public double As(global::UnitsNet.UnitSystem unitSystem) =>");
         writer.AppendLine("        As(global::UnitsNet.Modular.SourceGen.QuantityOperations.GetUnit(unitSystem, Metadata));");
         writer.AppendLine();
         writer.Append("    public ").Append(quantity.Name).Append(" ToUnit(").Append(unitType).AppendLine(" unit) => new(As(unit), unit);");
         writer.Append("    public ").Append(quantity.Name)
-            .AppendLine(" ToUnit(global::UnitsNet.Modular.UnitSystem unitSystem)");
+            .AppendLine(" ToUnit(global::UnitsNet.UnitSystem unitSystem)");
         writer.AppendLine("    {");
         writer.AppendLine("        var unit = global::UnitsNet.Modular.SourceGen.QuantityOperations.GetUnit(unitSystem, Metadata);");
         writer.Append("        return new ").Append(quantity.Name).AppendLine("(As(unit), unit);");
@@ -295,7 +295,7 @@ internal static class QuantityEmitter
         writer.Append("        public global::System.Collections.Generic.IReadOnlyList<global::UnitsNet.UnitInfo<")
             .Append(unitType).AppendLine(">> Units => AllUnits;");
         BaseDimensionsDefinition dimensions = quantity.BaseDimensions;
-        writer.AppendLine("        public global::UnitsNet.Modular.BaseDimensions BaseDimensions { get; } = new(");
+        writer.AppendLine("        public global::UnitsNet.BaseDimensions BaseDimensions { get; } = new(");
         writer.Append("            ").Append(dimensions.Length.ToString(CultureInfo.InvariantCulture)).Append(", ")
             .Append(dimensions.Mass.ToString(CultureInfo.InvariantCulture)).Append(", ")
             .Append(dimensions.Time.ToString(CultureInfo.InvariantCulture)).Append(", ")
@@ -443,11 +443,11 @@ internal static class QuantityEmitter
     {
         if (baseUnits.IsUndefined)
         {
-            writer.Append("global::UnitsNet.Modular.BaseUnits.Undefined");
+            writer.Append("global::UnitsNet.BaseUnits.Undefined");
             return;
         }
 
-        writer.Append("new global::UnitsNet.Modular.BaseUnits(");
+        writer.Append("new global::UnitsNet.BaseUnits(");
         AppendBaseUnit(writer, "length", baseUnits.Length);
         AppendBaseUnit(writer, "mass", baseUnits.Mass);
         AppendBaseUnit(writer, "time", baseUnits.Time);

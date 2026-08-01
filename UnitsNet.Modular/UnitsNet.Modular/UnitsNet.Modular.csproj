@@ -4,7 +4,7 @@
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>UnitsNet.Modular</RootNamespace>
+    <RootNamespace>UnitsNet</RootNamespace>
     <IsPackable>true</IsPackable>
     <IsAotCompatible>true</IsAotCompatible>
     <SignAssembly>true</SignAssembly>

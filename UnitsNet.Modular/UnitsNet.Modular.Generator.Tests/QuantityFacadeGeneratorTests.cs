@@ -20,7 +20,7 @@ public sealed class QuantityFacadeGeneratorTests
 
             internal static class Consumer
             {
-                public static void Use(UnitsNet.Modular.UnitSystem unitSystem)
+                public static void Use(global::UnitsNet.UnitSystem unitSystem)
                 {
                     var length = new global::UnitsNet.Length(1, unitSystem);
                     _ = global::UnitsNet.Length.From(1, unitSystem);
@@ -46,8 +46,8 @@ public sealed class QuantityFacadeGeneratorTests
         Assert.Contains("namespace UnitsNet", facade, StringComparison.Ordinal);
         Assert.DoesNotContain("namespace Application.Units", facade, StringComparison.Ordinal);
         Assert.Contains("public static partial class Quantity", facade, StringComparison.Ordinal);
-        Assert.Contains("global::UnitsNet.Modular.IQuantity<double> From(", facade, StringComparison.Ordinal);
-        Assert.Contains("global::UnitsNet.Modular.UnitSystem unitSystem", facade, StringComparison.Ordinal);
+        Assert.Contains("global::UnitsNet.IQuantity<double> From(", facade, StringComparison.Ordinal);
+        Assert.Contains("global::UnitsNet.UnitSystem unitSystem", facade, StringComparison.Ordinal);
         Assert.Contains("global::UnitsNet.Modular.QuantityRegistry Registry", facade, StringComparison.Ordinal);
     }
 

@@ -23,7 +23,7 @@ metadata, and runtime-configuration APIs require migration.
 | Custom quantities | Separate from the built-in generated catalog | Built-in, application, and third-party definitions generate together |
 | Configuration | Runtime setup and mutable global registrations | Compile-time selection and immutable generated metadata |
 | Dynamic discovery | Process-wide UnitsNet catalog | One immutable registry for the selected module |
-| Unit-system policy | `UnitsNet.UnitSystem` stores constituent unit enums | `UnitsNet.Modular.UnitSystem` stores invariant names so it is neutral to the generated namespace |
+| Unit-system policy | `UnitsNet.UnitSystem` stores constituent unit enums | `UnitsNet.UnitSystem` keeps the familiar source name but stores invariant names so it is neutral to the generated assembly |
 | Deployment | Consumers share the types in `UnitsNet.dll` | Consumers must reference the same assembly containing the generated types |
 | Compatibility | Established UnitsNet API and binary identity | Common strongly typed APIs target source compatibility; binary compatibility is not a goal |
 
@@ -159,7 +159,7 @@ Here, **source-compatible** means the same consumer source compiles against Unit
 | Formatting | `length.ToString(...)`, `Length.GetAbbreviation(unit, provider)` | Culture-aware built-in abbreviations and formatting are generated. |
 | Arithmetic and comparison | `a + b`, `a - b`, `a * 2`, `a / b`, comparisons and equality | Quantity semantics remain linear, affine, or logarithmic as appropriate. |
 | Cross-quantity relationships | `Length / Duration`, `Mass * Acceleration`, `Force / Area` | Emitted only when all participating quantities are selected. |
-| Aggregation | `values.Sum()`, `values.Average()`, logarithmic aggregation helpers | Generated extensions delegate to reusable `UnitsNet.Modular` algorithms. |
+| Aggregation | `values.Sum()`, `values.Average()`, logarithmic aggregation helpers | Generated extensions delegate to reusable `UnitsNet` algorithms. |
 | Built-in companion APIs | `FeetInches`, `StonePounds`, `ReferencePressure`, `Duration`/`TimeSpan` helpers | Included when their owning built-in quantities are selected. |
 
 ## Quick reference: incompatible or changed APIs
@@ -169,18 +169,18 @@ These APIs are not source-compatible even when the full catalog is generated.
 | UnitsNet API or assumption | UnitsNet.Modular replacement | Migration action |
 |---|---|---|
 | Types come from `UnitsNet.dll` | Types are generated into a consumer-owned assembly | Recompile consumers and make them reference one shared generated assembly; keep an adapter at binary boundaries. |
-| `UnitsNet.IQuantity` and UnitsNet generic quantity contracts | `UnitsNet.Modular.IQuantity<double>` and Modular capability contracts | Change generic constraints and declared dynamic types, or keep concrete quantity types where possible. |
+| `UnitsNet.IQuantity` and legacy generic quantity contracts | `UnitsNet.IQuantity<double>` and the generated-runtime capability contracts | Change generic constraints and declared dynamic types, or keep concrete quantity types where possible. The namespace is source-compatible, but the assembly identity and interface shapes differ. |
 | Explicit `QuantityValue` usage | `double` | Change explicitly declared values, parameters, and generic arguments to `double`. |
 | Legacy metadata shapes and `Length.QuantityInfo` | Typed `Length.Info`, or `IQuantityDescriptor` and `UnitDescriptor` from the registry | Read `Length.Info.BaseUnit`, `Length.Info.Units`, and `Length.Info.BaseDimensions` when the quantity is known; use the registry for type-erased workflows. |
 | `Quantity.Names`, `Quantity.Infos`, and `Quantity.ByName` imply the complete process-wide catalog | The same facade names describe only the selected module | Audit code that assumes every UnitsNet quantity is present. Use the registry when dependency injection or explicit ownership is clearer. |
-| `Quantity.From`, `TryFrom`, `Parse`, and `TryParse` return `UnitsNet.IQuantity` | The familiar call shapes return `UnitsNet.Modular.IQuantity<double>` | Change the receiving type or use `var`; concrete typed parsing remains unchanged. |
+| `Quantity.From`, `TryFrom`, `Parse`, and `TryParse` return legacy `UnitsNet.IQuantity` | The familiar call shapes return `UnitsNet.IQuantity<double>` from the Modular runtime | Change the receiving interface shape or use `var`; concrete typed parsing remains unchanged. |
 | `UnitConverter` and runtime conversion registration | Generated `QuantityType.Convert(...)` or `QuantityRegistry.Convert(...)` | Move conversions into definitions and use typed conversion when the quantity is known. |
 | `UnitsNetSetup` quantity selection and runtime registration | Module interfaces, profiles, unit sets, JSON definitions, and relation definitions | Move configuration to compile time. Rebuild when the catalog changes. |
 | Runtime abbreviation mutation | Localization in definition metadata | Add abbreviations to a definition; runtime mutation is unsupported. |
 | Global `Quantity.FromUnitAbbreviation(...)` | Parse through a known quantity or inspect its descriptor | Carry quantity identity at the boundary instead of inferring it from a potentially ambiguous abbreviation. |
 | `UnitKey` as a stable boundary identifier | Semantic `QuantityId` plus invariant unit name | Persist or transmit both values; unit enums are suitable only inside one generated module. |
-| `UnitsNet.UnitSystem` and `UnitsNet.BaseUnits` | Immutable `UnitsNet.Modular.UnitSystem` and `UnitsNet.Modular.BaseUnits` | Use the Modular types and pass policy explicitly to construction or conversion. |
-| UnitsNet `BaseDimensions` in generic/dynamic code | `UnitsNet.Modular.BaseDimensions` | Change the declared metadata type and access it through `Length.Info.BaseDimensions` or an `IQuantityDescriptor`. |
+| Mutable or enum-backed assumptions about `UnitsNet.UnitSystem` and `UnitsNet.BaseUnits` | Immutable Modular implementations under the same `UnitsNet` namespace | Calls such as `UnitSystem.SI` remain source-compatible; construct custom policies with invariant constituent unit names. |
+| Legacy `BaseDimensions` shape in generic/dynamic code | Modular `UnitsNet.BaseDimensions` | The namespace remains the same; adapt shape-dependent code and access it through `Length.Info.BaseDimensions` or an `IQuantityDescriptor`. |
 | Polymorphic JSON inferred from runtime type discovery | `GeneratedQuantityRegistry.JsonConverter` for selected concrete quantities | Register the generated converter. Resolve polymorphic interfaces by semantic quantity ID at the boundary. |
 | `Length.ParseFeetInches` and `Length.TryParseFeetInches` | No specialized compound parser | Keep a presentation-layer parser or translate the input into ordinary `Length` operations. |
 | `Pressure.FromElevation` and `Pressure.ToElevation` | No generated elevation model | Keep the empirical atmosphere model in application code and return/accept `Pressure`. |
@@ -196,15 +196,15 @@ Change code that explicitly receives a UnitsNet interface:
 // UnitsNet
 IQuantity distance = Quantity.From(1.5, "Length", "Kilometer");
 
-// UnitsNet.Modular
-UnitsNet.Modular.IQuantity<double> distance =
+// UnitsNet.Modular package
+UnitsNet.IQuantity<double> distance =
     Quantity.From(1.5, "Length", "Kilometer");
 ```
 
-When migration code imports both contract namespaces, qualify the Modular contract explicitly:
+The namespace remains `UnitsNet`, but the Modular interface has a deliberately slimmer shape:
 
 ```csharp
-UnitsNet.Modular.IQuantity<double> distance = Length.FromMeters(1);
+UnitsNet.IQuantity<double> distance = Length.FromMeters(1);
 ```
 
 ### Global conversion
@@ -276,33 +276,35 @@ foreach (UnitDescriptor unit in descriptor.Units)
 | `QuantityInfo` / `UnitInfo` metadata | `QuantityInfo<TQuantity, TUnit>` / `UnitInfo<TUnit>`; `IQuantityDescriptor` / `UnitDescriptor` when type-erased | Supported as immutable metadata |
 | Dynamic formatting through `IQuantity` | `descriptor.Format(value, format, provider)` | Supported with concrete-type validation |
 | System.Text.Json converters | `GeneratedQuantityRegistry.JsonConverter` | Supported without assembly scanning |
-| Generic quantity algorithms | `UnitsNet.Modular.IQuantity<...>` capability contracts | Supported by generated quantities; shared UnitsNet contracts remain under investigation |
+| Generic quantity algorithms | `UnitsNet.IQuantity<...>` capability contracts | Supported by generated quantities; the familiar namespace does not imply binary identity with legacy UnitsNet contracts |
 | `UnitKey` | A unit enum in-process; semantic quantity ID plus invariant unit name across boundaries | Deliberately changed |
-| `UnitSystem` / `BaseUnits` | `UnitsNet.Modular.UnitSystem` / `UnitsNet.Modular.BaseUnits` | Supported as immutable selected-module policy |
+| `UnitSystem` / `BaseUnits` | `UnitsNet.UnitSystem` / `UnitsNet.BaseUnits` | Supported as immutable selected-module policy |
 | `UnitsNetSetup` quantity selection | Module interfaces, profiles, and definition packages | Compile-time replacement |
 | Runtime abbreviation mutation | Localization in definition metadata | Runtime mutation unsupported |
 | Runtime conversion registration | Definition conversion expressions and relation definitions | Runtime mutation unsupported |
 | Global `Quantity.FromUnitAbbreviation(...)` | Parse through a known quantity or present units from its descriptor | Deliberately unsupported |
-| Legacy `UnitsNet.IQuantity` identity | `UnitsNet.Modular.IQuantity<double>` | Deliberately changed |
+| Legacy `UnitsNet.IQuantity` identity | Modular `UnitsNet.IQuantity<double>` | Namespace preserved; assembly identity and interface shape deliberately changed |
 
 Persist `descriptor.Id` and `unit.Name`, not a localized abbreviation. Abbreviations are for parsing
 and display and may be shared by unrelated quantities.
 
 ### Unit-system policy
 
-The two `UnitSystem` types are intentionally different. Qualify the Modular policy during migration:
+The two packages expose intentionally different `UnitSystem` implementations under the same
+source-compatible namespace. Since the packages cannot be referenced together, ordinary calls do
+not need Modular-specific qualification:
 
 ```csharp
-Length distance = Length.From(1.5, UnitsNet.Modular.UnitSystem.SI);
-double meters = Length.FromKilometers(1.5).As(UnitsNet.Modular.UnitSystem.SI);
-Length normalized = Length.FromFeet(3).ToUnit(UnitsNet.Modular.UnitSystem.SI);
+Length distance = Length.From(1.5, UnitSystem.SI);
+double meters = Length.FromKilometers(1.5).As(UnitSystem.SI);
+Length normalized = Length.FromFeet(3).ToUnit(UnitSystem.SI);
 ```
 
 To define an application policy, use invariant constituent unit names:
 
 ```csharp
-var imperial = new UnitsNet.Modular.UnitSystem(
-    new UnitsNet.Modular.BaseUnits(length: "Foot"));
+var imperial = new UnitSystem(
+    new BaseUnits(length: "Foot"));
 
 Length distance = new Length(3, imperial);
 ```
@@ -314,11 +316,11 @@ Resolution considers only units selected into the module.
 The generated static `Quantity` facade is useful while preserving familiar call shapes:
 
 ```csharp
-UnitsNet.Modular.IQuantity<double> byName =
+UnitsNet.IQuantity<double> byName =
     Quantity.From(1.5, "Length", "Kilometer");
-UnitsNet.Modular.IQuantity<double> byUnit =
+UnitsNet.IQuantity<double> byUnit =
     Quantity.From(1.5, LengthUnit.Kilometer);
-UnitsNet.Modular.IQuantity<double> parsed =
+UnitsNet.IQuantity<double> parsed =
     Quantity.Parse(typeof(Length), "1.5 km");
 ```
 
@@ -327,7 +329,7 @@ For injected services and type-erased operations, depend on the registry:
 ```csharp
 QuantityRegistry registry = GeneratedQuantityRegistry.Instance;
 IQuantityDescriptor length = registry.Get(typeof(Length));
-UnitsNet.Modular.IQuantity<double> parsed = registry.Parse(
+UnitsNet.IQuantity<double> parsed = registry.Parse(
     typeof(Length),
     "1.5 km",
     System.Globalization.CultureInfo.InvariantCulture);
@@ -368,7 +370,7 @@ immutable `UnitSystem` explicitly at each typed or dynamic operation. Selected d
 conversions, relationships, and localization remain compile-time inputs owned by the application.
 
 The generated `Quantity` facade delegates to `Quantity.Registry` and returns
-`UnitsNet.Modular.IQuantity<double>`. It does not own another catalog, conversion registry, or mutable
+`UnitsNet.IQuantity<double>`. It does not own another catalog, conversion registry, or mutable
 configuration. APIs that would pretend to mutate generated code remain absent.
 
 Use an application adapter when a boundary genuinely needs runtime policy. Keep that adapter outside

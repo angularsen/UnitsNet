@@ -189,7 +189,7 @@ public sealed class CompatibilityTests
         Type generatedUnitSystemType = GeneratedAssembly
             .GetReferencedAssemblies()
             .Select(Assembly.Load)
-            .Select(assembly => assembly.GetType("UnitsNet.Modular.UnitSystem"))
+            .Select(assembly => assembly.GetType("UnitsNet.UnitSystem"))
             .First(type => type is not null)!;
         object generatedSi = generatedUnitSystemType.GetProperty("SI")!.GetValue(null)!;
 
@@ -892,7 +892,7 @@ public sealed class CompatibilityTests
                 member != "M:ToString:System.String(System.String)" &&
                 !member.StartsWith("M:As:", StringComparison.Ordinal) &&
                 !member.StartsWith("M:ToUnit:", StringComparison.Ordinal) &&
-                !member.Contains("UnitsNet.Modular.UnitSystem", StringComparison.Ordinal))
+                !member.Contains("UnitsNet.UnitSystem", StringComparison.Ordinal))
             .OrderBy(member => member, StringComparer.Ordinal)
             .ToArray();
         Assert.True(

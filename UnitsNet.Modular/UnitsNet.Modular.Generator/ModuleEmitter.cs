@@ -17,7 +17,7 @@ internal static class ModuleEmitter
         writer.AppendLine("    public static class GeneratedQuantityRegistry");
         writer.AppendLine("    {");
         writer.AppendLine("        public static global::UnitsNet.Modular.QuantityRegistry Instance { get; } = new(");
-        writer.AppendLine("            new global::UnitsNet.Modular.IQuantityDescriptor[]");
+        writer.AppendLine("            new global::UnitsNet.IQuantityDescriptor[]");
         writer.AppendLine("            {");
         foreach (QuantitySelection selection in selections)
         {
@@ -46,7 +46,7 @@ internal static class ModuleEmitter
             string quantityType = QuantityType(selection.Definition);
             writer.Append("            if (typeToConvert == typeof(").Append(quantityType).AppendLine("))");
             writer.AppendLine("            {");
-            writer.Append("                return new global::UnitsNet.Modular.Serialization.QuantityJsonConverter<")
+            writer.Append("                return new global::UnitsNet.Modular.SourceGen.QuantityJsonConverter<")
                 .Append(quantityType).Append(">(GeneratedQuantityRegistry.Instance.Get(typeof(")
                 .Append(quantityType).AppendLine(")));");
             writer.AppendLine("            }");
@@ -80,52 +80,52 @@ internal static class ModuleEmitter
         writer.AppendLine();
         writer.Append(indent).AppendLine("    public static global::System.Collections.Generic.IReadOnlyCollection<string> Names =>");
         writer.Append(indent).AppendLine("        Registry.Names;");
-        writer.Append(indent).AppendLine("    public static global::System.Collections.Generic.IReadOnlyList<global::UnitsNet.Modular.IQuantityDescriptor> Infos =>");
+        writer.Append(indent).AppendLine("    public static global::System.Collections.Generic.IReadOnlyList<global::UnitsNet.IQuantityDescriptor> Infos =>");
         writer.Append(indent).AppendLine("        Registry.Quantities;");
-        writer.Append(indent).AppendLine("    public static global::System.Collections.Generic.IReadOnlyDictionary<string, global::UnitsNet.Modular.IQuantityDescriptor> ByName =>");
+        writer.Append(indent).AppendLine("    public static global::System.Collections.Generic.IReadOnlyDictionary<string, global::UnitsNet.IQuantityDescriptor> ByName =>");
         writer.Append(indent).AppendLine("        Registry.ByName;");
         writer.AppendLine();
-        writer.Append(indent).AppendLine("    public static global::UnitsNet.Modular.IQuantity<double> From(");
+        writer.Append(indent).AppendLine("    public static global::UnitsNet.IQuantity<double> From(");
         writer.Append(indent).AppendLine("        double value,");
         writer.Append(indent).AppendLine("        string quantityName,");
         writer.Append(indent).AppendLine("        string unitName) =>");
         writer.Append(indent).AppendLine("        Registry.Create(value, quantityName, unitName);");
         writer.AppendLine();
-        writer.Append(indent).AppendLine("    public static global::UnitsNet.Modular.IQuantity<double> From(");
+        writer.Append(indent).AppendLine("    public static global::UnitsNet.IQuantity<double> From(");
         writer.Append(indent).AppendLine("        double value,");
         writer.Append(indent).AppendLine("        string quantityName,");
-        writer.Append(indent).AppendLine("        global::UnitsNet.Modular.UnitSystem unitSystem) =>");
+        writer.Append(indent).AppendLine("        global::UnitsNet.UnitSystem unitSystem) =>");
         writer.Append(indent).AppendLine("        Registry.Create(value, quantityName, unitSystem);");
         writer.AppendLine();
-        writer.Append(indent).AppendLine("    public static global::UnitsNet.Modular.IQuantity<double> From(double value, global::System.Enum unit) =>");
+        writer.Append(indent).AppendLine("    public static global::UnitsNet.IQuantity<double> From(double value, global::System.Enum unit) =>");
         writer.Append(indent).AppendLine("        Registry.Create(value, unit);");
         writer.AppendLine();
         writer.Append(indent).AppendLine("    public static bool TryFrom(");
         writer.Append(indent).AppendLine("        double value,");
         writer.Append(indent).AppendLine("        string quantityName,");
         writer.Append(indent).AppendLine("        string unitName,");
-        writer.Append(indent).AppendLine("        [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out global::UnitsNet.Modular.IQuantity<double>? quantity) =>");
+        writer.Append(indent).AppendLine("        [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out global::UnitsNet.IQuantity<double>? quantity) =>");
         writer.Append(indent).AppendLine("        Registry.TryCreate(value, quantityName, unitName, out quantity);");
         writer.AppendLine();
         writer.Append(indent).AppendLine("    public static bool TryFrom(");
         writer.Append(indent).AppendLine("        double value,");
         writer.Append(indent).AppendLine("        string quantityName,");
-        writer.Append(indent).AppendLine("        global::UnitsNet.Modular.UnitSystem? unitSystem,");
-        writer.Append(indent).AppendLine("        [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out global::UnitsNet.Modular.IQuantity<double>? quantity) =>");
+        writer.Append(indent).AppendLine("        global::UnitsNet.UnitSystem? unitSystem,");
+        writer.Append(indent).AppendLine("        [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out global::UnitsNet.IQuantity<double>? quantity) =>");
         writer.Append(indent).AppendLine("        Registry.TryCreate(value, quantityName, unitSystem, out quantity);");
         writer.AppendLine();
         writer.Append(indent).AppendLine("    public static bool TryFrom(");
         writer.Append(indent).AppendLine("        double value,");
         writer.Append(indent).AppendLine("        global::System.Enum? unit,");
-        writer.Append(indent).AppendLine("        [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out global::UnitsNet.Modular.IQuantity<double>? quantity) =>");
+        writer.Append(indent).AppendLine("        [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out global::UnitsNet.IQuantity<double>? quantity) =>");
         writer.Append(indent).AppendLine("        Registry.TryCreate(value, unit, out quantity);");
         writer.AppendLine();
-        writer.Append(indent).AppendLine("    public static global::UnitsNet.Modular.IQuantity<double> Parse(");
+        writer.Append(indent).AppendLine("    public static global::UnitsNet.IQuantity<double> Parse(");
         writer.Append(indent).AppendLine("        global::System.Type quantityType,");
         writer.Append(indent).AppendLine("        string quantityString) =>");
         writer.Append(indent).AppendLine("        Parse(null, quantityType, quantityString);");
         writer.AppendLine();
-        writer.Append(indent).AppendLine("    public static global::UnitsNet.Modular.IQuantity<double> Parse(");
+        writer.Append(indent).AppendLine("    public static global::UnitsNet.IQuantity<double> Parse(");
         writer.Append(indent).AppendLine("        global::System.IFormatProvider? formatProvider,");
         writer.Append(indent).AppendLine("        global::System.Type quantityType,");
         writer.Append(indent).AppendLine("        string quantityString) =>");
@@ -134,18 +134,18 @@ internal static class ModuleEmitter
         writer.Append(indent).AppendLine("    public static bool TryParse(");
         writer.Append(indent).AppendLine("        global::System.Type quantityType,");
         writer.Append(indent).AppendLine("        string? quantityString,");
-        writer.Append(indent).AppendLine("        [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out global::UnitsNet.Modular.IQuantity<double>? quantity) =>");
+        writer.Append(indent).AppendLine("        [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out global::UnitsNet.IQuantity<double>? quantity) =>");
         writer.Append(indent).AppendLine("        TryParse(null, quantityType, quantityString, out quantity);");
         writer.AppendLine();
         writer.Append(indent).AppendLine("    public static bool TryParse(");
         writer.Append(indent).AppendLine("        global::System.IFormatProvider? formatProvider,");
         writer.Append(indent).AppendLine("        global::System.Type quantityType,");
         writer.Append(indent).AppendLine("        string? quantityString,");
-        writer.Append(indent).AppendLine("        [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out global::UnitsNet.Modular.IQuantity<double>? quantity) =>");
+        writer.Append(indent).AppendLine("        [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out global::UnitsNet.IQuantity<double>? quantity) =>");
         writer.Append(indent).AppendLine("        Registry.TryParse(quantityType, quantityString, formatProvider, out quantity);");
         writer.AppendLine();
-        writer.Append(indent).AppendLine("    public static global::System.Collections.Generic.IReadOnlyList<global::UnitsNet.Modular.IQuantityDescriptor> GetQuantitiesWithBaseDimensions(");
-        writer.Append(indent).AppendLine("        global::UnitsNet.Modular.BaseDimensions baseDimensions) =>");
+        writer.Append(indent).AppendLine("    public static global::System.Collections.Generic.IReadOnlyList<global::UnitsNet.IQuantityDescriptor> GetQuantitiesWithBaseDimensions(");
+        writer.Append(indent).AppendLine("        global::UnitsNet.BaseDimensions baseDimensions) =>");
         writer.Append(indent).AppendLine("        Registry.FindByBaseDimensions(baseDimensions);");
         writer.Append(indent).AppendLine("}");
         if (facadeNamespace.Length > 0)
@@ -202,11 +202,11 @@ internal static class ModuleEmitter
         {
             writer.Append("        public static ").Append(quantityType).Append(" Average(this global::System.Collections.Generic.IEnumerable<")
                 .Append(quantityType).AppendLine("> quantities) =>");
-            writer.Append("            global::UnitsNet.Modular.AffineQuantityMath.Average<")
+            writer.Append("            global::UnitsNet.AffineQuantityMath.Average<")
                 .Append(quantityType).Append(", ").Append(unitType).AppendLine(">(quantities);");
             writer.Append("        public static ").Append(quantityType).Append(" Average(this global::System.Collections.Generic.IEnumerable<")
                 .Append(quantityType).Append("> quantities, ").Append(unitType).AppendLine(" unit) =>");
-            writer.AppendLine("            global::UnitsNet.Modular.AffineQuantityMath.Average(quantities, unit);");
+            writer.AppendLine("            global::UnitsNet.AffineQuantityMath.Average(quantities, unit);");
             string offsetType = QuantityType(affineOffset!.Definition);
             writer.Append("        public static bool Equals(this ").Append(quantityType).Append(" quantity, ")
                 .Append(quantityType).Append(" other, ").Append(offsetType).AppendLine(" tolerance)");
@@ -225,28 +225,28 @@ internal static class ModuleEmitter
 
         writer.Append("        public static ").Append(quantityType).Append(" Sum(this global::System.Collections.Generic.IEnumerable<")
             .Append(quantityType).AppendLine("> quantities) =>");
-        writer.AppendLine("            global::UnitsNet.Modular.QuantityMath.Sum(quantities);");
+        writer.AppendLine("            global::UnitsNet.QuantityMath.Sum(quantities);");
         writer.Append("        public static ").Append(quantityType).Append(" Sum(this global::System.Collections.Generic.IEnumerable<")
             .Append(quantityType).Append("> quantities, ").Append(unitType).AppendLine(" unit) =>");
-        writer.AppendLine("            global::UnitsNet.Modular.QuantityMath.Sum(quantities, unit);");
+        writer.AppendLine("            global::UnitsNet.QuantityMath.Sum(quantities, unit);");
         writer.Append("        public static ").Append(quantityType).Append(" Sum<TSource>(this global::System.Collections.Generic.IEnumerable<TSource> source, global::System.Func<TSource, ")
             .Append(quantityType).AppendLine("> selector) =>");
-        writer.AppendLine("            global::UnitsNet.Modular.QuantityMath.Sum(global::System.Linq.Enumerable.Select(source, selector));");
+        writer.AppendLine("            global::UnitsNet.QuantityMath.Sum(global::System.Linq.Enumerable.Select(source, selector));");
         writer.Append("        public static ").Append(quantityType).Append(" Sum<TSource>(this global::System.Collections.Generic.IEnumerable<TSource> source, global::System.Func<TSource, ")
             .Append(quantityType).Append("> selector, ").Append(unitType).AppendLine(" unit) =>");
-        writer.AppendLine("            global::UnitsNet.Modular.QuantityMath.Sum(global::System.Linq.Enumerable.Select(source, selector), unit);");
+        writer.AppendLine("            global::UnitsNet.QuantityMath.Sum(global::System.Linq.Enumerable.Select(source, selector), unit);");
         writer.Append("        public static ").Append(quantityType).Append(" Average(this global::System.Collections.Generic.IEnumerable<")
             .Append(quantityType).AppendLine("> quantities) =>");
-        writer.AppendLine("            global::UnitsNet.Modular.QuantityMath.Average(quantities);");
+        writer.AppendLine("            global::UnitsNet.QuantityMath.Average(quantities);");
         writer.Append("        public static ").Append(quantityType).Append(" Average(this global::System.Collections.Generic.IEnumerable<")
             .Append(quantityType).Append("> quantities, ").Append(unitType).AppendLine(" unit) =>");
-        writer.AppendLine("            global::UnitsNet.Modular.QuantityMath.Average(quantities, unit);");
+        writer.AppendLine("            global::UnitsNet.QuantityMath.Average(quantities, unit);");
         writer.Append("        public static ").Append(quantityType).Append(" Average<TSource>(this global::System.Collections.Generic.IEnumerable<TSource> source, global::System.Func<TSource, ")
             .Append(quantityType).AppendLine("> selector) =>");
-        writer.AppendLine("            global::UnitsNet.Modular.QuantityMath.Average(global::System.Linq.Enumerable.Select(source, selector));");
+        writer.AppendLine("            global::UnitsNet.QuantityMath.Average(global::System.Linq.Enumerable.Select(source, selector));");
         writer.Append("        public static ").Append(quantityType).Append(" Average<TSource>(this global::System.Collections.Generic.IEnumerable<TSource> source, global::System.Func<TSource, ")
             .Append(quantityType).Append("> selector, ").Append(unitType).AppendLine(" unit) =>");
-        writer.AppendLine("            global::UnitsNet.Modular.QuantityMath.Average(global::System.Linq.Enumerable.Select(source, selector), unit);");
+        writer.AppendLine("            global::UnitsNet.QuantityMath.Average(global::System.Linq.Enumerable.Select(source, selector), unit);");
         writer.Append("        public static ").Append(quantityType).Append(" Abs(this ").Append(quantityType).AppendLine(" value) =>");
         writer.Append("            ").Append(quantityType).AppendLine(".From(global::System.Math.Abs(value.Value), value.Unit);");
         writer.Append("        public static bool Equals(this ").Append(quantityType).Append(" quantity, ").Append(quantityType)
@@ -263,30 +263,30 @@ internal static class ModuleEmitter
         {
             writer.Append("        public static ").Append(quantityType).Append(' ').Append(operation)
                 .Append("(this global::System.Collections.Generic.IEnumerable<").Append(quantityType).AppendLine("> quantities) =>");
-            writer.Append("            global::UnitsNet.Modular.LogarithmicQuantityMath.").Append(operation).Append('<')
+            writer.Append("            global::UnitsNet.LogarithmicQuantityMath.").Append(operation).Append('<')
                 .Append(quantityType).Append(", ").Append(unitType).AppendLine(">(quantities);");
             writer.Append("        public static ").Append(quantityType).Append(' ').Append(operation)
                 .Append("(this global::System.Collections.Generic.IEnumerable<").Append(quantityType).Append("> quantities, ")
                 .Append(unitType).AppendLine(" unit) =>");
-            writer.Append("            global::UnitsNet.Modular.LogarithmicQuantityMath.").Append(operation).Append('<')
+            writer.Append("            global::UnitsNet.LogarithmicQuantityMath.").Append(operation).Append('<')
                 .Append(quantityType).Append(", ").Append(unitType).AppendLine(">(quantities, unit);");
             writer.Append("        public static ").Append(quantityType).Append(' ').Append(operation)
                 .Append("<TSource>(this global::System.Collections.Generic.IEnumerable<TSource> source, global::System.Func<TSource, ")
                 .Append(quantityType).AppendLine("> selector) =>");
-            writer.Append("            global::UnitsNet.Modular.LogarithmicQuantityMath.").Append(operation).Append('<')
+            writer.Append("            global::UnitsNet.LogarithmicQuantityMath.").Append(operation).Append('<')
                 .Append(quantityType).Append(", ").Append(unitType)
                 .AppendLine(">(global::System.Linq.Enumerable.Select(source, selector));");
             writer.Append("        public static ").Append(quantityType).Append(' ').Append(operation)
                 .Append("<TSource>(this global::System.Collections.Generic.IEnumerable<TSource> source, global::System.Func<TSource, ")
                 .Append(quantityType).Append("> selector, ").Append(unitType).AppendLine(" unit) =>");
-            writer.Append("            global::UnitsNet.Modular.LogarithmicQuantityMath.").Append(operation).Append('<')
+            writer.Append("            global::UnitsNet.LogarithmicQuantityMath.").Append(operation).Append('<')
                 .Append(quantityType).Append(", ").Append(unitType)
                 .AppendLine(">(global::System.Linq.Enumerable.Select(source, selector), unit);");
         }
 
         writer.Append("        public static bool Equals(this ").Append(quantityType).Append(" quantity, ")
             .Append(quantityType).Append(" other, ").Append(quantityType).AppendLine(" tolerance) =>");
-        writer.Append("            global::UnitsNet.Modular.LogarithmicQuantityMath.Equals<").Append(quantityType)
+        writer.Append("            global::UnitsNet.LogarithmicQuantityMath.Equals<").Append(quantityType)
             .Append(", ").Append(unitType).AppendLine(">(quantity, other, tolerance);");
     }
 

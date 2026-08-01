@@ -1,6 +1,6 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
-namespace UnitsNet.Modular;
+namespace UnitsNet;
 
 /// <summary>Reusable algorithms over quantities that advertise compatible arithmetic semantics.</summary>
 public static class QuantityMath

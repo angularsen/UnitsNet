@@ -1,6 +1,6 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
-namespace UnitsNet.Modular;
+namespace UnitsNet;
 
 /// <summary>
 /// An immutable caller-owned policy for selecting quantity units from constituent base units.

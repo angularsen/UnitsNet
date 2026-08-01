@@ -13,14 +13,22 @@ namespace UnitsNet.Modular.Generator.Tests;
 internal static class GeneratorTestHost
 {
     public static TestRun Run(string source, params (string Path, string Text)[] additionalFiles)
+        => Run(source, Array.Empty<MetadataReference>(), additionalFiles);
+
+    public static TestRun Run(
+        string source,
+        IEnumerable<MetadataReference> additionalReferences,
+        params (string Path, string Text)[] additionalFiles)
     {
-        CSharpCompilation compilation = CreateCompilation(source);
+        CSharpCompilation compilation = CreateCompilation(source, additionalReferences);
         GeneratorDriver driver = CreateDriver(additionalFiles)
             .RunGeneratorsAndUpdateCompilation(compilation, out Compilation output, out _);
         return new TestRun(driver.GetRunResult(), output);
     }
 
-    public static CSharpCompilation CreateCompilation(string source)
+    public static CSharpCompilation CreateCompilation(
+        string source,
+        IEnumerable<MetadataReference>? additionalReferences = null)
     {
         string[] trustedAssemblies = ((string?)AppContext.GetData("TRUSTED_PLATFORM_ASSEMBLIES"))!
             .Split(Path.PathSeparator);
@@ -30,6 +38,7 @@ internal static class GeneratorTestHost
             {
                 MetadataReference.CreateFromFile(typeof(QuantityOperations).Assembly.Location),
             })
+            .Concat(additionalReferences ?? Array.Empty<MetadataReference>())
             .GroupBy(reference => reference.Display, StringComparer.OrdinalIgnoreCase)
             .Select(group => group.First())
             .ToArray();

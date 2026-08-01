@@ -3,7 +3,6 @@
 using System.Collections.Frozen;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
-using UnitsNet.Modular;
 using UnitsNet.Modular.SourceGen;
 
 namespace UnitsNet;

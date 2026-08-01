@@ -1,6 +1,6 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
-namespace UnitsNet.Modular;
+namespace UnitsNet;
 
 /// <summary>Reusable algorithms for quantities with affine conversion semantics.</summary>
 public static class AffineQuantityMath

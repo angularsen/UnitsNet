@@ -1,6 +1,6 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
-namespace UnitsNet.Modular;
+namespace UnitsNet;
 
 /// <summary>Describes a quantity in terms of the seven SI base dimensions.</summary>
 public sealed record BaseDimensions(

@@ -43,6 +43,25 @@ definitions. Stable public authoring contracts live in the UnitsNet.Modular runt
 assemblies can reference one identity. Built-in catalog specs and profiles are internal bootstrap
 source emitted during post-initialization.
 
+## Namespace ownership
+
+The package and assembly retain the `UnitsNet.Modular` name, while the runtime project's default
+namespace is `UnitsNet`. Namespace ownership follows the role of each type:
+
+- general quantity contracts, metadata, unit-system policy, and quantity math use `UnitsNet`;
+- built-in unit enums use `UnitsNet.Units`;
+- module authoring contracts and the selected-module registry use `UnitsNet.Modular`;
+- built-in specs and reusable profiles use `UnitsNet.Modular.BuiltIns` and
+  `UnitsNet.Modular.Profiles`;
+- the generated module registry uses `UnitsNet.Modular.Generated`; and
+- public implementation types referenced only by emitted code use
+  `UnitsNet.Modular.SourceGen` and are hidden from IntelliSense.
+
+This keeps ordinary quantity source close to legacy UnitsNet while making modular composition and
+generator plumbing explicit. It does not provide binary compatibility: the legacy and Modular
+contracts come from different assemblies. Referencing the `UnitsNet` and `UnitsNet.Modular`
+packages together in one consumer project is unsupported.
+
 ## Developer experience
 
 Authoring types use role-specific suffixes: quantity specifications are `*Spec`, reusable unit
@@ -242,8 +261,8 @@ Two handwritten APIs remain intentionally excluded. `Length.ParseFeetInches` and
 compatibility suite requires every exclusion to identify an existing UnitsNet member and provide a
 non-empty rationale, so stale exclusions fail the test.
 
-`UnitsNet.Modular.IQuantity<TValue>` exposes the stored numeric value and a type-erased enum unit.
-`UnitsNet.Modular.IQuantity<TSelf, TUnit, TValue>` adds only the static construction and conversion
+`UnitsNet.IQuantity<TValue>` exposes the stored numeric value and a type-erased enum unit.
+`UnitsNet.IQuantity<TSelf, TUnit, TValue>` adds only the static construction and conversion
 primitives needed to implement reusable `As()` and `ToUnit()` behavior, while refining the stored
 unit to its concrete enum type. The `double`-based `IQuantity<TSelf, TUnit>` composite adds the
 static canonical `Info` metadata required from every generated quantity. This follows the familiar
@@ -315,22 +334,23 @@ emitted as direct type checks and generic converter construction, with no runtim
 and Native AOT. Serialized data still forms an application-owned compatibility boundary; the
 registry does not make independently generated CLR types binary compatible.
 
-UnitsNet.Modular deliberately does not emit substitute copies of legacy `UnitsNet.IQuantity` interfaces.
-Exact legacy interface identity would require moving those interfaces to a canonical assembly and
-coordinating that change with UnitsNet itself. The prototype instead targets concrete source
-compatibility and the clean shared contracts.
+UnitsNet.Modular deliberately exposes its clean-slate contracts under the familiar `UnitsNet`
+namespace. This improves source compatibility but does not reproduce legacy interface identity:
+the contracts come from a different assembly and have deliberately slimmer shapes. Exact binary
+identity would require a canonical shared assembly coordinated with UnitsNet itself.
 
 The legacy compatibility review concluded that common read-only dynamic workflows belong on the
 immutable module registry, with a thin owner-scoped `Quantity` facade for familiar static call
-shapes. The facade returns `UnitsNet.Modular.IQuantity<double>` and delegates to its exposed
+shapes. The facade returns `UnitsNet.IQuantity<double>` and delegates to its exposed
 `Quantity.Registry`; it does not introduce a second catalog. Construction, type-directed parsing,
 metadata discovery, and non-throwing input paths are tested against their UnitsNet counterparts.
 
 The review rejected mutable legacy behavior, not static convenience. `UnitsNetSetup`, mutable
 conversion registration, abbreviation-cache mutation, and mutable global defaults express
 process-wide runtime policy that conflicts with consumer-owned compile-time definitions.
-UnitsNet.Modular instead provides immutable, owner-neutral `UnitSystem` and `BaseUnits` values that are
-passed explicitly to generated constructors, `From`, `As`, and `ToUnit`, or to the facade,
+The Modular runtime instead provides immutable, owner-neutral `UnitsNet.UnitSystem` and
+`UnitsNet.BaseUnits` values that are passed explicitly to generated constructors, `From`, `As`,
+and `ToUnit`, or to the facade,
 descriptors, and registry. Resolution is restricted to selected units. Generated constituent
 metadata and SI selection are checked catalog-wide against UnitsNet, including exponent-aware
 prefix metadata and legacy first-match ordering. `UnitKey` is unnecessary in strongly typed code;
@@ -572,6 +592,8 @@ catalog request.
   outside this prototype's scope.
 - Legacy mutable setup, runtime registration, global defaults, and exact legacy interface identity
   remain deliberately unsupported.
+- Referencing legacy `UnitsNet.dll` in a project that declares a Modular module is unsupported and
+  reported as `UNM016`; migrate the generation boundary to one implementation at a time.
 
 ## What this POC should prove
 
