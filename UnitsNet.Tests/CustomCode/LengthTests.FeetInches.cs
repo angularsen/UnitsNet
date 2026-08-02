@@ -49,6 +49,7 @@ public class FeetInchesTests
             ["1′1″", 1.08333333, EnglishUs], // Without space
             ["1 ft 1 in", 1.08333333, EnglishUs],
             ["1ft 1in", 1.08333333, EnglishUs],
+            ["1 FT 6 IN", 1.5, EnglishUs], // Unit parsing is case-insensitive
             ["-1'", -1, EnglishUs], // Feet only
             ["-1′", -1, EnglishUs], // Feet only
             ["-1,000′", -1000, EnglishUs], // Feet only, with separator
@@ -85,6 +86,7 @@ public class FeetInchesTests
     [InlineData("1'000' 6\"", 1000.5)]
     [InlineData("1'000'6\"", 1000.5)]
     [InlineData("1'000'000' 2\"", 1000000.16666667)]
+    [InlineData("1' 1'000\"", 84.33333333)]
     [InlineData("-1'000' 6\"", -1000.5)]
     public void TryParseFeetInches_WhenGroupSeparatorIsFootAbbreviation_ParsesFeetAndInches(string str, double expectedFeet)
     {

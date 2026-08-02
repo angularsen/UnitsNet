@@ -94,6 +94,8 @@ namespace UnitsNet
             if (isNegative)
                 str = str.Substring(1).TrimStart();
 
+            // Prefer the rightmost foot abbreviation so "1'000' 6\"" treats grouping apostrophes as part of
+            // the feet value, then keep walking left if that split does not leave valid feet and inches parts.
             IReadOnlyList<string> footAbbreviations = UnitAbbreviationsCache.Default.GetUnitAbbreviations(LengthUnit.Foot, formatProvider);
             foreach (int splitEndIndex in GetPossibleUnitSplitEndIndexes(str, footAbbreviations))
             {
