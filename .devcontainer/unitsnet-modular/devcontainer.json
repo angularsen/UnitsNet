@@ -15,13 +15,7 @@
     },
     "codespaces": {
       "openFiles": [
-        "UnitsNet.Modular/Samples/README.md",
-        "UnitsNet.Modular/Samples/ModularPlayground/README.md",
-        "UnitsNet.Modular/Samples/ModularPlayground/Program.cs",
-        "UnitsNet.Modular/Samples/ModularPlayground/ApplicationUnits.cs",
-        "UnitsNet.Modular/Samples/ModularPlayground/ParcelCount.unitsnet.json",
-        "UnitsNet.Modular/Samples/ModularPlayground/Properties/launchSettings.json",
-        "UnitsNet.Modular/Samples/ModularPlayground/ModularPlayground.csproj"
+        "UnitsNet.Modular/Samples/README.md"
       ]
     }
   }
