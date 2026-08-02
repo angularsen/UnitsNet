@@ -6,37 +6,27 @@
 
 Generate only the strongly typed quantities and units your application needs.
 
-UnitsNet.Modular combines a small runtime with a Roslyn source generator. A consumer selects quantities
-from the UnitsNet catalog, optionally filters their units, and can add application-specific or
-third-party JSON definitions. The generator emits quantity structs, unit enums, conversions,
-parsing, formatting, localization, arithmetic, and relationships directly into a consumer-owned
-assembly.
+You can select quantities and units from the UnitsNet catalog and add your own custom quantities and
+units with JSON definitions. A source generator emits the types directly into your project.
 
-The result keeps the familiar strengths of UnitsNet without requiring every application to carry
-the complete catalog:
+The result keeps the familiar UnitsNet API without requiring the complete catalog:
 
-- strongly typed quantities and unit enums;
-- compile-time selection of quantities and units;
-- built-in, custom, and third-party definitions in one generated model;
-- affine, logarithmic, and nonlinear conversions;
-- localized parsing and formatting;
-- cross-quantity operators and aggregation;
-- immutable runtime discovery and System.Text.Json support;
-- trimming and Native AOT-friendly generated code.
+- Generate only the quantities and units you use
+- Combine built-in and custom definitions in one strongly typed model
+- Get unit conversions, quantity relations, arithmetic, parsing, and formatting
+- Catch definition and relationship errors at compile time
+- Get trimming and Native AOT-friendly code
 
 > **Experimental:** UnitsNet.Modular is a proof of concept and currently in pre-release. Its API,
 > package structure, and compatibility guarantees may change as the architecture is evaluated.
 
-Want to try it without installing anything? Open the browser-based
-[UnitsNet.Modular samples](https://codespaces.new/angularsen/UnitsNet?devcontainer_path=.devcontainer%2Funitsnet-modular%2Fdevcontainer.json&quickstart=1).
-The Codespace builds all samples with the real source generator, opens the sample documentation and
-source files, and keeps generated C# available for inspection.
+Try the [UnitsNet.Modular samples in GitHub Codespaces](https://codespaces.new/angularsen/UnitsNet?devcontainer_path=.devcontainer%2Funitsnet-modular%2Fdevcontainer.json&quickstart=1)
+without installing anything.
 
 ## Contents
 
-- [Install](#install)
-- [Namespaces](#namespaces)
 - [Quick start](#quick-start)
+- [How it differs from UnitsNet](#how-it-differs-from-unitsnet)
 - [Choose a project structure](#choose-a-project-structure)
 - [Use generated quantities](#use-generated-quantities)
 - [Configure generation](#configure-generation)
@@ -46,37 +36,21 @@ source files, and keeps generated C# available for inspection.
 - [Dynamic lookup and serialization](#dynamic-lookup-and-serialization)
 - [Diagnostics](#diagnostics)
 - [Troubleshooting](#troubleshooting)
-- [Current scope and limitations](#current-scope-and-limitations)
+- [Samples and design documents](#samples-and-design-documents)
 
-## Install
+## Quick start
 
-UnitsNet.Modular supports .NET 8, .NET 9, and .NET 10. Install the prerelease package in the project that
-will own the generated quantities:
+UnitsNet.Modular supports .NET 8, .NET 9, and .NET 10. It replaces `UnitsNet` in a project; the two
+packages cannot be referenced together. Remove `UnitsNet` if it is installed, then add the
+prerelease package:
 
 ```shell
+dotnet remove package UnitsNet
 dotnet add package UnitsNet.Modular --prerelease
 ```
 
-The package includes the runtime, quantity contracts, metadata types, and source generator. No
-separate runtime, contracts, or analyzer package is required.
-
-## Namespaces
-
-The package and assembly are named `UnitsNet.Modular`, but general quantity concepts use the
-familiar `UnitsNet` namespace. Generated built-in quantities, quantity contracts, metadata,
-unit-system policy, reusable quantity math, and the immutable generated registry therefore stay
-close to source-compatible with UnitsNet. Built-in unit enums use `UnitsNet.Units`.
-
-Only APIs that compose or describe a consumer-owned module use `UnitsNet.Modular`: module
-attributes, specs, profiles, and selection contracts. Public implementation types called only by
-emitted source live under
-`UnitsNet.Modular.SourceGen`, are hidden from IntelliSense, and are not intended for direct use.
-
-The `UnitsNet` and `UnitsNet.Modular` packages cannot be referenced together in the same consumer
-project. Their similarly named quantity contracts and generated types have different assembly
-identities. Replace one package with the other at a generation boundary instead of mixing them.
-
-## Quick start
+Generated built-in quantities use the `UnitsNet` namespace and unit enums use `UnitsNet.Units` by
+default. Pass a namespace to `[UnitsNetModule("MyApplication.Units")]` to change it.
 
 Add these two files to the project that references `UnitsNet.Modular`.
 
@@ -111,13 +85,44 @@ Console.WriteLine($"Pace: {pace:F1}");
 ```
 
 Build the project. The source generator sees `ApplicationUnits`, then emits `Length`, `Duration`,
-`Speed`, and their unit enums into the consumer project's assembly. Because every participant is
-selected, it also emits the `Length / Duration = Speed` relationship used above.
+`Speed`, and their unit enums into your project. Because every participant is selected, it also
+emits the `Length / Duration = Speed` relationship used above.
 
 The `*Spec` interfaces are compile-time selections, not the generated quantities themselves. Each
 selected quantity includes all its units unless a unit set filters them. The project containing the
 module owns the generated CLR types, so other projects should reference that project rather than
 declare another module.
+
+## How it differs from UnitsNet
+
+`UnitsNet` ships the complete catalog as precompiled types and supports runtime configuration.
+UnitsNet.Modular source-generates your selected catalog at compile time and uses immutable generated
+metadata instead of mutable global registrations.
+
+### New in UnitsNet.Modular
+
+- Select only the quantities and units your application needs
+- Generate custom quantities and units from JSON alongside the built-in catalog
+- Generate relationships and operators across built-in and custom quantities
+- Put the generated types in a namespace and assembly you control
+- Use generated discovery and serialization without runtime assembly scanning
+- Produce trimming and Native AOT-friendly code
+
+### Tradeoffs and missing features
+
+- UnitsNet.Modular is a pre-release proof of concept, so its API and package structure may change
+- It is not binary-compatible with `UnitsNet`; libraries compiled against `UnitsNet.dll` need a
+  migration boundary
+- Quantity selection and configuration happen at compile time; runtime mutation of conversions,
+  abbreviations, and global defaults is not supported
+- Each generated assembly owns distinct CLR types, so multi-project applications should share one
+  generated units project
+- Generated quantity values currently use `double`
+- `Length.ParseFeetInches` and `Pressure` elevation modeling are not yet supported
+- The System.Text.Json integration is still a proof of concept, and applications own serialized
+  contract versioning
+
+See the [migration guide](MIGRATION.md) for a detailed API comparison and migration options.
 
 ## Choose a project structure
 
@@ -133,7 +138,7 @@ MyTool
 └── Program.cs
 ```
 
-### Shared consumer-owned units project
+### Shared units project
 
 For a multi-project application, generate quantities once in a dedicated units project and
 reference that project everywhere else:
@@ -186,11 +191,11 @@ This targets source compatibility for common construction, conversion, parsing, 
 arithmetic, and aggregation code. It does not make the generated structs binary-compatible with
 types from `UnitsNet.dll`.
 
-### Third-party quantities
+### Third-party quantities and units
 
-A third-party definition package supplies specs rather than precompiled quantity structs. The
-consumer references the package, selects its public quantity specs in the application units
-project, and generates the third-party and built-in quantities together:
+A third-party definition package supplies specs rather than precompiled quantity structs. Reference
+the package from your units project, select its public quantity specs, and generate the third-party
+and built-in quantities together:
 
 ```csharp
 using Acme.Measurements.Definitions;
@@ -350,10 +355,9 @@ they produce:
 | `UnitSet` | Selects a reusable subset of a spec's units | `MetricLengthUnitSet` |
 | `Profile` | Composes several specs and unit sets | `MechanicsProfile` |
 
-The module interface names the consumer-owned generation boundary and can use an application-oriented
-name such as `ApplicationUnits`. The `*Spec` suffix is the authoring convention for the corresponding
-generated quantity and unit enum: `LengthSpec` specifies the `Length` quantity and its
-`LengthUnit` enum.
+The module interface names the generation boundary and can use an application-oriented name such as
+`ApplicationUnits`. The `*Spec` suffix is the authoring convention for the corresponding generated
+quantity and unit enum: `LengthSpec` specifies the `Length` quantity and its `LengthUnit` enum.
 
 ### Module declaration
 
@@ -560,127 +564,15 @@ defaults to `UnitsNet`. Treat this semantic ID as a package-boundary identifier:
 you own so independently authored definition packages cannot describe unrelated quantities with
 the same identity.
 
-### Quantity definition JSON
+### Define the quantity in JSON
 
-A compact nonlinear definition with prefixes and localization looks like this:
+Define the quantity, its units, abbreviations, and conversions in the `MyQuantity.unitsnet.json`
+file. Each unit provides one expression for converting to the quantity's base unit and another for
+converting back. The two expressions should round-trip every supported value.
 
-```json
-{
-  "Name": "HowMuch",
-  "Namespace": "Fictional.Measurements",
-  "BaseUnit": "Some",
-  "BaseDimensions": {},
-  "Units": [
-    {
-      "SingularName": "Some",
-      "PluralName": "Some",
-      "FromUnitToBaseFunc": "{x}",
-      "FromBaseToUnitFunc": "{x}",
-      "Prefixes": [ "Kilo" ],
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "sm" ]
-        },
-        {
-          "Culture": "nb-NO",
-          "Abbreviations": [ "noe" ],
-          "AbbreviationsForPrefixes": {
-            "Kilo": "knoe"
-          }
-        }
-      ]
-    },
-    {
-      "SingularName": "Magnitude",
-      "PluralName": "Magnitudes",
-      "FromUnitToBaseFunc": "Math.Pow({x}, 2)",
-      "FromBaseToUnitFunc": "Math.Sqrt({x})",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "mag" ]
-        }
-      ]
-    }
-  ]
-}
-```
-
-Supported quantity fields:
-
-| Field | Required | Meaning |
-|---|---:|---|
-| `Name` | Yes | Generated quantity type name |
-| `Namespace` | No | Definition namespace and part of its semantic ID; defaults to `UnitsNet` |
-| `BaseUnit` | Yes | `SingularName` of the unit used as the conversion base |
-| `Units` | Yes | Unit definitions; one must match `BaseUnit` |
-| `BaseDimensions` | No | SI dimension exponents keyed by `L`, `M`, `T`, `I`, `Θ`, `N`, and `J` |
-| `AffineOffsetType` | No | Linear offset quantity name or semantic ID required by an affine quantity |
-| `Logarithmic` | No | String boolean such as `"True"`; defaults to false |
-| `LogarithmicScalingFactor` | No | Invariant numeric string used by logarithmic aggregation; defaults to `1` |
-
-The base-dimension symbols are `L` (length), `M` (mass), `T` (time), `I` (electric current),
-`Θ` (temperature), `N` (amount of substance), and `J` (luminous intensity). Omitted exponents
-default to zero. An unqualified `AffineOffsetType` resolves in the quantity's semantic namespace.
-
-Supported unit fields:
-
-| Field | Required | Meaning |
-|---|---:|---|
-| `SingularName` | Yes | Unit enum member and singular parse name |
-| `PluralName` | Yes | Plural parse name |
-| `FromUnitToBaseFunc` | Yes | Converts `{x}` from this unit to the quantity base unit |
-| `FromBaseToUnitFunc` | Yes | Converts `{x}` from the base unit to this unit |
-| `BaseUnits` | No | Constituent base-unit names keyed by the seven SI symbols |
-| `Prefixes` | No | Prefix names expanded into additional units |
-| `Localization` | No | Culture-specific abbreviations |
-
-Each localization contains:
-
-| Field | Required | Meaning |
-|---|---:|---|
-| `Culture` | Recommended | Culture name such as `en-US` or `nb-NO` |
-| `Abbreviations` | No | Ordered abbreviations; the first is used for formatting |
-| `AbbreviationsForPrefixes` | No | Prefix-specific string or string-array overrides |
-
-Property names are case-insensitive. Comments and trailing commas are accepted so existing UnitsNet
-catalog files can be consumed without rewriting them.
-
-Supported decimal prefixes are `Femto`, `Pico`, `Nano`, `Micro`, `Milli`, `Centi`, `Deci`, `Deca`,
-`Hecto`, `Kilo`, `Mega`, `Giga`, `Tera`, `Peta`, and `Exa`. Supported binary prefixes are `Kibi`,
-`Mebi`, `Gibi`, `Tebi`, `Pebi`, and `Exbi`.
-
-### Conversion expressions
-
-Both conversion functions are required and must be inverses over the useful domain of the unit.
-UnitsNet.Modular validates and emits the expressions at compile time; it does not compile strings or use
-reflection at runtime.
-
-The expression language supports:
-
-- numeric literals and `{x}`;
-- unary `+` and `-`;
-- `+`, `-`, `*`, `/`, and `%`;
-- parentheses;
-- `Math.PI` and `Math.E`;
-- `Math.Abs`, `Math.Exp`, `Math.Log`, `Math.Log10`, `Math.Pow`, and `Math.Sqrt`.
-
-Examples:
-
-```json
-{
-  "FromUnitToBaseFunc": "({x} * 9 / 5) + 32",
-  "FromBaseToUnitFunc": "({x} - 32) * 5 / 9"
-}
-```
-
-```json
-{
-  "FromUnitToBaseFunc": "Math.Pow({x}, 2)",
-  "FromBaseToUnitFunc": "Math.Sqrt({x})"
-}
-```
+See [HowMuch.unitsnet.json](Samples/CustomQuantitySample/HowMuch.unitsnet.json) for a complete example and the
+[Quantity and Unit Definition Schema](../Docs/quantity-and-unit-definition-schema.md#unitsnetmodular-compatibility)
+for the full field reference.
 
 ## Add quantity relationships
 
@@ -767,7 +659,7 @@ Pack the definition files and props:
 </ItemGroup>
 ```
 
-The props file contributes those files directly to the referencing consumer's compilation:
+The props file contributes those files directly to the referencing project's compilation:
 
 ```xml
 <Project>
@@ -780,8 +672,8 @@ The props file contributes those files directly to the referencing consumer's co
 </Project>
 ```
 
-Quantity specs should be public so the consumer can select them. Keep their
-`[QuantitySpec]` semantic IDs stable once published.
+Quantity specs should be public so projects can select them. Keep their `[QuantitySpec]` semantic
+IDs stable once published.
 
 An organization can instead publish one canonical compiled units assembly for several controlled
 applications. That is a deployment choice, not the primary composition model. Independently
@@ -885,10 +777,10 @@ help links.
 
 ### A generated quantity type is not found
 
-Confirm that the project either declares a single `[UnitsNetModule]` or references the
-consumer-owned units project that does. Select the quantity with `IInclude<TSpec>` or a profile,
-then build the module project. Check the build output for `UNM` diagnostics; the generator does not
-emit a quantity that was not selected.
+Confirm that the project either declares a single `[UnitsNetModule]` or references the shared units
+project that does. Select the quantity with `IInclude<TSpec>` or a profile, then build the module
+project. Check the build output for `UNM` diagnostics; the generator does not emit a quantity that
+was not selected.
 
 If the build succeeds but editor completion remains stale, inspect the IDE's source-generator node
 to confirm that quantity sources were emitted. Rebuild and reload the project or solution to refresh
@@ -925,24 +817,6 @@ unit-set pattern does not match it.
 `UnitsNet` and `UnitsNet.Modular` are alternative implementations and cannot be referenced together
 in the module project. Remove the legacy package reference or move the generated quantities behind a
 separate assembly boundary. See the [migration guide](MIGRATION.md) for compatibility options.
-
-## Current scope and limitations
-
-- UnitsNet.Modular is a design probe, not yet a committed replacement for UnitsNet.
-- Generated quantity values currently use `double`.
-- Runtime mutation of conversion functions, abbreviations, or global defaults is deliberately not
-  supported; definitions and generated metadata are immutable.
-- Quantity and unit selection happens at compile time.
-- Source compatibility with common UnitsNet APIs is a goal; binary compatibility is not.
-- The `UnitsNet` and `UnitsNet.Modular` packages are alternative implementations and cannot be
-  referenced together in one consumer project.
-- Definition packages ship specs. Generated types in different assemblies have different CLR
-  identities.
-- Unit filters match expanded invariant unit names, not localized abbreviations.
-- The System.Text.Json integration is a proof of concept; applications own persisted-contract
-  versioning.
-- Specialized `Length.ParseFeetInches` parsing and `Pressure` elevation modeling are currently
-  explicit compatibility exclusions.
 
 ## Samples and design documents
 

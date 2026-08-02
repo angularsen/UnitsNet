@@ -3,14 +3,14 @@
 Each sample has one distinct purpose. In Rider or Visual Studio, choose the normal `Debug` or
 `Release` configuration together with the dependency platform that you want to exercise.
 
-| Sample | Purpose |
-|---|---|
-| [Getting started](GettingStartedSample) | Minimal built-in `Length`, `Duration`, and `Speed` application matching the main quick start |
-| [Quantity selection](QuantitySelectionSample) | Select individual quantities and filter their generated unit sets |
-| [Custom quantity](CustomQuantitySample) | Generate an application-owned quantity from a JSON definition |
-| [All SI profile](Profiles/AllSiProfileSample) | Include `AllSiProfile` and exercise its SI relationship chain |
-| [Modular playground](ModularPlayground) | Explore parsing, arithmetic, metadata, serialization, relationships, and custom definitions |
-| [Shared units library](SharedUnitsLibrarySample) | Generate quantities once in a class library and share their CLR types across multiple projects |
+| Sample | Code | Purpose |
+|---|---|---|
+| [Getting started](GettingStartedSample/README.md) | [Program.cs](GettingStartedSample/Program.cs) | Minimal built-in `Length`, `Duration`, and `Speed` application matching the main quick start |
+| [Quantity selection](QuantitySelectionSample/README.md) | [Program.cs](QuantitySelectionSample/Program.cs) | Select individual quantities and filter their generated unit sets |
+| [Custom quantity](CustomQuantitySample/README.md) | [Program.cs](CustomQuantitySample/Program.cs) | Generate an application-owned quantity from a JSON definition |
+| [All SI profile](Profiles/AllSiProfileSample/README.md) | [Program.cs](Profiles/AllSiProfileSample/Program.cs) | Include `AllSiProfile` and exercise its SI relationship chain |
+| [Modular playground](ModularPlayground/README.md) | [Program.cs](ModularPlayground/Program.cs) | Explore parsing, arithmetic, metadata, serialization, relationships, and custom definitions |
+| [Shared units library](SharedUnitsLibrarySample/README.md) | [Program.cs](SharedUnitsLibrarySample/SharedUnitsLibrarySample.App/Program.cs) | Generate quantities once in a class library and share their CLR types across multiple projects |
 
 The broader playground complements the focused samples: it is intended for experimentation, while
 the other projects keep one concept easy to find and copy.

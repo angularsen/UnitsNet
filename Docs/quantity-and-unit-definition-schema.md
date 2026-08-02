@@ -50,6 +50,15 @@ The following is a minimal definition of a linear quantity with one unit:
 By convention, the filename is `<Name>.json`, such as `Length.json`. Quantity and unit names use PascalCase and must
 be valid C# identifiers because they become generated type and member names.
 
+## UnitsNet.Modular compatibility
+
+UnitsNet.Modular adds the optional `Namespace` field. It defaults to `UnitsNet` and becomes part of the stable
+semantic ID `Namespace.Name`; use a namespace you own for custom and third-party definitions. Repository CodeGen
+ignores this field.
+
+Add a custom definition to a Modular project as a Roslyn `AdditionalFiles` item. See
+[Add custom quantities](../UnitsNet.Modular/README.md#add-custom-quantities) for registration and selection.
+
 ## Quantity object
 
 The root JSON object represents a quantity.
@@ -57,6 +66,7 @@ The root JSON object represents a quantity.
 | Property | Type | Required/default | Description |
 |---|---|---|---|
 | `Name` | string | Required | PascalCase quantity name used for the generated quantity type and unit enum. Conventionally matches the filename. |
+| `Namespace` | string | `UnitsNet` | UnitsNet.Modular only. Namespace for generated types and part of the stable semantic ID `Namespace.Name`. Ignored by repository CodeGen. |
 | `BaseUnit` | string | Required | `SingularName` of the unit through which conversions are performed. It must identify exactly one entry in `Units`. |
 | `XmlDocSummary` | string | Required | XML documentation summary for the generated quantity type. XML documentation elements such as `<c>` may be used. |
 | `XmlDocRemarks` | string | Optional | Additional XML documentation remarks for the generated quantity type. Often contains a reference URL. |
