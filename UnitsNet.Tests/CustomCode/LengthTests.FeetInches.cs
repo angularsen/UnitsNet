@@ -96,6 +96,19 @@ public class FeetInchesTests
         AssertEx.EqualTolerance(expectedFeet, result.Feet, 1e-5);
     }
 
+    [Theory]
+    [InlineData("1'000")]
+    [InlineData("1'000' 6")]
+    [InlineData("1' 1'")]
+    [InlineData("1'000' 6 ft")]
+    public void TryParseFeetInches_WhenGroupSeparatorIsFootAbbreviation_GivenInvalidString_ReturnsFalseAndZeroOut(string str)
+    {
+        CultureInfo formatProvider = CreateCultureWithApostropheGroupSeparator();
+
+        Assert.False(Length.TryParseFeetInches(str, out Length result, formatProvider));
+        Assert.Equal(Length.Zero, result);
+    }
+
     [Fact]
     public void ParseFeetInches_WithConflictingGroupSeparator_RoundTripsFeetInchesToString()
     {
