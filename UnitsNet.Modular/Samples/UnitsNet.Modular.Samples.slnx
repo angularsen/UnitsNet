@@ -1,0 +1,55 @@
+<Solution>
+  <Configurations>
+    <Platform Name="ProjectReferences" />
+    <Platform Name="LocalPackages" />
+    <Platform Name="PublishedPackages" />
+  </Configurations>
+  <File Path="refresh-local-packages.ps1" />
+  <Project Path="GettingStartedSample/GettingStartedSample.csproj">
+    <Platform Solution="*|ProjectReferences" Project="ProjectReferences" />
+    <Platform Solution="*|LocalPackages" Project="LocalPackages" />
+    <Platform Solution="*|PublishedPackages" Project="PublishedPackages" />
+  </Project>
+  <Project Path="QuantitySelectionSample/QuantitySelectionSample.csproj">
+    <Platform Solution="*|ProjectReferences" Project="ProjectReferences" />
+    <Platform Solution="*|LocalPackages" Project="LocalPackages" />
+    <Platform Solution="*|PublishedPackages" Project="PublishedPackages" />
+  </Project>
+  <Project Path="CustomQuantitySample/CustomQuantitySample.csproj">
+    <Platform Solution="*|ProjectReferences" Project="ProjectReferences" />
+    <Platform Solution="*|LocalPackages" Project="LocalPackages" />
+    <Platform Solution="*|PublishedPackages" Project="PublishedPackages" />
+  </Project>
+  <Project Path="Profiles/AllSiProfileSample/AllSiProfileSample.csproj">
+    <Platform Solution="*|ProjectReferences" Project="ProjectReferences" />
+    <Platform Solution="*|LocalPackages" Project="LocalPackages" />
+    <Platform Solution="*|PublishedPackages" Project="PublishedPackages" />
+  </Project>
+  <Project Path="ModularPlayground/ModularPlayground.csproj">
+    <Platform Solution="*|ProjectReferences" Project="ProjectReferences" />
+    <Platform Solution="*|LocalPackages" Project="LocalPackages" />
+    <Platform Solution="*|PublishedPackages" Project="PublishedPackages" />
+  </Project>
+  <Folder Name="/Shared units library/">
+    <Project Path="SharedUnitsLibrarySample/Fictional.Measurements.Definitions/Fictional.Measurements.Definitions.csproj">
+      <Platform Solution="*|ProjectReferences" Project="ProjectReferences" />
+      <Platform Solution="*|LocalPackages" Project="LocalPackages" />
+      <Platform Solution="*|PublishedPackages" Project="PublishedPackages" />
+    </Project>
+    <Project Path="SharedUnitsLibrarySample/SharedUnitsLibrarySample.Units/SharedUnitsLibrarySample.Units.csproj">
+      <Platform Solution="*|ProjectReferences" Project="ProjectReferences" />
+      <Platform Solution="*|LocalPackages" Project="LocalPackages" />
+      <Platform Solution="*|PublishedPackages" Project="PublishedPackages" />
+    </Project>
+    <Project Path="SharedUnitsLibrarySample/SharedUnitsLibrarySample.Domain/SharedUnitsLibrarySample.Domain.csproj">
+      <Platform Solution="*|ProjectReferences" Project="ProjectReferences" />
+      <Platform Solution="*|LocalPackages" Project="LocalPackages" />
+      <Platform Solution="*|PublishedPackages" Project="PublishedPackages" />
+    </Project>
+    <Project Path="SharedUnitsLibrarySample/SharedUnitsLibrarySample.App/SharedUnitsLibrarySample.App.csproj">
+      <Platform Solution="*|ProjectReferences" Project="ProjectReferences" />
+      <Platform Solution="*|LocalPackages" Project="LocalPackages" />
+      <Platform Solution="*|PublishedPackages" Project="PublishedPackages" />
+    </Project>
+  </Folder>
+</Solution>

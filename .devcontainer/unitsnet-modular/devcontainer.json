@@ -1,20 +1,21 @@
 {
-  "name": "UnitsNet.Modular playground",
+  "name": "UnitsNet.Modular samples",
   "image": "mcr.microsoft.com/devcontainers/dotnet:10.0-noble",
-  "postCreateCommand": "dotnet build UnitsNet.Modular/Samples/ModularPlayground/ModularPlayground.csproj -p:Platform=ProjectReferences",
+  "postCreateCommand": "dotnet build UnitsNet.Modular/Samples/UnitsNet.Modular.Samples.slnx -p:Platform=ProjectReferences",
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-dotnettools.csdevkit"
       ],
       "settings": {
-        "dotnet.defaultSolution": "UnitsNet.Modular/Samples/ModularPlayground/ModularPlayground.slnx",
+        "dotnet.defaultSolution": "UnitsNet.Modular/Samples/UnitsNet.Modular.Samples.slnx",
         "csharp.debug.console": "integratedTerminal",
-        "terminal.integrated.cwd": "${workspaceFolder}/UnitsNet.Modular/Samples/ModularPlayground"
+        "terminal.integrated.cwd": "${workspaceFolder}/UnitsNet.Modular/Samples"
       }
     },
     "codespaces": {
       "openFiles": [
+        "UnitsNet.Modular/Samples/README.md",
         "UnitsNet.Modular/Samples/ModularPlayground/README.md",
         "UnitsNet.Modular/Samples/ModularPlayground/Program.cs",
         "UnitsNet.Modular/Samples/ModularPlayground/ApplicationUnits.cs",

@@ -1,0 +1,5 @@
+{
+  "dotnet.defaultSolution": "UnitsNet.Modular.Samples.slnx",
+  "csharp.debug.console": "integratedTerminal",
+  "terminal.integrated.cwd": "${workspaceFolder}"
+}

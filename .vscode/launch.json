@@ -2,10 +2,40 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "C#: ModularPlayground",
+      "name": "Sample: Getting started",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/UnitsNet.Modular/Samples/GettingStartedSample/GettingStartedSample.csproj"
+    },
+    {
+      "name": "Sample: Quantity selection",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/UnitsNet.Modular/Samples/QuantitySelectionSample/QuantitySelectionSample.csproj"
+    },
+    {
+      "name": "Sample: Custom quantity",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/UnitsNet.Modular/Samples/CustomQuantitySample/CustomQuantitySample.csproj"
+    },
+    {
+      "name": "Sample: All SI profile",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/UnitsNet.Modular/Samples/Profiles/AllSiProfileSample/AllSiProfileSample.csproj"
+    },
+    {
+      "name": "Sample: Modular playground",
       "type": "dotnet",
       "request": "launch",
       "projectPath": "${workspaceFolder}/UnitsNet.Modular/Samples/ModularPlayground/ModularPlayground.csproj"
+    },
+    {
+      "name": "Sample: Shared units library",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/UnitsNet.Modular/Samples/SharedUnitsLibrarySample/SharedUnitsLibrarySample.App/SharedUnitsLibrarySample.App.csproj"
     }
   ]
 }

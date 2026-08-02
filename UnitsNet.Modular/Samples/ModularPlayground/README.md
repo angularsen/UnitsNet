@@ -17,9 +17,9 @@ The scenario is split into readable sections that exercise:
 
 ## Run it from VS Code
 
-The Codespace builds the project once while it is being created. Open `Program.cs`, then press `F5`
-to debug or `Ctrl+F5` to run without the debugger. If VS Code asks for a profile, choose
-**Modular playground**. Output appears in the integrated terminal.
+Open the samples workspace as described in the [samples overview](../README.md), choose
+**Sample: Modular playground** in **Run and Debug**, then press `F5` to debug or `Ctrl+F5` to run
+without the debugger. Output appears in the integrated terminal.
 
 You can also open a terminal and run:
 
@@ -28,6 +28,19 @@ dotnet run
 ```
 
 Every edit uses the usual .NET feedback loop: save a file and run `dotnet run` again.
+
+## Refresh the local package
+
+When using `Debug | LocalPackages` in an IDE, run the sample refresh script to create uniquely
+versioned packages from the current checkout and force every sample to restore that exact version:
+
+```powershell
+pwsh ../refresh-local-packages.ps1
+```
+
+The unique version avoids reusing older packages from NuGet's global package cache. The script
+packs the library and sample definition package in `Release`, then restores all samples for
+`Debug | LocalPackages`; pass `-Configuration Release` to restore the release configuration instead.
 
 ## Experiment
 
