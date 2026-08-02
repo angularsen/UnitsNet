@@ -53,10 +53,13 @@ namespace UnitsNet.Tests
         protected abstract double CubicFeetPerHourInOneCubicMeterPerSecond { get; }
         protected abstract double CubicFeetPerMinuteInOneCubicMeterPerSecond { get; }
         protected abstract double CubicFeetPerSecondInOneCubicMeterPerSecond { get; }
+        protected abstract double CubicInchesPerMinuteInOneCubicMeterPerSecond { get; }
+        protected abstract double CubicInchesPerSecondInOneCubicMeterPerSecond { get; }
         protected abstract double CubicMetersPerDayInOneCubicMeterPerSecond { get; }
         protected abstract double CubicMetersPerHourInOneCubicMeterPerSecond { get; }
         protected abstract double CubicMetersPerMinuteInOneCubicMeterPerSecond { get; }
         protected abstract double CubicMetersPerSecondInOneCubicMeterPerSecond { get; }
+        protected abstract double CubicMillimetersPerMinuteInOneCubicMeterPerSecond { get; }
         protected abstract double CubicMillimetersPerSecondInOneCubicMeterPerSecond { get; }
         protected abstract double CubicYardsPerDayInOneCubicMeterPerSecond { get; }
         protected abstract double CubicYardsPerHourInOneCubicMeterPerSecond { get; }
@@ -130,10 +133,13 @@ namespace UnitsNet.Tests
         protected virtual double CubicFeetPerHourTolerance { get { return 1e-5; } }
         protected virtual double CubicFeetPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double CubicFeetPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double CubicInchesPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double CubicInchesPerSecondTolerance { get { return 1e-5; } }
         protected virtual double CubicMetersPerDayTolerance { get { return 1e-5; } }
         protected virtual double CubicMetersPerHourTolerance { get { return 1e-5; } }
         protected virtual double CubicMetersPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double CubicMetersPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double CubicMillimetersPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double CubicMillimetersPerSecondTolerance { get { return 1e-5; } }
         protected virtual double CubicYardsPerDayTolerance { get { return 1e-5; } }
         protected virtual double CubicYardsPerHourTolerance { get { return 1e-5; } }
@@ -211,10 +217,13 @@ namespace UnitsNet.Tests
                 VolumeFlowUnit.CubicFootPerHour => (CubicFeetPerHourInOneCubicMeterPerSecond, CubicFeetPerHourTolerance),
                 VolumeFlowUnit.CubicFootPerMinute => (CubicFeetPerMinuteInOneCubicMeterPerSecond, CubicFeetPerMinuteTolerance),
                 VolumeFlowUnit.CubicFootPerSecond => (CubicFeetPerSecondInOneCubicMeterPerSecond, CubicFeetPerSecondTolerance),
+                VolumeFlowUnit.CubicInchPerMinute => (CubicInchesPerMinuteInOneCubicMeterPerSecond, CubicInchesPerMinuteTolerance),
+                VolumeFlowUnit.CubicInchPerSecond => (CubicInchesPerSecondInOneCubicMeterPerSecond, CubicInchesPerSecondTolerance),
                 VolumeFlowUnit.CubicMeterPerDay => (CubicMetersPerDayInOneCubicMeterPerSecond, CubicMetersPerDayTolerance),
                 VolumeFlowUnit.CubicMeterPerHour => (CubicMetersPerHourInOneCubicMeterPerSecond, CubicMetersPerHourTolerance),
                 VolumeFlowUnit.CubicMeterPerMinute => (CubicMetersPerMinuteInOneCubicMeterPerSecond, CubicMetersPerMinuteTolerance),
                 VolumeFlowUnit.CubicMeterPerSecond => (CubicMetersPerSecondInOneCubicMeterPerSecond, CubicMetersPerSecondTolerance),
+                VolumeFlowUnit.CubicMillimeterPerMinute => (CubicMillimetersPerMinuteInOneCubicMeterPerSecond, CubicMillimetersPerMinuteTolerance),
                 VolumeFlowUnit.CubicMillimeterPerSecond => (CubicMillimetersPerSecondInOneCubicMeterPerSecond, CubicMillimetersPerSecondTolerance),
                 VolumeFlowUnit.CubicYardPerDay => (CubicYardsPerDayInOneCubicMeterPerSecond, CubicYardsPerDayTolerance),
                 VolumeFlowUnit.CubicYardPerHour => (CubicYardsPerHourInOneCubicMeterPerSecond, CubicYardsPerHourTolerance),
@@ -292,10 +301,13 @@ namespace UnitsNet.Tests
             new object[] { VolumeFlowUnit.CubicFootPerHour },
             new object[] { VolumeFlowUnit.CubicFootPerMinute },
             new object[] { VolumeFlowUnit.CubicFootPerSecond },
+            new object[] { VolumeFlowUnit.CubicInchPerMinute },
+            new object[] { VolumeFlowUnit.CubicInchPerSecond },
             new object[] { VolumeFlowUnit.CubicMeterPerDay },
             new object[] { VolumeFlowUnit.CubicMeterPerHour },
             new object[] { VolumeFlowUnit.CubicMeterPerMinute },
             new object[] { VolumeFlowUnit.CubicMeterPerSecond },
+            new object[] { VolumeFlowUnit.CubicMillimeterPerMinute },
             new object[] { VolumeFlowUnit.CubicMillimeterPerSecond },
             new object[] { VolumeFlowUnit.CubicYardPerDay },
             new object[] { VolumeFlowUnit.CubicYardPerHour },
@@ -452,10 +464,13 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CubicFeetPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.CubicFeetPerHour, CubicFeetPerHourTolerance);
             AssertEx.EqualTolerance(CubicFeetPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.CubicFeetPerMinute, CubicFeetPerMinuteTolerance);
             AssertEx.EqualTolerance(CubicFeetPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.CubicFeetPerSecond, CubicFeetPerSecondTolerance);
+            AssertEx.EqualTolerance(CubicInchesPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.CubicInchesPerMinute, CubicInchesPerMinuteTolerance);
+            AssertEx.EqualTolerance(CubicInchesPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.CubicInchesPerSecond, CubicInchesPerSecondTolerance);
             AssertEx.EqualTolerance(CubicMetersPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.CubicMetersPerDay, CubicMetersPerDayTolerance);
             AssertEx.EqualTolerance(CubicMetersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.CubicMetersPerHour, CubicMetersPerHourTolerance);
             AssertEx.EqualTolerance(CubicMetersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.CubicMetersPerMinute, CubicMetersPerMinuteTolerance);
             AssertEx.EqualTolerance(CubicMetersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.CubicMetersPerSecond, CubicMetersPerSecondTolerance);
+            AssertEx.EqualTolerance(CubicMillimetersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.CubicMillimetersPerMinute, CubicMillimetersPerMinuteTolerance);
             AssertEx.EqualTolerance(CubicMillimetersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.CubicMillimetersPerSecond, CubicMillimetersPerSecondTolerance);
             AssertEx.EqualTolerance(CubicYardsPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.CubicYardsPerDay, CubicYardsPerDayTolerance);
             AssertEx.EqualTolerance(CubicYardsPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.CubicYardsPerHour, CubicYardsPerHourTolerance);
@@ -562,10 +577,13 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CubicFeetPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CubicFootPerHour), CubicFeetPerHourTolerance);
             AssertEx.EqualTolerance(CubicFeetPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CubicFootPerMinute), CubicFeetPerMinuteTolerance);
             AssertEx.EqualTolerance(CubicFeetPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CubicFootPerSecond), CubicFeetPerSecondTolerance);
+            AssertEx.EqualTolerance(CubicInchesPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CubicInchPerMinute), CubicInchesPerMinuteTolerance);
+            AssertEx.EqualTolerance(CubicInchesPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CubicInchPerSecond), CubicInchesPerSecondTolerance);
             AssertEx.EqualTolerance(CubicMetersPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CubicMeterPerDay), CubicMetersPerDayTolerance);
             AssertEx.EqualTolerance(CubicMetersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CubicMeterPerHour), CubicMetersPerHourTolerance);
             AssertEx.EqualTolerance(CubicMetersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CubicMeterPerMinute), CubicMetersPerMinuteTolerance);
             AssertEx.EqualTolerance(CubicMetersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CubicMeterPerSecond), CubicMetersPerSecondTolerance);
+            AssertEx.EqualTolerance(CubicMillimetersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CubicMillimeterPerMinute), CubicMillimetersPerMinuteTolerance);
             AssertEx.EqualTolerance(CubicMillimetersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CubicMillimeterPerSecond), CubicMillimetersPerSecondTolerance);
             AssertEx.EqualTolerance(CubicYardsPerDayInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CubicYardPerDay), CubicYardsPerDayTolerance);
             AssertEx.EqualTolerance(CubicYardsPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CubicYardPerHour), CubicYardsPerHourTolerance);
@@ -753,10 +771,13 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 ft³/min", VolumeFlowUnit.CubicFootPerMinute, 4.2)]
         [InlineData("en-US", "4.2 CFM", VolumeFlowUnit.CubicFootPerMinute, 4.2)]
         [InlineData("en-US", "4.2 ft³/s", VolumeFlowUnit.CubicFootPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 in³/min", VolumeFlowUnit.CubicInchPerMinute, 4.2)]
+        [InlineData("en-US", "4.2 in³/s", VolumeFlowUnit.CubicInchPerSecond, 4.2)]
         [InlineData("en-US", "4.2 m³/d", VolumeFlowUnit.CubicMeterPerDay, 4.2)]
         [InlineData("en-US", "4.2 m³/h", VolumeFlowUnit.CubicMeterPerHour, 4.2)]
         [InlineData("en-US", "4.2 m³/min", VolumeFlowUnit.CubicMeterPerMinute, 4.2)]
         [InlineData("en-US", "4.2 m³/s", VolumeFlowUnit.CubicMeterPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 mm³/min", VolumeFlowUnit.CubicMillimeterPerMinute, 4.2)]
         [InlineData("en-US", "4.2 mm³/s", VolumeFlowUnit.CubicMillimeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 cy/day", VolumeFlowUnit.CubicYardPerDay, 4.2)]
         [InlineData("en-US", "4.2 yd³/h", VolumeFlowUnit.CubicYardPerHour, 4.2)]
@@ -875,6 +896,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 м³/ч", VolumeFlowUnit.CubicMeterPerHour, 4.2)]
         [InlineData("ru-RU", "4,2 м³/мин", VolumeFlowUnit.CubicMeterPerMinute, 4.2)]
         [InlineData("ru-RU", "4,2 м³/с", VolumeFlowUnit.CubicMeterPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 мм³/мин", VolumeFlowUnit.CubicMillimeterPerMinute, 4.2)]
         [InlineData("ru-RU", "4,2 мм³/с", VolumeFlowUnit.CubicMillimeterPerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 дал/ч", VolumeFlowUnit.DecaliterPerHour, 4.2)]
         [InlineData("ru-RU", "4,2 дал/мин", VolumeFlowUnit.DecaliterPerMinute, 4.2)]
@@ -932,10 +954,13 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "4.2 ft³/min", VolumeFlowUnit.CubicFootPerMinute, 4.2)]
         [InlineData("en-US", "4.2 CFM", VolumeFlowUnit.CubicFootPerMinute, 4.2)]
         [InlineData("en-US", "4.2 ft³/s", VolumeFlowUnit.CubicFootPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 in³/min", VolumeFlowUnit.CubicInchPerMinute, 4.2)]
+        [InlineData("en-US", "4.2 in³/s", VolumeFlowUnit.CubicInchPerSecond, 4.2)]
         [InlineData("en-US", "4.2 m³/d", VolumeFlowUnit.CubicMeterPerDay, 4.2)]
         [InlineData("en-US", "4.2 m³/h", VolumeFlowUnit.CubicMeterPerHour, 4.2)]
         [InlineData("en-US", "4.2 m³/min", VolumeFlowUnit.CubicMeterPerMinute, 4.2)]
         [InlineData("en-US", "4.2 m³/s", VolumeFlowUnit.CubicMeterPerSecond, 4.2)]
+        [InlineData("en-US", "4.2 mm³/min", VolumeFlowUnit.CubicMillimeterPerMinute, 4.2)]
         [InlineData("en-US", "4.2 mm³/s", VolumeFlowUnit.CubicMillimeterPerSecond, 4.2)]
         [InlineData("en-US", "4.2 cy/day", VolumeFlowUnit.CubicYardPerDay, 4.2)]
         [InlineData("en-US", "4.2 yd³/h", VolumeFlowUnit.CubicYardPerHour, 4.2)]
@@ -1054,6 +1079,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 м³/ч", VolumeFlowUnit.CubicMeterPerHour, 4.2)]
         [InlineData("ru-RU", "4,2 м³/мин", VolumeFlowUnit.CubicMeterPerMinute, 4.2)]
         [InlineData("ru-RU", "4,2 м³/с", VolumeFlowUnit.CubicMeterPerSecond, 4.2)]
+        [InlineData("ru-RU", "4,2 мм³/мин", VolumeFlowUnit.CubicMillimeterPerMinute, 4.2)]
         [InlineData("ru-RU", "4,2 мм³/с", VolumeFlowUnit.CubicMillimeterPerSecond, 4.2)]
         [InlineData("ru-RU", "4,2 дал/ч", VolumeFlowUnit.DecaliterPerHour, 4.2)]
         [InlineData("ru-RU", "4,2 дал/мин", VolumeFlowUnit.DecaliterPerMinute, 4.2)]
@@ -1111,10 +1137,13 @@ namespace UnitsNet.Tests
         [InlineData("ft³/min", VolumeFlowUnit.CubicFootPerMinute)]
         [InlineData("CFM", VolumeFlowUnit.CubicFootPerMinute)]
         [InlineData("ft³/s", VolumeFlowUnit.CubicFootPerSecond)]
+        [InlineData("in³/min", VolumeFlowUnit.CubicInchPerMinute)]
+        [InlineData("in³/s", VolumeFlowUnit.CubicInchPerSecond)]
         [InlineData("m³/d", VolumeFlowUnit.CubicMeterPerDay)]
         [InlineData("m³/h", VolumeFlowUnit.CubicMeterPerHour)]
         [InlineData("m³/min", VolumeFlowUnit.CubicMeterPerMinute)]
         [InlineData("m³/s", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("mm³/min", VolumeFlowUnit.CubicMillimeterPerMinute)]
         [InlineData("mm³/s", VolumeFlowUnit.CubicMillimeterPerSecond)]
         [InlineData("cy/day", VolumeFlowUnit.CubicYardPerDay)]
         [InlineData("yd³/h", VolumeFlowUnit.CubicYardPerHour)]
@@ -1254,10 +1283,13 @@ namespace UnitsNet.Tests
         [InlineData("ft³/min", VolumeFlowUnit.CubicFootPerMinute)]
         [InlineData("CFM", VolumeFlowUnit.CubicFootPerMinute)]
         [InlineData("ft³/s", VolumeFlowUnit.CubicFootPerSecond)]
+        [InlineData("in³/min", VolumeFlowUnit.CubicInchPerMinute)]
+        [InlineData("in³/s", VolumeFlowUnit.CubicInchPerSecond)]
         [InlineData("m³/d", VolumeFlowUnit.CubicMeterPerDay)]
         [InlineData("m³/h", VolumeFlowUnit.CubicMeterPerHour)]
         [InlineData("m³/min", VolumeFlowUnit.CubicMeterPerMinute)]
         [InlineData("m³/s", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("mm³/min", VolumeFlowUnit.CubicMillimeterPerMinute)]
         [InlineData("mm³/s", VolumeFlowUnit.CubicMillimeterPerSecond)]
         [InlineData("cy/day", VolumeFlowUnit.CubicYardPerDay)]
         [InlineData("yd³/h", VolumeFlowUnit.CubicYardPerHour)]
@@ -1397,10 +1429,13 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "ft³/min", VolumeFlowUnit.CubicFootPerMinute)]
         [InlineData("en-US", "CFM", VolumeFlowUnit.CubicFootPerMinute)]
         [InlineData("en-US", "ft³/s", VolumeFlowUnit.CubicFootPerSecond)]
+        [InlineData("en-US", "in³/min", VolumeFlowUnit.CubicInchPerMinute)]
+        [InlineData("en-US", "in³/s", VolumeFlowUnit.CubicInchPerSecond)]
         [InlineData("en-US", "m³/d", VolumeFlowUnit.CubicMeterPerDay)]
         [InlineData("en-US", "m³/h", VolumeFlowUnit.CubicMeterPerHour)]
         [InlineData("en-US", "m³/min", VolumeFlowUnit.CubicMeterPerMinute)]
         [InlineData("en-US", "m³/s", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("en-US", "mm³/min", VolumeFlowUnit.CubicMillimeterPerMinute)]
         [InlineData("en-US", "mm³/s", VolumeFlowUnit.CubicMillimeterPerSecond)]
         [InlineData("en-US", "cy/day", VolumeFlowUnit.CubicYardPerDay)]
         [InlineData("en-US", "yd³/h", VolumeFlowUnit.CubicYardPerHour)]
@@ -1519,6 +1554,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "м³/ч", VolumeFlowUnit.CubicMeterPerHour)]
         [InlineData("ru-RU", "м³/мин", VolumeFlowUnit.CubicMeterPerMinute)]
         [InlineData("ru-RU", "м³/с", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("ru-RU", "мм³/мин", VolumeFlowUnit.CubicMillimeterPerMinute)]
         [InlineData("ru-RU", "мм³/с", VolumeFlowUnit.CubicMillimeterPerSecond)]
         [InlineData("ru-RU", "дал/ч", VolumeFlowUnit.DecaliterPerHour)]
         [InlineData("ru-RU", "дал/мин", VolumeFlowUnit.DecaliterPerMinute)]
@@ -1575,10 +1611,13 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "ft³/min", VolumeFlowUnit.CubicFootPerMinute)]
         [InlineData("en-US", "CFM", VolumeFlowUnit.CubicFootPerMinute)]
         [InlineData("en-US", "ft³/s", VolumeFlowUnit.CubicFootPerSecond)]
+        [InlineData("en-US", "in³/min", VolumeFlowUnit.CubicInchPerMinute)]
+        [InlineData("en-US", "in³/s", VolumeFlowUnit.CubicInchPerSecond)]
         [InlineData("en-US", "m³/d", VolumeFlowUnit.CubicMeterPerDay)]
         [InlineData("en-US", "m³/h", VolumeFlowUnit.CubicMeterPerHour)]
         [InlineData("en-US", "m³/min", VolumeFlowUnit.CubicMeterPerMinute)]
         [InlineData("en-US", "m³/s", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("en-US", "mm³/min", VolumeFlowUnit.CubicMillimeterPerMinute)]
         [InlineData("en-US", "mm³/s", VolumeFlowUnit.CubicMillimeterPerSecond)]
         [InlineData("en-US", "cy/day", VolumeFlowUnit.CubicYardPerDay)]
         [InlineData("en-US", "yd³/h", VolumeFlowUnit.CubicYardPerHour)]
@@ -1697,6 +1736,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "м³/ч", VolumeFlowUnit.CubicMeterPerHour)]
         [InlineData("ru-RU", "м³/мин", VolumeFlowUnit.CubicMeterPerMinute)]
         [InlineData("ru-RU", "м³/с", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("ru-RU", "мм³/мин", VolumeFlowUnit.CubicMillimeterPerMinute)]
         [InlineData("ru-RU", "мм³/с", VolumeFlowUnit.CubicMillimeterPerSecond)]
         [InlineData("ru-RU", "дал/ч", VolumeFlowUnit.DecaliterPerHour)]
         [InlineData("ru-RU", "дал/мин", VolumeFlowUnit.DecaliterPerMinute)]
@@ -1752,10 +1792,13 @@ namespace UnitsNet.Tests
         [InlineData("ft³/min", VolumeFlowUnit.CubicFootPerMinute)]
         [InlineData("CFM", VolumeFlowUnit.CubicFootPerMinute)]
         [InlineData("ft³/s", VolumeFlowUnit.CubicFootPerSecond)]
+        [InlineData("in³/min", VolumeFlowUnit.CubicInchPerMinute)]
+        [InlineData("in³/s", VolumeFlowUnit.CubicInchPerSecond)]
         [InlineData("m³/d", VolumeFlowUnit.CubicMeterPerDay)]
         [InlineData("m³/h", VolumeFlowUnit.CubicMeterPerHour)]
         [InlineData("m³/min", VolumeFlowUnit.CubicMeterPerMinute)]
         [InlineData("m³/s", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("mm³/min", VolumeFlowUnit.CubicMillimeterPerMinute)]
         [InlineData("mm³/s", VolumeFlowUnit.CubicMillimeterPerSecond)]
         [InlineData("cy/day", VolumeFlowUnit.CubicYardPerDay)]
         [InlineData("yd³/h", VolumeFlowUnit.CubicYardPerHour)]
@@ -1895,10 +1938,13 @@ namespace UnitsNet.Tests
         [InlineData("ft³/min", VolumeFlowUnit.CubicFootPerMinute)]
         [InlineData("CFM", VolumeFlowUnit.CubicFootPerMinute)]
         [InlineData("ft³/s", VolumeFlowUnit.CubicFootPerSecond)]
+        [InlineData("in³/min", VolumeFlowUnit.CubicInchPerMinute)]
+        [InlineData("in³/s", VolumeFlowUnit.CubicInchPerSecond)]
         [InlineData("m³/d", VolumeFlowUnit.CubicMeterPerDay)]
         [InlineData("m³/h", VolumeFlowUnit.CubicMeterPerHour)]
         [InlineData("m³/min", VolumeFlowUnit.CubicMeterPerMinute)]
         [InlineData("m³/s", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("mm³/min", VolumeFlowUnit.CubicMillimeterPerMinute)]
         [InlineData("mm³/s", VolumeFlowUnit.CubicMillimeterPerSecond)]
         [InlineData("cy/day", VolumeFlowUnit.CubicYardPerDay)]
         [InlineData("yd³/h", VolumeFlowUnit.CubicYardPerHour)]
@@ -2038,10 +2084,13 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "ft³/min", VolumeFlowUnit.CubicFootPerMinute)]
         [InlineData("en-US", "CFM", VolumeFlowUnit.CubicFootPerMinute)]
         [InlineData("en-US", "ft³/s", VolumeFlowUnit.CubicFootPerSecond)]
+        [InlineData("en-US", "in³/min", VolumeFlowUnit.CubicInchPerMinute)]
+        [InlineData("en-US", "in³/s", VolumeFlowUnit.CubicInchPerSecond)]
         [InlineData("en-US", "m³/d", VolumeFlowUnit.CubicMeterPerDay)]
         [InlineData("en-US", "m³/h", VolumeFlowUnit.CubicMeterPerHour)]
         [InlineData("en-US", "m³/min", VolumeFlowUnit.CubicMeterPerMinute)]
         [InlineData("en-US", "m³/s", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("en-US", "mm³/min", VolumeFlowUnit.CubicMillimeterPerMinute)]
         [InlineData("en-US", "mm³/s", VolumeFlowUnit.CubicMillimeterPerSecond)]
         [InlineData("en-US", "cy/day", VolumeFlowUnit.CubicYardPerDay)]
         [InlineData("en-US", "yd³/h", VolumeFlowUnit.CubicYardPerHour)]
@@ -2160,6 +2209,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "м³/ч", VolumeFlowUnit.CubicMeterPerHour)]
         [InlineData("ru-RU", "м³/мин", VolumeFlowUnit.CubicMeterPerMinute)]
         [InlineData("ru-RU", "м³/с", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("ru-RU", "мм³/мин", VolumeFlowUnit.CubicMillimeterPerMinute)]
         [InlineData("ru-RU", "мм³/с", VolumeFlowUnit.CubicMillimeterPerSecond)]
         [InlineData("ru-RU", "дал/ч", VolumeFlowUnit.DecaliterPerHour)]
         [InlineData("ru-RU", "дал/мин", VolumeFlowUnit.DecaliterPerMinute)]
@@ -2216,10 +2266,13 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "ft³/min", VolumeFlowUnit.CubicFootPerMinute)]
         [InlineData("en-US", "CFM", VolumeFlowUnit.CubicFootPerMinute)]
         [InlineData("en-US", "ft³/s", VolumeFlowUnit.CubicFootPerSecond)]
+        [InlineData("en-US", "in³/min", VolumeFlowUnit.CubicInchPerMinute)]
+        [InlineData("en-US", "in³/s", VolumeFlowUnit.CubicInchPerSecond)]
         [InlineData("en-US", "m³/d", VolumeFlowUnit.CubicMeterPerDay)]
         [InlineData("en-US", "m³/h", VolumeFlowUnit.CubicMeterPerHour)]
         [InlineData("en-US", "m³/min", VolumeFlowUnit.CubicMeterPerMinute)]
         [InlineData("en-US", "m³/s", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("en-US", "mm³/min", VolumeFlowUnit.CubicMillimeterPerMinute)]
         [InlineData("en-US", "mm³/s", VolumeFlowUnit.CubicMillimeterPerSecond)]
         [InlineData("en-US", "cy/day", VolumeFlowUnit.CubicYardPerDay)]
         [InlineData("en-US", "yd³/h", VolumeFlowUnit.CubicYardPerHour)]
@@ -2338,6 +2391,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "м³/ч", VolumeFlowUnit.CubicMeterPerHour)]
         [InlineData("ru-RU", "м³/мин", VolumeFlowUnit.CubicMeterPerMinute)]
         [InlineData("ru-RU", "м³/с", VolumeFlowUnit.CubicMeterPerSecond)]
+        [InlineData("ru-RU", "мм³/мин", VolumeFlowUnit.CubicMillimeterPerMinute)]
         [InlineData("ru-RU", "мм³/с", VolumeFlowUnit.CubicMillimeterPerSecond)]
         [InlineData("ru-RU", "дал/ч", VolumeFlowUnit.DecaliterPerHour)]
         [InlineData("ru-RU", "дал/мин", VolumeFlowUnit.DecaliterPerMinute)]
@@ -2386,10 +2440,13 @@ namespace UnitsNet.Tests
         [InlineData("en-US", VolumeFlowUnit.CubicFootPerHour, "ft³/h")]
         [InlineData("en-US", VolumeFlowUnit.CubicFootPerMinute, "ft³/min")]
         [InlineData("en-US", VolumeFlowUnit.CubicFootPerSecond, "ft³/s")]
+        [InlineData("en-US", VolumeFlowUnit.CubicInchPerMinute, "in³/min")]
+        [InlineData("en-US", VolumeFlowUnit.CubicInchPerSecond, "in³/s")]
         [InlineData("en-US", VolumeFlowUnit.CubicMeterPerDay, "m³/d")]
         [InlineData("en-US", VolumeFlowUnit.CubicMeterPerHour, "m³/h")]
         [InlineData("en-US", VolumeFlowUnit.CubicMeterPerMinute, "m³/min")]
         [InlineData("en-US", VolumeFlowUnit.CubicMeterPerSecond, "m³/s")]
+        [InlineData("en-US", VolumeFlowUnit.CubicMillimeterPerMinute, "mm³/min")]
         [InlineData("en-US", VolumeFlowUnit.CubicMillimeterPerSecond, "mm³/s")]
         [InlineData("en-US", VolumeFlowUnit.CubicYardPerDay, "cy/day")]
         [InlineData("en-US", VolumeFlowUnit.CubicYardPerHour, "yd³/h")]
@@ -2456,6 +2513,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", VolumeFlowUnit.CubicMeterPerHour, "м³/ч")]
         [InlineData("ru-RU", VolumeFlowUnit.CubicMeterPerMinute, "м³/мин")]
         [InlineData("ru-RU", VolumeFlowUnit.CubicMeterPerSecond, "м³/с")]
+        [InlineData("ru-RU", VolumeFlowUnit.CubicMillimeterPerMinute, "мм³/мин")]
         [InlineData("ru-RU", VolumeFlowUnit.CubicMillimeterPerSecond, "мм³/с")]
         [InlineData("ru-RU", VolumeFlowUnit.DecaliterPerHour, "дал/ч")]
         [InlineData("ru-RU", VolumeFlowUnit.DecaliterPerMinute, "дал/мин")]
@@ -2584,10 +2642,13 @@ namespace UnitsNet.Tests
             Assert.Equal(3, VolumeFlow.FromCubicFeetPerHour(cubicmeterpersecond.CubicFeetPerHour).CubicMetersPerSecond);
             Assert.Equal(3, VolumeFlow.FromCubicFeetPerMinute(cubicmeterpersecond.CubicFeetPerMinute).CubicMetersPerSecond);
             Assert.Equal(3, VolumeFlow.FromCubicFeetPerSecond(cubicmeterpersecond.CubicFeetPerSecond).CubicMetersPerSecond);
+            Assert.Equal(3, VolumeFlow.FromCubicInchesPerMinute(cubicmeterpersecond.CubicInchesPerMinute).CubicMetersPerSecond);
+            Assert.Equal(3, VolumeFlow.FromCubicInchesPerSecond(cubicmeterpersecond.CubicInchesPerSecond).CubicMetersPerSecond);
             Assert.Equal(3, VolumeFlow.FromCubicMetersPerDay(cubicmeterpersecond.CubicMetersPerDay).CubicMetersPerSecond);
             Assert.Equal(3, VolumeFlow.FromCubicMetersPerHour(cubicmeterpersecond.CubicMetersPerHour).CubicMetersPerSecond);
             Assert.Equal(3, VolumeFlow.FromCubicMetersPerMinute(cubicmeterpersecond.CubicMetersPerMinute).CubicMetersPerSecond);
             Assert.Equal(3, VolumeFlow.FromCubicMetersPerSecond(cubicmeterpersecond.CubicMetersPerSecond).CubicMetersPerSecond);
+            Assert.Equal(3, VolumeFlow.FromCubicMillimetersPerMinute(cubicmeterpersecond.CubicMillimetersPerMinute).CubicMetersPerSecond);
             Assert.Equal(3, VolumeFlow.FromCubicMillimetersPerSecond(cubicmeterpersecond.CubicMillimetersPerSecond).CubicMetersPerSecond);
             Assert.Equal(3, VolumeFlow.FromCubicYardsPerDay(cubicmeterpersecond.CubicYardsPerDay).CubicMetersPerSecond);
             Assert.Equal(3, VolumeFlow.FromCubicYardsPerHour(cubicmeterpersecond.CubicYardsPerHour).CubicMetersPerSecond);
@@ -2825,10 +2886,13 @@ namespace UnitsNet.Tests
             Assert.Equal("1 ft³/h", new VolumeFlow(1, VolumeFlowUnit.CubicFootPerHour).ToString());
             Assert.Equal("1 ft³/min", new VolumeFlow(1, VolumeFlowUnit.CubicFootPerMinute).ToString());
             Assert.Equal("1 ft³/s", new VolumeFlow(1, VolumeFlowUnit.CubicFootPerSecond).ToString());
+            Assert.Equal("1 in³/min", new VolumeFlow(1, VolumeFlowUnit.CubicInchPerMinute).ToString());
+            Assert.Equal("1 in³/s", new VolumeFlow(1, VolumeFlowUnit.CubicInchPerSecond).ToString());
             Assert.Equal("1 m³/d", new VolumeFlow(1, VolumeFlowUnit.CubicMeterPerDay).ToString());
             Assert.Equal("1 m³/h", new VolumeFlow(1, VolumeFlowUnit.CubicMeterPerHour).ToString());
             Assert.Equal("1 m³/min", new VolumeFlow(1, VolumeFlowUnit.CubicMeterPerMinute).ToString());
             Assert.Equal("1 m³/s", new VolumeFlow(1, VolumeFlowUnit.CubicMeterPerSecond).ToString());
+            Assert.Equal("1 mm³/min", new VolumeFlow(1, VolumeFlowUnit.CubicMillimeterPerMinute).ToString());
             Assert.Equal("1 mm³/s", new VolumeFlow(1, VolumeFlowUnit.CubicMillimeterPerSecond).ToString());
             Assert.Equal("1 cy/day", new VolumeFlow(1, VolumeFlowUnit.CubicYardPerDay).ToString());
             Assert.Equal("1 yd³/h", new VolumeFlow(1, VolumeFlowUnit.CubicYardPerHour).ToString());
@@ -2908,10 +2972,13 @@ namespace UnitsNet.Tests
             Assert.Equal("1 ft³/h", new VolumeFlow(1, VolumeFlowUnit.CubicFootPerHour).ToString(swedishCulture));
             Assert.Equal("1 ft³/min", new VolumeFlow(1, VolumeFlowUnit.CubicFootPerMinute).ToString(swedishCulture));
             Assert.Equal("1 ft³/s", new VolumeFlow(1, VolumeFlowUnit.CubicFootPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 in³/min", new VolumeFlow(1, VolumeFlowUnit.CubicInchPerMinute).ToString(swedishCulture));
+            Assert.Equal("1 in³/s", new VolumeFlow(1, VolumeFlowUnit.CubicInchPerSecond).ToString(swedishCulture));
             Assert.Equal("1 m³/d", new VolumeFlow(1, VolumeFlowUnit.CubicMeterPerDay).ToString(swedishCulture));
             Assert.Equal("1 m³/h", new VolumeFlow(1, VolumeFlowUnit.CubicMeterPerHour).ToString(swedishCulture));
             Assert.Equal("1 m³/min", new VolumeFlow(1, VolumeFlowUnit.CubicMeterPerMinute).ToString(swedishCulture));
             Assert.Equal("1 m³/s", new VolumeFlow(1, VolumeFlowUnit.CubicMeterPerSecond).ToString(swedishCulture));
+            Assert.Equal("1 mm³/min", new VolumeFlow(1, VolumeFlowUnit.CubicMillimeterPerMinute).ToString(swedishCulture));
             Assert.Equal("1 mm³/s", new VolumeFlow(1, VolumeFlowUnit.CubicMillimeterPerSecond).ToString(swedishCulture));
             Assert.Equal("1 cy/day", new VolumeFlow(1, VolumeFlowUnit.CubicYardPerDay).ToString(swedishCulture));
             Assert.Equal("1 yd³/h", new VolumeFlow(1, VolumeFlowUnit.CubicYardPerHour).ToString(swedishCulture));

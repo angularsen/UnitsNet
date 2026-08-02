@@ -53,6 +53,14 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double CubicFeetPerSecondInOneCubicMeterPerSecond => 35.314666721489;
 
+        // https://www.wolframalpha.com/input?i=1+cubic+meter+per+second+to+cubic+inches+per+second
+        // It should be the same as CubicInchesInOneCubicMeter
+        protected override double CubicInchesPerSecondInOneCubicMeterPerSecond => 6.1023744094732284e+4;
+
+        // https://www.wolframalpha.com/input?i=1+cubic+meter+per+second+to+cubic+inches+per+minute
+        // or 60x the previous value, which is 3661424.645683937
+        protected override double CubicInchesPerMinuteInOneCubicMeterPerSecond => 3.661424645683937e+6;
+
         protected override double CubicMetersPerDayInOneCubicMeterPerSecond => 8.64e4;
 
         protected override double CubicMetersPerHourInOneCubicMeterPerSecond => 3.6e3;
@@ -62,6 +70,10 @@ namespace UnitsNet.Tests.CustomCode
         protected override double CubicMetersPerSecondInOneCubicMeterPerSecond => 1;
 
         protected override double CubicMillimetersPerSecondInOneCubicMeterPerSecond => 1e9;
+
+        // https://www.wolframalpha.com/input?i=1+cubic+meter+per+second+to+cubic+millimeters+per+minute
+        // or 60x the previous value, which is 60 x 10^9 = 6e10
+        protected override double CubicMillimetersPerMinuteInOneCubicMeterPerSecond => 6e10;
 
         protected override double CubicYardsPerDayInOneCubicMeterPerSecond => 1.13007e5;
 

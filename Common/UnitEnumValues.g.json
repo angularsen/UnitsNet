@@ -1724,7 +1724,10 @@
     "HectoliterPerDay": 74,
     "HectoliterPerHour": 72,
     "HectoliterPerMinute": 75,
-    "HectoliterPerSecond": 69
+    "HectoliterPerSecond": 69,
+    "CubicInchPerMinute": 86,
+    "CubicInchPerSecond": 76,
+    "CubicMillimeterPerMinute": 80
   },
   "VolumeFlowPerArea": {
     "CubicFootPerMinutePerSquareFoot": 1,

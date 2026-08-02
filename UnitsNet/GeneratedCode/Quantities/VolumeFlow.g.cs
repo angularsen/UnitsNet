@@ -162,6 +162,12 @@ namespace UnitsNet
                 yield return new (VolumeFlowUnit.CubicFootPerSecond, "CubicFootPerSecond", "CubicFeetPerSecond", new BaseUnits(length: LengthUnit.Foot, time: DurationUnit.Second),
                      new QuantityValue(1953125000, 55306341)
                 );
+                yield return new (VolumeFlowUnit.CubicInchPerMinute, "CubicInchPerMinute", "CubicInchesPerMinute", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Minute),
+                     new QuantityValue(7500000000000, 2048383)
+                );
+                yield return new (VolumeFlowUnit.CubicInchPerSecond, "CubicInchPerSecond", "CubicInchesPerSecond", new BaseUnits(length: LengthUnit.Inch, time: DurationUnit.Second),
+                     new QuantityValue(125000000000, 2048383)
+                );
                 yield return new (VolumeFlowUnit.CubicMeterPerDay, "CubicMeterPerDay", "CubicMetersPerDay", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Day),
                      86400
                 );
@@ -172,6 +178,9 @@ namespace UnitsNet
                      60
                 );
                 yield return new (VolumeFlowUnit.CubicMeterPerSecond, "CubicMeterPerSecond", "CubicMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, time: DurationUnit.Second));
+                yield return new (VolumeFlowUnit.CubicMillimeterPerMinute, "CubicMillimeterPerMinute", "CubicMillimetersPerMinute", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Minute),
+                     60000000000
+                );
                 yield return new (VolumeFlowUnit.CubicMillimeterPerSecond, "CubicMillimeterPerSecond", "CubicMillimetersPerSecond", new BaseUnits(length: LengthUnit.Millimeter, time: DurationUnit.Second),
                      1000000000
                 );
@@ -514,6 +523,16 @@ namespace UnitsNet
         public QuantityValue CubicFeetPerSecond => this.As(VolumeFlowUnit.CubicFootPerSecond);
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeFlowUnit.CubicInchPerMinute"/>
+        /// </summary>
+        public QuantityValue CubicInchesPerMinute => this.As(VolumeFlowUnit.CubicInchPerMinute);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeFlowUnit.CubicInchPerSecond"/>
+        /// </summary>
+        public QuantityValue CubicInchesPerSecond => this.As(VolumeFlowUnit.CubicInchPerSecond);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeFlowUnit.CubicMeterPerDay"/>
         /// </summary>
         public QuantityValue CubicMetersPerDay => this.As(VolumeFlowUnit.CubicMeterPerDay);
@@ -532,6 +551,11 @@ namespace UnitsNet
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeFlowUnit.CubicMeterPerSecond"/>
         /// </summary>
         public QuantityValue CubicMetersPerSecond => this.As(VolumeFlowUnit.CubicMeterPerSecond);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeFlowUnit.CubicMillimeterPerMinute"/>
+        /// </summary>
+        public QuantityValue CubicMillimetersPerMinute => this.As(VolumeFlowUnit.CubicMillimeterPerMinute);
 
         /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="VolumeFlowUnit.CubicMillimeterPerSecond"/>
@@ -957,6 +981,22 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicInchPerMinute"/>.
+        /// </summary>
+        public static VolumeFlow FromCubicInchesPerMinute(QuantityValue value)
+        {
+            return new VolumeFlow(value, VolumeFlowUnit.CubicInchPerMinute);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicInchPerSecond"/>.
+        /// </summary>
+        public static VolumeFlow FromCubicInchesPerSecond(QuantityValue value)
+        {
+            return new VolumeFlow(value, VolumeFlowUnit.CubicInchPerSecond);
+        }
+
+        /// <summary>
         ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicMeterPerDay"/>.
         /// </summary>
         public static VolumeFlow FromCubicMetersPerDay(QuantityValue value)
@@ -986,6 +1026,14 @@ namespace UnitsNet
         public static VolumeFlow FromCubicMetersPerSecond(QuantityValue value)
         {
             return new VolumeFlow(value, VolumeFlowUnit.CubicMeterPerSecond);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="VolumeFlow"/> from <see cref="VolumeFlowUnit.CubicMillimeterPerMinute"/>.
+        /// </summary>
+        public static VolumeFlow FromCubicMillimetersPerMinute(QuantityValue value)
+        {
+            return new VolumeFlow(value, VolumeFlowUnit.CubicMillimeterPerMinute);
         }
 
         /// <summary>

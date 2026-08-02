@@ -146,6 +146,22 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
                 => VolumeFlow.FromCubicFeetPerSecond(value.ToQuantityValue());
 #endif
 
+            /// <inheritdoc cref="VolumeFlow.FromCubicInchesPerMinute(QuantityValue)" />
+            public VolumeFlow CubicInchesPerMinute
+#if NET7_0_OR_GREATER
+                => VolumeFlow.FromCubicInchesPerMinute(QuantityValue.CreateChecked(value));
+#else
+                => VolumeFlow.FromCubicInchesPerMinute(value.ToQuantityValue());
+#endif
+
+            /// <inheritdoc cref="VolumeFlow.FromCubicInchesPerSecond(QuantityValue)" />
+            public VolumeFlow CubicInchesPerSecond
+#if NET7_0_OR_GREATER
+                => VolumeFlow.FromCubicInchesPerSecond(QuantityValue.CreateChecked(value));
+#else
+                => VolumeFlow.FromCubicInchesPerSecond(value.ToQuantityValue());
+#endif
+
             /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerDay(QuantityValue)" />
             public VolumeFlow CubicMetersPerDay
 #if NET7_0_OR_GREATER
@@ -176,6 +192,14 @@ namespace UnitsNet.NumberExtensions.NumberToVolumeFlow
                 => VolumeFlow.FromCubicMetersPerSecond(QuantityValue.CreateChecked(value));
 #else
                 => VolumeFlow.FromCubicMetersPerSecond(value.ToQuantityValue());
+#endif
+
+            /// <inheritdoc cref="VolumeFlow.FromCubicMillimetersPerMinute(QuantityValue)" />
+            public VolumeFlow CubicMillimetersPerMinute
+#if NET7_0_OR_GREATER
+                => VolumeFlow.FromCubicMillimetersPerMinute(QuantityValue.CreateChecked(value));
+#else
+                => VolumeFlow.FromCubicMillimetersPerMinute(value.ToQuantityValue());
 #endif
 
             /// <inheritdoc cref="VolumeFlow.FromCubicMillimetersPerSecond(QuantityValue)" />
