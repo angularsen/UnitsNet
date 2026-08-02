@@ -88,11 +88,23 @@ public class FeetInchesTests
     [InlineData("-1'000' 6\"", -1000.5)]
     public void TryParseFeetInches_WhenGroupSeparatorIsFootAbbreviation_ParsesFeetAndInches(string str, double expectedFeet)
     {
-        var formatProvider = new CultureInfo(GermanSwitzerland, false);
-        formatProvider.NumberFormat.NumberGroupSeparator = "'";
+        CultureInfo formatProvider = CreateCultureWithApostropheGroupSeparator();
 
         Assert.True(Length.TryParseFeetInches(str, out Length result, formatProvider));
         AssertEx.EqualTolerance(expectedFeet, result.Feet, 1e-5);
+    }
+
+    [Fact]
+    public void ParseFeetInches_WithConflictingGroupSeparator_RoundTripsFeetInchesToString()
+    {
+        CultureInfo formatProvider = CreateCultureWithApostropheGroupSeparator();
+        var length = Length.FromFeetInches(1000, 6);
+        string formatted = length.FeetInches.ToString(formatProvider);
+
+        Length reparsed = Length.ParseFeetInches(formatted, formatProvider);
+
+        Assert.Equal("1'000 ft 6 in", formatted);
+        AssertEx.EqualTolerance(length.Feet, reparsed.Feet, 1e-5);
     }
 
     public static IEnumerable<object[]> InvalidData
@@ -125,5 +137,12 @@ public class FeetInchesTests
         var formatProvider = new CultureInfo(cultureName, false);
         Assert.False(Length.TryParseFeetInches(str, out Length result, formatProvider));
         Assert.Equal(Length.Zero, result);
+    }
+
+    private static CultureInfo CreateCultureWithApostropheGroupSeparator()
+    {
+        var formatProvider = new CultureInfo(GermanSwitzerland, false);
+        formatProvider.NumberFormat.NumberGroupSeparator = "'";
+        return formatProvider;
     }
 }
