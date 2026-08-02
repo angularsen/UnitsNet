@@ -80,6 +80,21 @@ public class FeetInchesTests
         AssertEx.EqualTolerance(expectedFeet, result.Feet, 1e-5);
     }
 
+    [Theory]
+    [InlineData("1'000'", 1000)]
+    [InlineData("1'000' 6\"", 1000.5)]
+    [InlineData("1'000'6\"", 1000.5)]
+    [InlineData("1'000'000' 2\"", 1000000.16666667)]
+    [InlineData("-1'000' 6\"", -1000.5)]
+    public void TryParseFeetInches_WhenGroupSeparatorIsFootAbbreviation_ParsesFeetAndInches(string str, double expectedFeet)
+    {
+        var formatProvider = new CultureInfo(GermanSwitzerland, false);
+        formatProvider.NumberFormat.NumberGroupSeparator = "'";
+
+        Assert.True(Length.TryParseFeetInches(str, out Length result, formatProvider));
+        AssertEx.EqualTolerance(expectedFeet, result.Feet, 1e-5);
+    }
+
     public static IEnumerable<object[]> InvalidData
     {
         get =>
