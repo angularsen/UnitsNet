@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Numerics;
 using System.Text.RegularExpressions;
@@ -76,31 +77,40 @@ namespace UnitsNet
 
             str = str.Trim();
 
-            // This succeeds if only feet or inches are given, not both
-            if (TryParse(str, formatProvider, out result))
+            if (TryParseFeetInchesCombination(str, formatProvider, out result))
                 return true;
 
+            // This succeeds if only feet or inches are given, not both.
+            return TryParse(str, formatProvider, out result);
+        }
+
+        private static bool TryParseFeetInchesCombination(string str, IFormatProvider? formatProvider, out Length result)
+        {
             QuantityParser quantityParser = QuantityParser.Default;
-            string footRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Foot, formatProvider, matchEntireString: false);
-            string inchRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Inch, formatProvider, matchEntireString: false);
+            var footRegex = new Regex(quantityParser.CreateRegexPatternForUnit(LengthUnit.Foot, formatProvider), RegexOptions.Singleline | RegexOptions.IgnoreCase);
+            var inchRegex = new Regex(quantityParser.CreateRegexPatternForUnit(LengthUnit.Inch, formatProvider), RegexOptions.Singleline | RegexOptions.IgnoreCase);
 
-            // Match entire string exactly
-            string pattern = $@"^(?<negativeSign>\-?)(?<feet>{footRegex})\s?(?<inches>{inchRegex})$";
+            bool isNegative = str.StartsWith("-", StringComparison.Ordinal);
+            if (isNegative)
+                str = str.Substring(1).TrimStart();
 
-            var match = new Regex(pattern, RegexOptions.Singleline).Match(str);
-            if (!match.Success)
-                return false;
-
-            var negativeSignGroup = match.Groups["negativeSign"];
-            var feetGroup = match.Groups["feet"];
-            var inchesGroup = match.Groups["inches"];
-
-            if (TryParse(feetGroup.Value, formatProvider, out Length feet) &&
-                TryParse(inchesGroup.Value, formatProvider, out Length inches))
+            // Prefer the rightmost foot abbreviation so "1'000' 6\"" treats grouping apostrophes as part of
+            // the feet value, then keep walking left if that split does not leave valid feet and inches parts.
+            IReadOnlyList<string> footAbbreviations = UnitAbbreviationsCache.Default.GetUnitAbbreviations(LengthUnit.Foot, formatProvider);
+            foreach (int splitEndIndex in GetPossibleUnitSplitEndIndexes(str, footAbbreviations))
             {
+                string feetPart = str.Substring(0, splitEndIndex).TrimEnd();
+                string inchesPart = str.Substring(splitEndIndex).TrimStart();
+                if (inchesPart.Length == 0)
+                    continue;
+
+                if (!TryParseSpecificUnit(feetPart, footRegex, formatProvider, out Length feet) ||
+                    !TryParseSpecificUnit(inchesPart, inchRegex, formatProvider, out Length inches))
+                    continue;
+
                 result = feet + inches;
 
-                if (negativeSignGroup.Length > 0)
+                if (isNegative)
                     result = -result;
 
                 return true;
@@ -108,6 +118,32 @@ namespace UnitsNet
 
             result = default;
             return false;
+        }
+
+        private static IEnumerable<int> GetPossibleUnitSplitEndIndexes(string str, IReadOnlyList<string> abbreviations)
+        {
+            for (int i = str.Length - 1; i >= 0; i--)
+            {
+                foreach (string abbreviation in abbreviations)
+                {
+                    if (abbreviation.Length == 0 || i + abbreviation.Length > str.Length)
+                        continue;
+
+                    if (string.Compare(str, i, abbreviation, 0, abbreviation.Length, StringComparison.OrdinalIgnoreCase) == 0)
+                        yield return i + abbreviation.Length;
+                }
+            }
+        }
+
+        private static bool TryParseSpecificUnit(string str, Regex unitRegex, IFormatProvider? formatProvider, out Length result)
+        {
+            if (!unitRegex.IsMatch(str))
+            {
+                result = default;
+                return false;
+            }
+
+            return TryParse(str, formatProvider, out result);
         }
     }
 

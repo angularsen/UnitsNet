@@ -49,6 +49,7 @@ public class FeetInchesTests
             ["1′1″", 1.08333333, EnglishUs], // Without space
             ["1 ft 1 in", 1.08333333, EnglishUs],
             ["1ft 1in", 1.08333333, EnglishUs],
+            ["1 FT 6 IN", 1.5, EnglishUs], // Unit parsing is case-insensitive
             ["-1'", -1, EnglishUs], // Feet only
             ["-1′", -1, EnglishUs], // Feet only
             ["-1,000′", -1000, EnglishUs], // Feet only, with separator
@@ -78,6 +79,47 @@ public class FeetInchesTests
         var formatProvider = new CultureInfo(cultureName, false);
         Assert.True(Length.TryParseFeetInches(str, out Length result, formatProvider));
         AssertEx.EqualTolerance(expectedFeet, result.Feet, 1e-5);
+    }
+
+    [Theory]
+    [InlineData("1'000'", 1000)]
+    [InlineData("1'000' 6\"", 1000.5)]
+    [InlineData("1'000'6\"", 1000.5)]
+    [InlineData("1'000'000' 2\"", 1000000.16666667)]
+    [InlineData("1' 1'000\"", 84.33333333)]
+    [InlineData("-1'000' 6\"", -1000.5)]
+    public void TryParseFeetInches_WhenGroupSeparatorIsFootAbbreviation_ParsesFeetAndInches(string str, double expectedFeet)
+    {
+        CultureInfo formatProvider = CreateCultureWithApostropheGroupSeparator();
+
+        Assert.True(Length.TryParseFeetInches(str, out Length result, formatProvider));
+        AssertEx.EqualTolerance(expectedFeet, result.Feet, 1e-5);
+    }
+
+    [Theory]
+    [InlineData("1'000")]
+    [InlineData("1'000' 6")]
+    [InlineData("1' 1'")]
+    [InlineData("1'000' 6 ft")]
+    public void TryParseFeetInches_WhenGroupSeparatorIsFootAbbreviation_GivenInvalidString_ReturnsFalseAndZeroOut(string str)
+    {
+        CultureInfo formatProvider = CreateCultureWithApostropheGroupSeparator();
+
+        Assert.False(Length.TryParseFeetInches(str, out Length result, formatProvider));
+        Assert.Equal(Length.Zero, result);
+    }
+
+    [Fact]
+    public void ParseFeetInches_WithConflictingGroupSeparator_RoundTripsFeetInchesToString()
+    {
+        CultureInfo formatProvider = CreateCultureWithApostropheGroupSeparator();
+        var length = Length.FromFeetInches(1000, 6);
+        string formatted = length.FeetInches.ToString(formatProvider);
+
+        Length reparsed = Length.ParseFeetInches(formatted, formatProvider);
+
+        Assert.Equal("1'000 ft 6 in", formatted);
+        AssertEx.EqualTolerance(length.Feet, reparsed.Feet, 1e-5);
     }
 
     public static IEnumerable<object[]> InvalidData
@@ -110,5 +152,12 @@ public class FeetInchesTests
         var formatProvider = new CultureInfo(cultureName, false);
         Assert.False(Length.TryParseFeetInches(str, out Length result, formatProvider));
         Assert.Equal(Length.Zero, result);
+    }
+
+    private static CultureInfo CreateCultureWithApostropheGroupSeparator()
+    {
+        var formatProvider = new CultureInfo(GermanSwitzerland, false);
+        formatProvider.NumberFormat.NumberGroupSeparator = "'";
+        return formatProvider;
     }
 }
