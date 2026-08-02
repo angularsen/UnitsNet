@@ -78,33 +78,44 @@ jobs:
           dotnet-version: 10.0.x
 
       - name: Restore
-        run: dotnet restore UnitsNet.Modular.slnx -p:UnitsNetModularSampleUpdateLocalPackagesOnBuild=true
+        run: dotnet restore UnitsNet.Modular.slnx -p:Platform=ProjectReferences
 
       - name: Build
-        run: dotnet build UnitsNet.Modular.slnx --configuration Release --no-restore --no-incremental -p:UnitsNetModularSampleUpdateLocalPackagesOnBuild=true
+        run: dotnet build UnitsNet.Modular.slnx --configuration Release --no-restore --no-incremental -p:Platform=ProjectReferences
 
       - name: Test
-        run: dotnet test UnitsNet.Modular.slnx --configuration Release --no-build -p:UnitsNetModularSampleUpdateLocalPackagesOnBuild=false
+        run: dotnet test UnitsNet.Modular.slnx --configuration Release --no-build -p:Platform=ProjectReferences
 
       - name: Native AOT smoke test
         run: |
-          dotnet publish UnitsNet.Modular/Samples/UnitsNet.Modular.Lean.Sample/UnitsNet.Modular.Lean.Sample.csproj \
+          dotnet publish UnitsNet.Modular/Samples/QuantitySelectionSample/QuantitySelectionSample.csproj \
             --configuration Release \
             --framework net10.0 \
             --runtime linux-x64 \
             --self-contained true \
             -p:PublishAot=true \
-            -p:UnitsNetModularSampleUpdateLocalPackagesOnBuild=false \
+            -p:Platform=ProjectReferences \
             --output Artifacts/UnitsNet.Modular.AotSmoke
-          ./Artifacts/UnitsNet.Modular.AotSmoke/UnitsNet.Modular.Lean.Sample
+          ./Artifacts/UnitsNet.Modular.AotSmoke/QuantitySelectionSample
 
       - name: Run getting-started NuGet consumer
         shell: pwsh
-        run: ./UnitsNet.Modular/Samples/UnitsNet.Modular.GettingStarted.Sample/run.ps1
+        run: ./UnitsNet.Modular/Samples/GettingStartedSample/run.ps1
 
-      - name: Run custom-definition NuGet consumer
-        shell: pwsh
-        run: ./UnitsNet.Modular/Samples/UnitsNet.Modular.NuGet.Sample/run.ps1
+      - name: Run custom-definition NuGet consumer with isolated cache
+        run: >-
+          dotnet run
+          --project UnitsNet.Modular/Samples/CustomQuantitySample/CustomQuantitySample.csproj
+          --configuration Debug
+          -p:Platform=LocalPackages
+          -p:RestorePackagesPath=${{ runner.temp }}/unitsnet-modular-custom-packages-${{ github.run_id }}-${{ github.run_attempt }}
+
+      - name: Run published-package consumer
+        run: >-
+          dotnet run
+          --project UnitsNet.Modular/Samples/GettingStartedSample/GettingStartedSample.csproj
+          --configuration Release
+          -p:Platform=PublishedPackages
 
       - name: Pack
         run: dotnet pack UnitsNet.Modular/UnitsNet.Modular/UnitsNet.Modular.csproj --configuration Release --no-build --output Artifacts/UnitsNet.Modular.CI -p:UnitsNetModularPackForPublish=true

@@ -433,7 +433,7 @@ public sealed class CompatibilityTests
     }
 
     [Fact]
-    public void GeneratedRegistry_DescribesAndOperatesOnTheConsumerOwnedCatalog()
+    public void GeneratedRegistry_DescribesAndOperatesOnTheSelectedCatalog()
     {
         QuantityRegistry registry = Generated::UnitsNet.GeneratedQuantityRegistry.Instance;
 

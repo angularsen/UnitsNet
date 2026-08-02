@@ -1,26 +1,26 @@
 {
   "name": "UnitsNet.Modular playground",
   "image": "mcr.microsoft.com/devcontainers/dotnet:10.0-noble",
-  "postCreateCommand": "dotnet build UnitsNet.Modular/Samples/UnitsNet.Modular.Playground/UnitsNet.Modular.Playground.csproj",
+  "postCreateCommand": "dotnet build UnitsNet.Modular/Samples/ModularPlayground/ModularPlayground.csproj -p:Platform=ProjectReferences",
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-dotnettools.csdevkit"
       ],
       "settings": {
-        "dotnet.defaultSolution": "UnitsNet.Modular/Samples/UnitsNet.Modular.Playground/UnitsNet.Modular.Playground.slnx",
+        "dotnet.defaultSolution": "UnitsNet.Modular/Samples/ModularPlayground/ModularPlayground.slnx",
         "csharp.debug.console": "integratedTerminal",
-        "terminal.integrated.cwd": "${workspaceFolder}/UnitsNet.Modular/Samples/UnitsNet.Modular.Playground"
+        "terminal.integrated.cwd": "${workspaceFolder}/UnitsNet.Modular/Samples/ModularPlayground"
       }
     },
     "codespaces": {
       "openFiles": [
-        "UnitsNet.Modular/Samples/UnitsNet.Modular.Playground/README.md",
-        "UnitsNet.Modular/Samples/UnitsNet.Modular.Playground/Program.cs",
-        "UnitsNet.Modular/Samples/UnitsNet.Modular.Playground/ApplicationUnits.cs",
-        "UnitsNet.Modular/Samples/UnitsNet.Modular.Playground/GameScore.unitsnet.json",
-        "UnitsNet.Modular/Samples/UnitsNet.Modular.Playground/Properties/launchSettings.json",
-        "UnitsNet.Modular/Samples/UnitsNet.Modular.Playground/UnitsNet.Modular.Playground.csproj"
+        "UnitsNet.Modular/Samples/ModularPlayground/README.md",
+        "UnitsNet.Modular/Samples/ModularPlayground/Program.cs",
+        "UnitsNet.Modular/Samples/ModularPlayground/ApplicationUnits.cs",
+        "UnitsNet.Modular/Samples/ModularPlayground/ParcelCount.unitsnet.json",
+        "UnitsNet.Modular/Samples/ModularPlayground/Properties/launchSettings.json",
+        "UnitsNet.Modular/Samples/ModularPlayground/ModularPlayground.csproj"
       ]
     }
   }

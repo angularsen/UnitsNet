@@ -1,4 +1,7 @@
 <Project>
+  <!-- Preserve repository-wide build settings when this nearer targets file is discovered. -->
+  <Import Project="../Directory.Build.targets" />
+
   <!-- ProjectReference-based POC equivalent of the target packed under buildTransitive/. -->
   <Import Project="$(MSBuildThisFileDirectory)UnitsNet.Modular.Generator/buildTransitive/UnitsNet.Modular.Generator.targets" />
 

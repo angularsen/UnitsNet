@@ -947,13 +947,13 @@ separate assembly boundary. See the [migration guide](MIGRATION.md) for compatib
 
 | Start here | Scenario |
 |---|---|
-| [Getting started](Samples/UnitsNet.Modular.GettingStarted.Sample) | Minimal package-based `Length`, `Duration`, and `Speed` application matching the quick start |
-| [Lean selection](Samples/UnitsNet.Modular.Lean.Sample) | Select individual quantities and filter their units |
-| [Custom quantity](Samples/UnitsNet.Modular.Custom.Sample) | Generate an application-owned quantity from JSON |
-| [Playground](Samples/UnitsNet.Modular.Playground) | Explore relationships, aggregation, metadata, serialization, and custom definitions |
-| [Consumer-owned units](Samples/ConsumerOwned) | Share one generated quantity assembly across several projects |
-| [Definition package](Samples/DefinitionPackages/Fictional.Measurements.Definitions) | Publish reusable specs and definitions without compiled quantity structs |
-| [Compatibility pair](Samples/UnitsNet.Modular.Compatibility.Shared) | Compile the same consumer source against UnitsNet and UnitsNet.Modular |
+| [Samples overview](Samples) | Choose a focused scenario and switch between project references, local packages, and published packages |
+| [Getting started](Samples/GettingStartedSample) | Minimal `Length`, `Duration`, and `Speed` application matching the quick start |
+| [Quantity selection](Samples/QuantitySelectionSample) | Select individual quantities and filter their units |
+| [Custom quantity](Samples/CustomQuantitySample) | Generate an application-owned quantity from JSON |
+| [All SI profile](Samples/Profiles/AllSiProfileSample) | Exercise the quantities and relationships selected by `AllSiProfile` |
+| [Playground](Samples/ModularPlayground) | Explore relationships, aggregation, metadata, serialization, and custom definitions |
+| [Shared units library](Samples/SharedUnitsLibrarySample) | Share one generated quantity assembly across several projects |
 
 For design rationale and compatibility details, continue with
 [Architecture](ARCHITECTURE.md) and [Migration notes](MIGRATION.md).

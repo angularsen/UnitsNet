@@ -15,13 +15,12 @@
     <UnitsNetModularSampleUpdateLocalPackagesOnBuild
         Condition="'$(UnitsNetModularSampleUpdateLocalPackagesOnBuild)' == '' and '$(UnitsNetModularSampleUpdateLocalPackageOnBuild)' != ''">$(UnitsNetModularSampleUpdateLocalPackageOnBuild)</UnitsNetModularSampleUpdateLocalPackagesOnBuild>
     <UnitsNetModularSampleUpdateLocalPackagesOnBuild
-        Condition="'$(UnitsNetModularSampleUpdateLocalPackagesOnBuild)' == '' and '$(Configuration)' == 'Debug'">true</UnitsNetModularSampleUpdateLocalPackagesOnBuild>
-    <UnitsNetModularSampleUpdateLocalPackagesOnBuild
-        Condition="'$(UnitsNetModularSampleUpdateLocalPackagesOnBuild)' == ''">false</UnitsNetModularSampleUpdateLocalPackagesOnBuild>
+        Condition="'$(UnitsNetModularSampleUpdateLocalPackagesOnBuild)' == ''">true</UnitsNetModularSampleUpdateLocalPackagesOnBuild>
     <!-- Leading underscores follow the MSBuild convention for implementation-private properties. -->
     <_UnitsNetModularSourceRoot>$(MSBuildThisFileDirectory)..\</_UnitsNetModularSourceRoot>
     <_UnitsNetModularSourceProject>$(_UnitsNetModularSourceRoot)UnitsNet.Modular\UnitsNet.Modular.csproj</_UnitsNetModularSourceProject>
-    <_UnitsNetModularSampleLocalPackStamp>$(UnitsNetModularSampleLocalFeed)\.$(MSBuildProjectName).local-pack.stamp</_UnitsNetModularSampleLocalPackStamp>
+    <_UnitsNetModularSampleLocalPackStamp>$(UnitsNetModularSampleLocalFeed)\.UnitsNet.Modular.local-pack.stamp</_UnitsNetModularSampleLocalPackStamp>
+    <_UnitsNetModularSampleAdditionalLocalPackStamp>$(UnitsNetModularSampleLocalFeed)\.$(MSBuildProjectName).additional-local-pack.stamp</_UnitsNetModularSampleAdditionalLocalPackStamp>
     <!-- MinVer cannot distinguish uncommitted edits, so local packages use a unique override. -->
     <_UnitsNetModularSampleLocalPackageVersion>6.0.0-local.dev.$([System.DateTime]::UtcNow.ToString('yyyyMMddHHmmssfff'))</_UnitsNetModularSampleLocalPackageVersion>
   </PropertyGroup>
@@ -41,23 +40,37 @@
     <_UnitsNetModularLocalPackageInput Include="$(_UnitsNetModularSourceRoot)..\Docs\Images\logo-32.png" />
   </ItemGroup>
 
-  <Target Name="_PackLocalUnitsNetModularPackages"
+  <Target Name="_PackLocalUnitsNetModularPackage"
           Condition="'$(UnitsNetModularSampleUpdateLocalPackagesOnBuild)' == 'true'"
-          Inputs="@(_UnitsNetModularLocalPackageInput);@(UnitsNetModularSampleAdditionalLocalPackageInput)"
+          Inputs="@(_UnitsNetModularLocalPackageInput)"
           Outputs="$(_UnitsNetModularSampleLocalPackStamp)">
     <Message Importance="high" Text="Packing the latest local UnitsNet.Modular package..." />
-    <Exec Command="dotnet pack &quot;$(_UnitsNetModularSourceProject)&quot; --configuration Release --output &quot;$(UnitsNetModularSampleLocalFeed)&quot; -p:MinVerVersionOverride=$(_UnitsNetModularSampleLocalPackageVersion)" />
+    <Exec Command="dotnet pack &quot;$(_UnitsNetModularSourceProject)&quot; --configuration Release --output &quot;$(UnitsNetModularSampleLocalFeed)&quot; -p:Platform=ProjectReferences -p:MinVerVersionOverride=$(_UnitsNetModularSampleLocalPackageVersion)" />
 
-    <Message Condition="'@(UnitsNetModularSampleAdditionalLocalPackageProject)' != ''"
-             Importance="high"
-             Text="Packing local definition package %(UnitsNetModularSampleAdditionalLocalPackageProject.Identity)..." />
-    <Exec Condition="'@(UnitsNetModularSampleAdditionalLocalPackageProject)' != ''"
-          Command="dotnet pack &quot;%(UnitsNetModularSampleAdditionalLocalPackageProject.Identity)&quot; --configuration Release --output &quot;$(UnitsNetModularSampleLocalFeed)&quot; -p:MinVerVersionOverride=$(_UnitsNetModularSampleLocalPackageVersion) -p:PackageVersion=$(_UnitsNetModularSampleLocalPackageVersion)" />
     <PropertyGroup>
-      <!-- Only force the consuming project's assets to refresh when this invocation packed. -->
       <_UnitsNetModularSamplePackagesUpdated>true</_UnitsNetModularSamplePackagesUpdated>
     </PropertyGroup>
     <Touch Files="$(_UnitsNetModularSampleLocalPackStamp)" AlwaysCreate="true" />
+  </Target>
+
+  <Target Name="_PackAdditionalLocalUnitsNetModularPackages"
+          DependsOnTargets="_PackLocalUnitsNetModularPackage"
+          Condition="'$(UnitsNetModularSampleUpdateLocalPackagesOnBuild)' == 'true' and '@(UnitsNetModularSampleAdditionalLocalPackageProject)' != ''"
+          Inputs="@(UnitsNetModularSampleAdditionalLocalPackageInput)"
+          Outputs="$(_UnitsNetModularSampleAdditionalLocalPackStamp)">
+    <Message
+             Importance="high"
+             Text="Packing local definition package %(UnitsNetModularSampleAdditionalLocalPackageProject.Identity)..." />
+    <Exec Command="dotnet pack &quot;%(UnitsNetModularSampleAdditionalLocalPackageProject.Identity)&quot; --configuration Release --output &quot;$(UnitsNetModularSampleLocalFeed)&quot; -p:Platform=ProjectReferences -p:MinVerVersionOverride=$(_UnitsNetModularSampleLocalPackageVersion) -p:PackageVersion=$(_UnitsNetModularSampleLocalPackageVersion)" />
+    <PropertyGroup>
+      <_UnitsNetModularSamplePackagesUpdated>true</_UnitsNetModularSamplePackagesUpdated>
+    </PropertyGroup>
+    <Touch Files="$(_UnitsNetModularSampleAdditionalLocalPackStamp)" AlwaysCreate="true" />
+  </Target>
+
+  <Target Name="_PackLocalUnitsNetModularPackages"
+          DependsOnTargets="_PackLocalUnitsNetModularPackage;_PackAdditionalLocalUnitsNetModularPackages"
+          Condition="'$(UnitsNetModularSampleUpdateLocalPackagesOnBuild)' == 'true'">
   </Target>
 
   <!-- Bootstrap the feed before NuGet tries to resolve a floating PackageReference. -->

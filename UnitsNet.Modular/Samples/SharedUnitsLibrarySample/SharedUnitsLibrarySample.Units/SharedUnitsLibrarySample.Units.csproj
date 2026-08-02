@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UsesUnitsNetModular>true</UsesUnitsNetModular>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(UnitsNetModularSampleDependencyMode)' == 'LocalPackages'">
+    <PackageVersion Include="Fictional.Measurements.Definitions"
+                    Version="$(UnitsNetModularSampleLocalVersion)" />
+    <PackageReference Include="Fictional.Measurements.Definitions" />
+    <UnitsNetModularSampleAdditionalLocalPackageProject
+        Include="../Fictional.Measurements.Definitions/Fictional.Measurements.Definitions.csproj" />
+    <UnitsNetModularSampleAdditionalLocalPackageInput
+        Include="../Fictional.Measurements.Definitions/**/*"
+        Exclude="../Fictional.Measurements.Definitions/bin/**/*;../Fictional.Measurements.Definitions/obj/**/*" />
+  </ItemGroup>
+
+  <!-- Project references do not import a definition package's build/*.props content. -->
+  <ItemGroup Condition="'$(UnitsNetModularSampleDependencyMode)' != 'LocalPackages'">
+    <ProjectReference Include="../Fictional.Measurements.Definitions/Fictional.Measurements.Definitions.csproj" />
+    <AdditionalFiles Include="../Fictional.Measurements.Definitions/Definitions/*.unitsnet.json"
+                     UnitsNetDefinition="true" />
+    <AdditionalFiles Include="../Fictional.Measurements.Definitions/Definitions/*.unitsnet.relations.json"
+                     UnitsNetRelation="true" />
+  </ItemGroup>
+</Project>

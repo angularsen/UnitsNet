@@ -198,47 +198,34 @@ directly references it.
   incrementality, and all relationship shapes.
 - `UnitsNet.Modular.Tests`: generated API and runtime behavior tests.
 - `UnitsNet.Modular.Compatibility.Tests`: linked-output, full-catalog public API, enum, conversion,
-  parsing, formatting, behavior, and registry comparisons against unchanged UnitsNet.
-- `Samples/UnitsNet.Modular.AllSi.Sample`: the SI quantity chain from Length and Duration through Speed,
-  Acceleration, Force, Pressure, Energy, and Power.
-- `Samples/UnitsNet.Modular.Representative.Sample`: a varied catalog selection and conditional
-  cross-quantity operators.
-- `Samples/UnitsNet.Modular.Lean.Sample`: filtered Length and Information unit sets.
-- `Samples/UnitsNet.Modular.Compatibility.UnitsNet.Sample`: the shared compatibility consumer using
-  UnitsNet v6.
-- `Samples/UnitsNet.Modular.Compatibility.Generated.Sample`: the exact same linked consumer source using
-  generated quantities.
-- `Samples/UnitsNet.Modular.Custom.Sample`: a fictional `HowMuch` quantity in its own namespace.
-- `Samples/UnitsNet.Modular.GettingStarted.Sample`: the package-based two-file quick start with
+  parsing, formatting, behavior, and registry comparisons against unchanged UnitsNet. Private
+  fixture projects compile the same compatibility scenario against each implementation.
+- `Samples/GettingStartedSample`: the two-file quick start with
   Length, Duration, Speed, and their generated relationship.
-- `Samples/UnitsNet.Modular.NuGet.Sample`: an isolated real-consumer scenario using only a locally packed
-  `PackageReference` and consumer-owned JSON.
-- `Samples/DefinitionPackages/Fictional.Measurements.Definitions`: a packable definition-only NuGet
-  containing quantity specs, JSON definitions, localization, and structured relationships.
-- `Samples/ConsumerOwned/ConsumerOwned.Units`: the package-facing application-owned generation
-  boundary. It consumes locally packed runtime and definition packages.
-- `Samples/ConsumerOwned/ConsumerOwned.Units.ProjectReferences`: a maintainer-facing twin that
-  compiles the same linked module declaration with direct project references and explicit
-  definition files.
-- `Samples/ConsumerOwned/ConsumerOwned.Domain` and `ConsumerOwned.Reporting`: two downstream
-  consumers sharing the exact generated CLR types from `ConsumerOwned.Units`.
+- `Samples/QuantitySelectionSample`: filtered Length and Information unit sets.
+- `Samples/CustomQuantitySample`: a fictional `HowMuch` quantity in its own namespace.
+- `Samples/Profiles/AllSiProfileSample`: the `AllSiProfile` relationship chain from Length and
+  Duration through Speed, Acceleration, Force, Pressure, Energy, and Power.
+- `Samples/ModularPlayground`: a broad interactive scenario covering parsing, metadata,
+  serialization, relationships, and an application-specific definition.
+- `Samples/SharedUnitsLibrarySample`: one generated quantity library shared by domain and app
+  projects, plus a packable definition provider containing specs, JSON, localization, and
+  structured relationships.
 
-Feature and compatibility samples use project references because they exercise generated behavior
-inside this repository. `UnitsNet.Modular.GettingStarted.Sample`,
-`UnitsNet.Modular.NuGet.Sample`, and `ConsumerOwned.Units` deliberately cross the local package
-boundary: the first mirrors the documentation quick start, the second covers a minimal
-consumer-owned definition, and the last composes separately packed quantity specs into a shared
-application assembly.
+Every sample uses the solution platform as its dependency mode. `ProjectReferences` exercises the
+current runtime and generator projects, `LocalPackages` crosses the repository-local NuGet boundary,
+and `PublishedPackages` consumes the pinned public package. This keeps dependency source separate
+from the normal Debug and Release configurations without duplicating scenario projects.
 
 The compatibility test project uses aliased references to compare both implementations' selected
 public API and unit names without introducing concrete-type ambiguity. It compares against the
 unchanged UnitsNet project. Whether any contracts can genuinely be shared with UnitsNet remains a
-separate investigation. The projects live in their own solution and do not participate in the
-existing UnitsNet solution.
+separate investigation. The fixtures participate only in the Modular compatibility test graph and
+do not participate in the existing UnitsNet solution.
 
 ## Compatibility boundaries
 
-The linked-source samples establish source compatibility for factories, properties, unit enums,
+The linked-source test fixtures establish source compatibility for factories, properties, unit enums,
 conversions, parsing, formatting, collection extensions, and operators. Catalog-wide compatibility
 tests compare all 129 generated quantities and their unit enums with the unchanged UnitsNet source.
 They exercise every unit's conversion through its base unit, base-unit formatting and parsing,
@@ -374,24 +361,25 @@ architecture is still being evaluated. A separate contracts package should be ex
 future legacy/modular integration finds a genuinely shared interface set or another independently
 versioned consumer of the runtime contracts.
 
-The package-facing samples import one repository-only MSBuild target that incrementally packs
-changed UnitsNet.Modular or generator sources before restore, then refreshes their floating
-`6.0.0-local.dev.*` dependencies before compilation. `ConsumerOwned.Units` registers the fictional
-definition provider as an additional package, so the automation packs the runtime first and the
-definition-spec package second with the same unique version. Restore is restricted to the shared
-`Artifacts/Nugets` development feed and can never fall back to a published package.
+Samples built with the `LocalPackages` platform import one repository-only MSBuild target that
+incrementally packs changed UnitsNet.Modular or generator sources before restore, then refreshes
+their floating `6.0.0-local.dev.*` dependencies before compilation. The shared-units library
+registers its fictional definition provider as an additional package, so the automation packs the
+runtime first and the definition package second with the same unique version. Restore is restricted
+to the shared `Artifacts/Nugets` development feed and cannot fall back to a published package.
 
 The dependency can also be invoked explicitly:
 
 ```powershell
 dotnet msbuild `
-  UnitsNet.Modular/Samples/UnitsNet.Modular.NuGet.Sample/UnitsNet.Modular.NuGet.Sample.csproj `
+  UnitsNet.Modular/Samples/CustomQuantitySample/CustomQuantitySample.csproj `
+  -p:Platform=LocalPackages `
   -t:UpdateLocalUnitsNetModularPackages
 ```
 
-This repository-only automation defaults on for Debug builds and off for other configurations. Set
-`UnitsNetModularSampleUpdateLocalPackagesOnBuild=true` or `false` explicitly to override the default.
-The older singular property and target names remain aliases for existing local commands.
+This repository-only automation defaults on whenever `LocalPackages` is selected. Set
+`UnitsNetModularSampleUpdateLocalPackagesOnBuild=false` to use packages already present in the local
+feed. The older singular property and target names remain aliases for existing local commands.
 
 `RepositoryLocalNuGetFeed` in the root `Directory.Build.props` gives every repository project the
 shared `Artifacts/Nugets` path. The repository-level `NuGet.Config` exposes it to solution-wide IDE
@@ -404,15 +392,14 @@ after packing. Pass
 `-p:UnitsNetModularPackForPublish=true` to create the MinVer-derived publish version instead; CI sets
 this explicitly.
 
-Run either package-facing sample from the repository root:
+Run the minimal package-facing sample from the repository root:
 
 ```powershell
-pwsh UnitsNet.Modular/Samples/UnitsNet.Modular.GettingStarted.Sample/run.ps1
-pwsh UnitsNet.Modular/Samples/UnitsNet.Modular.NuGet.Sample/run.ps1
+pwsh UnitsNet.Modular/Samples/GettingStartedSample/run.ps1
 ```
 
-Each script provides an isolated package cache and disables repository `Directory.Build.*` imports;
-the sample build dependency performs the pack and restore before executing the consumer.
+The script selects `Debug | LocalPackages`, provides an isolated package cache, and lets the sample
+build dependency pack and restore before executing the consumer.
 
 ## Versioning and CI
 
