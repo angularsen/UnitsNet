@@ -6,9 +6,9 @@
 
 ## Units.NET
 
-Add strongly typed quantities to your code and get merrily on with your life.
+Add strongly typed quantities and units to your code and get merrily on with your life.
 
-No more magic constants found on Stack Overflow, no more second-guessing the unit of parameters and variables.
+No more magic constants found online or guessing the unit of variables.
 
 ### Changes
 
@@ -17,6 +17,8 @@ New units will be backported to  `maintenance/v5` until v6 becomes stable.
 
 [Upgrading from 5.x to 6.x](https://github.com/angularsen/UnitsNet/wiki/Upgrading-from-5.x-to-6.x)<br>
 [Upgrading from 4.x to 5.x](https://github.com/angularsen/UnitsNet/wiki/Upgrading-from-4.x-to-5.x)<br>
+
+🧪 **Experimental:** Check out [UnitsNet.Modular](UnitsNet.Modular/README.md), which generates only the quantities and units your application needs.
 
 ### Overview
 

@@ -1,15 +1,31 @@
 # Extending with Custom Units
 
+## Recommended prototype: UnitsNet.Modular
+
+[UnitsNet.Modular](../UnitsNet.Modular/README.md) is our prototype for a better way to add
+application-specific quantities and units. It is a proof of concept and currently in pre-release,
+but it generates strongly typed quantity structs, unit enums, conversions, parsing, formatting, and
+metadata from your JSON definitions at compile time.
+
+Start with [Add custom quantities](../UnitsNet.Modular/README.md#add-custom-quantities), or explore the
+[UnitsNet.Modular samples in GitHub Codespaces](https://codespaces.new/angularsen/UnitsNet?devcontainer_path=.devcontainer%2Funitsnet-modular%2Fdevcontainer.json&quickstart=1).
+
+`UnitsNet` and `UnitsNet.Modular` are alternative implementations and cannot be referenced together
+in the same consumer project. If you need to keep using the established `UnitsNet` package, the
+runtime approach below remains available.
+
+## Secondary approach: runtime custom quantities in UnitsNet
+
 This article is for when you want to add your own custom quantities and units at runtime, not included in the UnitsNet nuget.
 
 To add new quantities or units to the `UnitsNet` nuget, please see [Adding a New Unit](adding-a-new-unit.md).
 
-## Disclaimer: This is highly experimental and incomplete
+### Disclaimer: This is highly experimental and incomplete
 
 You miss out on the statically generated code for members like `Length.FromMeters(1)` and `myLength.Meters`.
 Conversion methods like `myLength.As()` and `myLength.ToUnit()` currently only support their respective unit enums, in this case `LengthUnit`.
 
-## Can I add a custom unit to an existing quantity in UnitsNet?
+### Can I add a custom unit to an existing quantity in UnitsNet?
 
 Currently, no.
 
@@ -21,14 +37,14 @@ Since UnitsNet is so statically typed, your options are limited to:
 1. Submit a pull request to [add a new unit](adding-a-new-unit.md) to the UnitsNet nuget
 2. Build your own custom version of UnitsNet
 
-## Why add a custom quantity?
+### Why add a custom quantity?
 
 Good question.
 
 In its current state, the support for custom quantities and units is limited and provides limited integration with the existing units and code.
 We consider it exploratory, to see what is possible, and we welcome ideas on how it can be improved.
 
-### Key benefits
+#### Key benefits
 
 - Reuse functionality that operates on `IQuantity`
   - Dynamically convert to unit with `.As(Enum)`
@@ -38,14 +54,14 @@ We consider it exploratory, to see what is possible, and we welcome ideas on how
   - Also allows you to dynamically convert between your custom units and the built-in units, such as `CustomLengthUnit.ElbowToThumb` to `LengthUnit.Meter`.
 - Reuse `QuantityParser` and `UnitParser` to parse quantity strings like "5 cm" and "cm" for your own quantities and units
 
-### What could be better
+#### What could be better
 
 - Source generators via nuget, if possible [Using source generators #902](https://github.com/angularsen/UnitsNet/issues/902)
 - String-based lookup instead of enum-based for quantity methods like `As()` and `ToUnit()`, required for [XP One nuget per quantity #1181](https://github.com/angularsen/UnitsNet/pull/1181)
 
 Got more ideas? Create a discussion or issue.
 
-## Units.NET structure
+### Units.NET structure
 
 Units.NET roughly consists of these parts:
 * Quantities like `Length` and `Force`
@@ -54,9 +70,9 @@ Units.NET roughly consists of these parts:
 * [JSON files for defining units, conversion functions and abbreviations](quantity-and-unit-definition-schema.md)
 * `CodeGen` console app to generate C# code based on JSON files
 
-## Example: Custom quantity `HowMuch` with units `HowMuchUnit`
+### Example: Custom quantity `HowMuch` with units `HowMuchUnit`
 
-### Sample output
+#### Sample output
 ```
 GetDefaultAbbreviation(): sm, lts, tns
 Parse<HowMuchUnit>(): Some, Lots, Tons
@@ -67,7 +83,7 @@ Convert 10 tons to:
 10 tns
 ```
 
-### Map unit enum values to unit abbreviations
+#### Map unit enum values to unit abbreviations
 
 ```c#
 UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(HowMuchUnit.Some, "sm");
@@ -75,7 +91,7 @@ UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(HowMuchUnit.Lots, "l
 UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(HowMuchUnit.Tons, "tns");
 ```
 
-### Lookup unit abbreviations from enum values
+#### Lookup unit abbreviations from enum values
 
 ```c#
 Console.WriteLine("GetDefaultAbbreviation(): " + string.Join(", ",
@@ -85,7 +101,7 @@ Console.WriteLine("GetDefaultAbbreviation(): " + string.Join(", ",
 ));
 ```
 
-### Parse unit abbreviations back to enum values
+#### Parse unit abbreviations back to enum values
 
 ```c#
 Console.WriteLine("Parse<HowMuchUnit>(): " + string.Join(", ",
@@ -95,7 +111,7 @@ Console.WriteLine("Parse<HowMuchUnit>(): " + string.Join(", ",
 ));
 ```
 
-### Convert between units of custom quantity
+#### Convert between units of custom quantity
 
 ```c#
 var unitConverter = UnitConverter.Default;
@@ -112,7 +128,7 @@ Console.WriteLine(Convert(HowMuchUnit.Lots)); // 100 lts
 Console.WriteLine(Convert(HowMuchUnit.Tons)); // 10 tns
 ```
 
-### Sample quantity
+#### Sample quantity
 
 See the sample implementation in the test suite:
 - [HowMuchUnit.cs](https://github.com/angularsen/UnitsNet/blob/master/UnitsNet.Tests/CustomQuantities/HowMuchUnit.cs)

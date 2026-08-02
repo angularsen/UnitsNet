@@ -1,7 +1,8 @@
 # UnitsNet Modular
 
+[![Open the samples in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/angularsen/UnitsNet?devcontainer_path=.devcontainer%2Funitsnet-modular%2Fdevcontainer.json&quickstart=1)
+
 [![UnitsNet.Modular CI](https://github.com/angularsen/UnitsNet/actions/workflows/unitsnet-modular-ci.yml/badge.svg)](https://github.com/angularsen/UnitsNet/actions/workflows/unitsnet-modular-ci.yml)
-[![Open the playground in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/angularsen/UnitsNet?devcontainer_path=.devcontainer%2Funitsnet-modular%2Fdevcontainer.json&quickstart=1)
 
 Generate only the strongly typed quantities and units your application needs.
 
@@ -23,13 +24,13 @@ the complete catalog:
 - immutable runtime discovery and System.Text.Json support;
 - trimming and Native AOT-friendly generated code.
 
-> **Experimental:** UnitsNet.Modular is an alpha proof of concept. Its API, package structure, and
-> compatibility guarantees may change as the architecture is evaluated.
+> **Experimental:** UnitsNet.Modular is a proof of concept and currently in pre-release. Its API,
+> package structure, and compatibility guarantees may change as the architecture is evaluated.
 
 Want to try it without installing anything? Open the browser-based
-[UnitsNet.Modular playground](https://codespaces.new/angularsen/UnitsNet?devcontainer_path=.devcontainer%2Funitsnet-modular%2Fdevcontainer.json&quickstart=1).
-It builds a focused sample with the real source generator, opens the quantity selection and custom
-definition files, and keeps generated C# available for inspection.
+[UnitsNet.Modular samples](https://codespaces.new/angularsen/UnitsNet?devcontainer_path=.devcontainer%2Funitsnet-modular%2Fdevcontainer.json&quickstart=1).
+The Codespace builds all samples with the real source generator, opens the sample documentation and
+source files, and keeps generated C# available for inspection.
 
 ## Contents
 

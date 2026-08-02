@@ -5,7 +5,7 @@
     <Version>6.0.0-pre021</Version>
     <Authors>Andreas Gullberg Larsen</Authors>
     <Title>Units.NET</Title>
-    <Description>Get all the common units of measurement and the conversions between them. It is light-weight and thoroughly tested.</Description>
+    <Description>Add strongly typed quantities and units to your code and get merrily on with your life. No more magic constants found online or guessing the unit of variables.</Description>
     <Copyright>Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).</Copyright>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RepositoryUrl>https://github.com/angularsen/UnitsNet</RepositoryUrl>
