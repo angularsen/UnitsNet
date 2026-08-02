@@ -22,6 +22,7 @@
   <Project Path="UnitsNet.Modular/UnitsNet.Modular.Compatibility.Tests/UnitsNet.Modular.Compatibility.Tests.csproj" />
   <Folder Name="/Samples/">
     <File Path="UnitsNet.Modular/Samples/README.md" />
+    <File Path="UnitsNet.Modular/Samples/refresh-local-packages.ps1" />
     <Project Path="UnitsNet.Modular/Samples/GettingStartedSample/GettingStartedSample.csproj">
       <Platform Solution="*|ProjectReferences" Project="ProjectReferences" />
       <Platform Solution="*|LocalPackages" Project="LocalPackages" />

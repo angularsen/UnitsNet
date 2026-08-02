@@ -31,4 +31,10 @@
     <MSBuildProjectExtensionsPath>obj/$(UnitsNetModularSampleDependencyMode)/</MSBuildProjectExtensionsPath>
     <OutputPath>$(MSBuildThisFileDirectory)..\..\Artifacts\$(MSBuildProjectName)\$(UnitsNetModularSampleDependencyMode)</OutputPath>
   </PropertyGroup>
+
+  <!-- Keep the shared package-refresh command visible and runnable from every sample project. -->
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)refresh-local-packages.ps1"
+          Link="refresh-local-packages.ps1" />
+  </ItemGroup>
 </Project>
