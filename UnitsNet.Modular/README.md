@@ -1,4 +1,4 @@
-# UnitsNet Modular
+# Units.NET Modular
 
 [![Open the samples in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/angularsen/UnitsNet?devcontainer_path=.devcontainer%2Funitsnet-modular%2Fdevcontainer.json&quickstart=1)
 
