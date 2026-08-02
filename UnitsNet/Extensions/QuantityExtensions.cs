@@ -288,7 +288,9 @@ public static class QuantityExtensions
     ///     If <c>null</c> or empty, the default format is used.
     /// </param>
     /// <returns>A string representation of the quantity.</returns>
-    public static string ToString<TQuantity>(this TQuantity quantity, string? format)
+    public static string ToString<TQuantity>(
+        this TQuantity quantity,
+        [StringSyntax(StringSyntaxAttribute.NumericFormat)] string? format)
         where TQuantity : IQuantity, IFormattable
     {
         return quantity.ToString(format, null);

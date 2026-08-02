@@ -690,26 +690,6 @@ namespace UnitsNet.Tests
             Assert.Equal("1 A/m²", new ElectricCurrentDensity(1, ElectricCurrentDensityUnit.AmperePerSquareMeter).ToString(swedishCulture));
         }
 
-        [Fact]
-        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
-        {
-            var _ = new CultureScope(CultureInfo.InvariantCulture);
-            Assert.Equal("0.1 A/m²", new ElectricCurrentDensity(0.123456, ElectricCurrentDensityUnit.AmperePerSquareMeter).ToString("s1"));
-            Assert.Equal("0.12 A/m²", new ElectricCurrentDensity(0.123456, ElectricCurrentDensityUnit.AmperePerSquareMeter).ToString("s2"));
-            Assert.Equal("0.123 A/m²", new ElectricCurrentDensity(0.123456, ElectricCurrentDensityUnit.AmperePerSquareMeter).ToString("s3"));
-            Assert.Equal("0.1235 A/m²", new ElectricCurrentDensity(0.123456, ElectricCurrentDensityUnit.AmperePerSquareMeter).ToString("s4"));
-        }
-
-        [Fact]
-        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
-        {
-            var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 A/m²", new ElectricCurrentDensity(0.123456, ElectricCurrentDensityUnit.AmperePerSquareMeter).ToString("s1", culture));
-            Assert.Equal("0.12 A/m²", new ElectricCurrentDensity(0.123456, ElectricCurrentDensityUnit.AmperePerSquareMeter).ToString("s2", culture));
-            Assert.Equal("0.123 A/m²", new ElectricCurrentDensity(0.123456, ElectricCurrentDensityUnit.AmperePerSquareMeter).ToString("s3", culture));
-            Assert.Equal("0.1235 A/m²", new ElectricCurrentDensity(0.123456, ElectricCurrentDensityUnit.AmperePerSquareMeter).ToString("s4", culture));
-        }
-
         [Theory]
         [InlineData(null)]
         [InlineData("en-US")]

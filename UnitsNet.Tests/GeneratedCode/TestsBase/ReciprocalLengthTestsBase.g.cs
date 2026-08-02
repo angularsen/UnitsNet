@@ -930,26 +930,6 @@ namespace UnitsNet.Tests
             Assert.Equal("1 yd⁻¹", new ReciprocalLength(1, ReciprocalLengthUnit.InverseYard).ToString(swedishCulture));
         }
 
-        [Fact]
-        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
-        {
-            var _ = new CultureScope(CultureInfo.InvariantCulture);
-            Assert.Equal("0.1 m⁻¹", new ReciprocalLength(0.123456, ReciprocalLengthUnit.InverseMeter).ToString("s1"));
-            Assert.Equal("0.12 m⁻¹", new ReciprocalLength(0.123456, ReciprocalLengthUnit.InverseMeter).ToString("s2"));
-            Assert.Equal("0.123 m⁻¹", new ReciprocalLength(0.123456, ReciprocalLengthUnit.InverseMeter).ToString("s3"));
-            Assert.Equal("0.1235 m⁻¹", new ReciprocalLength(0.123456, ReciprocalLengthUnit.InverseMeter).ToString("s4"));
-        }
-
-        [Fact]
-        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
-        {
-            var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 m⁻¹", new ReciprocalLength(0.123456, ReciprocalLengthUnit.InverseMeter).ToString("s1", culture));
-            Assert.Equal("0.12 m⁻¹", new ReciprocalLength(0.123456, ReciprocalLengthUnit.InverseMeter).ToString("s2", culture));
-            Assert.Equal("0.123 m⁻¹", new ReciprocalLength(0.123456, ReciprocalLengthUnit.InverseMeter).ToString("s3", culture));
-            Assert.Equal("0.1235 m⁻¹", new ReciprocalLength(0.123456, ReciprocalLengthUnit.InverseMeter).ToString("s4", culture));
-        }
-
         [Theory]
         [InlineData(null)]
         [InlineData("en-US")]

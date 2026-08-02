@@ -790,26 +790,6 @@ namespace UnitsNet.Tests
             Assert.Equal("1 TΩ", new ElectricImpedance(1, ElectricImpedanceUnit.Teraohm).ToString(swedishCulture));
         }
 
-        [Fact]
-        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
-        {
-            var _ = new CultureScope(CultureInfo.InvariantCulture);
-            Assert.Equal("0.1 Ω", new ElectricImpedance(0.123456, ElectricImpedanceUnit.Ohm).ToString("s1"));
-            Assert.Equal("0.12 Ω", new ElectricImpedance(0.123456, ElectricImpedanceUnit.Ohm).ToString("s2"));
-            Assert.Equal("0.123 Ω", new ElectricImpedance(0.123456, ElectricImpedanceUnit.Ohm).ToString("s3"));
-            Assert.Equal("0.1235 Ω", new ElectricImpedance(0.123456, ElectricImpedanceUnit.Ohm).ToString("s4"));
-        }
-
-        [Fact]
-        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
-        {
-            var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 Ω", new ElectricImpedance(0.123456, ElectricImpedanceUnit.Ohm).ToString("s1", culture));
-            Assert.Equal("0.12 Ω", new ElectricImpedance(0.123456, ElectricImpedanceUnit.Ohm).ToString("s2", culture));
-            Assert.Equal("0.123 Ω", new ElectricImpedance(0.123456, ElectricImpedanceUnit.Ohm).ToString("s3", culture));
-            Assert.Equal("0.1235 Ω", new ElectricImpedance(0.123456, ElectricImpedanceUnit.Ohm).ToString("s4", culture));
-        }
-
         [Theory]
         [InlineData(null)]
         [InlineData("en-US")]

@@ -690,26 +690,6 @@ namespace UnitsNet.Tests
             Assert.Equal("1 varh", new ElectricReactiveEnergy(1, ElectricReactiveEnergyUnit.VoltampereReactiveHour).ToString(swedishCulture));
         }
 
-        [Fact]
-        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
-        {
-            var _ = new CultureScope(CultureInfo.InvariantCulture);
-            Assert.Equal("0.1 varh", new ElectricReactiveEnergy(0.123456, ElectricReactiveEnergyUnit.VoltampereReactiveHour).ToString("s1"));
-            Assert.Equal("0.12 varh", new ElectricReactiveEnergy(0.123456, ElectricReactiveEnergyUnit.VoltampereReactiveHour).ToString("s2"));
-            Assert.Equal("0.123 varh", new ElectricReactiveEnergy(0.123456, ElectricReactiveEnergyUnit.VoltampereReactiveHour).ToString("s3"));
-            Assert.Equal("0.1235 varh", new ElectricReactiveEnergy(0.123456, ElectricReactiveEnergyUnit.VoltampereReactiveHour).ToString("s4"));
-        }
-
-        [Fact]
-        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
-        {
-            var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 varh", new ElectricReactiveEnergy(0.123456, ElectricReactiveEnergyUnit.VoltampereReactiveHour).ToString("s1", culture));
-            Assert.Equal("0.12 varh", new ElectricReactiveEnergy(0.123456, ElectricReactiveEnergyUnit.VoltampereReactiveHour).ToString("s2", culture));
-            Assert.Equal("0.123 varh", new ElectricReactiveEnergy(0.123456, ElectricReactiveEnergyUnit.VoltampereReactiveHour).ToString("s3", culture));
-            Assert.Equal("0.1235 varh", new ElectricReactiveEnergy(0.123456, ElectricReactiveEnergyUnit.VoltampereReactiveHour).ToString("s4", culture));
-        }
-
         [Theory]
         [InlineData(null)]
         [InlineData("en-US")]

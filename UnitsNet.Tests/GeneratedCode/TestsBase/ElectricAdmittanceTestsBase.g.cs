@@ -950,26 +950,6 @@ namespace UnitsNet.Tests
             Assert.Equal("1 TS", new ElectricAdmittance(1, ElectricAdmittanceUnit.Terasiemens).ToString(swedishCulture));
         }
 
-        [Fact]
-        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
-        {
-            var _ = new CultureScope(CultureInfo.InvariantCulture);
-            Assert.Equal("0.1 S", new ElectricAdmittance(0.123456, ElectricAdmittanceUnit.Siemens).ToString("s1"));
-            Assert.Equal("0.12 S", new ElectricAdmittance(0.123456, ElectricAdmittanceUnit.Siemens).ToString("s2"));
-            Assert.Equal("0.123 S", new ElectricAdmittance(0.123456, ElectricAdmittanceUnit.Siemens).ToString("s3"));
-            Assert.Equal("0.1235 S", new ElectricAdmittance(0.123456, ElectricAdmittanceUnit.Siemens).ToString("s4"));
-        }
-
-        [Fact]
-        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
-        {
-            var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 S", new ElectricAdmittance(0.123456, ElectricAdmittanceUnit.Siemens).ToString("s1", culture));
-            Assert.Equal("0.12 S", new ElectricAdmittance(0.123456, ElectricAdmittanceUnit.Siemens).ToString("s2", culture));
-            Assert.Equal("0.123 S", new ElectricAdmittance(0.123456, ElectricAdmittanceUnit.Siemens).ToString("s3", culture));
-            Assert.Equal("0.1235 S", new ElectricAdmittance(0.123456, ElectricAdmittanceUnit.Siemens).ToString("s4", culture));
-        }
-
         [Theory]
         [InlineData(null)]
         [InlineData("en-US")]

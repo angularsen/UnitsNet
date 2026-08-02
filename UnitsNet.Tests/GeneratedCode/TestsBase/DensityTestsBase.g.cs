@@ -1838,26 +1838,6 @@ namespace UnitsNet.Tests
             Assert.Equal("1 t/mm³", new Density(1, DensityUnit.TonnePerCubicMillimeter).ToString(swedishCulture));
         }
 
-        [Fact]
-        public void ToString_SFormat_FormatsNumberWithGivenDigitsAfterRadixForCurrentCulture()
-        {
-            var _ = new CultureScope(CultureInfo.InvariantCulture);
-            Assert.Equal("0.1 kg/m³", new Density(0.123456, DensityUnit.KilogramPerCubicMeter).ToString("s1"));
-            Assert.Equal("0.12 kg/m³", new Density(0.123456, DensityUnit.KilogramPerCubicMeter).ToString("s2"));
-            Assert.Equal("0.123 kg/m³", new Density(0.123456, DensityUnit.KilogramPerCubicMeter).ToString("s3"));
-            Assert.Equal("0.1235 kg/m³", new Density(0.123456, DensityUnit.KilogramPerCubicMeter).ToString("s4"));
-        }
-
-        [Fact]
-        public void ToString_SFormatAndCulture_FormatsNumberWithGivenDigitsAfterRadixForGivenCulture()
-        {
-            var culture = CultureInfo.InvariantCulture;
-            Assert.Equal("0.1 kg/m³", new Density(0.123456, DensityUnit.KilogramPerCubicMeter).ToString("s1", culture));
-            Assert.Equal("0.12 kg/m³", new Density(0.123456, DensityUnit.KilogramPerCubicMeter).ToString("s2", culture));
-            Assert.Equal("0.123 kg/m³", new Density(0.123456, DensityUnit.KilogramPerCubicMeter).ToString("s3", culture));
-            Assert.Equal("0.1235 kg/m³", new Density(0.123456, DensityUnit.KilogramPerCubicMeter).ToString("s4", culture));
-        }
-
         [Theory]
         [InlineData(null)]
         [InlineData("en-US")]

@@ -26,7 +26,7 @@ public partial struct QuantityValue
     ///     base type)
     /// </param>
     /// <returns>The string representation</returns>
-    public string ToString(string format)
+    public string ToString([StringSyntax(StringSyntaxAttribute.NumericFormat)] string format)
     {
         return ToString(format, NumberFormatInfo.CurrentInfo);
     }
@@ -123,17 +123,6 @@ public partial struct QuantityValue
     ///                 : Round-trip format. Example: 1234567/1000 formatted with 'R' gives "1234.567".
     ///             </description>
     ///         </item>
-    ///         <item>
-    ///             <description>
-    ///                 <see
-    ///                     href="https://github.com/danm-de/Fractions?tab=readme-ov-file#significant-digits-after-radix-format">
-    ///                     'S'
-    ///                     or 's'
-    ///                 </see>
-    ///                 : Significant Digits After Radix format. Example: 400/3 formatted with 'S2' gives
-    ///                 "133.33".
-    ///             </description>
-    ///         </item>
     ///     </list>
     ///     Note: The 'R' format and custom formats do not support precision specifiers and are handed over to the `double`
     ///     type for formatting, which may result in a loss of precision.
@@ -144,7 +133,9 @@ public partial struct QuantityValue
     ///     </see>
     ///     in the GitHub README.
     /// </remarks>
-    public string ToString(string? format, IFormatProvider? formatProvider)
+    public string ToString(
+        [StringSyntax(StringSyntaxAttribute.NumericFormat)] string? format,
+        IFormatProvider? formatProvider)
     {
         return DecimalNotationFormatter.Format(this, format, formatProvider);
     }
@@ -279,17 +270,6 @@ public partial struct QuantityValue
         ///                 : Round-trip format. Example: 1234567/1000 formatted with 'R' gives "1234.567".
         ///             </description>
         ///         </item>
-        ///         <item>
-        ///             <description>
-        ///                 <see
-        ///                     href="https://github.com/danm-de/Fractions?tab=readme-ov-file#significant-digits-after-radix-format">
-        ///                     'S'
-        ///                     or 's'
-        ///                 </see>
-        ///                 : Significant Digits After Radix format. Example: 400/3 formatted with 'S2' gives
-        ///                 "133.33".
-        ///             </description>
-        ///         </item>
         ///     </list>
         ///     Note: The 'R' format and custom formats do not support precision specifiers and are handed over to the `double`
         ///     type for formatting, which may result in a loss of precision.
@@ -320,6 +300,13 @@ public partial struct QuantityValue
                 return FormatGeneral(numerator, denominator, "G", numberFormatInfo);
             }
 
+            if (format[0] is 'S' or 's' &&
+                (format.Length == 1 || int.TryParse(format.AsSpan(1), NumberStyles.Integer, CultureInfo.InvariantCulture, out _)))
+            {
+                throw new FormatException(
+                    $"The \"{format}\" significant-digits format is no longer supported; use a standard or custom numeric format string.");
+            }
+
             var formatCharacter = format[0];
             return formatCharacter switch
             {
@@ -329,7 +316,6 @@ public partial struct QuantityValue
                 'E' or 'e' => FormatWithScientificFormat(numerator, denominator, format, numberFormatInfo),
                 'P' or 'p' => FormatWithPercentFormat(numerator, denominator, format, numberFormatInfo),
                 'C' or 'c' => FormatWithCurrencyFormat(numerator, denominator, format, numberFormatInfo),
-                'S' or 's' => FormatWithSignificantDigitsAfterRadix(numerator, denominator, format, numberFormatInfo),
                 _ => // 'R', 'r' and the custom formats are handed over to the double (possible loss of precision)
                     fraction.ToDouble().ToString(format, numberFormatInfo)
             };
@@ -377,6 +363,13 @@ public partial struct QuantityValue
                 return TryFormatGeneral(destination, out charsWritten, numerator, denominator, "G", numberFormatInfo);
             }
 
+            if (format[0] is 'S' or 's' &&
+                (format.Length == 1 || int.TryParse(format[1..], NumberStyles.Integer, CultureInfo.InvariantCulture, out _)))
+            {
+                throw new FormatException(
+                    $"The \"{format.ToString()}\" significant-digits format is no longer supported; use a standard or custom numeric format string.");
+            }
+
             var formatCharacter = format[0];
             return formatCharacter switch
             {
@@ -386,7 +379,6 @@ public partial struct QuantityValue
                 'E' or 'e' => TryFormatWithScientificFormat(destination, out charsWritten, numerator, denominator, format, numberFormatInfo),
                 'P' or 'p' => TryFormatWithPercentFormat(destination, out charsWritten, numerator, denominator, format, numberFormatInfo),
                 'C' or 'c' => TryFormatWithCurrencyFormat(destination, out charsWritten, numerator, denominator, format, numberFormatInfo),
-                'S' or 's' => TryFormatWithSignificantDigitsAfterRadix(destination, out charsWritten, numerator, denominator, format, numberFormatInfo),
                 _ => // 'R', 'r' and the custom formats are handed over to the double (possible loss of precision)
                     fraction.ToDouble().TryFormat(destination, out charsWritten, format, numberFormatInfo)
             };
@@ -1959,166 +1951,6 @@ public partial struct QuantityValue
             return true;
         }
 
-        /// <summary>
-        ///     Formats a fraction as a string with a specified number of significant digits after the radix point.
-        /// </summary>
-        /// <param name="numerator">The numerator of the fraction.</param>
-        /// <param name="denominator">The denominator of the fraction.</param>
-        /// <param name="format">
-        ///     The format string to use, which specifies the maximum number of digits after the radix point.
-        /// </param>
-        /// <param name="formatProvider">An object that provides culture-specific formatting information.</param>
-        /// <returns>
-        ///     A string representation of the fraction, formatted with the specified number of significant digits after the
-        ///     radix point.
-        /// </returns>
-        /// <remarks>
-        ///     The method determines the formatting style based on the magnitude of the fraction:
-        ///     <list type="bullet">
-        ///         <item>
-        ///             For values greater than 1e5, the fraction is formatted in scientific notation (e.g., 1.23e6 for 1230000).
-        ///         </item>
-        ///         <item>
-        ///             For values less than or equal to 1e-4, the fraction is formatted in scientific notation (e.g., 1.23e-4 for
-        ///             0.000123).
-        ///         </item>
-        ///         <item>
-        ///             For values between 1e-3 and 1e5, the fraction is formatted as a decimal number.
-        ///         </item>
-        ///     </list>
-        /// </remarks>
-        private static string FormatWithSignificantDigitsAfterRadix(BigInteger numerator, BigInteger denominator, string format, NumberFormatInfo formatProvider)
-        {
-            if (numerator.IsZero)
-            {
-                return 0.ToString(formatProvider);
-            }
-
-            if (!TryGetPrecisionDigits(format, 2, out var maxDigitsAfterRadix))
-            {
-                // not a valid "S" format: assuming a custom format
-                return FormatWithCustomFormat(numerator, denominator, format, formatProvider);
-            }
-
-            // typical worst case: -1.23E+123456
-            var significantDigitsLength = maxDigitsAfterRadix;
-            // assuming a maximum exponent equal to 10^999999
-            var exponentDigitsLength = 1 + int.Max(formatProvider.NegativeSign.Length, formatProvider.PositiveSign.Length) + 6;
-            // worst case for grouping is "1_2_3_0_0_0" with every '_' representing a group separator (up to 9 characters)
-            var maxGroupsLength = 5 * formatProvider.NumberGroupSeparator.Length;
-            var maxLength = formatProvider.NegativeSign.Length + formatProvider.NumberDecimalSeparator.Length + significantDigitsLength +
-                            int.Max(maxGroupsLength, exponentDigitsLength); // we can either have groups or an exponent
-
-            var buffer = maxLength <= StackLimit
-                ? stackalloc char[maxLength] // Use stack memory
-                : new char[maxLength]; // Use heap if needed
-
-            TryFormatWithSignificantDigitsAfterRadix(buffer, out var charsWritten, numerator, denominator, formatProvider, maxDigitsAfterRadix, format[0] is 's');
-            return new string(buffer[..charsWritten]);
-        }
-
-        private static bool TryFormatWithSignificantDigitsAfterRadix(Span<char> destination, out int charsWritten, BigInteger numerator, BigInteger denominator,
-            ReadOnlySpan<char> format, NumberFormatInfo formatProvider)
-        {
-            if (numerator.IsZero)
-            {
-                return 0.TryFormat(destination, out charsWritten, default, formatProvider);
-            }
-
-            if (!TryGetPrecisionDigits(format, 2, out var maxDigitsAfterRadix))
-            {
-                // not a valid "S" format: assuming a custom format
-                return TryFormatWithCustomFormat(destination, out charsWritten, numerator, denominator, format, formatProvider);
-            }
-
-            return TryFormatWithSignificantDigitsAfterRadix(destination, out charsWritten, numerator, denominator, formatProvider, maxDigitsAfterRadix, format[0] is 's');
-        }
-
-        private static bool TryFormatWithSignificantDigitsAfterRadix(Span<char> destination, out int charsWritten, BigInteger numerator, BigInteger denominator,
-            NumberFormatInfo formatProvider, int maxDigitsAfterRadix, bool lowerCase)
-        {
-            charsWritten = 0;
-            if (numerator.Sign < 0)
-            {
-                if (!formatProvider.NegativeSign.TryCopyTo(destination))
-                {
-                    return false;
-                }
-
-                charsWritten += formatProvider.NegativeSign.Length;
-                numerator = -numerator;
-            }
-
-            const string quotientFormat = "N0";
-            var exponent = GetExponentPower(numerator, denominator, out var exponentTerm);
-            QuantityValue mantissa;
-            switch (exponent)
-            {
-                case > 5:
-                {
-                    // the smallest value would have the form: 1.23e6 (1230000)
-                    mantissa = Round(numerator, denominator * exponentTerm, maxDigitsAfterRadix, DefaultMidpointRoundingMode);
-                    if (!TryAppendSignificantDecimals(destination[charsWritten..], out var written, mantissa, formatProvider, maxDigitsAfterRadix, quotientFormat))
-                    {
-                        return false;
-                    }
-
-                    charsWritten += written;
-                    if (!TryAppendExponentWithSignificantDigits(destination[charsWritten..], out written, exponent, formatProvider, lowerCase ? 'e' : 'E'))
-                    {
-                        return false;
-                    }
-
-                    charsWritten += written;
-                    return true;
-                }
-                case <= -4:
-                {
-                    // the largest value would have the form: 1.23e-4 (0.000123)
-                    mantissa = Round(numerator * exponentTerm, denominator, maxDigitsAfterRadix, DefaultMidpointRoundingMode);
-                    if (!TryAppendSignificantDecimals(destination[charsWritten..], out var written, mantissa, formatProvider, maxDigitsAfterRadix, quotientFormat))
-                    {
-                        return false;
-                    }
-
-                    charsWritten += written;
-                    if (!TryAppendExponentWithSignificantDigits(destination[charsWritten..], out written, exponent, formatProvider, lowerCase ? 'e' : 'E'))
-                    {
-                        return false;
-                    }
-
-                    charsWritten += written;
-                    return true;
-                }
-                case < 0:
-                {
-                    // the smallest value would have the form: 1.23e-3 (0.00123)
-                    var leadingZeroes = -exponent;
-                    maxDigitsAfterRadix += leadingZeroes - 1;
-                    mantissa = Round(numerator, denominator, maxDigitsAfterRadix, DefaultMidpointRoundingMode);
-                    if (!TryAppendSignificantDecimals(destination[charsWritten..], out var written, mantissa, formatProvider, maxDigitsAfterRadix, quotientFormat))
-                    {
-                        return false;
-                    }
-
-                    charsWritten += written;
-                    return true;
-                }
-                default:
-                {
-                    // the largest value would have the form: 1.23e5 (123000)
-                    mantissa = Round(numerator, denominator, maxDigitsAfterRadix, DefaultMidpointRoundingMode);
-                    if (!TryAppendSignificantDecimals(destination[charsWritten..], out var written, mantissa, formatProvider, maxDigitsAfterRadix, quotientFormat))
-                    {
-                        return false;
-                    }
-
-                    charsWritten += written;
-                    return true;
-                }
-            }
-        }
-
         private static string FormatWithCustomFormat(BigInteger numerator, BigInteger denominator, string format, NumberFormatInfo formatProvider)
         {
             return new QuantityValue(numerator, denominator).ToDouble().ToString(format, formatProvider);
@@ -2667,17 +2499,6 @@ public partial struct QuantityValue
         ///                 : Round-trip format. Example: 1234567/1000 formatted with 'R' gives "1234.567".
         ///             </description>
         ///         </item>
-        ///         <item>
-        ///             <description>
-        ///                 <see
-        ///                     href="https://github.com/danm-de/Fractions?tab=readme-ov-file#significant-digits-after-radix-format">
-        ///                     'S'
-        ///                     or 's'
-        ///                 </see>
-        ///                 : Significant Digits After Radix format. Example: 400/3 formatted with 'S2' gives
-        ///                 "133.33".
-        ///             </description>
-        ///         </item>
         ///     </list>
         ///     Note: The 'R' format and custom formats do not support precision specifiers and are handed over to the `double`
         ///     type for formatting, which may result in a loss of precision.
@@ -2710,7 +2531,14 @@ public partial struct QuantityValue
                 return FormatGeneral(numerator, denominator, "G", numberFormatInfo);
             }
 
-            var formatCharacter = format![0];
+            if (format![0] is 'S' or 's' &&
+                (format.Length == 1 || int.TryParse(format.Substring(1), NumberStyles.Integer, CultureInfo.InvariantCulture, out _)))
+            {
+                throw new FormatException(
+                    $"The \"{format}\" significant-digits format is no longer supported; use a standard or custom numeric format string.");
+            }
+
+            var formatCharacter = format[0];
             return formatCharacter switch
             {
                 'G' or 'g' => FormatGeneral(numerator, denominator, format, numberFormatInfo),
@@ -2719,7 +2547,6 @@ public partial struct QuantityValue
                 'E' or 'e' => FormatWithScientificFormat(numerator, denominator, format, numberFormatInfo),
                 'P' or 'p' => FormatWithPercentFormat(numerator, denominator, format, numberFormatInfo),
                 'C' or 'c' => FormatWithCurrencyFormat(numerator, denominator, format, numberFormatInfo),
-                'S' or 's' => FormatWithSignificantDigitsAfterRadix(numerator, denominator, format, numberFormatInfo),
                 _ => // 'R', 'r' and the custom formats are handed over to the double (possible loss of precision)
                     fraction.ToDouble().ToString(format, formatProvider)
             };
@@ -3285,88 +3112,6 @@ public partial struct QuantityValue
         private static string FormatWithCustomFormat(BigInteger numerator, BigInteger denominator, string format, NumberFormatInfo formatProvider)
         {
             return new QuantityValue(numerator, denominator).ToDouble().ToString(format, formatProvider);
-        }
-
-        /// <summary>
-        ///     Formats a fraction as a string with a specified number of significant digits after the radix point.
-        /// </summary>
-        /// <param name="numerator">The numerator of the fraction.</param>
-        /// <param name="denominator">The denominator of the fraction.</param>
-        /// <param name="format">
-        ///     The format string to use, which specifies the maximum number of digits after the radix point.
-        /// </param>
-        /// <param name="formatProvider">An object that provides culture-specific formatting information.</param>
-        /// <returns>
-        ///     A string representation of the fraction, formatted with the specified number of significant digits after the
-        ///     radix point.
-        /// </returns>
-        /// <remarks>
-        ///     The method determines the formatting style based on the magnitude of the fraction:
-        ///     <list type="bullet">
-        ///         <item>
-        ///             For values greater than 1e5, the fraction is formatted in scientific notation (e.g., 1.23e6 for 1230000).
-        ///         </item>
-        ///         <item>
-        ///             For values less than or equal to 1e-4, the fraction is formatted in scientific notation (e.g., 1.23e-4 for
-        ///             0.000123).
-        ///         </item>
-        ///         <item>
-        ///             For values between 1e-3 and 1e5, the fraction is formatted as a decimal number.
-        ///         </item>
-        ///     </list>
-        /// </remarks>
-        private static string FormatWithSignificantDigitsAfterRadix(BigInteger numerator, BigInteger denominator, string format, NumberFormatInfo formatProvider)
-        {
-            if (numerator.IsZero)
-            {
-                return 0.ToString(formatProvider);
-            }
-
-            const string quotientFormat = "N0";
-
-            if (!TryGetPrecisionDigits(format, 2, out var maxDigitsAfterRadix))
-            {
-                // not a valid "S" format: assuming a custom format
-                return FormatWithCustomFormat(numerator, denominator, format, formatProvider);
-            }
-
-            var sb = new StringBuilder(3 + maxDigitsAfterRadix);
-
-            if (numerator.Sign < 0)
-            {
-                sb.Append(formatProvider.NegativeSign);
-                numerator = -numerator;
-            }
-
-            var exponent = GetExponentPower(numerator, denominator, out var exponentTerm);
-            QuantityValue mantissa;
-            switch (exponent)
-            {
-                case > 5:
-                    // the smallest value would have the form: 1.23e6 (1230000)
-                    mantissa = Round(numerator, denominator * exponentTerm, maxDigitsAfterRadix, DefaultMidpointRoundingMode);
-                    AppendSignificantDecimals(sb, mantissa, formatProvider, maxDigitsAfterRadix, quotientFormat);
-                    return AppendExponentWithSignificantDigits(sb, exponent, formatProvider, format[0] is 's' ? 'e' : 'E')
-                        .ToString();
-                case <= -4:
-                    // the largest value would have the form: 1.23e-4 (0.000123)
-                    mantissa = Round(numerator * exponentTerm, denominator, maxDigitsAfterRadix, DefaultMidpointRoundingMode);
-                    AppendSignificantDecimals(sb, mantissa, formatProvider, maxDigitsAfterRadix, quotientFormat);
-                    return AppendExponentWithSignificantDigits(sb, exponent, formatProvider, format[0] is 's' ? 'e' : 'E')
-                        .ToString();
-                case < 0:
-                    // the smallest value would have the form: 1.23e-3 (0.00123)
-                    var leadingZeroes = -exponent;
-                    maxDigitsAfterRadix += leadingZeroes - 1;
-                    mantissa = Round(numerator, denominator, maxDigitsAfterRadix, DefaultMidpointRoundingMode);
-                    return AppendSignificantDecimals(sb, mantissa, formatProvider, maxDigitsAfterRadix, quotientFormat)
-                        .ToString();
-                default:
-                    // the largest value would have the form: 1.23e5 (123000)
-                    mantissa = Round(numerator, denominator, maxDigitsAfterRadix, DefaultMidpointRoundingMode);
-                    return AppendSignificantDecimals(sb, mantissa, formatProvider, maxDigitsAfterRadix, quotientFormat)
-                        .ToString();
-            }
         }
 
         /// <summary>

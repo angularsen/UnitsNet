@@ -64,7 +64,7 @@ public partial class QuantityValueTests
             QuantityValue value = decimalValue;
             var debugView = new QuantityValue.QuantityValueDebugView(value);
 
-            Assert.Equal(value.ToString("S"), debugView.StringFormats.ShortFormat);
+            Assert.Equal(value.ToString("G6"), debugView.StringFormats.ShortFormat);
         }
 
         [Theory]

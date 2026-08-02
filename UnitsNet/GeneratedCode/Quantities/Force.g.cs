@@ -947,7 +947,9 @@ namespace UnitsNet
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="CultureInfo.CurrentCulture" /> if null.
         /// </summary>
-        public string ToString(string? format, IFormatProvider? provider)
+        public string ToString(
+            [StringSyntax(StringSyntaxAttribute.NumericFormat)] string? format,
+            IFormatProvider? provider)
         {
             return QuantityFormatter.Default.Format(this, format, provider);
         }
