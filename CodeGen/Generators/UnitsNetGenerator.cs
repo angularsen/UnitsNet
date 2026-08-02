@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CodeGen.Generators.UnitsNetGen;
+using CodeGen.Helpers;
 using CodeGen.Helpers.UnitEnumValueAllocation;
 using CodeGen.JsonTypes;
 using Serilog;
@@ -91,63 +92,63 @@ namespace CodeGen.Generators
             if (File.Exists(filePath)) return;
 
             var content = new UnitTestStubGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content);
+            CodeGenFile.WriteAllText(filePath, content);
             Log.Information("✅ {Quantity} initial test stub", quantity.Name);
         }
 
         private static void GenerateQuantity(Quantity quantity, string filePath)
         {
             var content = new QuantityGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content);
+            CodeGenFile.WriteAllText(filePath, content);
         }
 
         private static void GenerateNumberToExtensions(Quantity quantity, string filePath)
         {
             var content = new NumberExtensionsGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content);
+            CodeGenFile.WriteAllText(filePath, content);
         }
 
         private static void GenerateNumberToExtensionsTestClass(Quantity quantity, string filePath)
         {
             var content = new NumberExtensionsTestClassGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content);
+            CodeGenFile.WriteAllText(filePath, content);
         }
 
         private static void GenerateNumberToExtensionsCS14(Quantity quantity, string filePath)
         {
             var content = new NumberExtensionsCS14Generator(quantity).Generate();
-            File.WriteAllText(filePath, content);
+            CodeGenFile.WriteAllText(filePath, content);
         }
 
         private static void GenerateNumberToExtensionsCS14TestClass(Quantity quantity, string filePath)
         {
             var content = new NumberExtensionsCS14TestClassGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content);
+            CodeGenFile.WriteAllText(filePath, content);
         }
 
         private static void GenerateUnitType(Quantity quantity, string filePath, UnitEnumNameToValue unitEnumValues)
         {
             var content = new UnitTypeGenerator(quantity, unitEnumValues).Generate();
-            File.WriteAllText(filePath, content);
+            CodeGenFile.WriteAllText(filePath, content);
         }
 
         private static void GenerateQuantityTestBaseClass(Quantity quantity, string filePath)
         {
             var content = new UnitTestBaseClassGenerator(quantity).Generate();
-            File.WriteAllText(filePath, content);
+            CodeGenFile.WriteAllText(filePath, content);
         }
 
         private static void GenerateIQuantityTests(Quantity[] quantities, string filePath)
         {
             var content = new IQuantityTestClassGenerator(quantities).Generate();
-            File.WriteAllText(filePath, content);
+            CodeGenFile.WriteAllText(filePath, content);
             Log.Information("✅ IQuantityTests.g.cs");
         }
 
         private static void GenerateStaticQuantity(Quantity[] quantities, string filePath)
         {
             var content = new StaticQuantityGenerator(quantities).Generate();
-            File.WriteAllText(filePath, content);
+            CodeGenFile.WriteAllText(filePath, content);
             Log.Information("✅ Quantity.g.cs");
         }
 
@@ -171,7 +172,7 @@ namespace CodeGen.Generators
                         $"{resourcesDirectory}/{quantity.Name}.restext" :
                         $"{resourcesDirectory}/{quantity.Name}.{culture}.restext";
 
-                    using var writer = File.CreateText(fileName);
+                    using var writer = CodeGenFile.CreateText(fileName);
 
                     foreach(Unit unit in quantity.Units)
                     {

@@ -1,5 +1,7 @@
 // Licensed under MIT No Attribution, see LICENSE file at the root.
 
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using System.Text.Json;
 using Fictional.Measurements;
 using UnitsNet;
@@ -10,6 +12,23 @@ namespace UnitsNet.Modular.Tests;
 
 public sealed class GeneratedQuantityTests
 {
+    [Fact]
+    public void FormattingApis_IdentifyNumericFormatSyntax()
+    {
+        MethodInfo quantityToString = typeof(Length).GetMethod(nameof(Length.ToString), [typeof(string)])!;
+        StringSyntaxAttribute? quantitySyntax = quantityToString
+            .GetParameters()[0]
+            .GetCustomAttribute<StringSyntaxAttribute>();
+
+        MethodInfo descriptorFormat = typeof(IQuantityDescriptor).GetMethod(nameof(IQuantityDescriptor.Format))!;
+        StringSyntaxAttribute? descriptorSyntax = descriptorFormat
+            .GetParameters()[1]
+            .GetCustomAttribute<StringSyntaxAttribute>();
+
+        Assert.Equal(StringSyntaxAttribute.NumericFormat, quantitySyntax?.Syntax);
+        Assert.Equal(StringSyntaxAttribute.NumericFormat, descriptorSyntax?.Syntax);
+    }
+
     [Fact]
     public void GeneratedRegistry_SystemTextJsonRoundTripsBuiltInAndCustomQuantities()
     {

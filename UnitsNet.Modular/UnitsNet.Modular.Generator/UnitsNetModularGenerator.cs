@@ -20,6 +20,8 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
     private const string GenerationNamespace = "UnitsNet.Modular";
     private const string IncludeName = "IInclude";
     private const string IncludeProfileName = "IIncludeProfile";
+    private const string DocumentationUrl =
+        "https://github.com/angularsen/UnitsNet/tree/master/UnitsNet.Modular";
 
     private static readonly DiagnosticDescriptor MissingDefinition = new DiagnosticDescriptor(
         "UNM001",
@@ -27,7 +29,8 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
         "Type '{0}' is selected as a quantity but has no UnitsNet.Modular quantity definition",
         "UnitsNet.Modular",
         DiagnosticSeverity.Error,
-        true);
+        true,
+        helpLinkUri: DocumentationUrl + "#select-quantities");
 
     private static readonly DiagnosticDescriptor EmptyUnitSet = new DiagnosticDescriptor(
         "UNM002",
@@ -35,7 +38,8 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
         "Pattern '{0}' matched no units in quantity '{1}'",
         "UnitsNet.Modular",
         DiagnosticSeverity.Error,
-        true);
+        true,
+        helpLinkUri: DocumentationUrl + "#filter-units");
 
     private static readonly DiagnosticDescriptor InvalidDefinition = new DiagnosticDescriptor(
         "UNM003",
@@ -43,7 +47,8 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
         "Quantity '{0}' must define its base unit '{1}'",
         "UnitsNet.Modular",
         DiagnosticSeverity.Error,
-        true);
+        true,
+        helpLinkUri: DocumentationUrl + "#quantity-definition-json");
 
     private static readonly DiagnosticDescriptor InvalidJsonDefinition = new DiagnosticDescriptor(
         "UNM004",
@@ -51,7 +56,8 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
         "Definition file '{0}' is invalid: {1}",
         "UnitsNet.Modular",
         DiagnosticSeverity.Error,
-        true);
+        true,
+        helpLinkUri: DocumentationUrl + "#quantity-definition-json");
 
     private static readonly DiagnosticDescriptor DuplicateDefinition = new DiagnosticDescriptor(
         "UNM005",
@@ -59,7 +65,8 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
         "Quantity definition ID '{0}' is provided by more than one JSON file",
         "UnitsNet.Modular",
         DiagnosticSeverity.Error,
-        true);
+        true,
+        helpLinkUri: DocumentationUrl + "#register-a-definition");
 
     private static readonly DiagnosticDescriptor InvalidPattern = new DiagnosticDescriptor(
         "UNM006",
@@ -67,7 +74,8 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
         "Pattern '{0}' for quantity '{1}' is invalid: {2}",
         "UnitsNet.Modular",
         DiagnosticSeverity.Error,
-        true);
+        true,
+        helpLinkUri: DocumentationUrl + "#filter-units");
 
     private static readonly DiagnosticDescriptor InvalidRelationDefinition = new DiagnosticDescriptor(
         "UNM010",
@@ -75,7 +83,8 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
         "Relation file '{0}' is invalid: {1}",
         "UnitsNet.Modular",
         DiagnosticSeverity.Error,
-        true);
+        true,
+        helpLinkUri: DocumentationUrl + "#add-quantity-relationships");
 
     private static readonly DiagnosticDescriptor InvalidRelationSet = new DiagnosticDescriptor(
         "UNM011",
@@ -83,7 +92,8 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
         "{0}",
         "UnitsNet.Modular",
         DiagnosticSeverity.Error,
-        true);
+        true,
+        helpLinkUri: DocumentationUrl + "#add-quantity-relationships");
 
     private static readonly DiagnosticDescriptor MissingUnitSet = new DiagnosticDescriptor(
         "UNM012",
@@ -91,7 +101,8 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
         "Unit-set type selected for quantity '{0}' has no UnitSet attribute or no patterns",
         "UnitsNet.Modular",
         DiagnosticSeverity.Error,
-        true);
+        true,
+        helpLinkUri: DocumentationUrl + "#filter-units");
 
     private static readonly DiagnosticDescriptor ConflictingTargetDefinition = new DiagnosticDescriptor(
         "UNM013",
@@ -99,7 +110,8 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
         "Definitions '{0}' and '{1}' both generate '{2}'",
         "UnitsNet.Modular",
         DiagnosticSeverity.Error,
-        true);
+        true,
+        helpLinkUri: DocumentationUrl + "#module-declaration");
 
     private static readonly DiagnosticDescriptor MultipleModules = new DiagnosticDescriptor(
         "UNM014",
@@ -107,7 +119,8 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
         "Compilation defines multiple UnitsNet.Modular modules ({0}); compose selections into one module using include profiles",
         "UnitsNet.Modular",
         DiagnosticSeverity.Error,
-        true);
+        true,
+        helpLinkUri: DocumentationUrl + "#module-declaration");
 
     private static readonly DiagnosticDescriptor MissingAffineOffset = new DiagnosticDescriptor(
         "UNM015",
@@ -115,7 +128,8 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
         "Affine quantity '{0}' requires offset quantity '{1}'; include both quantities in the module",
         "UnitsNet.Modular",
         DiagnosticSeverity.Error,
-        true);
+        true,
+        helpLinkUri: DocumentationUrl + "#arithmetic-and-relationships");
 
     private static readonly DiagnosticDescriptor LegacyUnitsNetReference = new DiagnosticDescriptor(
         "UNM016",
@@ -123,7 +137,8 @@ public sealed class UnitsNetModularGenerator : IIncrementalGenerator
         "Remove the legacy UnitsNet package reference; a UnitsNet.Modular module generates its own UnitsNet quantity types and contracts",
         "UnitsNet.Modular",
         DiagnosticSeverity.Error,
-        true);
+        true,
+        helpLinkUri: DocumentationUrl + "#namespaces");
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {

@@ -252,6 +252,42 @@ namespace UnitsNet.Tests
                 Assert.Equal(1800, conversionFunction!(18));
             });
         }
+
+        [Theory]
+        [MemberData(nameof(ConverterTestOptions))]
+        public void ConvertValue_WithCustomBuiltInUnitDefinition_UsesConfiguredConversion(bool freeze, ConversionCachingMode cachingMode, bool reduceConstants)
+        {
+            var customPressureInfo = Pressure.PressureInfo.CreateDefault(unitDefinitions =>
+                unitDefinitions.Configure(PressureUnit.InchOfWaterColumn, definition => definition.WithConversionFactorFromBase(999)));
+
+            var unitParser = new UnitParser([customPressureInfo]);
+            var convertOptions = new QuantityConverterBuildOptions(freeze, cachingMode, reduceConstants);
+            var unitConverter = UnitConverter.Create(unitParser, convertOptions);
+
+            var pressure = Pressure.FromPascals(1);
+
+            Assert.Multiple(() =>
+            {
+                QuantityValue convertedValue = unitConverter.ConvertValue(1, PressureUnit.Pascal, PressureUnit.InchOfWaterColumn);
+
+                Assert.Equal(999, convertedValue);
+            }, () =>
+            {
+                QuantityValue convertedValue = unitConverter.ConvertValue(999, PressureUnit.InchOfWaterColumn, PressureUnit.Pascal);
+
+                Assert.Equal(1, convertedValue);
+            }, () =>
+            {
+                QuantityValue convertedValue = pressure.As(PressureUnit.InchOfWaterColumn, unitConverter);
+
+                Assert.Equal(999, convertedValue);
+            }, () =>
+            {
+                var convertedQuantity = pressure.ToUnit(PressureUnit.InchOfWaterColumn, unitConverter);
+
+                Assert.Equal(999, convertedQuantity.Value);
+            });
+        }
         
         
         [Theory]
