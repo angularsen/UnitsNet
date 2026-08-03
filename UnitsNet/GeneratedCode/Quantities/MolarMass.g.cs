@@ -39,9 +39,9 @@ namespace UnitsNet
         ILinearQuantity<MolarMass, MolarMassUnit>,
 #if NET7_0_OR_GREATER
         IDivisionOperators<MolarMass, MolarMass, QuantityValue>,
-        IMultiplyOperators<MolarMass, AmountOfSubstance, Mass>,
         IMultiplyOperators<MolarMass, Molarity, MassConcentration>,
         IMultiplyOperators<MolarMass, MolarFlow, MassFlow>,
+        IMultiplyOperators<MolarMass, AmountOfSubstance, Mass>,
         IComparisonOperators<MolarMass, MolarMass, bool>,
         IParsable<MolarMass>,
 #endif
@@ -670,12 +670,6 @@ namespace UnitsNet
 
         #region Relational Operators
 
-        /// <summary>Get <see cref="Mass"/> from <see cref="MolarMass"/> * <see cref="AmountOfSubstance"/>.</summary>
-        public static Mass operator *(MolarMass molarMass, AmountOfSubstance amountOfSubstance)
-        {
-            return Mass.FromKilograms(molarMass.KilogramsPerMole * amountOfSubstance.Moles);
-        }
-
         /// <summary>Get <see cref="MassConcentration"/> from <see cref="MolarMass"/> * <see cref="Molarity"/>.</summary>
         public static MassConcentration operator *(MolarMass molarMass, Molarity molarity)
         {
@@ -686,6 +680,12 @@ namespace UnitsNet
         public static MassFlow operator *(MolarMass molarMass, MolarFlow molarFlow)
         {
             return MassFlow.FromKilogramsPerSecond(molarMass.KilogramsPerKilomole * molarFlow.KilomolesPerSecond);
+        }
+
+        /// <summary>Get <see cref="Mass"/> from <see cref="MolarMass"/> * <see cref="AmountOfSubstance"/>.</summary>
+        public static Mass operator *(MolarMass molarMass, AmountOfSubstance amountOfSubstance)
+        {
+            return Mass.FromKilograms(molarMass.KilogramsPerMole * amountOfSubstance.Moles);
         }
 
         #endregion

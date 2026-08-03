@@ -25,7 +25,7 @@ namespace CodeGen.Generators
         ///     The relations are defined in UnitRelations.json
         ///     Each defined relation can be applied multiple times to one or two quantities depending on the operator and the operands.
         ///
-        ///     The format of a relation definition is "Quantity.Unit operator Quantity.Unit = Quantity.Unit" (See examples below).
+        ///     The format of a relation definition is "Quantity.Unit = Quantity.Unit * Quantity.Unit" (See examples below).
         ///     "QuantityValue" can be used as a unitless operand.
         ///     "1" can be used as the result operand to define inverse relations.
         ///
@@ -83,8 +83,8 @@ namespace CodeGen.Generators
             relations.Sort();
 
             var duplicates = relations
-                .GroupBy(r => r.SortString)
-                .Where(g => g.Count() > 1)
+                .CountBy(r => r.SortString)
+                .Where(g => g.Value > 1)
                 .Select(g => g.Key)
                 .ToList();
 
@@ -95,8 +95,8 @@ namespace CodeGen.Generators
             }
 
             var ambiguous = relations
-                .GroupBy(r => $"{r.LeftQuantity.Name} {r.Operator} {r.RightQuantity.Name}")
-                .Where(g => g.Count() > 1)
+                .CountBy(r => r.DisambiguationString)
+                .Where(g => g.Value > 1)
                 .Select(g => g.Key)
                 .ToList();
 

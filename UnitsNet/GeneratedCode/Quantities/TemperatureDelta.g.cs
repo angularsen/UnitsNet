@@ -40,8 +40,8 @@ namespace UnitsNet
 #if NET7_0_OR_GREATER
         IDivisionOperators<TemperatureDelta, TemperatureDelta, QuantityValue>,
         IDivisionOperators<TemperatureDelta, TemperatureChangeRate, Duration>,
-        IMultiplyOperators<TemperatureDelta, Entropy, Energy>,
         IMultiplyOperators<TemperatureDelta, VolumetricHeatCapacity, EnergyDensity>,
+        IMultiplyOperators<TemperatureDelta, Entropy, Energy>,
         IMultiplyOperators<TemperatureDelta, HeatTransferCoefficient, HeatFlux>,
         IDivisionOperators<TemperatureDelta, ThermalInsulance, HeatFlux>,
         IDivisionOperators<TemperatureDelta, TemperatureGradient, Length>,
@@ -606,16 +606,16 @@ namespace UnitsNet
             return Duration.FromSeconds(temperatureDelta.DegreesCelsius / temperatureChangeRate.DegreesCelsiusPerSecond);
         }
 
-        /// <summary>Get <see cref="Energy"/> from <see cref="TemperatureDelta"/> * <see cref="Entropy"/>.</summary>
-        public static Energy operator *(TemperatureDelta temperatureDelta, Entropy entropy)
-        {
-            return Energy.FromJoules(temperatureDelta.Kelvins * entropy.JoulesPerKelvin);
-        }
-
         /// <summary>Get <see cref="EnergyDensity"/> from <see cref="TemperatureDelta"/> * <see cref="VolumetricHeatCapacity"/>.</summary>
         public static EnergyDensity operator *(TemperatureDelta temperatureDelta, VolumetricHeatCapacity volumetricHeatCapacity)
         {
             return EnergyDensity.FromJoulesPerCubicMeter(temperatureDelta.Kelvins * volumetricHeatCapacity.JoulesPerCubicMeterKelvin);
+        }
+
+        /// <summary>Get <see cref="Energy"/> from <see cref="TemperatureDelta"/> * <see cref="Entropy"/>.</summary>
+        public static Energy operator *(TemperatureDelta temperatureDelta, Entropy entropy)
+        {
+            return Energy.FromJoules(temperatureDelta.Kelvins * entropy.JoulesPerKelvin);
         }
 
         /// <summary>Get <see cref="HeatFlux"/> from <see cref="TemperatureDelta"/> * <see cref="HeatTransferCoefficient"/>.</summary>
