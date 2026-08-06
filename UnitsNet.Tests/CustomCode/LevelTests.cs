@@ -41,5 +41,41 @@ namespace UnitsNet.Tests
             // reference can't be zero or less than zero if quantity is postive.
             Assert.Throws<ArgumentOutOfRangeException>(() => new Level(quantity, reference));
         }
+
+        [Fact]
+        public void LogarithmicAddition_OfTwoLevels_CombinesThemInLinearSpace()
+        {
+            // The values from https://github.com/angularsen/UnitsNet/issues/1569, which read
+            // 4.18 dB as wrong on the assumption that adding levels adds their decibel numbers.
+            // Adding two levels combines them in linear power space, so the result is
+            // 10 * log10(10^0.16 + 10^0.07).
+            Level sum = Level.FromDecibels(1.6) + Level.FromDecibels(0.7);
+
+            var expected = 10 * Math.Log10(Math.Pow(10, 0.16) + Math.Pow(10, 0.07));
+            AssertEx.EqualTolerance(expected, sum.Decibels, DecibelsTolerance);
+            AssertEx.EqualTolerance(4.18357203248652, sum.Decibels, DecibelsTolerance);
+        }
+
+        [Fact]
+        public void LogarithmicSubtraction_OfEqualLevels_ReturnsNegativeInfinity()
+        {
+            // Removing a level from itself leaves no power at all, and log10(0) is -infinity.
+            // Pinned because it is returned silently rather than signalled.
+            Level v = Level.FromDecibels(40);
+
+            Assert.Equal(double.NegativeInfinity, (double)(v - v).Decibels);
+        }
+
+        [Fact]
+        public void LogarithmicSubtraction_WhenSubtrahendIsLarger_ReturnsNaN()
+        {
+            // The linear difference is negative here, and log10 of a negative number is undefined.
+            // The constructor rejects that case with ArgumentOutOfRangeException; this operator
+            // returns NaN silently instead. Pinned as current behaviour, not endorsed as correct.
+            Level smaller = Level.FromDecibels(0.7);
+            Level larger = Level.FromDecibels(1.6);
+
+            Assert.Equal(double.NaN, (double)(smaller - larger).Decibels);
+        }
     }
 }
