@@ -49,6 +49,9 @@ on:
 
 permissions:
   contents: read
+  # Codecov uploads with use_oidc, which needs a token. This workflow declares its
+  # permissions explicitly, so id-token stays none unless it is named here.
+  id-token: write
 
 concurrency:
   group: unitsnet-modular-ci-${{ github.ref }}
@@ -80,11 +83,29 @@ jobs:
       - name: Restore
         run: dotnet restore UnitsNet.Modular.slnx -p:Platform=ProjectReferences
 
+      - name: Restore local tools
+        run: dotnet tool restore
+
       - name: Build
         run: dotnet build UnitsNet.Modular.slnx --configuration Release --no-restore --no-incremental -p:Platform=ProjectReferences
 
-      - name: Test
-        run: dotnet test UnitsNet.Modular.slnx --configuration Release --no-build -p:Platform=ProjectReferences
+      - name: Test with coverage
+        run: |
+          mkdir -p Artifacts/Coverage
+          dotnet tool run dotCover -- cover-dotnet \
+            --Output "Artifacts/Coverage/UnitsNet.Modular.coverage.xml" \
+            --ReportType DetailedXML \
+            --Filters '+:module=UnitsNet.Modular;+:module=UnitsNet.Modular.Generator;-:module=*Tests;-:module=*Fixture' \
+            --ReturnTargetExitCode \
+            -- test UnitsNet.Modular.slnx --configuration Release --no-build -p:Platform=ProjectReferences
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v6
+        with:
+          directory: Artifacts/Coverage
+          fail_ci_if_error: false
+          plugins: noop
+          use_oidc: true
 
       - name: Native AOT smoke test
         run: |
