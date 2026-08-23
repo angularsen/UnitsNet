@@ -2047,5 +2047,11 @@
     "SquareInchPerInch": 7,
     "SquareMeterPerMeter": 1,
     "SquareMillimeterPerMeter": 5
+  },
+  "JapaneseHydrometerScale": {
+    "DegreeBaumeHeavy": 6,
+    "DegreeBaumeLight": 9,
+    "ReciprocalSpecificGravity": 5,
+    "SakeMeterValue": 7
   }
 }
