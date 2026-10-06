@@ -308,6 +308,22 @@ public abstract class QuantityInfoBase<TQuantity, TUnit, TUnitInfo> : QuantityIn
         return FromDelegate(value, unit);
     }
 
+    /// <summary>
+    ///     Creates an instance of the quantity from a value in a <see cref="UnitOf{TQuantity}" />, such as a furlong of
+    ///     <see cref="Length" />.
+    /// </summary>
+    /// <param name="value">The numerical value in <paramref name="unit" />.</param>
+    /// <param name="unit">The unit of the value.</param>
+    /// <returns>
+    ///     The quantity in its base unit, since a quantity can only be in a unit of <typeparamref name="TUnit" />.
+    /// </returns>
+    /// <exception cref="ArgumentNullException"><paramref name="unit" /> is <c>null</c>.</exception>
+    public TQuantity From(QuantityValue value, UnitOf<TQuantity> unit)
+    {
+        if (unit is null) throw new ArgumentNullException(nameof(unit));
+        return From(unit.ConversionToBase.Evaluate(value), BaseUnitInfo.Value);
+    }
+
     /// <inheritdoc />
     TQuantity IQuantityInstanceInfo<TQuantity>.Create(QuantityValue value, UnitKey unitKey)
     {
