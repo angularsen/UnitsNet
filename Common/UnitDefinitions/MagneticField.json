@@ -13,8 +13,8 @@
       "SingularName": "Tesla",
       "PluralName": "Teslas",
       "BaseUnits": {
-        "L": "Meter",
         "M": "Kilogram",
+        "T": "Second",
         "I": "Ampere"
       },
       "FromUnitToBaseFunc": "{x}",

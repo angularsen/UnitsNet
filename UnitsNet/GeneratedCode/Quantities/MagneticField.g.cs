@@ -123,19 +123,19 @@ namespace UnitsNet
                 yield return new (MagneticFieldUnit.Gauss, "Gauss", "Gausses", BaseUnits.Undefined,
                      10000
                 );
-                yield return new (MagneticFieldUnit.Microtesla, "Microtesla", "Microteslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, current: ElectricCurrentUnit.Ampere),
+                yield return new (MagneticFieldUnit.Microtesla, "Microtesla", "Microteslas", new BaseUnits(mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
                      1000000
                 );
                 yield return new (MagneticFieldUnit.Milligauss, "Milligauss", "Milligausses", BaseUnits.Undefined,
                      10000000
                 );
-                yield return new (MagneticFieldUnit.Millitesla, "Millitesla", "Milliteslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, current: ElectricCurrentUnit.Ampere),
+                yield return new (MagneticFieldUnit.Millitesla, "Millitesla", "Milliteslas", new BaseUnits(mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
                      1000
                 );
-                yield return new (MagneticFieldUnit.Nanotesla, "Nanotesla", "Nanoteslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, current: ElectricCurrentUnit.Ampere),
+                yield return new (MagneticFieldUnit.Nanotesla, "Nanotesla", "Nanoteslas", new BaseUnits(mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
                      1000000000
                 );
-                yield return new (MagneticFieldUnit.Tesla, "Tesla", "Teslas", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, current: ElectricCurrentUnit.Ampere));
+                yield return new (MagneticFieldUnit.Tesla, "Tesla", "Teslas", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
             }
         }
 

@@ -256,5 +256,32 @@ namespace UnitsNet.Tests
             }
 
         }
+
+        public static IEnumerable<object[]> QuantityNames => Quantity.Infos.Select(info => new object[] { info.Name });
+
+        [Theory]
+        [MemberData(nameof(QuantityNames))]
+        public void UnitBaseUnits_CoverExactlyTheQuantityBaseDimensions(string quantityName)
+        {
+            // StandardVolumeFlow is dimensioned as mass flow (M·T⁻¹), but its units are defined by standard volume (L³·T⁻¹).
+            if (quantityName == nameof(StandardVolumeFlow)) return;
+
+            QuantityInfo quantityInfo = Quantity.ByName[quantityName];
+            BaseDimensions dimensions = quantityInfo.BaseDimensions;
+
+            foreach (UnitInfo unitInfo in quantityInfo.UnitInfos.Where(unit => unit.BaseUnits != BaseUnits.Undefined))
+            {
+                BaseUnits baseUnits = unitInfo.BaseUnits;
+                Assert.True(
+                    (dimensions.Length != 0) == baseUnits.Length.HasValue &&
+                    (dimensions.Mass != 0) == baseUnits.Mass.HasValue &&
+                    (dimensions.Time != 0) == baseUnits.Time.HasValue &&
+                    (dimensions.Current != 0) == baseUnits.Current.HasValue &&
+                    (dimensions.Temperature != 0) == baseUnits.Temperature.HasValue &&
+                    (dimensions.Amount != 0) == baseUnits.Amount.HasValue &&
+                    (dimensions.LuminousIntensity != 0) == baseUnits.LuminousIntensity.HasValue,
+                    $"{quantityName}.{unitInfo.Name} has BaseUnits {baseUnits} that do not match the quantity's BaseDimensions {dimensions}.");
+            }
+        }
     }
 }
