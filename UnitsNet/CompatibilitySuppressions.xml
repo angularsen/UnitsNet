@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- https://learn.microsoft.com/dotnet/fundamentals/package-validation/diagnostic-ids -->
+<!--
+  Every public member available on netstandard2.0 must also exist on .NET, since a library compiled against
+  netstandard2.0 may run in an app that loads one of the .NET target frameworks.
+
+  The suppressions below are the intended exceptions: static abstract interface members and generic math
+  constraints, which require .NET 7 or later and cannot exist on netstandard2.0. Types implementing these
+  interfaces must therefore be compiled for .NET to run on .NET.
+-->
+<Suppressions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Suppression>
+    <DiagnosticId>CP0006</DiagnosticId>
+    <Target>M:UnitsNet.IQuantity`2.From(UnitsNet.QuantityValue,`1)</Target>
+    <Left>lib/netstandard2.0/UnitsNet.dll</Left>
+    <Right>lib/net8.0/UnitsNet.dll</Right>
+  </Suppression>
+  <Suppression>
+    <DiagnosticId>CP0006</DiagnosticId>
+    <Target>M:UnitsNet.IQuantityOfType`1.Create(UnitsNet.QuantityValue,UnitsNet.UnitKey)</Target>
+    <Left>lib/netstandard2.0/UnitsNet.dll</Left>
+    <Right>lib/net8.0/UnitsNet.dll</Right>
+  </Suppression>
+  <Suppression>
+    <DiagnosticId>CP0006</DiagnosticId>
+    <Target>P:UnitsNet.IAffineQuantity`2.Zero</Target>
+    <Left>lib/netstandard2.0/UnitsNet.dll</Left>
+    <Right>lib/net8.0/UnitsNet.dll</Right>
+  </Suppression>
+  <Suppression>
+    <DiagnosticId>CP0006</DiagnosticId>
+    <Target>P:UnitsNet.ILinearQuantity`1.Zero</Target>
+    <Left>lib/netstandard2.0/UnitsNet.dll</Left>
+    <Right>lib/net8.0/UnitsNet.dll</Right>
+  </Suppression>
+  <Suppression>
+    <DiagnosticId>CP0006</DiagnosticId>
+    <Target>P:UnitsNet.ILogarithmicQuantity`1.Zero</Target>
+    <Left>lib/netstandard2.0/UnitsNet.dll</Left>
+    <Right>lib/net8.0/UnitsNet.dll</Right>
+  </Suppression>
+  <Suppression>
+    <DiagnosticId>CP0006</DiagnosticId>
+    <Target>P:UnitsNet.IQuantity`2.Info</Target>
+    <Left>lib/netstandard2.0/UnitsNet.dll</Left>
+    <Right>lib/net8.0/UnitsNet.dll</Right>
+  </Suppression>
+  <Suppression>
+    <DiagnosticId>CP0006</DiagnosticId>
+    <Target>P:UnitsNet.IQuantityOfType`1.Info</Target>
+    <Left>lib/netstandard2.0/UnitsNet.dll</Left>
+    <Right>lib/net8.0/UnitsNet.dll</Right>
+  </Suppression>
+  <Suppression>
+    <DiagnosticId>CP0021</DiagnosticId>
+    <Target>T:UnitsNet.IAffineQuantity`2``1:T:System.Numerics.IAdditiveIdentity{`1,`1}</Target>
+    <Left>lib/netstandard2.0/UnitsNet.dll</Left>
+    <Right>lib/net8.0/UnitsNet.dll</Right>
+  </Suppression>
+  <Suppression>
+    <DiagnosticId>CP0021</DiagnosticId>
+    <Target>T:UnitsNet.IAffineQuantity`3``2:T:System.Numerics.IAdditiveIdentity{`2,`2}</Target>
+    <Left>lib/netstandard2.0/UnitsNet.dll</Left>
+    <Right>lib/net8.0/UnitsNet.dll</Right>
+  </Suppression>
+</Suppressions>

@@ -2,6 +2,7 @@
 // Copyright 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com). Maintained at https://github.com/angularsen/UnitsNet.
 
 using System.Numerics;
+using UnitsNet.Tests.CustomQuantities;
 
 namespace UnitsNet.Tests;
 
@@ -263,6 +264,22 @@ public partial class IQuantityTests
         QuantityInfo<MassUnit> info = quantity.GetQuantityInfo();
 
         Assert.Same(Mass.Info, info);
+    }
+
+    [Fact]
+    public void QuantityInfo_IQuantityOfTypeReference_ReturnsQuantityInfo()
+    {
+        // Part of the netstandard2.0 API, so it must also exist on .NET for libraries compiled against netstandard2.0.
+        Assert.Same(Mass.Info, GetQuantityInfo(new Mass(1.0, MassUnit.Kilogram)));
+        Assert.Same(HowMuch.Info, GetQuantityInfo(new HowMuch(1.0, HowMuchUnit.Some)));
+
+        static IQuantityInstanceInfo<TQuantity> GetQuantityInfo<TQuantity>(TQuantity quantity)
+            where TQuantity : IQuantityOfType<TQuantity>
+        {
+#pragma warning disable CS0618 // Type or member is obsolete
+            return quantity.QuantityInfo;
+#pragma warning restore CS0618
+        }
     }
 
 #if NET

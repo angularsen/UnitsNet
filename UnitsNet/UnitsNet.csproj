@@ -17,6 +17,8 @@
     <PackageTags>unit units quantity quantities measurement si metric imperial abbreviation abbreviations convert conversion parse immutable</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <IsAotCompatible Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">true</IsAotCompatible>
+    <!-- Validates that the public API is compatible across target frameworks, since an app may load a different target framework than a library compiled against this package -->
+    <EnablePackageValidation>true</EnablePackageValidation>
   </PropertyGroup>
 
   <!-- Assembly and msbuild properties -->
