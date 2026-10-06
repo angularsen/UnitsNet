@@ -274,6 +274,17 @@ Units.NET allows you to add your own units and quantities at runtime, to represe
 
 Read more at [Extending-with-Custom-Units](https://github.com/angularsen/UnitsNet/wiki/Extending-with-Custom-Units).
 
+#### Convert to and from your own unit of a quantity
+
+To convert a quantity to or from a unit that Units.NET doesn't define, describe the unit with a `UnitOf<TQuantity>` and its value in the base unit of the quantity. No unit enum value or setup is needed.
+
+```c#
+var furlong = new UnitOf<Length>("Furlong", "Furlongs", 201.168); // 1 furlong = 201.168 m
+
+double furlongs = Length.FromMiles(1).As(furlong); // 8
+Length length = Length.Info.From(2, furlong);      // 402.336 m, in the base unit
+```
+
 #### Map between unit enum values and unit abbreviations
 ```c#
 // Map unit enum values to unit abbreviations
