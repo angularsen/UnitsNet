@@ -4,4 +4,20 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0' or '$(TargetFrameworkIdentifier)' == '.NETFramework'">
     <Compile Include="$(MSBuildThisFileDirectory)NullableAttributes.cs" />
   </ItemGroup>
+
+  <!--
+    CodeGen regenerates the code in the GeneratedCode folders after it builds (see CodeGen.csproj). These projects build
+    after CodeGen through their reference to UnitsNet, so pick up any generated files that were added or removed after
+    this project was evaluated.
+  -->
+  <Target Name="RefreshUnitsNetGeneratedItems"
+          AfterTargets="ResolveProjectReferences"
+          Condition="Exists('$(MSBuildProjectDirectory)/GeneratedCode') and '$(DesignTimeBuild)' != 'true'">
+    <ItemGroup>
+      <Compile Remove="@(Compile)" Condition="!Exists('%(FullPath)')" />
+      <Compile Include="GeneratedCode/**/*.cs;CustomCode/*.cs" Exclude="@(Compile)" />
+      <EmbeddedResource Remove="@(EmbeddedResource)" Condition="!Exists('%(FullPath)')" />
+      <EmbeddedResource Include="GeneratedCode/Resources/*.restext" Exclude="@(EmbeddedResource)" />
+    </ItemGroup>
+  </Target>
 </Project>

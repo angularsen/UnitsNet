@@ -29,10 +29,10 @@ try {
   & "$PSScriptRoot/init.ps1" -SkipCoverageTools:($SkipTests -or $SkipCoverage)
 
   Remove-ArtifactsDir
-  Update-GeneratedCode
 
-  # Build main projects with dotnet CLI (cross-platform)
+  # Build main projects with dotnet CLI (cross-platform). Building also regenerates code from the unit definitions.
   Start-Build
+  Assert-GeneratedCodeUpToDate
   if (-not $SkipTests) {
     Start-Tests -SkipCoverage:$SkipCoverage
   }

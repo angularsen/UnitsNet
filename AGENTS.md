@@ -15,13 +15,14 @@ UnitsNet is a .NET library that provides strongly-typed physical units and quant
 - **Clean artifacts**: `clean.bat`
 
 ### Code Generation
-- **Generate code from JSON definitions**: `generate-code.bat` or `dotnet run --project CodeGen`
-  - Always run this after modifying any JSON files in `Common/UnitDefinitions/`
+- **Generate code from JSON definitions**: runs automatically as part of `dotnet build`
+  - Building runs CodeGen when the JSON files in `Common/UnitDefinitions/` or CodeGen itself changed
+  - To only regenerate without building everything: `dotnet run --project CodeGen`
   - The generator reads 131 JSON definition files and creates C# code
 
 ### Development Workflow
 1. Modify unit definitions in `Common/UnitDefinitions/*.json`
-2. Run `generate-code.bat` to regenerate C# code
+2. Run `dotnet build UnitsNet.slnx` to regenerate C# code and compile
 3. Run `build.bat` to compile and test
 4. Use `test.bat` for isolated test runs
 
@@ -61,7 +62,7 @@ The project uses a sophisticated code generation system:
    - Use division for `FromBaseToUnitFunc`
    - Prefer scientific notation (1e3, 1e-5)
    - Use exact constituent constants instead of pre-computed decimals
-3. Run `generate-code.bat`
+3. Run `dotnet build UnitsNet.slnx` to regenerate code
 4. Add tests if needed
 
 ## Important Conventions

@@ -16,7 +16,6 @@
     <File Path="Directory.Build.props" />
     <File Path="Directory.Build.targets" />
     <File Path="Directory.Packages.props" />
-    <File Path="generate-code.bat" />
     <File Path="init.bat" />
     <File Path="LICENSE" />
     <File Path="nuget.config" />

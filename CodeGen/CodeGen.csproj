@@ -28,4 +28,31 @@
     <PackageReference Include="System.CommandLine.DragonFruit" />
   </ItemGroup>
 
+  <!--
+    Generates code from the unit definitions after CodeGen builds. UnitsNet references this project, so building the
+    solution or any project with generated code keeps that code in sync with the JSON. It only runs when the
+    definitions or the generator changed since the last run. Skipped in IDE design-time builds, or with
+    SkipUnitsNetCodeGen=true.
+  -->
+  <ItemGroup>
+    <UnitsNetCodeGenInput Include="$(MSBuildThisFileDirectory)../Common/UnitDefinitions/*.json" />
+    <UnitsNetCodeGenInput Include="$(MSBuildThisFileDirectory)../Common/UnitRelations.json" />
+  </ItemGroup>
+
+  <Target Name="RunUnitsNetCodeGen"
+          AfterTargets="Build"
+          Condition="'$(DesignTimeBuild)' != 'true' and '$(SkipUnitsNetCodeGen)' != 'true'"
+          Inputs="@(UnitsNetCodeGenInput);$(TargetPath)"
+          Outputs="$(IntermediateOutputPath)UnitsNetCodeGen.stamp">
+    <PropertyGroup>
+      <_UnitsNetCodeGenDotnet>$(DOTNET_HOST_PATH)</_UnitsNetCodeGenDotnet>
+      <_UnitsNetCodeGenDotnet Condition="'$(_UnitsNetCodeGenDotnet)' == ''">dotnet</_UnitsNetCodeGenDotnet>
+      <_UnitsNetRepositoryRoot>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..'))</_UnitsNetRepositoryRoot>
+    </PropertyGroup>
+
+    <Exec Command="&quot;$(_UnitsNetCodeGenDotnet)&quot; &quot;$(TargetPath)&quot; --repository-root &quot;$(_UnitsNetRepositoryRoot)&quot;"
+          StandardOutputImportance="low" />
+    <Touch Files="$(IntermediateOutputPath)UnitsNetCodeGen.stamp" AlwaysCreate="true" />
+  </Target>
+
 </Project>
