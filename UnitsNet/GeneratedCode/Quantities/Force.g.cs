@@ -131,52 +131,25 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ForceUnit}"/> representing the default unit mappings for Force.</returns>
             public static IEnumerable<UnitDefinition<ForceUnit>> GetDefaultMappings()
             {
-                yield return new (ForceUnit.Decanewton, "Decanewton", "Decanewtons", new BaseUnits(length: LengthUnit.Decameter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 10)
-                );
-                yield return new (ForceUnit.Dyn, "Dyn", "Dyne", new BaseUnits(length: LengthUnit.Centimeter, mass: MassUnit.Gram, time: DurationUnit.Second),
-                     100000
-                );
-                yield return new (ForceUnit.GramForce, "GramForce", "GramsForce", BaseUnits.Undefined,
-                     new QuantityValue(20000000, 196133)
-                );
-                yield return new (ForceUnit.KilogramForce, "KilogramForce", "KilogramsForce", BaseUnits.Undefined,
-                     new QuantityValue(20000, 196133)
-                );
-                yield return new (ForceUnit.Kilonewton, "Kilonewton", "Kilonewtons", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (ForceUnit.Kilopond, "Kilopond", "Kiloponds", BaseUnits.Undefined,
-                     new QuantityValue(20000, 196133)
-                );
-                yield return new (ForceUnit.KilopoundForce, "KilopoundForce", "KilopoundsForce", BaseUnits.Undefined,
-                     new QuantityValue(2000000000, 8896443230521)
-                );
-                yield return new (ForceUnit.Meganewton, "Meganewton", "Meganewtons", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (ForceUnit.Micronewton, "Micronewton", "Micronewtons", new BaseUnits(length: LengthUnit.Micrometer, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     1000000
-                );
-                yield return new (ForceUnit.Millinewton, "Millinewton", "Millinewtons", new BaseUnits(length: LengthUnit.Millimeter, mass: MassUnit.Kilogram, time: DurationUnit.Second),
-                     1000
-                );
-                yield return new (ForceUnit.Newton, "Newton", "Newtons", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (ForceUnit.OunceForce, "OunceForce", "OunceForce", BaseUnits.Undefined,
-                     new QuantityValue(32000000000000, 8896443230521)
-                );
-                yield return new (ForceUnit.Poundal, "Poundal", "Poundals", BaseUnits.Undefined,
-                     new QuantityValue(125000000000, 17281869297)
-                );
-                yield return new (ForceUnit.PoundForce, "PoundForce", "PoundsForce", BaseUnits.Undefined,
-                     new QuantityValue(2000000000000, 8896443230521)
-                );
-                yield return new (ForceUnit.ShortTonForce, "ShortTonForce", "ShortTonsForce", BaseUnits.Undefined,
-                     new QuantityValue(1000000000, 8896443230521)
-                );
-                yield return new (ForceUnit.TonneForce, "TonneForce", "TonnesForce", BaseUnits.Undefined,
-                     new QuantityValue(20, 196133)
-                );
+                return new UnitDefinition<ForceUnit>[]
+                {
+                    new (ForceUnit.Decanewton, ForceUnits.Decanewton),
+                    new (ForceUnit.Dyn, ForceUnits.Dyn),
+                    new (ForceUnit.GramForce, ForceUnits.GramForce),
+                    new (ForceUnit.KilogramForce, ForceUnits.KilogramForce),
+                    new (ForceUnit.Kilonewton, ForceUnits.Kilonewton),
+                    new (ForceUnit.Kilopond, ForceUnits.Kilopond),
+                    new (ForceUnit.KilopoundForce, ForceUnits.KilopoundForce),
+                    new (ForceUnit.Meganewton, ForceUnits.Meganewton),
+                    new (ForceUnit.Micronewton, ForceUnits.Micronewton),
+                    new (ForceUnit.Millinewton, ForceUnits.Millinewton),
+                    new (ForceUnit.Newton, ForceUnits.Newton),
+                    new (ForceUnit.OunceForce, ForceUnits.OunceForce),
+                    new (ForceUnit.Poundal, ForceUnits.Poundal),
+                    new (ForceUnit.PoundForce, ForceUnits.PoundForce),
+                    new (ForceUnit.ShortTonForce, ForceUnits.ShortTonForce),
+                    new (ForceUnit.TonneForce, ForceUnits.TonneForce),
+                };
             }
         }
 

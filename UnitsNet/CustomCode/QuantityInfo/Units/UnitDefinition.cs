@@ -109,9 +109,24 @@ public sealed class UnitDefinition<TUnit> : IUnitDefinition<TUnit>
     }
 
     /// <summary>
+    ///     Initializes a new instance of the <see cref="UnitDefinition{TUnit}" /> class for the unit enum value of a unit
+    ///     given by another definition, such as <see cref="LengthUnits.Meter" />.
+    /// </summary>
+    internal UnitDefinition(TUnit value, IUnitDefinition definition)
+        : this(value, definition.Name, definition.PluralName, definition.BaseUnits, definition.ConversionFromBase, definition.ConversionToBase)
+    {
+        Source = definition;
+    }
+
+    /// <summary>
     ///     The enum value of the unit, such as <see cref="LengthUnit.Centimeter" />.
     /// </summary>
     public TUnit Value { get; }
+
+    /// <summary>
+    ///     The definition this unit was created from, such as <see cref="LengthUnits.Meter" />, if any.
+    /// </summary>
+    internal IUnitDefinition? Source { get; }
 
     /// <summary>
     ///     The singular name of the unit, such as "Centimeter".

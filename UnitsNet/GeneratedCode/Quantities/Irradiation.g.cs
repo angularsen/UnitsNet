@@ -121,31 +121,18 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{IrradiationUnit}"/> representing the default unit mappings for Irradiation.</returns>
             public static IEnumerable<UnitDefinition<IrradiationUnit>> GetDefaultMappings()
             {
-                yield return new (IrradiationUnit.BtuPerSquareFoot, "BtuPerSquareFoot", "BtusPerSquareFoot", BaseUnits.Undefined,
-                     new QuantityValue(4645152, 52752792631)
-                );
-                yield return new (IrradiationUnit.JoulePerSquareCentimeter, "JoulePerSquareCentimeter", "JoulesPerSquareCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 10000)
-                );
-                yield return new (IrradiationUnit.JoulePerSquareMeter, "JoulePerSquareMeter", "JoulesPerSquareMeter", new BaseUnits(mass: MassUnit.Kilogram, time: DurationUnit.Second));
-                yield return new (IrradiationUnit.JoulePerSquareMillimeter, "JoulePerSquareMillimeter", "JoulesPerSquareMillimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (IrradiationUnit.KilobtuPerSquareFoot, "KilobtuPerSquareFoot", "KilobtusPerSquareFoot", BaseUnits.Undefined,
-                     new QuantityValue(580644, 6594099078875)
-                );
-                yield return new (IrradiationUnit.KilojoulePerSquareMeter, "KilojoulePerSquareMeter", "KilojoulesPerSquareMeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (IrradiationUnit.KilowattHourPerSquareMeter, "KilowattHourPerSquareMeter", "KilowattHoursPerSquareMeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 3600000)
-                );
-                yield return new (IrradiationUnit.MillijoulePerSquareCentimeter, "MillijoulePerSquareCentimeter", "MillijoulesPerSquareCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 10)
-                );
-                yield return new (IrradiationUnit.WattHourPerSquareMeter, "WattHourPerSquareMeter", "WattHoursPerSquareMeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 3600)
-                );
+                return new UnitDefinition<IrradiationUnit>[]
+                {
+                    new (IrradiationUnit.BtuPerSquareFoot, IrradiationUnits.BtuPerSquareFoot),
+                    new (IrradiationUnit.JoulePerSquareCentimeter, IrradiationUnits.JoulePerSquareCentimeter),
+                    new (IrradiationUnit.JoulePerSquareMeter, IrradiationUnits.JoulePerSquareMeter),
+                    new (IrradiationUnit.JoulePerSquareMillimeter, IrradiationUnits.JoulePerSquareMillimeter),
+                    new (IrradiationUnit.KilobtuPerSquareFoot, IrradiationUnits.KilobtuPerSquareFoot),
+                    new (IrradiationUnit.KilojoulePerSquareMeter, IrradiationUnits.KilojoulePerSquareMeter),
+                    new (IrradiationUnit.KilowattHourPerSquareMeter, IrradiationUnits.KilowattHourPerSquareMeter),
+                    new (IrradiationUnit.MillijoulePerSquareCentimeter, IrradiationUnits.MillijoulePerSquareCentimeter),
+                    new (IrradiationUnit.WattHourPerSquareMeter, IrradiationUnits.WattHourPerSquareMeter),
+                };
             }
         }
 

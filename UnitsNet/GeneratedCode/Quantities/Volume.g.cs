@@ -132,166 +132,63 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{VolumeUnit}"/> representing the default unit mappings for Volume.</returns>
             public static IEnumerable<UnitDefinition<VolumeUnit>> GetDefaultMappings()
             {
-                yield return new (VolumeUnit.AcreFoot, "AcreFoot", "AcreFeet", BaseUnits.Undefined,
-                     new QuantityValue(48828125, 60228605349)
-                );
-                yield return new (VolumeUnit.AuTablespoon, "AuTablespoon", "AuTablespoons", BaseUnits.Undefined,
-                     50000
-                );
-                yield return new (VolumeUnit.BoardFoot, "BoardFoot", "BoardFeet", BaseUnits.Undefined,
-                     new QuantityValue(7812500000, 18435447)
-                );
-                yield return new (VolumeUnit.Centiliter, "Centiliter", "Centiliters", BaseUnits.Undefined,
-                     100000
-                );
-                yield return new (VolumeUnit.CubicCentimeter, "CubicCentimeter", "CubicCentimeters", new BaseUnits(length: LengthUnit.Centimeter),
-                     1000000
-                );
-                yield return new (VolumeUnit.CubicDecimeter, "CubicDecimeter", "CubicDecimeters", new BaseUnits(length: LengthUnit.Decimeter),
-                     1000
-                );
-                yield return new (VolumeUnit.CubicFoot, "CubicFoot", "CubicFeet", new BaseUnits(length: LengthUnit.Foot),
-                     new QuantityValue(1953125000, 55306341)
-                );
-                yield return new (VolumeUnit.CubicHectometer, "CubicHectometer", "CubicHectometers", new BaseUnits(length: LengthUnit.Hectometer),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (VolumeUnit.CubicInch, "CubicInch", "CubicInches", new BaseUnits(length: LengthUnit.Inch),
-                     new QuantityValue(125000000000, 2048383)
-                );
-                yield return new (VolumeUnit.CubicKilometer, "CubicKilometer", "CubicKilometers", new BaseUnits(length: LengthUnit.Kilometer),
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (VolumeUnit.CubicMeter, "CubicMeter", "CubicMeters", new BaseUnits(length: LengthUnit.Meter));
-                yield return new (VolumeUnit.CubicMicrometer, "CubicMicrometer", "CubicMicrometers", new BaseUnits(length: LengthUnit.Micrometer),
-                     1000000000000000000
-                );
-                yield return new (VolumeUnit.CubicMile, "CubicMile", "CubicMiles", new BaseUnits(length: LengthUnit.Mile),
-                     new QuantityValue(1953125, 8140980127813632)
-                );
-                yield return new (VolumeUnit.CubicMillimeter, "CubicMillimeter", "CubicMillimeters", new BaseUnits(length: LengthUnit.Millimeter),
-                     1000000000
-                );
-                yield return new (VolumeUnit.CubicYard, "CubicYard", "CubicYards", new BaseUnits(length: LengthUnit.Yard),
-                     new QuantityValue(1953125000, 1493271207)
-                );
-                yield return new (VolumeUnit.Decaliter, "Decaliter", "Decaliters", BaseUnits.Undefined,
-                     100
-                );
-                yield return new (VolumeUnit.DecausGallon, "DecausGallon", "DecausGallons", BaseUnits.Undefined,
-                     new QuantityValue(12500000000, 473176473)
-                );
-                yield return new (VolumeUnit.Deciliter, "Deciliter", "Deciliters", BaseUnits.Undefined,
-                     10000
-                );
-                yield return new (VolumeUnit.DeciusGallon, "DeciusGallon", "DeciusGallons", BaseUnits.Undefined,
-                     new QuantityValue(1250000000000, 473176473)
-                );
-                yield return new (VolumeUnit.Hectoliter, "Hectoliter", "Hectoliters", BaseUnits.Undefined,
-                     10
-                );
-                yield return new (VolumeUnit.HectousGallon, "HectousGallon", "HectousGallons", BaseUnits.Undefined,
-                     new QuantityValue(1250000000, 473176473)
-                );
-                yield return new (VolumeUnit.HundredCubicFoot, "HundredCubicFoot", "HundredCubicFeet", BaseUnits.Undefined,
-                     new QuantityValue(19531250, 55306341)
-                );
-                yield return new (VolumeUnit.ImperialBeerBarrel, "ImperialBeerBarrel", "ImperialBeerBarrels", BaseUnits.Undefined,
-                     new QuantityValue(25000000, 4091481)
-                );
-                yield return new (VolumeUnit.ImperialGallon, "ImperialGallon", "ImperialGallons", BaseUnits.Undefined,
-                     new QuantityValue(100000000, 454609)
-                );
-                yield return new (VolumeUnit.ImperialOunce, "ImperialOunce", "ImperialOunces", BaseUnits.Undefined,
-                     new QuantityValue(16000000000, 454609)
-                );
-                yield return new (VolumeUnit.ImperialPint, "ImperialPint", "ImperialPints", BaseUnits.Undefined,
-                     new QuantityValue(800000000, 454609)
-                );
-                yield return new (VolumeUnit.ImperialQuart, "ImperialQuart", "ImperialQuarts", BaseUnits.Undefined,
-                     new QuantityValue(400000000, 454609)
-                );
-                yield return new (VolumeUnit.KiloimperialGallon, "KiloimperialGallon", "KiloimperialGallons", BaseUnits.Undefined,
-                     new QuantityValue(100000, 454609)
-                );
-                yield return new (VolumeUnit.Kiloliter, "Kiloliter", "Kiloliters", new BaseUnits(length: LengthUnit.Meter),
-                     1
-                );
-                yield return new (VolumeUnit.KilousGallon, "KilousGallon", "KilousGallons", BaseUnits.Undefined,
-                     new QuantityValue(125000000, 473176473)
-                );
-                yield return new (VolumeUnit.Liter, "Liter", "Liters", new BaseUnits(length: LengthUnit.Decimeter),
-                     1000
-                );
-                yield return new (VolumeUnit.MegaimperialGallon, "MegaimperialGallon", "MegaimperialGallons", BaseUnits.Undefined,
-                     new QuantityValue(100, 454609)
-                );
-                yield return new (VolumeUnit.Megaliter, "Megaliter", "Megaliters", new BaseUnits(length: LengthUnit.Decameter),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (VolumeUnit.MegausGallon, "MegausGallon", "MegausGallons", BaseUnits.Undefined,
-                     new QuantityValue(125000, 473176473)
-                );
-                yield return new (VolumeUnit.MetricCup, "MetricCup", "MetricCups", BaseUnits.Undefined,
-                     4000
-                );
-                yield return new (VolumeUnit.MetricTablespoon, "MetricTablespoon", "MetricTablespoons", BaseUnits.Undefined,
-                     new QuantityValue(200000, 3)
-                );
-                yield return new (VolumeUnit.MetricTeaspoon, "MetricTeaspoon", "MetricTeaspoons", BaseUnits.Undefined,
-                     200000
-                );
-                yield return new (VolumeUnit.Microliter, "Microliter", "Microliters", new BaseUnits(length: LengthUnit.Millimeter),
-                     1000000000
-                );
-                yield return new (VolumeUnit.Milliliter, "Milliliter", "Milliliters", new BaseUnits(length: LengthUnit.Centimeter),
-                     1000000
-                );
-                yield return new (VolumeUnit.MillionCubicFoot, "MillionCubicFoot", "MillionCubicFeet", BaseUnits.Undefined,
-                     new QuantityValue(15625, 442450728)
-                );
-                yield return new (VolumeUnit.Nanoliter, "Nanoliter", "Nanoliters", BaseUnits.Undefined,
-                     1000000000000
-                );
-                yield return new (VolumeUnit.OilBarrel, "OilBarrel", "OilBarrels", BaseUnits.Undefined,
-                     new QuantityValue(62500000000, 9936705933)
-                );
-                yield return new (VolumeUnit.ThousandCubicFoot, "ThousandCubicFoot", "ThousandCubicFeet", BaseUnits.Undefined,
-                     new QuantityValue(1953125, 55306341)
-                );
-                yield return new (VolumeUnit.ThousandCubicMeter, "ThousandCubicMeter", "ThousandCubicMeters", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (VolumeUnit.UkTablespoon, "UkTablespoon", "UkTablespoons", BaseUnits.Undefined,
-                     new QuantityValue(200000, 3)
-                );
-                yield return new (VolumeUnit.UsBeerBarrel, "UsBeerBarrel", "UsBeerBarrels", BaseUnits.Undefined,
-                     new QuantityValue(125000000000, 14668470663)
-                );
-                yield return new (VolumeUnit.UsCustomaryCup, "UsCustomaryCup", "UsCustomaryCups", BaseUnits.Undefined,
-                     new QuantityValue(2000000000000, 473176473)
-                );
-                yield return new (VolumeUnit.UsGallon, "UsGallon", "UsGallons", BaseUnits.Undefined,
-                     new QuantityValue(125000000000, 473176473)
-                );
-                yield return new (VolumeUnit.UsLegalCup, "UsLegalCup", "UsLegalCups", BaseUnits.Undefined,
-                     new QuantityValue(12500, 3)
-                );
-                yield return new (VolumeUnit.UsOunce, "UsOunce", "UsOunces", BaseUnits.Undefined,
-                     new QuantityValue(16000000000000, 473176473)
-                );
-                yield return new (VolumeUnit.UsPint, "UsPint", "UsPints", BaseUnits.Undefined,
-                     new QuantityValue(1000000000000, 473176473)
-                );
-                yield return new (VolumeUnit.UsQuart, "UsQuart", "UsQuarts", BaseUnits.Undefined,
-                     new QuantityValue(500000000000, 473176473)
-                );
-                yield return new (VolumeUnit.UsTablespoon, "UsTablespoon", "UsTablespoons", BaseUnits.Undefined,
-                     new QuantityValue(32000000000000, 473176473)
-                );
-                yield return new (VolumeUnit.UsTeaspoon, "UsTeaspoon", "UsTeaspoons", BaseUnits.Undefined,
-                     new QuantityValue(32000000000000, 157725491)
-                );
+                return new UnitDefinition<VolumeUnit>[]
+                {
+                    new (VolumeUnit.AcreFoot, VolumeUnits.AcreFoot),
+                    new (VolumeUnit.AuTablespoon, VolumeUnits.AuTablespoon),
+                    new (VolumeUnit.BoardFoot, VolumeUnits.BoardFoot),
+                    new (VolumeUnit.Centiliter, VolumeUnits.Centiliter),
+                    new (VolumeUnit.CubicCentimeter, VolumeUnits.CubicCentimeter),
+                    new (VolumeUnit.CubicDecimeter, VolumeUnits.CubicDecimeter),
+                    new (VolumeUnit.CubicFoot, VolumeUnits.CubicFoot),
+                    new (VolumeUnit.CubicHectometer, VolumeUnits.CubicHectometer),
+                    new (VolumeUnit.CubicInch, VolumeUnits.CubicInch),
+                    new (VolumeUnit.CubicKilometer, VolumeUnits.CubicKilometer),
+                    new (VolumeUnit.CubicMeter, VolumeUnits.CubicMeter),
+                    new (VolumeUnit.CubicMicrometer, VolumeUnits.CubicMicrometer),
+                    new (VolumeUnit.CubicMile, VolumeUnits.CubicMile),
+                    new (VolumeUnit.CubicMillimeter, VolumeUnits.CubicMillimeter),
+                    new (VolumeUnit.CubicYard, VolumeUnits.CubicYard),
+                    new (VolumeUnit.Decaliter, VolumeUnits.Decaliter),
+                    new (VolumeUnit.DecausGallon, VolumeUnits.DecausGallon),
+                    new (VolumeUnit.Deciliter, VolumeUnits.Deciliter),
+                    new (VolumeUnit.DeciusGallon, VolumeUnits.DeciusGallon),
+                    new (VolumeUnit.Hectoliter, VolumeUnits.Hectoliter),
+                    new (VolumeUnit.HectousGallon, VolumeUnits.HectousGallon),
+                    new (VolumeUnit.HundredCubicFoot, VolumeUnits.HundredCubicFoot),
+                    new (VolumeUnit.ImperialBeerBarrel, VolumeUnits.ImperialBeerBarrel),
+                    new (VolumeUnit.ImperialGallon, VolumeUnits.ImperialGallon),
+                    new (VolumeUnit.ImperialOunce, VolumeUnits.ImperialOunce),
+                    new (VolumeUnit.ImperialPint, VolumeUnits.ImperialPint),
+                    new (VolumeUnit.ImperialQuart, VolumeUnits.ImperialQuart),
+                    new (VolumeUnit.KiloimperialGallon, VolumeUnits.KiloimperialGallon),
+                    new (VolumeUnit.Kiloliter, VolumeUnits.Kiloliter),
+                    new (VolumeUnit.KilousGallon, VolumeUnits.KilousGallon),
+                    new (VolumeUnit.Liter, VolumeUnits.Liter),
+                    new (VolumeUnit.MegaimperialGallon, VolumeUnits.MegaimperialGallon),
+                    new (VolumeUnit.Megaliter, VolumeUnits.Megaliter),
+                    new (VolumeUnit.MegausGallon, VolumeUnits.MegausGallon),
+                    new (VolumeUnit.MetricCup, VolumeUnits.MetricCup),
+                    new (VolumeUnit.MetricTablespoon, VolumeUnits.MetricTablespoon),
+                    new (VolumeUnit.MetricTeaspoon, VolumeUnits.MetricTeaspoon),
+                    new (VolumeUnit.Microliter, VolumeUnits.Microliter),
+                    new (VolumeUnit.Milliliter, VolumeUnits.Milliliter),
+                    new (VolumeUnit.MillionCubicFoot, VolumeUnits.MillionCubicFoot),
+                    new (VolumeUnit.Nanoliter, VolumeUnits.Nanoliter),
+                    new (VolumeUnit.OilBarrel, VolumeUnits.OilBarrel),
+                    new (VolumeUnit.ThousandCubicFoot, VolumeUnits.ThousandCubicFoot),
+                    new (VolumeUnit.ThousandCubicMeter, VolumeUnits.ThousandCubicMeter),
+                    new (VolumeUnit.UkTablespoon, VolumeUnits.UkTablespoon),
+                    new (VolumeUnit.UsBeerBarrel, VolumeUnits.UsBeerBarrel),
+                    new (VolumeUnit.UsCustomaryCup, VolumeUnits.UsCustomaryCup),
+                    new (VolumeUnit.UsGallon, VolumeUnits.UsGallon),
+                    new (VolumeUnit.UsLegalCup, VolumeUnits.UsLegalCup),
+                    new (VolumeUnit.UsOunce, VolumeUnits.UsOunce),
+                    new (VolumeUnit.UsPint, VolumeUnits.UsPint),
+                    new (VolumeUnit.UsQuart, VolumeUnits.UsQuart),
+                    new (VolumeUnit.UsTablespoon, VolumeUnits.UsTablespoon),
+                    new (VolumeUnit.UsTeaspoon, VolumeUnits.UsTeaspoon),
+                };
             }
         }
 

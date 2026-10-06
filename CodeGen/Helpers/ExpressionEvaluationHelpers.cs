@@ -170,6 +170,15 @@ internal static class ExpressionEvaluationHelpers
         return expandedExpression;
     }
 
+    /// <summary>
+    ///     Gets the format of the reciprocal of the coefficient of a conversion with a single term, such as the value of a
+    ///     unit in the base unit from the conversion from the base unit to the unit.
+    /// </summary>
+    public static string GetReciprocalCoefficientFormat(this CompositeExpression expression)
+    {
+        return expression.Terms.Single().Coefficient.Reciprocal().GetFractionalConstantFormat();
+    }
+
     private static string GetFractionalConstantFormat(this Fraction coefficient)
     {
         coefficient = coefficient.Reduce();

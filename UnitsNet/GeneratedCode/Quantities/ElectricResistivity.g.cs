@@ -119,46 +119,23 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricResistivityUnit}"/> representing the default unit mappings for ElectricResistivity.</returns>
             public static IEnumerable<UnitDefinition<ElectricResistivityUnit>> GetDefaultMappings()
             {
-                yield return new (ElectricResistivityUnit.KiloohmCentimeter, "KiloohmCentimeter", "KiloohmsCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 10)
-                );
-                yield return new (ElectricResistivityUnit.KiloohmMeter, "KiloohmMeter", "KiloohmMeters", new BaseUnits(length: LengthUnit.Decameter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (ElectricResistivityUnit.MegaohmCentimeter, "MegaohmCentimeter", "MegaohmsCentimeter", BaseUnits.Undefined,
-                     new QuantityValue(1, 10000)
-                );
-                yield return new (ElectricResistivityUnit.MegaohmMeter, "MegaohmMeter", "MegaohmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Milliampere),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (ElectricResistivityUnit.MicroohmCentimeter, "MicroohmCentimeter", "MicroohmsCentimeter", BaseUnits.Undefined,
-                     100000000
-                );
-                yield return new (ElectricResistivityUnit.MicroohmMeter, "MicroohmMeter", "MicroohmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     1000000
-                );
-                yield return new (ElectricResistivityUnit.MilliohmCentimeter, "MilliohmCentimeter", "MilliohmsCentimeter", BaseUnits.Undefined,
-                     100000
-                );
-                yield return new (ElectricResistivityUnit.MilliohmMeter, "MilliohmMeter", "MilliohmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     1000
-                );
-                yield return new (ElectricResistivityUnit.NanoohmCentimeter, "NanoohmCentimeter", "NanoohmsCentimeter", BaseUnits.Undefined,
-                     100000000000
-                );
-                yield return new (ElectricResistivityUnit.NanoohmMeter, "NanoohmMeter", "NanoohmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     1000000000
-                );
-                yield return new (ElectricResistivityUnit.OhmCentimeter, "OhmCentimeter", "OhmsCentimeter", BaseUnits.Undefined,
-                     100
-                );
-                yield return new (ElectricResistivityUnit.OhmMeter, "OhmMeter", "OhmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
-                yield return new (ElectricResistivityUnit.PicoohmCentimeter, "PicoohmCentimeter", "PicoohmsCentimeter", BaseUnits.Undefined,
-                     100000000000000
-                );
-                yield return new (ElectricResistivityUnit.PicoohmMeter, "PicoohmMeter", "PicoohmMeters", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Nanogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     1000000000000
-                );
+                return new UnitDefinition<ElectricResistivityUnit>[]
+                {
+                    new (ElectricResistivityUnit.KiloohmCentimeter, ElectricResistivityUnits.KiloohmCentimeter),
+                    new (ElectricResistivityUnit.KiloohmMeter, ElectricResistivityUnits.KiloohmMeter),
+                    new (ElectricResistivityUnit.MegaohmCentimeter, ElectricResistivityUnits.MegaohmCentimeter),
+                    new (ElectricResistivityUnit.MegaohmMeter, ElectricResistivityUnits.MegaohmMeter),
+                    new (ElectricResistivityUnit.MicroohmCentimeter, ElectricResistivityUnits.MicroohmCentimeter),
+                    new (ElectricResistivityUnit.MicroohmMeter, ElectricResistivityUnits.MicroohmMeter),
+                    new (ElectricResistivityUnit.MilliohmCentimeter, ElectricResistivityUnits.MilliohmCentimeter),
+                    new (ElectricResistivityUnit.MilliohmMeter, ElectricResistivityUnits.MilliohmMeter),
+                    new (ElectricResistivityUnit.NanoohmCentimeter, ElectricResistivityUnits.NanoohmCentimeter),
+                    new (ElectricResistivityUnit.NanoohmMeter, ElectricResistivityUnits.NanoohmMeter),
+                    new (ElectricResistivityUnit.OhmCentimeter, ElectricResistivityUnits.OhmCentimeter),
+                    new (ElectricResistivityUnit.OhmMeter, ElectricResistivityUnits.OhmMeter),
+                    new (ElectricResistivityUnit.PicoohmCentimeter, ElectricResistivityUnits.PicoohmCentimeter),
+                    new (ElectricResistivityUnit.PicoohmMeter, ElectricResistivityUnits.PicoohmMeter),
+                };
             }
         }
 

@@ -119,28 +119,17 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricReactanceUnit}"/> representing the default unit mappings for ElectricReactance.</returns>
             public static IEnumerable<UnitDefinition<ElectricReactanceUnit>> GetDefaultMappings()
             {
-                yield return new (ElectricReactanceUnit.Gigaohm, "Gigaohm", "Gigaohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Millisecond, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 1000000000)
-                );
-                yield return new (ElectricReactanceUnit.Kiloohm, "Kiloohm", "Kiloohms", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (ElectricReactanceUnit.Megaohm, "Megaohm", "Megaohms", new BaseUnits(length: LengthUnit.Kilometer, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (ElectricReactanceUnit.Microohm, "Microohm", "Microohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Milligram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     1000000
-                );
-                yield return new (ElectricReactanceUnit.Milliohm, "Milliohm", "Milliohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Gram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     1000
-                );
-                yield return new (ElectricReactanceUnit.Nanoohm, "Nanoohm", "Nanoohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Microgram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     1000000000
-                );
-                yield return new (ElectricReactanceUnit.Ohm, "Ohm", "Ohms", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere));
-                yield return new (ElectricReactanceUnit.Teraohm, "Teraohm", "Teraohms", new BaseUnits(length: LengthUnit.Megameter, mass: MassUnit.Kilogram, time: DurationUnit.Second, current: ElectricCurrentUnit.Ampere),
-                     new QuantityValue(1, 1000000000000)
-                );
+                return new UnitDefinition<ElectricReactanceUnit>[]
+                {
+                    new (ElectricReactanceUnit.Gigaohm, ElectricReactanceUnits.Gigaohm),
+                    new (ElectricReactanceUnit.Kiloohm, ElectricReactanceUnits.Kiloohm),
+                    new (ElectricReactanceUnit.Megaohm, ElectricReactanceUnits.Megaohm),
+                    new (ElectricReactanceUnit.Microohm, ElectricReactanceUnits.Microohm),
+                    new (ElectricReactanceUnit.Milliohm, ElectricReactanceUnits.Milliohm),
+                    new (ElectricReactanceUnit.Nanoohm, ElectricReactanceUnits.Nanoohm),
+                    new (ElectricReactanceUnit.Ohm, ElectricReactanceUnits.Ohm),
+                    new (ElectricReactanceUnit.Teraohm, ElectricReactanceUnits.Teraohm),
+                };
             }
         }
 

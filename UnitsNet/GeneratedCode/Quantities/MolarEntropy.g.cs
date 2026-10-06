@@ -116,13 +116,12 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{MolarEntropyUnit}"/> representing the default unit mappings for MolarEntropy.</returns>
             public static IEnumerable<UnitDefinition<MolarEntropyUnit>> GetDefaultMappings()
             {
-                yield return new (MolarEntropyUnit.JoulePerMoleKelvin, "JoulePerMoleKelvin", "JoulesPerMoleKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin, amount: AmountOfSubstanceUnit.Mole));
-                yield return new (MolarEntropyUnit.KilojoulePerMoleKelvin, "KilojoulePerMoleKelvin", "KilojoulesPerMoleKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin, amount: AmountOfSubstanceUnit.Millimole),
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (MolarEntropyUnit.MegajoulePerMoleKelvin, "MegajoulePerMoleKelvin", "MegajoulesPerMoleKelvin", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.Kelvin, amount: AmountOfSubstanceUnit.Micromole),
-                     new QuantityValue(1, 1000000)
-                );
+                return new UnitDefinition<MolarEntropyUnit>[]
+                {
+                    new (MolarEntropyUnit.JoulePerMoleKelvin, MolarEntropyUnits.JoulePerMoleKelvin),
+                    new (MolarEntropyUnit.KilojoulePerMoleKelvin, MolarEntropyUnits.KilojoulePerMoleKelvin),
+                    new (MolarEntropyUnit.MegajoulePerMoleKelvin, MolarEntropyUnits.MegajoulePerMoleKelvin),
+                };
             }
         }
 

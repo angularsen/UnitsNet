@@ -117,22 +117,15 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{AreaPerLengthUnit}"/> representing the default unit mappings for AreaPerLength.</returns>
             public static IEnumerable<UnitDefinition<AreaPerLengthUnit>> GetDefaultMappings()
             {
-                yield return new (AreaPerLengthUnit.SquareCentimeterPerMeter, "SquareCentimeterPerMeter", "SquareCentimetersPerMeter", BaseUnits.Undefined,
-                     10000
-                );
-                yield return new (AreaPerLengthUnit.SquareFootPerFoot, "SquareFootPerFoot", "SquareFeetPerFoot", BaseUnits.Undefined,
-                     new QuantityValue(1250, 381)
-                );
-                yield return new (AreaPerLengthUnit.SquareInchPerFoot, "SquareInchPerFoot", "SquareInchesPerFoot", BaseUnits.Undefined,
-                     new QuantityValue(60000, 127)
-                );
-                yield return new (AreaPerLengthUnit.SquareInchPerInch, "SquareInchPerInch", "SquareInchesPerInch", BaseUnits.Undefined,
-                     new QuantityValue(5000, 127)
-                );
-                yield return new (AreaPerLengthUnit.SquareMeterPerMeter, "SquareMeterPerMeter", "SquareMetersPerMeter", new BaseUnits(length: LengthUnit.Meter));
-                yield return new (AreaPerLengthUnit.SquareMillimeterPerMeter, "SquareMillimeterPerMeter", "SquareMillimetersPerMeter", BaseUnits.Undefined,
-                     1000000
-                );
+                return new UnitDefinition<AreaPerLengthUnit>[]
+                {
+                    new (AreaPerLengthUnit.SquareCentimeterPerMeter, AreaPerLengthUnits.SquareCentimeterPerMeter),
+                    new (AreaPerLengthUnit.SquareFootPerFoot, AreaPerLengthUnits.SquareFootPerFoot),
+                    new (AreaPerLengthUnit.SquareInchPerFoot, AreaPerLengthUnits.SquareInchPerFoot),
+                    new (AreaPerLengthUnit.SquareInchPerInch, AreaPerLengthUnits.SquareInchPerInch),
+                    new (AreaPerLengthUnit.SquareMeterPerMeter, AreaPerLengthUnits.SquareMeterPerMeter),
+                    new (AreaPerLengthUnit.SquareMillimeterPerMeter, AreaPerLengthUnits.SquareMillimeterPerMeter),
+                };
             }
         }
 

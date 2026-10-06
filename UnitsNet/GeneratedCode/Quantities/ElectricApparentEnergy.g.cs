@@ -118,13 +118,12 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ElectricApparentEnergyUnit}"/> representing the default unit mappings for ElectricApparentEnergy.</returns>
             public static IEnumerable<UnitDefinition<ElectricApparentEnergyUnit>> GetDefaultMappings()
             {
-                yield return new (ElectricApparentEnergyUnit.KilovoltampereHour, "KilovoltampereHour", "KilovoltampereHours", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000)
-                );
-                yield return new (ElectricApparentEnergyUnit.MegavoltampereHour, "MegavoltampereHour", "MegavoltampereHours", BaseUnits.Undefined,
-                     new QuantityValue(1, 1000000)
-                );
-                yield return new (ElectricApparentEnergyUnit.VoltampereHour, "VoltampereHour", "VoltampereHours", BaseUnits.Undefined);
+                return new UnitDefinition<ElectricApparentEnergyUnit>[]
+                {
+                    new (ElectricApparentEnergyUnit.KilovoltampereHour, ElectricApparentEnergyUnits.KilovoltampereHour),
+                    new (ElectricApparentEnergyUnit.MegavoltampereHour, ElectricApparentEnergyUnits.MegavoltampereHour),
+                    new (ElectricApparentEnergyUnit.VoltampereHour, ElectricApparentEnergyUnits.VoltampereHour),
+                };
             }
         }
 
