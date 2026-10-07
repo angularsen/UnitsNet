@@ -136,7 +136,7 @@ namespace UnitsNet
             public static IEnumerable<UnitDefinition<PowerUnit>> GetDefaultMappings()
             {
                 yield return new (PowerUnit.BoilerHorsepower, "BoilerHorsepower", "BoilerHorsepower", BaseUnits.Undefined,
-                     new QuantityValue(2, 19625)
+                     new QuantityValue(2, 19619)
                 );
                 yield return new (PowerUnit.BritishThermalUnitPerHour, "BritishThermalUnitPerHour", "BritishThermalUnitsPerHour", BaseUnits.Undefined,
                      new QuantityValue(180000000000, 52752792631)

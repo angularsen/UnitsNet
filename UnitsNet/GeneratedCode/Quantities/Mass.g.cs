@@ -215,7 +215,7 @@ namespace UnitsNet
                      new QuantityValue(609600000000, 8896443230521)
                 );
                 yield return new (MassUnit.SolarMass, "SolarMass", "SolarMasses", new BaseUnits(mass: MassUnit.SolarMass),
-                     new QuantityValue(1, new BigInteger(198947) * QuantityValue.PowerOfTen(25))
+                     new QuantityValue(1, new BigInteger(198847) * QuantityValue.PowerOfTen(25))
                 );
                 yield return new (MassUnit.Stone, "Stone", "Stone", new BaseUnits(mass: MassUnit.Stone),
                      new QuantityValue(50000000, 317514659)

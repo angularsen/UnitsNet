@@ -105,7 +105,7 @@ namespace UnitsNet.Units
         Slug = 22,
 
         /// <summary>
-        ///     Solar mass is a ratio unit to the mass of the solar system star, the sun.
+        ///     Solar mass is a ratio unit to the mass of the solar system star, the sun. This unit uses 1.98847×10^30 kg, within the uncertainty of the best estimate of (1.988475 ± 0.000092)×10^30 kg. The IAU defines only a nominal solar mass parameter (GM), so a nominal mass in kilograms depends on the measured gravitational constant.
         /// </summary>
         /// <remarks>https://en.wikipedia.org/wiki/Solar_mass</remarks>
         SolarMass = 23,

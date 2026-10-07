@@ -45,8 +45,10 @@
     {
       "SingularName": "TorrLiterPerSecond",
       "PluralName": "TorrLitersPerSecond",
-      "FromUnitToBaseFunc": "{x} / 7.5",
-      "FromBaseToUnitFunc": "{x} * 7.5",
+      "XmlDocSummary": "A leak rate of one liter per second at a pressure of one torr. The torr is exactly 101325/760 pascals (1/760 of a standard atmosphere), so one torr liter per second is about 0.1333224 Pa·m³/s.",
+      "XmlDocRemarks": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8",
+      "FromUnitToBaseFunc": "{x} * 101325 / 760 / 1e3",
+      "FromBaseToUnitFunc": "{x} * 760 / 101325 * 1e3",
       "Localization": [
         {
           "Culture": "en-US",

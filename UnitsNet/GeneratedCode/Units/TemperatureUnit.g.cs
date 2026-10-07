@@ -34,6 +34,11 @@ namespace UnitsNet.Units
         DegreeRoemer = 7,
         Kelvin = 8,
         MillidegreeCelsius = 9,
+
+        /// <summary>
+        ///     The nominal solar effective temperature of 5772 K, adopted by IAU 2015 Resolution B3 as a conversion constant for expressing stellar temperatures.
+        /// </summary>
+        /// <remarks>https://arxiv.org/abs/1510.07674</remarks>
         SolarTemperature = 10,
     }
 

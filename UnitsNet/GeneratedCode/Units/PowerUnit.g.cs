@@ -27,9 +27,9 @@ namespace UnitsNet.Units
     {
 
         /// <summary>
-        ///     Boiler horsepower is a boiler's capacity to deliver steam to a steam engine and is not the same unit of power as the 550 ft lb/s definition. One boiler horsepower is equal to the thermal energy rate required to evaporate 34.5 pounds (15.6 kg) of fresh water at 212 °F (100 °C) in one hour.
+        ///     Boiler horsepower is a boiler's capacity to deliver steam to a steam engine and is not the same unit of power as the 550 ft lb/s definition. One boiler horsepower is equal to the thermal energy rate required to evaporate 34.5 pounds (15.6 kg) of fresh water at 212 °F (100 °C) in one hour. This unit uses 9809.5 W, the value given by NIST SP 811 for the 1884 ASME definition of about 33,469.5 BTU/h. Current industrial practice instead uses 33,475 BTU/h, about 9811 W.
         /// </summary>
-        /// <remarks>https://en.wikipedia.org/wiki/Horsepower#Boiler_horsepower</remarks>
+        /// <remarks>https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8</remarks>
         BoilerHorsepower = 1,
         /// <remarks>Based on the International Table (IT) definition of the British thermal unit (BTU), where 1 BTU is defined as exactly 1055.05585262 joules (≈1.05506 kJ). See https://en.wikipedia.org/wiki/British_thermal_unit for details.</remarks>
         BritishThermalUnitPerHour = 2,

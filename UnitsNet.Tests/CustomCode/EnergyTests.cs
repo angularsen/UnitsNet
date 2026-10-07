@@ -49,7 +49,7 @@ namespace UnitsNet.Tests
 
         protected override double TerawattDaysInOneJoule => 1.157407407407410E-17;
 
-        protected override double ThermsEcInOneJoule => 9.4781712031331720001278504447561e-9;
+        protected override double ThermsEcInOneJoule => 9.47813394498891058328436297462e-9;
 
         protected override double FootPoundsInOneJoule => 0.737562149;
 

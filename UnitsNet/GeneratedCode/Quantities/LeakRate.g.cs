@@ -129,7 +129,7 @@ namespace UnitsNet
                 );
                 yield return new (LeakRateUnit.PascalCubicMeterPerSecond, "PascalCubicMeterPerSecond", "PascalCubicMetersPerSecond", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second));
                 yield return new (LeakRateUnit.TorrLiterPerSecond, "TorrLiterPerSecond", "TorrLitersPerSecond", BaseUnits.Undefined,
-                     new QuantityValue(15, 2)
+                     new QuantityValue(30400, 4053)
                 );
             }
         }

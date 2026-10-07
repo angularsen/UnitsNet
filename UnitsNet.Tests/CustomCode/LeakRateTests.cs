@@ -29,7 +29,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MillibarLitersPerSecondInOnePascalCubicMeterPerSecond => 10;
 
-        protected override double TorrLitersPerSecondInOnePascalCubicMeterPerSecond => 7.5;
+        protected override double TorrLitersPerSecondInOnePascalCubicMeterPerSecond => 7.50061682704169750801875154207;
 
     }
 }

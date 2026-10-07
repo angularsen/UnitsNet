@@ -48,7 +48,7 @@ namespace UnitsNet.Tests
 
         protected override double KilobritishThermalUnitsPerHourInOneWatt => 3.412141633e-3;
 
-        protected override double BoilerHorsepowerInOneWatt => 1.0191082802547770700636942675159e-4;
+        protected override double BoilerHorsepowerInOneWatt => 1.01941995004842244762730006626e-4;
 
         protected override double MegabritishThermalUnitsPerHourInOneWatt => 3.412141633e-6;
 

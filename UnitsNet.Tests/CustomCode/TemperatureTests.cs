@@ -23,7 +23,7 @@ public class TemperatureTests : TemperatureTestsBase
 
     protected override double MillidegreesCelsiusInOneKelvin => -272150;
 
-    protected override double SolarTemperaturesInOneKelvin => 1.73070266528210E-04;
+    protected override double SolarTemperaturesInOneKelvin => 1.73250173250173250173250173250E-04;
         
     [Fact]
     public void AllBaseQuantityUnitsAreBaseUnits()
