@@ -395,6 +395,8 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 морск.миля²", AreaUnit.SquareNauticalMile, 4.2)]
         [InlineData("ru-RU", "4,2 ярд²", AreaUnit.SquareYard, 4.2)]
         [InlineData("ru-RU", "4,2 фут² (US)", AreaUnit.UsSurveySquareFoot, 4.2)]
+        [InlineData("zh-CN", "4.2 英亩", AreaUnit.Acre, 4.2)]
+        [InlineData("zh-CN", "4.2 公顷", AreaUnit.Hectare, 4.2)]
         [InlineData("zh-CN", "4.2 平方厘米", AreaUnit.SquareCentimeter, 4.2)]
         [InlineData("zh-CN", "4.2 平方分米", AreaUnit.SquareDecimeter, 4.2)]
         [InlineData("zh-CN", "4.2 平方英尺", AreaUnit.SquareFoot, 4.2)]
@@ -412,13 +414,6 @@ namespace UnitsNet.Tests
             var parsed = Area.Parse(quantityString);
             Assert.Equal(expectedUnit, parsed.Unit);
             Assert.Equal(expectedValue, parsed.Value);
-        }
-
-        [Theory]
-        [InlineData("zh-CN", "1 英亩")] // [Acre, Hectare] 
-        public void ParseWithAmbiguousAbbreviation(string culture, string quantityString)
-        {
-            Assert.Throws<AmbiguousUnitParseException>(() => Area.Parse(quantityString, CultureInfo.GetCultureInfo(culture)));
         }
 
         [Theory]
@@ -450,6 +445,8 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "4,2 морск.миля²", AreaUnit.SquareNauticalMile, 4.2)]
         [InlineData("ru-RU", "4,2 ярд²", AreaUnit.SquareYard, 4.2)]
         [InlineData("ru-RU", "4,2 фут² (US)", AreaUnit.UsSurveySquareFoot, 4.2)]
+        [InlineData("zh-CN", "4.2 英亩", AreaUnit.Acre, 4.2)]
+        [InlineData("zh-CN", "4.2 公顷", AreaUnit.Hectare, 4.2)]
         [InlineData("zh-CN", "4.2 平方厘米", AreaUnit.SquareCentimeter, 4.2)]
         [InlineData("zh-CN", "4.2 平方分米", AreaUnit.SquareDecimeter, 4.2)]
         [InlineData("zh-CN", "4.2 平方英尺", AreaUnit.SquareFoot, 4.2)]
@@ -467,13 +464,6 @@ namespace UnitsNet.Tests
             Assert.True(Area.TryParse(quantityString, out Area parsed));
             Assert.Equal(expectedUnit, parsed.Unit);
             Assert.Equal(expectedValue, parsed.Value);
-        }
-
-        [Theory]
-        [InlineData("zh-CN", "1 英亩")] // [Acre, Hectare] 
-        public void TryParseWithAmbiguousAbbreviation(string culture, string quantityString)
-        {
-            Assert.False(Area.TryParse(quantityString, CultureInfo.GetCultureInfo(culture), out _));
         }
 
         [Theory]
@@ -551,6 +541,8 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "морск.миля²", AreaUnit.SquareNauticalMile)]
         [InlineData("ru-RU", "ярд²", AreaUnit.SquareYard)]
         [InlineData("ru-RU", "фут² (US)", AreaUnit.UsSurveySquareFoot)]
+        [InlineData("zh-CN", "英亩", AreaUnit.Acre)]
+        [InlineData("zh-CN", "公顷", AreaUnit.Hectare)]
         [InlineData("zh-CN", "平方厘米", AreaUnit.SquareCentimeter)]
         [InlineData("zh-CN", "平方分米", AreaUnit.SquareDecimeter)]
         [InlineData("zh-CN", "平方英尺", AreaUnit.SquareFoot)]
@@ -598,6 +590,8 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "морск.миля²", AreaUnit.SquareNauticalMile)]
         [InlineData("ru-RU", "ярд²", AreaUnit.SquareYard)]
         [InlineData("ru-RU", "фут² (US)", AreaUnit.UsSurveySquareFoot)]
+        [InlineData("zh-CN", "英亩", AreaUnit.Acre)]
+        [InlineData("zh-CN", "公顷", AreaUnit.Hectare)]
         [InlineData("zh-CN", "平方厘米", AreaUnit.SquareCentimeter)]
         [InlineData("zh-CN", "平方分米", AreaUnit.SquareDecimeter)]
         [InlineData("zh-CN", "平方英尺", AreaUnit.SquareFoot)]
@@ -613,13 +607,6 @@ namespace UnitsNet.Tests
         {
             AreaUnit parsedUnit = Area.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture));
             Assert.Equal(expectedUnit, parsedUnit);
-        }
-
-        [Theory]
-        [InlineData("zh-CN", "英亩")] // [Acre, Hectare]
-        public void ParseUnitWithAmbiguousAbbreviation(string culture, string abbreviation)
-        {
-            Assert.Throws<AmbiguousUnitParseException>(() => Area.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture)));
         }
 
         [Theory]
@@ -697,6 +684,8 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "морск.миля²", AreaUnit.SquareNauticalMile)]
         [InlineData("ru-RU", "ярд²", AreaUnit.SquareYard)]
         [InlineData("ru-RU", "фут² (US)", AreaUnit.UsSurveySquareFoot)]
+        [InlineData("zh-CN", "英亩", AreaUnit.Acre)]
+        [InlineData("zh-CN", "公顷", AreaUnit.Hectare)]
         [InlineData("zh-CN", "平方厘米", AreaUnit.SquareCentimeter)]
         [InlineData("zh-CN", "平方分米", AreaUnit.SquareDecimeter)]
         [InlineData("zh-CN", "平方英尺", AreaUnit.SquareFoot)]
@@ -744,6 +733,8 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", "морск.миля²", AreaUnit.SquareNauticalMile)]
         [InlineData("ru-RU", "ярд²", AreaUnit.SquareYard)]
         [InlineData("ru-RU", "фут² (US)", AreaUnit.UsSurveySquareFoot)]
+        [InlineData("zh-CN", "英亩", AreaUnit.Acre)]
+        [InlineData("zh-CN", "公顷", AreaUnit.Hectare)]
         [InlineData("zh-CN", "平方厘米", AreaUnit.SquareCentimeter)]
         [InlineData("zh-CN", "平方分米", AreaUnit.SquareDecimeter)]
         [InlineData("zh-CN", "平方英尺", AreaUnit.SquareFoot)]
@@ -759,13 +750,6 @@ namespace UnitsNet.Tests
         {
             Assert.True(Area.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out AreaUnit parsedUnit));
             Assert.Equal(expectedUnit, parsedUnit);
-        }
-
-        [Theory]
-        [InlineData("zh-CN", "英亩")] // [Acre, Hectare]
-        public void TryParseUnitWithAmbiguousAbbreviation(string culture, string abbreviation)
-        {
-            Assert.False(Area.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out _));
         }
 
         [Theory]
@@ -798,7 +782,7 @@ namespace UnitsNet.Tests
         [InlineData("ru-RU", AreaUnit.SquareYard, "ярд²")]
         [InlineData("ru-RU", AreaUnit.UsSurveySquareFoot, "фут² (US)")]
         [InlineData("zh-CN", AreaUnit.Acre, "英亩")]
-        [InlineData("zh-CN", AreaUnit.Hectare, "英亩")]
+        [InlineData("zh-CN", AreaUnit.Hectare, "公顷")]
         [InlineData("zh-CN", AreaUnit.SquareCentimeter, "平方厘米")]
         [InlineData("zh-CN", AreaUnit.SquareDecimeter, "平方分米")]
         [InlineData("zh-CN", AreaUnit.SquareFoot, "平方英尺")]

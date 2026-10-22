@@ -621,6 +621,8 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", "4.2 密耳", LengthUnit.Mil, 4.2)]
         [InlineData("zh-CN", "4.2 英里", LengthUnit.Mile, 4.2)]
         [InlineData("zh-CN", "4.2 毫米", LengthUnit.Millimeter, 4.2)]
+        [InlineData("zh-CN", "4.2 纳米", LengthUnit.Nanometer, 4.2)]
+        [InlineData("zh-CN", "4.2 海里", LengthUnit.NauticalMile, 4.2)]
         [InlineData("zh-CN", "4.2 皮米", LengthUnit.Picometer, 4.2)]
         [InlineData("zh-CN", "4.2 码", LengthUnit.Yard, 4.2)]
         public void Parse(string culture, string quantityString, LengthUnit expectedUnit, decimal expectedValue)
@@ -635,7 +637,6 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "1 pica")] // [DtpPica, PrinterPica] 
         [InlineData("en-US", "1 pt")] // [DtpPoint, PrinterPoint] 
         [InlineData("ru-RU", "1 мил")] // [Mil, NauticalMile] 
-        [InlineData("zh-CN", "1 纳米")] // [Nanometer, NauticalMile] 
         public void ParseWithAmbiguousAbbreviation(string culture, string quantityString)
         {
             Assert.Throws<AmbiguousUnitParseException>(() => Length.Parse(quantityString, CultureInfo.GetCultureInfo(culture)));
@@ -728,6 +729,8 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", "4.2 密耳", LengthUnit.Mil, 4.2)]
         [InlineData("zh-CN", "4.2 英里", LengthUnit.Mile, 4.2)]
         [InlineData("zh-CN", "4.2 毫米", LengthUnit.Millimeter, 4.2)]
+        [InlineData("zh-CN", "4.2 纳米", LengthUnit.Nanometer, 4.2)]
+        [InlineData("zh-CN", "4.2 海里", LengthUnit.NauticalMile, 4.2)]
         [InlineData("zh-CN", "4.2 皮米", LengthUnit.Picometer, 4.2)]
         [InlineData("zh-CN", "4.2 码", LengthUnit.Yard, 4.2)]
         public void TryParse(string culture, string quantityString, LengthUnit expectedUnit, decimal expectedValue)
@@ -742,7 +745,6 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "1 pica")] // [DtpPica, PrinterPica] 
         [InlineData("en-US", "1 pt")] // [DtpPoint, PrinterPoint] 
         [InlineData("ru-RU", "1 мил")] // [Mil, NauticalMile] 
-        [InlineData("zh-CN", "1 纳米")] // [Nanometer, NauticalMile] 
         public void TryParseWithAmbiguousAbbreviation(string culture, string quantityString)
         {
             Assert.False(Length.TryParse(quantityString, CultureInfo.GetCultureInfo(culture), out _));
@@ -949,6 +951,8 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", "密耳", LengthUnit.Mil)]
         [InlineData("zh-CN", "英里", LengthUnit.Mile)]
         [InlineData("zh-CN", "毫米", LengthUnit.Millimeter)]
+        [InlineData("zh-CN", "纳米", LengthUnit.Nanometer)]
+        [InlineData("zh-CN", "海里", LengthUnit.NauticalMile)]
         [InlineData("zh-CN", "皮米", LengthUnit.Picometer)]
         [InlineData("zh-CN", "码", LengthUnit.Yard)]
         public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, LengthUnit expectedUnit)
@@ -1045,6 +1049,8 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", "密耳", LengthUnit.Mil)]
         [InlineData("zh-CN", "英里", LengthUnit.Mile)]
         [InlineData("zh-CN", "毫米", LengthUnit.Millimeter)]
+        [InlineData("zh-CN", "纳米", LengthUnit.Nanometer)]
+        [InlineData("zh-CN", "海里", LengthUnit.NauticalMile)]
         [InlineData("zh-CN", "皮米", LengthUnit.Picometer)]
         [InlineData("zh-CN", "码", LengthUnit.Yard)]
         public void ParseUnit_WithCulture(string culture, string abbreviation, LengthUnit expectedUnit)
@@ -1057,7 +1063,6 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "pica")] // [DtpPica, PrinterPica]
         [InlineData("en-US", "pt")] // [DtpPoint, PrinterPoint]
         [InlineData("ru-RU", "мил")] // [Mil, NauticalMile]
-        [InlineData("zh-CN", "纳米")] // [Nanometer, NauticalMile]
         public void ParseUnitWithAmbiguousAbbreviation(string culture, string abbreviation)
         {
             Assert.Throws<AmbiguousUnitParseException>(() => Length.ParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture)));
@@ -1264,6 +1269,8 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", "密耳", LengthUnit.Mil)]
         [InlineData("zh-CN", "英里", LengthUnit.Mile)]
         [InlineData("zh-CN", "毫米", LengthUnit.Millimeter)]
+        [InlineData("zh-CN", "纳米", LengthUnit.Nanometer)]
+        [InlineData("zh-CN", "海里", LengthUnit.NauticalMile)]
         [InlineData("zh-CN", "皮米", LengthUnit.Picometer)]
         [InlineData("zh-CN", "码", LengthUnit.Yard)]
         public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, LengthUnit expectedUnit)
@@ -1360,6 +1367,8 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", "密耳", LengthUnit.Mil)]
         [InlineData("zh-CN", "英里", LengthUnit.Mile)]
         [InlineData("zh-CN", "毫米", LengthUnit.Millimeter)]
+        [InlineData("zh-CN", "纳米", LengthUnit.Nanometer)]
+        [InlineData("zh-CN", "海里", LengthUnit.NauticalMile)]
         [InlineData("zh-CN", "皮米", LengthUnit.Picometer)]
         [InlineData("zh-CN", "码", LengthUnit.Yard)]
         public void TryParseUnit_WithCulture(string culture, string abbreviation, LengthUnit expectedUnit)
@@ -1372,7 +1381,6 @@ namespace UnitsNet.Tests
         [InlineData("en-US", "pica")] // [DtpPica, PrinterPica]
         [InlineData("en-US", "pt")] // [DtpPoint, PrinterPoint]
         [InlineData("ru-RU", "мил")] // [Mil, NauticalMile]
-        [InlineData("zh-CN", "纳米")] // [Nanometer, NauticalMile]
         public void TryParseUnitWithAmbiguousAbbreviation(string culture, string abbreviation)
         {
             Assert.False(Length.TryParseUnit(abbreviation, CultureInfo.GetCultureInfo(culture), out _));
@@ -1462,7 +1470,7 @@ namespace UnitsNet.Tests
         [InlineData("zh-CN", LengthUnit.Mile, "英里")]
         [InlineData("zh-CN", LengthUnit.Millimeter, "毫米")]
         [InlineData("zh-CN", LengthUnit.Nanometer, "纳米")]
-        [InlineData("zh-CN", LengthUnit.NauticalMile, "纳米")]
+        [InlineData("zh-CN", LengthUnit.NauticalMile, "海里")]
         [InlineData("zh-CN", LengthUnit.Picometer, "皮米")]
         [InlineData("zh-CN", LengthUnit.Yard, "码")]
         public void GetAbbreviationForCulture(string culture, LengthUnit unit, string expectedAbbreviation)
