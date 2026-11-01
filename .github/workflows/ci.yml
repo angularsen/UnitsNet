@@ -81,11 +81,14 @@ jobs:
         PACK_NUGETS: ${{ github.event_name != 'workflow_dispatch' || inputs.pack_nugets || inputs.publish_nuget }}
         CREATE_ARCHIVE: ${{ github.event_name != 'workflow_dispatch' || inputs.upload_artifacts }}
       run: |
-        $buildArguments = @()
-        if ($env:RUN_TESTS -ne 'true') { $buildArguments += '-SkipTests' }
-        if ($env:COLLECT_COVERAGE -ne 'true') { $buildArguments += '-SkipCoverage' }
-        if ($env:PACK_NUGETS -ne 'true') { $buildArguments += '-SkipPack' }
-        if ($env:CREATE_ARCHIVE -ne 'true') { $buildArguments += '-SkipArchive' }
+        # Splat a hashtable, not an array. Array splatting binds positionally, and
+        # build.ps1 declares only switches, so any non-empty array fails with
+        # "A positional parameter cannot be found that accepts argument '-SkipTests'".
+        $buildArguments = @{}
+        if ($env:RUN_TESTS -ne 'true') { $buildArguments['SkipTests'] = $true }
+        if ($env:COLLECT_COVERAGE -ne 'true') { $buildArguments['SkipCoverage'] = $true }
+        if ($env:PACK_NUGETS -ne 'true') { $buildArguments['SkipPack'] = $true }
+        if ($env:CREATE_ARCHIVE -ne 'true') { $buildArguments['SkipArchive'] = $true }
         ./Build/build.ps1 @buildArguments
 
     # Codecov intermittently fails while importing its verification key from Keybase.
