@@ -1,0 +1,49 @@
+{
+  "Name": "ThermalConductance",
+  "BaseUnit": "WattPerKelvin",
+  "XmlDocSummary": "Thermal conductance is a measure of the rate of heat flow through a specific object or component per unit of temperature difference.. It is measured in units of watts per kelvin (W/K).",
+  "BaseDimensions": {
+    "L": 2,
+    "M": 1,
+    "T": -3,
+    "Θ": -1
+  },
+  "Units": [
+    {
+      "SingularName": "WattPerKelvin",
+      "PluralName": "WattsPerKelvin",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second",
+        "Θ": "Kelvin"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "W/K" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "WattPerDegreeCelsius",
+      "PluralName": "WattsPerDegreeCelsius",
+      "BaseUnits": {
+        "L": "Meter",
+        "M": "Kilogram",
+        "T": "Second",
+        "Θ": "DegreeCelsius"
+      },
+      "FromUnitToBaseFunc": "{x}",
+      "FromBaseToUnitFunc": "{x}",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "W/°C" ]
+        }
+      ]
+    }
+  ]
+}

@@ -85,6 +85,7 @@
   "Power.Watt = LinearPowerDensity.WattPerMeter * Length.Meter",
   "Power.Watt = PowerDensity.WattPerCubicMeter * Volume.CubicMeter",
   "Power.Watt = SpecificEnergy.JoulePerKilogram * MassFlow.KilogramPerSecond",
+  "Power.Watt = ThermalConductance.WattPerKelvin * TemperatureDelta.Kelvin",
   "Power.Watt = Torque.NewtonMeter * RotationalSpeed.RadianPerSecond",
   "Pressure.NewtonPerSquareMeter = Force.Newton * ReciprocalArea.InverseSquareMeter",
   "Pressure.NewtonPerSquareMeter = ForcePerLength.NewtonPerMeter * ReciprocalLength.InverseMeter",

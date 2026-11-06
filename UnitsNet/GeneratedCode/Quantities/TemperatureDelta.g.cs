@@ -45,6 +45,7 @@ namespace UnitsNet
         IMultiplyOperators<TemperatureDelta, HeatTransferCoefficient, HeatFlux>,
         IDivisionOperators<TemperatureDelta, ThermalInsulance, HeatFlux>,
         IDivisionOperators<TemperatureDelta, TemperatureGradient, Length>,
+        IMultiplyOperators<TemperatureDelta, ThermalConductance, Power>,
         IDivisionOperators<TemperatureDelta, ThermalResistance, Power>,
         IMultiplyOperators<TemperatureDelta, CoefficientOfThermalExpansion, Ratio>,
         IMultiplyOperators<TemperatureDelta, SpecificEntropy, SpecificEnergy>,
@@ -634,6 +635,12 @@ namespace UnitsNet
         public static Length operator /(TemperatureDelta temperatureDelta, TemperatureGradient temperatureGradient)
         {
             return Length.FromKilometers(temperatureDelta.DegreesCelsius / temperatureGradient.DegreesCelsiusPerKilometer);
+        }
+
+        /// <summary>Get <see cref="Power"/> from <see cref="TemperatureDelta"/> * <see cref="ThermalConductance"/>.</summary>
+        public static Power operator *(TemperatureDelta temperatureDelta, ThermalConductance thermalConductance)
+        {
+            return Power.FromWatts(temperatureDelta.Kelvins * thermalConductance.WattsPerKelvin);
         }
 
         /// <summary>Get <see cref="Power"/> from <see cref="TemperatureDelta"/> / <see cref="ThermalResistance"/>.</summary>

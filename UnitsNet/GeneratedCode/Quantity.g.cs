@@ -152,6 +152,7 @@ public partial class Quantity
             TemperatureChangeRate.Info,
             TemperatureDelta.Info,
             TemperatureGradient.Info,
+            ThermalConductance.Info,
             ThermalConductivity.Info,
             ThermalInsulance.Info,
             ThermalResistance.Info,
