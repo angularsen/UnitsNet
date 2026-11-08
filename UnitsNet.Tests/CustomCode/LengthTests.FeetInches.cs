@@ -65,9 +65,7 @@ public class FeetInchesTests
             ["-1'1\"", -1.08333333, EnglishUs], // Without space
             ["-1′1″", -1.08333333, EnglishUs], // Without space
             ["-1 ft 1 in", -1.08333333, EnglishUs],
-            ["-1ft 1in", -1.08333333, EnglishUs],
-            ["1’000′", 1000, GermanSwitzerland], // Feet only, with separator
-            ["1’000′ 6\"", 1000.5, GermanSwitzerland] // Normal form, using separators for culture
+            ["-1ft 1in", -1.08333333, EnglishUs]
         ];
     }
 
@@ -76,6 +74,17 @@ public class FeetInchesTests
     public void TryParseFeetInches(string str, double expectedFeet, string cultureName)
     {
         var formatProvider = new CultureInfo(cultureName, false);
+        Assert.True(Length.TryParseFeetInches(str, out Length result, formatProvider));
+        AssertEx.EqualTolerance(expectedFeet, result.Feet, 1e-5);
+    }
+
+    [Theory]
+    [InlineData("1’000′", 1000)] // Feet only, with separator
+    [InlineData("1’000′ 6\"", 1000.5)] // Normal form, using separators for culture
+    public void TryParseFeetInches_GivenCultureWithRightQuoteDigitGroup_ReturnsLength(string str, double expectedFeet)
+    {
+        var formatProvider = new CultureInfo(GermanSwitzerland, false);
+        formatProvider.NumberFormat.NumberGroupSeparator = "’"; // CLDR 48 changed the de-CH default to an ASCII apostrophe
         Assert.True(Length.TryParseFeetInches(str, out Length result, formatProvider));
         AssertEx.EqualTolerance(expectedFeet, result.Feet, 1e-5);
     }
