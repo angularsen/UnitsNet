@@ -42,6 +42,30 @@ namespace UnitsNet.NumberExtensions.NumberToThermalConductance
             , IConvertible
 #endif
         {
+            /// <inheritdoc cref="ThermalConductance.FromBtuPerHourDegreeFahrenheit(QuantityValue)" />
+            public ThermalConductance BtuPerHourDegreeFahrenheit
+#if NET7_0_OR_GREATER
+                => ThermalConductance.FromBtuPerHourDegreeFahrenheit(QuantityValue.CreateChecked(value));
+#else
+                => ThermalConductance.FromBtuPerHourDegreeFahrenheit(value.ToQuantityValue());
+#endif
+
+            /// <inheritdoc cref="ThermalConductance.FromKilowattsPerDegreeCelsius(QuantityValue)" />
+            public ThermalConductance KilowattsPerDegreeCelsius
+#if NET7_0_OR_GREATER
+                => ThermalConductance.FromKilowattsPerDegreeCelsius(QuantityValue.CreateChecked(value));
+#else
+                => ThermalConductance.FromKilowattsPerDegreeCelsius(value.ToQuantityValue());
+#endif
+
+            /// <inheritdoc cref="ThermalConductance.FromKilowattsPerKelvin(QuantityValue)" />
+            public ThermalConductance KilowattsPerKelvin
+#if NET7_0_OR_GREATER
+                => ThermalConductance.FromKilowattsPerKelvin(QuantityValue.CreateChecked(value));
+#else
+                => ThermalConductance.FromKilowattsPerKelvin(value.ToQuantityValue());
+#endif
+
             /// <inheritdoc cref="ThermalConductance.FromWattsPerDegreeCelsius(QuantityValue)" />
             public ThermalConductance WattsPerDegreeCelsius
 #if NET7_0_OR_GREATER

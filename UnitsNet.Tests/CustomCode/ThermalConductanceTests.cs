@@ -27,6 +27,12 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double WattsPerDegreeCelsiusInOneWattPerKelvin => 1;
 
+        protected override double KilowattsPerDegreeCelsiusInOneWattPerKelvin => 1E-3;
+
+        protected override double KilowattsPerKelvinInOneWattPerKelvin => 1E-3;
+
+        protected override double BtuPerHourDegreeFahrenheitInOneWattPerKelvin => 1.8956342406266344;
+
         [Fact]
         public void ThermalConductanceTimesTemperatureDeltaEqualsPower()
         {

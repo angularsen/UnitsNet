@@ -25,6 +25,9 @@ namespace UnitsNet.Units
 
     public enum ThermalConductanceUnit
     {
+        BtuPerHourDegreeFahrenheit = 8,
+        KilowattPerDegreeCelsius = 9,
+        KilowattPerKelvin = 5,
         WattPerDegreeCelsius = 1,
         WattPerKelvin = 2,
     }

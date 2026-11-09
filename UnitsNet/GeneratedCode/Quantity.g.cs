@@ -178,6 +178,7 @@ public partial class Quantity
             new (typeof(Duration), typeof(Frequency)),
             new (typeof(ElectricConductivity), typeof(ElectricResistivity)),
             new (typeof(Length), typeof(ReciprocalLength)),
+            new (typeof(ThermalConductance), typeof(ThermalResistance)),
         };
     }
 }

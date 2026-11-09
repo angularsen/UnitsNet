@@ -30,7 +30,7 @@ namespace UnitsNet
 {
     /// <inheritdoc />
     /// <summary>
-    ///     Thermal conductance is a measure of the rate of heat flow through a specific object or component per unit of temperature difference.. It is measured in units of watts per kelvin (W/K).
+    ///     Thermal conductance is a measure of the rate of heat flow through a specific object or component per unit of temperature difference. It is measured in units of watts per kelvin (W/K).
     /// </summary>
     [DataContract]
     [DebuggerDisplay(QuantityDebugProxy.DisplayFormat)]
@@ -117,6 +117,15 @@ namespace UnitsNet
             /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="UnitDefinition{ThermalConductanceUnit}"/> representing the default unit mappings for ThermalConductance.</returns>
             public static IEnumerable<UnitDefinition<ThermalConductanceUnit>> GetDefaultMappings()
             {
+                yield return new (ThermalConductanceUnit.BtuPerHourDegreeFahrenheit, "BtuPerHourDegreeFahrenheit", "BtuPerHourDegreeFahrenheit", BaseUnits.Undefined,
+                     new QuantityValue(100000000000, 52752792631)
+                );
+                yield return new (ThermalConductanceUnit.KilowattPerDegreeCelsius, "KilowattPerDegreeCelsius", "KilowattsPerDegreeCelsius", BaseUnits.Undefined,
+                     new QuantityValue(1, 1000)
+                );
+                yield return new (ThermalConductanceUnit.KilowattPerKelvin, "KilowattPerKelvin", "KilowattsPerKelvin", BaseUnits.Undefined,
+                     new QuantityValue(1, 1000)
+                );
                 yield return new (ThermalConductanceUnit.WattPerDegreeCelsius, "WattPerDegreeCelsius", "WattsPerDegreeCelsius", new BaseUnits(length: LengthUnit.Meter, mass: MassUnit.Kilogram, time: DurationUnit.Second, temperature: TemperatureUnit.DegreeCelsius),
                      1
                 );
@@ -224,6 +233,21 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ThermalConductanceUnit.BtuPerHourDegreeFahrenheit"/>
+        /// </summary>
+        public QuantityValue BtuPerHourDegreeFahrenheit => this.As(ThermalConductanceUnit.BtuPerHourDegreeFahrenheit);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ThermalConductanceUnit.KilowattPerDegreeCelsius"/>
+        /// </summary>
+        public QuantityValue KilowattsPerDegreeCelsius => this.As(ThermalConductanceUnit.KilowattPerDegreeCelsius);
+
+        /// <summary>
+        ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ThermalConductanceUnit.KilowattPerKelvin"/>
+        /// </summary>
+        public QuantityValue KilowattsPerKelvin => this.As(ThermalConductanceUnit.KilowattPerKelvin);
+
+        /// <summary>
         ///     Gets a <see cref="QuantityValue"/> value of this quantity converted into <see cref="ThermalConductanceUnit.WattPerDegreeCelsius"/>
         /// </summary>
         public QuantityValue WattsPerDegreeCelsius => this.As(ThermalConductanceUnit.WattPerDegreeCelsius);
@@ -261,6 +285,30 @@ namespace UnitsNet
         #endregion
 
         #region Static Factory Methods
+
+        /// <summary>
+        ///     Creates a <see cref="ThermalConductance"/> from <see cref="ThermalConductanceUnit.BtuPerHourDegreeFahrenheit"/>.
+        /// </summary>
+        public static ThermalConductance FromBtuPerHourDegreeFahrenheit(QuantityValue value)
+        {
+            return new ThermalConductance(value, ThermalConductanceUnit.BtuPerHourDegreeFahrenheit);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ThermalConductance"/> from <see cref="ThermalConductanceUnit.KilowattPerDegreeCelsius"/>.
+        /// </summary>
+        public static ThermalConductance FromKilowattsPerDegreeCelsius(QuantityValue value)
+        {
+            return new ThermalConductance(value, ThermalConductanceUnit.KilowattPerDegreeCelsius);
+        }
+
+        /// <summary>
+        ///     Creates a <see cref="ThermalConductance"/> from <see cref="ThermalConductanceUnit.KilowattPerKelvin"/>.
+        /// </summary>
+        public static ThermalConductance FromKilowattsPerKelvin(QuantityValue value)
+        {
+            return new ThermalConductance(value, ThermalConductanceUnit.KilowattPerKelvin);
+        }
 
         /// <summary>
         ///     Creates a <see cref="ThermalConductance"/> from <see cref="ThermalConductanceUnit.WattPerDegreeCelsius"/>.
@@ -475,6 +523,13 @@ namespace UnitsNet
         #endregion
 
         #region Relational Operators
+
+        /// <summary>Calculates the inverse of this quantity.</summary>
+        /// <returns>The corresponding inverse quantity, <see cref="ThermalResistance"/>.</returns>
+        public ThermalResistance Inverse()
+        {
+            return UnitConverter.Default.ConvertTo(Value, Unit, ThermalResistance.Info);
+        }
 
         /// <summary>Get <see cref="Power"/> from <see cref="ThermalConductance"/> * <see cref="TemperatureDelta"/>.</summary>
         public static Power operator *(ThermalConductance thermalConductance, TemperatureDelta temperatureDelta)

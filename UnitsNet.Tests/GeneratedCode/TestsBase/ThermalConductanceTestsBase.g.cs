@@ -40,10 +40,16 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ThermalConductanceTestsBase : QuantityTestsBase
     {
+        protected abstract double BtuPerHourDegreeFahrenheitInOneWattPerKelvin { get; }
+        protected abstract double KilowattsPerDegreeCelsiusInOneWattPerKelvin { get; }
+        protected abstract double KilowattsPerKelvinInOneWattPerKelvin { get; }
         protected abstract double WattsPerDegreeCelsiusInOneWattPerKelvin { get; }
         protected abstract double WattsPerKelvinInOneWattPerKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double BtuPerHourDegreeFahrenheitTolerance { get { return 1e-5; } }
+        protected virtual double KilowattsPerDegreeCelsiusTolerance { get { return 1e-5; } }
+        protected virtual double KilowattsPerKelvinTolerance { get { return 1e-5; } }
         protected virtual double WattsPerDegreeCelsiusTolerance { get { return 1e-5; } }
         protected virtual double WattsPerKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
@@ -52,6 +58,9 @@ namespace UnitsNet.Tests
         {
             return unit switch
             {
+                ThermalConductanceUnit.BtuPerHourDegreeFahrenheit => (BtuPerHourDegreeFahrenheitInOneWattPerKelvin, BtuPerHourDegreeFahrenheitTolerance),
+                ThermalConductanceUnit.KilowattPerDegreeCelsius => (KilowattsPerDegreeCelsiusInOneWattPerKelvin, KilowattsPerDegreeCelsiusTolerance),
+                ThermalConductanceUnit.KilowattPerKelvin => (KilowattsPerKelvinInOneWattPerKelvin, KilowattsPerKelvinTolerance),
                 ThermalConductanceUnit.WattPerDegreeCelsius => (WattsPerDegreeCelsiusInOneWattPerKelvin, WattsPerDegreeCelsiusTolerance),
                 ThermalConductanceUnit.WattPerKelvin => (WattsPerKelvinInOneWattPerKelvin, WattsPerKelvinTolerance),
                 _ => throw new NotSupportedException()
@@ -60,6 +69,9 @@ namespace UnitsNet.Tests
 
         public static IEnumerable<object[]> UnitTypes = new List<object[]>
         {
+            new object[] { ThermalConductanceUnit.BtuPerHourDegreeFahrenheit },
+            new object[] { ThermalConductanceUnit.KilowattPerDegreeCelsius },
+            new object[] { ThermalConductanceUnit.KilowattPerKelvin },
             new object[] { ThermalConductanceUnit.WattPerDegreeCelsius },
             new object[] { ThermalConductanceUnit.WattPerKelvin },
         };
@@ -147,6 +159,9 @@ namespace UnitsNet.Tests
         public void WattPerKelvinToThermalConductanceUnits()
         {
             ThermalConductance wattperkelvin = ThermalConductance.FromWattsPerKelvin(1);
+            AssertEx.EqualTolerance(BtuPerHourDegreeFahrenheitInOneWattPerKelvin, wattperkelvin.BtuPerHourDegreeFahrenheit, BtuPerHourDegreeFahrenheitTolerance);
+            AssertEx.EqualTolerance(KilowattsPerDegreeCelsiusInOneWattPerKelvin, wattperkelvin.KilowattsPerDegreeCelsius, KilowattsPerDegreeCelsiusTolerance);
+            AssertEx.EqualTolerance(KilowattsPerKelvinInOneWattPerKelvin, wattperkelvin.KilowattsPerKelvin, KilowattsPerKelvinTolerance);
             AssertEx.EqualTolerance(WattsPerDegreeCelsiusInOneWattPerKelvin, wattperkelvin.WattsPerDegreeCelsius, WattsPerDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(WattsPerKelvinInOneWattPerKelvin, wattperkelvin.WattsPerKelvin, WattsPerKelvinTolerance);
         }
@@ -184,6 +199,9 @@ namespace UnitsNet.Tests
         public void As()
         {
             var wattperkelvin = ThermalConductance.FromWattsPerKelvin(1);
+            AssertEx.EqualTolerance(BtuPerHourDegreeFahrenheitInOneWattPerKelvin, wattperkelvin.As(ThermalConductanceUnit.BtuPerHourDegreeFahrenheit), BtuPerHourDegreeFahrenheitTolerance);
+            AssertEx.EqualTolerance(KilowattsPerDegreeCelsiusInOneWattPerKelvin, wattperkelvin.As(ThermalConductanceUnit.KilowattPerDegreeCelsius), KilowattsPerDegreeCelsiusTolerance);
+            AssertEx.EqualTolerance(KilowattsPerKelvinInOneWattPerKelvin, wattperkelvin.As(ThermalConductanceUnit.KilowattPerKelvin), KilowattsPerKelvinTolerance);
             AssertEx.EqualTolerance(WattsPerDegreeCelsiusInOneWattPerKelvin, wattperkelvin.As(ThermalConductanceUnit.WattPerDegreeCelsius), WattsPerDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(WattsPerKelvinInOneWattPerKelvin, wattperkelvin.As(ThermalConductanceUnit.WattPerKelvin), WattsPerKelvinTolerance);
         }
@@ -295,6 +313,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", "4.2 Btu/(h·°F)", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit, 4.2)]
+        [InlineData("en-US", "4.2 Btu/h·°F", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit, 4.2)]
+        [InlineData("en-US", "4.2 kW/°C", ThermalConductanceUnit.KilowattPerDegreeCelsius, 4.2)]
+        [InlineData("en-US", "4.2 kW/K", ThermalConductanceUnit.KilowattPerKelvin, 4.2)]
         [InlineData("en-US", "4.2 W/°C", ThermalConductanceUnit.WattPerDegreeCelsius, 4.2)]
         [InlineData("en-US", "4.2 W/K", ThermalConductanceUnit.WattPerKelvin, 4.2)]
         public void Parse(string culture, string quantityString, ThermalConductanceUnit expectedUnit, decimal expectedValue)
@@ -306,6 +328,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", "4.2 Btu/(h·°F)", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit, 4.2)]
+        [InlineData("en-US", "4.2 Btu/h·°F", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit, 4.2)]
+        [InlineData("en-US", "4.2 kW/°C", ThermalConductanceUnit.KilowattPerDegreeCelsius, 4.2)]
+        [InlineData("en-US", "4.2 kW/K", ThermalConductanceUnit.KilowattPerKelvin, 4.2)]
         [InlineData("en-US", "4.2 W/°C", ThermalConductanceUnit.WattPerDegreeCelsius, 4.2)]
         [InlineData("en-US", "4.2 W/K", ThermalConductanceUnit.WattPerKelvin, 4.2)]
         public void TryParse(string culture, string quantityString, ThermalConductanceUnit expectedUnit, decimal expectedValue)
@@ -317,6 +343,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("Btu/(h·°F)", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit)]
+        [InlineData("Btu/h·°F", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit)]
+        [InlineData("kW/°C", ThermalConductanceUnit.KilowattPerDegreeCelsius)]
+        [InlineData("kW/K", ThermalConductanceUnit.KilowattPerKelvin)]
         [InlineData("W/°C", ThermalConductanceUnit.WattPerDegreeCelsius)]
         [InlineData("W/K", ThermalConductanceUnit.WattPerKelvin)]
         public void ParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ThermalConductanceUnit expectedUnit)
@@ -328,6 +358,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("Btu/(h·°F)", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit)]
+        [InlineData("Btu/h·°F", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit)]
+        [InlineData("kW/°C", ThermalConductanceUnit.KilowattPerDegreeCelsius)]
+        [InlineData("kW/K", ThermalConductanceUnit.KilowattPerKelvin)]
         [InlineData("W/°C", ThermalConductanceUnit.WattPerDegreeCelsius)]
         [InlineData("W/K", ThermalConductanceUnit.WattPerKelvin)]
         public void ParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ThermalConductanceUnit expectedUnit)
@@ -339,6 +373,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", "Btu/(h·°F)", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/h·°F", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit)]
+        [InlineData("en-US", "kW/°C", ThermalConductanceUnit.KilowattPerDegreeCelsius)]
+        [InlineData("en-US", "kW/K", ThermalConductanceUnit.KilowattPerKelvin)]
         [InlineData("en-US", "W/°C", ThermalConductanceUnit.WattPerDegreeCelsius)]
         [InlineData("en-US", "W/K", ThermalConductanceUnit.WattPerKelvin)]
         public void ParseUnit_WithCurrentCulture(string culture, string abbreviation, ThermalConductanceUnit expectedUnit)
@@ -349,6 +387,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", "Btu/(h·°F)", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/h·°F", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit)]
+        [InlineData("en-US", "kW/°C", ThermalConductanceUnit.KilowattPerDegreeCelsius)]
+        [InlineData("en-US", "kW/K", ThermalConductanceUnit.KilowattPerKelvin)]
         [InlineData("en-US", "W/°C", ThermalConductanceUnit.WattPerDegreeCelsius)]
         [InlineData("en-US", "W/K", ThermalConductanceUnit.WattPerKelvin)]
         public void ParseUnit_WithCulture(string culture, string abbreviation, ThermalConductanceUnit expectedUnit)
@@ -358,6 +400,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("Btu/(h·°F)", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit)]
+        [InlineData("Btu/h·°F", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit)]
+        [InlineData("kW/°C", ThermalConductanceUnit.KilowattPerDegreeCelsius)]
+        [InlineData("kW/K", ThermalConductanceUnit.KilowattPerKelvin)]
         [InlineData("W/°C", ThermalConductanceUnit.WattPerDegreeCelsius)]
         [InlineData("W/K", ThermalConductanceUnit.WattPerKelvin)]
         public void TryParseUnit_WithUsEnglishCurrentCulture(string abbreviation, ThermalConductanceUnit expectedUnit)
@@ -369,6 +415,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("Btu/(h·°F)", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit)]
+        [InlineData("Btu/h·°F", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit)]
+        [InlineData("kW/°C", ThermalConductanceUnit.KilowattPerDegreeCelsius)]
+        [InlineData("kW/K", ThermalConductanceUnit.KilowattPerKelvin)]
         [InlineData("W/°C", ThermalConductanceUnit.WattPerDegreeCelsius)]
         [InlineData("W/K", ThermalConductanceUnit.WattPerKelvin)]
         public void TryParseUnit_WithUnsupportedCurrentCulture_FallsBackToUsEnglish(string abbreviation, ThermalConductanceUnit expectedUnit)
@@ -380,6 +430,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", "Btu/(h·°F)", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/h·°F", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit)]
+        [InlineData("en-US", "kW/°C", ThermalConductanceUnit.KilowattPerDegreeCelsius)]
+        [InlineData("en-US", "kW/K", ThermalConductanceUnit.KilowattPerKelvin)]
         [InlineData("en-US", "W/°C", ThermalConductanceUnit.WattPerDegreeCelsius)]
         [InlineData("en-US", "W/K", ThermalConductanceUnit.WattPerKelvin)]
         public void TryParseUnit_WithCurrentCulture(string culture, string abbreviation, ThermalConductanceUnit expectedUnit)
@@ -390,6 +444,10 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", "Btu/(h·°F)", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit)]
+        [InlineData("en-US", "Btu/h·°F", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit)]
+        [InlineData("en-US", "kW/°C", ThermalConductanceUnit.KilowattPerDegreeCelsius)]
+        [InlineData("en-US", "kW/K", ThermalConductanceUnit.KilowattPerKelvin)]
         [InlineData("en-US", "W/°C", ThermalConductanceUnit.WattPerDegreeCelsius)]
         [InlineData("en-US", "W/K", ThermalConductanceUnit.WattPerKelvin)]
         public void TryParseUnit_WithCulture(string culture, string abbreviation, ThermalConductanceUnit expectedUnit)
@@ -399,6 +457,9 @@ namespace UnitsNet.Tests
         }
 
         [Theory]
+        [InlineData("en-US", ThermalConductanceUnit.BtuPerHourDegreeFahrenheit, "Btu/(h·°F)")]
+        [InlineData("en-US", ThermalConductanceUnit.KilowattPerDegreeCelsius, "kW/°C")]
+        [InlineData("en-US", ThermalConductanceUnit.KilowattPerKelvin, "kW/K")]
         [InlineData("en-US", ThermalConductanceUnit.WattPerDegreeCelsius, "W/°C")]
         [InlineData("en-US", ThermalConductanceUnit.WattPerKelvin, "W/K")]
         public void GetAbbreviationForCulture(string culture, ThermalConductanceUnit unit, string expectedAbbreviation)
@@ -488,6 +549,9 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             ThermalConductance wattperkelvin = ThermalConductance.FromWattsPerKelvin(3);
+            Assert.Equal(3, ThermalConductance.FromBtuPerHourDegreeFahrenheit(wattperkelvin.BtuPerHourDegreeFahrenheit).WattsPerKelvin);
+            Assert.Equal(3, ThermalConductance.FromKilowattsPerDegreeCelsius(wattperkelvin.KilowattsPerDegreeCelsius).WattsPerKelvin);
+            Assert.Equal(3, ThermalConductance.FromKilowattsPerKelvin(wattperkelvin.KilowattsPerKelvin).WattsPerKelvin);
             Assert.Equal(3, ThermalConductance.FromWattsPerDegreeCelsius(wattperkelvin.WattsPerDegreeCelsius).WattsPerKelvin);
             Assert.Equal(3, ThermalConductance.FromWattsPerKelvin(wattperkelvin.WattsPerKelvin).WattsPerKelvin);
         }
@@ -656,6 +720,9 @@ namespace UnitsNet.Tests
         public void ToString_ReturnsValueAndUnitAbbreviationInCurrentCulture()
         {
             using var _ = new CultureScope("en-US");
+            Assert.Equal("1 Btu/(h·°F)", new ThermalConductance(1, ThermalConductanceUnit.BtuPerHourDegreeFahrenheit).ToString());
+            Assert.Equal("1 kW/°C", new ThermalConductance(1, ThermalConductanceUnit.KilowattPerDegreeCelsius).ToString());
+            Assert.Equal("1 kW/K", new ThermalConductance(1, ThermalConductanceUnit.KilowattPerKelvin).ToString());
             Assert.Equal("1 W/°C", new ThermalConductance(1, ThermalConductanceUnit.WattPerDegreeCelsius).ToString());
             Assert.Equal("1 W/K", new ThermalConductance(1, ThermalConductanceUnit.WattPerKelvin).ToString());
         }
@@ -666,6 +733,9 @@ namespace UnitsNet.Tests
             // Chose this culture, because we don't currently have any abbreviations mapped for that culture and we expect the en-US to be used as fallback.
             var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
 
+            Assert.Equal("1 Btu/(h·°F)", new ThermalConductance(1, ThermalConductanceUnit.BtuPerHourDegreeFahrenheit).ToString(swedishCulture));
+            Assert.Equal("1 kW/°C", new ThermalConductance(1, ThermalConductanceUnit.KilowattPerDegreeCelsius).ToString(swedishCulture));
+            Assert.Equal("1 kW/K", new ThermalConductance(1, ThermalConductanceUnit.KilowattPerKelvin).ToString(swedishCulture));
             Assert.Equal("1 W/°C", new ThermalConductance(1, ThermalConductanceUnit.WattPerDegreeCelsius).ToString(swedishCulture));
             Assert.Equal("1 W/K", new ThermalConductance(1, ThermalConductanceUnit.WattPerKelvin).ToString(swedishCulture));
         }
